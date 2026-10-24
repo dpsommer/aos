@@ -902,8 +902,9 @@ def test_battle_traits_include_linked_profiles(tmp_path):
 
 
 def traits_root(*names):
-    entries = "".join('<selectionEntry id="se-%d" name="Battle Traits: %s" type="upgrade">'
-                      '<infoLinks>%s</infoLinks></selectionEntry>' % (i, n, info_link("p-trait"))
+    entries = "".join('<selectionEntry id="se-%d" name="%s" type="upgrade">'
+                      '<infoLinks>%s</infoLinks></selectionEntry>' % (i, n and "Battle Traits: " + n or "Battle Traits",
+                                                                      info_link("p-trait"))
                       for i, n in enumerate(names))
     return element("catalogue", 'id="c" name="Root"><sharedSelectionEntries>%s</sharedSelectionEntries>' % entries)
 
@@ -911,6 +912,35 @@ def traits_root(*names):
 def test_battle_traits_use_only_entry_named_differently_from_army(cats):
     traits = bsdata.battle_traits(cats, traits_root("The King's Gitz"), "Da King's Gitz")
     assert [a["name"] for a in traits] == ["Steady Ranks"]
+
+
+def test_battle_traits_use_only_entry_named_without_army(cats):
+    traits = bsdata.battle_traits(cats, traits_root(""), "Hedonites of Slaanesh")
+    assert [a["name"] for a in traits] == ["Steady Ranks"]
+
+
+def test_battle_traits_prefer_entry_named_for_army_over_plain_entry(cats):
+    root = element("catalogue", 'id="c" name="Root"><sharedSelectionEntries>'
+                   '<selectionEntry id="se-plain" name="Battle Traits" type="upgrade"/>'
+                   '<selectionEntry id="se-named" name="Battle Traits: Testers" type="upgrade">'
+                   '<infoLinks>%s</infoLinks></selectionEntry></sharedSelectionEntries>' % info_link("p-trait"))
+    assert [a["name"] for a in bsdata.battle_traits(cats, root, "Testers")] == ["Steady Ranks"]
+
+
+def formations_root(name):
+    entry = '<selectionEntry id="se-f" name="Test Formation" type="upgrade"><infoLinks>%s</infoLinks></selectionEntry>' \
+        % info_link("p-trait")
+    return element("catalogue", 'id="c" name="Root"><sharedSelectionEntryGroups><selectionEntryGroup id="g" name="%s">'
+                   '<selectionEntries>%s</selectionEntries></selectionEntryGroup></sharedSelectionEntryGroups>' % (name, entry))
+
+
+def test_battle_formations_group_can_be_named_without_army(cats):
+    formations = bsdata.battle_formations(cats, formations_root("Battle Formations"), "Hedonites of Slaanesh")
+    assert [f["name"] for f in formations] == ["Test Formation"]
+
+
+def test_battle_formations_of_another_army_are_ignored(cats):
+    assert bsdata.battle_formations(cats, formations_root("Battle Formations: Other Army"), "Testers") == []
 
 
 def test_battle_traits_need_a_name_match_among_several_entries(cats):

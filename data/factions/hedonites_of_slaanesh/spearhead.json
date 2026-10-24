@@ -1,0 +1,505 @@
+{
+	"spearheads": [
+		{
+			"name": "Blades of the Lurid Dream",
+			"text": "Slaanesh, the loathsome yet beguiling Dark Prince of the Ruinous Powers, excels in ensnaring mortals. He whispers that they might slake their most salacious desires, if only they should enter into his service. For many who endure existences of privation and drudgery, it is an offer too tempting to resist. Reality becomes a phantasmagoric paradise of revelry to these Sybarites, every torment theirs to inflict and have inflicted upon them. Many form warbands who seek to inhabit this blissful dream-state for eternity – and drag more noble souls down into the depths of their depravity.\nIt is the Shardspeakers who direct these packs of murderous libertines and who channel the power of the Dark Prince like a powerful intoxicant. Through clouds of incense dart Blissbarb Archers, whose arrows are smeared with poisons that distort the senses. Only then do the elite of the Sybarites move in for the kill. Disdainful laughter echoes as Slickblade Seekers sprint forwards to slice off heads, herding surviving prey towards their doom. That doom is delivered by the Slaangor Fiendbloods. The arrival of these trilling beast-kin is the breaking point for the foe; some weep in terror, some cry out in joy and try desperately to embrace them. All are ripped asunder, their dream turning to a gruesome nightmare in their agonised final moments.",
+			"general": "Shardspeaker of Slaanesh",
+			"units": [
+				{
+					"count": 5,
+					"name": "Blissbarb Archers",
+					"notes": "with 1 Blissbrew Homonculus"
+				},
+				{
+					"count": 5,
+					"name": "Blissbarb Archers"
+				},
+				{
+					"count": 5,
+					"name": "Slickblade Seekers"
+				},
+				{
+					"count": 3,
+					"name": "Slaangor Fiendbloods"
+				}
+			],
+			"battle_traits": [],
+			"regiment_abilities": [
+				{
+					"name": "UNPARALLELED SPEED",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit to use this ability.",
+					"effect": "That unit has STRIKE-FIRST this phase."
+				},
+				{
+					"name": "LOCUS OF DIVERSION",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "Pick a friendly unit to use this ability.",
+					"effect": "For the rest of the turn, that unit can use a RETREAT ability and still use SHOOT and/or CHARGE abilities later in the turn."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "SCEPTRE OF DOMINATION",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Roll a dice for each enemy unit in combat with your general.",
+					"effect": "On a 5+, the unit being rolled for has STRIKE-LAST this phase."
+				},
+				{
+					"name": "CACOPHONIC CHOIR",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Make a casting roll of 2D6.",
+					"effect": "On a 6+, make a cacophony roll of D6. Inflict D3 mortal damage on each enemy unit (roll for each) within 6\" of your general that has a Control characteristic less than the cacophony roll."
+				},
+				{
+					"name": "TWISTED MIRROR",
+					"category": "offensive",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick an enemy unit within 9\" of your general and roll a dice.",
+					"effect": "On a 4+, subtract 1 from save rolls for that unit until the start of your next turn."
+				},
+				{
+					"name": "PENDANT OF SLAANESH",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"effect": "Heal (D3) your general."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "shardspeaker_of_slaanesh",
+					"name": "Shardspeaker of Slaanesh",
+					"move": "6",
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Haze Staff",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "VISION OF DAMNATION",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Make a casting roll of 2D6.",
+							"effect": "On a 6+, roll 6 dice. For each 4+, you receive 1 depravity point."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"WIZARD",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "slickblade_seekers",
+					"name": "Slickblade Seekers",
+					"move": "12",
+					"health": 4,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Slickblade Glaive",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Charge (+1 Damage)"
+							]
+						},
+						{
+							"name": "Exalted Steed’s Poisoned Tongue",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "UNRIVALLED VELOCITY",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "You can re-roll charge rolls for this unit."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "slaangor_fiendbloods",
+					"name": "Slaangor Fiendbloods",
+					"move": "6",
+					"health": 3,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Razor-sharp Claw and Gilded Weapon",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "Razor-sharp Claws",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SLAUGHTER AT ANY COST",
+							"category": "movement",
+							"timing": "Enemy Shooting Phase",
+							"declare": "This unit can use this ability if any damage points were allocated to it this turn.",
+							"effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					],
+					"composition": "This unit has 2 Slaangor Fiendbloods armed with Razorsharp Claws, and 1 Slaangor Fiendblood armed with a Razor-sharp Claw and Gilded Weapon."
+				},
+				{
+					"id": "blissbarb_archers",
+					"name": "Blissbarb Archers",
+					"move": "6",
+					"health": 1,
+					"save": 6,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Blissbarb Bow",
+							"range": 18,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Sybarite Blade",
+							"range": 0,
+							"attacks": "1",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "LIGHT-FOOTED KILLERS",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "This unit can use SHOOT abilities even if it used a RUN ability in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					],
+					"composition": "One unit has 5 Blissbarb Archers and 1 Blissbrew Homonculus. The other unit has 5 Blissbarb Archers. The Blissbarb Archers are each armed with a Blissbarb Bow and Sybarite Blade. The Blissbrew Homonculus is armed with a Sybarite Blade."
+				}
+			]
+		},
+		{
+			"name": "Epicurean Revellers",
+			"text": "Slaanesh’s daemons must typically be summoned to the Mortal Realms through painstaking (and inevitably painful) rites of invoking. Yet sometimes, the acts of atrocity and vice carried out by a marauding horde or ascendant cult will reach such a delectable climax that warhosts of the Dark Prince’s own children can tear the veil of their own accord. These Epicurean Revellers rarely have any grand strategy in mind; their only urge is to slake those desires that only conventional reality may facilitate, engaging in orgies of blood and slaughter before returning to Slaanesh’s realm.\nGreater daemons of Slaanesh rarely lower themselves to lead such warbands; rather, it is discordant courtiers from the Palace of Pleasure who seize these opportunities, eager to prove the worth of their own dark fascinations to one another. They bring with them not only Daemonette handmaidens but also the stranger daemonic beasts of Slaanesh’s domain – hooting, warbling entities whose senses are inflamed by the stench of mortal souls…",
+			"general": "Thricefold Discord",
+			"units": [
+				{
+					"count": 3,
+					"name": "Fiends"
+				},
+				{
+					"count": 10,
+					"name": "Daemonettes"
+				},
+				{
+					"count": 10,
+					"name": "Daemonettes"
+				},
+				{
+					"count": 5,
+					"name": "Seekers"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "FAVOUR MOST FICKLE",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "The following effects apply based on the number of friendly units on the battlefield. These effects are not cumulative:",
+					"options": [
+						{
+							"name": "• 5 or more units",
+							"text": "Add 2 to the Control characteristic of friendly units."
+						},
+						{
+							"name": "• 4 units",
+							"text": "Add 1 to hit rolls and wound rolls for friendly units’ combat attacks, including attacks made with Companion weapons."
+						},
+						{
+							"name": "• 3 units",
+							"text": "Add 1 to run rolls and charge rolls for friendly units."
+						},
+						{
+							"name": "• 2 units",
+							"text": "Friendly units have WARD (5+)."
+						},
+						{
+							"name": "• 1 unit",
+							"text": "Add 2 to the Attacks characteristic of friendly units’ melee weapons, including Companion weapons."
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "BRINGERS OF DEGRADATION",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, you can pick 2 friendly Daemonettes units instead of 1 unit. Resolve the second FIGHT ability immediately after the first."
+				},
+				{
+					"name": "DAEMONIC ONSLAUGHT",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly Seekers or Fiends unit wholly within 12\" of your general to be the target.",
+					"effect": "The target can use the ‘Normal Move’ ability as if it were your movement phase."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "TWISTED GRACE",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "When your general makes a pile-in move, if they charged in the same turn, add D6\" to the distance they can move."
+				},
+				{
+					"name": "EXCESS OF VIOLENCE",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target.",
+					"effect": "The target’s melee weapons, including Companion weapons, have Crit (2 Hits) until the start of your next turn."
+				},
+				{
+					"name": "HIGH COURTIERS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While your general is wholly within the combat range of a friendly Daemonettes unit, both units have WARD (5+)."
+				},
+				{
+					"name": "IRRESISTIBLE SOUL-MUSK",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a visible friendly Seekers or Fiends unit wholly within 12\" of your general to be the target.",
+					"effect": "Remove the target from the battlefield and set it up again on the battlefield more than 6\" from all enemy units."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "thricefold_discord",
+					"name": "Thricefold Discord",
+					"move": "6",
+					"health": 3,
+					"save": 5,
+					"control": 2,
+					"ward": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Thricefold Arsenal",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "THRICEFOLD COURT",
+							"category": "special",
+							"timing": "Passive",
+							"effect": "Each model in this unit is treated as an individual unit when determining the effect of the ‘Favour Most Fickle’ battle trait."
+						},
+						{
+							"name": "DISPENSERS OF FAVOUR",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick up to X different friendly units wholly within 12\" of this unit to be the targets, where X is the number of models in this unit. Then, make a casting roll of 2D6.",
+							"effect": "On a 6+, apply the relevant effect to each target:\nDaemonettes: The target’s weapons have Anti‑charge (+1 Rend) until the start of your next turn. Seekers: Add 2\" to the target’s Move characteristic until the start of your next turn. Fiends: Add 1 to hit rolls for the target’s combat attacks until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"WARD (5+)",
+						"WIZARD",
+						"INFANTRY",
+						"HERO"
+					]
+				},
+				{
+					"id": "fiends",
+					"name": "Fiends",
+					"move": "10",
+					"health": 4,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Deadly Pincers and Barbed Stinger",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SOPORIFIC MUSK",
+							"category": "defensive",
+							"timing": "Any Charge Phase",
+							"frequency": "Once Per Turn (Army)",
+							"declare": "If this unit is not in combat, pick a visible enemy unit within 9\" of it to be the target.\nIf this unit is in combat, pick an enemy unit in combat with it to be the target.",
+							"effect": "Roll a dice. On a 4+, the target has STRIKE-LAST for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"BEAST",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "daemonettes",
+					"name": "Daemonettes",
+					"move": "6",
+					"health": 1,
+					"save": 6,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Piercing Claws",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "LITHE AND SWIFT",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Attacks characteristic of this unit’s Piercing Claws if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "seekers",
+					"name": "Seekers",
+					"move": "14",
+					"health": 3,
+					"save": 6,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Agonising Claws",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Anti-CAVALRY (+1 Rend)"
+							]
+						},
+						{
+							"name": "Steed’s Poisoned Tongue",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "QUICKSILVER SPEED",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "When making run rolls for this unit, if you roll a 1-3, you can use a value of 4 instead."
+						}
+					],
+					"keywords": [
+						"WARD (6+)",
+						"CAVALRY"
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,85 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Hedonites of Slaanesh army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Hedonites of Slaanesh units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/ - or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Pick an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Pick a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nDegenerate Soul | 10 | 150\nNarcissistic Reprobate | 30 | 250\nChampion of Excess | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "hedonites_of_slaanesh_hero",
+					"name": "Hedonites of Slaanesh Hero",
+					"move": "6",
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Slaaneshi Weapon",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"CHAOS",
+						"HEDONITES OF SLAANESH"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Pick an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nSYBARITE LORD\n0DP\nYour hero has the SYBARITE keyword and the following regiment options:\nRegiment Options | Any SYBARITE units\nHERALD OF THE DARK PRINCE\n-2DP\nYour hero has the DAEMON and WARD (6+) keywords and the following regiment options:\nRegiment Options | Any HEDONITES OF SLAANESH DAEMON units\nSYBARITE SORCERER\n-4DP\nYour hero has the SYBARITE and WIZARD (1) keywords and the following regiment options:\nRegiment Options | Any SYBARITE units\nMASTER OF SEDUCTION\n-5DP\nYour hero has the DAEMON, WARD (6+) and WIZARD (1) keywords and the following regiment options:\nRegiment Options | Any HEDONITES OF SLAANESH DAEMON units\nSINFUL EXEMPLAR\n-5DP\nYour hero has the SYBARITE keyword and the following regiment options. In addition, replace their melee weapon with the following weapon:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nWeapon of Seduction\nCrit (2 Hits) | 5 | 3+ | 4+ | 1 | 2\nRegiment Options | Any HEDONITES OF SLAANESH units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-2DP\nDAEMONIC PARAMOUR\nEffect: When making run rolls for this unit, add 1 to the number of dice rolled, then remove 1 dice of your choice and use the remaining dice as the run roll.\nEnemy Shooting Phase\n-2DP\nSWAGGER OF A CHAMPION\nEffect: This unit can move D6\" but must end that move no further from the closest visible enemy unit than it was at the start of the move. If equidistant to 2 units, pick either.\nPassive\n-4DP\nTHEATRICAL NATURE\nEffect: This unit has WARD (5+) if it charged in the same turn.\nPassive\n-4DP\nDEVOTEE OF FLESH\nEffect: Add 1 to hit rolls for this unit’s attacks while it is damaged."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+2DP\nMELODRAMATIC MASOCHIST\nEffect: This unit cannot use the ‘Rally’ or ‘All-out Defence’ commands.\nPassive\n+2DP\nFOREMOST AN ARTIST\nEffect: Other than the Companion ability, weapon abilities for this unit’s attacks have no effect.\nPassive\n+4DP\nJEALOUS PATRON\nEffect: Subtract 1 from ward rolls for other friendly units that are visible to this unit and within its combat range.\nPassive\n+4DP\nCREEPING ENNUI\nEffect: This unit cannot be picked to be a PARAGON."
+		},
+		{
+			"name": "Step 5 - Pick a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-5DP\nSTEED OF SLAANESH: These daemons are gifted to Slaanesh’s favoured; they move in a blur, while their tongues drip venom.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nSteed’s Poisoned Tongue\nCompanion | 2 | 3+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 14\".\nChange the Health characteristic to 7.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nBattle Mount\n-7DP\nEXALTED STEED: An Exalted Steed is an especially large and majestic daemon-mount - difficult to master, but even more potent.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nExalted Steed’s Poisoned Tongue\nCompanion | 3 | 3+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 14\".\nChange the Health characteristic to 8.\nReplace the INFANTRY keyword with the CAVALRY keyword."
+		},
+		{
+			"name": "Step 6 - Battle Any Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nCaptivating Musk\n-1DP\nAdd the following ability to your hero’s warscroll:\nPassive\nCAPTIVATING MUSK\nEffect: Subtract 1 from the control scores of enemy units while they are in combat with this unit.\nImpossibly Fleet\n-2DP\nAdd 2\" to the Move characteristic of your hero.\nImperious Gait\n-3DP\nAdd the following ability to your hero’s warscroll:\nPassive\nIMPERIOUS GAIT\nEffect: This unit can use the ‘Power Through’ command even if the target has a higher Health characteristic than this unit.\nAbove Natural Law\n-3DP\nAdd the following ability to your hero's warscroll:\nPassive\nABOVE NATURAL LAW\nEffect: This unit can pass through enemy models and their combat ranges as if it had FLY.\nTailored Toxins\n-3DP\nYour hero’s Companion melee weapons have Anti-X (+1 Rend), where X is a faction keyword or 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHINE, HERO, WIZARD or PRIEST.\nAnimal Ecstasy\n-4DP\nAdd the following ability to your hero's warscroll:\nPassive\nANIMAL ECSTASY\nEffect: You can re-roll charge rolls for this unit.\nTongue-bind\n-5DP\nAdd the following ability to your hero's warscroll:\nAny Combat Phase\nTONGUE-BIND\nDeclare: Pick an enemy non- MONSTER HERO in combat with this unit to be the target.\nEffect: Roll a dice. On a 3+, for the rest of the turn, while this unit has not used a FIGHT ability, the target has STRIKE-LAST.\nAdenaline Fiend\n-6DP\nAdd the following ability to your hero's warscroll:\nDeployment Phase\nADRENALINE FIEND\nEffect: This unit can use the ‘Normal Move’ ability as if it were your movement phase."
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nConceited Individual\n-1DP\nAdd 1 to your hero’s Control characteristic.\nWarrior-sadist\n-2DP\nAdd the following ability to your hero's warscroll:\nEnd of Any Turn\nWARRIOR-SADIST\nEffect: Inflict 1 mortal damage on each unit (friendly and enemy) within 3\" of and visible to this unit.\nGluttonous Girth\n-2DP\nAdd 2 to your hero’s Health characteristic.\nBlissbarb Bow\n-2DP\nAdd the following weapon to your hero’s warscroll:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nBlissbarb Bow | 12\" | 3 | 3+ | 4+ | 1 | 1\nReveller in Agony\n-3DP\nAdd the following ability to your hero's warscroll:\nEnd of Any Turn\nREVELLER IN AGONY\nDeclare: Pick a visible friendly HEDONITES OF SLAANESH unit to be the target.\nEffect: For the rest of the turn, when determining the target’s control score, add the number of damage points it has to the total.\nBlessed by the Prince\n-3DP\nAdd the following ability to your hero's warscroll:\nPassive\nBLESSED BY THE PRINCE\nEffect: Subtract 1 from casting rolls and chanting rolls for visible enemy units while they are within 12\" of this unit.\nSerpentine Evasion\n-4DP\nAdd the following ability to your hero's warscroll:\nReaction: This unit was picked as a target of an ATTACK ability\nSERPENTINE EVASION\nEffect: For the rest of the turn, subtract 1 from hit rolls for attacks that target this unit and subtract 1 from hit rolls for this unit’s attacks.\nFinely Cured Leathers\n-4DP\nAdd 1 to your hero’s Save characteristic.\nSlickblade Glaive\n-4DP\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nSlickblade Glaive\nCrit (2 Hits) | 6 | 3+ | 4+ | 1 | 2\nSage of Sin\n-6DP\nWIZARD only. Add the following ability to your hero’s warscroll:\nPassive\nSAGE OF SIN\nEffect: Add 1 to casting rolls and banishment rolls for this unit."
+		},
+		{
+			"name": "Path of The Princeling",
+			"text": "(HEDONITES OF SLAANESH HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Reaction: You declared a SPELL, UNBIND or BANISH ability for this unit\nTANTALISING LORE\nEffect: You can roll an additional dice and add it to that casting roll, unbinding roll or banishment roll.\nPassive\nARROGANT DISREGARD\nEffect: This unit can use CHARGE and SHOOT abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit by RETREAT abilities.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSUPREME MASOCHIST\nEffect: Ignore the first damage point that would be allocated to this unit in each phase.\nPassive\nMIST-WREATHED\nEffect: While this unit is contesting an objective, it is not visible to enemy units that are not in combat with it.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nEnemy Shooting Phase\nSEDUCTIVE WORDS\nDeclare: If this unit is not in combat, pick the closest visible enemy unit within 12\" of it to be the target.\nEffect: Inflict D6 mortal damage on the target.\nOnce Per Battle, End of Any Turn\nBLISSFUL PRESENCE\nEffect: Heal (D6) each visible friendly unit wholly within 12\" of this unit.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Hero Phase\nVESSEL OF THE LORDS\nEffect: Heal (X) this unit, where X is the number of damage points allocated to this unit. For the rest of the turn, add 1 to hit rolls and wound rolls for this unit’s attacks, and add 1 to save rolls for this unit. At the start of the next turn, this unit is automatically destroyed.\nPassive\nARCH-LIBERTINE\nEffect: Subtract 1 from the Damage characteristic of weapons used by enemy units while they are in combat with this unit."
+		},
+		{
+			"name": "Path of The Hedonist",
+			"text": "(non- HERO HEDONITES OF SLAANESH unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nEnemy Hero Phase\nPROVOCATEURS\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 4+, for the rest of the turn, while the target is in combat with this unit, when the target uses an ATTACK ability, models in the target unit that are in combat with this unit must pick this unit to be the target of their attacks.\nPassive\nAN ENDLESS FESTIVAL\nEffect: Each time an enemy unit within 12\" of this unit uses an ability that results in any slain models being returned to it, after that ability has been resolved, return 1 slain model to this unit.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Turn (Army), Any Charge Phase\nFRANTIC OFFENSIVE\nEffect: For the rest of the phase, when making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll.\nOnce Per Turn (Army), Any Combat Phase\nFRESH PLEASURES\nEffect: If this unit did not charge this turn and is in combat, it can move D6\". It can pass through the combat ranges of enemy units and can end that move in combat.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nReaction: Opponent declared a MOVE ability for a unit in 1 combat with this unit\nETERNAL DANCE\nEffect: After that MOVE ability has been resolved, this unit can move 2D6\" but must end that move in combat with that enemy unit.\nPassive\nMOCKING DODGE\nEffect: Subtract 1 from wound rolls for attacks that target this unit.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nKNIGHTS OF EXCESS\nEffect: Add 1 to the Attacks characteristic of this unit’s melee weapons.\nOnce Per Battle, Any Hero Phase\nDAEMONIC VISAGES\nDeclare: Pick a visible enemy unit in combat with this unit to be the target.\nEffect: For the rest of the turn, the target cannot use a CORE ability unless your opponent spends 1 command point to use it as if it were a command."
+		}
+	]
+}

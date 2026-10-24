@@ -1,0 +1,37 @@
+{
+	"replace_with_wahapedia": {
+		"dexcessa_the_talon_of_slaanesh > Scion of Slaanesh": "You! Amuse Us!",
+		"myrmidesh_painbringers > Paragons of Battle": "Dance of the Wailing Blade",
+		"Court of the Godlings > Sibilant Whispers": "Sibilant Whispers",
+		"Court of the Godlings > Estatic Furore": "Ecstatic Furore"
+	},
+	"fields": {
+		"Last Ecstasy": {"effect": "Until the start of your next turn, each time a model in the target unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. If the target unit is a MONSTER, roll 10 dice instead. For each 4+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."},
+		"Overwhelming Acquiescence": {"effect": "Until the start of your next turn, weapons used by friendly HEDONITES OF SLAANESH units for attacks that target that enemy unit, including Companion weapons, have Crit (2 Hits)."},
+		"Hysterical Frenzy": {"declare": "Pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, pick a visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6."},
+		"Gaze Upon My Magnificence And Weep": {"declare": "If this unit has not used a TEMPTATION ability this turn, pick an enemy unit in combat with this unit to be the target.", "options": [{"name": "Adulate", "text": "Until the start of your next turn, while the target is in combat with this unit, it must pick this unit to be the target of pile-in moves it makes."}, {"name": "Reject", "text": "Inflict D3+3 mortal damage on the target, then Heal (X) this unit, where X is the number of damage points inflicted on the target this turn by this ability."}]},
+		"Unholy Symbiosis": {"effect": "If you picked a SYBARITE target, subtract 1 from ward rolls for damage points inflicted by its combat attacks until the start of your next turn. If you picked a DAEMON target, it has WARD (5+) until the start of your next turn."},
+		"Disharmonious Song": {"declare": "Pick each visible enemy unit within 6\" of this unit that did not use a CHARGE or FIGHT ability this turn to be the target.", "effect": "Roll a D3 for each target. You can re-roll the dice if the target is a WIZARD or PRIEST. On a 2+, inflict an amount of mortal damage on the target equal to the roll."},
+		"Paragon Of Gluttony": {"options": [{"name": "Heart of a Shadow Daemon", "text": "While they are wholly within 12\" of this unit, friendly non-MONSTER HEDONITES OF SLAANESH units are not visible to enemy units more than 12\" from them."}, {"name": "Blood of an Aelven Princeling", "text": "Each time a friendly HEDONITES OF SLAANESH unit wholly within 12\" of this unit uses a RUN ability, if you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."}, {"name": "Crushed Incarnate's Core", "text": "Add 1 to unbinding rolls and banishment rolls for this unit."}, {"name": "Unspeakable Viscera", "text": "Inflict D6 mortal damage on each other unit (friendly and enemy) within this unit's combat range."}]},
+		"Blissbrew Homonculus": {"effect": "This unit's Blissbrew Homonculi are tokens. There is 1 Blissbrew Homonculus for every 10 models in this unit.\n\n\nThis unit has WARD (6+) while it has any Blissbrew Homonculi. If you make an unmodified ward roll of 1 for this unit, remove 1 of this unit's Blissbrew Homonculi from the battlefield (the damage point is still inflicted)."},
+		"Bestial Onslaughted": {"declare": "Pick this unit if it is waiting in ambush.", "name": "Bestial Onslaught"},
+		"Share the Pain": {"effect": "This unit has WARD (5+) while it is in combat. In addition, each time you make a successful ward roll for this unit for a damage point inflicted by a combat attack, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."},
+		"Atrocious Ministrations": {"effect": "You can allocate 1 damage point to the target (ward rolls cannot be made for that damage point). Then, roll a dice. On a 3+, until the start of your next turn, the target can use CHARGE abilities even if they used a RUN or RETREAT ability in the same turn."},
+		"False Serenity": {"effect": "While this unit has not charged this turn, it has WARD (5+)."},
+		"The More Glorious Slaughter": {"effect": "For the rest of the turn, add 1 to hit rolls for combat attacks made by units in the regiment of the unit using this ability."},
+		"The Swifter Surge": {"effect": "For the rest of the phase, when making charge rolls for units in the regiment of the unit using this ability, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll."},
+		"Court of the Godlings > Summon Manifestations of Depravity": {"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"The Decadent Host > Summon Manifestations of Depravity": {"declare": "Pick a friendly DECADENT HOST WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"Petulant Weath": {"name": "Petulant Wrath"},
+		"Perfection Made Manifest": {"declare": "Pick the friendly Sigvald to use this ability then pick a visible unit (friendly or enemy) within 3\" of him to be the target.", "effect": "Inflict D3 mortal damage on the target. For each model slain by this ability this turn, add 2 to the Attacks characteristic of the friendly Sigvald's melee weapons for the rest of the turn."},
+		"Excess Of Agility": {"declare": "Pick a friendly non-UNIQUE PARAGON that has not used a TEMPTATION ability this turn to use this ability."},
+		"Cutting Barbs": {"declare": "Pick a friendly HEDONITES OF SLAANESH HERO that has not used a TEMPTATION ability this turn to use this ability. Then, pick an enemy unit in combat with that HERO to be the target."},
+		"Chief Of Revels": {"effect": "Until the start of your next turn, while the unit using this ability is a PARAGON, add 2 to charge rolls for friendly HEDONITES OF SLAANESH units while they are wholly within 12\" of the unit using this ability."},
+		"daemonettes > Piercing Claws": {"abilities": ["Anti-INFANTRY (+1 Rend)"]},
+		"bladebringer_herald_on_hellflayer > Flensing Whips and Piercing Claws": {"attacks": "8"},
+		"exalted_chariot > Steeds' Poisoned Tongues": {"attacks": "8"},
+		"viceleader_herald_of_slaanesh": {"keywords": ["HERO", "CHAOS", "DAEMON", "HEDONITES OF SLAANESH", "WARD (6+)", "WIZARD (1)", "INFANTRY", "FLY"]},
+		"fiends > Pincers and Barbed Stinger": {"name": "Pincers and Tail Stinger"},
+		"thricefold_discord > Carnal Blades and Wicked Claws": {"name": "Thricefold Arsenal"}
+	}
+}

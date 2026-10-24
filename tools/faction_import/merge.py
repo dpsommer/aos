@@ -255,7 +255,7 @@ def spearheads(wh_list, bs_names):
             count, name = re.match(r"(?:(\d+)\s+)?(.+)$", entry).groups()
             unit = {"count": int(count or 1), "name": name.strip()}
             mm = re.match(r"(.+?)\s*\((.+)\)$", unit["name"]) or \
-                re.match(r"(.+?)\s+(with \d+ .+ tokens?)$", unit["name"])
+                re.match(r"(.+?)\s+(with \d+ .+)$", unit["name"])
             if mm:
                 unit["name"], unit["notes"] = mm.group(1), mm.group(2)
             unit["name"] = resolve(canonical.get(norm(unit["name"]), unit["name"]), names)

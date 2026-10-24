@@ -410,10 +410,10 @@ def lores(cats, root, owner=""):
 
 def battle_traits(cats, root, name):
     """The "Battle Traits: <name>" entry's abilities. The entry can be named differently from its
-    catalogue ("The King's Gitz" in Da King's Gitz), so a catalogue's only Battle Traits entry is used
-    when none matches the name."""
+    catalogue ("The King's Gitz" in Da King's Gitz) or just "Battle Traits" (Hedonites of Slaanesh),
+    so a catalogue's only Battle Traits entry is used when none matches the name."""
     entries = [e for e in kids(root, "sharedSelectionEntries", "selectionEntry")
-               if (e.get("name") or "").startswith("Battle Traits: ")]
+               if re.match(r"Battle Traits(: |$)", e.get("name") or "")]
     named = [e for e in entries if e.get("name") == "Battle Traits: " + name]
     if named or len(entries) == 1:
         return abilities_in(cats, (named or entries)[0])
@@ -421,8 +421,9 @@ def battle_traits(cats, root, name):
 
 
 def battle_formations(cats, root, name):
+    """The "Battle Formations: <name>" group, or a plain "Battle Formations" one (Hedonites of Slaanesh)."""
     for group in kids(root, "sharedSelectionEntryGroups", "selectionEntryGroup"):
-        if group.get("name") == "Battle Formations: " + name:
+        if group.get("name") in ("Battle Formations: " + name, "Battle Formations"):
             return [{"name": e.get("name"), "points": points(e), "abilities": abilities_in(cats, e)}
                     for e in kids(group, "selectionEntries", "selectionEntry")]
     return []

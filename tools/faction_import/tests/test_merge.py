@@ -459,6 +459,18 @@ def test_spearhead_token_suffix_becomes_notes():
     assert s["units"][0]["notes"] == "with 1 Blackpowder Squire token"
 
 
+def test_spearhead_attached_model_suffix_becomes_notes():
+    s = cities_spearhead(units="10 Freeguild Fusiliers with 1 Blissbrew Homonculus")
+    assert (s["units"][0]["name"], s["units"][0]["notes"]) == ("Freeguild Fusiliers", "with 1 Blissbrew Homonculus")
+
+
+def test_spearhead_with_suffix_without_count_stays_in_name():
+    names = ["Test Captain", "Dominator Engine with Immolation Cannons"]
+    army = [["General", "Test Captain"], ["Units", "1 Dominator Engine with Immolation Cannons"]]
+    (s,) = merge.spearheads([spearhead(army, names)], names)
+    assert s["units"][0] == {"count": 1, "name": "Dominator Engine with Immolation Cannons"}
+
+
 def test_spearhead_general_parenthetical_is_stripped():
     s = cities_spearhead(general="Test Captain (Thexa, the ash panther, is a token)")
     assert s["general"] == "Test Captain"
