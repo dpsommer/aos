@@ -3,19 +3,26 @@ extends RefCounted
 ## Builds a [Faction] from a directory of JSON files.
 ##
 ## The directory holds faction.json plus optional warscrolls.json, armies_of_renown.json,
-## spearhead.json and path_to_glory.json. See docs/technical/faction-data.md for the format.
-## Problems are collected in [member errors] rather than reported, so callers decide how to
-## surface them.
+## spearhead.json and path_to_glory.json. Warscrolls and Armies of Renown that several factions
+## use, such as Nagash, live once in [member shared_dir] and are referenced by the faction files.
+## See docs/technical/faction-data.md for the format. Problems are collected in [member errors]
+## rather than reported, so callers decide how to surface them.
 
 ## Problems found by the last [method load_faction] call, each naming the file and field.
 var errors: PackedStringArray
+## Directory of the shared warscrolls.json and armies_of_renown.json.
+var shared_dir := "res://data/shared"
 
 var _file: String
+## Shared entries read by the current [method load_faction] call, by file name, then by id
+## (warscrolls) or name (Armies of Renown).
+var _shared := {}
 
 
 ## Returns the faction in [param dir_path], or null if any file is missing or invalid.
 func load_faction(dir_path: String) -> Faction:
 	errors = PackedStringArray()
+	_shared = {}
 	var faction := Faction.new()
 
 	var data := _read(dir_path, "faction.json", true)
@@ -36,11 +43,17 @@ func load_faction(dir_path: String) -> Faction:
 
 	data = _read(dir_path, "warscrolls.json")
 	for i in _array(data, "warscrolls", "").size():
-		faction.warscrolls.append(_warscroll(data.warscrolls[i], "warscrolls[%d]" % i, true))
+		var path := "warscrolls[%d]" % i
+		var entry: Variant = _resolve_shared(data.warscrolls[i], path, "warscrolls.json", "warscrolls", "id")
+		if entry != null:
+			faction.warscrolls.append(_warscroll(entry, path, true))
 
 	data = _read(dir_path, "armies_of_renown.json")
 	for i in _array(data, "armies_of_renown", "").size():
-		faction.armies_of_renown.append(_army_of_renown(data.armies_of_renown[i], "armies_of_renown[%d]" % i))
+		var path := "armies_of_renown[%d]" % i
+		var entry: Variant = _resolve_shared(data.armies_of_renown[i], path, "armies_of_renown.json", "armies_of_renown", "name")
+		if entry != null:
+			faction.armies_of_renown.append(_army_of_renown(entry, path))
 
 	data = _read(dir_path, "spearhead.json")
 	for i in _array(data, "spearheads", "").size():
@@ -53,8 +66,9 @@ func load_faction(dir_path: String) -> Faction:
 	return null if not errors.is_empty() else faction
 
 
-func _read(dir_path: String, file_name: String, required := false) -> Dictionary:
-	_file = file_name
+## [param label] names the file in errors; it defaults to [param file_name].
+func _read(dir_path: String, file_name: String, required := false, label := "") -> Dictionary:
+	_file = label if not label.is_empty() else file_name
 	var path := dir_path.path_join(file_name)
 	if not FileAccess.file_exists(path):
 		if required:
@@ -68,6 +82,64 @@ func _read(dir_path: String, file_name: String, required := false) -> Dictionary
 		_error("", "top level is not an object")
 		return {}
 	return json.data
+
+
+## Returns [param data], or for a reference such as [code]{"shared": "nagash"}[/code] the shared
+## entry it names with the reference's other fields applied: its keywords are added to the shared
+## entry's, each of its abilities replaces the shared ability of the same name or is added, and any
+## other field replaces the shared value. Returns null, having recorded the error, if the reference
+## names no shared entry.
+func _resolve_shared(data: Variant, path: String, file_name: String, list_key: String, key: String) -> Variant:
+	if not data is Dictionary or not data.has("shared"):
+		return data
+	var shared_key := _string(data, "shared", path, true)
+	var entries := _shared_entries(file_name, list_key, key)
+	if not entries.has(shared_key):
+		_error(_join(path, "shared"), "names no entry in shared %s" % file_name)
+		return null
+	var result: Dictionary = entries[shared_key].duplicate(true)
+	for field: String in data:
+		if field == "shared":
+			continue
+		if field == "keywords" and data[field] is Array and result.get(field) is Array:
+			for keyword: Variant in data[field]:
+				if not keyword in result[field]:
+					result[field].append(keyword)
+		elif field == "abilities" and data[field] is Array and result.get(field) is Array:
+			result[field] = _merge_abilities(result[field], data[field])
+		else:
+			result[field] = data[field]
+	return result
+
+
+## [param shared] with each of [param own] replacing the ability of the same name, or added.
+func _merge_abilities(shared: Array, own: Array) -> Array:
+	var result := shared.duplicate()
+	for ability: Variant in own:
+		var index := -1
+		for i in result.size():
+			if result[i] is Dictionary and ability is Dictionary and result[i].get("name") == ability.get("name"):
+				index = i
+		if index < 0:
+			result.append(ability)
+		else:
+			result[index] = ability
+	return result
+
+
+func _shared_entries(file_name: String, list_key: String, key: String) -> Dictionary:
+	if _shared.has(file_name):
+		return _shared[file_name]
+	var faction_file := _file
+	var entries := {}
+	var data := _read(shared_dir, file_name, true, "shared/%s" % file_name)
+	var items := _array(data, list_key, "")
+	for i in items.size():
+		if _is_object(items[i], "%s[%d]" % [list_key, i]):
+			entries[_string(items[i], key, "%s[%d]" % [list_key, i], true)] = items[i]
+	_file = faction_file
+	_shared[file_name] = entries
+	return entries
 
 
 func _ability(data: Variant, path: String) -> Ability:

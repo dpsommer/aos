@@ -3157,71 +3157,9 @@
 			]
 		},
 		{
-			"id": "grombrindal_the_white_dwarf",
-			"name": "Grombrindal, the White Dwarf",
-			"source": "White Dwarf",
-			"legends": true,
-			"points": 360,
-			"unit_size": 1,
-			"base_size": "40mm",
-			"can_reinforce": false,
+			"shared": "grombrindal_the_white_dwarf",
 			"regiment_options": [
 				"Any ORDER DUARDIN units"
-			],
-			"notes": "Legends Warscroll",
-			"move": "4",
-			"health": 8,
-			"save": 4,
-			"control": 2,
-			"ward": 3,
-			"ranged_weapons": [],
-			"melee_weapons": [
-				{
-					"name": "Rune Axe of Grimnir",
-					"range": 0,
-					"attacks": "5",
-					"hit": 3,
-					"wound": 3,
-					"rend": 2,
-					"damage": "3",
-					"abilities": [
-						"Crit (2 Hits)"
-					]
-				}
-			],
-			"abilities": [
-				{
-					"name": "Armour of Glimril Scales",
-					"category": "",
-					"timing": "Passive",
-					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate D3 damage points to it (ward rolls cannot be made for those damage points)."
-				},
-				{
-					"name": "Rune Axe of Grimnir",
-					"category": "",
-					"timing": "Passive",
-					"effect": "The attacks characteristic of this unit's Rune Axe of Grimnir is 7 if this unit charged this turn."
-				},
-				{
-					"name": "As Stern As Stone",
-					"category": "",
-					"timing": "Passive",
-					"effect": "Friendly DUARDIN INFANTRY units have WARD (5+) while they are wholly within 12\" of this unit."
-				},
-				{
-					"name": "Living Legend",
-					"category": "",
-					"timing": "Passive",
-					"effect": "Add 2 to the control scores of friendly DUARDIN INFANTRY units while they are wholly within 12\" of this unit."
-				}
-			],
-			"keywords": [
-				"HERO",
-				"UNIQUE",
-				"ORDER",
-				"INFANTRY",
-				"DUARDIN",
-				"WARD (3+)"
 			]
 		},
 		{

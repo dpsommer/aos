@@ -27,7 +27,7 @@ aos/
 -- | -- | --
 addons/ | Contains Godot plugins | <ul><li>gut/</li></ul>
 assets/ | Contains game asset files | <ul><li>2d/</li><li>3d/</li><li>audio/</li><li>shaders/</li></ul>
-data/ | Contains game data loaded at runtime, e.g. faction rules as JSON (see `docs/technical/faction-data.md`) | <ul><li>factions/</li></ul>
+data/ | Contains game data loaded at runtime, e.g. faction rules as JSON (see `docs/technical/faction-data.md`) | <ul><li>factions/</li><li>shared/: warscrolls and Armies of Renown used by several factions</li></ul>
 docs/ | Contains all project documentation (index in `docs/README.md`) | <ul><li>design/</li><li>gameplay/</li><li>technical/</li></ul>
 scenes/ | Contains Godot scene files. `main.tscn` is the main scene and owns screen flow | <ul><li>ui/</li><li>ui/forge/</li></ul>
 scripts/ | Contains gdscript code. Script paths mirror their scene paths (e.g. `scenes/ui/main_menu.tscn` → `scripts/ui/main_menu.gd`) | <ul><li>data/: game data classes, the faction catalog and the faction loader</li><li>ui/</li><li>ui/forge/</li></ul>

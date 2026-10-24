@@ -1,0 +1,6 @@
+{
+	"warscrolls": [
+		{"shared": "shared_hero", "keywords": ["FIRST REF"], "abilities": [{"name": "First Ability", "effect": "First ref's own effect."}]},
+		{"shared": "shared_hero"}
+	]
+}

@@ -1,0 +1,554 @@
+{
+	"spearheads": [
+		{
+			"name": "Cursed Shacklehorde",
+			"text": "When the Nighthaunt mass for war, they coalesce around places of death, preceded by the reek of the grave and the wailing of the condemned. Upon sensing the living, they descend in a frenzied and fast-moving horde. Blades pass through their incorporeal forms and arrows fail to find purchase. Horror swiftly follows as the gheists close in, eager to swell their spectral ranks. Cursed Shacklehordes are despatched specifically for this purpose, impelled to capture souls to drag to the lightless gaols of the underworlds.\nShacklehordes are summoned around their Spirit Torment, a baleful entity who is attended by a pair of Chainghasts. Lingering on the periphery of battle, this unholy triumvirate empowers the horde before drifting in with chains and ghastflails swinging. The brutal enforcers of the host are the Bladegheists, who slay their victims in frenzied gyres. Any who withstand their crazed rampages are dealt with by the shredding limbs of the Dreadscythe Harridans. The shrieking cries of these fell maidens shatter the resolve of any survivors, before the swift-moving Dreadblade Harrows sweep in on their ethereal steeds to seal the fate of those who would resist the dead.",
+			"general": "Spirit Torment",
+			"units": [
+				{
+					"count": 2,
+					"name": "Chainghasts"
+				},
+				{
+					"count": 5,
+					"name": "Bladegheist Revenants"
+				},
+				{
+					"count": 5,
+					"name": "Bladegheist Revenants"
+				},
+				{
+					"count": 5,
+					"name": "Dreadscythe Harridans"
+				},
+				{
+					"count": 5,
+					"name": "Dreadscythe Harridans"
+				},
+				{
+					"count": 2,
+					"name": "Dreadblade Harrows"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "CACKLING ARRIVAL",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick 1 of your units in reserve.",
+					"effect": "Set up that unit anywhere on the battlefield more than 6\" from all enemy units."
+				},
+				{
+					"name": "ETHEREAL",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore negative modifiers to save rolls for friendly units."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "DISCORPORATE",
+					"category": "defensive",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit to be the target.",
+					"effect": "Roll a dice. On a 3+, add 1 to save rolls for the target for the rest of the turn."
+				},
+				{
+					"name": "MOUNTING DREAD",
+					"category": "control",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit to be the target.",
+					"effect": "Roll a dice. On a 2+, for the rest of the turn, subtract the current battle round number from the control scores of enemy units while they are in combat with the target."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "UNHOLY VISAGE",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 6\" of your general to be the target.",
+					"effect": "Roll a dice. On a 3+, the target must immediately use a RETREAT ability as if it were the enemy movement phase. Immediately after that ability has been resolved, if the target is in combat, inflict 2D3 mortal damage on it."
+				},
+				{
+					"name": "DEATHLY POSSESSOR",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy HERO within 12\" of your general to be the target, then pick another enemy unit within the target’s combat range to be the victim.",
+					"effect": "Roll a D3. On a 2+, pick one:\nInflict mortal damage on the target equal to the roll. Inflict mortal damage on the victim equal to the roll."
+				},
+				{
+					"name": "TALES OF HORROR",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy INFANTRY or CAVALRY unit within 6\" of your general to be the target.",
+					"effect": "For the rest of the battle, if the target is replaced using the ' Call for Reinforcements ' ability, halve the number of models in the replacement unit, rounding up."
+				},
+				{
+					"name": "SPECTRAL HOWL",
+					"category": "movement",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit within 12\" of your general to be the target.",
+					"effect": "For the rest of the turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "spirit_torment",
+					"name": "Spirit Torment",
+					"move": "8",
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ward": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Shacklegheist Chains",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "CAPTURED SOUL ENERGY",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+							"effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target’s combat attacks for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"FLY",
+						"WARD (5+)"
+					]
+				},
+				{
+					"id": "chainghasts",
+					"name": "Chainghasts",
+					"move": "8",
+					"health": 3,
+					"save": 6,
+					"control": 2,
+					"ward": 5,
+					"ranged_weapons": [
+						{
+							"name": "Ghastflails",
+							"range": 12,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 2,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Ghastflails",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 2,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "ANOTHER LINK IN THE CHAIN",
+							"category": "offensive",
+							"timing": "Your Combat Phase",
+							"effect": "Roll a dice. Add 1 to the roll if this unit is wholly within 12\" of any friendly Spirit Torments. On a 3+, for the rest of the turn, add 1 to hit rolls for combat attacks made by friendly units while they are wholly within 12\" of this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"WARD (5+)"
+					]
+				},
+				{
+					"id": "dreadscythe_harridans",
+					"name": "Dreadscythe Harridans",
+					"move": "8",
+					"health": 2,
+					"save": 6,
+					"control": 1,
+					"ward": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Scythed Limbs",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "HARROWING SHRIEKS",
+							"category": "special",
+							"timing": "Passive",
+							"effect": "Enemy units cannot be healed or have slain models returned to them while they are in combat with this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"WARD (5+)"
+					]
+				},
+				{
+					"id": "dreadblade_harrows",
+					"name": "Dreadblade Harrows",
+					"move": "12",
+					"health": 3,
+					"save": 6,
+					"control": 1,
+					"ward": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Dreadblade",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						},
+						{
+							"name": "Ethereal Steed’s Ghostly Hooves and Teeth",
+							"range": 0,
+							"attacks": "3",
+							"hit": 5,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion",
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "PHANTASMAL DISCORPORATION",
+							"category": "movement",
+							"timing": "Your Movement Phase",
+							"frequency": "Once Per Battle",
+							"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"FLY",
+						"WARD (5+)"
+					]
+				},
+				{
+					"id": "bladegheist_revenants",
+					"name": "Bladegheist Revenants",
+					"move": "8",
+					"health": 2,
+					"save": 6,
+					"control": 1,
+					"ward": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Tomb Greatblade",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "THRASHING DESPERATION",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "While this unit contest s an objective you control, enemy units cannot end a charge move within ½\" of this unit unless the unmodified charge roll was 5 or more."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"WARD (5+)"
+					]
+				}
+			]
+		},
+		{
+			"name": "Slasher Host",
+			"text": "The spectral warriors of a Slasher Host crave the tearing sensation of their blades and talons biting deep into mortal victims, slicing through flesh to rend the very soul beneath. Inflicting terror and agony is their only delight, for their very existence is a punishment ordained by the Great Necromancer, Nagash.\nSlasher Hosts are frenzied gatherings fuelled by spite, and the grim aura of command projected by a Knight of Shrouds is required in order to focus their malice upon Nagash’s enemies. Raising their rusted blade to the skies, this traitor-general orders floods of Chainrasps and Grimghast Reapers forth. These spirits fall upon the living in a surging mass, letting the missiles and panicked sword-strokes of their prey pass harmlessly through their incorporeal bodies as they claw open throats and pierce hearts.\nSuch awful slaughter drowns the battlefield in a potent haze of Shyishan magic, drawing forth the horrible agglomerations known as Spirit Hosts – gestalt entities formed from dozens of displaced souls that feed upon the death-gasps of those impaled upon their phantasmal talons.",
+			"general": "Knight of Shrouds",
+			"units": [
+				{
+					"count": 3,
+					"name": "Spirit Hosts"
+				},
+				{
+					"count": 5,
+					"name": "Grimghast Reapers"
+				},
+				{
+					"count": 5,
+					"name": "Grimghast Reapers"
+				},
+				{
+					"count": 10,
+					"name": "Chainrasps"
+				},
+				{
+					"count": 10,
+					"name": "Chainrasps"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "WAVE OF TERROR",
+					"category": "defensive",
+					"timing": "Any Charge Phase",
+					"declare": "Pick a friendly unit to use this ability if it charged this phase and the charge roll was 10+. Then, pick an enemy unit within 1\" of it to be the target.",
+					"effect": "The target has STRIKE-LAST this turn."
+				},
+				{
+					"name": "ETHEREAL",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore all modifiers to save rolls for friendly units (positive and negative)."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "DEATH STALKERS",
+					"category": "offensive",
+					"timing": "Start of the First Battle Round",
+					"declare": "Pick an enemy unit on the battlefield.",
+					"effect": "Add 1 to the Rend characteristic of melee weapons used for attacks that target that unit."
+				},
+				{
+					"name": "CHORUS OF TERROR",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for combat attacks that target a friendly unit that charged in the same turn."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "SOULFIRE RING",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"effect": "If any models were slain by your general this turn, Heal (D6) your general."
+				},
+				{
+					"name": "BEACON OF NAGASHIZZAR",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Return 1 slain model to each friendly unit on the battlefield."
+				},
+				{
+					"name": "CLOAKED IN SHADOW",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "No more than 1 enemy unit can target your general with attacks (shooting or combat) per phase."
+				},
+				{
+					"name": "SHADOW'S EDGE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Your general’s Sword of Stolen Hours has Crit (Mortal)."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "knight_of_shrouds",
+					"name": "Knight of Shrouds",
+					"move": "8",
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Sword of Stolen Hours",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "DISCORPORATE",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 9\" of this unit to be the target.",
+							"effect": "Until the start of your next turn, the target has WARD ( 5+)."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"FLY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "chainrasps",
+					"name": "Chainrasps",
+					"move": "8",
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Malignant Weapon",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "CHILLING HORDE",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to wound rolls for combat attacks made by this unit if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"REINFORCEMENTS",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "spirit_hosts",
+					"name": "Spirit Hosts",
+					"move": "8",
+					"health": 3,
+					"save": 4,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Spectral Claws and Daggers",
+							"range": 0,
+							"attacks": "6",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "DRAWN TO WAR",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Your general has WARD (4+) while they are within 1\" of this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "grimghast_reapers",
+					"name": "Grimghast Reapers",
+					"move": "8",
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Slasher Scythe",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "REAPED LIKE CORN",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Combat attacks made by this unit score critical hits on unmodified hit rolls of 5+ if the target unit has 5 or more models."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"WARD (6+)"
+					]
+				}
+			]
+		}
+	]
+}

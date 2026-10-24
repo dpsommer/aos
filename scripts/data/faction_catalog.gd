@@ -55,6 +55,7 @@ const _DATA_DIRS := {
 	"Kharadron Overlords": "res://data/factions/kharadron_overlords",
 	"Lumineth Realm-lords": "res://data/factions/lumineth_realm_lords",
 	"Maggotkin of Nurgle": "res://data/factions/maggotkin_of_nurgle",
+	"Nighthaunt": "res://data/factions/nighthaunt",
 	"Sylvaneth": "res://data/factions/sylvaneth",
 }
 

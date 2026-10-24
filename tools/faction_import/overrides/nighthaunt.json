@@ -1,0 +1,102 @@
+{
+	"replace_with_wahapedia": {
+		"The Clattering Procession > Fell Riders": "Fell Riders"
+	},
+	"fields": {
+		"tomb_banshee > Piercing Scream": {
+			"range": 10
+		},
+		"tomb_banshee > Cacophony of Sorrow": {
+			"effect": "While there are any visible friendly Myrmourn Banshees units within this unit's combat range, ignore positive modifiers to the control scores of enemy units within 12\" of this unit."
+		},
+		"tomb_banshee > Ghostly Howl": {
+			"timing": "Any Shooting Phase",
+			"frequency": "Once Per Battle"
+		},
+		"the_headsmens_curse": {
+			"keywords": [
+				"INFANTRY",
+				"UNIQUE",
+				"DEATH",
+				"NIGHTHAUNT",
+				"FLY",
+				"WARD (5+)"
+			]
+		},
+		"kurdoss_valentian_the_craven_king": {
+			"control": 5
+		},
+		"spirit_torment": {
+			"health": 5
+		},
+		"pyregheists": {
+			"base_size": "Deacon of Flames: 40mm, 2 x Balefire Guard: 32mm, 2 x Flamewraiths: 32mm, 3 x Torchwraiths: 28.5mm"
+		},
+		"pyregheists > Light a Pyre": {
+			"timing": "End of Any Turn"
+		},
+		"reikenor_the_grimhailer > Wraithstorm": {
+			"effect": "Inflict D3 mortal damage on the target. If any models are slain as a result of this ability, inflict a further D3 mortal damage on the target."
+		},
+		"myrmourn_banshees > Spell-eaters": {
+			"effect": "If a friendly NIGHTHAUNT unit wholly within 12\" of this unit was picked to be the target of that spell, this unit can use the 'Unbind' ability as if it had WIZARD (1). Add 1 to the unbinding roll for that ability. If the spell is unbound, inflict D3 mortal damage on the caster."
+		},
+		"scourge_of_aqshy_black_coach > Spectral Attendants": {
+			"effect": "Pick 1 of the following to apply for the rest of the turn:",
+			"options": [
+				{
+					"name": "Noble Blade",
+					"text": "This unit's melee weapons, including Companion weapons, have Crit (Mortal) instead of Crit (Auto-wound)."
+				},
+				{
+					"name": "Unholy Grail",
+					"text": "Each time a friendly NIGHTHAUNT unit wholly within 12\" of this unit uses the 'Rally' command, you receive 3 additional rally points."
+				},
+				{
+					"name": "Tome of Undead Lore",
+					"text": "This unit has WIZARD (1)."
+				}
+			]
+		},
+		"scourge_of_ghyran_black_coach > Evocation of Death": {
+			"name": "Spectral Attendants"
+		},
+		"scourge_of_ghyran_black_coach > Wraiths' Spectral Weapons": {
+			"name": "Wraith's Spectral Weapons"
+		},
+		"The Ritual Begins": {
+			"declare": "You must use this ability to set up the friendly Nagash. Pick a friendly Nexus of Grief wholly within friendly territory to be the ritual site."
+		},
+		"Gather Power": {
+			"effect": "The following effects apply to the friendly Nagash during the first and second battle rounds, as shown:",
+			"options": [
+				{
+					"name": "Battle Round 1",
+					"text": "• His Move characteristic is '-' and he cannot make pile-in moves.\n• He has WARD (3+).\n• He has a Control characteristic of 1.\n• Alakanash and Zefet-nebtar each have an Attacks characteristic of 2 instead of 4."
+				},
+				{
+					"name": "Battle Round 2",
+					"text": "• His Move characteristic is 6\".\n• He cannot end a move more than 6\" from the ritual site.\n• He has WARD (4+).\n• He has a Control characteristic of 5.\n• Alakanash and Zefet-nebtar each have an Attacks characteristic of 2 instead of 4."
+				}
+			]
+		},
+		"vault_of_souls": {
+			"keywords": [
+				"DEATH",
+				"ENDLESS SPELL",
+				"MANIFESTATION",
+				"NIGHTHAUNT",
+				"WARD (6+)"
+			]
+		},
+		"mortalis_terminexus": {
+			"keywords": [
+				"DEATH",
+				"ENDLESS SPELL",
+				"MANIFESTATION",
+				"NIGHTHAUNT",
+				"WARD (6+)"
+			]
+		}
+	}
+}

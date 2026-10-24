@@ -1,0 +1,340 @@
+{
+	"warscrolls": [
+		{
+			"id": "grombrindal_the_white_dwarf",
+			"name": "Grombrindal, the White Dwarf",
+			"source": "White Dwarf",
+			"legends": true,
+			"points": 360,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"notes": "Legends Warscroll",
+			"move": "4",
+			"health": 8,
+			"save": 4,
+			"control": 2,
+			"ward": 3,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Rune Axe of Grimnir",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Armour of Glimril Scales",
+					"category": "",
+					"timing": "Passive",
+					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate D3 damage points to it (ward rolls cannot be made for those damage points)."
+				},
+				{
+					"name": "Rune Axe of Grimnir",
+					"category": "",
+					"timing": "Passive",
+					"effect": "The Attacks characteristic of this unit's Rune Axe of Grimnir is 7 if this unit charged this turn."
+				},
+				{
+					"name": "As Stern As Stone",
+					"category": "",
+					"timing": "Passive",
+					"effect": "Friendly DUARDIN INFANTRY units have WARD (5+) while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Living Legend",
+					"category": "",
+					"timing": "Passive",
+					"effect": "Add 2 to the control scores of friendly DUARDIN INFANTRY units while they are wholly within 12\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"UNIQUE",
+				"ORDER",
+				"INFANTRY",
+				"DUARDIN",
+				"WARD (3+)"
+			]
+		},
+		{
+			"id": "kragnos_the_end_of_empires",
+			"name": "Kragnos, the End of Empires",
+			"points": 580,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 18,
+			"save": 4,
+			"control": 15,
+			"ward": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "The Dread Mace",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 2,
+					"rend": 3,
+					"damage": "4"
+				},
+				{
+					"name": "Tuskbreaker",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				},
+				{
+					"name": "Hooves of Wrack and Ruin",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of The Dread Mace is 4 and this unit has a Control characteristic of 10."
+				},
+				{
+					"name": "Avatar of Destruction",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
+				},
+				{
+					"name": "Rampaging Destruction",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit charged this phase, pick 1 of the following effects:\n• Roll a dice for each enemy unit within 1\" of this unit. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.\n• Pick an enemy MONSTER in combat with this unit and roll 2D6. On a 7, this ability has no effect. Otherwise, inflict an amount of mortal damage on that unit equal to the results on the dice used for the 2D6 roll multiplied together. For example, a 2D6 roll of 2 and 6 would inflict 12 mortal damage (2 × 6).",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "The End of Empires",
+					"category": "movement",
+					"timing": "Your Charge Phase",
+					"effect": "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for friendly DESTRUCTION units while they are wholly within 12\" of this unit, to a maximum of 3."
+				},
+				{
+					"name": "The Shield Inviolate",
+					"category": "defensive",
+					"timing": "Reaction: Opponent declared a SPELL ability",
+					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 3+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per SPELL ability."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"UNIQUE",
+				"MONSTER",
+				"WARMASTER",
+				"WARD (5+)",
+				"DESTRUCTION"
+			]
+		},
+		{
+			"id": "nagash_supreme_lord_of_the_undead",
+			"name": "Nagash, Supreme Lord of the Undead",
+			"points": 750,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 18,
+			"save": 3,
+			"control": 10,
+			"ward": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Alakanash, the Staff of Power",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "D6"
+				},
+				{
+					"name": "Zefet-nebtar, the Mortis Blade",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, subtract 3 from its power level."
+				},
+				{
+					"name": "The Staff of Power",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 2 to casting rolls for this unit while it has not miscast any spells this turn. If this unit miscasts a spell, ignore the restriction that would stop this unit from casting any more spells this turn."
+				},
+				{
+					"name": "Hand of Dust",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible enemy HERO or MONSTER in combat with this unit to be the target.",
+					"effect": "Hide a dice in one of your hands or under one of two appropriate containers. Your opponent must pick one of your hands or containers. If they pick the one hiding the dice, this ability has no effect. If they pick the empty one, the target is automatically destroyed.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Supreme Lord of the Undead",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly non-HERO non-UNIQUE DEATH unit that has been destroyed to be the target.",
+					"effect": "Set up a replacement unit identical to the target wholly within 12\" of this unit and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Invocation of Nagash",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "This unit can cast this spell more than once per phase. Pick a visible unit wholly within 18\" of this unit that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
+					"effect": "If the target is an enemy unit, inflict D3 mortal damage on it. If the target is a friendly DEATH unit, pick 1 of the following effects:\n• Return a number of slain models to the target unit with a combined Health characteristic of up to 3.\n• If the target was not set up this turn and is not in combat, it can move up to 3\". It cannot move into combat.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			],
+			"keywords": [
+				"DEATH",
+				"UNIQUE",
+				"HERO",
+				"MONSTER",
+				"WIZARD (9)",
+				"WARD (5+)",
+				"FLY",
+				"WARMASTER"
+			]
+		},
+		{
+			"id": "nagash_supreme_lord_of_the_underworlds",
+			"name": "Nagash, Supreme Lord of the Underworlds",
+			"source": "White Dwarf",
+			"legends": true,
+			"points": 670,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 18,
+			"save": 3,
+			"control": 10,
+			"ward": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Alakanash, the Staff of Power",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "D6"
+				},
+				{
+					"name": "Zefet-nebtar, the Mortis Blade",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, subtract 3 from its power level."
+				},
+				{
+					"name": "The Staff of Power",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 2 to casting rolls for this unit while it has not miscast any spells this turn. If this unit miscasts a spell, ignore the restriction that would stop this unit from casting any more spells this turn."
+				},
+				{
+					"name": "Soul Devourer",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"declare": "Pick any number of units (friendly or enemy) within this unit's combat range to be the targets.",
+					"effect": "Inflict D6 mortal damage on each target. For each model slain by this ability, Heal (1) this unit.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Father of Necromancy",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"declare": "Pick 2 visible friendly LEGIONS OF NAGASH units that are wholly within 18\" of this unit. Pick 1 of those units to be the target, then pick the other to be drained.",
+					"effect": "Up to 3 models in the drained unit are automatically slain. Then, return a number of slain models to the target unit with a combined Health characteristic of models slain in the drained unit."
+				},
+				{
+					"name": "Necromantic Empowerment",
+					"category": "",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly LEGIONS OF NAGASH unit within this unit's combat range to be the target.",
+					"effect": "Allocate D3 mortal damage to the target (ward rolls cannot be made for those damage points). If any models are slain by this ability, for the rest of the turn:\n• This unit's Alakanash has Crit (Mortal).\n• This unit's Zefet-nebtar has Crit (2 Hits).",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"DEATH",
+				"UNIQUE",
+				"HERO",
+				"MONSTER",
+				"WIZARD (9)",
+				"WARD (5+)",
+				"FLY",
+				"WARMASTER",
+				"FLESH-EATER COURTS",
+				"NIGHTHAUNT",
+				"SOULBLIGHT GRAVELORDS",
+				"OSSIARCH BONEREAPERS",
+				"LEGIONS OF NAGASH"
+			]
+		}
+	]
+}

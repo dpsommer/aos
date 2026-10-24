@@ -1,0 +1,436 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Legions of Nagash",
+			"source": "White Dwarf",
+			"legends": true,
+			"text": "When you pick the SOULBLIGHT GRAVELORDS, OSSIARCH BONEREAPERS, FLESH-EATER COURTS or NIGHTHAUNT faction for your army, you can choose for it to be a LEGIONS OF NAGASH Army of Renown instead. If you do so, use the faction rules on these pages instead of any other faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the LEGIONS OF NAGASH keyword. In addition, when you pick a manifestation lore for your army, you can pick 1 of the following lores: ‘Manifestations of the Grave’, ‘Horrors of the Necropolis’, ‘Infernal Sorceries’ or ‘Manifested Insanity’.\nLegends Rules: The rules in this article are Legends rules. This means that these rules cannot be used in competitive Matched Play events.\nROSTER OPTIONS\nLEGIONS OF NAGASH Nagash, Supreme Lord of the Underworlds\nAny non-UNIQUE DEATH units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Ethereal",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore negative modifiers to save rolls for friendly LEGIONS OF NAGASH NIGHTHAUNT units, excluding Nagash."
+				},
+				{
+					"name": "Legions of Endless Dead",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Subtract 5 from the control scores of enemy units while they are in combat with 2 or more friendly units if any of those friendly units is Nagash or if none of those friendly units share any of the following keywords: SOULBLIGHT GRAVELORDS, FLESH-EATER COURTS, NIGHTHAUNT or OSSIARCH BONEREAPERS."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Inescapable Fate",
+							"category": "rallying",
+							"timing": "End of Any Turn",
+							"frequency": "Once Per Battle",
+							"declare": "This unit can only use this ability if it has been destroyed.",
+							"effect": "If the friendly Nagash is on the battlefield, set up a replacement of this unit wholly within 12\" of that Nagash and more than 9\" from all enemy units. If this unit is not INFANTRY or CAVALRY, allocate 8 damage points to it (ward rolls cannot be made for those damage points)."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Soul-shrive Amulet",
+							"category": "special",
+							"timing": "Any Hero Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick empowered agent or sacrificial pawn.",
+							"effect": "If you picked empowered agent, for the rest of the turn:\n• Add 2 to the Attacks characteristic of this unit's melee weapons.\n• Add 1 to the Rend characteristic of this unit's melee weapons.\nIf you picked sacrificial pawn, instead of making a casting roll for the next spell cast by the friendly Nagash this turn, you can use a value of 7 for the roll that cannot be modified and that spell cannot be unbound. Then, allocate 3 damage points to this unit (ward rolls cannot be made for those damage points)."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"source": "White Dwarf",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Rise! Rise in My Name!",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly WIZARD to cast this spell, pick each other visible friendly LEGIONS OF NAGASH unit wholly within 24\" of the caster to be the targets, then make a casting roll of 2D6.",
+							"effect": "If a target unit has a Health characteristic of 1, return 3 slain models to the target unit.\nIf a target unit has a Health characteristic of 2 or 3, return 1 slain model to the target unit and Heal (2) the target unit.\nIf a target unit has a Health characteristic of 4 or more, Heal (D6) the target unit.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "My Undying Demand",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick the friendly Nagash to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Ignore the first damage point that would be allocated to each visible friendly LEGIONS OF NAGASH unit each phase while it is wholly within 24\" of the friendly Nagash.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Insanity and Nightmares Made Manifest",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly FLESH-EATER COURTS unit and a different friendly NIGHTHAUNT unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, while the targets are wholly within 12\" of and visible to each other:\n• Add 10 to the FLESH-EATER COURTS target's control score.\n• Subtract 1 from ward rolls for enemy units while they are in combat with the NIGHTHAUNT target.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Reap a Bloody Tithe",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly SOULBLIGHT GRAVELORDS unit and a different friendly OSSIARCH BONEREAPERS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, add 1 to hit rolls for combat attacks made by the SOULBLIGHT GRAVELORDS target while it is wholly within 12\" of and visible to the OSSIARCH BONEREAPERS target.\nIn addition, pick 1 of the following effects for the OSSIARCH BONEREAPERS target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Rivers of Blood and Shallow Graves",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly FLESH-EATER COURTS unit and a different friendly SOULBLIGHT GRAVELORDS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, add 1 to the Rend characteristic of the friendly FLESH-EATER COURTS target's weapons while it is wholly within 12\" of and visible to the SOULBLIGHT GRAVELORDS target.\nIn addition, pick 1 of the following effects for the SOULBLIGHT GRAVELORDS target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Delusion and Discipline",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly OSSIARCH BONEREAPERS unit and a different friendly FLESH-EATER COURTS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, the OSSIARCH BONEREAPERS target has WARD (5+) while it is wholly within 12\" of and visible to the FLESH-EATER COURTS target.\nIn addition, pick 1 of the following effects for the FLESH-EATER COURTS target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Bringing Order to Horror",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly NIGHTHAUNT unit and a different friendly OSSIARCH BONEREAPERS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
+							"effect": "The NIGHTHAUNT target can use a CHARGE ability as if it were your charge phase and even if it is in combat. However, if it does so (regardless of whether it is in combat) and the charge roll is 3 or less, that unit does not count as having charged.\nIn addition, the OSSIARCH BONEREAPERS target can use a RETREAT ability as if it were your movement phase, and for the rest of the turn, it can use CHARGE abilities even if it used a RUN or RETREAT ability in the same turn.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Fell Blades and Bloody Fangs",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly NIGHTHAUNT unit and a different friendly SOULBLIGHT GRAVELORDS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, add 1 to the Rend characteristic of the SOULBLIGHT GRAVELORDS target's weapons while it is wholly within 12\" of and visible to the NIGHTHAUNT target.\nIn addition, pick 1 of the following effects for the NIGHTHAUNT target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "The Gaze of Nagash",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick the friendly Nagash to cast this spell. Then, pick 2 points on the battlefield within 18\" of and visible to him and within 12\" of each other. Then, draw a line between those points. Each visible enemy unit the line passes across is a target. Then, make a casting roll of 2D6.",
+							"effect": "Pick normal gaze or empowered gaze.\nIf you picked normal gaze, inflict D3 mortal damage on each target.\nIf you picked empowered gaze, make an empowerment roll of 2D6. On a 6+, the roll succeeds; otherwise, the roll fails. You can keep making empowerment rolls until a roll fails. If an empowerment roll fails, the spell fails and its effect is not resolved. Otherwise, inflict D3+X mortal damage on each target, where X is the number of empowerment rolls that succeeded.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				},
+				{
+					"name": "Infernal Sorceries",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Mortalis Terminexus",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Mortalis Terminexus on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Mortalis Terminexus wholly within 18\" of the caster and visible to them.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Shyish Reaper",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Shyish Reaper on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Shyish Reaper wholly within 12\" of and visible to the caster and more than 9\" from all enemy units.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Vault of Souls",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Vault of Souls on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Vault of Souls wholly within 18\" of the caster and visible to them.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifested Insanity",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Cadaverous Barricade",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Cadaverous Barricade on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Cadaverous Barricade wholly within 18\" of the caster and visible to them.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Chalice of Ushoran",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Chalice of Ushoran on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Chalice of Ushoran wholly within 12\" of the caster and visible to them.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Corpsemare Stampede",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Corpsemare Stampede on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Corpsemare Stampede wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				},
+				{
+					"name": "Horrors of the Necropolis",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Bone-tithe Shrieker",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Bone-tithe Shrieker on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Bone-tithe Shrieker wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Nightmare Predator",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Nightmare Predator on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Nightmare Predator wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Soulstealer Carrion",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Soulstealer Carrion on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Soulstealer Carrion wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestations of the Grave",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Hand of Nagash",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Hand of Nagash on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Hand of Nagash wholly within 12\" of and visible to the caster and more than 9\" from all enemy units.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Unholy Reliquary",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Unholy Reliquary on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up an Unholy Reliquary endless spell wholly within 18\" of the caster, visible to them, and more than 3\" from all enemy units.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						},
+						{
+							"name": "Summon Sanguine Swarm",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Sanguine Swarm on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Sanguine Swarm endless spell wholly within 12\" of and visible to the caster and more than 9\" from all enemy units. A Sanguine Swarm endless spell has 2 parts that must be set up within 9\" of each other.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "The Duardin Ascendant",
+			"source": "White Dwarf",
+			"legends": true,
+			"text": "When you pick the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose for it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be included and must be your general)\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain",
+			"battle_traits": [
+				{
+					"name": "Duardrazhal",
+					"category": "",
+					"timing": "Passive",
+					"effect": "Friendly DUARDIN ASCENDANT units are unified while they are wholly within 12\" of at least 1 FYRESLAYERS, 1 KHARADRON OVERLORDS, and 1 CITIES OF SIGMAR DUARDIN unit."
+				},
+				{
+					"name": "'As the Ancestors Intended!'",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unified DUARDIN ASCENDANT PRIEST to be the target.",
+					"effect": "Add 1 to chanting rolls for the target for the rest of the turn."
+				},
+				{
+					"name": "'Pah! Now This Is a Shot...'",
+					"category": "",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unified DUARDIN ASCENDANT INFANTRY unit to be the target.",
+					"effect": "Add 1 to the Attacks characteristic of the target's ranged weapons for the rest of the turn."
+				},
+				{
+					"name": "'As One, Kinfolk!'",
+					"category": "",
+					"timing": "Your Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick up to 3 friendly unified DUARDIN ASCENDANT INFANTRY units to be the targets.",
+					"effect": "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for the targets, to a maximum of 3."
+				},
+				{
+					"name": "'Settle Every Grudge! Khazuk!'",
+					"category": "",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unified DUARDIN ASCENDANT INFANTRY unit to be the target.",
+					"effect": "Add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Tireless Purpose",
+							"category": "",
+							"timing": "Passive",
+							"effect": "Each time a friendly DUARDIN ASCENDANT INFANTRY unit wholly within 12\" of this unit uses the 'Normal Move' ability, add 2\" to the distance that unit can move as part of that ability."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Valayan Hearth-banner",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick each friendly DUARDIN ASCENDANT unit on the battlefield to be the targets.",
+							"effect": "Heal (D3) each target."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Prayer Lore",
+					"source": "White Dwarf",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Spirit of the White Dwarf",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible friendly DUARDIN ASCENDANT unit within 18\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "The target is unified until the start of your next turn. If the chanting roll was 8+, you can pick 2 targets instead of 1.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Oath of Restoration",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible objective within 18\" of them that is contested by 2 or more friendly unified units to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, friendly DUARDIN ASCENDANT units have WARD (6+) while they have any models contesting the target. If the chanting roll was 7+, friendly DUARDIN ASCENDANT units have WARD (5+) while they have any models contesting the target instead.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

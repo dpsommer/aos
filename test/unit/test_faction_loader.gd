@@ -491,3 +491,207 @@ func test_loader_can_load_valid_faction_after_a_failure() -> void:
 func test_loader_does_not_push_errors_itself() -> void:
 	_load("missing_name")
 	assert_push_error_count(0)
+
+
+# Shared warscrolls and Armies of Renown
+
+const SHARED_FIXTURES := "res://test/fixtures/shared"
+
+
+func _shared_json(file_name: String) -> Dictionary:
+	return JSON.parse_string(FileAccess.get_file_as_string(SHARED_FIXTURES.path_join(file_name)))
+
+
+func _shared_loader(shared_dir := SHARED_FIXTURES) -> FactionLoader:
+	var loader := FactionLoader.new()
+	loader.shared_dir = shared_dir
+	return loader
+
+
+func _load_shared(fixture: String) -> Faction:
+	return _shared_loader().load_faction(_dir(fixture))
+
+
+func _shared_errors(fixture: String, shared_dir := SHARED_FIXTURES) -> PackedStringArray:
+	var loader := _shared_loader(shared_dir)
+	loader.load_faction(_dir(fixture))
+	return loader.errors
+
+
+func _ability_named(abilities: Array, ability_name: String) -> Variant:
+	for ability: Variant in abilities:
+		if ability.name == ability_name:
+			return ability
+	return null
+
+
+func _ability_names(abilities: Array) -> Array:
+	return abilities.map(func(a: Variant) -> String: return a.name)
+
+
+func test_shared_reference_fixture_has_no_errors() -> void:
+	var errors := _shared_errors("shared_refs")
+	assert_eq(errors.size(), 0, "\n".join(errors))
+
+
+func test_shared_reference_takes_id_and_name_from_shared_entry() -> void:
+	var expected: Dictionary = _shared_json("warscrolls.json").warscrolls[0]
+	var warscroll: Warscroll = _load_shared("shared_refs").warscrolls[0]
+	assert_eq([warscroll.id, warscroll.name], [expected.id, expected.name])
+
+
+func test_shared_reference_takes_characteristics_from_shared_entry() -> void:
+	var expected: Dictionary = _shared_json("warscrolls.json").warscrolls[0]
+	var warscroll: Warscroll = _load_shared("shared_refs").warscrolls[0]
+	assert_eq([warscroll.move, warscroll.health, warscroll.save, warscroll.ward, warscroll.control],
+			[expected.move, int(expected.health), int(expected.save), int(expected.ward), int(expected.control)])
+
+
+func test_shared_reference_takes_weapons_from_shared_entry() -> void:
+	var expected: Array = _shared_json("warscrolls.json").warscrolls[0].melee_weapons
+	var weapons := _load_shared("shared_refs").warscrolls[0].melee_weapons
+	assert_eq(weapons.map(func(w: Weapon) -> String: return w.name), expected.map(func(w: Dictionary) -> String: return w.name))
+
+
+func test_shared_reference_keeps_shared_fields_it_does_not_set() -> void:
+	var reference: Dictionary = _json("shared_refs", "warscrolls.json").warscrolls[0]
+	assert_false(reference.has("unit_size"), "fixture reference should not set unit_size")
+	var expected: Dictionary = _shared_json("warscrolls.json").warscrolls[0]
+	assert_eq(_load_shared("shared_refs").warscrolls[0].unit_size, int(expected.unit_size))
+
+
+func test_shared_reference_points_replace_shared_points() -> void:
+	var reference: Dictionary = _json("shared_refs", "warscrolls.json").warscrolls[0]
+	assert_eq(_load_shared("shared_refs").warscrolls[0].points, int(reference.points))
+
+
+func test_shared_reference_regiment_options_come_from_reference() -> void:
+	var reference: Dictionary = _json("shared_refs", "warscrolls.json").warscrolls[0]
+	assert_eq(_load_shared("shared_refs").warscrolls[0].regiment_options, PackedStringArray(reference.regiment_options))
+
+
+func test_shared_reference_keywords_follow_shared_keywords() -> void:
+	var shared: Array = _shared_json("warscrolls.json").warscrolls[0].keywords
+	var keywords := _load_shared("shared_refs").warscrolls[0].keywords
+	assert_eq(Array(keywords).slice(0, shared.size()), shared)
+
+
+func test_shared_reference_adds_its_own_keywords() -> void:
+	var shared: Array = _shared_json("warscrolls.json").warscrolls[0].keywords
+	var own: Array = _json("shared_refs", "warscrolls.json").warscrolls[0].keywords.filter(
+			func(k: String) -> bool: return not k in shared)
+	assert_false(own.is_empty(), "fixture reference should add a keyword")
+	var keywords := _load_shared("shared_refs").warscrolls[0].keywords
+	for keyword: String in own:
+		assert_has(keywords, keyword)
+
+
+func test_shared_reference_does_not_duplicate_keywords() -> void:
+	var keywords := Array(_load_shared("shared_refs").warscrolls[0].keywords)
+	for keyword: String in keywords:
+		assert_eq(keywords.count(keyword), 1, keyword)
+
+
+func test_shared_reference_ability_replaces_same_named_shared_ability() -> void:
+	var own: Dictionary = _json("shared_refs", "warscrolls.json").warscrolls[0].abilities[0]
+	var ability: Ability = _ability_named(_load_shared("shared_refs").warscrolls[0].abilities, own.name)
+	assert_eq(ability.effect, own.effect)
+
+
+func test_shared_reference_replaced_ability_keeps_its_position() -> void:
+	var shared: Array = _shared_json("warscrolls.json").warscrolls[0].abilities
+	var own_name: String = _json("shared_refs", "warscrolls.json").warscrolls[0].abilities[0].name
+	var abilities := _load_shared("shared_refs").warscrolls[0].abilities
+	assert_eq(_ability_names(abilities).slice(0, shared.size()), shared.map(func(a: Dictionary) -> String: return a.name))
+	assert_ne(_ability_names(shared).find(own_name), -1, "fixture should replace a shared ability")
+
+
+func test_shared_reference_new_ability_is_appended() -> void:
+	var own: Dictionary = _json("shared_refs", "warscrolls.json").warscrolls[0].abilities[1]
+	var abilities := _load_shared("shared_refs").warscrolls[0].abilities
+	assert_eq([abilities[-1].name, abilities[-1].effect], [own.name, own.effect])
+
+
+func test_shared_reference_keeps_shared_abilities_it_does_not_replace() -> void:
+	var shared: Dictionary = _shared_json("warscrolls.json").warscrolls[0].abilities[0]
+	var ability: Ability = _ability_named(_load_shared("shared_refs").warscrolls[0].abilities, shared.name)
+	assert_eq(ability.effect, shared.effect)
+
+
+func test_shared_reference_does_not_leak_into_other_references() -> void:
+	var expected: Dictionary = _shared_json("warscrolls.json").warscrolls[0]
+	var second: Warscroll = _load_shared("shared_twice").warscrolls[1]
+	var first_ability: Ability = _ability_named(second.abilities, expected.abilities[0].name)
+	assert_eq([second.keywords, first_ability.effect], [PackedStringArray(expected.keywords), expected.abilities[0].effect])
+
+
+func test_non_reference_warscroll_loads_unchanged() -> void:
+	var expected: Dictionary = _json("shared_refs", "warscrolls.json").warscrolls[1]
+	var warscroll: Warscroll = _load_shared("shared_refs").warscrolls[1]
+	assert_eq([warscroll.id, warscroll.name, warscroll.points, warscroll.keywords],
+			[expected.id, expected.name, int(expected.points), PackedStringArray(expected.keywords)])
+
+
+func test_shared_army_of_renown_reference_resolves() -> void:
+	var expected: Dictionary = _shared_json("armies_of_renown.json").armies_of_renown[0]
+	var army: ArmyOfRenown = _load_shared("shared_refs").armies_of_renown[0]
+	assert_eq([army.name, army.source, army.legends, army.text], [expected.name, expected.source, expected.legends, expected.text])
+
+
+func test_shared_army_of_renown_reference_has_shared_battle_traits() -> void:
+	var expected: Array = _shared_json("armies_of_renown.json").armies_of_renown[0].battle_traits
+	var army: ArmyOfRenown = _load_shared("shared_refs").armies_of_renown[0]
+	assert_eq(_ability_names(army.battle_traits), expected.map(func(a: Dictionary) -> String: return a.name))
+
+
+func test_non_reference_army_of_renown_loads_unchanged() -> void:
+	var expected: Dictionary = _json("shared_refs", "armies_of_renown.json").armies_of_renown[1]
+	var army: ArmyOfRenown = _load_shared("shared_refs").armies_of_renown[1]
+	assert_eq([army.name, army.text], [expected.name, expected.text])
+
+
+func test_unknown_shared_warscroll_returns_null() -> void:
+	assert_null(_load_shared("shared_unknown_id"))
+
+
+func test_unknown_shared_warscroll_error_names_file_and_shared_field() -> void:
+	var errors := _shared_errors("shared_unknown_id")
+	assert_true(_has_error_naming(errors, "warscrolls.json", "warscrolls[0].shared"), str(errors))
+
+
+func test_unknown_shared_warscroll_error_mentions_shared() -> void:
+	var errors := _shared_errors("shared_unknown_id")
+	assert_true(Array(errors).any(func(e: String) -> bool: return "names no entry in shared" in e), str(errors))
+
+
+func test_unknown_shared_warscroll_reports_only_the_reference() -> void:
+	assert_eq(_shared_errors("shared_unknown_id").size(), 1)
+
+
+func test_unknown_shared_army_of_renown_returns_null() -> void:
+	assert_null(_load_shared("shared_unknown_army"))
+
+
+func test_unknown_shared_army_of_renown_error_names_file_and_shared_field() -> void:
+	var errors := _shared_errors("shared_unknown_army")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "armies_of_renown[0].shared"), str(errors))
+
+
+func test_missing_shared_file_returns_null_when_referenced() -> void:
+	assert_null(_shared_loader(_dir("no_such_shared_dir")).load_faction(_dir("shared_refs")))
+
+
+func test_missing_shared_file_error_says_file_not_found() -> void:
+	var errors := _shared_errors("shared_refs", _dir("no_such_shared_dir"))
+	assert_true(_has_error_naming(errors, "shared/warscrolls.json", "file not found"), str(errors))
+
+
+func test_faction_without_references_needs_no_shared_dir() -> void:
+	assert_not_null(_shared_loader(_dir("no_such_shared_dir")).load_faction(_dir("valid")))
+
+
+func test_shared_entries_are_read_again_for_each_load() -> void:
+	var loader := _shared_loader()
+	loader.load_faction(_dir("shared_refs"))
+	loader.shared_dir = _dir("no_such_shared_dir")
+	assert_null(loader.load_faction(_dir("shared_refs")))

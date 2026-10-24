@@ -1,0 +1,23 @@
+{
+	"warscrolls": [
+		{
+			"id": "shared_hero",
+			"name": "Shared Hero",
+			"points": 400,
+			"unit_size": 1,
+			"base_size": "100mm",
+			"move": "10",
+			"health": 20,
+			"save": 3,
+			"ward": 5,
+			"control": 5,
+			"melee_weapons": [{"name": "Great Blade", "attacks": "6", "hit": 3, "wound": 2, "rend": 2, "damage": "3"}],
+			"abilities": [
+				{"name": "First Ability", "effect": "Shared first effect."},
+				{"name": "Replaced Ability", "effect": "Shared effect to be replaced."},
+				{"name": "Last Ability", "effect": "Shared last effect."}
+			],
+			"keywords": ["HERO", "UNIQUE"]
+		}
+	]
+}

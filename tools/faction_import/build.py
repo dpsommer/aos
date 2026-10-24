@@ -2,6 +2,7 @@
 
 Usage: python -I build.py <wahapedia dir> <out dir> <id> "<BSData faction name>"
                           [--overrides FILE] [--bsdata DIR] [--update-bsdata]
+                          [--shared DIR] [--update-shared]
 
 <wahapedia dir> is the directory fetch.py wrote. BSData is read from a local checkout,
 tools/bsdata by default, which is cloned on first use; --update-bsdata pulls it first.
@@ -21,11 +22,14 @@ replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData
 wrong rule; it and army_names apply before merging. Its BSData name can be "<warscroll id or Army of Renown
 name> > <ability name>" where a name alone is ambiguous. The others apply after merging. Every override must match
 something, so stale ones are noticed.
+
+Warscrolls and Armies of Renown listed in shared.json are written once to data/shared/ (or
+--shared DIR) and referenced from the faction's files; see shared.py.
 """
 import argparse, glob, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import bsdata, merge, schema, wahapedia
+import bsdata, merge, schema, shared, wahapedia
 
 
 def every_warscroll(data):
@@ -153,7 +157,11 @@ def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
     return data, report
 
 
-def write(data, out_dir):
+def write(data, out_dir, report, shared_dir=shared.DEFAULT_DIR, config=None, update_shared=False):
+    """Writes the faction's files, and the shared entries it uses to shared_dir."""
+    config = config if config is not None else shared.load_config()
+    entries = shared.read(shared_dir)
+    shared.apply_fields(data["warscrolls"], data["armies_of_renown"], config["fields"])
     files = {
         "faction.json": schema.faction(data["faction"]),
         "warscrolls.json": {"warscrolls": [schema.warscroll(w) for w in data["warscrolls"]]},
@@ -161,6 +169,13 @@ def write(data, out_dir):
         "spearhead.json": {"spearheads": [schema.spearhead(s) for s in data["spearheads"]]},
         "path_to_glory.json": {"sections": [schema.rules_section(p) for p in data["path_to_glory"]]},
     }
+    # Tidied first so text compares equal to the tidied shared entries.
+    files = schema.tidy(files)
+    files["warscrolls.json"]["warscrolls"], files["armies_of_renown.json"]["armies_of_renown"] = shared.share(
+        files["warscrolls.json"]["warscrolls"], files["armies_of_renown.json"]["armies_of_renown"],
+        data["faction"]["name"], config, entries, report, update_shared)
+    if config["warscrolls"] or config["armies_of_renown"]:
+        shared.write(schema.tidy(entries), shared_dir)
     os.makedirs(out_dir, exist_ok=True)
     for name, obj in files.items():
         with open(os.path.join(out_dir, name), "w", encoding="utf-8") as fh:
@@ -177,11 +192,14 @@ if __name__ == "__main__":
     parser.add_argument("--overrides", help="overrides JSON file")
     parser.add_argument("--bsdata", default=bsdata.DEFAULT_CHECKOUT, help="BSData checkout (default: tools/bsdata)")
     parser.add_argument("--update-bsdata", action="store_true", help="pull the BSData checkout before building")
+    parser.add_argument("--shared", default=shared.DEFAULT_DIR, help="shared data directory (default: data/shared)")
+    parser.add_argument("--update-shared", action="store_true",
+                        help="replace the shared entries this faction uses with its versions")
     args = parser.parse_args()
     bsdata.ensure_checkout(args.bsdata, update=args.update_bsdata)
     overrides = json.load(open(args.overrides)) if args.overrides else {}
     data, report = build(args.bsdata, args.wahapedia_dir, args.id, args.name, overrides)
-    write(data, args.out_dir)
+    write(data, args.out_dir, report, args.shared, update_shared=args.update_shared)
     print("BSData %s" % bsdata.checkout_version(args.bsdata))
     print("\n".join(report.lines) or "BSData and Wahapedia agree.")
     print("%d difference(s)" % len(report.lines), file=sys.stderr)

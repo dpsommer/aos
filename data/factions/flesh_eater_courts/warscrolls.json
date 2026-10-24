@@ -1507,74 +1507,15 @@
 			]
 		},
 		{
-			"id": "nagash_supreme_lord_of_the_undead",
-			"name": "Nagash, Supreme Lord of the Undead",
-			"points": 750,
-			"unit_size": 1,
-			"base_size": "130mm",
-			"can_reinforce": false,
+			"shared": "nagash_supreme_lord_of_the_undead",
 			"regiment_options": [
 				"Any FLESH-EATER COURTS",
 				"0-1 Royal Attendant"
 			],
-			"move": "10",
-			"health": 18,
-			"save": 3,
-			"control": 10,
-			"ward": 5,
-			"ranged_weapons": [],
-			"melee_weapons": [
-				{
-					"name": "Alakanash, the Staff of Power",
-					"range": 0,
-					"attacks": "4",
-					"hit": 3,
-					"wound": 3,
-					"rend": 2,
-					"damage": "D6"
-				},
-				{
-					"name": "Zefet-nebtar, the Mortis Blade",
-					"range": 0,
-					"attacks": "4",
-					"hit": 3,
-					"wound": 3,
-					"rend": 2,
-					"damage": "3"
-				}
+			"keywords": [
+				"FLESH-EATER COURTS"
 			],
 			"abilities": [
-				{
-					"name": "Battle Damaged",
-					"category": "damage",
-					"timing": "Passive",
-					"effect": "While this unit has 10 or more damage points, subtract 3 from its power level."
-				},
-				{
-					"name": "The Staff of Power",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "Add 2 to casting rolls for this unit while it has not miscast any spells this turn. If this unit miscasts a spell, ignore the restriction that would stop this unit from casting any more spells this turn."
-				},
-				{
-					"name": "Hand of Dust",
-					"category": "offensive",
-					"timing": "End of Any Turn",
-					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a visible enemy HERO or MONSTER in combat with this unit to be the target.",
-					"effect": "Hide a dice in one of your hands or under one of two appropriate containers. Your opponent must pick one of your hands or containers. If they pick the one hiding the dice, this ability has no effect. If they pick the empty one, the target is automatically destroyed.",
-					"keywords": [
-						"RAMPAGE"
-					]
-				},
-				{
-					"name": "Supreme Lord of the Undead",
-					"category": "rallying",
-					"timing": "Your Hero Phase",
-					"frequency": "Once Per Battle",
-					"declare": "Pick a friendly non-HERO non-UNIQUE DEATH unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit identical to the target wholly within 12\" of this unit and more than 9\" from all enemy units."
-				},
 				{
 					"name": "Invocation of Nagash",
 					"category": "",
@@ -1592,110 +1533,10 @@
 					"timing": "Passive",
 					"effect": "This unit ignores the effects of DELUSION abilities."
 				}
-			],
-			"keywords": [
-				"DEATH",
-				"UNIQUE",
-				"HERO",
-				"MONSTER",
-				"WIZARD (9)",
-				"WARD (5+)",
-				"FLY",
-				"WARMASTER",
-				"FLESH-EATER COURTS"
 			]
 		},
 		{
-			"id": "nagash_supreme_lord_of_the_underworlds",
-			"name": "Nagash, Supreme Lord of the Underworlds",
-			"source": "White Dwarf",
-			"legends": true,
-			"points": 670,
-			"unit_size": 1,
-			"base_size": "130mm",
-			"can_reinforce": false,
-			"move": "10",
-			"health": 18,
-			"save": 3,
-			"control": 10,
-			"ward": 5,
-			"ranged_weapons": [],
-			"melee_weapons": [
-				{
-					"name": "Alakanash, the Staff of Power",
-					"range": 0,
-					"attacks": "4",
-					"hit": 3,
-					"wound": 3,
-					"rend": 2,
-					"damage": "D6"
-				},
-				{
-					"name": "Zefet-nebtar, the Mortis Blade",
-					"range": 0,
-					"attacks": "4",
-					"hit": 3,
-					"wound": 3,
-					"rend": 2,
-					"damage": "3"
-				}
-			],
-			"abilities": [
-				{
-					"name": "Battle Damaged",
-					"category": "damage",
-					"timing": "Passive",
-					"effect": "While this unit has 10 or more damage points, subtract 3 from its power level."
-				},
-				{
-					"name": "The Staff of Power",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "Add 2 to casting rolls for this unit while it has not miscast any spells this turn. If this unit miscasts a spell, ignore the restriction that would stop this unit from casting any more spells this turn."
-				},
-				{
-					"name": "Soul Devourer",
-					"category": "rallying",
-					"timing": "End of Any Turn",
-					"declare": "Pick any number of units (friendly or enemy) within this unit's combat range to be the targets.",
-					"effect": "Inflict D6 mortal damage on each target. For each model slain by this ability, Heal (1) this unit.",
-					"keywords": [
-						"RAMPAGE"
-					]
-				},
-				{
-					"name": "Father of Necromancy",
-					"category": "rallying",
-					"timing": "Your Hero Phase",
-					"declare": "Pick 2 visible friendly LEGIONS OF NAGASH units that are wholly within 18\" of this unit. Pick 1 of those units to be the target, then pick the other to be drained.",
-					"effect": "Up to 3 models in the drained unit are automatically slain. Then, return a number of slain models to the target unit with a combined Health characteristic of models slain in the drained unit."
-				},
-				{
-					"name": "Necromantic Empowerment",
-					"category": "",
-					"timing": "Onec Per Turn (Army), Any Combat Phase",
-					"declare": "Pick a viisble friendly Legions of Nagash unit within this unit's combat range to be the target.",
-					"effect": "Allocate D3 mortal damage to the target (ward rolls cannot be made for those damage points). If any models are slain by this ability, for the rest of the turn:\n• This unit's Alakanash has Crit (Mortal).\n• This unit's Zefet-nebtar has Crit (2 Hits).",
-					"keywords": [
-						"RAMPAGE"
-					]
-				}
-			],
-			"keywords": [
-				"DEATH",
-				"UNIQUE",
-				"HERO",
-				"MONSTER",
-				"WIZARD (9)",
-				"WARD (5+)",
-				"FLY",
-				"WARMASTER",
-				"FLESH-EATER COURTS",
-				"NIGHTHAUNT",
-				"SOULBLIGHT GRAVELORDS",
-				"OSSIARCH BONEREAPERS",
-				"LEGIONS OF NAGASH"
-			]
+			"shared": "nagash_supreme_lord_of_the_underworlds"
 		},
 		{
 			"id": "royal_beastflayers",

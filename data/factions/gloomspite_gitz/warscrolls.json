@@ -1061,98 +1061,13 @@
 			"composition": "Each model in this unit is armed with Looncourt Weapons. The models in this unit are: Grinkrak the Great (champion, also armed with a Moon-slicer) Skolko and Pronk (also armed with a Squigapult) Grib, da Wonky Lance Pokin’ Snark Snorbo da Spore Pointy Burk Moonface Nagz"
 		},
 		{
-			"id": "kragnos_the_end_of_empires",
-			"name": "Kragnos, the End of Empires",
-			"points": 580,
-			"unit_size": 1,
-			"base_size": "130mm",
-			"can_reinforce": false,
+			"shared": "kragnos_the_end_of_empires",
 			"regiment_options": [
 				"Any GLOOMSPITE GITZ",
 				"0-1 Top Dog",
 				"0-1 Moonclan Agitator"
 			],
-			"move": "10",
-			"health": 18,
-			"save": 4,
-			"control": 15,
-			"ward": 5,
-			"ranged_weapons": [],
-			"melee_weapons": [
-				{
-					"name": "The Dread Mace",
-					"range": 0,
-					"attacks": "6",
-					"hit": 3,
-					"wound": 2,
-					"rend": 3,
-					"damage": "4"
-				},
-				{
-					"name": "Tuskbreaker",
-					"range": 0,
-					"attacks": "3",
-					"hit": 4,
-					"wound": 2,
-					"rend": 2,
-					"damage": "D3",
-					"abilities": [
-						"Crit (2 Hits)"
-					]
-				},
-				{
-					"name": "Hooves of Wrack and Ruin",
-					"range": 0,
-					"attacks": "6",
-					"hit": 3,
-					"wound": 2,
-					"rend": 1,
-					"damage": "2"
-				}
-			],
-			"abilities": [
-				{
-					"name": "Battle Damaged",
-					"category": "damage",
-					"timing": "Passive",
-					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of The Dread Mace is 4 and this unit has a Control characteristic of 10."
-				},
-				{
-					"name": "Avatar of Destruction",
-					"category": "defensive",
-					"timing": "Passive",
-					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
-				},
-				{
-					"name": "Rampaging Destruction",
-					"category": "offensive",
-					"timing": "Any Charge Phase",
-					"frequency": "Once Per Turn (Army)",
-					"effect": "If this unit charged this phase, pick 1 of the following effects:\n• Roll a dice for each enemy unit within 1\" of this unit. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.\n• Pick an enemy MONSTER in combat with this unit and roll 2D6. On a 7, this ability has no effect. Otherwise, inflict an amount of mortal damage on that unit equal to the results on the dice used for the 2D6 roll multiplied together. For example, a 2D6 roll of 2 and 6 would inflict 12 mortal damage (2 × 6).",
-					"keywords": [
-						"RAMPAGE"
-					]
-				},
-				{
-					"name": "The End of Empires",
-					"category": "movement",
-					"timing": "Your Charge Phase",
-					"effect": "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for friendly DESTRUCTION units while they are wholly within 12\" of this unit, to a maximum of 3."
-				},
-				{
-					"name": "The Shield Inviolate",
-					"category": "defensive",
-					"timing": "Reaction: Opponent declared a SPELL ability",
-					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 3+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per SPELL ability."
-				}
-			],
 			"keywords": [
-				"HERO",
-				"UNIQUE",
-				"MONSTER",
-				"WARMASTER",
-				"WARD (5+)",
-				"DESTRUCTION",
 				"GLOOMSPITE GITZ"
 			]
 		},

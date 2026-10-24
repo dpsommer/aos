@@ -1,0 +1,25 @@
+{
+	"warscrolls": [
+		{
+			"shared": "shared_hero",
+			"points": 380,
+			"regiment_options": ["Any HERO"],
+			"abilities": [
+				{"name": "Replaced Ability", "effect": "Faction's own effect."},
+				{"name": "Added Ability", "effect": "Faction-only effect."}
+			],
+			"keywords": ["SHARED REFS", "HERO"]
+		},
+		{
+			"id": "own_unit",
+			"name": "Own Unit",
+			"points": 100,
+			"unit_size": 10,
+			"move": "5",
+			"health": 1,
+			"save": 5,
+			"control": 1,
+			"keywords": ["INFANTRY"]
+		}
+	]
+}

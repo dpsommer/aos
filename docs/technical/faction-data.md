@@ -12,6 +12,15 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 `spearhead.json` | No | `{"spearheads": [...]}`: army list (`general`, `units`), battle traits, regiment abilities, enhancements, and the Spearhead versions of warscrolls
 `path_to_glory.json` | No | `{"sections": [...]}`: titled text sections, plus any warscrolls (e.g. the Anvil of Apotheosis hero)
 
+### Shared warscrolls and Armies of Renown
+
+A warscroll or Army of Renown that several factions use, such as Nagash, Kragnos, Grombrindal or the White Dwarf Armies of Renown (Legions of Nagash, The Duardin Ascendant), is stored once in `data/shared/warscrolls.json` (`{"warscrolls": [...]}`) or `data/shared/armies_of_renown.json` (`{"armies_of_renown": [...]}`), in the same format as a faction's. Each faction lists a reference in its own file instead, which the loader resolves:
+
+- An Army of Renown reference is `{"shared": "<name>"}`.
+- A warscroll reference is `{"shared": "<id>", ...}`. Its other fields are what that faction's version has of its own: keywords are added to the shared profile's (e.g. `"keywords": ["NIGHTHAUNT"]` on Nagash, Supreme Lord of the Undead), each ability replaces the shared ability of the same name or is added (Flesh-eater Courts' Nagash has its own Invocation of Nagash and Utter Contempt), and any other field, such as `regiment_options` or `points`, replaces the shared value.
+
+Fix a typo in a shared entry once, in `tools/faction_import/shared.json`, not in each faction's overrides.
+
 ## Schema
 
 **Class** | **Fields** (required in bold)
@@ -27,7 +36,7 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 
 Characteristics such as `save`, `hit` and `wound` store the x of an x+ roll. `source` names the expansion a rule comes from (e.g. "Scourge of Aqshy"); it's empty for battletome rules. Path to Glory is stored as text because its content is too varied to model usefully yet.
 
-The loader rejects the whole faction, collecting every problem in `errors`, if a file isn't valid JSON, a required field is missing, or a field has the wrong type.
+The loader rejects the whole faction, collecting every problem in `errors`, if a file isn't valid JSON, a required field is missing, a field has the wrong type, or a reference names no shared entry.
 
 ## Sources
 
@@ -53,6 +62,7 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
 `wahapedia.py` | Parses the Wahapedia pages
 `merge.py` | Combines the two, adds Wahapedia-only content, matches names (including misspellings such as "Hobgrotz"/"Hobgrot") and produces the diff report
 `schema.py` | Writes the canonical JSON shape
+`shared.py` | Moves the warscrolls and Armies of Renown listed in `shared.json` to `data/shared/` and writes references to them
 `build.py` | Runs the steps above, applies overrides and writes the five files
 
 1. Download the Wahapedia pages into an empty directory outside the repo:
@@ -74,11 +84,28 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
    The report lists differences before overrides are applied, so overridden fields still appear in it.
 
    `build.py` stops if an override matches nothing, so stale overrides get noticed.
+   If the faction has a warscroll or Army of Renown another faction also has (e.g. a Death faction's Nagash), list it in `tools/faction_import/shared.json` and rebuild; see [Shared entries](#shared-entries).
 4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`.
 5. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
    ```sh
    PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/faction_import/tests
    ```
+
+### Shared entries
+
+`tools/faction_import/shared.json` lists the shared warscrolls (by id) and Armies of Renown (by name), and holds their field overrides, in the same `fields` format as a faction's overrides, targeted by `"<warscroll id or Army of Renown name>"` or `"<... > <weapon or ability name>"`:
+
+```json
+{
+	"warscrolls": {"nagash_supreme_lord_of_the_undead": {"faction_keyword": true}, "grombrindal_the_white_dwarf": {}},
+	"armies_of_renown": ["Legions of Nagash"],
+	"fields": {"Legions of Nagash > The Gaze of Nagash": {"declare": "..."}}
+}
+```
+
+`faction_keyword` marks a warscroll whose every version carries only its own faction's keyword (Nagash is NIGHTHAUNT in Nighthaunt and FLESH-EATER COURTS in Flesh-eater Courts); the shared profile leaves it out and each reference adds it. Without it, keywords naming several factions (Nagash, Supreme Lord of the Underworlds) stay in the shared profile. A `shared.json` override must name a listed warscroll or Army of Renown, but one naming a weapon or ability is skipped for a faction whose version lacks it, since versions can differ.
+
+The first faction built with a shared entry writes it to `data/shared/` (or `--shared <dir>`). Later builds keep the shared entry and report where their version differs as `shared warscroll …` or `shared army of renown …` lines, except for the battle profile, abilities and the faction's own keywords, which go in the reference. Fix such a difference with a `shared.json` override, or pass `--update-shared` to replace the shared entries with this faction's versions; then rebuild the other factions that use them, since their references are computed against the shared entry.
 
 How the BSData catalogues map to the data:
 

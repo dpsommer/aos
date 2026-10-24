@@ -1,0 +1,91 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Nighthaunt army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Nighthaunt units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Choose an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Choose a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nChainrattler | 10 | 150\nFoul Spectre | 30 | 250\nLord of Torment | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "nighthaunt_hero",
+					"name": "Nighthaunt Hero",
+					"move": "8",
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ward": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Malignant Blade",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"FLY",
+						"WARD (5+)",
+						"DEATH",
+						"NIGHTHAUNT"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Choose an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nKnight of Shrouds\n-3DP\nReplace the weapon profile of your hero’s Malignant Blade with the one below. In addition, your hero gains the following ability and regiment options:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMalignant Blade\nCrit (Auto-wound) | 5 | 4+ | 3+ | 1 | 2\nPassive\nSTOLEN HOURS\nEffect: Each time this unit uses a FIGHT ability, after that FIGHT ability has been resolved, Heal (X) this unit, where X is the number of damage points allocated to enemy units by combat attacks made as part of that FIGHT ability.\nRegiment Options | Any NIGHTHAUNT units\nGuardian of Souls\n-2DP\nYour hero gains the WIZARD (1) keyword and the following regiment options:\nRegiment Options | Any NIGHTHAUNT units\nDark Judge\n0DP\nYour hero gains the following ability and regiment options:\nOnce Per Battle (Army), Your Hero Phase\nSINISTER JUDGEMENT\nDeclare: Pick a visible enemy unit within 18\" of this unit to be the target.\nEffect: Roll a dice. On a 2+, the target is judged for the rest of the turn. While the target is judged, negative modifiers to its control score are doubled.\nRegiment Options | Any NIGHTHAUNT units\nBaleful Horror\n-2DP\nYour hero gains the following weapon and regiment options:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nBalefire-laced Scream\nShoot in Combat | 12\" | D3 | 4+ | 3+ | 2 | D3\nRegiment Options | Any NIGHTHAUNT units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Once Per Turn (Army), Any Combat Phase\n-2DP\nAWFUL RESEMBLANCE\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 3+, for the rest of the turn:\nThis unit cannot be picked to be the target of pile-in moves made by the target.\nOther than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.\nPassive\n-4DP\nEYES TORN OPEN\nEffect: You can re-roll hit rolls for this unit’s combat attacks that target ORDER units. In addition, you can re-roll wound rolls for this unit’s combat attacks that target STORMCAST ETERNALS units.\nOnce Per Turn (Army), Any Hero Phase\n-4DP\nNIHILISTIC GOURMAND\nDeclare: Pick a friendly NIGHTHAUNT unit to be the target.\nEffect: For the rest of the turn, while the target is within this unit’s combat range, each time a model in the target unit is slain, Heal (1) this unit."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+4DP\nBRINGER OF FALSE HOPE\nEffect: Visible friendly NIGHTHAUNT units within 6\" of this unit cannot be healed and slain models cannot be returned to those units.\nPassive\n+4DP\nDELUDED WORSHIPPER\nEffect: Visible friendly NIGHTHAUNT units within 6\" of this unit cannot use commands.\nEnd of Any Turn\n+6DP\nFLAKING SOUL\nDeclare: This unit must use this ability at the end of each turn.\nEffect: Roll a number of dice equal to this unit’s Health characteristic. For each 6, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points)."
+		},
+		{
+			"name": "Step 5 - Choose a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-5DP\nETHEREAL STEED: Spectral steeds that carry Nagash’s deadliest agents are heralds of woe and despair wherever they go.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nEthereal Steed’s Ghostly Hooves and Teeth\nCompanion, Crit (Auto-wound) | 3 | 5+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 12\".\nChange the Health characteristic to 7.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nBattle Mount\n-8DP\nEDIFICE OF THE DAMNED: Some Nighthaunt are eternally bound in death to spectral echoes of constructs with which they had a strong connection in life, Valentian’s graven throne and the dread ferry of Awlrach the Drowner being the most infamous examples.\nPick 1 of the following abilities to add to your hero’s warscroll:\nAny Charge Phase\nFRIGHT TRAIN\nDeclare: This unit can use this ability if it charged this phase. Pick each enemy unit within 1\" of this unit to be the targets.\nEffect: Roll a dice. On a 2+, ignore positive modifiers to save rolls for the targets for the rest of the turn.\nAny Charge Phase\nCHTHONIC JUGGERNAUT\nDeclare: This unit can use this ability if it charged this phase.\nEffect: Roll a D3. On a 2+, add the roll to the Attacks characteristic of this unit’s melee weapons for the rest of the turn.\nIn addition, make the following changes to your hero’s warscroll:\nChange the Health characteristic to 7.\nYou can replace the INFANTRY keyword with the WAR MACHINE keyword.\nBattle Mount\n-16DP\nDARK CHARIOTEER: This fell champion has been bound to a Black Coach, cursed forever to hurtle through the Mortal Realms continually resurrecting Nagash’s more favoured, or more hated, victims, as suits the god’s whims.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nRelic Bearers’ Claws and Ethereal Steeds’ Hooves\nCrit (Auto-wound), Companion | 14 | 4+ | 4+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 12.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the WAR MACHINE keyword."
+		},
+		{
+			"name": "Step 6 - Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nDamned Haste\n-2DP\nAdd 2\" to your hero's Move characteristic.\nDesperation's Haste\n-2DP\nAdd the following ability to your hero's warscroll:\nYour Movement Phase\nTHE SOUL OF A COWARD\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a D3. On a 2+, this unit immediately uses the’ Retreat’ ability without any mortal damage being inflicted on it. Then, inflict an amount of mortal damage on the target equal to the roll.\nEthereal Scythes\n-4DP\nAdd the following ability to your hero's warscroll:\nAny Charge Phase\nSPECTRAL BLADES\nDeclare: If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nDamned Chargers\n-4DP\nYour hero’s Companion weapons have a Damage characteristic of 2.\nWailing Attendants\n-4DP\nMONSTER only. Add the following weapons to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nAttendants’ Deadly Weapons\nCrit (Auto-wound), Companion | 4 | 4+ | 4+ | 2 | 2\nUnholy Knight\n-4DP\nYour hero’s Malignant Blade has Charge (+1 Damage).\nOn a Pale Horse\n-6DP\nYour hero’s weapons have Crit (Mortal). This also affects Companion weapons."
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nAura of the Damned\n-1DP\nAdd 1 to your hero’s Control characteristic.\nInsubstantial\n-2DP\nINFANTRY only. Add 1 to your hero’s Health characteristic.\nEager for Death\n-3DP\nThe Hit characteristic of your hero’s Malignant Blade is 3+.\nMalignant Strength\n-3DP\nThe Wound characteristic of your hero’s Malignant Blade is 2+.\nBearer of Dark Flames\n-3DP\nAdd 3 to the Attacks characteristic of your hero’s Balefire-laced Scream.\nFearsome Horror\n-4DP\nAdd 2 to the Attacks characteristic of your hero’s Malignant Blade.\nArcane Devourer\n-4DP\nNon- WIZARD only. Your hero gains the following ability:\nReaction: Opponent declared a SPELL ability\nDEVOUR MAGIC\nEffect: If a friendly NIGHTHAUNT unit wholly within 12\" of this unit was picked to be the target of that spell, this unit can use the ' Unbind' ability as if it had WIZARD (1). If the spell is unbound, Heal (D3) this unit.\nMalicious Urges\n-4DP\nAdd the following ability to your hero's warscroll:\nYour Charge Phase\nRECKLESS REAPER\nEffect: For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3.\nUnrepentant Reaper\n-5DP\nAdd the following ability to your hero's warscroll:\nOnce Per Turn (Army), Enemy Movement Phase\nIT TOLLS FOR THEE\nDeclare: Pick a visible enemy unit within 18\" of this unit to be the target.\nEffect: For the rest of the turn, each time the target is picked to use a CORE ability, roll a dice as a reaction. On a 4+, inflict D3 mortal damage on the target.\nChill Aura\n-5DP\nAdd the following ability to your hero's warscroll:\nOnce Per Battle, Reaction: Opponent declared a CHARGE ability for a unit within 6\" of this unit\nCHILL AURA\nEffect: Discard the highest dice from that charge roll.\nDread Harvester\n-6DP\nWard rolls cannot be made for damage points inflicted by this unit’s combat attacks. This also affects Companion weapons.\nEternal Horror\n-8DP\nYour hero gains the WARD (4+) keyword. Other than the Companion weapon ability, weapon abilities for attacks made by enemy units have no effect while they are in combat with our hero."
+		},
+		{
+			"name": "Path of The Judge",
+			"text": "(NIGHTHAUNT HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Turn (Army), Any Hero Phase\nJUSTICE OF DEATH\nDeclare: Pick an enemy unit within 18\" of this unit to be an accused unit for the rest of the battle.\nEffect: The next time that accused unit uses a CORE ability, inflict D3 mortal damage on it after that ability is resolved.\nOnce Per Turn (Army), Any Hero Phase\nMARKED FOR CAPTURE\nDeclare: Pick an enemy unit within 18\" of this unit to be an accused unit for the rest of the battle.\nEffect: If that accused unit is destroyed while it is in combat with this unit, add 5 to this unit’s control score for the rest of the battle.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nMALIGNANT PROSECUTOR\nEffect: Enemy units in combat with this unit cannot use commands.\nOnce Per Battle, Enemy Hero Phase\nMARKED FOR CAPTURE\nDeclare: Pick an enemy unit that is in combat with this unit to be the target.\nEffect: The target must use a RETREAT ability in the following movement phase if possible.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Turn (Army), Any Hero Phase\nGRIM JUDGE\nDeclare: Pick an enemy unit in combat with this unit, and each accused enemy unit within 12\" of this unit, to be the targets.\nEffect: Ward rolls cannot be made for the targets for the rest of the turn.\nOnce Per Turn (Army), Any Combat Phase\nSHACKLED GAOLER\nDeclare: Pick an enemy unit within 6\" of this unit, and each accused enemy unit within 12\" of this unit, to be the targets.\nEffect: For each target, after it makes a pile-in move this phase, roll 2 D3s. For each 2+, inflict an amount of mortal damage on the target equal to the roll.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Hero Phase\nPRONOUNCE SENTENCE\nEffect: For the rest of the turn, accused units’ Path abilities are ignored.\nOnce Per Battle, End of Any Turn\nSOUL-SPLITTING WAIL\nEffect: Inflict X mortal damage on each enemy unit within 6\" of this unit, where X is equal to the totalled negative modifiers to that enemy unit’s control score."
+		},
+		{
+			"name": "Path of Torment",
+			"text": "(non- HERO NIGHTHAUNT unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nWRATHFUL SCOURGING\nEffect: Add 1 to run rolls and charge rolls for this unit.\nPassive\nFRESH FROM NAGASHIZZAR\nEffect: Ignore negative modifiers to this unit’s control score.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nReaction: You declared a command for this unit\nDUTIFUL PENITENTS\nEffect: Return 1 slain model to this unit.\nOnce Per Battle (Army), Any Combat Phase\nBLADES OF BLACK SOULS\nEffect: Add 1 to the Rend characteristic of this unit's weapons for the rest of the turn.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSPECTRAL LAMPREYS\nEffect: Subtract 1 from wound rolls for melee attacks that target this unit.\nEnd of Any Turn\nDARK FLAMES\nEffect: Roll a D3 for each enemy unit in combat with this unit. Allocate a number of damage points to that enemy unit equal to the roll (ward rolls cannot be made for those damage points).\nLEGENDARY: When a unit on this Path gains this rank, it gains the following ability:\nPassive\nIMMORTAL HORRORS\nEffect: Subtract 5 from the control scores of enemy units while they are in combat with this unit."
+		}
+	]
+}

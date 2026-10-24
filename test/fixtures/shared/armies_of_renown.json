@@ -1,0 +1,13 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Shared Army",
+			"source": "White Dwarf",
+			"legends": true,
+			"text": "Shared roster restrictions.",
+			"battle_traits": [{"name": "Shared Trait", "effect": "Shared trait effect."}],
+			"enhancement_tables": [],
+			"lores": []
+		}
+	]
+}

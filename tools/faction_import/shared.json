@@ -1,0 +1,61 @@
+{
+	"warscrolls": {
+		"grombrindal_the_white_dwarf": {},
+		"kragnos_the_end_of_empires": {
+			"faction_keyword": true
+		},
+		"nagash_supreme_lord_of_the_undead": {
+			"faction_keyword": true
+		},
+		"nagash_supreme_lord_of_the_underworlds": {}
+	},
+	"armies_of_renown": [
+		"Legions of Nagash",
+		"The Duardin Ascendant"
+	],
+	"fields": {
+		"grombrindal_the_white_dwarf > As Stern As Stone": {
+			"effect": "Friendly DUARDIN INFANTRY units have WARD (5+) while they are wholly within 12\" of this unit."
+		},
+		"grombrindal_the_white_dwarf > Rune Axe of Grimnir": {
+			"effect": "The Attacks characteristic of this unit's Rune Axe of Grimnir is 7 if this unit charged this turn."
+		},
+		"nagash_supreme_lord_of_the_underworlds > Necromantic Empowerment": {
+			"timing": "Any Combat Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a visible friendly LEGIONS OF NAGASH unit within this unit's combat range to be the target."
+		},
+		"Legions of Nagash": {
+			"text": "When you pick the SOULBLIGHT GRAVELORDS, OSSIARCH BONEREAPERS, FLESH-EATER COURTS or NIGHTHAUNT faction for your army, you can choose for it to be a LEGIONS OF NAGASH Army of Renown instead. If you do so, use the faction rules on these pages instead of any other faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the LEGIONS OF NAGASH keyword. In addition, when you pick a manifestation lore for your army, you can pick 1 of the following lores: ‘Manifestations of the Grave’, ‘Horrors of the Necropolis’, ‘Infernal Sorceries’ or ‘Manifested Insanity’.\nLegends Rules: The rules in this article are Legends rules. This means that these rules cannot be used in competitive Matched Play events.\nROSTER OPTIONS\nLEGIONS OF NAGASH Nagash, Supreme Lord of the Underworlds\nAny non-UNIQUE DEATH units\nYou cannot include Regiments of Renown"
+		},
+		"Legions of Nagash > Delusion and Discipline": {
+			"effect": "Until the start of your next turn, the OSSIARCH BONEREAPERS target has WARD (5+) while it is wholly within 12\" of and visible to the FLESH-EATER COURTS target.\nIn addition, pick 1 of the following effects for the FLESH-EATER COURTS target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it."
+		},
+		"Legions of Nagash > Fell Blades and Bloody Fangs": {
+			"effect": "Until the start of your next turn, add 1 to the Rend characteristic of the SOULBLIGHT GRAVELORDS target's weapons while it is wholly within 12\" of and visible to the NIGHTHAUNT target.\nIn addition, pick 1 of the following effects for the NIGHTHAUNT target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it."
+		},
+		"Legions of Nagash > Reap a Bloody Tithe": {
+			"effect": "Until the start of your next turn, add 1 to hit rolls for combat attacks made by the SOULBLIGHT GRAVELORDS target while it is wholly within 12\" of and visible to the OSSIARCH BONEREAPERS target.\nIn addition, pick 1 of the following effects for the OSSIARCH BONEREAPERS target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it."
+		},
+		"Legions of Nagash > Rivers of Blood and Shallow Graves": {
+			"effect": "Until the start of your next turn, add 1 to the Rend characteristic of the friendly FLESH-EATER COURTS target's weapons while it is wholly within 12\" of and visible to the SOULBLIGHT GRAVELORDS target.\nIn addition, pick 1 of the following effects for the SOULBLIGHT GRAVELORDS target:\n• Heal (D3) that unit.\n• If that unit has a Health characteristic of 1 or 2, return D3 slain models to it.\n• If that unit has a Health characteristic of 3 or more, return 1 slain model to it."
+		},
+		"Legions of Nagash > Summon Bone-tithe Shrieker": {
+			"declare": "If there is not a friendly Bone-tithe Shrieker on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6."
+		},
+		"Legions of Nagash > Summon Unholy Reliquary": {
+			"effect": "Set up an Unholy Reliquary endless spell wholly within 18\" of the caster, visible to them, and more than 3\" from all enemy units."
+		},
+		"Legions of Nagash > The Gaze of Nagash": {
+			"declare": "Pick the friendly Nagash to cast this spell. Then, pick 2 points on the battlefield within 18\" of and visible to him and within 12\" of each other. Then, draw a line between those points. Each visible enemy unit the line passes across is a target. Then, make a casting roll of 2D6.",
+			"effect": "Pick normal gaze or empowered gaze.\nIf you picked normal gaze, inflict D3 mortal damage on each target.\nIf you picked empowered gaze, make an empowerment roll of 2D6. On a 6+, the roll succeeds; otherwise, the roll fails. You can keep making empowerment rolls until a roll fails. If an empowerment roll fails, the spell fails and its effect is not resolved. Otherwise, inflict D3+X mortal damage on each target, where X is the number of empowerment rolls that succeeded."
+		},
+		"The Duardin Ascendant": {
+			"text": "When you pick the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose for it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be included and must be your general)\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain"
+		},
+		"The Duardin Ascendant > Oath of Restoration": {
+			"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible objective within 18\" of them that is contested by 2 or more friendly unified units to be the target, then make a chanting roll of D6.",
+			"effect": "Until the start of your next turn, friendly DUARDIN ASCENDANT units have WARD (6+) while they have any models contesting the target. If the chanting roll was 7+, friendly DUARDIN ASCENDANT units have WARD (5+) while they have any models contesting the target instead."
+		}
+	}
+}
