@@ -4,3 +4,6 @@
 
 # Python bytecode from tools/
 __pycache__/
+
+# Local BSData checkout used by tools/faction_import
+/tools/bsdata/

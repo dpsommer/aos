@@ -40,25 +40,28 @@ The "AoS Rules" NotebookLM notebook (`a30c0d6a-8127-4eab-b97e-e457c97a65fc`), wh
 
 ## Adding a faction
 
-The import tool is in `tools/faction_import/` (Godot ignores `tools/`). It needs Python 3 with `requirements.txt` installed, ideally in a virtualenv outside the repo.
+The import tool is in `tools/faction_import/` (Godot ignores `tools/`). It needs Python 3 with `requirements.txt` installed, ideally in a virtualenv outside the repo, and `git`.
+
+BSData is read from a local shallow clone of the repository at `tools/bsdata/`, which is gitignored. `build.py` clones it the first time it runs; pass `--update-bsdata` to pull the latest catalogues, or `--bsdata <dir>` to use a checkout elsewhere. The report's first line names the BSData commit used.
 
 **Module** | **Role**
 -- | --
-`fetch.py` | Downloads the BSData catalogues (game system, `Lores.cat`, `<Faction>.cat`, its library, every `<Faction> - <Army of Renown>.cat` and the shared catalogues they link to) and the Wahapedia faction and unit pages
-`bsdata.py` | Reads the catalogues: resolves links across files, converts BSData markup (`**^^Keyword^^**` → `KEYWORD`), maps profiles to warscrolls and abilities
+`fetch.py` | Downloads the Wahapedia faction and unit pages
+`bsdata.py` | Manages the BSData checkout and reads the catalogues a faction needs (game system, `Lores.cat`, `<Faction>.cat`, its library, every `<Faction> - <Army of Renown>.cat` and the shared catalogues they link to): resolves links across files, converts BSData markup (`**^^Keyword^^**` → `KEYWORD`), maps profiles to warscrolls and abilities
 `wahapedia.py` | Parses the Wahapedia pages
 `merge.py` | Combines the two, adds Wahapedia-only content, matches names (including misspellings such as "Hobgrotz"/"Hobgrot") and produces the diff report
 `schema.py` | Writes the canonical JSON shape
 `build.py` | Runs the steps above, applies overrides and writes the five files
 
-1. Download the sources into an empty directory outside the repo. Use BSData's faction name and Wahapedia's slug:
+1. Download the Wahapedia pages into an empty directory outside the repo:
    ```sh
-   python -I tools/faction_import/fetch.py "Helsmiths of Hashut" helsmiths-of-hashut <download dir>
+   python -I tools/faction_import/fetch.py helsmiths-of-hashut <download dir>
    ```
    Wahapedia links without a page of their own (such as the Path to Glory hero) are skipped with a warning.
 2. Build the data and keep the report:
    ```sh
-   python -I tools/faction_import/build.py <download dir> data/factions/<id> <id> "<BSData faction name>" [tools/faction_import/overrides/<id>.json] > report.txt
+   python -I tools/faction_import/build.py <download dir> data/factions/<id> <id> "<BSData faction name>" \
+       [--overrides tools/faction_import/overrides/<id>.json] [--update-bsdata] > report.txt
    ```
 3. Read the report. It lists every field where BSData and Wahapedia disagree, names matched by similarity, and items only one source has. BSData wins by default. When BSData is wrong, add an override and rebuild. Override files are JSON:
    - `replace_with_wahapedia`: `{"<BSData ability name>": "<Wahapedia ability name>"}`. Uses Wahapedia's version of an ability where BSData has the wrong rule, e.g. Taar's Grand Forgehost's "Masterful Daemonworks". Applied before merging, so the replacement is ordered and compared like everything else.

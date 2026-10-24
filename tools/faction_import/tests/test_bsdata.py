@@ -446,3 +446,227 @@ def test_faction_link_wins_over_priced_army_of_renown_link(tmp_path):
         '<costs><cost name="pts" typeId="points" value="999.0"/></costs></entryLink>'), encoding="utf-8")
     _, warscrolls, _ = bsdata.read_faction(bsdata.Catalogues(str(tmp_path)), FACTION)
     assert named(warscrolls, "Test Captain")["points"] == 120
+
+
+# faction_files()
+
+def catalogue_xml(name, links=()):
+    """A minimal catalogue named `name` with catalogueLinks to each of `links` (raw XML names)."""
+    link_xml = "".join('<catalogueLink id="cl-%d" name="%s" targetId="x" type="catalogue"/>' % (i, link)
+                       for i, link in enumerate(links))
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="c" name="%s" gameSystemId="sys" '
+            'xmlns="%s"><catalogueLinks>%s</catalogueLinks></catalogue>' % (name, NS, link_xml))
+
+
+def fixture_copy(tmp_path):
+    src = os.path.join(FIXTURES, "bsdata")
+    for name in os.listdir(src):
+        shutil.copy(os.path.join(src, name), tmp_path)
+    return tmp_path
+
+
+def add_faction_link(directory, link):
+    """Add a catalogueLink named `link` (raw XML) to the fixture faction catalogue."""
+    cat = directory / (FACTION + ".cat")
+    cat.write_text(cat.read_text(encoding="utf-8").replace(
+        "</catalogueLinks>",
+        '<catalogueLink id="cl-extra" name="%s" targetId="x" type="catalogue"/></catalogueLinks>' % link, 1),
+        encoding="utf-8")
+
+
+def fixture_files():
+    return bsdata.faction_files(os.path.join(FIXTURES, "bsdata"), FACTION)
+
+
+def test_faction_files_include_faction_catalogue():
+    assert FACTION + ".cat" in fixture_files()
+
+
+def test_faction_files_include_game_system():
+    assert "Test System.gst" in fixture_files()
+
+
+def test_faction_files_include_lores():
+    assert "Lores.cat" in fixture_files()
+
+
+def test_faction_files_include_faction_library():
+    assert FACTION + " - Library.cat" in fixture_files()
+
+
+def test_faction_files_include_armies_of_renown():
+    assert FACTION + " - The Shared Host [LEGENDS].cat" in fixture_files()
+
+
+def test_faction_files_follow_links_with_decorative_prefix():
+    assert "The Shared Host [LEGENDS].cat" in fixture_files()
+
+
+def test_faction_files_are_sorted():
+    files = fixture_files()
+    assert files == sorted(files)
+
+
+def test_faction_files_have_no_duplicates():
+    files = fixture_files()
+    assert len(files) == len(set(files))
+
+
+def test_faction_files_exclude_unrelated_catalogue(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Others.cat").write_text(catalogue_xml("Others"), encoding="utf-8")
+    assert "Others.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_exclude_faction_with_same_name_prefix(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / (FACTION + " Rivals.cat")).write_text(catalogue_xml(FACTION + " Rivals"), encoding="utf-8")
+    assert FACTION + " Rivals.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_exclude_linked_path_to_glory(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Path to Glory - Testers.cat").write_text(catalogue_xml("Path to Glory - Testers"), encoding="utf-8")
+    add_faction_link(d, "❖ Path to Glory - Testers")
+    assert "Path to Glory - Testers.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_exclude_linked_library_of_other_faction(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Others - Library.cat").write_text(catalogue_xml("Others - Library"), encoding="utf-8")
+    add_faction_link(d, "Others - Library")
+    assert "Others - Library.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_include_linked_non_library_catalogue(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Regiments of Renown.cat").write_text(catalogue_xml("Regiments of Renown"), encoding="utf-8")
+    add_faction_link(d, "❖ Regiments of Renown")
+    assert "Regiments of Renown.cat" in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_unescape_link_names(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Bob's & Co.cat").write_text(catalogue_xml("Bob&apos;s &amp; Co"), encoding="utf-8")
+    add_faction_link(d, "þ Bob&apos;s &amp; Co")
+    assert "Bob's & Co.cat" in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_ignore_links_to_missing_catalogues(tmp_path):
+    d = fixture_copy(tmp_path)
+    add_faction_link(d, "❖ Not Present")
+    assert "Not Present.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_do_not_follow_links_from_shared_catalogues(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Deep.cat").write_text(catalogue_xml("Deep"), encoding="utf-8")
+    shared = d / "The Shared Host [LEGENDS].cat"
+    shared.write_text(shared.read_text(encoding="utf-8").replace(
+        "<entryLinks>", '<catalogueLinks><catalogueLink id="cl-deep" name="❖ Deep" targetId="x" '
+                        'type="catalogue"/></catalogueLinks><entryLinks>', 1), encoding="utf-8")
+    assert "Deep.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_without_faction_catalogue_exit():
+    with pytest.raises(SystemExit):
+        bsdata.faction_files(os.path.join(FIXTURES, "bsdata"), "No Such Faction")
+
+
+# Catalogues(files)
+
+def test_catalogues_with_files_load_only_those(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Others.cat").write_text(catalogue_xml("Others"), encoding="utf-8")
+    cats = bsdata.Catalogues(str(d), bsdata.faction_files(str(d), FACTION))
+    assert "Others.cat" not in cats.docs
+
+
+def test_catalogues_with_files_load_listed_files(tmp_path):
+    d = fixture_copy(tmp_path)
+    files = bsdata.faction_files(str(d), FACTION)
+    assert sorted(bsdata.Catalogues(str(d), files).docs) == files
+
+
+def test_catalogues_without_files_load_every_catalogue(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Others.cat").write_text(catalogue_xml("Others"), encoding="utf-8")
+    assert "Others.cat" in bsdata.Catalogues(str(d)).docs
+
+
+def test_catalogues_without_files_load_game_system(tmp_path):
+    assert "Test System.gst" in bsdata.Catalogues(str(fixture_copy(tmp_path))).docs
+
+
+# ensure_checkout() / checkout_version()
+
+class FakeRun:
+    """Stands in for subprocess.run, recording each argv and returning `stdout`."""
+
+    def __init__(self, stdout=""):
+        self.calls = []
+        self.stdout = stdout
+
+    def __call__(self, argv, **kwargs):
+        self.calls.append(argv)
+        return type("Result", (), {"stdout": self.stdout, "returncode": 0})()
+
+
+@pytest.fixture
+def fake_run(monkeypatch):
+    run = FakeRun()
+    monkeypatch.setattr(bsdata.subprocess, "run", run)
+    return run
+
+
+def test_ensure_checkout_clones_when_missing(tmp_path, fake_run):
+    path = str(tmp_path / "bsdata")
+    bsdata.ensure_checkout(path)
+    (argv,) = fake_run.calls
+    assert argv[:2] == ["git", "clone"] and "--depth" in argv and argv[argv.index("--depth") + 1] == "1" \
+        and argv[-1] == path
+
+
+def test_ensure_checkout_clones_the_repository(tmp_path, fake_run):
+    bsdata.ensure_checkout(str(tmp_path / "bsdata"))
+    assert bsdata.REPOSITORY in fake_run.calls[0]
+
+
+def test_ensure_checkout_clones_even_when_updating(tmp_path, fake_run):
+    bsdata.ensure_checkout(str(tmp_path / "bsdata"), update=True)
+    (argv,) = fake_run.calls
+    assert argv[:2] == ["git", "clone"]
+
+
+def test_ensure_checkout_does_nothing_when_present(tmp_path, fake_run):
+    (tmp_path / ".git").mkdir()
+    bsdata.ensure_checkout(str(tmp_path))
+    assert fake_run.calls == []
+
+
+def test_ensure_checkout_pulls_when_updating(tmp_path, fake_run):
+    (tmp_path / ".git").mkdir()
+    bsdata.ensure_checkout(str(tmp_path), update=True)
+    (argv,) = fake_run.calls
+    assert argv[:5] == ["git", "-C", str(tmp_path), "pull", "--ff-only"]
+
+
+def test_ensure_checkout_returns_path(tmp_path, fake_run):
+    (tmp_path / ".git").mkdir()
+    assert bsdata.ensure_checkout(str(tmp_path)) == str(tmp_path)
+
+
+def test_checkout_version_runs_git_in_checkout(tmp_path, fake_run):
+    bsdata.checkout_version(str(tmp_path))
+    (argv,) = fake_run.calls
+    assert argv[:3] == ["git", "-C", str(tmp_path)]
+
+
+def test_checkout_version_is_stripped_output(tmp_path, fake_run):
+    fake_run.stdout = "abc1234 2026-10-01\n"
+    assert bsdata.checkout_version(str(tmp_path)) == "abc1234 2026-10-01"
+
+
+def test_checkout_version_without_output_is_unknown(tmp_path, fake_run):
+    fake_run.stdout = "  \n"
+    assert bsdata.checkout_version(str(tmp_path)) == "unknown"

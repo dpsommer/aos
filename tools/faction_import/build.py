@@ -1,10 +1,12 @@
 """Build the game's faction JSON from BSData catalogues and Wahapedia pages.
 
-Usage: python -I build.py <fetch dir> <out dir> <id> "<BSData faction name>" [overrides.json]
+Usage: python -I build.py <wahapedia dir> <out dir> <id> "<BSData faction name>"
+                          [--overrides FILE] [--bsdata DIR] [--update-bsdata]
 
-<fetch dir> is the directory fetch.py wrote (bsdata/ and wahapedia/). BSData is the primary
-source; Wahapedia supplies what BSData lacks. Differences between the two are printed as a
-report and never stop the build; fix a wrong value with an overrides file:
+<wahapedia dir> is the directory fetch.py wrote. BSData is read from a local checkout,
+tools/bsdata by default, which is cloned on first use; --update-bsdata pulls it first.
+BSData is the primary source; Wahapedia supplies what BSData lacks. Differences between the
+two are printed as a report and never stop the build; fix a wrong value with an overrides file:
 
     {
         "warscroll_names": {"<name in the data>": "<name to use>"},
@@ -18,7 +20,7 @@ replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData
 wrong rule; it applies before merging. The others apply after merging. Every override must match
 something, so stale ones are noticed.
 """
-import glob, json, os, sys
+import argparse, glob, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bsdata, merge, schema, wahapedia
@@ -96,14 +98,14 @@ def apply_overrides(data, overrides):
             item.update(fields)
 
 
-def build(fetch_dir, faction_id, faction_name, overrides):
-    cats = bsdata.Catalogues(os.path.join(fetch_dir, "bsdata"))
+def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
+    cats = bsdata.Catalogues(bsdata_dir, bsdata.faction_files(bsdata_dir, faction_name))
     bs_faction, bs_warscrolls, bs_armies = bsdata.read_faction(cats, faction_name)
-    pages = glob.glob(os.path.join(fetch_dir, "wahapedia", "*.html"))
+    pages = glob.glob(os.path.join(wahapedia_dir, "*.html"))
     if len(pages) != 1:
-        sys.exit("expected one Wahapedia faction page in %s" % os.path.join(fetch_dir, "wahapedia"))
+        sys.exit("expected one Wahapedia faction page in %s" % wahapedia_dir)
     wh_page = wahapedia.parse_faction_page(pages[0])
-    wh_units = wahapedia.parse_unit_pages(sorted(glob.glob(os.path.join(fetch_dir, "wahapedia", "units", "*.html"))))
+    wh_units = wahapedia.parse_unit_pages(sorted(glob.glob(os.path.join(wahapedia_dir, "units", "*.html"))))
 
     # Swapped in before merging so the replacement is ordered and compared like the rest.
     replace_with_wahapedia({"faction": bs_faction, "warscrolls": bs_warscrolls, "armies_of_renown": bs_armies,
@@ -140,9 +142,19 @@ def write(data, out_dir):
 
 
 if __name__ == "__main__":
-    fetch_dir, out_dir, faction_id, faction_name = sys.argv[1:5]
-    overrides = json.load(open(sys.argv[5])) if len(sys.argv) > 5 else {}
-    data, report = build(fetch_dir, faction_id, faction_name, overrides)
-    write(data, out_dir)
+    parser = argparse.ArgumentParser(description="Build faction JSON from BSData and Wahapedia.")
+    parser.add_argument("wahapedia_dir", help="directory fetch.py wrote")
+    parser.add_argument("out_dir")
+    parser.add_argument("id", help="faction id, e.g. helsmiths_of_hashut")
+    parser.add_argument("name", help="BSData faction name, e.g. 'Helsmiths of Hashut'")
+    parser.add_argument("--overrides", help="overrides JSON file")
+    parser.add_argument("--bsdata", default=bsdata.DEFAULT_CHECKOUT, help="BSData checkout (default: tools/bsdata)")
+    parser.add_argument("--update-bsdata", action="store_true", help="pull the BSData checkout before building")
+    args = parser.parse_args()
+    bsdata.ensure_checkout(args.bsdata, update=args.update_bsdata)
+    overrides = json.load(open(args.overrides)) if args.overrides else {}
+    data, report = build(args.bsdata, args.wahapedia_dir, args.id, args.name, overrides)
+    write(data, args.out_dir)
+    print("BSData %s" % bsdata.checkout_version(args.bsdata))
     print("\n".join(report.lines) or "BSData and Wahapedia agree.")
     print("%d difference(s)" % len(report.lines), file=sys.stderr)

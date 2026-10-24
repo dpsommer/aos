@@ -3,9 +3,15 @@
 Produces a faction's rules, warscrolls and Armies of Renown in the game's JSON shape
 (see docs/technical/faction-data.md). BSData has no Spearhead, Path to Glory prose,
 regiment options, unit composition or Army of Renown text; merge.py adds those from Wahapedia.
+
+Catalogues are read from a local checkout of the BSData repository, by default tools/bsdata
+(gitignored). ensure_checkout() clones it on first use and pulls it on request.
 """
-import glob, os, re
+import glob, os, re, subprocess, sys
 import xml.etree.ElementTree as ET
+
+REPOSITORY = "https://github.com/BSData/age-of-sigmar-4th.git"
+DEFAULT_CHECKOUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "bsdata")
 
 ALLIANCES = ("ORDER", "CHAOS", "DEATH", "DESTRUCTION")
 ABILITY_TYPES = ("Ability (Passive)", "Ability (Activated)", "Ability (Spell)", "Ability (Prayer)", "Ability (Command)")
@@ -48,12 +54,51 @@ def int_or(value, default=0):
     return int(m.group()) if m else default
 
 
-class Catalogues:
-    """Every catalogue in a directory, with ids indexed so links resolve across files."""
+def ensure_checkout(path=DEFAULT_CHECKOUT, update=False):
+    """Clone the BSData repository to `path` if it isn't there; pull it if `update`."""
+    if not os.path.isdir(os.path.join(path, ".git")):
+        print("cloning %s into %s" % (REPOSITORY, path), file=sys.stderr)
+        subprocess.run(["git", "clone", "--depth", "1", "--quiet", REPOSITORY, path], check=True)
+    elif update:
+        subprocess.run(["git", "-C", path, "pull", "--ff-only", "--quiet"], check=True)
+    return path
 
-    def __init__(self, directory):
+
+def checkout_version(path):
+    """Short commit hash and date of the checkout, for the build report."""
+    result = subprocess.run(["git", "-C", path, "log", "-1", "--format=%h %cs"], capture_output=True, text=True)
+    return result.stdout.strip() or "unknown"
+
+
+def faction_files(directory, faction):
+    """The catalogue files a faction needs: the game system, Lores.cat, <Faction>.cat, every
+    "<Faction> - *.cat" (library and Armies of Renown) and the shared catalogues those link
+    to, one level deep. Link names carry a decorative prefix ("❖ Lores", "þ The Duardin
+    Ascendant [LEGENDS]"). Path to Glory campaigns and other factions' libraries aren't needed."""
+    names = set(os.listdir(directory))
+    if faction + ".cat" not in names:
+        raise SystemExit("no BSData catalogue named %r in %s" % (faction + ".cat", directory))
+    own = [n for n in names if n == faction + ".cat" or n.startswith(faction + " - ")]
+    wanted = set(own) | {n for n in names if n.endswith(".gst") or n == "Lores.cat"}
+    for name in own:
+        with open(os.path.join(directory, name), encoding="utf-8") as fh:
+            for link in re.findall(r'<catalogueLink [^>]*name="([^"]+)"', fh.read()):
+                linked = re.sub(r"^[^A-Za-z0-9]+", "", link).replace("&apos;", "'").replace("&amp;", "&") + ".cat"
+                if linked in names and not linked.startswith("Path to Glory") and (
+                        not linked.endswith(" - Library.cat") or linked.startswith(faction + " - ")):
+                    wanted.add(linked)
+    return sorted(wanted)
+
+
+class Catalogues:
+    """Catalogues from a directory, with ids indexed so links resolve across files.
+    `files` limits which are read (see faction_files); by default every catalogue is."""
+
+    def __init__(self, directory, files=None):
         self.docs = {}
-        for path in sorted(glob.glob(os.path.join(directory, "*.cat")) + glob.glob(os.path.join(directory, "*.gst"))):
+        paths = [os.path.join(directory, f) for f in files] if files is not None else \
+            glob.glob(os.path.join(directory, "*.cat")) + glob.glob(os.path.join(directory, "*.gst"))
+        for path in sorted(paths):
             self.docs[os.path.basename(path)] = ET.parse(path).getroot()
         self.by_id = {}
         for root in self.docs.values():
