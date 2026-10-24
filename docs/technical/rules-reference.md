@@ -4,15 +4,7 @@ The official Warhammer: Age of Sigmar rules are the source of truth for every ga
 
 ## Source documents
 
-The PDFs live in `reference/`, which is gitignored; each developer keeps a local copy.
-
-**Document** | **File** | **Use for**
--- | -- | --
-Core rules (Apr 2025) | `eng_aos_core&key_the-rules_apr25-*.pdf` | All core mechanics: battle rounds, phases, movement, combat, abilities, objectives
-Quickstart guide | `ageofsigmar_corerules&keydownloads_quickstartguide_*.pdf` | Introductory overview; the core rules take precedence where they differ
-Battle profiles | `eng_23-09_aos_core&key_battle_profiles-*.pdf` | Unit points, unit sizes and regiment options for army building
-
-When a newer version of a document is released, replace the old file and update this table.
+Official rules are sourced from [Sigdex](https://sigdex.io/rules), which in turn uses [BSData](https://github.com/BSData/age-of-sigmar-4th).
 
 ## Documenting rules
 

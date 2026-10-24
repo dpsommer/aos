@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Warhammer: Age of Sigmar battle simulator built in Godot 4.7 (Forward Plus renderer, Jolt Physics, GDScript). It mirrors the tabletop game: five battle rounds, objectives, battle tactics and battleplan missions, with fully rendered models that are deployed and moved freely on a 3D battlefield. Players build and save armies; the first mode is "quick battle" against an AI opponent.
 
-The project is at an early stage. The main scene is the main menu (`scenes/ui/main_menu.tscn`); its Quick Play, Forge and Settings options emit signals but have no screens yet. See `docs/design/main-menu.md`.
+The project is at an early stage. The main scene is `scenes/main.tscn` (`Main`), which owns screen flow and starts on the main menu. Forge (army builder) has Grand Alliance and faction selection; Quick Play and Settings have no screens yet. See `docs/design/`.
 
 ## Documentation
 
@@ -18,10 +18,6 @@ The project is at an early stage. The main scene is the main menu (`scenes/ui/ma
   - `rules-reference.md`: the official rules PDFs and how to use them.
 - `docs/design/`: game design (modes, UI, army builder, AI).
 - `docs/gameplay/`: how tabletop rules are implemented in the simulator.
-
-## Rules reference
-
-`reference/` (gitignored) holds the official AoS rules PDFs. Treat them as the source of truth for game mechanics, and read the relevant section before you implement or change a rule. See `docs/technical/rules-reference.md`.
 
 ## Running Godot
 
