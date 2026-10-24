@@ -109,3 +109,33 @@ def test_table_rows_split_list_cells_and_drop_blank_text():
 def test_table_rows_keep_cells_without_lists():
     html = "<table><tr><th>General</th><td>Abhorrant Archregent</td></tr></table>"
     assert rows(html) == [["General", "Abhorrant Archregent"]]
+
+
+# parse_weapons()
+
+MELEE_TABLE = """<table class="wsTable">
+<tr class="wsHeaderRow"><td>MELEE WEAPONS</td></tr>
+%s
+</table>"""
+
+
+def melee_row(name, cells):
+    return ('<tr class="wsDataRow"><td class="wsDataCell_long"></td><td class="wsDataCell_long">%s</td>%s</tr>'
+            % (name, cells))
+
+
+def melee_weapons(*rows):
+    table = wahapedia.BeautifulSoup(MELEE_TABLE % "".join(rows), "html.parser").table
+    return wahapedia.parse_weapons(table)[1]
+
+
+def test_melee_weapon_reads_its_characteristics():
+    cells = "".join('<td class="wsCell">%s</td>' % v for v in ["3", "3+", "4+", "1", "D3"])
+    assert melee_weapons(melee_row("Greatblade", cells)) == [
+        {"name": "Greatblade", "range": 0, "attacks": "3", "hit": 3, "wound": 4, "rend": 1, "damage": "D3"}]
+
+
+def test_weapon_with_see_below_has_no_attack_sequence_characteristics():
+    cells = '<td class="wsCell">1</td><td colspan="4">See below</td>'
+    assert melee_weapons(melee_row("Perfect Strike", cells)) == [
+        {"name": "Perfect Strike", "range": 0, "attacks": "1", "hit": 0, "wound": 0, "rend": 0, "damage": "-"}]

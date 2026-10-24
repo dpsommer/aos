@@ -130,6 +130,9 @@ def parse_weapons(table):
         vals = [text(c) for c in cells]
         if kind == "melee" and len(vals) == 6 and vals[0] == "":
             vals = vals[1:]
+        # A weapon that skips the attack sequence has one "See below" cell after its
+        # Attacks (the Spearhead Bladelords' "Perfect Strike"), so it reads as "-".
+        vals += ["-"] * ((6 if kind == "ranged" else 5) - len(vals))
         if kind == "ranged":
             rng, atk, hit, wnd, rnd, dmg = vals[-6:]
         else:

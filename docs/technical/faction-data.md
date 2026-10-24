@@ -17,7 +17,7 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 **Class** | **Fields** (required in bold)
 -- | --
 `Ability` | **`name`**, `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `casting_value` (spells), `chanting_value` (prayers), `source`
-`Weapon` | **`name`**, `range` (inches, 0 for melee), **`attacks`**, **`hit`**, **`wound`**, `rend`, **`damage`**, `abilities`. Attacks and damage are strings because they can be dice, e.g. `"2D6"`
+`Weapon` | **`name`**, `range` (inches, 0 for melee), **`attacks`**, **`hit`**, **`wound`**, `rend`, **`damage`**, `abilities`. Attacks and damage are strings because they can be dice, e.g. `"2D6"` A weapon that skips the attack sequence (Wahapedia prints "See below", e.g. the Spearhead Bladelords' Perfect Strike) has `hit`, `wound` and `rend` of 0 and `damage` of `"-"`
 `Warscroll` | **`id`**, **`name`**, `source`, `legends`, **`points`**, **`unit_size`** (both optional in Spearhead and Path to Glory), `base_size`, `can_reinforce`, `regiment_options`, `notes`, **`move`** (string: inches, or dice such as `"D6+3"` for units that roll their move; `"0"` if the unit can't move), **`health`**, **`save`**, `ward`, **`control`**, `banishment` (manifestations), `ranged_weapons`, `melee_weapons`, `abilities`, `keywords`, `composition`
 `BattleFormation` | **`name`**, `points`, `abilities`
 `EnhancementTable` | **`name`** (type, e.g. "Heroic Traits"), `group` (e.g. "Lords of the Sky-fleets"), `source`, `entries`

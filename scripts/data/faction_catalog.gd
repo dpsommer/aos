@@ -53,6 +53,7 @@ const _DATA_DIRS := {
 	"Helsmiths of Hashut": "res://data/factions/helsmiths_of_hashut",
 	"Idoneth Deepkin": "res://data/factions/idoneth_deepkin",
 	"Kharadron Overlords": "res://data/factions/kharadron_overlords",
+	"Lumineth Realm-lords": "res://data/factions/lumineth_realm_lords",
 	"Sylvaneth": "res://data/factions/sylvaneth",
 }
 

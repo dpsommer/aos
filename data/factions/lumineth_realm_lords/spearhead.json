@@ -1,0 +1,570 @@
+{
+	"spearheads": [
+		{
+			"name": "Hurakan Vanguard",
+			"text": "Buoyed aloft by the vigour of the wind, the Hurakan Vanguard protect the borders of Lumineth territory with the swiftness of a speeding zephyr. Through their bond with the air, these devoted warriors of Hysh fight within the heart of a hurricane. Its powerful currents carry the aelves and lend their arrows greater strength, while enemies caught within the swirling tumult are completely outmanoeuvred and picked apart.\nLed by a Windmage, who buffets foes with churning vortices and marshals the gusts to redeploy their warriors, this force is highly mobile. Cavalry in the form of fleet Windchargers can cover every inch of the battlefield while loosing lethal volleys from their bows. Through careful petitions, these temple disciples are joined by a capricious Spirit of the Wind, whose deadly shafts provide the power to counter large or heavily armoured threats. Once the enemy is reeling from the elemental onslaught, Auralan Wardens lay claim to objectives with determined resilience. Though slower than their Hurakan allies, these pike-wielding aelves are capable defenders whose task is to hold the line amidst the cyclone.",
+			"general": "Hurakan Windmage",
+			"units": [
+				{
+					"count": 5,
+					"name": "Hurakan Windchargers"
+				},
+				{
+					"count": 10,
+					"name": "Vanari Auralan Wardens"
+				},
+				{
+					"count": 1,
+					"name": "Hurakan Spirit of the Wind"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "STORM BREWING",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick a battlefield edge to be the target.",
+					"effect": "That battlefield edge is leeward. For the rest of the battle, each time a friendly RIDE THE HURRICANE ability is used, after that ability has been resolved, change the leeward battlefield edge to the next edge clockwise."
+				},
+				{
+					"name": "PULLED BY WINDS",
+					"category": "movement",
+					"timing": "Any Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit that is not in combat to be the target.",
+					"effect": "The target can move D6\" but must end that move closer to the leeward battlefield edge. It can pass through the combat ranges of enemy units but cannot end that move in combat.",
+					"keywords": [
+						"RIDE THE HURRICANE"
+					]
+				},
+				{
+					"name": "GALE FORCE",
+					"category": "offensive",
+					"timing": "Reaction: You declared an ATTACK ability",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Add 1 to hit rolls for attacks made as part of that ATTACK ability if the target of that ability is closer to the leeward battlefield edge than the unit using this ability.",
+					"keywords": [
+						"RIDE THE HURRICANE"
+					],
+					"options": [
+						{
+							"name": "Used By",
+							"text": "The unit using that ATTACK ability."
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "ROARING HEADWIND",
+					"category": "movement",
+					"timing": "Enemy Hero Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick an enemy unit to be the target.",
+					"effect": "For the rest of the turn, each time the target uses a MOVE ability, it must end that move closer to the leeward battlefield edge."
+				},
+				{
+					"name": "LIFTED DRBRIS",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick an enemy unit that is closer to the leeward battlefield edge than the large terrain feature within friendly territory to be the target.",
+					"effect": "Roll a number of dice equal to the current battle round number. For each 3+, inflict 1 mortal damage on the target.",
+					"keywords": [
+						"RIDE THE HURRICANE"
+					]
+				}
+			],
+			"enhancements": [
+				{
+					"name": "SCATTERED TO THE WINDS",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Subtract 1 from the control scores of enemy units within 6\" of your general for each friendly RIDE THE HURRICANE ability used this battle round."
+				},
+				{
+					"name": "TEMPLE GUARDIANS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While any friendly INFANTRY units are within your general’s combat range, both your general and those INFANTRY units have WARD (5+)."
+				},
+				{
+					"name": "WIND WHISPERER",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a battlefield edge to be the target.",
+					"effect": "Change the leeward battlefield edge to the target battlefield edge."
+				},
+				{
+					"name": "CURVED SHOTS",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "You can measure the range and visibility of your general’s shooting attacks from any point on the leeward battlefield edge."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "hurakan_windmage",
+					"name": "Hurakan Windmage",
+					"move": "12",
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Windblast Vortex",
+							"range": 12,
+							"attacks": "1",
+							"hit": 2,
+							"wound": 3,
+							"rend": 2,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Aspiragillum",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "WINDLEAP",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+							"effect": "On a 6+, for the rest of the turn:\nThe target can use RETREAT abilities and still use SHOOT and/or CHARGE abilities later in the turn. No mortal damage is inflicted on the target by RETREAT abilities."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"WIZARD (1)",
+						"INFANTRY",
+						"FLY"
+					]
+				},
+				{
+					"id": "hurakan_spirit_of_the_wind",
+					"name": "Hurakan Spirit of the Wind",
+					"move": "18",
+					"health": 8,
+					"save": 4,
+					"control": 5,
+					"ward": 5,
+					"ranged_weapons": [
+						{
+							"name": "Bow of the Wind’s Vengeance",
+							"range": 15,
+							"attacks": "4",
+							"hit": 2,
+							"wound": 3,
+							"rend": 2,
+							"damage": "2"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Swirling Shards",
+							"range": 0,
+							"attacks": "6",
+							"hit": 2,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "EYE OF THE STORM",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Subtract 1 from hit rolls for attacks that target friendly units while they are wholly within 6\" of this unit."
+						},
+						{
+							"name": "HURRICANE WINDS",
+							"category": "defensive",
+							"timing": "Any Shooting Phase",
+							"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit’s shooting attacks to be the target.",
+							"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"MONSTER",
+						"FLY",
+						"WARD (5+)"
+					]
+				},
+				{
+					"id": "vanari_auralan_wardens",
+					"name": "Vanari Auralan Wardens",
+					"move": "6",
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Warden Pike and Blade",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)",
+								"Anti-charge (+1 Rend)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "WALL OF BLADES",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"effect": "If this unit did not charge this turn and is in combat with an enemy unit that charged this turn, roll a dice. Add 1 to the roll if that enemy unit is CAVALRY. On a 3+, this unit has STRIKE-FIRST for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "hurakan_windchargers",
+					"name": "Hurakan Windchargers",
+					"move": "14",
+					"health": 3,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Windcharger Bow",
+							"range": 12,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Windcharger Blade",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Treerunner’s Claws",
+							"range": 0,
+							"attacks": "2",
+							"hit": 5,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "LEAP INTO THE STORM",
+							"category": "movement",
+							"timing": "End of Your Turn",
+							"effect": "If this unit is not in combat, remove it from the battlefield and set it up again wholly within 3\" of the leeward battlefield edge and more than 6\" from all enemy units.",
+							"keywords": [
+								"RIDE THE HURRICANE"
+							]
+						}
+					],
+					"keywords": [
+						"CAVALRY"
+					]
+				}
+			]
+		},
+		{
+			"name": "Glittering Phalanx",
+			"text": "The culture of the Lumineth enshrines subtlety and precision over overwhelming force. While the aelves of Hysh can muster truly vast warhosts when necessity demands, this is seen as a needless and crass expenditure of lives. Far better, they believe, to send small phalanxes of warriors to those places where their skills can have the greatest impact – be that eradicating some troublesome warband or burning a great white-flame rune of arcane purification into the earth at a key nexus.\nAuralan Wardens, armed with pikes of burning sunmetal, are the rock against which enemies break; they do not fulfil this duty through crude and bloody-minded endurance but rather by drawing upon the energies of aetherquartz to speed pre-emptive strikes. Auralan Sentinels loose swift arrows, bleeding the foe by precise degrees. Incautious usage of aetherquartz has led to disaster in the past, and so each of these shining formations will be accompanied by a single mote of darkness – a Scinari Cathallar, skilled in turning the negative emotions stored within aetherquartz against the enemy. Cathallars are protected at all times by the war-sages of the Bladelords, each willing to give their life for the good of the realms.",
+			"general": "Scinari Cathallar",
+			"units": [
+				{
+					"count": 5,
+					"name": "Vanari Auralan Sentinels"
+				},
+				{
+					"count": 5,
+					"name": "Vanari Auralan Sentinels"
+				},
+				{
+					"count": 10,
+					"name": "Vanari Auralan Wardens"
+				},
+				{
+					"count": 5,
+					"name": "Vanari Bladelords"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "FACETS OF WAR",
+					"category": "special",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round",
+					"effect": "You must use this ability at the start of the battle round. Pick 1 FACET OF WAR ability. That FACET OF WAR ability can be used this battle round but the other cannot."
+				},
+				{
+					"name": "SHINING COMPANY",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls that target friendly units.",
+					"keywords": [
+						"FACET OF WAR"
+					]
+				},
+				{
+					"name": "POWER OF HYSH",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit.",
+					"effect": "Roll a dice. On a 2+, until the start of your next turn, attacks made by that unit score critical hits on unmodified hit rolls of 5+.",
+					"keywords": [
+						"FACET OF WAR"
+					]
+				},
+				{
+					"name": "LIGHTNING REACTIONS",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, you can pick 2 units instead of 1. Resolve the second FIGHT ability immediately after the first."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "ARCANE PROWESS",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to casting rolls for your general."
+				},
+				{
+					"name": "HEIGHTENED REFLEXES",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Add 1 to save rolls for friendly units that use a FIGHT ability immediately after another friendly unit because of the ‘Lightning Reactions’ ability, until the end of the phase."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "WAYSTONE",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Remove your general from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				},
+				{
+					"name": "PROTECTION OF HYSH",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target, then make a casting roll of 2D6.",
+					"effect": "On a 7+, the target has WARD (5+) until the start of your next turn."
+				},
+				{
+					"name": "SPEED OF HYSH",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly unit wholly within 18\" of your general, then make a casting roll of 2D6.",
+					"effect": "On a 5+, double the Move characteristic of that unit until the start of your next turn."
+				},
+				{
+					"name": "OVERWHELMING HEAT",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 24\" of your general, then make a casting roll of 2D6.",
+					"effect": "On a 7+, halve the Move characteristic of that unit until the start of your next turn and roll a dice. If the roll equals or exceeds that unit’s Save characteristic, inflict D3 mortal damage on it."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "scinari_cathallar",
+					"name": "Scinari Cathallar",
+					"move": "6",
+					"health": 5,
+					"save": 6,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Despairing Touch",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "DARKNESS OF THE SOUL",
+							"category": "control",
+							"timing": "Your Hero Phase",
+							"declare": "Pick an enemy unit within 12\" of this unit to be the target, then roll a dice.",
+							"effect": "On a 3+, subtract D6 from the control score of the target unit this turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"WIZARD",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "vanari_bladelords",
+					"name": "Vanari Bladelords",
+					"move": "6",
+					"health": 2,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Sunmetal Greatblade: Perfect Strike",
+							"range": 0,
+							"attacks": "1",
+							"hit": 0,
+							"wound": 0,
+							"rend": 0,
+							"damage": "-"
+						},
+						{
+							"name": "Sunmetal Greatblade: Flurry of Blows",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Anti- INFANTRY (+1 Rend)",
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SWORDMASTERS",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Each time this unit uses a FIGHT ability, you must pick either the Perfect Strike or Flurry of Blows weapon characteristics for all the attacks it makes with its Sunmetal Greatblade. In addition:\nDo not use the attack sequence for an attack made with Perfect Strike. Instead, roll a dice. On a 2+, inflict 1 mortal damage on the target unit."
+						},
+						{
+							"name": "GUARDIANS",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "While your general is wholly within this unit’s combat range, both this unit and your general have WARD (5+)."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "vanari_auralan_wardens",
+					"name": "Vanari Auralan Wardens",
+					"move": "6",
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Warden’s Pike",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)",
+								"Anti-charge (+1 Rend)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "MOONFIRE FLASK",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target, then roll a dice.",
+							"effect": "On a 2+, inflict D3 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "vanari_auralan_sentinels",
+					"name": "Vanari Auralan Sentinels",
+					"move": "6",
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Auralan Bow",
+							"range": 18,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Vanari Dagger",
+							"range": 0,
+							"attacks": "1",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "LOFTED SHOTS",
+							"category": "shooting",
+							"timing": "Your Shooting Phase",
+							"effect": "Until the end of the phase, add 6\" to the Range characteristic of this unit’s Auralan Bows but subtract 1 from hit rolls for this unit’s shooting attacks."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		}
+	]
+}
