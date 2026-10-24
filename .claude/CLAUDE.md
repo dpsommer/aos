@@ -8,28 +8,21 @@ A Warhammer: Age of Sigmar battle simulator built in Godot 4.7 (Forward Plus ren
 
 The project is at the bootstrap stage. `scenes/`, `scripts/` and `assets/` exist but are still empty, and no main scene is set yet.
 
+## Documentation
+
+`docs/` is the project's documentation, indexed in `docs/README.md`. Read the relevant docs before starting work, and update them (and the index) when your change affects them.
+
+- `docs/technical/`: engineering docs.
+  - `layout.md`: folder structure. GDScript goes in `scripts/`, scenes in `scenes/`, assets in `assets/{2d,3d,audio,shaders}`. `addons/gut/` is vendored third-party code, so don't edit it.
+  - `testing.md`: test layout, how to run tests headless, and the testing rules. Follow it when writing tests.
+  - `rules-reference.md`: the official rules PDFs and how to use them.
+- `docs/design/`: game design (modes, UI, army builder, AI).
+- `docs/gameplay/`: how tabletop rules are implemented in the simulator.
+
 ## Rules reference
 
-`reference/` (gitignored) holds the official AoS rules PDFs: core rules (Apr 2025), the quickstart guide and the battle profiles. Treat them as the source of truth for game mechanics. Read the relevant section before you implement or change a rule.
+`reference/` (gitignored) holds the official AoS rules PDFs. Treat them as the source of truth for game mechanics, and read the relevant section before you implement or change a rule. See `docs/technical/rules-reference.md`.
 
-## Layout
+## Running Godot
 
-See `docs/technical/layout.md`. In short: GDScript goes in `scripts/`, scenes in `scenes/`, and assets in `assets/{2d,3d,audio,shaders}`. Documentation lives in `docs/{design,gameplay,technical}`. `addons/gut/` is vendored third-party code, so don't edit it.
-
-## Testing
-
-Tests use the vendored [GUT](https://github.com/bitwes/Gut) addon. No test directory or `.gutconfig.json` exists yet, and the GUT plugin isn't enabled in `project.godot`. `godot` isn't on PATH, so find the editor binary before running anything. Headless CLI usage:
-
-```sh
-# all tests in a directory
-godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://test -ginclude_subdirs -gexit
-# a single test script
-godot --headless -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_foo.gd -gexit
-# a single test function within a script
-godot --headless -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_foo.gd -gunit_test_name=test_bar -gexit
-```
-
-`docs/technical/testing.md` sets the project's testing rules:
-- Unit tests are fast and fully isolated, with no shared state between tests. Each one checks a single behavior.
-- Avoid tautological "A equals A" tests and tests that pin specific constant values. Changing a constant shouldn't normally break a test.
-- Use integration tests sparingly, for critical interactions only. Each covers one integration and mocks or stubs everything else. Set up and tear down state within the suite.
+`godot` isn't on PATH, so find the editor binary before running anything. The test commands are in `docs/technical/testing.md`.
