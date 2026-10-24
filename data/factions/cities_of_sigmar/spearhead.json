@@ -84,7 +84,7 @@
 				{
 					"id": "fusil_major_on_ogor_warhulk",
 					"name": "Fusil-Major on Ogor Warhulk",
-					"move": 5,
+					"move": "5",
 					"health": 8,
 					"save": 3,
 					"control": 2,
@@ -128,7 +128,7 @@
 				{
 					"id": "wildercorps_hunters",
 					"name": "Wildercorps Hunters",
-					"move": 5,
+					"move": "5",
 					"health": 1,
 					"save": 5,
 					"control": 1,
@@ -179,7 +179,7 @@
 				{
 					"id": "alchemite_warforger",
 					"name": "Alchemite Warforger",
-					"move": 5,
+					"move": "5",
 					"health": 5,
 					"save": 5,
 					"control": 2,
@@ -213,7 +213,7 @@
 				{
 					"id": "freeguild_fusiliers",
 					"name": "Freeguild Fusiliers",
-					"move": 5,
+					"move": "5",
 					"health": 1,
 					"save": 4,
 					"control": 1,
@@ -349,7 +349,7 @@
 				{
 					"id": "freeguild_cavalier_marshal",
 					"name": "Freeguild Cavalier-Marshal",
-					"move": 10,
+					"move": "10",
 					"health": 7,
 					"save": 3,
 					"control": 2,
@@ -417,7 +417,7 @@
 				{
 					"id": "ironweld_great_cannon",
 					"name": "Ironweld Great Cannon",
-					"move": 3,
+					"move": "3",
 					"health": 8,
 					"save": 4,
 					"control": 2,
@@ -468,7 +468,7 @@
 				{
 					"id": "freeguild_cavaliers",
 					"name": "Freeguild Cavaliers",
-					"move": 10,
+					"move": "10",
 					"health": 3,
 					"save": 3,
 					"control": 1,
@@ -516,7 +516,7 @@
 				{
 					"id": "freeguild_steelhelms",
 					"name": "Freeguild Steelhelms",
-					"move": 5,
+					"move": "5",
 					"health": 1,
 					"save": 4,
 					"control": 1,
@@ -633,7 +633,7 @@
 				{
 					"id": "jorvan_kreel_heir_of_the_kraken",
 					"name": "Jorvan Kreel, Heir of the Kraken",
-					"move": 6,
+					"move": "6",
 					"health": 5,
 					"save": 4,
 					"control": 2,
@@ -672,7 +672,7 @@
 				{
 					"id": "mallus_forgepriest",
 					"name": "Mallus Forgepriest",
-					"move": 5,
+					"move": "5",
 					"health": 5,
 					"save": 4,
 					"control": 2,
@@ -706,7 +706,7 @@
 				{
 					"id": "freeguild_grenadiers",
 					"name": "Freeguild Grenadiers",
-					"move": 5,
+					"move": "5",
 					"health": 1,
 					"save": 4,
 					"control": 1,
@@ -750,7 +750,7 @@
 				{
 					"id": "freeguild_gallants",
 					"name": "Freeguild Gallants",
-					"move": 5,
+					"move": "5",
 					"health": 2,
 					"save": 3,
 					"control": 1,
@@ -871,7 +871,7 @@
 				{
 					"id": "freeguild_marshal_and_relic_envoy",
 					"name": "Freeguild Marshal and Relic Envoy",
-					"move": 5,
+					"move": "5",
 					"health": 5,
 					"save": 3,
 					"control": 2,
@@ -923,7 +923,7 @@
 				{
 					"id": "pontifex_zenestra_matriarch_of_the_great_wheel",
 					"name": "Pontifex Zenestra, Matriarch of the Great Wheel",
-					"move": 5,
+					"move": "5",
 					"health": 9,
 					"save": 5,
 					"control": 2,
@@ -959,7 +959,7 @@
 				{
 					"id": "whisperblade_freeguild_command_corps",
 					"name": "Whisperblade, Freeguild Command Corps",
-					"move": 5,
+					"move": "5",
 					"health": 3,
 					"save": 6,
 					"control": 2,
@@ -990,7 +990,7 @@
 				{
 					"id": "arch_knight_and_retinue_freeguild_command_corps",
 					"name": "Arch-Knight and Retinue, Freeguild Command Corps",
-					"move": 5,
+					"move": "5",
 					"health": 2,
 					"save": 4,
 					"control": 2,
@@ -1030,7 +1030,7 @@
 				{
 					"id": "freeguild_steelhelms",
 					"name": "Freeguild Steelhelms",
-					"move": 5,
+					"move": "5",
 					"health": 1,
 					"save": 4,
 					"control": 1,

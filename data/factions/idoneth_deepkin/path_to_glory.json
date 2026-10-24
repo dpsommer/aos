@@ -19,7 +19,7 @@
 				{
 					"id": "idoneth_deepkin_hero",
 					"name": "Idoneth Deepkin Hero",
-					"move": 0,
+					"move": "0",
 					"health": 0,
 					"save": 0,
 					"control": 0,

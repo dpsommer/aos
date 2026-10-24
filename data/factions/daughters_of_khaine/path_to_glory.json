@@ -19,7 +19,7 @@
 				{
 					"id": "daughters_of_khaine_hero",
 					"name": "Daughters of Khaine Hero",
-					"move": 6,
+					"move": "6",
 					"health": 5,
 					"save": 5,
 					"control": 2,

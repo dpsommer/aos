@@ -19,7 +19,7 @@
 				{
 					"id": "blades_of_khorne_hero",
 					"name": "Blades of Khorne Hero",
-					"move": 5,
+					"move": "5",
 					"health": 5,
 					"save": 4,
 					"control": 2,

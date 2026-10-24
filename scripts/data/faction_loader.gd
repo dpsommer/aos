@@ -183,7 +183,7 @@ func _warscroll(data: Variant, path: String, with_profile: bool) -> Warscroll:
 	warscroll.can_reinforce = _bool(data, "can_reinforce", path)
 	warscroll.regiment_options = _strings(data, "regiment_options", path)
 	warscroll.notes = _string(data, "notes", path)
-	warscroll.move = _int(data, "move", path, true)
+	warscroll.move = _string(data, "move", path, true)
 	warscroll.health = _int(data, "health", path, true)
 	warscroll.save = _int(data, "save", path, true)
 	warscroll.ward = _int(data, "ward", path)

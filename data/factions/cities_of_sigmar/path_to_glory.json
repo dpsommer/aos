@@ -19,7 +19,7 @@
 				{
 					"id": "cities_of_sigmar_hero",
 					"name": "Cities of Sigmar Hero",
-					"move": 5,
+					"move": "5",
 					"health": 5,
 					"save": 6,
 					"control": 2,
@@ -101,7 +101,7 @@
 				{
 					"id": "collegiate_mage",
 					"name": "Collegiate Mage",
-					"move": 5,
+					"move": "5",
 					"health": 5,
 					"save": 6,
 					"control": 2,

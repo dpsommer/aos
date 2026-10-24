@@ -4,7 +4,7 @@
 		{
 			"name": "Section Two",
 			"warscrolls": [
-				{"id": "custom_hero", "name": "Custom Hero", "move": 4, "health": 5, "save": 4, "control": 2}
+				{"id": "custom_hero", "name": "Custom Hero", "move": "4", "health": 5, "save": 4, "control": 2}
 			]
 		}
 	]

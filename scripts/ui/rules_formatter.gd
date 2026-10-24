@@ -166,7 +166,7 @@ static func heading(title: String) -> String:
 static func _characteristics(unit: Warscroll) -> String:
 	# Manifestations have a banishment value in place of Control.
 	var headers := ["Move", "Health", "Save", "Banishment" if unit.banishment > 0 else "Control"]
-	var values := ['%d"' % unit.move if unit.move > 0 else "-", str(unit.health), "%d+" % unit.save,
+	var values := ['%s"' % unit.move if unit.move != "0" else "-", str(unit.health), "%d+" % unit.save,
 			"%d+" % unit.banishment if unit.banishment > 0 else str(unit.control)]
 	if unit.ward > 0:
 		headers.append("Ward")

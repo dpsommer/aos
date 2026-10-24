@@ -48,6 +48,7 @@ const _DATA_DIRS := {
 	"Daughters of Khaine": "res://data/factions/daughters_of_khaine",
 	"Disciples of Tzeentch": "res://data/factions/disciples_of_tzeentch",
 	"Flesh-eater Courts": "res://data/factions/flesh_eater_courts",
+	"Gloomspite Gitz": "res://data/factions/gloomspite_gitz",
 	"Helsmiths of Hashut": "res://data/factions/helsmiths_of_hashut",
 	"Idoneth Deepkin": "res://data/factions/idoneth_deepkin",
 	"Kharadron Overlords": "res://data/factions/kharadron_overlords",

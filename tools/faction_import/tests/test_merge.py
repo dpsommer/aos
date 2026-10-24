@@ -4,8 +4,8 @@ import merge
 
 
 def ws(name="Test Riders", **kw):
-    """A warscroll as merge sees it from either source; Wahapedia's move is a string."""
-    w = {"id": "", "name": name, "points": 100, "unit_size": 5, "move": 10, "health": 4, "save": 4,
+    """A warscroll as merge sees it from either source; Wahapedia's move has an inch mark."""
+    w = {"id": "", "name": name, "points": 100, "unit_size": 5, "move": "10", "health": 4, "save": 4,
          "control": 1, "can_reinforce": True, "base_size": "60mm",
          "ranged_weapons": [], "melee_weapons": [], "abilities": [], "keywords": ["CAVALRY"]}
     w.update(kw)
@@ -151,6 +151,14 @@ def test_wahapedia_ordinary_warscroll_keeps_control():
 
 def test_wahapedia_ordinary_warscroll_has_no_banishment():
     assert "banishment" not in merge.wahapedia_warscroll(wh_ws(control=2))
+
+
+def test_wahapedia_move_drops_inch_mark():
+    assert merge.wahapedia_warscroll(wh_ws(move='6"'))["move"] == "6"
+
+
+def test_wahapedia_dice_move_is_kept():
+    assert merge.wahapedia_warscroll(wh_ws(move='D6+3"'))["move"] == "D6+3"
 
 
 def test_merge_reports_nothing_for_matching_manifestation():
@@ -387,6 +395,10 @@ def test_resolve_returns_exact_name():
 def test_resolve_matches_unique_prefix():
     assert merge.resolve("Dominator Engine", ["Dominator Engine with Immolation Cannons", "Other"]) == \
         "Dominator Engine with Immolation Cannons"
+
+
+def test_resolve_matches_plural():
+    assert merge.resolve("Sunsteala Wheela", ["Snarlboss", "Sunsteala Wheelas"]) == "Sunsteala Wheelas"
 
 
 def test_resolve_prefix_must_end_at_a_word():

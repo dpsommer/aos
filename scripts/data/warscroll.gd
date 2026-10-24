@@ -17,8 +17,9 @@ extends Resource
 @export var notes: String
 
 @export_group("Characteristics")
-## Move in inches. 0 for units that can't move, such as faction terrain.
-@export var move: int
+## Move in inches, or dice such as "D6+3" for units that roll their move. "0" for units that
+## can't move, such as faction terrain.
+@export var move: String
 @export var health: int
 ## The x of an x+ save roll.
 @export var save: int

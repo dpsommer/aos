@@ -85,7 +85,7 @@
 				{
 					"id": "abhorrant_archregent",
 					"name": "Abhorrant Archregent",
-					"move": 6,
+					"move": "6",
 					"health": 6,
 					"save": 5,
 					"control": 2,
@@ -120,7 +120,7 @@
 				{
 					"id": "cryptguard",
 					"name": "Cryptguard",
-					"move": 6,
+					"move": "6",
 					"health": 1,
 					"save": 6,
 					"control": 1,
@@ -154,7 +154,7 @@
 				{
 					"id": "morbheg_knights",
 					"name": "Morbheg Knights",
-					"move": 12,
+					"move": "12",
 					"health": 4,
 					"save": 4,
 					"control": 1,
@@ -203,7 +203,7 @@
 				{
 					"id": "varghulf_courtier",
 					"name": "Varghulf Courtier",
-					"move": 10,
+					"move": "10",
 					"health": 8,
 					"save": 5,
 					"control": 2,
@@ -348,7 +348,7 @@
 				{
 					"id": "abhorrant_gorewarden",
 					"name": "Abhorrant Gorewarden",
-					"move": 12,
+					"move": "12",
 					"health": 7,
 					"save": 5,
 					"control": 2,
@@ -385,7 +385,7 @@
 				{
 					"id": "crypt_horrors",
 					"name": "Crypt Horrors",
-					"move": 7,
+					"move": "7",
 					"health": 4,
 					"save": 5,
 					"control": 1,
@@ -420,7 +420,7 @@
 				{
 					"id": "royal_beastflayers",
 					"name": "Royal Beastflayers",
-					"move": 6,
+					"move": "6",
 					"health": 1,
 					"save": 6,
 					"control": 1,
@@ -453,7 +453,7 @@
 				{
 					"id": "crypt_flayers",
 					"name": "Crypt Flayers",
-					"move": 12,
+					"move": "12",
 					"health": 4,
 					"save": 5,
 					"control": 1,

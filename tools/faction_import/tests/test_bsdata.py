@@ -35,6 +35,10 @@ def test_markup_collapses_spaces_around_newlines():
     assert bsdata.markup("one  \xa0two \n  three") == "one two\nthree"
 
 
+def test_markup_decodes_character_references():
+    assert bsdata.markup("&#8226; Set the Damage") == "• Set the Damage"
+
+
 def test_markup_of_none_is_empty():
     assert bsdata.markup(None) == ""
 
@@ -229,14 +233,14 @@ def test_manifestation_profile_is_not_a_warscroll_ability(faction_data):
 
 # warscroll()
 
-def test_warscroll_stats_are_ints(faction_data):
+def test_warscroll_stats_are_ints_and_move_is_a_string(faction_data):
     w = warscroll(faction_data, "Test Captain")
-    assert (w["move"], w["health"], w["save"], w["control"]) == (5, 6, 4, 2)
+    assert (w["move"], w["health"], w["save"], w["control"]) == ("5", 6, 4, 2)
 
 
 def test_manifestation_stats_come_from_manifestation_profile(faction_data):
     w = warscroll(faction_data, "Test Wraith")
-    assert (w["move"], w["health"], w["save"]) == (8, 7, 5)
+    assert (w["move"], w["health"], w["save"]) == ("8", 7, 5)
 
 
 def test_manifestation_banishment_is_an_int(faction_data):
@@ -895,6 +899,22 @@ def test_battle_traits_include_linked_profiles(tmp_path):
     faction, _, _ = linked_faction(tmp_path, ("Testers.cat", traits,
                                               traits + "<infoLinks>%s</infoLinks>" % info_link("sp-delusion")))
     assert [a["name"] for a in faction["battle_traits"]] == ["Steady Ranks", "Test Delusion"]
+
+
+def traits_root(*names):
+    entries = "".join('<selectionEntry id="se-%d" name="Battle Traits: %s" type="upgrade">'
+                      '<infoLinks>%s</infoLinks></selectionEntry>' % (i, n, info_link("p-trait"))
+                      for i, n in enumerate(names))
+    return element("catalogue", 'id="c" name="Root"><sharedSelectionEntries>%s</sharedSelectionEntries>' % entries)
+
+
+def test_battle_traits_use_only_entry_named_differently_from_army(cats):
+    traits = bsdata.battle_traits(cats, traits_root("The King's Gitz"), "Da King's Gitz")
+    assert [a["name"] for a in traits] == ["Steady Ranks"]
+
+
+def test_battle_traits_need_a_name_match_among_several_entries(cats):
+    assert bsdata.battle_traits(cats, traits_root("Other Army", "Another Army"), "Da King's Gitz") == []
 
 
 def test_core_profiles_are_game_system_profile_names(tmp_path):

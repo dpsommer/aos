@@ -74,7 +74,7 @@
 				{
 					"id": "endrinmaster_with_dirigible_suit",
 					"name": "Endrinmaster with Dirigible Suit",
-					"move": 12,
+					"move": "12",
 					"health": 8,
 					"save": 3,
 					"control": 2,
@@ -127,7 +127,7 @@
 				{
 					"id": "grundstok_gunhauler",
 					"name": "Grundstok Gunhauler",
-					"move": 14,
+					"move": "14",
 					"health": 10,
 					"save": 2,
 					"control": 2,
@@ -170,7 +170,7 @@
 				{
 					"id": "grundstok_thunderers",
 					"name": "Grundstok Thunderers",
-					"move": 4,
+					"move": "4",
 					"health": 2,
 					"save": 3,
 					"control": 1,
@@ -236,7 +236,7 @@
 				{
 					"id": "endrinriggers",
 					"name": "Endrinriggers",
-					"move": 12,
+					"move": "12",
 					"health": 2,
 					"save": 3,
 					"control": 1,
@@ -408,7 +408,7 @@
 				{
 					"id": "arkanaut_admiral",
 					"name": "Arkanaut Admiral",
-					"move": 4,
+					"move": "4",
 					"health": 6,
 					"save": 3,
 					"control": 2,
@@ -454,7 +454,7 @@
 				{
 					"id": "skywardens",
 					"name": "Skywardens",
-					"move": 12,
+					"move": "12",
 					"health": 2,
 					"save": 4,
 					"control": 1,
@@ -523,7 +523,7 @@
 				{
 					"id": "arkanaut_frigate",
 					"name": "Arkanaut Frigate",
-					"move": 12,
+					"move": "12",
 					"health": 15,
 					"save": 3,
 					"control": 5,
@@ -585,7 +585,7 @@
 				{
 					"id": "arkanaut_company",
 					"name": "Arkanaut Company",
-					"move": 4,
+					"move": "4",
 					"health": 1,
 					"save": 4,
 					"control": 1,

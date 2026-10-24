@@ -4,7 +4,7 @@ import schema
 
 
 def ws(**kw):
-    w = {"name": "Test Riders", "move": 10, "health": 4, "save": 4, "control": 1,
+    w = {"name": "Test Riders", "move": "10", "health": 4, "save": 4, "control": 1,
          "ranged_weapons": [], "melee_weapons": [], "abilities": [], "keywords": []}
     w.update(kw)
     return w
@@ -168,3 +168,19 @@ def test_split_frequency_without_frequency_returns_timing_unchanged(timing):
 def test_split_frequency_ignores_frequency_not_at_start():
     timing = "Any Combat Phase, Once Per Turn"
     assert schema.split_frequency(timing) == ("", timing)
+
+
+def test_move_drops_inch_mark():
+    assert schema.move('6"') == "6"
+
+
+def test_move_keeps_dice():
+    assert schema.move('d6+3"') == "D6+3"
+
+
+def test_move_keeps_multiple_dice():
+    assert schema.move("2D6") == "2D6"
+
+
+def test_move_of_unmoving_unit_is_zero():
+    assert [schema.move("-"), schema.move(None)] == ["0", "0"]

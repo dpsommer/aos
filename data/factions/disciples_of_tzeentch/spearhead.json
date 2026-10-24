@@ -87,7 +87,7 @@
 				{
 					"id": "tzaangor_shaman",
 					"name": "Tzaangor Shaman",
-					"move": 14,
+					"move": "14",
 					"health": 6,
 					"save": 5,
 					"control": 2,
@@ -134,7 +134,7 @@
 				{
 					"id": "tzaangor_enlightened",
 					"name": "Tzaangor Enlightened",
-					"move": 14,
+					"move": "14",
 					"health": 4,
 					"save": 4,
 					"control": 1,
@@ -178,7 +178,7 @@
 				{
 					"id": "tzaangor_skyfires",
 					"name": "Tzaangor Skyfires",
-					"move": 14,
+					"move": "14",
 					"health": 4,
 					"save": 4,
 					"control": 1,
@@ -233,7 +233,7 @@
 				{
 					"id": "tzaangors",
 					"name": "Tzaangors",
-					"move": 6,
+					"move": "6",
 					"health": 2,
 					"save": 5,
 					"control": 1,
@@ -348,7 +348,7 @@
 				{
 					"id": "magister_on_disc_of_tzeentch",
 					"name": "Magister on Disc of Tzeentch",
-					"move": 14,
+					"move": "14",
 					"health": 6,
 					"save": 4,
 					"control": 2,
@@ -405,7 +405,7 @@
 				{
 					"id": "screamers_of_tzeentch",
 					"name": "Screamers of Tzeentch",
-					"move": 14,
+					"move": "14",
 					"health": 3,
 					"save": 5,
 					"control": 1,
@@ -440,7 +440,7 @@
 				{
 					"id": "flamers_of_tzeentch",
 					"name": "Flamers of Tzeentch",
-					"move": 9,
+					"move": "9",
 					"health": 2,
 					"save": 5,
 					"control": 1,
@@ -484,7 +484,7 @@
 				{
 					"id": "kairic_acolytes",
 					"name": "Kairic Acolytes",
-					"move": 5,
+					"move": "5",
 					"health": 1,
 					"save": 5,
 					"control": 1,
@@ -527,7 +527,7 @@
 				{
 					"id": "tzaangors",
 					"name": "Tzaangors",
-					"move": 6,
+					"move": "6",
 					"health": 2,
 					"save": 5,
 					"control": 1,

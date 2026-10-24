@@ -151,11 +151,15 @@ func test_every_warscroll_is_loaded() -> void:
 func test_warscroll_characteristics_are_ints_from_file() -> void:
 	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0]
 	var unit: Warscroll = _load("valid").warscrolls[0]
-	var actual := [unit.move, unit.health, unit.save, unit.ward, unit.control]
+	var actual := [unit.health, unit.save, unit.ward, unit.control]
 	for value: Variant in actual:
 		assert_typeof(value, TYPE_INT)
-	assert_eq(actual, [int(expected.move), int(expected.health), int(expected.save), int(expected.ward),
-			int(expected.control)])
+	assert_eq(actual, [int(expected.health), int(expected.save), int(expected.ward), int(expected.control)])
+
+
+func test_warscroll_move_is_string_from_file() -> void:
+	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0]
+	assert_eq(_load("valid").warscrolls[0].move, expected.move)
 
 
 func test_warscroll_banishment_is_int_from_file() -> void:
@@ -433,6 +437,15 @@ func test_wrong_type_banishment_returns_null() -> void:
 func test_wrong_type_banishment_error_names_file_and_field_path() -> void:
 	assert_true(_has_error_naming(_errors("wrong_type_banishment"), "warscrolls.json", "warscrolls[0].banishment"),
 			str(_errors("wrong_type_banishment")))
+
+
+func test_wrong_type_move_returns_null() -> void:
+	assert_null(_load("wrong_type_move"))
+
+
+func test_wrong_type_move_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_move"), "warscrolls.json", "warscrolls[0].move"),
+			str(_errors("wrong_type_move")))
 
 
 func test_wrong_type_lore_source_returns_null() -> void:

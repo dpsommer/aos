@@ -88,7 +88,7 @@
 				{
 					"id": "akhelian_king",
 					"name": "Akhelian King",
-					"move": 12,
+					"move": "12",
 					"health": 7,
 					"save": 3,
 					"control": 2,
@@ -141,7 +141,7 @@
 				{
 					"id": "namarti_reavers",
 					"name": "Namarti Reavers",
-					"move": 7,
+					"move": "7",
 					"health": 1,
 					"save": 5,
 					"control": 1,
@@ -186,7 +186,7 @@
 				{
 					"id": "akhelian_morrsarr_guard",
 					"name": "Akhelian Morrsarr Guard",
-					"move": 14,
+					"move": "14",
 					"health": 4,
 					"save": 4,
 					"control": 1,
@@ -235,7 +235,7 @@
 				{
 					"id": "akhelian_ishlaen_guard",
 					"name": "Akhelian Ishlaen Guard",
-					"move": 14,
+					"move": "14",
 					"health": 4,
 					"save": 4,
 					"control": 1,
@@ -350,7 +350,7 @@
 				{
 					"id": "isharann_soulscryer",
 					"name": "Isharann Soulscryer",
-					"move": 6,
+					"move": "6",
 					"health": 5,
 					"save": 5,
 					"control": 2,
@@ -397,7 +397,7 @@
 				{
 					"id": "akhelian_allopex",
 					"name": "Akhelian Allopex",
-					"move": 12,
+					"move": "12",
 					"health": 8,
 					"save": 4,
 					"control": 2,
@@ -455,7 +455,7 @@
 				{
 					"id": "namarti_thralls",
 					"name": "Namarti Thralls",
-					"move": 6,
+					"move": "6",
 					"health": 1,
 					"save": 5,
 					"control": 1,
@@ -490,7 +490,7 @@
 				{
 					"id": "akhelian_morrsarr_guard",
 					"name": "Akhelian Morrsarr Guard",
-					"move": 14,
+					"move": "14",
 					"health": 4,
 					"save": 4,
 					"control": 1,

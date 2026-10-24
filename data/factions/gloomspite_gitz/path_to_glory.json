@@ -1,0 +1,128 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use wit h a Gloomspite Gitz army while playing through a Path to Glory campaign. These rules are divided into two parts: the Anvil of Apotheosis and Paths for Gloomspite Gitz units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord. There are 7 steps to follow to create your hero:\n1. Pick a boss.\n2. Set a destiny point limit.\n3. Fill out the starting warscroll.\n4. Pick your hero’s origin and/or flaw.\n5. Choose a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Grot or Trogg?",
+			"text": "Pick 1 of the following bosses:"
+		},
+		{
+			"name": "Grot",
+			"text": "Your hero gains the following regiment options:\nRegiment Options\nAny MOONCLAN, SQUIG, SPIDERFANG or GITMOB units"
+		},
+		{
+			"name": "Troggoth",
+			"text": "Your hero gains the following regiment options:\nRegiment Options\nAny TROGGOTH units"
+		},
+		{
+			"name": "Step 2 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be. Pick l of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nGrot Boss | 10 | 100\nGrot Mob Boss | 30 | 200\nGrot Big Mob Boss | 50 | 320\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nTroggoth Boss | 10 | 150\nTroggoth Mob Boss | 30 | 250\nTroggoth Big Mob Boss | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 3 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has 1 of the following warscrolls:",
+			"warscrolls": [
+				{
+					"id": "grot_hero",
+					"name": "Grot Hero",
+					"move": "5",
+					"health": 4,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Boss Weapon",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"DESTRUCTION",
+						"GLOOMSPITE GITZ"
+					]
+				},
+				{
+					"id": "troggoth_hero",
+					"name": "Troggoth Hero",
+					"move": "6",
+					"health": 8,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Troggoth Club",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "D3+1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "GREATER REGENERATION",
+							"category": "defensive",
+							"timing": "Start of Any Turn",
+							"effect": "Heal (D6) this unit."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"DESTRUCTION",
+						"GLOOMSPITE GITZ",
+						"TROGGOTH"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up lo I origin and up to l flaw for your hero. Each adds an ability to your hero's warscroll.\nHowever, instead of costing destiny points, llaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-4DP\nSNEAKY GIT\nEffect: If this unit is not a MONSTER, while it is wholly on a terrain feature, it is not visible to enemy units that are not in combat with it. lf this unit is a MONSTER, subtract 1 from hit rolls for attacks that target this unit while it is wholly on a terrain feature.\nPassive\n-2DP\nSEEN THAT BEFORE!\nEffect: Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.\nOnce Per Battle, Your Hero Phase\n-2DP\nTHE BAD MOONBEAM\nEffect: For the rest of the battle round, this unit is affected by all of the faces of the Bad Moon."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+2DP\nLAST TO THE FIGHT\nEffect: This unit has STRIKE-LAST.\nReaction: This unit must use this ability if you declared a MOVE ability for it\n+4DP\nSHROOMIST\nEffect: Roll 2D6. If the total is equal to or lower than this unit’s Control characteristic, it cannot use MOVE abilities this phase.\nPassive\n+2DP\nGITTISHLY OVERCONFIDENT\nEffect: In your charge phase, if this unit is not in combat and there is an enemy HERO within 12\" of this unit, this unit must use the ' Charge' ability, and if the charge roll would allow it to finish within ½\" of that enemy HERO, it must do so."
+		},
+		{
+			"name": "Step 5 - Choose a Battle Mount",
+			"text": "If your hero does not have the TROGGOTH keyword, you can pick up to 1 Battle Mount for them. If you choose not to have a battle mount for your non- TROGGOTH hero, you can add 1 of the following keywords to their warscroll: MOONCLAN, SPIDERFANG or GITMOB.\nBattle Mount\n-5DP\nSNARLFANG: The large lupines known as Snarlfangs are extremely swift and just as spiteful as their riders. Like the grots, others of their kind usually fall into line behind the strongest and meanest specimens.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nSnarlfang's Slavering Jaws\nCompanion | 3 | 3+ | 3+ | - | 2\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 12\".\nChange the Health characteristic to 6.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nAdd the GITMOB keyword.\nBattle Mount\n-8DP\nGIANT CAVE SQUIG: Only the most deranged or shroom-addled grots willingly ride one of these massive squigs into battle.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMassive Fang-filled Gob\nCompanion | 4 | 4+ | 3+ | 2 | D3\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to D6+6\".\nChange the Health characteristic to 6.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nAdd the SQUIG, MOONCLAN and FLY keywords.\nBattle Mount\n-10DP\nGIGANTIC SPIDER: In the darkest, dankest crevices, Gigantic Spiders lurk. Revered by the Spiderfang, they are captured to bear the bossiest grots into battle.\nAdd the following weapon and ability to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGigantic Fangs\nCrit (Mortal), Companion | 4 | 4+ | 4+ | 1 | 2\nPassive\nWALL CRAWLER\nEffect: This unit can pass across terrain features as if it had FLY.\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic lo 10\".\nChange the Health characteristic to 8.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nAdd the SPIDERFANG keyword.\nBattle Mount\n-20DP\nMANGLER SQUIGS: Straining at their chains, Mangler Squigs launch themselves across the battlefield completely out of their riders’ control.\nAdd the following weapons and abilities to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nHuge Fang-filled Gobs\nCompanion | 4 | 4+ | 2+ | 1 | D6\nBalls and Chains\nCompanion | 4 | 4+ | 4+ | - | D3\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to D6+8\".\nChange the Health characteristic to 12.\nChange the Control characteristic to 5.\nReplace rhe INFANTRY keyword with the MONSTER keyword.\nAdd the SQUIG, MOONCLAN and FLY keywords.\nPassive\nSQUIG RAGE\nEffect: While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6.\nPassive\nWATCH OUT!\nEffect: If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit’s combat range. On a 4+, inflict D3 mortal damage on that unit.\nBattle Mount\n-20DP\nARACHNAROK SPIDER: These huge arachnids are worshipped by the Spiderfang as avatars of their god.\nAdd the following weapons and abilities to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nChitinous Legs\nCompanion | 8 | 4+ | 2+ | 1 | 1\nMonstrous Spider Fangs\nCrit (Mortal), Companion | 4 | 3+ | 2+ | 1 | 3\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 14.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the MONSTER keyword.\nAdd the ARACHNAROK and SPIDERFANG keywords.\nPassive\nBATTLE DAMAGED\nEffect: While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6.\nPassive\nWALL CRAWLER\nEffect: This unit can pass across terrain features as if it had FLY."
+		},
+		{
+			"name": "Step 6 - Pick Any Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nUnnervingly Fast\n-2DP\nCAVALRY only. Add 'D3+' in front of your hero’s Move characteristic.\nRock Flinger\n-3DP\nAdd the following ranged weapon to your hero’s warscroll. You cannot pick this upgrade if your hero has another Companion ranged weapon.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nRock Flinger\nCompanion | 18\" | 2 | 5+ | 2+ | 2 | D3\nColossal\n-3DP\nAdd 2 to your hero's Health characteristic.\nExtra Teeth\n-4DP\nSQUIG only. Add 1 to the Attacks characteristic of your hero’s Massive Fang-filled Gob or Huge Fang-filled Gobs weapon.\nVicious Until the End\n-4DP\nAdd the following ability to your hero's warscroll.\nPassive\nVICIOUS UNTIL THE END\nEffect: If this unit is destroyed, before removing it from play, pick an enemy unit in combat with it and roll a number of dice equal to this unit’s Health characteristic. For each 5+, inflict 1 mortal damage on that enemy unit.\nBoinging Ker-splat!\n-5DP\nSQUIG MONSTER only. Add the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), Any Charge Phase\nBOINGING KER-SPLAT!\nDeclare: If this unit charged this phase, pick any number of enemy units within 1\" of it to be the targets.\nEffect: Roll a dice and add the number of targets to the roll. If the result is less than 6, inflict 1 mortal damage on each target and repeat the sequence, but add another dice to the roll each time you do so.\nKEYWORDS | RAMPAGE\nWeb-binding\n-5DP\nARACHNAROK only. Add the following ability to your hero’s warscroll:\nOnce Per Turn (Army), Any Combat Phase\nWEBBED!\nDeclare: Pick an enemy HERO within 1\" of this unit to be the target.\nEffect: Roll 2D6. If the roll exceeds the target’s Move characteristic, until the start of your next turn, the target cannot pile in and cannot use RETREAT abilities.\nKEYWORDS | RAMPAGE"
+		},
+		{
+			"name": "Step 7 - Pick Any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nBoss Git\n-1DP\nAdd 1 to your hero's Control characteristic.\nSurprisingly Speedy\n-1DP\nINFANTRY only. Add 1\" to your hero’s Move characteristic.\nIncredibly Annoying\n-2DP\nAdd the following ability to your hero's warscroll:\nPassive\nINCREDIBLY ANNOYING\nEffect: While your hero is contesting an objective, subtract 1 from the control scores of enemy units while they are in combat with your hero.\nDank and Vile\n-2DP\nYour hero has WARD (6+).\nSlippery Git\n-3DP\nAdd the following ability to your hero's warscroll:\nAny Combat Phase\nSLIPPERY GIT\nEffect: If this unit is in combat, roll a dice. On a 4+, this unit can immediately use the’ Retreat’ ability as if it were your movement phase without any mortal damage being inflicted on it.\nJaggedy Stabba\n-4DP\nCAVALRY or MONSTER only. Your hero’s non- Companion melee weapon has Charge (+1 Damage).\nSquig-fang Stikka\n-4DP\nINFANTRY only. Add the following ability to your hero’s warscroll:\nAny Combat Phase\nSQUIG-FANG STIKKA\nDeclare: Pick each enemy unit that charged this turn and that is in combat with this unit to be the targets.\nEffect: Roll a dice for each target. On a 4+, inflict D3 mortal damage on that target\nCunning Git\n-5DP\nAdd the following ability to your hero's warscroll:\nAny Combat Phase\nCUNNING GIT\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 3+, ward rolls cannot be made for damage points inflicted on the target by this unit’s attacks this phase.\nFerocious Git\n-5DP\nAdd 1 to the Attacks characteristic of your hero’s Troggoth Club or add 2 to the Attacks characteristic of your hero’s Boss Weapon.\nShroom Shaman\n-6DP\nNon- PRIEST only. Your hero has WIZARD (1).\nConduit of the Bad Moon\n-6DP\nNon- WIZARD only. Your hero has PRIEST (1).\nChucking Boulder\n-6DP\nTROGGOTH only. Add the following ranged weapon to your hero’s warscroll. You cannot pick this upgrade if your hero has another non- Companion ranged weapon.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nChucking Boulder | 10\" | 2 | 5+ | 2+ | 2 | 3"
+		},
+		{
+			"name": "Path of The Gitboss",
+			"text": "(GLOOMSPITE GITZ HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nTOUGH GIT\nEffect: Add 1 to this unit's Health characteristic.\nPassive\nEXTRA STABBY\nEffect: This unit’s melee weapons have Crit (2 Hits).\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Hero Phase\nFROTHING ENTHUSIASM\nEffect: If this unit charged this turn, add 2 to charge rolls for friendly units while they are wholly within 12\" of this unit.\nPassive\nSCALE-SPLITTER\nEffect: This unit cannot be picked to be the target of RAMPAGE abilities used by enemy units.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nALMOST BLESSED BY THE BAD MOON\nEffect: This unit has WARD (3+). After the first failed ward roll made for it, however, it has WARD (6+) instead.\nEnd of Any Turn\nSADISTIK SCOUNDREL\nDeclare: Pick each enemy unit in combat with this unit that had any damage points allocated to it this turn to be the targets.\nEffect: Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nTHE ANGRIEST GIT AROUND\nEffect: Add 3 to the control scores of all friendly units while this unit is contesting an objective.\nAny Combat Phase\nSNEAKY SIDESTEPPER\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 3+, pick 1 of the target’s weapons and subtract 3 from its Attacks characteristic for the rest of the turn."
+		},
+		{
+			"name": "Path of The Dank Hordes",
+			"text": "(non- HERO GLOOMSPITE GITZ unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nReaction: Opponent declared a non- FIGHT ability for a MANIFESTATION\nFUNGUS BREW\nEffect: Roll a dice. On a 4+, that ability has no effect on this unit.\nPassive\nNOTORIOUS AND VICIOUS\nEffect: Subtract 2 from the control scores of enemy units while they are contesting the same objective as this unit.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nFUNGAL FREAKS\nEffect: Subtract 1 from hit rolls for shooting attacks that target this unit.\nPassive\nDEVIOUS SURVIVORS\nEffect: No mortal damage is inflicted on this unit by RETREAT abilities.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nLOON CREW\nEffect: This unit has WARD (6+). If this unit already has WARD (6+), it has WARD (5+) instead.\nPassive\nHIT 'EM BACK\nEffect: Each time the unmodified save roll for a combat attack that targets this unit is 6, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.\nLEGENDARY: When a unit on this Path gains this rank, pick l of the following abilities for them:\nPassive\nSTAB 'EM AGAIN AND AGAIN\nEffect: Add 1 to the Attacks characteristic of this unit’s non- Companion melee weapons.\nEnd of Any Turn\nNASTY PRESS GANG\nEffect: Roll a D3. On a 2+, return a number of slain models to this unit equal to the roll."
+		}
+	]
+}

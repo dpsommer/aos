@@ -81,7 +81,7 @@
 				{
 					"id": "karanak",
 					"name": "Karanak",
-					"move": 8,
+					"move": "8",
 					"health": 7,
 					"save": 5,
 					"control": 2,
@@ -118,7 +118,7 @@
 				{
 					"id": "flesh_hounds",
 					"name": "Flesh Hounds",
-					"move": 8,
+					"move": "8",
 					"health": 2,
 					"save": 6,
 					"control": 1,
@@ -152,7 +152,7 @@
 				{
 					"id": "claws_of_karanak",
 					"name": "Claws of Karanak",
-					"move": 6,
+					"move": "6",
 					"health": 1,
 					"save": 5,
 					"control": 1,
@@ -281,7 +281,7 @@
 				{
 					"id": "slaughterpriest",
 					"name": "Slaughterpriest",
-					"move": 5,
+					"move": "5",
 					"health": 6,
 					"save": 5,
 					"control": 2,
@@ -322,7 +322,7 @@
 				{
 					"id": "blood_warriors",
 					"name": "Blood Warriors",
-					"move": 5,
+					"move": "5",
 					"health": 2,
 					"save": 3,
 					"control": 1,
@@ -353,7 +353,7 @@
 				{
 					"id": "bloodreavers",
 					"name": "Bloodreavers",
-					"move": 5,
+					"move": "5",
 					"health": 1,
 					"save": 6,
 					"control": 1,
@@ -384,7 +384,7 @@
 				{
 					"id": "mighty_skullcrushers",
 					"name": "Mighty Skullcrushers",
-					"move": 8,
+					"move": "8",
 					"health": 5,
 					"save": 2,
 					"control": 2,

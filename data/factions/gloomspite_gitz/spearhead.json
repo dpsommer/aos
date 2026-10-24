@@ -1,0 +1,569 @@
+{
+	"spearheads": [
+		{
+			"name": "Snarlpack Huntaz",
+			"text": "Gitmobs are always on the hunt, whether it is for prey, territory or Frazzlegit himself. When claiming new lands for their pack, a Snarlboss will ride out ahead alongside a hand-picked scouting party known as Snarlpack Huntaz. These are often grots who have survived more than two or three battles with only a few chunks bitten off, or else riders who have yet not tried to shove a blade into their Snarlboss’s back. They strike out at high speed in a chaotic flurry of fangs, claws and spears, ready to savage all who dare oppose them.\nAccompanying their Snarlboss are the grot’s loyal Wolfgit Retinue, most ferocious of their pack’s riders and adept at protecting their leader with sun-charged spear and bow. Following behind come the giant wolves of the Snarlpack Cavalry, each bearing two bickering grots with great lances pointed forward on the thrust. These riders hit hard and fast, able to square up to larger foes that lone grot riders would struggle to manage. A savvy Snarlboss will also protect his rear and flanks with a few Sunsteala Wheelas, perfect for hitting fast and precisely – and for retreating just as quickly, should things go awry.",
+			"general": "Snarlboss",
+			"units": [
+				{
+					"count": 2,
+					"name": "Wolfgit Retinue"
+				},
+				{
+					"count": 3,
+					"name": "Snarlpack Cavalry"
+				},
+				{
+					"count": 3,
+					"name": "Snarlpack Cavalry"
+				},
+				{
+					"count": 1,
+					"name": "Sunsteala Wheelas"
+				},
+				{
+					"count": 1,
+					"name": "Sunsteala Wheelas"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "FAST AS FRAZZLEGIT",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Friendly units can use CHARGE abilities even if they used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on friendly units by RETREAT abilities."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "FLANKIN' FORCE",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Pick up to 2 friendly units. Remove them from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units."
+				},
+				{
+					"name": "FRAZZLEBOOM",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time a friendly WAR MACHINE is destroyed, before removing it from play, pick an enemy unit within 3\" of that WAR MACHINE and roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "KUNNIN' AS A SNARLFANG",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "For the rest of the turn, add 1 to the Rend characteristic of melee weapons used by friendly units while they are wholly within 12\" of the bearer."
+				},
+				{
+					"name": "SUNSTEALA SHARD",
+					"category": "defensive",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Battle",
+					"effect": "For the rest of the turn, friendly units cannot be targeted by shooting attacks while they are wholly within 6\" of this unit, unless the attacking unit is in combat with the target unit."
+				},
+				{
+					"name": "GLARE OF FRAZZLEGIT",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit in combat with your general to be the target.",
+					"effect": "Subtract 1 from hit rolls for attacks made by the target for the rest of the turn."
+				},
+				{
+					"name": "DEVIOUS BACKSTABBA",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"declare": "Pick an enemy HERO in combat with this unit to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "snarlboss",
+					"name": "Snarlboss",
+					"move": "12",
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Boss Loppa",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "Snarlfang’s Slavering Jaws",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "GREAT SNARLIN' HOWL",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"frequency": "Once Per Turn (Army)",
+							"declare": "Pick this unit and another friendly unit within this unit’s combat range to be the targets.",
+							"effect": "Roll a dice. On a 3+, add 1 to the Rend characteristic and the Attacks characteristic of the targets’ Companion melee weapons for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"CAVALRY"
+					]
+				},
+				{
+					"id": "sunsteala_wheelas",
+					"name": "Sunsteala Wheelas",
+					"move": "12",
+					"health": 6,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Grot Bow",
+							"range": 15,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Wheela Slicers and Stabbin’ Stikka",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Snarlfangs’ Slavering Jaws",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "CAREENING DESTRUCTION",
+							"category": "movement",
+							"timing": "Your Movement Phase",
+							"effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY unit that this unit passed across during that move to be the target. Inflict D3 mortal damage on the target.",
+							"keywords": [
+								"CORE",
+								"MOVE"
+							],
+							"options": [
+								{
+									"name": "Designer’s Note",
+									"text": "This unit can use this ability even if it is in combat."
+								}
+							]
+						}
+					],
+					"keywords": [
+						"WAR MACHINE"
+					]
+				},
+				{
+					"id": "snarlpack_cavalry",
+					"name": "Snarlpack Cavalry",
+					"move": "12",
+					"health": 3,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Pointy Skewas",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Charge (+1 Damage)"
+							]
+						},
+						{
+							"name": "Giant Snarlfang’s Jaws",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "FRAZZLEBURNED SCRAP",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"CAVALRY"
+					]
+				},
+				{
+					"id": "wolfgit_retinue",
+					"name": "Wolfgit Retinue",
+					"move": "12",
+					"health": 2,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Grot Bow",
+							"range": 15,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Stabbin’ Stikka",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Snarlfang’s Slavering Jaws",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "I GOT DIS, BOSS",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "While a friendly Snarlboss is within this unit’s combat range, both this unit and that Snarlboss have WARD (5+)."
+						}
+					],
+					"keywords": [
+						"CAVALRY"
+					],
+					"composition": "1 model is armed with a Grot Bow and Snarlfang’s Slavering Jaws, and 1 model is armed with a Stabbin’ Stikka and Snarlfang’s Slavering Jaws."
+				}
+			]
+		},
+		{
+			"name": "Bad Moon Madmob",
+			"text": "When the Bad Moon careens through the sky and the realms are bathed in its loonlight, once-craven grots pour from tunnels and caves to overrun the Mortal Realms. Empowered by their lunar deity, these Madmobs overwhelm the enemy with sheer numbers. Waves of greenskins tear down foes with shivs, spears and squigs. At their rear swaggers their Loonboss, screaming orders and threats with wild abandon. Whilst their underlings do the dying, these moon-helmeted bullies circle about, waiting for a chance to pierce an enemy’s lung or slash open a throat with their crooked glaive.\nAt the fore come the Squig Hoppers, sailing over the battlefield with great bounces – and crushing anyone unfortunate enough to be under them when they land. While their rabid squig mounts wreak havoc behind enemy lines with their fang-filled gobs, the reeling foe faces the assault of Rockgut Troggoths wielding menhir-capped mauls. These stone-skinned creatures are so tough that it is near impossible to inflict any meaningful injuries upon them. Emboldened by these lumbering linebreakers, grot Stabbas bring up the rearguard, overwhelming any survivors with their seemingly endless numbers. Hurled nets ensnare targets and bring them to the ground, allowing the cackling grots to plunge rusty shivs into their victims’ flesh.",
+			"general": "Loonboss",
+			"units": [
+				{
+					"count": 10,
+					"name": "Moonclan Stabbas"
+				},
+				{
+					"count": 10,
+					"name": "Moonclan Stabbas"
+				},
+				{
+					"count": 5,
+					"name": "Squig Hoppers"
+				},
+				{
+					"count": 5,
+					"name": "Squig Hoppers"
+				},
+				{
+					"count": 3,
+					"name": "Rockgut Troggoths"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "SQUIGALANCHE",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit wholly within your territory, wholly within 3\" of a battlefield edge and more than 6\" from all enemy units."
+				},
+				{
+					"name": "UNDER THE LIGHT OF THE BAD MOON",
+					"category": "special",
+					"timing": "Start of the First Battle Round",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a territory (either friendly territory or enemy territory) to be under the Light of the Bad Moon. If both players can use this ability, the players roll off and the winner picks a territory to be under the Light of the Bad Moon.\nThe territory picked remains under the Light of the Bad Moon in the first and second battle rounds. In the third and fourth battle rounds, the other territory is under the Light of the Bad Moon.",
+					"effect": "While a friendly unit is wholly within the territory that is under the Light of the Bad Moon, the appropriate effect below applies to it:",
+					"options": [
+						{
+							"name": "Frothing Zealots",
+							"text": "If the unit is a Moonclan Stabbas unit, add 3 to its control score."
+						},
+						{
+							"name": "Lunar Squigs",
+							"text": "If the unit is a Squig Hoppers unit, no mortal damage is inflicted on it when it uses Retreat abilities."
+						},
+						{
+							"name": "Moonlit Hide",
+							"text": "If the unit is a Rockgut Troggoths unit, add 1 to save rolls for it."
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "THE LUNATIC HORDES",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly Moonclan Stabbas unit to use this ability.",
+					"effect": "You can return up to D3 slain models to that unit."
+				},
+				{
+					"name": "THE HAND OF GORK",
+					"category": "movement",
+					"timing": "(Army) Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit that is not in combat to use this ability.",
+					"effect": "Remove that unit from the battlefield and set it up again more than 9\" from all enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				}
+			],
+			"enhancements": [
+				{
+					"name": "FIGHT ANOTHER DAY",
+					"category": "movement",
+					"timing": "End of Any Turn",
+					"declare": "Pick your general to use this ability if they used a FIGHT ability this turn.",
+					"effect": "Your general can make a 2D6\" move but cannot end that move in combat."
+				},
+				{
+					"name": "HALLUCINOGENIC FUNGUS BREW",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has WARD (4+) in the first battle round, WARD (5+) in the second battle round, and WARD (6+) in the third and fourth battle rounds."
+				},
+				{
+					"name": "THE CLAMMY COWL",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for attacks that target your general."
+				},
+				{
+					"name": "NIGHTSHADE MUSHROOM",
+					"category": "defensive",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit within your general’s combat range.",
+					"effect": "That unit cannot be targeted by shooting attacks in the next shooting phase."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "loonboss",
+					"name": "Loonboss",
+					"move": "5",
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Moon-slicer",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "I'M DA BOSS",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly Moonclan Stabbas unit wholly within 12\" of this unit to be the target.",
+							"effect": "Pick 1:",
+							"options": [
+								{
+									"name": "Beckon the Loonatic Hordes",
+									"text": "If the target unit is not in combat, you can return D6 slain models to it."
+								},
+								{
+									"name": "Stab ’Em Good!",
+									"text": "Add 1 to hit rolls for attacks made by the target unit until the start of your next turn."
+								}
+							]
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "squig_hoppers",
+					"name": "Squig Hoppers",
+					"move": "D6+8",
+					"health": 2,
+					"save": 6,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Slitta",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Squig’s Fang-filled Gob",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BOING! BOING! BOING!",
+							"category": "offensive",
+							"timing": "Any Movement Phase",
+							"declare": "Pick an enemy unit that any models in this unit passed across this phase to be the target, then roll a dice for each model in this unit that did so.",
+							"effect": "For each 4+, inflict 1 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"FLY"
+					]
+				},
+				{
+					"id": "moonclan_stabbas",
+					"name": "Moonclan Stabbas",
+					"move": "5",
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Stabba",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "NETTERS",
+							"category": "defensive",
+							"timing": "Any Combat Phase",
+							"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
+							"effect": "Roll a dice. On a 2+, subtract 1 from hit rolls for attacks made by the target unit this phase."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "rockgut_troggoths",
+					"name": "Rockgut Troggoths",
+					"move": "6",
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ward": 5,
+					"ranged_weapons": [
+						{
+							"name": "Throwin’ Boulders",
+							"range": 10,
+							"attacks": "1",
+							"hit": 5,
+							"wound": 2,
+							"rend": 2,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Massive Stone Maul",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "REGENERATION",
+							"category": "defensive",
+							"timing": "Start of Any Turn",
+							"effect": "Heal (D3) this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (5+)"
+					]
+				}
+			]
+		}
+	]
+}

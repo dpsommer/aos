@@ -19,7 +19,7 @@
 				{
 					"id": "disciples_of_tzeentch_hero",
 					"name": "Disciples of Tzeentch Hero",
-					"move": 5,
+					"move": "5",
 					"health": 5,
 					"save": 5,
 					"control": 2,

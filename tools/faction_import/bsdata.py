@@ -7,7 +7,7 @@ regiment options, unit composition or Army of Renown text; merge.py adds those f
 Catalogues are read from a local checkout of the BSData repository, by default tools/bsdata
 (gitignored). ensure_checkout() clones it on first use and pulls it on request.
 """
-import glob, os, re, subprocess, sys
+import glob, html, os, re, subprocess, sys
 import xml.etree.ElementTree as ET
 
 import schema
@@ -47,8 +47,9 @@ def slug(name):
 
 
 def markup(text):
-    """BSData text to plain text: **^^Keyword^^** becomes KEYWORD, other emphasis is dropped."""
-    text = (text or "").replace("\xa0", " ")
+    """BSData text to plain text: **^^Keyword^^** becomes KEYWORD, other emphasis is dropped and
+    HTML character references (&#8226;) are decoded."""
+    text = html.unescape(text or "").replace("\xa0", " ")
     text = re.sub(r"\*{0,3}\^\^(.+?)\^\^\*{0,3}", lambda m: m.group(1).upper(), text)
     text = text.replace("*", "")
     text = re.sub(r"[ \t]+", " ", text)
@@ -307,7 +308,7 @@ def warscroll(cats, unit, link=None):
     profiles = unit_profiles(cats, unit)
     # Manifestations have a Manifestation profile (Move, Health, Save, Banishment) instead.
     stats = next((characteristics(p) for p in profiles if p.get("typeName") in ("Unit", "Manifestation")), {})
-    out["move"] = int_or(stats.get("Move"))
+    out["move"] = schema.move(stats.get("Move"))
     out["health"] = int_or(stats.get("Health"))
     out["save"] = int_or(stats.get("Save"))
     out["control"] = int_or(stats.get("Control"))
@@ -408,9 +409,14 @@ def lores(cats, root, owner=""):
 
 
 def battle_traits(cats, root, name):
-    for entry in kids(root, "sharedSelectionEntries", "selectionEntry"):
-        if entry.get("name") == "Battle Traits: " + name:
-            return abilities_in(cats, entry)
+    """The "Battle Traits: <name>" entry's abilities. The entry can be named differently from its
+    catalogue ("The King's Gitz" in Da King's Gitz), so a catalogue's only Battle Traits entry is used
+    when none matches the name."""
+    entries = [e for e in kids(root, "sharedSelectionEntries", "selectionEntry")
+               if (e.get("name") or "").startswith("Battle Traits: ")]
+    named = [e for e in entries if e.get("name") == "Battle Traits: " + name]
+    if named or len(entries) == 1:
+        return abilities_in(cats, (named or entries)[0])
     return []
 
 

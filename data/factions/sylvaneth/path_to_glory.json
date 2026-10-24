@@ -19,7 +19,7 @@
 				{
 					"id": "tree_spirit_hero_0dp",
 					"name": "Tree Spirit Hero 0DP",
-					"move": 6,
+					"move": "6",
 					"health": 5,
 					"save": 5,
 					"control": 2,
@@ -47,7 +47,7 @@
 				{
 					"id": "forest_elder_hero_12dp",
 					"name": "Forest Elder Hero -12DP",
-					"move": 6,
+					"move": "6",
 					"health": 14,
 					"save": 3,
 					"control": 5,

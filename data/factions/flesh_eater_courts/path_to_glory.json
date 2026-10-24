@@ -19,7 +19,7 @@
 				{
 					"id": "flesh_eater_courts_hero",
 					"name": "Flesh-eater Courts Hero",
-					"move": 6,
+					"move": "6",
 					"health": 5,
 					"save": 5,
 					"control": 2,

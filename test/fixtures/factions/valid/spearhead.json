@@ -11,8 +11,8 @@
 			"regiment_abilities": [{"name": "Regiment Ability"}],
 			"enhancements": [{"name": "Spearhead Enhancement"}],
 			"warscrolls": [
-				{"id": "spearhead_general", "name": "Spearhead General", "move": 5, "health": 6, "save": 4, "control": 2},
-				{"id": "spearhead_troops", "name": "Spearhead Troops", "move": 5, "health": 1, "save": 5, "control": 1}
+				{"id": "spearhead_general", "name": "Spearhead General", "move": "5", "health": 6, "save": 4, "control": 2},
+				{"id": "spearhead_troops", "name": "Spearhead Troops", "move": "5", "health": 1, "save": 5, "control": 1}
 			]
 		}
 	]

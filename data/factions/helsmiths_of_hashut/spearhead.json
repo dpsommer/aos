@@ -90,7 +90,7 @@
 				{
 					"id": "war_despot",
 					"name": "War Despot",
-					"move": 4,
+					"move": "4",
 					"health": 6,
 					"save": 3,
 					"control": 2,
@@ -125,7 +125,7 @@
 				{
 					"id": "infernal_cohort_with_hashutite_spears",
 					"name": "Infernal Cohort with Hashutite Spears",
-					"move": 4,
+					"move": "4",
 					"health": 1,
 					"save": 3,
 					"control": 1,
@@ -167,7 +167,7 @@
 				{
 					"id": "dominator_engine_with_immolation_cannons",
 					"name": "Dominator Engine with Immolation Cannons",
-					"move": 6,
+					"move": "6",
 					"health": 10,
 					"save": 2,
 					"control": 2,
@@ -212,7 +212,7 @@
 				{
 					"id": "tormentor_bombard",
 					"name": "Tormentor Bombard",
-					"move": 4,
+					"move": "4",
 					"health": 8,
 					"save": 3,
 					"control": 2,

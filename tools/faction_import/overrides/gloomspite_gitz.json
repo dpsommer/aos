@@ -1,0 +1,38 @@
+{
+	"fields": {
+		"The Faces of the Bad Moon": {"effect": "If it is the first battle round, pick the starting face of the Bad Moon (Grinnin', Scowlin', Sulkin' or Cacklin'). If it is not the first battle round, the face of the Bad Moon moves to the next face in the sequence."},
+		"Under the Light of the Bad Moon": {"options": [
+			{"name": "Frothing Zealots", "text": "While the Bad Moon is Cacklin' or Grinnin', add 5 to the control scores of friendly non-SQUIG MOONCLAN units."},
+			{"name": "Spiderfang Venom", "text": "While the Bad Moon is Cacklin' or Grinnin', combat attacks made by friendly SPIDERFANG units score critical hits on unmodified hit rolls of 5+. This ability also affects Companion weapons."},
+			{"name": "Moonlit Hide", "text": "While the Bad Moon is Grinnin' or Scowlin', subtract 1 from the Rend characteristic of combat attacks that target friendly TROGGOTH units."},
+			{"name": "Lunar Squigs", "text": "While the Bad Moon is Scowlin' or Sulkin', instead of rolling the dice to determine the Move characteristic of a friendly SQUIG unit, you can use a value of 4."},
+			{"name": "Sneaky Snarlfangs", "text": "While the Bad Moon is Sulkin' or Cacklin', friendly GITMOB units can use CHARGE and SHOOT abilities even if they used a RETREAT ability in the same turn."}
+		]},
+		"loonboss > I'm da Boss": {"options": [
+			{"name": "Get Back 'Ere!", "text": "If the target is not in combat, you can return D6 slain models to it."},
+			{"name": "Stab 'Em Good!", "text": "Add 1 to wound rolls for the target's attacks until the start of your next turn."}
+		]},
+		"Gimme All da Light": {"effect": "Friendly GITMOB units that are not Frazzlegit Shamans on War-Wheelas cannot be targeted by shooting attacks while they are wholly within 6\" of this unit."},
+		"Marking Your Territory": {"effect": "Add 1 to the Rend characteristic of this unit's Wolfgit Weapons while it contests an objective you control that is not contested by any other friendly units."},
+		"Da Loonking's Court": {"effect": "Give each HERO 1 enhancement from the 'Da King's Gitz' Army of Renown rules."},
+		"Wotnot of Prestige": {"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."},
+		"Loonstone Medallion": {"effect": "This unit has WARD (6+). While this unit is contesting an objective that is not being contested by any other friendly units, it has WARD (5+)."},
+		"Right Gitz in da Right Place": {"declare": "Pick a friendly KING'S GITZ WIZARD to cast this spell, pick a visible friendly unit wholly within 18\" of them to be the target, then make a casting roll of 2D6."},
+		"Stick 'Em and Run": {"effect": "Each time this unit uses a RETREAT ability or the 'Frazzlegit's Flame Stream' ability, before moving this unit, pick an enemy unit in combat with it and roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."},
+		"Frazzleblast": {"effect": "Until the start of your next turn, the target's melee weapons have Crit (2 Hits)."},
+		"Living Landmark": {"declare": "Pick a friendly TRUGG'S TROGGHERD unit that has not been deployed."},
+		"aleguzzler_gargant > Stuff 'Em in Me Bag": {"frequency": "Once Per Turn (Army)"},
+		"mollog": {"keywords": ["UNIQUE", "HERO", "INFANTRY", "GLOOMSPITE GITZ", "DESTRUCTION", "TROGGOTH"], "base_size": "Mollog: 50mm, Minions: 25mm"},
+		"The Hand of Gork": {"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick a visible friendly GLOOMSPITE GITZ unit wholly within 12\" of them and not in combat to be the target, then make a casting roll of 2D6."},
+		"arachnarok_spider_with_flinger": {"health": 16, "abilities": [
+			{"name": "Battle Damaged", "category": "damage", "timing": "Passive", "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."},
+			{"name": "Flinger", "category": "shooting", "timing": "Passive", "effect": "If any attacks made with this unit's Flinger score a hit, after the SHOOT ability has been resolved, roll a dice. On a 2+, halve the Move characteristic of the target unit until the start of your next turn."},
+			{"name": "Beast-binding Webbing", "category": "defensive", "timing": "Any Combat Phase", "frequency": "Once Per Turn (Army)", "declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.", "effect": "Roll a dice. On a 3+, subtract 1 from the Attacks characteristic of the target's Companion weapons for the rest of the turn.", "keywords": ["RAMPAGE"]},
+			{"name": "Wall Crawler", "category": "movement", "timing": "Passive", "effect": "This unit can pass across terrain features as if it had FLY."}
+		]},
+		"arachnarok_spider_with_flinger > Crooked Spears": {"hit": 5, "wound": 4},
+		"webspinner_shaman_on_arachnarok_spider > Crooked Spears": {"attacks": "8"},
+		"loonboss_on_giant_cave_squig": {"keywords": ["HERO", "DESTRUCTION", "GLOOMSPITE GITZ", "MOONCLAN", "SQUIG", "CAVALRY", "FLY"]},
+		"grinkraks_looncourt":{"base_size": "Grinkrak the Great, Skolko and Pronk, Grib, da Wonky Lance: 32mm, Pokin' Snark, Snorbo da Spore, Pointy Burk, Moonface Nagz: 25mm"}
+	}
+}

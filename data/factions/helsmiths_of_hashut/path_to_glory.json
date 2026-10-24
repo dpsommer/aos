@@ -19,7 +19,7 @@
 				{
 					"id": "helsmiths_of_hashut_hero",
 					"name": "Helsmiths of Hashut Hero",
-					"move": 4,
+					"move": "4",
 					"health": 6,
 					"save": 4,
 					"control": 2,

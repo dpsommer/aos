@@ -19,7 +19,7 @@
 				{
 					"id": "kharadron_overlords_hero",
 					"name": "Kharadron Overlords Hero",
-					"move": 4,
+					"move": "4",
 					"health": 5,
 					"save": 3,
 					"control": 2,

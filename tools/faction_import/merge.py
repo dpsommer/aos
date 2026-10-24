@@ -27,11 +27,10 @@ def norm_text(text):
 
 
 def wahapedia_warscroll(raw):
-    """A Wahapedia warscroll in the schema's shape (move as inches). Wahapedia shows a
+    """A Wahapedia warscroll in the schema's shape (move without its inch mark). Wahapedia shows a
     manifestation's banishment value where other warscrolls show Control."""
     w = dict(raw)
-    m = re.match(r"(\d+)", (raw.get("move") or "").strip())
-    w["move"] = int(m.group(1)) if m else 0
+    w["move"] = schema.move(raw.get("move"))
     if "MANIFESTATION" in w.get("keywords", []):
         w["banishment"], w["control"] = w.get("control", 0), 0
     return w
@@ -222,9 +221,12 @@ def merge_armies(report, bs_list, wh_list):
 def resolve(name, names):
     """Match a Spearhead army list entry to a warscroll name. Lists sometimes shorten names,
     e.g. "Dominator Engine" for "Dominator Engine with Immolation Cannons", or reorder them,
-    e.g. "Freeguild Command Corps Whisperblade" for "Whisperblade, Freeguild Command Corps"."""
+    e.g. "Freeguild Command Corps Whisperblade" for "Whisperblade, Freeguild Command Corps", or
+    use the singular, e.g. "Sunsteala Wheela" for "Sunsteala Wheelas"."""
     if name in names:
         return name
+    if name + "s" in names:
+        return name + "s"
     matches = [n for n in names if n.startswith(name + " ")]
     if not matches:
         words = sorted(re.findall(r"[\w'’-]+", name.lower()))

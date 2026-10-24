@@ -24,7 +24,7 @@ func _weapon(weapon_name: String, weapon_range := 0) -> Weapon:
 func _warscroll(fields := {}) -> Warscroll:
 	var unit := Warscroll.new()
 	unit.name = "Made-up Unit"
-	unit.move = 5
+	unit.move = "5"
 	unit.health = 7
 	unit.save = 4
 	unit.control = 2
@@ -153,10 +153,23 @@ func test_warscroll_contains_name() -> void:
 
 
 func test_warscroll_contains_characteristics() -> void:
-	var unit := _warscroll({move = 11, health = 13, save = 5, control = 17})
+	var unit := _warscroll({move = "11", health = 13, save = 5, control = 17})
 	var output := RulesFormatter.warscroll(unit)
 	for value in [unit.move, unit.health, unit.save, unit.control]:
 		assert_string_contains(output, str(value))
+
+
+func test_warscroll_shows_dice_move_in_inches() -> void:
+	var unit := _warscroll({move = "D6+3"})
+	assert_string_contains(RulesFormatter.warscroll(unit), '%s"' % unit.move)
+
+
+func test_warscroll_with_zero_move_shows_dash() -> void:
+	assert_string_contains(RulesFormatter.warscroll(_warscroll({move = "0"})), "[cell]-[/cell]")
+
+
+func test_warscroll_with_zero_move_omits_inches() -> void:
+	assert_false('0"' in RulesFormatter.warscroll(_warscroll({move = "0"})))
 
 
 func test_warscroll_contains_ward_when_positive() -> void:

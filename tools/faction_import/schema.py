@@ -15,6 +15,13 @@ def split_frequency(timing):
     return (m.group(1).title(), m.group(2)) if m else ("", timing)
 
 
+def move(value):
+    """A Move characteristic without its inch mark: "6", or dice such as "D6+3" for units that roll
+    their move. "0" for units that can't move, which the sources show as "-" or leave out."""
+    m = re.fullmatch(r"\s*(\d*D?\d+(?:\+\d+)?)\s*[\"”]?\s*", value or "", re.I)
+    return m.group(1).upper() if m else "0"
+
+
 def slug(name):
     return re.sub(r"[^a-z0-9]+", "_", name.lower().replace("’", "").replace("'", "")).strip("_")
 
@@ -52,7 +59,8 @@ def warscroll(w, with_profile=True):
             out["regiment_options"] = w["regiment_options"]
         if w.get("notes"):
             out["notes"] = w["notes"]
-    for k in ("move", "health", "save", "control"):
+    out["move"] = w.get("move", "0")
+    for k in ("health", "save", "control"):
         out[k] = w.get(k, 0)
     if w.get("ward"):
         out["ward"] = w["ward"]
