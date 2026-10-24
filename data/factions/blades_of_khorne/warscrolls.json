@@ -1721,7 +1721,7 @@
 			"ranged_weapons": [],
 			"melee_weapons": [
 				{
-					"name": "Ritual Dagger",
+					"name": "Ritual Athame",
 					"range": 0,
 					"attacks": "2",
 					"hit": 3,

@@ -22,4 +22,4 @@ The project is at an early stage. The main scene is `scenes/main.tscn` (`Main`),
 
 ## Running Godot
 
-`godot` isn't on PATH, so find the editor binary before running anything. The test commands are in `docs/technical/testing.md`.
+`godot` is on the PATH. The test commands are in `docs/technical/testing.md`.
