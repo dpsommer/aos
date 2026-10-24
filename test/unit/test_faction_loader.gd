@@ -111,6 +111,17 @@ func test_absent_lore_points_default_to_zero() -> void:
 	assert_eq(_load("valid").lores[1].points, 0)
 
 
+func test_lore_source_comes_from_file() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[2]
+	assert_eq(_load("valid").lores[2].source, expected.source)
+
+
+func test_absent_lore_source_defaults_to_empty() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[0]
+	assert_false(expected.has("source"), "fixture lore should omit source")
+	assert_eq(_load("valid").lores[0].source, "")
+
+
 func test_spell_casting_value_comes_from_file() -> void:
 	var expected: Dictionary = _json("valid", "faction.json").lores[0].entries[0]
 	assert_eq(_load("valid").lores[0].entries[0].casting_value, int(expected.casting_value))
@@ -145,6 +156,19 @@ func test_warscroll_characteristics_are_ints_from_file() -> void:
 		assert_typeof(value, TYPE_INT)
 	assert_eq(actual, [int(expected.move), int(expected.health), int(expected.save), int(expected.ward),
 			int(expected.control)])
+
+
+func test_warscroll_banishment_is_int_from_file() -> void:
+	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[2]
+	var unit: Warscroll = _load("valid").warscrolls[2]
+	assert_typeof(unit.banishment, TYPE_INT)
+	assert_eq(unit.banishment, int(expected.banishment))
+
+
+func test_absent_banishment_defaults_to_zero() -> void:
+	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0]
+	assert_false(expected.has("banishment"), "fixture warscroll should omit banishment")
+	assert_eq(_load("valid").warscrolls[0].banishment, 0)
 
 
 func test_warscroll_battle_profile_comes_from_file() -> void:
@@ -369,6 +393,33 @@ func test_fractional_lore_points_returns_null() -> void:
 func test_fractional_lore_points_error_names_file_and_field_path() -> void:
 	assert_true(_has_error_naming(_errors("fractional_lore_points"), "faction.json", "lores[0].points"),
 			str(_errors("fractional_lore_points")))
+
+
+func test_fractional_banishment_returns_null() -> void:
+	assert_null(_load("fractional_banishment"))
+
+
+func test_fractional_banishment_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("fractional_banishment"), "warscrolls.json", "warscrolls[0].banishment"),
+			str(_errors("fractional_banishment")))
+
+
+func test_wrong_type_banishment_returns_null() -> void:
+	assert_null(_load("wrong_type_banishment"))
+
+
+func test_wrong_type_banishment_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_banishment"), "warscrolls.json", "warscrolls[0].banishment"),
+			str(_errors("wrong_type_banishment")))
+
+
+func test_wrong_type_lore_source_returns_null() -> void:
+	assert_null(_load("wrong_type_lore_source"))
+
+
+func test_wrong_type_lore_source_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_lore_source"), "faction.json", "lores[0].source"),
+			str(_errors("wrong_type_lore_source")))
 
 
 func test_main_warscroll_without_points_returns_null() -> void:

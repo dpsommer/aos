@@ -25,6 +25,8 @@ extends Resource
 ## The x of an x+ ward roll. 0 if the unit has no ward.
 @export var ward: int
 @export var control: int
+## Banishment value of a manifestation. 0 for other units.
+@export var banishment: int
 
 @export_group("Rules")
 @export var ranged_weapons: Array[Weapon]

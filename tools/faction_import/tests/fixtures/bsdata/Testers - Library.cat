@@ -133,6 +133,28 @@ That unit must be wholly within 12".
         <categoryLink id="cl-sum-1" name="MANIFESTATION" targetId="c-man" primary="false"/>
       </categoryLinks>
     </selectionEntry>
+    <selectionEntry id="u-wraith" name="Test Wraith" type="unit" publicationId="pub-bt">
+      <profiles>
+        <profile id="p-wraith-manif" name="Test Wraith" typeId="manif" typeName="Manifestation">
+          <characteristics>
+            <characteristic name="Move" typeId="mv">8"</characteristic>
+            <characteristic name="Health" typeId="hp">7</characteristic>
+            <characteristic name="Save" typeId="sv">5+</characteristic>
+            <characteristic name="Banishment" typeId="ban">6+</characteristic>
+          </characteristics>
+        </profile>
+        <profile id="p-wraith-tithe" name="Wraith Offering" typeId="ab-tithe" typeName="Ability (Blood Tithe)">
+          <characteristics>
+            <characteristic name="Timing" typeId="tim">Your Hero Phase</characteristic>
+            <characteristic name="Effect" typeId="eff">Gain 1 tithe point.</characteristic>
+          </characteristics>
+          <attributes><attribute name="Type" typeId="t">Special</attribute></attributes>
+        </profile>
+      </profiles>
+      <categoryLinks>
+        <categoryLink id="cl-wra-1" name="MANIFESTATION" targetId="c-man" primary="false"/>
+      </categoryLinks>
+    </selectionEntry>
     <selectionEntry id="u-anvil" name="Anvil of Apotheosis - Champion" type="unit" publicationId="pub-bt"/>
   </sharedSelectionEntries>
 </catalogue>

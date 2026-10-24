@@ -102,6 +102,12 @@
         <selectionEntry id="o-lore-testing" name="Lore of Testing" type="upgrade">
           <entryLinks><entryLink id="l-lore-testing" name="Lore of Testing" targetId="lg-testing" type="selectionEntryGroup"/></entryLinks>
         </selectionEntry>
+        <selectionEntry id="o-lore-embers" name="Lore of Embers" type="upgrade">
+          <entryLinks><entryLink id="l-lore-embers" name="Lore of Embers" targetId="lg-embers" type="selectionEntryGroup"/></entryLinks>
+        </selectionEntry>
+        <selectionEntry id="o-lore-ashes" name="Lore of Ashes" type="upgrade" publicationId="pub-soa">
+          <entryLinks><entryLink id="l-lore-ashes" name="Lore of Ashes" targetId="lg-ashes" type="selectionEntryGroup"/></entryLinks>
+        </selectionEntry>
         <selectionEntry id="o-lore-core" name="Universal Spell Lore" type="upgrade">
           <entryLinks><entryLink id="l-lore-core" name="Universal Spell Lore" targetId="lg-core" type="selectionEntryGroup"/></entryLinks>
         </selectionEntry>

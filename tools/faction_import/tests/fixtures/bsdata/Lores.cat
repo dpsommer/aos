@@ -55,5 +55,27 @@
         </selectionEntry>
       </selectionEntries>
     </selectionEntryGroup>
+    <selectionEntryGroup id="lg-embers" name="Lore of Embers" publicationId="pub-soa">
+      <selectionEntries>
+        <selectionEntry id="ls-ember" name="Ember Bolt" type="upgrade">
+          <profiles>
+            <profile id="p-ls-ember" name="Ember Bolt" typeId="ab" typeName="Ability (Spell)">
+              <characteristics><characteristic name="Effect" typeId="eff">Embers.</characteristic></characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="lg-ashes" name="Lore of Ashes">
+      <selectionEntries>
+        <selectionEntry id="ls-ash" name="Ash Cloud" type="upgrade">
+          <profiles>
+            <profile id="p-ls-ash" name="Ash Cloud" typeId="ab" typeName="Ability (Spell)">
+              <characteristics><characteristic name="Effect" typeId="eff">Ashes.</characteristic></characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
   </sharedSelectionEntryGroups>
 </catalogue>

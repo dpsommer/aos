@@ -154,11 +154,72 @@ def test_ability_name_can_be_overridden():
     assert bsdata.ability(p, "Entry Name")["name"] == "Entry Name"
 
 
+# is_ability()
+
+@pytest.mark.parametrize("type_name", ["Ability (Passive)", "Ability (Spell)", "Ability (Blood Tithe)"])
+def test_ability_typed_profile_is_an_ability(type_name):
+    assert bsdata.is_ability(profile('typeName="%s">' % type_name))
+
+
+@pytest.mark.parametrize("type_name", ["Ranged Weapon", "Melee Weapon", "Unit", "Manifestation", "Abilities"])
+def test_other_profile_types_are_not_abilities(type_name):
+    assert not bsdata.is_ability(profile('typeName="%s">' % type_name))
+
+
+def test_profile_without_type_is_not_an_ability():
+    assert not bsdata.is_ability(profile('name="Untyped">'))
+
+
+def element(tag_name, xml):
+    return ET.fromstring('<%s xmlns="%s" %s</%s>' % (tag_name, NS, xml, tag_name))
+
+
+FACTION_TYPED_PROFILE = ('<profiles><profile id="p-x" name="Tithe Rite" typeName="Ability (Blood Tithe)">'
+                         '<characteristics><characteristic name="Effect">Gain a point.</characteristic>'
+                         '</characteristics></profile></profiles>')
+
+
+def test_faction_specific_ability_is_a_battle_trait():
+    root = element("catalogue", '><sharedSelectionEntries><selectionEntry id="t" name="Battle Traits: Testers">'
+                     + FACTION_TYPED_PROFILE + '</selectionEntry></sharedSelectionEntries>')
+    assert [a["name"] for a in bsdata.battle_traits(root, FACTION)] == ["Tithe Rite"]
+
+
+def test_faction_specific_ability_is_an_enhancement_profile():
+    entry = element("selectionEntry", 'id="e" name="Tithe Relic">' + FACTION_TYPED_PROFILE)
+    assert bsdata.enhancement(None, entry)["effect"] == "Gain a point."
+
+
+def test_faction_specific_ability_is_on_warscroll(faction_data):
+    assert ability_of(faction_data, "Test Wraith", "Wraith Offering")["timing"] == "Your Hero Phase"
+
+
+def test_manifestation_profile_is_not_a_warscroll_ability(faction_data):
+    assert "Test Wraith" not in {a["name"] for a in warscroll(faction_data, "Test Wraith")["abilities"]}
+
+
 # warscroll()
 
 def test_warscroll_stats_are_ints(faction_data):
     w = warscroll(faction_data, "Test Captain")
     assert (w["move"], w["health"], w["save"], w["control"]) == (5, 6, 4, 2)
+
+
+def test_manifestation_stats_come_from_manifestation_profile(faction_data):
+    w = warscroll(faction_data, "Test Wraith")
+    assert (w["move"], w["health"], w["save"]) == (8, 7, 5)
+
+
+def test_manifestation_banishment_is_an_int(faction_data):
+    assert warscroll(faction_data, "Test Wraith")["banishment"] == 6
+
+
+def test_manifestation_has_no_control(faction_data):
+    assert warscroll(faction_data, "Test Wraith")["control"] == 0
+
+
+def test_ordinary_unit_has_no_banishment(faction_data):
+    assert "banishment" not in warscroll(faction_data, "Test Captain")
 
 
 def test_ward_comes_from_ward_category(faction_data):
@@ -377,6 +438,31 @@ def test_lore_points_come_from_option_cost(faction_data):
 
 def test_lore_without_cost_has_no_points(faction_data):
     assert "points" not in named(faction_data[0]["lores"], "Lore of Testing")
+
+
+def test_lore_source_comes_from_linked_lore_publication(faction_data):
+    assert named(faction_data[0]["lores"], "Lore of Embers")["source"] == "Scourge of Aqshy"
+
+
+def test_lore_source_falls_back_to_option_publication(faction_data):
+    assert named(faction_data[0]["lores"], "Lore of Ashes")["source"] == "Scourge of Aqshy"
+
+
+def test_battletome_lore_has_no_source(faction_data):
+    assert "source" not in named(faction_data[0]["lores"], "Lore of Testing")
+
+
+def test_linked_lore_publication_wins_over_option_publication(tmp_path):
+    d = fixture_copy(tmp_path)
+    gst = d / "Test System.gst"
+    gst.write_text(gst.read_text(encoding="utf-8").replace(
+        "</publications>", '<publication id="pub-sog" name="Scourge of Ghyran"/></publications>'), encoding="utf-8")
+    cat = d / (FACTION + ".cat")
+    cat.write_text(cat.read_text(encoding="utf-8").replace(
+        'id="o-lore-embers" name="Lore of Embers" type="upgrade"',
+        'id="o-lore-embers" name="Lore of Embers" type="upgrade" publicationId="pub-sog"'), encoding="utf-8")
+    faction, _, _ = bsdata.read_faction(bsdata.Catalogues(str(d)), FACTION)
+    assert named(faction["lores"], "Lore of Embers")["source"] == "Scourge of Aqshy"
 
 
 # Armies of Renown

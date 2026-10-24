@@ -5,7 +5,6 @@
 	"fields": {
 		"Hateful Fractures": {"casting_value": 6},
 		"Ashen Smog": {"casting_value": 7},
-		"Shackling Curse": {"casting_value": 6},
-		"the_blood_of_the_bull": {"base_size": "Zuldrakka the Hateful: 32mm, Grisk Back-stabba: 25mm, Tokkor the Immolator, Morudok and Imnidrini: 28.5mm"}
+		"Shackling Curse": {"casting_value": 6}
 	}
 }

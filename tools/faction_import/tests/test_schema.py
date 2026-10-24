@@ -59,6 +59,14 @@ def test_warscroll_without_profile_keeps_stats():
     assert schema.warscroll(ws(), with_profile=False)["health"] == 4
 
 
+def test_warscroll_keeps_set_banishment():
+    assert schema.warscroll(ws(banishment=6))["banishment"] == 6
+
+
+def test_warscroll_omits_zero_banishment():
+    assert "banishment" not in schema.warscroll(ws(banishment=0))
+
+
 def test_warscroll_drops_unknown_fields():
     assert "slug" not in schema.warscroll(ws(slug="test-riders"))
 

@@ -47,6 +47,8 @@ def warscroll(w, with_profile=True):
         out[k] = w.get(k, 0)
     if w.get("ward"):
         out["ward"] = w["ward"]
+    if w.get("banishment"):
+        out["banishment"] = w["banishment"]
     out["ranged_weapons"] = [weapon(x) for x in w.get("ranged_weapons", [])]
     out["melee_weapons"] = [weapon(x) for x in w.get("melee_weapons", [])]
     out["abilities"] = [ability(a) for a in w.get("abilities", [])]

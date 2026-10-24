@@ -170,6 +170,32 @@ func test_warscroll_ward_value_is_shown() -> void:
 	assert_string_contains(RulesFormatter.warscroll(unit), "%d+" % unit.ward)
 
 
+func test_warscroll_with_banishment_shows_banishment_column() -> void:
+	assert_string_contains(RulesFormatter.warscroll(_warscroll({banishment = 7})), "Banishment")
+
+
+func test_warscroll_with_banishment_shows_value_as_roll() -> void:
+	var unit := _warscroll({banishment = 7})
+	assert_string_contains(RulesFormatter.warscroll(unit), "%d+" % unit.banishment)
+
+
+func test_warscroll_with_banishment_replaces_control_column() -> void:
+	assert_false("Control" in RulesFormatter.warscroll(_warscroll({banishment = 7})))
+
+
+func test_warscroll_with_banishment_has_same_column_count() -> void:
+	var with_banishment := RulesFormatter.warscroll(_warscroll({banishment = 7}))
+	assert_eq(with_banishment.count("[cell]"), RulesFormatter.warscroll(_warscroll()).count("[cell]"))
+
+
+func test_warscroll_without_banishment_shows_control_column() -> void:
+	assert_string_contains(RulesFormatter.warscroll(_warscroll()), "Control")
+
+
+func test_warscroll_without_banishment_omits_banishment_column() -> void:
+	assert_false("Banishment" in RulesFormatter.warscroll(_warscroll()))
+
+
 func test_warscroll_contains_ranged_weapon_name_and_profile() -> void:
 	var weapon := _weapon("Made-up Gun", 18)
 	var weapons: Array[Weapon] = [weapon]
@@ -271,6 +297,19 @@ func test_lore_omits_points_when_zero() -> void:
 	var lore := Lore.new()
 	lore.name = "Made-up Lore"
 	assert_false("pts" in RulesFormatter.lore(lore))
+
+
+func test_lore_contains_source_when_set() -> void:
+	var lore := Lore.new()
+	lore.name = "Made-up Lore"
+	lore.source = "Made-up Expansion"
+	assert_string_contains(RulesFormatter.lore(lore), lore.source)
+
+
+func test_lore_omits_source_when_empty() -> void:
+	var lore := Lore.new()
+	lore.name = "Made-up Lore"
+	assert_false("()" in RulesFormatter.lore(lore))
 
 
 func test_battle_formation_contains_name_points_and_abilities() -> void:

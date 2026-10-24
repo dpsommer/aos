@@ -1,0 +1,19 @@
+{
+	"warscroll_names": {
+		"Khorgos Khul": "Korghos Khul"
+	},
+	"fields": {
+		"lord_of_khorne_on_juggernaut": {"move": 10},
+		"skarr_bloodwrath": {"health": 6, "ward": 0, "keywords": ["HERO", "UNIQUE", "CHAOS", "BLADES OF KHORNE", "BLOODBOUND", "INFANTRY"]},
+		"skullmaster_herald_of_khorne": {"move": 10},
+		"skullgrinder": {"control": 2},
+		"valkia_the_bloody": {"ward": 6, "keywords": ["HERO", "UNIQUE", "CHAOS", "BLADES OF KHORNE", "BLOODBOUND", "INFANTRY", "FLY", "WARD (6+)"]},
+		"khul_ascended": {"keywords": ["HERO", "CHAOS", "BLADES OF KHORNE", "WARMASTER", "UNIQUE", "INFANTRY", "FLY", "DAEMON", "WARD (5+)"]},
+		"Obliterating Charge": {"name": "Drawn to Carnage"},
+		"gorechosen_of_dromm > Grisly Trophies": {"name": "Dromm, Wounder of Worlds"},
+		"realmgore_ritualist > Ritual Athame": {"name": "Ritual Dagger"},
+		"claws_of_karanak": {"base_size": "Packlord: 40mm, Hound of Wrath: 60 × 35mm, 2 x Brutalisers: 32mm, 4 x Blood Whelps: 28.5mm"},
+		"gorechosen_of_dromm": {"base_size": "Dromm and Gorehulk: 40mm, Skullgrinder Herax: 40mm"},
+		"skull_altar": {"base_size": ""}
+	}
+}

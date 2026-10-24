@@ -139,6 +139,7 @@ func _lores(data: Dictionary, path: String) -> Array[Lore]:
 			lore.name = _string(items[i], "name", lore_path, true)
 			lore.kind = _string(items[i], "kind", lore_path)
 			lore.points = _int(items[i], "points", lore_path)
+			lore.source = _string(items[i], "source", lore_path)
 			lore.entries = _abilities(items[i], "entries", lore_path)
 		result.append(lore)
 	return result
@@ -187,6 +188,7 @@ func _warscroll(data: Variant, path: String, with_profile: bool) -> Warscroll:
 	warscroll.save = _int(data, "save", path, true)
 	warscroll.ward = _int(data, "ward", path)
 	warscroll.control = _int(data, "control", path, true)
+	warscroll.banishment = _int(data, "banishment", path)
 	warscroll.ranged_weapons = _weapons(data, "ranged_weapons", path)
 	warscroll.melee_weapons = _weapons(data, "melee_weapons", path)
 	warscroll.abilities = _abilities(data, "abilities", path)

@@ -27,10 +27,13 @@ def norm_text(text):
 
 
 def wahapedia_warscroll(raw):
-    """A Wahapedia warscroll in the schema's shape (move as inches)."""
+    """A Wahapedia warscroll in the schema's shape (move as inches). Wahapedia shows a
+    manifestation's banishment value where other warscrolls show Control."""
     w = dict(raw)
     m = re.match(r"(\d+)", (raw.get("move") or "").strip())
     w["move"] = int(m.group(1)) if m else 0
+    if "MANIFESTATION" in w.get("keywords", []):
+        w["banishment"], w["control"] = w.get("control", 0), 0
     return w
 
 
@@ -51,9 +54,13 @@ def pair(report, where, bs_items, wh_items, key=lambda x: x["name"]):
         if wh is not None:
             wh_left.remove(wh)
         pairs.append([bs, wh])
+    def words(x):
+        return sorted(re.findall(r"[a-z0-9]+", key(x).lower().replace("’", "'")))
     for p in pairs:
         if p[1] is None:
-            close = [w for w in wh_left if difflib.SequenceMatcher(None, norm(key(p[0])), norm(key(w))).ratio() >= 0.85]
+            # Same words in another order: "Bloodthirster, Wrath of Khorne" / "Wrath of Khorne Bloodthirster".
+            close = [w for w in wh_left if words(w) == words(p[0])] or \
+                [w for w in wh_left if difflib.SequenceMatcher(None, norm(key(p[0])), norm(key(w))).ratio() >= 0.85]
             if len(close) == 1:
                 p[1] = close[0]
                 wh_left.remove(close[0])
@@ -75,7 +82,7 @@ class Report:
 def compare_ability(report, where, bs, wh):
     for field in ("timing", "frequency", "casting_value", "chanting_value", "points"):
         if (bs.get(field) or "") != (wh.get(field) or "") and (bs.get(field) or wh.get(field)):
-            if field == "timing" and norm_text(bs.get(field)) == norm_text(wh.get(field)):
+            if field == "timing" and norm_text(bs.get(field)).rstrip(".") == norm_text(wh.get(field)).rstrip("."):
                 continue
             report.differ(where + " > " + bs["name"], field, bs.get(field), wh.get(field))
     for field in ("declare", "effect"):
@@ -100,7 +107,7 @@ def compare_abilities(report, where, bs_list, wh_list):
 
 def compare_warscroll(report, bs, wh):
     where = "warscroll " + bs["name"] + (" (%s)" % bs["source"] if bs.get("source") else "")
-    for field in ("points", "unit_size", "move", "health", "save", "control", "ward", "can_reinforce", "legends"):
+    for field in ("points", "unit_size", "move", "health", "save", "control", "ward", "banishment", "can_reinforce", "legends"):
         if (bs.get(field) or 0) != (wh.get(field) or 0):
             report.differ(where, field, bs.get(field), wh.get(field))
     if norm_text(bs.get("base_size")) != norm_text(wh.get("base_size")):

@@ -35,6 +35,18 @@
 			"save": 3,
 			"control": 2,
 			"abilities": [{"name": "Unit Two Ability", "effect": "Effect."}]
+		},
+		{
+			"id": "manifestation_one",
+			"name": "Manifestation One",
+			"points": 0,
+			"unit_size": 1,
+			"move": 6,
+			"health": 8,
+			"save": 5,
+			"control": 0,
+			"banishment": 7,
+			"keywords": ["MANIFESTATION"]
 		}
 	]
 }

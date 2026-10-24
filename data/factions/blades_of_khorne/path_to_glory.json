@@ -1,0 +1,88 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Blades of Khorne army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Blades ofKhorne units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/ or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Pick an archetype.\n4. Pick an origin and/or flaw.\n5. Pick a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nBloodbutcher | 10 | 150\nGore Chieftain | 30 | 250\nBrass Overlord | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "blades_of_khorne_hero",
+					"name": "Blades of Khorne Hero",
+					"move": 5,
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Blood-slick Weapon",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Blood-hungry"
+							]
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"CHAOS",
+						"BLADES OF KHORNE"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Pick an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nKhornate Warlord\n-2DP\nYour hero gains the BLOODBOUND keyword and the regiment options below. In addition, change your hero’s Save characteristic to 3+ and change their melee weapon to the profile below:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGreat Blood-slick Weapon\nBlood-hungry, Crit (2 Hits) | 5 | 3+ | 3+ | 1 | 2\nRegiment Options | Any BLOODBOUND units\nDaemon of Violence\n-2DP\nYour hero gains the DAEMON keyword and the regiment options below. In addition, your hero has WARD (6+) and change their melee weapon to the profile below:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nBloodshed Blade\nBlood-hungry, Crit (2 Hits) | 5 | 3+ | 3+ | 1 | 2\nRegiment Options | Any BLADES OF KHORNE DAEMON units\nPriest of Khorne\n-4DP\nYour hero gains the BLOODBOUND and PRIEST (1) keywords and the regiment options below:\nRegiment Options | Any BLOODBOUND units\nLocus of Battle\n-2DP\nYour hero gains the BLOODBOUND keyword and the regiment options below. In addition, change your hero’s Save characteristic to 3+.\nRegiment Options | Any BLADES OF KHORNE units\nScorched Acolyte\n-4DP\nYour hero gains the DAEMON and PRIEST (1) keywords and has the regiment options below. In addition, your hero has WARD (6+).\nRegiment Options | Any BLADES OF KHORNE DAEMON units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-2DP\nTITAN SLAYER\nEffect: This unit cannot be picked to be the target of RAMPAGE abilities used by enemy units.\nPassive\n-2DP\nRED RAIDER\nEffect: Add 1 to hit rolls for this unit if it charged in the same turn.\nPassive\n-2DP\nHUNTER OF SOULS\nEffect: You can re-roll run rolls for this unit.\nPassive\n-6DP\nDEVOTED FOLLOWERS\nEffect: While this unit is within the combat range of a friendly non- HERO unit, this unit is not visible to enemy units more than 6\" away."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+2DP\nA TRUE BERSERKER\nEffect: This unit has a maximum control score of 1 that cannot be modified.\nPassive\n+3DP\nWILLING SACRIFICE\nEffect: This unit cannot be healed.\nEnd of Any Turn\n+4DP\nKHORNE'S RETRIBUTION\nDeclare: This unit must use this ability.\nEffect: If an enemy unit has not been destroyed by this unit this battle, inflict 1 mortal damage on this unit.\nEnd of Any Turn\n+4DP\nKIN-KILLER\nDeclare: This unit must use this ability.\nEffect: Inflict D3 mortal damage on every other friendly unit within 3\" of this unit."
+		},
+		{
+			"name": "Step 5 - Pick a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-5DP\nBLOOD THRONE: Roaring, howling daemon engines with a taste for flesh, the Blood Thrones make for a fearsome sight.\nAdd the following weapon to your hero's warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nDaemon Rider’s Hellblades\nBlood-hungry, Companion | 4 | 3+ | 3+ | 1 | 1\nIn addition, make the following changes to your hero's warscroll:\nChange the Move characteristic to 8\".\nChange the Health characteristic to 10.\nReplace the INFANTRY keyword with the WAR MACHINE keyword.\nBattle Mount\n-5DP\nJUGGERNAUT: A clanking, daemonic beast of brass and iron, a Juggernaut must be coaxed from the depths of the Brass Citadel. To force one into servitude is a true test of will.\nAdd the following weapon to your hero's warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nJuggernaut's Brass-shod Hooves\nCompanion | 2 | 4+ | 3+ | 1 | D3\nIn addition, make the following changes to your hero's warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 8.\nIf this unit is BLOODBOUND, change the Save characteristic to 2+.\nIf this unit is DAEMON, change the Save characteristic to 3+.\nReplace the INFANTRY keyword with the CAVALRY keyword."
+		},
+		{
+			"name": "Step 6 - Pick any Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nFurious Haste\n-2DP\nAdd 2\" to your hero's Move characteristic.\nSpikes and Blades\n-2DP\nYour hero’s Companion weapons have Crit (Mortal).\nStudded Brass Hide\n-3DP\nAdd 2 to your hero's Health characteristic.\nPulverising Charge\n-4DP\nAdd the following ability to your hero's warscroll:\nAny Charge Phase\nPULVERISING CHARGE\nDeclare: If this unit charged this turn, pick an enemy unit within l\" of it to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nAnathemic Runescars\n-4DP\nAdd the following ability to your hero's warscroll:\nPassive\nANATHEMIC RUNESCARS\nEffect: The unit has WARD (4+) against damage inflicted by SPELL abilities and abilities used by MANIFESTATIONS.\nEager Killer\n-5DP\nAdd the following ability to your hero's warscroll:\nReaction: You declared a CHARGE ability for this hero\nEAGER KILLER\nEffect: Add D3 to the charge roll.\nAnointed with Gore\n-5DP\nAdd the following ability to your hero's warscroll:\nAny Combat Phase\nANOINTED WITH GORE\nDeclare: If this unit charged this turn, pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target."
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nTrophy Racks\n-1DP\nAdd 2 to your hero's Control characteristic.\nKiller's Heirloom\n-2DP\nThe Wound characteristic of your hero’s Blood-slick Weapon is 3+.\nSlaughterous Speed\n-2DP\nINFANTRY only. Add 1\" to your hero’s Move characteristic.\nPreferred Prey\n-3DP\nYour hero’s melee weapon has Anti-X (+1 Rend), where X is 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHINE, WIZARD or PRIEST.\nBlood-crazed Stare\n-2DP\nYour hero cannot be picked to be the target of RAMPAGE abilities used by enemy units.\nBrass Collar\n-4DP\nSubtract 1 from casting rolls for WIZARDS while they are within 12\" of your hero.\nLeathery Wings\n-4DP\nINFANTRY only. Your hero has FLY.\nEnsorcelled Plate\n-5DP\nNon- CAVALRY only. Subtract 1 from the Rend characteristic of melee weapons used for attacks that target your hero.\nRuthless Savagery\n-6DP\nYour hero has the following ability:\nPassive\nRUTHLESS SAVAGERY\nEffect: If an unmodified charge roll for this unit was 8+, it has STRIKE-FIRST for the rest of the turn.\nBlind to all but Hate\n-6DP\nYour hero has the following ability:\nEnd of Enemy Turn\nBLIND TO ALL BUT HATE\nDeclare: Pick a visible enemy unit that destroyed a friendly unit this turn and is within 12\" of this unit to be the target.\nEffect: Until the end of your next turn, add 1 to wound rolls for combat attacks that target that enemy unit.\nButcher's Brawn\n-6DP\nAdd 1 to the Damage characteristic of your hero’s non- Companion melee weapons.\nBloody Prophet\n-6DP\nPRIEST only. Add 1 to chanting rolls and banishment rolls for your hero."
+		},
+		{
+			"name": "Path of The Slaughterer",
+			"text": "(BLADES OF KHORNE HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nReaction: Opponent declared a FIGHT ability for a unit in combat with this unit\nINVIGORATED BY WRATH\nEffect: This unit can immediately make a pile-in move.\nReaction: This unit was targeted by a FIGHT ability\nBLOOD-BLIND\nEffect: Roll a D3. On a 2+, after that FIGHT ability has been resolved, inflict an amount of mortal damage on the enemy unit using that FIGHT ability equal to the roll.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nBRUTAL ONSLAUGHT\nEffect: Add 1 to charge rolls for this unit.\nReaction: Your Movement Phase\nDOMINATING POWERHOUSE\nEffect: This unit can move D6\". It must end that move in combat.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nBREAKER OF THE ARCANE\nEffect: This unit can use UNBIND abilities as if it had WIZARD (1). Each time this unit unbinds a spell, subtract 1 from the power level of the WIZARD using that SPELL ability, to a minimum of 0, for the rest of the battle.\nAn enemy WIZARD can be affected by this ability multiple times and the effects are cumulative.\nOnce Per Turn, Reaction: Opponent declared a PRAYER ability for a PRIEST within 12\" of this unit\nLOCUS OF RED DEVOTION\nEffect: The chanting roll must be re-rolled.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Combat Phase\nVESSEL OF MURDER\nDeclare: Pick all enemy units in combat with this unit to be targets.\nEffect: Roll 8 dice. For each roll of 3-5, inflict 1 mortal damage on each target. For each 6, inflict D3 mortal damage on each target.\nOnce Per Battle, Any Combat Phase\nWHIRLWIND OF ANNIHILATION\nEffect: This unit can use 2 FIGHT abilities this phase. After the first is used, this unit has STRIKE-LAST for the rest of the turn."
+		},
+		{
+			"name": "Path of Brazen Butchery",
+			"text": "(non- HERO BLADES OF KHORNE unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSHIELD-BREAKERS\nEffect: Enemy units in combat with this unit cannot use the’ All-out Defence’ command.\nEnd of Any Turn\nPACK OF MURDERERS\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 4+, the target cannot use RETREAT abilities until the start of your next turn.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSAVAGE CONQUERORS\nEffect: Add 1 to wound rolls for this unit’s attacks that target an enemy unit contesting an objective that you do not control.\nPassive\nSOUL-EATING RAGE\nEffect: Subtract 1 from ward rolls for enemy units while they are in combat with this unit.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSPELL-KILLERS\nEffect: Enemy MANIFESTATIONS in combat with this unit have STRIKE-LAST.\nReaction: You declared a CHARGE ability for this unit\nLOPING PURSUIT\nEffect: If the charge roll was 5 or less, you can re-roll 1 of the dice.\nLEGENDARY: When a unit on this Path gains this rank, pick l of the following abilities for them:\nOnce Per Battle, Any Combat Phase\nINFAMOUS WARCRY\nDeclare: If this unit charged this turn, pick each friendly unit within 3\" of this unit to be the targets.\nEffect: Roll a dice for each target. If the result exceeds the target’s Control characteristic, for the rest of the turn, add 1 to the Rend characteristic of the target’s melee weapons.\nOnce Per Turn (Army), End of Any Turn\nREVENANTS IN RED\nEffect: If any enemy units were destroyed this turn while they were in combat with this unit, Heal (X) this unit, where X is the number of damage points this unit has."
+		}
+	]
+}

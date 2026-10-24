@@ -48,6 +48,8 @@ static func enhancement_table(table: EnhancementTable) -> String:
 
 static func lore(rules: Lore) -> String:
 	var title := rules.name if rules.points == 0 else "%s (%d pts)" % [rules.name, rules.points]
+	if not rules.source.is_empty():
+		title += " (%s)" % rules.source
 	return "%s\n\n%s" % [heading(title), abilities(rules.entries)]
 
 
@@ -160,8 +162,10 @@ static func heading(title: String) -> String:
 
 
 static func _characteristics(unit: Warscroll) -> String:
-	var headers := ["Move", "Health", "Save", "Control"]
-	var values := ['%d"' % unit.move if unit.move > 0 else "-", str(unit.health), "%d+" % unit.save, str(unit.control)]
+	# Manifestations have a banishment value in place of Control.
+	var headers := ["Move", "Health", "Save", "Banishment" if unit.banishment > 0 else "Control"]
+	var values := ['%d"' % unit.move if unit.move > 0 else "-", str(unit.health), "%d+" % unit.save,
+			"%d+" % unit.banishment if unit.banishment > 0 else str(unit.control)]
 	if unit.ward > 0:
 		headers.append("Ward")
 		values.append("%d+" % unit.ward)

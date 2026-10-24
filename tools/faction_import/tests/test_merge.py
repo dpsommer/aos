@@ -112,6 +112,68 @@ def test_pair_skips_ambiguous_similar_names():
     assert pairs[0][1] is None
 
 
+def test_pair_matches_names_with_reordered_words():
+    pairs, _ = merge.pair(merge.Report(), "x", [{"name": "Bloodthirster, Wrath of Khorne"}],
+                          [{"name": "Wrath of Khorne Bloodthirster"}])
+    assert pairs[0][1] == {"name": "Wrath of Khorne Bloodthirster"}
+
+
+def test_pair_reports_reordered_word_matches():
+    report = merge.Report()
+    merge.pair(report, "x", [{"name": "Bloodthirster, Wrath of Khorne"}], [{"name": "Wrath of Khorne Bloodthirster"}])
+    assert len(report.lines) == 1 and "Wrath of Khorne Bloodthirster" in report.lines[0]
+
+
+def test_pair_reordered_word_match_wins_over_similar_name():
+    pairs, _ = merge.pair(merge.Report(), "x", [{"name": "Hound, Iron"}],
+                          [{"name": "Hounds, Iron"}, {"name": "Iron Hound"}])
+    assert pairs[0][1] == {"name": "Iron Hound"}
+
+
+def test_pair_does_not_match_names_with_different_words():
+    pairs, _ = merge.pair(merge.Report(), "x", [{"name": "Wrath of Khorne"}], [{"name": "Khorne's Wrath Unbound"}])
+    assert pairs[0][1] is None
+
+
+# wahapedia_warscroll()
+
+def test_wahapedia_manifestation_control_becomes_banishment():
+    assert merge.wahapedia_warscroll(wh_ws(control=6, keywords=["MANIFESTATION"]))["banishment"] == 6
+
+
+def test_wahapedia_manifestation_has_no_control():
+    assert merge.wahapedia_warscroll(wh_ws(control=6, keywords=["MANIFESTATION"]))["control"] == 0
+
+
+def test_wahapedia_ordinary_warscroll_keeps_control():
+    assert merge.wahapedia_warscroll(wh_ws(control=2))["control"] == 2
+
+
+def test_wahapedia_ordinary_warscroll_has_no_banishment():
+    assert "banishment" not in merge.wahapedia_warscroll(wh_ws(control=2))
+
+
+def test_merge_reports_nothing_for_matching_manifestation():
+    report = merge.Report()
+    merge.merge_warscrolls(report, [ws(control=0, banishment=6, keywords=["MANIFESTATION"])],
+                           [wh_ws(control=6, keywords=["MANIFESTATION"])])
+    assert report.lines == []
+
+
+# compare_ability()
+
+def test_timings_differing_only_by_trailing_full_stop_are_not_reported():
+    report = merge.Report()
+    merge.compare_ability(report, "x", ab(timing="Your Movement Phase"), ab(timing="Your Movement Phase."))
+    assert report.lines == []
+
+
+def test_different_timings_are_reported():
+    report = merge.Report()
+    merge.compare_ability(report, "x", ab(timing="Your Movement Phase"), ab(timing="Your Charge Phase."))
+    assert len(report.lines) == 1 and "timing" in report.lines[0]
+
+
 # merge_warscrolls()
 
 @pytest.mark.parametrize("field,value", [

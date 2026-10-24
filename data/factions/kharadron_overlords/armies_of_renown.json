@@ -240,6 +240,7 @@
 			"lores": [
 				{
 					"name": "Prayer Lore",
+					"source": "White Dwarf",
 					"kind": "prayer",
 					"entries": [
 						{

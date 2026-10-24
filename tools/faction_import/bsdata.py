@@ -14,7 +14,13 @@ REPOSITORY = "https://github.com/BSData/age-of-sigmar-4th.git"
 DEFAULT_CHECKOUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "bsdata")
 
 ALLIANCES = ("ORDER", "CHAOS", "DEATH", "DESTRUCTION")
-ABILITY_TYPES = ("Ability (Passive)", "Ability (Activated)", "Ability (Spell)", "Ability (Prayer)", "Ability (Command)")
+
+
+def is_ability(profile):
+    """Ability profiles: Passive, Activated, Spell, Prayer, Command, and faction-specific
+    types such as "Ability (Blood Tithe)"."""
+    return (profile.get("typeName") or "").startswith("Ability (")
+
 LORE_GROUPS = {"Spell Lores": "spell", "Prayer Lores": "prayer", "Manifestation Lores": "manifestation"}
 # Shared entry groups that aren't enhancements: campaign content and lores.
 NOT_ENHANCEMENTS = {"Paths", "Battle Wounds + Scars", *LORE_GROUPS}
@@ -195,7 +201,7 @@ def split_options(effect):
 
 def abilities_in(el):
     """Ability profiles directly on an entry (not inside enhancements it links to)."""
-    return [ability(p) for p in kids(el, "profiles", "profile") if p.get("typeName") in ABILITY_TYPES]
+    return [ability(p) for p in kids(el, "profiles", "profile") if is_ability(p)]
 
 
 def unit_profiles(unit):
@@ -270,18 +276,21 @@ def warscroll(cats, unit, link=None):
     if base_size(unit):
         out["base_size"] = base_size(unit)
     profiles = unit_profiles(unit)
-    stats = next((characteristics(p) for p in profiles if p.get("typeName") == "Unit"), {})
+    # Manifestations have a Manifestation profile (Move, Health, Save, Banishment) instead.
+    stats = next((characteristics(p) for p in profiles if p.get("typeName") in ("Unit", "Manifestation")), {})
     out["move"] = int_or(stats.get("Move"))
     out["health"] = int_or(stats.get("Health"))
     out["save"] = int_or(stats.get("Save"))
     out["control"] = int_or(stats.get("Control"))
+    if stats.get("Banishment"):
+        out["banishment"] = int_or(stats["Banishment"])
     ward = next((int_or(k) for k in keywords if k.upper().startswith("WARD")), 0)
     if ward:
         out["ward"] = ward
     out["ranged_weapons"], out["melee_weapons"] = weapons(profiles)
     seen, out["abilities"] = set(), []
     for p in profiles:
-        if p.get("typeName") in ABILITY_TYPES and p.get("name") not in seen:
+        if is_ability(p) and p.get("name") not in seen:
             seen.add(p.get("name"))
             out["abilities"].append(ability(p))
     out["keywords"] = [k.upper() for k in keywords if k not in NOT_KEYWORDS]
@@ -312,7 +321,7 @@ def points(entry):
 
 
 def enhancement(cats, entry):
-    profile = next((p for p in kids(entry, "profiles", "profile") if p.get("typeName") in ABILITY_TYPES), None)
+    profile = next((p for p in kids(entry, "profiles", "profile") if is_ability(p)), None)
     out = ability(profile, entry.get("name")) if profile is not None else {"name": entry.get("name"), "category": "", "timing": "", "effect": ""}
     if points(entry):
         out["points"] = points(entry)
@@ -359,6 +368,9 @@ def lores(cats, root, owner=""):
                 if target is None or cats.publication(target).startswith(("Core Rules", "General's Handbook")):
                     continue
                 lore = {"name": short_name(option.get("name"), owner), "kind": kind}
+                source = source_of(cats.publication(target)) or source_of(cats.publication(option))
+                if source:
+                    lore["source"] = source
                 if points(option):
                     lore["points"] = points(option)
                 lore["entries"] = [a for e in kids(target, "selectionEntries", "selectionEntry") for a in abilities_in(e)]
