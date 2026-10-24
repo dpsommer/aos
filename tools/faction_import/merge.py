@@ -222,7 +222,8 @@ def resolve(name, names):
     """Match a Spearhead army list entry to a warscroll name. Lists sometimes shorten names,
     e.g. "Dominator Engine" for "Dominator Engine with Immolation Cannons", or reorder them,
     e.g. "Freeguild Command Corps Whisperblade" for "Whisperblade, Freeguild Command Corps", or
-    use the singular, e.g. "Sunsteala Wheela" for "Sunsteala Wheelas"."""
+    use the singular, e.g. "Sunsteala Wheela" for "Sunsteala Wheelas", or misspell them, e.g.
+    "lronguts" for "Ironguts"."""
     if name in names:
         return name
     if name + "s" in names:
@@ -231,6 +232,8 @@ def resolve(name, names):
     if not matches:
         words = sorted(re.findall(r"[\w'’-]+", name.lower()))
         matches = [n for n in names if sorted(re.findall(r"[\w'’-]+", n.lower())) == words]
+    if not matches:
+        matches = [n for n in names if difflib.SequenceMatcher(None, norm(name), norm(n)).ratio() >= 0.85]
     if len(matches) != 1:
         raise SystemExit("cannot resolve Spearhead unit %r among %s" % (name, names))
     return matches[0]
@@ -245,8 +248,10 @@ def spearheads(wh_list, bs_names):
         names = [w["name"] for w in warscrolls]
         army = "\n".join(c for row in s["army"] for c in row)
         m = re.search(r"General\s+(.+?)\s+Units\s+(.+)$", army, re.S)
-        # The general can carry token notes, e.g. "Jorvan Kreel (Thexa, the ash panther, is a token)".
-        general = re.sub(r"(\s*\([^()]*\))+$", "", m.group(1))
+        # The general can carry token notes, e.g. "Jorvan Kreel (Thexa, the ash panther, is a token)"
+        # or "Mantrappers with 3 Gnoblar tokens, ...", and a designer's note, which joins the text.
+        general, _, note = m.group(1).partition("\nDesigner’s Note:")
+        general = re.sub(r"(\s*\([^()]*\))+$|\s+with \d+ .+$", "", general)
         general = resolve(canonical.get(norm(general), general), names)
         units = []
         # Entries start at a new cell or at a count, except a named character listed without one. A
@@ -260,8 +265,11 @@ def spearheads(wh_list, bs_names):
                 unit["name"], unit["notes"] = mm.group(1), mm.group(2)
             unit["name"] = resolve(canonical.get(norm(unit["name"]), unit["name"]), names)
             units.append(unit)
+        text = s["army_text"].split("This Spearhead army consists")[0].strip()
+        if note.strip():
+            text += "\nDesigner’s Note: " + " ".join(note.split())
         out.append({
-            "name": s["name"], "text": s["army_text"].split("This Spearhead army consists")[0].strip(),
+            "name": s["name"], "text": text,
             "general": general, "units": units,
             "battle_traits": s["battle_traits"], "regiment_abilities": s["regiment_abilities"],
             "enhancements": s["enhancements"], "warscrolls": warscrolls,

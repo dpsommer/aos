@@ -1,0 +1,52 @@
+{
+	"replace_with_wahapedia": {
+		"The Roving Maw > Tasty Morsels": "Tasty Morsels",
+		"The Roving Maw > Prime Gutserver": "Prime Gutserver"
+	},
+	"fields": {
+		"gorlok_blackpowder": {
+			"base_size": "Gorlok Blackpowder: 50mm, Peggz, Kagey, Mange and Shreek (tokens): 25mm",
+			"keywords": [
+				"UNIQUE",
+				"HERO",
+				"INFANTRY",
+				"DESTRUCTION",
+				"OGOR",
+				"OGOR MAWTRIBES"
+			]
+		},
+		"hrothgorn_mantrapper": {
+			"base_size": "Hrothgorn Mantrapper: 40mm, Thrafnir: 25 × 50mm, Gnoblar tokens: 25mm",
+			"keywords": [
+				"UNIQUE",
+				"HERO",
+				"INFANTRY",
+				"DESTRUCTION",
+				"OGOR",
+				"OGOR MAWTRIBES",
+				"BEASTCLAW RAIDERS"
+			]
+		},
+		"scourge_of_aqshy_frostlord_on_thundertusk": {
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"OGOR MAWTRIBES",
+				"OGOR",
+				"MONSTER",
+				"BEASTCLAW"
+			]
+		},
+		"scourge_of_aqshy_huskard_on_thundertusk": {
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"OGOR MAWTRIBES",
+				"OGOR",
+				"MONSTER",
+				"BEASTCLAW",
+				"PRIEST (1)"
+			]
+		}
+	}
+}

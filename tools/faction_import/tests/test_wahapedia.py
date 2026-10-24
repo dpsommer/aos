@@ -43,6 +43,18 @@ def test_heading_repeated_before_faction_rules_does_not_shift_section_text(tmp_p
     assert aor["text"].startswith("Lead the clan to war.")
 
 
+def test_army_of_renown_without_roster_heading_is_found_from_its_text(tmp_path):
+    page = PAGE.replace("<p>ROSTER OPTIONS</p>",
+                        "<p>Take the units listed in the roster options box below.</p>")
+    aors = parse(tmp_path, page)["armies_of_renown"]
+    assert [a["name"] for a in aors] == ["Lords of the Clan"]
+
+
+def test_section_without_roster_options_is_not_an_army_of_renown(tmp_path):
+    page = PAGE.replace("<p>ROSTER OPTIONS</p>", "<p>Some other options.</p>")
+    assert parse(tmp_path, page)["armies_of_renown"] == []
+
+
 # parse_profile()
 
 def profile(notes):

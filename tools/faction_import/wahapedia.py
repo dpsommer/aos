@@ -388,7 +388,9 @@ def parse_faction_page(path):
                 if getattr(e2, "name", None) == "img" and "/expansions/" in e2.get("src", ""):
                     k = os.path.basename(e2["src"]).split("_logo")[0]
                     sec_src = LOGO_SOURCE.get(k, ""); break
-            if tag == "h2" and mode in ("faction", "aor") and "ROSTER OPTIONS" in text_here:
+            # An Army of Renown lists its roster under a ROSTER OPTIONS heading, or names the
+            # "roster options box below" when the heading is missing (Beastclaw Alfrostun).
+            if tag == "h2" and mode in ("faction", "aor") and "ROSTER OPTIONS" in text_here.upper():
                 mode = "aor"; cur_aor = {"name": title, "text": text_here, "battle_traits": [], "enhancement_tables": [], "lores": []}
                 if sec_src: cur_aor["source"] = sec_src
                 aors.append(cur_aor); h3 = None; continue

@@ -388,6 +388,32 @@ def test_spearhead_text_stops_before_army_list():
     assert s["text"] == "Fluff."
 
 
+TOKEN_ARMY = [["General", "Test Captain with 3 Gnoblar tokens, 1 Frost Sabre token and 1 Trap token",
+               "Designer’s Note:", "This unit’s Trap token has no effect\nunless   it is set up.",
+               "Units", "2 Test Riders"]]
+
+
+def test_spearhead_general_token_suffix_is_stripped():
+    (s,) = merge.spearheads([spearhead(TOKEN_ARMY, NAMES)], ["Test Captain"])
+    assert s["general"] == "Test Captain"
+
+
+def test_spearhead_designers_note_is_not_a_unit():
+    (s,) = merge.spearheads([spearhead(TOKEN_ARMY, NAMES)], ["Test Captain"])
+    assert [u["name"] for u in s["units"]] == ["Test Riders"]
+
+
+def test_spearhead_designers_note_joins_text():
+    (s,) = merge.spearheads([spearhead(TOKEN_ARMY, NAMES)], ["Test Captain"])
+    assert s["text"] == "Fluff.\nDesigner’s Note: This unit’s Trap token has no effect unless it is set up."
+
+
+def test_spearhead_general_without_note_keeps_text_unchanged():
+    army = [["General", "Test Captain with 2 Gnoblar tokens"], ["Units", "2 Test Riders"]]
+    (s,) = merge.spearheads([spearhead(army, NAMES)], ["Test Captain"])
+    assert (s["general"], s["text"]) == ("Test Captain", "Fluff.")
+
+
 def test_resolve_returns_exact_name():
     assert merge.resolve("Gunners", ["Gunners", "Gunners with Rifles"]) == "Gunners"
 
@@ -409,6 +435,24 @@ def test_resolve_prefix_must_end_at_a_word():
 def test_resolve_fails_without_match():
     with pytest.raises(SystemExit):
         merge.resolve("Nobody", ["Gunners"])
+
+
+def test_resolve_matches_close_misspelling():
+    assert merge.resolve("lronguts", ["Gorger Mawpack", "Ironguts"]) == "Ironguts"
+
+
+def test_resolve_misspelling_ignores_case():
+    assert merge.resolve("lRONGUTS", ["Gorger Mawpack", "Ironguts"]) == "Ironguts"
+
+
+def test_resolve_fails_on_distant_spelling():
+    with pytest.raises(SystemExit):
+        merge.resolve("Leadbelchers", ["Gorger Mawpack", "Ironguts"])
+
+
+def test_resolve_fails_on_ambiguous_misspelling():
+    with pytest.raises(SystemExit):
+        merge.resolve("Test Rlders", ["Test Riders", "Test Ryders"])
 
 
 def test_resolve_fails_on_ambiguous_prefix():

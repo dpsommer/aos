@@ -1,0 +1,1044 @@
+{
+	"spearheads": [
+		{
+			"name": "Scrapglutt",
+			"text": "Scrapglutts trawl the deserted battlefields and rusty junkyards of the lands, driven by an ogor hunter's obsession with fashioning lethal mantraps. Any piece of useful wreckage is quickly gathered by eager gnoblars and repurposed as armour and weapons for the warband. Should a rival happen upon their claim, deliberately or not, then violence always follows...\nThe hunter and his minions, known as the Mantrappers, are first into the fray, sizing up the field. Gnoblars harass the flanks, trying not to stray too close should their leader feel peckish. Bringing up the rear is the Scraplauncher. Drawn by a fearsome rhinox, this ramshackle catapult is an unusual but effective war machine as it hurls payloads of waste metal and other detritus at the enemy. Lumbering in its wake come the lronguts. Slow but well armoured - for ogors - these brutes have been sent by their Tyrant to keep a close eye on the hunter to make sure the Scrapglutt doesn't get their grubby mitts on anything too good.\nDesigner’s Note: This unit’s Trap token has no effect unless you give your general the ’Nasty Trap’ enhancement",
+			"general": "Mantrappers",
+			"units": [
+				{
+					"count": 2,
+					"name": "Ironguts"
+				},
+				{
+					"count": 2,
+					"name": "Ironguts"
+				},
+				{
+					"count": 4,
+					"name": "Ironguts"
+				},
+				{
+					"count": 12,
+					"name": "Gnoblars"
+				},
+				{
+					"count": 1,
+					"name": "Gnoblar Scraplauncher"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "LET'S GET STUCK IN",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit wholly within friendly territory, wholly within 6\" of the battlefield edge, and not in combat."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "IT'S A HARD LIFE",
+					"category": "defensive",
+					"timing": "Any Hero Phase",
+					"declare": "Pick a friendly Gnoblars unit within your general’s combat range to be the target.",
+					"effect": "Roll a D3. On a 2+:\nHeal (X) your general where X is an amount equal to the roll. 1 model in that Gnoblars unit is slain."
+				},
+				{
+					"name": "FRENZIED ARTILLERY",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "If the unmodified charge roll for a friendly Gnoblar Scraplauncher is 6+, add 3 the Attacks characteristic of the target’s Companion weapons for the rest of the turn."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "SAVAGE INSTINCTS",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for your general",
+					"effect": "Pick a friendly unit that has not used a FIGHT ability this turn and is within your general’s combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by your general has been resolved."
+				},
+				{
+					"name": "MASSIVE BULK",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Add 2 to the Health characteristic of your general."
+				},
+				{
+					"name": "NASTY TRAP",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit within 12\" of your general to be the target.",
+					"effect": "Give the target your general’s Trap token. While the target has a Trap token, each time the target is picked to use a MOVE or CHARGE ability, roll a dice. On a 4+, that MOVE or CHARGE ability has no effect and the target’s Trap token is removed"
+				},
+				{
+					"name": "VETERAN HUNTER",
+					"category": "defensive",
+					"timing": "Any Hero Phase.",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit within 12\" of your general to be the target.",
+					"effect": "For the rest of the turn, add 1 to the Rend characteristic of your general’s combat attacks that target that unit."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "mantrappers",
+					"name": "Mantrappers",
+					"move": "6",
+					"health": 7,
+					"save": 5,
+					"control": 5,
+					"ranged_weapons": [
+						{
+							"name": "Mantrapper Crossbow",
+							"range": 12,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Frost Sabre's Fangs",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						},
+						{
+							"name": "Culling Knife",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "STAYING USEFUL",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "While any of this unit’s Gnoblar or Frost Sabre tokens are on the battlefield, this unit has WARD (5+).\nEach time you make a successful ward roll for this unit, remove 1 of this unit’s tokens from the battlefield.\nIf this unit’s Frost Sabre token has been removed, it can no longer attack with its Frost Sabre’s Fangs."
+						},
+						{
+							"name": "NO SLACKING!",
+							"category": "control",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly INFANTRY unit wholly within 12\" of this unit.",
+							"effect": "Roll a dice On a 3+, add the result to the target’s control score until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "ironguts",
+					"name": "Ironguts",
+					"move": "6",
+					"health": 4,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Irongut Weapon",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "DOWN TO THE IRONGUTS",
+							"category": "control",
+							"timing": "Passive",
+							"effect": "Ignore negative modifiers to this unit’s control score."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "gnoblar_scraplauncher",
+					"name": "Gnoblar Scraplauncher",
+					"move": "9",
+					"health": 9,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Piles of Old Scrap",
+							"range": 24,
+							"attacks": "3D6",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Scrappers’ Stabbers",
+							"range": 0,
+							"attacks": "7",
+							"hit": 5,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Rhinox’s Sharp Horns",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "RAIN OF SCRAP",
+							"category": "shooting",
+							"timing": "Your Shooting Phase",
+							"declare": "Pick an enemy unit that had any models slain this turn by this unit’s shooting attacks to be the target.",
+							"effect": "Subtract 1 from hit rolls for the target’s attacks for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"WAR MACHINE"
+					]
+				},
+				{
+					"id": "gnoblars",
+					"name": "Gnoblars",
+					"move": "5",
+					"health": 1,
+					"save": 6,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Sharp Stuff",
+							"range": 8,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Motley Assortment of Weapons",
+							"range": 0,
+							"attacks": "1",
+							"hit": 5,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "NO SHORTAGE OF VOLUNTEERS",
+							"category": "rallying",
+							"timing": "End of Any Turn",
+							"effect": "You can return D3 models to this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Tyrant's Bellow",
+			"text": "When an ogor Tyrant wishes to make himself heard, he speaks through his tribe’s most devastating weapon: an ancient great-cannon known as an Ironblaster. Ogors have a special love for blackpowder artillery pieces, for not only do they make a most satisfying roar when fired, but each volley blasts enemies into smoking gobbets of flesh – half-cooked and ready for eating. To own even a single Ironblaster is a mark of great prestige amongst the mawtribes, and Tyrants protect their assets on the battlefield by surrounding them with a retinue of their toughest fighters, known as a Tyrant’s Bellow.\nWhen prey is sighted, Mournfang Riders charge off to engage. They harry their targets with gunshot and hacking blows, driving them out into the open. It is then that the guns of the Tyrant’s Bellow open up en masse – not just the Ironblaster itself but also the cannons wielded by the Leadbelchers, lit tapers dangling from their slavering lips. This storm of metal and fire reduces almost everything in its path to charred carrion, much to the amused delight of the Tyrant. Belly rumbling eagerly, the oversized warlord then advances at the head of his favoured Gluttons, hacking into pieces those foes that still stand and selecting the choicest cuts of scorched meat for himself.",
+			"general": "Tyrant",
+			"units": [
+				{
+					"count": 2,
+					"name": "Mournfang Pack"
+				},
+				{
+					"count": 3,
+					"name": "Ogor Gluttons"
+				},
+				{
+					"count": 3,
+					"name": "Ogor Gluttons"
+				},
+				{
+					"count": 4,
+					"name": "Leadbelchers"
+				},
+				{
+					"count": 1,
+					"name": "Ironblaster"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "BELLOWING ARRIVAL",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit anywhere on the battlefield, within 1\" of a battlefield edge and more than 6\" from all enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "PULVERISING GIRTH",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Phase",
+					"declare": "Pick any number of friendly units that charged this phase.",
+					"effect": "For each of those units, pick an enemy unit in combat with it and roll a dice. On a 4+, inflict 1 mortal damage on that enemy unit."
+				},
+				{
+					"name": "BRED FOR TOUGHNESS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Health characteristic of your Ironblaster and your Mournfang Pack unit."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "LONGSTRIDER",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Your general has a Move characteristic of 8\" instead of 6\"."
+				},
+				{
+					"name": "BOOMING ROAR",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"effect": "Roll a dice. On a 4+, subtract 1 from hit rolls for attacks made by enemy units this phase while they are within 9\" of your general."
+				},
+				{
+					"name": "FLASK OF STONEHORN BLOOD",
+					"category": "defensive",
+					"timing": "Reaction: Opponent declared an ATTACK ability and targeted your general",
+					"frequency": "Once Per Battle",
+					"effect": "Your general has WARD (3+) this phase."
+				},
+				{
+					"name": "BLUBBERGRUB",
+					"category": "defensive",
+					"timing": "Any Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick either your Ironblaster or your Mournfang Pack unit if it is within your general’s combat range.",
+					"effect": "Heal (D6) that unit."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "tyrant",
+					"name": "Tyrant",
+					"move": "6",
+					"health": 8,
+					"save": 4,
+					"control": 5,
+					"ranged_weapons": [
+						{
+							"name": "Ogor Pistols",
+							"range": 10,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Thundermace",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						},
+						{
+							"name": "Beastskewer Glaive",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Anti- MONSTER (+1 Rend)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BULLY OF THE FIRST DEGREE",
+							"category": "control",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
+							"effect": "Add 3 to the control score of the target until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "ironblaster",
+					"name": "Ironblaster",
+					"move": "9",
+					"health": 9,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Ironblaster Cannon",
+							"range": 18,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "D3+3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Clubber",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 0,
+							"damage": "2"
+						},
+						{
+							"name": "Rhinox's Sharp Horns",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "RHINOX CHARGE",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "The Damage characteristic of this unit’s Rhinox’s Sharp Horns is 3 if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"WAR MACHINE"
+					]
+				},
+				{
+					"id": "ogor_gluttons",
+					"name": "Ogor Gluttons",
+					"move": "6",
+					"health": 4,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Ogor Weapons",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "DRIVEN BY HUNGER",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "Add 1 to charge rolls for this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "leadbelchers",
+					"name": "Leadbelchers",
+					"move": "6",
+					"health": 4,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Leadbelcher Gun",
+							"range": 15,
+							"attacks": "D3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Bludgeoning Blow",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 0,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "FIRING FROM THE BELLY",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "Add 1 to hit rolls for this unit’s shooting attacks if it has not used a MOVE ability this turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "mournfang_pack",
+					"name": "Mournfang Pack",
+					"move": "9",
+					"health": 6,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Culling Clubs and Hackers",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "Mounrfang's Tusks",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "LINEBREAKERS",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Subtract 1 from wound rolls for shooting attacks that target this unit."
+						}
+					],
+					"keywords": [
+						"CAVALRY"
+					]
+				}
+			]
+		},
+		{
+			"name": "Warglutt Marauders",
+			"text": "Ogors, and especially Gutbusters, are raiders at heart. They have a rough understanding of war for ideology or holy purpose, but a much readier intuition when it comes to simple acquisition: taking things because they are the biggest, the strongest, and thus the most entitled to it. Conquest is measured in meat and plunder, while success is determined by the infamy they garner. At any given time, then, marauding warglutts – as the Gutbuster clans are known – will be roaming the realms looking to satisfy their greed.\nEven a small warglutt will have a single leader known bluntly as a Tyrant. The Tyrant chooses who and where to raid, takes on the biggest enemies, and without fail demands the greatest share of the plunder. Surrounding them are their elite: the Ironguts and Maulbeast riders who profit from backing a successful warleader, even while looking to seize the top position for themselves. The Gluttons accept all of this, provided they reap the rewards of victory. A warglutt is often on the move and this nomadic lifestyle can mean that its mobs become strung out and separated, but it takes only the din of violence to draw the ogors back, all eager for a taste of the action.",
+			"general": "Tyrant",
+			"units": [
+				{
+					"count": 2,
+					"name": "Gluttons"
+				},
+				{
+					"count": 3,
+					"name": "Gluttons"
+				},
+				{
+					"count": 3,
+					"name": "Ironguts"
+				},
+				{
+					"count": 1,
+					"name": "Maulbeast Cavalry"
+				},
+				{
+					"count": 1,
+					"name": "Maulbeast Cavalry"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "MORE OGORS, MY LORD",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit anywhere on the battlefield so that every model is within 1\" of a battlefield edge and more than 6\" from all enemy units."
+				},
+				{
+					"name": "SCOFF DOWN FRESH FLESH",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"declare": "If an enemy unit was destroyed this turn, pick a friendly unit that used a FIGHT ability this turn to use this ability.",
+					"effect": "Pick 1 of the following effects to apply to that friendly unit for the rest of the battle:\nRaw and Bloody Flesh: Add 1 to hit rolls for that unit’s combat attacks if it charged in the same turn. Exotic Giblets: Subtract 1 from ward rolls for damage points inflicted by that unit’s combat attacks. Steaming Brains: Add 3 to that unit’s control score."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "BRUTISH BARGING",
+					"category": "movement",
+					"timing": "End of Your Turn",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit that charged this turn to be the target.",
+					"effect": "The target can move up to 2D6\". It can move through the combat ranges of enemy units that it was in combat with at the start of that move but cannot end that move in combat."
+				},
+				{
+					"name": "BLINDING DUST CLOUDS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for attacks that target friendly units that were set up in the same turn."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "WALLWRECKER",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Your general can pass across terrain features as if they had FLY."
+				},
+				{
+					"name": "DEATHCHEATER",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has WARD (6+) while they are more than 3\" from all other friendly units."
+				},
+				{
+					"name": "LUNGBURSTER",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "When making run rolls for friendly units wholly within 9\" of your general, if you roll a 1-3, you can use a value of 4 instead."
+				},
+				{
+					"name": "GRISTLEGOBBLER",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Battle",
+					"declare": "Pick each enemy unit in combat with your general to be the targets.",
+					"effect": "Inflict D3 mortal damage on each target. Then, Heal (3) your general."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "tyrant",
+					"name": "Tyrant",
+					"move": "6",
+					"health": 8,
+					"save": 4,
+					"control": 3,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Tyrant's Meatcleavers",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "ROARING WARLORD",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible friendly unit within 12\" of this unit to be the target.",
+							"effect": "Roll a dice. On a 3+, for the rest of the turn, add 1 to charge rolls for the target."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"HERO"
+					]
+				},
+				{
+					"id": "gluttons",
+					"name": "Gluttons",
+					"move": "6",
+					"health": 4,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Glutton Weapons",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "WALL OF MEAT",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Add 1 to save rolls for this unit if it has not charged in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "ironguts",
+					"name": "Ironguts",
+					"move": "6",
+					"health": 4,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Irongut Weapon",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "STOMPING MARAUDERS",
+							"category": "control",
+							"timing": "Passive",
+							"effect": "Add 2 to the this unit’s control score if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "maulbeast_cavalry",
+					"name": "Maulbeast Cavalry",
+					"move": "10",
+					"health": 7,
+					"save": 3,
+					"control": 3,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Gutbiter Weapons",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						},
+						{
+							"name": "Maulbeast's Horns and Fangs",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SHOCK AND GORE",
+							"category": "defensive",
+							"timing": "Any Combat Phase",
+							"frequency": "Once Per Turn (Army)",
+							"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
+							"effect": "Roll a dice. On a 3+, for the rest of the turn, subtract 1 from wound rolls for the target’s attacks."
+						}
+					],
+					"keywords": [
+						"CAVALRY"
+					]
+				}
+			]
+		},
+		{
+			"name": "Mawseeker Mob",
+			"text": "Unlike the alfrostuns and warglutts, the gollops of the Mawseekers are by and large new entities created by the upswell of religion across the ogor nation. While some have grown enough to take control of entire tribes, many remain – for now – little more than a Butcher and whatever hungry maniacs they can bind to their cause through the promise of divine favour and regular meals. Yet when one considers the strange gastromantic blessings these Mawseeker Mobs can bring to bear, it is easy to see why lesser armies and settlements can still be ground to paste by such a force.\nAmongst such religious gatherings, the Butcher is nothing less than the voice of the divine – or at least the echo of their rumbling belches. Whatever these crude shamans say goes, and their every commandment is enforced by their Cleaver acolytes. The Gutseers, having glimpsed the cosmic enormity of their hungry god (or so they think), are well placed to aid their master’s gut magic with gory acts of haruspicy. And there is always the lurking threat of the Gorgers, too: beasts who are not officially part of the Mob but are inevitably drawn to its presence by the rich smell of blood and meat…",
+			"general": "Butcher",
+			"units": [
+				{
+					"count": 3,
+					"name": "Cleavers"
+				},
+				{
+					"count": 3,
+					"name": "Gutseers"
+				},
+				{
+					"count": 5,
+					"name": "Gorger Mawpack"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "FRENZIED HUNTERS",
+					"category": "movement",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle",
+					"effect": "Set up this unit within 1\" of a battlefield edge and more than 6\" from all enemy units."
+				},
+				{
+					"name": "WOT? NO MEAT!?",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Your general’s Butcher’s Cauldron starts the battle empty."
+				},
+				{
+					"name": "CHUCK 'EM IN THE POT",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"declare": "You must use this ability if an enemy unit was destroyed this turn.",
+					"effect": "Your general’s Butcher’s Cauldron becomes full."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "DISH TESTERS",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "If your general’s Butcher’s Cauldron is full, pick a visible friendly unit wholly within 12\" of them to be the target.",
+					"effect": "Add 1 to hit rolls for the target’s combat attacks for the rest of the turn. Then, your general’s Butcher’s Cauldron becomes empty."
+				},
+				{
+					"name": "EAGER PROCURERS",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "While your general’s Butcher’s Cauldron is empty, add 2\" to the Move characteristic of friendly units while they are wholly within 12\" of your general."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "WELL-STOCKED LARDER",
+					"category": "special",
+					"timing": "Start of First Battle Round",
+					"effect": "Your general’s Butcher’s Cauldron becomes full."
+				},
+				{
+					"name": "DISGUSTING EATER",
+					"category": "offensive",
+					"timing": "Reaction: Opponent declared a CHARGE ability for a visible enemy unit within 12\" of this unit.",
+					"frequency": "Once Per Battle",
+					"effect": "Subtract D3 from the charge roll. If your general’s Butcher’s Cauldron is full, you can subtract 3 from the charge roll instead, but if you do so, their Butcher’s Cauldron becomes empty after that CHARGE ability has been resolved."
+				},
+				{
+					"name": "GENEROUS PORTIONS",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"effect": "If your general’s Butcher’s Cauldron is full, Heal (1) each visible friendly unit wholly within 9\" of your general."
+				},
+				{
+					"name": "HUNGER PANGS",
+					"category": "movement",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Each friendly unit that is not in combat can move up to D3\". Friendly units that are not in combat and are wholly within 9\" of your general while their Butcher’s Cauldron is empty can move up to D6\" instead. They cannot end those moves in combat."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "butcher",
+					"name": "Butcher",
+					"move": "6",
+					"health": 8,
+					"save": 5,
+					"control": 3,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Butcher's Tools",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "RUST-MAW",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
+							"effect": "On a 6+, until the start of your next turn, subtract 1 from the Rend characteristic of the target’s melee weapons."
+						},
+						{
+							"name": "BUTCHER'S CAULDRON",
+							"category": "special",
+							"timing": "Reaction: You declared the 'Rust-maw' ability",
+							"effect": "If this unit’s Butcher’s Cauldron is full, roll a D3. On a 1, this unit’s Butcher’s Cauldron becomes empty. On a 2+, you can add 2 to the casting roll."
+						}
+					],
+					"keywords": [
+						"WIZARD",
+						"INFANTRY",
+						"WARD (6+)",
+						"HERO"
+					]
+				},
+				{
+					"id": "cleavers",
+					"name": "Cleavers",
+					"move": "6",
+					"health": 4,
+					"save": 5,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Cleaver's Tools",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "A TASTE FOR THE ARCANE",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "This unit’s melee weapons have Crit (2 Hits) while it is in combat with an enemy WIZARD or PRIEST."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "gutseers",
+					"name": "Gutseers",
+					"move": "6",
+					"health": 4,
+					"save": 5,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Gutseer's Tools",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "CONDUITS OF GUT MAGIC",
+							"category": "special",
+							"timing": "Any Hero Phase",
+							"frequency": "Once Per Turn (Army)",
+							"effect": "The next time the ‘Rust-maw’ ability is used by your general, measure the range and visibility of that ability from this unit instead of your general."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "gorger_mawpack",
+					"name": "Gorger Mawpack",
+					"move": "6",
+					"health": 5,
+					"save": 6,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Clubs, Claws and Jaws",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BESTIAL HUNGER",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "In your charge phase, if this unit is not in combat and there are any enemy units within 12\" of it, this unit must use the ‘Charge’ ability, and if the charge roll would allow it to end the move within ½\" of a visible enemy unit, it must do so."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				}
+			]
+		}
+	]
+}

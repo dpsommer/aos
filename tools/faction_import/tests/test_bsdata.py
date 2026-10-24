@@ -369,6 +369,15 @@ def test_hidden_categories_are_not_keywords(faction_data):
     assert "HIDDEN MARKER" not in warscroll(faction_data, "Test Captain")["keywords"]
 
 
+def test_non_keyword_categories_are_not_keywords(faction_data):
+    keywords = [k.upper() for k in warscroll(faction_data, "Test Riders")["keywords"]]
+    assert not [k for k in keywords if k.startswith("NON-")]
+
+
+def test_non_keyword_category_does_not_drop_other_keywords(faction_data):
+    assert "CAVALRY" in warscroll(faction_data, "Test Riders")["keywords"]
+
+
 # units
 
 def test_unlisted_library_unit_is_included(faction_data):

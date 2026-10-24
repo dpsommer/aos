@@ -323,7 +323,8 @@ def warscroll(cats, unit, link=None):
         if is_ability(p) and p.get("name") not in seen:
             seen.add(p.get("name"))
             out["abilities"].append(ability(p))
-    out["keywords"] = [k.upper() for k in keywords if k not in NOT_KEYWORDS]
+    # "non-<KEYWORD>" categories (Ogor Mawtribes' "non-BEASTCLAW") only drive list building.
+    out["keywords"] = [k.upper() for k in keywords if k not in NOT_KEYWORDS and not k.startswith("non-")]
     return out
 
 

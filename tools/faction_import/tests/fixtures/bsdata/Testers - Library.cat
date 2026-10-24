@@ -99,6 +99,7 @@ That unit must be wholly within 12".
       <categoryLinks>
         <categoryLink id="cl-rid-1" name="CAVALRY" targetId="c-cav" primary="false"/>
         <categoryLink id="cl-rid-2" name="ORDER" targetId="c-order" primary="false"/>
+        <categoryLink id="cl-rid-3" name="non-BEASTCLAW" targetId="c-non-beastclaw" primary="false"/>
       </categoryLinks>
       <selectionEntries>
         <selectionEntry id="m-rider-champ" name="Rider Champion" type="model">

@@ -1,0 +1,476 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Beastclaw Alfrostun",
+			"text": "When you pick the Ogor Mawtribes faction for your army, you can choose for it to be a Beastclaw Alfrostun Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ALFROSTUN keyword.\nAny BEASTCLAW units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Masked by the Endless White",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly ALFROSTUN units are not visible to enemy units more than 12\" away."
+				},
+				{
+					"name": "A Clan of Hunters",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly Hunters with Sabrefangs unit to be the target.",
+					"effect": "The target can use the 'Through the Frosts' ability even if another friendly Hunters with Sabrefangs unit has used that ability this battle."
+				},
+				{
+					"name": "Grasp of the Everwinter",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick each enemy unit in combat with any friendly ALFROSTUN units to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				},
+				{
+					"name": "Run 'Em Down",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time an enemy unit in combat with a friendly ALFROSTUN unit uses a RETREAT ability, after that ability has been resolved, inflict D3 mortal damage on that enemy unit.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "This mortal damage is in addition to any mortal damage inflicted on that enemy unit by that RETREAT ability."
+						}
+					]
+				},
+				{
+					"name": "Fearsome Breed",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Subtract 1 from charge rolls for enemy units while they are within 12\" of a friendly ALFROSTUN MONSTER. Subtract 2 from charge rolls for enemy units while they are within 6\" of a friendly ALFROSTUN MONSTER instead."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"group": "Alfrostun Heroic Traits",
+					"entries": [
+						{
+							"name": "Hard-Bitten Chieftain",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Other than the Companion ability, weapon abilities for attacks that target this unit made by enemy units that charged in the same turn have no effect."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"group": "Alfrostun Artefacts of Power",
+					"entries": [
+						{
+							"name": "Alvagr Rune-Tokens",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"frequency": "Once Per Battle (Army)",
+							"effect": "Until the start of your next turn, add 2 to chanting rolls for friendly ALFROSTUN units while they are wholly within 12\" of this unit."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Keening Gale",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ALFROSTUN PRIEST to chant this prayer, pick a visible friendly ALFROSTUN unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, add 2 to run rolls for the target. In addition, if the chanting roll was 6+, until the start of your next turn, add 2 to charge rolls for the target.",
+							"chanting_value": 3,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Terrors of the Old Ice",
+							"category": "control",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ALFROSTUN PRIEST to chant this prayer, pick an objective or terrain feature wholly within 18\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, subtract 10 from the control scores of enemy units while they are contesting the target. If the chanting roll was 8+, until the start of your next turn, enemy units have a maximum control score of 1 while they are contesting the target.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						},
+						{
+							"name": "Avalanche Voice",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ALFROSTUN PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, each time your opponent declares a command for the target, as a reaction, make a tremor roll of D6 for the target. On a 5+, unless they spend 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use it are still lost. In addition, if the chanting roll was 8+, until the start of your next turn, add 2 to tremor rolls for the target.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mawseeker Gollop",
+			"text": "When you pick the Ogor Mawtribes faction for your army, you can choose for it to be a Mawseeker Gollop Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the GOLLOP keyword.\nROSTER OPTIONS\nAny MAWSEEKERS units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Prepare the Feast",
+					"category": "special",
+					"timing": "Start of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If there is no friendly Feastmaster on the battlefield, pick a friendly GOLLOP HERO to be the Feastmaster for the rest of the battle."
+				},
+				{
+					"name": "Ooh, That Looks Tasty...",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Each time an enemy unit is destroyed, you gain a number of raw ingredients.\n\nThe number of raw ingredients yielded by a destroyed unit is the Health characteristic of that unit multiplied by the number of starting models in that unit.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "If a destroyed enemy unit had a Health characteristic of 2 and its starting size was 10 models, it would yield 20 raw ingredients when it was destroyed."
+						}
+					]
+				},
+				{
+					"name": "Gland Goulash",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 10 raw ingredients.",
+					"effect": "For the rest of the phase, add 1 to the number of dice rolled, to a maximum of 3, when making casting rolls and unbinding rolls for friendly GOLLOP units while they are wholly within 12\" of and visible to a friendly Feastmaster."
+				},
+				{
+					"name": "Bone-Slurry Soup",
+					"category": "rallying",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 5 raw ingredients.",
+					"effect": "Heal (D6) each friendly GOLLOP unit that is wholly within 12\" of and visible to a friendly Feastmaster."
+				},
+				{
+					"name": "The Organ Platter",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 20 raw ingredients.",
+					"effect": "For the rest of the phase, while they are wholly within 12\" of a friendly Feastmaster, melee weapons used by friendly GOLLOP units have Crit (Mortal)."
+				},
+				{
+					"name": "Gore-Offal Dumplings",
+					"category": "movement",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 10 raw ingredients.",
+					"effect": "Each friendly GOLLOP unit that is wholly within 12\" of and visible to a friendly Feastmaster can immediately use a CHARGE ability as if it were your charge phase, but subtract 1 from the number of dice rolled when making the charge roll for that unit."
+				},
+				{
+					"name": "Unwashed Innards",
+					"category": "movement",
+					"timing": "Any Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 5 raw ingredients.",
+					"effect": "For the rest of the phase, add 4 to run rolls for friendly GOLLOP units while they are wholly within 12\" of and visible to a friendly Feastmaster."
+				},
+				{
+					"name": "Fried Limbs",
+					"category": "movement",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 10 raw ingredients.",
+					"effect": "For the rest of the phase, add 3 to charge rolls for friendly GOLLOP units while they are wholly within 12\" of and visible to a friendly Feastmaster."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"group": "Gollop Heroic Traits",
+					"entries": [
+						{
+							"name": "Indomitable Guts",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Add 1 to ward rolls for this unit."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"group": "Gollop Artefacts of Power",
+					"entries": [
+						{
+							"name": "Overflowing Larder",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"frequency": "Once Per Battle",
+							"effect": "Gain D6 raw ingredients. If this unit is a Feastmaster, gain D3+3 raw ingredients instead."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Bonecruncher",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GOLLOP WIZARD to cast this spell, pick a visible enemy unit within 18\" of them that has not been picked to be the target of this ability this turn to be the target, then make a casting roll of 2D6.",
+							"effect": "Inflict D3 mortal damage on the target. Gain a number of raw ingredients equal to the number of those damage points that are allocated to the target.",
+							"casting_value": 5,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Bloodgruel",
+							"category": "rallying",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GOLLOP WIZARD to cast this spell, pick a visible friendly GOLLOP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Pick 1 of the following effects:\n• Return 1 slain model to the target.\n• Heal (D6) the target.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "The Cosmos Writhes",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GOLLOP WIZARD to cast this spell, pick a visible friendly GOLLOP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Remove the target from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Meatfist Mawtribe",
+			"text": "When you pick the Ogor Mawtribes faction for your army, you can choose for it to be a Meatfist Mawtribe Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the MEATFIST keyword.\nROSTER OPTIONS\nAny GUTBUSTER units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Bloodthirsty Arrogance",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets a friendly MEATFIST INFANTRY unit that did not charge in the same turn, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Fleshy Stampede",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Add 2 to run rolls for friendly MEATFIST units."
+				},
+				{
+					"name": "Meaty Charge",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"declare": "Pick a friendly MEATFIST unit that charged this turn to use this ability, then pick a visible enemy unit within 1\" of it and that has not been picked to be the target of this ability this phase to be the target.",
+					"effect": "Make a meaty charge roll by rolling a number of dice equal to the unmodified charge roll made this turn for the unit using this ability. Add 1 to the roll if the unit using this ability has more models than the target unit. For each 5+, inflict 1 mortal damage on the target."
+				},
+				{
+					"name": "The Unstoppable Feast",
+					"category": "movement",
+					"timing": "Your Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly MEATFIST unit that has not used a FIGHT ability this battle to be the target.",
+					"effect": "For the rest of the turn, the target can use CHARGE abilities even if it used a RUN or RETREAT ability earlier in the same turn."
+				},
+				{
+					"name": "Gluttonous Conquerors",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Add 1 to the Control characteristic of friendly MEATFIST units while they are in combat."
+				},
+				{
+					"name": "Greedy Chompers",
+					"category": "rallying",
+					"timing": "End of Your Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick up to 3 friendly MEATFIST units that are in combat to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+, Heal (X) the target where X is equal to the roll."
+				},
+				{
+					"name": "Gruesome Devourers",
+					"category": "movement",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by a friendly MEATFIST unit's combat attacks to be the target.",
+					"effect": "Roll a dice. On a 3+, until the start of your next turn, the target cannot use RETREAT abilities."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"group": "Meatfist Heroic Traits",
+					"entries": [
+						{
+							"name": "Thick Blubber",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Subtract 1 from wound rolls for shooting attacks that target this unit."
+						},
+						{
+							"name": "Overpowering Mass",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "When making meaty charge rolls for this unit, you can re-roll unmodified rolls of 1."
+						},
+						{
+							"name": "Force of Savage Personality",
+							"category": "special",
+							"timing": "Passive",
+							"effect": "Enemy units and enemy MANIFESTATIONS cannot be set up within 12\" of this unit."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"group": "Meatfist Artefacts of Power",
+					"entries": [
+						{
+							"name": "Snott, Gnoblar Thief",
+							"category": "special",
+							"timing": "Start of Any Turn",
+							"declare": "Pick a visible enemy HERO that has any artefacts of power to be the target.",
+							"effect": "Roll a dice. If the roll is equal to or lower than the current battle round number, the target no longer has any artefacts of power."
+						},
+						{
+							"name": "Trapper's Arsenal",
+							"category": "defensive",
+							"timing": "Any Combat Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target.",
+							"effect": "Roll a dice. On a 4+, the target has STRIKE-LAST for the rest of the turn."
+						},
+						{
+							"name": "Rusty Leadbelcher Gun",
+							"category": "shooting",
+							"timing": "Your Shooting Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
+							"effect": "Pick to load the gun with Jagged Shrapnel or Lumpen Metal Scrap, then apply the corresponding effect below:",
+							"options": [
+								{
+									"name": "Jagged Shrapnel",
+									"text": "Inflict D3 mortal damage on the target. If any models were slain by that mortal damage, halve the target's Move characteristic until the start of your next turn."
+								},
+								{
+									"name": "Lumpen Metal Scrap",
+									"text": "Inflict D6 mortal damage on the target."
+								}
+							]
+						}
+					]
+				}
+			],
+			"lores": []
+		},
+		{
+			"name": "The Roving Maw",
+			"text": "Where the ground itself groans with hunger and opens in undulating gullets, twisted, feral shapes slaughter errant warriors to feed to the grisly apertures. These are the Gorger Mawpacks, ogors afflicted with a terrible curse that keeps them in a permanent state of starvation. Ogor Butchers will often travel with these creatures in Roving Maws, testing new recipes upon them and opening Mawpits with gastromantic rituals.\nWhen you pick the Ogor Mawtribes faction for your army, you can choose for it to be a The Roving Maw Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ROVING MAW keyword.\nROSTER OPTIONS\nAny non- UNIQUE MAWSEEKER units\nAny non- UNIQUE GUTBUSTERS units\nGorger Mawpacks\nYou cannot include Regiments of Renown or a Great Mawpot",
+			"battle_traits": [
+				{
+					"name": "Tasty Morsels",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Each time a model is slain by a friendly Mawpit’s ‘Hungry Sinkhole’ ability, you gain 1 tasty morsel."
+				},
+				{
+					"name": "Driven by Starvation",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Friendly Gorger Mawpack units can use CHARGE abilities even if they used a RUN ability in the same turn unless they are wholly within 3\" of a terrain feature."
+				},
+				{
+					"name": "Trampling Charge",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"declare": "Pick a friendly ROVING MAW unit that charged this turn to use this ability, then pick a visible enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				},
+				{
+					"name": "The Realm Hungers",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Units and MANIFESTATIONS are vulnerable to Mawpits while they are on the battlefield unless they are wholly within 1\" of a terrain feature that is not a Mawpit. This ability has no effect on ROVING MAW units or units that have FLY."
+				},
+				{
+					"name": "Mawpits of Ghur",
+					"category": "special",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round (Army)",
+					"effect": "Roll 2D6 and add the number of tasty morsels you have to the roll. Apply the corresponding effect below for the rest of the battle round. Then, reset your tasty morsels to 0.\n2-3 – Subdued: No effect.\n4-5 – Peckish: Subtract 3 from the control scores of units that are vulnerable to Mawpits.\n6-8 – Rumbling: Roll a dice for each unit that is vulnerable to Mawpits. On a 3+, inflict 1 mortal damage on that unit.\n9-11 – Famished: Units that are vulnerable to Mawpits cannot use commands.\n12+ – Ravenous: Roll a D3 for each unit that is vulnerable to Mawpits. On a 2+, inflict an amount of mortal damage on that unit equal to the roll."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Prime Gutserver",
+							"category": "special",
+							"timing": "Start of Battle Round",
+							"frequency": "Once Per Battle Round (Army)",
+							"effect": "If this unit is within 1\" of a friendly Mawpit, gain 1 tasty morsel."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Flasks of Congealed Maw-juices",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Friendly Mawpits within this unit's combat range have WARD (5+)."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Mawmeat",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ROVING MAW WIZARD to cast this spell, pick a visible terrain feature within 18\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "For the rest of the battle, units on or within 1\" of the target are vulnerable to Mawpits. This ability has no effect on ROVING MAW units or units that have FLY.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Retcher",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ROVING MAW WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Add 2 to the Rend characteristic of the caster's melee weapons until the start of your next turn.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
