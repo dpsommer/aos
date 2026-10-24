@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Warhammer: Age of Sigmar battle simulator built in Godot 4.7 (Forward Plus renderer, Jolt Physics, GDScript). It mirrors the tabletop game: five battle rounds, objectives, battle tactics and battleplan missions, with fully rendered models that are deployed and moved freely on a 3D battlefield. Players build and save armies; the first mode is "quick battle" against an AI opponent.
 
-The project is at an early stage. The main scene is `scenes/main.tscn` (`Main`), which owns screen flow and starts on the main menu. Forge (army builder) has Grand Alliance and faction selection and a read-only faction browser; Blades of Khorne, Helsmiths of Hashut, Idoneth Deepkin and Kharadron Overlords have data. Quick Play and Settings have no screens yet. See `docs/design/`.
+The project is at an early stage. The main scene is `scenes/main.tscn` (`Main`), which owns screen flow and starts on the main menu. Forge (army builder) has Grand Alliance and faction selection and a read-only faction browser; Blades of Khorne, Helsmiths of Hashut, Idoneth Deepkin, Kharadron Overlords and Sylvaneth have data. Quick Play and Settings have no screens yet. See `docs/design/`.
 
 ## Documentation
 

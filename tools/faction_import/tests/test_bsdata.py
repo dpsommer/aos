@@ -118,6 +118,16 @@ def test_designers_note_becomes_an_option(faction_data):
     assert note["text"] == "This is commentary, not a rule."
 
 
+@pytest.mark.parametrize("line", [
+    "*Designer's Note: This is commentary, not a rule.*",
+    "***Designer's Note**: This is commentary, not a rule.*",
+])
+def test_italic_designers_note_becomes_an_option(line):
+    effect, options = bsdata.split_options("Heal (1) this unit.\n" + line)
+    assert effect == "Heal (1) this unit."
+    assert options == [{"name": "Designer’s Note", "text": "This is commentary, not a rule."}]
+
+
 HEADED = ("Each battle round, gain a boon:\n"
           "Battle Round 1:\n***Iron Will:*** Add 1 to save rolls.\n"
           "Battle Round 2:\n***Daemonic Weaponry:*** Add 1 to hit rolls.")
@@ -247,6 +257,12 @@ def test_weapon_abilities_are_split(faction_data):
 
 def test_melee_weapon_range_is_zero(faction_data):
     assert named(warscroll(faction_data, "Test Captain")["melee_weapons"], "Cutlass")["range"] == 0
+
+
+def test_weapon_name_is_stripped(faction_data):
+    # The fixture's Cutlass has a leading space, as BSData's Warsong Revenant weapon does.
+    names = [w["name"] for w in warscroll(faction_data, "Test Captain")["melee_weapons"]]
+    assert "Cutlass" in names
 
 
 def test_dash_rend_is_zero(faction_data):

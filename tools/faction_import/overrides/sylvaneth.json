@@ -1,0 +1,34 @@
+{
+	"warscroll_names": {
+		"Kurnoth Hunters with Kurnoth Greatbows": "Kurnoth Hunters with Greatbows",
+		"Kurnoth Hunters with Kurnoth Greatswords": "Kurnoth Hunters with Greatswords",
+		"Kurnoth Hunters with Kurnoth Scythes": "Kurnoth Hunters with Greatscythes"
+	},
+	"fields": {
+		"The Land Awakens": {"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within the creeping overgrowth and more than 9\" from all enemy units."},
+		"Spirit of The Dark Forest": {"timing": "Enemy Hero Phase", "frequency": "Once Per Battle", "effect": "Halve the target's Move characteristic for the rest of the turn."},
+		"Spellsinger": {"effect": "If this unit is a WIZARD, add 1 to casting rolls for this unit.\nIf this unit is not a WIZARD, it can use the 'Unbind' ability as if it had WIZARD (1)."},
+		"Realmroot Guide": {"declare": "This unit can only use this ability if it is wholly within the creeping overgrowth. Pick this unit and up to 1 other friendly SYLVANETH unit within this unit's combat range to be the targets."},
+		"branchwych > Slay The Trespassers!": {"effect": "Roll a dice. On a 3+, add 1 to wound rolls for combat attacks that target that enemy unit for the rest of the turn."},
+		"treelord_ancient > Eldest Of Elders": {"effect": "Roll a dice for each target. On a 3+, add 1 to hit rolls for that target's combat attacks until the start of your next turn."},
+		"warsong_revenant > Wyldwood Revenants": {"timing": "Reaction: You made an unmodified chanting roll of 1 for a SYLVANETH PRIEST wholly within 12\" of this unit", "name": "Rousing Accompaniment"},
+		"tree_revenants > Waypiper's Dance": {"name": "Warriors of the Woods"},
+		"Revenant's Glaive and Tail Pincers": {"name": "Arch-Revenant's Glaive"},
+		"Kurnoth Scythe": {"name": "Kurnoth Greatscythe"},
+		"Acorn of the Ages": {"timing": "Your Hero Phase", "frequency": "Once Per Battle"},
+		"kelthannor_the_forest_prince": {"points": 150},
+		"kelthannor_the_forest_prince > Hooves and Knuckles": {"abilities": ["Charge (+1 Damage)"]},
+		"skaeths_wild_hunt": {"save": 6},
+		"the_twistweald": {"base_size": "Swarmsage: 40mm, Twistroot Wardens and Twistroot Revenant: 32mm, Twistroot Dryads: 28.5mm, Twistroot Spite-Revenant: 40mm"},
+		"Our Reach is Long": {"effect": "The creeping overgrowth (referenced by other abilities) extends 6\" from each terrain feature that has a friendly overgrown token.\nIncrease this range by 1\" for each friendly LORDS OF THE CLAN unit that is wholly outside friendly territory."},
+		"Song of the Hunt": {
+			"effect": "The following cumulative effects apply to friendly EVERGREEN HUNT units depending on the number of chords you have:",
+			"options": [
+				{"name": "1 chord – Simple", "text": "Add 1 to run rolls and charge rolls for friendly units wholly within the same quarter of the battlefield as the quarry."},
+				{"name": "2 chords – Tuneful", "text": "Add 1 to hit rolls and wound rolls for friendly units' combat attacks that target an enemy unit wholly within the same quarter of the battlefield as the quarry."},
+				{"name": "3-5 chords – Melodic", "text": "Add 1 to the Attacks characteristic of melee weapons used by friendly units while they are in combat with the quarry."},
+				{"name": "6+ chords – Mellifluous", "text": "While a friendly unit is in combat with the quarry, the quarry has STRIKE-LAST."}
+			]
+		}
+	}
+}

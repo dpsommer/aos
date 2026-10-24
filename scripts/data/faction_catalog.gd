@@ -47,6 +47,7 @@ const _DATA_DIRS := {
 	"Helsmiths of Hashut": "res://data/factions/helsmiths_of_hashut",
 	"Idoneth Deepkin": "res://data/factions/idoneth_deepkin",
 	"Kharadron Overlords": "res://data/factions/kharadron_overlords",
+	"Sylvaneth": "res://data/factions/sylvaneth",
 }
 
 static var _loaded := {}

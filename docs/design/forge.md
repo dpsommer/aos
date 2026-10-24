@@ -21,4 +21,4 @@ Esc (`ui_cancel`) does the same as the visible Back button on every screen.
 
 ## Faction data
 
-Factions are listed by name in `scripts/data/faction_catalog.gd`, grouped by `GrandAlliance.Type` (`scripts/data/grand_alliance.gd`). The faction buttons are generated from the catalog. Factions with rules data (currently Blades of Khorne, Helsmiths of Hashut, Idoneth Deepkin and Kharadron Overlords) are loaded from `data/factions/`; see [Faction data](../technical/faction-data.md).
+Factions are listed by name in `scripts/data/faction_catalog.gd`, grouped by `GrandAlliance.Type` (`scripts/data/grand_alliance.gd`). The faction buttons are generated from the catalog. Factions with rules data (currently Blades of Khorne, Helsmiths of Hashut, Idoneth Deepkin, Kharadron Overlords and Sylvaneth) are loaded from `data/factions/`; see [Faction data](../technical/faction-data.md).

@@ -181,7 +181,8 @@ def split_options(effect):
         headings = set()
     lines, options, heading = [], [], ""
     for i, line in enumerate(source):
-        note = re.match(r"\s*\*\*Designer's Note:\*\*\s*(.*)$", line)
+        # Bold, bold italic or italic: "**Designer's Note:** …", "***Designer's Note**: …*".
+        note = re.match(r"\s*\*{1,3}Designer's Note:?\*{0,3}:?\s*(.*?)\**\s*$", line)
         m = option_line.match(line)
         if note:
             # Commentary rather than rules; kept apart from the effect as Wahapedia does.
@@ -305,7 +306,7 @@ def weapons(profiles):
             continue
         seen.add((kind, p.get("name")))
         c = characteristics(p)
-        w = {"name": p.get("name"), "range": int_or(c.get("Rng")) if kind == "Ranged Weapon" else 0,
+        w = {"name": p.get("name").strip(), "range": int_or(c.get("Rng")) if kind == "Ranged Weapon" else 0,
              "attacks": markup(c.get("Atk")), "hit": int_or(c.get("Hit")), "wound": int_or(c.get("Wnd")),
              "rend": int_or(c.get("Rnd")), "damage": markup(c.get("Dmg"))}
         abilities = [a.strip() for a in markup(c.get("Ability")).split(",") if a.strip() and a.strip() != "-"]

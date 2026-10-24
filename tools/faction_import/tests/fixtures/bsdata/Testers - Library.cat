@@ -63,7 +63,7 @@ That unit must be wholly within 12".
                 <characteristic name="Ability" typeId="ab">Crit (Mortal), Shoot in Combat</characteristic>
               </characteristics>
             </profile>
-            <profile id="p-cutlass" name="Cutlass" typeId="mw" typeName="Melee Weapon">
+            <profile id="p-cutlass" name=" Cutlass" typeId="mw" typeName="Melee Weapon">
               <characteristics>
                 <characteristic name="Atk" typeId="atk">4</characteristic>
                 <characteristic name="Hit" typeId="hit">3+</characteristic>

@@ -308,13 +308,19 @@ def parse_faction_page(path):
     for t in tsoup.select(".tooltip_templates, script, style, .noprint, .ShowFluff, .picSearch, .faqErrataSpoilerBody, .faqErrataHead, .wsDataRow_short, .wsDataCell_short, .datasheet"):
         t.decompose()
     prepare(tsoup)
-    theads = {}
+    # Headings by tag and title, so a formation and an Army of Renown sharing a name ("Lords of the
+    # Clan") each find their own section. Repeats of a heading are matched in page order.
+    theads, seen = {}, {}
     for h in tsoup.find_all(["h1", "h2", "h3"]):
-        theads.setdefault(text(h), []).append(h)
-    def sec_text(title, occurrence=0):
-        hs = theads.get(title, [])
-        return section_text(hs[occurrence]) if len(hs) > occurrence else ""
+        theads.setdefault((h.name, text(h)), []).append(h)
+    def sec_text(tag, title):
+        hs = theads.get((tag, title), [])
+        i = seen.get((tag, title), 0)
+        return section_text(hs[i]) if len(hs) > i else ""
     start = soup.find("h2", string=re.compile("Faction Rules"))
+    for h in start.find_all_previous(["h1", "h2", "h3"]):
+        if h.find_parent(class_="datasheet") is None:
+            seen[(h.name, text(h))] = seen.get((h.name, text(h)), 0) + 1
     events = []  # (kind, payload) in document order
     for el in start.find_all_next(True):
         if el.find_parent(class_="datasheet") is not None and "datasheet" not in (el.get("class") or []):
@@ -358,14 +364,16 @@ def parse_faction_page(path):
         kind = ev[0]
         if kind == "h":
             _, tag, title, el = ev
+            text_here = sec_text(tag, title)
+            seen[(tag, title)] = seen.get((tag, title), 0) + 1
             sec_src = ""
             for e2 in el.next_elements:
                 if getattr(e2, "name", None) in ("h1", "h2", "h3") and e2 is not el: break
                 if getattr(e2, "name", None) == "img" and "/expansions/" in e2.get("src", ""):
                     k = os.path.basename(e2["src"]).split("_logo")[0]
                     sec_src = LOGO_SOURCE.get(k, ""); break
-            if tag == "h2" and mode in ("faction", "aor") and "ROSTER OPTIONS" in sec_text(title):
-                mode = "aor"; cur_aor = {"name": title, "text": sec_text(title), "battle_traits": [], "enhancement_tables": [], "lores": []}
+            if tag == "h2" and mode in ("faction", "aor") and "ROSTER OPTIONS" in text_here:
+                mode = "aor"; cur_aor = {"name": title, "text": text_here, "battle_traits": [], "enhancement_tables": [], "lores": []}
                 if sec_src: cur_aor["source"] = sec_src
                 aors.append(cur_aor); h3 = None; continue
             if title.upper() == "PATH TO GLORY":
@@ -373,11 +381,11 @@ def parse_faction_page(path):
             if title.upper() == "SPEARHEAD":
                 mode = "spearhead"; continue
             if mode == "spearhead" and tag == "h2":
-                cur_sh = {"name": title, "army_text": sec_text(title), "army": [], "battle_traits": [], "regiment_abilities": [], "enhancements": [], "warscrolls": []}
+                cur_sh = {"name": title, "army_text": text_here, "army": [], "battle_traits": [], "regiment_abilities": [], "enhancements": [], "warscrolls": []}
                 spearheads.append(cur_sh); h3 = None; continue
             if mode == "ptg":
                 if tag in ("h3", "h1") and title != "Your Hero's Warscroll":
-                    cur_ptg = {"name": title, "text": sec_text(title), "warscrolls": []}
+                    cur_ptg = {"name": title, "text": text_here, "warscrolls": []}
                     ptg.append(cur_ptg)
                 continue
             if mode == "aor":
