@@ -16,7 +16,7 @@
 
 ### Design
 
-None yet.
+- [Main menu](design/main-menu.md): menu options, their destinations, and the signals the menu emits
 
 ### Gameplay
 
