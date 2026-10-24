@@ -320,3 +320,85 @@ def test_wahapedia_abilities_collects_each_ability_once():
     names = [a["name"] for a in build.wahapedia_abilities(wh_page(), [])]
     assert len(names) == len(set(names))
 
+
+
+# rename_armies()
+
+def armies():
+    return [{"name": "New Summercourt", "battle_traits": []}, {"name": "Other Host", "battle_traits": []}]
+
+
+def test_rename_armies_renames_matching_army():
+    a = armies()
+    build.rename_armies(a, {"New Summercourt": "The Knights of New Summercourt"})
+    assert a[0]["name"] == "The Knights of New Summercourt"
+
+
+def test_rename_armies_leaves_other_armies_alone():
+    a = armies()
+    build.rename_armies(a, {"New Summercourt": "The Knights of New Summercourt"})
+    assert a[1] == armies()[1]
+
+
+def test_rename_armies_without_names_changes_nothing():
+    a = armies()
+    build.rename_armies(a, {})
+    assert a == armies()
+
+
+def test_rename_armies_matching_nothing_exits():
+    with pytest.raises(SystemExit):
+        build.rename_armies(armies(), {"Nowhere": "Somewhere"})
+
+
+def test_build_renames_armies_before_merging(tmp_path, monkeypatch):
+    (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
+    merged = []
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: ({}, [], armies()))
+    monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: {
+        "faction": {}, "armies_of_renown": [], "spearheads": [], "path_to_glory": []})
+    monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
+    monkeypatch.setattr(build, "wahapedia_abilities", lambda page, units: [])
+    monkeypatch.setattr(build.merge, "merge_faction", lambda report, bs, wh: {})
+    monkeypatch.setattr(build.merge, "merge_warscrolls", lambda report, bs, wh: [])
+    monkeypatch.setattr(build.merge, "merge_armies", lambda report, bs, wh: merged.extend(a["name"] for a in bs) or bs)
+    build.build("bs", str(tmp_path), "id", "Faction", {"army_names": {"New Summercourt": "The Knights"}})
+    assert merged == ["The Knights", "Other Host"]
+
+
+# fields scoped to an Army of Renown
+
+def test_army_of_renown_scoped_field_override_changes_that_army_battle_trait():
+    d = data()
+    build.apply_overrides(d, {"fields": {"Host > Shared Resolve": {"timing": "Deployment"}}})
+    assert d["armies_of_renown"][0]["battle_traits"][0]["timing"] == "Deployment"
+
+
+@pytest.mark.parametrize("group", ["enhancement_tables", "lores"])
+def test_army_of_renown_scoped_field_override_reaches_table_entries(group):
+    d = data()
+    d["armies_of_renown"][0][group] = [{"name": "Table", "entries": [ability("Gift")]}]
+    build.apply_overrides(d, {"fields": {"Host > Gift": {"timing": "Deployment"}}})
+    assert d["armies_of_renown"][0][group][0]["entries"][0]["timing"] == "Deployment"
+
+
+def test_army_of_renown_scoped_field_override_leaves_same_named_ability_in_other_army_alone():
+    d = data()
+    d["armies_of_renown"].append({"name": "Other Host", "battle_traits": [ability("Shared Resolve")],
+                                  "enhancement_tables": [], "lores": []})
+    build.apply_overrides(d, {"fields": {"Host > Shared Resolve": {"timing": "Deployment"}}})
+    assert d["armies_of_renown"][1]["battle_traits"][0] == ability("Shared Resolve")
+
+
+def test_army_of_renown_scoped_field_override_leaves_same_named_faction_ability_alone():
+    d = data()
+    d["faction"]["battle_traits"].append(ability("Shared Resolve"))
+    build.apply_overrides(d, {"fields": {"Host > Shared Resolve": {"timing": "Deployment"}}})
+    assert d["faction"]["battle_traits"][1] == ability("Shared Resolve")
+
+
+def test_unmatched_army_of_renown_scoped_field_override_exits():
+    with pytest.raises(SystemExit):
+        build.apply_overrides(data(), {"fields": {"Host > Rally Cry": {"timing": "Deployment"}}})

@@ -1,0 +1,31 @@
+{
+	"army_names": {
+		"New Summercourt": "The Knights of New Summercourt"
+	},
+	"fields": {
+		"The Equinox Feast > Summon Chalice of Ushoran": {"declare": "If there is not a friendly Chalice of Ushoran on the battlefield, pick a friendly EQUINOX FEAST WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"The Knights of New Summercourt > Summon Corpsemare Stampede": {"declare": "If there is not a friendly Corpsemare Stampede on the battlefield, pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"The Knights of New Summercourt > Excommunication": {"declare": "Pick a friendly NEW SUMMERCOURT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6."},
+		"A Duel, Good Sir": {"declare": "You must use this ability if the friendly Ushoran is in combat with the enemy general. Pick the enemy general to be the target."},
+		"The Summerking's Colours": {"effect": "For the rest of the battle:\n• While the target unit contains any standard bearers, add 10 to the control scores of friendly NEW SUMMERCOURT units while they are wholly within 24\" of the target.\n• Once all of the standard bearers in the target unit have been slain, subtract 5 from the control scores of friendly NEW SUMMERCOURT units."},
+		"The Knight's Vow": {"timing": "Any Combat Phase", "frequency": "Once Per Turn (Army)"},
+		"The Grisly Pennant": {"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target."},
+		"Charnel Feast": {"declare": "Pick a friendly FLESH-EATER COURTS WIZARD to cast this spell and pick a visible enemy unit within 18\" of them to be the target. You can also pick a friendly SERFS unit within 6\" of the target to be the raised ranks. Then, make a casting roll of 2D6."},
+		"crypt_infernal_courtier > On Winged Steeds": {"declare": "Pick a friendly Crypt Flayers unit that used the 'To Our Liege!' ability this turn and is wholly within 9\" of this unit to be the target."},
+		"grand_justice_gormayne > Arrest those Miscreants": {"effect": "Roll a dice. On a 3+, until the start of your next turn, the target has STRIKE-LAST while it is in combat with any friendly FLESH-EATER COURTS HEROES and any friendly SERFS or KNIGHTS units."},
+		"ushoran_mortarch_of_delusion > Glimpse of Delusion": {"declare": "Pick a visible enemy model within 18\" of this unit to be the target, pick an enemy unit that is visible to the target and within the target's combat range to be the victim, then make a casting roll of 2D6. You can only pick the target's unit to be the victim if that unit has 2 or more models."},
+		"The Knights of New Summercourt > Red Errantry Hosts": {"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within friendly territory, wholly within 6\" of a battlefield edge and more than 9\" from all enemy units."},
+		"abhorrant_archregent": {"health": 5},
+		"abhorrant_ghoul_king": {"keywords": ["DEATH", "HERO", "FLESH-EATER COURTS", "ABHORRANT", "WIZARD (1)", "WARD (6+)", "INFANTRY"]},
+		"chalice_of_ushoran > Overflowing Gore": {"name": "Draughts of Delusion"},
+		"the_grymwatch > Great Halberd": {"hit": 3},
+		"royal_terrorgheist > Terrorgheist's Fanged Maw": {"name": "Fanged Maw"},
+		"royal_terrorgheist > Terrorgheist's Skeletal Talons": {"name": "Skeletal Talons"},
+		"royal_terrorgheist > Wicked Predator": {"effect": "For each champion, standard bearer, and musician in the target unit, add 1 to the Attacks characteristic of this unit's Skeletal Talons, to a maximum of 10, for the rest of the phase. Those additional attacks must target that enemy unit."},
+		"scourge_of_ghyran_abhorrant_ghoul_king > Gory Talons and Fangs": {"name": "Blood-stained Talons and Fangs"},
+		"crypt_flayers_2_models": {"unit_size": 2},
+		"crypt_horrors_2_models": {"unit_size": 2},
+		"royal_beastflayers": {"base_size": "Royal Flaymaster, Beastflayer Baron: 32mm, 2 x Offal Hounds: 40mm, 3 x Ghoul Trackers: 25mm, 3 x Ghoul Gore-Squires: 28.5mm"},
+		"high_falconer_felgryn": {"base_size": "High Falconer Felgryn: 32mm, Grype: 28.5mm"}
+	}
+}

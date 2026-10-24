@@ -64,3 +64,48 @@ def test_profile_notes_drop_trailing_base_size_with_times_sign():
 
 def test_profile_notes_without_base_size_are_unchanged():
     assert wahapedia.parse_profile(profile(LEGENDS_NOTE))["notes"] == LEGENDS_NOTE
+
+
+# cell_texts() / table_rows()
+
+def cell(html):
+    return wahapedia.BeautifulSoup("<table><tr><td>%s</td></tr></table>" % html, "html.parser").td
+
+
+def rows(html):
+    return wahapedia.table_rows(wahapedia.BeautifulSoup(html, "html.parser").table)
+
+
+def test_cell_without_list_is_one_text():
+    assert wahapedia.cell_texts(cell("10 Cryptguard <b>and</b> friends")) == ["10 Cryptguard and friends"]
+
+
+def test_cell_list_items_become_cells_of_their_own():
+    texts = wahapedia.cell_texts(cell("<ul><li>10 Cryptguard</li><li>Varghulf Courtier</li></ul>"))
+    assert texts == ["10 Cryptguard", "Varghulf Courtier"]
+
+
+def test_ordered_list_items_become_cells_of_their_own():
+    texts = wahapedia.cell_texts(cell("<ol><li>3 Morbheg Knights</li><li>Varghulf Courtier</li></ol>"))
+    assert texts == ["3 Morbheg Knights", "Varghulf Courtier"]
+
+
+def test_cell_text_beside_a_list_is_kept_as_its_own_cell():
+    texts = wahapedia.cell_texts(cell("<div>General</div><ul><li>Abhorrant Archregent</li></ul>"))
+    assert texts == ["General", "Abhorrant Archregent"]
+
+
+def test_list_nested_below_a_cell_child_is_not_split():
+    texts = wahapedia.cell_texts(cell("<div><ul><li>10 Cryptguard</li><li>Varghulf Courtier</li></ul></div>"))
+    assert len(texts) == 1
+
+
+def test_table_rows_split_list_cells_and_drop_blank_text():
+    html = ("<table><tr><td><div>Units</div>\n<ul>\n<li>10 Cryptguard</li>\n<li>Varghulf Courtier</li>\n</ul>\n</td>"
+            "</tr></table>")
+    assert rows(html) == [["Units", "10 Cryptguard", "Varghulf Courtier"]]
+
+
+def test_table_rows_keep_cells_without_lists():
+    html = "<table><tr><th>General</th><td>Abhorrant Archregent</td></tr></table>"
+    assert rows(html) == [["General", "Abhorrant Archregent"]]

@@ -208,10 +208,10 @@ FACTION_TYPED_PROFILE = ('<profiles><profile id="p-x" name="Tithe Rite" typeName
                          '</characteristics></profile></profiles>')
 
 
-def test_faction_specific_ability_is_a_battle_trait():
+def test_faction_specific_ability_is_a_battle_trait(cats):
     root = element("catalogue", '><sharedSelectionEntries><selectionEntry id="t" name="Battle Traits: Testers">'
                      + FACTION_TYPED_PROFILE + '</selectionEntry></sharedSelectionEntries>')
-    assert [a["name"] for a in bsdata.battle_traits(root, FACTION)] == ["Tithe Rite"]
+    assert [a["name"] for a in bsdata.battle_traits(cats, root, FACTION)] == ["Tithe Rite"]
 
 
 def test_faction_specific_ability_is_an_enhancement_profile():
@@ -583,12 +583,10 @@ def test_faction_link_wins_over_priced_army_of_renown_link(tmp_path):
 
 # faction_files()
 
-def catalogue_xml(name, links=()):
-    """A minimal catalogue named `name` with catalogueLinks to each of `links` (raw XML names)."""
-    link_xml = "".join('<catalogueLink id="cl-%d" name="%s" targetId="x" type="catalogue"/>' % (i, link)
-                       for i, link in enumerate(links))
-    return ('<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="c" name="%s" gameSystemId="sys" '
-            'xmlns="%s"><catalogueLinks>%s</catalogueLinks></catalogue>' % (name, NS, link_xml))
+def catalogue_xml(name, cat_id="c"):
+    """A minimal catalogue named `name` (raw XML) with id `cat_id`."""
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="%s" name="%s" gameSystemId="sys" '
+            'xmlns="%s"><catalogueLinks></catalogueLinks></catalogue>' % (cat_id, name, NS))
 
 
 def fixture_copy(tmp_path):
@@ -598,12 +596,12 @@ def fixture_copy(tmp_path):
     return tmp_path
 
 
-def add_faction_link(directory, link):
-    """Add a catalogueLink named `link` (raw XML) to the fixture faction catalogue."""
+def add_faction_link(directory, link, target="x"):
+    """Add a catalogueLink named `link` (raw XML) to catalogue id `target` to the fixture faction catalogue."""
     cat = directory / (FACTION + ".cat")
     cat.write_text(cat.read_text(encoding="utf-8").replace(
         "</catalogueLinks>",
-        '<catalogueLink id="cl-extra" name="%s" targetId="x" type="catalogue"/></catalogueLinks>' % link, 1),
+        '<catalogueLink id="cl-extra" name="%s" targetId="%s" type="catalogue"/></catalogueLinks>' % (link, target), 1),
         encoding="utf-8")
 
 
@@ -659,30 +657,31 @@ def test_faction_files_exclude_faction_with_same_name_prefix(tmp_path):
 
 def test_faction_files_exclude_linked_path_to_glory(tmp_path):
     d = fixture_copy(tmp_path)
-    (d / "Path to Glory - Testers.cat").write_text(catalogue_xml("Path to Glory - Testers"), encoding="utf-8")
-    add_faction_link(d, "❖ Path to Glory - Testers")
+    (d / "Path to Glory - Testers.cat").write_text(catalogue_xml("Path to Glory - Testers", "ptg"), encoding="utf-8")
+    add_faction_link(d, "❖ Path to Glory - Testers", "ptg")
     assert "Path to Glory - Testers.cat" not in bsdata.faction_files(str(d), FACTION)
 
 
 def test_faction_files_exclude_linked_library_of_other_faction(tmp_path):
     d = fixture_copy(tmp_path)
-    (d / "Others - Library.cat").write_text(catalogue_xml("Others - Library"), encoding="utf-8")
-    add_faction_link(d, "Others - Library")
+    (d / "Others - Library.cat").write_text(catalogue_xml("Others - Library", "others-lib"), encoding="utf-8")
+    add_faction_link(d, "Others - Library", "others-lib")
     assert "Others - Library.cat" not in bsdata.faction_files(str(d), FACTION)
 
 
 def test_faction_files_include_linked_non_library_catalogue(tmp_path):
     d = fixture_copy(tmp_path)
-    (d / "Regiments of Renown.cat").write_text(catalogue_xml("Regiments of Renown"), encoding="utf-8")
-    add_faction_link(d, "❖ Regiments of Renown")
+    (d / "Regiments of Renown.cat").write_text(catalogue_xml("Regiments of Renown", "ror"), encoding="utf-8")
+    add_faction_link(d, "❖ Regiments of Renown", "ror")
     assert "Regiments of Renown.cat" in bsdata.faction_files(str(d), FACTION)
 
 
-def test_faction_files_unescape_link_names(tmp_path):
+def test_faction_files_follow_links_by_id_when_name_differs_from_file(tmp_path):
+    # Flesh-eater Courts links "þ Legions of Nagash", which is "Legions of Nagash [LEGENDS].cat".
     d = fixture_copy(tmp_path)
-    (d / "Bob's & Co.cat").write_text(catalogue_xml("Bob&apos;s &amp; Co"), encoding="utf-8")
-    add_faction_link(d, "þ Bob&apos;s &amp; Co")
-    assert "Bob's & Co.cat" in bsdata.faction_files(str(d), FACTION)
+    (d / "Legions [LEGENDS].cat").write_text(catalogue_xml("þ Legions [LEGENDS]", "legions"), encoding="utf-8")
+    add_faction_link(d, "þ Legions", "legions")
+    assert "Legions [LEGENDS].cat" in bsdata.faction_files(str(d), FACTION)
 
 
 def test_faction_files_ignore_links_to_missing_catalogues(tmp_path):
@@ -693,10 +692,10 @@ def test_faction_files_ignore_links_to_missing_catalogues(tmp_path):
 
 def test_faction_files_do_not_follow_links_from_shared_catalogues(tmp_path):
     d = fixture_copy(tmp_path)
-    (d / "Deep.cat").write_text(catalogue_xml("Deep"), encoding="utf-8")
+    (d / "Deep.cat").write_text(catalogue_xml("Deep", "deep"), encoding="utf-8")
     shared = d / "The Shared Host [LEGENDS].cat"
     shared.write_text(shared.read_text(encoding="utf-8").replace(
-        "<entryLinks>", '<catalogueLinks><catalogueLink id="cl-deep" name="❖ Deep" targetId="x" '
+        "<entryLinks>", '<catalogueLinks><catalogueLink id="cl-deep" name="❖ Deep" targetId="deep" '
                         'type="catalogue"/></catalogueLinks><entryLinks>', 1), encoding="utf-8")
     assert "Deep.cat" not in bsdata.faction_files(str(d), FACTION)
 
@@ -803,3 +802,212 @@ def test_checkout_version_is_stripped_output(tmp_path, fake_run):
 def test_checkout_version_without_output_is_unknown(tmp_path, fake_run):
     fake_run.stdout = "  \n"
     assert bsdata.checkout_version(str(tmp_path)) == "unknown"
+
+
+# profiles_on() / abilities_in() / unit_profiles(): linked profiles
+
+def edited_fixture(tmp_path, edits):
+    """A copy of the fixture catalogues with each (file, old, new) replacement made once."""
+    d = fixture_copy(tmp_path)
+    for file_name, old, new in edits:
+        path = d / file_name
+        content = path.read_text(encoding="utf-8")
+        assert content.count(old) == 1, "%r not found once in %s" % (old, file_name)
+        path.write_text(content.replace(old, new), encoding="utf-8")
+    return d
+
+
+def passive_profile(profile_id, name):
+    return ('<profile id="%s" name="%s" typeId="ab" typeName="Ability (Passive)"><characteristics>'
+            '<characteristic name="Effect" typeId="eff">%s effect.</characteristic></characteristics>'
+            '<attributes><attribute name="Type" typeId="t">Special</attribute></attributes></profile>'
+            % (profile_id, name, name))
+
+
+def info_link(target, link_type="profile"):
+    return '<infoLink id="il-%s-%s" name="x" targetId="%s" type="%s"/>' % (target, link_type, target, link_type)
+
+
+LIBRARY_END = "  </sharedSelectionEntries>\n</catalogue>"
+SHARED_PROFILES = (LIBRARY_END[:-len("</catalogue>")] + "<sharedProfiles>" + passive_profile("sp-delusion", "Test Delusion")
+                   + passive_profile("sp-lib-beast", "Beast") + "</sharedProfiles>\n</catalogue>")
+CORE_PROFILES = ("</gameSystem>", "<sharedProfiles>" + passive_profile("sp-core-beast", "Beast")
+                 + "</sharedProfiles></gameSystem>")
+CAPTAIN = '<selectionEntry id="u-captain" name="Test Captain" type="unit" publicationId="pub-bt">'
+CAPTAIN_MODEL = '<selectionEntry id="m-captain" name="Test Captain" type="model">'
+
+
+def linked_faction(tmp_path, *edits):
+    """read_faction() over the fixture with shared profiles (a Delusion, and Beast in both the
+    library and the game system) plus `edits`."""
+    d = edited_fixture(tmp_path, [("Testers - Library.cat", LIBRARY_END, SHARED_PROFILES),
+                                  ("Test System.gst",) + CORE_PROFILES] + list(edits))
+    return bsdata.read_faction(bsdata.Catalogues(str(d)), FACTION)
+
+
+def captain_links(*targets):
+    return ("Testers - Library.cat", CAPTAIN, CAPTAIN + "<infoLinks>%s</infoLinks>" % "".join(targets))
+
+
+def captain_abilities(faction_data):
+    return [a["name"] for a in warscroll(faction_data, "Test Captain")["abilities"]]
+
+
+def test_unit_linked_profile_is_a_warscroll_ability(tmp_path):
+    assert "Test Delusion" in captain_abilities(linked_faction(tmp_path, captain_links(info_link("sp-delusion"))))
+
+
+def test_unit_linked_profile_keeps_its_text(tmp_path):
+    data = linked_faction(tmp_path, captain_links(info_link("sp-delusion")))
+    assert ability_of(data, "Test Captain", "Test Delusion")["effect"] == "Test Delusion effect."
+
+
+def test_unit_own_profiles_come_before_linked_ones(tmp_path):
+    assert captain_abilities(linked_faction(tmp_path, captain_links(info_link("sp-delusion"))))[-1] == "Test Delusion"
+
+
+def test_model_linked_profile_is_a_warscroll_ability(tmp_path):
+    data = linked_faction(tmp_path, ("Testers - Library.cat", CAPTAIN_MODEL,
+                                     CAPTAIN_MODEL + "<infoLinks>%s</infoLinks>" % info_link("sp-delusion")))
+    assert "Test Delusion" in captain_abilities(data)
+
+
+def test_linked_library_copy_of_core_profile_is_skipped(tmp_path):
+    assert "Beast" not in captain_abilities(linked_faction(tmp_path, captain_links(info_link("sp-lib-beast"))))
+
+
+def test_linked_game_system_profile_is_skipped(tmp_path):
+    assert "Beast" not in captain_abilities(linked_faction(tmp_path, captain_links(info_link("sp-core-beast"))))
+
+
+def test_non_profile_info_link_is_not_followed(tmp_path):
+    data = linked_faction(tmp_path, captain_links(info_link("sp-delusion", "rule")))
+    assert "Test Delusion" not in captain_abilities(data)
+
+
+def test_unresolved_profile_link_is_ignored(tmp_path):
+    data = linked_faction(tmp_path, captain_links(info_link("no-such-profile"), info_link("sp-delusion")))
+    assert "Test Delusion" in captain_abilities(data)
+
+
+def test_battle_traits_include_linked_profiles(tmp_path):
+    traits = '<selectionEntry id="se-traits" name="Battle Traits: Testers" type="upgrade">'
+    faction, _, _ = linked_faction(tmp_path, ("Testers.cat", traits,
+                                              traits + "<infoLinks>%s</infoLinks>" % info_link("sp-delusion")))
+    assert [a["name"] for a in faction["battle_traits"]] == ["Steady Ranks", "Test Delusion"]
+
+
+def test_core_profiles_are_game_system_profile_names(tmp_path):
+    d = edited_fixture(tmp_path, [("Test System.gst",) + CORE_PROFILES])
+    assert "Beast" in bsdata.Catalogues(str(d)).core_profiles
+
+
+def test_catalogue_profiles_are_not_core_profiles(cats):
+    assert "Rally Cry" not in cats.core_profiles
+
+
+def test_abilities_in_follows_profile_links(cats):
+    entry = element("selectionEntry", 'id="e" name="Linked">' + "<infoLinks>%s</infoLinks>" % info_link("p-trait"))
+    assert [a["name"] for a in bsdata.abilities_in(cats, entry)] == ["Steady Ranks"]
+
+
+def test_unit_profiles_follow_profile_links(cats):
+    unit = element("selectionEntry", 'id="u" name="Linked" type="unit">' + "<infoLinks>%s</infoLinks>" % info_link("p-trait"))
+    assert [p.get("name") for p in bsdata.unit_profiles(cats, unit)] == ["Steady Ranks"]
+
+
+# link_name() / units_of(): a unit linked more than once
+
+def test_link_name_comes_from_unconditional_name_modifier():
+    link = element("entryLink", 'id="l" name="Riders" targetId="u-riders" type="selectionEntry">'
+                   '<modifiers><modifier type="set" value="Riders (2 Models)" field="name"/></modifiers>')
+    assert bsdata.link_name(link) == "Riders (2 Models)"
+
+
+def test_link_name_ignores_conditional_name_modifier():
+    link = element("entryLink", 'id="l" name="Riders" targetId="u-riders" type="selectionEntry">'
+                   '<modifiers><modifier type="set" value="Riders (2 Models)" field="name"><conditions>'
+                   '<condition type="atLeast" value="1" field="selections" scope="roster" childId="x"/>'
+                   '</conditions></modifier></modifiers>')
+    assert bsdata.link_name(link) is None
+
+
+def test_link_name_ignores_modifiers_of_other_fields():
+    link = element("entryLink", 'id="l" name="Riders" targetId="u-riders" type="selectionEntry">'
+                   '<modifiers><modifier type="set" value="true" field="hidden"/></modifiers>')
+    assert bsdata.link_name(link) is None
+
+
+def test_link_name_without_link_is_none():
+    assert bsdata.link_name(None) is None
+
+
+RIDERS_LINK = '<entryLink id="el-riders" name="Test Riders" targetId="u-riders" type="selectionEntry">'
+
+
+def second_riders_link(modifier):
+    return ("Testers.cat", RIDERS_LINK,
+            '<entryLink id="el-riders-small" name="Test Riders (Small)" targetId="u-riders" type="selectionEntry">'
+            '<modifiers>%s</modifiers><costs><cost name="pts" typeId="points" value="110.0"/></costs></entryLink>'
+            % modifier + RIDERS_LINK)
+
+
+RENAME_MODIFIER = '<modifier type="set" value="Test Riders (Small)" field="name"/>'
+
+
+def twice_linked(tmp_path, modifier=RENAME_MODIFIER):
+    d = edited_fixture(tmp_path, [second_riders_link(modifier)])
+    return bsdata.read_faction(bsdata.Catalogues(str(d)), FACTION)
+
+
+def riders(warscrolls):
+    return sorted((w for w in warscrolls if w["name"].startswith("Test Riders")), key=lambda w: w["name"])
+
+
+def test_unit_linked_twice_gives_a_warscroll_per_link(tmp_path):
+    _, warscrolls, _ = twice_linked(tmp_path)
+    assert [w["name"] for w in riders(warscrolls)] == ["Test Riders", "Test Riders (Small)"]
+
+
+def test_renamed_link_gives_warscroll_id_from_new_name(tmp_path):
+    _, warscrolls, _ = twice_linked(tmp_path)
+    assert named(warscrolls, "Test Riders (Small)")["id"] == bsdata.slug("Test Riders (Small)")
+
+
+def test_renamed_link_warscroll_ids_are_distinct(tmp_path):
+    _, warscrolls, _ = twice_linked(tmp_path)
+    ids = [w["id"] for w in warscrolls]
+    assert len(ids) == len(set(ids))
+
+
+def test_each_link_warscroll_takes_its_own_points(tmp_path):
+    _, warscrolls, _ = twice_linked(tmp_path)
+    assert [w["points"] for w in riders(warscrolls)] == [200, 110]
+
+
+def test_each_link_warscroll_takes_its_own_reinforcement(tmp_path):
+    _, warscrolls, _ = twice_linked(tmp_path)
+    assert [w["can_reinforce"] for w in riders(warscrolls)] == [True, False]
+
+
+def test_renamed_link_warscroll_keeps_the_unit_profile(tmp_path):
+    _, warscrolls, _ = twice_linked(tmp_path)
+    small, full = named(warscrolls, "Test Riders (Small)"), named(warscrolls, "Test Riders")
+    assert (small["move"], small["abilities"]) == (full["move"], full["abilities"])
+
+
+def test_conditional_name_modifier_does_not_rename_warscroll(tmp_path):
+    conditional = ('<modifier type="set" value="Test Riders (Small)" field="name"><conditions>'
+                   '<condition type="atLeast" value="1" field="selections" scope="roster" childId="x"/>'
+                   '</conditions></modifier>')
+    _, warscrolls, _ = twice_linked(tmp_path, conditional)
+    assert [w["name"] for w in riders(warscrolls)] == ["Test Riders", "Test Riders"]
+
+
+# faction_files(): links by id
+
+def test_faction_files_do_not_match_links_by_name(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Regiments of Renown.cat").write_text(catalogue_xml("Regiments of Renown", "ror"), encoding="utf-8")
+    add_faction_link(d, "❖ Regiments of Renown", "some-other-id")
+    assert "Regiments of Renown.cat" not in bsdata.faction_files(str(d), FACTION)

@@ -279,10 +279,23 @@ def logo_source(el):
             if key in LOGO_SOURCE: return LOGO_SOURCE[key]
     return ""
 
+def cell_texts(td):
+    """A cell's text, with each item of a list in it as a cell of its own, so a Spearhead unit
+    listed without a count ("Varghulf Courtier") isn't run into the one before it."""
+    if td.find(["ul", "ol"], recursive=False) is None:
+        return [text(td)]
+    cells = []
+    for child in td.children:
+        if isinstance(child, Tag) and child.name in ("ul", "ol"):
+            cells += [text(li) for li in child.find_all("li")]
+        else:
+            cells.append(text(child))
+    return cells
+
 def table_rows(tbl):
     rows = []
     for tr in tbl.find_all("tr"):
-        cells = [text(td) for td in tr.find_all(["td", "th"], recursive=False)]
+        cells = [c for td in tr.find_all(["td", "th"], recursive=False) for c in cell_texts(td)]
         cells = [c for c in cells if c]
         if cells: rows.append(cells)
     return rows

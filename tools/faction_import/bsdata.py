@@ -80,18 +80,26 @@ def checkout_version(path):
 def faction_files(directory, faction):
     """The catalogue files a faction needs: the game system, Lores.cat, <Faction>.cat, every
     "<Faction> - *.cat" (library and Armies of Renown) and the shared catalogues those link
-    to, one level deep. Link names carry a decorative prefix ("❖ Lores", "þ The Duardin
-    Ascendant [LEGENDS]"). Path to Glory campaigns and other factions' libraries aren't needed."""
+    to, one level deep. Links are matched by catalogue id, as link names don't always match file
+    names ("þ Legions of Nagash" is "Legions of Nagash [LEGENDS].cat"). Path to Glory campaigns
+    and other factions' libraries aren't needed."""
     names = set(os.listdir(directory))
     if faction + ".cat" not in names:
         raise SystemExit("no BSData catalogue named %r in %s" % (faction + ".cat", directory))
+    by_id = {}
+    for name in names:
+        if name.endswith(".cat"):
+            with open(os.path.join(directory, name), encoding="utf-8") as fh:
+                m = re.search(r'<catalogue [^>]*\bid="([^"]+)"', fh.read(4096))
+            if m:
+                by_id[m.group(1)] = name
     own = [n for n in names if n == faction + ".cat" or n.startswith(faction + " - ")]
     wanted = set(own) | {n for n in names if n.endswith(".gst") or n == "Lores.cat"}
     for name in own:
         with open(os.path.join(directory, name), encoding="utf-8") as fh:
-            for link in re.findall(r'<catalogueLink [^>]*name="([^"]+)"', fh.read()):
-                linked = re.sub(r"^[^A-Za-z0-9]+", "", link).replace("&apos;", "'").replace("&amp;", "&") + ".cat"
-                if linked in names and not linked.startswith("Path to Glory") and (
+            for target in re.findall(r'<catalogueLink [^>]*targetId="([^"]+)"', fh.read()):
+                linked = by_id.get(target)
+                if linked and not linked.startswith("Path to Glory") and (
                         not linked.endswith(" - Library.cat") or linked.startswith(faction + " - ")):
                     wanted.add(linked)
     return sorted(wanted)
@@ -114,6 +122,9 @@ class Catalogues:
                     self.by_id.setdefault(el.get("id"), el)
         self.publications = {el.get("id"): el.get("name") for root in self.docs.values()
                              for el in root.iter() if tag(el) == "publication"}
+        # Core rules abilities, such as Beast, which some libraries copy.
+        self.core_profiles = {el.get("name") for f, root in self.docs.items() if f.endswith(".gst")
+                              for el in root.iter() if tag(el) == "profile"}
 
     def catalogue(self, name):
         root = self.docs.get(name + ".cat")
@@ -199,16 +210,24 @@ def split_options(effect):
     return markup("\n".join(lines)), options
 
 
-def abilities_in(el):
+def profiles_on(cats, el):
+    """An entry's own profiles, then the shared profiles it links to, such as a Flesh-eater
+    Courts hero's Delusion. Links to core rules abilities aren't followed."""
+    linked = [cats.resolve(l) for l in kids(el, "infoLinks", "infoLink") if l.get("type") == "profile"]
+    return kids(el, "profiles", "profile") + \
+        [p for p in linked if p is not None and p.get("name") not in cats.core_profiles]
+
+
+def abilities_in(cats, el):
     """Ability profiles directly on an entry (not inside enhancements it links to)."""
-    return [ability(p) for p in kids(el, "profiles", "profile") if is_ability(p)]
+    return [ability(p) for p in profiles_on(cats, el) if is_ability(p)]
 
 
-def unit_profiles(unit):
+def unit_profiles(cats, unit):
     """Profiles on a unit, its models and their wargear; links to other entries aren't followed."""
     found = []
     def walk(el):
-        for p in kids(el, "profiles", "profile"):
+        for p in profiles_on(cats, el):
             found.append(p)
         for container in ("selectionEntries", "selectionEntryGroups"):
             for child in kids(el, container):
@@ -255,11 +274,21 @@ def base_size(unit):
     return ", ".join("%s: %s" % (names(n), size) for size, n in sizes.items())
 
 
+def link_name(link):
+    """The name a link gives its unit, e.g. the faction catalogue's second link to Crypt Flayers
+    is "Crypt Flayers (2 Models)"."""
+    for m in kids(link, "modifiers", "modifier") if link is not None else []:
+        if m.get("field") == "name" and m.get("type") == "set" and not len(m):
+            return m.get("value")
+    return None
+
+
 def warscroll(cats, unit, link=None):
     publication = cats.publication(unit)
     source = source_of(publication)
-    name = re.sub(r"\s*\((Scourge of [^)]+)\)$", "", unit.get("name"))
-    m = re.search(r"\((Scourge of [^)]+)\)$", unit.get("name"))
+    full_name = link_name(link) or unit.get("name")
+    name = re.sub(r"\s*\((Scourge of [^)]+)\)$", "", full_name)
+    m = re.search(r"\((Scourge of [^)]+)\)$", full_name)
     if m:
         source = m.group(1)
     out = {"id": slug(((source + " ") if source.startswith("Scourge of") else "") + name), "name": name}
@@ -275,7 +304,7 @@ def warscroll(cats, unit, link=None):
     out["unit_size"] = sum(min_count(m) for m in models(unit)) or 1
     if base_size(unit):
         out["base_size"] = base_size(unit)
-    profiles = unit_profiles(unit)
+    profiles = unit_profiles(cats, unit)
     # Manifestations have a Manifestation profile (Move, Health, Save, Banishment) instead.
     stats = next((characteristics(p) for p in profiles if p.get("typeName") in ("Unit", "Manifestation")), {})
     out["move"] = int_or(stats.get("Move"))
@@ -373,22 +402,22 @@ def lores(cats, root, owner=""):
                     lore["source"] = source
                 if points(option):
                     lore["points"] = points(option)
-                lore["entries"] = [a for e in kids(target, "selectionEntries", "selectionEntry") for a in abilities_in(e)]
+                lore["entries"] = [a for e in kids(target, "selectionEntries", "selectionEntry") for a in abilities_in(cats, e)]
                 out.append(lore)
     return out
 
 
-def battle_traits(root, name):
+def battle_traits(cats, root, name):
     for entry in kids(root, "sharedSelectionEntries", "selectionEntry"):
         if entry.get("name") == "Battle Traits: " + name:
-            return abilities_in(entry)
+            return abilities_in(cats, entry)
     return []
 
 
-def battle_formations(root, name):
+def battle_formations(cats, root, name):
     for group in kids(root, "sharedSelectionEntryGroups", "selectionEntryGroup"):
         if group.get("name") == "Battle Formations: " + name:
-            return [{"name": e.get("name"), "points": points(e), "abilities": abilities_in(e)}
+            return [{"name": e.get("name"), "points": points(e), "abilities": abilities_in(cats, e)}
                     for e in kids(group, "selectionEntries", "selectionEntry")]
     return []
 
@@ -428,13 +457,18 @@ def units_of(cats, name, aor_roots):
             current = links.get(unit.get("id"))
             if current is None or (not points_of_link(current) and points_of_link(link)):
                 links[unit.get("id")] = link
-    units = [unit for unit, _ in unit_links(cats, root) if not unit.get("name").startswith("Anvil of Apotheosis")]
+    # A unit the faction catalogue links more than once is a warscroll per link, such as Crypt
+    # Flayers and "Crypt Flayers (2 Models)".
+    units = [(unit, link if points_of_link(link) else links[unit.get("id")]) for unit, link in unit_links(cats, root)
+             if not unit.get("name").startswith("Anvil of Apotheosis")]
+    listed = {unit.get("id") for unit, _ in units}
     shared = [u for r in [cats.docs.get(name + " - Library.cat")] + aor_roots if r is not None
               for u in kids(r, "sharedSelectionEntries", "selectionEntry") if u.get("type") == "unit"]
     for unit in shared:
-        if unit not in units and not unit.get("name").startswith("Anvil of Apotheosis"):
-            units.append(unit)
-    return [(unit, links.get(unit.get("id"))) for unit in units]
+        if unit.get("id") not in listed and not unit.get("name").startswith("Anvil of Apotheosis"):
+            listed.add(unit.get("id"))
+            units.append((unit, links.get(unit.get("id"))))
+    return units
 
 
 def aor_file_name(faction, file_name):
@@ -464,8 +498,8 @@ def read_faction(cats, name):
     faction = {
         "name": name,
         "grand_alliance": alliance,
-        "battle_traits": battle_traits(root, name),
-        "battle_formations": battle_formations(root, name),
+        "battle_traits": battle_traits(cats, root, name),
+        "battle_formations": battle_formations(cats, root, name),
         "enhancement_tables": enhancement_tables(cats, root),
         "lores": lores(cats, root),
     }
@@ -477,7 +511,7 @@ def read_faction(cats, name):
         if legends:
             army["legends"] = True
         army["roster"] = [unit.get("name") for r in roots for unit, _ in unit_links(cats, r)]
-        army["battle_traits"] = [a for r in roots for a in battle_traits(r, aor_name)]
+        army["battle_traits"] = [a for r in roots for a in battle_traits(cats, r, aor_name)]
         army["enhancement_tables"] = [t for r in roots for t in enhancement_tables(cats, r, aor_name)]
         army["lores"] = [l for r in roots for l in lores(cats, r, aor_name)]
         armies.append(army)

@@ -455,3 +455,36 @@ def test_spearhead_general_parenthetical_is_stripped():
 def test_spearhead_general_consecutive_parentheticals_are_stripped():
     s = cities_spearhead(general="Test Captain (Thexa is a token) (she has 1 wound)")
     assert s["general"] == "Test Captain"
+
+
+def ghoul_spearhead(units):
+    """A Spearhead whose Units row is split into cells, one per unit, as Wahapedia lists them."""
+    names = ["Abhorrant Archregent", "Cryptguard", "Morbheg Knights", "Varghulf Courtier", "Crypt Horrors"]
+    (s,) = merge.spearheads([spearhead([["General", "Abhorrant Archregent"], ["Units"] + units], names)], names)
+    return s
+
+
+def test_spearhead_unit_cells_split_before_a_unit_without_count():
+    s = ghoul_spearhead(["10 Cryptguard", "3 Morbheg Knights", "Varghulf Courtier"])
+    assert [(u["count"], u["name"]) for u in s["units"]] == \
+        [(10, "Cryptguard"), (3, "Morbheg Knights"), (1, "Varghulf Courtier")]
+
+
+def test_spearhead_unit_cells_split_after_a_unit_without_count():
+    s = ghoul_spearhead(["Varghulf Courtier", "3 Crypt Horrors"])
+    assert [(u["count"], u["name"]) for u in s["units"]] == [(1, "Varghulf Courtier"), (3, "Crypt Horrors")]
+
+
+def test_spearhead_unit_cell_still_splits_at_counts():
+    s = ghoul_spearhead(["10 Cryptguard 3 Morbheg Knights", "Varghulf Courtier"])
+    assert [u["name"] for u in s["units"]] == ["Cryptguard", "Morbheg Knights", "Varghulf Courtier"]
+
+
+def test_spearhead_general_in_its_own_cell_is_not_joined_to_units():
+    s = ghoul_spearhead(["10 Cryptguard"])
+    assert s["general"] == "Abhorrant Archregent"
+
+
+def test_spearhead_unit_cell_parenthetical_becomes_notes():
+    s = ghoul_spearhead(["Varghulf Courtier (General's Retinue)", "10 Cryptguard"])
+    assert (s["units"][0]["name"], s["units"][0].get("notes")) == ("Varghulf Courtier", "General's Retinue")

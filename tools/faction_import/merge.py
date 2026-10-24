@@ -241,15 +241,15 @@ def spearheads(wh_list, bs_names):
     for s in wh_list:
         warscrolls = [dict(wahapedia_warscroll(w), id="", name=canonical.get(norm(w["name"]), w["name"])) for w in s["warscrolls"]]
         names = [w["name"] for w in warscrolls]
-        army = " ".join(c for row in s["army"] for c in row)
-        m = re.search(r"General\s+(.+?)\s+Units\s+(.+)$", army)
+        army = "\n".join(c for row in s["army"] for c in row)
+        m = re.search(r"General\s+(.+?)\s+Units\s+(.+)$", army, re.S)
         # The general can carry token notes, e.g. "Jorvan Kreel (Thexa, the ash panther, is a token)".
         general = re.sub(r"(\s*\([^()]*\))+$", "", m.group(1))
         general = resolve(canonical.get(norm(general), general), names)
         units = []
-        # Entries start at a count, except a named character listed without one. A count after
-        # "with" is part of the entry ("5 Freeguild Fusiliers with 1 Blackpowder Squire token").
-        for entry in re.split(r"(?<!\bwith)\s+(?=\d+\s)", m.group(2)):
+        # Entries start at a new cell or at a count, except a named character listed without one. A
+        # count after "with" is part of the entry ("5 Freeguild Fusiliers with 1 Blackpowder Squire token").
+        for entry in re.split(r"\s*\n\s*|(?<!\bwith)\s+(?=\d+\s)", m.group(2)):
             count, name = re.match(r"(?:(\d+)\s+)?(.+)$", entry).groups()
             unit = {"count": int(count or 1), "name": name.strip()}
             mm = re.match(r"(.+?)\s*\((.+)\)$", unit["name"]) or \
