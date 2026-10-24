@@ -16,7 +16,7 @@ The project is at an early stage. The main scene is `scenes/main.tscn` (`Main`),
   - `layout.md`: folder structure. GDScript goes in `scripts/`, scenes in `scenes/`, assets in `assets/{2d,3d,audio,shaders}`. `addons/gut/` is vendored third-party code, so don't edit it.
   - `testing.md`: test layout, how to run tests headless, and the testing rules. Follow it when writing tests.
   - `rules-reference.md`: the official rules PDFs and how to use them.
-  - `faction-data.md`: faction JSON format in `data/factions/`, sources, and how to add a faction.
+  - `faction-data.md`: faction JSON format in `data/factions/`, sources (BSData first, Wahapedia for gaps), and how to add a faction with `tools/faction_import/`.
 - `docs/design/`: game design (modes, UI, army builder, AI).
 - `docs/gameplay/`: how tabletop rules are implemented in the simulator.
 

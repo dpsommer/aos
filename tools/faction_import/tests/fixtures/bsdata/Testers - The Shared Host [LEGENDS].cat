@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue id="cat-aor" name="Testers - The Shared Host [LEGENDS]" revision="1" gameSystemId="sys" library="false" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
+  <catalogueLinks>
+    <catalogueLink id="cl-aor-lib" name="Testers - Library" targetId="cat-lib" type="catalogue" importRootEntries="true"/>
+    <catalogueLink id="cl-aor-shared" name="þ The Shared Host [LEGENDS]" targetId="cat-shared" type="catalogue" importRootEntries="true"/>
+  </catalogueLinks>
+  <entryLinks>
+    <entryLink id="el-aor-captain" name="Test Captain" targetId="u-captain" type="selectionEntry"/>
+  </entryLinks>
+</catalogue>

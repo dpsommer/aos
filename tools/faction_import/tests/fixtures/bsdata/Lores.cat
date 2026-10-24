@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue id="cat-lores" name="Lores" revision="1" gameSystemId="sys" library="true" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
+  <sharedSelectionEntryGroups>
+    <selectionEntryGroup id="lg-testing" name="Lore of Testing" publicationId="pub-bt">
+      <selectionEntries>
+        <selectionEntry id="ls-bolt" name="Test Bolt" type="upgrade">
+          <profiles>
+            <profile id="p-ls-bolt" name="Test Bolt" typeId="ab" typeName="Ability (Spell)">
+              <characteristics>
+                <characteristic name="Timing" typeId="tim">Your Hero Phase</characteristic>
+                <characteristic name="Casting Value" typeId="cv">7</characteristic>
+                <characteristic name="Effect" typeId="eff">Inflict D3 mortal damage.</characteristic>
+                <characteristic name="Keywords" typeId="kw">**^^Spell^^**</characteristic>
+              </characteristics>
+              <attributes><attribute name="Type" typeId="t">Damage</attribute></attributes>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="lg-core" name="Universal Spell Lore" publicationId="pub-core">
+      <selectionEntries>
+        <selectionEntry id="ls-core" name="Core Bolt" type="upgrade">
+          <profiles>
+            <profile id="p-ls-core" name="Core Bolt" typeId="ab" typeName="Ability (Spell)">
+              <characteristics><characteristic name="Effect" typeId="eff">Core.</characteristic></characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="lg-manif" name="Manifestations of Testing" publicationId="pub-bt">
+      <selectionEntries>
+        <selectionEntry id="ls-summon" name="Summon Test Spirit" type="upgrade">
+          <profiles>
+            <profile id="p-ls-summon" name="Summon Test Spirit" typeId="ab" typeName="Ability (Spell)">
+              <characteristics>
+                <characteristic name="Timing" typeId="tim">Your Hero Phase</characteristic>
+                <characteristic name="Casting Value" typeId="cv">6</characteristic>
+                <characteristic name="Effect" typeId="eff">Set up a Test Spirit.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="lg-gh" name="Handbook Manifestations" publicationId="pub-gh">
+      <selectionEntries>
+        <selectionEntry id="ls-gh" name="Handbook Spirit" type="upgrade">
+          <profiles>
+            <profile id="p-ls-gh" name="Handbook Spirit" typeId="ab" typeName="Ability (Spell)">
+              <characteristics><characteristic name="Effect" typeId="eff">Handbook.</characteristic></characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+  </sharedSelectionEntryGroups>
+</catalogue>

@@ -1,72 +1,6 @@
 {
 	"warscrolls": [
 		{
-			"id": "aether_khemist",
-			"name": "Aether-Khemist",
-			"points": 100,
-			"unit_size": 1,
-			"base_size": "32mm",
-			"can_reinforce": false,
-			"regiment_options": [
-				"0-1 SKYVESSEL",
-				"Any INFANTRY"
-			],
-			"notes": "This HERO can join an eligible regiment as a Guild Officer.",
-			"move": 4,
-			"health": 5,
-			"save": 4,
-			"control": 2,
-			"ranged_weapons": [
-				{
-					"name": "Atmospheric Anatomiser",
-					"range": 8,
-					"attacks": "3D6",
-					"hit": 4,
-					"wound": 4,
-					"rend": 2,
-					"damage": "1",
-					"abilities": [
-						"Shoot in Combat"
-					]
-				}
-			],
-			"melee_weapons": [
-				{
-					"name": "Heavy Instruments",
-					"range": 0,
-					"attacks": "3",
-					"hit": 4,
-					"wound": 4,
-					"rend": 0,
-					"damage": "D3"
-				}
-			],
-			"abilities": [
-				{
-					"name": "ATMOSPHERIC ISOLATION",
-					"category": "movement",
-					"timing": "Passive",
-					"effect": "Subtract 1 from charge rolls for enemy units within 9\" of this unit."
-				},
-				{
-					"name": "AETHERIC AUGMENTATION",
-					"category": "shooting",
-					"timing": "Your Shooting Phase",
-					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of this unit to be the target.",
-					"effect": "Roll a dice. On a 3+, add 1 to the Rend characteristic of the target’s ranged weapons for the rest of the turn."
-				}
-			],
-			"keywords": [
-				"HERO",
-				"INFANTRY",
-				"ORDER",
-				"KHARADRON OVERLORDS",
-				"DUARDIN",
-				"SKYFARER"
-			]
-		},
-		{
 			"id": "aetheric_navigator",
 			"name": "Aetheric Navigator",
 			"points": 120,
@@ -109,24 +43,90 @@
 			],
 			"abilities": [
 				{
-					"name": "AETHERSIGHT",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
-				},
-				{
-					"name": "READ THE WINDS",
+					"name": "Read the Winds",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a friendly SKYVESSEL or AUTO-ENDRIN within this unit’s combat range and that is not in combat to be the target.",
+					"declare": "Pick a friendly SKYVESSEL or AUTO-ENDRIN within this unit's combat range and that is not in combat to be the target.",
 					"effect": "Remove the target from the battlefield and set it up again on the battlefield more than 9\" from all enemy units. Then, if the target is a SKYVESSEL, you can remove this unit from the battlefield and set it up again on the battlefield wholly within 6\" of the target and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Aethersight",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				}
 			],
 			"keywords": [
 				"HERO",
-				"INFANTRY",
 				"ORDER",
+				"INFANTRY",
+				"KHARADRON OVERLORDS",
+				"DUARDIN",
+				"SKYFARER"
+			]
+		},
+		{
+			"id": "aether_khemist",
+			"name": "Aether-Khemist",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 SKYVESSEL",
+				"Any INFANTRY"
+			],
+			"notes": "This HERO can join an eligible regiment as a Guild Officer.",
+			"move": 4,
+			"health": 5,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Atmospheric Anatomiser",
+					"range": 8,
+					"attacks": "3D6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 2,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Heavy Instruments",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Aetheric Augmentation",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, add 1 to the Rend characteristic of the target's ranged weapons for the rest of the turn."
+				},
+				{
+					"name": "Atmospheric Isolation",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Subtract 1 from charge rolls for enemy units within 9\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"INFANTRY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
@@ -174,7 +174,7 @@
 			],
 			"abilities": [
 				{
-					"name": "THE ADMIRAL’S FLAGSHIP",
+					"name": "The Admiral's Flagship",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -182,18 +182,18 @@
 					"effect": "For the rest of the phase, each time the target uses a SHOOT ability, you can re-roll 1 of the hit rolls made for that ability."
 				},
 				{
-					"name": "BRING EVERY GUN TO BEAR!",
+					"name": "'Bring Every Gun to Bear!'",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a friendly SKYVESSEL wholly within 24\" of this unit to be the target.",
-					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of the target’s ranged weapons."
+					"declare": "Pick a friendly Skyvessel wholly within 24\" of this unit to be the target.",
+					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of the target's ranged weapons."
 				}
 			],
 			"keywords": [
 				"HERO",
-				"INFANTRY",
 				"ORDER",
+				"INFANTRY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
@@ -235,15 +235,6 @@
 			],
 			"melee_weapons": [
 				{
-					"name": "Arkanaut Hand Weapon",
-					"range": 0,
-					"attacks": "2",
-					"hit": 4,
-					"wound": 4,
-					"rend": 0,
-					"damage": "1"
-				},
-				{
 					"name": "Skypike",
 					"range": 0,
 					"attacks": "2",
@@ -254,21 +245,30 @@
 					"abilities": [
 						"Charge (+1 Damage)"
 					]
+				},
+				{
+					"name": "Arkanaut Hand Weapon",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
 				}
 			],
 			"abilities": [
 				{
-					"name": "GRIZZLED BUCCANEERS",
+					"name": "Grizzled Buccaneers",
 					"category": "shooting",
-					"timing": "Any Charge Phase.",
+					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
-					"effect": "Roll a dice. On a 3+:\nThis unit can immediately use a SHOOT ability as if it were your shooting phase but all of its attacks must target the target enemy unit. For the rest of the phase, this unit’s Privateer Heavy Weapons have Shoot in Combat."
+					"effect": "Roll a dice. On a 3+:\n• This unit can immediately use a SHOOT ability as if it were your shooting phase but all of its attacks must target the target enemy unit.\n• For the rest of the phase, this unit's Privateer Heavy Weapons have Shoot in Combat."
 				}
 			],
 			"keywords": [
-				"INFANTRY",
 				"CHAMPION",
+				"INFANTRY",
 				"ORDER",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
@@ -311,51 +311,51 @@
 			],
 			"abilities": [
 				{
-					"name": "BATTLE DAMAGED",
+					"name": "Assault Boat",
+					"category": "movement",
+					"timing": "Your Charge Phase",
+					"declare": "This unit cannot use this ability if it is in combat or has used a RUN or RETREAT ability this turn. Pick a number of units up to its Transport Capacity that are wholly within 6\" of it, are not in combat and that have not charged this turn to be the targets. Then, make a charge roll of 2D6.",
+					"effect": "This unit can move a distance up to the value of the charge roll and must end the move within 1/2\" of a visible enemy unit. If it does so:\n• Remove the targets from the battlefield and set them up again wholly within this unit's combat range. The targets can be set up in combat.\n• This unit and the targets have charged, and the targets cannot use another CORE ability this phase.\n• Pick up to 1 of the targets to have STRIKE-FIRST for the rest of the turn.",
+					"keywords": [
+						"CORE",
+						"MOVE",
+						"CHARGE"
+					]
+				},
+				{
+					"name": "Battle Damaged",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Heavy Sky Ordnance is 3."
 				},
 				{
-					"name": "TRANSPORT CAPACITY",
+					"name": "Medium Bomb Racks",
+					"category": "offensive",
+					"timing": "Your Movement Phase",
+					"declare": "Pick an enemy unit that does not have FLY and that this unit passed across this phase to be the target.",
+					"effect": "Roll 6 dice. For each 4+, inflict 1 mortal damage on the target."
+				},
+				{
+					"name": "Transport Capacity",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can transport up to 2 friendly KHARADRON OVERLORDS INFANTRY units with a combined model count of up to 12 (see Battle Traits)."
 				},
 				{
-					"name": "ASSAULT BOAT",
-					"category": "movement",
-					"timing": "Your Charge Phase",
-					"declare": "This unit cannot use this ability if it is in combat or has used a RUN or RETREAT ability this turn. Pick a number of units up to its Transport Capacity that are wholly within 6\" of it, that are not in combat and that have not charged this turn to be the targets. Then, make a charge roll of 2D6.",
-					"effect": "This unit can move a distance up to the value of the charge roll and must end the move within ½\" of a visible enemy unit. If it does so:\nRemove the targets from the battlefield and set them up again wholly within this unit’s combat range. The targets can be set up in combat. This unit and the targets have charged, and the targets cannot use another CORE ability this phase. Pick up to 1 of the targets to have STRIKE-FIRST for the rest of the turn.",
-					"keywords": [
-						"CORE",
-						"CHARGE",
-						"MOVE"
-					]
-				},
-				{
-					"name": "INCOMING!",
+					"name": "Incoming!",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
-				},
-				{
-					"name": "MEDIUM BOMB RACKS",
-					"category": "offensive",
-					"timing": "Your Movement Phase",
-					"declare": "Pick an enemy unit that does not have FLY and that this unit passed across this phase to be the target.",
-					"effect": "Roll 6 dice. For each 4+, inflict 1 mortal damage on the target."
 				}
 			],
 			"keywords": [
-				"WAR MACHINE",
-				"FLY",
 				"ORDER",
+				"FLY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
+				"WAR MACHINE",
 				"SKYVESSEL"
 			]
 		},
@@ -372,15 +372,6 @@
 			"control": 5,
 			"ranged_weapons": [
 				{
-					"name": "Aethershock Torpedoes",
-					"range": 18,
-					"attacks": "6",
-					"hit": 4,
-					"wound": 3,
-					"rend": 1,
-					"damage": "2"
-				},
-				{
 					"name": "Great Sky Ordnance",
 					"range": 24,
 					"attacks": "6",
@@ -388,6 +379,15 @@
 					"wound": 2,
 					"rend": 2,
 					"damage": "3"
+				},
+				{
+					"name": "Aethershock Torpedoes",
+					"range": 18,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
 				}
 			],
 			"melee_weapons": [
@@ -403,19 +403,7 @@
 			],
 			"abilities": [
 				{
-					"name": "BATTLE DAMAGED",
-					"category": "damage",
-					"timing": "Passive",
-					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Great Sky Ordnance is 4."
-				},
-				{
-					"name": "TRANSPORT CAPACITY",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "This unit can transport up to 3 friendly KHARADRON OVERLORDS INFANTRY units with a combined model count of up to 22 (see Battle Traits)."
-				},
-				{
-					"name": "INCOMING!",
+					"name": "Incoming!",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -423,19 +411,31 @@
 					"effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				},
 				{
-					"name": "HEAVY BOMB RACKS",
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Great Sky Ordnance is 4."
+				},
+				{
+					"name": "Heavy Bomb Racks",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"declare": "Pick an enemy unit that does not have FLY and that this unit passed across this phase to be the target.",
 					"effect": "Roll 10 dice. For each 4+, inflict 1 mortal damage on the target."
+				},
+				{
+					"name": "Transport Capacity",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit can transport up to 3 friendly KHARADRON OVERLORDS INFANTRY units with a combined model count of up to 22 (see Battle Traits)."
 				}
 			],
 			"keywords": [
-				"WAR MACHINE",
-				"FLY",
 				"ORDER",
+				"FLY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
+				"WAR MACHINE",
 				"SKYVESSEL"
 			]
 		},
@@ -444,6 +444,7 @@
 			"name": "Auto-Endrin",
 			"points": 0,
 			"unit_size": 1,
+			"base_size": "40mm",
 			"can_reinforce": false,
 			"move": 12,
 			"health": 5,
@@ -453,29 +454,29 @@
 			"melee_weapons": [],
 			"abilities": [
 				{
-					"name": "EXPENDABLE MUNITIONS",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "The following apply to this unit:\nThis unit has a maximum control score of ‘-’. When this unit is destroyed or removed from the battlefield, it does not count as being destroyed for the purposes of other rules (such as scoring battle tactics). This unit cannot be picked to be the target of or be affected by any non- CORE abilities used by other friendly units unless the ability specifies AUTO-ENDRIN. Ignore this unit for the purposes of friendly and enemy battle tactics."
-				},
-				{
-					"name": "NULLIFIER AUTO-ENDRIN",
+					"name": "Nullifier Auto-Endrin",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is a Nullifier Auto-Endrin and is in combat with any enemy MANIFESTATIONS, pick each enemy MANIFESTATION in combat with it to be the targets.",
-					"effect": "Make a banishment roll of 3D6 for each target. If the banishment roll equals or exceeds the banishment value on the MANIFESTATION’s warscroll, it is banished and removed from play. Then, remove this unit from the battlefield."
+					"effect": "Make a banishment roll of 3D6 for each target. If the banishment roll equals or exceeds the banishment value on the MANIFESTATION's warscroll, it is banished and removed from play. Then, remove this unit from the battlefield."
 				},
 				{
-					"name": "STUNCLOUD AUTO-ENDRIN",
+					"name": "Expendable Munitions",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "The following apply to this unit:\n• This unit has a maximum control score of '-'.\n• When this unit is destroyed or removed from the battlefield, it does not count as being destroyed for the purposes of other rules (such as scoring battle tactics).\n• This unit cannot be picked to be the target of or be affected by any non-CORE abilities used by other friendly units unless the ability specifies AUTO-ENDRIN\n• Ignore this unit for the purposes of friendly and enemy battle tactics."
+				},
+				{
+					"name": "Stuncloud Auto-Endrin",
 					"category": "control",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is a Stuncloud Auto-Endrin and is in combat, pick each enemy unit in combat with it to be the targets.",
-					"effect": "Roll a dice for each target. If the roll is equal to or lower than that target’s Health characteristic, subtract 10 from the control score of that target for the rest of the turn. Then, remove this unit from the battlefield."
+					"effect": "Roll a dice for each target. If the roll is equal to or lower than that target's Health characteristic, subtract 10 from the control score of that target for the rest of the turn. Then, remove this unit from the battlefield."
 				},
 				{
-					"name": "GRUDGEBLAST AUTO-ENDRIN",
+					"name": "Grudgeblast Auto-Endrin",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -484,11 +485,11 @@
 				}
 			],
 			"keywords": [
-				"WAR MACHINE",
-				"FLY",
-				"AUTO-ENDRIN",
 				"ORDER",
-				"KHARADRON OVERLORDS"
+				"KHARADRON OVERLORDS",
+				"FLY",
+				"WAR MACHINE",
+				"AUTO-ENDRIN"
 			],
 			"composition": "This unit comprises 1 of the following: Nullifier Auto-Endrin, Stuncloud Auto-Endrin or Grudgeblast Auto-Endrin."
 		},
@@ -509,7 +510,16 @@
 			"control": 2,
 			"ranged_weapons": [
 				{
-					"name": "The Magnate’s Charter",
+					"name": "Grungsson's Boast",
+					"range": 18,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3+3"
+				},
+				{
+					"name": "The Magnate's Charter",
 					"range": 12,
 					"attacks": "6",
 					"hit": 3,
@@ -519,20 +529,11 @@
 					"abilities": [
 						"Shoot in Combat"
 					]
-				},
-				{
-					"name": "Grungsson’s Boast",
-					"range": 18,
-					"attacks": "1",
-					"hit": 3,
-					"wound": 2,
-					"rend": 2,
-					"damage": "D3+3"
 				}
 			],
 			"melee_weapons": [
 				{
-					"name": "Brokk’s Aethermatic Saw",
+					"name": "Brokk's Aethermatic Saw",
 					"range": 0,
 					"attacks": "5",
 					"hit": 3,
@@ -546,7 +547,7 @@
 			],
 			"abilities": [
 				{
-					"name": "COMMAND THE FLEET",
+					"name": "Command the Fleet",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -554,14 +555,14 @@
 					"effect": "Each target can use a RUN ability and still use SHOOT and/or CHARGE abilities later in the turn."
 				},
 				{
-					"name": "FIRST RULE OF GRUNGSSON",
+					"name": "First Rule of Grungsson",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
-					"declare": "Pick up to 2 other friendly SKYFARER units within this unit’s combat range to be the targets.",
-					"effect": "Add 1 to the Attacks characteristic of the targets’ melee weapons for the rest of the turn."
+					"declare": "Pick up to 2 other friendly SKYFARER units within this unit's combat range to be the targets.",
+					"effect": "Add 1 to the Attacks characteristic of the targets' melee weapons for the rest of the turn."
 				},
 				{
-					"name": "MOUSTACHE-MOUNTED AETHERBLASTERS",
+					"name": "Moustache-mounted Aetherblasters",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -569,12 +570,12 @@
 				}
 			],
 			"keywords": [
+				"HERO",
 				"WARMASTER",
 				"UNIQUE",
-				"HERO",
+				"ORDER",
 				"INFANTRY",
 				"FLY",
-				"ORDER",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
@@ -623,7 +624,7 @@
 			],
 			"abilities": [
 				{
-					"name": "ADVISORY ROLE",
+					"name": "Advisory Role",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -632,14 +633,14 @@
 					"options": [
 						{
 							"name": "Seek New Prospects",
-							"text": "Add 5 to the target’s control score."
+							"text": "Add 5 to the target's control score."
 						},
 						{
-							"name": "Don’t Argue with the Wind",
+							"name": "Don't Argue With the Wind",
 							"text": "Add 1 to run rolls and charge rolls for the target."
 						},
 						{
-							"name": "There’s No Trading With Some People",
+							"name": "There's No Trading With Some People",
 							"text": "The target can use a RETREAT ability and still use SHOOT abilities later in the turn. In addition, no mortal damage is inflicted on the target by RETREAT abilities."
 						}
 					]
@@ -647,8 +648,75 @@
 			],
 			"keywords": [
 				"HERO",
-				"INFANTRY",
 				"ORDER",
+				"INFANTRY",
+				"KHARADRON OVERLORDS",
+				"DUARDIN",
+				"SKYFARER"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_codewright",
+			"name": "Codewright",
+			"source": "Scourge of Ghyran",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 SKYVESSEL",
+				"Any INFANTRY"
+			],
+			"notes": "This HERO can join an eligible regiment as a Guild Officer. This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": 4,
+			"health": 5,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Aethershot Pistol",
+					"range": 10,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Battletome",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "I'm Watching You",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"effect": "Give this unit D3 vexed points."
+				},
+				{
+					"name": "Alright, Listen Up",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is wholly within 12\" of a friendly non-HERO KHARADRON OVERLORDS unit, pick a visible enemy unit wholly within 18\" of this unit to be the target. Then, choose to spend either 3 or 6 vexed points.",
+					"effect": "Pick 1 of the following effects to apply to the target for the rest of the turn:\n• Do you see how fast they are going?!: If you spent 3 vexed points, subtract D3 from the target's Move characteristic. If you spent 6 vexed points, halve the target's Move characteristic.\n• Those weapons are against regulation!: If you spent 3 vexed points, subtract 1 from wound rolls for the target's combat attacks. If you spent 6 vexed points, subtract 1 from the Rend characteristic of the target's melee weapons and subtract 1 from wound rolls for the target's combat attacks."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"INFANTRY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
@@ -686,7 +754,7 @@
 			],
 			"melee_weapons": [
 				{
-					"name": "Grunnsson’s Axe",
+					"name": "Grunnsson's Axe",
 					"range": 0,
 					"attacks": "4",
 					"hit": 3,
@@ -694,37 +762,37 @@
 					"rend": 1,
 					"damage": "3",
 					"abilities": [
-						"Anti- MONSTER (+1 Rend)"
+						"Anti-MONSTER (+1 Rend)"
 					]
 				}
 			],
 			"abilities": [
 				{
-					"name": "CAPTAIN OF THE AELSLING",
+					"name": "Captain of the Aelsling",
 					"category": "offensive",
 					"timing": "Deployment Phase",
-					"declare": "Pick an Arkanaut Frigate in this unit’s regiment to be the target. This unit can use this ability while in reserve, and the target can also be in reserve.",
-					"effect": "The target has the AELSLING keyword. Add 1 to the Damage characteristic of the target’s Boarding Weapons for the rest of the battle."
+					"declare": "Pick an Arkanaut Frigate in this unit's regiment to be the target. This unit can use this ability while in reserve, and the target can also be in reserve.",
+					"effect": "The target has the AELSLING keyword. Add 1 to the Damage characteristic of the target's Boarding Weapons for the rest of the battle."
 				},
 				{
-					"name": "SHE CAN HANDLE IT!",
-					"category": "movement",
-					"timing": "Passive",
-					"effect": "You can re-roll run rolls and charge rolls for the AELSLING while it is wholly within 12\" of this unit."
-				},
-				{
-					"name": "AUXILIARY SKYHOOK",
+					"name": "Auxiliary Skyhook",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
-					"effect": "Roll a D3. On a 2+:\nInflict an amount of mortal damage on the target equal to the roll. Subtract 1 from wound rolls made for the target’s attacks for the rest of the turn."
+					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Subtract 1 from wound rolls made for the target's attacks for the rest of the turn."
+				},
+				{
+					"name": "She Can Handle It!",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "You can re-roll run rolls and charge rolls for the AELSLING while it is wholly within 12\" of this unit."
 				}
 			],
 			"keywords": [
-				"UNIQUE",
 				"HERO",
-				"INFANTRY",
+				"UNIQUE",
 				"ORDER",
+				"INFANTRY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
@@ -782,26 +850,26 @@
 			],
 			"abilities": [
 				{
-					"name": "MOBILE REPAIRS",
-					"category": "defensive",
-					"timing": "Your Hero Phase",
-					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit’s combat range to be the target.",
-					"effect": "Roll a dice. On a 2+, Heal (3) the target."
-				},
-				{
-					"name": "COMBAT ENGINEERS",
+					"name": "Combat Engineers",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick this unit and up to 1 friendly Endrinriggers unit wholly within 12\" of this unit to be the targets.",
 					"effect": "For the rest of the turn, combat attacks made by the targets against enemy units that charged this turn have Crit (2 Hits)."
+				},
+				{
+					"name": "Mobile Repairs",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit's combat range to be the target.",
+					"effect": "Roll a dice. On a 2+, Heal (3) the target."
 				}
 			],
 			"keywords": [
 				"HERO",
+				"ORDER",
 				"INFANTRY",
 				"FLY",
-				"ORDER",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
@@ -837,25 +905,25 @@
 			],
 			"abilities": [
 				{
-					"name": "’AYE AYE, CAPTAIN!’",
+					"name": "'Aye Aye, Captain!'",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a friendly SKYVESSEL within this unit’s combat range to be the target.",
-					"effect": "For the rest of the turn:\nThe target can use a RETREAT or RUN ability and still use SHOOT abilities later in the turn. No mortal damage is inflicted on the target by RETREAT abilities."
+					"declare": "Pick a friendly SKYVESSEL within this unit's combat range to be the target.",
+					"effect": "For the rest of the turn:\n• The target can use a RETREAT or RUN ability and still use SHOOT abilities later in the turn.\n• No mortal damage is inflicted on the target by RETREAT abilities."
 				},
 				{
-					"name": "MOBILE REPAIRS",
+					"name": "Mobile Repairs",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
-					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit’s combat range to be the target.",
+					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit's combat range to be the target.",
 					"effect": "Roll a dice. On a 2+, Heal (3) the target."
 				}
 			],
 			"keywords": [
 				"HERO",
-				"INFANTRY",
 				"ORDER",
+				"INFANTRY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
@@ -873,6 +941,18 @@
 			"save": 3,
 			"control": 1,
 			"ranged_weapons": [
+				{
+					"name": "Skyrigger Heavy Weapon",
+					"range": 15,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
 				{
 					"name": "Rapid-fire Rivet Gun",
 					"range": 10,
@@ -896,21 +976,18 @@
 					"abilities": [
 						"Crit (2 Hits)"
 					]
-				},
-				{
-					"name": "Skyrigger Heavy Weapon",
-					"range": 15,
-					"attacks": "1",
-					"hit": 4,
-					"wound": 3,
-					"rend": 1,
-					"damage": "D3",
-					"abilities": [
-						"Anti- MONSTER (+1 Rend)"
-					]
 				}
 			],
 			"melee_weapons": [
+				{
+					"name": "Gun Butt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				},
 				{
 					"name": "Aethermatic Saw",
 					"range": 0,
@@ -922,7 +999,80 @@
 					"abilities": [
 						"Anti-charge (+1 Rend)"
 					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Emergency Field Repairs",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit's combat range to be the target.",
+					"effect": "Make a field repairs roll of D6 for each model in this unit. For each 4-5, Heal (1) the target. For each 6, Heal (2) the target."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"INFANTRY",
+				"FLY",
+				"ORDER",
+				"KHARADRON OVERLORDS",
+				"DUARDIN",
+				"SKYFARER"
+			],
+			"composition": "Each model in this unit is armed with a Rapid-fire Rivet Gun and Aethermatic Saw. 1/3 models can replace their weapons with an Aethermatic Volley Gun and Gun Butt. 1/3 models can replace their weapons with a Skyrigger Heavy Weapon (Grapnel Launcher, Skyhook or Drill Launcher) and Gun Butt. The champion cannot replace their weapons."
+		},
+		{
+			"id": "scourge_of_aqshy_endrinriggers",
+			"name": "Endrinriggers",
+			"source": "Scourge of Aqshy",
+			"points": 120,
+			"unit_size": 3,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": 12,
+			"health": 2,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Skyrigger Heavy Weapon",
+					"range": 15,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
 				},
+				{
+					"name": "Rapid-fire Rivet Gun",
+					"range": 10,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				},
+				{
+					"name": "Aethermatic Volley Gun",
+					"range": 15,
+					"attacks": "2D6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"melee_weapons": [
 				{
 					"name": "Gun Butt",
 					"range": 0,
@@ -931,20 +1081,32 @@
 					"wound": 5,
 					"rend": 0,
 					"damage": "1"
+				},
+				{
+					"name": "Aethermatic Saw",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-charge (+1 Rend)"
+					]
 				}
 			],
 			"abilities": [
 				{
-					"name": "EMERGENCY FIELD REPAIRS",
-					"category": "defensive",
-					"timing": "End of Any Turn",
-					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit’s combat range to be the target.",
-					"effect": "Make a field repairs roll of D6 for each model in this unit. For each 4-5, Heal (1) the target. For each 6, Heal (2) the target."
+					"name": "We're Working Here",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Until the start of your next turn, if this unit has not charged in the same turn, the following cumulative effects apply depending on your fury level.\n1+ Irked: This unit's Aethermatic Saws have Crit (Auto-wound).\n4+ Exasperated: This unit has Ward (5+).\n7 Incensed: Add 1 to the Damage characteristic of this unit's melee weapons."
 				}
 			],
 			"keywords": [
-				"INFANTRY",
 				"CHAMPION",
+				"INFANTRY",
 				"FLY",
 				"ORDER",
 				"KHARADRON OVERLORDS",
@@ -955,8 +1117,9 @@
 		},
 		{
 			"id": "grombrindal_the_white_dwarf",
-			"name": "Grombrindal, The White Dwarf",
+			"name": "Grombrindal, the White Dwarf",
 			"source": "White Dwarf",
+			"legends": true,
 			"points": 360,
 			"unit_size": 1,
 			"base_size": "40mm",
@@ -987,37 +1150,37 @@
 			],
 			"abilities": [
 				{
-					"name": "ARMOUR OF GLIMRIL SCALES",
-					"category": "defensive",
+					"name": "Armour of Glimril Scales",
+					"category": "",
 					"timing": "Passive",
-					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate D3 damage points to it ( ward rolls cannot be made for those damage points)."
+					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate D3 damage points to it (ward rolls cannot be made for those damage points)."
 				},
 				{
-					"name": "RUNE AXE OF GRIMNIR",
-					"category": "offensive",
+					"name": "Rune Axe of Grimnir",
+					"category": "",
 					"timing": "Passive",
-					"effect": "The Attacks characteristic of this unit’s Rune Axe of Grimnir is 7 if this unit charged this turn."
+					"effect": "The attacks characteristic of this unit's Rune Axe of Grimnir is 7 if this unit charged this turn."
 				},
 				{
-					"name": "AS STERN AS STONE",
-					"category": "defensive",
+					"name": "As Stern As Stone",
+					"category": "",
 					"timing": "Passive",
-					"effect": "Friendly DUARDIN INFANTRY units have WARD (5+) while they are wholly within 12\" of this unit."
+					"effect": "Friendly DUARDIN units have WARD (5+) while they are wholly within 12\" of this unit."
 				},
 				{
-					"name": "LIVING LEGEND",
-					"category": "control",
+					"name": "Living Legend",
+					"category": "",
 					"timing": "Passive",
 					"effect": "Add 2 to the control scores of friendly DUARDIN INFANTRY units while they are wholly within 12\" of this unit."
 				}
 			],
 			"keywords": [
-				"UNIQUE",
 				"HERO",
-				"INFANTRY",
-				"WARD (3+)",
+				"UNIQUE",
 				"ORDER",
-				"DUARDIN"
+				"INFANTRY",
+				"DUARDIN",
+				"WARD (3+)"
 			]
 		},
 		{
@@ -1055,26 +1218,26 @@
 			],
 			"abilities": [
 				{
-					"name": "TRANSPORT CAPACITY",
-					"category": "special",
+					"name": "Long-line Slings",
+					"category": "defensive",
 					"timing": "Passive",
-					"effect": "This unit can transport 1 friendly KHARADRON OVERLORDS INFANTRY unit with a model count of up to 5 (see Battle Traits)."
+					"effect": "When you use the 'Transport Skyfarers' ability for this unit, you can pick units in combat to be targets."
 				},
 				{
-					"name": "LONG-LINE SLINGS",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "When you use the ‘Transport Skyfarers’ ability for this unit, you can pick units in combat to be targets."
-				},
-				{
-					"name": "LIGHT BOMB RACKS",
+					"name": "Light Bomb Racks",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"declare": "Pick an enemy unit that does not have FLY and that this unit passed across this phase to be the target.",
 					"effect": "Roll 4 dice. For each 4+, inflict 1 mortal damage on the target."
 				},
 				{
-					"name": "AETHERSHOT OVERWATCH",
+					"name": "Transport Capacity",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit can transport 1 friendly KHARADRON OVERLORDS INFANTRY units with a model count of up to 5 (see Battle Traits)."
+				},
+				{
+					"name": "Aethershot Overwatch",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1083,11 +1246,75 @@
 				}
 			],
 			"keywords": [
-				"WAR MACHINE",
-				"FLY",
 				"ORDER",
+				"FLY",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
+				"WAR MACHINE",
+				"SKYVESSEL"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_grundstok_gunhauler",
+			"name": "Grundstok Gunhauler",
+			"source": "Scourge of Ghyran",
+			"points": 170,
+			"unit_size": 1,
+			"base_size": "105 × 70mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack. This unit can be reinforced even though it has a minimum unit size of 1.",
+			"move": 14,
+			"health": 10,
+			"save": 2,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Sky Ordinance",
+					"range": 15,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Bombs and Boarding Weapons",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Attack Squadron",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "While this unit is wholly within 12\" of any other friendly Grundstok Gunhaulers, it can use SHOOT abilities even if it used the 'Run' ability in the same turn."
+				},
+				{
+					"name": "Fighter Vessels",
+					"category": "movement",
+					"timing": "Any Shooting Phase",
+					"effect": "If this unit used a SHOOT ability this phase, this unit can move D6\". It cannot end that move in combat."
+				},
+				{
+					"name": "Transport Capacity",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit cannot transport any friendly units."
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"FLY",
+				"KHARADRON OVERLORDS",
+				"DUARDIN",
+				"WAR MACHINE",
 				"SKYVESSEL"
 			]
 		},
@@ -1103,6 +1330,15 @@
 			"save": 3,
 			"control": 1,
 			"ranged_weapons": [
+				{
+					"name": "Grundstok Mortar or Aethercannon",
+					"range": 18,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
 				{
 					"name": "Aethershot Rifle",
 					"range": 18,
@@ -1123,15 +1359,6 @@
 					"abilities": [
 						"Shoot in Combat"
 					]
-				},
-				{
-					"name": "Grundstok Mortar or Aethercannon",
-					"range": 18,
-					"attacks": "2",
-					"hit": 4,
-					"wound": 3,
-					"rend": 1,
-					"damage": "2"
 				}
 			],
 			"melee_weapons": [
@@ -1147,12 +1374,12 @@
 			],
 			"abilities": [
 				{
-					"name": "SPECIALIST GRUNDSTOK AMMUNITION",
-					"category": "special",
+					"name": "Specialist Grundstok Ammunition",
+					"category": "shooting",
 					"timing": "Your Shooting Phase, Reaction: You declared a SHOOT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick Shieldbreaker ammunition or Thunderdrakk ammunition.",
-					"effect": "If all of the attacks made for that SHOOT ability target the same enemy unit, after that SHOOT ability has been resolved, roll a dice and add the number of damage points allocated to the target by that SHOOT ability. If the roll is higher than the target’s Control characteristic, apply the following effect to the target based on the ammunition type picked:",
+					"effect": "If all of the attacks made for that SHOOT ability target the same enemy unit, after that SHOOT ability has been resolved, roll a dice and add the number of damage points allocated to the target by that SHOOT ability. If the roll is higher than the target's Control characteristic, apply the following effect to the target based on the ammunition type picked:",
 					"options": [
 						{
 							"name": "Shieldbreaker",
@@ -1166,13 +1393,13 @@
 				}
 			],
 			"keywords": [
-				"INFANTRY",
 				"CHAMPION",
-				"STANDARD BEARER (1/5)",
+				"INFANTRY",
 				"ORDER",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
-				"SKYFARER"
+				"SKYFARER",
+				"STANDARD BEARER (1/5)"
 			],
 			"composition": "Each model in this unit is armed with an Aethershot Rifle and Gun Butt. 2/5 models can replace their Aethershot Rifle with an Aetheric Fumigator or Decksweeper. 2/5 models can replace their Aethershot Rifle with a Grundstok Mortar or Aethercannon. The champion cannot replace their Aethershot Rifle."
 		},
@@ -1220,16 +1447,16 @@
 			],
 			"abilities": [
 				{
-					"name": "PROTECTION OF THE VOID",
+					"name": "Protection of the Void",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While they are wholly within 12\" of this unit, friendly SKYFARER units have WARD (5+) against mortal damage inflicted by SPELL abilities, PRAYER abilities and abilities used by MANIFESTATIONS."
 				},
 				{
-					"name": "NULLSUIT",
+					"name": "Nullsuit",
 					"category": "offensive",
 					"timing": "Passive",
-					"effect": "Double the Damage characteristic of this unit’s weapons for attacks that target PRIESTS, WIZARDS or MANIFESTATIONS."
+					"effect": "Double the Damage characteristic of this unit's weapons for attacks that target PRIESTS, WIZARDS, or MANIFESTATIONS."
 				}
 			],
 			"keywords": [
@@ -1241,100 +1468,6 @@
 				"DUARDIN",
 				"SKYFARER"
 			]
-		},
-		{
-			"id": "scourge_of_aqshy_endrinriggers",
-			"name": "Endrinriggers",
-			"source": "Scourge of Aqshy",
-			"points": 120,
-			"unit_size": 3,
-			"base_size": "32mm",
-			"can_reinforce": true,
-			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
-			"move": 12,
-			"health": 2,
-			"save": 3,
-			"control": 1,
-			"ranged_weapons": [
-				{
-					"name": "Rapid-fire Rivet Gun",
-					"range": 10,
-					"attacks": "3",
-					"hit": 3,
-					"wound": 4,
-					"rend": 1,
-					"damage": "1",
-					"abilities": [
-						"Shoot in Combat"
-					]
-				},
-				{
-					"name": "Skyrigger Heavy Weapon",
-					"range": 15,
-					"attacks": "1",
-					"hit": 4,
-					"wound": 3,
-					"rend": 1,
-					"damage": "D3",
-					"abilities": [
-						"Anti- MONSTER (+1 Rend)"
-					]
-				},
-				{
-					"name": "Aethermatic Volley Gun",
-					"range": 15,
-					"attacks": "2D6",
-					"hit": 4,
-					"wound": 4,
-					"rend": 0,
-					"damage": "1",
-					"abilities": [
-						"Crit (2 Hits)"
-					]
-				}
-			],
-			"melee_weapons": [
-				{
-					"name": "Aethermatic Saw",
-					"range": 0,
-					"attacks": "3",
-					"hit": 4,
-					"wound": 3,
-					"rend": 1,
-					"damage": "2",
-					"abilities": [
-						"Anti-charge (+1 Rend)"
-					]
-				},
-				{
-					"name": "Gun Butt",
-					"range": 0,
-					"attacks": "1",
-					"hit": 4,
-					"wound": 5,
-					"rend": 0,
-					"damage": "1"
-				}
-			],
-			"abilities": [
-				{
-					"name": "WE'RE WORKING HERE!",
-					"category": "special",
-					"timing": "Your Hero Phase",
-					"frequency": "Once Per Turn (Army)",
-					"effect": "Until the start of your next turn, if this unit has not charged in the same turn, the following cumulative effects apply depending on your fury level.\n1+ Irked: This unit’s Aethermatic Saws have Crit (Auto-wound). 4+ Exasperated: This unit has WARD (5+). 7 Incensed: Add 1 to the Damage characteristic of this unit’s melee weapons."
-				}
-			],
-			"keywords": [
-				"INFANTRY",
-				"CHAMPION",
-				"FLY",
-				"ORDER",
-				"KHARADRON OVERLORDS",
-				"DUARDIN",
-				"SKYFARER"
-			],
-			"composition": "Each model in this unit is armed with a Rapid-fire Rivet Gun and Aethermatic Saw. 1/3 models can replace their weapons with an Aethermatic Volley Gun and Gun Butt. 1/3 models can replace their weapons with a Skyrigger Heavy Weapon (Grapnel Launcher, Skyhook or Drill Launcher) and Gun Butt. The champion cannot replace their weapons."
 		},
 		{
 			"id": "scourge_of_aqshy_null_khemist",
@@ -1381,16 +1514,16 @@
 			],
 			"abilities": [
 				{
-					"name": "CUSTOMISED NULLSUIT",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "This unit can use UNBIND and BANISH abilities as if it had WIZARD (1). Add 1 to the number of dice rolled when making unbinding rolls and banishment rolls for this unit, to a maximum of 3."
-				},
-				{
-					"name": "DILIGENT RESEARCHER",
+					"name": "Diligent Researcher",
 					"category": "movement",
 					"timing": "Passive",
-					"effect": "Each time your opponent spends any rage dice as part of the ‘Eruption of Fury’ ability, after that ability has been resolved, if this unit is not in combat, it can move up to X D6\", where X is the number of rage dice spent. It cannot end that move in combat."
+					"effect": "Each time your opponent spends any rage dice as part of the 'Eruption of Fury' ability, after that ability has been resolved, if this unit is not in combat, it can move up to XD6\", where X is the number of rage dice spent. It cannot end that move in combat."
+				},
+				{
+					"name": "Customised Nullsuit",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "• This unit can use UNBIND and BANISH abilities as if it had WIZARD (1).\n• Add 1 to the number of dice rolled when making unbinding rolls and banishment rolls for this unit, to a maximum of 3."
 				}
 			],
 			"keywords": [
@@ -1401,137 +1534,6 @@
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
 				"SKYFARER"
-			]
-		},
-		{
-			"id": "scourge_of_ghyran_codewright",
-			"name": "Codewright",
-			"source": "Scourge of Ghyran",
-			"points": 100,
-			"unit_size": 1,
-			"base_size": "32mm",
-			"can_reinforce": false,
-			"regiment_options": [
-				"0-1 SKYVESSEL",
-				"Any INFANTRY"
-			],
-			"notes": "This HERO can join an eligible regiment as a Guild Officer. This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
-			"move": 4,
-			"health": 5,
-			"save": 3,
-			"control": 2,
-			"ranged_weapons": [
-				{
-					"name": "Aethershot Pistol",
-					"range": 10,
-					"attacks": "2",
-					"hit": 3,
-					"wound": 3,
-					"rend": 1,
-					"damage": "1",
-					"abilities": [
-						"Shoot in Combat"
-					]
-				}
-			],
-			"melee_weapons": [
-				{
-					"name": "Battletome",
-					"range": 0,
-					"attacks": "3",
-					"hit": 4,
-					"wound": 4,
-					"rend": 0,
-					"damage": "D3"
-				}
-			],
-			"abilities": [
-				{
-					"name": "I’M WATCHING YOU",
-					"category": "special",
-					"timing": "Any Hero Phase",
-					"effect": "Give this unit D3 vexed points."
-				},
-				{
-					"name": "ALRIGHT, LISTEN UP",
-					"category": "special",
-					"timing": "Any Hero Phase",
-					"frequency": "Once Per Turn (Army)",
-					"declare": "If this unit is wholly within 12\" of a friendly non- HERO KHARADRON OVERLORDS unit, pick a visible enemy unit within 18\" of this unit to be the target. Then, choose to spend either 3 or 6 vexed points.",
-					"effect": "Pick 1 of the following effects to apply to the target for the rest of the turn:\nDo you see how fast they are going?!: If you spent 3 vexed points, subtract D3 from the target’s Move characteristic. If you spent 6 vexed points, halve the target’s Move characteristic. Those weapons are against regulation!: If you spent 3 vexed points, subtract 1 from wound rolls for the target’s combat attacks. If you spent 6 vexed points, subtract 1 from the Rend characteristic of the target’s melee weapons and subtract 1 from wound rolls for the target’s combat attacks."
-				}
-			],
-			"keywords": [
-				"HERO",
-				"INFANTRY",
-				"ORDER",
-				"KHARADRON OVERLORDS",
-				"DUARDIN",
-				"SKYFARER"
-			]
-		},
-		{
-			"id": "scourge_of_ghyran_grundstok_gunhauler",
-			"name": "Grundstok Gunhauler",
-			"source": "Scourge of Ghyran",
-			"points": 170,
-			"unit_size": 1,
-			"base_size": "105 × 70mm",
-			"can_reinforce": true,
-			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack. This unit can be reinforced even though it has a minimum unit size of 1.",
-			"move": 14,
-			"health": 10,
-			"save": 2,
-			"control": 2,
-			"ranged_weapons": [
-				{
-					"name": "Sky Ordnance",
-					"range": 15,
-					"attacks": "3",
-					"hit": 4,
-					"wound": 3,
-					"rend": 2,
-					"damage": "3"
-				}
-			],
-			"melee_weapons": [
-				{
-					"name": "Bombs and Boarding Weapons",
-					"range": 0,
-					"attacks": "4",
-					"hit": 4,
-					"wound": 4,
-					"rend": 1,
-					"damage": "D3"
-				}
-			],
-			"abilities": [
-				{
-					"name": "TRANSPORT CAPACITY",
-					"category": "special",
-					"timing": "Passive",
-					"effect": "This unit cannot transport any friendly units."
-				},
-				{
-					"name": "ATTACK SQUADRON",
-					"category": "shooting",
-					"timing": "Passive",
-					"effect": "While this unit is wholly within 12\" of any other friendly Grundstok Gunhaulers, it can use SHOOT abilities even if it used the ‘Run’ ability in the same turn."
-				},
-				{
-					"name": "FIGHTER VESSEL",
-					"category": "movement",
-					"timing": "Any Shooting Phase",
-					"effect": "If this unit used a SHOOT ability this phase, this unit can move D6\". It cannot end that move in combat."
-				}
-			],
-			"keywords": [
-				"WAR MACHINE",
-				"FLY",
-				"ORDER",
-				"KHARADRON OVERLORDS",
-				"DUARDIN",
-				"SKYVESSEL"
 			]
 		},
 		{
@@ -1546,6 +1548,18 @@
 			"save": 3,
 			"control": 1,
 			"ranged_weapons": [
+				{
+					"name": "Skyrigger Heavy Weapon",
+					"range": 15,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
 				{
 					"name": "Vulcaniser Pistol",
 					"range": 10,
@@ -1569,23 +1583,20 @@
 					"abilities": [
 						"Crit (2 Hits)"
 					]
-				},
-				{
-					"name": "Skyrigger Heavy Weapon",
-					"range": 15,
-					"attacks": "1",
-					"hit": 4,
-					"wound": 3,
-					"rend": 1,
-					"damage": "D3",
-					"abilities": [
-						"Anti- MONSTER (+1 Rend)"
-					]
 				}
 			],
 			"melee_weapons": [
 				{
-					"name": "Skywarden’s Skypike",
+					"name": "Gun Butt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				},
+				{
+					"name": "Skywarden's Skypike",
 					"range": 0,
 					"attacks": "2",
 					"hit": 3,
@@ -1595,45 +1606,36 @@
 					"abilities": [
 						"Charge (+1 Damage)"
 					]
-				},
-				{
-					"name": "Gun Butt",
-					"range": 0,
-					"attacks": "1",
-					"hit": 4,
-					"wound": 5,
-					"rend": 0,
-					"damage": "1"
 				}
 			],
 			"abilities": [
 				{
-					"name": "TIMED CHARGES",
+					"name": "Timed Charges",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
-					"effect": "Roll a D3. On a 2+:\nInflict an amount of mortal damage on the target equal to the roll. This unit can immediately use the ‘Retreat’ ability as if it were your movement phase without any mortal damage being inflicted on it."
+					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• This unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
 				}
 			],
 			"keywords": [
-				"INFANTRY",
 				"CHAMPION",
-				"FLY",
+				"INFANTRY",
 				"ORDER",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
-				"SKYFARER"
+				"SKYFARER",
+				"FLY"
 			],
 			"composition": "Each model in this unit is armed with a Vulcaniser Pistol and Skywarden’s Skypike. 1/3 models can replace their weapons with an Aethermatic Volley Gun and Gun Butt. 1/3 models can replace their weapons with a Skyrigger Heavy Weapon (Grapnel Launcher, Skyhook or Drill Launcher) and Gun Butt. The champion cannot replace their weapons."
 		},
 		{
 			"id": "thundriks_profiteers",
-			"name": "Thundrik’s Profiteers",
+			"name": "Thundrik's Profiteers",
 			"legends": true,
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "Bjorgen Thundrik, Khazgan Drakkskewer and Dead-Eye Lund: 32mm, Garodd Alensen and Enrik Ironhail: 25mm",
+			"base_size": "Khazgan Drakkskewer, Dead-Eye Lund and Bjorgen Thundrik: 32mm, Enrik Ironhail and Garodd Alensen: 25mm",
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": 4,
@@ -1642,24 +1644,21 @@
 			"control": 1,
 			"ranged_weapons": [
 				{
-					"name": "Aethermatic Anatomiser",
-					"range": 8,
-					"attacks": "3D6",
-					"hit": 4,
-					"wound": 4,
-					"rend": 2,
-					"damage": "1",
-					"abilities": [
-						"Shoot in Combat"
-					]
-				},
-				{
 					"name": "Aethermatic Firearms",
 					"range": 12,
 					"attacks": "2",
 					"hit": 3,
 					"wound": 4,
 					"rend": 1,
+					"damage": "1"
+				},
+				{
+					"name": "Aethermatic Anatomiser",
+					"range": 8,
+					"attacks": "3D6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 2,
 					"damage": "1"
 				}
 			],
@@ -1688,19 +1687,19 @@
 			],
 			"abilities": [
 				{
-					"name": "AETHERMATIC ANATOMISER",
+					"name": "Aethermatic Anatomiser",
 					"category": "special",
 					"timing": "Your Shooting Phase",
-					"declare": "If this unit’s Bjorgen Thundrik is on the battlefield, pick an objective within 12\" of this unit to be the target.",
-					"effect": "Roll a dice. On a 3+:\nIf the target is controlled by either player, that player loses control of that objective. The target cannot be contested until the start of your next turn."
+					"declare": "If this unit's Bjorgen Thundrik is on the battlefield, pick an objective within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+:\n• If the target is controlled by either player, that player loses control of that objective.\n• The target cannot be contested until the start of your next turn."
 				}
 			],
 			"keywords": [
-				"UNIQUE",
-				"INFANTRY",
 				"ORDER",
-				"KHARADRON OVERLORDS",
+				"INFANTRY",
+				"UNIQUE",
 				"DUARDIN",
+				"KHARADRON OVERLORDS",
 				"SKYFARER"
 			],
 			"composition": "The models in this unit are: Bjorgen Thundrik (armed with an Aethermatic Anatomiser and an Arkanaut Cutter) Khazgan Drakkskewer (armed with Aethermatic Firearms and a Skypike) Dead-Eye Lund (armed with Aethermatic Firearms and an Arkanaut Cutter) Enrik Ironhail (armed with Aethermatic Firearms and an Arkanaut Cutter) Garodd Alensen (armed with Aethermatic Firearms and an Arkanaut Cutter)"
@@ -1726,7 +1725,7 @@
 					"rend": 1,
 					"damage": "1",
 					"abilities": [
-						"Anti- MONSTER (+1 Rend)"
+						"Anti-MONSTER (+1 Rend)"
 					]
 				}
 			],
@@ -1743,7 +1742,7 @@
 			],
 			"abilities": [
 				{
-					"name": "LIGHT ENDRINPACKS",
+					"name": "Light Endrinpacks",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1751,13 +1750,13 @@
 				}
 			],
 			"keywords": [
-				"INFANTRY",
 				"CHAMPION",
-				"FLY",
+				"INFANTRY",
 				"ORDER",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
-				"SKYFARER"
+				"SKYFARER",
+				"FLY"
 			]
 		},
 		{
@@ -1801,22 +1800,22 @@
 			],
 			"abilities": [
 				{
-					"name": "SPOTTER’S FLAREGUN",
+					"name": "Spotter's Flaregun",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an objective within 9\" of this unit to be the target.",
-					"effect": "Roll a dice. On a 3+, apply the following effects for the rest of the turn:\nAdd 1 to hit rolls for combat attacks made by friendly SKYFARER units that target a unit that is contesting the target objective. Add 1 to the Rend characteristic of melee weapons used by friendly Vongrim Salvagers and Vongrim Harpoon Crew units for attacks that target a unit that is contesting the target objective."
+					"effect": "Roll a dice. On a 3+, apply the following effects for the rest of the turn:\n• Add 1 to hit rolls for combat attacks made by friendly SKYFARER units that target a unit that is contesting the target objective.\n• Add 1 to the Rend characteristic of melee weapons used by friendly Vongrim Salvagers and Vongrim Harpoon Crew units for attacks that target a unit that is contesting the target objective"
 				}
 			],
 			"keywords": [
-				"INFANTRY",
 				"CHAMPION",
-				"FLY",
+				"INFANTRY",
 				"ORDER",
 				"KHARADRON OVERLORDS",
 				"DUARDIN",
-				"SKYFARER"
+				"SKYFARER",
+				"FLY"
 			]
 		},
 		{
@@ -1834,31 +1833,31 @@
 			"melee_weapons": [],
 			"abilities": [
 				{
-					"name": "RELEASE THE AUTO-ENDRINS",
-					"category": "movement",
-					"timing": "Deployment Phase",
-					"effect": "Set up a friendly Nullifier Auto-Endrin, Stuncloud Auto-Endrin and Grudgeblast Auto-Endrin (see the Auto-Endrin warscroll) on the battlefield within friendly territory, wholly within 6\" of this terrain feature and more than 9\" from all enemy units."
-				},
-				{
-					"name": "REPAIR ROUTINES",
+					"name": "Repair Routines",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SKYVESSEL within 3\" of this terrain feature to be the target.",
 					"effect": "Make a repair roll of D6. Add 1 to the roll if there is a friendly Endrinmaster with Dirigible Suit or Endrinmaster with Endrinharness within 3\" of this terrain feature. On a 4+, Heal (3) the target."
 				},
 				{
-					"name": "ENDRINWORKS OUTPOST",
+					"name": "Release the Auto-Endrins",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"effect": "Set up a friendly Nullifier Auto-Endrin, Stuncloud Auto-Endrin and Grudgeblast Auto-Endrin (see the Auto-Endrin warscroll) on the battlefield within friendly territory, wholly within 6\" of this terrain feature and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Endrinworks Outpost",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
-					"declare": "Pick a friendly Auto-Endrin or replacement Auto-Endrin that has been removed from the battlefield to be the target.",
-					"effect": "Make a manufacturing roll of D6. Add 1 to the roll if there is a friendly Endrinmaster with Dirigible Suit or Endrinmaster with Endrinharness within 3\" of this terrain feature. On a 4+, set up a replacement Auto-Endrin on the battlefield, wholly within 6\" of this terrain feature and more than 3\" from all enemy units."
+					"declare": "Pick a friendly AUTO-ENDRIN or replacement AUTO-ENDRIN that has been removed from the battlefield to be the target.",
+					"effect": "Make a manufacturing roll of D6. Add 1 to the roll if there is a friendly Endrinmaster with Dirigible Suit or Endrinmaster with Endrinharness within 3\" of this terrain feature. On a 4+, set up a replacement AUTO-ENDRIN on the battlefield, wholly within 6\" of this terrain feature and more than 3\" from all enemy units."
 				}
 			],
 			"keywords": [
 				"FACTION TERRAIN",
-				"FLY",
 				"ORDER",
-				"KHARADRON OVERLORDS"
+				"KHARADRON OVERLORDS",
+				"FLY"
 			]
 		}
 	]

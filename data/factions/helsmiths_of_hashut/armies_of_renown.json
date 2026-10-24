@@ -1,26 +1,26 @@
 {
 	"armies_of_renown": [
 		{
-			"name": "Taar’s Grand Forgehost",
+			"name": "Taar's Grand Forgehost",
 			"text": "When you pick the Helsmiths of Hashut faction for your army, you can choose for it to be a Taar’s Grand Forgehost Army of Renown. If you do so, use the faction rules in this section instead of the Helsmiths of Hashut faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the GRAND FORGEHOST keyword.\nROSTER OPTIONS\nUrak Taar, the First Daemonsmith (must be included and must be your general)\nAny non- HOBGROT HELSMITHS OF HASHUT INFANTRY units\nAny non- HERO HELSMITHS OF HASHUT WAR MACHINE units\nYou cannot include Regiments of Renown",
 			"battle_traits": [
 				{
-					"name": "RISING FIRE",
+					"name": "Rising Fire",
 					"category": "special",
 					"timing": "Passive",
-					"effect": "The following cumulative effects apply to friendly GRAND FORGEHOST units in each battle round after the first.",
+					"effect": "The following cumulative effects apply to friendly GRAND FORGEHOST units in each battle round after the first.\nBattle Round 2:",
 					"options": [
 						{
 							"name": "Daemonic Weaponry",
-							"text": "Those units’ weapons have Crit (2 Hits)."
+							"text": "Those units' weapons have Crit (2 Hits).\nBattle Round 3:"
 						},
 						{
 							"name": "Harnessed Sorcery",
-							"text": "Add 1 to casting rolls and chanting rolls for those units."
+							"text": "Add 1 to casting rolls and chanting rolls for those units.\nBattle Round 4:"
 						},
 						{
-							"name": "Channelled Power",
-							"text": "Attacks made by those units score critical hits on unmodified hit rolls of 5+."
+							"name": "Channeled Power",
+							"text": "Attacks made by those units score critical hits on unmodified hit rolls of 5+.\nBattle Round 5:"
 						},
 						{
 							"name": "Arcane Dominance",
@@ -29,18 +29,18 @@
 					]
 				},
 				{
-					"name": "MASTERFUL DAEMONWORKS",
-					"category": "defensive",
-					"timing": "Passive",
-					"effect": "Friendly GRAND FORGEHOST WAR MACHINES have WARD (6+)."
-				},
-				{
-					"name": "DREAD RANKS UNBROKEN",
+					"name": "Dread Ranks Unbroken",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a friendly NON-HERO GRAND FORGEHOST INFANTRY unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up), wholly within 6\" of the battlefield edge and more than 9\" from all enemy units."
+					"declare": "Pick a friendly non-HERO GRAND FORGEHOST INFANTRY unit that has been destroyed to be the target.",
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of the battlefield edge and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Skilled Skirmishers",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly GRAND FORGEHOST WAR MACHINES have WARD (6+)."
 				}
 			],
 			"enhancement_tables": [
@@ -48,10 +48,10 @@
 					"name": "Heroic Traits",
 					"entries": [
 						{
-							"name": "RUTHLESS OVERSSER",
+							"name": "Ruthless Overseer",
 							"category": "rallying",
 							"timing": "Passive",
-							"effect": "Each time a friendly GRAND FORGEHOST unit wholly within 12\" of this unit uses the ‘Rally’ command, you can make 3 additional rally rolls of D6."
+							"effect": "Each time a friendly GRAND FORGEHOST unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 						}
 					]
 				},
@@ -59,7 +59,7 @@
 					"name": "Artefacts of Power",
 					"entries": [
 						{
-							"name": "TALISMAN OF OBSIDIAN",
+							"name": "Talisman of Obsidian",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Subtract 1 from hit rolls for attacks that target this unit."
@@ -73,8 +73,8 @@
 					"kind": "spell",
 					"entries": [
 						{
-							"name": "REINFORCE DAEMONSTEEL",
-							"category": "defensive",
+							"name": "Reinforce Daemonsteel",
+							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn, ignore the first damage point allocated to each friendly HELSMITHS OF HASHUT unit in each phase while they are wholly within 12\" of the caster.",
@@ -85,12 +85,12 @@
 							]
 						},
 						{
-							"name": "SHACKLING CURSE",
-							"category": "defensive",
+							"name": "Shackling Curse",
+							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
-							"effect": "For the rest of the turn, the target’s attacks cannot score critical hits (treat them as regular hits instead).",
-							"casting_value": 6,
+							"effect": "For the rest of the turn, the target's attacks cannot score critical hits (treat them as regular hits instead).",
+							"casting_value": 7,
 							"keywords": [
 								"SPELL"
 							]
@@ -102,11 +102,11 @@
 					"kind": "prayer",
 					"entries": [
 						{
-							"name": "GRASP OF STONE",
+							"name": "Grasp of Stone",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
-							"effect": "Subtract 1 from the Attacks characteristic of the target’s melee weapons until the start of your next turn. If the chanting roll was 8+, the target also has STRIKE-LAST until the start of your next turn.",
+							"effect": "Subtract 1 from the Attacks characteristic of the target's melee weapons until the start of your next turn. If the chanting roll was 8+, the target also has STRIKE-LAST until the start of your next turn.",
 							"chanting_value": 4,
 							"keywords": [
 								"PRAYER",
@@ -114,10 +114,10 @@
 							]
 						},
 						{
-							"name": "LAVA STORM",
+							"name": "Lava Storm",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
-							"declare": "Pick a friendly GRAND FORGEHOST PRIEST to chant this prayer. Pick an enemy unit to be the target and roll 6 dice. For each 6, pick an additional enemy unit to be a target. Then make a chanting roll of D6.",
+							"declare": "Pick a friendly GRAND FORGEHOST PRIEST to chant this prayer. Pick an enemy unit to be the target and roll 6 dice. For each 6, pick an additional enemy unit to be a target. Then, make a chanting roll of D6.",
 							"effect": "If the chanting roll was 7+, pick an additional enemy unit to be a target. Inflict D3 mortal damage on each target.",
 							"chanting_value": 5,
 							"keywords": [
@@ -133,23 +133,23 @@
 			"text": "When you pick the Helsmiths of Hashut faction for your army, you can choose for it to be a Ziggurat Stampede Army of Renown. If you do so, use the faction rules in this section instead of the Helsmiths of Hashut faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ZIGGURAT STAMPEDE keyword.\nROSTER OPTIONS\nDaemonsmith on Infernal Taurus\nAny HELSMITHS OF HASHUT CAVALRY units\nAny HELSMITHS OF HASHUT AUTOMATON units\nYou cannot include Regiments of Renown",
 			"battle_traits": [
 				{
-					"name": "LET THE REALMS TREMBLE",
+					"name": "Let the Realms Tremble",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add X to charge rolls for friendly ZIGGURAT STAMPEDE units, where X is the number of friendly ZIGGURAT STAMPEDE units that have already charged this phase."
 				},
 				{
-					"name": "’BREAK THEM, ONE AND ALL...’",
+					"name": "'Break them, One and All...'",
 					"category": "movement",
 					"timing": "Passive",
-					"effect": "Any number of friendly ZIGGURAT STAMPEDE units can use the ‘Power Through’ command in the same turn."
+					"effect": "Any number of friendly ZIGGURAT STAMPEDE units can use the 'Power Through' command in the same turn."
 				},
 				{
-					"name": "RUN ROUGHSHOD",
+					"name": "Run Roughshod",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly ZIGGURAT STAMPEDE unit in combat to be the target.",
-					"effect": "For the rest of the turn:\nThe target can use SHOOT and/or CHARGE abilities even if it used a RETREAT ability in the same turn. No mortal damage is inflicted on the target by RETREAT abilities."
+					"effect": "For the rest of the turn:\n• The target can use SHOOT and/or CHARGE abilities even if it used a RETREAT ability in the same turn.\n• No mortal damage is inflicted on the target by RETREAT abilities."
 				}
 			],
 			"enhancement_tables": [
@@ -157,7 +157,7 @@
 					"name": "Heroic Traits",
 					"entries": [
 						{
-							"name": "RAGING ANIMUS",
+							"name": "Raging Animus",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict D3 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -168,7 +168,7 @@
 					"name": "Artefacts of Power",
 					"entries": [
 						{
-							"name": "VISAGE OF THE GREAT BULL",
+							"name": "Visage of the Great Bull",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "In your charge phase, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
@@ -182,10 +182,10 @@
 					"kind": "spell",
 					"entries": [
 						{
-							"name": "SEARING DETONATION",
-							"category": "offensive",
+							"name": "Searing Detonation",
+							"category": "",
 							"timing": "Your Hero Phase",
-							"declare": "Pick a friendly ZIGGURAT STAMPEDE WIZARD to cast this spell, pick each enemy unit in combat with them to be the targets, then make a casting roll of 2D6.",
+							"declare": "Pick a friendly ZIGGURAT STAMPEDE WIZARD to cast this spell, then pick each enemy unit in combat with them to be the targets, then make a casting roll of 2D6.",
 							"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
 							"casting_value": 6,
 							"keywords": [
@@ -194,22 +194,22 @@
 							]
 						},
 						{
-							"name": "FLAMING WEAPONS",
-							"category": "offensive",
+							"name": "Flaming Weapons",
+							"category": "",
 							"timing": "Your Hero Phase",
-							"declare": "Pick a friendly ZIGGURAT STAMPEDE WIZARD to cast this spell, pick a visible friendly ZIGGURAT STAMPEDE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
-							"effect": "Add 1 to the Rend characteristic of the target’s melee weapons until the start of your next turn.",
+							"declare": "Pick a friendly ZIGGURAT STAMPEDE to cast this spell, pick a visible friendly ZIGGURAT STAMPEDE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Add 1 to the Rend characteristic of the target's melee weapons until the start of yout next turn.",
 							"casting_value": 7,
 							"keywords": [
 								"SPELL"
 							]
 						},
 						{
-							"name": "BURN TO ASH",
-							"category": "special",
+							"name": "Burn to Ash",
+							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ZIGGURAT STAMPEDE WIZARD to cast this spell, pick a terrain feature within 18\" of them to be the target, then make a casting roll of 2D6.",
-							"effect": "If the target has a Health characteristic, inflict 2D3 mortal damage on it. Then, if the target was not destroyed or does not have a Health characteristic:\nThe target gains the ‘Obscuring’ terrain ability for the rest of the battle (Terrain, 1.2). If the target is FACTION TERRAIN, until the start of your next turn, abilities on that terrain feature’s warscroll have no effect.",
+							"effect": "If the target has a Health characteristic, inflict 2D3 mortal damage on it. Then, if the target was not destroyed or does not have a Health characteristic:\n• The target gains the 'Obscuring' terrain ability for the rest of the battle.\n• If the target is FACTION TERRAIN, until the start of your next turn, abilities on that terrain feature's warscroll have no effect.",
 							"casting_value": 8,
 							"keywords": [
 								"SPELL"

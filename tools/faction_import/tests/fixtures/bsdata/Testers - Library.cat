@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue id="cat-lib" name="Testers - Library" revision="1" gameSystemId="sys" library="true" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
+  <sharedSelectionEntries>
+    <selectionEntry id="u-captain" name="Test Captain" type="unit" publicationId="pub-bt">
+      <profiles>
+        <profile id="p-cap-unit" name="Test Captain" typeId="unit" typeName="Unit">
+          <characteristics>
+            <characteristic name="Move" typeId="mv">5"</characteristic>
+            <characteristic name="Health" typeId="hp">6</characteristic>
+            <characteristic name="Save" typeId="sv">4+</characteristic>
+            <characteristic name="Control" typeId="ct">2</characteristic>
+          </characteristics>
+        </profile>
+        <profile id="p-cap-passive" name="Commanding Presence" typeId="ab" typeName="Ability (Passive)">
+          <characteristics>
+            <characteristic name="Effect" typeId="eff">Friendly units nearby are steady.</characteristic>
+          </characteristics>
+          <attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>
+        </profile>
+        <profile id="p-cap-rally" name="Rally Cry" typeId="ab" typeName="Ability (Activated)">
+          <characteristics>
+            <characteristic name="Timing" typeId="tim">Once Per Turn (Army), Any Combat Phase</characteristic>
+            <characteristic name="Declare" typeId="dec">Pick a friendly **^^Infantry^^** unit.</characteristic>
+            <characteristic name="Effect" typeId="eff">Pick one of the following:
+***Hold Fast:*** Add 1 to save rolls.
+***Press On:*** Add 1 to run rolls.
+That unit must be wholly within 12".
+**Designer's Note:** This is commentary, not a rule.</characteristic>
+            <characteristic name="Keywords" typeId="kw">**^^Rally^^**, **^^Core^^**</characteristic>
+          </characteristics>
+          <attributes><attribute name="Type" typeId="t">Rallying</attribute></attributes>
+        </profile>
+        <profile id="p-cap-spell" name="Captain's Bolt" typeId="ab" typeName="Ability (Spell)">
+          <characteristics>
+            <characteristic name="Timing" typeId="tim">Your Hero Phase</characteristic>
+            <characteristic name="Casting Value" typeId="cv">7</characteristic>
+            <characteristic name="Effect" typeId="eff">Inflict D3 mortal damage.</characteristic>
+            <characteristic name="Keywords" typeId="kw">**^^Spell^^**</characteristic>
+          </characteristics>
+          <attributes><attribute name="Type" typeId="t">Damage</attribute></attributes>
+        </profile>
+      </profiles>
+      <categoryLinks>
+        <categoryLink id="cl-cap-1" name="HERO" targetId="c-hero" primary="false"/>
+        <categoryLink id="cl-cap-2" name="ORDER" targetId="c-order" primary="false"/>
+        <categoryLink id="cl-cap-3" name="TESTERS" targetId="c-testers" primary="true"/>
+        <categoryLink id="cl-cap-4" name="WARD (5+)" targetId="c-ward5" primary="false"/>
+        <categoryLink id="cl-cap-5" name="HIDDEN MARKER" targetId="c-hidden" primary="false" hidden="true"/>
+      </categoryLinks>
+      <selectionEntries>
+        <selectionEntry id="m-captain" name="Test Captain" type="model">
+          <constraints><constraint id="k-cap" type="min" field="selections" scope="parent" value="1"/></constraints>
+          <rules><rule id="r-cap-base" name="Base Size"><description>40mm</description></rule></rules>
+          <profiles>
+            <profile id="p-gun" name="Volley Gun" typeId="rw" typeName="Ranged Weapon">
+              <characteristics>
+                <characteristic name="Rng" typeId="rng">12"</characteristic>
+                <characteristic name="Atk" typeId="atk">3</characteristic>
+                <characteristic name="Hit" typeId="hit">3+</characteristic>
+                <characteristic name="Wnd" typeId="wnd">4+</characteristic>
+                <characteristic name="Rnd" typeId="rnd">1</characteristic>
+                <characteristic name="Dmg" typeId="dmg">D3</characteristic>
+                <characteristic name="Ability" typeId="ab">Crit (Mortal), Shoot in Combat</characteristic>
+              </characteristics>
+            </profile>
+            <profile id="p-cutlass" name="Cutlass" typeId="mw" typeName="Melee Weapon">
+              <characteristics>
+                <characteristic name="Atk" typeId="atk">4</characteristic>
+                <characteristic name="Hit" typeId="hit">3+</characteristic>
+                <characteristic name="Wnd" typeId="wnd">4+</characteristic>
+                <characteristic name="Rnd" typeId="rnd">-</characteristic>
+                <characteristic name="Dmg" typeId="dmg">1</characteristic>
+                <characteristic name="Ability" typeId="ab">-</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntry>
+    <selectionEntry id="u-riders" name="Test Riders" type="unit" publicationId="pub-bt">
+      <profiles>
+        <profile id="p-riders-unit" name="Test Riders" typeId="unit" typeName="Unit">
+          <characteristics>
+            <characteristic name="Move" typeId="mv">10"</characteristic>
+            <characteristic name="Health" typeId="hp">4</characteristic>
+            <characteristic name="Save" typeId="sv">4+</characteristic>
+            <characteristic name="Control" typeId="ct">1</characteristic>
+          </characteristics>
+        </profile>
+        <profile id="p-riders-prayer" name="Riders' Blessing" typeId="ab" typeName="Ability (Prayer)">
+          <characteristics>
+            <characteristic name="Timing" typeId="tim">Your Hero Phase</characteristic>
+            <characteristic name="Chanting Value" typeId="chv">4</characteristic>
+            <characteristic name="Effect" typeId="eff">Heal (1).</characteristic>
+          </characteristics>
+          <attributes><attribute name="Type" typeId="t">Special</attribute></attributes>
+        </profile>
+      </profiles>
+      <categoryLinks>
+        <categoryLink id="cl-rid-1" name="CAVALRY" targetId="c-cav" primary="false"/>
+        <categoryLink id="cl-rid-2" name="ORDER" targetId="c-order" primary="false"/>
+      </categoryLinks>
+      <selectionEntries>
+        <selectionEntry id="m-rider-champ" name="Rider Champion" type="model">
+          <constraints><constraint id="k-rc" type="min" field="selections" scope="parent" value="1"/></constraints>
+          <rules><rule id="r-rc-base" name="Base Size"><description>60x35mm</description></rule></rules>
+        </selectionEntry>
+        <selectionEntry id="m-rider" name="Rider" type="model">
+          <constraints><constraint id="k-r" type="min" field="selections" scope="parent" value="4.0"/></constraints>
+          <rules><rule id="r-r-base" name="Base Size"><description>90x52mm</description></rule></rules>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntry>
+    <selectionEntry id="u-gunners" name="Test Gunners (Scourge of Aqshy)" type="unit" publicationId="pub-bt">
+      <rules><rule id="r-gun-base" name="Base Size"><description>60x35mm</description></rule></rules>
+      <categoryLinks>
+        <categoryLink id="cl-gun-1" name="INFANTRY" targetId="c-inf" primary="false"/>
+      </categoryLinks>
+    </selectionEntry>
+    <selectionEntry id="u-warden" name="Old Warden" type="unit" publicationId="pub-leg">
+      <categoryLinks>
+        <categoryLink id="cl-war-1" name="HERO" targetId="c-hero" primary="false"/>
+      </categoryLinks>
+    </selectionEntry>
+    <selectionEntry id="u-retired" name="Retired Hero" type="unit" publicationId="pub-bt">
+      <categoryLinks>
+        <categoryLink id="cl-ret-1" name="HERO" targetId="c-hero" primary="false"/>
+        <categoryLink id="cl-ret-2" name="Legends" targetId="c-legends" primary="false"/>
+      </categoryLinks>
+    </selectionEntry>
+    <selectionEntry id="u-summoned" name="Summoned Spirit" type="unit" publicationId="pub-bt">
+      <categoryLinks>
+        <categoryLink id="cl-sum-1" name="MANIFESTATION" targetId="c-man" primary="false"/>
+      </categoryLinks>
+    </selectionEntry>
+    <selectionEntry id="u-anvil" name="Anvil of Apotheosis - Champion" type="unit" publicationId="pub-bt"/>
+  </sharedSelectionEntries>
+</catalogue>

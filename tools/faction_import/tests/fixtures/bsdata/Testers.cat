@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue id="cat-testers" name="Testers" revision="1" gameSystemId="sys" library="false" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
+  <catalogueLinks>
+    <catalogueLink id="cl-lib" name="Testers - Library" targetId="cat-lib" type="catalogue" importRootEntries="true"/>
+    <catalogueLink id="cl-lores" name="❖ Lores" targetId="cat-lores" type="catalogue"/>
+  </catalogueLinks>
+  <entryLinks>
+    <entryLink id="el-captain" name="Test Captain" targetId="u-captain" type="selectionEntry">
+      <costs><cost name="pts" typeId="points" value="120.0"/></costs>
+    </entryLink>
+    <entryLink id="el-riders" name="Test Riders" targetId="u-riders" type="selectionEntry">
+      <costs><cost name="pts" typeId="points" value="200.0"/></costs>
+      <entryLinks>
+        <entryLink id="el-riders-reinforced" name="Reinforced" targetId="reinforced" type="selectionEntry"/>
+      </entryLinks>
+    </entryLink>
+    <entryLink id="el-gunners" name="Test Gunners (Scourge of Aqshy)" targetId="u-gunners" type="selectionEntry">
+      <costs><cost name="pts" typeId="points" value="90.0"/></costs>
+    </entryLink>
+    <entryLink id="el-warden" name="Old Warden" targetId="u-warden" type="selectionEntry">
+      <costs><cost name="pts" typeId="points" value="100.0"/></costs>
+    </entryLink>
+    <entryLink id="el-anvil" name="Anvil of Apotheosis - Champion" targetId="u-anvil" type="selectionEntry"/>
+  </entryLinks>
+  <sharedSelectionEntries>
+    <selectionEntry id="se-traits" name="Battle Traits: Testers" type="upgrade">
+      <profiles>
+        <profile id="p-trait" name="Steady Ranks" typeId="ab" typeName="Ability (Passive)">
+          <characteristics>
+            <characteristic name="Effect" typeId="eff">Add 1 to save rolls for friendly **^^Testers^^** units.</characteristic>
+          </characteristics>
+          <attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>
+        </profile>
+      </profiles>
+    </selectionEntry>
+  </sharedSelectionEntries>
+  <sharedSelectionEntryGroups>
+    <selectionEntryGroup id="g-formations" name="Battle Formations: Testers" publicationId="pub-bt">
+      <selectionEntries>
+        <selectionEntry id="f-1" name="Test Brigade" type="upgrade">
+          <costs><cost name="pts" typeId="points" value="20.0"/></costs>
+          <profiles>
+            <profile id="p-f1" name="Brigade Drill" typeId="ab" typeName="Ability (Passive)">
+              <characteristics><characteristic name="Effect" typeId="eff">Units run further.</characteristic></characteristics>
+              <attributes><attribute name="Type" typeId="t">Movement</attribute></attributes>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="g-heroic" name="Heroic Traits" publicationId="pub-bt">
+      <selectionEntryGroups>
+        <selectionEntryGroup id="g-heroic-bt" name="Heroic Traits" publicationId="pub-bt">
+          <selectionEntries>
+            <selectionEntry id="e-bold" name="Bold Leader" type="upgrade">
+              <costs><cost name="pts" typeId="points" value="10.0"/></costs>
+              <profiles>
+                <profile id="p-bold" name="Bold Leader" typeId="ab" typeName="Ability (Passive)">
+                  <characteristics><characteristic name="Effect" typeId="eff">Add 1 to charge rolls.</characteristic></characteristics>
+                  <attributes><attribute name="Type" typeId="t">Movement</attribute></attributes>
+                </profile>
+              </profiles>
+            </selectionEntry>
+          </selectionEntries>
+        </selectionEntryGroup>
+        <selectionEntryGroup id="g-heroic-soa" name="Fiery Traits" publicationId="pub-soa">
+          <selectionEntries>
+            <selectionEntry id="e-fiery" name="Fiery Heart" type="upgrade">
+              <profiles>
+                <profile id="p-fiery" name="Fiery Heart" typeId="ab" typeName="Ability (Passive)">
+                  <characteristics><characteristic name="Effect" typeId="eff">Ward 6+.</characteristic></characteristics>
+                  <attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>
+                </profile>
+              </profiles>
+            </selectionEntry>
+          </selectionEntries>
+        </selectionEntryGroup>
+      </selectionEntryGroups>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="g-artefacts" name="Artefacts of Power" publicationId="pub-bt">
+      <selectionEntries>
+        <selectionEntry id="e-lens" name="Lens of Truth" type="upgrade">
+          <profiles>
+            <profile id="p-lens" name="Lens of Truth" typeId="ab" typeName="Ability (Activated)">
+              <characteristics>
+                <characteristic name="Timing" typeId="tim">Your Shooting Phase</characteristic>
+                <characteristic name="Effect" typeId="eff">Reroll hits.</characteristic>
+              </characteristics>
+              <attributes><attribute name="Type" typeId="t">Shooting</attribute></attributes>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="g-paths" name="Paths" publicationId="pub-bt">
+      <selectionEntries>
+        <selectionEntry id="e-path" name="Path of the Tester" type="upgrade"/>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="g-spell-lores" name="Spell Lores">
+      <selectionEntries>
+        <selectionEntry id="o-lore-testing" name="Lore of Testing" type="upgrade">
+          <entryLinks><entryLink id="l-lore-testing" name="Lore of Testing" targetId="lg-testing" type="selectionEntryGroup"/></entryLinks>
+        </selectionEntry>
+        <selectionEntry id="o-lore-core" name="Universal Spell Lore" type="upgrade">
+          <entryLinks><entryLink id="l-lore-core" name="Universal Spell Lore" targetId="lg-core" type="selectionEntryGroup"/></entryLinks>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="g-manif-lores" name="Manifestation Lores">
+      <selectionEntries>
+        <selectionEntry id="o-manif-testing" name="Manifestations of Testing" type="upgrade">
+          <costs><cost name="pts" typeId="points" value="40.0"/></costs>
+          <entryLinks><entryLink id="l-manif-testing" name="Manifestations of Testing" targetId="lg-manif" type="selectionEntryGroup"/></entryLinks>
+        </selectionEntry>
+        <selectionEntry id="o-manif-gh" name="Handbook Manifestations" type="upgrade">
+          <entryLinks><entryLink id="l-manif-gh" name="Handbook Manifestations" targetId="lg-gh" type="selectionEntryGroup"/></entryLinks>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+  </sharedSelectionEntryGroups>
+</catalogue>

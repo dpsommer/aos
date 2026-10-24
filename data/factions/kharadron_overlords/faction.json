@@ -4,13 +4,13 @@
 	"grand_alliance": "order",
 	"battle_traits": [
 		{
-			"name": "SKYVESSEL COVER",
+			"name": "Skyvessel Cover",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "Subtract 1 from hit rolls for attacks that target friendly KHARADRON OVERLORDS INFANTRY units that have not charged in the same turn while they are wholly within 6\" of a friendly Arkanaut Ironclad or Arkanaut Frigate that has not charged in the same turn."
 		},
 		{
-			"name": "FLYING HIGH",
+			"name": "Flying High",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -21,7 +21,7 @@
 			]
 		},
 		{
-			"name": "THE FLAGSHIP",
+			"name": "The Flagship",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -30,22 +30,23 @@
 			"options": [
 				{
 					"name": "Designer’s Note",
-					"text": "This Great Endrinwork is given to the unit during the deployment phase, not during army composition."
+					"text": "This Great Endrinwork is given to the unit during the deployment phase not during army composition."
 				}
 			]
 		},
 		{
-			"name": "DESCEND FROM THE CLOUDS",
+			"name": "Descend from the Clouds",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"declare": "Pick a friendly SKYVESSEL in the clouds to use this ability.",
 			"effect": "Set up that SKYVESSEL anywhere on the battlefield more than 9\" from all enemy units. Then, set up all other units that were set up in the clouds with that SKYVESSEL wholly within 6\" of it and more than 9\" from all enemy units."
 		},
 		{
-			"name": "TRANSPORT SKYFARERS",
+			"name": "Transport Skyfarers",
 			"category": "movement",
-			"timing": "Your Movement Phase, Reaction: You declared a non- CHARGE MOVE ability for a friendly SKYVESSEL",
-			"effect": "Pick a number of units up to that SKYVESSEL’s Transport Capacity (see its warscroll) that are wholly within 6\" of it and not in combat to be the targets. Units that have been transported this turn cannot be targets.\nRemove the targets from the battlefield. After the SKYVESSEL ends its move, you must set up each target unit on the battlefield, wholly within 6\" of that SKYVESSEL and not in combat. Those units have been transported. A unit cannot use CHARGE abilities if it was transported in the same turn."
+			"timing": "Your Movement Phase, Reaction: You declared a non-CHARGE MOVE ability for a friendly SKYVESSEL",
+			"declare": "The SKYVESSEL using that MOVE ability",
+			"effect": "Pick a number of units up to that SKYVESSEL's Transport Capacity (see its warscroll) that are wholly within 6\" of it and not in combat to be the targets. Units that have been transported this turn cannot be targets.\nRemove the targets from the battlefield. After the SKYVESSEL ends its move, you must set up each target unit on the battlefield, wholly within 6\" of that SKYVESSEL and not in combat. Those units have been transported. A unit cannot use CHARGE abilities if it was transported in the same turn."
 		}
 	],
 	"battle_formations": [
@@ -54,7 +55,7 @@
 			"points": 10,
 			"abilities": [
 				{
-					"name": "GRITTY FORTUNE-HUNTERS",
+					"name": "Gritty Fortune-Hunters",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly Vongrim Harpoon Crew and Vongrim Salvagers units have WARD (6+) while they are contesting an objective."
@@ -66,7 +67,7 @@
 			"points": 0,
 			"abilities": [
 				{
-					"name": "ENTRENCHED CREWS",
+					"name": "Entrenched Crews",
 					"category": "defensive",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Turn (Army)",
@@ -80,7 +81,7 @@
 			"points": 0,
 			"abilities": [
 				{
-					"name": "EXTRA RAPPEL ANCHORS",
+					"name": "Extra Rappel Anchors",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Friendly Grundstok Gunhaulers can transport up to 2 friendly KHARADRON OVERLORDS INFANTRY units instead of 1 and with a combined model count of up to 6 instead of 5 (see Battle Traits)."
@@ -92,18 +93,12 @@
 			"points": 20,
 			"abilities": [
 				{
-					"name": "SPECIAL PROCUREMENT",
+					"name": "Special Procurement",
 					"category": "special",
 					"timing": "Deployment Phase",
-					"frequency": "Once Per Battle (Army)",
-					"declare": "Pick a friendly non- UNIQUE KHARADRON OVERLORDS HERO that does not have an artefact of power. The target can be in reserve.",
-					"effect": "Give that Hero 1 artefact of power from the ‘Inventions of the Sky-ports’ or the ‘Ingenious Innovations’.",
-					"options": [
-						{
-							"name": "Designer’s Note",
-							"text": "This artefact of power is given to the unit during the deployment phase, not during army composition."
-						}
-					]
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly non-UNIQUE KHARADRON OVERLORDS HERO that does not have an artefact of power.",
+					"effect": "Give that HERO 1 artefact of power from the 'Inventions of the Sky-ports' or the 'Ingenious Innovations'."
 				}
 			]
 		}
@@ -114,21 +109,21 @@
 			"group": "Lords of the Sky-fleets",
 			"entries": [
 				{
-					"name": "SHREWD OPPORTUNIST",
+					"name": "Shrewd Opportunist",
 					"category": "movement",
 					"timing": "Deployment Phase",
-					"declare": "Pick this unit and up to 2 other friendly KHARADRON OVERLORDS non- HERO INFANTRY units to be the targets.",
-					"effect": "Each target can immediately use the ‘Normal Move’ ability as if it were your movement phase.",
+					"declare": "Pick this unit and up to 2 other friendly KHARADRON OVERLORDS non-HERO INFANTRY units to be the targets.",
+					"effect": "Each target can immediately use the 'Normal Move' ability as if it were your movement phase.",
 					"points": 10
 				},
 				{
-					"name": "BOLD AS BRASS",
+					"name": "Bold as Brass",
 					"category": "control",
 					"timing": "Passive",
-					"effect": "Add 5 to this unit’s control score."
+					"effect": "Add 5 to this unit's control score."
 				},
 				{
-					"name": "COMBAT GRAFTER",
+					"name": "Combat Grafter",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -138,17 +133,17 @@
 		},
 		{
 			"name": "Artefacts of Power",
-			"group": "Inventions of the Sky-Ports",
+			"group": "Inventions of the Sky-ports",
 			"entries": [
 				{
-					"name": "VOIDSTONE ORB",
+					"name": "Voidstone Orb",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a WIZARD within 30\" of this unit",
 					"frequency": "Once Per Battle",
 					"effect": "That spell is unbound."
 				},
 				{
-					"name": "CELESTIUM BURST GRENADE",
+					"name": "Celestium Burst Grenade",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle",
@@ -157,9 +152,9 @@
 					"points": 10
 				},
 				{
-					"name": "BLAZEBEARD AND SONS BAMBOOZLING FLAKGUN",
+					"name": "Blazebeard and Sons Bamboozling Flakgun",
 					"category": "movement",
-					"timing": "Reaction: Opponent declared a CHARGE ability for a unit within 12\" of this unit",
+					"timing": "Reaction: Opponent declared a CHARGE ability for a unit within 12\" of this unit.",
 					"frequency": "Once Per Turn",
 					"effect": "Pick 1 dice in that charge roll. Then, make a bamboozling flak roll of D6. If the roll equals or exceeds the value on the dice, remove that dice from the charge roll.",
 					"points": 10
@@ -172,20 +167,20 @@
 			"source": "Scourge of Ghyran",
 			"entries": [
 				{
-					"name": "SPELL IN A BOTTLE",
+					"name": "Spell in a Bottle",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
 					"effect": "This unit can use a SUMMON ability from the manifestation lore you picked during army composition as if it had WIZARD (1). Instead of making a casting roll for that SUMMON ability, the casting roll is 7 and cannot be modified. That SUMMON ability cannot be unbound."
 				},
 				{
-					"name": "KARST-BANA AETHER-POWERED COMBAT RIG",
+					"name": "Karst-Bana Aether-Powered Combat Rig",
 					"category": "special",
 					"timing": "Passive",
-					"effect": "This unit has WARD (5+). In addition, add 1 to the Attacks characteristic of this unit’s melee weapons."
+					"effect": "This unit has WARD (5+). In addition, add 1 to the Attacks characteristic of this unit's melee weapons."
 				},
 				{
-					"name": "EMBERSTONE FLARE",
+					"name": "Emberstone Flare",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -200,29 +195,29 @@
 			"source": "Scourge of Aqshy",
 			"entries": [
 				{
-					"name": "PERSISTENT DRILLBILL",
+					"name": "Persistent Drillbill",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
-					"effect": "Roll a D3. On a 2+:\nInflict an amount of mortal damage on the target equal to the roll. If the target unit’s starting size was 1, subtract 1 from hit rolls for the target’s attacks until the start of your next turn."
+					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• If the target unit's starting size was 1, subtract 1 from hit rolls for the target's attacks until the start of your next turn."
 				},
 				{
-					"name": "EXPERIMENTAL AETHER-POWERED EJECTOR RIG",
+					"name": "Experimental Aether-powered Ejector Rig",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
 					"effect": "Remove this unit from the battlefield and set it up again wholly within 3\" of a friendly SKYVESSEL or Zontari Endrin Dock and more than 9\" from all enemy units."
 				},
 				{
-					"name": "HEAT-SEEKING AUTO‑ENDRIN",
+					"name": "Heat-seeking Auto-endrin",
 					"category": "control",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
-					"effect": "Until the start of your next turn, subtract your opponent’s fury level from the target’s control score.",
+					"effect": "Until the start of your next turn, subtract your opponent's fury level from the target's control score.",
 					"options": [
 						{
 							"name": "Designer’s Note",
-							"text": "Use your opponent’s fury level at the point the unit’s control score is determined."
+							"text": "Use your opponent's fury level at the point the unit's control score is determined."
 						}
 					]
 				}
@@ -232,56 +227,55 @@
 			"name": "Great Endrinworks",
 			"entries": [
 				{
-					"name": "HEGSSON SOLUTIONS ’OLD RELIABLE’ HULLPLATES",
+					"name": "Hegsson Solutions 'Old Reliable' Hullplates",
 					"category": "defensive",
 					"timing": "Passive",
-					"effect": "This unit has WARD (5+) against damage inflicted by SHOOT abilities."
+					"effect": "This unit has WARD (5+) against damage inflicted by shoot abilities."
 				},
 				{
-					"name": "GRUKSSON WIDE-BORE CYLINDERS",
+					"name": "Gruksson Wide-Bore Cylinders",
 					"category": "movement",
 					"timing": "Passive",
-					"effect": "Add 2\" to this unit’s Move characteristic."
+					"effect": "Add 2\" to this unit's Move characteristic."
 				},
 				{
-					"name": "COALBEARD’S COLLAPSIBLE BOMBRACK",
+					"name": "Coalbeard's Collapsible Bombrack",
 					"category": "offensive",
 					"timing": "Passive",
-					"effect": "Add 1 to each dice roll when using this unit’s ‘Heavy Bomb Racks’, ‘Medium Bomb Racks’ or ‘Light Bomb Racks’ ability."
+					"effect": "Add 1 to each dice roll when using this unit's 'Heavy Bomb Racks', 'Medium Bomb Racks' or 'Light Bomb Racks' ability."
 				},
 				{
-					"name": "TRACER-FIRE ROUNDS",
+					"name": "Tracer-Fire Rounds",
 					"category": "shooting",
-					"timing": "Your Shooting Phase, Reaction: You declared a SHOOT ability for this unit",
+					"timing": "Your Shooting Phase, Reaction: You declared a SHOOT ability for this unit.",
 					"effect": "If all of the attacks target the same enemy unit, ignore negative modifiers to hit rolls for those attacks."
 				},
 				{
-					"name": "GRANDIOSE FUSELAGE",
+					"name": "Grandiose Fuselage",
 					"category": "control",
 					"timing": "Passive",
-					"effect": "Add 5 to this unit’s Control characteristic."
+					"effect": "Add 5 to this unit's Control characteristic."
 				},
 				{
-					"name": "NULLSTONE GALVANISATION",
+					"name": "Nullstone Galvanisation",
 					"category": "offensive",
 					"timing": "End of Any Turn",
-					"effect": "Inflict D6 mortal damage on each enemy MANIFESTATION within this unit’s combat range."
+					"effect": "Inflict D6 mortal damage on each enemy MANIFESTATION within this unit's combat range."
 				}
 			]
 		},
 		{
 			"name": "Great Endrinworks",
-			"group": "Great Endrinwork",
 			"source": "Scourge of Ghyran",
 			"entries": [
 				{
-					"name": "VOIDSTONE REPULSER VENTS",
+					"name": "Voidstone Repulser Vents",
 					"category": "special",
-					"timing": "Reaction: A friendly unit within 12\" of this unit was picked to be the target of an enemy SPELL ability",
-					"effect": "Roll a dice. On a 4+:\nIgnore the effect of that spell on that friendly unit. Inflict D3 mortal damage on the caster.\nThis unit can use this ability more than once per phase but you can only roll once for each friendly unit per spell cast."
+					"timing": "Reaction: A friendly unit within 12\" of this unit was picked to be the target of an enemy SPELL ability.",
+					"effect": "Roll a dice. On a 4+:\n• Ignore the effect of that spell on that friendly unit.\n• Inflict D3 mortal damage on the caster.\nThis unit can use this ability more than once per phase but you can only roll once for each friendly unit per spell cast."
 				},
 				{
-					"name": "BLAZEBEARD AND SONS EJECTOR POD",
+					"name": "Blazebeard and Sons Ejector Pod",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -289,7 +283,7 @@
 					"effect": "Remove the target from the battlefield, then set it up again wholly within 18\" of this unit and more than 9\" from all enemy units."
 				},
 				{
-					"name": "ZONBARCORP ’DEALBREAKER’ BATTLE RAM",
+					"name": "Zonbarcorp 'Dealbreaker' Battle Ram",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
@@ -302,26 +296,26 @@
 			"source": "Scourge of Aqshy",
 			"entries": [
 				{
-					"name": "ARTYCLE 15, POINT 4",
+					"name": "Artycle 15, Point 4",
 					"category": "offensive",
 					"timing": "Passive",
-					"effect": "Add 1 to hit rolls for this unit’s combat attacks that target an enemy unit that has FLY. Add 1 to wound rolls for this unit’s combat attacks that target an enemy unit that does not have FLY.",
+					"effect": "• Add 1 to hit rolls for this unit's combat attacks that target an enemy unit that has FLY.\n• Add 1 to wound rolls for this unit's combat attacks that target an enemy unit that does not have FLY.",
 					"points": 10
 				},
 				{
-					"name": "ARTYCLE 20, AMENDMENT 2",
+					"name": "Artycle 20, Amendment 2",
 					"category": "defensive",
 					"timing": "Enemy Charge Phase",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit has not charged this turn, pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
-					"effect": "The target’s attacks cannot score critical hits for the rest of the turn (treat them as regular hits instead).",
+					"effect": "The target's attacks cannot score critical hits for the rest of the turn (treat them as regular hits instead).",
 					"points": 10
 				},
 				{
-					"name": "ARTYCLE 25, POINT 6",
+					"name": "Artycle 25, Point 6",
 					"category": "defensive",
 					"timing": "Passive",
-					"effect": "Friendly KHARADRON OVERLORDS HEROES have WARD (5+) while they are within this unit’s combat range.",
+					"effect": "Friendly KHARADRON OVERLORDS HEROES have WARD (5+) while they are within this unit's combat range.",
 					"points": 10
 				}
 			]

@@ -31,39 +31,56 @@ The loader rejects the whole faction, collecting every problem in `errors`, if a
 
 ## Sources
 
-Faction data is extracted from Wahapedia's faction page and each unit's page (e.g. `https://wahapedia.ru/aos4/factions/kharadron-overlords/`), which include current errata. Values are then cross-checked:
+Faction data is built by `tools/faction_import/` from two sources:
 
-- Formation and enhancement points and unit sizes against the "AoS Rules" NotebookLM notebook (`a30c0d6a-8127-4eab-b97e-e457c97a65fc`), which holds the battletome and General's Handbook.
-- Unit points against the BSData catalogue (`<Faction>.cat` in [BSData/age-of-sigmar-4th](https://github.com/BSData/age-of-sigmar-4th)).
+- **[BSData](https://github.com/BSData/age-of-sigmar-4th) is the primary source.** It provides warscrolls (stats, weapons, abilities, keywords, base size, unit size), points, reinforcement, battle traits, battle formations, enhancements, spell and prayer lores, and the rules of each Army of Renown. Where BSData and Wahapedia disagree, BSData's value is used.
+- **[Wahapedia](https://wahapedia.ru/aos4/) fills the gaps.** BSData has no Spearhead data, Path to Glory prose, regiment options, unit notes, unit composition text or Army of Renown descriptions, so these come from Wahapedia's faction and unit pages. Wahapedia is also the reference for the build's diff report, and its book order is used to order traits, formations and enhancements.
+
+The "AoS Rules" NotebookLM notebook (`a30c0d6a-8127-4eab-b97e-e457c97a65fc`), which holds the battletome and General's Handbook, is useful for settling disagreements the diff report raises.
 
 ## Adding a faction
 
-The extraction scripts are in `tools/faction_import/` (Godot ignores `tools/`). They need Python 3 with `requirements.txt` installed, ideally in a virtualenv outside the repo.
+The import tool is in `tools/faction_import/` (Godot ignores `tools/`). It needs Python 3 with `requirements.txt` installed, ideally in a virtualenv outside the repo.
 
-1. Download the Wahapedia faction page and every unit page it links to into an empty directory outside the repo. Links without a page of their own (such as the Path to Glory hero) are skipped with a warning:
+**Module** | **Role**
+-- | --
+`fetch.py` | Downloads the BSData catalogues (game system, `Lores.cat`, `<Faction>.cat`, its library, every `<Faction> - <Army of Renown>.cat` and the shared catalogues they link to) and the Wahapedia faction and unit pages
+`bsdata.py` | Reads the catalogues: resolves links across files, converts BSData markup (`**^^Keyword^^**` → `KEYWORD`), maps profiles to warscrolls and abilities
+`wahapedia.py` | Parses the Wahapedia pages
+`merge.py` | Combines the two, adds Wahapedia-only content, matches names (including misspellings such as "Hobgrotz"/"Hobgrot") and produces the diff report
+`schema.py` | Writes the canonical JSON shape
+`build.py` | Runs the steps above, applies overrides and writes the five files
+
+1. Download the sources into an empty directory outside the repo. Use BSData's faction name and Wahapedia's slug:
    ```sh
-   python -I tools/faction_import/fetch.py <wahapedia slug, e.g. helsmiths-of-hashut> <download dir>
+   python -I tools/faction_import/fetch.py "Helsmiths of Hashut" helsmiths-of-hashut <download dir>
    ```
-2. Parse them:
+   Wahapedia links without a page of their own (such as the Path to Glory hero) are skipped with a warning.
+2. Build the data and keep the report:
    ```sh
-   python -I tools/faction_import/wsparse.py <download dir>/units/*.html > warscrolls_raw.json
-   python -I tools/faction_import/fparse.py <download dir>/<wahapedia slug>.html > faction_raw.json
-   python -I tools/faction_import/build.py warscrolls_raw.json faction_raw.json data/factions/<id> <id> "<Name>" <alliance> [tools/faction_import/overrides/<id>.json]
+   python -I tools/faction_import/build.py <download dir> data/factions/<id> <id> "<BSData faction name>" [tools/faction_import/overrides/<id>.json] > report.txt
    ```
-   The optional overrides file corrects Wahapedia data where it disagrees with BSData. Currently it supports `warscroll_names` (`{"<Wahapedia name>": "<BSData name>"}`), which renames a warscroll everywhere it appears and updates its id. `build.py` stops if an override matches no warscroll.
-3. Cross-check names, points and unit sizes against the sources above, adding name overrides where needed, and spot-check a few warscrolls against the page.
+3. Read the report. It lists every field where BSData and Wahapedia disagree, names matched by similarity, and items only one source has. BSData wins by default. When BSData is wrong, add an override and rebuild. Override files are JSON:
+   - `warscroll_names`: `{"<name>": "<name to use>"}`. Renames a warscroll everywhere and updates its id.
+   - `fields`: `{"<warscroll id or name, or ability name>": {"<field>": <value>}}`. Replaces fields after merging, e.g. adding a keyword BSData is missing.
+
+   `build.py` stops if an override matches nothing, so stale overrides get noticed.
 4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`.
-5. Run the tests. `test/integration/test_faction_data.gd` loads every available faction.
+5. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
+   ```sh
+   PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/faction_import/tests
+   ```
 
-How the faction page is read:
+How the BSData catalogues map to the data:
 
-- Each `h2` under Faction Rules is Battle Traits, Battle Formations, a lore type (any heading ending in "Lore", e.g. "Spell Lore") or an enhancement type (anything else, e.g. "Heroic Traits", "Accursed Devices"). An `h3` under it names a formation, a lore, or an enhancement table's `group`.
-- Points come from the "Name | Points" table before each group. A section's expansion `source` comes from the expansion logo after its heading.
-- Spell and prayer values come from the ability header; ability keywords (e.g. `SPELL`, `RAMPAGE`) from the keyword block under each ability.
-- An `h2` whose section lists ROSTER OPTIONS starts an Army of Renown. PATH TO GLORY and SPEARHEAD start those parts.
-- Spearhead army lists sometimes shorten unit names ("Dominator Engine"); `build.py` resolves each to the Spearhead's warscroll by unique prefix and stops if it can't.
+- Units are those `<Faction>.cat` links to, plus unlisted units in the library (e.g. units added during a battle) and units defined by Army of Renown catalogues (e.g. Grombrindal). The Anvil of Apotheosis hero is left out; it's in Path to Glory.
+- Points and reinforcement come from the faction catalogue's link to each unit. `source` and `legends` come from the unit's publication, and a "(Scourge of …)" name suffix becomes the `source`.
+- Ability icon categories come from the profile's `Type` attribute. `***Label:***` lines in an effect become `options`, and designer's notes become an option named "Designer’s Note".
+- Each shared entry group other than lores, formations, Paths and Battle Wounds is an enhancement type. A nested group becomes the table's `group`, and the publication becomes its `source`.
+- Lores come from the Spell, Prayer and Manifestation Lores groups. Universal lores (core rules, General's Handbook) are skipped.
+- An Army of Renown is each `<Faction> - <Name>.cat`, plus the shared catalogue it links to when its rules live there (e.g. `The Duardin Ascendant [LEGENDS].cat`).
 
-The parsers rely on Wahapedia's page structure and may need adjusting for other factions, e.g. manifestation lores, whose manifestations have warscrolls of their own.
+The Wahapedia parsers rely on Wahapedia's page structure. They read the faction page's headings: Battle Traits, Battle Formations, `… Lore`, other enhancement types, and Armies of Renown (sections listing ROSTER OPTIONS), Path to Glory and Spearhead. Spearhead army lists sometimes shorten unit names ("Dominator Engine"); these are resolved to the Spearhead's warscroll by unique prefix.
 
 ## Exporting
 

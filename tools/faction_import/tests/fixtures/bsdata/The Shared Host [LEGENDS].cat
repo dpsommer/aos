@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue id="cat-shared" name="þ The Shared Host [LEGENDS]" revision="1" gameSystemId="sys" library="false" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
+  <entryLinks>
+    <entryLink id="el-host-champ" name="Host Champion" targetId="u-host-champ" type="selectionEntry">
+      <costs><cost name="pts" typeId="points" value="150.0"/></costs>
+    </entryLink>
+  </entryLinks>
+  <sharedSelectionEntries>
+    <selectionEntry id="se-host-traits" name="Battle Traits: The Shared Host" type="upgrade">
+      <profiles>
+        <profile id="p-host-trait" name="Shared Resolve" typeId="ab" typeName="Ability (Passive)">
+          <characteristics><characteristic name="Effect" typeId="eff">Units are resolute.</characteristic></characteristics>
+          <attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>
+        </profile>
+      </profiles>
+    </selectionEntry>
+    <selectionEntry id="u-host-champ" name="Host Champion" type="unit" publicationId="pub-leg">
+      <categoryLinks>
+        <categoryLink id="cl-hc-1" name="HERO" targetId="c-hero" primary="false"/>
+      </categoryLinks>
+    </selectionEntry>
+  </sharedSelectionEntries>
+  <sharedSelectionEntryGroups>
+    <selectionEntryGroup id="g-host-heroic" name="Heroic Traits" publicationId="pub-leg">
+      <selectionEntryGroups>
+        <selectionEntryGroup id="g-host-heroic-sub" name="Heroic Traits: The Shared Host" publicationId="pub-leg">
+          <selectionEntries>
+            <selectionEntry id="e-host-courage" name="Shared Courage" type="upgrade">
+              <profiles>
+                <profile id="p-host-courage" name="Shared Courage" typeId="ab" typeName="Ability (Passive)">
+                  <characteristics><characteristic name="Effect" typeId="eff">Be brave.</characteristic></characteristics>
+                  <attributes><attribute name="Type" typeId="t">Rallying</attribute></attributes>
+                </profile>
+              </profiles>
+            </selectionEntry>
+          </selectionEntries>
+        </selectionEntryGroup>
+      </selectionEntryGroups>
+    </selectionEntryGroup>
+  </sharedSelectionEntryGroups>
+</catalogue>
