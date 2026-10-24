@@ -83,6 +83,8 @@ func _ability(data: Variant, path: String) -> Ability:
 	ability.text = _string(data, "text", path)
 	ability.keywords = _strings(data, "keywords", path)
 	ability.points = _int(data, "points", path)
+	ability.casting_value = _int(data, "casting_value", path)
+	ability.chanting_value = _int(data, "chanting_value", path)
 	ability.source = _string(data, "source", path)
 	var options := _array(data, "options", path)
 	for i in options.size():
@@ -136,6 +138,7 @@ func _lores(data: Dictionary, path: String) -> Array[Lore]:
 		if _is_object(items[i], lore_path):
 			lore.name = _string(items[i], "name", lore_path, true)
 			lore.kind = _string(items[i], "kind", lore_path)
+			lore.points = _int(items[i], "points", lore_path)
 			lore.entries = _abilities(items[i], "entries", lore_path)
 		result.append(lore)
 	return result

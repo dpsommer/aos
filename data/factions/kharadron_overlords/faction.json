@@ -15,7 +15,10 @@
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
 			"declare": "Pick a friendly SKYVESSEL that is in a regiment from which no units have been deployed, then pick a number of units up to its Transport Capacity (see its warscroll) that are in its regiment.",
-			"effect": "Set up all of those units in reserve in the clouds. They have now been deployed."
+			"effect": "Set up all of those units in reserve in the clouds. They have now been deployed.",
+			"keywords": [
+				"DEPLOY"
+			]
 		},
 		{
 			"name": "THE FLAGSHIP",

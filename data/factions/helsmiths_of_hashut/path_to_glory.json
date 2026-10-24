@@ -1,0 +1,86 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Helsmiths ofHashut army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Helsmiths of Hashut units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Choose an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Choose a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nCruel Overlord | 10 | 150\nHashutite Tyrant | 30 | 250\nHonoured of the Dark Conclave | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "helsmiths_of_hashut_hero",
+					"name": "Helsmiths of Hashut Hero",
+					"move": 4,
+					"health": 6,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Hashutite Blade",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"CHAOS",
+						"HELSMITHS OF HASHUT",
+						"DUARDIN"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Choose an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nWarlord\n0DP\nChange your hero’s Save characteristic to 3+. Replace the weapon profile of their Hashutite Blade with the one below. They gain the regiment options below.\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nHashutite Blade\nCrit (Mortal) | 5 | 3+ | 4+ | 1 | 2\nRegiment Options | Any HELSMITHS OF HASHUT units\nInfernal Sorcerer\n-3DP\nYour hero gains the WIZARD (1) keyword. Replace the weapon profile of their Hashutite Blade with the one below. They gain the regiment options below.\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nHashutite Blade\nCrit (Mortal) | 5 | 3+ | 4+ | 1 | 2\nRegiment Options | Any HELSMITHS OF HASHUT units\nScorched Acolyte\n-2DP\nYour hero gains the PRIEST (1) keyword and the ability and regiment options below.\nEnd of Your Turn\nEXTRACT POWER\nEffect: If this unit is contesting an objective, a Place of Power, or a terrain feature and that objective, Place of Power or terrain feature has a friendly desolation token, give this unit 1 ritual point.\nRegiment Options | Any HELSMITHS OF HASHUT units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Your Hero Phase\n-2DP\nPURVEYOR OF DARK MECHANISMS\nDeclare: Pick a friendly WAR MACHINE within this unit’s combat range to be the target.\nEffect: Heal (D3) the target.\nYour Hero Phase\n-2DP\nPOWER THROUGH DARK PACTS\nDeclare: You must use this ability in each of your hero phases.\nEffect: Roll a dice and apply the corresponding effect:\n1-3 Sacrificial Demand: Pick another friendly unit within 12\" of this unit. 1 model in that unit is slain. Otherwise, inflict D6 mortal damage on this unit.\n4+ Forbidden Knowledge: Pick 1 of the following effects to apply until the start of your next turn:\nIf this unit is a WIZARD or PRIEST, add 1 to its power level.\nAdd 1 to the Damage characteristic of this unit’s melee weapons.\nAdd 3 to the control scores of friendly units while they are wholly within 12\" of this unit.\nPassive\n-2DP\nRUTHLESS INDUSTRIALIST\nEffect: During your Path to Glory campaign, keep a tally of the number of desolation tokens you give. Each time the tally reaches a multiple of 15 (e.g. 15, 30, 45 etc.), this unit gains the next rank on its Path."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+4DP\nCREEPING PETRIFICATION\nEffect: Subtract 2 from run rolls and charge rolls for this unit.\nIn addition, at the end of each battle, roll a dice. On a 1, give this unit 1 stone-flesh point and note this on your Path to Glory roster. When this unit has 3 stone-flesh points, you must remove this unit from your Path to Glory roster.\nStart of First Battle Round\n+2DP\nCHAINED BY OBLIGATION\nDeclare: This unit must use this ability.\nEffect: Roll a dice. On a 1-3, your resources have been depleted before the battle to settle a debt. You lose 1 command point.\nPassive\n+2DP\nRIGID AND UNMOVING\nEffect: While this unit is on the battlefield, friendly units cannot use the’ Redeploy’ command."
+		},
+		{
+			"name": "Step 5 - Choose a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-14DP\nINFERNAL TAURUS: These colossal statues stand sentinel atop the highest battlements of the ziggurat. In times of war, they are brought to life through the magic of Chaos and ridden to war by the most powerful members of the clan.\nAdd the following weapon and abilities to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nHorns and Hooves\nCharge (+1 Damage), Companion\n6 | 4+ | 2+ | 2 | 3\nPassive\nBATTLE DAMAGED Effect: While this unit has 10 or more damage points, the Attacks characteristic of its Horns and Hooves is 5.\nEnd of Your Turn\nDAEMONIC RESILIENCE\nEffect: Apply the effect below that corresponds with the number of daemonic power points (DPP) this unit has:\nDPP | Effect\n1 | This unit has WARD (6+).\n2 | This unit has WARD (5+).\n3 | This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS and abilities used by MANIFESTATIONS. Otherwise, it has WARD (5+).\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 12.\nChange the Control characteristic to 5.\nChange the Save characteristic to 3+.\nReplace the INFANTRY keyword with the following keywords: MONSTER, WAR MACHINE, FLY.\nBattle Mount\n-18DP\nVENERABLE TAURUS: Carved from the most unyielding materials and animated with dire daemonic magics, this Taurus is one of the most ancient and malign of all such constructs. Only the mightiest duardin have been able to assert their dominance over it.\nAdd the ’Daemonic Resilience’ ability from the Infernal Taurus\nabove plus the following weapon and ability to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nCrushing Horns and Hooves\nCharge (+1 Damage), Companion\n6 | 4+ | 2+ | 2 | 3\nPassive\nBATTLE DAMAGED Effect: While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Horns and Hooves is 5.\nEnd of Your Turn\nDAEMONIC RESILIENCE\nEffect: Apply the effect below that corresponds with the number of daemonic power points (DPP) this unit has:\nDPP | Effect\n1 | This unit has WARD (6+).\n2 | This unit has WARD (5+).\n3 | This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS and abilities used by MANIFESTATIONS. Otherwise, it has WARD (5+).\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 14.\nChange the Control characteristic to 5.\nChange the Save characteristic to 3+.\nReplace the INFANTRY keyword with the following keywords: MONSTER, WAR MACHINE, FLY."
+		},
+		{
+			"name": "Step 6 - Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nReinforcing Cuneiform\n-2DP\nAdd 1 to your hero's Health characteristic.\nFlesh-melting Aura\n-5DP\nAdd the following weapon to your hero's warscroll:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nFlesh-melting Aura\nShoot in Combat, Companion | 10\" | D6 | 2+ | 4+ | 1 | 2\nBody of Hardened Obsidian\n-4DP\nAdd the following ability to your hero's warscroll:\nPassive\nBODY OF HARDENED OBSIDIAN\nEffect: For the purposes of the’ Daemonic Resilience’ ability, this unit always counts as having 1 more daemonic power point than the number it actually has, to a maximum of 3.\nImmolating Presence\n-5DP\nAdd the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), End of Any Turn\nIMMOLATING PRESENCE\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. If the roll exceeds the target’s Health characteristic, 1 model in the target unit is slain.\nKEYWORDS | RAMPAGE\nTrample and Gore\n-5DP\nAdd the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), Any Charge Phase\nIMMOLATING PRESENCE\nDeclare: If this unit charged this phase, pick an enemy unit within l\" of it to be the target.\nEffect: Inflict D3 mortal damage on the target. Then, roll 2D6. This unit can move a distance up to the value of the roll. It can pass through models in the target unit but must end that move in combat.\nKEYWORDS | RAMPAGE"
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nDominating Presence\n-1DP\nAdd 1 to your hero's Control characteristic.\nHardy Constitution\n-2DP\nINFANTRY only. Add 1 to your hero’s Health characteristic.\nFoe-seeking Hexes\n-3DP\nThe Hit characteristic of your hero’s Hashutite Blade is 2+.\nMalignant Brawn\n-3DP\nThe Wound characteristic of your hero’s Hashutite Blade is 3+.\nSpiteful Rivalry\n-3DP\nYour hero’s Hashutite Blade has Anti-X (+1 Rend), where X is 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHINE, WIZARD or PRIEST.\nCuneiform-etched Blade\n-4DP\nYour hero’s Hashutite Blade has Crit (Mortal).\nRigorously Trained\n-5DP\nAdd 2 to the Attacks characteristic of your hero’s Hashutite Blade.\nHobgrot Advisor\n-4DP\nINFANTRY only. Add the following ability to your hero’s warscroll:\nPassive\nHOBGROT ADVISOR\nEffect: This unit’s Hobgrot Advisor is a token. While this unit’s Hobgrot Advisor is on the battlefield, add 3 to the control scores of friendly HELSMITHS OF HASHUT units wholly within 12\" of this unit. If you make an unmodified save roll of 1 for this unit, remove this unit’s Hobgrot Advisor from the battlefield, the attack fails and the attack sequence ends.\nOracle of Hashut\n-3DP\nNon- PRIEST only. Add the following ability to your hero’s warscroll:\nPassive\nORACLE OF HASHUT\nEffect: This unit can chant prayers from the’ Prayers of the Scorched Sect’ lore as if it had PRIEST (1) and it knows all the prayers from that lore."
+		},
+		{
+			"name": "Path of The Overlord",
+			"text": "(HELSMITHS OF HASHUT HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Combat Phase\nUNCHAINED FIRE\nEffect: Add D3 to the Attacks characteristic of this unit’s melee weapons for the rest of the turn.\nPassive\nUNYIELDING TYRANT\nEffect: Add 2 to this unit's Health characteristic.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nYour Hero Phase\nUNHOLY SAVANT\nEffect: Roll a dice. On a 3+, for the rest of the turn, add 1 to chanting rolls for friendly HELSMITHS OF HASHUT PRIESTS while they are wholly within 12\" of this unit.\nPassive\nDIABOLICAL CONQUEROR\nEffect: Add 2 to the control scores of friendly non- HERO HELSMITHS OF HASHUT units while they are contesting the same objective as this unit.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nYour Shooting Phase\n1\nMASTER OF BOMBARDMENT\nDeclare: Pick up to 3 friendly HELSMITHS OF HASHUT WAR MACHINES wholly within 12\" of this unit to be the targets.\nEffect: Add 1 to the Attacks characteristic of the targets’ ranged weapons for the rest of the turn.\nAny Charge Phase\nFEROCIOUS WARLORD\nDeclare: Pick this unit and up to 1 other friendly HELSMITHS OF HASHUT unit wholly within 12\" of this unit to be the targets.\nEffect: For the rest of the turn, add 1 to charge rolls for the targets.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nAny Combat Phase\nBONE-DEEP CORRUPTION\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 3+:\nInflict an amount of mortal damage on the target equal to the roll.\nIf the roll exceeds the target’s Health characteristic, it has STRIKE-LAST for the rest of the turn.\nPassive\nMARKED BY THE BULL\nEffect: This unit has WARD (5+). In addition, each time you make an unmodified ward roll of 6 for this unit, after all damage points have been allocated, Heal (1) this unit."
+		},
+		{
+			"name": "Path of The Hashutite",
+			"text": "(non- HERO HELSMITHS OF HASHUT unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Combat Phase\nCONTEMPTUOUS COUNTER\nDeclare: Pick an enemy unit that charged this turn and is in combat with this unit to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nReaction: You declared a RUN ability for this unit\nDISCIPLINED MARCH\nEffect: Instead of making a run roll as part of that RUN ability, you can use a value of 6 for the roll that cannot be modified.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nPRESTIGIOUS ARMOURY\nEffect: Add 1 to save rolls for this unit.\nPassive\nINFERNAL REACH\nEffect: Add 3\" to the Range characteristic of this unit’s ranged weapons.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Reaction: This unit is targeted by an ATTACK ability\nSMOG BOMBS\nEffect: Roll a dice. On a 2+, for the rest of the turn, if the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends.\nPassive\nSCORNFUL BULWARK\nEffect: This unit’s melee weapons have Anti-Charge (+1 Rend).\nLEGENDARY: When a unit on this Path gains this rank, pick l of the following abilities for them:\nPassive\nDARKSOME ARSENAL\nEffect: This unit’s melee weapons have Crit (Mortal)\nDeployment Phase\nFAVOURED RETINUE\nDeclare: Pick a friendly HELSMITHS OF HASHUT INFANTRY HERO to be the target.\nEffect: For the rest of the battle, while the target is within this unit’s combat range, this unit and the target have WARD (5+)."
+		}
+	]
+}

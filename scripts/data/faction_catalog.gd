@@ -43,6 +43,7 @@ const _FACTIONS := {
 
 ## Data directories for factions whose rules have been added. See docs/technical/faction-data.md.
 const _DATA_DIRS := {
+	"Helsmiths of Hashut": "res://data/factions/helsmiths_of_hashut",
 	"Kharadron Overlords": "res://data/factions/kharadron_overlords",
 }
 

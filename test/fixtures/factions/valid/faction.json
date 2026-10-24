@@ -21,6 +21,7 @@
 		{"name": "Heroic Traits", "group": "Group One", "entries": [{"name": "Trait Enhancement", "points": 15, "effect": "Enhancement effect."}]}
 	],
 	"lores": [
-		{"name": "Lore One", "kind": "spell", "entries": [{"name": "Spell One", "timing": "Your Hero Phase"}]}
+		{"name": "Lore One", "kind": "spell", "points": 20, "entries": [{"name": "Spell One", "timing": "Your Hero Phase", "casting_value": 7}]},
+		{"name": "Lore Two", "kind": "prayer", "entries": [{"name": "Prayer One", "timing": "Your Hero Phase", "chanting_value": 4}]}
 	]
 }

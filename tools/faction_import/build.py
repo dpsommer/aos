@@ -1,15 +1,37 @@
 """Assemble the game's faction JSON from parsed Wahapedia output.
 
-Usage: python -I build.py warscrolls_raw.json faction_raw.json <out dir> <id> <name> <grand alliance>
+Usage: python -I build.py warscrolls_raw.json faction_raw.json <out dir> <id> <name> <grand alliance> [overrides.json]
+
+overrides.json corrects Wahapedia data, e.g. {"warscroll_names": {"Hobgrotz Vandalz": "Hobgrot Vandalz"}}.
 """
 import sys, json, re, os
 
 raw_ws, raw_f, out_dir, faction_id, faction_name, alliance = sys.argv[1:7]
 ws_list = json.load(open(raw_ws)); fac = json.load(open(raw_f))
+overrides = json.load(open(sys.argv[7])) if len(sys.argv) > 7 else {}
+
+def slug(name):
+    return re.sub(r"[^a-z0-9]+", "_", name.lower().replace("’", "")).strip("_")
+
+def rename_warscrolls(renames):
+    """Apply warscroll name overrides everywhere a warscroll appears, keeping id prefixes
+    such as scourge_of_aqshy_. Stops if an override matches nothing, so stale ones get noticed."""
+    every = ws_list + [w for s in fac["spearheads"] for w in s["warscrolls"]] + [w for p in fac["path_to_glory"] for w in p["warscrolls"]]
+    for old, new in renames.items():
+        matched = [w for w in every if w["name"] == old]
+        if not matched:
+            sys.exit("warscroll name override %r matches no warscroll" % old)
+        for w in matched:
+            w["name"] = new
+            if w.get("id"): w["id"] = w["id"].replace(slug(old), slug(new))
+
+rename_warscrolls(overrides.get("warscroll_names", {}))
 
 def ability(a):
     out = {"name": a["name"], "category": a.get("category", ""), "timing": a.get("timing", "")}
     for k in ("frequency", "declare", "effect", "text"):
+        if a.get(k): out[k] = a[k]
+    for k in ("casting_value", "chanting_value"):
         if a.get(k): out[k] = a[k]
     if a.get("keywords"): out["keywords"] = a["keywords"]
     if a.get("options"): out["options"] = a["options"]
@@ -48,6 +70,7 @@ def table(t):
     if t.get("group"): out["group"] = t["group"]
     if t.get("source"): out["source"] = t["source"]
     if t.get("kind"): out["kind"] = t["kind"]
+    if t.get("points"): out["points"] = t["points"]
     out["entries"] = [ability(e) for e in t["entries"]]
     return out
 
@@ -57,7 +80,7 @@ faction = {
     "battle_traits": [ability(a) for a in f["battle_traits"]],
     "battle_formations": [{"name": b["name"], "points": b["points"], "abilities": [ability(a) for a in b["abilities"]]} for b in f["battle_formations"]],
     "enhancement_tables": [table(t) for t in f["enhancement_tables"]],
-    "lores": [],
+    "lores": [table(t) for t in f["lores"]],
 }
 
 aors = []
@@ -70,15 +93,26 @@ for a in fac["armies_of_renown"]:
     o["lores"] = [table(t) for t in a["lores"]]
     aors.append(o)
 
+def resolve(name, names):
+    """Match an army list entry to a warscroll name. Lists sometimes shorten names,
+    e.g. "Dominator Engine" for "Dominator Engine with Immolation Cannons"."""
+    if name in names: return name
+    matches = [n for n in names if n.startswith(name + " ")]
+    if len(matches) != 1:
+        sys.exit("cannot resolve Spearhead unit %r among %s" % (name, names))
+    return matches[0]
+
 spearheads = []
 for s in fac["spearheads"]:
     army = " ".join(c for row in s["army"] for c in row)
     m = re.search(r"General\s+(.+?)\s+Units\s+(.+)$", army)
-    general, units = m.group(1), []
+    names = [w["name"] for w in s["warscrolls"]]
+    general, units = resolve(m.group(1), names), []
     for c, n in re.findall(r"(\d+)\s+(.+?)(?=\s+\d+\s+|$)", m.group(2)):
         u = {"count": int(c), "name": n.strip()}
         mm = re.match(r"(.+?)\s*\((.+)\)$", u["name"])
         if mm: u["name"], u["notes"] = mm.group(1), mm.group(2)
+        u["name"] = resolve(u["name"], names)
         units.append(u)
     text = s["army_text"].split("This Spearhead army consists")[0].strip()
     spearheads.append({

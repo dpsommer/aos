@@ -75,7 +75,10 @@
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any CODE abilities this turn and if there is a friendly PIONEER unit in each large quarter of the battlefield. Each of those units must be more than 6\" from all other large quarters of the battlefield and not in combat.",
-					"effect": "For the rest of the battle, enemy units cannot be set up within your territory or within 9\" of an objective that you control."
+					"effect": "For the rest of the battle, enemy units cannot be set up within your territory or within 9\" of an objective that you control.",
+					"keywords": [
+						"CODE"
+					]
 				},
 				{
 					"name": "SECURE INVESTMENTS",
@@ -83,7 +86,10 @@
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any CODE abilities this turn and if any enemy units that were within 3\" of your Zontari Endrin Dock this turn were destroyed this turn.",
-					"effect": "For the rest of the battle, ignore the Rend characteristic of combat attacks that target friendly NON-INFANTRY PIONEER units or friendly faction terrain features."
+					"effect": "For the rest of the battle, ignore the Rend characteristic of combat attacks that target friendly NON-INFANTRY PIONEER units or friendly faction terrain features.",
+					"keywords": [
+						"CODE"
+					]
 				},
 				{
 					"name": "SETTLING ACCOUNTS",
@@ -91,7 +97,10 @@
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any CODE abilities this turn and if a friendly AUTO-ENDRIN was destroyed this turn by an enemy unit.",
-					"effect": "For the rest of the battle, each time a friendly AUTO-ENDRIN is removed from the battlefield, before removing it, inflict D3 mortal damage on each enemy unit within 3\" of that AUTO-ENDRIN."
+					"effect": "For the rest of the battle, each time a friendly AUTO-ENDRIN is removed from the battlefield, before removing it, inflict D3 mortal damage on each enemy unit within 3\" of that AUTO-ENDRIN.",
+					"keywords": [
+						"CODE"
+					]
 				},
 				{
 					"name": "MARKET DOMINANCE",
@@ -99,7 +108,10 @@
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any CODE abilities this turn and if you control every objective that is not wholly within enemy territory.",
-					"effect": "For the rest of the battle, each time you use your Zontari Endrin Dock’s ‘Endrinworks Outpost’ ability, you can set up a replacement AUTO-ENDRIN on a manufacturing roll of 3+ instead of 4+."
+					"effect": "For the rest of the battle, each time you use your Zontari Endrin Dock’s ‘Endrinworks Outpost’ ability, you can set up a replacement AUTO-ENDRIN on a manufacturing roll of 3+ instead of 4+.",
+					"keywords": [
+						"CODE"
+					]
 				},
 				{
 					"name": "HOSTILE TAKEOVER",
@@ -107,7 +119,10 @@
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any CODE abilities this turn and if an enemy HERO was destroyed by shooting attacks made by a friendly PIONEER unit this turn.",
-					"effect": "For the rest of the battle, subtract 1 from hit rolls for shooting attacks that target friendly PIONEER units or friendly faction terrain features."
+					"effect": "For the rest of the battle, subtract 1 from hit rolls for shooting attacks that target friendly PIONEER units or friendly faction terrain features.",
+					"keywords": [
+						"CODE"
+					]
 				}
 			],
 			"enhancement_tables": [
@@ -230,14 +245,23 @@
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible friendly DUARDIN ASCENDANT unit within 18\" of them to be the target, then make a chanting roll of D6.",
-							"effect": "The target is unified until the start of your next turn. If the chanting roll was 8+, you can pick 2 targets instead of 1."
+							"effect": "The target is unified until the start of your next turn. If the chanting roll was 8+, you can pick 2 targets instead of 1.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
 						},
 						{
 							"name": "OATH OF RESTORATION",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible objective within 18\" of them that is contest ed by 2 or more friendly unified units to be the target, then make a chanting roll of D6.",
-							"effect": "Until the start of your next turn, friendly DUARDIN ASCENDANT units have WARD (6+) while they have any models contesting the target. If the chanting roll was 7+, friendly DUARDIN ASCENDANT units have WARD (5+) while they have any models contesting the target instead."
+							"effect": "Until the start of your next turn, friendly DUARDIN ASCENDANT units have WARD (6+) while they have any models contesting the target. If the chanting roll was 7+, friendly DUARDIN ASCENDANT units have WARD (5+) while they have any models contesting the target instead.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
 						}
 					]
 				}
@@ -267,7 +291,11 @@
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick any number of friendly MAGNATE’S CREW INFANTRY units that are in combat to be the targets. Make an emergency launch roll of 3D6 for each target.",
-					"effect": "Each target can move a distance up to the value of its emergency launch roll. It can move through the combat ranges of any enemy units but cannot end that move in combat with an enemy unit that it was not in combat with at the start of the phase.\nThe target(s) cannot use CHARGE abilities for the rest of the turn."
+					"effect": "Each target can move a distance up to the value of its emergency launch roll. It can move through the combat ranges of any enemy units but cannot end that move in combat with an enemy unit that it was not in combat with at the start of the phase.\nThe target(s) cannot use CHARGE abilities for the rest of the turn.",
+					"keywords": [
+						"CORE",
+						"MOVE"
+					]
 				},
 				{
 					"name": "CUTTING-EDGE ENDRINPACKS",

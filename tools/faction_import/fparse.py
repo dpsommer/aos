@@ -87,6 +87,11 @@ def main(path):
         if src: t["source"] = src
         return t
 
+    def new_lore(name, heading):
+        lore = {"name": name, "kind": heading.split()[0].lower(), "entries": []}
+        if pts.get(name.upper()): lore["points"] = pts[name.upper()]
+        return lore
+
     for ev in events:
         kind = ev[0]
         if kind == "h":
@@ -115,27 +120,28 @@ def main(path):
                 continue
             if mode == "aor":
                 h3 = title
-                if title in ("Heroic Traits", "Artefacts of Power"):
+                if title.endswith("Lore"):
+                    cur_table = new_lore(title, title); cur_aor["lores"].append(cur_table)
+                elif title != "Battle Traits":
                     cur_table = {"name": title, "entries": []}; cur_aor["enhancement_tables"].append(cur_table)
-                elif title.endswith("Lore"):
-                    cur_table = {"name": title, "kind": title.split()[0].lower(), "entries": []}; cur_aor["lores"].append(cur_table)
                 continue
             if mode == "spearhead":
                 h3 = title; continue
-            # faction mode
+            # Faction mode. An h2 is Battle Traits, Battle Formations, a lore type ("Spell Lore",
+            # "Prayer Lore", "Manifestation Lore") or an enhancement type ("Heroic Traits",
+            # "Great Endrinworks"...). An h3 under it names a formation, lore or enhancement table.
             if tag == "h2":
                 h2, h3, src = title, None, sec_src
                 cur_table = cur_formation = None
-                if h2 in ("Great Endrinworks", "Artycle References"):
-                    cur_table = new_table(h2); faction["enhancement_tables"].append(cur_table)
             else:
                 h3 = title; src = sec_src
                 if h2 == "Battle Formations":
                     cur_formation = {"name": title, "points": pts.get(title.upper(), 0), "abilities": []}
                     faction["battle_formations"].append(cur_formation)
-                elif h2 in ("Heroic Traits", "Artefacts of Power", "Great Endrinworks"):
-                    cur_table = new_table(h2 if h2 != "Great Endrinworks" else "Great Endrinworks", title)
-                    faction["enhancement_tables"].append(cur_table)
+                elif h2.endswith("Lore"):
+                    cur_table = new_lore(title, h2); faction["lores"].append(cur_table)
+                elif h2 != "Battle Traits":
+                    cur_table = new_table(h2, title); faction["enhancement_tables"].append(cur_table)
             continue
         if kind == "table":
             rows = ev[1]
@@ -156,8 +162,16 @@ def main(path):
         a = ev[1]
         if mode == "faction":
             if h2 == "Battle Traits": faction["battle_traits"].append(a)
-            elif h2 == "Battle Formations" and cur_formation is not None: cur_formation["abilities"].append(a)
-            elif cur_table is not None:
+            elif h2 == "Battle Formations":
+                if cur_formation is not None: cur_formation["abilities"].append(a)
+            elif h2.endswith("Lore"):
+                if cur_table is None:
+                    cur_table = new_lore(h2, h2); faction["lores"].append(cur_table)
+                cur_table["entries"].append(a)
+            else:
+                # Abilities straight under an enhancement h2 form a table with no group.
+                if cur_table is None:
+                    cur_table = new_table(h2); faction["enhancement_tables"].append(cur_table)
                 a["points"] = pts.get(a["name"].upper(), 0); cur_table["entries"].append(a)
         elif mode == "aor":
             if h3 == "Battle Traits": cur_aor["battle_traits"].append(a)
@@ -170,4 +184,5 @@ def main(path):
     json.dump({"faction": faction, "armies_of_renown": aors, "spearheads": spearheads, "path_to_glory": ptg},
               sys.stdout, indent=1, ensure_ascii=False)
 
-main(sys.argv[1])
+if __name__ == "__main__":
+    main(sys.argv[1])

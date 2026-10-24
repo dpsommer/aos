@@ -327,7 +327,12 @@
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "This unit cannot use this ability if it is in combat or has used a RUN or RETREAT ability this turn. Pick a number of units up to its Transport Capacity that are wholly within 6\" of it, that are not in combat and that have not charged this turn to be the targets. Then, make a charge roll of 2D6.",
-					"effect": "This unit can move a distance up to the value of the charge roll and must end the move within ½\" of a visible enemy unit. If it does so:\nRemove the targets from the battlefield and set them up again wholly within this unit’s combat range. The targets can be set up in combat. This unit and the targets have charged, and the targets cannot use another CORE ability this phase. Pick up to 1 of the targets to have STRIKE-FIRST for the rest of the turn."
+					"effect": "This unit can move a distance up to the value of the charge roll and must end the move within ½\" of a visible enemy unit. If it does so:\nRemove the targets from the battlefield and set them up again wholly within this unit’s combat range. The targets can be set up in combat. This unit and the targets have charged, and the targets cannot use another CORE ability this phase. Pick up to 1 of the targets to have STRIKE-FIRST for the rest of the turn.",
+					"keywords": [
+						"CORE",
+						"CHARGE",
+						"MOVE"
+					]
 				},
 				{
 					"name": "INCOMING!",
@@ -1628,6 +1633,7 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 5,
+			"base_size": "Bjorgen Thundrik, Khazgan Drakkskewer and Dead-Eye Lund: 32mm, Garodd Alensen and Enrik Ironhail: 25mm",
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": 4,

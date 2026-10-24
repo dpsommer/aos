@@ -89,3 +89,29 @@ func test_every_spearhead_unit_has_a_warscroll() -> void:
 			for unit in spearhead.units:
 				assert_not_null(spearhead.get_warscroll(unit.name),
 						"%s: %s unit %s" % [faction.name, spearhead.name, unit.name])
+
+
+## Returns every lore in [param faction], including those of its armies of renown.
+func _all_lores(faction: Faction) -> Array[Lore]:
+	var lores: Array[Lore] = faction.lores.duplicate()
+	for army in faction.armies_of_renown:
+		lores.append_array(army.lores)
+	return lores
+
+
+func test_every_spell_lore_entry_has_a_casting_value() -> void:
+	for faction in _factions:
+		for lore in _all_lores(faction):
+			if lore.kind != "spell":
+				continue
+			for entry in lore.entries:
+				assert_gt(entry.casting_value, 0, "%s: %s %s" % [faction.name, lore.name, entry.name])
+
+
+func test_every_prayer_lore_entry_has_a_chanting_value() -> void:
+	for faction in _factions:
+		for lore in _all_lores(faction):
+			if lore.kind != "prayer":
+				continue
+			for entry in lore.entries:
+				assert_gt(entry.chanting_value, 0, "%s: %s %s" % [faction.name, lore.name, entry.name])

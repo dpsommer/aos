@@ -18,5 +18,9 @@ extends Resource
 @export var options: Array[Dictionary]
 ## Points cost when the ability is an enhancement.
 @export var points: int
+## Casting value of a spell. 0 if the ability isn't a spell.
+@export var casting_value: int
+## Chanting value of a prayer. 0 if the ability isn't a prayer.
+@export var chanting_value: int
 ## Expansion the ability comes from, e.g. "Scourge of Aqshy". Empty for the battletome.
 @export var source: String

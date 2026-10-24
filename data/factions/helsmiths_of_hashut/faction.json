@@ -1,0 +1,338 @@
+{
+	"id": "helsmiths_of_hashut",
+	"name": "Helsmiths of Hashut",
+	"grand_alliance": "chaos",
+	"battle_traits": [
+		{
+			"name": "HARNESS DAEMONIC POWER",
+			"category": "special",
+			"timing": "Start of Your Turn",
+			"frequency": "Once Per Turn (Army)",
+			"effect": "You must use this ability at the start of each of your turns. Remove all daemonic power points from each friendly unit. Then, gain 1 daemonic power point for each friendly desolation token on the battlefield.\nThen, allocate your daemonic power points to friendly non- HOBGROT HELSMITHS OF HASHUT units. Each unit can have a maximum of 3 daemonic power points. Then, all unallocated daemonic power points are lost.",
+			"options": [
+				{
+					"name": "Designer’s Note",
+					"text": "Non- HOBGROT units have abilities that become more powerful depending on how many daemonic power points they have. We recommend using coloured dice to track the number of points each unit has."
+				}
+			]
+		},
+		{
+			"name": "RESERVES OF DAEMONIC POWER",
+			"category": "special",
+			"timing": "Any Hero Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly non- HOBGROT HELSMITHS OF HASHUT unit that has no daemonic power points to be the target.",
+			"effect": "Give 2 daemonic power points to the target."
+		},
+		{
+			"name": "LEAVE THE LAND IN RUIN",
+			"category": "special",
+			"timing": "Start of Any Turn",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a terrain feature or objective that does not have a friendly desolation token and is contested by a friendly HELSMITHS OF HASHUT unit that is not in combat to be the target.",
+			"effect": "Give the target a desolation token."
+		}
+	],
+	"battle_formations": [
+		{
+			"name": "Hashutite Host",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "AMASSED LEGIONS",
+					"category": "rallying",
+					"timing": "Passive",
+					"effect": "Each time a friendly HELSMITHS OF HASHUT unit within the combat range of a friendly HELSMITHS OF HASHUT INFANTRY unit with 1 or more daemonic power points uses the ‘Rally’ command, you can make 3 additional rally rolls of D6."
+				}
+			]
+		},
+		{
+			"name": "The Bullfather’s Horns",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "BULLS OF THE ZIGGURAT",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Add 1\" to the Move characteristic of friendly HELSMITHS OF HASHUT units for each daemonic power point that unit has."
+				}
+			]
+		},
+		{
+			"name": "Castigation Battery",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "EXPERIMENTAL MUNITIONS",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Ranged weapons used by friendly HELSMITHS OF HASHUT units have Crit (2 Hits) while they have 2 or more daemonic power points."
+				}
+			]
+		},
+		{
+			"name": "Daemonsmith Cabal",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "ARCANE DOMINANCE",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to casting rolls, chanting rolls, unbinding rolls, and banishment rolls for friendly HELSMITHS OF HASHUT WIZARDS and PRIESTS while they are wholly within 12\" of another friendly HELSMITHS OF HASHUT WIZARD or PRIEST with 1 or more daemonic power points."
+				}
+			]
+		},
+		{
+			"name": "Domination Force",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "DOMINION HEXES",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Double the Health characteristic of friendly non- HOBGROT HELSMITHS OF HASHUT units for the purposes of the ‘Power Through’ command.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "The effect of this ability applies both when you use ‘Power Through’ and when your opponent uses ‘Power Through’"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Industrial Polluters",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "SMOG AND SMOKE",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for shooting attacks that target friendly HELSMITHS OF HASHUT INFANTRY or CAVALRY units while they are wholly within 9\" of a friendly HELSMITHS OF HASHUT WAR MACHINE."
+				}
+			]
+		}
+	],
+	"enhancement_tables": [
+		{
+			"name": "Heroic Traits",
+			"group": "Tyrants and Overseers",
+			"entries": [
+				{
+					"name": "SERVILE AUTOMATON",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT AUTOMATON unit within this unit’s combat range to be the target.",
+					"effect": "For the rest of the battle, the target is this unit’s bodyguard and the following effects apply:\nWhile this unit is in combat and its bodyguard is within its combat range, its bodyguard has STRIKE-FIRST. If this unit is INFANTRY, it has WARD (5+) while its bodyguard is within its combat range."
+				},
+				{
+					"name": "AN EYE FOR WEAKNESS",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+					"effect": "Until the start of your next turn, add 1 to wound rolls for combat attacks made by friendly HELSMITHS OF HASHUT units that target that enemy unit."
+				},
+				{
+					"name": "’FIRE, YOU WORMS!’",
+					"category": "shooting",
+					"timing": "Enemy Charge Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT INFANTRY unit that is not in combat and is wholly within 12\" of this unit to be the target.",
+					"effect": "The target can immediately use the ‘Shoot’ ability as if it were your shooting phase. All attacks must target the same enemy unit, and the enemy unit picked to be the target of the attacks must have charged this phase. If the unmodified hit roll for any of those attacks is 1-5, the attack fails and the attack sequence ends."
+				}
+			]
+		},
+		{
+			"name": "Artefacts of Power",
+			"group": "Dark Gifts of Hashut",
+			"entries": [
+				{
+					"name": "SCROLL OF PETRIFICATION",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT unit wholly within 12\" of this unit to be the target.",
+					"effect": "For the rest of the turn:\nThe target has WARD (2+). The target cannot use non- passive abilities or be picked to be the target of friendly abilities Enemy units can ignore the target’s combat range for the purposes of movement and charging. Enemy units can ignore the target for the purposes of setting up on the battlefield but cannot be set up on the target."
+				},
+				{
+					"name": "CRUCIBLE OF SPITE",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Give up to 3 daemonic power points to this unit. However, you cannot allocate or give any more daemonic power points to this unit for the rest of the battle."
+				},
+				{
+					"name": "GAUNTLETS OF PUNISHMENT",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			]
+		},
+		{
+			"name": "Artefacts of Power",
+			"group": "Dark Gifts of Hashut",
+			"source": "Scourge of Aqshy",
+			"entries": [
+				{
+					"name": "GEM OF UTORAK",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"effect": "If this unit is not a Wizard, it has WIZARD ( 2) until the start of your next turn.\nIf this unit is a WIZARD, until the start of your next turn:\nAdd 1 to this unit’s power level. Add D3 to casting rolls for this unit."
+				},
+				{
+					"name": "CASQUE OF BELITTLEMENT",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a number of dice equal to your fury level. If this unit charged this turn, add 1 to each roll. For each 3+, inflict 1 mortal damage on the target."
+				},
+				{
+					"name": "HORN OF THE BULLFATHER",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"declare": "Pick a visible friendly HELSMITHS OF HASHUT unit to be the target. Then, you can pick a visible friendly Hobgrot Vandalz unit to be a second target.",
+					"effect": "Remove each target from the battlefield and set them up again wholly within 7\" of the battlefield edge and more than 9\" from all enemy units."
+				}
+			]
+		},
+		{
+			"name": "Accursed Devices",
+			"group": "Accursed Device",
+			"source": "Scourge of Ghyran",
+			"entries": [
+				{
+					"name": "GREED PISTONS",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "When making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll."
+				},
+				{
+					"name": "OVERDRIVE SWITCH",
+					"category": "offensive",
+					"timing": "Reaction: You declared an ATTACK ability for this unit",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "For the rest of the phase:\nAdd 1 to hit rolls for this unit’s attacks, including those made with Companion weapons, that target an enemy unit within 9\" of it. Each time an unmodified hit roll for an attack made by this unit is 1, allocate 1 damage point to this unit after the ATTACK ability has been resolved (ward rolls cannot be made for those damage points)."
+				},
+				{
+					"name": "BREATH OF CONTEMPT",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			]
+		},
+		{
+			"name": "Accursed Devices",
+			"group": "Accursed Device",
+			"source": "Scourge of Aqshy",
+			"entries": [
+				{
+					"name": "INFERNAL MOTIVATORS",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Add 2\" to this unit’s Move characteristic.",
+					"points": 20
+				},
+				{
+					"name": "EARTHWRACK STABILISERS",
+					"category": "offensive",
+					"timing": "Passive",
+					"text": "Effect: Add 1 to the Rend characteristic of this unit’s melee weapons if it has not charged in the same turn.",
+					"points": 10
+				},
+				{
+					"name": "BULLFATHER’S SCORN",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"effect": "You can spend 1 rage dice. If you do:\nApply the effect below. If your opponent’s fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Otherwise, roll a dice. On a 3+, apply the effect below.\nThis unit’s ranged weapons have Crit (2 Hits) until the start of your next turn. If each of this unit’s ranged weapons already have Crit (2 Hits), this unit’s shooting attacks score critical hits on unmodified hit rolls of 5+ until the start of your next turn instead.",
+					"points": 10
+				}
+			]
+		}
+	],
+	"lores": [
+		{
+			"name": "Lore of Infernal Power",
+			"kind": "spell",
+			"entries": [
+				{
+					"name": "HATEFUL FRACTURES",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Halve the target’s Move characteristic until the start of your next turn.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "ASHEN SMOG",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible terrain feature within 18\" of them that has a friendly desolation token to be the target, then make a casting roll of 2D6.",
+					"effect": "That terrain feature has the ‘Obscuring’ ability ( Terrain, 1.2) until the start of your next turn. Then, roll a D3 for each enemy unit contesting the target terrain feature. On a 2+, inflict an amount of damage equal to the roll on that unit.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "MOLTEN METAL",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Roll a number of dice equal to the unmodified casting roll. Inflict 1 mortal damage on the target for each roll that equals or exceeds the target’s Save characteristic.",
+					"casting_value": 8,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			]
+		},
+		{
+			"name": "Prayers of the Scorched Sect",
+			"kind": "prayer",
+			"entries": [
+				{
+					"name": "BLACK FLAMES OF HASHUT",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "Roll a number of dice equal to the number of models in the target unit. For each 5+, inflict 1 mortal damage on the target. If the chanting roll was 8+, inflict 1 mortal damage on the target for each 4+ instead.",
+					"chanting_value": 4,
+					"keywords": [
+						"PRAYER",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "FURNACE BLESSING",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT PRIEST to chant this prayer, pick a visible friendly HELSMITHS OF HASHUT unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "Add 1 to the Rend characteristic of the target’s melee weapons for the rest of the turn. If the chanting roll was 8+, that unit’s melee weapons also have Crit (Mortal) for the rest of the turn.",
+					"chanting_value": 4,
+					"keywords": [
+						"PRAYER"
+					]
+				},
+				{
+					"name": "STORM OF OBSIDIAN SHARDS",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly HELSMITHS OF HASHUT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "Inflict D3 mortal damage on the target and subtract 3 from the target’s control score for the rest of the turn. If the chanting roll was 10+, you can pick another eligible unit to be a second target.",
+					"chanting_value": 5,
+					"keywords": [
+						"PRAYER"
+					]
+				}
+			]
+		}
+	]
+}

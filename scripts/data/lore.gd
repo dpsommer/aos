@@ -5,4 +5,5 @@ extends Resource
 @export var name: String
 ## "spell", "prayer" or "manifestation".
 @export var kind: String
+@export var points: int
 @export var entries: Array[Ability]

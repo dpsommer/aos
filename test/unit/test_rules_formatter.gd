@@ -105,6 +105,24 @@ func test_ability_omits_points_when_zero() -> void:
 	assert_false("pts" in RulesFormatter.ability(_ability({timing = "Some Phase"})))
 
 
+func test_ability_contains_casting_value_when_set() -> void:
+	var rule := _ability({casting_value = 7})
+	assert_string_contains(RulesFormatter.ability(rule), "Casting value %d" % rule.casting_value)
+
+
+func test_ability_omits_casting_value_when_zero() -> void:
+	assert_false("Casting value" in RulesFormatter.ability(_ability({timing = "Some Phase"})))
+
+
+func test_ability_contains_chanting_value_when_set() -> void:
+	var rule := _ability({chanting_value = 4})
+	assert_string_contains(RulesFormatter.ability(rule), "Chanting value %d" % rule.chanting_value)
+
+
+func test_ability_omits_chanting_value_when_zero() -> void:
+	assert_false("Chanting value" in RulesFormatter.ability(_ability({timing = "Some Phase"})))
+
+
 func test_ability_escapes_brackets_in_name() -> void:
 	var output := RulesFormatter.ability(_ability({name = "[Bracketed]"}))
 	assert_string_contains(output, "[lb]Bracketed]")
@@ -240,6 +258,19 @@ func test_lore_contains_name_and_entries() -> void:
 	var output := RulesFormatter.lore(lore)
 	assert_string_contains(output, lore.name)
 	assert_string_contains(output, lore.entries[0].name)
+
+
+func test_lore_contains_points_when_set() -> void:
+	var lore := Lore.new()
+	lore.name = "Made-up Lore"
+	lore.points = 30
+	assert_string_contains(RulesFormatter.lore(lore), "%d pts" % lore.points)
+
+
+func test_lore_omits_points_when_zero() -> void:
+	var lore := Lore.new()
+	lore.name = "Made-up Lore"
+	assert_false("pts" in RulesFormatter.lore(lore))
 
 
 func test_battle_formation_contains_name_points_and_abilities() -> void:

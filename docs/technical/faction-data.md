@@ -16,12 +16,12 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 
 **Class** | **Fields** (required in bold)
 -- | --
-`Ability` | **`name`**, `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `source`
+`Ability` | **`name`**, `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `casting_value` (spells), `chanting_value` (prayers), `source`
 `Weapon` | **`name`**, `range` (inches, 0 for melee), **`attacks`**, **`hit`**, **`wound`**, `rend`, **`damage`**, `abilities`. Attacks and damage are strings because they can be dice, e.g. `"2D6"`
 `Warscroll` | **`id`**, **`name`**, `source`, `legends`, **`points`**, **`unit_size`** (both optional in Spearhead and Path to Glory), `base_size`, `can_reinforce`, `regiment_options`, `notes`, **`move`**, **`health`**, **`save`**, `ward`, **`control`**, `ranged_weapons`, `melee_weapons`, `abilities`, `keywords`, `composition`
 `BattleFormation` | **`name`**, `points`, `abilities`
 `EnhancementTable` | **`name`** (type, e.g. "Heroic Traits"), `group` (e.g. "Lords of the Sky-fleets"), `source`, `entries`
-`Lore` | **`name`**, `kind` (spell, prayer, manifestation), `entries`
+`Lore` | **`name`**, `kind` (spell, prayer, manifestation), `points`, `entries`
 `Spearhead` | **`name`**, `text`, **`general`**, `units` (`[{count, name, notes}]`, names match the Spearhead's own warscrolls), `battle_traits`, `regiment_abilities`, `enhancements`, `warscrolls`
 `RulesSection` | **`name`**, `text`, `warscrolls`
 
@@ -40,18 +40,30 @@ Faction data is extracted from Wahapedia's faction page and each unit's page (e.
 
 The extraction scripts are in `tools/faction_import/` (Godot ignores `tools/`). They need Python 3 with `requirements.txt` installed, ideally in a virtualenv outside the repo.
 
-1. Download the Wahapedia faction page and every unit page it links to (`/aos4/factions/<faction>/<Unit-Name>`) into an empty directory.
+1. Download the Wahapedia faction page and every unit page it links to into an empty directory outside the repo. Links without a page of their own (such as the Path to Glory hero) are skipped with a warning:
+   ```sh
+   python -I tools/faction_import/fetch.py <wahapedia slug, e.g. helsmiths-of-hashut> <download dir>
+   ```
 2. Parse them:
    ```sh
    python -I tools/faction_import/wsparse.py <download dir>/units/*.html > warscrolls_raw.json
-   python -I tools/faction_import/fparse.py <download dir>/<faction>.html > faction_raw.json
-   python -I tools/faction_import/build.py warscrolls_raw.json faction_raw.json data/factions/<id> <id> "<Name>" <alliance>
+   python -I tools/faction_import/fparse.py <download dir>/<wahapedia slug>.html > faction_raw.json
+   python -I tools/faction_import/build.py warscrolls_raw.json faction_raw.json data/factions/<id> <id> "<Name>" <alliance> [tools/faction_import/overrides/<id>.json]
    ```
-3. Cross-check points and unit sizes against the sources above, and spot-check a few warscrolls against the page.
+   The optional overrides file corrects Wahapedia data where it disagrees with BSData. Currently it supports `warscroll_names` (`{"<Wahapedia name>": "<BSData name>"}`), which renames a warscroll everywhere it appears and updates its id. `build.py` stops if an override matches no warscroll.
+3. Cross-check names, points and unit sizes against the sources above, adding name overrides where needed, and spot-check a few warscrolls against the page.
 4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`.
 5. Run the tests. `test/integration/test_faction_data.gd` loads every available faction.
 
-The parsers rely on Wahapedia's page structure and may need adjusting for other factions (e.g. spell lores, manifestations).
+How the faction page is read:
+
+- Each `h2` under Faction Rules is Battle Traits, Battle Formations, a lore type (any heading ending in "Lore", e.g. "Spell Lore") or an enhancement type (anything else, e.g. "Heroic Traits", "Accursed Devices"). An `h3` under it names a formation, a lore, or an enhancement table's `group`.
+- Points come from the "Name | Points" table before each group. A section's expansion `source` comes from the expansion logo after its heading.
+- Spell and prayer values come from the ability header; ability keywords (e.g. `SPELL`, `RAMPAGE`) from the keyword block under each ability.
+- An `h2` whose section lists ROSTER OPTIONS starts an Army of Renown. PATH TO GLORY and SPEARHEAD start those parts.
+- Spearhead army lists sometimes shorten unit names ("Dominator Engine"); `build.py` resolves each to the Spearhead's warscroll by unique prefix and stops if it can't.
+
+The parsers rely on Wahapedia's page structure and may need adjusting for other factions, e.g. manifestation lores, whose manifestations have warscrolls of their own.
 
 ## Exporting
 

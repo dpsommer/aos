@@ -67,11 +67,17 @@ def parse_ability(block):
             buf.append("\n"); continue
         buf.append(c)
     flush()
-    keywords = []
     kw_text = parts.pop("keywords", "")
-    if kw_text:
-        keywords = [k.strip() for k in kw_text.split(",") if k.strip()]
+    # Most pages put ability keywords in their own block after the body.
+    kw_block = block.select_one(".abKeywordsBodyText")
+    if kw_block is not None:
+        kw_text = (kw_text + ", " + text(kw_block)).strip(", ")
+    keywords = [k.strip() for k in kw_text.split(",") if k.strip()]
     a = {"name": name, "category": category, "timing": timing, "frequency": frequency}
+    for key, sel in (("casting_value", ".abSpellPointsN"), ("chanting_value", ".abPrayerPointsN")):
+        value = block.select_one(sel)
+        if value is not None:
+            a[key] = int_or(text(value))
     if parts.get("declare"): a["declare"] = parts.pop("declare")
     a["effect"] = parts.pop("effect", "")
     lead = parts.pop("lead", "")
@@ -135,6 +141,11 @@ def parse_profile(prof):
     m = re.search(r"Points\s*:\s*(\d+)", t); out["points"] = int(m.group(1)) if m else 0
     m = re.search(r"Base size\s*:\s*([^C]+?)(?:\s*Can be|\s*Regiment|\s*Notes|$)", t)
     if m: out["base_size"] = m.group(1).strip()
+    # Units with mixed bases list each model's size in a "MODEL BASE SIZE" table instead.
+    m = re.search(r"MODEL BASE SIZE\s*(.+?)(?:\s*Can be|\s*Regiment|\s*Notes|$)", t)
+    if m:
+        sizes = re.findall(r"(.+?)\s+([\d.]+\s*(?:×\s*[\d.]+\s*)?mm)", m.group(1))
+        out["base_size"] = ", ".join("%s: %s" % (who.strip(" ,"), size) for who, size in sizes)
     m = re.search(r"Can be reinforced\s*:\s*(Yes|No)", t); out["can_reinforce"] = bool(m and m.group(1) == "Yes")
     m = re.search(r"Regiment Options\s*:\s*(.+?)(?:\s*Notes\s*:|$)", t)
     if m:
@@ -152,7 +163,9 @@ def parse_warscroll(sheet, slug):
     ws["name"] = text(hdr) if hdr else slug
     if "subtitle" in ws:
         sub = ws.pop("subtitle")
-        ws["name"] += (" " if sub.lower().startswith("with") else ", ") + sub
+        # "with Dirigible Suit", "on Infernal Taurus" continue the name; titles such as
+        # "the First Daemonsmith" are set off by a comma.
+        ws["name"] += (" " if re.match(r"(with|on) ", sub) else ", ") + sub
     logos = {os.path.basename(i.get("src", "")) for i in sheet.select("img[src*='/expansions/']")}
     for logo, src in EXPANSIONS.items():
         if logo in logos:

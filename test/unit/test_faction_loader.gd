@@ -100,6 +100,39 @@ func test_lore_fields_come_from_file() -> void:
 	assert_eq([lore.name, lore.kind, lore.entries.size()], [expected.name, expected.kind, expected.entries.size()])
 
 
+func test_lore_points_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[0]
+	assert_eq(_load("valid").lores[0].points, int(expected.points))
+
+
+func test_absent_lore_points_default_to_zero() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[1]
+	assert_false(expected.has("points"), "fixture lore should omit points")
+	assert_eq(_load("valid").lores[1].points, 0)
+
+
+func test_spell_casting_value_comes_from_file() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[0].entries[0]
+	assert_eq(_load("valid").lores[0].entries[0].casting_value, int(expected.casting_value))
+
+
+func test_prayer_chanting_value_comes_from_file() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[1].entries[0]
+	assert_eq(_load("valid").lores[1].entries[0].chanting_value, int(expected.chanting_value))
+
+
+func test_absent_casting_value_defaults_to_zero() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[1].entries[0]
+	assert_false(expected.has("casting_value"), "fixture prayer should omit casting_value")
+	assert_eq(_load("valid").lores[1].entries[0].casting_value, 0)
+
+
+func test_absent_chanting_value_defaults_to_zero() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").lores[0].entries[0]
+	assert_false(expected.has("chanting_value"), "fixture spell should omit chanting_value")
+	assert_eq(_load("valid").lores[0].entries[0].chanting_value, 0)
+
+
 func test_every_warscroll_is_loaded() -> void:
 	assert_eq(_load("valid").warscrolls.size(), _json("valid", "warscrolls.json").warscrolls.size())
 
@@ -309,6 +342,33 @@ func test_fractional_number_returns_null() -> void:
 func test_fractional_number_error_names_file_and_field_path() -> void:
 	assert_true(_has_error_naming(_errors("fractional_number"), "faction.json", "battle_formations[0].points"),
 			str(_errors("fractional_number")))
+
+
+func test_fractional_casting_value_returns_null() -> void:
+	assert_null(_load("fractional_casting_value"))
+
+
+func test_fractional_casting_value_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("fractional_casting_value"), "faction.json",
+			"lores[0].entries[0].casting_value"), str(_errors("fractional_casting_value")))
+
+
+func test_wrong_type_chanting_value_returns_null() -> void:
+	assert_null(_load("wrong_type_chanting_value"))
+
+
+func test_wrong_type_chanting_value_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_chanting_value"), "faction.json",
+			"lores[0].entries[0].chanting_value"), str(_errors("wrong_type_chanting_value")))
+
+
+func test_fractional_lore_points_returns_null() -> void:
+	assert_null(_load("fractional_lore_points"))
+
+
+func test_fractional_lore_points_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("fractional_lore_points"), "faction.json", "lores[0].points"),
+			str(_errors("fractional_lore_points")))
 
 
 func test_main_warscroll_without_points_returns_null() -> void:

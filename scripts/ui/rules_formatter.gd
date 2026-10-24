@@ -8,6 +8,10 @@ static func ability(rule: Ability) -> String:
 	for part in [rule.frequency, rule.timing]:
 		if not part.is_empty():
 			header.append(part)
+	if rule.casting_value > 0:
+		header.append("Casting value %d" % rule.casting_value)
+	if rule.chanting_value > 0:
+		header.append("Chanting value %d" % rule.chanting_value)
 	if rule.points > 0:
 		header.append("%d pts" % rule.points)
 	var lines := PackedStringArray(["[b]%s[/b]" % _escape(rule.name)])
@@ -43,7 +47,8 @@ static func enhancement_table(table: EnhancementTable) -> String:
 
 
 static func lore(rules: Lore) -> String:
-	return "%s\n\n%s" % [heading(rules.name), abilities(rules.entries)]
+	var title := rules.name if rules.points == 0 else "%s (%d pts)" % [rules.name, rules.points]
+	return "%s\n\n%s" % [heading(title), abilities(rules.entries)]
 
 
 static func battle_formation(formation: BattleFormation) -> String:
