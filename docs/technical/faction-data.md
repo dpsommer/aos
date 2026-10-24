@@ -61,8 +61,11 @@ The import tool is in `tools/faction_import/` (Godot ignores `tools/`). It needs
    python -I tools/faction_import/build.py <download dir> data/factions/<id> <id> "<BSData faction name>" [tools/faction_import/overrides/<id>.json] > report.txt
    ```
 3. Read the report. It lists every field where BSData and Wahapedia disagree, names matched by similarity, and items only one source has. BSData wins by default. When BSData is wrong, add an override and rebuild. Override files are JSON:
+   - `replace_with_wahapedia`: `{"<BSData ability name>": "<Wahapedia ability name>"}`. Uses Wahapedia's version of an ability where BSData has the wrong rule, e.g. Taar's Grand Forgehost's "Masterful Daemonworks". Applied before merging, so the replacement is ordered and compared like everything else.
    - `warscroll_names`: `{"<name>": "<name to use>"}`. Renames a warscroll everywhere and updates its id.
-   - `fields`: `{"<warscroll id or name, or ability name>": {"<field>": <value>}}`. Replaces fields after merging, e.g. adding a keyword BSData is missing.
+   - `fields`: `{"<target>": {"<field>": <value>}}`. Replaces fields after merging, e.g. a casting value, a missing keyword or a misspelt weapon name. A target is a warscroll id or name, an ability name, or a weapon name. Use `"<warscroll id> > <weapon or ability name>"` when a name alone is ambiguous, e.g. Thundrik's Profiteers have both a weapon and an ability called "Aethermatic Anatomiser".
+
+   The report lists differences before overrides are applied, so overridden fields still appear in it.
 
    `build.py` stops if an override matches nothing, so stale overrides get noticed.
 4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`.
@@ -75,7 +78,7 @@ How the BSData catalogues map to the data:
 
 - Units are those `<Faction>.cat` links to, plus unlisted units in the library (e.g. units added during a battle) and units defined by Army of Renown catalogues (e.g. Grombrindal). The Anvil of Apotheosis hero is left out; it's in Path to Glory.
 - Points and reinforcement come from the faction catalogue's link to each unit. `source` and `legends` come from the unit's publication, and a "(Scourge of …)" name suffix becomes the `source`.
-- Ability icon categories come from the profile's `Type` attribute. `***Label:***` lines in an effect become `options`, and designer's notes become an option named "Designer’s Note".
+- Ability icon categories come from the profile's `Type` attribute. `***Label:***` lines in an effect become `options`, and designer's notes become an option named "Designer’s Note". When several options each follow a short heading line, the heading prefixes the option name ("Battle Round 2: Daemonic Weaponry").
 - Each shared entry group other than lores, formations, Paths and Battle Wounds is an enhancement type. A nested group becomes the table's `group`, and the publication becomes its `source`.
 - Lores come from the Spell, Prayer and Manifestation Lores groups. Universal lores (core rules, General's Handbook) are skipped.
 - An Army of Renown is each `<Faction> - <Name>.cat`, plus the shared catalogue it links to when its rules live there (e.g. `The Duardin Ascendant [LEGENDS].cat`).

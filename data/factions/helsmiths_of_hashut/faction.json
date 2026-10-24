@@ -262,7 +262,7 @@
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Halve the target's Move characteristic until the start of your next turn.",
-					"casting_value": 7,
+					"casting_value": 6,
 					"keywords": [
 						"SPELL",
 						"UNLIMITED"
@@ -274,7 +274,7 @@
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible terrain feature within 18\" of them that has a friendly desolation token to be the target, then make a casting roll of 2D6.",
 					"effect": "That terrain feature has the 'Obscuring' ability until the start of your next turn. Then, roll a D3 for each enemy unit contesting the target terrain feature. On a 2+, inflict an amount of damage equal to the roll on that unit.",
-					"casting_value": 6,
+					"casting_value": 7,
 					"keywords": [
 						"SPELL"
 					]

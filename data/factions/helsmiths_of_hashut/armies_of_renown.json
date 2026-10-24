@@ -8,25 +8,31 @@
 					"name": "Rising Fire",
 					"category": "special",
 					"timing": "Passive",
-					"effect": "The following cumulative effects apply to friendly GRAND FORGEHOST units in each battle round after the first.\nBattle Round 2:",
+					"effect": "The following cumulative effects apply to friendly GRAND FORGEHOST units in each battle round after the first.",
 					"options": [
 						{
-							"name": "Daemonic Weaponry",
-							"text": "Those units' weapons have Crit (2 Hits).\nBattle Round 3:"
+							"name": "Battle Round 2: Daemonic Weaponry",
+							"text": "Those units' weapons have Crit (2 Hits)."
 						},
 						{
-							"name": "Harnessed Sorcery",
-							"text": "Add 1 to casting rolls and chanting rolls for those units.\nBattle Round 4:"
+							"name": "Battle Round 3: Harnessed Sorcery",
+							"text": "Add 1 to casting rolls and chanting rolls for those units."
 						},
 						{
-							"name": "Channeled Power",
-							"text": "Attacks made by those units score critical hits on unmodified hit rolls of 5+.\nBattle Round 5:"
+							"name": "Battle Round 4: Channeled Power",
+							"text": "Attacks made by those units score critical hits on unmodified hit rolls of 5+."
 						},
 						{
-							"name": "Arcane Dominance",
+							"name": "Battle Round 5: Arcane Dominance",
 							"text": "Add 1 to the power level of those units if they are a WIZARD or PRIEST."
 						}
 					]
+				},
+				{
+					"name": "Masterful Daemonworks",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly GRAND FORGEHOST WAR MACHINES have WARD (6+)."
 				},
 				{
 					"name": "Dread Ranks Unbroken",
@@ -35,12 +41,6 @@
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO GRAND FORGEHOST INFANTRY unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of the battlefield edge and more than 9\" from all enemy units."
-				},
-				{
-					"name": "Skilled Skirmishers",
-					"category": "defensive",
-					"timing": "Passive",
-					"effect": "Friendly GRAND FORGEHOST WAR MACHINES have WARD (6+)."
 				}
 			],
 			"enhancement_tables": [
@@ -90,7 +90,7 @@
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "For the rest of the turn, the target's attacks cannot score critical hits (treat them as regular hits instead).",
-							"casting_value": 7,
+							"casting_value": 6,
 							"keywords": [
 								"SPELL"
 							]

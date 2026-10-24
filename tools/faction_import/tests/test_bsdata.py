@@ -118,6 +118,31 @@ def test_designers_note_becomes_an_option(faction_data):
     assert note["text"] == "This is commentary, not a rule."
 
 
+HEADED = ("Each battle round, gain a boon:\n"
+          "Battle Round 1:\n***Iron Will:*** Add 1 to save rolls.\n"
+          "Battle Round 2:\n***Daemonic Weaponry:*** Add 1 to hit rolls.")
+
+
+def test_option_headings_prefix_option_names():
+    _, options = bsdata.split_options(HEADED)
+    assert [o["name"] for o in options] == ["Battle Round 1: Iron Will", "Battle Round 2: Daemonic Weaponry"]
+
+
+def test_option_heading_is_not_added_to_previous_option_text():
+    _, options = bsdata.split_options(HEADED)
+    assert options[0]["text"] == "Add 1 to save rolls."
+
+
+def test_option_headings_are_removed_from_effect():
+    effect, _ = bsdata.split_options(HEADED)
+    assert effect == "Each battle round, gain a boon:"
+
+
+def test_single_heading_before_options_stays_in_effect():
+    effect, options = bsdata.split_options("Battle Round 1:\n***Iron Will:*** A.\n***Bold:*** B.")
+    assert (effect, [o["name"] for o in options]) == ("Battle Round 1:", ["Iron Will", "Bold"])
+
+
 def test_ability_without_options_has_no_options_key():
     p = profile('typeName="Ability (Passive)"><characteristics>'
                 '<characteristic name="Effect">Plain effect.</characteristic></characteristics>')

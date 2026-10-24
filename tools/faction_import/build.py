@@ -8,10 +8,15 @@ report and never stop the build; fix a wrong value with an overrides file:
 
     {
         "warscroll_names": {"<name in the data>": "<name to use>"},
-        "fields": {"<warscroll name or id, or ability name>": {"<field>": <value>}}
+        "replace_with_wahapedia": {"<BSData ability name>": "<Wahapedia ability name>"},
+        "fields": {"<target>": {"<field>": <value>}}
     }
 
-Overrides apply after merging. Every override must match something, so stale ones are noticed.
+A fields <target> is a warscroll name or id, an ability name, a weapon name, or
+"<warscroll id> > <weapon or ability name>" where a name alone is ambiguous.
+replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData has the
+wrong rule; it applies before merging. The others apply after merging. Every override must match
+something, so stale ones are noticed.
 """
 import glob, json, os, sys
 
@@ -36,6 +41,33 @@ def every_ability(data):
     return [a for g in groups for a in g]
 
 
+def every_weapon(data):
+    return [x for w in every_warscroll(data) for x in w.get("ranged_weapons", []) + w.get("melee_weapons", [])]
+
+
+def wahapedia_abilities(wh_page, wh_units):
+    page = [wh_page["faction"]] + wh_page["armies_of_renown"] + wh_page["spearheads"]
+    groups = [b["abilities"] for b in wh_page["faction"]["battle_formations"]]
+    for part in page:
+        groups += [part.get(k, []) for k in ("battle_traits", "regiment_abilities", "enhancements")]
+        groups += [t["entries"] for t in part.get("enhancement_tables", []) + part.get("lores", [])]
+    groups += [w["abilities"] for w in wh_units]
+    return [a for g in groups for a in g]
+
+
+def replace_with_wahapedia(data, replacements, wh_abilities):
+    for bs_name, wh_name in replacements.items():
+        wh = next((a for a in wh_abilities if merge.norm(a["name"]) == merge.norm(wh_name)), None)
+        if wh is None:
+            sys.exit("replace_with_wahapedia: no Wahapedia ability named %r" % wh_name)
+        matched = [a for a in every_ability(data) if a["name"] == bs_name]
+        if not matched:
+            sys.exit("replace_with_wahapedia: no ability named %r" % bs_name)
+        for a in matched:
+            a.clear()
+            a.update(wh, name=wh_name)
+
+
 def apply_overrides(data, overrides):
     for old, new in overrides.get("warscroll_names", {}).items():
         matched = [w for w in every_warscroll(data) if w["name"] == old]
@@ -50,10 +82,16 @@ def apply_overrides(data, overrides):
             for u in s["units"]:
                 u["name"] = new if u["name"] == old else u["name"]
     for name, fields in overrides.get("fields", {}).items():
-        matched = [w for w in every_warscroll(data) if name in (w["name"], w.get("id"))] \
-            or [a for a in every_ability(data) if a["name"] == name]
+        if " > " in name:
+            owner, part = name.split(" > ", 1)
+            matched = [x for w in every_warscroll(data) if w.get("id") == owner
+                       for x in w["ranged_weapons"] + w["melee_weapons"] + w["abilities"] if x["name"] == part]
+        else:
+            matched = [w for w in every_warscroll(data) if name in (w["name"], w.get("id"))] \
+                or [a for a in every_ability(data) if a["name"] == name] \
+                or [x for x in every_weapon(data) if x["name"] == name]
         if not matched:
-            sys.exit("field override %r matches no warscroll or ability" % name)
+            sys.exit("field override %r matches no warscroll, ability or weapon" % name)
         for item in matched:
             item.update(fields)
 
@@ -67,6 +105,10 @@ def build(fetch_dir, faction_id, faction_name, overrides):
     wh_page = wahapedia.parse_faction_page(pages[0])
     wh_units = wahapedia.parse_unit_pages(sorted(glob.glob(os.path.join(fetch_dir, "wahapedia", "units", "*.html"))))
 
+    # Swapped in before merging so the replacement is ordered and compared like the rest.
+    replace_with_wahapedia({"faction": bs_faction, "warscrolls": bs_warscrolls, "armies_of_renown": bs_armies,
+                            "spearheads": [], "path_to_glory": []},
+                           overrides.get("replace_with_wahapedia", {}), wahapedia_abilities(wh_page, wh_units))
     report = merge.Report()
     faction = merge.merge_faction(report, bs_faction, wh_page["faction"])
     faction["id"] = faction_id

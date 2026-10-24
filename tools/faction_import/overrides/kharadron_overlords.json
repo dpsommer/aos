@@ -3,6 +3,8 @@
 		"endrinriggers": {"keywords": ["CHAMPION", "INFANTRY", "FLY", "ORDER", "KHARADRON OVERLORDS", "DUARDIN", "SKYFARER"]},
 		"scourge_of_aqshy_endrinriggers": {"keywords": ["CHAMPION", "INFANTRY", "FLY", "ORDER", "KHARADRON OVERLORDS", "DUARDIN", "SKYFARER"]},
 		"null_khemist": {"keywords": ["HERO", "INFANTRY", "FLY", "ORDER", "KHARADRON OVERLORDS", "DUARDIN", "SKYFARER"]},
-		"scourge_of_aqshy_null_khemist": {"keywords": ["HERO", "INFANTRY", "FLY", "ORDER", "KHARADRON OVERLORDS", "DUARDIN", "SKYFARER"]}
+		"scourge_of_aqshy_null_khemist": {"keywords": ["HERO", "INFANTRY", "FLY", "ORDER", "KHARADRON OVERLORDS", "DUARDIN", "SKYFARER"]},
+		"scourge_of_ghyran_grundstok_gunhauler > Sky Ordinance": {"name": "Sky Ordnance"},
+		"thundriks_profiteers > Aethermatic Anatomiser": {"abilities": ["Shoot in Combat"]}
 	}
 }

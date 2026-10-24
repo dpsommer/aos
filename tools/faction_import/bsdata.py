@@ -118,16 +118,29 @@ def ability(profile, name=None):
 
 
 def split_options(effect):
-    """Split '***Label:*** text' lines and designer's notes out of an effect into named options."""
-    lines, options = [], []
-    for line in (effect or "").split("\n"):
+    """Split '***Label:*** text' lines and designer's notes out of an effect into named options.
+    When several options each follow a short heading line, such as "Battle Round 2:", the
+    heading prefixes the option's name. A single such line ("Pick 1 of the following:") is
+    lead text and stays in the effect."""
+    option_line = re.compile(r"\s*\*{3}(.+?):?\*{3}:?\s*(.*)$")
+    source = (effect or "").split("\n")
+    headings = {i for i, line in enumerate(source[:-1])
+                if option_line.match(source[i + 1]) and re.fullmatch(r"[^.:]{1,40}:", markup(line))}
+    if len(headings) < 2:
+        headings = set()
+    lines, options, heading = [], [], ""
+    for i, line in enumerate(source):
         note = re.match(r"\s*\*\*Designer's Note:\*\*\s*(.*)$", line)
-        m = re.match(r"\s*\*{3}(.+?):?\*{3}:?\s*(.*)$", line)
+        m = option_line.match(line)
         if note:
             # Commentary rather than rules; kept apart from the effect as Wahapedia does.
             options.append({"name": "Designer’s Note", "text": markup(note.group(1))})
         elif m:
-            options.append({"name": markup(m.group(1)).rstrip(":"), "text": markup(m.group(2))})
+            name = markup(m.group(1)).rstrip(":")
+            options.append({"name": heading + name, "text": markup(m.group(2))})
+            heading = ""
+        elif i in headings:
+            heading = markup(line) + " "
         elif options and line.strip():
             options[-1]["text"] += "\n" + markup(line)
         else:

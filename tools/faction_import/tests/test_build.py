@@ -112,3 +112,138 @@ def test_no_overrides_changes_nothing():
     d = data()
     build.apply_overrides(d, {})
     assert d == data()
+
+
+def weapon(name):
+    return {"name": name, "attacks": "2", "hit": "4+", "wound": "4+", "rend": "-", "damage": "1"}
+
+
+def armed():
+    """Two warscrolls that each have a weapon and an ability called Hellblade."""
+    d = data()
+    for w in d["warscrolls"][:2]:
+        w.update(ranged_weapons=[], melee_weapons=[weapon("Hellblade")], abilities=[ability("Hellblade")])
+    return d
+
+
+def test_field_override_by_weapon_name():
+    d = data()
+    d["warscrolls"][2].update(ranged_weapons=[weapon("Lance")], melee_weapons=[])
+    build.apply_overrides(d, {"fields": {"Lance": {"rend": "1"}}})
+    assert d["warscrolls"][2]["ranged_weapons"][0]["rend"] == "1"
+
+
+def test_unscoped_field_override_prefers_ability_over_weapon():
+    d = armed()
+    build.apply_overrides(d, {"fields": {"Hellblade": {"damage": "3"}}})
+    ws = d["warscrolls"][0]
+    assert (ws["abilities"][0].get("damage"), ws["melee_weapons"][0]["damage"]) == ("3", "1")
+
+
+def test_scoped_field_override_changes_only_that_warscroll():
+    d = armed()
+    build.apply_overrides(d, {"fields": {"scourge_of_aqshy_test_captian > Hellblade": {"timing": "Deployment"}}})
+    assert [w["abilities"][0]["timing"] for w in d["warscrolls"][:2]] == ["Passive", "Deployment"]
+
+
+def test_scoped_field_override_reaches_weapon_and_ability_of_same_name():
+    d = armed()
+    build.apply_overrides(d, {"fields": {"test_captian > Hellblade": {"note": "n"}}})
+    ws = d["warscrolls"][0]
+    assert [x.get("note") for x in ws["melee_weapons"] + ws["abilities"]] == ["n", "n"]
+
+
+@pytest.mark.parametrize("target", ["test_captian > Nothing", "nobody > Hellblade"])
+def test_unmatched_scoped_field_override_exits(target):
+    with pytest.raises(SystemExit):
+        build.apply_overrides(armed(), {"fields": {target: {"note": "n"}}})
+
+
+# replace_with_wahapedia()
+
+def wh_ability(name, effect):
+    return {"name": name, "category": "", "timing": "Any Hero Phase", "effect": effect, "keywords": ["CORE"]}
+
+
+def test_replacement_takes_wahapedia_ability_content():
+    d = data()
+    wh = wh_ability("Rally Cry", "Better rule.")
+    build.replace_with_wahapedia(d, {"Rally Cry": "Rally Cry"}, [wh])
+    assert d["warscrolls"][0]["abilities"][0] == wh
+
+
+def test_replacement_uses_given_wahapedia_name_and_matches_it_normalised():
+    d = data()
+    build.replace_with_wahapedia(d, {"Bold Leader": "Bold Leader!"}, [wh_ability("BOLD LEADER", "Y.")])
+    assert d["faction"]["enhancement_tables"][0]["entries"][0]["name"] == "Bold Leader!"
+
+
+def test_replacement_drops_bsdata_only_fields():
+    d = data()
+    d["faction"]["battle_traits"][0]["options"] = [{"name": "A", "text": "B"}]
+    build.replace_with_wahapedia(d, {"Steady Ranks": "Steady Ranks"}, [wh_ability("Steady Ranks", "Y.")])
+    assert "options" not in d["faction"]["battle_traits"][0]
+
+
+def test_replacement_applies_to_every_ability_with_the_name():
+    d = data()
+    d["warscrolls"][2]["abilities"] = [ability("Rally Cry")]
+    build.replace_with_wahapedia(d, {"Rally Cry": "Rally Cry"}, [wh_ability("Rally Cry", "Better rule.")])
+    assert [w["abilities"][0]["effect"] for w in (d["warscrolls"][0], d["warscrolls"][2])] == ["Better rule."] * 2
+
+
+def test_replacements_are_independent_copies():
+    d = data()
+    wh = wh_ability("Drill", "Y.")
+    build.replace_with_wahapedia(d, {"Drill": "Drill"}, [wh])
+    d["spearheads"][0]["regiment_abilities"][0]["effect"] = "changed"
+    assert wh["effect"] == "Y."
+
+
+def test_replacement_leaves_other_abilities_alone():
+    d = data()
+    build.replace_with_wahapedia(d, {"Drill": "Drill"}, [wh_ability("Drill", "Y.")])
+    assert d["faction"]["battle_traits"][0] == ability("Steady Ranks")
+
+
+def test_replacement_without_wahapedia_ability_exits():
+    with pytest.raises(SystemExit):
+        build.replace_with_wahapedia(data(), {"Drill": "Drill"}, [wh_ability("Other", "Y.")])
+
+
+def test_replacement_without_bsdata_ability_exits():
+    with pytest.raises(SystemExit):
+        build.replace_with_wahapedia(data(), {"Nothing": "Drill"}, [wh_ability("Drill", "Y.")])
+
+
+# wahapedia_abilities()
+
+def wh_page():
+    """A Wahapedia faction page with one ability in every place one can be."""
+    def table(n):
+        return [{"name": "Table", "entries": [ability(n)]}]
+    return {
+        "faction": {"battle_traits": [ability("Trait")], "battle_formations": [{"name": "F", "abilities": [ability("Formation")]}],
+                    "enhancement_tables": table("Enhancement"), "lores": table("Lore")},
+        "armies_of_renown": [{"name": "Host", "battle_traits": [ability("AoR Trait")],
+                              "enhancement_tables": table("AoR Enhancement"), "lores": table("AoR Lore")}],
+        "spearheads": [{"name": "Vanguard", "battle_traits": [ability("SH Trait")],
+                        "regiment_abilities": [ability("SH Regiment")], "enhancements": [ability("SH Enhancement")]}],
+    }
+
+
+@pytest.mark.parametrize("name", ["Trait", "Formation", "Enhancement", "Lore", "AoR Trait", "AoR Enhancement",
+                                  "AoR Lore", "SH Trait", "SH Regiment", "SH Enhancement"])
+def test_wahapedia_abilities_collects_faction_page_ability(name):
+    assert name in [a["name"] for a in build.wahapedia_abilities(wh_page(), [])]
+
+
+def test_wahapedia_abilities_collects_unit_abilities():
+    units = [{"name": "Test Riders", "abilities": [ability("Charge")]}]
+    assert "Charge" in [a["name"] for a in build.wahapedia_abilities(wh_page(), units)]
+
+
+def test_wahapedia_abilities_collects_each_ability_once():
+    names = [a["name"] for a in build.wahapedia_abilities(wh_page(), [])]
+    assert len(names) == len(set(names))
+
