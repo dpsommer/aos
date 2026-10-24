@@ -168,6 +168,7 @@
 		{
 			"name": "The Duardin Ascendant",
 			"source": "White Dwarf",
+			"legends": true,
 			"text": "When you pick the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be include and must be your general}\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain",
 			"battle_traits": [
 				{

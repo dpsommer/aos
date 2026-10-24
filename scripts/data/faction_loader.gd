@@ -202,6 +202,7 @@ func _army_of_renown(data: Variant, path: String) -> ArmyOfRenown:
 	if _is_object(data, path):
 		army.name = _string(data, "name", path, true)
 		army.source = _string(data, "source", path)
+		army.legends = _bool(data, "legends", path)
 		army.text = _string(data, "text", path)
 		army.battle_traits = _abilities(data, "battle_traits", path)
 		army.enhancement_tables = _enhancement_tables(data, path)

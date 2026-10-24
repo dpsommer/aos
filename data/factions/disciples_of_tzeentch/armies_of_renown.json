@@ -1,0 +1,367 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Change-cult Uprising",
+			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Change-cult Uprising Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CHANGE-CULT keyword.\nROSTER OPTIONS\nAny non- WARFLOCK ARCANITE units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Silver Simulacrum",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "If there is a friendly Argent Shard on the battlefield, you can set up 1 additional Argent Shard on the battlefield. It must be set up wholly within friendly territory and more than 3\" from all objectives and other terrain features.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "The original Argent Shard is set up in Step 1 of the deployment phase using the 'Deploy Faction Terrain' ability. This ability allows you to set up a second such terrain feature and is used in Step 3 of the deployment phase, after armies have been deployed."
+						}
+					]
+				},
+				{
+					"name": "Illusory Infiltration",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick up to 3 friendly non-reinforced CHANGE-CULT Kairic Acolytes units to be the targets.",
+					"effect": "Remove the targets from the battlefield and set them up again wholly within 3\" of a terrain feature and not in combat."
+				},
+				{
+					"name": "Puppet on a String",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy HERO within 24\" of and visible to a friendly CHANGE-CULT HERO to be the target.",
+					"effect": "For the rest of the turn, each time the target uses a CORE ability, gain 1 fate point.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "You can only gain fate points using this ability and the 'Spell-eater Pendant' ability."
+						}
+					]
+				},
+				{
+					"name": "Overtaken by Events",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 1 fate point. Then, pick an enemy unit within 24\" of and visible to a friendly CHANGE-CULT HERO to be the target.",
+					"effect": "The target cannot use commands for the rest of the turn."
+				},
+				{
+					"name": "Seeds of Discord",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 1 fate point. Then, pick an enemy unit within 24\" of and visible to a friendly CHANGE-CULT HERO to be the target, then pick another enemy unit within the target's combat range to be the victim.",
+					"effect": "Pick 1 of the target's melee weapons. Immediately resolve combat attacks for the target made with that weapon against the victim."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Call of Anarchy",
+							"category": "special",
+							"timing": "Your Movement Phase",
+							"declare": "Pick a terrain feature within 18\" of this unit, then pick a friendly non-HERO CHANGE-CULT unit that is masked by illusion or that has been destroyed to be the target.",
+							"effect": "If you picked a unit that is masked by illusion, set it up wholly within 3\" of that terrain feature and more than 6\" from all enemy units.\nIf you picked a unit that has been destroyed, set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 3\" of that terrain feature and more than 6\" from all enemy units.",
+							"options": [
+								{
+									"name": "Designer’s Note",
+									"text": "Units can be set up in reserve masked by illusion using the Fatemaster's 'Long in the Planning' ability."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Spell-eater Pendant",
+							"category": "special",
+							"timing": "Passive",
+							"effect": "Each time this unit unbinds a spell or banishes an enemy MANIFESTATION, gain 1 fate point."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Eldritch Strength",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CHANGE-CULT WIZARD to cast this spell, pick a visible friendly CHANGE-CULT unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Add 1 to wound rolls for the target's attacks until the start of your next turn.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Shifting Manifestations",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CHANGE-CULT WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Burning Sigil of Tzeentch\n• Daemonic Simulacrum\n• Tome of Eyes",
+							"effect": "If there is already a friendly MANIFESTATION from the list above on the battlefield, it is immediately banished and removed from play. Then, set up the MANIFESTATION you picked within 1\" of the caster and visible to them.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Pyrofane Cult",
+			"source": "White Dwarf",
+			"legends": true,
+			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Pyrofane Cult Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the PYROFANE keyword.\nROSTER OPTIONS\nAny non- WARFLOCK ARCANITE\n0-1 Gaunt Summoner or Gaunt Summoner on Disc of Tzeentch\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nAny Pyrozealot can join to a regiment led by Gaunt Summoner, Gaunt Summoner on Disc of Tzeentch, Pyrofane Fusil-Major on Ogor Warhulk, Magister, Magister on Disc of Tzeentch",
+			"battle_traits": [
+				{
+					"name": "Wyrdflame Barrage",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "When picking targets for shooting attacks made by friendly units with weapons that have the Wyrdflame weapon ability, you can also pick terrain features that are visible to and within range of the attacking model to be targets. Non-FACTION TERRAIN terrain features are considered to have a Save characteristic of 5+ and infinite Health for the purposes of this ability.\nIf any damage points were allocated to a terrain feature by those attacks, after the SHOOT ability has been resolved, roll a dice. If the result is less than or equal to the number of damage points allocated to that terrain feature in this phase, it has the WYRDPYRE keyword for the rest of the battle.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "As non-FACTION TERRAIN features are treated as having infinite Health for the purposes of this ability, you can remove all damage points allocated to them at the end of the shooting phase."
+						}
+					]
+				},
+				{
+					"name": "Hidden Instigator",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick a friendly WIZARD to use this ability if it has not been deployed.",
+					"effect": "Set up that unit in reserve hidden among cultists. It has now been deployed. Friendly units that are hidden among cultists are not automatically destroyed at the start of the fourth battle round"
+				},
+				{
+					"name": "Deception Revealed",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"declare": "Pick a friendly WIZARD that is hidden among cultists to use this ability, then pick a friendly INFANTRY unit with 3 or more models to be the target.",
+					"effect": "Set up that WIZARD within the combat range of the target. It can be set up in combat. In addition, if that WIZARD uses the 'Magical Intervention' command this phase, no command points are spent to do so."
+				},
+				{
+					"name": "Immolation of the Realms",
+					"category": "special",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round (Army)",
+					"declare": "You must use this ability at the start of the battle round if there are WYRDPYRES on the battlefield.",
+					"effect": "Resolve the effect below that corresponds to the number of WYRDPYRES on the battlefield.\n1-2: Inflict 1 mortal damage on each unit within 3\" of any WYRDPYRES. Add 2\" to the Move characteristic of friendly units that were allocated any of that damage for the rest of the battle round.\n3-4: Inflict D3 mortal damage on each unit within 3\" of any WYRDPYRES. Add 1 to wound rolls for combat attacks made by friendly units that were allocated any of that damage for the rest of the battle round.\n5-6: Inflict D3 mortal damage on each unit within 6\" of any WYRDPYRES. Add 1 to the Attacks characteristic of melee weapons used by friendly units that were allocated any of that damage for the rest of the battle round.\n7-8: Inflict D3 mortal damage on each unit within 6\" of any WYRDPYRES. For friendly units that were allocated any of that damage, for the rest of the battle round:\n• Add 1 to wound rolls for their combat attacks.\n• Add 2\" to their Move characteristic.\n• Add 1 to the Attacks characteristic of their melee weapons.\n9+: Inflict D3+3 mortal damage on each unit within 6\" of any WYRDPYRES. Then, pick a non-FACTION TERRAIN terrain feature with the WYRDPYRE keyword to reduce to ash. Each player must remove all models that are on that terrain feature and set them up again within 3\" of it, but not on it, starting with the active player. Those models can be set up in combat. Models that cannot be set up in this manner are slain. Then, remove that terrain feature from the battlefield."
+				},
+				{
+					"name": "Ritual of Flame",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an objective being contested by any friendly Kairic Acolyte units to be the target.",
+					"effect": "The target objective has the WYRDPYRE keyword for the rest of the battle."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Wyrdflame Aegis",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "You can ignore mortal damage inflicted on this unit by the 'Immolation of the Realms' ability, and if damage would have been inflicted upon it by that ability, the persisting effects from that ability apply to it as though it had been allocated damage by the ability."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Pyroflux Conduit",
+							"category": "movement",
+							"timing": "Your Movement Phase",
+							"frequency": "Once Per Turn",
+							"declare": "This unit can only use this ability if it is within 3\" of a WYRDPYRE terrain feature. You can pick another friendly PYROFANE unit wholly within 12\" of this unit to be the target.",
+							"effect": "Remove this unit from the battlefield, then set it up again wholly within 9\" of a WYRDPYRE terrain feature and more than 9\" from all enemy units. Then, if you picked a target, remove the target from the battlefield and set it up again wholly within 9\" of this unit and more than 9\" from all enemy units."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Lore of Wyrdflame",
+					"source": "White Dwarf",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Flaming Weapon",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a visible friendly HERO wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Add 1 to the Damage characteristic of the target's melee weapons until the start of your next turn.",
+							"casting_value": 4,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Summon Cult Leader",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a friendly WIZARD that has been destroyed to be the target, then make a casting roll of 2D6.",
+							"effect": "Set up a replacement unit identical to the target in reserve hidden among cultists.",
+							"casting_value": 8,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Burning Anguish",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them and which had any damage points allocated to it this battle round by the 'Immolation of the Realms' ability to be the target, then make a casting roll of 2D6.",
+							"effect": "The target cannot use commands for the rest of the battle round.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"source": "White Dwarf",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Burning Sigil of Tzeentch",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a BURNING SIGIL OF TZEENTCH wholly within 12\" of the caster and visible to them.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "The Oracles of Fate",
+			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be the Oracles of Fate Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the ORACLES OF FATE keyword.\nROSTER OPTIONS\nKairos Fateweaver\nAny DISCIPLES OF TZEENTCH DAEMON units\nYou cannot include Regiments of Renown or faction terrain",
+			"battle_traits": [
+				{
+					"name": "Masters of Destiny",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"effect": "Roll 9 dice and place them to one side. These are your destiny dice. Destiny dice can be spent during the battle to change certain dice rolls. You can never have more than 9 destiny dice at once.\nDuring the battle, instead of making a roll from the list below for a friendly ORACLES OF FATE unit, you can spend your destiny dice. The roll you would have made is replaced with the roll on the destiny dice you spend. If you want to replace a 2D6 roll, 3D6 roll, etc. you must spend a number of destiny dice equal to the number before 'D6'. Any rolls that have been replaced count as unmodified rolls, and they cannot be re-rolled or modified by other friendly abilities except for those that apply negative modifiers (but they can be modified by enemy abilities). You cannot spend destiny dice to replace re-rolls.\nDestiny dice can be spent in place of the following dice rolls:\n• Casting rolls\n• Unbinding rolls\n• Banishment rolls\n• Run rolls\n• Charge rolls in your turn\n• Hit rolls\n• Wound rolls\n• Save rolls"
+				},
+				{
+					"name": "Ninefold Blessings",
+					"category": "special",
+					"timing": "Start of Your Turn",
+					"frequency": "Once Per Battle Round",
+					"declare": "You can only use this ability if the total value of your unspent destiny dice is exactly 9.",
+					"effect": "Re-roll all of your unspent destiny dice. Then, until the start of your next turn:\n• Friendly ORACLES OF FATE units have WARD (5+).\n• Subtract 1 from save rolls for enemy units."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Nexus of Fate",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"effect": "Roll a dice. If you have 9 unspent destiny dice, you must replace 1 of your destiny dice with that roll. Otherwise, place that dice to one side as a destiny dice."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Corrupted Leystone",
+							"category": "movement",
+							"timing": "Your Movement Phase",
+							"effect": "If this unit is contesting an objective, remove it from the battlefield and set it up again contesting an objective and more than 7\" from all enemy units."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Fateweaver's Gift",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ORACLES OF FATE WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Pick 1 of the following effects:",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							],
+							"options": [
+								{
+									"name": "Change the Past",
+									"text": "Pick an enemy unit within 12\" of and visible to the caster, that is in combat and that has not been picked to be the target of this ability this turn to be the target. Roll either 4 dice or a number of dice equal to the number of unspent destiny dice you have. For each 4+, inflict 1 mortal damage on the target."
+								},
+								{
+									"name": "Seize the Present",
+									"text": "Until the start of your next turn, add 1 to run rolls and charge rolls for friendly ORACLES OF FATE units while they are wholly within 12\" of the caster."
+								},
+								{
+									"name": "Predict the Future",
+									"text": "Roll a dice. You must replace 1 of your destiny dice with that roll."
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Shifting Manifestations",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ORACLES OF FATE WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Burning Sigil of Tzeentch\n• Daemonic Simulacrum\n• Tome of Eyes",
+							"effect": "If there is already a friendly MANIFESTATION from the list above on the battlefield, it is immediately banished and removed from play. Then, set up the MANIFESTATION you picked within 1\" of the caster and visible to them.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

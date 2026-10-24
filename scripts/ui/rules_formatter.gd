@@ -114,6 +114,8 @@ static func army_of_renown(army: ArmyOfRenown) -> String:
 	var parts := PackedStringArray([heading(army.name)])
 	if not army.source.is_empty():
 		parts.append("[i]Source: %s[/i]" % _escape(army.source))
+	if army.legends:
+		parts.append("[i]Legends[/i]")
 	if not army.text.is_empty():
 		parts.append(_escape(army.text))
 	if not army.battle_traits.is_empty():

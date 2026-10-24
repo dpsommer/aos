@@ -48,7 +48,7 @@ func show_faction(data: Faction) -> void:
 
 	labels = PackedStringArray()
 	for army in data.armies_of_renown:
-		labels.append(army.name)
+		labels.append(army.name + (" (Legends)" if army.legends else ""))
 	armies_of_renown.populate(labels, func(i: int) -> String: return RulesFormatter.army_of_renown(data.armies_of_renown[i]))
 
 	labels = PackedStringArray()

@@ -1,0 +1,43 @@
+{
+	"replace_with_wahapedia": {
+		"Pyrofane Conduit": "Pyroflux Conduit"
+	},
+	"fields": {
+		"Pyrofane Cult": {"legends": true},
+		"All Part of the Plan": {"effect": "You start the battle with 0 fate points. Gain 1 fate point each time:\n• You lose the priority roll.\n• A spell cast by a friendly DISCIPLES OF TZEENTCH unit is unbound.\n• A friendly DISCIPLES OF TZEENTCH unit miscasts a spell.\n• Your opponent gains control of an objective that you controlled at the start of the turn.\n• A friendly Argent Shard is demolished.\nYou can have a maximum of 9 fate points."},
+		"Kairic Tome": {"effect": "Add 1 to or subtract 1 from the casting roll for that spell. This unit can use this ability more than once per phase but only once per SPELL ability."},
+		"Fold Reality": {"declare": "Pick a DISCIPLES OF TZEENTCH WIZARD to cast this spell, then you can pick a friendly non-MONSTER DISCIPLES OF TZEENTCH unit wholly within 12\" of the caster to be the target. Then, make a casting roll of 2D6."},
+		"changecaster_herald_of_tzeentch > Weapon Curse": {"effect": "Roll a dice. Add 1 to the roll if the target was set up this turn. On a 3+, until the start of your next turn, other than the Companion weapon ability, weapon abilities for attacks that target that unit have no effect."},
+		"kairos_fateweaver > Master of Destiny": {"effect": "If this unit has not already engineered the outcome this battle round, instead of making a casting roll, unbinding roll, banishment roll, hit roll, wound roll or save roll for a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit, this unit can engineer the outcome.\nIf the roll would have been a D6 roll, you can use a value of 6 for it that cannot be modified. If the roll would have been a 2D6 roll, you can use a value of 9 for it that cannot be modified."},
+		"lord_of_change > Temporal Manipulation": {"declare": "Pick another visible friendly DISCIPLES OF TZEENTCH unit that was not set up this turn and that is wholly within 18\" of this unit to be the target. Then, make a casting roll of 2D6."},
+		"magister_on_disc_of_tzeentch > Spellmaster": {"effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll for the spell, the spell is unbound and its effect is not resolved.\nIf the spell is unbound, add 1 to casting rolls for this unit for the rest of the phase."},
+		"tzaangor_shaman > Wit of Beasts": {"declare": "Pick a visible enemy MONSTER or CAVALRY unit within 6\" of this unit to be the target.", "effect": "The target's melee weapons have the Companion weapon ability for the rest of the turn."},
+		"Immolation of the Realms": {"effect": "Resolve the effect below that corresponds to the number of WYRDPYRES on the battlefield.\n1-2: Inflict 1 mortal damage on each unit within 3\" of any WYRDPYRES. Add 2\" to the Move characteristic of friendly units that were allocated any of that damage for the rest of the battle round.\n3-4: Inflict D3 mortal damage on each unit within 3\" of any WYRDPYRES. Add 1 to wound rolls for combat attacks made by friendly units that were allocated any of that damage for the rest of the battle round.\n5-6: Inflict D3 mortal damage on each unit within 6\" of any WYRDPYRES. Add 1 to the Attacks characteristic of melee weapons used by friendly units that were allocated any of that damage for the rest of the battle round.\n7-8: Inflict D3 mortal damage on each unit within 6\" of any WYRDPYRES. For friendly units that were allocated any of that damage, for the rest of the battle round:\n• Add 1 to wound rolls for their combat attacks.\n• Add 2\" to their Move characteristic.\n• Add 1 to the Attacks characteristic of their melee weapons.\n9+: Inflict D3+3 mortal damage on each unit within 6\" of any WYRDPYRES. Then, pick a non-FACTION TERRAIN terrain feature with the WYRDPYRE keyword to reduce to ash. Each player must remove all models that are on that terrain feature and set them up again within 3\" of it, but not on it, starting with the active player. Those models can be set up in combat. Models that cannot be set up in this manner are slain. Then, remove that terrain feature from the battlefield."},
+		"Masters of Destiny": {"effect": "Roll 9 dice and place them to one side. These are your destiny dice. Destiny dice can be spent during the battle to change certain dice rolls. You can never have more than 9 destiny dice at once.\nDuring the battle, instead of making a roll from the list below for a friendly ORACLES OF FATE unit, you can spend your destiny dice. The roll you would have made is replaced with the roll on the destiny dice you spend. If you want to replace a 2D6 roll, 3D6 roll, etc. you must spend a number of destiny dice equal to the number before 'D6'. Any rolls that have been replaced count as unmodified rolls, and they cannot be re-rolled or modified by other friendly abilities except for those that apply negative modifiers (but they can be modified by enemy abilities). You cannot spend destiny dice to replace re-rolls.\nDestiny dice can be spent in place of the following dice rolls:\n• Casting rolls\n• Unbinding rolls\n• Banishment rolls\n• Run rolls\n• Charge rolls in your turn\n• Hit rolls\n• Wound rolls\n• Save rolls"},
+		"Fateweaver's Gift": {"effect": "Pick 1 of the following effects:"},
+		"jade_obelisk": {"base_size": "5 x Desecrators, Nephrite Priestess, Obelisk Bearer: 32mm, 5 x Idolarc, Defacers: 28.5mm"},
+		"the_blue_scribes": {"ward": 6, "keywords": ["HERO", "UNIQUE", "CHAOS", "CAVALRY", "DISC OF TZEENTCH", "FLY", "DISCIPLES OF TZEENTCH", "DAEMON", "WIZARD (1)", "WARD (6+)"]},
+		"fluxmaster_herald_of_tzeentch_on_disc": {"keywords": ["HERO", "CHAOS", "WIZARD (1)", "CAVALRY", "DISC OF TZEENTCH", "FLY", "WARD (6+)", "DISCIPLES OF TZEENTCH", "DAEMON"]},
+		"fatemaster_on_disc_of_tzeentch": {"keywords": ["HERO", "CHAOS", "CAVALRY", "FLY", "DISCIPLES OF TZEENTCH", "ARCANITE", "DISC OF TZEENTCH"]},
+		"eyes_of_the_nine": {"move": 5, "base_size": "Vortemis the All-seeing, K'charik, Narvia and Turosh: 32mm, Horrors: 25mm"},
+		"ephilims_pandaemonium > Keeper of the Pandaemonium": {"timing": "End of Any Turn"},
+		"fatemaster": {"keywords": ["HERO", "CHAOS", "DISCIPLES OF TZEENTCH", "ARCANITE", "INFANTRY", "WIZARD (1)"], "legends": false},
+		"pyrofane_fusiliers": {"keywords": ["INFANTRY", "CHAMPION", "STANDARD BEARER (1/10)", "DISCIPLES OF TZEENTCH", "ARCANITE", "PYROFANE", "CHAOS", "HUMAN"], "can_reinforce": true},
+		"pyrofane_great_cannon": {"keywords": ["WAR MACHINE", "CHAOS", "DISCIPLES OF TZEENTCH", "ARCANITE", "PYROFANE", "HUMAN"]},
+		"pyrofane_fusil_major_on_ogor_warhulk": {"keywords": ["HERO", "INFANTRY", "CHAOS", "DISCIPLES OF TZEENTCH", "ARCANITE", "PYROFANE", "HUMAN"]},
+		"pyrofane_steelhelms": {"can_reinforce": true},
+		"pyrofane_steelhelms > Freeguild Weapons": {"name": "Bayonet"},
+		"pyrofane_steelhelms > Pyromaniacs": {"effect": "This unit has WARD (5+) while it is wholly within 6\" of a WYRDPYRE."},
+		"Eldritch Illusions": {"frequency": "Once Per Battle (Army)"},
+		"lord_of_change > Summon Daemons of Tzeentch": {"declare": "Pick a friendly non-HERO DISCIPLES OF TZEENTCH DAEMON unit that has been destroyed to be the target."},
+		"tzaangor_shaman > Avian Swiftness": {"effect": "Roll a dice. On a 3+, until the start of your next turn, the target can use CHARGE abilities even if it used a RUN ability in the same turn."},
+		"gaunt_summoner_on_disc_of_tzeentch": {"keywords": ["HERO", "CHAOS", "DAEMON", "DISCIPLES OF TZEENTCH", "WIZARD (2)", "CAVALRY", "FLY", "WARD (5+)"]},
+		"magister_on_disc_of_tzeentch": {"keywords": ["HERO", "CHAOS", "DISCIPLES OF TZEENTCH", "CAVALRY", "FLY", "WIZARD (1)", "ARCANITE"]},
+		"tzaangor_shaman": {"keywords": ["HERO", "CHAOS", "DISCIPLES OF TZEENTCH", "CAVALRY", "FLY", "WIZARD (1)", "ARCANITE", "WARFLOCK"]},
+		"tzaangor_enlightened": {"keywords": ["CHAOS", "DISCIPLES OF TZEENTCH", "FLY", "CAVALRY", "CHAMPION", "ARCANITE", "WARFLOCK"]},
+		"tzaangor_skyfires": {"keywords": ["CHAOS", "DISCIPLES OF TZEENTCH", "FLY", "CAVALRY", "CHAMPION", "ARCANITE", "WARFLOCK"]},
+		"kairic_acolytes > Cursed Blade": {"name": "Kairic Blades"},
+		"tzaangor_enlightened_on_foot > Tzaangor Spear and Vicious Beak": {"name": "Tzeentchian Spear and Vicious Beak"},
+		"tome_of_eyes > Compendium of Darkness": {"name": "Compendium of Dark Knowledge"}
+	}
+}

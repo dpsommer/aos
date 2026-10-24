@@ -100,6 +100,44 @@ func test_armies_of_renown_list_has_item_per_army() -> void:
 	assert_eq(browser.armies_of_renown.list.item_count, faction.armies_of_renown.size())
 
 
+## Index of the first army in [param faction] whose legends flag is [param legends].
+func _army_index(faction: Faction, legends: bool) -> int:
+	for i in faction.armies_of_renown.size():
+		if faction.armies_of_renown[i].legends == legends:
+			return i
+	return -1
+
+
+func test_legends_army_of_renown_label_marks_legends() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	var index := _army_index(faction, true)
+	assert_gt(index, -1, "fixture needs a legends army of renown")
+	browser.show_faction(faction)
+	var label := browser.armies_of_renown.list.get_item_text(index)
+	assert_string_contains(label, faction.armies_of_renown[index].name)
+	assert_string_contains(label, "Legends")
+
+
+func test_army_of_renown_label_is_name_when_not_legends() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	var index := _army_index(faction, false)
+	assert_gt(index, -1, "fixture needs an army of renown that isn't legends")
+	browser.show_faction(faction)
+	assert_eq(browser.armies_of_renown.list.get_item_text(index), faction.armies_of_renown[index].name)
+
+
+func test_selecting_legends_army_of_renown_renders_it() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	var index := _army_index(faction, true)
+	assert_gt(index, -1, "fixture needs a legends army of renown")
+	browser.show_faction(faction)
+	browser.armies_of_renown.select(index)
+	assert_eq(browser.armies_of_renown.detail.text, RulesFormatter.army_of_renown(faction.armies_of_renown[index]))
+
+
 func test_first_army_of_renown_is_rendered() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()

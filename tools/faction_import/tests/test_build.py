@@ -102,6 +102,39 @@ def test_field_override_matching_nothing_exits():
         build.apply_overrides(data(), {"fields": {"Nothing": {"health": 1}}})
 
 
+def test_field_override_by_army_of_renown_name():
+    d = data()
+    build.apply_overrides(d, {"fields": {"Host": {"legends": True}}})
+    assert d["armies_of_renown"][0]["legends"] is True
+
+
+def test_field_override_by_army_of_renown_name_leaves_other_armies_alone():
+    d = data()
+    d["armies_of_renown"].append({"name": "Other Host", "battle_traits": [], "enhancement_tables": [], "lores": []})
+    build.apply_overrides(d, {"fields": {"Host": {"legends": True}}})
+    assert "legends" not in d["armies_of_renown"][1]
+
+
+def test_field_override_prefers_warscroll_over_army_of_renown_of_same_name():
+    d = data()
+    d["armies_of_renown"][0]["name"] = "Test Riders"
+    build.apply_overrides(d, {"fields": {"Test Riders": {"legends": True}}})
+    assert (d["warscrolls"][2].get("legends"), d["armies_of_renown"][0].get("legends")) == (True, None)
+
+
+def test_field_override_prefers_army_of_renown_over_ability_of_same_name():
+    d = data()
+    d["armies_of_renown"][0]["name"] = "Steady Ranks"
+    build.apply_overrides(d, {"fields": {"Steady Ranks": {"legends": True}}})
+    assert (d["armies_of_renown"][0].get("legends"), d["faction"]["battle_traits"][0].get("legends")) == (True, None)
+
+
+def test_field_override_matching_nothing_exit_message_mentions_army_of_renown():
+    with pytest.raises(SystemExit) as exc:
+        build.apply_overrides(data(), {"fields": {"Nothing": {"health": 1}}})
+    assert "Army of Renown" in str(exc.value)
+
+
 def test_field_override_applies_after_rename():
     d = data()
     build.apply_overrides(d, dict(RENAME, fields={"test_captain": {"health": 6}}))

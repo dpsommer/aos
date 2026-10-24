@@ -13,8 +13,8 @@
 		{
 			"name": "Concealing Tide",
 			"category": "defensive",
-			"timing": "Round, Any Hero Phase",
-			"frequency": "Once Per Battle",
+			"timing": "Any Hero Phase",
+			"frequency": "Once Per Battle Round",
 			"declare": "You can only use this ability if you did not use it in the previous battle round and you have not used any other TIDAL abilities this round.",
 			"effect": "For the rest of the battle round, subtract 1 from hit rolls for attacks that target friendly IDONETH DEEPKIN units that did not use any CHARGE abilities in the same turn.",
 			"keywords": [
@@ -24,8 +24,8 @@
 		{
 			"name": "Swift Tide",
 			"category": "movement",
-			"timing": "Round, Any Hero Phase",
-			"frequency": "Once Per Battle",
+			"timing": "Any Hero Phase",
+			"frequency": "Once Per Battle Round",
 			"declare": "You can only use this ability if you used the 'Concealing Tide' ability in the previous battle round and you have not used any other TIDAL abilities this round.",
 			"effect": "For the rest of the battle round, friendly IDONETH DEEPKIN units can use RUN abilities and still use SHOOT and/or CHARGE abilities later in the turn.",
 			"keywords": [
@@ -35,8 +35,8 @@
 		{
 			"name": "Sea's Embrace",
 			"category": "offensive",
-			"timing": "Round, Your Hero Phase",
-			"frequency": "Once Per Battle",
+			"timing": "Your Hero Phase",
+			"frequency": "Once Per Battle Round",
 			"declare": "You can only use this ability if you used the 'Swift Tide' ability in the previous battle round and you have not used any other TIDAL abilities this round.",
 			"effect": "Friendly IDONETH DEEPKIN units have STRIKE-FIRST for the rest of the turn.",
 			"keywords": [
@@ -46,8 +46,8 @@
 		{
 			"name": "Unpredictable Tide",
 			"category": "defensive",
-			"timing": "Round, Your Hero Phase",
-			"frequency": "Once Per Battle",
+			"timing": "Your Hero Phase",
+			"frequency": "Once Per Battle Round",
 			"declare": "You can only use this ability if you did not use it in the previous battle round and you have not used any other TIDAL abilities this round. Pick a friendly IDONETH DEEPKIN unit that is not in combat to be the target.",
 			"effect": "Remove the target from the battlefield and set it up again wholly within 7\" of a battlefield edge and more than 9\" from all enemy units.",
 			"keywords": [
@@ -57,8 +57,8 @@
 		{
 			"name": "Inexorable Tide",
 			"category": "defensive",
-			"timing": "Round, Any Hero Phase",
-			"frequency": "Once Per Battle",
+			"timing": "Any Hero Phase",
+			"frequency": "Once Per Battle Round",
 			"declare": "You can only use this ability if you used the 'Unpredictable Tide' ability in the previous battle round and you have not used any other TIDAL abilities this round.",
 			"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly IDONETH DEEPKIN units for the rest of the battle round.",
 			"keywords": [
@@ -68,8 +68,8 @@
 		{
 			"name": "Storm's Wrath",
 			"category": "offensive",
-			"timing": "Round, Your Hero Phase",
-			"frequency": "Once Per Battle",
+			"timing": "Your Hero Phase",
+			"frequency": "Once Per Battle Round",
 			"declare": "You can only use this ability if you used the 'Inexorable Tide' ability in the previous battle round and you have not used any other TIDAL abilities this round.",
 			"effect": "Friendly IDONETH DEEPKIN units' melee weapons have Crit (Mortal) for the rest of the turn.",
 			"keywords": [

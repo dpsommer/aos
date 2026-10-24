@@ -249,6 +249,28 @@ func test_army_of_renown_rules_are_loaded() -> void:
 			[expected.battle_traits.size(), expected.enhancement_tables.size(), expected.lores.size()])
 
 
+## Index of the first army in the valid fixture whose "legends" key is [param present].
+func _army_index(present: bool) -> int:
+	var armies: Array = _json("valid", "armies_of_renown.json").armies_of_renown
+	for i in armies.size():
+		if armies[i].has("legends") == present:
+			return i
+	return -1
+
+
+func test_army_of_renown_legends_comes_from_file() -> void:
+	var index := _army_index(true)
+	assert_gt(index, -1, "fixture needs an army of renown with legends")
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[index]
+	assert_eq(_load("valid").armies_of_renown[index].legends, expected.legends)
+
+
+func test_army_of_renown_without_legends_is_not_legends() -> void:
+	var index := _army_index(false)
+	assert_gt(index, -1, "fixture needs an army of renown without legends")
+	assert_false(_load("valid").armies_of_renown[index].legends)
+
+
 func test_spearhead_fields_come_from_file() -> void:
 	var expected: Dictionary = _json("valid", "spearhead.json").spearheads[0]
 	var spearhead: Spearhead = _load("valid").spearheads[0]
@@ -420,6 +442,15 @@ func test_wrong_type_lore_source_returns_null() -> void:
 func test_wrong_type_lore_source_error_names_file_and_field_path() -> void:
 	assert_true(_has_error_naming(_errors("wrong_type_lore_source"), "faction.json", "lores[0].source"),
 			str(_errors("wrong_type_lore_source")))
+
+
+func test_wrong_type_army_legends_returns_null() -> void:
+	assert_null(_load("wrong_type_army_legends"))
+
+
+func test_wrong_type_army_legends_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_army_legends"), "armies_of_renown.json",
+			"armies_of_renown[0].legends"), str(_errors("wrong_type_army_legends")))
 
 
 func test_main_warscroll_without_points_returns_null() -> void:

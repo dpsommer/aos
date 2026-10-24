@@ -22,8 +22,8 @@
 				{
 					"name": "TARGET OF VENGEANCE",
 					"category": "special",
-					"timing": "Round (Army), Start of Battle Round",
-					"frequency": "Once Per Battle",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round (Army)",
 					"declare": "If there is no enemy quarry on the battlefield, pick an enemy unit on the battlefield to be the target.",
 					"effect": "The target is the quarry for the rest of the battle."
 				},

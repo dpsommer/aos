@@ -7,6 +7,15 @@
 			"battle_traits": [{"name": "Renown Trait", "effect": "Renown effect."}],
 			"enhancement_tables": [{"name": "Artefacts", "entries": [{"name": "Artefact One", "points": 10}]}],
 			"lores": [{"name": "Renown Lore", "entries": [{"name": "Renown Spell"}]}]
+		},
+		{
+			"name": "Legendary Army",
+			"source": "Old Expansion",
+			"legends": true,
+			"text": "Legends roster restrictions.",
+			"battle_traits": [{"name": "Legendary Trait", "effect": "Legendary effect."}],
+			"enhancement_tables": [],
+			"lores": []
 		}
 	]
 }

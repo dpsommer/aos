@@ -218,8 +218,8 @@
 				{
 					"name": "Ever Growing",
 					"category": "special",
-					"timing": "Round, Start of Battle Round",
-					"frequency": "Once Per Battle",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round",
 					"declare": "Pick the closest terrain feature to this terrain feature that does not have a friendly overgrown token to be the target.",
 					"effect": "If the target is not controlled by your opponent, give that target a friendly overgrown token."
 				}

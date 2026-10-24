@@ -200,7 +200,7 @@ def merge_armies(report, bs_list, wh_list):
     merged = []
     for bs in bs_list:
         wh = wh_by.pop(norm(bs["name"]), None)
-        out = {k: v for k, v in bs.items() if k not in ("roster", "legends")}
+        out = {k: v for k, v in bs.items() if k != "roster"}
         if wh is None:
             report.only("BSData", "army of renown", bs["name"])
             out["text"] = "Roster options:\n" + "\n".join(bs["roster"])

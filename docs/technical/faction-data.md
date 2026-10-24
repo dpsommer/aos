@@ -8,7 +8,7 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 -- | -- | --
 `faction.json` | Yes | `id`, `name`, `grand_alliance` (`order`, `chaos`, `death`, `destruction`), `battle_traits`, `battle_formations`, `enhancement_tables`, `lores`
 `warscrolls.json` | No | `{"warscrolls": [...]}`: matched play warscrolls with battle profiles
-`armies_of_renown.json` | No | `{"armies_of_renown": [...]}`: name, text (description and roster), battle traits, enhancement tables, lores
+`armies_of_renown.json` | No | `{"armies_of_renown": [...]}`: name, source, `legends`, text (description and roster), battle traits, enhancement tables, lores
 `spearhead.json` | No | `{"spearheads": [...]}`: army list (`general`, `units`), battle traits, regiment abilities, enhancements, and the Spearhead versions of warscrolls
 `path_to_glory.json` | No | `{"sections": [...]}`: titled text sections, plus any warscrolls (e.g. the Anvil of Apotheosis hero)
 
@@ -68,7 +68,7 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
 3. Read the report. It lists every field where BSData and Wahapedia disagree, names matched by similarity, and items only one source has. BSData wins by default. When BSData is wrong, add an override and rebuild. Override files are JSON:
    - `replace_with_wahapedia`: `{"<BSData ability name>": "<Wahapedia ability name>"}`. Uses Wahapedia's version of an ability where BSData has the wrong rule, e.g. Taar's Grand Forgehost's "Masterful Daemonworks". Applied before merging, so the replacement is ordered and compared like everything else Use `"<warscroll id or Army of Renown name> > <ability name>"` when a name alone is ambiguous, e.g. Zainthar Kai's "Explosive Fury", which is really "Cursed Heritage" and shares its name with a Champions of the Arena trait.
    - `warscroll_names`: `{"<name>": "<name to use>"}`. Renames a warscroll everywhere and updates its id.
-   - `fields`: `{"<target>": {"<field>": <value>}}`. Replaces fields after merging, e.g. a casting value, a missing keyword or a misspelt weapon name. A target is a warscroll id or name, an ability name, or a weapon name. Use `"<warscroll id> > <weapon or ability name>"` when a name alone is ambiguous, e.g. Thundrik's Profiteers have both a weapon and an ability called "Aethermatic Anatomiser".
+   - `fields`: `{"<target>": {"<field>": <value>}}`. Replaces fields after merging, e.g. a casting value, a missing keyword or a misspelt weapon name. A target is a warscroll id or name, an Army of Renown name (e.g. to set `legends`), an ability name, or a weapon name. Use `"<warscroll id> > <weapon or ability name>"` when a name alone is ambiguous, e.g. Thundrik's Profiteers have both a weapon and an ability called "Aethermatic Anatomiser".
 
    The report lists differences before overrides are applied, so overridden fields still appear in it.
 

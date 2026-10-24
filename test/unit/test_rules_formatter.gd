@@ -350,6 +350,35 @@ func test_army_of_renown_contains_name_text_and_traits() -> void:
 		assert_string_contains(output, value)
 
 
+func _army(legends: bool) -> ArmyOfRenown:
+	var army := ArmyOfRenown.new()
+	army.name = "Made-up Army"
+	army.source = "Made-up Book"
+	army.text = "Roster limits."
+	army.legends = legends
+	return army
+
+
+func test_army_of_renown_marks_legends() -> void:
+	assert_string_contains(RulesFormatter.army_of_renown(_army(true)), "Legends")
+
+
+func test_army_of_renown_omits_legends_mark_when_not_legends() -> void:
+	assert_false(RulesFormatter.army_of_renown(_army(false)).contains("Legends"))
+
+
+func test_army_of_renown_legends_mark_comes_between_source_and_text() -> void:
+	var army := _army(true)
+	var output := RulesFormatter.army_of_renown(army)
+	var legends := output.find("Legends")
+	assert_true(output.find(army.source) < legends and legends < output.find(army.text), output)
+
+
+func test_army_of_renown_legends_mark_adds_a_line() -> void:
+	var lines := func(army: ArmyOfRenown) -> int: return RulesFormatter.army_of_renown(army).count("\n")
+	assert_gt(lines.call(_army(true)), lines.call(_army(false)))
+
+
 func test_spearhead_contains_general_and_units() -> void:
 	var army := Spearhead.new()
 	army.name = "Made-up Spearhead"

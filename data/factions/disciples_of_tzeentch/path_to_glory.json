@@ -1,0 +1,86 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Disciples of Tzeentch army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Disciples of Tzeentch units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Pick an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Pick a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nChief Cabalist | 10 | 150\nHerald of Destiny | 30 | 250\nLord of Flux | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "disciples_of_tzeentch_hero",
+					"name": "Disciples of Tzeentch Hero",
+					"move": 5,
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Bladed Staff",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WIZARD (1)",
+						"CHAOS",
+						"DISCIPLES OF TZEENTCH"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Pick an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nARCANITE SORCERER\n-2DP\nYour hero has the ARCANITE keyword and the following regiment options:\nRegiment Options | Any ARCANITE units\nTZAANGOR BOSS\n-4DP\nYour hero has the ARCANITE and WARFLOCK keywords, the following ability and the following regiment options:\nPassive\nAVIAN SPEED\nEffect: Each time a friendly WARFLOCK unit is set up wholly within 12\" of this unit, that WARFLOCK unit can immediately move D3\" but cannot end that move in combat.\nRegiment Options | Any ARCANITE units\nILLUSTRIOUS DAEMON\n-4DP\nYour hero has the DAEMON and WARD (6+) keywords, the following ability and the following regiment options:\nPassive\nLOCUS OF SUMMONING\nEffect: Each time a friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit uses the ‘Rally’ command, you can make 3 additional rally rolls of D6.\nRegiment Options | Any DISCIPLES OF TZEENTCH DAEMON units\nOGROID ENLIGHTENED\n-5DP\nChange your hero’s Health characteristic to 8 and replace their melee weapon with the following weapon. In addition, your hero has the following regiment options:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGreat Horns\nCharge (+1 Damage) | 5 | 4+ | 2+ | 1 | 2\nRegiment Options | Any DISCIPLES OF TZEENTCH units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-2DP\nMASTER OF CORRUPTION\nEffect: Add 5 to this unit’s control score if it was set up in the same turn.\nYour Hero Phase\n-2DP\nELDRITCH ARTIFICER\nDeclare: Pick a friendly DISCIPLES OF TZEENTCH unit within this unit’s combat range to be the target.\nEffect: Roll a dice. On a 3+, the target’s melee weapons have Crit (2 Hits) for the rest of the turn.\nEnd of Any Turn\n-4DP\nTHIRD EYE\nEffect: Heal (X) this unit, where X is the number of fate points you have.\nOnce Per Battle, Your Movement Phase\n-5DP\n1\nENDLESS MINIONS\nDeclare: Pick a friendly non- HERO ARCANITE unit that has been destroyed to be the target.\nEffect: Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 9\" of a battlefield edge and more than 9\" from all enemy units."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+2DP\nEVER-SHIFTING MIND\nEffect: This unit cannot contest objectives that it contested in the previous turn.\nPassive\n+2DP\nLIMNED IN WYRDFLAME\nEffect: This unit can only be set up using a DEPLOY ability.\nPassive\n+4DP\nCURSED BY TZEENTCH\nEffect: This unit no longer has the WIZARD (1) keyword.\nPassive\n+4DP\nMUTATED LIMBS\nEffect: This unit’s Move characteristic is D6+2\"."
+		},
+		{
+			"name": "Step 5 - Pick a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-5DP\nDISC OF TZEENTCH: It is a true sign of Tzeentch’s favour to be gifted one of the sentient, flying platforms known as a Disc ofTzeentch.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nDisc’s Teeth and Horns\nCompanion | 2 | 4+ | 3+ | 1 | D3\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 14\".\nChange the Health characteristic to 7.\nReplace the INFANTRY keyword with the following keywords: CAVALRY, FLY.\nBattle Mount\n-7DP\nBURNING CHARIOT: Doled out to the Change God’s most anarchic servants, Burning Chariots set the very clouds aflame as they soar through the air.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nScreamers’ Lamprey Bites\nCharge (+1 Damage), Companion | 6 | 4+ | 4+ | 1 | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 12\".\nChange the Health characteristic to 10.\nReplace the INFANTRY keyword with the following keywords: WAR MACHINE, FLY."
+		},
+		{
+			"name": "Step 6 - Pick any Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nBlur in The Sky\n-2DP\nAdd 2\" to your hero’s Move characteristic.\nJagged Fangs\n-3DP\nAdd 1 to the Rend characteristic of your hero’s Companion weapons.\nGigantic Disc\n-3DP\nAdd 2 to your hero’s Health characteristic.\nBlazing Trail\n-5DP\nAdd the following ability to your hero’s warscroll:\nOnce Per Turn (Army), Your Movement Phase\nBLAZING TRAIL\nEffect: This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy unit that this unit passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.\nDesigner’s Note: This unit can use this ability even if it is in combat.\nKEYWORDS | CORE, MOVE\nSlash and Rip\n-5DP\nAdd the following ability to your hero’s warscroll:\nOnce Per Turn (Army), Any Charge Phase\nSLASH AND RIP\nDeclare: If this unit charged this phase, pick an enemy unit in combat with it to be the target.\nEffect: Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target.\nEater of Fate\n-5DP\nAdd the following ability to your hero’s warscroll:\nAny Hero Phase\nEATER OF FATE\nDeclare: Pick a friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit to be the target.\nEffect: If the target is destroyed this turn, before removing it from play, gain 1 fate point."
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nBanner of Tzeentch\n-1DP\nAdd 1 to your hero’s Control characteristic.\nWarping Weapon\n-2DP\nYour hero’s non- Companion melee weapons have Crit (2 Hits).\nMystical Protection\n-2DP\nYour hero has WARD (6+).\nFree-willed Blade\n-3DP\nYour hero’s melee weapon has Anti- X (+1 Rend), where X is 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHINE, WIZARD or PRIEST.\nDestined to Survive\n-3DP\nAdd the following ability to your hero's warscroll:\nAny Hero Phase\n1+\nDESTINED TO SURVIVE\nEffect: Spend any number of fate points. For each fate point you spend, Heal (1) this unit.\nShield of Eyes\n-4DP\nYour hero’s Save characteristic is 4+.\nSorcerer’s Staff\n-4DP\nAdd the following weapon to your hero’s warscroll:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nSorcerer’s Staff\nShoot in Combat | 12\" | 3 | 3+ | 4+ | - | D3\nFlash of Insight\n-4DP\nAdd the following ability to your hero’s warscroll:\nDeployment Phase\nFLASH OF INSIGHT\nEffect: This unit can use the ‘Normal Move’ ability as if it were your movement phase.\nIllusory Aura\n-4DP\nAdd the following ability to your hero’s warscroll:\nPassive\nILLUSORY AURA\nEffect: If this unit was set up in the same turn, friendly DISCIPLES OF TZEENTCH units have WARD (5+) while they are wholly within 12\" of this unit.\nFated Slayer\n-5DP\nAdd the following ability to your hero’s warscroll:\nPassive\nFATED SLAYER\nEffect: Add 3 to the Attacks characteristic of this unit’s melee weapons while you have 6 or more fate points.\nMaster Arcanist\n-6DP\nAdd the following ability to your hero’s warscroll:\nPassive\nMASTER ARCANIST\nEffect: Add 1 to casting rolls and banishment rolls for this unit.\nGrand Sorcerer\n-8DP\nWIZARD only. Your hero has WIZARD (2)."
+		},
+		{
+			"name": "Path of Madness",
+			"text": "(DISCIPLES OF TZEENTCH HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSPELL JAUNT\nEffect: When using the ‘Smoke and Mirrors’ ability, if this unit is masked by illusion, you can pick a MANIFESTATION (friendly or enemy) that was not set up in the same turn to be the target instead. If you do so, you must pick this unit to be the substitute. After setting up the substitute, the target is banished instead of being set up in reserve.\nPassive\nMASTER OF MISDIRECTION\nEffect: Subtract 1 from hit rolls for attacks that target this unit while it is within the combat range of another friendly DISCIPLES OF TZEENTCH unit.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSTREAM OF BABBLE\nEffect: Add 1 to unbinding rolls for this unit.\nOnce Per Turn (Army), End of Any Turn\nAGENT OF CHANGE\nEffect: If this unit is contesting an objective you do not control, gain 1 fate point.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Turn, Reaction: You declared a Spell ability for this unit\nSPLINTER SPELL\nEffect: If that spell is successfully cast, roll a dice. On a 4+, after resolving the effect of that spell, this unit can immediately cast that spell a second time using the same casting roll. Do not count the second spell towards the number of Spell abilities this unit can use this turn.\nPassive\nDRIVEN BY FATE\nEffect: While you have 3 or more fate points, add 1 to hit rolls for this unit’s attacks. While you have 6 or more fate points, add 1 to wound rolls for this unit’s attacks. While you have 9 or more fate points, add 1 to the Rend characteristic of this unit’s melee weapons.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nYour Hero Phase\nCONCEALED SORCERY\nDeclare: This unit can only use this ability if it is masked by illusion. Pick a model in a friendly DISCIPLES OF TZEENTCH unit to be the target.\nEffect: This unit can immediately use a SPELL ability. When it does so, measure the range and visibility of that SPELL ability from the target.\nOnce Per Battle, Enemy Hero Phase\nELDRITCH COVEN\nEffect: Each visible friendly DISCIPLES OF TZEENTCH WIZARD wholly within 12\" of this unit can use a Spell ability as if it were your hero phase."
+		},
+		{
+			"name": "Path of Mutation",
+			"text": "(non- HERO DISCIPLES OF TZEENTCH unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSILVER SKIN\nEffect: Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit in the first battle round.\nPassive\nBIRD-LIKE LIMBS\nEffect: Add 2 to run rolls for this unit.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nYour Hero Phase\nTELEPATHIC LINK\nDeclare: Pick a visible friendly DISCIPLES OF TZEENTCH WIZARD wholly within 12\" of this unit to be the target.\nEffect: The target can use an additional SPELL ability this turn, but this unit must be picked to be the target of that spell.\nAny Charge Phase\nCROWN OF WYRDFLAME\nDeclare: If this unit charged this turn, pick an enemy unit in combat with it to be the target.\nEffect: Roll 9 dice. For each 5+, inflict 1 mortal damage on the target.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nAny Hero Phase\nTEMPORAL DISTORTION\nEffect: If this unit was set up this turn, it can move D3\". That move cannot pass through or end within the combat range of an enemy unit.\nPassive\nINHUMAN REFLEXES\nEffect: This unit has WARD (5+) if it was set up in the same turn.\nLEGENDARY: When a unit on this Path gains this rank, pick l of the following abilities for them:\nPassive\nDOPPELGÄNGER\nEffect: If this unit is destroyed, before removing it from play, set up a replacement unit with half the number of models from the target unit (rounding up) in reserve masked by illusion.\nPassive\nQUICKSILVER BLOOD\nEffect: Each time a model in this unit is slain, before removing the model from play, pick an enemy unit in combat with this unit and roll a dice. On a 4+, inflict 1 mortal damage on that enemy unit."
+		}
+	]
+}

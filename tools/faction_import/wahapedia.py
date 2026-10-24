@@ -11,6 +11,8 @@ Armies of Renown, Spearheads and Path to Glory sections.
 import os, re
 from bs4 import BeautifulSoup, NavigableString, Tag
 
+import schema
+
 
 EXPANSIONS = {
     "SoA_logo3.png": "Scourge of Aqshy", "GHYRAN_logo3.png": "Scourge of Ghyran",
@@ -50,10 +52,7 @@ def parse_ability(block):
     if icon is not None:
         category = ICON_CATEGORY.get(os.path.splitext(os.path.basename(icon.get("src", "")))[0], "")
     timing = text(header) if header else ""
-    frequency = ""
-    m = re.match(r"^(Once Per (?:Battle|Turn|Phase)(?: \((?:Army|Army, Each Player)\))?),?\s*(.*)$", timing)
-    if m:
-        frequency, timing = m.group(1), m.group(2)
+    frequency, timing = schema.split_frequency(timing)
     name_el = body.find("b")
     name = text(name_el).rstrip(":").strip() if name_el else ""
     # Split the body into labelled parts (Declare/Effect/Keywords/...) by walking children.

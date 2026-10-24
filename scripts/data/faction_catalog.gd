@@ -46,6 +46,7 @@ const _DATA_DIRS := {
 	"Blades of Khorne": "res://data/factions/blades_of_khorne",
 	"Cities of Sigmar": "res://data/factions/cities_of_sigmar",
 	"Daughters of Khaine": "res://data/factions/daughters_of_khaine",
+	"Disciples of Tzeentch": "res://data/factions/disciples_of_tzeentch",
 	"Helsmiths of Hashut": "res://data/factions/helsmiths_of_hashut",
 	"Idoneth Deepkin": "res://data/factions/idoneth_deepkin",
 	"Kharadron Overlords": "res://data/factions/kharadron_overlords",

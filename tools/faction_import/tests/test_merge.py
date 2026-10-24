@@ -321,6 +321,23 @@ def test_merged_army_has_no_roster():
     assert "roster" not in out
 
 
+def wh_army(**kw):
+    a = {"name": "The Shared Host", "text": "ROSTER OPTIONS ...", "battle_traits": [], "enhancement_tables": [], "lores": []}
+    a.update(kw)
+    return a
+
+
+@pytest.mark.parametrize("wh_list", [[], [wh_army()]], ids=["bsdata_only", "both_sources"])
+def test_merged_army_keeps_bsdata_legends(wh_list):
+    (out,) = merge.merge_armies(merge.Report(), [bs_army(legends=True)], wh_list)
+    assert out["legends"] is True
+
+
+def test_merged_army_without_bsdata_legends_has_none():
+    (out,) = merge.merge_armies(merge.Report(), [bs_army()], [wh_army()])
+    assert "legends" not in out
+
+
 # spearheads()
 
 def spearhead(army, warscroll_names, text="Fluff.\nThis Spearhead army consists of the following units:"):

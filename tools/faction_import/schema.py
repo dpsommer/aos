@@ -5,6 +5,15 @@ empty optional fields dropped and defaults filled in, so output diffs stay small
 """
 import re
 
+FREQUENCY = re.compile(r"^(Once Per (?:Battle Round|Battle|Turn|Phase)(?: \((?:Army|Army, Each Player)\))?),?\s*(.*)$", re.I)
+
+
+def split_frequency(timing):
+    """Splits "Once Per Turn (Army), Any Combat Phase" into its frequency and timing. Catalogues
+    sometimes write "Once per" or "(army)", so the frequency is title-cased."""
+    m = FREQUENCY.match(timing)
+    return (m.group(1).title(), m.group(2)) if m else ("", timing)
+
 
 def slug(name):
     return re.sub(r"[^a-z0-9]+", "_", name.lower().replace("’", "").replace("'", "")).strip("_")
@@ -83,6 +92,8 @@ def army_of_renown(a):
     out = {"name": a["name"]}
     if a.get("source"):
         out["source"] = a["source"]
+    if a.get("legends"):
+        out["legends"] = True
     out["text"] = a.get("text", "")
     out["battle_traits"] = [ability(x) for x in a["battle_traits"]]
     out["enhancement_tables"] = [table(t) for t in a["enhancement_tables"]]

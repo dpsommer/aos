@@ -91,13 +91,14 @@
 		},
 		{
 			"name": "Greywater Fastness",
+			"legends": true,
 			"text": "Roster options:\nFreeguild Marshal and Relic Envoy\nFusil-Major on Ogor Warhulk\nFreeguild Gallants\nFreeguild Steelhelms\nCannonade Cogfort\nConqueror Cogfort\nFreeguild Grenadiers\nGate Gargants\nDawner's Triumph\nSpirit of the Hands\nGreycap Fusiliers",
 			"battle_traits": [
 				{
 					"name": "Soldiers of the Fastness",
 					"category": "special",
-					"timing": "Round (Army), Start of Battle Round",
-					"frequency": "Once Per Battle",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round (Army)",
 					"declare": "Pick up to 3 friendly GREYWATER FASTNESS units to be the targets.",
 					"effect": "Until the start of the next battle round, the targets are under orders."
 				},
@@ -212,13 +213,14 @@
 		},
 		{
 			"name": "Lethis",
+			"legends": true,
 			"text": "Roster options:\nAssassin\nBlack Ark Fleetmaster\nCogsmith\nDreadlord on Black Dragon\nFreeguild Cavalier-Marshal\nFreeguild Marshal and Relic Envoy\nFreeguild Marshal on Griffon\nFusil-Major on Ogor Warhulk\nSteam Tank Commander\nBlack Ark Corsairs\nBlack Guard\nGyrobomber\nBleakswords\nFreeguild Steelhelms\nGyrocopter\nCelestial Hurricanum\nExecutioners\nDarkshards\nDark Riders\nFreeguild Command Corps Adjutants\nDreadspears\nDrakespawn Chariot\nDrakespawn Knights\nFlagellants\nFreeguild Cavaliers\nFreeguild Fusiliers\nHammerers\nIronbreakers\nScourgerunner Chariot\nLuminark of Hysh\nKharibdyss\nIrondrakes\nIronweld Great Cannon\nLongbeards\nSteam Tank\nWildercorps Hunters\nWar Hydra\nFreeguild Cavaliers (Scourge of Ghyran)\nAmethyst Knellmage\nCannonade Cogfort\nConqueror Cogfort\nFreeguild Command Corps Auxiliaries\nFreeguild Command Corps Whisperblade\nFreeguild Gallants\nFreeguild Grenadiers\nGate Gargants\nDawner's Triumph\nLethisian Consecrators\nRaven Priest of Morrda",
 			"battle_traits": [
 				{
 					"name": "Blackshore Discipline",
 					"category": "special",
-					"timing": "Round (Army), Start of Battle Round",
-					"frequency": "Once Per Battle",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round (Army)",
 					"declare": "Pick up to 3 friendly LETHIS units to be the targets.",
 					"effect": "Until the start of the next battle round, the targets are under orders."
 				},
@@ -365,6 +367,7 @@
 		{
 			"name": "The Duardin Ascendant",
 			"source": "White Dwarf",
+			"legends": true,
 			"text": "When you pick the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be include and must be your general}\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain",
 			"battle_traits": [
 				{

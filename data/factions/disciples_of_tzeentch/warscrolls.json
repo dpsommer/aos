@@ -1,0 +1,2700 @@
+{
+	"warscrolls": [
+		{
+			"id": "argent_shard",
+			"name": "Argent Shard",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "80mm",
+			"can_reinforce": false,
+			"move": 0,
+			"health": 6,
+			"save": 4,
+			"control": 0,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Magical Focus",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "The next time a friendly DISCIPLES OF TZEENTCH unit uses a SPELL ability this phase, when picking targets for that spell, you can measure range and visibility from this terrain feature instead of from the caster, and your opponent can measure range and visibility to this terrain feature instead of to the caster for the purposes of the 'Unbind' ability."
+				},
+				{
+					"name": "Sorcerous Duplication",
+					"category": "movement",
+					"timing": "Any Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick 1 of the following effects:\n• If there is only 1 friendly Argent Shard on the battlefield, set up another Argent Shard wholly within 12\" of this terrain feature, more than 1\" from all other terrain features, more than 3\" from all objectives and more than 9\" from all enemy units.\n• Remove this terrain feature from the battlefield and set it up again on the battlefield more than 1\" from all other terrain features, more than 3\" from all objectives and more than 9\" from all enemy units."
+				}
+			],
+			"keywords": [
+				"DISCIPLES OF TZEENTCH",
+				"CHAOS",
+				"FACTION TERRAIN",
+				"WARD (6+)"
+			],
+			"composition": "The following universal terrain abilities apply to this terrain feature (Terrain, 1.2): Cover, Impassable"
+		},
+		{
+			"id": "blue_horrors_and_brimstone_horrors",
+			"name": "Blue Horrors and Brimstone Horrors",
+			"points": 120,
+			"unit_size": 10,
+			"base_size": "25mm",
+			"can_reinforce": true,
+			"move": 6,
+			"health": 1,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Arcane Flames",
+					"range": 12,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Spiteful Talons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Split Again",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"effect": "Roll a dice for each Blue Horror model in this unit that is slain. For each 3+, if there are fewer Brimstone Horrors models in this unit than its starting size, you can add 1 Brimstone Horrors model to this unit.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "Dice are only rolled for Blue Horror models that are currently slain – models that have been slain and returned to this unit do not count until they are slain once more. When adding Brimstone Horrors to this unit, do not count slain Brimstone Horrors towards the maximum."
+						}
+					]
+				},
+				{
+					"name": "Immolation",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Slain Brimstone Horrors cannot be returned to this unit. When setting up a replacement unit for this unit, Brimstone Horror models are ignored when determining the number of models in this unit, and you cannot pick them to be set up."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON",
+				"WARD (6+)"
+			],
+			"composition": "This unit starts the battle with 10 Blue Horror models or, if it is a reinforced unit, 20 Blue Horror models. Brimstone Horrors models can be added to this unit using the ‘Split Again’ ability."
+		},
+		{
+			"id": "burning_chariot_of_tzeentch",
+			"name": "Burning Chariot of Tzeentch",
+			"points": 130,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": 12,
+			"health": 8,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Wyrdflame Blast",
+					"range": 16,
+					"attacks": "4",
+					"hit": 2,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)",
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Flaming Maws and Blue Horrors' Jabs",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				},
+				{
+					"name": "Screamers' Lamprey Bites",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fiery Death From Above",
+					"category": "special",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a D3. On a 1, gain 1 fate point. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• This unit can immediately use a RETREAT ability as if it were your movement phase. No mortal damage is inflicted on this unit by that RETREAT ability."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DAEMON",
+				"FLY",
+				"DISCIPLES OF TZEENTCH",
+				"WARD (6+)",
+				"WAR MACHINE"
+			]
+		},
+		{
+			"id": "burning_sigil_of_tzeentch",
+			"name": "Burning Sigil of Tzeentch",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"move": 0,
+			"health": 6,
+			"save": 4,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Radiant Transmogrification",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"declare": "This MANIFESTATION must use this ability in each hero phase. Pick each unit (friendly and enemy) within 9\" of this MANIFESTATION to be the targets.",
+					"effect": "Roll 2 dice, pick either result, then apply the corresponding effect for the rest of the turn:\n1 No effect.\n2-3 Heal (D3) each friendly DISCIPLES OF TZEENTCH target. Inflict D3 mortal damage on each enemy target.\n4 Friendly DISCIPLES OF TZEENTCH targets can use CHARGE abilities even if they used a RUN ability in the same turn. Enemy targets cannot use RUN abilities.\n5 Add 1 to hit rolls for attacks made by friendly DISCIPLES OF TZEENTCH targets. Subtract 1 from hit rolls for attacks made by enemy targets.\n6 Add 1 to wound rolls for attacks made by friendly DISCIPLES OF TZEENTCH targets. Subtract 1 from wound rolls for attacks made by enemy targets."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"ENDLESS SPELL",
+				"DISCIPLES OF TZEENTCH",
+				"CHAOS"
+			]
+		},
+		{
+			"id": "changecaster_herald_of_tzeentch",
+			"name": "Changecaster, Herald of Tzeentch",
+			"points": 130,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any DAEMON"
+			],
+			"notes": "This HERO can join an eligible regiment as a Tzeentchian Deceiver.",
+			"move": 5,
+			"health": 5,
+			"save": 6,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Staff of Change and Ritual Dagger",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Locus of Command",
+					"category": "rallying",
+					"timing": "Passive",
+					"effect": "Each time a friendly DISCIPLES OF TZEENTCH DAEMON unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
+				},
+				{
+					"name": "Weapon Curse",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly DISCIPLES OF TZEENTCH DAEMON unit wholly within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. Add 1 to the roll if the target was set up this turn. On a 3+, until the start of your next turn, other than the Companion weapon ability, weapon abilities for attacks that target that unit have no effect."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DAEMON",
+				"DISCIPLES OF TZEENTCH",
+				"WARD (6+)",
+				"WIZARD (1)",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "chaos_spawn_of_tzeentch",
+			"name": "Chaos Spawn of Tzeentch",
+			"points": 60,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"move": 2,
+			"health": 5,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Freakish Mutations",
+					"range": 0,
+					"attacks": "2D6",
+					"hit": 5,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "A Twisted Fate",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "This unit must be deployed using this ability.",
+					"effect": "Set up this unit in reserve masked by illusion. It has now been deployed.",
+					"keywords": [
+						"DEPLOY"
+					]
+				},
+				{
+					"name": "Waves of Mutation",
+					"category": "rallying",
+					"timing": "Passive",
+					"effect": "Each time this unit or the replacement of this unit is destroyed, set up a replacement unit in reserve masked by illusion. Each friendly Chaos Spawn of Tzeentch unit can be replaced any number of times."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"BEAST"
+			]
+		},
+		{
+			"id": "curseling_eye_of_tzeentch",
+			"name": "Curseling, Eye of Tzeentch",
+			"points": 170,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Chaos Spawn of Tzeentch",
+				"Any ARCANITE"
+			],
+			"notes": "This HERO can join an eligible regiment as an Arcanite Cabalist.",
+			"move": 5,
+			"health": 6,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Hurled Arcane Energy",
+					"range": 18,
+					"attacks": "D6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Staff of Tzeentch and Blazing Sword",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 4,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Armour-bane Curse",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target then make a casting roll of 2D6.",
+					"effect": "Subtract 1 from save rolls for combat attacks that target that unit until the start of your next turn.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "With Spell and Sword",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit is in combat, it can use a non-SUMMON SPELL ability as if it were your hero phase, as if that ability had the UNLIMITED keyword and as if this unit had not cast any spells this turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (2)",
+				"INFANTRY",
+				"ARCANITE"
+			]
+		},
+		{
+			"id": "daemonic_simulacrum",
+			"name": "Daemonic Simulacrum",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "105 × 70mm",
+			"can_reinforce": false,
+			"move": 9,
+			"health": 8,
+			"save": 5,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Snapping Jaws",
+					"range": 0,
+					"attacks": "2D6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-WIZARD (+1 Rend)",
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Jaws of Fate",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 2 to the Attacks characteristic of this unit's Snapping Jaws for each fate point you have."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"ENDLESS SPELL",
+				"FLY",
+				"DISCIPLES OF TZEENTCH",
+				"CHAOS"
+			]
+		},
+		{
+			"id": "ephilims_pandaemonium",
+			"name": "Ephilim's Pandaemonium",
+			"legends": true,
+			"points": 100,
+			"unit_size": 5,
+			"base_size": "Ephilim the Unknowable, Flamespooler and Spawnmaw: 32mm, Kindlefinger and Apo'trax, the Starefysh: 25mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": 6,
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Warping Wyrdfire",
+					"range": 12,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Anti-UNIQUE (+1 Rend)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Daemonic Talons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Power Leech",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn",
+					"effect": "Roll a D3. Allocate a number of damage points to this unit equal to the roll (ward rolls cannot be made for those damage points). Then, add 2 to the Attacks characteristic of this unit's ranged weapons for the rest of the turn."
+				},
+				{
+					"name": "Keeper of the Pandaemonium",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"effect": "You can return D3 slain models to this unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"UNIQUE",
+				"CHAMPION",
+				"WIZARD (1)",
+				"WARD (6+)",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON",
+				"CHAOS"
+			],
+			"composition": "Each model in this unit is armed with Warping Wyrdfire and Daemonic Talons. The models in this unit are: Ephilim the Unknowable (champion) Spawnmaw Flamespooler Kindlefinger Apo’trax, the Starefysh"
+		},
+		{
+			"id": "exalted_flamer_of_tzeentch",
+			"name": "Exalted Flamer of Tzeentch",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "75 × 42mm",
+			"can_reinforce": false,
+			"move": 9,
+			"health": 5,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Wyrdflame Blast",
+					"range": 16,
+					"attacks": "4",
+					"hit": 2,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)",
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Flaming Maws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Unnatural Heat",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that was targeted by this unit's shooting attacks this phase to be the target.",
+					"effect": "Roll a dice. Add the number of damage points allocated to the target this phase by this unit's shooting attacks to the roll. On a 5+,subtract 1 from save rolls for the target for the rest of the turn."
+				},
+				{
+					"name": "Heart of the Inferno",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick up to 2 visible Flamers of Tzeentch units wholly within 12\" of this unit to be the targets.",
+					"effect": "Add 1 to wound rolls for the targets' shooting attacks for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DAEMON",
+				"FLY",
+				"DISCIPLES OF TZEENTCH",
+				"WARD (6+)",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "eyes_of_the_nine",
+			"name": "Eyes of the Nine",
+			"legends": true,
+			"points": 100,
+			"unit_size": 5,
+			"base_size": "Vortemis the All-seeing, K'charik, Narvia and Turosh: 32mm, Horrors: 25mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": 5,
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Mighty Sorcerous Bolt",
+					"range": 18,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Arcanite Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Brimstone Horror",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit's Brimstone Horror is a token. When this unit's Blue Horror is slain, place this unit's Brimstone Horror on the battlefield. Add 1 to the Damage characteristic of this unit's Mighty Sorcerous Bolt while its Brimstone Horror is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove this unit's Brimstone Horror from the battlefield."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"UNIQUE",
+				"CHAMPION",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"CHAOS"
+			],
+			"composition": "Each model in this unit is armed with a Mighty Sorcerous Bolt and Arcanite Weapons. The models in this unit are: Vortemis the All-seeing (champion) K’charik Narvia Turosh Blue Horror"
+		},
+		{
+			"id": "fatemaster",
+			"name": "Fatemaster",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Chaos Spawn of Tzeentch",
+				"Any ARCANITE"
+			],
+			"notes": "This HERO can join an eligible regiment as an Arcanite Cabalist.",
+			"move": 5,
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Cursewrought Glaive",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 4,
+					"rend": 2,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Bound Retinue",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "This unit can only use this ability if it is masked by illusion. Pick up to 1 other friendly unit that is masked by illusion to be the target.",
+					"effect": "Set up this unit on the battlefield more than 9\" from all enemy units. Then, set up the target wholly within 6\" of this unit and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Long in the Planning",
+					"category": "movement",
+					"timing": "Enemy Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Spend 2 fate points. Then, pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
+					"effect": "For the rest of the turn, the first time an enemy unit ends a charge move within 3\" of the target, you can remove the target from the battlefield and set it up in reserve masked by illusion."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"INFANTRY",
+				"WIZARD (1)"
+			]
+		},
+		{
+			"id": "fatemaster_on_disc_of_tzeentch",
+			"name": "Fatemaster on Disc of Tzeentch",
+			"legends": true,
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "60mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Chaos Spawn of Tzeentch",
+				"0-1 Arcanite Cabalist",
+				"Any ARCANITE"
+			],
+			"move": 14,
+			"health": 5,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fireglaive of Tzeentch",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Soulbound Shield",
+					"category": "defensive",
+					"timing": "Reaction: Opponent declared a SPELL ability",
+					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per SPELL ability."
+				},
+				{
+					"name": "Lord of Fate",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to wound rolls for attacks made by friendly ARCANITE units while they are wholly within 12\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"CAVALRY",
+				"FLY",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"DISC OF TZEENTCH"
+			]
+		},
+		{
+			"id": "fateskimmer_herald_of_tzeentch_on_burning_chariot",
+			"name": "Fateskimmer, Herald of Tzeentch on Burning Chariot",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Tzeentchian Deceiver",
+				"Any DAEMON"
+			],
+			"move": 12,
+			"health": 10,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Staff of Change and Ritual Dagger",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				},
+				{
+					"name": "Screamers' Lamprey Bites",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fuel for the Flames",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit to be the target.",
+					"effect": "If the target is destroyed this turn, before removing it from play, gain 1 fate point."
+				},
+				{
+					"name": "Spread the Inferno",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Companion weapons used by friendly DISCIPLES OF TZEENTCH units have Crit (2 Hits) while they are wholly within 12\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DAEMON",
+				"FLY",
+				"DISCIPLES OF TZEENTCH",
+				"WARD (6+)",
+				"WAR MACHINE",
+				"WIZARD (1)"
+			]
+		},
+		{
+			"id": "flamers_of_tzeentch",
+			"name": "Flamers of Tzeentch",
+			"points": 130,
+			"unit_size": 3,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": 9,
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Warping Flames",
+					"range": 12,
+					"attacks": "3",
+					"hit": 2,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)",
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Flaming Maws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Capricious Wyrdflame",
+					"category": "special",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
+					"effect": "The target has the BURNING keyword for the rest of the battle"
+				},
+				{
+					"name": "Lingering Burns",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "This unit can use this ability even if it has been destroyed or is in reserve. Pick any number of BURNING enemy units to be the targets.",
+					"effect": "Roll a D3 for each target. On a 1, the target no longer has the BURNING keyword. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON",
+				"WARD (6+)",
+				"FLY",
+				"CHAMPION"
+			]
+		},
+		{
+			"id": "fluxmaster_herald_of_tzeentch_on_disc",
+			"name": "Fluxmaster, Herald of Tzeentch on Disc",
+			"legends": true,
+			"points": 180,
+			"unit_size": 1,
+			"base_size": "60mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any DAEMON"
+			],
+			"move": 14,
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Iridescent Flames",
+					"range": 12,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Staff of Change and Ritual Dagger",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Arcane Tome",
+					"category": "special",
+					"timing": "Reaction: You declared a SPELL ability for this unit",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Re-roll 1 of the dice in the casting roll."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"WIZARD (1)",
+				"CAVALRY",
+				"DISC OF TZEENTCH",
+				"FLY",
+				"WARD (6+)",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON"
+			]
+		},
+		{
+			"id": "gaunt_summoner",
+			"name": "Gaunt Summoner",
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Tzeentchian Deceiver",
+				"Any DISCIPLES OF TZEENTCH"
+			],
+			"move": 5,
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 5,
+			"ranged_weapons": [
+				{
+					"name": "Changestaff",
+					"range": 12,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Warptongue Blade",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Leaden Limbs",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+					"effect": "Until the start of your next turn:\n• Halve the target's Move characteristic.\n• The effects of the 'Fly' ability do not apply to the target.",
+					"casting_value": 7
+				},
+				{
+					"name": "Masters of the Silver Towers",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Enemy units cannot end a charge move within 1/2\" of a friendly Argent Shard that is wholly within 12\" of this unit and was set up on the battlefield in the same turn."
+				},
+				{
+					"name": "All Belongs to Tzeentch",
+					"category": "control",
+					"timing": "Start of Any Turn",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick an objective you do not control and that you controlled earlier in the battle to be the target.",
+					"effect": "You control the target objective."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DAEMON",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (2)",
+				"INFANTRY",
+				"WARD (5+)"
+			]
+		},
+		{
+			"id": "gaunt_summoner_on_disc_of_tzeentch",
+			"name": "Gaunt Summoner on Disc of Tzeentch",
+			"points": 190,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Tzeentchian Deceiver",
+				"Any DISCIPLES OF TZEENTCH"
+			],
+			"move": 14,
+			"health": 7,
+			"save": 5,
+			"control": 2,
+			"ward": 5,
+			"ranged_weapons": [
+				{
+					"name": "Changestaff",
+					"range": 12,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Warptongue Blade",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Masters of the Silver Towers",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Enemy units cannot end a charge move within 1/2\" of a friendly Argent Shard that is wholly within 12\" of this unit and was set up on the battlefield in the same turn."
+				},
+				{
+					"name": "Arcane Imprisonment",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick an enemy HERO in combat with this unit to be the target, then make a casting roll of 2D6.",
+					"effect": "If the unmodified casting roll exceeds the target's Health characteristic, it is automatically destroyed and cannot be replaced for the rest of the battle.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "All Belongs to Tzeentch",
+					"category": "control",
+					"timing": "Start of Any Turn",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick an objective you do not control and that you controlled earlier in the battle to be the target.",
+					"effect": "You control the target objective."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DAEMON",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (2)",
+				"CAVALRY",
+				"FLY",
+				"WARD (5+)"
+			]
+		},
+		{
+			"id": "jade_obelisk",
+			"name": "Jade Obelisk",
+			"points": 100,
+			"unit_size": 9,
+			"base_size": "5 x Desecrators, Nephrite Priestess, Obelisk Bearer: 32mm, 5 x Idolarc, Defacers: 28.5mm",
+			"can_reinforce": true,
+			"move": 5,
+			"health": 1,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Mason's Tools",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-FACTION TERRAIN (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Silver Monoliths",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit while it is wholly within 12\" of a friendly Argent Shard."
+				},
+				{
+					"name": "Idolarc",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit's Idolarc is a token. After setting up this unit on the battlefield for the first time, place its Idolarc next to it."
+				},
+				{
+					"name": "Chosen by the Stone",
+					"category": "movement",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit has any models carrying an Antithete Bow, pick a visible enemy unit within 18\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, place the Idolarcs of all other friendly Jade Obelisk units next to their respective units. Then, place this unit's Idolarc next to the target.\nWhile a friendly Idolarc is next to an enemy unit, subtract 1\" from that enemy unit's Move characteristic for each fate point you have. This ability cannot reduce an enemy unit's Move characteristic below half its unmodified value."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"CHAMPION (1/9)"
+			],
+			"composition": "Each model in this unit is armed with Passive Mason’s Tools. 4/9 models can carry an Antithete Bow. The champion cannot carry an Antithete Bow."
+		},
+		{
+			"id": "kairic_acolytes",
+			"name": "Kairic Acolytes",
+			"points": 90,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": 5,
+			"health": 1,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Kairic Blades",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Driven by Destiny",
+					"category": "movement",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit is more than 6\" from all enemy units, it can move X\", where X is the number of fate points you have. It cannot move into combat during any part of that move.",
+					"keywords": [
+						"MOVE"
+					]
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_kairic_acolytes",
+			"name": "Kairic Acolytes",
+			"source": "Scourge of Ghyran",
+			"points": 110,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": 5,
+			"health": 1,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Cursed Blades and Glaives",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Empowered by Magic",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit is wholly within 12\" of any MANIFESTATIONS (friendly or enemy)."
+				},
+				{
+					"name": "Vulcharc",
+					"category": "special",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
+					"effect": "For the rest of the turn, add 1 to the Rend characteristic of melee weapons used by friendly Kairic Acolytes units for attacks that target that enemy unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE"
+			]
+		},
+		{
+			"id": "kairos_fateweaver",
+			"name": "Kairos Fateweaver",
+			"points": 400,
+			"unit_size": 1,
+			"base_size": "100mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Tzeentchian Deceiver",
+				"Any DISCIPLES OF TZEENTCH",
+				"0-1 Arcanite Cabalist"
+			],
+			"move": 12,
+			"health": 16,
+			"save": 5,
+			"control": 5,
+			"ward": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Staff of Tomorrow",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D3"
+				},
+				{
+					"name": "Curved Beaks",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, subtract 1 from its power level."
+				},
+				{
+					"name": "Master of Destiny",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "If this unit has not already engineered the outcome this battle round, instead of making a casting roll, unbinding roll, banishment roll, hit roll, wound roll or save roll for a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit, this unit can engineer the outcome.\nIf the roll would have been a D6 roll, you can use a value of 6 for it that cannot be modified. If the roll would have been a 2D6 roll, you can use a value of 9 for it that cannot be modified."
+				},
+				{
+					"name": "Mastery of Magic",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "When you make a casting roll for this unit, you can change the lowest D6 to match the highest D6."
+				},
+				{
+					"name": "Fateful Reverse",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+					"effect": "Until the start of your next turn:\n• If the target charged in the same turn, friendly DISCIPLES OF TZEENTCH units in combat with the target have STRIKE-FIRST.\n• The target's weapons cannot be affected by the Charge (+1 Damage) weapon ability.",
+					"casting_value": 8,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "Beacon of Sorcery",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to casting rolls and unbinding rolls for friendly DISCIPLES OF TZEENTCH WIZARDS while they are wholly within 12\" of this unit.\nIn addition, if a friendly DISCIPLES OF TZEENTCH WIZARD wholly within 12\" of this unit unbinds a spell, no command points are spent for that WIZARD to use the 'Magical Intervention' command in that phase."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"UNIQUE",
+				"WARMASTER",
+				"CHAOS",
+				"DAEMON",
+				"MONSTER",
+				"WARD (5+)",
+				"WIZARD (3)",
+				"FLY",
+				"DISCIPLES OF TZEENTCH"
+			]
+		},
+		{
+			"id": "lord_of_change",
+			"name": "Lord of Change",
+			"points": 380,
+			"unit_size": 1,
+			"base_size": "100mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Tzeentchian Deceiver",
+				"Any DISCIPLES OF TZEENTCH",
+				"0-1 Arcanite Cabalist"
+			],
+			"move": 12,
+			"health": 14,
+			"save": 5,
+			"control": 5,
+			"ward": 5,
+			"ranged_weapons": [
+				{
+					"name": "Storm of Wyrdfire",
+					"range": 18,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Eldritch Weapons",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, subtract 1 from its power level."
+				},
+				{
+					"name": "Summon Daemons of Tzeentch",
+					"category": "rallying",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly non-HERO DISCIPLES OF TZEENTCH DAEMON unit that has been destroyed to be the target.",
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Temporal Manipulation",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick another visible friendly DISCIPLES OF TZEENTCH unit that was not set up this turn and that is wholly within 18\" of this unit to be the target. Then, make a casting roll of 2D6.",
+					"effect": "The target can use the 'Normal Move' ability as if it were your movement phase, but it must end that move closer to this unit.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL",
+						"WYRDFLAME"
+					]
+				},
+				{
+					"name": "Locus of Impossibility",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to casting rolls for this unit. In addition, subtract 1 from hit rolls for attacks that target friendly DISCIPLES OF TZEENTCH DAEMON units while they are wholly within 12\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DAEMON",
+				"MONSTER",
+				"WARD (5+)",
+				"FLY",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (3)"
+			]
+		},
+		{
+			"id": "magister",
+			"name": "Magister",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any ARCANITE"
+			],
+			"notes": "This HERO can join an eligible regiment as an Arcanite Cabalist.",
+			"move": 5,
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Tzeentchian Runestaff",
+					"range": 18,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Warpsteel Sword",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Imbued with Arcane Fire",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
+					"effect": "The target's melee weapons have Crit (Mortal) until the start of your next turn."
+				},
+				{
+					"name": "Spellmaster",
+					"category": "special",
+					"timing": "Reaction: You declared a SPELL ability for a WIZARD within 30\" of this unit and the casting roll equalled or exceeded the spell's casting value and that spell has not been unbound",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll for the spell, the spell is unbound and its effect is not resolved.\nIf the spell is unbound, add 1 to casting rolls for this unit for the rest of the phase.",
+					"keywords": [
+						"UNBIND"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (1)",
+				"ARCANITE",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "magister_on_disc_of_tzeentch",
+			"name": "Magister on Disc of Tzeentch",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any ARCANITE",
+				"0-1 Arcanite Cabalist"
+			],
+			"move": 14,
+			"health": 7,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Tzeentchian Runestaff",
+					"range": 18,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Warpsteel Sword",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "2"
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fates Converge",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While you have 6 or more fate points, add 1 to the Attacks characteristic of melee weapons used by friendly ARCANITE units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Spellmaster",
+					"category": "special",
+					"timing": "Reaction: You declared a SPELL ability for a WIZARD within 30\" of this unit and the casting roll equalled or exceeded the spell's casting value and that spell has not been unbound",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll for the spell, the spell is unbound and its effect is not resolved.\nIf the spell is unbound, add 1 to casting rolls for this unit for the rest of the phase.",
+					"keywords": [
+						"UNBIND"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"CAVALRY",
+				"FLY",
+				"WIZARD (1)",
+				"ARCANITE"
+			]
+		},
+		{
+			"id": "ogroid_thaumaturge",
+			"name": "Ogroid Thaumaturge",
+			"points": 120,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any ARCANITE"
+			],
+			"notes": "This HERO can join an eligible regiment as an Arcanite Cabalist.",
+			"move": 6,
+			"health": 8,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Thaumaturge Staff",
+					"range": 12,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Great Horns and Cloven Hooves",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Arcane Absorption",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"effect": "If any damage points were allocated to an enemy WIZARD or PRIEST by this unit's attacks this turn and that enemy unit has been destroyed:\n• Heal (7) this unit.\n• Add 1 to this unit's power level for the rest of the battle.\nThis unit can be affected by this ability multiple times and the effects are cumulative."
+				},
+				{
+					"name": "Thaumaturgic Hunger",
+					"category": "movement",
+					"timing": "Reaction: Opponent declared a SPELL ability for a unit within 30\" of this unit.",
+					"effect": "This unit can move 6\". It can move into combat and must end that move closer to the caster. If this unit was in combat at the start of the move, it must end that move in combat.",
+					"keywords": [
+						"MOVE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (1)",
+				"ARCANITE",
+				"INFANTRY",
+				"WARD (6+)"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_ogroid_thaumaturge",
+			"name": "Ogroid Thaumaturge",
+			"source": "Scourge of Aqshy",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any ARCANITE"
+			],
+			"notes": "This HERO can join an eligible regiment as an Arcanite Cabalist. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": 6,
+			"health": 8,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Thaumaturge Staff",
+					"range": 12,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Great Horns and Cloven Hooves",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Soul-Deep Devotion",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit is within a friendly non-HERO ARCANITE unit's combat range:\n• This unit has Ward (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO ARCANITE unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
+				},
+				{
+					"name": "Wrath of the Thaumaturge",
+					"category": "movement",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is not in combat, pick a friendly ARCANITE unit in combat to be the target.",
+					"effect": "Remove this unit from the battlefield and set it up again within 1\" of the target and in combat. This unit has charged.",
+					"keywords": [
+						"CORE",
+						"CHARGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (1)",
+				"ARCANITE",
+				"INFANTRY",
+				"WARD (6+)"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_ogroid_thaumaturge",
+			"name": "Ogroid Thaumaturge",
+			"source": "Scourge of Ghyran",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any ARCANITE"
+			],
+			"notes": "This HERO can join an eligible regiment as an Arcanite Cabalist. This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": 6,
+			"health": 8,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Thaumaturge Staff",
+					"range": 12,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Great Horns and Cloven Hooves",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Wrath of the Thaumaturge",
+					"category": "movement",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is not in combat, pick a friendly ARCANITE unit in combat to be the target.",
+					"effect": "Remove this unit from the battlefield and set it up again within 1\" of the target and in combat. This unit has charged.",
+					"keywords": [
+						"CORE",
+						"CHARGE"
+					]
+				},
+				{
+					"name": "Soul-Deep Devotion",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit is within a friendly non-HERO ARCANITE unit's combat range:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO ARCANITE unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"WIZARD (1)",
+				"ARCANITE",
+				"INFANTRY",
+				"WARD (6+)"
+			]
+		},
+		{
+			"id": "pink_horrors",
+			"name": "Pink Horrors",
+			"points": 170,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": 6,
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Arcane Flames",
+					"range": 12,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Taloned Hands",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Lunatic Demise",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Each time a model in this unit is slain, before removing the model from play, pick 1 of the following effects:",
+					"options": [
+						{
+							"name": "Split",
+							"text": "Pick a friendly Blue Horrors and Brimstone Horrors unit within 12\" of this unit. Return up to 2 slain Blue Horror models to that unit."
+						},
+						{
+							"name": "Petty Vengeance",
+							"text": "Pick an enemy unit in combat with this unit to be the target, then roll a dice. On a 5+, inflict 1 mortal damage on the target."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON",
+				"WARD (6+)"
+			]
+		},
+		{
+			"id": "pyrofane_fusiliers",
+			"name": "Pyrofane Fusiliers",
+			"source": "White Dwarf",
+			"legends": true,
+			"points": 120,
+			"unit_size": 10,
+			"base_size": "28.5mm",
+			"can_reinforce": true,
+			"move": 5,
+			"health": 1,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Fusil-cannon: Fortified Position",
+					"range": 18,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Wyrdflame"
+					]
+				},
+				{
+					"name": "Fusil-cannon: Mobile",
+					"range": 12,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat",
+						"Wyrdflame"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Bayonet",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fusiliers, Fire!",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a SHOOT ability, if it is in a fortified position, it can pick either of the ranged weapon profiles for all the attacks it makes with its Fusil-cannons. If it is not in a fortified position, use the Mobile weapon characteristics."
+				},
+				{
+					"name": "Blackpowder Squire",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "This unit has a Blackpowder Squire token. Each time this unit uses a SHOOT ability, if this unit's Blackpowder Squire is on the battlefield, you can re-roll 1 hit roll. If a hit roll re-rolled in this manner is 1, remove this unit's Blackpowder Squire from the battlefield."
+				},
+				{
+					"name": "Fortify Position",
+					"category": "defensive",
+					"timing": "Your Movement Phase",
+					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
+					"keywords": [
+						"CORE"
+					]
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"PYROFANE",
+				"CHAOS",
+				"HUMAN"
+			]
+		},
+		{
+			"id": "pyrofane_fusil_major_on_ogor_warhulk",
+			"name": "Pyrofane Fusil-Major on Ogor Warhulk",
+			"source": "White Dwarf",
+			"legends": true,
+			"points": 180,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Pyrozealot",
+				"Any PYROFANE"
+			],
+			"notes": "This HERO can join an eligible regiment as a Pyrozealot.",
+			"move": 5,
+			"health": 8,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Long Fusil",
+					"range": 24,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Crit (Auto-wound)",
+						"Wyrdflame"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Warhulk's Mace",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Light Up Targets",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick an enemy unit that was targeted by this unit's shooting attacks this turn to be the target.",
+					"effect": "Add 1 to hit rolls for attacks made by friendly PYROFANE units that target that unit for the rest of the turn."
+				},
+				{
+					"name": "Fortify Position",
+					"category": "defensive",
+					"timing": "Your Movement Phase",
+					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
+					"keywords": [
+						"CORE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"INFANTRY",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"PYROFANE",
+				"HUMAN"
+			]
+		},
+		{
+			"id": "pyrofane_great_cannon",
+			"name": "Pyrofane Great Cannon",
+			"source": "White Dwarf",
+			"legends": true,
+			"points": 130,
+			"unit_size": 1,
+			"base_size": "90mm",
+			"can_reinforce": false,
+			"move": 3,
+			"health": 8,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Great Cannon: Cannonball",
+					"range": 24,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3+2",
+					"abilities": [
+						"Wyrdflame"
+					]
+				},
+				{
+					"name": "Great Cannon: Grapeshot",
+					"range": 12,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Wyrdflame"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Crew's Tools and Sidearms",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Shot and Shell",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a SHOOT ability, if it is in a fortified position, pick either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. If it is not in a fortified position, use the Grapeshot weapon characteristics."
+				},
+				{
+					"name": "Fortify Position",
+					"category": "defensive",
+					"timing": "Your Movement Phase",
+					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
+					"keywords": [
+						"CORE"
+					]
+				}
+			],
+			"keywords": [
+				"WAR MACHINE",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"PYROFANE",
+				"HUMAN"
+			]
+		},
+		{
+			"id": "pyrofane_steelhelms",
+			"name": "Pyrofane Steelhelms",
+			"source": "White Dwarf",
+			"legends": true,
+			"points": 100,
+			"unit_size": 10,
+			"base_size": "25mm",
+			"can_reinforce": true,
+			"move": 5,
+			"health": 1,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Bayonet",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Pyromaniacs",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "This unit has WARD (5+) while it is wholly within 6\" of a WYRDPYRE."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"MUSICIAN (1/10)",
+				"STANDARD BEARER (1/10)",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"CHAOS",
+				"PYROFANE"
+			],
+			"composition": "This unit's musician and standard bearer are the same model."
+		},
+		{
+			"id": "screamers_of_tzeentch",
+			"name": "Screamers of Tzeentch",
+			"points": 80,
+			"unit_size": 3,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": 14,
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Lamprey Bite",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Drawn to Magic",
+					"category": "special",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is not in combat, pick an enemy MANIFESTATION to be the target. Then, make a charge roll of 3D6.",
+					"effect": "This unit can move a distance up to the value of the charge roll. It can move through the combat ranges of enemy units and must end that move within 1/2\" of the target. If it does so, this unit has charged.\nThen, if this unit charged this turn, inflict D3 mortal damage on each enemy MANIFESTATION in combat with this unit.",
+					"keywords": [
+						"CORE",
+						"MOVE",
+						"CHARGE"
+					]
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON",
+				"WARD (6+)",
+				"BEAST",
+				"FLY"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_screamers_of_tzeentch",
+			"name": "Screamers of Tzeentch",
+			"source": "Scourge of Aqshy",
+			"points": 120,
+			"unit_size": 3,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": 14,
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Lamprey Bite",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Imperilling Slashes",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
+					"effect": "Subtract 1 from save rolls for the target for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON",
+				"WARD (6+)",
+				"BEAST",
+				"FLY"
+			]
+		},
+		{
+			"id": "the_blue_scribes",
+			"name": "The Blue Scribes",
+			"legends": true,
+			"points": 180,
+			"unit_size": 1,
+			"base_size": "60mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any DAEMON",
+				"0-1 Tzeentchian Deceiver"
+			],
+			"move": 14,
+			"health": 5,
+			"save": 4,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Sharpened Quills",
+					"range": 0,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Treacherous Bond",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly unit within this unit's combat range to be the target, then make a casting roll of 2D6.",
+					"effect": "Until the start of your next turn:\n• This unit has WARD (4+).\n• Each time you make an unmodified ward roll of 1-3 for this unit, allocate 1 damage point to the target.",
+					"casting_value": 5,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "Scrolls of Sorcery",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"effect": "The next time this unit uses a non-SUMMON SPELL ability this phase, do not make a casting roll as part of that ability. Instead, roll a dice. On a 2+, the spell is successfully cast and cannot be unbound."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"UNIQUE",
+				"CHAOS",
+				"CAVALRY",
+				"DISC OF TZEENTCH",
+				"FLY",
+				"DISCIPLES OF TZEENTCH",
+				"DAEMON",
+				"WIZARD (1)",
+				"WARD (6+)"
+			]
+		},
+		{
+			"id": "the_changeling",
+			"name": "The Changeling",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any DAEMON"
+			],
+			"notes": "This HERO can join an eligible regiment as a Tzeentchian Deceiver.",
+			"move": 5,
+			"health": 6,
+			"save": 5,
+			"control": 2,
+			"ward": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "The Trickster's Staff",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Arch-Deceiver",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "This unit can only use this ability if it is masked by illusion. Pick a model in a friendly DISCIPLES OF TZEENTCH unit to be the target.",
+					"effect": "This unit can immediately use a SPELL ability. When it does so, measure the range and visibility of that SPELL ability from the target. The target is treated as the caster for the purposes of other abilities such as 'Unbind'."
+				},
+				{
+					"name": "Puckish Misdirection",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "While they are wholly within 12\" of this unit, friendly DISCIPLES OF TZEENTCH units can use the 'Redeploy' command even if they were set up in the same turn."
+				},
+				{
+					"name": "Whispers of Treachery",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+					"effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DAEMON",
+				"DISCIPLES OF TZEENTCH",
+				"INFANTRY",
+				"UNIQUE",
+				"WIZARD (2)",
+				"WARD (5+)"
+			]
+		},
+		{
+			"id": "tome_of_eyes",
+			"name": "Tome of Eyes",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "60mm",
+			"can_reinforce": false,
+			"move": 4,
+			"health": 5,
+			"save": 6,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Incinerating Gaze",
+					"range": 0,
+					"attacks": "2D6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Compendium of Dark Knowledge",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly DISCIPLES OF TZEENTCH WIZARD within 3\" of this MANIFESTATION to be the target.",
+					"effect": "The target can immediately use a SPELL ability from the Lore of Change or the Lore of Fate.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "That spell does not count towards the number of SPELL or BANISH abilities the target can use this phase."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"ENDLESS SPELL",
+				"DISCIPLES OF TZEENTCH",
+				"CHAOS"
+			]
+		},
+		{
+			"id": "tzaangor_enlightened",
+			"name": "Tzaangor Enlightened",
+			"points": 200,
+			"unit_size": 3,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"notes": "Previously Tzaangor Enlightened on Discs of Tzeentch.",
+			"move": 14,
+			"health": 4,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Tzeentchian Spear and Vicious Beak",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "All Too Predictable",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"effect": "If this unit charged this turn, pick 1 of the following effects to apply for the rest of the turn:\n• This unit's Tzeentchian Spear and Vicious Beak has Crit (2 Hits)\n• Add 1 to the Rend characteristic of this unit's Tzeentchian Spear and Vicious Beak."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"FLY",
+				"CAVALRY",
+				"CHAMPION",
+				"ARCANITE",
+				"WARFLOCK"
+			]
+		},
+		{
+			"id": "tzaangor_enlightened_on_foot",
+			"name": "Tzaangor Enlightened on Foot",
+			"points": 110,
+			"unit_size": 3,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"notes": "Previously Tzaangor Enlightened. This unit will move to Warhammer Legends on 1 June 2027",
+			"move": 6,
+			"health": 3,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Tzeentchian Spear and Vicious Beak",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Vicious Protectors",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "While there is a visible friendly ARCANITE HERO within this unit's combat range:\n• Subtract 1 from hit rolls for combat attacks that target that friendly ARCANITE HERO.\n• Add 1 to hit rolls for this unit's combat attacks."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"CHAMPION",
+				"ARCANITE",
+				"WARFLOCK",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "tzaangors",
+			"name": "Tzaangors",
+			"points": 170,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": 6,
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Savage Blade and Vicious Beak",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Eldritch Raiders",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to wound rolls for this unit's attacks while it is wholly within enemy territory."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"ARCANITE",
+				"WARFLOCK"
+			]
+		},
+		{
+			"id": "tzaangor_shaman",
+			"name": "Tzaangor Shaman",
+			"points": 130,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Arcanite Cabalist",
+				"Any ARCANITE"
+			],
+			"notes": "This HERO can join an eligible regiment as an Arcanite Cabalist.",
+			"move": 14,
+			"health": 6,
+			"save": 5,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Staff of Change and Ritual Dagger",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Avian Swiftness",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, until the start of your next turn, the target can use CHARGE abilities even if it used a RUN ability in the same turn."
+				},
+				{
+					"name": "Wit of Beasts",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible enemy MONSTER or CAVALRY unit within 6\" of this unit to be the target.",
+					"effect": "The target's melee weapons have the Companion weapon ability for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"CAVALRY",
+				"FLY",
+				"WIZARD (1)",
+				"ARCANITE",
+				"WARFLOCK"
+			]
+		},
+		{
+			"id": "tzaangor_skyfires",
+			"name": "Tzaangor Skyfires",
+			"points": 160,
+			"unit_size": 3,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"move": 14,
+			"health": 4,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Arrow of Fate",
+					"range": 18,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Bow Stave and Vicious Beak",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				},
+				{
+					"name": "Disc's Teeth and Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Guided by the Future",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's shooting attacks."
+				},
+				{
+					"name": "Destined Quarry",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick an enemy unit that had any damage points allocated to it by this unit's attacks this phase to be the target.",
+					"effect": "Add 1 to hit rolls for combat attacks made by friendly WARFLOCK units that target that enemy unit for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"DISCIPLES OF TZEENTCH",
+				"FLY",
+				"CAVALRY",
+				"CHAMPION",
+				"ARCANITE",
+				"WARFLOCK"
+			]
+		}
+	]
+}

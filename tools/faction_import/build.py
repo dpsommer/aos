@@ -14,7 +14,7 @@ two are printed as a report and never stop the build; fix a wrong value with an 
         "fields": {"<target>": {"<field>": <value>}}
     }
 
-A fields <target> is a warscroll name or id, an ability name, a weapon name, or
+A fields <target> is a warscroll name or id, an Army of Renown name, an ability name, a weapon name, or
 "<warscroll id> > <weapon or ability name>" where a name alone is ambiguous.
 replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData has the
 wrong rule; it applies before merging. Its BSData name can be "<warscroll id or Army of Renown
@@ -102,10 +102,11 @@ def apply_overrides(data, overrides):
                        for x in w["ranged_weapons"] + w["melee_weapons"] + w["abilities"] if x["name"] == part]
         else:
             matched = [w for w in every_warscroll(data) if name in (w["name"], w.get("id"))] \
+                or [a for a in data["armies_of_renown"] if a["name"] == name] \
                 or [a for a in every_ability(data) if a["name"] == name] \
                 or [x for x in every_weapon(data) if x["name"] == name]
         if not matched:
-            sys.exit("field override %r matches no warscroll, ability or weapon" % name)
+            sys.exit("field override %r matches no warscroll, Army of Renown, ability or weapon" % name)
         for item in matched:
             item.update(fields)
 

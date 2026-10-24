@@ -4,6 +4,7 @@ extends Resource
 
 @export var name: String
 @export var source: String
+@export var legends: bool
 ## Description and roster restrictions.
 @export var text: String
 @export var battle_traits: Array[Ability]

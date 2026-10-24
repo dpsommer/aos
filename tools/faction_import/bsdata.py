@@ -10,6 +10,8 @@ Catalogues are read from a local checkout of the BSData repository, by default t
 import glob, os, re, subprocess, sys
 import xml.etree.ElementTree as ET
 
+import schema
+
 REPOSITORY = "https://github.com/BSData/age-of-sigmar-4th.git"
 DEFAULT_CHECKOUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "bsdata")
 
@@ -26,7 +28,6 @@ LORE_GROUPS = {"Spell Lores": "spell", "Prayer Lores": "prayer", "Manifestation 
 NOT_ENHANCEMENTS = {"Paths", "Battle Wounds + Scars", *LORE_GROUPS}
 # Categories on units that aren't keywords.
 NOT_KEYWORDS = {"Legends", "General"}
-FREQUENCY = re.compile(r"^(Once Per (?:Battle|Turn|Phase)(?: \((?:Army|Army, Each Player)\))?),?\s*(.*)$")
 
 
 def tag(el):
@@ -145,10 +146,7 @@ def ability(profile, name=None):
     attrs = {a.get("name"): a.text or "" for a in kids(profile, "attributes", "attribute")}
     is_passive = profile.get("typeName") == "Ability (Passive)"
     timing = "Passive" if is_passive else markup(chars.get("Timing"))
-    frequency = ""
-    m = FREQUENCY.match(timing)
-    if m:
-        frequency, timing = m.group(1), m.group(2)
+    frequency, timing = schema.split_frequency(timing)
     effect, options = split_options(chars.get("Effect", ""))
     out = {"name": name or profile.get("name"), "category": attrs.get("Type", "").lower(), "timing": timing}
     if frequency:
