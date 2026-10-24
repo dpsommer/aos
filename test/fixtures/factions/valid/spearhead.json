@@ -1,0 +1,19 @@
+{
+	"spearheads": [
+		{
+			"name": "Spearhead One",
+			"text": "Spearhead text.",
+			"general": "Spearhead General",
+			"units": [
+				{"count": 3, "name": "Spearhead Troops", "notes": "incl. Banner"}
+			],
+			"battle_traits": [{"name": "Spearhead Trait"}],
+			"regiment_abilities": [{"name": "Regiment Ability"}],
+			"enhancements": [{"name": "Spearhead Enhancement"}],
+			"warscrolls": [
+				{"id": "spearhead_general", "name": "Spearhead General", "move": 5, "health": 6, "save": 4, "control": 2},
+				{"id": "spearhead_troops", "name": "Spearhead Troops", "move": 5, "health": 1, "save": 5, "control": 1}
+			]
+		}
+	]
+}

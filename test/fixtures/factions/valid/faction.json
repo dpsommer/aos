@@ -1,0 +1,26 @@
+{
+	"id": "test_faction",
+	"name": "Test Faction",
+	"grand_alliance": "chaos",
+	"battle_traits": [
+		{
+			"name": "Trait One",
+			"category": "special",
+			"timing": "Passive",
+			"frequency": "Once Per Battle",
+			"declare": "Pick a unit.",
+			"effect": "It does a thing.",
+			"keywords": ["SPELL"],
+			"options": [{"name": "Option A", "text": "Option A text."}]
+		}
+	],
+	"battle_formations": [
+		{"name": "Formation One", "points": 20, "abilities": [{"name": "Formation Ability", "effect": "Formation effect."}]}
+	],
+	"enhancement_tables": [
+		{"name": "Heroic Traits", "group": "Group One", "entries": [{"name": "Trait Enhancement", "points": 15, "effect": "Enhancement effect."}]}
+	],
+	"lores": [
+		{"name": "Lore One", "kind": "spell", "entries": [{"name": "Spell One", "timing": "Your Hero Phase"}]}
+	]
+}

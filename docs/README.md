@@ -13,11 +13,12 @@
 - [Project layout](technical/layout.md): folder structure and what goes where
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
+- [Faction data](technical/faction-data.md): faction JSON format, sources, and how to add a faction
 
 ### Design
 
 - [Main menu](design/main-menu.md): menu options, their destinations, and the signals the menu emits
-- [Forge](design/forge.md): army builder flow, signals, and faction data
+- [Forge](design/forge.md): army builder flow, faction browser, signals, and faction data
 
 ### Gameplay
 

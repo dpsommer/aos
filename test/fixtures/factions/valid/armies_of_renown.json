@@ -1,0 +1,12 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Renowned Army",
+			"source": "Expansion",
+			"text": "Roster restrictions.",
+			"battle_traits": [{"name": "Renown Trait", "effect": "Renown effect."}],
+			"enhancement_tables": [{"name": "Artefacts", "entries": [{"name": "Artefact One", "points": 10}]}],
+			"lores": [{"name": "Renown Lore", "entries": [{"name": "Renown Spell"}]}]
+		}
+	]
+}

@@ -1,0 +1,673 @@
+{
+	"spearheads": [
+		{
+			"name": "Grundstok Trailblazers",
+			"text": "The first duty of the Grundcorps is to protect the sky-fleets of the great Kharadron empire, and most do so from the deck of a mighty capital ship, fighting on behalf of an Admiral or Captain who has the aether-shares to afford them. Yet their duties go far beyond simple deck defence. Utilising their nimble Gunhaulers, heavily armed bands of Grundstok Trailblazers make for excellent vanguard troops, capable of locating assets and holding them for as long as it takes for the main fleet to arrive.\nTypically such work is performed on behalf of members of the Endrineers Guild. The work of such luminaries must occasionally take them far from the relative safety of an Ironclad or Frigate. Though the cost of a Grundcorps contract might be eye-watering, it is always worth it: the heavy weapons and blistering firepower of a group of Grundstok Marines is enough to make any foe think twice before attacking, and Gunhaulers, though lightweight in comparison to other Kharadron vessels, are still outfitted with enough heavy munitions to annihilate an enemy warband in a single salvo.",
+			"general": "Endrinmaster with Dirigible Suit",
+			"units": [
+				{
+					"count": 5,
+					"name": "Grundstok Thunderers"
+				},
+				{
+					"count": 1,
+					"name": "Grundstok Gunhauler"
+				},
+				{
+					"count": 3,
+					"name": "Endrinriggers"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "GUNHAULER ESCORT",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for attacks that target friendly KHARADRON OVERLORDS INFANTRY units while they are wholly within 6\" of a friendly Grundstok Gunhauler."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "RAPID RELOCATION",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly unit with FLY to be the target.",
+					"effect": "Remove the target from the battlefield and set it up again anywhere on the battlefield more than 6\" from all enemy units. The target cannot use CHARGE abilities this turn."
+				},
+				{
+					"name": "PROPELLER DOWNDRAUGHT",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from charge rolls for enemy units while they are within 9\" of a friendly Grundstok Gunhauler."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "EMERGENCY FUEL INJECTION PODS",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "Your general has STRIKE-FIRST for the rest of the turn."
+				},
+				{
+					"name": "CELESTIUM-BURST BOMBLETS",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy unit in combat with your general to be the target.",
+					"effect": "Roll a dice. On a 3+, ward rolls cannot be made for the target for the rest of the turn."
+				},
+				{
+					"name": "PROSPECTOR AND PIONEER",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Add 2 to your general’s control score."
+				},
+				{
+					"name": "EXTRACTION FAIL-SAFES",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from the number of damage points inflicted on this unit when it uses a RETREAT ability."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "endrinmaster_with_dirigible_suit",
+					"name": "Endrinmaster with Dirigible Suit",
+					"move": 12,
+					"health": 8,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Aethercannon",
+							"range": 18,
+							"attacks": "1",
+							"hit": 3,
+							"wound": 3,
+							"rend": 2,
+							"damage": "3"
+						},
+						{
+							"name": "Dirigible Suit Weapon Battery",
+							"range": 12,
+							"attacks": "6",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Upgraded Aethermatic Saw",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 3,
+							"rend": 2,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "ENDRINMASTER EXTRAORDINAIRE",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit with the FLY keyword that is wholly within 12\" of this unit to be the target.",
+							"effect": "Roll a D3. On a 2+, Heal (X) the target where X is equal to the roll."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"FLY"
+					]
+				},
+				{
+					"id": "grundstok_gunhauler",
+					"name": "Grundstok Gunhauler",
+					"move": 14,
+					"health": 10,
+					"save": 2,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Sky Ordnance",
+							"range": 15,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Boarding Weapons",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "GUNHAULER OVERWATCH",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
+							"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+						}
+					],
+					"keywords": [
+						"WAR MACHINE",
+						"FLY"
+					]
+				},
+				{
+					"id": "grundstok_thunderers",
+					"name": "Grundstok Thunderers",
+					"move": 4,
+					"health": 2,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Aethershot Rifle",
+							"range": 18,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						},
+						{
+							"name": "Aetheric Fumigator or Decksweeper",
+							"range": 10,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						},
+						{
+							"name": "Grundstok Mortar or Aethercannon",
+							"range": 18,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Gun Butt",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BEWILDERBLAST ROUNDS",
+							"category": "offensive",
+							"timing": "Any Shooting Phase",
+							"frequency": "Once Per Battle (Army)",
+							"declare": "Pick an enemy unit that had any damage points allocated to it this phase by this unit’s shooting attacks to be the target.",
+							"effect": "Subtract D6 from the target’s control score for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					],
+					"composition": "1 model is armed with an Aethershot Rifle. 1 model is armed with an Aetheric Fumigator. 1 model is armed with a Decksweeper. 1 model is armed with a Grundstok Mortar. 1 model is armed with an Aethercannon. Every model is also armed with a Gun Butt."
+				},
+				{
+					"id": "endrinriggers",
+					"name": "Endrinriggers",
+					"move": 12,
+					"health": 2,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Rapid-fire Rivet Gun",
+							"range": 10,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						},
+						{
+							"name": "Aethermatic Volley Gun",
+							"range": 15,
+							"attacks": "2D6",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (2 Hits)"
+							]
+						},
+						{
+							"name": "Skyrigger Heavy Weapon",
+							"range": 15,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Anti- MONSTER (+1 Rend)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Aethermatic Saw",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Anti-charge (+1 Rend)"
+							]
+						},
+						{
+							"name": "Gun Butt",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "CLOUDWEAVING SKYFARERS",
+							"category": "movement",
+							"timing": "Enemy Movement Phase",
+							"effect": "Roll a dice. On a 3+, this unit can use the ‘Normal Move’ ability as if it were your movement phase."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"REINFORCEMENTS"
+					],
+					"composition": "1 model is armed with a Rapid Fire Rivet Gun and Aethermatic Saw. 1 model is armed with an Aethermatic Volley Gun and Gun Butt. 1 model is armed with a Skyrigger Heavy Weapon (Grapnel Launcher, Skyhook or Drill Launcher) and Gun Butt."
+				}
+			]
+		},
+		{
+			"name": "Skyhammer Task Force",
+			"text": "The Kharadron naval doctrine emphasises the swift and decisive application of intense firepower in order to seize profitable territory. On occasions where it is infeasible to deploy the full might of their sky-fleet in order to achieve this purpose, a Kharadron Admiral will often take charge of a single Arkanaut Frigate and a carefully selected retinue of trusted aeronauts, forming a heavy-hitting ad-hoc formation known as a Skyhammer Task Force.\nThe success of a Skyhammer Task Force relies first and foremost on the wondrous war machine that is the Arkanaut Frigate. As the vessel descends from the skies, it unleashes a hail of armour-shredding firepower, clearing a landing zone for the Arkanauts rappelling down from its gunwales. The Admiral commands this ground party personally, bellowing orders and blasting at the foe with their volley pistol, while airborne, endrin-clad Skywardens sweep the skies clear of threats. Once a foothold has been secured, the Frigate will swoop back in, slowing long enough for Arkanauts to tether themselves to its hull, hitching a ride on the vessel in order to outflank and plunder the next enemy position.",
+			"general": "Arkanaut Admiral",
+			"units": [
+				{
+					"count": 5,
+					"name": "Arkanaut Company",
+					"notes": "incl. Skypike"
+				},
+				{
+					"count": 5,
+					"name": "Arkanaut Company",
+					"notes": "incl. Light Skyhook and Aethermatic Volley Gun"
+				},
+				{
+					"count": 3,
+					"name": "Skywardens"
+				},
+				{
+					"count": 1,
+					"name": "Arkanaut Frigate"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "PLY THE SKIES",
+					"category": "movement",
+					"timing": "Reaction: You declared a non- CHARGE MOVE ability for an Arkanaut Frigate",
+					"effect": "Pick a friendly INFANTRY unit that is wholly within the combat range of that Arkanaut Frigate and not in combat to be transported. Remove that INFANTRY unit from the battlefield. Then, when the Arkanaut Frigate ends its move, set up the INFANTRY unit on the battlefield again, wholly within the combat range of the Arkanaut Frigate and not in combat. A unit cannot use CHARGE abilities if it was transported in the same turn.",
+					"options": [
+						{
+							"name": "Used By",
+							"text": "The Arkanaut Frigate that is using that MOVE ability."
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "ASSAULT BOAT",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit that was transported this turn to use this ability.",
+					"effect": "That unit can still use CHARGE abilities later in the turn."
+				},
+				{
+					"name": "DISENGAGE",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly Arkanaut Frigate to use this ability.",
+					"effect": "If that unit uses a RETREAT ability this phase, no mortal damage is inflicted on it and it can still use SHOOT abilities later in the turn."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "MASTERWROUGHT ARMOUR",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has WARD (6+)."
+				},
+				{
+					"name": "THERE'S NO REWARD WITHOUT RISK",
+					"category": "movement",
+					"timing": "Reaction: You declared a CHARGE ability for a unit wholly within 12\" of your general",
+					"frequency": "Once Per Battle",
+					"effect": "You can re-roll the charge roll for that CHARGE ability."
+				},
+				{
+					"name": "FLASK OF VINTAGE GOROGNA",
+					"category": "defensive",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Heal (D6) your general."
+				},
+				{
+					"name": "LEAVE NO DUARDIN BEHIND",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of your general and roll a dice for each slain model from that unit.",
+					"effect": "For each 4+, you can return 1 slain model to that unit."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "arkanaut_admiral",
+					"name": "Arkanaut Admiral",
+					"move": 4,
+					"health": 6,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Masterwork Volley Pistol",
+							"range": 10,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Skalfhammer",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 2,
+							"rend": 1,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "ALWAYS TAKE WHAT YOU ARE OWED",
+							"category": "control",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of this unit to be the target.",
+							"effect": "Add D6 to the target’s control score until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "skywardens",
+					"name": "Skywardens",
+					"move": 12,
+					"health": 2,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Vulcaniser Pistol",
+							"range": 10,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						},
+						{
+							"name": "Aethermatic Volley Gun",
+							"range": 15,
+							"attacks": "2D6",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Skypike",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						},
+						{
+							"name": "Gun Butt",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "TIMED CHARGES",
+							"category": "offensive",
+							"timing": "End of Any Turn",
+							"declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
+							"effect": "On a 2+, inflict 1 mortal damage on the target, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"REINFORCEMENTS"
+					],
+					"composition": "This unit has 2 Skywardens armed with a Vulcaniser Pistol and Skypike, and 1 Skywarden armed with an Aethermatic Volley Gun and Gun Butt."
+				},
+				{
+					"id": "arkanaut_frigate",
+					"name": "Arkanaut Frigate",
+					"move": 12,
+					"health": 15,
+					"save": 3,
+					"control": 5,
+					"ranged_weapons": [
+						{
+							"name": "Heavy Skyhook",
+							"range": 24,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 2,
+							"damage": "D6"
+						},
+						{
+							"name": "Aethershot Carbines",
+							"range": 12,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Crew’s Boarding Weapons",
+							"range": 0,
+							"attacks": "8",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BATTLE DAMAGED",
+							"category": "damage",
+							"timing": "Passive",
+							"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Heavy Skyhook is 1."
+						},
+						{
+							"name": "BOMB RACKS",
+							"category": "offensive",
+							"timing": "Your Movement Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+							"effect": "Inflict D3+1 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"WAR MACHINE",
+						"FLY"
+					]
+				},
+				{
+					"id": "arkanaut_company",
+					"name": "Arkanaut Company",
+					"move": 4,
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Privateer Pistol",
+							"range": 10,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						},
+						{
+							"name": "Aethermatic Volley Gun",
+							"range": 15,
+							"attacks": "2D6",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Light Skyhook",
+							"range": 15,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 3,
+							"rend": 2,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Arkanaut Cutter",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Gun Butt",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Skypike",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "GLORY-SEEKERS",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to hit rolls for attacks made by this unit that target a unit contesting an objective."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					],
+					"composition": "One unit has 4 Arkanauts armed with a Privateer Pistol and Arkanaut Cutter, and 1 Arkanaut armed with a Skypike. The other unit has 3 Arkanauts armed with a Privateer Pistol and Arkanaut Cutter, 1 Arkanaut armed with an Aethermatic Volley Gun and Gun Butt, and 1 Arkanaut armed with a Light Skyhook and Gun Butt."
+				}
+			]
+		}
+	]
+}

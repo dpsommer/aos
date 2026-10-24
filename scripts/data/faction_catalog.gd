@@ -41,6 +41,35 @@ const _FACTIONS := {
 }
 
 
+## Data directories for factions whose rules have been added. See docs/technical/faction-data.md.
+const _DATA_DIRS := {
+	"Kharadron Overlords": "res://data/factions/kharadron_overlords",
+}
+
+static var _loaded := {}
+
+
 ## Returns a copy of the faction names for [param alliance], in display order.
 static func factions_for(alliance: GrandAlliance.Type) -> PackedStringArray:
 	return PackedStringArray(_FACTIONS[alliance])
+
+
+## Whether [param faction] has rules data and can be opened.
+static func is_available(faction: String) -> bool:
+	return _DATA_DIRS.has(faction)
+
+
+## Loads [param faction]'s data, caching it. Returns null and reports errors if it can't be loaded.
+static func load_faction(faction: String) -> Faction:
+	if _loaded.has(faction):
+		return _loaded[faction]
+	if not is_available(faction):
+		push_error("No data for faction '%s'" % faction)
+		return null
+	var loader := FactionLoader.new()
+	var data := loader.load_faction(_DATA_DIRS[faction])
+	for error in loader.errors:
+		push_error(error)
+	if data:
+		_loaded[faction] = data
+	return data

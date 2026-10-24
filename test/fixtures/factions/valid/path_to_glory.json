@@ -1,0 +1,11 @@
+{
+	"sections": [
+		{"name": "Section One", "text": "Section text."},
+		{
+			"name": "Section Two",
+			"warscrolls": [
+				{"id": "custom_hero", "name": "Custom Hero", "move": 4, "health": 5, "save": 4, "control": 2}
+			]
+		}
+	]
+}

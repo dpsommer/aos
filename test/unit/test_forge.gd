@@ -31,6 +31,34 @@ func _faction_button_texts(forge: Forge) -> PackedStringArray:
 	return texts
 
 
+## Returns the first alliance with a faction that has data. Fails the test if there is none.
+func _alliance_with_available_faction() -> GrandAlliance.Type:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		for faction in FactionCatalog.factions_for(alliance):
+			if FactionCatalog.is_available(faction):
+				return alliance
+	fail_test("no faction is available")
+	return GrandAlliance.Type.values()[0]
+
+
+## Returns the first alliance with no faction data, or -1 if every alliance has some.
+func _alliance_without_available_faction() -> int:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var available := false
+		for faction in FactionCatalog.factions_for(alliance):
+			available = available or FactionCatalog.is_available(faction)
+		if not available:
+			return alliance
+	return -1
+
+
+func _first_enabled_index(forge: Forge) -> int:
+	for button: Button in forge.faction_grid.get_children():
+		if not button.disabled:
+			return button.get_index()
+	return -1
+
+
 func _press_cancel(forge: Forge) -> void:
 	var event := InputEventAction.new()
 	event.action = "ui_cancel"
@@ -98,21 +126,68 @@ func test_showing_same_alliance_twice_does_not_duplicate_buttons() -> void:
 	assert_eq(forge.faction_grid.get_child_count(), FactionCatalog.factions_for(alliance).size())
 
 
-func test_first_faction_button_has_focus_after_choosing_alliance() -> void:
+func test_first_enabled_faction_button_has_focus_after_choosing_alliance() -> void:
+	var alliance := _alliance_with_available_faction()
 	var forge := _make_forge()
-	forge.show_factions(_two_alliances()[0])
-	assert_true((forge.faction_grid.get_child(0) as Button).has_focus())
+	forge.show_factions(alliance)
+	assert_true(forge.faction_grid.get_child(_first_enabled_index(forge)).has_focus())
+
+
+func test_faction_back_button_has_focus_when_no_faction_is_available() -> void:
+	var alliance := _alliance_without_available_faction()
+	if alliance < 0:
+		pending("every alliance has an available faction")
+		return
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	assert_true(forge.faction_back_button.has_focus())
+
+
+func test_available_faction_buttons_are_enabled() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if FactionCatalog.is_available(button.text):
+				assert_false(button.disabled, "%s is disabled" % button.text)
+
+
+func test_unavailable_faction_buttons_are_disabled() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if not FactionCatalog.is_available(button.text):
+				assert_true(button.disabled, "%s is enabled" % button.text)
+
+
+func test_unavailable_faction_buttons_explain_why_in_tooltip() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if button.disabled:
+				assert_ne(button.tooltip_text, "", "%s has no tooltip" % button.text)
 
 
 func test_pressing_faction_button_emits_faction_selected_with_alliance_and_name() -> void:
+	var alliance := _alliance_with_available_faction()
 	var forge := _make_forge()
-	var alliance: GrandAlliance.Type = _two_alliances()[1]
 	forge.show_factions(alliance)
-	var last := forge.faction_grid.get_child_count() - 1
-	var button := forge.faction_grid.get_child(last) as Button
-	button.pressed.emit()
+	var index := _first_enabled_index(forge)
+	(forge.faction_grid.get_child(index) as Button).pressed.emit()
 	assert_signal_emitted_with_parameters(forge, "faction_selected",
-			[alliance, FactionCatalog.factions_for(alliance)[last]])
+			[alliance, FactionCatalog.factions_for(alliance)[index]])
+
+
+func test_unavailable_faction_button_does_not_emit_faction_selected() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if button.disabled:
+				button.pressed.emit()
+		assert_signal_not_emitted(forge, "faction_selected")
 
 
 func test_faction_back_button_shows_alliance_panel() -> void:

@@ -50,10 +50,11 @@ func show_factions(alliance: GrandAlliance.Type) -> void:
 	_populate_factions(alliance)
 	alliance_panel.hide()
 	faction_panel.show()
-	if faction_grid.get_child_count() > 0:
-		(faction_grid.get_child(0) as Button).grab_focus()
-	else:
-		faction_back_button.grab_focus()
+	for button: Button in faction_grid.get_children():
+		if not button.disabled:
+			button.grab_focus()
+			return
+	faction_back_button.grab_focus()
 
 
 func _populate_factions(alliance: GrandAlliance.Type) -> void:
@@ -64,7 +65,11 @@ func _populate_factions(alliance: GrandAlliance.Type) -> void:
 		var button := Button.new()
 		button.text = faction
 		button.custom_minimum_size = Vector2(240, 48)
-		button.pressed.connect(_on_faction_pressed.bind(faction))
+		if FactionCatalog.is_available(faction):
+			button.pressed.connect(_on_faction_pressed.bind(faction))
+		else:
+			button.disabled = true
+			button.tooltip_text = "Coming soon"
 		faction_grid.add_child(button)
 
 

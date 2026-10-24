@@ -14,3 +14,11 @@ const _DISPLAY_NAMES := {
 
 static func display_name(type: Type) -> String:
 	return _DISPLAY_NAMES[type]
+
+
+## Parses a lowercase id such as "order". Returns -1 if [param id] isn't an alliance.
+static func from_id(id: String) -> int:
+	for type: Type in _DISPLAY_NAMES:
+		if _DISPLAY_NAMES[type].to_lower() == id:
+			return type
+	return -1

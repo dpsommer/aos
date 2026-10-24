@@ -1,0 +1,40 @@
+{
+	"warscrolls": [
+		{
+			"id": "unit_one",
+			"name": "Unit One",
+			"points": 120,
+			"unit_size": 5,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"regiment_options": ["Any INFANTRY"],
+			"move": 4,
+			"health": 2,
+			"save": 4,
+			"ward": 6,
+			"control": 1,
+			"ranged_weapons": [
+				{"name": "Gun", "range": 12, "attacks": "2D6", "hit": 4, "wound": 3, "rend": 1, "damage": "D3", "abilities": ["Shoot in Combat"]}
+			],
+			"melee_weapons": [
+				{"name": "Fist", "attacks": "2", "hit": 4, "wound": 4, "damage": "1"}
+			],
+			"abilities": [{"name": "Unit Ability", "effect": "Unit effect."}],
+			"keywords": ["INFANTRY", "CHAOS"],
+			"composition": "5 models"
+		},
+		{
+			"id": "unit_two",
+			"name": "Unit Two",
+			"source": "Expansion",
+			"legends": true,
+			"points": 200,
+			"unit_size": 1,
+			"move": 0,
+			"health": 10,
+			"save": 3,
+			"control": 2,
+			"abilities": [{"name": "Unit Two Ability", "effect": "Effect."}]
+		}
+	]
+}
