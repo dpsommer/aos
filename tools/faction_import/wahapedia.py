@@ -158,7 +158,8 @@ def parse_profile(prof):
     if m:
         out["regiment_options"] = [s.strip() for s in re.split(r",\s*(?=(?:0-\d|Any|\d))", m.group(1)) if s.strip()]
     m = re.search(r"Notes\s*:\s*(.+)$", t)
-    if m: out["notes"] = m.group(1).strip()
+    # Some notes end with a stray copy of the base size ("... on 1 June 2027. 120 x 92mm").
+    if m: out["notes"] = re.sub(r"\s*[\d.]+\s*[x×]\s*[\d.]+\s*mm$", "", m.group(1).strip())
     return out
 
 def parse_warscroll(sheet, slug):

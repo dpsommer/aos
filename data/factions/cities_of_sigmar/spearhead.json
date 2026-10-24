@@ -1,0 +1,1065 @@
+{
+	"spearheads": [
+		{
+			"name": "Fusil-Platoon",
+			"text": "Steel and blackpowder are the lifeblood of the Cities of Sigmar, but so is relentless vigilance. The Fusil-Platoons of the Sigmarite armies represent all three. Deployed as mobile gunnery brigades, their job is to seek out enemies trying to outmanoeuvre or ambush the slower battlelines and then blast them out of hiding. They also patrol the vulnerable outer borders of nascent strongpoints as dedicated sentries.\nEach platoon is led by a Fusil-Major carried to battle by an Ogor Warhulk. This respected commander uses their high vantage to call out encroaching foes for destruction. His steady orders direct the withering fire of Freeguild Fusiliers. Anything spared this storm must either contend with a solid wall of pavises or the brute strength of an ogor's tower shield. The presence of an Alchemite Warforger enhances the potency of these soldiers' weapons, as well as lending some arcane might. Meanwhile, seasoned Wildercorps Hunters slip around the flanks to flush out the enemy or harry them with well-placed bolts.",
+			"general": "Fusil-Major on Ogor Warhulk",
+			"units": [
+				{
+					"count": 1,
+					"name": "Alchemite Warforger"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Fusiliers",
+					"notes": "with 1 Blackpowder Squire token"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Fusiliers"
+				},
+				{
+					"count": 11,
+					"name": "Wildercorps Hunters"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "FORTIFY POSITION",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly CASTELITE units if they did not use a MOVE ability in the same turn."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "WELL PROVISIONED",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly non- HERO unit to be the target.",
+					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for that unit’s shooting attacks for the rest of the phase."
+				},
+				{
+					"name": "RESPECTED LEADER",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Friendly Wildercorps Hunters units gain the REINFORCEMENTS keyword."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "ADEPT TACTICIAN",
+					"category": "rallying",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick 2 friendly Freeguild Fusiliers units that have been destroyed and have not already been replaced.",
+					"effect": "Set up a single replacement Freeguild Fusiliers unit with 10 models more than 6\" from all enemy units."
+				},
+				{
+					"name": "BRACE!",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has WARD (5+)."
+				},
+				{
+					"name": "SHIELD BASH",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick an enemy INFANTRY, WAR MACHINE or CAVALRY unit in combat with your general to be the target.",
+					"effect": "Roll a dice. On a 3+, the target must immediately use the ' Retreat ' ability as if it were the enemy movement phase."
+				},
+				{
+					"name": "POINT-BLANK VOLLEY",
+					"category": "special",
+					"timing": "Enemy Combat Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick an enemy unit in combat with your general to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "fusil_major_on_ogor_warhulk",
+					"name": "Fusil-Major on Ogor Warhulk",
+					"move": 5,
+					"health": 8,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Long Fusil",
+							"range": 24,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Warhulk's Mace",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "MARK TARGETS",
+							"category": "shooting",
+							"timing": "Your Shooting Phase",
+							"declare": "Pick an enemy unit that was targeted by this unit’s shooting attacks this turn to be the target.",
+							"effect": "Add 1 to hit rolls for attacks made by friendly units that target that unit for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"CASTELITE"
+					]
+				},
+				{
+					"id": "wildercorps_hunters",
+					"name": "Wildercorps Hunters",
+					"move": 5,
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Hunting Crossbow",
+							"range": 15,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Hunting Weapons",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						},
+						{
+							"name": "Trailhound’s Ferocious Bite",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "EXPERT TRACKERS",
+							"category": "control",
+							"timing": "Deployment Phase",
+							"effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					],
+					"composition": "Each model in this unit is armed with a Hunting Crossbow and Hunting Weapons. The Wildercorps Warden is armed with a Trailhound’s Ferocious Bite in addition to their other weapons. 4/11 models are Trailhounds and are armed with a Trailhound’s Ferocious Bite instead of any other weapons."
+				},
+				{
+					"id": "alchemite_warforger",
+					"name": "Alchemite Warforger",
+					"move": 5,
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Tongstaff",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BLAZING WEAPONS",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+							"effect": "On a 6+, the target’s melee weapons have Crit (Mortal) until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"WIZARD",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "freeguild_fusiliers",
+					"name": "Freeguild Fusiliers",
+					"move": 5,
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Fusil-cannon",
+							"range": 18,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Bayonet",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BLACKPOWDER SQUIRE",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "While this unit has a Blackpowder Squire token, this unit’s ranged weapons have Shoot in Combat."
+						},
+						{
+							"name": "CAN'T STOP!",
+							"category": "offensive",
+							"timing": "Your Shooting Phase",
+							"frequency": "Once Per Turn (Army)",
+							"declare": "Pick another friendly Freeguild Fusiliers unit to be the target.",
+							"effect": "Remove this unit’s Blackpowder Squire token from the battlefield, then give it to the target."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"CASTELITE",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Castelite Company",
+			"text": "Although, at its core, the tactical doctrine of Sigmar’s mortal armies relies upon massed firepower and defence in depth, there are times when Freeguild commanders must be more flexible. On occasions where the deployment of a full army corps is not viable, smaller formations such as the Castelite Company will be dispatched to seize vital ground and defend it against threats.\nCommanded by an experienced Cavalier-Marshal who has displayed particular adaptability and initiative in the face of the enemy, a Castelite Company specialises in absorbing the fury of an enemy attack before unleashing a devastating riposte in return. Freeguild Steelhelms form a sturdy core, advancing into battle with shields locked together, relying on discipline and faith to hold the line against whatever horror comes at them. With this anvil in place, the process of breaking the enemy upon it can begin. An Ironweld Great Cannon sends bone-shattering ordnance blasting through the enemy ranks, while the Cavalier-Marshal leads a thunderous counter-charge to sweep them from the field. Freeguild Cavaliers sing Sigmarite battle-hymns as they crush the opposition beneath the grinding hooves of their destriers or bash in their skulls with hammers and flails.",
+			"general": "Freeguild Cavalier-Marshal",
+			"units": [
+				{
+					"count": 5,
+					"name": "Freeguild Steelhelms"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Steelhelms"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Cavaliers"
+				},
+				{
+					"count": 1,
+					"name": "Ironweld Great Cannon"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "THE OFFICAR'S ORDER",
+					"category": "control",
+					"timing": "Round, Start of Battle Round",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a battle tactic card in your hand and place it face-down separately next to your other battle tactic cards. The information on it is still hidden from your opponent but make it clear which card is separate. The card stays separate until you use the command on it or score the battle tactic on it as described below.",
+					"effect": "When you use the command on that card, it is not discarded but returns to your hand. Your opponent can check the information on it before it returns to your hand. The card goes back to being a normal battle tactic card, with the exception that you cannot use the command on it in the same phase it went back into your hand.\nIf you did not use the command on the card you separated, you can still score the battle tactic on it at the end of your turn as normal if you met its conditions. If you do so, discard it as normal. If you neither used the command nor scored the battle tactic on the card, it automatically returns to your hand at the end of your turn.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "This ability essentially lets you use a command ‘for free’, but you have to choose the command at the start of the battle round, so it requires some planning ahead!"
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "FOR SIGMAR, CHARGE!",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Friendly CAVALRY units have STRIKE-FIRST if they charged in the same turn."
+				},
+				{
+					"name": "IRONWELD DISCIPLINE",
+					"category": "shooting",
+					"timing": "Enemy Shooting Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick your Ironweld Great Cannon to use this ability.",
+					"effect": "Roll a dice. On a 3+, it can use the ‘Shoot’ ability as if it were your shooting phase."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "FLASK OF LETHISIAN DARKWATER",
+					"category": "defensive",
+					"timing": "Start of Any Turn",
+					"frequency": "Once Per Battle",
+					"effect": "Heal (D6) your general."
+				},
+				{
+					"name": "BRAZIER OF HOLY FLAME",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"declare": "Pick a friendly Freeguild Steelhelms unit within your general’s combat range.",
+					"effect": "You can return up to D3 slain models to that unit."
+				},
+				{
+					"name": "HEIRLOOM BLADE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Rend characteristic of your general’s Master-forged Longsword."
+				},
+				{
+					"name": "GLIMMERING",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Each phase, you can re-roll 1 hit roll, or 1 wound roll, or 1 save roll made for your general."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "freeguild_cavalier_marshal",
+					"name": "Freeguild Cavalier-Marshal",
+					"move": 10,
+					"health": 7,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Dragoon Pistol",
+							"range": 10,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Master-forged Longsword",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "Warhorse’s Steel-shod Hooves",
+							"range": 0,
+							"attacks": "2",
+							"hit": 5,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "DECISIVE COMMANDER",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly Freeguild Steelhelms unit wholly within 12\" of this unit to be the target and roll a dice.",
+							"effect": "On a 2+, pick 1:",
+							"options": [
+								{
+									"name": "On Your Feet!",
+									"text": "If the target unit is not in combat, you can return D3 slain models to it."
+								},
+								{
+									"name": "Yield No Quarter!",
+									"text": "Add 3 to the target unit’s control score until the start of your next turn."
+								}
+							]
+						}
+					],
+					"keywords": [
+						"HERO",
+						"CAVALRY"
+					]
+				},
+				{
+					"id": "ironweld_great_cannon",
+					"name": "Ironweld Great Cannon",
+					"move": 3,
+					"health": 8,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Great Cannon: Cannonball",
+							"range": 24,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "D3+2"
+						},
+						{
+							"name": "Great Cannon: Grapeshot",
+							"range": 12,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Crew’s Tools and Sidearms",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SHOT AND SHELL",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "Each time this unit uses a SHOOT ability, choose either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. The Cannonball can only be chosen if this unit has not used a MOVE ability that turn."
+						}
+					],
+					"keywords": [
+						"WAR MACHINE",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "freeguild_cavaliers",
+					"name": "Freeguild Cavaliers",
+					"move": 10,
+					"health": 3,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Cavalier Weapon",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Charge (+1 Damage)"
+							]
+						},
+						{
+							"name": "Warhorse’s Steel-shod Hooves",
+							"range": 0,
+							"attacks": "2",
+							"hit": 5,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "DEVASTATING CHARGE",
+							"category": "offensive",
+							"timing": "Any Charge Phase",
+							"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target and roll a dice.",
+							"effect": "On a 2+, inflict D3 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "freeguild_steelhelms",
+					"name": "Freeguild Steelhelms",
+					"move": 5,
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Freeguild Weapon",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "CONSECRATE THE LAND",
+							"category": "defensive",
+							"timing": "Your Movement Phase",
+							"declare": "If this unit is contesting an objective you control that is not contested by any enemy models, roll a dice.",
+							"effect": "On a 3+, that objective is considered by you to be consecrated. Friendly units have WARD (6+) while they are contesting a consecrated objective. If your opponent gains control of a consecrated objective, it is no longer consecrated."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Sentinels of Embergard",
+			"text": "It takes especially hard-bitten souls to fight in Embergard. Many Freeguilders are sent to this vital bastion, but only the most vicious survive to achieve veteran status. Those who do often slip outside typical chains of command, gravitating towards charismatic captains proven in battle. They become known as Sentinels of Embergard, determined to defend the corpse-city.\nJorvan Kreel, Heir of the Kraken, is one such leader: a debonair, if gloryhungry, ranger from fallen Anvilgard. Alongside his faithful ash panther Thexa, he now roams the City of Ash, harrying the ratmen from their holes. He is invariably accompanied by the uncompromising elite of the Freeguild Grenadiers, whose incendiary arsenal and heavy bardiches are suited to savage urban fighting, as well as the armoured and honour-bound Gallants. Kreel is hardly a man of faith, but he appreciates its power. Often, then, he is accompanied by a Mallus Forgepriest – warrior-priests whose bellowed orisons inspire holy purpose in their fellows",
+			"general": "Jorvan Kreel, Heir of the Kraken",
+			"units": [
+				{
+					"count": 1,
+					"name": "Mallus Forgepriest"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Gallants"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Grenadiers"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Grenadiers"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "RANGER DOCTRINES",
+					"category": "movement",
+					"timing": "Reaction: You declared a FIGHT ability for your general or a friendly non- HERO unit wholly within 12\" of your general",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Immediately after that FIGHT ability has been resolved, pick a point on the battlefield within 6\" of your general. Remove the unit using this ability from the battlefield and set it up again within 1\" of that point and not in combat.",
+					"options": [
+						{
+							"name": "Used By",
+							"text": "The unit using that FIGHT ability"
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "CLOSE-QUARTERS DRILL",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Friendly units’ ranged weapons have Shoot in Combat but you must subtract 1 from hit rolls for their shooting attacks while they are in combat."
+				},
+				{
+					"name": "COME AND TAKE IT, BLAGGARDS!",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Add 5 to the control scores of friendly non- HERO units while they are in combat with any enemy units that have 6 or more models or a Health characteristic of 3 or more."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "THROWING KNIVES",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"declare": "Pick a visible enemy unit within 10\" of your general to be the target.",
+					"effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target."
+				},
+				{
+					"name": "HOT-BLOODED ENDURANCE",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Your general can use CHARGE abilities even if they used a RUN or RETREAT ability in the same turn and no mortal damage is inflicted on them by RETREAT abilities."
+				},
+				{
+					"name": "TRAINED RANGER",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit wholly within 6\" of a battlefield edge to be the target.",
+					"effect": "Remove the target from the battlefield and set it up again wholly within 3\" of a battlefield edge and more than 6\" from all enemy units."
+				},
+				{
+					"name": "BLADE OF THE KRAKEN",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Double the Attacks characteristic of your general’s melee weapons for the rest of the turn."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "jorvan_kreel_heir_of_the_kraken",
+					"name": "Jorvan Kreel, Heir of the Kraken",
+					"move": 6,
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Ranger Blades",
+							"range": 0,
+							"attacks": "6",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "VETERAN SKIRMISHERS",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+							"effect": "Roll a dice. On a 3+, for the rest of the turn, add 2\" to the target’s Move characteristic but it cannot use RUN abilities."
+						},
+						{
+							"name": "PROWLING ASH PANTHER",
+							"category": "offensive",
+							"timing": "End of Any Turn",
+							"effect": "If this unit has the Thexa token, give that token to an enemy unit within 6\" of this unit.\nIf an enemy unit has the Thexa token, inflict D3 mortal damage on that enemy unit. Then, give this unit the Thexa token."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "mallus_forgepriest",
+					"name": "Mallus Forgepriest",
+					"move": 5,
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Sigmarite Warhammer",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "CONSECRATE THE LAND",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick an objective within 12\" of this unit, then make a chanting roll of D6.",
+							"effect": "On a 3+, for the rest of the turn, friendly units have WARD (5+) while they are contesting that objective."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"PRIEST",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "freeguild_grenadiers",
+					"name": "Freeguild Grenadiers",
+					"move": 5,
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Ruin-sweeper Arsenal",
+							"range": 10,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Grenadier Bardiche",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "CINDER AND ASH",
+							"category": "offensive",
+							"timing": "End of Any Turn",
+							"frequency": "Once Per Turn (Army)",
+							"declare": "Pick up to 1 terrain feature contested by this unit and up to 1 objective contested by this unit, then pick any enemy units also contesting them to be the targets.",
+							"effect": "Roll a dice for each target. On a 3+, inflict 1 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "freeguild_gallants",
+					"name": "Freeguild Gallants",
+					"move": 5,
+					"health": 2,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Weapons of Gallantry",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "UNBREACHABLE WILL",
+							"category": "defensive",
+							"timing": "Any Combat Phase",
+							"declare": "If this unit has not charged this turn, pick an enemy unit in combat with it to be the target.",
+							"effect": "For the rest of the turn, subtract 1 from the Rend characteristic of the target’s weapons for attacks that target this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				}
+			]
+		},
+		{
+			"name": "Zenestra’s Zealots",
+			"text": "For all the terrible potency of its cannons and Cogforts, faith is the bedrock of the Sigmarite war machine: faith in the indomitable power of the God‑King and in the cause of justice. Few beings in existence represent the power of such belief as much as Pontifex Zenestra, the legendary Matriarch of the Great Wheel. Several times has she been recorded as slain, only for her to manifest anew wherever the need of the God-King’s folk is greatest, encouraging the faithful to oil the wheel of progress with their own blood.\nZenestra’s Zealots are the fanatical soldiers that escort the Pontifex into battle, knowing that their souls are safest by her side, even if their bodies might be blasted and torn. Zenestra selects the most pious Freeguild Marshals and their Command Corps to accompany her, relying upon these veteran warleaders to temper the righteous fury of the Steelhelm infantry with tactical nous. Full of zealous drive, these stubborn souls would rather perish in agony than fail their saintly leader.",
+			"general": "Freeguild Marshal and Relic Envoy",
+			"units": [
+				{
+					"count": 1,
+					"name": "Pontifex Zenestra, Matriarch of the Great Wheel"
+				},
+				{
+					"count": 1,
+					"name": "Whisperblade, Freeguild Command Corps"
+				},
+				{
+					"count": 1,
+					"name": "Arch-Knight and Retinue, Freeguild Command Corps"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Steelhelms"
+				},
+				{
+					"count": 5,
+					"name": "Freeguild Steelhelms"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "SUDDEN AMBUSH",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit within 6\" of an enemy unit and not in combat."
+				},
+				{
+					"name": "LADY OF THE WHEEL",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time a friendly model is slain by a combat attack, roll a number of dice equal to that model’s Health characteristic. For each 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "FERVENT RUSH",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit to use this ability.",
+					"effect": "This unit can use CHARGE abilities this turn even if it used a RUN ability in the same turn."
+				},
+				{
+					"name": "FIERCE ZEALOTS",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Add 3 to the control scores of friendly Freeguild Steelhelms units."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "DEVOUT COMMANDER",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic and the Rend characteristic of your general’s Master-forged Weapon."
+				},
+				{
+					"name": "STAND FAST, COMRADES",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a visible friendly non- HERO unit wholly within 12\" of your general to be the target.",
+					"effect": "The target has WARD (4+) until the start of the next battle round."
+				},
+				{
+					"name": "STEP TO IT!",
+					"category": "movement",
+					"timing": "Reaction: You declared a RUN ability for a non- HERO unit wholly within 12\" of your general",
+					"frequency": "Once Per Turn",
+					"effect": "Do not make a run roll as part of that RUN ability. Instead, add 6\" to that non- HERO unit’s Move characteristic to determine the distance each model in that unit can move as part of that RUN ability"
+				},
+				{
+					"name": "ARDENT DEMAND",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick a visible friendly non- HERO unit wholly within 12\" of your general to be the target.",
+					"effect": "Add 1 to hit rolls for the target’s combat attacks for the rest of the turn."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "freeguild_marshal_and_relic_envoy",
+					"name": "Freeguild Marshal and Relic Envoy",
+					"move": 5,
+					"health": 5,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Duelling Pistols",
+							"range": 10,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Master-forged Weapon",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "MARSHAL’S ORDERS",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
+							"effect": "Remove this unit’s Relic Envoy token from the battlefield, then give it to the target."
+						},
+						{
+							"name": "RELIC ENVOY",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "While a friendly unit other than this unit has the Relic Envoy token, add 1 to wound rolls for that unit’s combat attacks.\nIf this unit is destroyed, remove the Relic Envoy token from the battlefield."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "pontifex_zenestra_matriarch_of_the_great_wheel",
+					"name": "Pontifex Zenestra, Matriarch of the Great Wheel",
+					"move": 5,
+					"health": 9,
+					"save": 5,
+					"control": 2,
+					"ward": 4,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Sceptre of the Wheel",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "VESSEL OF SIGMAR",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick up to 3 visible friendly or enemy units to be the targets.",
+							"effect": "Roll a D3 for each target. On a 2+:\nIf it is a friendly target, it has WARD (5+) until the start of your next turn. If it is an enemy target, inflict an amount of mortal damage on it equal to the roll."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"PRIEST",
+						"INFANTRY",
+						"WARD (4+)"
+					]
+				},
+				{
+					"id": "whisperblade_freeguild_command_corps",
+					"name": "Whisperblade, Freeguild Command Corps",
+					"move": 5,
+					"health": 3,
+					"save": 6,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Enchanted Rapier",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 4,
+							"rend": 2,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "FOREWARNED IS FOREARMED",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "While it is your turn, this unit has STRIKE-FIRST."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "arch_knight_and_retinue_freeguild_command_corps",
+					"name": "Arch-Knight and Retinue, Freeguild Command Corps",
+					"move": 5,
+					"health": 2,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Command Weapons",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "TALENTED CHAMPIONS",
+							"category": "special",
+							"timing": "Reaction: You used a command",
+							"frequency": "Once Per Turn",
+							"effect": "After that command has been resolved, return the card to your hand.",
+							"options": [
+								{
+									"name": "Designer’s Note",
+									"text": "This allows you to either use the command a second time or score the battle tactic on that card as well."
+								}
+							]
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					],
+					"composition": "This unit comprises 1 Arch-Knight, 1 Great Herald, 1 War Surgeon, 1 Soul Shepherd and 1 Mascot Gargoylian."
+				},
+				{
+					"id": "freeguild_steelhelms",
+					"name": "Freeguild Steelhelms",
+					"move": 5,
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Freeguild Weapon",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "FANATICAL FOLLOWERS",
+							"category": "rallying",
+							"timing": "Any Combat Phase",
+							"effect": "Return 1 slain model to this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		}
+	]
+}

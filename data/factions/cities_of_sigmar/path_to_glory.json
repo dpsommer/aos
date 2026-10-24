@@ -1,0 +1,161 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Cities of Sigmar army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Cities of Sigmar units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/ - or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Pick an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Pick a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nCity Recruit | 10 | 150\nCity Veteran | 30 | 250\nCity Lord | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "cities_of_sigmar_hero",
+					"name": "Cities of Sigmar Hero",
+					"move": 5,
+					"health": 5,
+					"save": 6,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Regulation Weapon",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"ORDER",
+						"CITIES OF SIGMAR",
+						"SIGMARITE"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Pick an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nFREEGUILD OFFICER\n-1DP\nChange your hero’s Save characteristic to 3+ and replace their melee weapon with the following weapon. In addition, your hero has the following regiment options:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMarshal's Blade | 5 | 3+ | 4+ | 1 | 2\nRegiment Options | Any SIGMARITE units\nAGENT AZYRITE\n-2DP\nChange your hero’s Save characteristic to 4+ and replace their melee weapon with the following weapons. In addition, your hero has the following regiment options:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nOrder Crossbow\nAnti- CHAOS (+1 Rend), Anti- DEATH (+1 Rend) | 18\" | 3 | 3+ | 4+ | 1 | 2\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMarshal's Blade | 5 | 3+ | 4+ | 1 | 2\nRegiment Options | Any SIGMARITE INFANTRY units\nSIGMARITE BATTLEMAGE\n-3DP\nYour hero has the WIZARD (1) keyword and the following regiment options:\nRegiment Options | Any SIGMARITE INFANTRY units\nSIGMARITE BATTLE-PRIEST\n-3DP\nChange your hero's Save characteristic to 4+. In addition, your hero has the PRIEST (1) keyword and the following regiment options:\nRegiment Options | Any SIGMARITE INFANTRY units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-2DP\nCHAMPION OF THE FREE PEOPLE\nEffect: Add 1 to hit rolls and wound rolls for this unit’s combat attacks while it is wholly within 12\" of any friendly non- SIGMARITE units.\nDeployment Phase\n-4DP\nPERSONAL VENDETTA\nDeclare: Pick an enemy HERO to be the target. You can pick a unit in reserve.\nEffect: Pick 1 of the following effects to apply for the rest of the battle:\nHeroic Revenge: If the target is slain by this unit’s combat attacks, after the target is removed from play, you immediately gain 1 command point.\nGlorious Revenge: If the target is slain by this unit’s combat attacks, you gain 30 glory points in the aftermath sequence of this battle.\nVendetta Fulfilled: If the target is slain by this unit’s combat attacks, this unit gains enough renown points in the aftermath sequence of this battle to earn the next rank on its Path and it no longer has this ability.\nPassive\n-6DP\nONE IN A MILLION\nEffect: If this unit gains any renown points in the aftermath sequence, it gains D3 additional renown points."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+3DP\nBROKEN SOUL\nEffect: This unit cannot contest objectives.\nPassive\n+4DP\nEGOTISTICAL\nEffect: Other friendly SIGMARITE units within 12\" of this unit cannot use commands while they are within 12\" of another friendly HERO.\nEnd of Final Battle Round\n+7DP\nTRAITOR\nDeclare: This unit must use this ability.\nEffect: Roll 3D6 for each friendly CITIES OF SIGMAR unit within 12\" of this unit. If any of the rolls are 13+, remove this unit from your Order of Battle/roster - they have been either executed on the spot or permanently exiled from civilisation! If this unit was your warlord/general, you must immediately pick a new warlord/general.\nDesigner’s Note: In some battlepacks, if your general has been removed and you do not have another eligible unit on your roster to replace them, your warriors disp erse and your Path to Glory campaign will end. We recommend making sure you have a spare eligib le unit on your roster to avoid that scenario. Alternatively, you can take it as a sign to start a Slaves to Darkness or other Chaos army!"
+		},
+		{
+			"name": "Step 5 - Pick a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-5DP\nCAVALIER STEED: A mighty destrier marks out this hero as one of the elite.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nCavalier Steed’s Iron-shod Hooves\nCompanion | 3 | 5+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 7.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nBattle Mount\n-8DP\nMAGISTERIAL PLATFORM: This hero rides to war upon a conveyance of wondrous design. Pulled by a draught horse, it might be topped by an esoteric contraption that can blast enemies to atoms or a divine powerhouse that magnifies the rider’s arcane abilities tenfold.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nDraught Horse’s Iron-shod Hooves\nCompanion | 4 | 5+ | 3+ | - | 1\nIn addition, if your hero is a Sigmarite Battlemage or Sigmarite Battle-priest, pick 1 of the following abilities:\nOnce Per Turn (Army), Your Shooting Phase\nAZYRITE STORM\nDeclare: Pick a visible enemy unit within 12\" of this unit to be the target.\nEffect: Make a number of D3 rolls equal to the current battle round number. For each 2+, inflict an amount of mortal damage on the target equal to the roll.\nPassive\nMAGICAL FOCI\nEffect: Add 1 to casting rolls and chanting rolls for this unit.\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 8\".\nChange the Health characteristic to 10.\nReplace the INFANTRY keyword with the WAR MACHINE keyword.\nIf your hero is a Sigmarite Battlemage:\nReplace the WIZARD (1) keyword with the WIZARD (2) keyword.\nIf your hero is a Sigmarite Battle-priest:\nReplace the PRIEST (1) keyword with the PRIEST (2) keyword."
+		},
+		{
+			"name": "Step 6 - Battle Any Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nPurebred Warhorse\n-2DP\nAdd 2\" to your hero's Move characteristic.\nSymbols of Office\n-2DP\nAdd the following ability to your hero's warscroll:\nPassive\nSYMBOLS OF OFFICE\nEffect: Add 3 to this unit’s control score.\nHoned Instincts\n-2DP\nAdd the following ability to your hero's warscroll:\nPassive\nHONED INSTINCTS\nEffect: This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit by RETREAT abilities.\nShadowsilk Barding\n-4DP\nAdd the following ability to your hero's warscroll:\nPassive\nSHADOWSILK BARDING\nEffect: If the unmodified hit roll for a shooting attack that targets this unit is a 1-5 and this unit is more than 12\" from the attacker, the attack fails and the attack sequence ends.\nBrutal Charger\n-4DP\nAdd the following ability to your hero's warscroll:\nOnce Per Turn (Army), Any Charge Phase\nBRUTAL CHARGER\nDeclare: If this unit charged this turn, pick each enemy unit in combat with it to be the target.\nEffect: Roll a dice. On a 3+, for the rest of the turn, the targets cannot use the ' All-out Defence' command while they are in combat with this unit.\nBorne to War\n-4DP\nYour hero’s non- Companion melee weapon has Charge (+1 Damage).\nStormrider\n-6DP\nAdd the following ability to your hero's warscroll:\nOnce Per Battle (Army), Any Movement Phase\nSTORMRIDER\nEffect: Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units.\nKEYWORDS | CORE, MOVE"
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nSprinter\n-1DP\nINFANTRY only. Add the following ability to your hero’s warscroll:\nPassive\nSPRINTER\nEffect: You can re-roll run rolls for this unit.\nDaring Duellist\n-2DP\nYour hero’s non- Companion melee weapon has Crit (2 Hits).\nBlade of the Order\n-2DP\nIf your hero has a Marshal’s Blade, it has Anti- WIZARD (+1 Rend) and Anti- PRIEST (+1 Rend).\nRapid Blows\n-3DP\nAdd 1 to the Attacks characteristic of your hero's melee weapons.\nBlademaster\n-3DP\nAdd 1 to the Rend characteristic of your hero's melee weapons.\nFaith in the Everqueen\n-4DP\nINFANTRY or CAVALRY only. Add the following ability to your hero’s warscroll:\nEnd of Any Turn\nFAITH IN THE EVERQUEEN\nEffect: Heal (3) this unit.\nDisplay of Worship\n-6DP\nAdd the following ability to your hero's warscroll:\nYour Hero Phase\nDISPLAY OF WORSHIP\nEffect: Roll a dice. On a 3+, pick 1 of the following effects:\nDivine Power: Pick each visible friendly SIGMARITE PRIEST wholly within 12\" of this unit to be the targets. Each target gains 1 ritual point.\nBlessed Resurrection: Return 1 slain model to each visible friendly SIGMARITE INFANTRY unit wholly within 12\" of this unit.\nSigmar’s Protection: This unit has WARD (6+) until the start of your next turn.\nWrath Unleashed\n-6DP\nAdd the following ability to your hero's warscroll:\nOnce Per Battle (Army), Any Combat Phase\nWRATH UNLEASHED\nEffect: Add 1 to the Damage characteristic of this unit’s melee weapons for the rest of the turn.\nImpeccable Generalship\n-8DP\nAdd the following ability to your hero's warscroll:\nDeployment Phase\nIMPECCABLE GENERALSHIP\nDeclare: Pick up to 3 friendly SIGMARITE units on the battlefield to be the targets.\nEffect: Remove the targets from the battlefield and set them up again wholly within friendly territory and more than 12\" from all enemy units."
+		},
+		{
+			"name": "Path of The Commander",
+			"text": "(CITIES OF SIGMAR HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nVENGEFUL\nEffect: If any friendly SIGMARITE units have been destroyed this battle, add 1 to hit rolls for this unit’s combat attacks.\nPassive\nTO THE LAST\nEffect: While they are within 12\" of this unit, subtract 2 from the control scores of visible enemy units for each friendly unit that has been destroyed this battle.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nFOCUSED AGGRESSION\nEffect: You can re-roll wound rolls for combat attacks made with this unit’s non- Companion weapons if it charged in the same turn.\nOnce Per Battle, Enemy Movement Phase\nWICKED CUNNING\nEffect: This unit can use the ' Normal Move' or ' Run' ability as if it were your movement phase.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nStart of Third Battle Round\nPATIENT BLADE\nEffect: For the rest of the battle, while they are wholly within 6\" of this unit, other visible friendly non- HERO SIGMARITE units have STRIKE-FIRST.\nDeployment Phase\nIMPATIENT ONRUSHER\nDeclare: Pick up to 2 other visible friendly SIGMARITE units wholly within 12\" of this unit to be the targets.\nEffect: This unit and the targets can each use the ' Normal Move' ability as if it were your movement phase. This unit must move before any targets, and it must end that move more than 12\" from all enemy units and not within enemy territory. Each target must end their move within this unit’s combat range.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Combat Phase\nCOMETH THE MOMENT\nEffect: This unit can use up to 3 FIGHT abilities this phase. However, after the first is used, this unit has STRIKE-LAST for the rest of the turn, and after the second is used, allocate 6 damage points to this unit after the FIGHT ability has been resolved (ward rolls cannot be made for those damage points).\nDeployment Phase\nSIGNATURE INVOCATION\nDeclare: Pick a SPELL or PRAYER ability that this unit can use.\nEffect: For the rest of the battle, this unit can use that ability in the enemy hero phase as if it were your hero phase."
+		},
+		{
+			"name": "Path of The Castelite",
+			"text": "(non- HERO SLAVES TO DARKNESS unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nCRUSADERS\nEffect: Add 3 to run rolls for this unit.\nPassive\nBLESSED BLADES AND RUNIC SHOT\nEffect: If this unit has not used a MOVE ability this turn, this unit’s weapons have Crit (Auto-wound).\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nPIONEERS\nEffect: Add 1 to hit rolls for this unit’s attacks while it is wholly within enemy territory.\nPassive\nCAMP DEFENDERS\nEffect: Subtract 1 from the Rend characteristic of weapons used for shooting attacks that target this unit while it is wholly within friendly territory.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nNOT ONE STEP BACK\nEffect: Ignore negative modifiers to hit rolls and wound rolls for this unit. Ignore modifiers (positive and negative) to save rolls for this unit. This unit cannot use RETREAT abilities.\nOnce Per Battle, Any Hero Phase\nFIND THE WEAK SPOT\nEffect: For the rest of the turn, ward rolls cannot be made for damage points inflicted on enemy units by this unit’s attacks.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nReaction: This unit was picked to be the target of a SPELL or PRAYER ability.\nCHAMPIONS OF SIGMAR\nEffect: Roll a dice. On a 3+:\nThat ability has no effect on this unit.\nThis unit has WARD (5+) for the rest of the turn.\nOnce Per Battle, Any Combat Phase\nDECISIVE STRIKES\nEffect: Add 1 to the Damage characteristic of this unit’s melee weapons for the rest of the turn."
+		},
+		{
+			"name": "You’re a Wizard!",
+			"text": "This Anvil of Apotheosis article enables you to forge your very own Collegiate Mage to field alongside your CITIES OF SIGMAR army. Though designed for Path to Glory campaigns, you can use your new wizard in any game if your opponent gives you the thumbs up. They may even have an Anvil of Apotheosis character of their own that they would like to use."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your order of battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\nPick a destiny point limit.\nFill out the starting warscroll.\nPick your hero’s origin and/or flaw.\nMake a spell.\nPick a Battle Companion.\nPick any Battle Companion Upgrades.\nPick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nApprentice Mage | 10 | 150\nAdvanced Arcanist | 30 | 250\nArchmage | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out the Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:\nRegiment Options | Any CITIES OF SIGMAR units",
+			"warscrolls": [
+				{
+					"id": "collegiate_mage",
+					"name": "Collegiate Mage",
+					"move": 5,
+					"health": 5,
+					"save": 6,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Mage’s Staff",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"WIZARD (1)",
+						"INFANTRY",
+						"ORDER",
+						"CITIES OF SIGMAR",
+						"HUMAN"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Pick Your Hero’s Origin and/or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "End of Any Turn\n-2DP\nSTRONG CONSTITUTION\nEffect: Heal (1) this unit.\nOnce Per Turn (Army), Your HERO Phase\n-2DP\nINNER POWER\nEffect: The next spell cast by this unit this phase cannot be unbound.\nPassive\n-4DP\nSTRONGEST WHEN IN THE FIELD\nEffect: Add 1 to casting rolls for this unit while it is within 6\" of an enemy unit.\nOnce Per Battle Round (Army), Reaction: Opponent declared a SPELL ability for a visible enemy unit within 18\" of this unit\n-6DP\nSPELL DISRUPTOR\nEffect: Pick 1 dice from the casting roll for that ability. Your opponent must re-roll that dice."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+2DP\nOLD BONES\nEffect: Subtract 2 from run rolls for this unit.\nPassive\n+2DP\nSTRONG FASHION SENSE\nEffect: Ignore positive modifiers to save rolls for this unit.\nPassive\n+4DP\nINSUFFERABLY ARROGANT\nEffect: This unit cannot use commands.\nPassive\n+10DP\nRECKLESS\nEffect: If an unmodified casting roll for this unit contains any doubles, the spell is miscast."
+		},
+		{
+			"name": "Step 4 - Make a Spell",
+			"text": "The next step is to make a warscroll spell for your hero. To do so:\nPick a range and pick whether it targets a friendly or enemy unit.\nPick one or more effects.\nPick a casting value.\nGive your spell a name. If you want to go a step further, you can write some background text for it too.\nUse the template below to record your spell:\nYour HERO Phase\nSPELL NAME Declare:\nEffect:\nKEYWORDS | SPELL\nRANGE\nDP\n-0DP\nEnemy\nDeclare: Pick a visible enemy unit within 6\" of this unit to be the target, then make a casting roll of 2D6.\nOR\nFriendly\nDeclare: Pick a visible friendly unit wholly within 6\" of this unit to be the target, then make a casting roll of 2D6.\n-2DP\nEnemy\nDeclare: Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.\nOR\nFriendly\nDeclare: Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.\n-5DP\nEnemy\nDeclare: Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.\nOR\nFriendly\nDeclare: Pick a visible friendly unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.\nEFFECT\nDP\n-6DP\nEffect: For the rest of the turn, subtract 1 from hit rolls for attacks made by enemy units that target that unit.\n-5DP\nEffect: Roll a number of dice equal to the number of models in the target unit. For each 5+:\nInflict 1 mortal damage on the target.\nHeal (1) this unit.\n-2DP\nEffect: Inflict D3 mortal damage on the target.\n-8DP\nEffect: Until the start of your next turn, halve the target’s Move characteristic and halve charge rolls for the target.\n-5DP\nEffect: Heal (D3) the target and this unit.\n-3DP\nEffect: The target is not visible to units (friendly and enemy) while they are more than 3\" from them.\n-7DP\nEffect: Pick 1 model in the target unit, then pick 1 of that model’s melee weapons. Add 1 to the Rend and Damage characteristics of that weapon for the rest of the turn.\n-5DP\nEffect: For the rest of the turn, the following effects apply:\nAdd 2\" to the target’s Move characteristic.\nThe target has FLY.\n-5DP\nEffect: Pick 1 weapon the target has and roll a dice. Until the start of your next turn, the Hit characteristic of that weapon is the result of the roll (e.g. a roll of 2 would change its Hit characteristic to 2+).\nCASTING VALUE\nDP\n+2DP\n8\n-0DP\n7\n-4DP\n6\n-6DP\n5"
+		},
+		{
+			"name": "Step 5 - Pick Battle Companion",
+			"text": "You can pick up to 1 Battle Companion for your hero.\nBattle Companion\n-6DP\nWAR HORSE: A noble steed – the perfect companion to swiftly carry the wizard to exactly where they need to be.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nWell-kept Hooves\nCompanion | 2 | 5+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 7.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nChange the Save characteristic to 5+.\nBattle Companion\n-10DP\nWIZARD’S FAMILIAR: This helpful little creature never seems far from their master, perhaps carrying an assortment of expendable arcane paraphernalia or themselves acting as a source of magical power that can be drawn upon.\nAdd the following ability to your hero’s warscroll:\nOnce Per Battle, Reaction: You declared a SPELL ability for this unit and the casting roll included any rolls of 1\nDRAIN FAMILIAR\nEffect: Change one of the rolls of 1 to a 4. For the rest of the battle, subtract 1 from this unit’s power level, to a minimum of 0.\nIn addition, make the following changes to your hero’s warscroll:\nReplace WIZARD (1) with WIZARD (2)."
+		},
+		{
+			"name": "Step 6 - Pick Any Companion Upgrades",
+			"text": "If your hero has a Battle Companion, you can pick any number of Companion Upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nSwift-footed\n-2DP\nCAVALRY only. Add 2\" to your hero’s Move characteristic.\nHardy Companion\n-2DP\nAdd 2 to your hero’s Health characteristic.\nWinged Companion\n-3DP\nYour hero gains the FLY keyword.\nBattle Familiar\n-4DP\nINFANTRY only. Add the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nFamiliar’s Weapons\nCrit (2 Hits), Companion | 6 | 3+ | 4+ | 1 | 1\nWar-horse Charge\n-5DP\nCAVALRY only. Add the following ability to your hero’s warscroll:\nOnce Per Turn (Army), Any Charge Phase\nWAR-HORSE CHARGE\nDeclare: If this unit charged this turn, pick an enemy unit in combat with it to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nArcane Speed\n-8DP\nCAVALRY only. Add the following ability to your hero’s warscroll:\nOnce Per Turn (Army), Your Movement Phase\nARCANE SPEED\nEffect: If this unit is not in combat, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
+		},
+		{
+			"name": "Step 7 - Pick Any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nEccentric Browbeater\n-1DP\nAdd 1 to your hero’s Control characteristic.\nMartial Training\n-2DP\nAdd 2 to the Attacks characteristic of your hero’s non-Companion melee weapons.\nOffensive Enchantments\n-2DP\nYour hero’s non-Companion melee weapons have Crit (2 Hits).\nGuiding Enchantments\n-3DP\nThe Hit characteristic of your hero’s Mage’s Staff is 2+.\nWand of Blasting\n-4DP\nAdd the following ability to your hero’s warscroll:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nWand of Blasting\nCrit (2 Hits) | 12\" | 3 | 3+ | 3+ | 2 | D3\nMaster Unbinder\n-4DP\nAdd the following ability to your hero’s warscroll:\nPassive\nMASTER UNBINDER\nEffect: Add 1 to unbinding rolls and banishment rolls for this unit.\nMagical Maestro\n-5DP\nAdd the following ability to your hero’s warscroll:\nPassive\nMAGICAL MAESTRO\nEffect: Add 1 to casting rolls for this unit.\nArcane Form\n-5DP\nYour hero has WARD (5+).\nArcane Conductor\n-5DP\nAdd the following ability to your hero’s warscroll:\nPassive\nARCANE CONDUCTOR\nEffect: Add 1 to the Damage characteristic of this unit’s Mage’s Staff for each MANIFESTATION on the battlefield.\nSpell Mastery\n-8DP\nAdd the following ability to your hero’s warscroll:\nOnce Per Turn (Army) Reaction: You declared a SPELL ability for this unit\nSPELL MASTERY\nEffect: If that spell is successfully cast, roll a dice. On a 3+, after resolving the effect of that spell, this unit can immediately cast that spell a second time using the same casting roll. Do not count the second spell towards the number of SPELL abilities this unit can use this phase.\nWizard Lord\n-8DP\nAdd 1 to your hero’s power level."
+		}
+	]
+}

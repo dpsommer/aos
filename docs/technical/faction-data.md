@@ -38,7 +38,7 @@ Faction data is built by `tools/faction_import/` from two sources:
 
 The "AoS Rules" NotebookLM notebook (`a30c0d6a-8127-4eab-b97e-e457c97a65fc`), which holds the battletome and General's Handbook, is useful for settling disagreements the diff report raises.
 
-**Legends warscrolls** (those with `legends`) are checked against the "AoS Legends" NotebookLM notebook (`69365d24-6043-4353-bb04-2b0d3ecca253`), which is the source of truth for them and wins over both BSData and Wahapedia. Record any corrections in the faction's overrides file.
+**Legends warscrolls** (those with `legends`) are checked against the "AoS Legends" NotebookLM notebook (`69365d24-6043-4353-bb04-2b0d3ecca253`), which is the source of truth for them and wins over both BSData and Wahapedia. For a Legends unit the notebook doesn't have, Wahapedia's values win over BSData's. Record any corrections in the faction's overrides file.
 
 ## Adding a faction
 
@@ -83,12 +83,12 @@ How the BSData catalogues map to the data:
 
 - Units are those `<Faction>.cat` links to, plus unlisted units in the library (e.g. units added during a battle) and units defined by Army of Renown catalogues (e.g. Grombrindal). The Anvil of Apotheosis hero is left out; it's in Path to Glory.
 - Points and reinforcement come from the faction catalogue's link to each unit. `source` and `legends` come from the unit's publication, and a "(Scourge of …)" name suffix becomes the `source`.
-- Ability icon categories come from the profile's `Type` attribute. `***Label:***` lines in an effect become `options`, and designer's notes become an option named "Designer’s Note". When several options each follow a short heading line, the heading prefixes the option name ("Battle Round 2: Daemonic Weaponry").
+- Ability icon categories come from the profile's `Type` attribute. `***Label:***` (or `***Label*:**`) lines in an effect become `options`, and designer's notes become an option named "Designer’s Note". When several options each follow a short heading line, the heading prefixes the option name ("Battle Round 2: Daemonic Weaponry").
 - Each shared entry group other than lores, formations, Paths and Battle Wounds is an enhancement type. A nested group becomes the table's `group`, and the publication becomes its `source`.
 - Lores come from the Spell, Prayer and Manifestation Lores groups. Universal lores (core rules, General's Handbook) are skipped.
-- An Army of Renown is each `<Faction> - <Name>.cat`, plus the shared catalogue it links to when its rules live there (e.g. `The Duardin Ascendant [LEGENDS].cat`).
+- An Army of Renown is each `<Faction> - <Name>.cat` (a `[LEGENDS]` tag in the name, even without its closing bracket, marks it `legends`), plus the shared catalogue it links to when its rules live there (e.g. `The Duardin Ascendant [LEGENDS].cat`).
 
-The Wahapedia parsers rely on Wahapedia's page structure. They read the faction page's headings: Battle Traits, Battle Formations, `… Lore`, other enhancement types, and Armies of Renown (sections listing ROSTER OPTIONS), Path to Glory and Spearhead. Spearhead army lists sometimes shorten unit names ("Dominator Engine"); these are resolved to the Spearhead's warscroll by unique prefix.
+The Wahapedia parsers rely on Wahapedia's page structure. They read the faction page's headings: Battle Traits, Battle Formations, `… Lore`, other enhancement types, and Armies of Renown (sections listing ROSTER OPTIONS), Path to Glory and Spearhead. Spearhead army lists sometimes shorten unit names ("Dominator Engine") or reorder their words ("Freeguild Command Corps Whisperblade" for "Whisperblade, Freeguild Command Corps"); these are resolved to the Spearhead's warscroll by unique prefix or by matching words. A unit listed without a count (a named character) counts as 1, and token notes ("with 1 Blackpowder Squire token", or a parenthetical) become the unit's `notes`; the general's notes are dropped.
 
 ## Exporting
 

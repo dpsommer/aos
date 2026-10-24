@@ -44,6 +44,7 @@ const _FACTIONS := {
 ## Data directories for factions whose rules have been added. See docs/technical/faction-data.md.
 const _DATA_DIRS := {
 	"Blades of Khorne": "res://data/factions/blades_of_khorne",
+	"Cities of Sigmar": "res://data/factions/cities_of_sigmar",
 	"Helsmiths of Hashut": "res://data/factions/helsmiths_of_hashut",
 	"Idoneth Deepkin": "res://data/factions/idoneth_deepkin",
 	"Kharadron Overlords": "res://data/factions/kharadron_overlords",

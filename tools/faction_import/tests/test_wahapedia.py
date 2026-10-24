@@ -41,3 +41,26 @@ def test_heading_repeated_before_faction_rules_does_not_shift_section_text(tmp_p
     page = PAGE.replace("<h2>Books</h2>", "<h2>Lords of the Clan</h2><p>Book blurb.</p>")
     aor = parse(tmp_path, page)["armies_of_renown"][0]
     assert aor["text"].startswith("Lead the clan to war.")
+
+
+# parse_profile()
+
+def profile(notes):
+    html = ('<div class="PitchedBattleProfile"><p>Unit Size: 1</p><p>Points: 200</p>'
+            '<p>Base size: 120 x 92mm</p><p>Notes: %s</p></div>' % notes)
+    return wahapedia.BeautifulSoup(html, "html.parser").div
+
+
+LEGENDS_NOTE = "This unit will move to Warhammer Legends on 1 June 2027."
+
+
+def test_profile_notes_drop_trailing_base_size():
+    assert wahapedia.parse_profile(profile(LEGENDS_NOTE + " 120 x 92mm"))["notes"] == LEGENDS_NOTE
+
+
+def test_profile_notes_drop_trailing_base_size_with_times_sign():
+    assert wahapedia.parse_profile(profile(LEGENDS_NOTE + " 120 × 92mm"))["notes"] == LEGENDS_NOTE
+
+
+def test_profile_notes_without_base_size_are_unchanged():
+    assert wahapedia.parse_profile(profile(LEGENDS_NOTE))["notes"] == LEGENDS_NOTE

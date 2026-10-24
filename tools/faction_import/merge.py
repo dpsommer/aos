@@ -221,10 +221,14 @@ def merge_armies(report, bs_list, wh_list):
 
 def resolve(name, names):
     """Match a Spearhead army list entry to a warscroll name. Lists sometimes shorten names,
-    e.g. "Dominator Engine" for "Dominator Engine with Immolation Cannons"."""
+    e.g. "Dominator Engine" for "Dominator Engine with Immolation Cannons", or reorder them,
+    e.g. "Freeguild Command Corps Whisperblade" for "Whisperblade, Freeguild Command Corps"."""
     if name in names:
         return name
     matches = [n for n in names if n.startswith(name + " ")]
+    if not matches:
+        words = sorted(re.findall(r"[\w'’-]+", name.lower()))
+        matches = [n for n in names if sorted(re.findall(r"[\w'’-]+", n.lower())) == words]
     if len(matches) != 1:
         raise SystemExit("cannot resolve Spearhead unit %r among %s" % (name, names))
     return matches[0]
@@ -239,11 +243,17 @@ def spearheads(wh_list, bs_names):
         names = [w["name"] for w in warscrolls]
         army = " ".join(c for row in s["army"] for c in row)
         m = re.search(r"General\s+(.+?)\s+Units\s+(.+)$", army)
-        general = resolve(canonical.get(norm(m.group(1)), m.group(1)), names)
+        # The general can carry token notes, e.g. "Jorvan Kreel (Thexa, the ash panther, is a token)".
+        general = re.sub(r"(\s*\([^()]*\))+$", "", m.group(1))
+        general = resolve(canonical.get(norm(general), general), names)
         units = []
-        for count, name in re.findall(r"(\d+)\s+(.+?)(?=\s+\d+\s+|$)", m.group(2)):
-            unit = {"count": int(count), "name": name.strip()}
-            mm = re.match(r"(.+?)\s*\((.+)\)$", unit["name"])
+        # Entries start at a count, except a named character listed without one. A count after
+        # "with" is part of the entry ("5 Freeguild Fusiliers with 1 Blackpowder Squire token").
+        for entry in re.split(r"(?<!\bwith)\s+(?=\d+\s)", m.group(2)):
+            count, name = re.match(r"(?:(\d+)\s+)?(.+)$", entry).groups()
+            unit = {"count": int(count or 1), "name": name.strip()}
+            mm = re.match(r"(.+?)\s*\((.+)\)$", unit["name"]) or \
+                re.match(r"(.+?)\s+(with \d+ .+ tokens?)$", unit["name"])
             if mm:
                 unit["name"], unit["notes"] = mm.group(1), mm.group(2)
             unit["name"] = resolve(canonical.get(norm(unit["name"]), unit["name"]), names)

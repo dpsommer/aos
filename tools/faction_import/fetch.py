@@ -6,7 +6,7 @@ e.g.   python -I fetch.py helsmiths-of-hashut /tmp/hoh
 Writes <out dir>/<slug>.html and <out dir>/units/<Unit-Name>.html. BSData isn't downloaded
 here; build.py reads it from a local checkout (see bsdata.ensure_checkout).
 """
-import os, re, sys, time, urllib.error, urllib.request
+import os, re, sys, time, urllib.error, urllib.parse, urllib.request
 
 WAHAPEDIA = "https://wahapedia.ru/aos4/factions/"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
@@ -30,7 +30,8 @@ def fetch_wahapedia(slug, out_dir):
     for unit in units:
         time.sleep(1)
         try:
-            html = get(WAHAPEDIA + slug + "/" + unit)
+            # Quoted because some links contain non-ASCII, e.g. a no-break space in a unit name.
+            html = get(WAHAPEDIA + slug + "/" + urllib.parse.quote(unit))
         except urllib.error.HTTPError as error:
             # Some links, such as the Path to Glory hero, have no page of their own.
             print("skipped %s: %s" % (unit, error), file=sys.stderr)

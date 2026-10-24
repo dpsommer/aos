@@ -385,3 +385,56 @@ def test_resolve_fails_without_match():
 def test_resolve_fails_on_ambiguous_prefix():
     with pytest.raises(SystemExit):
         merge.resolve("Engine", ["Engine with Cannons", "Engine with Drills"])
+
+
+def test_resolve_matches_reordered_words_with_punctuation():
+    names = ["Whisperblade, Freeguild Command Corps", "Freeguild Fusiliers"]
+    assert merge.resolve("Freeguild Command Corps Whisperblade", names) == "Whisperblade, Freeguild Command Corps"
+
+
+def test_resolve_fails_on_ambiguous_reordering():
+    with pytest.raises(SystemExit):
+        merge.resolve("Corps Command", ["Command, Corps", "Corps, Command"])
+
+
+def test_resolve_fails_when_reordered_words_differ():
+    with pytest.raises(SystemExit):
+        merge.resolve("Freeguild Command Corps Whisperblade", ["Whisperblade, Freeguild Steelhelms"])
+
+
+def cities_spearhead(general="Test Captain", units="2 Test Riders"):
+    army = [["General", general], ["Units", units]]
+    names = ["Test Captain", "Test Riders", "Pontifex Zenestra, Matriarch of the Great Wheel",
+             "Freeguild Fusiliers"]
+    (s,) = merge.spearheads([spearhead(army, names)], names)
+    return s
+
+
+def test_spearhead_unit_without_count_counts_as_one():
+    s = cities_spearhead(units="Pontifex Zenestra, Matriarch of the Great Wheel 2 Test Riders")
+    assert s["units"][0] == {"count": 1, "name": "Pontifex Zenestra, Matriarch of the Great Wheel"}
+
+
+def test_spearhead_unit_without_count_does_not_drop_following_units():
+    s = cities_spearhead(units="Pontifex Zenestra, Matriarch of the Great Wheel 2 Test Riders")
+    assert [u["name"] for u in s["units"]] == ["Pontifex Zenestra, Matriarch of the Great Wheel", "Test Riders"]
+
+
+def test_spearhead_count_after_with_stays_in_its_entry():
+    s = cities_spearhead(units="5 Freeguild Fusiliers with 1 Blackpowder Squire token 2 Test Riders")
+    assert [(u["count"], u["name"]) for u in s["units"]] == [(5, "Freeguild Fusiliers"), (2, "Test Riders")]
+
+
+def test_spearhead_token_suffix_becomes_notes():
+    s = cities_spearhead(units="5 Freeguild Fusiliers with 1 Blackpowder Squire token")
+    assert s["units"][0]["notes"] == "with 1 Blackpowder Squire token"
+
+
+def test_spearhead_general_parenthetical_is_stripped():
+    s = cities_spearhead(general="Test Captain (Thexa, the ash panther, is a token)")
+    assert s["general"] == "Test Captain"
+
+
+def test_spearhead_general_consecutive_parentheticals_are_stripped():
+    s = cities_spearhead(general="Test Captain (Thexa is a token) (she has 1 wound)")
+    assert s["general"] == "Test Captain"

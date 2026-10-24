@@ -173,7 +173,8 @@ def split_options(effect):
     When several options each follow a short heading line, such as "Battle Round 2:", the
     heading prefixes the option's name. A single such line ("Pick 1 of the following:") is
     lead text and stays in the effect."""
-    option_line = re.compile(r"\s*\*{3}(.+?):?\*{3}:?\s*(.*)$")
+    # "***Label:***", "***Label***:" or "***Label*:**".
+    option_line = re.compile(r"\s*\*{3}([^*]+?)(?:\*:\*{2}|:?\*{3}:?)\s*(.*)$")
     source = (effect or "").split("\n")
     headings = {i for i, line in enumerate(source[:-1])
                 if option_line.match(source[i + 1]) and re.fullmatch(r"[^.:]{1,40}:", markup(line))}
@@ -443,6 +444,12 @@ def aor_file_name(faction, file_name):
     return file_name[len(faction + " - "):-len(".cat")]
 
 
+def split_legends_tag(aor_name):
+    """'The Duardin Ascendant [LEGENDS]' -> ('The Duardin Ascendant', True). The tag's closing
+    bracket is sometimes missing ('Cities of Sigmar - Lethis [LEGENDS.cat')."""
+    return re.sub(r"\s*\[LEGENDS\]?", "", aor_name).strip(), "[LEGENDS" in aor_name
+
+
 def points_of_link(link):
     return any(c.get("name") == "pts" and float(c.get("value")) for c in kids(link, "costs", "cost"))
 
@@ -467,9 +474,7 @@ def read_faction(cats, name):
     armies = []
     for file_name in aor_files:
         roots = linked_roots(cats, cats.docs[file_name], aor_file_name(name, file_name))
-        aor_name = aor_file_name(name, file_name)
-        legends = "[LEGENDS]" in aor_name
-        aor_name = aor_name.replace("[LEGENDS]", "").strip()
+        aor_name, legends = split_legends_tag(aor_file_name(name, file_name))
         army = {"name": aor_name}
         if legends:
             army["legends"] = True

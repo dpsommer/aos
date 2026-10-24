@@ -128,6 +128,25 @@ def test_italic_designers_note_becomes_an_option(line):
     assert options == [{"name": "Designer’s Note", "text": "This is commentary, not a rule."}]
 
 
+def test_option_label_closed_inside_bold_becomes_an_option():
+    _, options = bsdata.split_options("Pick one:\n***Nullshot*:** Add 1 to hit rolls.")
+    assert options == [{"name": "Nullshot", "text": "Add 1 to hit rolls."}]
+
+
+def test_option_label_with_colon_inside_markup_becomes_an_option():
+    _, options = bsdata.split_options("Pick one:\n***Iron Will:*** Add 1 to save rolls.")
+    assert options == [{"name": "Iron Will", "text": "Add 1 to save rolls."}]
+
+
+@pytest.mark.parametrize("line", [
+    "**^^Hero^^** units have Ward (6+).",
+    "***^^Hero^^** units have Ward (6+).***",
+])
+def test_line_starting_with_bold_keyword_is_not_an_option(line):
+    effect, options = bsdata.split_options("Heal (1).\n" + line)
+    assert options == [] and "units have Ward (6+)." in effect
+
+
 HEADED = ("Each battle round, gain a boon:\n"
           "Battle Round 1:\n***Iron Will:*** Add 1 to save rolls.\n"
           "Battle Round 2:\n***Daemonic Weaponry:*** Add 1 to hit rolls.")
@@ -533,6 +552,18 @@ def test_short_name_without_owner_keeps_name():
 def test_aor_file_name_strips_faction_and_extension():
     assert bsdata.aor_file_name("Kharadron Overlords", "Kharadron Overlords - The Duardin Ascendant [LEGENDS].cat") \
         == "The Duardin Ascendant [LEGENDS]"
+
+
+def test_split_legends_tag_strips_tag():
+    assert bsdata.split_legends_tag("The Duardin Ascendant [LEGENDS]") == ("The Duardin Ascendant", True)
+
+
+def test_split_legends_tag_handles_missing_closing_bracket():
+    assert bsdata.split_legends_tag("Lethis [LEGENDS") == ("Lethis", True)
+
+
+def test_split_legends_tag_leaves_untagged_name():
+    assert bsdata.split_legends_tag("Lethis") == ("Lethis", False)
 
 
 def test_faction_link_wins_over_priced_army_of_renown_link(tmp_path):

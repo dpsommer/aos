@@ -5,5 +5,8 @@
 # Python bytecode from tools/
 __pycache__/
 
+# pyenv version file
+.python-version
+
 # Local BSData checkout used by tools/faction_import
 /tools/bsdata/
