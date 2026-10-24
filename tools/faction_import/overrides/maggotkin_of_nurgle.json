@@ -1,0 +1,102 @@
+{
+	"replace_with_wahapedia": {
+		"Corpulent Avalanche": "Corpulent Avalanche"
+	},
+	"fields": {
+		"pusgoyle_blightlords_1_model": {
+			"unit_size": 1
+		},
+		"rotmire_creed": {
+			"base_size": "Witherlord, Bloated One: 32mm, 2 x Carrion Catchers: 28.5mm, 6 x Mirefolk Outcasts: 25mm"
+		},
+		"Blessed By the Plaguefather": {
+			"options": [
+				{
+					"name": "Infect",
+					"text": "Pick an enemy unit within 7\" of any friendly MAGGOTKIN OF NURGLE unit to be the target. You cannot pick a MANIFESTATION or terrain feature.\n• If the target is in combat with any friendly MAGGOTKIN OF NURGLE units, it has the DISEASED keyword.\n• If the target is not in combat with any friendly MAGGOTKIN OF NURGLE units, roll a dice. On a 4+, the target has the DISEASED keyword."
+				},
+				{
+					"name": "Spread",
+					"text": "Pick a DISEASED enemy unit to be the target. Each other enemy unit within the target's combat range, excluding MANIFESTATIONS and terrain features, has the DISEASED keyword."
+				},
+				{
+					"name": "Mutate",
+					"text": "If all enemy units on the battlefield, excluding MANIFESTATIONS and terrain features, have the DISEASED keyword, inflict 1 mortal damage on each of them."
+				}
+			]
+		},
+		"Overpowering Stench": {
+			"effect": "You and your opponent must roll off. If your roll is higher, pick 1 of the following effects to apply for the rest of the turn:\n• Ignore positive modifiers to save rolls for the target.\n• Subtract 1 from ward rolls for the target."
+		},
+		"Favoured Poxes": {
+			"effect": "Until the start of your next turn, subtract 2 from charge rolls for the target. If the chanting roll was 10+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1, instead."
+		},
+		"Bloated with Sickness": {
+			"effect": "Until the start of your next turn, ignore the first damage point that would be allocated to the target in each phase. If the chanting roll was 10+, you can pick another eligible unit to be a second target."
+		},
+		"Burgeoning Filth": {
+			"effect": "Subtract 3 from the control scores of enemy units while they are in combat with any friendly CYCLE OF CORRUPTION units."
+		},
+		"Plague of Misery": {
+			"effect": "While enemy units are within 12\" of any friendly CYCLE OF CORRUPTION units, they cannot use abilities that heal or return slain models to a unit."
+		},
+		"Virulent Agonies": {
+			"effect": "Inflict 1 mortal damage on the target. Then, inflict 1 mortal damage on each other enemy unit within the target's combat range. If the chanting roll was 7+, inflict D3 mortal damage on the target instead of 1."
+		},
+		"Stinking Sporeseed": {
+			"effect": "Set up a Feculent Gnarlmaw within 3\" of this unit and more than 3\" from all enemy units, objectives, and other terrain features."
+		},
+		"lord_of_blights > Festering Bulwark": {
+			"effect": "Roll a dice. On a 3+, ignore negative modifiers to save rolls for the targets for the rest of the turn."
+		},
+		"morbidex_twiceborn > Tide of Nurglings": {
+			"declare": "Pick up to 2 friendly Nurglings units wholly within 12\" of this unit to be the targets."
+		},
+		"Desperate Remedies": {
+			"effect": "If an ability would heal or return slain models to a DISEASED enemy unit, that ability does not heal or return any slain models to it. Instead, it no longer has the DISEASED keyword."
+		},
+		"orghotts_daemonspew > Acid Ichor": {
+			"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+		},
+		"cankerborn > Utter Defilement": {
+			"effect": "Place 1 of this unit's Pestilent Pollutants next to the target. If both of this unit's Pestilent Pollutants are already on the battlefield, pick 1 of them, remove it from the battlefield and place it next to the target instead."
+		},
+		"cankerborn > From the Tainted Earth": {
+			"effect": "Remove this unit from the battlefield and set it up again more than 9\" from all enemy units and wholly within 3\" of:\n• An objective or terrain feature that has a friendly Pestilent Pollutant, or\n• A POLLUTED terrain feature (see Gelgus Pust's warscroll), or\n• An objective you control"
+		},
+		"lord_of_blights > Thrice-ripened Death's Heads": {
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick an enemy unit that charged this turn and is in combat with this unit or with a friendly Plague Drones unit wholly within 12\" of this unit to be the target."
+		},
+		"rotigus > Mountain of Loathsome Flesh": {
+			"declare": "If this unit charged this turn, roll a dice. On a 3+, pick a visible enemy unit within 1\" of it to be the target."
+		},
+		"beast_of_nurgle > Attention Seekers": {
+			"effect": "This unit can move a distance up to the value of the charge roll. It can move through the combat ranges of enemy units and must end that move within 1/2\" of the target. Then, inflict D3 mortal damage on the target. This unit has charged."
+		},
+		"bloab_rotspawned > Miasma of Pestilence": {
+			"effect": "Until the start of your next turn, other than the Companion weapon ability, weapon abilities for attacks that target that friendly unit have no effect."
+		},
+		"lord_of_afflictions > Master of Rot Flies": {
+			"effect": "Add 1 to the Rend characteristic of the targets' Rot Fly's Mouthparts and Sting for the rest of the turn."
+		},
+		"sloppity_bilepiper_herald_of_nurgle > Jolly Gutpipes": {
+			"effect": "If you picked a friendly unit to be the target, roll a dice. If the roll equals or exceeds the target's Control characteristic, add 2 to run rolls and charge rolls for the target until the start of your next turn.\nIf you picked an enemy unit to be the target, roll a dice. If the roll equals or exceeds the target's Control characteristic, until the start of your next turn, while this unit is on the battlefield, inflict D3 mortal damage on the target:\n• Each time the target ends a move further from this unit than it was at the start of the move, after the ability used by the target has been resolved.\n• Each time the target is removed from the battlefield and set up again on the battlefield further from this unit than it was before it was removed, after the ability used by the target has been resolved."
+		},
+		"Revolution and Revulsion": {
+			"effect": "If it is the first battle round, roll a dice to determine which CYCLE ability is ripe for the rest of the battle round.\n1 'Unnatural Vitality'\n2 'Fecund Vigour'\n3 'Burgeoning Filth'\n4 'Plague of Misery'\n5 'Nauseous Revulsion'\n6 'Rampant Disease'\n7 'Corrupted Regrowth'\nIf it is not the first battle round, the next CYCLE ability in the sequence is ripe for the rest of the battle round. If the 'Corrupted Regrowth' ability was ripe last battle round, the 'Unnatural Vitality' ability is ripe this battle round.\nYou can only use a CYCLE ability if it is ripe. Only 1 CYCLE ability is ripe each battle round."
+		},
+		"Bacterial Blessing": {
+			"chanting_value": 4
+		},
+		"Spittledrain": {
+			"declare": "Pick a friendly CYCLE OF CORRUPTION WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6."
+		},
+		"Head Gardener": {
+			"effect": "The friendly Horticulous Slimux can use his 'Cultivating the Garden of Nurgle' ability this phase even if there are 1 or more friendly Feculent Gnarlmaws on the battlefield."
+		},
+		"belga_the_cystwitch > Ruptured Cysts": {
+			"effect": "Inflict D3 mortal damage on the target. Then, inflict 1 mortal damage on each other DISEASED enemy unit within 3\" of the target. If the chanting roll was 9+, you can also pick a friendly Plaguebearers unit within 12\" of the target. For each enemy INFANTRY model slain by this ability this turn, you can return 1 slain model to that friendly unit."
+		}
+	}
+}

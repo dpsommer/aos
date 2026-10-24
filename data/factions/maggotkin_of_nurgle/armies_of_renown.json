@@ -1,0 +1,304 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Cycle of Corruption",
+			"text": "When you pick the Maggotkin of Nurgle faction for your army, you can choose for it to be a Cycle of Corruption Army of Renown. If you do so, use the faction rules on these pages instead of the Maggotkin of Nurgle faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CYCLE OF CORRUPTION keyword\nROSTER OPTIONS\nAny ROTBRINGERS units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Revolution and Revulsion",
+					"category": "special",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Battle Round (Army)",
+					"declare": "You must use this ability at the start of each battle round.",
+					"effect": "If it is the first battle round, roll a dice to determine which CYCLE ability is ripe for the rest of the battle round.\n1 'Unnatural Vitality'\n2 'Fecund Vigour'\n3 'Burgeoning Filth'\n4 'Plague of Misery'\n5 'Nauseous Revulsion'\n6 'Rampant Disease'\n7 'Corrupted Regrowth'\nIf it is not the first battle round, the next CYCLE ability in the sequence is ripe for the rest of the battle round. If the 'Corrupted Regrowth' ability was ripe last battle round, the 'Unnatural Vitality' ability is ripe this battle round.\nYou can only use a CYCLE ability if it is ripe. Only 1 CYCLE ability is ripe each battle round."
+				},
+				{
+					"name": "Unnatural Vitality",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly non-MONSTER CYCLE OF CORRUPTION HEROES have WARD (4+).",
+					"keywords": [
+						"CYCLE"
+					]
+				},
+				{
+					"name": "Fecund Vigour",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Heal (D3) each friendly CYCLE OF CORRUPTION unit.",
+					"keywords": [
+						"CYCLE"
+					]
+				},
+				{
+					"name": "Burgeoning Filth",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Subtract 3 from the control scores of enemy units while they are in combat with any friendly CYCLE OF CORRUPTION units.",
+					"keywords": [
+						"CYCLE"
+					]
+				},
+				{
+					"name": "Plague of Misery",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "While enemy units are within 12\" of any friendly CYCLE OF CORRUPTION units, they cannot use abilities that heal or return slain models to a unit.",
+					"keywords": [
+						"CYCLE"
+					]
+				},
+				{
+					"name": "Nauseous Revulsion",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Subtract 1 from charge rolls for enemy units.",
+					"keywords": [
+						"CYCLE"
+					]
+				},
+				{
+					"name": "Rampant Disease",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Melee weapons used by friendly non-HERO CYCLE OF CORRUPTION units have Crit (2 Hits).",
+					"keywords": [
+						"CYCLE"
+					]
+				},
+				{
+					"name": "Corrupted Regrowth",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Heal (7) each friendly Feculent Gnarlmaw.\nIf there are no friendly Feculent Gnarlmaws on the battlefield, you can set up a Feculent Gnarlmaw on the battlefield more than 9\" from all enemy units and more than 3\" from all objectives and other terrain features.",
+					"keywords": [
+						"CYCLE"
+					]
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Utterly Disgusting",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Subtract 1 from hit rolls for attacks that target this unit."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Cankerous Nail",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Rend characteristic of this unit's melee weapons."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Epidermal Crustitis",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CYCLE OF CORRUPTION WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, subtract 1 from the Damage characteristic of melee weapons used for attacks that target the caster.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Rank and Vile",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CYCLE OF CORRUPTION WIZARD to cast this spell, pick a visible enemy INFANTRY unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, each time a model in the target unit is slain, after removing it from the battlefield, roll a dice. On a 4+, return 1 slain model to a friendly non-HERO CYCLE OF CORRUPTION INFANTRY unit within 6\" of the target.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Spittledrain",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CYCLE OF CORRUPTION WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Subtract 1 from the target's Move characteristic until the start of your next turn. Then, roll a number of dice equal to the number of models in the target unit. For each 6, inflict 1 mortal damage on the target, to a maximum of 7.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				},
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Bacterial Blessing",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CYCLE OF CORRUPTION PRIEST to chant this prayer, pick a visible friendly CYCLE OF CORRUPTION unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, add 1 to wound rolls for the target's combat attacks. If the chanting roll was 7+, you can pick another eligible unit to be a second target.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Ever Turning",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CYCLE OF CORRUPTION PRIEST to chant this prayer, then make a chanting roll of D6.",
+							"effect": "The next CYCLE ability in the sequence is ripe for the rest of the battle round instead of the current CYCLE ability. If the chanting roll was 12+, you can pick which CYCLE ability is ripe.",
+							"chanting_value": 5,
+							"keywords": [
+								"PRAYER"
+							]
+						},
+						{
+							"name": "Virulent Agonies",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CYCLE OF CORRUPTION PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Inflict 1 mortal damage on the target. Then, inflict 1 mortal damage on each other enemy unit within the target's combat range. If the chanting roll was 7+, inflict D3 mortal damage on the target instead of 1.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "The Gardeners of Nurgle",
+			"text": "When you pick the Maggotkin of Nurgle faction for your army, you can choose for it to be the Gardeners of Nurgle Army of Renown. If you do so, use the faction rules on these pages instead of the Maggotkin of Nurgle faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the GARDENERS OF NURGLE keyword.\nROSTER OPTIONS\nHorticulous Slimux (must be included)\nAny MAGGOTKIN OF NURGLE DAEMON units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "The Garden Grows",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Set up a Feculent Gnarlmaw on the battlefield more than 3\" from all enemy units, objectives, and other terrain features."
+				},
+				{
+					"name": "Transplanting",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly Feculent Gnarlmaw to be the target.",
+					"effect": "Remove the target from the battlefield and set it up again within 3\" of a friendly GARDENERS OF NURGLE HERO and more than 3\" from all enemy units, objectives, and other terrain features."
+				},
+				{
+					"name": "Head Gardener",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "The friendly Horticulous Slimux can use his 'Cultivating the Garden of Nurgle' ability this phase even if there are 1 or more friendly Feculent Gnarlmaws on the battlefield."
+				},
+				{
+					"name": "Putrescent Sap",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick each enemy unit within 3\" of any friendly Feculent Gnarlmaws to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				},
+				{
+					"name": "Foul Fauna",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Add 2\" to the Move characteristic of friendly GARDENERS OF NURGLE Beasts of Nurgle and Plague Drones units while they are wholly within 6\" of any friendly Feculent Gnarlmaws."
+				},
+				{
+					"name": "Sickly Spores",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While a friendly GARDENERS OF NURGLE INFANTRY unit is wholly within 12\" of a friendly Feculent Gnarlmaw, ignore the first damage point that would be allocated to it in each phase."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Foetid Orchardist",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to hit rolls for this unit's combat attacks while it is wholly within 7\" of any friendly Feculent Gnarlmaws."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Stinking Sporeseed",
+							"category": "special",
+							"timing": "Your Movement Phase",
+							"frequency": "Once Per Battle",
+							"effect": "Set up a Feculent Gnarlmaw within 3\" of this unit and more than 3\" from all enemy units, objectives, and other terrain features."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Munificent Blights",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GARDENERS OF NURGLE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, add 1 to the amount of mortal damage inflicted on the target by the 'Putrescent Sap' ability.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Scumfall",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GARDENERS OF NURGLE WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, friendly GARDENERS OF NURGLE units that are wholly within 12\" of a friendly Feculent Gnarlmaw are not visible to units more than 9\" away.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Canopy of Virulence",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GARDENERS OF NURGLE WIZARD to cast this spell, pick a visible friendly GARDENERS OF NURGLE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn, while the target is wholly within 12\" of any friendly Feculent Gnarlmaws, ward rolls cannot be made for enemy units in combat with the target.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
