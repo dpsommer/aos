@@ -1,0 +1,112 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/forge/forge.gd" id="1_forge"]
+
+[node name="Forge" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_forge")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.08, 0.1, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AlliancePanel" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/AlliancePanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Forge"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/AlliancePanel"]
+layout_mode = 2
+text = "Choose a Grand Alliance"
+horizontal_alignment = 1
+
+[node name="OrderButton" type="Button" parent="CenterContainer/AlliancePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Order"
+
+[node name="ChaosButton" type="Button" parent="CenterContainer/AlliancePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Chaos"
+
+[node name="DeathButton" type="Button" parent="CenterContainer/AlliancePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Death"
+
+[node name="DestructionButton" type="Button" parent="CenterContainer/AlliancePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Destruction"
+
+[node name="AllianceBackButton" type="Button" parent="CenterContainer/AlliancePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="FactionPanel" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="FactionTitle" type="Label" parent="CenterContainer/FactionPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/FactionPanel"]
+layout_mode = 2
+text = "Choose a Faction"
+horizontal_alignment = 1
+
+[node name="FactionGrid" type="GridContainer" parent="CenterContainer/FactionPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="FactionBackButton" type="Button" parent="CenterContainer/FactionPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
