@@ -1,0 +1,19 @@
+{
+	"fields": {
+		"Twin Tides": {"timing": "Reaction: You declared an ATTACK ability for a friendly AKHELIAN unit", "frequency": "Once Per Turn (Army)"},
+		"akhelian_thrallmaster > Akhelian Insights": {"timing": "Passive"},
+		"cyrenis_razors > Cyreni of the Abyss": {"effect": "While this unit's Cyreni of the Abyss is on the battlefield, it has WIZARD (1)."},
+		"scourge_of_aqshy_isharann_tidecaster > Master of the Ethersea": {
+			"effect": "If the target is NAMARTI, pick 1 of the following effects to apply until the start of your next turn. Otherwise, make an ISHARANN ritual roll of D6. On a 3+, pick 1 of the following effects to apply until the start of your next turn.",
+			"options": [
+				{"name": "Torrent of Blows", "text": "Pick 1 of the target's melee weapons. That weapon has Crit (2 Hits)."},
+				{"name": "Protection of the Waves", "text": "While this unit is within 3\" of and visible to the target, both units have WARD (5+)."},
+				{"name": "Frenzy of the Ethersea", "text": "For each unmodified hit roll of 1 for a combat attack that targets that friendly unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."}
+			]
+		},
+		"scourge_of_aqshy_namarti_reavers > Merciless Hunters": {"timing": "Reaction: You declared a SHOOT ability for this unit", "frequency": "Once Per Turn (Army)"},
+		"Wrath of Mathlann": {"timing": "Any Combat Phase"},
+		"The Shield of Ulchiss": {"effect": "For the rest of the turn:\n• That unit can use a RETREAT ability and still use SHOOT and/or CHARGE abilities later in the turn.\n• No mortal damage is inflicted on that unit by RETREAT abilities."},
+		"Spirits of the Chorrileum": {"effect": "Each turn, you can gain up to 1 chorrileum spirit point. You gain 1 chorrileum spirit point the first time 1 of the following occurs in a turn:\n• You make an unmodified casting roll of 8 or more for a friendly ISHARANN WIZARD.\n• An enemy unit is destroyed while it is within 12\" of any friendly ISHARANN units.\n• A friendly unit is destroyed while it is wholly within 12\" of any friendly ISHARANN units or while it is contesting an objective you control."}
+	}
+}

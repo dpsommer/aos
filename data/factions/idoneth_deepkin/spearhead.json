@@ -1,0 +1,542 @@
+{
+	"spearheads": [
+		{
+			"name": "Akhelian Tide Guard",
+			"text": "An Akhelian King or Queen always rides the current to battle accompanied by a Tide Guard of their finest warriors. These figureheads of the Idoneth military are far too vital to leave unprotected, even with their prodigious skill at arms. After all, the loss of even a single experienced raid leader could gravely damage the prospects of an Idoneth enclave. Akhelian bodyguards and Namarti warriors alike stand ready to put beast and body in the path of any blows intended for their master.\nMorrsarr Guard sweep forth to annihilate deadly foes, charging and counter-charging with their voltspears to break up any concentrations of force. By contrast, their Ishlaen peers seldom leave the Akhelian King’s side, using their Fangmoras’ biovoltaic energy to create a protective barrier. The Akhelian King leads the assault atop their Deepmare, savaging the enemy with sword or polearm and inspiring their warriors through feats of arms and the sheer force of their presence. A less glorious but still vital role goes to a formation of Namarti Reavers, who harry the enemy with a relentless storm of accurate arrows loosed from their whisperbows.",
+			"general": "Akhelian King",
+			"units": [
+				{
+					"count": 3,
+					"name": "Akhelian Morrsarr Guard"
+				},
+				{
+					"count": 3,
+					"name": "Akhelian Ishlaen Guard"
+				},
+				{
+					"count": 10,
+					"name": "Namarti Reavers"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "ROYAL IMPERATIVE",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "Pick 1 of the following effects to apply for the rest of the battle round:",
+					"text": "You can only use this ability in the third battle round.",
+					"options": [
+						{
+							"name": "Into Them!",
+							"text": "Friendly units have STRIKE-FIRST."
+						},
+						{
+							"name": "Strike Sure",
+							"text": "Friendly units’ melee weapons have Crit (Mortal)."
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "THE SPEAR OF ASPHOREN",
+					"category": "movement",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit that is not in combat to use this ability.",
+					"effect": "Add 1 to charge rolls for that unit for the rest of the turn."
+				},
+				{
+					"name": "THE SHIELD OF ULCHISS",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit in combat to use this ability.",
+					"effect": "For the rest of the turn, each time that unit uses a RETREAT ability, no mortal damage is inflicted on it."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "DUTIFUL SOULS",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit wholly within 12\" of your general to be the target.",
+					"effect": "You can return 1 slain model to the target unit. If the target is an INFANTRY unit, you can return D3 slain models to it instead."
+				},
+				{
+					"name": "VOLTAIC CHARGE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Your general’s Akhelian Royal Weapons have Charge (+1 Damage)."
+				},
+				{
+					"name": "SHIMMERING AMULET",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has WARD (5+)."
+				},
+				{
+					"name": "SOUL STEALER",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"effect": "If your general is in combat, Heal (D3) your general."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "akhelian_king",
+					"name": "Akhelian King",
+					"move": 12,
+					"health": 7,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Akhelian Royal Weapons",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "Deepmare’s Fangs, Talons and Lashing Tails",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "RAIDERS' RESOLVE",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick another friendly unit wholly within this unit’s combat range to be the target.",
+							"effect": "Roll a dice. On a 3+, add 1 to save rolls for the target until the start of your next turn."
+						},
+						{
+							"name": "WAVE RIDER",
+							"category": "offensive",
+							"timing": "Any Charge Phase",
+							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+							"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"CAVALRY",
+						"FLY"
+					]
+				},
+				{
+					"id": "namarti_reavers",
+					"name": "Namarti Reavers",
+					"move": 7,
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Whisperbow",
+							"range": 12,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Keening Blade",
+							"range": 0,
+							"attacks": "1",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "STRIKE ON THE MOVE",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "This unit can use SHOOT abilities even if it used a RUN or RETREAT ability in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "akhelian_morrsarr_guard",
+					"name": "Akhelian Morrsarr Guard",
+					"move": 14,
+					"health": 4,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Fangmora’s Fangs and Lashing Tail",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Companion"
+							]
+						},
+						{
+							"name": "Voltspear",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Charge (+1 Damage)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BIOVOLTAIC BLAST",
+							"category": "offensive",
+							"timing": "Any Charge Phase",
+							"frequency": "Once Per Battle",
+							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+							"effect": "Roll a number of dice equal to the number of models in this unit. Add 1 to each roll if there are more models in the target unit than this unit. For each 3+, inflict 1 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"FLY",
+						"CAVALRY"
+					]
+				},
+				{
+					"id": "akhelian_ishlaen_guard",
+					"name": "Akhelian Ishlaen Guard",
+					"move": 14,
+					"health": 4,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Helsabre",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						},
+						{
+							"name": "Fangmora’s Fangs and Lashing Tail",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BIOVOLTAIC BARRIER",
+							"category": "defensive",
+							"timing": "Any Combat Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick an enemy unit in combat with this unit to be the target.",
+							"effect": "Roll a dice. On a 3+, subtract 1 from the Attacks characteristic of the target unit’s weapons for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"FLY"
+					]
+				}
+			]
+		},
+		{
+			"name": "Soulraid Hunt",
+			"text": "A Soulraid Hunt is launched whenever the Idoneth Deepkin sense valuable souls for the taking and wish to harvest them as swiftly and subtly as possible. An Isharann Soulscryer leads the hunt to its quarry, travelling along the eddying paths of the realms’ waterways before bursting upon the unsuspecting foe without warning or mercy. Bands of Namarti Thralls circle their targets like ocean predators, herding them like schools of panicked fish with sweeping strikes from their lanmari blades, their own losses considered to be of little importance when balanced against the greater Idoneth cause.\nWith the enemy corralled, it falls to the noble Akhelians to deliver a killing blow. The ethersea shifts as streamlined forms slither through the air, angling towards the foe with sinister eagerness. Their Fangmora Eel mounts snapping eagerly, the Morrsarr Guard charge into the fray, lances crackling with voltaic force as they punch through armour and flesh. In the cavalry’s wake comes the razor-finned nightmare known as an Allopex, its powerful jaws shredding its prey as an Akhelian rider fires shots from the harpoon launcher fixed to its harness. Soon the ethersea is stained red with the blood of the slain, and the aelves of the deeps can begin the process of harvesting precious souls.",
+			"general": "Isharann Soulscryer",
+			"units": [
+				{
+					"count": 3,
+					"name": "Akhelian Morrsarr Guard"
+				},
+				{
+					"count": 1,
+					"name": "Akhelian Allopex"
+				},
+				{
+					"count": 5,
+					"name": "Namarti Thralls"
+				},
+				{
+					"count": 5,
+					"name": "Namarti Thralls"
+				}
+			],
+			"battle_traits": [],
+			"regiment_abilities": [
+				{
+					"name": "WAY OF THE CRESTING WAVE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly Namarti Thralls units that charged in the same turn."
+				},
+				{
+					"name": "ETHERSEA PREDATORS",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick a friendly CAVALRY unit that used a FIGHT ability this turn. Heal (D3) that unit."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "ARCH-RITUALIST",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to rolls for your general’s ‘Ritual of the Creeping Mist’ ability."
+				},
+				{
+					"name": "MIND FLARE",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit in combat with your general.",
+					"effect": "Until the end of the phase, attacks made by that unit only score hits on unmodified hit rolls of 6."
+				},
+				{
+					"name": "STEELSHELL ARMOUR",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore all modifiers to save rolls for your general (positive and negative)."
+				},
+				{
+					"name": "DELICIOUS MORSELS",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"effect": "Heal (1) each friendly CAVALRY unit within your general’s combat range."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "isharann_soulscryer",
+					"name": "Isharann Soulscryer",
+					"move": 6,
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Scryfish Shoal",
+							"range": 10,
+							"attacks": "8",
+							"hit": 5,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat",
+								"Companion"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Abyssal Touch",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "RITUAL OF THE CREEPING MIST",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then roll a dice.",
+							"effect": "On a 3+, until the start of your next turn, subtract 1 from wound rolls for attacks that target that unit."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "akhelian_allopex",
+					"name": "Akhelian Allopex",
+					"move": 12,
+					"health": 8,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Razorshell Harpoon Launcher",
+							"range": 18,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 2,
+							"rend": 1,
+							"damage": "3",
+							"abilities": [
+								"Anti- MONSTER (+1 Rend)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Barbed Hooks and Blades",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						},
+						{
+							"name": "Allopex’s Ferocious Bite",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BLOODTHIRSTY PREDATORS",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Attacks characteristic of this unit’s Allopex’s Ferocious Bite if it is within 6\" of any damaged enemy units or if it is within 6\" of any enemy units that have had any models slain in the same turn."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"FLY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "namarti_thralls",
+					"name": "Namarti Thralls",
+					"move": 6,
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Lanmari",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Anti- INFANTRY (+1 Rend)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SWEEPING BLOWS",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Damage characteristic of this unit’s Lanmari for attacks that target an enemy MONSTER."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "akhelian_morrsarr_guard",
+					"name": "Akhelian Morrsarr Guard",
+					"move": 14,
+					"health": 4,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Voltspear",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Charge (+1 Damage)"
+							]
+						},
+						{
+							"name": "Fangmora’s Fangs and Lashing Tail",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BIOVOLTAIC BLAST",
+							"category": "offensive",
+							"timing": "Any Charge Phase",
+							"frequency": "Once Per Battle",
+							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a number of dice equal to the number of models in this unit.",
+							"effect": "For each 4-5, inflict 1 mortal damage on the target. For each 6+, inflict D3 mortal damage on the target. Add 1 to each roll if there are more models in the target unit than this unit."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"FLY"
+					]
+				}
+			]
+		}
+	]
+}
