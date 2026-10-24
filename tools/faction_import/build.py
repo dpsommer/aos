@@ -17,7 +17,8 @@ two are printed as a report and never stop the build; fix a wrong value with an 
 A fields <target> is a warscroll name or id, an ability name, a weapon name, or
 "<warscroll id> > <weapon or ability name>" where a name alone is ambiguous.
 replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData has the
-wrong rule; it applies before merging. The others apply after merging. Every override must match
+wrong rule; it applies before merging. Its BSData name can be "<warscroll id or Army of Renown
+name> > <ability name>" where a name alone is ambiguous. The others apply after merging. Every override must match
 something, so stale ones are noticed.
 """
 import argparse, glob, json, os, sys
@@ -57,12 +58,23 @@ def wahapedia_abilities(wh_page, wh_units):
     return [a for g in groups for a in g]
 
 
+def owned_abilities(data, owner):
+    """The abilities of the warscroll with id [owner] and of the Army of Renown named [owner]."""
+    groups = [w["abilities"] for w in every_warscroll(data) if w.get("id") == owner]
+    for a in data["armies_of_renown"]:
+        if a["name"] == owner:
+            groups += [a["battle_traits"]] + [t["entries"] for t in a["enhancement_tables"] + a["lores"]]
+    return [a for g in groups for a in g]
+
+
 def replace_with_wahapedia(data, replacements, wh_abilities):
     for bs_name, wh_name in replacements.items():
         wh = next((a for a in wh_abilities if merge.norm(a["name"]) == merge.norm(wh_name)), None)
         if wh is None:
             sys.exit("replace_with_wahapedia: no Wahapedia ability named %r" % wh_name)
-        matched = [a for a in every_ability(data) if a["name"] == bs_name]
+        owner, _, name = bs_name.rpartition(" > ")
+        abilities = owned_abilities(data, owner) if owner else every_ability(data)
+        matched = [a for a in abilities if a["name"] == name]
         if not matched:
             sys.exit("replace_with_wahapedia: no ability named %r" % bs_name)
         for a in matched:

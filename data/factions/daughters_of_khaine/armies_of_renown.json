@@ -1,0 +1,348 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Champions of the Arena",
+			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a Champions of the Arena Army of Renown. If you do so, use the faction rules on these pages instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the CHAMPIONS OF THE ARENA keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nHigh Gladiatrix\nHag Queen\nSlaughter Queen\nBlood Hags\nSisters of Slaughter\nWitch Aelves",
+			"battle_traits": [
+				{
+					"name": "Arena of Slaughter",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "If the number of units (friendly or enemy) that have been destroyed this battle equals or exceeds any of the numbers below, the corresponding effect applies to friendly CHAMPIONS OF THE ARENA units for the rest of the battle. More than 1 effect can apply to a unit at the same time.\n1 Add 1 to run rolls for those units.\n2 Add 1 to charge rolls for those units.\n3 Add 1 to hit rolls for those units' combat attacks.\n4 Add 1 to wound rolls for those units' combat attacks.\n5 Add 1 to the Attacks characteristic of those units' melee weapons."
+				},
+				{
+					"name": "Let the Blood Flow",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "All effects of the 'Arena of Slaughter' ability apply to friendly CHAMPIONS OF THE ARENA units while they are wholly within X\" of a friendly Shrine of Dark Tribute, where X is determined by the current battle round, as follows:\n1 9\"\n2 12\"\n3 15\"\n4 18\"\n5 21\""
+				},
+				{
+					"name": "Frenzied Restoration",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"declare": "Pick a friendly CHAMPIONS OF THE ARENA HERO that has been destroyed to be the target.",
+					"effect": "Set up a replacement unit identical to the target wholly within 12\" of a friendly Shrine of Dark Tribute and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Explosive Fury",
+					"category": "movement",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly Slaughter Queen to use this ability, then pick each friendly Blood Hags unit on the battlefield and each visible friendly CHAMPIONS OF THE ARENA unit wholly within 12\" of that Slaughter Queen to be the targets.",
+					"effect": "For the rest of the turn, each time a target makes a pile-in move, add 3\" to the distance it can move."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Hero of the Killing Games",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"effect": "For the rest of the turn, while this unit is in combat with any enemy HEROES:\n• Add 1 to the Attacks, Rend, and Damage characteristics of this unit's melee weapons.\n• All of its combat attacks must target the same enemy HERO."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Death Razor",
+							"category": "special",
+							"timing": "Reaction: You declared a FIGHT ability for this unit",
+							"effect": "After that FIGHT ability has been resolved, if any enemy models were slain by this unit's attacks made as part of that FIGHT ability, you can pick a friendly CHAMPIONS OF THE ARENA PRIEST wholly within 12\" of this unit to be the target. Instead of making a chanting roll for the next PRAYER ability used by the target, you can use a value of 10 for the roll that cannot be modified, even if this unit has been destroyed."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Violent Consecration",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CHAMPIONS OF THE ARENA PRIEST to chant this prayer, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a chanting roll of D6.\n• Bloodwrack Viper\n• Bladewind\n• Heart of Fury",
+							"effect": "If you picked a Bloodwrack Viper or Bladewind, set it up wholly within 12\" of the chanter, visible to them and more than 9\" from all enemy units. If you picked a Heart of Fury, set it up wholly within 18\" of the chanter and visible to them. If the chanting roll was 10+, you can pick a second MANIFESTATION from the list above that is not on the battlefield and set it up as described above.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"SUMMON"
+							]
+						}
+					]
+				},
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Divine Rush",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CHAMPIONS OF THE ARENA PRIEST to chant this prayer, pick a visible friendly CHAMPIONS OF THE ARENA unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "If the chanting roll was 6+, you can pick another eligible unit to be a second target. For each target:\n• If the target is not in combat, it can move D6\". It cannot end that move in combat.\n• If the target is in combat, it can make a pile-in move.",
+							"chanting_value": 3,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Call of the Arena",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CHAMPIONS OF THE ARENA PRIEST to chant this prayer, then make a chanting roll of D6.",
+							"effect": "For the rest of the turn, add 1 to run rolls for friendly CHAMPIONS OF THE ARENA units while they are wholly within 12\" of the chanter. In addition, if the chanting roll was 6+, for the rest of the turn, add 1 to charge rolls for friendly CHAMPIONS OF THE ARENA units while they are wholly within 12\" of the chanter.",
+							"chanting_value": 3,
+							"keywords": [
+								"PRAYER"
+							]
+						},
+						{
+							"name": "Shield of Blood",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CHAMPIONS OF THE ARENA PRIEST to chant this prayer, pick a visible friendly CHAMPIONS OF THE ARENA unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "If the chanting roll was 10+, you can pick up to 2 other eligible units to be additional targets. Each target has WARD (5+) until the start of your next turn.",
+							"chanting_value": 3,
+							"keywords": [
+								"PRAYER"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "The Croneseer's Pariahs",
+			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a The Croneseer’s Pariahs Army of Renown. If you do so, use these faction rules instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the CRONESEER’S PARIAHS keyword.\nROSTER OPTIONS\nKrethusa the Croneseer (must be included and must be your general)\nDAUGHTERS OF KHAINE AELF units\nYou cannot include Regiments of Renown, Morathi-Khaine or the Shadow Queen",
+			"battle_traits": [
+				{
+					"name": "Plumes of Auspicious Smoke",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood units are either empty or full. They start the battle empty.\nWhile a friendly Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood unit is full:\n• That Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood has WARD (4+) against damage points inflicted by shooting attacks.\n• Subtract 1 from hit rolls for shooting attacks that target friendly CRONESEER'S PARIAHS units while they are wholly within 9\" of that Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood."
+				},
+				{
+					"name": "Laden with Prophecy",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"declare": "Pick a friendly empty Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood.",
+					"effect": "If any enemy models were slain this turn by that Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood's combat attacks, it becomes full."
+				},
+				{
+					"name": "Guided by Morai-Heg",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Rend characteristic of combat attacks made by friendly non-HERO INFANTRY units while they are wholly within 9\" of a friendly Krethusa."
+				},
+				{
+					"name": "Skilled Skirmishers",
+					"category": "movement",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly CRONESEER'S PARIAHS CAVALRY unit that has not charged this turn and is in combat with an enemy unit that charged this turn to be the target.",
+					"effect": "Roll a dice. On 3+, the target can immediately use a RETREAT ability as if it were your movement phase. In addition, no mortal damage is inflicted on the target by that RETREAT ability."
+				},
+				{
+					"name": "The Blood Reveals All",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly CRONESEER'S PARIAHS HERO within the combat range of a friendly empty Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood. Then, pick another unit within the combat range of that HERO to be the target.",
+					"effect": "Roll a dice. Allocate a number of damage points to the target equal to the roll (ward rolls cannot be made for those damage points). Then, that Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood becomes full."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Proselyte of Morai-Heg",
+							"category": "special",
+							"timing": "Passive",
+							"effect": "Enemy units cannot use commands while they are in combat with this unit."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Blade of Prophetic Doom",
+							"category": "offensive",
+							"timing": "End of Any Turn",
+							"frequency": "Once Per Turn",
+							"declare": "Pick an enemy unit in combat with this unit to be the target.",
+							"effect": "Roll a dice. On a 2+:\n• If the target is not damaged, inflict 1 mortal damage on it.\n• If the target is damaged, inflict an amount of mortal damage on it equal to the roll."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Wings of the Crone Goddess",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CRONESEER'S PARIAHS PRIEST to chant this prayer, pick a visible friendly CRONESEER'S PARIAHS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn:\n• The target has FLY.\n• Add 2\" to the target's Move characteristic. If the chanting roll was 8+, add 6\" to the target's Move characteristic instead.",
+							"chanting_value": 3,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Augury of Battle",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CRONESEER'S PARIAHS PRIEST to chant this prayer, pick a visible friendly CRONESEER'S PARIAHS unit wholly within 18\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, the target has WARD (5+). If the chanting roll was 10+, you can pick up to 2 friendly CRONESEER'S PARIAHS units wholly within 18\" of the caster instead of 1.",
+							"chanting_value": 5,
+							"keywords": [
+								"PRAYER"
+							]
+						},
+						{
+							"name": "Auspicious Strike",
+							"category": "shooting",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly CRONESEER'S PARIAHS PRIEST to chant this prayer, pick a visible friendly CRONESEER'S PARIAHS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, each time the unmodified hit roll for an attack made against the target is 1, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved. If the chanting roll was 10+, inflict 1 mortal damage for each unmodified hit roll of 1-2 instead.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Zainthar Kai",
+			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a Zainthar Kai Army of Renown. If you do so, use the faction rules on these pages instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ZAINTHAR KAI keyword.\nROSTER OPTIONS\nMorathi-Khaine (must be included)\nThe Shadow Queen (must be included)\nMelusai Ironscale\nBlood Sisters\nBlood Stalkers\nKhinerai Heartrenders\nKhinerai Lifetakers\nBloodwrack Medusa\nBloodwrack Shrine\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Dark Majesty",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "If the unmodified hit roll for an attack made by a non-HERO unit that targets the friendly Morathi-Khaine is 1-4, the attack fails and the attack sequence ends."
+				},
+				{
+					"name": "The Blood Saints",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While the friendly Shadow Queen is wholly within 6\" of a friendly non-HERO ZAINTHAR KAI unit, both that Shadow Queen and that non-HERO unit have WARD (5+)."
+				},
+				{
+					"name": "Matriarch of the Zainthar Kai",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick the friendly Morathi-Khaine to use this ability.",
+					"effect": "Pick 1 of the following effects:\n• Until the start of your next turn, this unit has a Move characteristic of 12\" and has FLY.\n• This unit can use the 'Iron Heart of Khaine' ability as if you had performed a blood rite.\n• Pick a visible enemy unit within 18\" of this unit to be the target. For the rest of the turn, the target's attacks cannot score critical hits (treat them as regular hits instead).\n• Pick a friendly non-UNIQUE ZAINTHAR KAI HERO that has been destroyed to be the target. Set up a replacement unit identical to the target within 3\" of this unit."
+				},
+				{
+					"name": "Cursed Heritage",
+					"category": "offensive",
+					"timing": "End of Your Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick each enemy unit in combat with any NON-UNIQUE ZAINTHAR KAI units to be the targets.",
+					"effect": "Inflict D3 mortal damage on each target."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Khaine's Inheritor",
+							"category": "special",
+							"timing": "Your Shooting Phase",
+							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
+							"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Halve the target's Move characteristic until the start of your next turn."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Amulet of the Bladed Queen",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "This unit has WARD (5+). Add 1 to save rolls for this unit."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Manifestations of Murder",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ZAINTHAR KAI WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Bloodwrack Viper\n• Bladewind\n• Heart of Fury",
+							"effect": "If you picked a Bloodwrack Viper or Bladewind, set it up wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. If you picked a Heart of Fury, set it up wholly within 18\" of the caster and visible to them.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				},
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Ethereal Grace",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ZAINTHAR KAI WIZARD to cast this spell, pick a visible friendly ZAINTHAR KAI unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Add 2\" to the target's Move characteristic for the rest of the turn.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "On Wings of Shadow",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ZAINTHAR KAI WIZARD to cast this spell, pick a visible friendly ZAINTHAR KAI unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Remove the target from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						},
+						{
+							"name": "Speed of the Scáthborn",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ZAINTHAR KAI WIZARD to cast this spell, pick a visible friendly ZAINTHAR KAI unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "The target has STRIKE-FIRST for the rest of the turn.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

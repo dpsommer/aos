@@ -1,0 +1,87 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Daughters of Khaine army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Daughters of Khaine units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Pick an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Pick a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nCult Leader | 10 | 150\nCult Demagogue | 30 | 250\nCult Queen | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "daughters_of_khaine_hero",
+					"name": "Daughters of Khaine Hero",
+					"move": 6,
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Cult Blade",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WARD (6+)",
+						"ORDER",
+						"DAUGHTERS OF KHAINE"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Pick an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nCHAMPION OF THE ARENA\n0DP\nYour hero has the AELF keyword.\nYour hero has the following ability and the following regiment options.\nPassive\nPEERLESS AGILITY\nEffect: When using a CHARGE ability, this unit has FLY.\nRegiment Options | Any DAUGHTERS OF KHAINE units\nPRIESTESS OF KHAINE\n-2DP\nYour hero has the AELF keyword.\nYour hero has the PRIEST (1) keyword and the following regiment options.\nRegiment Options | Any DAUGHTERS OF KHAINE units\nKHINERAI SKYHUNTER\n-2DP\nChange your hero's Move characteristic to 12\". Your hero has the FLY keyword and the following regiment options.\nRegiment Options | Any DAUGHTERS OF KHAINE units\nIRONSCALE COMMANDER\n-4DP\nChange your hero's Health characteristic to 6, their Move characteristic to 8\" and their Save characteristic to 5+.\nYour hero has the following ability and the following regiment options.\nYour Hero Phase\nFIST OF THE SCA̓THBORN\nDeclare: Pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the target.\nEffect: Roll a dice. On a 3+, for the rest of the turn:\nAdd 1 to charge rolls for the target.\nAdd 1 to the Attacks characteristic of the target’s weapons.\nRegiment Options | Any DAUGHTERS OF KHAINE units\nBLOODWRACK SORCERESS\n-6DP\nChange your hero's Health characteristic to 6, their Move characteristic to 8\" and their Save characteristic to 5+.\nYour hero has the WIZARD (1) keyword, the following ability and the following regiment options.\nYour Shooting Phase\nBLOODWRACK STARE\nDeclare: Pick a visible enemy unit within 18\" of this unit to be the target.\nEffect: Roll a dice. On a 3+, roll a number of dice equal to the target’s Health characteristic. Subtract 1 from each roll if the target is a MONSTER. For each 5+, inflict 1 mortal damage on the target.\nRegiment Options | Any DAUGHTERS OF KHAINE units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-1DP\nBELOVED OF THE CROWD\nEffect: Add 10 to this unit’s control score while it is in combat.\nPassive\n-2DP\nSHADOWED CULTIST\nEffect: No mortal damage is inflicted on this unit by RETREAT abilities.\nPassive\n-2DP\nMURDEROUS PARAGON\nEffect: This unit’s Cult Blade has Crit (Auto-wound).\nDeployment Phase\n-6DP\nDIVINE FAVOUR\nDeclare: Pick a friendly non- HERO DAUGHTERS OF KHAINE INFANTRY unit in this unit’s regiment to be the target.\nEffect: For the rest of the battle, each time the target uses the ‘All-out Attack’ command while it is wholly within 12\" of this unit, no command points are spent."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+1DP\nSCA̓TH-CURSED\nEffect: Ignore the effect of the ‘Cover’ ability on this unit.\nPassive\n+2DP\nBITTER RIVAL\nEffect: This unit cannot use commands while it is within 12\" of another friendly HERO.\nPassive\n+3DP\nWHISPERING VOICES\nEffect: This unit has a maximum control score of 1.\nPassive\n+4DP\nHERETICAL BELIEFS\nEffect: EXALTED abilities have no effect on this unit and this unit cannot use EXALTED abilities."
+		},
+		{
+			"name": "Step 5 - Pick a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-3DP\nDARK STEED: This night-black steed can carry its rider swiftly over great distances, never wavering for a moment.\nChampion of the Arena or Priestess of Khaine only. Add the following weapon to your hero's warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nDark Steed’s Hooves and Teeth\nCompanion | 2 | 5+ | 3+ | - | 1\nIn addition, make the following changes to your hero's warscroll:\nChange the Move characteristic to 14\".\nChange the Health characteristic to 7.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nBattle Mount\n-8DP\nCAULDRON OF BLOOD: This iron-bound chariot bears a cauldron full of boiling blood, a powerful focus for Khainite blood rituals.\nChampion of the Arena or Priestess of Khaine only. Add the following weapon to your hero's warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGuardians' Blades | 4 | 3+ | 4+ | 1 | 2\nAvatar’s Sword\nCompanion | 5 | 3+ | 3+ | 2 | 3\nIn addition, make the following changes to your hero's warscroll:\nChange the Health characteristic to 12.\nChange the Save characteristic to 4+.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the WAR MACHINE keyword.\nBattle Mount\n-12DP\nKHAINITE SHRINE: A large mirror sits atop this deadly war machine, magnifying the agonising gaze of the rider into a powerful weapon.\nBloodwrack Sorceress only. Add the following weapons and ability to your hero's warscroll:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nBloodwrack Stare\nCrit (2 Hits), Shoot in Combat | 15\" | 4 | 3+ | 3+ | 2 | 3\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGuardians' Blades | 4 | 3+ | 4+ | 1 | 2\nPassive\nINVOKE MURDER\nEffect: This unit counts as a Bloodwrack Shrine for the purposes of the ‘Born of Slaughter’ ability.\nIn addition, make the following changes to your hero's warscroll:\nChange the Health characteristic to 12.\nChange the Save characteristic to 4+.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the WAR MACHINE keyword."
+		},
+		{
+			"name": "Step 6 - Pick any Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nSwift\n-2DP\nCAVALRY only. Add 2\" to your hero’s Move characteristic.\nBarding\n-2DP\nCAVALRY only. Your hero has a Save characteristic of 5+.\nDark Pegasus\n-3DP\nCAVALRY only. Your hero has the FLY keyword.\nBrand of Khaine\n-4DP\nAdd the following ability to your hero’s warscroll:\nAny Combat Phase\nBRAND OF KHAINE\nEffect: If this unit is in combat, roll a dice. On a 3+, for the rest of the turn:\nAdd the roll to the Attacks characteristic of this unit’s Companion weapons.\nAdd 1 to the Rend characteristic of this unit’s Companion weapons.\nSteed of Dark Flames\n-4DP\nCAVALRY only. Add the following ability to your hero’s warscroll.\nOnce Per Battle, Enemy Movement Phase\nSTEED OF DARK FLAMES\nEffect: This unit can use the ‘Normal Move’ ability as if it were your movement phase.\nIron-bound\n-4DP\nWAR MACHINE only. Add 2 to your hero’s Health characteristic.\nFanatical Guardians\n-4DP\nWAR MACHINE only. Add 2 to the Attacks characteristic of your hero’s Guardians’ Blades.\nTorrent of Burning Blood\n-6DP\nWAR MACHINE PRIEST only. Add the following weapon to your hero’s warscroll.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nTorrent of Burning Blood\nShoot in Combat | 10\" | 12 | 2+ | 2+ | 2 | 1\nBorn of Slaughter\n-8DP\nWAR MACHINE WIZARD only. Add the following ability to your hero’s warscroll.\nYour Hero Phase\n7\nBORN OF SLAUGHTER\nDeclare: If there are fewer friendly Avatars of Khaine on the battlefield than there are friendly Bloodwrack Shrines on the battlefield, make a casting roll of 2D6.\nEffect: Set up an Avatar of Khaine wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.\nKEYWORDS | SPELL, SUMMON"
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nAelven Grace\n-1DP\nAdd 1\" to your hero’s Move characteristic.\nUlguan Heritage\n-2DP\nAdd 1 to your hero’s Health characteristic.\nGift ofKhaine\n-3DP\nYour hero has WARD (5+).\nPerfect Accuracy\n-3DP\nThe Hit characteristic of your hero’s Cult Blade is 2+.\nKilling Grace\n-4DP\nAdd 1 to the Rend characteristic of your hero’s Cult Blade.\nWord of Khaine\n-4DP\nNon- WAR MACHINE only. Add the following weapon to your hero’s warscroll.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nWord of Khaine\nShoot in Combat | 10\" | 1 | 2+ | 2+ | 3 | 6\nMaster of Poisons\n-4DP\nYour hero’s Cult Blade has Crit (Mortal).\nFerocious Cultist\n-4DP\nAdd 2 to the Attacks characteristic of your hero’s Cult Blade.\nMasterful Executioner\n-4DP\nAdd the following ability to your hero's warscroll.\nAny Combat Phase\nMASTERFUL EXECUTIONER\nDeclare: Pick a damaged enemy unit in combat with th is unit to be the target.\nEffect: Roll a dice. If the roll is less than the number of damage points the target has, inflict an amount of mortal damage on the target equal to the roll.\nBlistering Speed\n-6DP\nINFANTRY only. Your hero has STRIKE-FIRST.\nShadowmeld\n-6DP\nFLY only. Add the follow ing ability to your hero’s warscroll.\nEnemy Combat Phase\nMASTERFUL EXECUTIONER\nEffect: If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the ‘Retreat’ ability as if it were your movement phase without any mortal damage being inflicted on it.\nCult Fanatic\n-8DP\nWIZARD or PRIEST only. Your hero’s power level is 2."
+		},
+		{
+			"name": "Path of The Demagogue",
+			"text": "(DAUGHTERS OF KHAINE HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nBLOODMAD\nEffect: While this unit is within 3\" of any visible damaged units (friendly or enemy), add 1 to wound rolls for attacks made with th is unit’s melee weapons.\nAny Charge Phase\nSCREECHING EVANGELIST\nDeclare: Pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the target.\nEffect: Add 1 to charge rolls for the target for the rest of the turn.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nLETHAL BLADEMISTRESS\nEffect: Attacks made with this unit’s melee weapons score critical hits on unmodified hit rolls of 5+.\nAny Shooting Phase\nEAR-BURSTING SHRIEK\nDeclare: Pick a visible enemy HERO within 10\" of th is unit to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll and the ta rget has STRIKE-LAST for the rest of the turn.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nBLADE OF SHADOW\nEffect: The Rend characteristic of this unit’s melee weapons is equal to the current battle round number, unless it would be higher.\nOnce Per Battle, Any Combat Phase\nFLICKERING BLUR\nEffect: This unit has WARD (3+) for the rest of the turn.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Hero Phase\nBELLOWED EXHORTATIONS\nDeclare: Pick a visible fr iendly non- HERO DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the ta rget.\nEffect: If you have used the ‘Blessings of Khaine’ ability 3 or more times th is battle, the target’s combat attacks score critical hits on unmodified hit rolls of 4+ for the rest of the turn. Otherwise, roll a dice. If the roll is equal to or less than the current battle round number, the target’s combat attacks score critical hits on unmodified hit rolls of 4+ for the rest of the tu rn.\nYour Hero Phase\nBLESSED OF THE GODDESS\nDeclare: Pick a friendly DAUGHTERS OF KHAINE MANIFESTATION that is not on the battlefield.\nEffect: Roll a dice. On a 4+, if you picked a Heart of Fury, set it up wholly within 18\" of this unit and visible to it. Otherwise, on a 4+, set up the MANIFESTATION wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION."
+		},
+		{
+			"name": "Path of The Blood Witch",
+			"text": "(non- HERO DAUGHTERS OF KHAINE unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nLETHAL GRACE\nEffect: Add 2 to run rolls for this unit.\nPassive\nFEROCIOUS AND FEARLESS\nEffect: Add 3 to this unit’s control score if it charged in the same turn.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSHIELD OF BLADES\nEffect: Shooting attacks that target th is unit cannot score critical hits (treat them as regular hits instead). If the unmodified hit roll for a shooting attack that targets this unit is 6, the attack fails and the attack sequence ends.\nAny Combat Phase\nA THOUSAND CUTS\nDeclare: Pick an enemy MONSTER in combat with this unit to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll and the target cannot use RAMPAGE abilities for the rest of the turn.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Movement Phase\nSHADOW-BLESSED\nEffect: Remove th is unit from the battlefield and set it up again on the battlefield more than X\" from all enemy units, where X is equal to 10 minus the current battle round number.\nOnce Per Battle, Any Combat Phase\nFIRST BLOOD\nEffect: This unit has STRIKE-FIRST for the rest of the turn.\nLEGENDARY: When a unit on this Path gains this rank, pick l of the following abilities for them:\nPassive\nFANGS OF THE VIPER\nEffect: Ward rolls cannot be made for damage points inflicted by this unit’s attacks.\nPassive\nFLEET-FOOTED KILLERS\nEffect: Add 4\" to this unit's Move characteristic."
+		}
+	]
+}

@@ -1,0 +1,35 @@
+{
+	"replace_with_wahapedia": {
+		"Zainthar Kai > Explosive Fury": "Cursed Heritage",
+		"blood_stalkers > Heartseekers": "Barbed Arrows"
+	},
+	"fields": {
+		"Heretic's Bane": {"effect": "Roll a dice for each objective you control. For each 3+, subtract 1 from casting rolls and chanting rolls for the target for the rest of the turn."},
+		"Bloody-Handed Worshippers": {"effect": "Pick a friendly non-HERO DAUGHTERS OF KHAINE unit that has not used a FIGHT ability this turn and is within that anointed unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by that anointed unit has been resolved. If it is picked to do so, the target's melee weapons have Crit (Auto-wound) for the rest of the turn. If its melee weapons already have Crit (Auto-wound), they have Crit (Mortal) for the rest of the turn instead."},
+		"Summon Bloodwrack Viper": {"effect": "Set up a Bloodwrack Viper wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units."},
+		"Crown of Serpents": {"effect": "Roll 5 dice. Add 2 to each roll if the target is constricted. For each 5+, pick 1 of the following effects. You cannot pick the same effect more than once per turn.\n• Subtract 1 from hit rolls for the target's combat attacks for the rest of the turn.\n• Subtract 1 from wound rolls for the target's combat attacks for the rest of the turn.\n• Random characteristic rolls for the Damage characteristic of the target's melee weapons are treated as unmodified rolls of 1 for the rest of the turn.\n• Inflict D3 mortal damage on the target.\n• The target cannot be healed or have slain models returned to it for the rest of the turn."},
+		"Icon of Slaughter": {"effect": "Each time a friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. In addition, if there are any friendly Hag Queens on Cauldrons of Blood on the battlefield when that command is used, you receive D3 additional rally points."},
+		"Auspicious Strike": {"effect": "Until the start of your next turn, each time the unmodified hit roll for an attack made against the target is 1, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved. If the chanting roll was 10+, inflict 1 mortal damage for each unmodified hit roll of 1-2 instead."},
+		"krethusa_the_croneseer > Omens of Doom": {
+			"effect": "Pick 1 of the following effects. If the chanting roll was 10+, pick up to 2 different effects instead.",
+			"options": [
+				{"name": "Prophecy of Exile", "text": "Pick a visible enemy WIZARD or PRIEST within 18\" of this unit. Subtract 1 from that unit's power level until the start of your next turn."},
+				{"name": "Prophecy of Dark Wings", "text": "Pick a visible friendly DAUGHTERS OF KHAINE INFANTRY unit wholly within 12\" of this unit. That unit can immediately use the 'Normal Move' ability as if it were your movement phase and counts as having used a RUN ability this turn."},
+				{"name": "Prophecy of Futile Endeavours", "text": "Pick a visible enemy unit within 12\" of this unit. Until the start of your next turn, that unit's attacks cannot score critical hits (treat them as regular hits instead)."}
+			]
+		},
+		"Call to Murder": {
+			"effect": "Pick a blessing from the 'Blessings of Khaine' ability that is active. That blessing is no longer active. Then, pick a blessing that is not active. That blessing is now active.",
+			"options": [{"name": "Designer’s Note", "text": "When you use this ability, you are not using the 'Blessings of Khaine' ability."}]
+		},
+		"Hero of the Killing Games": {"timing": "Any Combat Phase"},
+		"heart_of_fury": {"keywords": ["WARD (6+)", "MANIFESTATION", "ENDLESS SPELL", "ORDER", "DAUGHTERS OF KHAINE"]},
+		"morgwaeths_blade_coven > Sacrificial Weapons": {"hit": 3, "abilities": ["Crit (Auto-wound)"]},
+		"hag_queen_on_cauldron_of_blood > Wrathful Repulsion": {"timing": "Any Combat Phase", "frequency": "Once Per Turn (Army)"},
+		"hag_queen_on_cauldron_of_blood > Roaring Idol": {"frequency": "Once Per Turn (Army)"},
+		"slaughter_queen_on_cauldron_of_blood > Consecrated Revulsion": {"effect": "Add 1 to save rolls for visible friendly DAUGHTERS OF KHAINE INFANTRY units while they are wholly within 12\" of this unit."},
+		"gryselles_arenai": {"base_size": "Gryselle: 32mm, Kalexis, Retaria, Thrialla and Traxya: 28.5mm"},
+		"khainite_shadowstalkers": {"points": 130, "base_size": "Shroud Queen: 40mm, 1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades: 28.5mm"},
+		"scourge_of_aqshy_khainite_shadowstalkers": {"base_size": "Shroud Queen: 40mm, 1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades: 28.5mm"}
+	}
+}

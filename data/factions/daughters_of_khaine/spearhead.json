@@ -1,0 +1,537 @@
+{
+	"spearheads": [
+		{
+			"name": "Heartflayer Troupe",
+			"text": "Eager for worthy kills to offer to their goddess, the most zealous disciples of Morathi-Khaine set out in Heartflayer Troupes to massacre her enemies. These Khainites are darting, blood-slick killers upon the battlefield, eschewing heavy armour in order to maximise their dexterity and speed. Each Troupe is led by a Melusai Ironscale, most loyal of Morathi‑Khaine’s Scáthborn guard. These serpentine champions are powerhouses in their own right, viciously striking down foes with their keldrisaíth staves or blasting them from afar with bolts of umbral magic. They are backed up by the Melusai archers known as Blood Stalkers, who pick off opponents from a distance with preternatural skill, piercing hearts with enchanted arrows.\nSurging forward to break through the front lines are the Doomfire Warlocks, incinerating enemies with flames made of pure shadow before beheading stragglers with their darkly gleaming scimitars. Throngs of Witch Aelves scream in their wake, eager to commit murder in the name of their bloodyhanded goddess. These priestesses of battle place great religious import on wanton slaughter, and they will relentlessly stab and slice until they are stained as red as the corpses that surround them.",
+			"general": "Melusai Ironscale",
+			"units": [
+				{
+					"count": 5,
+					"name": "Witch Aelves"
+				},
+				{
+					"count": 5,
+					"name": "Witch Aelves"
+				},
+				{
+					"count": 5,
+					"name": "Doomfire Warlocks"
+				},
+				{
+					"count": 5,
+					"name": "Blood Stalkers"
+				}
+			],
+			"battle_traits": [],
+			"regiment_abilities": [
+				{
+					"name": "MURDEROUS EPIPHANY",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"effect": "All friendly units gain the Blood Rites passive ability they would have gained at the start of the next battle round (they keep this ability for the rest of the battle, but they do not gain it for a second time at the start of the next battle round)."
+				},
+				{
+					"name": "BLESSING OF KHAINE",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
+					"effect": "Add 1 to ward rolls for that unit this phase."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "BATHED IN BLOOD",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Each time a model is slain by your general, Heal (1) your general."
+				},
+				{
+					"name": "FLASK OF SHADEMIST",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Until the end of the phase, subtract 1 from hit rolls for attacks that target friendly units while they are wholly within 12\" of your general."
+				},
+				{
+					"name": "FUELLED BY REVENGE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly Blood Stalkers units while they are wholly within 12\" of your general."
+				},
+				{
+					"name": "ZEALOUS ORATOR",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly unit wholly within 9\" of your general that is not in combat. Roll a dice for each slain model from that unit.",
+					"effect": "For each 5+, you can return 1 slain model to that unit."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "melusai_ironscale",
+					"name": "Melusai Ironscale",
+					"move": 8,
+					"health": 6,
+					"save": 5,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [
+						{
+							"name": "Keldrisaíth",
+							"range": 12,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Keldrisaíth",
+							"range": 0,
+							"attacks": "6",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "ALL-OUT SLAUGHTER",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
+							"effect": "Add 1 to the Attacks characteristic of the target’s melee weapons for the rest of the turn."
+						},
+						{
+							"name": "TURNED TO CRYSTAL",
+							"category": "offensive",
+							"timing": "End of Any Turn",
+							"declare": "Pick an enemy unit within 1\" of this unit to be the target and roll a dice.",
+							"effect": "On a 2+, inflict 1 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "doomfire_warlocks",
+					"name": "Doomfire Warlocks",
+					"move": 14,
+					"health": 3,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [
+						{
+							"name": "Doomfire Crossbow",
+							"range": 10,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Cursed Scimitar",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						},
+						{
+							"name": "Dark Steed’s Vicious Bite",
+							"range": 0,
+							"attacks": "2",
+							"hit": 5,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "DOOMFIRE",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+							"effect": "On a 6+, inflict D3 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "blood_stalkers",
+					"name": "Blood Stalkers",
+					"move": 8,
+					"health": 2,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [
+						{
+							"name": "Heartseeker Bow",
+							"range": 18,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Scianlar",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "HEARTSEEKERS",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "Shooting attacks made by this unit score critical hits on unmodified hit rolls of 5+ if this unit did not use a MOVE ability in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "witch_aelves",
+					"name": "Witch Aelves",
+					"move": 6,
+					"health": 1,
+					"save": 6,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Paired Sciansá",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "FRENZIED FERVOUR",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Rend characteristic of this unit’s melee weapons if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS",
+						"WARD (6+)"
+					]
+				}
+			]
+		},
+		{
+			"name": "Khainite Shadow Coven",
+			"text": "Morathi-Khaine is not afraid to direct overwhelming force to annihilate her enemies, but she far prefers the subtle dagger to the cleaving blade. When she needs to dispose of an enemy host swiftly and precisely or to quietly strip a location of life, she deploys a Khainite Shadow Coven. In some ways, these specialists in subterfuge and misdirection function much like any Khainite formation: they wheel a potent Cauldron of Blood into battle and count fearsome Sisters of Slaughter, who delight in hand-to-hand bloodshed, amongst their number. Yet the Shadow Covens are also accompanied by roaming packs of Khainite Shadowstalkers, and their umbra-touched Cauldrons exude great plumes of disorientating gore-smoke that blends with the strange magic of Morathi’s elite agents to leave the enemy reeling, confused and helpless in the face of a killing blow.\nTo channel these arcane energies, a Shadow Coven is accompanied by a Bloodwrack Medusa, whose vile presence and malevolent gaze is capable of striking nearby foes dumb, further leaving them vulnerable to a well- aimed knife.",
+			"general": "Slaughter Queen on Cauldron of Blood",
+			"units": [
+				{
+					"count": 1,
+					"name": "Hag Queen"
+				},
+				{
+					"count": 1,
+					"name": "Bloodwrack Medusa"
+				},
+				{
+					"count": 9,
+					"name": "Khainite Shadowstalkers"
+				},
+				{
+					"count": 5,
+					"name": "Sisters of Slaughter"
+				},
+				{
+					"count": 5,
+					"name": "Sisters of Slaughter"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "SHADOWMASKED",
+					"category": "defensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick a friendly INFANTRY unit that is in combat and did not charge this turn to be the target.",
+					"effect": "Subtract 1 from hit rolls and wound rolls for combat attacks that target that friendly unit for the rest of the turn."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "BLEED THEM PALE",
+					"category": "movement",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly INFANTRY unit that is in combat and did not charge this turn to be the target.",
+					"effect": "The target can move 6\" but cannot end that move in combat."
+				},
+				{
+					"name": "MURDEROUS STRIKE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly INFANTRY units that charged in the same turn."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "SHADOW AVATAR",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Add 1 to the Rend characteristic of your general’s melee weapons for the rest of the turn."
+				},
+				{
+					"name": "BOILING BLOOD",
+					"category": "movement",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick a visible enemy unit within 12\" of your general to be the target.",
+					"effect": "Roll a dice. If the roll equals or exceeds the target’s Save characteristic, halve the target’s Move characteristic until the start of your next turn"
+				},
+				{
+					"name": "FRENZIED EXHORTATIONS",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target.",
+					"effect": "Roll a dice. On a 3+, add 1 to ward rolls for the target for the rest of the turn."
+				},
+				{
+					"name": "BLADED IMPACT",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"declare": "If your general charged this phase, pick an enemy unit within 1\" of them to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "slaughter_queen_on_cauldron_of_blood",
+					"name": "Slaughter Queen on Cauldron of Blood",
+					"move": 6,
+					"health": 12,
+					"save": 4,
+					"control": 5,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Shrine Guardians’ Blades",
+							"range": 0,
+							"attacks": "9",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "CONSECRATED REVULSION",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible friendly INFANTRY unit wholly within 12\" of this unit to be the target.",
+							"effect": "Roll a dice. On a 3+, add 1 to save rolls for the target until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"PRIEST (1)",
+						"WAR MACHINE",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "hag_queen",
+					"name": "Hag Queen",
+					"move": 6,
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Blade of Khaine",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BLOODY INCITEMENT",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
+							"effect": "If this unit is in combat, the target’s melee weapons have Crit (Auto-wound) for the rest of the turn.\nIf this unit is not in combat, roll a dice. On a 3+, the target’s melee weapons have Crit (Auto-wound) for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"PRIEST (1)",
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "khainite_shadowstalkers",
+					"name": "Khainite Shadowstalkers",
+					"move": 6,
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [
+						{
+							"name": "Cursed Bolts and Missiles",
+							"range": 10,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Blades of Murder",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SHADOW LEAP",
+							"category": "movement",
+							"timing": "Your Movement Phase",
+							"frequency": "Once Per Battle",
+							"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "sisters_of_slaughter",
+					"name": "Sisters of Slaughter",
+					"move": 6,
+					"health": 1,
+					"save": 6,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Kruiplash",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "DANCE OF DEATH",
+							"category": "movement",
+							"timing": "Enemy Combat Phase",
+							"frequency": "Once Per Turn (Army)",
+							"effect": "If this unit is in combat, it can move 2D6\". It can move through the combat ranges of enemy units but must end that move in combat."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "bloodwrack_medusa",
+					"name": "Bloodwrack Medusa",
+					"move": 8,
+					"health": 6,
+					"save": 5,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Bloodwrack Spear",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "EXSANGUINATING GLARE",
+							"category": "shooting",
+							"timing": "Your Shooting Phase",
+							"declare": "If this unit is in combat, pick an enemy unit in combat with it to be the target. Otherwise, pick a visible enemy unit within 12\" of it to be the target.",
+							"effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target. Then, if any enemy models were slain by that mortal damage, inflict an additional 1 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"WIZARD (1)",
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				}
+			]
+		}
+	]
+}

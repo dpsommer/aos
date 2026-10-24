@@ -216,6 +216,46 @@ def test_replacement_without_bsdata_ability_exits():
         build.replace_with_wahapedia(data(), {"Nothing": "Drill"}, [wh_ability("Drill", "Y.")])
 
 
+def test_army_of_renown_scoped_replacement_changes_that_army_ability():
+    d = data()
+    build.replace_with_wahapedia(d, {"Host > Shared Resolve": "Shared Resolve"}, [wh_ability("Shared Resolve", "Y.")])
+    assert d["armies_of_renown"][0]["battle_traits"][0]["effect"] == "Y."
+
+
+@pytest.mark.parametrize("group", ["enhancement_tables", "lores"])
+def test_army_of_renown_scoped_replacement_reaches_table_entries(group):
+    d = data()
+    d["armies_of_renown"][0][group] = [{"name": "Table", "entries": [ability("Gift")]}]
+    build.replace_with_wahapedia(d, {"Host > Gift": "Gift"}, [wh_ability("Gift", "Y.")])
+    assert d["armies_of_renown"][0][group][0]["entries"][0]["effect"] == "Y."
+
+
+def test_army_of_renown_scoped_replacement_leaves_same_named_ability_elsewhere_alone():
+    d = data()
+    d["faction"]["battle_traits"].append(ability("Shared Resolve"))
+    build.replace_with_wahapedia(d, {"Host > Shared Resolve": "Shared Resolve"}, [wh_ability("Shared Resolve", "Y.")])
+    assert d["faction"]["battle_traits"][1] == ability("Shared Resolve")
+
+
+def test_warscroll_scoped_replacement_changes_that_warscroll_ability():
+    d = data()
+    build.replace_with_wahapedia(d, {"test_captian > Rally Cry": "Rally Cry"}, [wh_ability("Rally Cry", "Y.")])
+    assert d["warscrolls"][0]["abilities"][0]["effect"] == "Y."
+
+
+def test_warscroll_scoped_replacement_leaves_same_named_ability_elsewhere_alone():
+    d = data()
+    d["warscrolls"][2]["abilities"] = [ability("Rally Cry")]
+    build.replace_with_wahapedia(d, {"test_captian > Rally Cry": "Rally Cry"}, [wh_ability("Rally Cry", "Y.")])
+    assert d["warscrolls"][2]["abilities"][0] == ability("Rally Cry")
+
+
+@pytest.mark.parametrize("bs_name", ["nobody > Rally Cry", "test_riders > Rally Cry", "Host > Rally Cry"])
+def test_unmatched_scoped_replacement_exits(bs_name):
+    with pytest.raises(SystemExit):
+        build.replace_with_wahapedia(data(), {bs_name: "Rally Cry"}, [wh_ability("Rally Cry", "Y.")])
+
+
 # wahapedia_abilities()
 
 def wh_page():
