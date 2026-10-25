@@ -1,0 +1,88 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Ossiarch Bonereapers army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Ossiarch Bonereapers units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Pick an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Pick a War Form.\n6. Pick any War Form Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nCohort Leader | 10 | 150\nPhalanx General | 30 | 250\nLegion Commander | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "ossiarch_bonereapers_hero",
+					"name": "Ossiarch Bonereapers Hero",
+					"move": "5",
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Nadirite Blade",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WARD (6+)",
+						"RELENTLESS DISCIPLINE (2)",
+						"DEATH",
+						"OSSIARCH BONEREAPERS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Pick an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nMORTEK COMMANDER\n-0DP\nChange your hero’s Save characteristic to 3+. Change the number after your hero’s RELENTLESS DISCIPLINE keyword to 5. Your hero has the following regiment options.\nYou can also pick a War Form in step 5.\nRegiment Options | Any OSSIARCH BONEREAPERS units\nBONECRAFTER\n-4DP\nReplace your hero’s melee weapon with the following weapon. Your hero has the WIZARD (1) keyword and the following regiment options.\nYou can also pick a War Form in step 5.\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nOssified Talons | 3 | 4+ | 4+ | - | D3\nRegiment Options | Any OSSIARCH BONEREAPERS units\nKAVALOS COMMANDER\n-2DP\nChange your hero’s Health characteristic to 7, their Move characteristic to 10\" and their Save characteristic to 3+.\nReplace your hero’s INFANTRY keyword with the CAVALRY keyword. Change the number after your hero’s RELENTLESS DISCIPLINE keyword to 6. Replace your hero’s melee weapon with the following weapons. Your hero has the fo llowing regiment options.\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nNadirite Blade\nCharge (+1 Damage) | 5 | 3+ | 4+ | 1 | 2\nKavalos Steed's Hooves, Teeth and Barbed Tails\nCompanion | 4 | 5+ | 3+ | - | 1\nRegiment Options | Any OSSIARCH BONEREAPERS units\nCHARIOT COMMANDER\n-4DP\nChange your hero's Health characteristic to 12, their Move characteristic to 10\" and their Save characteristic to 3+.\nReplace your hero's INFANTRY keyword with the WAR MACHINE keyword. Change the number after your hero's RELENTLESS DISCIPLINE keyword to 6.\nReplace your hero's melee weapon with the following weapons. Your hero has the following regiment options.\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nNadirite Blade\nCharge (+1 Damage) | 5 | 3+ | 4+ | 1 | 2\nChariot Steeds' Fangs and Hooves\nCompanion | 6 | 5+ | 3+ | - | 1\nRegiment Options | Any OSSIARCH BONEREAPERS units\nSOULWRIGHT\n-6DP\nChange your hero’s Health characteristic to 6 and their Move characteristic to 6\".\nYour hero has the WIZARD (2) keyword, the fo llowing ability and the following regiment options.\nYou can also pick a War Form in step 5.\nYour Hero Phase\n7\nSOUL-GUIDE\nDeclare: Pick a visible friendly OSSIARCH B0NEREAPERS unit wholly within 12\" of the caster to be the target, then make a casting roll of 2D6.\nEffect: The target has STRIKE-FIRST for the rest of the turn.\nKEYWORDS | SPELL\nRegiment Options | Any OSSIARCH BONEREAPERS units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-1DP\nPRECISION DUELLIST\nEffect: This unit’s melee weapons have Anti- HERO (+1 Rend).\nPassive\n-3DP\nMETICULOUSLY CRAFTED\nEffect: This unit has WARD (5+).\nPassive\n-4DP\nWALKING DEATH\nEffect: Add 2 to charge rolls for this unit.\nPassive\n-6DP\nKATAKROSIAN DYNAST\nEffect: Add 2 to the number after this unit’s RELENTLESS DISCIPLINE keyword."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+2DP\nHASTILY REPAIRED\nEffect: In your charge phase, if this unit is not in combat and there are any enemy units within 12\" of it, this unit must use the ‘Charge’ ability, and if the charge roll would allow it to finish within ½\" of any enemy units, it must do so.\nPassive\n+3DP\nOSTRACISED\nEffect: The number after this unit’s RELENTLESS DISCIPLINE keyword is 0.\nPassive\n+4DP\nPETTY RIVAL\nEffect: Ward rolls cannot be made for this unit.\nPassive\n+6DP\nFOND MEMORIES\nEffect: You must spend 1 additional command point for this unit to use a command."
+		},
+		{
+			"name": "Step 5 - Pick a War Form",
+			"text": "If you picked the Mortek Commander, Bonecrafter or Soulwright Archetype for your hero, you can pick up to 1 War Form for them.\nWar Form\n-4DP\nGUARDIAN OF THE EMPIRE: Using the proven chassis of an Immortis Guard or a Necropolis Stalker, this war form is as adaptable as it is powerful.\nReplace your hero's melee weapon with the following:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGuardian's Weapons | 5 | 3+ | 3+ | 2 | 2\nIn addition, make the following changes to your hero's warscroll:\nChange the Health characteristic to 8.\nDesigner's Note: We recommend a 50mm or 60mm base for this War Form.\nWar Form\n-10DP\nNIGHTMARISH OSSIARCH: This war form could easily be mistaken for a terrifying beast from the Realm's Edge, and the horror only intensifies as it wields nadirite blades with impressive skill for a creature of its size.\nAdd the following weapon to your hero's warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMonstrous Blades\nCrit (Mortal) | 3 | 3+ | 2+ | 2 | 3\nIn addition, make the following changes to your hero's warscroll:\nChange the Move characteristic to 6\".\nChange the Health characteristic to 12.\nReplace the INFANTRY keyword with the WAR MACHINE keyword.\nDesigner's Note: We recommend a 105x70mm base for this War Form.\nWar Form\n-20DP\nTOWERING WAR CONSTRUCT: This osseous colossus is nothing less than an undead siege engine. Its immense frame and tactician's cunning make for a lethal combination.\nAdd the following weapons and ability to your hero's warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nTitanic Weapons\nCrit (Mortal) | 5 | 3+ | 2+ | 2 | 3\nCrushing Appendages\nAnti- FACTION TERRAIN (+1 Rend), Companion | 7 | 4+ | 3+ | - | 2\nPassive\nBATTLE DAMAGED Effect: While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Appendages is 5.\nIn addition, make the following changes to your hero's warscroll:\nChange the Move characteristic to 8\".\nChange the Health characteristic to 16.\nReplace the INFANTRY keyword with the WAR MACHINE keyword.\nDesigner's Note: We recommend a 170x90mm base for this War Form."
+		},
+		{
+			"name": "Step 6 - Pick any War Form Upgrades",
+			"text": "If your hero has a War Form, you can pick any number of War Form Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nExtra Limbs\n-2DP\nPick 1 of your hero's melee weapons. Add 1 to the Attacks characteristic of that weapon.\nImpossible\nPrecision\n-4DP\nAdd the following ability to your hero's warscroll:\nAny Hero Phase\nIMPOSSIBLE PRECISION\nEffect: Pick 1 of the following weapon abilit ies for this unit’s melee weapons to have for the rest of the turn:\nAnti- INFANTRY (+1 Rend)\nAnti- CAVALRY (+1 Rend)\nAnti- MONSTER (+1 Rend)\nAnti- WAR MACHINE (+1 Rend)\nAnti- BEAST (+1 Rend)\nOsseous Wings\n-4DP\nYour hero has the FLY keyword and their Move characteristic is 12\".\nIf your hero has a Towering War Construct War Form, this upgrade costs 6 DP instead of 4 DP.\nUnliving Regeneration\n-4DP\nAdd the following ability to your hero's warscroll:\nEnd of Any Turn\nUNLIVING REGENERATION\nEffect: Heal (D3) this unit.\nlmmortis Pavise\n-4DP\nYour hero's Save characteristic is 3+.\nHasty Advance\n-4DP\nAdd the following ability to your hero's warscroll:\nDeployment Phase\nHASTY ADVANCE\nEffect: This unit can use the ‘Normal Move’ ability as if it were your movement phase.\nGrasping Limbs\n-6DP\nAdd the following ability to your hero's warscroll:\nAny Combat Phase\nGRASPING LIMBS\nDeclare: Pick each enemy INFANTRY unit in combat with this unit to be the targets.\nEffect: Roll a dice for each target. On a 3+, the target has STRIKE-LAST for the rest of the turn.\nMorbid Catapult\n-8DP\nTowering War Construct only. Add the following weapon to your hero's warscroll:\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nMorbid Catapult\nCompanion | 18\" | 4 | 4+ | 3+ | 1 | 3"
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of upgrades for your hero. If your hero has a War Form, you can only pick upgrades specified for that War Form. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nAggressive Commander\n-1DP\nAdd the following ability to your hero's warscroll:\nPassive\nAGGRESSIVE COMMANDER\nEffect: Add 1 to charge rolls for this unit.\nPeerless Leader\n-2DP\nIf your hero has a Guardian of the Empire War Form, you can pick this upgrade.\nAdd the following ability to your hero’s warscroll:\nOnce Per Turn, Reaction: You declared a RELENTLESS DISCIPLINE ability for this unit\nPEERLESS LEADER\nEffect: No relentless discipline points are spent to use that ability.\nCounter-strike\n-3DP\nAdd the following ability to your hero's warscroll:\nAny Charge Phase\nCOUNTER-STRIKE\nDeclare: Pick any number of visible friendly units wholly within 12\" of this unit to be the targets.\nEffect: Spend 1 relentless discipline point for each target. The targets’ melee weapons have Anti-charge (+1 Rend) for the rest of the turn.\nNadirite Blademaster\n-3DP\nAdd the following ability to your hero's warscroll:\nAny Combat Phase\nNADIRITE BLADEMASTER\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nDisturbing Stillness\n-4DP\nAdd the following ability to your hero's warscroll:\nPassive\nDISTURBING STILLNESS\nEffect: Subtract 1 from wound rolls for combat attacks that target this unit if it did not charge in the same turn.\nFortified Construct\n-4DP\nAdd 2 to your hero's Health characteristic.\nSupple Bone Supports\n-4DP\nIf your hero has a Nightmarish Ossiarch War Form, you can pick this upgrade. Add 2\" to our hero’s Move characteristic.\nRemorseless Conqueror\n-4DP\nAdd the following ability to your hero's warscroll:\nPassive\nREMORSELESS CONQUEROR\nEffect: Add 2 to run rolls for visible friendly OSSIARCH BONEREAPER units while they are wholly within 12\" of this unit.\nEerie Precision\n-5DP\nYour hero’s melee weapons have Crit (Mortal)."
+		},
+		{
+			"name": "Path of The Conqueror",
+			"text": "(OSSIARCH BONEREAPERS HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nAMBITIOUS DUELLIST\nEffect: Add 1 to hit rolls for this unit’s combat attacks that target an enemy HERO. In addition, if that HERO is on a Path and has a higher rank than this unit, add 1 to wound rolls for this unit’s combat attacks that target that HERO.\nOnce Per Battle, Any Combat Phase\nSCHOLAR OF THE DEATHLY ARTS\nEffect: Add 1 to casting rolls for this unit.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nDEAD GOOD\nEffect: Each phase, you can re-roll 1 hit roll, or 1 wound roll, or 1 save roll for this unit.\nOnce Per Battle, Your Hero Phase\nOBSESSIVELY STUDIOUS\nDeclare: Pick a non- SUMMON SPELL ability that this unit can use.\nEffect: For the rest of the phase, this un it can use that ability as if it had the UNLIMITED keyword.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nAny Combat Phase\nAURA OF THE NADIR\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Subtract 1 from the Attacks characteristic of the target’s melee weapons for the rest of the turn.\nPassive\nNECROMANTIC PRODIGIES\nEffect: Add 1 to this unit’s power level.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nAny Combat Phase\nSINGLE-MINDED RUTHLESSNESS\nEffect: For the rest of the turn, add 3 to the Rend characteristic of this unit’s melee weapons. All of this unit’s attacks this turn must target the same enemy unit.\nPassive\nMASTER OF THE MORTISAN CASTE\nEffect: Each time a casting roll is made for this unit, you can re-roll any of the dice."
+		},
+		{
+			"name": "Path of The Legion",
+			"text": "(non- HERO OSSIARCH BONEREAPERS unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nSTEADY MARCH\nEffect: Add 1\" to this unit's Move characteristic.\nPassive\nNECROTIC CHARGE\nEffect: Each time this unit makes a pile-in move, add 3\" to the distance it can move.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nUNFALTERING DEFENDERS\nEffect: Double this unit’s control score while it is contesting an objective that is wholly outside friendly territory.\nPassive\nEMPOWERED NADIRITE\nEffect: This unit’s weapons have Crit (2 Hits).\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Combat Phase\nEMOTIONLESS FEROCITY\nEffect: Add 2 to the Attacks characteristic of this unit’s melee weapons for the rest of the turn.\nEnd of Any Turn\nINEXHAUSTIBLE AND UNDEFEATABLE\nEffect: If this unit has a Health characteristic of 1, return D3 slain models to it. Otherwise, Heal (3) this unit.\nLEGENDARY: When a unit on this Path gains this rank, pick l of the following abilities for them:\nPassive\nINVINCIBLE LEGIONARIES\nEffect: Add 1 to save rolls for this unit.\nPassive\nIMMORTAL CONTEMPT\nEffect: Add 1 to hit rolls for this unit’s attacks."
+		}
+	]
+}

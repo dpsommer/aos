@@ -1,0 +1,32 @@
+{
+	"replace_with_wahapedia": {
+		"Petrifex Elite > Summon Soulstealer Carrion": "Summon Nightmare Predator"
+	},
+	"fields": {
+		"Remorseless Conquerors": {"name": "Unfaltering Pace"},
+		"Necrotic Impetus": {"name": "Necrotic Blast"},
+		"kavalos_war_chariot > Kavalos Steed's Hooves, Teeth, and Barbed Tails": {"name": "Chariot Steeds' Fangs and Claws"},
+		"liege_kavalos_on_war_chariot > Kavalos Steed's Hooves, Teeth, and Barbed Tails": {"name": "Chariot Steeds' Fangs and Claws"},
+		"Fury of Zandtos": {"declare": "Pick a friendly LANCE OF OSSIA unit that charged this turn and that has not used a RELENTLESS DISCIPLINE ability this phase to be the target."},
+		"Discharge Armour": {"declare": "Pick a visible friendly OSSIARCH BONEREAPERS WIZARD wholly within 12\" of this unit to be the target."},
+		"Refined Creations": {"declare": "Pick a visible friendly Mortek Crawler, Gothizzar Harvester, Morghast Archai or Morghast Harbingers unit wholly within 12\" of this unit to be the target."},
+		"kainans_reapers": {"move": "5"},
+		"thanateks_tithe": {
+			"unit_size": 5,
+			"base_size": "Thanatek: 32mm, Sekhmor, Tukhar: 28.5mm, Xar-Tamok, Medeb-Ahk: 25mm"
+		},
+		"teratic_cohort": {"base_size": "Kavalos Centari: 60 × 35mm, 2 × Mortek Cykloptians: 32mm, 5 × Teratic Prowlers and Aviarch Harpies: 28.5mm"},
+		"Reaper' Blades": {"name": "Reaper's Blades"},
+		"Deathly Aura": {"effect": "Enemy units cannot be set up within X\" of this terrain feature, where X is determined by the current battle round, as follows:\n1 9\"\n2 12\"\n3 15\"\n4 18\"\n5 21\""},
+		"Deathly Barrage": {"effect": "After that SHOOT ability has been resolved, if all of this unit's attacks targeted the same enemy unit, roll a dice. Add 1 to the roll if this unit is wholly within 12\" of a friendly Mortisan Ossifector, and add 1 to the roll if any other friendly Mortek Crawler units picked that enemy unit to be the target of all of their shooting attacks this turn. On a 4+, the target has STRIKE-LAST for the rest of the turn."},
+		"scourge_of_ghyran_mortek_guard > Shields of the Legion": {"timing": "Reaction: A friendly OSSIARCH BONEREAPERS WAR MACHINE or WIZARD within this unit's combat range was targeted by an ATTACK ability"},
+		"scourge_of_ghyran_mortisan_boneshaper > Boneshaper": {"declare": "If this unit is not in combat, pick a friendly Mortek Guard unit that has been destroyed to be the target."},
+		"Blood-smeared Hooves": {"effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. Add 1 to the Rend characteristic of the target's weapons, including Companion weapons, for the rest of the turn."},
+		"Arcane Immunity": {"effect": "Friendly NULL MYRIAD units have WARD (4+) against damage points inflicted by SPELL abilities, PRAYER abilities and abilities used by MANIFESTATIONS."},
+		"Supernatural Absorbtion": {
+			"name": "Supernatural Absorption",
+			"declare": "Pick an enemy MANIFESTATION within a friendly NULL MYRIAD unit's combat range to be the target."
+		},
+		"Gothizzar Cartouche": {"declare": "Pick a visible enemy unit within 12\" of this unit to be the target."}
+	}
+}

@@ -59,6 +59,7 @@ const _DATA_DIRS := {
 	"Maggotkin of Nurgle": "res://data/factions/maggotkin_of_nurgle",
 	"Nighthaunt": "res://data/factions/nighthaunt",
 	"Ogor Mawtribes": "res://data/factions/ogor_mawtribes",
+	"Ossiarch Bonereapers": "res://data/factions/ossiarch_bonereapers",
 	"Sylvaneth": "res://data/factions/sylvaneth",
 }
 
