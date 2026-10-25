@@ -1,0 +1,2271 @@
+{
+	"warscrolls": [
+		{
+			"id": "auric_flamekeeper",
+			"name": "Auric Flamekeeper",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Brazier Axe",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fire-fuelled Anger",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Subtract 2 from Masterflame rune rolls for this unit while it has any grudge marks."
+				},
+				{
+					"name": "Relight the Fire",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "If this unit is destroyed, before removing it from play, give each visible friendly GRIMMDRON unit within 6\" of it 1 grudge mark."
+				},
+				{
+					"name": "Masterflame Rune",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly GRIMMDRON INFANTRY unit wholly within 12\" of this unit to be the target. Then, make a Masterflame rune roll by rolling a dice.",
+					"effect": "On a 1, or if the roll is equal to or less than the number of friendly KHAZALITE HOLDS units that have been destroyed during the battle, pick 1 of the following effects to apply until the start of your next turn:\nGrimnir's Grit: The target has WARD (5+).\nGrimnir's Resolve: You can re-roll charge rolls for the target.\nGrimnir's Vengeance: Add 1 to the Damage characteristic of the target's melee weapons."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"INFANTRY",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "auric_hearthguard",
+			"name": "Auric Hearthguard",
+			"points": 110,
+			"unit_size": 5,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Magmapike",
+					"range": 12,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Magmapike",
+					"range": 0,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Focused Ire",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Add 1 to hit rolls for this unit's shooting attacks while it has any grudge marks."
+				},
+				{
+					"name": "Molten Rockbolts",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
+					"effect": "Subtract 1 from hit rolls for the target's attacks until the start of your next turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "auric_runefather",
+			"name": "Auric Runefather",
+			"points": 130,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Latchkey Grandaxe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Royal Retinue",
+					"category": "defensive",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly non-HERO GRIMMDRON INFANTRY unit within this unit's combat range to be the royal retinue.",
+					"effect": "For the rest of the battle, while the royal retinue is wholly within 6\" of and visible to this unit:\n• Add 1 to hit rolls for the royal retinue's attacks.\n• This unit has WARD (4+)."
+				},
+				{
+					"name": "Commanding Presence",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit has any grudge marks, the royal retinue has WARD (4+) while it is wholly within 6\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"INFANTRY",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "auric_runefather_on_magmadroth",
+			"name": "Auric Runefather on Magmadroth",
+			"points": 320,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Latchkey Grandaxe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				},
+				{
+					"name": "Magmadroth's Maw, Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Maw, Claws and Horns is 4."
+				},
+				{
+					"name": "Warrior-kings",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly GRIMMDRON units while they are wholly within 12\" of this unit.\nIf this unit has any grudge marks, for the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by the following visible friendly units while they are wholly within 12\" of this unit instead:\n• GRIMMDRON units\n• KROMDRON INFANTRY units"
+				},
+				{
+					"name": "Raging Inferno",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, subtract 1 from save rolls for the target for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "auric_runemaster",
+			"name": "Auric Runemaster",
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Brazier Staff",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "High Priest of the Zharrgrim",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Each time a PRAYER chanted by this unit is answered, this unit gains a magmic power token."
+				},
+				{
+					"name": "Master of the Runes",
+					"category": "special",
+					"timing": "Reaction: You declared an UR-GOLD RUNE ability",
+					"effect": "Remove 3 of this unit's magmic power tokens. If you do so, apply the effect below that corresponds to the UR-GOLD RUNE ability that was used:",
+					"options": [
+						{
+							"name": "Rune of Fury",
+							"text": "For the rest of the battle round, add 1 to wound rolls for combat attacks made by friendly FYRESLAYERS units while they have STRIKE-FIRST."
+						},
+						{
+							"name": "Rune of Fiery Determination",
+							"text": "Add 1 to save rolls for friendly FYRESLAYERS units for the rest of the battle round."
+						},
+						{
+							"name": "Rune of Relentless Zeal",
+							"text": "Add 1 to run rolls and charge rolls for friendly FYRESLAYERS units for the rest of the battle round."
+						},
+						{
+							"name": "Rune of Searing Heat",
+							"text": "Add 1 to the Rend characteristic of melee weapons used by friendly FYRESLAYERS units for the rest of the battle round."
+						},
+						{
+							"name": "Rune of Farsight",
+							"text": "Increase the range of the 'Rune of Farsight' ability to 16\"."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN",
+				"INFANTRY",
+				"PRIEST (2)"
+			]
+		},
+		{
+			"id": "auric_runesmiter",
+			"name": "Auric Runesmiter",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Latch-axe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Righteous Wrath",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to chanting rolls for this unit while it has any grudge marks."
+				},
+				{
+					"name": "Magmic Passage",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly GRIMMDRON INFANTRY unit wholly within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, add 2\" to the target's Move characteristic until the start of your next turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"PRIEST (1)",
+				"INFANTRY",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "auric_runesmiter_on_magmadroth",
+			"name": "Auric Runesmiter on Magmadroth",
+			"points": 290,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Latch-axe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Magmadroth's Maw, Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Maw, Claws and Horns is 4."
+				},
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Runic Empowerment",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly GRIMMDRON unit wholly within 12\" of this unit to be the target. If this unit has any grudge marks, pick a visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be the target instead.",
+					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target's combat attacks for the rest of the turn."
+				},
+				{
+					"name": "Lashing Tail",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll 2D6. If the roll is equal to or less than the number of models in the target unit, inflict D3+3 mortal damage on the target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"PRIEST (1)",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "auric_runeson",
+			"name": "Auric Runeson",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fearless Charge",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Add 1 to charge rolls for visible friendly KHAZALITE HOLDS INFANTRY units while they are wholly within 12\" of this unit. While this unit has any grudge marks, add 2 to charge rolls for visible friendly KHAZALITE HOLDS INFANTRY units while they are wholly within 12\" of this unit instead."
+				},
+				{
+					"name": "Dauntless Assault",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for this unit or a non-HERO GRIMMDRON INFANTRY unit within 3\" of this unit",
+					"effect": "If you declared a FIGHT ability for this unit, pick a friendly non-HERO GRIMMDRON INFANTRY unit that has not used a FIGHT ability this turn, is within this unit's combat range and is visible to this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn.\nIf you declared a FIGHT ability for a friendly non-HERO GRIMMDRON INFANTRY unit, if this unit has not used a FIGHT ability this turn, it can be picked to use a FIGHT ability immediately after the FIGHT ability used by the friendly non-HERO GRIMMDRON INFANTRY unit has been resolved. If it is picked to do so, add 1 to hit rolls for this unit's attacks for the rest of the turn.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "This ability lets another friendly unit fight immediately after this unit or lets this unit fight immediately after that other friendly unit. Add 1 to hit rolls for whichever of those two units fights after the first."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"INFANTRY",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "auric_runeson_on_magmadroth",
+			"name": "Auric Runeson on Magmadroth",
+			"points": 290,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Magmadroth's Maw, Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Maw, Claws and Horns is 4."
+				},
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Packdroth",
+					"category": "movement",
+					"timing": "Reaction: You declared a MOVE ability for this unit in your movement phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick a visible friendly GRIMMDRON INFANTRY unit that is wholly within 6\" of this unit, is not in combat and has not been set up this turn to be the target. Remove the target from the battlefield. After this unit ends its move, you must set up the target wholly within 6\" of this unit and not in combat. Unless this unit has any grudge marks, the target cannot use CHARGE abilities for the rest of the turn."
+				},
+				{
+					"name": "Calamitous Crash",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on that unit.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_auric_runeson_on_magmadroth",
+			"name": "Auric Runeson on Magmadroth",
+			"source": "Scourge of Aqshy",
+			"points": 300,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Magmadroth's Blazing Maw",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Magmadroth's Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
+				},
+				{
+					"name": "Fire, Blood and Vengeance",
+					"category": "offensive",
+					"timing": "Deployment Phase",
+					"declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons, including Companion weapons, while the target is in combat, damaged or destroyed."
+				},
+				{
+					"name": "Seeing Red",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, pick 1 of the following effects:",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"options": [
+						{
+							"name": "Channelled Ire",
+							"text": "Add 1 to the Attacks characteristic of this unit's Companion melee weapons for the rest of the turn."
+						},
+						{
+							"name": "Cathartic Release",
+							"text": "Roll a number of dice equal to your fury level. For each 4+, Heal (1) this unit."
+						},
+						{
+							"name": "Shield of Anger",
+							"text": "This unit has WARD (5+) for the rest of the turn."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"ORDER",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN",
+				"MAGMADROTH"
+			]
+		},
+		{
+			"id": "battlesmith",
+			"name": "Battlesmith",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Battle-axe",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Icon of Grimnir",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Ignore negative modifiers to the control scores of friendly FYRESLAYERS units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Bard of the Lodge",
+					"category": "rallying",
+					"timing": "Passive",
+					"effect": "If a friendly unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "clangunners_with_thrundok_rifles",
+			"name": "Clangunners with Thrundok Rifles",
+			"points": 140,
+			"unit_size": 10,
+			"base_size": "28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 1,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Thrundok Rifle",
+					"range": 18,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Rifle Butt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Thrundok Hail",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
+					"effect": "Roll a dice. Add 1 to the roll if the target is CAVALRY or has FLY. Add 2 to the roll instead if the target is a MONSTER. On a 4+, halve the target's Move characteristic until the start of your next turn."
+				},
+				{
+					"name": "Settled with a Bullet",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Add 1 to wound rolls for this unit's shooting attacks while it has any grudge marks."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"MUSICIAN (1/10)",
+				"STANDARD BEARER (1/10)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "clangunners_with_thrundrin_shotcannons",
+			"name": "Clangunners with Thrundrin Shotcannons",
+			"points": 130,
+			"unit_size": 10,
+			"base_size": "28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 1,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Thrundrin Shotcannon",
+					"range": 12,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Shotcannon Butt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Blasted and Dazed",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
+					"effect": "Roll a dice. Add 1 to the roll if the target does not have FLY. On a 4+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
+				},
+				{
+					"name": "Grim Retaliation",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic of this unit's ranged weapons while it has any grudge marks."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"MUSICIAN (1/10)",
+				"STANDARD BEARER (1/10)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "clanshields",
+			"name": "Clanshields",
+			"points": 110,
+			"unit_size": 10,
+			"base_size": "28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 1,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Kromdron Weapon",
+					"range": 0,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Tough as Stone",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from the Rend characteristic of weapons used for combat attacks that target this unit while every model in this unit is within 3\" of an objective you control."
+				},
+				{
+					"name": "Remember Their Names",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to wound rolls for this unit's attacks while it has any grudge marks."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"MUSICIAN (1/10)",
+				"STANDARD BEARER (1/10)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "doomseeker",
+			"name": "Doomseeker",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Doomseeker Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Runic Power",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit has 1 damage point. Add 2 to the Damage characteristic of this unit's melee weapons instead while this unit has 2 or more damage points."
+				},
+				{
+					"name": "Oathbound",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick an enemy unit to be this unit's quarry. You can pick a unit that has been deployed in reserve.",
+					"effect": "Add 1 to hit rolls and wound rolls for attacks made by this unit that target its quarry.\nIf this unit is destroyed while it is in combat with its quarry, inflict 3 mortal damage on this unit's quarry immediately after the ability that destroyed this unit has been resolved."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "gholems_of_gazul",
+			"name": "Gholems of Gazul",
+			"points": 210,
+			"unit_size": 3,
+			"base_size": "50mm",
+			"can_reinforce": true,
+			"move": "6",
+			"health": 5,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Gazulite Great Hammer",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Runes of Gazul",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from ward rolls for damage points inflicted by this unit's combat attacks."
+				},
+				{
+					"name": "Armour-crushing Swings",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Your opponent can pick whether the target will attempt to sidestep or not. If they do, subtract 1 from hit rolls for the target's attacks for the rest of the turn.\nThen, roll a dice. Subtract 1 from the roll if the target attempted to sidestep. If the roll equals or exceeds the target's Save characteristic, subtract 1 from save rolls for the target for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"WAR MACHINE",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"GHOLEM"
+			]
+		},
+		{
+			"id": "gholems_of_valaya",
+			"name": "Gholems of Valaya",
+			"points": 200,
+			"unit_size": 3,
+			"base_size": "50mm",
+			"can_reinforce": true,
+			"move": "6",
+			"health": 5,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Valayan Great Axe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Icons of Valaya",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "If this unit is destroyed, before removing it from play, give each visible friendly non-GHOLEM VALAYAN unit 1 grudge mark."
+				},
+				{
+					"name": "Shield Strike",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"WAR MACHINE",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"GHOLEM",
+				"VALAYAN"
+			]
+		},
+		{
+			"id": "gotrek_gurnisson",
+			"name": "Gotrek Gurnisson",
+			"points": 220,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 8,
+			"save": 5,
+			"control": 2,
+			"ward": 3,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Zangrom-Thaz",
+					"range": 0,
+					"attacks": "8",
+					"hit": 2,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Indifferent and Pragmatic",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit cannot have grudge marks and cannot be affected by ANCESTRAL VOW abilities."
+				},
+				{
+					"name": "Too Stubborn to Die",
+					"category": "rallying",
+					"timing": "Passive",
+					"effect": "The first time this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (D3) this unit."
+				},
+				{
+					"name": "A Glorious Doom",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit is in combat with any enemy HEROES or MONSTERS:\n• It can only pick those enemy units to be the targets of its combat attacks.\n• Add 2 to the Attacks characteristic of this unit's melee weapons for each enemy HERO or MONSTER unit in combat with it.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "A unit with both the HERO and MONSTER keywords only adds 2 to the Attacks characteristic of this unit's melee weapons."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"UNIQUE",
+				"HERO",
+				"INFANTRY",
+				"WARD (3+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN"
+			]
+		},
+		{
+			"id": "grimhold_exile",
+			"name": "Grimhold Exile",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyre-rune Hammers",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Wrathful Wanderer",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "Remove this unit from the battlefield, then set it up again on the battlefield wholly within 6\" of a battlefield edge and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Alone but Never Outnumbered",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit has STRIKE-FIRST while there are no other friendly units within 6\" of it."
+				},
+				{
+					"name": "Relentless Wrath",
+					"category": "movement",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit has any grudge marks and is not in combat, it can move D6\". It can move through the combat ranges of enemy units but cannot end that move in combat and cannot end that move any further from the closest enemy unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"INFANTRY",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "grimwrath_berzerker",
+			"name": "Grimwrath Berzerker",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyrestorm Greataxe",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Grimwrath Oaths",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"effect": "Pick 1 of the following oaths for this unit to swear:",
+					"options": [
+						{
+							"name": "'I will guard them with my life!'",
+							"text": "While this unit is wholly within 6\" of another friendly FYRESLAYERS HERO:\n• Add 1 to hit rolls for this unit's attacks.\n• Add 1 to ward rolls for this unit.\nIf a friendly FYRESLAYERS HERO wholly within 6\" of this unit is destroyed, this effect no longer applies."
+						},
+						{
+							"name": "'I will not be stopped!'",
+							"text": "Add 1 to charge rolls for this unit, and add 1 to save rolls for this unit while it is in combat. If this unit uses the 'Retreat' or 'Rally' abilities, this effect no longer applies."
+						}
+					]
+				},
+				{
+					"name": "Battle-fury",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "If this unit is in combat, it can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the phase."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "hearthguard_berzerkers",
+			"name": "Hearthguard Berzerkers",
+			"points": 110,
+			"unit_size": 5,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Broadaxe or Flamestrike Poleaxe",
+					"range": 0,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Duty unto Death",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While any friendly GRIMMDRON INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
+				},
+				{
+					"name": "Fury of Grimnir",
+					"category": "movement",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit has any grudge marks and is not in combat, it can move D6\". It can move through the combat ranges of enemy units but cannot end that move in combat and cannot end that move any further from the closest enemy unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "high_kyng_valankrom",
+			"name": "High Kyng Valankrom",
+			"points": 390,
+			"unit_size": 1,
+			"base_size": "170 × 105mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 16,
+			"save": 3,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Forge-spark Lightning",
+					"range": 12,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Bharadreng",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)",
+						"Crit (Mortal)"
+					]
+				},
+				{
+					"name": "Karak War Council's Armoury",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Karak War Council's Armoury is 4."
+				},
+				{
+					"name": "Defend the High Throne!",
+					"category": "offensive",
+					"timing": "Start of Any Turn",
+					"declare": "Pick another visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be the target. For each grudge mark this unit has, you can pick another eligible unit to be an additional target.",
+					"effect": "For the rest of the turn, the following effects apply to the targets while they are wholly within 6\" of this unit. Add 3\" to this range for each grudge mark this unit has.\n• The target's melee weapons have Anti-charge (+1 Rend).\n• If the target has no grudge marks, it counts as having 1 grudge mark."
+				},
+				{
+					"name": "High Kyng's War Council",
+					"category": "control",
+					"timing": "Your Hero Phase",
+					"effect": "Pick 1 of the following effects to apply until the start of your next turn:\nStonesmith's Disruption: The stonesmith causes the ground under a group of enemies to tremble violently, disrupting their cohesion. Pick a visible enemy unit within 12\" of this unit to be the target. The target has a maximum control score of 1.\nGrudgebearer's Denunciation: The exhortations of the grudgebearer instil in the duardin a relentless drive to enact vengeance on the foe. While they are wholly within 12\" of this unit, visible friendly KHAZALITE HOLDS units can use CHARGE abilities even if they used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on those friendly units by RETREAT abilities.\nHoldseeker's Guidance: The holdseeker reveals magically resonant areas of the battlefield to aid the efforts of those working the runes. Add 1 to casting rolls, chanting rolls and banishment rolls for friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Stirring the High Kyng's Ire",
+					"category": "offensive",
+					"timing": "Start of Battle Round",
+					"declare": "Pick a visible enemy HERO within 18\" of this unit that has not been picked to be the target of this ability this battle to be the target.",
+					"effect": "Your opponent must decide whether the target will accept the accusation or reject the accusation.\nIf they accept the accusation, until the start of your next turn, add 1 to hit rolls for combat attacks made by friendly KHAZALITE HOLDS units that target that enemy unit.\nIf they reject the accusation, the target cannot use commands until the start of your next turn."
+				},
+				{
+					"name": "Tide of Stone",
+					"category": "movement",
+					"timing": "Any Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "This unit can move D6\" or, if it is your movement phase, it can move 2D6\". It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat.\nThen, pick an enemy unit that this unit passed across during that move to be the target and roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll.",
+					"keywords": [
+						"CORE",
+						"MOVE"
+					]
+				}
+			],
+			"keywords": [
+				"WARMASTER",
+				"UNIQUE",
+				"HERO",
+				"WAR MACHINE",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "hjulda_drakkblud",
+			"name": "Hjulda Drakkblud",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Azangrom",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Book of Fallen Holds",
+					"category": "control",
+					"timing": "Start of First Battle Round",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "You must use this ability. Pick an enemy unit to be grudged. You can pick an enemy unit in reserve.",
+					"effect": "For the rest of the battle:\n• While the grudged enemy unit is within 12\" of and visible to this unit, you can re-roll charge rolls for friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit.\n• While there is no grudged enemy unit on the battlefield, add 3 to the control scores of friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Talisman of the Lost Karak",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit is in combat, add 1 to hit rolls for combat attacks made by friendly non-HERO KHAZALITE HOLDS INFANTRY units while they are within 3\" of and visible to this unit."
+				},
+				{
+					"name": "Last of Her Clan",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick this unit and up to 2 other visible friendly non-HERO KHAZALITE HOLDS units wholly within 12\" of this unit to be the targets.",
+					"effect": "If this unit has any grudge marks, apply this effect automatically. Otherwise, roll a dice for each target. On a 3+, until the start of your next turn, ignore the first damage point that would be allocated to that target in each phase."
+				}
+			],
+			"keywords": [
+				"UNIQUE",
+				"HERO",
+				"INFANTRY",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "magmic_battleforge",
+			"name": "Magmic Battleforge",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "Use Model",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 8,
+			"save": 3,
+			"control": 0,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Spending the Forge",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to expend the power of the forge.",
+					"effect": "Heal (D3) each friendly FYRESLAYERS unit on the battlefield. Once this ability has been used, this terrain feature cannot use the 'Molten Blessing' abiity for the rest of the battle."
+				},
+				{
+					"name": "Molten Blessing",
+					"category": "offensive",
+					"timing": "Start of Any Turn",
+					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to be the target.",
+					"effect": "Add 1 to chanting rolls for the target for the rest of the turn. In addition, the target can use the 'Unbind' ability this turn as if it had WIZARD (1)."
+				}
+			],
+			"keywords": [
+				"FACTION TERRAIN",
+				"KHAZALITE HOLDS",
+				"ORDER",
+				"WARD (6+)"
+			]
+		},
+		{
+			"id": "oathkeeper_cannon",
+			"name": "Oathkeeper Cannon",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "100mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 6,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Oathkeeper Shot",
+					"range": 24,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3+2"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Oathkeeper Crew Tools",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Artillerist's Revenge",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "This unit's ranged weapons have Crit (2 Hits) while it has any grudge marks."
+				},
+				{
+					"name": "Oathkeeper Apprentice Runestriker",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
+					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\nRune of Sundering: Until the start of your next turn, subtract 1 from the Rend characteristic of the target's melee weapons.\nRune of Burning: For the rest of the turn, combat attacks that target that enemy unit score critical hits on unmodified hit rolls of 5+.\nRune of Shock: The target has STRIKE-LAST until the start of your next turn."
+				}
+			],
+			"keywords": [
+				"WAR MACHINE",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "ormyr_and_ashtongue",
+			"name": "Ormyr and Ashtongue",
+			"points": 140,
+			"unit_size": 2,
+			"base_size": "Ormyr: 32mm, Ashtongue: 50mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Ormyr's Double-bladed Axe and Punchblade",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Ashtongue's Maw and Claws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Vulcatrix's Fury",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit has any grudge marks, add 1 to the Attacks characteristic of Companion weapons used by visible friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Drothmaster at Heart",
+					"category": "control",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly Vulkyn Flameseekers or GRIMMDRON MONSTER unit wholly within 12\" of this unit to be the target.",
+					"effect": "Pick 1 of the following effects:\n• If you picked a friendly Vulkyn Flameseekers unit to be the target, until the start of your next turn, ignore negative modifiers to hit rolls and wound rolls for the target's combat attacks and ignore negative modifiers to the target's control score.\n• If you picked a friendly GRIMMDRON MONSTER unit to be the target, add 1 to hit rolls for attacks made with the target's Companion weapons until the start of your next turn."
+				},
+				{
+					"name": "Smoke and Ash",
+					"category": "special",
+					"timing": "Your Shooting Phase",
+					"declare": "If this unit contains Ashtongue, pick a visible enemy unit within 9\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, until the start of your next turn, units (friendly and enemy), terrain features and MANIFESTATIONS are not visible to the target while they are more than 6\" from it."
+				}
+			],
+			"keywords": [
+				"UNIQUE",
+				"HERO",
+				"INFANTRY",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "runewright",
+			"name": "Runewright",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Runic Forgehammers",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Grudgement of the Forge",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to unbinding rolls, banishment rolls and rhythmic hammering rolls for this unit while it has any grudge marks."
+				},
+				{
+					"name": "Rhythmic Hammering",
+					"category": "special",
+					"timing": "You declared a SPELL ability from the 'Reverberations of the Runes' or the 'Resonance of the Runes' for this unit",
+					"effect": "If the casting roll for that spell equals or exceeds its casting value, make a rhythmic hammering roll of 2D6.\nIf a rhythmic hammering roll is lower than that spell's casting value, the spell fails and its effect is not resolved.\nIf a rhythmic hammering roll equals or exceeds that spell's casting value, increase the range of that spell by 3\". You can keep making rhythmic hammering rolls for that spell until you roll lower than its casting value. The effects of this ability are cumulative."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"WIZARD (1)",
+				"INFANTRY",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "stonebreaker_mortar",
+			"name": "Stonebreaker Mortar",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "100mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 6,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Stonebreaker Shot",
+					"range": 30,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Stonebreaker Crew Tools",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Artillerist's Revenge",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "This unit's ranged weapons have Crit (2 Hits) while it has any grudge marks."
+				},
+				{
+					"name": "Stonebreaker Apprentice Runestriker",
+					"category": "control",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
+					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\nRune of Detonation: Roll a D3 for each enemy unit within 3\" of the target. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.\nRune of Thunder: Until the start of your next turn, the target has a maximum control score of 1.\nRune of Earthshaking: The target cannot use RUN abilities until the start of your next turn."
+				}
+			],
+			"keywords": [
+				"WAR MACHINE",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "thrynn",
+			"name": "Thrynn",
+			"points": 120,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"move": "4",
+			"health": 5,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Grudgehammer and Runic Axe",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Steadfast Retribution",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons, to a maximum of +3, for each other visible friendly unit wholly within 6\" of this unit that has any grudge marks."
+				},
+				{
+					"name": "Fight Shoulder to Shoulder",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for this unit or a non-HERO KROMDRON INFANTRY unit within 3\" of and visible to this unit",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If you declared a FIGHT ability for this unit, pick a friendly non-HERO KROMDRON INFANTRY unit that has not used a FIGHT ability this turn, is within this unit's combat range and is visible to this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn.\nIf you declared a FIGHT ability for a friendly non-HERO KROMDRON INFANTRY unit, if this unit has not used a FIGHT ability this turn, it can be picked to use a FIGHT ability immediately after the FIGHT ability used by the friendly non-HERO KROMDRON INFANTRY unit has been resolved. If it is picked to do so, add 1 to hit rolls for this unit's attacks for the rest of the turn.",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "This ability lets another friendly unit fight immediately after this unit or lets this unit fight immediately after that other friendly unit. Add 1 to hit rolls for whichever of those two units fights after the first."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"INFANTRY",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "thrynn_on_war_throne",
+			"name": "Thrynn on War Throne",
+			"points": 340,
+			"unit_size": 1,
+			"base_size": "170 × 105mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 16,
+			"save": 3,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Forge-spark Lightning",
+					"range": 12,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Thrynn's Runeweapons",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				},
+				{
+					"name": "Karak War Council's Armoury",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Karak War Council's Armoury is 4."
+				},
+				{
+					"name": "Defend the Throne!",
+					"category": "offensive",
+					"timing": "Start of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick another visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be a target. For each grudge mark this unit has, you can pick another eligible unit to be an additional target.",
+					"effect": "For the rest of the turn, the targets' melee weapons have Anti-charge (+1 Rend) while they are wholly within 6\" of this unit. Add 3\" to this range for each grudge mark this unit has."
+				},
+				{
+					"name": "Karak War Council",
+					"category": "shooting",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick 1 of the following effects to apply until the start of your next turn:\nStonesmith's Passage: The Stonesmith shifts rock and earth to aid the manoeuvres of nearby duardin. Add 2\" to the Move characteristic of visible friendly KHAZALITE HOLDS INFANTRY units while they are wholly within 12\" of this unit. In addition, no mortal damage is inflicted on those friendly units by RETREAT abilities.\nGrudgebearer's Accusation: The grudgebearer singles out an enemy champion to be the target of the duardin's vengeance. Pick a visible enemy HERO within 18\" of this unit to be the target. Friendly KHAZALITE HOLDS INFANTRY units can ignore the effects of the 'Guarded Hero' ability on the target when picking targets for their shooting attacks.\nHoldseeker's Protection: Awakening the runes on their staff, the holdseeker imbues nearby duardin with an aura that repels the attacks of the foe. Pick a visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be the target. Roll a dice. On a 3+, other than the Companion weapon ability, weapon abilities for attacks that target that friendly unit have no effect."
+				},
+				{
+					"name": "Forge a Path",
+					"category": "movement",
+					"timing": "Reaction: You declared a MOVE ability for this unit in your movement phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick a visible friendly KROMDRON INFANTRY unit that is wholly within 6\" of this unit, is not in combat and has not been set up this turn to be the target. Remove the target from the battlefield. After this unit ends its move, you must set up the target wholly within 6\" of this unit and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Tectonic Impact",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"WAR MACHINE",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON"
+			]
+		},
+		{
+			"id": "valayan_guardians_with_rune_axes_and_shields",
+			"name": "Valayan Guardians with Rune Axes and Shields",
+			"points": 110,
+			"unit_size": 5,
+			"base_size": "28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 1,
+			"save": 3,
+			"control": 1,
+			"ward": 4,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Valayan Rune Axe",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Shield Maidens",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
+					"effect": "Roll a dice for each enemy model in combat with this unit. For each 4+, inflict 1 mortal damage on the target."
+				},
+				{
+					"name": "Protection of Valaya",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit has any grudge marks, visible friendly KHAZALITE HOLDS INFANTRY and non-GHOLEM WAR MACHINE units have WARD (5+) while they are wholly within 6\" of this unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"WARD (4+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON",
+				"VALAYAN"
+			]
+		},
+		{
+			"id": "valayan_guardians_with_runic_halberds",
+			"name": "Valayan Guardians with Runic Halberds",
+			"points": 110,
+			"unit_size": 5,
+			"base_size": "28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 1,
+			"save": 4,
+			"control": 1,
+			"ward": 4,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Valayan Runic Halberd",
+					"range": 0,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 4,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Warriors of the Hearth",
+					"category": "movement",
+					"timing": "Your Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is not in combat and has not used a RUN or RETREAT ability this turn, make a charge roll of 2D6. While this unit has any grudge marks, you can re-roll that charge roll.",
+					"effect": "This unit can move a distance up to the value of the charge roll. It can move through the combat ranges of enemy units, pass across enemy models and must end that move within ½\" of a visible enemy unit. If it does so, it has charged.\nThen, if this unit charged this turn, pick an enemy unit it passed across this turn. Inflict D3 mortal damage on that enemy unit.",
+					"keywords": [
+						"CORE",
+						"MOVE",
+						"CHARGE"
+					]
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"WARD (4+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"KROMDRON",
+				"VALAYAN"
+			]
+		},
+		{
+			"id": "vulkite_berzerkers_with_bladed_slingshields",
+			"name": "Vulkite Berzerkers with Bladed Slingshields",
+			"points": 150,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyresteel Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Berserk Fury",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"ORDER",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN",
+				"MUSICIAN (1/10)"
+			]
+		},
+		{
+			"id": "vulkite_berzerkers_with_fyresteel_weapons",
+			"name": "Vulkite Berzerkers with Fyresteel Weapons",
+			"points": 130,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyresteel Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Whirlwind of Destruction",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons if this unit charged this turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"ORDER",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN",
+				"MUSICIAN (1/10)"
+			]
+		},
+		{
+			"id": "vulkyn_flameseekers",
+			"name": "Vulkyn Flameseekers",
+			"points": 160,
+			"unit_size": 9,
+			"base_size": "Vulkyn Runefather and Kyndledroth: 32mm, Vulkyn Flameseeker: 2/7 32mm\n5/7 28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Vulkyn Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Kyndledroth's Fangs",
+					"range": 0,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Blunt Their Horns and Fangs!",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit has any grudge marks:\n• Subtract 2 from the Attacks characteristic of Companion melee weapons used by enemy MONSTERS while they are in combat with this unit.\n• Enemy MONSTERS cannot use RAMPAGE abilities while they are in combat with this unit."
+				},
+				{
+					"name": "Drothmasters",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, subtract 2 from the Damage characteristic of the target's Companion melee weapons for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION (1/9)",
+				"WARD (6+)",
+				"ORDER",
+				"KHAZALITE HOLDS",
+				"DUARDIN",
+				"GRIMMDRON"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_vulkyn_flameseekers",
+			"name": "Vulkyn Flameseekers",
+			"source": "Scourge of Aqshy",
+			"points": 190,
+			"unit_size": 9,
+			"base_size": "Vulkyn Runefather and Kyndledroth: 32mm, Vulkyn Flameseeker: 2/9 32mm\n5/9 28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Vulkyn Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Emberteeth",
+					"range": 0,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fiery Disposition",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, pick 1 of the following effects to apply until the start of your next turn, where X is equal to your fury level.",
+					"options": [
+						{
+							"name": "Vigour of the Ur-Salamander",
+							"text": "Add X\" to this unit's Move characteristic."
+						},
+						{
+							"name": "Fiery Determination",
+							"text": "Add X to this unit's control score."
+						},
+						{
+							"name": "Kyndlewrath",
+							"text": "Add X to the Attacks characteristic of this unit's Emberteeth."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"ORDER",
+				"CHAMPION (1/9)",
+				"WARD (6+)",
+				"KHAZALITE HOLDS",
+				"GRIMMDRON",
+				"DUARDIN"
+			]
+		}
+	]
+}

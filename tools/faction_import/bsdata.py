@@ -84,7 +84,9 @@ def faction_files(directory, faction):
     to, one level deep. Links are matched by catalogue id, as link names don't always match file
     names ("þ Legions of Nagash" is "Legions of Nagash [LEGENDS].cat"). Path to Glory campaigns
     and other factions' libraries aren't needed, except a library the faction's own library links
-    ("Ironjawz - Library" links "Orruk Warclans - Library", which holds Kragnos)."""
+    ("Ironjawz - Library" links "Orruk Warclans - Library", which holds Kragnos) or an Army of
+    Renown links for its roster (Khazalite Holds' Throngankor Alliance links "Kharadron Overlords -
+    Library")."""
     names = set(os.listdir(directory))
     if faction + ".cat" not in names:
         raise SystemExit("no BSData catalogue named %r in %s" % (faction + ".cat", directory))
@@ -103,7 +105,7 @@ def faction_files(directory, faction):
                 linked = by_id.get(target)
                 if linked and not linked.startswith("Path to Glory") and (
                         not linked.endswith(" - Library.cat") or linked.startswith(faction + " - ")
-                        or name == faction + " - Library.cat"):
+                        or name != faction + ".cat"):
                     wanted.add(linked)
     return sorted(wanted)
 

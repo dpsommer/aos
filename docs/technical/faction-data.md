@@ -45,6 +45,8 @@ Faction data is built by `tools/faction_import/` from two sources:
 - **[BSData](https://github.com/BSData/age-of-sigmar-4th) is the primary source.** It provides warscrolls (stats, weapons, abilities, keywords, base size, unit size), points, reinforcement, battle traits, battle formations, enhancements, spell and prayer lores, and the rules of each Army of Renown. Where BSData and Wahapedia disagree, BSData's value is used.
 - **[Wahapedia](https://wahapedia.ru/aos4/) fills the gaps.** BSData has no Spearhead data, Path to Glory prose, regiment options, unit notes, unit composition text or Army of Renown descriptions, so these come from Wahapedia's faction and unit pages. Wahapedia is also the reference for the build's diff report, and its book order is used to order traits, formations and enhancements.
 
+**Khazalite Holds is built from BSData alone**, from BSData's `khazalite-holds` branch, as its battletome isn't released and Wahapedia doesn't have it yet. It has no Spearhead, Path to Glory, regiment options, unit notes or composition text, and its Armies of Renown have their roster as text. Don't check it against Wahapedia or the notebooks below until the battletome is out; then rebuild it with Wahapedia from BSData's `main` branch.
+
 The "AoS Rules" NotebookLM notebook (`a30c0d6a-8127-4eab-b97e-e457c97a65fc`), which holds the battletome and General's Handbook, is useful for settling disagreements the diff report raises.
 
 **Legends warscrolls** (those with `legends`) are checked against the "AoS Legends" NotebookLM notebook (`69365d24-6043-4353-bb04-2b0d3ecca253`), which is the source of truth for them and wins over both BSData and Wahapedia. For a Legends unit the notebook doesn't have, Wahapedia's values win over BSData's. Record any corrections in the faction's overrides file.
@@ -58,7 +60,7 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
 **Module** | **Role**
 -- | --
 `fetch.py` | Downloads the Wahapedia faction and unit pages
-`bsdata.py` | Manages the BSData checkout and reads the catalogues a faction needs (game system, `Lores.cat`, `<Faction>.cat`, its library and any library it links (Ironjawz and Kruleboyz share "Orruk Warclans - Library"), every `<Faction> - <Army of Renown>.cat` and the shared catalogues they link to): resolves links across files, converts BSData markup (`**^^Keyword^^**` → `KEYWORD`), maps profiles to warscrolls and abilities
+`bsdata.py` | Manages the BSData checkout and reads the catalogues a faction needs (game system, `Lores.cat`, `<Faction>.cat`, its library and any library it links (Ironjawz and Kruleboyz share "Orruk Warclans - Library"), another faction's library an Army of Renown links for its roster (Khazalite Holds' Throngankor Alliance has Kharadron Overlords units), every `<Faction> - <Army of Renown>.cat` and the shared catalogues they link to): resolves links across files, converts BSData markup (`**^^Keyword^^**` → `KEYWORD`), maps profiles to warscrolls and abilities
 `wahapedia.py` | Parses the Wahapedia pages
 `merge.py` | Combines the two, adds Wahapedia-only content, matches names (including misspellings such as "Hobgrotz"/"Hobgrot") and produces the diff report
 `schema.py` | Writes the canonical JSON shape
@@ -70,6 +72,12 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
    python -I tools/faction_import/fetch.py helsmiths-of-hashut <download dir>
    ```
    Wahapedia links without a page of their own (such as the Path to Glory hero) are skipped with a warning.
+
+   For a faction Wahapedia doesn't have yet, skip this step and pass `-` as the download directory in the next one, to build from BSData alone. The report then only lists shared entry differences. To build from a BSData branch, clone it outside `tools/bsdata/` and pass it with `--bsdata`, e.g. for Khazalite Holds:
+   ```sh
+   git clone --depth 1 --branch khazalite-holds https://github.com/BSData/age-of-sigmar-4th.git <bsdata dir>
+   python -I tools/faction_import/build.py - data/factions/khazalite_holds khazalite_holds "Khazalite Holds" --bsdata <bsdata dir>
+   ```
 2. Build the data and keep the report:
    ```sh
    python -I tools/faction_import/build.py <download dir> data/factions/<id> <id> "<BSData faction name>" \

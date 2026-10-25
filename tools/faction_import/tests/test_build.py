@@ -1,3 +1,5 @@
+import copy, os
+
 import pytest
 
 import build
@@ -553,3 +555,135 @@ def test_unmatched_lore_scoped_replacement_exits(bs_name):
     d = with_sourced_lores(data())
     with pytest.raises(SystemExit):
         build.replace_with_wahapedia(d, {bs_name: "Ichor"}, [wh_ability("Ichor", "Y.")])
+
+
+# build() without Wahapedia
+
+def bs_army(name, roster):
+    return {"name": name, "battle_traits": [ability("Shared Resolve")], "enhancement_tables": [], "lores": [],
+            "roster": roster}
+
+
+def bs_faction():
+    return {"battle_traits": [ability("Steady Ranks")], "battle_formations": [], "enhancement_tables": [], "lores": []}
+
+
+@pytest.fixture
+def bsdata_only(monkeypatch):
+    """Stubs BSData with a small faction, and makes reading any Wahapedia page fail the test."""
+    def no_wahapedia(*args):
+        raise AssertionError("Wahapedia was read")
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: (
+        bs_faction(),
+        [{"id": "test_captain", "name": "Test Captain", "abilities": [ability("Rally Cry")], "keywords": []}],
+        [bs_army("Throng", ["Test Captain", "Test Riders"])]))
+    monkeypatch.setattr(build.wahapedia, "parse_faction_page", no_wahapedia)
+    monkeypatch.setattr(build.wahapedia, "parse_unit_pages", no_wahapedia)
+
+
+def test_build_without_wahapedia_reads_no_wahapedia_page(bsdata_only):
+    build.build("bs", None, "id", "Faction", {})
+
+
+def test_build_without_wahapedia_has_empty_report(bsdata_only):
+    _, report = build.build("bs", None, "id", "Faction", {})
+    assert report.lines == []
+
+
+def test_build_without_wahapedia_keeps_bsdata_warscrolls(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {})
+    assert [w["name"] for w in data["warscrolls"]] == ["Test Captain"]
+
+
+def test_build_without_wahapedia_sets_faction_id(bsdata_only):
+    data, _ = build.build("bs", None, "khazalite_holds", "Faction", {})
+    assert data["faction"]["id"] == "khazalite_holds"
+
+
+def test_build_without_wahapedia_has_no_spearheads(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {})
+    assert data["spearheads"] == []
+
+
+def test_build_without_wahapedia_has_no_path_to_glory(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {})
+    assert data["path_to_glory"] == []
+
+
+def test_build_without_wahapedia_gives_armies_roster_text(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {})
+    assert data["armies_of_renown"][0]["text"].splitlines() == ["Roster options:", "Test Captain", "Test Riders"]
+
+
+def test_build_without_wahapedia_drops_army_roster_field(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {})
+    assert "roster" not in data["armies_of_renown"][0]
+
+
+def test_build_without_wahapedia_applies_warscroll_name_override(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {"warscroll_names": {"Test Captain": "Test Thane"}})
+    assert data["warscrolls"][0]["name"] == "Test Thane"
+
+
+def test_build_without_wahapedia_applies_field_override(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {"fields": {"Rally Cry": {"timing": "Any Hero Phase"}}})
+    assert data["warscrolls"][0]["abilities"][0]["timing"] == "Any Hero Phase"
+
+
+def test_build_without_wahapedia_applies_army_name_override(bsdata_only):
+    data, _ = build.build("bs", None, "id", "Faction", {"army_names": {"Throng": "The Throng"}})
+    assert data["armies_of_renown"][0]["name"] == "The Throng"
+
+
+def test_build_without_wahapedia_rejects_override_matching_nothing(bsdata_only):
+    with pytest.raises(SystemExit):
+        build.build("bs", None, "id", "Faction", {"warscroll_names": {"Nobody": "Somebody"}})
+
+
+def test_build_without_wahapedia_does_not_change_empty_page(bsdata_only, monkeypatch):
+    # A merge that writes into the Wahapedia page must not leak into the next build.
+    seen = []
+    real = build.merge.merge_faction
+    def merge_faction(report, bs, wh):
+        seen.append(len(wh["battle_traits"]))
+        wh["battle_traits"].append(ability("Leaked"))
+        return real(report, bs, wh)
+    monkeypatch.setattr(build.merge, "merge_faction", merge_faction)
+    before = copy.deepcopy(build.NO_WAHAPEDIA_PAGE)
+    build.build("bs", None, "id", "Faction", {})
+    build.build("bs", None, "id", "Faction", {})
+    assert (seen, build.NO_WAHAPEDIA_PAGE) == ([0, 0], before)
+
+
+def test_build_with_wahapedia_dir_without_page_exits(bsdata_only, tmp_path):
+    with pytest.raises(SystemExit):
+        build.build("bs", str(tmp_path), "id", "Faction", {})
+
+
+def test_build_with_wahapedia_dir_with_two_pages_exits(bsdata_only, tmp_path):
+    (tmp_path / "a.html").write_text("<html></html>", encoding="utf-8")
+    (tmp_path / "b.html").write_text("<html></html>", encoding="utf-8")
+    with pytest.raises(SystemExit):
+        build.build("bs", str(tmp_path), "id", "Faction", {})
+
+
+def test_build_with_wahapedia_dir_reads_its_page(bsdata_only, tmp_path, monkeypatch):
+    (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
+    read = []
+    def parse_faction_page(path):
+        read.append(os.path.basename(path))
+        return copy.deepcopy(build.NO_WAHAPEDIA_PAGE)
+    monkeypatch.setattr(build.wahapedia, "parse_faction_page", parse_faction_page)
+    monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
+    build.build("bs", str(tmp_path), "id", "Faction", {})
+    assert read == ["faction.html"]
+
+
+def test_build_with_wahapedia_reports_bsdata_only_items(bsdata_only, tmp_path, monkeypatch):
+    (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
+    monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: copy.deepcopy(build.NO_WAHAPEDIA_PAGE))
+    monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
+    _, report = build.build("bs", str(tmp_path), "id", "Faction", {})
+    assert report.lines

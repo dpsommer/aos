@@ -726,8 +726,36 @@ def test_unlisted_unit_in_linked_library_is_included(tmp_path):
     assert any(w["name"] == "Ally Giant" for w in bsdata.read_faction(cats, FACTION)[1])
 
 
-def test_faction_files_exclude_other_library_linked_from_army_of_renown(tmp_path):
-    # Only the faction's own library may pull in another faction's library.
+def linking_catalogue_xml(name, cat_id, targets=()):
+    """A minimal catalogue named `name` with id `cat_id` linking each catalogue id in `targets`."""
+    links = "".join('<catalogueLink id="cl-%s" name="%s" targetId="%s" type="catalogue"/>' % (t, t, t)
+                    for t in targets)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="%s" name="%s" gameSystemId="sys" '
+            'xmlns="%s"><catalogueLinks>%s</catalogueLinks></catalogue>' % (cat_id, name, NS, links))
+
+
+def small_faction(tmp_path, faction_links=(), library_links=(), army_links=()):
+    """A directory holding only the faction catalogue, its library, an Army of Renown and two
+    catalogues that may be linked: another faction's library and a Path to Glory campaign."""
+    files = {
+        FACTION + ".cat": linking_catalogue_xml(FACTION, "own", faction_links),
+        FACTION + " - Library.cat": linking_catalogue_xml(FACTION + " - Library", "own-lib", library_links),
+        FACTION + " - Alliance.cat": linking_catalogue_xml(FACTION + " - Alliance", "aor", army_links),
+        "Others - Library.cat": linking_catalogue_xml("Others - Library", "others-lib"),
+        "Path to Glory - Testers.cat": linking_catalogue_xml("Path to Glory - Testers", "ptg"),
+    }
+    for name, xml in files.items():
+        (tmp_path / name).write_text(xml, encoding="utf-8")
+    return str(tmp_path)
+
+
+def test_faction_files_include_other_library_linked_from_army_of_renown(tmp_path):
+    # Khazalite Holds' Throngankor Alliance links "Kharadron Overlords - Library" for its roster.
+    d = small_faction(tmp_path, army_links=["others-lib"])
+    assert "Others - Library.cat" in bsdata.faction_files(d, FACTION)
+
+
+def test_faction_files_include_other_library_linked_from_fixture_army_of_renown(tmp_path):
     d = fixture_copy(tmp_path)
     (d / "Others - Library.cat").write_text(catalogue_xml("Others - Library", "others-lib"), encoding="utf-8")
     aor = d / (FACTION + " - The Shared Host [LEGENDS].cat")
@@ -735,7 +763,38 @@ def test_faction_files_exclude_other_library_linked_from_army_of_renown(tmp_path
         "<entryLinks>", '<catalogueLinks><catalogueLink id="cl-other" name="Others - Library" '
                         'targetId="others-lib" type="catalogue"/></catalogueLinks><entryLinks>', 1),
         encoding="utf-8")
-    assert "Others - Library.cat" not in bsdata.faction_files(str(d), FACTION)
+    assert "Others - Library.cat" in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_include_other_library_linked_from_own_library_in_small_directory(tmp_path):
+    d = small_faction(tmp_path, library_links=["others-lib"])
+    assert "Others - Library.cat" in bsdata.faction_files(d, FACTION)
+
+
+def test_faction_files_exclude_other_library_linked_only_from_faction_catalogue(tmp_path):
+    d = small_faction(tmp_path, faction_links=["others-lib"])
+    assert "Others - Library.cat" not in bsdata.faction_files(d, FACTION)
+
+
+def test_faction_files_exclude_unlinked_other_library(tmp_path):
+    d = small_faction(tmp_path)
+    assert "Others - Library.cat" not in bsdata.faction_files(d, FACTION)
+
+
+def test_faction_files_exclude_path_to_glory_linked_from_army_of_renown(tmp_path):
+    d = small_faction(tmp_path, army_links=["ptg"])
+    assert "Path to Glory - Testers.cat" not in bsdata.faction_files(d, FACTION)
+
+
+def test_faction_files_exclude_path_to_glory_linked_from_own_library(tmp_path):
+    d = small_faction(tmp_path, library_links=["ptg"])
+    assert "Path to Glory - Testers.cat" not in bsdata.faction_files(d, FACTION)
+
+
+def test_faction_files_ignore_link_to_missing_catalogue(tmp_path):
+    d = small_faction(tmp_path, army_links=["nowhere"])
+    assert sorted(bsdata.faction_files(d, FACTION)) == sorted(
+        [FACTION + ".cat", FACTION + " - Library.cat", FACTION + " - Alliance.cat"])
 
 
 # libraries()

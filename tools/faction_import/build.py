@@ -4,7 +4,9 @@ Usage: python -I build.py <wahapedia dir> <out dir> <id> "<BSData faction name>"
                           [--overrides FILE] [--bsdata DIR] [--update-bsdata]
                           [--shared DIR] [--update-shared]
 
-<wahapedia dir> is the directory fetch.py wrote. BSData is read from a local checkout,
+<wahapedia dir> is the directory fetch.py wrote, or "-" to build from BSData alone, for a faction
+Wahapedia doesn't have yet (Khazalite Holds); the faction then has no Spearheads, Path to Glory,
+regiment options, unit notes or composition, and Armies of Renown get their roster as text. BSData is read from a local checkout,
 tools/bsdata by default, which is cloned on first use; --update-bsdata pulls it first.
 BSData is the primary source; Wahapedia supplies what BSData lacks. Differences between the
 two are printed as a report and never stop the build; fix a wrong value with an overrides file:
@@ -33,7 +35,7 @@ something, so stale ones are noticed.
 Warscrolls and Armies of Renown listed in shared.json are written once to data/shared/ (or
 --shared DIR) and referenced from the faction's files; see shared.py.
 """
-import argparse, glob, json, os, sys
+import argparse, copy, glob, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bsdata, merge, schema, shared, wahapedia
@@ -146,14 +148,26 @@ def apply_overrides(data, overrides):
             item.update(fields)
 
 
+# A Wahapedia faction page with nothing on it, for building from BSData alone.
+NO_WAHAPEDIA_PAGE = {
+    "faction": {"battle_traits": [], "battle_formations": [], "enhancement_tables": [], "lores": []},
+    "armies_of_renown": [], "spearheads": [], "path_to_glory": [],
+}
+
+
 def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
+    """Builds the faction. A [wahapedia_dir] of None builds from BSData alone, and the report then
+    leaves out the comparison, as every item would be BSData-only."""
     cats = bsdata.Catalogues(bsdata_dir, bsdata.faction_files(bsdata_dir, faction_name))
     bs_faction, bs_warscrolls, bs_armies = bsdata.read_faction(cats, faction_name)
-    pages = glob.glob(os.path.join(wahapedia_dir, "*.html"))
-    if len(pages) != 1:
-        sys.exit("expected one Wahapedia faction page in %s" % wahapedia_dir)
-    wh_page = wahapedia.parse_faction_page(pages[0])
-    wh_units = wahapedia.parse_unit_pages(sorted(glob.glob(os.path.join(wahapedia_dir, "units", "*.html"))))
+    if wahapedia_dir is None:
+        wh_page, wh_units = copy.deepcopy(NO_WAHAPEDIA_PAGE), []
+    else:
+        pages = glob.glob(os.path.join(wahapedia_dir, "*.html"))
+        if len(pages) != 1:
+            sys.exit("expected one Wahapedia faction page in %s" % wahapedia_dir)
+        wh_page = wahapedia.parse_faction_page(pages[0])
+        wh_units = wahapedia.parse_unit_pages(sorted(glob.glob(os.path.join(wahapedia_dir, "units", "*.html"))))
 
     # Renamed before merging so the Army of Renown pairs with Wahapedia's, e.g. BSData's "New
     # Summercourt" is Wahapedia's "The Knights of New Summercourt".
@@ -163,6 +177,8 @@ def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
     replace_with_wahapedia({"faction": bs_faction, "warscrolls": bs_warscrolls, "armies_of_renown": bs_armies,
                             "spearheads": [], "path_to_glory": []},
                            overrides.get("replace_with_wahapedia", {}), wahapedia_abilities(wh_page, wh_units))
+    # Merged against nothing without Wahapedia, which only orders and shapes the data, so that
+    # comparison is dropped.
     report = merge.Report()
     faction = merge.merge_faction(report, bs_faction, wh_page["faction"])
     faction["id"] = faction_id
@@ -175,7 +191,7 @@ def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
         "path_to_glory": merge.path_to_glory(wh_page["path_to_glory"]),
     }
     apply_overrides(data, overrides)
-    return data, report
+    return data, (merge.Report() if wahapedia_dir is None else report)
 
 
 def write(data, out_dir, report, shared_dir=shared.DEFAULT_DIR, config=None, update_shared=False):
@@ -206,7 +222,7 @@ def write(data, out_dir, report, shared_dir=shared.DEFAULT_DIR, config=None, upd
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build faction JSON from BSData and Wahapedia.")
-    parser.add_argument("wahapedia_dir", help="directory fetch.py wrote")
+    parser.add_argument("wahapedia_dir", help='directory fetch.py wrote, or "-" for BSData alone')
     parser.add_argument("out_dir")
     parser.add_argument("id", help="faction id, e.g. helsmiths_of_hashut")
     parser.add_argument("name", help="BSData faction name, e.g. 'Helsmiths of Hashut'")
@@ -219,8 +235,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
     bsdata.ensure_checkout(args.bsdata, update=args.update_bsdata)
     overrides = json.load(open(args.overrides)) if args.overrides else {}
-    data, report = build(args.bsdata, args.wahapedia_dir, args.id, args.name, overrides)
+    wahapedia_dir = None if args.wahapedia_dir == "-" else args.wahapedia_dir
+    data, report = build(args.bsdata, wahapedia_dir, args.id, args.name, overrides)
     write(data, args.out_dir, report, args.shared, update_shared=args.update_shared)
     print("BSData %s" % bsdata.checkout_version(args.bsdata))
-    print("\n".join(report.lines) or "BSData and Wahapedia agree.")
+    if wahapedia_dir is None:
+        print("Built from BSData alone; no Wahapedia comparison.")
+        print("\n".join(report.lines) or "No shared entry differences.")
+    else:
+        print("\n".join(report.lines) or "BSData and Wahapedia agree.")
     print("%d difference(s)" % len(report.lines), file=sys.stderr)
