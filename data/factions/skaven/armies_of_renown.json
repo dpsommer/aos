@@ -1,0 +1,239 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Thanquol's Mutated Menagerie",
+			"text": "When you pick the Skaven faction for your army, you can choose for it to be a Thanquol’s Mutated Menagerie Army of Renown. If you do so, use the faction rules on these pages instead of the Skaven faction rules. Every unit in your army must be drawn from the units listed in the roster options opposite. All units in your army gain the MUTATED MENAGERIE keyword.\nROSTER OPTIONS\nThanquol on Boneripper\nMaster Moulder\nHell Pit Abomination\nBrood Terror\nRat Ogors\nStormfiends\nYou cannot include Regiments of Renown or faction terrain",
+			"battle_traits": [
+				{
+					"name": "Monstrous Entourage",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "The Companion weapon ability has no effect on MUTATED MENAGERIE units.\nWhile a friendly Thanquol is within the combat range of another friendly MUTATED MENAGERIE unit:\n• That Thanquol has WARD (4+).\n• Each time you make a successful ward roll for that Thanquol, allocate 1 damage point to a friendly MUTATED MENAGERIE unit within its combat range after the damage sequence has been resolved."
+				},
+				{
+					"name": "Spiteful Swarms",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly non-HERO MUTATED MENAGERIE MONSTER that has not used any RAMPAGE abilities this turn to use this ability.",
+					"effect": "This unit has STRIKE-FIRST for the rest of the turn. However, at the end of the turn, this unit is destroyed. When this unit would be destroyed, before it is removed from play, roll a dice for each enemy unit within 6\" of this unit. On a 3+, subtract 1 from the Attacks characteristic of that enemy unit's melee weapons for the rest of the battle.\nAfter this ability has been resolved, this unit cannot use any other RAMPAGE abilities for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "More-more Mutation!",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly non-HERO MUTATED MENAGERIE unit to be the target. You cannot pick the same unit to be the target of this ability more than once per battle.",
+					"effect": "For the rest of the battle:\n• Add 2 to the target's Health characteristic.\n• Add 2 to the target's Move characteristic.\n• Add 1 to the Attacks characteristic of the target's melee weapons.\n• The target has WARD (5+)\n• At the end of each turn, allocate D3+2 damage points to the target."
+				},
+				{
+					"name": "Rampaging Demise",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly non-HERO MUTATED MENAGERIE MONSTER that has not used any RAMPAGE abilities this turn to use this ability.",
+					"effect": "This unit has STRIKE-FIRST for the rest of the turn. However, at the end of the turn, this unit is destroyed. When this unit would be destroyed, before it is removed from play, roll a D3 for each enemy unit within 6\" of this unit. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.\nAfter this ability has been resolved, this unit cannot use any other RAMPAGE abilities for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Pack Tactics",
+							"category": "special",
+							"timing": "Any Combat Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick up to 2 friendly non-HERO MUTATED MENAGERIE MONSTER units wholly within 13\" of this unit to be the targets.",
+							"effect": "The targets can each use the 'All-out Attack' or 'All-out Defence' command this phase even if that command has been used by a friendly unit this phase."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Warpstone Innards",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick a friendly non-HERO MUTATED MENAGERIE MONSTER unit wholly within 13\" of this unit to be the target.",
+							"effect": "Add 1 to the Attacks characteristic of the target's melee weapons for the rest of the battle. However, at the end of each turn, allocate D3 damage points to the target."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Untapped Mutation",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly MUTATED MENAGERIE WIZARD to cast this spell, pick up to 3 visible friendly MUTATED MENAGERIE units wholly within 13\" of them that are affected by the 'More-more Mutation!' ability to be the targets, then make a casting roll of 2D6.",
+							"effect": "For each damage point allocated to the target at the end of this turn by the 'More-more Mutation!' ability, add 1 to the target's control score until the start of your next turn.",
+							"casting_value": 5,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Warp Lightning Vortex",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Warp Lightning Vortex on the battlefield, pick a friendly SKAVEN WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up the first part of the Warp Lightning Vortex within 18\" of the caster and visible to them, then set up the second and third parts exactly 7\" from the first part and exactly 7\" from each other so that they form a triangle.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "The Great-grand Gnawhorde",
+			"text": "When you pick the Skaven faction for your army, you can choose for it to be a Great-grand Gnawhorde Army of Renown. If you do so, use the faction rules on these pages instead of the Skaven faction rules. Every unit in your army must be drawn from the units listed in the roster options opposite. All units in your army gain the GNAWHORDE keyword.\nROSTER OPTIONS\nVizzik Skour, Prophet of the Horned Rat\nNon- UNIQUE MASTERCLAN Units\nNon- UNIQUE VERMINUS units\nNon- UNIQUE SKRYRE units\nNon- UNIQUE MOULDER units\nYou cannot include Regiments of Renown or faction terrain",
+			"battle_traits": [
+				{
+					"name": "Disciples of Vizzik",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While a friendly Vizzik Skour is within the combat range of another friendly GNAWHORDE unit:\n• That friendly Vizzik Skour has WARD (4+).\n• Each time you make a successful ward roll for that Vizzik Skour, allocate 1 damage point to a friendly GNAWHORDE unit within its combat range after the damage sequence has been resolved."
+				},
+				{
+					"name": "Unstoppable Warp-volley",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "You can only use this ability if you have not used any WARPSHATTER THROES abilities this turn. Pick up to 3 friendly GNAWHORDE units to be the targets.",
+					"effect": "For the rest of the turn:\n• Add 3\" to the Range characteristic of the targets' ranged weapons.\n• The targets cannot use commands.",
+					"keywords": [
+						"WARPSHATTER THROES"
+					]
+				},
+				{
+					"name": "Frenzied Momentum",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "You can only use this ability if you have not used any WARPSHATTER THROES abilities this turn. Pick up to 3 friendly GNAWHORDE units to be the targets.",
+					"effect": "For the rest of the turn:\n• Add 2 to run rolls and charge rolls for the targets.\n• Subtract 1 from the targets' control scores",
+					"keywords": [
+						"WARPSHATTER THROES"
+					]
+				},
+				{
+					"name": "Reckless Abandon",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "You can only use this ability if you have not used any WARPSHATTER THROES abilities this turn. Pick up to 3 friendly GNAWHORDE units to be the targets.",
+					"effect": "For the rest of the turn:\n• Add 1 to the Attacks characteristic of the targets' melee weapons.\n• Add 1 to hit rolls for combat attacks that target those friendly units.",
+					"keywords": [
+						"WARPSHATTER THROES"
+					]
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Harbinger of the Great Ascendancy",
+							"category": "special",
+							"timing": "Start of Any Turn",
+							"frequency": "Once Per Battle",
+							"effect": "If this unit is not in combat, you can use 2 different WARPSHATTER THROES abilities this turn instead of 1."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Icon of Great-total Supremacy",
+							"category": "rallying",
+							"timing": "Your Hero Phase",
+							"frequency": "Once Per Battle",
+							"effect": "You can return up to D3 slain models to each friendly GNAWHORDE INFANTRY unit with a Health characteristic of up to 3."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Deafening Frenzy",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GNAWHORDE WIZARD to cast this spell, pick a visible friendly GNAWHORDE INFANTRY unit wholly within 13\" of them to be the target, then make a casting roll of 2D6. The casting roll for this spell cannot be modified.",
+							"effect": "Until the start of your next turn:\n• The target has STRIKE-FIRST.\n• The target cannot use commands.",
+							"casting_value": 8,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Reverberating Ritual",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly GNAWHORDE PRIEST to chant this prayer, pick a visible friendly GNAWHORDE INFANTRY unit wholly within 13\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, the target can move an extra 3\" when it makes a pile-in move. In addition, if the chanting roll was 8+, add 1 to the target's control score until the start of your next turn.",
+							"chanting_value": 7,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Vermintide",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Vermintide on the battlefield, pick a friendly GNAWHORDE WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up a Vermintide wholly within 13\" of the caster, visible to them and more than 9\" from all enemy units.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -582,3 +582,13 @@ def test_spearhead_general_in_its_own_cell_is_not_joined_to_units():
 def test_spearhead_unit_cell_parenthetical_becomes_notes():
     s = ghoul_spearhead(["Varghulf Courtier (General's Retinue)", "10 Cryptguard"])
     assert (s["units"][0]["name"], s["units"][0].get("notes")) == ("Varghulf Courtier", "General's Retinue")
+
+
+def test_spearhead_each_unit_note_becomes_notes_of_those_units():
+    names = ["Test Captain", "Gutter Runners", "Night Runners"]
+    army = [["General", "Test Captain"], ["Units", "5 Gutter Runners", "5 Gutter Runners", "10 Night Runners",
+                                          "Each unit of Gutter Runners has 1 Bomb Rat token."]]
+    (s,) = merge.spearheads([spearhead(army, names)], names)
+    assert s["units"] == [{"count": 5, "name": "Gutter Runners", "notes": "with 1 Bomb Rat token"},
+                          {"count": 5, "name": "Gutter Runners", "notes": "with 1 Bomb Rat token"},
+                          {"count": 10, "name": "Night Runners"}]

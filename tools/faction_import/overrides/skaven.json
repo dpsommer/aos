@@ -1,0 +1,14 @@
+{
+	"fields": {
+		"warp_lightning_cannon > Warp Lightning Blast": {"damage": "-"},
+		"skabbiks_plaguepack > Plague Censer": {"wound": 3},
+		"skabbiks_plaguepack": {"base_size": "Skabbik Plagueseeker: 32mm, Rabidius Skench: 28.5mm, Poxlix, Itchitt, Rikkit and Skritter: 25mm"},
+		"zikkits_tunnelpack": {"base_size": "Zikkit Rockgnaw and Rittak Verm: 32mm, Krittatok, Nitch Singe-snout and Tik Tik: 25mm"},
+		"Scurry-flee!": {"name": "Kill-kill! Scurry-flee!"},
+		"The Great-grand Gnawhorde > Summon Vermintide": {"casting_value": 7, "declare": "If there is not a friendly Vermintide on the battlefield, pick a friendly GNAWHORDE WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"Reverberating Ritual": {"declare": "Pick a friendly GNAWHORDE PRIEST to chant this prayer, pick a visible friendly GNAWHORDE INFANTRY unit wholly within 13\" of them to be the target, then make a chanting roll of D6."},
+		"Frenzied Momentum": {"timing": "Your Movement Phase", "frequency": "Once Per Turn (Army)"},
+		"Icon of Great-total Supremacy": {"effect": "You can return up to D3 slain models to each friendly GNAWHORDE INFANTRY unit with a Health characteristic of up to 3."},
+		"Untapped Mutation": {"declare": "Pick a friendly MUTATED MENAGERIE WIZARD to cast this spell, pick up to 3 visible friendly MUTATED MENAGERIE units wholly within 13\" of them that are affected by the 'More-more Mutation!' ability to be the targets, then make a casting roll of 2D6."}
+	}
+}

@@ -61,6 +61,7 @@ const _DATA_DIRS := {
 	"Ogor Mawtribes": "res://data/factions/ogor_mawtribes",
 	"Ossiarch Bonereapers": "res://data/factions/ossiarch_bonereapers",
 	"Seraphon": "res://data/factions/seraphon",
+	"Skaven": "res://data/factions/skaven",
 	"Sylvaneth": "res://data/factions/sylvaneth",
 }
 

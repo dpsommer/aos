@@ -257,9 +257,16 @@ def spearheads(wh_list, bs_names):
         general = re.sub(r"(\s*\([^()]*\))+$|\s+with (?:\d+ .+|.+ tokens?)$", "", general)
         general = resolve(canonical.get(norm(general), general), names)
         units = []
+        # A list can end with a note for every unit of a kind ("Each unit of Gutter Runners has 1
+        # Bomb Rat token."), which becomes those units' notes.
+        each = {}
+        listed = m.group(2)
+        for mm in re.finditer(r"^\s*Each unit of (.+?) has (.+?)\.?\s*$", listed, re.M):
+            each[resolve(canonical.get(norm(mm.group(1)), mm.group(1)), names)] = "with " + mm.group(2)
+        listed = re.sub(r"^\s*Each unit of .+$", "", listed, flags=re.M).strip()
         # Entries start at a new cell or at a count, except a named character listed without one. A
         # count after "with" is part of the entry ("5 Freeguild Fusiliers with 1 Blackpowder Squire token").
-        for entry in re.split(r"\s*\n\s*|(?<!\bwith)\s+(?=\d+\s)", m.group(2)):
+        for entry in re.split(r"\s*\n\s*|(?<!\bwith)\s+(?=\d+\s)", listed):
             count, name = re.match(r"(?:(\d+)\s+)?(.+)$", entry).groups()
             unit = {"count": int(count or 1), "name": name.strip()}
             # A "with" suffix is a note if it has a count or names tokens ("with Venomites token").
@@ -268,6 +275,8 @@ def spearheads(wh_list, bs_names):
             if mm:
                 unit["name"], unit["notes"] = mm.group(1), mm.group(2)
             unit["name"] = resolve(canonical.get(norm(unit["name"]), unit["name"]), names)
+            if unit["name"] in each:
+                unit["notes"] = each[unit["name"]]
             units.append(unit)
         text = s["army_text"].split("This Spearhead army consists")[0].strip()
         if note.strip():
