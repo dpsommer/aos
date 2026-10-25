@@ -1,0 +1,85 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Slaves to Darkness army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Slaves to Darkness units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/ or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Choose an Archetype.\n4. Pick your hero's origin and/or flaw.\n5. Choose a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be. Pick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nAspiring Champion | 15 | 150\nAspiring Lord | 35 | 250\nExalted Lord | 55 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "slaves_to_darkness_hero",
+					"name": "Slaves to Darkness Hero",
+					"move": "5",
+					"health": 5,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Chaos Blade",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"CHAOS",
+						"SLAVES TO DARKNESS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Choose an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nChaos Lord\n-4DP\nChange your hero's Save characteristic to 3+. Change their Chaos Blade to the following characteristics:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nChaos Blade\nCrit (Mortal) | 5 | 3+ | 3+ | 1 | 2\nIn addition, your hero gains the WARRIORS OF CHAOS keyword and the following regiment options:\nRegiment Options | Any SLAVES TO DARKNESS units\nChaos Sorcerer Lord\n-2DP\nYour hero gains the WARRIORS OF CHAOS and WIZARD (1) keywords and the following regiment options:\nRegiment Options | Any SLAVES TO DARKNESS units\nDarkoath Warleader\n0DP\nYour hero gains the DARKOATH keyword and the following ability and regiment options:\nOnce Per Battle, Any Charge Phase\nOATH OF SUPREMACY\nEffect: If this unit is wholly within enemy territory and charged this phase, for the rest of the battle, add 1 to hit rolls for combat attacks made by friendly DARKOATH units while they are wholly within 12\" of this unit.\nRegiment Options | Any DARKOATH units\nOgroid Brute\n-2DP\nChange your hero’s Move characteristic to 6\" and Health characteristic to 8. Your hero gains the following ability and regiment options:\nPassive\nMYRMIDON RAGE\nEffect: While this unit is damaged, add 2 to the Attacks characteristic of its melee weapons.\nRegiment Options | Any SLAVES TO DARKNESS units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-2DP\nBETRAYED BY THE FALSE GOD\nEffect: You can re-roll hit rolls for this unit’s combat attacks that target enemy ORDER units.\nAny Combat Phase\n-4DP\nVICTOR OF 100 DUELS\nDeclare: Pick an enemy HERO in combat with this unit to be the target.\nEffect: Your opponent must decide whether the target will accept or refuse this unit’s challenge:\nAccept: For the rest of the phase, when this unit and the target are picked to use a FIGHT ability, all of their attacks must target the other unit. In addition, for the rest of the phase, you can re-roll hit rolls for this unit’s combat attacks.\nRefuse: The target cannot use FIGHT abilities for the rest of the phase. In addition, you gain 1 command point.\nYour Movement Phase\n-2DP\nTHE BRINGER OF FIRE\nDeclare: Pick a terrain feature that has not yet been set ablaze within this HERO’S combat range to be the target.\nEffect: That terrain feature is now set ablaze. Add 1 to this unit’s control score for the rest of the battle (this effect is cumulative). In addition, for the rest of the battle, each time a unit (friend or enemy) ends a move within 3\" of a terrain feature that has been set ablaze, roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+2DP\nRECKLESS ARROGANCE\nEffect: This unit cannot use the’ All-out Defence’ command.\nPassive, WARRIORS OF CHAOS or DARKOATH only MORTAL only\n+2DP\nSPURNED BY THE GODS\nEffect: This unit cannot be picked as a target for the’ Eye of the Gods’ ability.\nYour Hero Phase\n+4DP\nRAMPANT MUTATION\nEffect: This unit must use this ability in each of your hero phases. Roll a dice and apply the corresponding effect until the start of your next turn:\n1 | Rotting Skin: Inflict 1 mortal damage on this unit. Subtract 1 from the control scores of enemy units while they are within 12\" of this unit.\n2 | Brittle Scales: Add 1 to the Rend characteristic of combat attacks that target this unit.\n3 | Bestial Tongue: You lose 1 command point. This unit cannot use commands.\n4 | Sprouting Tentacles: This unit’s Move characteristic is 2D6\".\n5 | Extra Eyeball: Add 1 to hit rolls for this unit’s combat attacks.\n6 | Erupting Spikes: Each time this unit finishes a pile-in move, pick an enemy unit within l\" of this unit to be the target. Inflict D3 mortal damage on the target."
+		},
+		{
+			"name": "Step 5 - Choose a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-5DP\nDAEMONIC STEED: These fierce mounts are often granted to Chaos Lords by their patron. In battle, enemies that are not felled by the rider’s weapons are trampled into the dirt by the wild thrashing of this beast’s mighty hooves.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nDaemonic Steed’s Mighty Hooves\nCompanion | 3 | 5+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 8.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nBattle Mount\n-10DP\nCHAOS CHARIOT: Tribal war leaders often ride to war upon these darkiron constructs, pulled into battle by a pair of Chaos Steeds.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nChaos Steeds' Trampling Hooves\nCompanion | 4 | 5+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 10.\nReplace the INFANTRY keyword with the WAR MACHINE keyword.\nBattle Mount\n-20DP\nMIGHTY CHAOTIC BEAST: Terrifying reptilian beasts prowl the chaotic wastes of the Eightpoints. For most, encountering one of these colossal creatures means a swift and painful death. Only those truly courting the gaze of the Dark Gods can hope to bend such a creature to their will.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMighty Chaotic Beast's Talons\nCompanion | 6 | 4+ | 3+ | 1 | 2\nPassive\nBATTLE DAMAGED Effect: While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Chaotic Beast’s Talons is 4.\nIn addition, make the following changes and add the following abilities:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 14.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the MONSTER keyword."
+		},
+		{
+			"name": "Step 6 - Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nDaemonic Speed\n-2DP\nAdd 2\" to your hero's Move characteristic.\nStubborn Beast\n-4DP\nMONSTER only. Add 2 to your hero’s Health characteristic.\nWinged Beast\n-4DP\nCAVALRY or MONSTER only. Your hero gains the FLY keyword.\nRazor-likeTalons\n-4DP\nMONSTER only. Your hero’s Mighty Chaotic Beast’s Talons have a Damage characteristic of 3.\nGorebeast Chariot\n-2DP\nWAR MACHINE only. Your hero’s Chaos Steeds’ Trampling Hooves is replaced with the following melee weapon:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGorebeast's Crushing Fists\nCompanion | 4 | 4+ | 4+ | - | 2\nCarve a Bloody Path\n-4DP\nMONSTER or WAR MACHINE only. Add the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), End of Any Turn\nCARVE A BLOODY PATH\nEffect: When this unit uses the’ Power Through’ command, inflict an additional D3+1 mortal damage on the target and add 3\" to the distance this unit can move as part of that ability.\nKEYWORDS | RAMPAGE\nBlood of Molten Varanite\n-3DP\nMONSTER only. Add the following ability to your hero’s warscroll:\nPassive\nBLOOD OF MOLTEN VARANITE\nEffect: Roll a dice each time a damage point inflicted by a combat attack is allocated to this unit. On a 4+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nDominating Presence\n-1DP\nAdd 1 to your hero's Control characteristic.\nBlasphemous Fortitude\n-2DP\nINFANTRY only. Add 1 to your hero’s Health characteristic.\nWeapon Master\n-3DP\nThe Hit characteristic of your hero’s Chaos Blade is 3+.\nDiabolic Strength\n-3DP\nThe Wound characteristic of your hero’s Chaos Blade is 2+.\nFavoured Foe\n-3DP\nYour hero’s Chaos Blade has Anti-X (+1 Rend), where X is 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHINE, WIZARD or PRIEST.\nFearsome Charger\n-4DP\nCAVALRY, WAR MACHINE or MONSTER only. Your hero’s Chaos Blade has Charge (+1 Damage).\nDaemon-bound Blade\n-4DP\nYour hero’s Chaos Blade has Crit (Mortal).\nBattle Ferocity\n-5DP\nAdd 2 to the Attacks characteristic of your hero’s Chaos Blade.\nBlood-fuelled Menace\n-4DP\nYour hero has the following ability:\nOnce Per Battle, Any Combat Phase\nBLOOD-FUELLED MENACE\nEffect: This unit can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the turn.\nGlimpse the Future\n-4DP\nYour hero has the following ability:\nDeployment Phase\nGLIMPSE THE FUTURE\nEffect: Roll a dice. On a 1-4, the result corresponds to the battle round in which this unit will be inspired. On a 5+, pick a number. The number you picked corresponds to the battle round in which this unit will be inspired. While this unit is inspired, it has STRIKE-FIRST.\nThe Grandfather's Blessing\n-2DP\nYour hero has the following ability:\nStart of Any Turn\nTHE GRANDFATHER'S BLESSING\nEffect: Heal (D3) this unit.\nThe Thrill of Battle\n-2DP\nYour hero has the following ability:\nPassive\nTHE THRILL OF BATTLE\nEffect: Each time you make a charge roll for this unit, for each dice that was an unmodified 6, add 1 to the Attacks characteristic of this unit’s melee weapons for the rest of the battle. Units can be affected by this ability multiple times and the effects are cumulative."
+		},
+		{
+			"name": "Path of The Dark Champion",
+			"text": "(SLAVES TO DARKNESS HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nMARKED FOR GREATNESS\nEffect: This unit has WARD (6+). In addition, each time an unmodified ward roll of 6 is made for this unit, Heal (1) this unit.\nOnce Per Battle, Any Combat Phase\nDAEMONIC PACT\nEffect: Roll a D3. Inflict an amount of mortal damage on this unit equal to the roll. Then, pick 1 of this unit’s melee weapons and add the result to its Attacks characteristic for the rest of the turn.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nAny Combat Phase\nNOT TO BE DENIED\nEffect: If this unit is within 6\" of any enemy units but not in combat, this unit can make a move of D6\".\nOnce Per Battle, Your Movement Phase\nDARK IMMORTALITY\nDeclare: This unit can use this ability if it has been destroyed.\nEffect: Roll a dice. On a 6, set up a replacement unit on the battlefield more than 9\" from all enemy units.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nMOLTEN GOREBLADE\nEffect: Each time a hit roll for a combat attack made for this unit scores a critical hit, you can pick an enemy unit within 8\" of this unit to be the target. If you do so, inflict 1 mortal damage on the target after that FIGHT ability has been resolved.\nReaction: You declared a CHARGE ability for this unit\nEXHILARATING SPEED\nEffect: Change one of the dice in the charge roll to a 6.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nBOUNTIFUL FLESH\nEffect: Subtract 2 from the Damage characteristic of weapons used for attacks that target this unit.\nDeployment Phase\nFATED CHAMPION\nEffect: Roll 3 dice. During the battle, instead of making a roll from the list below for this unit, you can spend 1 of these dice. The roll you would have made is replaced with the roll on the dice you spend:\nHit rolls\nWound rolls\nSave rolls"
+		},
+		{
+			"name": "Path of Ambition",
+			"text": "(non- HERO SLAVES TO DARKNESS unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nCONQUERORS FOR CHAOS\nEffect: Each time this unit uses a FIGHT ability, add 1 to this unit’s control score for this unit for the rest of the battle (this effect is cumulative).\nYour Hero Phase\nASPIRING WARRIORS\nEffect: For the rest of the turn, this unit has WARD (6+).\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Your Charge Phase\nTHE DREAD HOSTS MARCH\nEffect: For the rest of the phase, add 1 to number of dice rolled when making charge rolls for this unit, to a maximum of 3.\nPassive\nBULWARKS OF BLACK IRON\nEffect: This unit’s melee weapons have Anti-charge (+1 Rend).\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nFERRIUM PLATE\nEffect: Each phase, the first damage point inflicted on this unit is ignored.\nOnce Per Battle, Any Combat Phase\nBRINGERS OF RUIN\nEffect: Add 1 to the Attacks characteristic of this unit’s melee weapons for the rest of the turn.\nLEGENDARY: When a unit on this Path gains this rank, they gain the following ability:\nDeployment Phase\nGODMARKED WARRIORS\nEffect: Pick one of the Pledge to Chaos keywords for this unit to have for the rest of the battle."
+		}
+	]
+}

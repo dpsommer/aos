@@ -1,0 +1,312 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Legion of the First Prince",
+			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a Legion of the First Prince Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the LEGION OF THE FIRST PRINCE keyword except for those in a Regiment of Renown.\nROSTER OPTIONS\nBe’lakor, the Dark Master\nDaemon Prince\nEternus\nVaranguard\nChaos Sorcerer Lord\nChaos Legionnaires\nChaos Furies\nCentaurion Marshal\nLEGION OF THE FIRST PRINCE DAEMON units",
+			"battle_traits": [
+				{
+					"name": "First-damned Prince",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While a friendly Be'lakor is within the combat range of any friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON units:\n• That friendly Be'lakor has WARD (4+).\n• In addition, each time you make a successful ward roll for that friendly Be'lakor, allocate 1 damage point to a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON unit within Be'lakor's combat range after the damage sequence for Be'lakor has been resolved (ward rolls cannot be made for those damage points)."
+				},
+				{
+					"name": "Storm of Blackened Blades",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly Eternus that is in combat and up to 2 friendly non-HERO non-DAEMON LEGION OF THE FIRST PRINCE units wholly within 12\" of that Eternus to be the targets.",
+					"effect": "Add 1 to the Attacks characteristic of the targets' melee weapons for the rest of the turn."
+				},
+				{
+					"name": "Daemonic Reinforcements",
+					"category": "rallying",
+					"timing": "Any Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON INFANTRY or CAVALRY unit that has been destroyed to be the target.",
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of a friendly Be'lakor and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Bestow Favour",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If a friendly Be'lakor is on the battlefield, pick a non-HERO LEGION OF THE FIRST PRINCE unit to be the target.",
+					"effect": "Until the start of your next turn:\n• Add 5 to the target's control score.\n• If the target is a DAEMON unit, add 1 to save rolls for the target.\n• If the target is a non-DAEMON unit, it has WARD (6+)."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Dread Marshal",
+							"category": "movement",
+							"timing": "Any Charge Phase",
+							"declare": "Pick up to 3 friendly units wholly within 12\" of this unit to be the targets.",
+							"effect": "Add 1 to charge rolls for the targets for the rest of the turn."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Black Ritual Dagger",
+							"category": "offensive",
+							"timing": "Reaction: You declared a SPELL ability for a friendly unit wholly within 12\" of this unit.",
+							"frequency": "Once Per Turn",
+							"effect": "Allocate 1 damage point to this unit. Then, you can re-roll the casting roll."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Dark Cantrip",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, pick up to 3 visible enemy units within 18\" of them to be the targets, then make a casting roll of 2D6.",
+							"effect": "Inflict 1 mortal damage on each target.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Shroud in Darkness",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, pick a visible friendly LEGION OF THE FIRST PRINCE unit that is not in combat and is wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "The target can move D6\". It cannot end that move in combat. In addition, until the start of your next turn, the target is not visible to enemy units while they are more than 12\" away.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Eightfold Doom-Sigil",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Eightfold Doom-sigil on the battlefield, pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up an Eightfold Doom-sigil wholly within 12\" of the caster and visible to them",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "The Swords of Chaos",
+			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a The Swords of Chaos Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SWORDS OF CHAOS keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nVaranguard\nAbraxia, Spear of the Everchosen\nArchaon the Everchosen",
+			"battle_traits": [
+				{
+					"name": "Demands of the Dark Gods",
+					"category": "special",
+					"timing": "Start of Battle Round",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick 1 of the following effects:",
+					"options": [
+						{
+							"name": "Demand of Khorne",
+							"text": "For the rest of the battle round, add 1 to the Rend characteristic of melee weapons used by friendly SWORDS OF CHAOS units."
+						},
+						{
+							"name": "Demand of Tzeentch",
+							"text": "Pick 1 visible enemy unit within 9\" of a friendly SWORDS OF CHAOS unit that is not in combat and roll a D6. On a 3+, inflict an amount of mortal damage on that enemy unit equal to the roll."
+						},
+						{
+							"name": "Demand of Nurgle",
+							"text": "Heal (D3) each friendly SWORDS OF CHAOS unit. Then pick a friendly SWORDS OF CHAOS unit that healed any damage points this turn. Until the start of the next battle round, that unit has WARD (6+)."
+						},
+						{
+							"name": "Demand of Slaanesh",
+							"text": "Add 2\" to the Move characteristic of friendly SWORDS OF CHAOS units until the start of the next battle round"
+						}
+					]
+				},
+				{
+					"name": "Knights of the First Circle",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "If there are more friendly SWORDS OF CHAOS units on the battlefield than there are set up in reserve, pick a friendly SWORDS OF CHAOS unit that has not been deployed.",
+					"effect": "Set up that unit in reserve in the Ruinous Skies. It has now been deployed.",
+					"keywords": [
+						"DEPLOY"
+					]
+				},
+				{
+					"name": "Descent from Ruinous Skies",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "Pick a friendly SWORDS OF CHAOS unit that is in the Ruinous Skies.",
+					"effect": "Set up that unit anywhere on the battlefield more than 9\" from all enemy units"
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "First Circle Titles",
+					"entries": [
+						{
+							"name": "The Grimroot Order",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Add 1 to this unit's Health characteristic."
+						},
+						{
+							"name": "Tamers of Haradh's Torment",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Damage characteristic of this unit's Companion weapons."
+						},
+						{
+							"name": "The Hounds Apocalyptus",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "While this unit is wholly within enemy territory, add 1 to the Attacks characteristic of this unit's melee weapons."
+						},
+						{
+							"name": "The Blackstorm Apostates",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "Add 3\" to this unit's Move characteristic."
+						},
+						{
+							"name": "Betrayers of the Anvilking",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "This unit has WARD (6+)."
+						}
+					]
+				}
+			],
+			"lores": []
+		},
+		{
+			"name": "Tribes of the Snow Peaks",
+			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a Tribes of the Snow Peaks Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SNOW PEAKS keyword.\nROSTER OPTIONS\nDARKOATH units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Pledges to the Dark Gods",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Each time a friendly SNOW PEAKS unit uses 1 of the following abilities and the effect of that ability is resolved, gain 1 oath point.\n• 'Oath of Bloodshed'\n• 'Oath of Murder'\n• 'Oath of Supremacy'\n• 'Oath of the Marauder'\n• 'Oath of the Raider'\n• 'Oath of Conquest'\n• 'Oath of Dark Sacrifice'",
+					"options": [
+						{
+							"name": "Designer’s Note",
+							"text": "The abilities listed above are abilities on DARKOATH warscrolls. By using those abilities (i.e. completing the oaths), the player gains oath points, which can then be spent to use the OATH abilities in these Army of Renown rules."
+						}
+					]
+				},
+				{
+					"name": "Daemonfire Weapons",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Phase (Army)",
+					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
+					"effect": "Spend 1 oath point. For the rest of the turn, add 1 to the Rend characteristic of the target's melee weapons.",
+					"keywords": [
+						"OATH"
+					]
+				},
+				{
+					"name": "Speed of the Blood Crow",
+					"category": "offensive",
+					"timing": "Your Charge Phase",
+					"frequency": "Once Per Phase (Army)",
+					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
+					"effect": "Spend 1 oath point. For the rest of the turn, the target can use CHARGE abilities even if it used a RUN ability in the same turn.",
+					"keywords": [
+						"OATH"
+					]
+				},
+				{
+					"name": "Hunger of Shesh'shan",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Phase (Army)",
+					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
+					"effect": "Spend 1 oath point. For the rest of the turn, add 1 to the Attacks characteristic of the target's melee weapons",
+					"keywords": [
+						"OATH"
+					]
+				},
+				{
+					"name": "Messengers of the Gods",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Phase (Army)",
+					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS Darkoath Marauders or Fellriders unit that has been destroyed and has not used an OATH ability this turn to be the target",
+					"effect": "Spend 2 oath points. Set up a replacement unit with half the number of models from the target unit (rounding up) on the battlefield, wholly within 6\" of a battlefield edge and more than 3\" from all enemy units.",
+					"keywords": [
+						"OATH"
+					]
+				},
+				{
+					"name": "Rage of Arkhar",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Phase (Army)",
+					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
+					"effect": "Spend 2 oath points. The target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn.",
+					"keywords": [
+						"OATH"
+					]
+				},
+				{
+					"name": "Shroud of the Pale Elk",
+					"category": "defensive",
+					"timing": "Reaction: Opponent declared an ATTACK ability",
+					"frequency": "Once Per Phase (Army)",
+					"declare": "A friendly SNOW PEAKS unit targeted by that ATTACK ability, if you have 1 or more oath points.",
+					"effect": "If that friendly SNOW PEAKS unit has not used an OATH ability this turn, spend 1 oath point. For the rest of the turn, that friendly unit has WARD (4+).",
+					"keywords": [
+						"OATH"
+					]
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Oath of Kinship",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "While this unit is within the combat range of another friendly SNOW PEAKS unit, add 1 to hit rolls for this unit's attacks."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Grand Offering",
+							"category": "special",
+							"timing": "Any Movement Phase",
+							"frequency": "Once Per Battle (Army)",
+							"declare": "Pick a friendly SNOW PEAKS Wilderfiend within 9\" of this unit to be the target",
+							"effect": "Give the target D6 sacrifice points."
+						}
+					]
+				}
+			],
+			"lores": []
+		}
+	]
+}

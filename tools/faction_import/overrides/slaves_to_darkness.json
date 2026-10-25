@@ -1,0 +1,31 @@
+{
+	"replace_with_wahapedia": {
+		"Dark Apotheosis": "Dark Apotheosis",
+		"abraxia_spear_of_the_everchosen > Gorbolga the Accurs'd": "Gorbolga the Accurs'd",
+		"Primal Sorcery": "Primal Sorcery",
+		"athol_khul > Tribal Warleader": "Spear-Carrier",
+		"athol_khul > Oath of Murder": "Unknowing Herald"
+	},
+	"fields": {
+		"Pledge to Chaos": {"effect": "Pick 1 of the following Pledge to Chaos keywords:\n• PLEDGED TO KHORNE\n• PLEDGED TO TZEENTCH\n• PLEDGED TO NURGLE\n• PLEDGED TO SLAANESH\nThe target has that keyword for the rest of the battle."},
+		"Brand of Unbreakable Bonds": {"declare": "This unit cannot use this ability if it has an Ensorcelled Banner."},
+		"Venomous Tail Strike": {"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."},
+		"horns_of_hashut": {"move": "5"},
+		"iron_golem > Legion Weapons": {"rend": 0},
+		"scions_of_the_flame > Scion Weapons": {"rend": 0},
+		"spire_tyrants > Gladiator Weapons": {"rend": 0},
+		"splintered_fang > Poisoned Weapons": {"rend": 0},
+		"the_gnarlspirit_pack > Gnarlspirit Weapons": {"abilities": ["Crit (Mortal)"]},
+		"godsworn_hunt": {"keywords": ["CHAOS", "SLAVES TO DARKNESS", "UNDIVIDED", "DARKOATH", "INFANTRY", "CHAMPION", "UNIQUE"]},
+		"godsworn_hunt > Oath of Conquest": {"effect": "If this unit is contesting an objective you control that is wholly within enemy territory, this unit has WARD (5+) for the rest of the battle."},
+		"legion_of_the_first_prince_hellflayer > Flensing Whips and Piercing Claws": {"attacks": "6"},
+		"legion_of_the_first_prince_beasts_of_nurgle > Attention Seekers": {"frequency": "Once Per Turn (Army)"},
+		"First-damned Prince": {"effect": "While a friendly Be'lakor is within the combat range of any friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON units:\n• That friendly Be'lakor has WARD (4+).\n• In addition, each time you make a successful ward roll for that friendly Be'lakor, allocate 1 damage point to a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON unit within Be'lakor's combat range after the damage sequence for Be'lakor has been resolved (ward rolls cannot be made for those damage points)."},
+		"Rage of Arkhar": {"timing": "Your Combat Phase"},
+		"realmscourge_rupture": {"health": 6},
+		"eightfold_doom_sigil": {"keywords": ["WARD (6+)", "MANIFESTATION", "ENDLESS SPELL", "CHAOS", "SLAVES TO DARKNESS"]},
+		"scourge_of_ghyran_abraxia_spear_of_the_everchosen > The Thanatorg's Vicious Claws": {"name": "The Thanatorg's Claws and Fangs"},
+		"scourge_of_ghyran_abraxia_spear_of_the_everchosen > Battle Damaged": {"effect": "While this unit has 10 or more damage points, the Attacks characteristic of The Thanatorg's Claws and Fangs is 4."},
+		"Legion of the First Prince > Summon Eightfold Doom-Sigil": {"declare": "If there is not a friendly Eightfold Doom-sigil on the battlefield, pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, then make a casting roll of 2D6."}
+	}
+}

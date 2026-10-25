@@ -151,3 +151,21 @@ def test_weapon_with_see_below_has_no_attack_sequence_characteristics():
     cells = '<td class="wsCell">1</td><td colspan="4">See below</td>'
     assert melee_weapons(melee_row("Perfect Strike", cells)) == [
         {"name": "Perfect Strike", "range": 0, "attacks": "1", "hit": 0, "wound": 0, "rend": 0, "damage": "-"}]
+
+
+# parse_unit_pages()
+
+def unit_page(tmp_path, header):
+    path = tmp_path / "unit.html"
+    path.write_text('<html><body><div class="datasheet"><div class="wsBody"><div class="wsBodyTop">'
+                    '<div class="nails-header">%s</div><div class="wsHeaderIn">Test Unit</div>'
+                    '</div><div class="wsBodyBottom"></div></div></div></body></html>' % header, encoding="utf-8")
+    return wahapedia.parse_unit_pages([str(path)])
+
+
+def test_regiment_of_renown_sheet_is_not_a_warscroll(tmp_path):
+    assert unit_page(tmp_path, '<span class="nails">•</span>REGIMENT OF RENOWN<span class="nails">•</span>') == []
+
+
+def test_warscroll_sheet_with_nails_header_is_a_warscroll(tmp_path):
+    assert [w["name"] for w in unit_page(tmp_path, '<span class="nails">•</span>WARSCROLL<span class="nails">•</span>')] == ["Test Unit"]

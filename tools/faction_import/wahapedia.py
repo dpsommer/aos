@@ -216,6 +216,11 @@ def parse_warscroll(sheet, slug):
     if desc: ws["composition"] = text(desc)
     return ws
 
+def is_regiment_of_renown(sheet):
+    header = sheet.select_one(".nails-header")
+    return header is not None and "REGIMENT OF RENOWN" in text(header).upper()
+
+
 def parse_unit_pages(paths):
     """Warscrolls from Wahapedia unit pages, in the raw shape described above."""
     out = []
@@ -223,7 +228,9 @@ def parse_unit_pages(paths):
         soup = BeautifulSoup(open(p, encoding="utf-8").read(), "lxml")
         clean(soup)
         slug = os.path.splitext(os.path.basename(p))[0]
-        sheets = soup.select(".datasheet")
+        # A faction page can link a Regiment of Renown (Slaves to Darkness's Curse-Steel Battery),
+        # whose sheet holds the regiment's rules rather than a warscroll.
+        sheets = [s for s in soup.select(".datasheet") if not is_regiment_of_renown(s)]
         for i, sheet in enumerate(sheets):
             out.append(parse_warscroll(sheet, slug if len(sheets) == 1 else f"{slug}#{i}"))
     return out
