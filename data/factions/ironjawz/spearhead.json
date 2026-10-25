@@ -1,0 +1,220 @@
+{
+	"spearheads": [
+		{
+			"name": "Ironjawz Bigmob",
+			"text": "Bigmobs are loose but effective formations assembled when a Megaboss decides to leave something battered and brutalised on a whim. They may serve as the start of a burgeoning Waaagh! or form from the remnants of one, or else they may simply be a group of orruks that have wandered into the orbit of a warleader in pursuit of action. All that’s needed for a Bigmob to form is an Ironjaw to decide they fancy a brawl and a handful of ladz to follow their lead.\nThe Megaboss leading a Bigmob is joined by whichever of their boyz can keep up. Usually, these are Ragerz: swaggering berserkers who have discarded much of their armour to reach the best kills first. Ardboyz often tag along as well. These are sent to lay claim to far-flung points of the battlefield, partially because they fight well on the defence but also because it stops the boss from having to hear their militaristic grumbling. An awful, flesh-mangling din rings out whenever a Bigmob gets stuck in, one that carries far and sees Brute mobs get drawn to the clamour. Infuriated at missing the start of the fun, these orruks are in a hurry to get stuck in. The force of their glowering can see smaller enemies who’d otherwise try and waylay them shrink away in dread.",
+			"general": "Megaboss",
+			"units": [
+				{
+					"count": 3,
+					"name": "Brute Ragerz"
+				},
+				{
+					"count": 5,
+					"name": "Ardboyz"
+				},
+				{
+					"count": 5,
+					"name": "Ardboyz"
+				},
+				{
+					"count": 5,
+					"name": "Brutes"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "'ERE WE GO!",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				},
+				{
+					"name": "MIGHTY DESTROYERS",
+					"category": "movement",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly unit that was not set up this turn to be the target.",
+					"effect": "The target can move up to 3\". It can move into combat. If it was in combat at the start of the move, it must end that move in combat."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "NATURAL DISASTER",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "If you make an unmodified charge roll of 8+ for a friendly unit, add 1 to the Attacks characteristic of that unit’s melee weapons for the rest of the turn."
+				},
+				{
+					"name": "A PROPER RUCKUS",
+					"category": "movement",
+					"timing": "Reaction: You declared the ‘Mighty Destroyers’ ability",
+					"frequency": "Once Per Battle",
+					"effect": "All friendly units on the battlefield that were not set up this turn are the targets of that ability instead."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "AMBERSTONE WHETSTONE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "The Rend characteristic of your general’s melee weapons is 2."
+				},
+				{
+					"name": "ARMOUR OF GORK",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has WARD (6+)."
+				},
+				{
+					"name": "TROPHY SKULLS",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Your general’s Control characteristic is 5."
+				},
+				{
+					"name": "MEGA BOSSY",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly units while they are wholly within 12\" of this unit."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "megaboss",
+					"name": "Megaboss",
+					"move": "4",
+					"health": 8,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Boss-choppa",
+							"range": 0,
+							"attacks": "8",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "GET STUCK IN, LADZ",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+							"effect": "Roll a dice. On a 2+, add 1 to the Attacks characteristic of the target’s melee weapons until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "brutes",
+					"name": "Brutes",
+					"move": "4",
+					"health": 3,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Brute Weapons",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "YOU MESSIN'?",
+							"category": "control",
+							"timing": "Passive",
+							"effect": "Enemy models with a Health characteristic of 1 or 2 cannot contest objectives while they are in combat with this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "brute_ragerz",
+					"name": "Brute Ragerz",
+					"move": "4",
+					"health": 3,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Rager Weapons",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "UNLEASHED RAGE",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "ardboyz",
+					"name": "Ardboyz",
+					"move": "4",
+					"health": 2,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Choppa or Stikka",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Anti-charge (+1 Rend)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SHIELD BASH",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"declare": "Pick an enemy unit within 1\" of this unit to be the target.",
+							"effect": "Make a shield bash roll of D6 for each model in this unit that is within 3\" of the target. For each 6, inflict 1 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				}
+			]
+		}
+	]
+}

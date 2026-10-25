@@ -1,0 +1,37 @@
+{
+	"wahapedia_warscroll_names": {
+		"Monsta-killaz": "Kruleboyz Monsta-killaz"
+	},
+	"fields": {
+		"Far-killa Bolts": {
+			"declare": "Pick up to 3 friendly Man-skewer Boltboyz or Beast-skewer Killbow units to be the targets."
+		},
+		"Spittin' 'Un": {
+			"effect": "This unit is armed with the ranged weapon below, where X is equal to your fury level.\nCaustic Saliva: Range 12\", Attacks X, Hit 4+, Wound 3+, Rend 2, Damage D3."
+		},
+		"beast_skewer_killbow > Jaggedy Blades": {
+			"attacks": "3"
+		},
+		"swampcalla_shaman_with_pot_grot": {
+			"base_size": "Swampcalla Shaman: 40mm, Pot-grot: 25mm"
+		},
+		"killaboss_with_stab_grot": {
+			"base_size": "Killaboss: 40mm, Stab-grot: 25mm"
+		},
+		"scourge_of_aqshy_killaboss_with_stab_grot": {
+			"base_size": "Killaboss: 40mm, Stab-grot: 25mm"
+		},
+		"Stab-grot": {
+			"effect": "This unit's Stab-grot is a token. If this unit's Stab-grot has been removed, it can no longer attack with its Stab-grot's Shiv and it cannot use the 'Unleash the Stab-grot!' ability."
+		},
+		"skaregob_totem > Man da Tower!": {
+			"effect": "While this terrain feature has a Shouty Boss:\n• The Shouty Boss cannot use MOVE abilities.\n• Instead of measuring range or visibility to and from the Shouty Boss, measure to and from this terrain feature instead.\n• All attacks that would target the Shouty Boss target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain."
+		},
+		"skaregob_totem > Up We Go!": {
+			"effect": "Place the target on this terrain feature. The target is now a Shouty Boss (see 'Man da Tower!')."
+		},
+		"kruleboyz_monsta_killaz": {
+			"base_size": "Beastnob: 40mm, 6 x Monsta-killaz: 32mm, Klutcha-grot: 28.5mm"
+		}
+	}
+}

@@ -368,6 +368,49 @@ def test_build_renames_armies_before_merging(tmp_path, monkeypatch):
     assert merged == ["The Knights", "Other Host"]
 
 
+# rename_wahapedia_warscrolls()
+
+def test_rename_wahapedia_warscrolls_renames_matching_unit():
+    units = [{"name": "Monsta-killaz"}, {"name": "Gutrippaz"}]
+    build.rename_wahapedia_warscrolls(units, {"Monsta-killaz": "Kruleboyz Monsta-killaz"})
+    assert [u["name"] for u in units] == ["Kruleboyz Monsta-killaz", "Gutrippaz"]
+
+
+def test_rename_wahapedia_warscrolls_renames_every_unit_with_that_name():
+    units = [{"name": "Monsta-killaz"}, {"name": "Monsta-killaz"}]
+    build.rename_wahapedia_warscrolls(units, {"Monsta-killaz": "Kruleboyz Monsta-killaz"})
+    assert [u["name"] for u in units] == ["Kruleboyz Monsta-killaz"] * 2
+
+
+def test_rename_wahapedia_warscrolls_without_names_changes_nothing():
+    units = [{"name": "Gutrippaz"}]
+    build.rename_wahapedia_warscrolls(units, {})
+    assert units == [{"name": "Gutrippaz"}]
+
+
+def test_rename_wahapedia_warscrolls_matching_nothing_exits():
+    with pytest.raises(SystemExit):
+        build.rename_wahapedia_warscrolls([{"name": "Gutrippaz"}], {"Nowhere": "Somewhere"})
+
+
+def test_build_renames_wahapedia_warscrolls_before_merging(tmp_path, monkeypatch):
+    (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
+    merged = []
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: ({}, [], []))
+    monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: {
+        "faction": {}, "armies_of_renown": [], "spearheads": [], "path_to_glory": []})
+    monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [{"name": "Monsta-killaz", "abilities": []}])
+    monkeypatch.setattr(build, "wahapedia_abilities", lambda page, units: [])
+    monkeypatch.setattr(build.merge, "merge_faction", lambda report, bs, wh: {})
+    monkeypatch.setattr(build.merge, "merge_warscrolls", lambda report, bs, wh: merged.extend(w["name"] for w in wh) or [])
+    monkeypatch.setattr(build.merge, "merge_armies", lambda report, bs, wh: [])
+    build.build("bs", str(tmp_path), "id", "Faction",
+                {"wahapedia_warscroll_names": {"Monsta-killaz": "Kruleboyz Monsta-killaz"}})
+    assert merged == ["Kruleboyz Monsta-killaz"]
+
+
 # fields scoped to an Army of Renown
 
 def test_army_of_renown_scoped_field_override_changes_that_army_battle_trait():

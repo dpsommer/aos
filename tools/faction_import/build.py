@@ -12,6 +12,7 @@ two are printed as a report and never stop the build; fix a wrong value with an 
     {
         "warscroll_names": {"<name in the data>": "<name to use>"},
         "army_names": {"<BSData Army of Renown name>": "<name to use>"},
+        "wahapedia_warscroll_names": {"<Wahapedia unit name>": "<BSData name>"},
         "replace_with_wahapedia": {"<BSData ability name>": "<Wahapedia ability name>"},
         "fields": {"<target>": {"<field>": <value>}}
     }
@@ -19,7 +20,8 @@ two are printed as a report and never stop the build; fix a wrong value with an 
 A fields <target> is a warscroll name or id, an Army of Renown name, an ability name, a weapon name, or
 "<warscroll id or Army of Renown name> > <weapon or ability name>" where a name alone is ambiguous.
 replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData has the
-wrong rule; it and army_names apply before merging. Its BSData name can be "<warscroll id or Army of Renown
+wrong rule; it, army_names and wahapedia_warscroll_names apply before merging, so the renamed items
+pair with the other source's (Wahapedia's "Monsta-killaz" is BSData's "Kruleboyz Monsta-killaz"). Its BSData name can be "<warscroll id or Army of Renown
 name> > <ability name>" where a name alone is ambiguous. The others apply after merging. Every override must match
 something, so stale ones are noticed.
 
@@ -87,13 +89,21 @@ def replace_with_wahapedia(data, replacements, wh_abilities):
             a.update(wh, name=wh_name)
 
 
-def rename_armies(armies, names):
+def rename(items, names, what):
     for old, new in names.items():
-        matched = [a for a in armies if a["name"] == old]
+        matched = [x for x in items if x["name"] == old]
         if not matched:
-            sys.exit("army name override %r matches no Army of Renown" % old)
-        for a in matched:
-            a["name"] = new
+            sys.exit("name override %r matches no %s" % (old, what))
+        for x in matched:
+            x["name"] = new
+
+
+def rename_armies(armies, names):
+    rename(armies, names, "Army of Renown")
+
+
+def rename_wahapedia_warscrolls(units, names):
+    rename(units, names, "Wahapedia unit")
 
 
 def apply_overrides(data, overrides):
@@ -138,6 +148,7 @@ def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
     # Renamed before merging so the Army of Renown pairs with Wahapedia's, e.g. BSData's "New
     # Summercourt" is Wahapedia's "The Knights of New Summercourt".
     rename_armies(bs_armies, overrides.get("army_names", {}))
+    rename_wahapedia_warscrolls(wh_units, overrides.get("wahapedia_warscroll_names", {}))
     # Swapped in before merging so the replacement is ordered and compared like the rest.
     replace_with_wahapedia({"faction": bs_faction, "warscrolls": bs_warscrolls, "armies_of_renown": bs_armies,
                             "spearheads": [], "path_to_glory": []},

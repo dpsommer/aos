@@ -83,7 +83,8 @@ def faction_files(directory, faction):
     "<Faction> - *.cat" (library and Armies of Renown) and the shared catalogues those link
     to, one level deep. Links are matched by catalogue id, as link names don't always match file
     names ("þ Legions of Nagash" is "Legions of Nagash [LEGENDS].cat"). Path to Glory campaigns
-    and other factions' libraries aren't needed."""
+    and other factions' libraries aren't needed, except a library the faction's own library links
+    ("Ironjawz - Library" links "Orruk Warclans - Library", which holds Kragnos)."""
     names = set(os.listdir(directory))
     if faction + ".cat" not in names:
         raise SystemExit("no BSData catalogue named %r in %s" % (faction + ".cat", directory))
@@ -101,7 +102,8 @@ def faction_files(directory, faction):
             for target in re.findall(r'<catalogueLink [^>]*targetId="([^"]+)"', fh.read()):
                 linked = by_id.get(target)
                 if linked and not linked.startswith("Path to Glory") and (
-                        not linked.endswith(" - Library.cat") or linked.startswith(faction + " - ")):
+                        not linked.endswith(" - Library.cat") or linked.startswith(faction + " - ")
+                        or name == faction + " - Library.cat"):
                     wanted.add(linked)
     return sorted(wanted)
 
@@ -452,6 +454,16 @@ def linked_roots(cats, root, aor_name):
     return roots
 
 
+def libraries(cats, name):
+    """The faction's library and the libraries it links, such as "Orruk Warclans - Library"."""
+    root = cats.docs.get(name + " - Library.cat")
+    if root is None:
+        return []
+    linked = [next((r for r in cats.docs.values() if r.get("id") == link.get("targetId")), None)
+              for link in kids(root, "catalogueLinks", "catalogueLink")]
+    return [root] + [r for r in linked if r is not None and r.get("library") == "true"]
+
+
 def units_of(cats, name, aor_roots):
     """Every unit of the faction: those its catalogue lists, unlisted library units (such as
     units added during a battle) and units defined by its Armies of Renown. The Path to Glory
@@ -470,7 +482,7 @@ def units_of(cats, name, aor_roots):
     units = [(unit, link if points_of_link(link) else links[unit.get("id")]) for unit, link in unit_links(cats, root)
              if not unit.get("name").startswith("Anvil of Apotheosis")]
     listed = {unit.get("id") for unit, _ in units}
-    shared = [u for r in [cats.docs.get(name + " - Library.cat")] + aor_roots if r is not None
+    shared = [u for r in libraries(cats, name) + aor_roots
               for u in kids(r, "sharedSelectionEntries", "selectionEntry") if u.get("type") == "unit"]
     for unit in shared:
         if unit.get("id") not in listed and not unit.get("name").startswith("Anvil of Apotheosis"):

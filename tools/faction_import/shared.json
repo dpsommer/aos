@@ -1,15 +1,19 @@
 {
 	"warscrolls": {
+		"foot_of_gork": {},
+		"gork_roara": {},
 		"grombrindal_the_white_dwarf": {},
 		"kragnos_the_end_of_empires": {
 			"faction_keyword": true
 		},
+		"morkspit_marsh": {},
 		"nagash_supreme_lord_of_the_undead": {
 			"faction_keyword": true
 		},
 		"nagash_supreme_lord_of_the_underworlds": {}
 	},
 	"armies_of_renown": [
+		"Big Waaagh!",
 		"Legions of Nagash",
 		"The Duardin Ascendant"
 	],
@@ -56,6 +60,25 @@
 		"The Duardin Ascendant > Oath of Restoration": {
 			"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible objective within 18\" of them that is contested by 2 or more friendly unified units to be the target, then make a chanting roll of D6.",
 			"effect": "Until the start of your next turn, friendly DUARDIN ASCENDANT units have WARD (6+) while they have any models contesting the target. If the chanting roll was 7+, friendly DUARDIN ASCENDANT units have WARD (5+) while they have any models contesting the target instead."
+		},
+		"gork_roara": {
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"ENDLESS SPELL",
+				"IRONJAWZ",
+				"KRULEBOYZ",
+				"DESTRUCTION"
+			]
+		},
+		"Big Waaagh! > Get Krumpin'!": {
+			"effect": "For the rest of the battle round, add 1 to wound rolls for combat attacks made by friendly BIG WAAAGH! units while they are wholly within 12\" of this unit."
+		},
+		"Big Waaagh! > Two Headz as One": {
+			"effect": "If the target is an IRONJAWZ unit, until the start of your next turn, add 3 to the target's control score while it is wholly within 12\" of any friendly KRULEBOYZ units.\nIf the target is a KRULEBOYZ unit, until the start of your next turn, add 2\" to the target's Move characteristic while it is wholly within 12\" of any friendly IRONJAWZ units."
+		},
+		"Big Waaagh! > Summon Foot of Gork": {
+			"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly BIG WAAAGH! WIZARD to cast this spell, then make a casting roll of 2D6."
 		}
 	}
 }

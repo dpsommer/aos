@@ -1,0 +1,301 @@
+{
+	"spearheads": [
+		{
+			"name": "Swampskulka Gang",
+			"text": "As far as Kruleboyz are concerned, fighting fair is an idiotic concept. Swampskulka Gangs exemplify the cruelly underhanded approach to warfare so beloved of these orruks, for their entire purpose is to leave the enemy agonised, hobbled and helpless. Under the wily guidance of a Killaboss, they stalk their victims through the wilds of the realms for days, waiting for the perfect moment to launch a murderous ambush.\nThe first the Kruleboyz’ chosen quarry knows of their fate is when dozens of barbed missiles come whistling out of the murk to sink into their flesh, as chortling Boltboyz relish their victims’ shocked horror. Anything that looks big enough to cause the orruks serious bother is dealt with by an oversized harpoon hurled by a Beast-skewer Killbow. As the enemy reels in the face of this deadly hail, the Killaboss charges into their midst atop his Great Gnashtoof mount, seeking gory trophies to prove his kunnin’. Following closely behind come lanky orruk warriors, led by a Murknob brandishing a foul-smelling and loudly bellowing Belcha-banna. These Gutrippaz stomp forwards to fall upon the stricken foe, spilling intestines and poking out eyes with their venom-dripping weapons – while keeping a few prisoners alive to torment at their leisure, of course.",
+			"general": "Killaboss on Great Gnashtoof",
+			"units": [
+				{
+					"count": 1,
+					"name": "Murknob with Belcha-banna"
+				},
+				{
+					"count": 3,
+					"name": "Man-skewer Boltboyz"
+				},
+				{
+					"count": 5,
+					"name": "Gutrippaz"
+				},
+				{
+					"count": 5,
+					"name": "Gutrippaz"
+				},
+				{
+					"count": 1,
+					"name": "Beast-skewer Killbow"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "KRULEBOYZ WAAAGH!",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick your general to use this ability, then pick another friendly unit wholly within 12\" of them to be the target.",
+					"effect": "Your general and the target have STRIKE-FIRST this phase."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "COVERED IN MUD",
+					"category": "defensive",
+					"timing": "Start of the First Battle Round",
+					"declare": "Pick a friendly unit to use this ability.",
+					"effect": "In this battle, that unit is not visible to enemy models that are more than 12\" away from it."
+				},
+				{
+					"name": "NOISY RACKET",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from wound rolls for attacks made by enemy units in the first battle round."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "EGOMANIAK",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "If any other friendly units are within your general’s combat range, before you allocate a damage point to your general, roll a dice. On a 4+, you must allocate that damage point to one of those units instead."
+				},
+				{
+					"name": "KUNNIN' PLAN",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick a friendly unit wholly within 12\" of your general.",
+					"effect": "If that unit uses a RETREAT ability this turn, no mortal damage is inflicted on it and it can still use SHOOT and/or CHARGE abilities later in the turn."
+				},
+				{
+					"name": "MORK'S EYE PEBBLE",
+					"category": "defensive",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Battle",
+					"effect": "In the next shooting phase, friendly units have WARD (5+) while they are wholly within 12\" of your general."
+				},
+				{
+					"name": "EYE-BITER ASH",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit in combat with your general and roll a dice.",
+					"effect": "On a 1-4, subtract 1 from hit rolls for attacks made by that unit for the rest of the phase. On a 5+, subtract 1 from hit rolls for attacks made by that unit for the rest of the battle."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "killaboss_on_great_gnashtoof",
+					"name": "Killaboss on Great Gnashtoof",
+					"move": "10",
+					"health": 10,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Jagged Boss-stikka",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						},
+						{
+							"name": "Gnashtoof’s Bone-crushing Fangs",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "ALL PART OF DA PLAN",
+							"category": "control",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 9\" of this unit to be the target. You cannot pick this unit.",
+							"effect": "Add 3 to the target’s control score until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"CAVALRY"
+					]
+				},
+				{
+					"id": "murknob_with_belcha_banna",
+					"name": "Murknob with Belcha-banna",
+					"move": "5",
+					"health": 6,
+					"save": 4,
+					"control": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Murknob Cleaver",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BREATH OF THE MIRE-DRAKES",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"declare": "Roll a dice for each enemy unit in combat with this unit.",
+							"effect": "On a 1, nothing happens. On a 2-5, inflict 1 mortal damage on that enemy unit. On a 6, inflict D3 mortal damage on that unit."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "man_skewer_boltboyz",
+					"name": "Man-skewer Boltboyz",
+					"move": "5",
+					"health": 2,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Man-skewer Crossbow",
+							"range": 18,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Jaggedy Blade",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "PICK 'EM OFF",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "Add 1 to hit rolls for this unit’s shooting attacks if has not used a MOVE ability this turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "gutrippaz",
+					"name": "Gutrippaz",
+					"move": "5",
+					"health": 2,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Wicked Hacka",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SCARE TAKTIKZ",
+							"category": "defensive",
+							"timing": "Any Combat Phase",
+							"effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for attacks that target this unit this phase. This ability has no effect on attacks made by HEROES."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "beast_skewer_killbow",
+					"name": "Beast-skewer Killbow",
+					"move": "5",
+					"health": 5,
+					"save": 5,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Beast-skewer Bolts",
+							"range": 24,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "D6",
+							"abilities": [
+								"Crit (Auto-wound)"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Jaggedy Blades",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SKEWERED",
+							"category": "shooting",
+							"timing": "Passive",
+							"effect": "The Damage characteristic of this unit’s Beast-skewer Bolts is 6 instead of D6 if the target is a MONSTER."
+						}
+					],
+					"keywords": [
+						"WAR MACHINE"
+					]
+				}
+			]
+		}
+	]
+}

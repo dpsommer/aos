@@ -682,6 +682,92 @@ def test_faction_files_exclude_linked_library_of_other_faction(tmp_path):
     assert "Others - Library.cat" not in bsdata.faction_files(str(d), FACTION)
 
 
+def add_library_link(directory, link, target):
+    """Add a catalogueLink named `link` to catalogue id `target` to the fixture faction library."""
+    lib = directory / (FACTION + " - Library.cat")
+    lib.write_text(lib.read_text(encoding="utf-8").replace(
+        "<sharedSelectionEntries>",
+        '<catalogueLinks><catalogueLink id="cl-lib-extra" name="%s" targetId="%s" type="catalogue"/>'
+        '</catalogueLinks><sharedSelectionEntries>' % (link, target), 1), encoding="utf-8")
+
+
+def test_faction_files_include_library_linked_from_faction_library(tmp_path):
+    # "Ironjawz - Library" links "Orruk Warclans - Library", which holds Kragnos.
+    d = fixture_copy(tmp_path)
+    (d / "Allies - Library.cat").write_text(catalogue_xml("Allies - Library", "allies-lib"), encoding="utf-8")
+    add_library_link(d, "Allies - Library", "allies-lib")
+    assert "Allies - Library.cat" in bsdata.faction_files(str(d), FACTION)
+
+
+def test_unlisted_unit_in_linked_library_is_included(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Allies - Library.cat").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="allies-lib" name="Allies - Library" '
+        'gameSystemId="sys" library="true" xmlns="%s"><sharedSelectionEntries>'
+        '<selectionEntry id="u-ally" name="Ally Giant" type="unit"/>'
+        '</sharedSelectionEntries></catalogue>' % NS, encoding="utf-8")
+    add_library_link(d, "Allies - Library", "allies-lib")
+    cats = bsdata.Catalogues(str(d), bsdata.faction_files(str(d), FACTION))
+    assert any(w["name"] == "Ally Giant" for w in bsdata.read_faction(cats, FACTION)[1])
+
+
+def test_faction_files_exclude_other_library_linked_from_army_of_renown(tmp_path):
+    # Only the faction's own library may pull in another faction's library.
+    d = fixture_copy(tmp_path)
+    (d / "Others - Library.cat").write_text(catalogue_xml("Others - Library", "others-lib"), encoding="utf-8")
+    aor = d / (FACTION + " - The Shared Host [LEGENDS].cat")
+    aor.write_text(aor.read_text(encoding="utf-8").replace(
+        "<entryLinks>", '<catalogueLinks><catalogueLink id="cl-other" name="Others - Library" '
+                        'targetId="others-lib" type="catalogue"/></catalogueLinks><entryLinks>', 1),
+        encoding="utf-8")
+    assert "Others - Library.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+# libraries()
+
+def library_xml(name, cat_id, library="true"):
+    """A minimal catalogue named `name` (raw XML) with id `cat_id` and the given library flag."""
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="%s" name="%s" gameSystemId="sys" '
+            'library="%s" xmlns="%s"></catalogue>' % (cat_id, name, library, NS))
+
+
+def library_names(directory):
+    return [r.get("name") for r in bsdata.libraries(bsdata.Catalogues(str(directory)), FACTION)]
+
+
+def test_libraries_start_with_faction_library(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Allies - Library.cat").write_text(library_xml("Allies - Library", "allies-lib"), encoding="utf-8")
+    add_library_link(d, "Allies - Library", "allies-lib")
+    assert library_names(d)[0] == FACTION + " - Library"
+
+
+def test_libraries_include_linked_library(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Allies - Library.cat").write_text(library_xml("Allies - Library", "allies-lib"), encoding="utf-8")
+    add_library_link(d, "Allies - Library", "allies-lib")
+    assert "Allies - Library" in library_names(d)
+
+
+def test_libraries_exclude_linked_non_library_catalogue(tmp_path):
+    d = fixture_copy(tmp_path)
+    (d / "Allies.cat").write_text(library_xml("Allies", "allies", library="false"), encoding="utf-8")
+    add_library_link(d, "Allies", "allies")
+    assert "Allies" not in library_names(d)
+
+
+def test_libraries_ignore_links_to_missing_catalogues(tmp_path):
+    d = fixture_copy(tmp_path)
+    add_library_link(d, "Not Present - Library", "not-present")
+    assert library_names(d) == [FACTION + " - Library"]
+
+
+def test_libraries_without_faction_library_are_empty(tmp_path):
+    d = fixture_copy(tmp_path)
+    os.remove(d / (FACTION + " - Library.cat"))
+    assert library_names(d) == []
+
+
 def test_faction_files_include_linked_non_library_catalogue(tmp_path):
     d = fixture_copy(tmp_path)
     (d / "Regiments of Renown.cat").write_text(catalogue_xml("Regiments of Renown", "ror"), encoding="utf-8")

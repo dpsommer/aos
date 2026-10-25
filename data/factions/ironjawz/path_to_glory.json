@@ -1,0 +1,89 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with an Orruk Warclans army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into the following sections: the Anvil of Apotheosis, Paths for lronjawz units and Paths for Kruleboyz units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Choose a Warclan.\n4. Pick your hero’s origin and/or flaw.\n5. Choose a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Pick a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nYoof | 10 | 150\nBoss | 30 | 250\nMegaboss | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "ironjawz_hero",
+					"name": "Ironjawz Hero",
+					"move": "4",
+					"health": 6,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Choppa",
+							"range": 0,
+							"attacks": "7",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"DESTRUCTION",
+						"IRONJAWZ"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Choose a Warclan",
+			"text": "You must pick 1 of the following Warclans for your IRONJAWZ hero to belong to:\nIronsunz\n-4DP\nYour hero has the following ability and regiment option:\nPassive\nALRIGHT, GET 'EM!\nEffect: If a friendly IRONJAWZ unit uses the’ Counter-charge’ command while it is wholly within 12\" of this unit, spend 1 command point to use that command instead of 2.\nRegiment Options | Any IRONJAWZ units\nBloodtoofs\n-4DP\nYour hero has the following ability and regiment option:\nPassive\nHUNT AND CRUSH\nEffect: Friendly IRONJAWZ units can pile in 2D6\" instead of 3\" while they are wholly within 12\" of this unit.\nRegiment Options | Any IRONJAWZ units\nDa Choppas\n-4DP\nYour hero has PRIEST (1) and the following ability and regiment option:\nPassive\nROUSING RUCKUS\nEffect: Each time you make a chanting roll for this unit, add 1 to the roll for each other friendly IRONJAWZ unit within this unit’s combat range.\nRegiment Options | Any IRONJAWZ units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Once Per Battle (Army), Your Combat Phase\n-4DP\nMONSTA-KILLA\nDeclare: Pick an enemy MONSTER in combat with this unit to be the target.\nEffect: Roll a dice. On a 1, nothing happens. On a 2-5, inflict D6 mortal damage on the target. On a 6, inflict 2D6 mortal damage on the target.\nPassive\n-4DP\nEXTREMELY LOUD\nEffect: Enemy HEROES cannot use commands while they are in combat with this unit.\nPassive\n-2DP\nA KNACK FOR KILLIN’\nEffect: Ward rolls cannot be made for damage points inflicted by this unit’s combat attacks.\nPassive\n-2DP\nOBSESSED WITH VIOLENCE\nEffect: Add 1 to hit rolls for this unit’s attacks while it is in combat. Add 1 to this unit’s Move characteristic while it is not in combat."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+4DP\nCLUMSY RIDER\nEffect: Subtract 1 from the Attacks characteristic of this unit’s Companion melee weapons.\nPassive\n+4DP\nROARING BULLY\nEffect: This unit cannot contest objectives that are being contested by enemy UNIQUE HEROES.\nPassive\n+2DP\nPIG-HEADED\nEffect: This unit cannot use RETREAT abilities.\nPassive\n+4DP\nFAR TOO EAGER\nEffect: In your charge phase, if this unit is not in combat and there are any enemy units within 12\" of this unit, this unit must use the ' Charge' ability."
+		},
+		{
+			"name": "Step 5 - Choose a Battle Mount",
+			"text": "You can pick up to 1 eligible Battle Mount for your hero."
+		},
+		{
+			"name": "Battle Mounts",
+			"text": "Battle Mount\n-12DP\nMAW·GRUNTA: This stubbornly violent boss rides to battle on a Maw-grunta that matches their unpleasant disposition.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMaw-grunta's Tusks\nCompanion | 5 | 4+ | 2+ | 2 | 2\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 14.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the MONSTER keyword.\nBattle Mount\n-24DP\nMAW-KRUSHA: It takes a tough orruk to ride a Maw-krusha into battle and more determination still to keep it under control.\nAdd the following weapon and ability to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMaw-krusha's Fists and Tail\nCompanion | 8 | 4+ | 2+ | 1 | 3\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 18.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the following keywords: MONSTER, FLY."
+		},
+		{
+			"name": "Step 6 - Pick any Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of eligible Battle Mount Upgrades for them.\nThe same upgrade cannot be picked more than once.\nUpgrade | Effect\nScarred 'Un\n+2DP\nMONSTER only. Add the following ability to your hero’s warscroll.\nPassive\nBATTLE DAMAGED Effect: While this unil has 10 or more damage points:\nThe Attacks characteristic of its Maw-grunta’s Tusks is 4.\nThe Attacks characteristic of its Maw-krusha’s Fists and Tail is 5.\nThe Attacks characteristic of its Sludgeraker Talons is 4.\nThe Attacks characteristic of its Vulcha’s Talons and Beak is 5.\nFast 'Un\n-3DP\nMONSTER only. Add 3\" to your hero’s Move characteristic.\nMean 'Un\n-4DP\nMONSTER only. Add the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), Any Charge Phase\nMEAN 'UN\nDeclare: If this unit charged this phase, pick an enemy INFANTRY unit within 1\" of it to be the target.\nEffect: Roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll.\nKEYWORDS | RAMPAGE\nLoud 'Un\n-4DP\nMONSTER only. Add the following ability to your hero’s warscroll:\nOnce Per Turn, Reaction: Opponent declared a command for a unit within 12\" of this unit\nLOUD 'UN\nEffect: Roll a dice. On a 4+, unless your opponent spends 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.\nWeird 'Un\n-5DP\nMONSTER only. Add the following ability to your hero’s warscroll:\nReaction: Opponent declared a SPELL ability\nWEIRD 'UN\nEffect: If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per SPELL ability.\nSmelly 'Un\n-5DP\nMONSTER only. Add the following ability to your hero’s warscroll:\nPassive\nSMELLY 'UN\nEffect: Subtract 1 from hit rolls for combat attacks that target this unit if it has not charged this turn."
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nTowering Ego\n-1DP\nAdd 1 to your hero's Control characleristic.\nEager to Fight\n-1DP\nAdd 1'' lo your hero's Move characteristic.\nGnarled Flesh\n-2DP\nAdd 1 to your hero's Health characteristic.\nMork's Own Luck\n-2DP\nYour hero has WARD (6+).\nGork's Strength\n-3DP\nThe Damage characteristic of your hero’s Choppa or Hacka is 3.\nWarlike Grudge\n-3DP\nYour hero’s Choppa or Hacka has Anti-X (+1 Rend), where X is 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHLNE, WIZARD or PRIEST.\nRider-boss\n-4DP\nYour hero’s Choppa or Hacka has Charge (+1 Damage).\nUnderhanded\n-4DP\nYour hero’s Choppa or Hacka has Crit (Mortal).\nExtra Stabby Bitz\n-5DP\nAdd 2 to the Attacks characteristic of your hero’s Choppa or Hacka.\nTouched by da Waaagh!\n-6DP\nNon- PRIEST only. Your hero has WIZARD (1). If This unit is already a WIZARD, add 1 to casting rolls for this unit.\nProphet of Gorkamorka\n-6DP\nNon- WIZARD only. Your hero has PRIEST (1). If this unit is already a PRIEST, add 1 to chanting rolls for this unit."
+		},
+		{
+			"name": "Path of Da Most Brutal",
+			"text": "(IRONJAWZ HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nEATIN' HIS GREENZ\nEffect: Add 1 to this unit’s Health characteristic.\nPassive\nTIRELESS WARMAKER\nEffect: Add 1 to charge rolls for this unit.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Hero Phase\nSHIELD OF CONVICTION\nEffect: Por the rest of the turn, subtract 1 from hit rolls for ranged attacks that target friendly units wholly within 12\" of this unit.\nPassive\nSCALE-SPLITTER\nEffect: This unit’s melee weapons have Anti- MONSTER (+1 Rend).\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nUNSTOPPABLE\nEffect: You can re-roll save rolls of 1, 2 or 3 for this unit.\nOnce Per Battle, Any Charge Phase\nA PROPER BOSS\nDeclare: Pick up to 3 friendly units wholly wilhin 12\" of this unit to be the targets.\nEffect: Add 1 to the Attacks characteristic of the targets’ melee weapons for the rest of the turn.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Turn (Army), Any Combat Phase\nGODLY BELLOW\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 4+, the target has STRIKE-LAST for the rest of the turn.\nPassive\nMETEOR OF GREEN DESTRUCTION\nEffect: This unit has STRIKE-FIRST if it charged this turn."
+		},
+		{
+			"name": "Path of Da Smasha",
+			"text": "(non- HERO IRONJAWZ unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nNEVER AT REST\nEffect: When this unit uses the’ Redeploy’ command, when determining the distance this unit can move, you can roll 2 dice instead of 1 and pick either result.\nPassive\nHOME TURF\nEffect: While this unit is wholly within friendly territory, add 1 to hit rolls for this unit’s combat attacks.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nEnd of Any Turn\nI DON'T FINK SO!\nEffect: Roll a dice. On a 2+, add 3 to this unit’s control score for the rest of the turn.\nPassive\nFAR-ROAMING\nEffect: You can re-roll charge rolls for this unit while it is wholly within enemy territory.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nDAT DIDN'T HURT!\nEffect: This unit has WARD (5+).\nPassive\nHERE COMES DA PAIN\nEffect: If this unit charged this turn, for the rest of the turn, add 1 to wound rolls for this unit’s combat attacks.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nWAAAGH!-INFUSED CHOPPAS\nEffect: This unit’s melee weapons have Crit (Mortal).\nPassive\nJUGGERNAUTS\nEffect: Subtract 1 from the Rend characteristic of melee weapons used for attacks that target this unit."
+		}
+	]
+}

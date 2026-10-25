@@ -247,7 +247,9 @@ def spearheads(wh_list, bs_names):
         warscrolls = [dict(wahapedia_warscroll(w), id="", name=canonical.get(norm(w["name"]), w["name"])) for w in s["warscrolls"]]
         names = [w["name"] for w in warscrolls]
         army = "\n".join(c for row in s["army"] for c in row)
-        m = re.search(r"General\s+(.+?)\s+Units\s+(.+)$", army, re.S)
+        # Headings are "General" and "Units", or upper case (Ironjawz Bigmob). Not case-insensitive,
+        # so "units" in a designer's note isn't taken for the heading.
+        m = re.search(r"(?:General|GENERAL)\s+(.+?)\s+(?:Units|UNITS)\s+(.+)$", army, re.S)
         # The general can carry token notes, e.g. "Jorvan Kreel (Thexa, the ash panther, is a token)"
         # or "Mantrappers with 3 Gnoblar tokens, ...", and a designer's note, which joins the text.
         general, _, note = m.group(1).partition("\nDesigner’s Note:")

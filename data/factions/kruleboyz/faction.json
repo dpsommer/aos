@@ -1,0 +1,360 @@
+{
+	"id": "kruleboyz",
+	"name": "Kruleboyz",
+	"grand_alliance": "destruction",
+	"battle_traits": [
+		{
+			"name": "Dirty Tricks",
+			"category": "special",
+			"timing": "Passive",
+			"effect": "The effect of a DIRTY TRICK ability is only applied if you make a successful dirty trick roll. The success of a dirty trick roll depends on the number of DIRTY TRICK abilities your army has already used this battle round:\nFirst: 2+\nSecond: 3+\nThird: 4+\nFourth or subsequent: 5+"
+		},
+		{
+			"name": "Lethal Surprise",
+			"category": "special",
+			"timing": "Any Charge Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick an enemy unit that charged this turn and is in combat with any friendly KRULEBOYZ units to be the target, then make a dirty trick roll.",
+			"effect": "Inflict D3 mortal damage on the target. In addition, for the rest of the turn, the target's weapons cannot be affected by the Charge (+1 Damage) weapon ability",
+			"keywords": [
+				"DIRTY TRICK"
+			]
+		},
+		{
+			"name": "Venom-encrusted Weapons",
+			"category": "offensive",
+			"timing": "Any Hero Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly KRULEBOYZ INFANTRY unit to be the target, then make a dirty trick roll.",
+			"effect": "Until the start of your next turn, the target's attacks score critical hits on unmodified hit rolls of 5+.",
+			"keywords": [
+				"DIRTY TRICK"
+			]
+		},
+		{
+			"name": "Sneaky Sneakin'",
+			"category": "movement",
+			"timing": "Any Hero Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly KRULEBOYZ INFANTRY unit that has 10 or fewer models, is not in combat and has not been the target of a DIRTY TRICK ability this turn to be the target, then make a dirty trick roll.",
+			"effect": "Remove the target from the battlefield and set it up again wholly within 3\" of a terrain feature and more than 9\" from all enemy units.",
+			"keywords": [
+				"DIRTY TRICK"
+			]
+		},
+		{
+			"name": "Noisy Racket",
+			"category": "defensive",
+			"timing": "Any Combat Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick an enemy unit in combat with any friendly KRULEBOYZ units to be the target, then make a dirty trick roll.",
+			"effect": "The target has STRIKE-LAST for the rest of the turn.",
+			"keywords": [
+				"DIRTY TRICK"
+			]
+		}
+	],
+	"battle_formations": [
+		{
+			"name": "Kruleboyz Klaw",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Swamp Shroud",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly KRULEBOYZ units that are wholly within 3\" of a terrain feature are not visible to enemy units that are more than 12\" away from them."
+				}
+			]
+		},
+		{
+			"name": "Light Finga",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Ded Sneaky",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "You can use the 'Sneaky Sneakin'' DIRTY TRICK ability twice per turn instead of only once per turn."
+				}
+			]
+		},
+		{
+			"name": "Middul Finga",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Far-killa Bolts",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick up to 3 friendly Man-skewer Boltboyz or Beast-skewer Killbow units to be the targets.",
+					"effect": "For the rest of the turn, add 3\" to the Range characteristic of the targets' ranged weapons."
+				}
+			]
+		},
+		{
+			"name": "Trophy Finga",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Meanest Beasts",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Companion weapons used by friendly KRULEBOYZ units have Crit (2 Hits)."
+				}
+			]
+		},
+		{
+			"name": "Swamphorde Bullies",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Gangin' Up",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly KRULEBOYZ unit to be the target. That unit must be in combat with an enemy unit that is in combat with another friendly KRULEBOYZ unit. Kragnos cannot be picked to be the target.",
+					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of the target's melee weapons."
+				}
+			]
+		},
+		{
+			"name": "Badmouthing Baiterz",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Krule Mockery",
+					"category": "special",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly KRULEBOYZ unit to be the Insult Hurla, pick a visible enemy unit within 18\" of it to be the target, then make a dirty trick roll.",
+					"effect": "Until the start of your next turn, each time the target uses a MOVE ability and does not end that move closer to the Insult Hurla than it was at the start of the move, inflict D6 mortal damage on the target after that MOVE ability has been resolved.",
+					"keywords": [
+						"DIRTY TRICK"
+					]
+				}
+			]
+		}
+	],
+	"enhancement_tables": [
+		{
+			"name": "Heroic Traits",
+			"group": "Kunnin' Warlords",
+			"entries": [
+				{
+					"name": "Backstabba",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"declare": "Pick an enemy HERO in combat with both this unit and another friendly KRULEBOYZ unit to be the target.",
+					"effect": "Inflict D3 mortal damage on the target. Add 1 to the mortal damage inflicted for each friendly KRULEBOYZ unit in combat with the target in addition to the first two KRULEBOYZ units."
+				},
+				{
+					"name": "Slippery Skumbag",
+					"category": "movement",
+					"timing": "Any Combat Phase",
+					"effect": "If this unit is in combat, roll a dice. On a 3+, it can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
+				},
+				{
+					"name": "Egomaniak",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit is within the combat range of a friendly non-HERO KRULEBOYZ Infantry unit:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO KRULEBOYZ INFANTRY unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points).",
+					"points": 10
+				}
+			]
+		},
+		{
+			"name": "Artefacts of Power",
+			"group": "Krule Artefacts",
+			"entries": [
+				{
+					"name": "Mork's Eye Pebble",
+					"category": "defensive",
+					"timing": "Reaction: Opponent declared an ATTACK ability",
+					"frequency": "Once Per Battle",
+					"effect": "For the rest of the turn, friendly KRULEBOYZ units have WARD (5+) while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Swamp Staff",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "If this unit is not a WIZARD, it can use the 'Unbind' ability as if it had WIZARD (1). Otherwise, add 1 to this unit's power level."
+				},
+				{
+					"name": "Eye-biter Ash",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Subtract 1 from hit rolls and wound rolls for the target's attacks for the rest of the turn."
+				}
+			]
+		},
+		{
+			"name": "Artefacts of Power",
+			"group": "Krule Artefacts",
+			"source": "Scourge of Aqshy",
+			"entries": [
+				{
+					"name": "Tattermask",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "If the unmodified hit roll for an attack that targets this unit is 1-3, that attack fails and the attack sequence ends."
+				},
+				{
+					"name": "Spell in a Rattle",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Battle",
+					"effect": "This unit can use a non-SUMMON SPELL ability from a spell lore you picked during army composition as if it had WIZARD (1). Instead of making a casting roll for that spell, the casting roll is 9 and cannot be modified. That spell cannot be unbound."
+				},
+				{
+					"name": "Woggly Bogstikk",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. If the roll exceeds the target's Control characteristic, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			]
+		},
+		{
+			"name": "Monstrous Traits",
+			"group": "Monstrous Traits: Kruleboyz",
+			"source": "Scourge of Ghyran",
+			"entries": [
+				{
+					"name": "Mean 'Un",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to hit rolls for attacks made with this unit's Companion weapons."
+				},
+				{
+					"name": "Sneaky 'Un",
+					"category": "movement",
+					"timing": "Enemy Hero Phase",
+					"frequency": "Once Per Battle",
+					"effect": "This unit can use the 'Normal Move' or 'Retreat' ability as if it were your movement phase. In addition, no mortal damage is inflicted on this unit by RETREAT abilities this phase."
+				},
+				{
+					"name": "Tough 'Un",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit."
+				}
+			]
+		},
+		{
+			"name": "Monstrous Traits",
+			"group": "Kunnin' Creatures",
+			"source": "Scourge of Aqshy",
+			"entries": [
+				{
+					"name": "Spittin' 'Un",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "This unit is armed with the ranged weapon below, where X is equal to your fury level.\nCaustic Saliva: Range 12\", Attacks X, Hit 4+, Wound 3+, Rend 2, Damage D3.",
+					"points": 20
+				},
+				{
+					"name": "Sly 'Un",
+					"category": "movement",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Battle",
+					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
+					"points": 10
+				},
+				{
+					"name": "Quick 'Un",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Add half your fury level (rounding up) to run rolls and charge rolls for this unit.",
+					"points": 20
+				}
+			]
+		}
+	],
+	"lores": [
+		{
+			"name": "Lore of the Swamp",
+			"kind": "spell",
+			"entries": [
+				{
+					"name": "Da Black Pit",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly KRULEBOYZ WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Roll a dice for each model in the target unit. For each 6, inflict 1 mortal damage on the target.",
+					"casting_value": 5,
+					"keywords": [
+						"SPELL",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "Choking Mist",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly KRULEBOYZ WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Subtract 1 from the Attacks characteristic of the target's weapons until the start of your next turn.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "Mork's Kunnin'",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly KRULEBOYZ WIZARD to cast this spell, pick a visible friendly KRULEBOYZ unit wholly within 12\" of them, then make a casting roll of 2D6.",
+					"effect": "Until the start of your next turn, add 1 to save rolls for attacks that target that friendly unit",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			]
+		},
+		{
+			"name": "Manifestations of Gorkamorka",
+			"kind": "manifestation",
+			"entries": [
+				{
+					"name": "Summon Foot of Gork",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly KRULEBOYZ WIZARD to cast this spell, then make a casting roll of 2D6.",
+					"effect": "Set up a Foot of Gork wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Foot of Gork has 2 parts that must be set up within 9\" of each other.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL",
+						"SUMMON"
+					]
+				},
+				{
+					"name": "Summon Gork-Roara",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "If there is not a friendly Gork-Roara on the battlefield, pick a friendly KRULEBOYZ WIZARD to cast this spell, then make a casting roll of 2D6.",
+					"effect": "Set up a Gork-Roara wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+					"casting_value": 5,
+					"keywords": [
+						"SPELL",
+						"SUMMON"
+					]
+				},
+				{
+					"name": "Summon Morkspit Marsh",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "If there is not a friendly Morkspit Marsh on the battlefield, pick a friendly KRULEBOYZ WIZARD to cast this spell, then make a casting roll of 2D6.",
+					"effect": "Set up a Morkspit Marsh wholly within 18\" of the caster and visible to them.",
+					"casting_value": 5,
+					"keywords": [
+						"SPELL",
+						"SUMMON"
+					]
+				}
+			]
+		}
+	]
+}

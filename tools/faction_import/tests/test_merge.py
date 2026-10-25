@@ -414,6 +414,19 @@ def test_spearhead_general_without_note_keeps_text_unchanged():
     assert (s["general"], s["text"]) == ("Test Captain", "Fluff.")
 
 
+def test_spearhead_upper_case_headings():
+    army = [["GENERAL", "Test Captain", "UNITS", "2 Test Riders"]]
+    (s,) = merge.spearheads([spearhead(army, NAMES)], ["Test Captain"])
+    assert (s["general"], [u["name"] for u in s["units"]]) == ("Test Captain", ["Test Riders"])
+
+
+def test_spearhead_lower_case_units_in_designers_note_is_not_a_heading():
+    army = [["General", "Test Captain", "Designer’s Note:", "Other units can join\nthis one.",
+             "Units", "2 Test Riders"]]
+    (s,) = merge.spearheads([spearhead(army, NAMES)], ["Test Captain"])
+    assert [u["name"] for u in s["units"]] == ["Test Riders"]
+
+
 def test_resolve_returns_exact_name():
     assert merge.resolve("Gunners", ["Gunners", "Gunners with Rifles"]) == "Gunners"
 

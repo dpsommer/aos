@@ -1,0 +1,47 @@
+{
+	"fields": {
+		"Duff Up da Big Thing": {
+			"timing": "Any Combat Phase",
+			"frequency": "Once Per Turn (Army)"
+		},
+		"zoggrok_anvilsmasha": {
+			"base_size": "Zoggrok Anvilsmasha: 50mm, Klonk: 25mm"
+		},
+		"bossrokk_tower > Man da Tower!": {
+			"effect": "While this terrain feature has a Shouty Boss:\n• The Shouty Boss cannot use MOVE abilities.\n• Instead of measuring range or visibility to and from the Shouty Boss, measure to and from this terrain feature instead.\n• All attacks that would target the Shouty Boss target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain."
+		},
+		"bossrokk_tower > Up We Go!": {
+			"effect": "Place the target on this terrain feature. The target is now a Shouty Boss (see 'Man da Tower!')."
+		},
+		"dakkbad_grotkicker > Show 'Em Who's da Overboss": {
+			"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target."
+		},
+		"Ironsunz > 'Let's Try Dis...'": {
+			"declare": "Pick a friendly IRONSUNZ INFANTRY unit wholly within 3\" of a terrain feature and not in combat to be the target."
+		},
+		"Ironsunz > Keep On Smashin'": {
+			"declare": "Pick a friendly IRONSUNZ unit that destroyed an enemy unit this turn to be the target."
+		},
+		"Zoggrok's Ironmongerz > Shield of Scrap and Muscle": {
+			"effect": "While a friendly Zoggrok Anvilsmasha is within the combat range of a friendly Ardboyz unit:\n• That Zoggrok Anvilsmasha has WARD (4+).\n• Each time you make a successful ward roll for that Zoggrok Anvilsmasha, allocate 1 damage point to a friendly Ardboyz unit within its combat range after the damage sequence has been resolved (ward rolls cannot be made for those damage points)."
+		},
+		"Zoggrok's Ironmongerz > Ironclad Scrums": {
+			"effect": "Friendly ZOGGROK'S IRONMONGERZ Ardboyz units with 3 or more models have WARD (5+) while they are wholly within 12\" of a different friendly ZOGGROK'S IRONMONGERZ Ardboyz unit with 3 or more models."
+		},
+		"Zoggrok's Ironmongerz > Legendary Vandals": {
+			"effect": "Melee weapons used by friendly ZOGGROK'S IRONMONGERZ units have Anti-FACTION TERRAIN (+1 Rend) and Anti-WAR MACHINE (+1 Rend)."
+		},
+		"Zoggrok's Ironmongerz > Into Da Breach!": {
+			"declare": "Pick a friendly ZOGGROK'S IRONMONGERZ unit that is more than 9\" from any enemy units and had any damage points allocated to it this turn."
+		},
+		"Zoggrok's Ironmongerz > Oi! Back To It!": {
+			"effect": "If a friendly ZOGGROK'S IRONMONGERZ Ardboyz or BRUTES unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
+		},
+		"Zoggrok's Ironmongerz > Da Great Wollopa": {
+			"effect": "If any damage points are allocated to an enemy unit by attacks made by this unit, that enemy unit is krump'd until the start of your next turn.\nWhile a unit is krump'd:\n• Subtract 1 from save rolls for that unit.\n• Ignore positive modifiers to save rolls for that unit."
+		},
+		"Zoggrok's Ironmongerz > Summon Gork-Roara": {
+			"declare": "If there is not a friendly Gork-Roara on the battlefield, pick a friendly ZOGGROK'S IRONMONGERZ WIZARD to cast this spell, then make a casting roll of 2D6."
+		}
+	}
+}

@@ -1,0 +1,1444 @@
+{
+	"warscrolls": [
+		{
+			"id": "ardboy_big_boss",
+			"name": "Ardboy Big Boss",
+			"points": 90,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any INFANTRY"
+			],
+			"notes": "This HERO can join an eligible regiment as a Headstompa.",
+			"move": "4",
+			"health": 6,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Boss-hacka and Choppa",
+					"range": 0,
+					"attacks": "7",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Iron-fisted Commander",
+					"category": "rallying",
+					"timing": "Passive",
+					"effect": "If a friendly Ardboyz unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
+				},
+				{
+					"name": "Get Bashin'!",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to shield bash rolls for friendly Ardboyz units while they are wholly within 12\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "ardboyz",
+			"name": "Ardboyz",
+			"points": 160,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Choppa or Stikka",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-charge (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Shield Bash",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy unit within 1\" of this unit to be the target.",
+					"effect": "Make a shield bash roll of D6 for each model in this unit that is within 3\" of the target. For each 6+, inflict 1 mortal damage on the target."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"STANDARD BEARER (1/10)"
+			]
+		},
+		{
+			"id": "bossrokk_tower",
+			"name": "Bossrokk Tower",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "100mm",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 12,
+			"save": 4,
+			"control": 0,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Man da Tower!",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "While this terrain feature has a Shouty Boss:\n• The Shouty Boss cannot use MOVE abilities.\n• Instead of measuring range or visibility to and from the Shouty Boss, measure to and from this terrain feature instead.\n• All attacks that would target the Shouty Boss target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain."
+				},
+				{
+					"name": "Up We Go!",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "If this terrain feature does not have a Shouty Boss , pick a friendly IRONJAWZ INFANTRY HERO that is not in combat and is within 3\" of it to be the target.",
+					"effect": "Place the target on this terrain feature. The target is now a Shouty Boss (see 'Man da Tower!')."
+				},
+				{
+					"name": "Aggressively Bossy",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick a visible enemy unit within 18\" of this terrain feature to be the target.",
+					"effect": "Roll a dice. Add 1 to the roll if this terrain feature has a Shouty Boss. On a 4+, pick 1 of the following effects to apply to the target until the start of your next turn:",
+					"options": [
+						{
+							"name": "Dat's Ours, Ya Git!",
+							"text": "Subtract 3 from the target's control score."
+						},
+						{
+							"name": "Zog Off Wiv Ya Magic!",
+							"text": "Subtract 1 from casting rolls and/or chanting rolls for the target."
+						},
+						{
+							"name": "Oi! Hold it!",
+							"text": "Subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
+						}
+					]
+				},
+				{
+					"name": "I'm Off!",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "If this terrain feature has a Shouty Boss that was not placed on it this turn, set up the Shouty Boss on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shouty Boss."
+				}
+			],
+			"keywords": [
+				"FACTION TERRAIN",
+				"IRONJAWZ",
+				"DESTRUCTION"
+			],
+			"composition": "The following universal terrain abilities apply to this terrain feature (Terrain, 1.2): Cover, Impassable"
+		},
+		{
+			"id": "brute_ragerz",
+			"name": "Brute Ragerz",
+			"points": 100,
+			"unit_size": 3,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Rager Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Berserkers",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn."
+				},
+				{
+					"name": "Unleashed Rage",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"BRUTE"
+			]
+		},
+		{
+			"id": "brutes",
+			"name": "Brutes",
+			"points": 160,
+			"unit_size": 5,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 3,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Brute Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				},
+				{
+					"name": "Gore-choppa",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "You Messin'?",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Enemy units with a Health characteristic of 1 or 2 cannot contest objectives while they are in combat with this unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"BRUTE"
+			],
+			"composition": "Each model in this unit is armed with Brute Weapons. 1/5 models can replace their Brute Weapons with a Gore-choppa. The champion cannot replace their weapons."
+		},
+		{
+			"id": "scourge_of_aqshy_brutes",
+			"name": "Brutes",
+			"source": "Scourge of Aqshy",
+			"points": 170,
+			"unit_size": 5,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "4",
+			"health": 3,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Brute Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				},
+				{
+					"name": "Gore-choppa",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "You Call Dat A Punch?",
+					"category": "offensive",
+					"timing": "Reaction: Opponent declared an Attack ability that targeted this unit",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "For the rest of the turn, add 1 to hit rolls and wound rolls for this unit's combat attacks that target that enemy unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"BRUTE"
+			],
+			"composition": "Each model in this unit is armed with Brute Weapons. 1/5 models can replace their Brute Weapons with a Gore-choppa. The champion cannot replace their weapons."
+		},
+		{
+			"id": "dakkbad_grotkicker",
+			"name": "Dakkbad Grotkicker",
+			"source": "White Dwarf",
+			"legends": true,
+			"points": 400,
+			"unit_size": 1,
+			"base_size": "160mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any IRONSUNZ units"
+			],
+			"notes": "Legends Warscroll",
+			"move": "10",
+			"health": 18,
+			"save": 3,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Bossbiter's Roar",
+					"range": 8,
+					"attacks": "4",
+					"hit": 2,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Bossbiter's Fists and Tail",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Anti-HERO(+1 Rend)",
+						"Companion"
+					]
+				},
+				{
+					"name": "Overboss-choppa",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Anti-MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Show 'Em Who's da Overboss",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, this unit has STRIKE-FIRST for the rest of the turn, but it can only pick that enemy unit to be the target of its combat attacks this turn."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bossbiter's Fists and Tail is 4."
+				},
+				{
+					"name": "Wun of da Boyz",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick a friendly Brutes, Brute Ragerz or Weirdbrute Wrekkaz unit within this unit's combat range to be the cronies.",
+					"effect": "While the cronies are within this unit's combat range:\n• This unit has WARD (5+)\n• Add 1 to hit rolls for the cronies' attacks."
+				},
+				{
+					"name": "Grotkicker",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
+					"effect": "Roll 6 dice. For each roll that is higher than the target's Health characteristic, inflict 1 mortal damage on the target."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"UNIQUE",
+				"FLY",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"IRONSUNZ",
+				"WARMASTER"
+			]
+		},
+		{
+			"shared": "foot_of_gork"
+		},
+		{
+			"id": "gordrakk_the_fist_of_gork",
+			"name": "Gordrakk, the Fist of Gork",
+			"points": 320,
+			"unit_size": 1,
+			"base_size": "160mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Headstompa",
+				"0-1 Tusk Wrangler",
+				"Any IRONJAWZ"
+			],
+			"move": "10",
+			"health": 20,
+			"save": 3,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Bigteef's Roar",
+					"range": 8,
+					"attacks": "6",
+					"hit": 2,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Smasha and Kunnin'",
+					"range": 0,
+					"attacks": "8",
+					"hit": 3,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-HERO (+1 Rend)"
+					]
+				},
+				{
+					"name": "Bigteef's Fists and Tail",
+					"range": 0,
+					"attacks": "8",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bigteef's Fists and Tail is 6."
+				},
+				{
+					"name": "Monster Grapple",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, pick 1 of the target's weapons. You must pick a Companion weapon if it has any. Halve the Attacks characteristic of that weapon (rounding up) for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Voice of Gork",
+					"category": "offensive",
+					"timing": "Reaction: You declared a WAAAGH! ability",
+					"frequency": "Once Per Battle",
+					"effect": "Until the start of your next turn, add 1 to hit rolls for combat attacks made by friendly IRONJAWZ units while they are wholly within 18\" of this unit."
+				},
+				{
+					"name": "Strength From Victory",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"UNIQUE",
+				"MONSTER",
+				"WARMASTER",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"MAW-KRUSHA",
+				"FLY"
+			]
+		},
+		{
+			"id": "gore_gruntas",
+			"name": "Gore-gruntas",
+			"points": 160,
+			"unit_size": 3,
+			"base_size": "90 × 52mm",
+			"can_reinforce": true,
+			"move": "9",
+			"health": 5,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Choppa or Hacka",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-CAVALRY(+1 Rend)"
+					]
+				},
+				{
+					"name": "Grunta's Tusks",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Gore-grunta Charge",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Add 1 to the mortal damage inflicted (if any) if the target is CAVALRY."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_gore_gruntas",
+			"name": "Gore-gruntas",
+			"source": "Scourge of Ghyran",
+			"points": 170,
+			"unit_size": 3,
+			"base_size": "90 × 52mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": "9",
+			"health": 5,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Choppa or Hacka",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				},
+				{
+					"name": "Grunta's Tusks",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Barge Through",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "When this unit moves, it can pass through models in enemy INFANTRY units and can pass through the combat ranges of enemy Infantry units, but it cannot end the move in combat unless specified in the ability used."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"CAVALRY"
+			]
+		},
+		{
+			"shared": "gork_roara"
+		},
+		{
+			"id": "ironskulls_boyz",
+			"name": "Ironskull's Boyz",
+			"legends": true,
+			"points": 110,
+			"unit_size": 4,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "4",
+			"health": 3,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Ardboy Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-charge (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Dead 'Ard",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from wound rolls for attacks that target this unit."
+				}
+			],
+			"keywords": [
+				"UNIQUE",
+				"CHAMPION",
+				"DESTRUCTION",
+				"INFANTRY",
+				"IRONJAWZ"
+			],
+			"composition": "Each model in this unit is armed with Ardboy Weapons. The models in this unit are: Gurzag Ironskull (champion) Bonekutta Basha Hakka"
+		},
+		{
+			"shared": "kragnos_the_end_of_empires",
+			"regiment_options": [
+				"0-1 Headstompa",
+				"0-1 Tusk Wrangler",
+				"Any IRONJAWZ"
+			],
+			"keywords": [
+				"IRONJAWZ",
+				"KRULEBOYZ"
+			]
+		},
+		{
+			"id": "maw_grunta_gougers",
+			"name": "Maw-grunta Gougers",
+			"points": 200,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 12,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Choppas",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Maw-grunta's Tusks",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Maw-grunta's Trotters",
+					"range": 0,
+					"attacks": "4",
+					"hit": 5,
+					"wound": 2,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Flattened into the Mud",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a dice and add the number of momentum points this unit has to the roll. On a 5+, the target has STRIKE-LAST for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Unstoppable Momentum",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
+				}
+			],
+			"keywords": [
+				"MONSTER",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"MAW-GRUNTA"
+			]
+		},
+		{
+			"id": "maw_grunta_with_hakkin_krew",
+			"name": "Maw-grunta with Hakkin' Krew",
+			"points": 250,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "10",
+			"health": 12,
+			"save": 3,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Choppas",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Maw-grunta's Tusks",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Maw-grunta's Trotters",
+					"range": 0,
+					"attacks": "4",
+					"hit": 5,
+					"wound": 2,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Kill-choppas",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Carve a Path",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit is in combat, it can move a distance up to its Move characteristic. It can pass through models and the combat ranges of enemy units, but it cannot end that move in combat.\nThen, pick each enemy unit that this unit passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this unit gains 2 momentum points.",
+					"keywords": [
+						"CORE",
+						"MOVE",
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Unstoppable Momentum",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
+				}
+			],
+			"keywords": [
+				"MONSTER",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"MAW-GRUNTA"
+			]
+		},
+		{
+			"id": "megaboss",
+			"name": "Megaboss",
+			"points": 120,
+			"unit_size": 1,
+			"base_size": "60mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Headstompa",
+				"Any IRONJAWZ"
+			],
+			"notes": "This HERO can join an eligible regiment as a Headstompa.",
+			"move": "4",
+			"health": 8,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Boss-choppa",
+					"range": 0,
+					"attacks": "8",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Lead da Brutes",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"effect": "Pick a friendly BRUTE unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn."
+				},
+				{
+					"name": "Strength From Victory",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"INFANTRY",
+				"IRONJAWZ"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_megaboss",
+			"name": "Megaboss",
+			"source": "Scourge of Aqshy",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "60mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Headstompa",
+				"Any IRONJAWZ"
+			],
+			"notes": "This HERO can join an eligible regiment as a Headstompa. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "4",
+			"health": 8,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Boss-choppa",
+					"range": 0,
+					"attacks": "8",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Get In There And Wallop 'Em!",
+					"category": "movement",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Battle Round (Army)",
+					"declare": "Pick a friendly Ironjawz unit wholly within 12\" of this unit and that was not set up this turn to be the target.",
+					"effect": "For the rest of the turn, when you use the 'Mighty Destroyers' ability, you can pick that friendly unit to be a second target."
+				},
+				{
+					"name": "You Ain't Gonna Show Me Up",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit used a Fight ability this turn, spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, add 1 to the Damage characteristic of this unit's Boss-choppa for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"INFANTRY",
+				"IRONJAWZ"
+			]
+		},
+		{
+			"id": "megaboss_on_maw_krusha",
+			"name": "Megaboss on Maw-krusha",
+			"points": 310,
+			"unit_size": 1,
+			"base_size": "160mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Headstompa",
+				"0-1 Tusk Wrangler",
+				"Any IRONJAWZ"
+			],
+			"move": "10",
+			"health": 18,
+			"save": 3,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Maw-krusha's Roar",
+					"range": 8,
+					"attacks": "6",
+					"hit": 2,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Boss-choppa or Boss-hacka",
+					"range": 0,
+					"attacks": "8",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				},
+				{
+					"name": "Maw-krusha's Fists and Tail",
+					"range": 0,
+					"attacks": "8",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Maw-krusha's Fists and Tail is 5."
+				},
+				{
+					"name": "Destructive Bulk",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit charged this turn, roll a D3. On a 2+, this unit can move 2D6\". It can move through the combat range of enemy units and can end that move in combat. Then, pick an enemy unit that this unit passed across during that move. Inflict an amount of mortal damage on the target equal to the D3 roll. If the target is INFANTRY, double the mortal damage inflicted.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Strength From Victory",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"MAW-KRUSHA",
+				"FLY"
+			]
+		},
+		{
+			"id": "morgoks_krushas",
+			"name": "Morgok's Krushas",
+			"legends": true,
+			"points": 110,
+			"unit_size": 3,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "4",
+			"health": 3,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Krusha Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "In Their Element",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "The first time an enemy MONSTER is destroyed by this unit, add 1 to wound rolls for this unit's attacks for the rest of the battle."
+				}
+			],
+			"keywords": [
+				"UNIQUE",
+				"CHAMPION",
+				"DESTRUCTION",
+				"INFANTRY",
+				"IRONJAWZ",
+				"BRUTE"
+			],
+			"composition": "Each model in this unit is armed with Krusha Weapons. The models in this unit are: Morgok (champion) Thugg ’Ardskull"
+		},
+		{
+			"shared": "morkspit_marsh"
+		},
+		{
+			"id": "tuskboss_on_maw_grunta",
+			"name": "Tuskboss on Maw-grunta",
+			"points": 270,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Headstompa",
+				"Any IRONJAWZ"
+			],
+			"notes": "This HERO can join an eligible regiment as a Tusk Wrangler.",
+			"move": "10",
+			"health": 14,
+			"save": 3,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Pig-hacka",
+					"range": 0,
+					"attacks": "7",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Maw-grunta's Tusks",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Maw-grunta's Trotters",
+					"range": 0,
+					"attacks": "4",
+					"hit": 5,
+					"wound": 2,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Kill-choppas",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Maw-grunta's Tusks is 3."
+				},
+				{
+					"name": "Head of the Stampede",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this phase, pick up to 3 friendly MAW‑GRUNTA units wholly within 12\" of this unit that charged this turn to be the targets.",
+					"effect": "Add 1 momentum point to each target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Unstoppable Momentum",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"MAW-GRUNTA"
+			]
+		},
+		{
+			"id": "warchanter",
+			"name": "Warchanter",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any IRONJAWZ"
+			],
+			"notes": "This HERO can join an eligible regiment as a Headstompa.",
+			"move": "4",
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Gorkstikk and Morkstikk",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Rhythm of Destruction",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"effect": "If any enemy models were slain this turn by this unit's combat attacks, give this unit D3 ritual points."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"INFANTRY",
+				"IRONJAWZ",
+				"PRIEST (1)"
+			]
+		},
+		{
+			"id": "weirdbrute_wrekkaz",
+			"name": "Weirdbrute Wrekkaz",
+			"points": 90,
+			"unit_size": 3,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ward": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Chain-smasha",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Berserkers",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"BRUTE",
+				"WARD (5+)"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_weirdbrute_wrekkaz",
+			"name": "Weirdbrute Wrekkaz",
+			"source": "Scourge of Ghyran",
+			"points": 90,
+			"unit_size": 3,
+			"base_size": "40mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": "4",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ward": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Chain-smasha",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Propa Wonky",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is in combat, pick a friendly IRONJAWZ unit wholly within 12\" of this unit to be the target.",
+					"effect": "Add 1 to hit rolls for the target's combat attacks for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"BRUTE",
+				"WARD (5+)"
+			]
+		},
+		{
+			"id": "weirdnob_shaman",
+			"name": "Weirdnob Shaman",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any IRONJAWZ"
+			],
+			"notes": "This HERO can join an eligible regiment as a Headstompa.",
+			"move": "4",
+			"health": 6,
+			"save": 6,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Green Puke",
+					"range": 10,
+					"attacks": "4",
+					"hit": 2,
+					"wound": 4,
+					"rend": 0,
+					"damage": "D3",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Waaagh! Staff",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Brutal Power",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to this unit's power level while there are any friendly IRONJAWZ units that have 10 or more models wholly within 12\" of it."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"INFANTRY",
+				"IRONJAWZ",
+				"WIZARD (1)"
+			]
+		},
+		{
+			"id": "zoggrok_anvilsmasha",
+			"name": "Zoggrok Anvilsmasha",
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "Zoggrok Anvilsmasha: 50mm, Klonk: 25mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any IRONJAWZ"
+			],
+			"notes": "This HERO can join an eligible regiment as a Headstompa.",
+			"move": "4",
+			"health": 7,
+			"save": 3,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Skull-crushing Basha",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Ward-smashing Choppa",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3"
+				},
+				{
+					"name": "Grunta-tongs",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Klonk",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Klonk is a token. You can re-roll forgin' rolls for this unit while this unit's Klonk is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove this unit's Klonk from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
+				},
+				{
+					"name": "Power of da Great Green God",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly IRONJAWZ INFANTRY unit wholly within 12\" of this unit to be the target.",
+					"effect": "Make a forgin' roll of D6. Add 1 to the roll if this unit is armed with Grunta-tongs. On a 4+, the target's melee weapons have Crit (Mortal) until the start of your next turn."
+				},
+				{
+					"name": "Ward-smashing Choppa",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "If an attack made with this unit's WARD-SMASHING CHOPPA scores a hit, the target has the WARD‑SMASHED keyword for the rest of the battle. Ward rolls cannot be made for a WARD‑SMASHED unit even if this unit has been destroyed."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"UNIQUE",
+				"DESTRUCTION",
+				"IRONJAWZ",
+				"INFANTRY"
+			],
+			"composition": "This unit is armed with a Skull-crushing Basha and 1 of the following options: Ward-smashing Choppa Grunta-tongs"
+		}
+	]
+}
