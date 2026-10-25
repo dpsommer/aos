@@ -1,0 +1,87 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Soulblight Gravelords army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts: the Anvil of Apotheosis and Paths for Soulblight Gravelords units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/ or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Choose an Archetype.\n4. Pick your hero’s origin and/or flaw.\n5. Choose a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be.\nPick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nGrave lord | 15 | 150\nGrave Prince | 35 | 250\nGrave King | 55 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "soulblight_gravelords_hero",
+					"name": "Soulblight Gravelords Hero",
+					"move": "5",
+					"health": 5,
+					"save": 6,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Grave Blade",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WARD (6+)",
+						"DEATH",
+						"SOULBLIGHT GRAVELORDS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Choose an Archetype",
+			"text": "You must pick 1 of the following Archetypes for your hero:\nMartial Vampire\n-3DP\nChange your hero’s Move characteristic to 6\". In addition, your hero gains the VAMPIRE and WIZARD (1) keywords and the following regiment options. In addition, change their Grave Blade’s characteristics to the following:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nGrave Blade\nCrit (2 Hits) | 5 | 3+ | 3+ | 1 | 2\nRegiment Options | Any SOULBLIGHT GRAVELORDS units.\nNecromancer\n0DP\nYour hero gains the WIZARD (1) keyword and the following ability and regiment options:\nPassive\nUNDEAD MINIONS\nEffect: While this unit is wholly within the combat range of a friendly DEATHRATTLE or DEADWALKERS unit:\nThis unit has WARD (4+).\nEach time you make a successful ward roll for this unit, inflict 1 mortal damage on a friendly DEATHRATTLE or DEADWALKERS unit within this unit’s combat range after the damage sequence for this unit has been resolved.\nRegiment Options | Any DEADWALKERS or DEATHRATTLE units.\nArcane Vampire\n-3DP\nChange your hero's Move characteristic to 6\". In addition, your hero gains the VAMPIRE and WIZARD (2) keywords and the following ability and regiment options:\nYour Hero Phase\n5\nDARK INTRIGUE\nDeclare: Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.\nEffect: Until the start of your next turn, each time the target uses a command, you receive 1 command point.\nKEYWORDS | SPELL\nRegiment Options | Any SOULBLIGHT GRAVELORDS units.\nWight King\n-4DP\nChange your hero's Move characteristic to 4\" and its Grave Blade gains Crit (Mortal). In addition, your hero gains the DEATHRATTLE keyword and the following ability and regiment options:\nReaction: You declared a FIGHT ability for this unit\nIMMORTAL RETAINERS\nEffect: Pick a friendly DEATHRATTLE CAVALRY or INFANTRY unit that has not used a FIGHT ability this turn and is within this unit’s combat range to be the target. Tue target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved.\nRegiment Options | Any DEATHRATTLE units."
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Passive\n-4DP\nFABLED HEIRLOOMS\nEffect: When this unit is added to your Order of Battle, you can immediately give it 1 artefact of power.\nPassive\n-2DP\nACOLYTE OF NECROS\nEffect: Each time this unit successfully casts a spell in your hero phase and the casting roll was an unmodified 10+, add 1 to this unit’s power level until the start of your next turn.\nYour Hero Phase\n-4DP\nBEAST FORM\nEffect: Pick 1 of the following units to be this unit’s beast form:\nA Dire Wolves unit with 1 model.\nA Fell Bats unit with 1 model.\nSet up the beast form unit within 1\" of this unit, then remove this unit from the battlefield.\nThe beast form unit can use MOVE and CORE abilities in your next movement phase.\nIf the beast form unit is destroyed, before it is removed from play, set up this unit on the battlefield once more within 1\" of it.\nIn addition, in any combat phase before FIGHT abilities are used, or at the end of any turn, you can have the beast form unit transform back into this unit. If you do so, set up this unit within l\" of the beast form unit and remove the beast form unit from the battlefield.\nThis ability can only be used by an INFANTRY hero."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+4DP\nREPULSED BY THE SACRED\nEffect: You cannot make ward rolls for this unit while it is within 12\" of an enemy PRIEST or for damage inflicted on it by a PRAYER ability.\nEnd of Your Turn\n+2DP\nTENUOUS GRIP ON UNDEATH\nDeclare: This unit must use this ability if no enemy models were slain by it this turn.\nEffect: Allocate 1 damage point to this unit (a ward roll cannot be made for that damage point).\nStart of Battle Round\n+2DP\nFRACTURED MIND\nEffect: Roll a dice. On a 1-3, for the rest of the battle round, this unit cannot use commands and any heroic trait they have has no effect.\nPassive\n+4DP\nPICKY EATER\nEffect: This uo it cannot be picked as a target for the’ The Hunger’ ability unless your opponent’s general has the ORDER keyword. This flaw can only be picked for a VAMPIRE hero."
+		},
+		{
+			"name": "Step 5 - Choose a Battle Mount",
+			"text": "You can pick up to 1 Battle Mount for your hero.\nBattle Mount\n-5DP\nUNDEAD STEED: Many heroes of the grave are borne into battle upon steeds compelled to ride to war eternally in undeath.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nUndead Steed’s Hooves\nCompanion | 3 | 5+ | 3+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 8.\nChange the Save characteristic to 5+.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nBattle Mount\n-10DP\nSPECTRAL PALANQUIN: Some of the more aloof champions of the Soulblight Gravelords are carried to battle on a palanquin borne by a procession of gheists.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nSpectral Host's Blades\nCompanion | 10 | 4+ | 4+ | - | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 12.\nChange the Control characteristic to 5.\nChange the Save characteristic to 4+.\nReplace the INFANTRY keyword with the following keywords: WAR MACHINE, FLY.\nBattle Mount\n-20DP\nMIGHTY GRAVE BEAST: The strongest of Nagash’s servants may be granted a terrifying beast from the grave upon which to ride into battle, perhaps a powerful Zombie Dragon, shrieking Terrorgheist or fabled dread abyssal.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMighty Grave Beast's Talons\nCompanion | 7 | 4+ | 2+ | 2 | 2\nPassive\nBATTLE DAMAGED Effect: While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Grave Beast’s Talons is 5.\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 12\".\nChange the Health characteristic to 16.\nChange the Control characteristic to 5.\nChange the Save characteristic to 4+.\nReplace the INFANTRY keyword with the following keywords: MONSTER, FLY."
+		},
+		{
+			"name": "Step 6 - Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nSwift\n-2DP\nCAVALRY only. Add 2\" to your hero’s Move characteristic.\nLegendary Beast\n-4DP\nMONSTER only. Add 2 to your hero’s Health characteristic.\nRending Claws\n-4DP\nMONSTER only. Your hero’s Mighty Grave Beast’s Talons have a Damage characteristic of 3.\nNecrotic Breath\n-5DP\nAdd the following ranged weapon to your hero’s warscroll. You cannot pick this upgrade if your hero has another Companion ranged weapon.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nNecrotic Breath\nShoot in combat, Companion | 10\" | D6 | 2+ | 4+ | 1 | 2\nCrushing Stomp\n-4DP\nMONSTER only. Add the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has anolher RAMPAGE ability.\nOnce Per Turn (Army), Any Combat Phase\nCRUSHING STOMP\nDeclare: Pick a non- MONSTER enemy unit in combat with this unit to be the target.\nEffect: Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nKEYWORDS | RAMPAGE\nFeed on Sorcery\n-5DP\nMONSTER only. Add the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), Any Combat Phase\nFEED ON SORCERY\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Roll a dice. On a 3+, for the rest of the turn, ward rolls cannot be made for the target and add 1 to the Damage characteristic of this unit’s Companion melee weapons.\nKEYWORDS | RAMPAGE\nWailing Gheists\n-2DP\nWAR MACHINE only. Add the following ability to your hero’s warscroll.\nPassive\nWAILS OF THE DAMNED\nEffect: Subtract 3 from the control scores of enemy units while they a re within 12\" of this unit."
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannot be picked more than once.\nUpgrade | Effect\nCommanding Presence\n-1DP\nAdd 1 to your hero’s Control characteristic.\nSwiftblood\n-1DP\nINFANTRY only. Add 1 to your hero’s Move characteristic.\nDark Fortitude\n-2DP\nINFANTRY only. Add 1 to your hero’s Health characteristic.\nDynastic Finery\n-3DP\nVAMPIRE only. Your hero has a Save characteristic of 4+.\nAncient Skill\n-3DP\nThe Hit characteristic of your hero’s Grave Blade is 2+.\nUnholy Strength\n-3DP\nThe Wound characteristic of your hero’s Grave Blade is 2+.\nDeathless Hunter\n-3DP\nYour hero’s Grave Blade has Anti-X (+1 Rend), where X is 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHINE, WIZARD or PRIEST.\nGrave Lancer\n-4DP\nCAVALRY or MONSTER only. Your hero’s Grave Blade has Charge (+1 Damage).\nCursed Weapon\n-4DP\nYour hero’s Grave Blade has Crit (Mortal).\nMacabre Panoply\n-4DP\nVAMPIRE INFANTRY or CAVALRY unit or DEATHRATTLE INFANTRY or CAVALRY unit only. Your hero has a Save characteristic of 3+.\nBlade Master\n-5DP\nAdd 2 to the Attacks characteristic of your hero’s Grave Blade.\nUndying Companion\n-4DP\nINFANTRY only. Add the following ability to your hero’s warscroll:\nPassive\nUNDYING COMPANION\nEffect: This unit’s Undying Companion is a token. This unit has WARD (5+) while its Undying Companion is on the battlefield. If you make an unmodified ward roll of 1 for this unit, remove its Undying Companion from the battlefield.\nBecome the Swarm\n-3DP\nAdd the following ability to your hero's warscroll:\nPassive\nBECOME THE SWARM\nEffect: When this unit is destroyed, roll a D3 for each enemy unit in combat with it. On a 2+, infl ict an amount of mortal damage on that enemy unit equal to the roll.\nMaster of Dark Magics\n-3DP\nWIZARD only. Add the following ability to your hero’s warscroll:\nPassive\nMASTER OF DARK MAGICS\nEffect: While this unit is not in combat, add 1 to casting rolls for this unit."
+		},
+		{
+			"name": "Path of The Undying",
+			"text": "(SOULBLIGHT GRAVELORDS HERO only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nAny Hero Phase\nSIPHON SPIRIT\nDeclare: Pick a friendly non- HERO unit wholly within 12\" of this unit to be the target.\nEffect: Allocate D3 damage points to the target (ward rolls cannot be made), then Heal (D3) this unit.\nPassive\nUNHOLY STRENGTH\nEffect: Add 1 to wound rolls for this unit’s combat attacks.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Hero Phase\nPROTECTION OF SHYISH\nEffect: This unit has WARD (5+) for the rest of the turn.\nOnce Per Battle, Your Movement Phase\nSHADOWY TRANSLOCATION\nEffect: If this unit is not in combat, remove it from the battlefield and set it up again on the balllefield more than 9\" from all enemy units.\nKEYWORDS | CORE\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nHEXED WEAPONS\nEffect: Add 1 to the Rend characteristic of this unit’s melee weapons.\nOnce Per Turn, Reaction: You declared the ' All-out Attack' command for a friendly unit\nCOLD COMMANDER\nEffect: If this unit is wholly within 12\" of the unit using the’ All-out Attack’ command, no command points are spent to use that command.\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nCURSE-BOUND SENTINEL\nEffect: While this unit is wholly within friendly territory, unmodified save rolls of 4+ for it are always successful.\nOnce Per Battle, Any Movement Phase\nETERNAL CHAMPION\nDeclare: This unit can use this ability if it has been destroyed.\nEffect: Roll 2D6. On a 7+, set up a replacement unit on the battlefield more than 9\" from all enemy units."
+		},
+		{
+			"name": "Path of Revenant",
+			"text": "(non- HERO SOULBLIGHT GRAVELORDS unit only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nTHE VIGILANT DEAD\nEffect: Add 5 to this unit’s control score.\nPassive\nRELENTLESS SHAMBLERS\nEffect: Add 1\" to this unit's Move characteristic.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Combat Phase\nUNHOLY PRESENCE\nDeclare: Pick an enemy unit in combat with this unit to be the target.\nEffect: Inflict D3 mortal damage on the target. If the target is a PRIEST, inflict 3 mortal damage on it instead.\nEnd of Any Turn\nTHE RESTLESS DEAD\nEffect: Return 1 slain model to this unit.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nEMPOWERED BY SHYISH\nEffect: This unit has WARD (5+).\nPassive\nWITHERING TOUCH\nEffect: Subtract 1 from save rolls for enemy units while they are in combat with this unit.\nLEGENDARY: When a unit on this Path gains this rank, pick l of the following abilities for them:\nPassive\nCURSED WEAPONS\nEffect: This unit’s melee weapons have Crit (Mortal).\nPassive\nDOOMED WARRIORS\nEffect: When a replacement unit is set up for this unit, it has the same abilities from the 'Path of the Revenant' as this unit. In addition, this unit can return as a replacement unit any number of times during the battle."
+		}
+	]
+}

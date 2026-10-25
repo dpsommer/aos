@@ -1,0 +1,498 @@
+{
+	"spearheads": [
+		{
+			"name": "Bloodcrave Hunt",
+			"text": "Though the great vampiric bloodlines maintain wildly different traditions of war, there is one thing they all have in common: the love of the hunt. Even those who adopt the airs and graces of noble courts struggle to keep the blood-craving beasts within them contained behind their gilded veneers. Such is the power of the Soulblight Curse that the vampiric nobility that revel in its blessings will often strike out on Bloodcrave Hunts to chase down foes to replenish their feeding supplies – or, oftentimes, just to enjoy indulging their fell urges.\nEach hunt is led by a Vampire Lord, who directs both members of their court and ranks of their skeletal servants alike to do their bidding. No backline leaders are these, as they would much rather revel in the carnage of battle, slashing apart enemies with their ornate weapons or taking great gulps of blood. Though they fight violently, they use this vital lifestuff to heal their own injuries as they go. An elite guard of mounted Blood Knights attends their lord, charging through enemy lines to skewer them with sword and lance. Many will bring along Vargheists to aid in the hunt, for these grotesque creatures were once members of their court as well, though having fallen to the urges of their curse, they are now good for little more than chasing and killing. Should their masters not take care of the enemy, Deathrattle Skeletons will be raised to clean up straggling footsoldiers or overwhelm their foes with sheer numbers. With their lord nearby, they can get up and resume fighting countless times after being destroyed.",
+			"general": "Vampire Lord",
+			"units": [
+				{
+					"count": 10,
+					"name": "Deathrattle Skeletons"
+				},
+				{
+					"count": 10,
+					"name": "Deathrattle Skeletons"
+				},
+				{
+					"count": 5,
+					"name": "Blood Knights"
+				},
+				{
+					"count": 3,
+					"name": "Vargheists"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "SWOOP DOWN",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				},
+				{
+					"name": "THE HUNGER",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Each time a friendly VAMPIRE unit uses a FIGHT ability, after all of its attacks have been resolved, Heal (X) that VAMPIRE unit where X is the number of damage points allocated by those attacks."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "ENDLESS LEGIONS",
+					"category": "rallying",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly Deathrattle Skeletons unit that has been destroyed.",
+					"effect": "You can set up a replacement unit with D6 models in friendly territory more than 6\" from enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				},
+				{
+					"name": "RUINOUS CHARGERS",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"declare": "Pick your Blood Knights unit to use this ability if it charged this turn.",
+					"effect": "Inflict D3 mortal damage on each enemy unit it passed across during that CHARGE ability."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "GRAVE-SAND SHARD",
+					"category": "special",
+					"timing": "Reaction: You declared the ‘Skeleton Legion’ ability for a unit within 9\" of your general",
+					"frequency": "Once Per Battle",
+					"effect": "Add 1 to each legion roll made for that unit."
+				},
+				{
+					"name": "AURA OF NIGHT",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore negative modifiers to save rolls for shooting attacks that target your general."
+				},
+				{
+					"name": "CLOUD OF BATS",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Remove your general from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				},
+				{
+					"name": "SPIRIT GALE",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Make a casting roll of 2D6.",
+					"effect": "On a 7+, inflict 1 mortal damage on each enemy unit on the battlefield."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "vampire_lord",
+					"name": "Vampire Lord",
+					"move": "6",
+					"health": 5,
+					"save": 3,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Dynastic War-relic",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "VILE TRANSFERENCE",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible enemy unit within 6\" of this unit to be the target, then make a casting roll of 2D6.",
+							"effect": "On a 6+, roll a number of dice equal to the target’s Health characteristic. For each 5+, inflict 1 mortal damage on the target and Heal (1) this unit."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"WIZARD",
+						"INFANTRY",
+						"VAMPIRE",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "vargheists",
+					"name": "Vargheists",
+					"move": "12",
+					"health": 4,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Murderous Fangs and Talons",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (2 Hits)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "THE SCENT OF GORE",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to wound rolls for attacks made by this unit that target a damaged unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"VAMPIRE",
+						"FLY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "deathrattle_skeletons",
+					"name": "Deathrattle Skeletons",
+					"move": "4",
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Ancient Weapon",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SKELETON LEGION",
+							"category": "rallying",
+							"timing": "Your Combat Phase",
+							"effect": "For each slain model from this unit, make a legion roll of D6. For each 6, return 1 slain model to this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "blood_knights",
+					"name": "Blood Knights",
+					"move": "10",
+					"health": 3,
+					"save": 3,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Templar Lance or Templar Blade",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Charge (+1 Damage)"
+							]
+						},
+						{
+							"name": "Nightmare’s Hooves and Teeth",
+							"range": 0,
+							"attacks": "3",
+							"hit": 5,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "RIDERS OF RUIN",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "Models in this unit can pass across enemy INFANTRY models as if this unit had FLY."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"VAMPIRE",
+						"WARD (6+)"
+					]
+				}
+			]
+		},
+		{
+			"name": "Deathrattle Tomb Host",
+			"text": "The dead march upon the lands of the living, and they will not stop until all resistance has been crushed beneath their timeworn boots. Rank after rank of fleshless spearmen and tomb champions advance under the baleful gaze of their Wight King master, each of them driven by a soulless imperative to conquer and kill.\nThe military might of the barrow kingdoms is exemplified by the Deathrattle Tomb Hosts. These armies are raised when a Wight King’s entire barrow kingdom is emptied for war, its undead citizenry taking up blades and spears at the unspoken command of their eternal overlord. Deathrattle Skeletons are many in number, so flushed with necromantic energy that even when shattered by an axe or hammer they can reconstitute. Broken bones knit together and skulls reattach as these passionless killing machines rise once more, and their horrified foes find themselves helplessly embroiled in a battle of attrition they cannot win. These doomed souls are easy prey for units of elite Barrow Guard and the heavy cavalry known as Barrow Knights, who charge into their exposed flanks to sow terror and death.",
+			"general": "Wight King",
+			"units": [
+				{
+					"count": 10,
+					"name": "Barrow Guard"
+				},
+				{
+					"count": 5,
+					"name": "Barrow Knights"
+				},
+				{
+					"count": 10,
+					"name": "Deathrattle Skeletons"
+				},
+				{
+					"count": 10,
+					"name": "Deathrattle Skeletons"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "THE RISING DEAD",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "Set up this unit anywhere on the battlefield wholly within 3\" of a battlefield edge and more than 6\" from all enemy units."
+				},
+				{
+					"name": "AURA OF ANTIQUITY",
+					"category": "defensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with any friendly units to be the target.",
+					"effect": "Roll a dice. On a 3+, subtract 1 from the Rend characteristic of the target’s melee weapons until the start of your next turn."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "OVERWHELMING HORDES",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to wound rolls for combat attacks made by friendly non- HERO units that target a unit that has fewer models than the attacking unit."
+				},
+				{
+					"name": "DEATHMARCH",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly non- HERO unit that is not in combat to be the target.",
+					"effect": "For the rest of the turn, add 1\" to the target’s Move characteristic and add 3 to its control score."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "SHYISHAN BLADE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "The Rend characteristic of your general’s Baleful Tomb Blade is 2."
+				},
+				{
+					"name": "PROPELLED BY HATE",
+					"category": "movement",
+					"timing": "Your Charge Phase",
+					"declare": "Pick another friendly unit wholly within 12\" of your general to be the target.",
+					"effect": "You can re-roll charge rolls for the target for the rest of the turn."
+				},
+				{
+					"name": "STOLEN ANIMUS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Each time your general scores a critical hit, Heal (2) your general after the ATTACK ability has been resolved."
+				},
+				{
+					"name": "SOUL-DRAIN PENDANT",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit in combat with your general to be the target.",
+					"effect": "Roll a dice. On a 2+, the target has STRIKE-LAST for the rest of the turn."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "wight_king",
+					"name": "Wight King",
+					"move": "4",
+					"health": 5,
+					"save": 3,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Baleful Tomb Blade",
+							"range": 0,
+							"attacks": "5",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "KING OF SHAMBLING BONES",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+							"effect": "Roll a dice. On a 2+, add 1 to hit rolls for combat attacks made by the target for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "barrow_knights",
+					"name": "Barrow Knights",
+					"move": "10",
+					"health": 3,
+					"save": 4,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Barrow Lance",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)",
+								"Charge (+1 Damage)"
+							]
+						},
+						{
+							"name": "Skeletal Steed’s Hooves and Teeth",
+							"range": 0,
+							"attacks": "2",
+							"hit": 5,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "CURSED TO RISE ONCE MORE",
+							"category": "rallying",
+							"timing": "End of Your Turn",
+							"effect": "You can return 1 slain model to this unit."
+						}
+					],
+					"keywords": [
+						"CAVALRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "deathrattle_skeletons",
+					"name": "Deathrattle Skeletons",
+					"move": "4",
+					"health": 1,
+					"save": 5,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Ancient Weapon",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SKELETON LEGION",
+							"category": "rallying",
+							"timing": "End of Any Turn",
+							"effect": "You can return D3 slain models to this unit."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "barrow_guard",
+					"name": "Barrow Guard",
+					"move": "4",
+					"health": 1,
+					"save": 4,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Wight Blade",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "GUARDIANS OF THE KING",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "While your general is within this unit’s combat range, both this unit and your general have WARD (5+)."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				}
+			]
+		}
+	]
+}
