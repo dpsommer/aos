@@ -1,0 +1,506 @@
+{
+	"spearheads": [
+		{
+			"name": "Sunblooded Prowlers",
+			"text": "Stealth and brutality epitomise a band of Sunblood Prowlers. These expert hunters are relentless seekers of prey, Seraphon charged with the eradication of specific threats to their slann lords' enigmatic plans. Once they have the scent of a foe, nothing save death can dissuade them from their task.\nAn eclectic but adaptable force, the Sunblooded Prowlers are drawn together under an astral confluence sacred to three of the mighty Old Ones. The chameleonic Hunters of Huanchi are fast-moving and able to seize ground for the slower saurus to exploit. These warriors are the brute strength of the cohort, a solid and unyielding block of scaly flesh. Their saurus leader and his warriors form the Sunblood Pack, and little can withstand their ferocity. Accompanied by its skink Sun Acolytes blessed by Itzl, a Spawn of Chotec delivers gouts of flaming acid, whilst Terrawings bite and hinder. Foes are quickly run to ground by these ruthless Seraphon, and woe betide any who incur their ire.\nDesigner’s Note: Even though the Sunblood Pack is a unit of three models, it is referred to as your’ general’.",
+			"general": "Sunblood Pack",
+			"units": [
+				{
+					"count": 5,
+					"name": "Saurus Warriors"
+				},
+				{
+					"count": 5,
+					"name": "Saurus Warriors"
+				},
+				{
+					"count": 5,
+					"name": "Hunters of Huanchi"
+				},
+				{
+					"count": 5,
+					"name": "Hunters of Huanchi"
+				},
+				{
+					"count": 3,
+					"name": "Terrawings"
+				},
+				{
+					"count": 1,
+					"name": "Spawn of Chotec"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "CHAMELEON AMBUSH",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units."
+				},
+				{
+					"name": "VENGEANCE OF AZYR",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick each enemy unit in combat with a friendly SAURUS unit to be the targets.",
+					"effect": "Roll a dice for each target. On a 4+, inflict 1 mortal damage on the target."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "SCALED AEGIS",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SAURUS unit to be the target",
+					"effect": "Roll a dice. On a 3+, that unit has WARD (6+) until the start of your next turn."
+				},
+				{
+					"name": "FOLLOWERS OF HUANCHI",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick a friendly SKINK unit to be the target.",
+					"effect": "Roll a dice. On a 3+, the target’s ranged weapons have Crit (Auto-wound) for the rest of the turn, including Companion weapons."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "INSTINCTIVE COMMANDER",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly unit wholly within 12\" of your general and not in combat to be the target.",
+					"effect": "Roll a dice. On a 3+, the target can immediately use the ' Normal Move ' ability as if it were your movement phase."
+				},
+				{
+					"name": "VENOMITE SWARM",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy unit in combat with your general to be the target.",
+					"effect": "If your general’s Venomites token is on the battlefield, roll a D3. On a 1, remove that token from the battlefield. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				},
+				{
+					"name": "SAVAGE MAULING",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy unit in combat with your general to be the target.",
+					"effect": "Ward rolls cannot be made for the target for the rest of the turn."
+				},
+				{
+					"name": "BLESSED BY THE OLD ONES",
+					"category": "rallying",
+					"timing": "End of Any Turn",
+					"declare": "Your general must use this ability if it has been destroyed. Roll a dice.",
+					"effect": "On a 2+, you can set up a replacement unit with 1 Sunblood model anywhere on the battlefield more than 6\" from all enemy units."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "sunblood_pack",
+					"name": "Sunblood Pack",
+					"move": "5",
+					"health": 3,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Celestite Weapons",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SCALED PROTECTORS",
+							"category": "special",
+							"timing": "Passive",
+							"effect": "While this unit includes a Sunblood, ignore the first damage point that would be allocated to this unit each phase and add 1 to this unit’s control score."
+						},
+						{
+							"name": "SAVAGE BELLOW",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target and roll a dice.",
+							"effect": "On a 3+, the target’s weapons have Crit (2 Hits) for the rest of the turn, including Companion weapons."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					],
+					"composition": "The models in this unit are 1 Sunblood and 2 Saurus Bodyguard. Each model is armed with Celestite Weapons. This unit’s Venomites are a token."
+				},
+				{
+					"id": "spawn_of_chotec",
+					"name": "Spawn of Chotec",
+					"move": "5",
+					"health": 8,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Glob of Flame Acid",
+							"range": 16,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "D3+3",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Fiery Maw",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 2,
+							"damage": "3",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SUN ACOLYTES",
+							"category": "control",
+							"timing": "Passive",
+							"effect": "This unit has a crew of 3 Sun Acolytes that are tokens. Add 1 to this unit’s control score for each Sun Acolyte it has. If this unit has no Sun Acolytes, it has a maximum control score of 1. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Sun Acolytes from the battlefield after the Attack ability has been resolved (the damage point is still inflicted)."
+						}
+					],
+					"keywords": [
+						"BEAST"
+					]
+				},
+				{
+					"id": "saurus_warriors",
+					"name": "Saurus Warriors",
+					"move": "5",
+					"health": 2,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Celestite Club",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "ORDERED COHORTS",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Add 1 to save rolls for this unit while it is contesting an objective you control."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "terrawings",
+					"name": "Terrawings",
+					"move": "12",
+					"health": 2,
+					"save": 5,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Snapping Beaks",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 4,
+							"rend": 0,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "NERVE-SHREDDING SCREECHES",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"declare": "Pick an enemy unit in combat with this unit to be the target.",
+							"effect": "Roll a dice. On a 4+, subtract 1 from hit rolls for the target’s combat attacks for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"BEAST",
+						"FLY",
+						"REINFORCEMENTS"
+					]
+				},
+				{
+					"id": "hunters_of_huanchi",
+					"name": "Hunters of Huanchi",
+					"move": "8",
+					"health": 1,
+					"save": 6,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Dartpipe",
+							"range": 10,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Feeble Claws",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 5,
+							"rend": 0,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "STAR-VENOM",
+							"category": "shooting",
+							"timing": "Any Shooting Phase",
+							"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit’s Dartpipe to be the target.",
+							"effect": "Roll a dice. On a 2+, subtract 1 from wound rolls for the target’s combat attacks for the rest of the turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				}
+			]
+		},
+		{
+			"name": "Starscale Warhost",
+			"text": "Cold-blooded and enigmatic, the Seraphon are a merciless race. These reptilian warriors are utterly committed to their masters’ Great Plan, and any who interfere – intentionally or otherwise – with that cosmic design are marked for obliteration. Often, it is a Starscale Warhost that will be dispatched to ensure the Plan’s continuation. Whether tracking down a target marked for death by the esoteric slann or defending the enchanted jungles in which the Seraphon dwell, these forces are more than a match for their warm-blooded adversaries.\nCohorts of Saurus Warriors are the heart of each Starscale Warhost. As savage on the attack as they are formidable on the defence, they can excel even when outnumbered. At their side lumber the Kroxigor; though these towering brutes are primarily labourers, their immense strength makes them well suited for battle, making red ruin of more stubborn adversaries. The greatest weapon of a Starscale Warhost, however, is its saurus overlord and the monstrous Carnosaur upon which they ride. Coaxed from the deepest jungles, Carnosaurs are living engines of destruction, capable of swallowing warriors whole. Guided by the strategic instincts of the Oldbloods, a Starscale Warhost is a brutal weapon in service of the Great Plan.",
+			"general": "Saurus Oldblood on Carnosaur",
+			"units": [
+				{
+					"count": 5,
+					"name": "Saurus Warriors"
+				},
+				{
+					"count": 5,
+					"name": "Saurus Warriors"
+				},
+				{
+					"count": 3,
+					"name": "Kroxigor"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "BEAST OF THE DARK JUNGLES",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"declare": "Pick your general to use this ability if they are in combat.",
+					"effect": "Pick 1 of the following:",
+					"options": [
+						{
+							"name": "Gargantuan Jaws",
+							"text": "Pick an enemy unit in combat with your general and roll a dice. If the roll exceeds that unit’s Health characteristic, 1 model in that unit is slain."
+						},
+						{
+							"name": "Roar",
+							"text": "Pick an enemy unit in combat with your general. Subtract D6 from that unit’s control score this turn."
+						}
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "PREDATORY FIGHTERS",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Phase",
+					"declare": "Roll a dice for each enemy unit in combat with any friendly units.",
+					"effect": "On a 3+, inflict 1 mortal damage on the unit being rolled for."
+				},
+				{
+					"name": "TEMPLE-CITY GUARDIANS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly units have WARD (6+) while they are wholly within friendly territory."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "SOTEK'S GAZE",
+					"category": "control",
+					"timing": "End of Any Turn",
+					"effect": "Roll a dice. Add the roll to your general’s control score this turn."
+				},
+				{
+					"name": "BLADE OF REALITIES",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Rend characteristic of your general’s Relic Celestite Weapon."
+				},
+				{
+					"name": "ANCIENT STRATEGIST",
+					"category": "movement",
+					"timing": "Enemy Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
+					"effect": "That unit can use the ‘Normal Move’ ability as if it were your movement phase."
+				},
+				{
+					"name": "THE WRATH OF CHOTEC",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "The Attacks characteristic of your general’s Sunbolt Gauntlet is 6 instead of D6."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "saurus_oldblood_on_carnosaur",
+					"name": "Saurus Oldblood on Carnosaur",
+					"move": "10",
+					"health": 14,
+					"save": 4,
+					"control": 5,
+					"ranged_weapons": [
+						{
+							"name": "Sunbolt Gauntlet",
+							"range": 12,
+							"attacks": "D6",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Relic Celestite Weapon",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "Carnosaur’s Massive Jaws",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "BATTLE DAMAGED",
+							"category": "damage",
+							"timing": "Passive",
+							"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur’s Massive Jaws is 1."
+						},
+						{
+							"name": "ANCIENT WARLORD",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
+							"effect": "Until the start of your next turn, add 1 to charge rolls for the target."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"MONSTER"
+					]
+				},
+				{
+					"id": "saurus_warriors",
+					"name": "Saurus Warriors",
+					"move": "5",
+					"health": 2,
+					"save": 4,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Celestite Club",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "ORDERED COHORTS",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Add 1 to save rolls for this unit while it is contesting an objective you control."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "kroxigor",
+					"name": "Kroxigor",
+					"move": "5",
+					"health": 6,
+					"save": 4,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Drakebite Maul",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BRUTAL BLOWS",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "This unit’s melee weapons have Crit (2 Hits) if the target unit has 5 or more models."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				}
+			]
+		}
+	]
+}

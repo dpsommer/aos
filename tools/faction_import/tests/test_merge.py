@@ -398,6 +398,12 @@ def test_spearhead_general_token_suffix_is_stripped():
     assert s["general"] == "Test Captain"
 
 
+def test_spearhead_general_token_suffix_without_count_is_stripped():
+    army = [["General", "Test Captain with Venomites token"], ["Units", "2 Test Riders"]]
+    (s,) = merge.spearheads([spearhead(army, NAMES)], ["Test Captain"])
+    assert s["general"] == "Test Captain"
+
+
 def test_spearhead_designers_note_is_not_a_unit():
     (s,) = merge.spearheads([spearhead(TOKEN_ARMY, NAMES)], ["Test Captain"])
     assert [u["name"] for u in s["units"]] == ["Test Riders"]
@@ -514,6 +520,13 @@ def test_spearhead_count_after_with_stays_in_its_entry():
 def test_spearhead_token_suffix_becomes_notes():
     s = cities_spearhead(units="5 Freeguild Fusiliers with 1 Blackpowder Squire token")
     assert s["units"][0]["notes"] == "with 1 Blackpowder Squire token"
+
+
+def test_spearhead_token_suffix_without_count_becomes_notes():
+    names = ["Test Captain", "Sunblood Pack"]
+    army = [["General", "Test Captain"], ["Units", "1 Sunblood Pack with Venomites token"]]
+    (s,) = merge.spearheads([spearhead(army, names)], names)
+    assert s["units"][0] == {"count": 1, "name": "Sunblood Pack", "notes": "with Venomites token"}
 
 
 def test_spearhead_attached_model_suffix_becomes_notes():

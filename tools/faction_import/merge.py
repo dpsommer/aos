@@ -250,10 +250,11 @@ def spearheads(wh_list, bs_names):
         # Headings are "General" and "Units", or upper case (Ironjawz Bigmob). Not case-insensitive,
         # so "units" in a designer's note isn't taken for the heading.
         m = re.search(r"(?:General|GENERAL)\s+(.+?)\s+(?:Units|UNITS)\s+(.+)$", army, re.S)
-        # The general can carry token notes, e.g. "Jorvan Kreel (Thexa, the ash panther, is a token)"
-        # or "Mantrappers with 3 Gnoblar tokens, ...", and a designer's note, which joins the text.
+        # The general can carry token notes, e.g. "Jorvan Kreel (Thexa, the ash panther, is a token)",
+        # "Mantrappers with 3 Gnoblar tokens, ..." or "Sunblood Pack with Venomites token", and a
+        # designer's note, which joins the text.
         general, _, note = m.group(1).partition("\nDesigner’s Note:")
-        general = re.sub(r"(\s*\([^()]*\))+$|\s+with \d+ .+$", "", general)
+        general = re.sub(r"(\s*\([^()]*\))+$|\s+with (?:\d+ .+|.+ tokens?)$", "", general)
         general = resolve(canonical.get(norm(general), general), names)
         units = []
         # Entries start at a new cell or at a count, except a named character listed without one. A
@@ -261,8 +262,9 @@ def spearheads(wh_list, bs_names):
         for entry in re.split(r"\s*\n\s*|(?<!\bwith)\s+(?=\d+\s)", m.group(2)):
             count, name = re.match(r"(?:(\d+)\s+)?(.+)$", entry).groups()
             unit = {"count": int(count or 1), "name": name.strip()}
+            # A "with" suffix is a note if it has a count or names tokens ("with Venomites token").
             mm = re.match(r"(.+?)\s*\((.+)\)$", unit["name"]) or \
-                re.match(r"(.+?)\s+(with \d+ .+)$", unit["name"])
+                re.match(r"(.+?)\s+(with (?:\d+ .+|.+ tokens?))$", unit["name"])
             if mm:
                 unit["name"], unit["notes"] = mm.group(1), mm.group(2)
             unit["name"] = resolve(canonical.get(norm(unit["name"]), unit["name"]), names)

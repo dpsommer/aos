@@ -1,0 +1,2766 @@
+{
+	"warscrolls": [
+		{
+			"id": "aggradon_lancers",
+			"name": "Aggradon Lancers",
+			"points": 200,
+			"unit_size": 3,
+			"base_size": "75 × 42mm",
+			"can_reinforce": true,
+			"move": "10",
+			"health": 5,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Aggradon's Rending Bites and Striking Talons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Celestite Spear and Club",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Primal Rage",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"effect": "This unit must use this ability each turn.\nIf this unit used any FIGHT abilities this turn, place a rage token next to it, to a maximum of 3. If this unit did not use any FIGHT abilities this turn, remove all rage tokens it has.\nAdd 1 to the Attacks characteristic of this unit's Companion weapons for each rage token it has until the end of the next turn."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"CAVALRY",
+				"STANDARD BEARER (1/3)",
+				"MUSICIAN (1/3)",
+				"ORDER",
+				"SERAPHON",
+				"SAURUS"
+			]
+		},
+		{
+			"id": "bastiladon_with_ark_of_sotek",
+			"name": "Bastiladon with Ark of Sotek",
+			"points": 230,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "5",
+			"health": 12,
+			"save": 2,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Handlers' Meteoric Javelins",
+					"range": 12,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Bludgeoning Tail",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Ark of Sotek",
+					"range": 0,
+					"attacks": "20",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Mortal)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Ark of Sotek",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick up to 3 different enemy units within 9\" of this unit to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"SERAPHON",
+				"SKINK",
+				"MONSTER"
+			]
+		},
+		{
+			"id": "bastiladon_with_solar_engine",
+			"name": "Bastiladon with Solar Engine",
+			"points": 200,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "5",
+			"health": 12,
+			"save": 2,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Handlers' Meteoric Javelins",
+					"range": 12,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				},
+				{
+					"name": "Solar Engine",
+					"range": 18,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Bludgeoning Tail",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Tail Swipe",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a dice for each model in the target unit, to a maximum of 8. For each 5+, inflict 1 mortal damage on the target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"SKINK"
+			]
+		},
+		{
+			"id": "engine_of_the_gods",
+			"name": "Engine of the Gods",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "8",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Handlers' Meteoric Javelins",
+					"range": 12,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Stegadon's Horns and Jaws",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stegadon's Horns and Jaws is 4."
+				},
+				{
+					"name": "Crest of Horns",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
+					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Add 1 to save rolls for attacks made by that enemy unit that target this unit for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Cosmic Engine",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick if this unit will harness or reserve the power of its cosmic engine.",
+					"effect": "If it will reserve the power, place a cosmic power token next to this unit.\nIf it will harness the power, roll a dice and add the number of cosmic power tokens this unit has to the roll. Then, remove all cosmic power tokens this unit has and pick 1 of the following effects (if possible).",
+					"options": [
+						{
+							"name": "Healing Light",
+							"text": "On a 3+, you can Heal (D3) all friendly SERAPHON units wholly within 12\" of this unit."
+						},
+						{
+							"name": "Starlight Summons",
+							"text": "On a 5+, you can pick up to 3 friendly SERAPHON units wholly within 12\" of this unit. Return 1 slain model to each unit."
+						},
+						{
+							"name": "Time Slows",
+							"text": "On a 6+, you can pick up to 3 friendly SERAPHON units wholly within 12\" of this unit. Those units have STRIKE-FIRST for the rest of the turn."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"SKINK"
+			]
+		},
+		{
+			"id": "hunters_of_huanchi_with_dartpipes",
+			"name": "Hunters of Huanchi with Dartpipes",
+			"points": 80,
+			"unit_size": 5,
+			"base_size": "1/5 28.5mm (Champion)\n4/5 25mm",
+			"can_reinforce": true,
+			"move": "8",
+			"health": 1,
+			"save": 6,
+			"control": 1,
+			"ward": 5,
+			"ranged_weapons": [
+				{
+					"name": "Dartpipe",
+					"range": 10,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Feeble Claws",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Hidden Hunters",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick this unit if it has not been deployed.",
+					"effect": "Set up this unit in reserve in ambush. It has now been deployed.",
+					"keywords": [
+						"DEPLOY"
+					]
+				},
+				{
+					"name": "Star-venom",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Dartpipe to be the target.",
+					"effect": "Roll a dice. On a 2+, subtract 1 from wound rolls for the target's combat attacks for the rest of the turn."
+				},
+				{
+					"name": "Chameleon Ambush",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "Pick this unit if it is in ambush.",
+					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units."
+				}
+			],
+			"keywords": [
+				"SERAPHON",
+				"ORDER",
+				"MUSICIAN (1/5)",
+				"SKINK",
+				"INFANTRY",
+				"WARD (5+)",
+				"CHAMPION (1/5)"
+			]
+		},
+		{
+			"id": "hunters_of_huanchi_with_starstone_bolas",
+			"name": "Hunters of Huanchi with Starstone Bolas",
+			"points": 90,
+			"unit_size": 5,
+			"base_size": "2/5 28.5mm (Champion, Hunter Javelin)\n3/5 25mm",
+			"can_reinforce": true,
+			"move": "8",
+			"health": 1,
+			"save": 6,
+			"control": 1,
+			"ward": 5,
+			"ranged_weapons": [
+				{
+					"name": "Hunter Javelin",
+					"range": 10,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Starstone Bolas",
+					"range": 10,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Hunter Javelin",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 4,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Moonstone Club",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Starstone Bolas",
+					"category": "movement",
+					"timing": "Any Shooting Phase",
+					"declare": "Pick an enemy unit that was targeted by this unit's Starstone Bolas this turn to be the target.",
+					"effect": "Roll a dice. On a 3+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
+				},
+				{
+					"name": "Hidden Hunters",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick this unit if it has not been deployed.",
+					"effect": "Set up this unit in reserve in ambush. It has now been deployed.",
+					"keywords": [
+						"DEPLOY"
+					]
+				},
+				{
+					"name": "Chameleon Ambush",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "Pick this unit if it is in ambush.",
+					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"ORDER",
+				"CHAMPION (1/5)",
+				"MUSICIAN (1/5)",
+				"WARD (5+)",
+				"SERAPHON",
+				"SKINK"
+			],
+			"composition": "Each model in this unit is armed with Starstone Bolas and a Moonstone Club. 1/5 models can replace their weapons with a Hunter Javelin. The champion cannot replace their weapons."
+		},
+		{
+			"id": "kroxigor",
+			"name": "Kroxigor",
+			"points": 200,
+			"unit_size": 3,
+			"base_size": "50mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Moonstone Hammer",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)"
+					]
+				},
+				{
+					"name": "Drakebite Maul",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Brutal Blows",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons for attacks that target an enemy unit that has 10 or more models."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"ORDER",
+				"SERAPHON",
+				"KROXIGOR"
+			],
+			"composition": "Each model in this unit is armed with a Drakebite Maul. 1/3 models can replace their Drakebite Maul with a Moonstone Hammer."
+		},
+		{
+			"id": "kroxigor_warspawned",
+			"name": "Kroxigor Warspawned",
+			"points": 200,
+			"unit_size": 3,
+			"base_size": "50mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Starfang Warpick",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Drakefang Warpick",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Spawn of Sotek",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit is wholly within 12\" of any friendly SKINK INFANTRY or SKINK CAVALRY units in combat."
+				},
+				{
+					"name": "Heavy-scaled Skin",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from the Rend characteristic of ranged weapons used for shooting attacks that target this unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"ORDER",
+				"SERAPHON",
+				"KROXIGOR"
+			],
+			"composition": "Each model in this unit is armed with a Drakefang Warpick. 1/3 models can replace their Drakefang Warpick with a Starfang Warpick."
+		},
+		{
+			"id": "lord_kroak",
+			"name": "Lord Kroak",
+			"points": 410,
+			"unit_size": 1,
+			"base_size": "80mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Skink Starpriest, Skink Starseer or Favoured Spawning",
+				"Any SERAPHON"
+			],
+			"move": "5",
+			"health": 18,
+			"save": 4,
+			"control": 5,
+			"ward": 4,
+			"ranged_weapons": [
+				{
+					"name": "Gaze of Kroak",
+					"range": 12,
+					"attacks": "1",
+					"hit": 2,
+					"wound": 3,
+					"rend": 2,
+					"damage": "D6",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Azyrite Force Barrier",
+					"range": 0,
+					"attacks": "2D6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Arcane Vassal",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick a friendly SKINK WIZARD wholly within 18\" of this unit to be the target.",
+					"effect": "Measure the range and visibility of the next SPELL ability used by this unit this phase from the target instead of from this unit. The target is treated as the caster for the purpose of other abilities or spell effects, such as 'Unbind' or 'The Earth Trembles'."
+				},
+				{
+					"name": "Supreme Master of Order",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 2 to casting rolls, and add 1 to unbinding rolls and banishment rolls for this unit. In addition, this unit can use an UNBIND ability if an enemy WIZARD anywhere on the battlefield uses a SPELL ability instead of an enemy WIZARD within 30\" of this unit, and when using the 'Banish Manifestation' ability, this unit can pick a manifestation anywhere on the battlefield instead of within 30\" of it."
+				},
+				{
+					"name": "Dead for Innumerable Ages",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"effect": "This unit must use this ability each turn while it is damaged. Roll 3D6 and add the number of damage points this unit has to the roll. On a 20+, this unit is destroyed. Otherwise, Heal (18) this unit."
+				},
+				{
+					"name": "Celestial Deliverance",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "This unit can cast this spell more than once per phase. Pick up to 3 different visible enemy units within 18\" of this unit to be the targets, then make a casting roll of 2D6.",
+					"effect": "Inflict D3 mortal damage on each target.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			],
+			"keywords": [
+				"UNIQUE",
+				"HERO",
+				"FLY",
+				"WARMASTER",
+				"ORDER",
+				"WIZARD (3)",
+				"WARD (4+)",
+				"SERAPHON",
+				"SLANN"
+			]
+		},
+		{
+			"id": "raptadon_chargers",
+			"name": "Raptadon Chargers",
+			"points": 140,
+			"unit_size": 5,
+			"base_size": "60 × 35mm",
+			"can_reinforce": true,
+			"move": "12",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Raptadon's Serrated Fangs",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Tepok Lance",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Cold-blooded Unity",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to hit rolls for this unit's combat attacks if they target an enemy unit that was targeted by shooting attacks made by a friendly Raptadon Hunters unit in the same turn."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"ORDER",
+				"STANDARD BEARER (1/5)",
+				"MUSICIAN (1/5)",
+				"SKINK",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "raptadon_hunters",
+			"name": "Raptadon Hunters",
+			"points": 120,
+			"unit_size": 5,
+			"base_size": "60 × 35mm",
+			"can_reinforce": true,
+			"move": "12",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Starstone Atlatl",
+					"range": 12,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 2,
+					"damage": "1"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Raptadon's Serrated Fangs",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Weighted Moonstone Club",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Deadly Cohesion",
+					"category": "shooting",
+					"timing": "Any Charge Phase",
+					"declare": "If this unit is not in combat, pick a friendly Raptadon Chargers unit that charged this turn and is within 12\" of this unit to be the target.",
+					"effect": "This unit can use a SHOOT ability as if it were your shooting phase. It must target a visible enemy unit in combat with the target."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"ORDER",
+				"STANDARD BEARER (1/5)",
+				"MUSICIAN (1/5)",
+				"SKINK",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "realmshaper_engine",
+			"name": "Realmshaper Engine",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "Use model",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 15,
+			"save": 4,
+			"control": 0,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Fierce Guardians",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to hit rolls for combat attacks made by friendly SAURUS or KROXIGOR units that target an enemy unit while that enemy unit is within 9\" of this terrain feature."
+				},
+				{
+					"name": "Power Unleashed",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "If there are any friendly SERAPHON WIZARDS within 3\" of this terrain feature, pick another terrain feature within 24\" of this terrain feature, then pick up to 3 enemy units within 3\" of that terrain feature to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If that terrain feature has a Health characteristic, inflict D3 mortal damage on it."
+				}
+			],
+			"keywords": [
+				"FACTION TERRAIN",
+				"SERAPHON",
+				"ORDER"
+			],
+			"composition": "The following universal terrain abilities apply to this terrain feature (Terrain, 1.2): Cover, Unstable"
+		},
+		{
+			"id": "ripperdactyl_chief",
+			"name": "Ripperdactyl Chief",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 MONSTER",
+				"0-1 BEAST",
+				"Any SKINK CAVALRY"
+			],
+			"move": "14",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Skyblade",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Ripperdactyl's Tearing Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Blot Toad",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "You receive 1 Blot Toad token for each Ripperdactyl Chief or Ripperdactyl Riders unit in your army, to a maximum of 3 tokens. Pick a number of enemy units equal to the number of Blot Toads you have to be the targets.",
+					"effect": "Place a Blot Toad next to each target."
+				},
+				{
+					"name": "Toad Rage",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic of this unit's Ripperdactyl's Tearing Jaws while it is in combat with any units that have a Blot Toad."
+				},
+				{
+					"name": "Ripperdactyl Assault",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Add 1 to the Attacks characteristic of Moonstone Warspears used by friendly Ripperdactyl Riders units wholly within 12\" of this unit for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"SKINK",
+				"CAVALRY",
+				"FLY"
+			]
+		},
+		{
+			"id": "ripperdactyl_riders",
+			"name": "Ripperdactyl Riders",
+			"points": 100,
+			"unit_size": 3,
+			"base_size": "50mm",
+			"can_reinforce": true,
+			"move": "14",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Moonstone Warspear",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Anti-CAVALRY (+1 Rend)"
+					]
+				},
+				{
+					"name": "Ripperdactyl's Tearing Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Toad Rage",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic of this unit's Ripperdactyl's Tearing Jaws while it is in combat with any units that have a Blot Toad."
+				},
+				{
+					"name": "Blot Toad",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "You receive 1 Blot Toad token for each Ripperdactyl Chief or Ripperdactyl Riders unit in your army, to a maximum of 3 tokens. Pick a number of enemy units equal to the number of Blot Toads you have to be the targets.",
+					"effect": "Place a Blot Toad next to each target."
+				},
+				{
+					"name": "Dispersed Formation",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit has a coherency range of 2\"."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"ORDER",
+				"CAVALRY",
+				"FLY",
+				"SKINK"
+			]
+		},
+		{
+			"id": "ripperdactyl_riders_2_models",
+			"name": "Ripperdactyl Riders (2 Models)",
+			"points": 70,
+			"unit_size": 2,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"notes": "You can include 1 unit of this type for each Ripperdactyl Chief in your army. This unit cannot be reinforced.",
+			"move": "14",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Moonstone Warspear",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Anti-CAVALRY (+1 Rend)"
+					]
+				},
+				{
+					"name": "Ripperdactyl's Tearing Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Toad Rage",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic of this unit's Ripperdactyl's Tearing Jaws while it is in combat with any units that have a Blot Toad."
+				},
+				{
+					"name": "Blot Toad",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "You receive 1 Blot Toad token for each Ripperdactyl Chief or Ripperdactyl Riders unit in your army, to a maximum of 3 tokens. Pick a number of enemy units equal to the number of Blot Toads you have to be the targets.",
+					"effect": "Place a Blot Toad next to each target."
+				},
+				{
+					"name": "Dispersed Formation",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit has a coherency range of 2\"."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"ORDER",
+				"CAVALRY",
+				"FLY",
+				"SKINK"
+			]
+		},
+		{
+			"id": "saurus_astrolith_bearer",
+			"name": "Saurus Astrolith Bearer",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any SAURUS"
+			],
+			"notes": "This HERO can join an eligible regiment as a Favoured Spawning.",
+			"move": "5",
+			"health": 6,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Celestite Warclub",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Celestial Conduit",
+					"category": "control",
+					"timing": "Reaction: You declared a SPELL ability for a friendly SERAPHON WIZARD wholly within 12\" of this unit",
+					"effect": "If that spell is successfully cast, for the rest of the turn, add 3 to the control scores of friendly SERAPHON units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Revivifying Energies",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly SERAPHON INFANTRY units have Ward (6+) while they are wholly within 12\" of this unit. If a unit already has WARD (6+), it has WARD (5+) instead."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"INFANTRY",
+				"SAURUS"
+			]
+		},
+		{
+			"id": "saurus_guard",
+			"name": "Saurus Guard",
+			"points": 110,
+			"unit_size": 5,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 2,
+			"save": 3,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Celestite Polearm",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Selfless Protectors",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While any friendly SLANN units are within this unit's combat range, both this unit and those SLANN units have Ward (5+)."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"SAURUS",
+				"ORDER",
+				"INFANTRY",
+				"STANDARD BEARER (1/5)",
+				"MUSICIAN (1/5)"
+			]
+		},
+		{
+			"id": "saurus_oldblood",
+			"name": "Saurus Oldblood",
+			"points": 80,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Favoured Spawning",
+				"Any SERAPHON"
+			],
+			"move": "5",
+			"health": 7,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Relic Celestite Weapon",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Predatory Exemplar",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"effect": "Pick a friendly non-HERO SAURUS INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the FIGHT ability used by this unit has been resolved."
+				},
+				{
+					"name": "Wrath of the Seraphon",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "For the rest of the turn, add 1 to wound rolls for combat attacks made by friendly SAURUS INFANTRY units while they are wholly within 12\" of this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"SAURUS",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "saurus_oldblood_on_carnosaur",
+			"name": "Saurus Oldblood on Carnosaur",
+			"points": 210,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Favoured Spawning",
+				"Any SERAPHON"
+			],
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Sunbolt Gauntlet",
+					"range": 12,
+					"attacks": "D6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Sunstone Spear",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				},
+				{
+					"name": "Carnosaur's Massive Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Carnosaur's Clawed Forelimbs",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Terror",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Subtract 2 from the control scores of enemy units while they are in combat with this unit."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur's Massive Jaws is 2."
+				},
+				{
+					"name": "Spearhead of the Charge",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "If this unit charged this turn, add 1 to charge rolls for friendly SAURUS units while they are wholly within 18\" of this unit for the rest of the turn."
+				},
+				{
+					"name": "Blood Frenzy",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit is in combat with any damaged enemy MONSTERS, roll a dice. On a 3+, this unit has STRIKE-FIRST for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"SAURUS"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_saurus_oldblood_on_carnosaur",
+			"name": "Saurus Oldblood on Carnosaur",
+			"source": "Scourge of Ghyran",
+			"points": 320,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Favoured Spawning",
+				"Any SERAPHON"
+			],
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Sunstone Spear and Sunbolt Gauntlet",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				},
+				{
+					"name": "Carnosaur's Massive Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Carnosaur's Clawed Forelimbs",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Alpha Predator",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Friendly Aggradon Lancers do not lose rage tokens at the end of the turn while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur's Massive Jaws is 2."
+				},
+				{
+					"name": "Frenzied by Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Damage characteristic of this unit's Companion weapons while it is within 6\" of any damaged enemy units or while it is within 6\" of any enemy units that had any models slain in the same turn."
+				},
+				{
+					"name": "Thunderous Roar",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"SAURUS"
+			]
+		},
+		{
+			"id": "saurus_scar_veteran_on_aggradon",
+			"name": "Saurus Scar-Veteran on Aggradon",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "90 × 52mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Favoured Spawning",
+				"Any SAURUS"
+			],
+			"move": "10",
+			"health": 8,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Celestite Spear or Club",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				},
+				{
+					"name": "Aggradon's Rending Bites and Striking Talons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Primal Rage",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"effect": "This unit must use this ability each turn.\nIf this unit used any FIGHT abilities this turn, place a rage token next to it, to a maximum of 3. If this unit did not use any FIGHT abilities this turn, remove all rage tokens it has.\nAdd 1 to the Attacks characteristic of this unit's Companion weapons for each rage token it has until the end of the next turn."
+				},
+				{
+					"name": "Alpha Roar",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick this unit and each friendly Aggradon Lancers unit wholly within 12\" of it to be the targets.",
+					"effect": "Add 1 to the Attacks characteristic of the targets' Companion weapons for the rest of the turn. In addition, place a rage token next to each target, to a maximum of 3 per unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"SAURUS",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_saurus_scar_veteran_on_aggradon",
+			"name": "Saurus Scar-Veteran on Aggradon",
+			"source": "Scourge of Aqshy",
+			"points": 130,
+			"unit_size": 1,
+			"base_size": "90 × 52mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Favoured Spawning",
+				"Any SAURUS"
+			],
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "10",
+			"health": 8,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Celestite Spear or Club",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				},
+				{
+					"name": "Aggradon's Rending Bites and Striking Talons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "The Hunt Begins",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick this unit and up to 1 friendly SERAPHON CAVALRY unit if those units have not been deployed.",
+					"effect": "Set up that friendly CAVALRY unit in reserve stalking the prey. Then, either set up this unit in reserve stalking the prey or set up this unit wholly within friendly territory and more than 9\" from enemy territory. Those units have now been deployed.",
+					"keywords": [
+						"DEPLOY"
+					]
+				},
+				{
+					"name": "Saurian Ambush",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "This unit can use this ability even if it is in reserve. Pick each friendly unit that is stalking the prey to be the targets.",
+					"effect": "Set up the targets on the battlefield wholly within 7\" of the battlefield edge and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Reptilian Instincts",
+					"category": "movement",
+					"timing": "Reaction: Opponent declared a SHOOT ability",
+					"effect": "This unit can use this ability even if it is in reserve. Pick each friendly unit that is stalking the prey to be the targets.\nAfter that SHOOT ability has been resolved, set up each target on the battlefield more than 9\" from all enemy units and within 18\" of the unit that used the SHOOT ability.\nThen, you can spend up to 3 rage dice. If you do:\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\n• Each target can move up to X\", where X is the number of rage dice spent. It must end that move no further from the unit that used the SHOOT ability than it was at the start of the move.\nThen, for the rest of the turn, each time a target uses a CHARGE ability, it must end that charge move in combat with the unit that used the SHOOT ability"
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"SAURUS",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "saurus_scar_veteran_on_carnosaur",
+			"name": "Saurus Scar-Veteran on Carnosaur",
+			"points": 190,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Favoured Spawning",
+				"0-1 MONSTER",
+				"Any SAURUS"
+			],
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Relic Celestite Weapon",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Carnosaur's Massive Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Carnosaur's Clawed Forelimbs",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Terror",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Subtract 2 from the control scores of enemy units while they are in combat with this unit."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur's Massive Jaws is 2."
+				},
+				{
+					"name": "Maim and Tear",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy HERO in combat with this unit to be the target.",
+					"effect": "Roll a number of dice equal to the number of damage points the target has. For each 5+, inflict 1 mortal damage on the target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"SAURUS"
+			]
+		},
+		{
+			"id": "saurus_warriors",
+			"name": "Saurus Warriors",
+			"points": 140,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 2,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Celestite Weapon",
+					"range": 0,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Ordered Cohorts",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Add 1 to save rolls for this unit while each model in this unit is contesting an objective you control."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"SAURUS",
+				"ORDER",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "skink_oracle_on_troglodon",
+			"name": "Skink Oracle on Troglodon",
+			"points": 200,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 MONSTER",
+				"Any BEAST",
+				"Any KROXIGOR",
+				"Any non- MONSTER SKINK"
+			],
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Troglodon's Noxious Spittle",
+					"range": 15,
+					"attacks": "D6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Shoot in Combat",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Divining Rod",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "D3"
+				},
+				{
+					"name": "Troglodon's Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Crit (Mortal)",
+						"Companion"
+					]
+				},
+				{
+					"name": "Troglodon's Talons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Terror",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Subtract 2 from the control scores of enemy units while they are in combat with this unit."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Troglodon's Jaws is 2."
+				},
+				{
+					"name": "Troglodon Regeneration",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"effect": "Heal (D3) this unit."
+				},
+				{
+					"name": "Noxious Roar",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
+					"effect": "Roll a dice for each target. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"WIZARD (1)",
+				"SKINK"
+			]
+		},
+		{
+			"id": "skinks",
+			"name": "Skinks",
+			"points": 70,
+			"unit_size": 10,
+			"base_size": "25mm",
+			"can_reinforce": true,
+			"move": "8",
+			"health": 1,
+			"save": 6,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Javelins and Boltspitters",
+					"range": 12,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Celestite Daggers and Moonstone Clubs",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Swift and Nimble",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "When this unit uses the 'Redeploy' command, when determining the distance this unit can move, you can roll 2 dice instead of 1 and pick either result."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"ORDER",
+				"INFANTRY",
+				"SKINK"
+			]
+		},
+		{
+			"id": "skink_starpriest",
+			"name": "Skink Starpriest",
+			"points": 90,
+			"unit_size": 1,
+			"base_size": "25mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 MONSTER",
+				"Any BEAST",
+				"Any KROXIGOR",
+				"Any non- MONSTER SKINK"
+			],
+			"notes": "This HERO can join Lord Kroak’s or a Slann Starmaster’s regiment.",
+			"move": "8",
+			"health": 5,
+			"save": 6,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Serpent Staff",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Serpent Staff",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly SERAPHON unit wholly within 18\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 2+, the target's melee weapons have Crit (Auto-wound) until the start of your next turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"SKINK",
+				"WIZARD (1)",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "skink_starseer",
+			"name": "Skink Starseer",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 MONSTER",
+				"Any BEAST",
+				"Any KROXIGOR",
+				"Any non- MONSTER SKINK"
+			],
+			"notes": "This HERO can join Lord Kroak’s or a Slann Starmaster’s regiment.",
+			"move": "5",
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Astromancer's Staff",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Scry the Stars",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "Roll a number of dice equal to the current battle round number. For each 3+, pick a friendly SERAPHON unit wholly within 18\" of this unit. That unit has WARD (5+) until the start of your next turn."
+				},
+				{
+					"name": "Celestial Doom",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 18\" to be the target, then make a casting roll of 2D6.",
+					"effect": "Ward rolls cannot be made for the target for the rest of the turn.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"SKINK",
+				"INFANTRY",
+				"WIZARD (2)",
+				"FLY"
+			]
+		},
+		{
+			"id": "slann_starmaster",
+			"name": "Slann Starmaster",
+			"points": 260,
+			"unit_size": 1,
+			"base_size": "80mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Skink Starpriest, Skink Starseer or Favoured Spawning",
+				"Any SERAPHON"
+			],
+			"move": "5",
+			"health": 9,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Azure Lightning",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Masters of Order",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Add 1 to casting rolls for this unit. In addition, this unit can use an UNBIND ability if an enemy WIZARD anywhere on the battlefield uses a SPELL ability instead of an enemy WIZARD within 30\" of this unit, and when using the 'Banish Manifestation' ability, this unit can pick a manifestation anywhere on the battlefield instead of within 30\" of it."
+				},
+				{
+					"name": "Celestial Reinforcements",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly SERAPHON unit that started the battle with 3 or more models and that has been destroyed to be the target.",
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Celestial Equilibrium",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Make a casting roll of 2D6.",
+					"effect": "For the rest of the turn, add 1 to casting rolls made for other friendly SERAPHON WIZARDS while they are wholly within 12\" of this unit.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "Arcane Vassal",
+					"category": "special",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick a friendly SKINK WIZARD wholly within 18\" of this unit to be the target.",
+					"effect": "Measure the range and visibility of the next SPELL ability used by this unit this phase from the target instead of from this unit. The target is treated as the caster for the purpose of other abilities or spell effects, such as 'Unbind' or 'The Earth Trembles'."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"FLY",
+				"ORDER",
+				"WIZARD (3)",
+				"SERAPHON",
+				"SLANN",
+				"WARD (6+)",
+				"INFANTRY",
+				"WARMASTER"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_slann_starmaster",
+			"name": "Slann Starmaster",
+			"source": "Scourge of Aqshy",
+			"points": 230,
+			"unit_size": 1,
+			"base_size": "80mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Skink Starpriest, Skink Starseer or Favoured Spawning",
+				"Any SERAPHON"
+			],
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "5",
+			"health": 9,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Azure Lightning",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Cometary Alignment",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "Pick a battle round. At the start of that battle round, set your and your opponent's fury levels to 7. Then, at the start of the battle round after the one you picked, set your and your opponent's fury levels to 1"
+				},
+				{
+					"name": "Arcane Aureole",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly MANIFESTATION wholly within 18\" of this unit to be the target.",
+					"effect": "Spend up to 3 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, for the rest of the turn, add X to the Damage characteristic of the target's melee weapons, where X is the number of rage dice spent."
+				},
+				{
+					"name": "Celestial Unmaking",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+					"effect": "Until the start of your next turn, other than the Companion weapon ability, weapon abilities for the target's attacks have no effect.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"FLY",
+				"ORDER",
+				"WIZARD (3)",
+				"SERAPHON",
+				"SLANN",
+				"WARD (6+)",
+				"INFANTRY",
+				"WARMASTER"
+			]
+		},
+		{
+			"id": "spawn_of_chotec",
+			"name": "Spawn of Chotec",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "Spawn of Chotec: 90 × 52mm, 3 × Sun Acolytes: 25mm",
+			"can_reinforce": false,
+			"move": "5",
+			"health": 8,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Stream of Fire",
+					"range": 10,
+					"attacks": "5",
+					"hit": 2,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				},
+				{
+					"name": "Glob of Flame Acid",
+					"range": 16,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3+3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Fiery Maw",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Acid-fuelled Flame",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a SHOOT ability, you must pick either its Glob of Flame Acid or its Stream of Fire ranged weapon.\nIn addition, after resolving shooting attacks made with this unit's Glob of Flame Acid, if any damage points were allocated to an enemy unit by those attacks, subtract 1 from save rolls for that enemy unit for the rest of the turn."
+				},
+				{
+					"name": "Sun Acolytes",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "This unit has a crew of 3 Sun Acolytes that are tokens.\nAdd 1 to this unit's control score for each Sun Acolyte it has. If this unit has no Sun Acolytes, it has a maximum control score of 1 for the rest of the battle.\nEach time you make an unmodified save roll of 1 for this unit, remove 1 of its Sun Acolytes from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"SERAPHON",
+				"BEAST",
+				"SKINK"
+			]
+		},
+		{
+			"id": "stegadon",
+			"name": "Stegadon",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "8",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Handlers' Meteoric Javelins",
+					"range": 12,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				},
+				{
+					"name": "Skystreak Bow",
+					"range": 18,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Sunfire Throwers",
+					"range": 10,
+					"attacks": "2D6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Stegadon's Horns and Jaws",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stegadon's Horns and Jaws is 4."
+				},
+				{
+					"name": "Unstoppable Stampede",
+					"category": "special",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this phase, pick an enemy INFANTRY unit in combat with it to be the target.",
+					"effect": "Inflict D3 mortal damage on the target. Then, this unit can move 2D6\". This unit can pass through models in the target unit but must end that move in combat.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"SKINK"
+			],
+			"composition": "This unit is armed with Handlers’ Meteoric Javelins and Stegadon’s Horns and Jaws, and 1 of the following options: Skystreak Bow Sunfire Throwers"
+		},
+		{
+			"id": "stegadon_chief",
+			"name": "Stegadon Chief",
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 MONSTER",
+				"Any BEAST",
+				"Any KROXIGOR",
+				"Any non- MONSTER SKINK"
+			],
+			"move": "8",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Handlers' Meteoric Javelins",
+					"range": 12,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				},
+				{
+					"name": "Skystreak Bow",
+					"range": 18,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Sunfire Throwers",
+					"range": 10,
+					"attacks": "2D6",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Meteoric Warspear",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				},
+				{
+					"name": "Stegadon's Horns and Jaws",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Skink Coordination",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "If a friendly non-MONSTER SKINK unit uses the 'Redeploy' command while it is wholly within 18\" of this unit, no command points are spent."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stegadon's Horns and Jaws is 4."
+				},
+				{
+					"name": "Crushing Stomps",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Add 2 to the amount of mortal damage inflicted, if any, if this unit charged this turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"MONSTER",
+				"SKINK"
+			],
+			"composition": "This unit is armed with a Meteoric Warspear, Handlers’ Meteoric Javelins, Stegadon’s Horns and Jaws, and 1 of the following options: Skystreak Bow Sunfire Throwers"
+		},
+		{
+			"id": "sunblood_pack",
+			"name": "Sunblood Pack",
+			"points": 150,
+			"unit_size": 3,
+			"base_size": "Sunblood: 40mm, 2 × Saurus Bodyguard: 32mm, Venomites: 25mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any SERAPHON"
+			],
+			"notes": "This HERO can join an eligible regiment as a Favoured Spawning. This unit cannot be reinforced.",
+			"move": "5",
+			"health": 3,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Celestite Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Starspawned",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore the first damage point that would be allocated to friendly SAURUS and KROXIGOR units each phase while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Venomite Swarm",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "If this unit's Venomites token is on the battlefield, roll a D3.\nOn a 1, remove this unit's Venomites token from the battlefield. On a\n2+, inflict an amount of mortal damage on the target equal to the roll."
+				},
+				{
+					"name": "Scaled Protectors",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore negative and positive modifiers to save rolls for this unit."
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"SERAPHON",
+				"SAURUS",
+				"HERO",
+				"INFANTRY"
+			],
+			"composition": "The models in this unit are 1 Sunblood and 2 Saurus Bodyguard. Each model is armed with Celestite Weapons. This unit’s Venomites are a token."
+		},
+		{
+			"id": "terradon_chief",
+			"name": "Terradon Chief",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 MONSTER",
+				"0-1 BEAST",
+				"Any SKINK CAVALRY"
+			],
+			"move": "14",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Skyblade",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 4,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Terradon's Razor-sharp Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Chief's Deadly Cargo",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+					"effect": "Roll a dice and add 2 to the roll if this unit is within the combat ranges of any friendly Terradon Riders units.\nOn a 5+:\n• Inflict D3 mortal damage on the target.\n• If any damage points are allocated by this ability and the target does not have FLY, the target cannot use RUN abilities until the start of your next turn."
+				},
+				{
+					"name": "Attack from On High",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"SERAPHON",
+				"SKINK",
+				"CAVALRY",
+				"FLY"
+			]
+		},
+		{
+			"id": "terradon_riders",
+			"name": "Terradon Riders",
+			"points": 90,
+			"unit_size": 3,
+			"base_size": "50mm",
+			"can_reinforce": true,
+			"move": "14",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Javelins and Bolas",
+					"range": 10,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Terradon's Razor-sharp Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Attack from On High",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
+				},
+				{
+					"name": "Deadly Cargo",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+					"effect": "Roll a dice for each model in this unit, and add 2 to each roll if this unit is within the combat ranges of any friendly Terradon Chief units. For each 5+:\n• Inflict 1 mortal damage on the target.\n• If any damage points are allocated by this ability and the target does not have FLY, the target cannot use RUN abilities until the start of your next turn."
+				},
+				{
+					"name": "Dispersed Formation",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit has a coherency range of 2\"."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"ORDER",
+				"CAVALRY",
+				"FLY",
+				"SKINK"
+			]
+		},
+		{
+			"id": "terradon_riders_2_models",
+			"name": "Terradon Riders (2 Models)",
+			"points": 70,
+			"unit_size": 2,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"notes": "You can include 1 unit of this type for each Terradon Chief in your army. This unit cannot be reinforced.",
+			"move": "14",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Javelins and Bolas",
+					"range": 10,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Terradon's Razor-sharp Jaws",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Attack from On High",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
+				},
+				{
+					"name": "Deadly Cargo",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+					"effect": "Roll a dice for each model in this unit, and add 2 to each roll if this unit is within the combat ranges of any friendly Terradon Chief units. For each 5+:\n• Inflict 1 mortal damage on the target.\n• If any damage points are allocated by this ability and the target does not have FLY, the target cannot use RUN abilities until the start of your next turn."
+				},
+				{
+					"name": "Dispersed Formation",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit has a coherency range of 2\"."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"SERAPHON",
+				"ORDER",
+				"CAVALRY",
+				"FLY",
+				"SKINK"
+			]
+		},
+		{
+			"id": "terrawings",
+			"name": "Terrawings",
+			"points": 70,
+			"unit_size": 3,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "12",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Snapping Beaks",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Nerve-shredding Screeches",
+					"category": "special",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick an enemy unit within 10\" of this unit to be the target.",
+					"effect": "Roll a D3. If the roll exceeds the target's Control characteristic, the target cannot use commands for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"SERAPHON",
+				"ORDER",
+				"BEAST",
+				"FLY"
+			]
+		},
+		{
+			"id": "the_jaws_of_itzl",
+			"name": "The Jaws of Itzl",
+			"legends": true,
+			"points": 120,
+			"unit_size": 3,
+			"base_size": "Kro-Jax, the Aegis: 40mm, So-Kar, Ro-Tak, the Guardian: 32mm, Sotek’s Venomites: 25mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "5",
+			"health": 3,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Celestite Weapon",
+					"range": 0,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				},
+				{
+					"name": "Relic Celestite Warmace",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Scaled Protectors",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit's Kro-Jax is on the battlefield, ignore the first damage point that would be allocated to this unit in each phase."
+				},
+				{
+					"name": "Venomite Swarm",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "This unit's Sotek's Venomites is a token. If this unit's Sotek's Venomites is on the battlefield, roll a D3. On a 1, remove this unit's Sotek's Venomites from the battlefield. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"INFANTRY",
+				"UNIQUE",
+				"SERAPHON",
+				"SAURUS"
+			],
+			"composition": "The models in this unit are: Kro-Jax, the Aegis (armed with a Relic Celestite Warmace) So-Kar (armed with a Celestite Weapon) Ro-Tak, the Guardian (armed with a Celestite Weapon)"
+		},
+		{
+			"id": "the_starblood_stalkers",
+			"name": "The Starblood Stalkers",
+			"legends": true,
+			"points": 110,
+			"unit_size": 6,
+			"base_size": "Klaq-Trok: 32mm, Kixi-Taka, the Diviner, Otapatl, Huachi, Tok and Xepic: 25mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "8",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Relic Celestite Weapon",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Starblood Weapons",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Klaq-Trok",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit's Klaq-Trok is on the battlefield, ignore the first damage point that would be allocated to this unit each phase."
+				},
+				{
+					"name": "Kixi-Taka, the Diviner",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "While this unit's Kixi-Taka, the Diviner, is on the battlefield, it has WIZARD (1)."
+				},
+				{
+					"name": "Otapatl's Dartpipe",
+					"category": "control",
+					"timing": "Your Shooting Phase",
+					"declare": "If this unit's Otapatl is on the battlefield, pick a visible enemy unit within 18\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 4+, inflict 1 mortal damage on the target."
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"INFANTRY",
+				"UNIQUE",
+				"CHAMPION",
+				"SERAPHON",
+				"SKINK",
+				"SAURUS"
+			],
+			"composition": "The models in this unit are: Kixi-Taka, the Diviner (champion, armed with Starblood Weapons) Otapatl (armed with Starblood Weapons) Huachi (armed with Starblood Weapons) Tok (armed with Starblood Weapons) Xepic (armed with Starblood Weapons) Klaq-Trok (armed with a Relic Celestite Weapon)"
+		}
+	]
+}

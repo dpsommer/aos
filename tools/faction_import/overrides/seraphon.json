@@ -1,0 +1,11 @@
+{
+	"fields": {
+		"ripperdactyl_riders_2_models": {"unit_size": 2},
+		"terradon_riders_2_models": {"unit_size": 2},
+		"spawn_of_chotec": {"base_size": "Spawn of Chotec: 90 × 52mm, 3 × Sun Acolytes: 25mm"},
+		"sunblood_pack": {"base_size": "Sunblood: 40mm, 2 × Saurus Bodyguard: 32mm, Venomites: 25mm"},
+		"the_jaws_of_itzl": {"base_size": "Kro-Jax, the Aegis: 40mm, So-Kar, Ro-Tak, the Guardian: 32mm, Sotek’s Venomites: 25mm"},
+		"the_starblood_stalkers": {"base_size": "Klaq-Trok: 32mm, Kixi-Taka, the Diviner, Otapatl, Huachi, Tok and Xepic: 25mm"},
+		"Kixi-Taka, the Diviner": {"effect": "While this unit's Kixi-Taka, the Diviner, is on the battlefield, it has WIZARD (1)."}
+	}
+}
