@@ -99,6 +99,8 @@ static func warscroll(unit: Warscroll) -> String:
 
 static func faction_rules(faction: Faction) -> String:
 	var parts := PackedStringArray()
+	if faction.legends:
+		parts.append("[i]Legends[/i]")
 	if not faction.battle_traits.is_empty():
 		parts.append("%s\n\n%s" % [heading("Battle Traits"), abilities(faction.battle_traits)])
 	for formation in faction.battle_formations:

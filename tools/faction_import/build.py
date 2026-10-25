@@ -14,11 +14,16 @@ two are printed as a report and never stop the build; fix a wrong value with an 
         "army_names": {"<BSData Army of Renown name>": "<name to use>"},
         "wahapedia_warscroll_names": {"<Wahapedia unit name>": "<BSData name>"},
         "replace_with_wahapedia": {"<BSData ability name>": "<Wahapedia ability name>"},
+        "faction": {"<field>": <value>},
         "fields": {"<target>": {"<field>": <value>}}
     }
 
+faction sets fields of the faction itself, e.g. "legends" for a faction moved to Legends.
+
 A fields <target> is a warscroll name or id, an Army of Renown name, an ability name, a weapon name, or
-"<warscroll id or Army of Renown name> > <weapon or ability name>" where a name alone is ambiguous.
+"<owner> > <weapon or ability name>" where a name alone is ambiguous. An owner is a warscroll id, an
+Army of Renown name, or a faction enhancement table or lore name, as "<name> (<source>)" when several
+share a name.
 replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData has the
 wrong rule; it, army_names and wahapedia_warscroll_names apply before merging, so the renamed items
 pair with the other source's (Wahapedia's "Monsta-killaz" is BSData's "Kruleboyz Monsta-killaz"). Its BSData name can be "<warscroll id or Army of Renown
@@ -66,8 +71,12 @@ def wahapedia_abilities(wh_page, wh_units):
 
 
 def owned_abilities(data, owner):
-    """The abilities of the warscroll with id [owner] and of the Army of Renown named [owner]."""
+    """The abilities of the warscroll with id [owner], of the Army of Renown named [owner], and of the
+    faction's enhancement tables and lores named [owner] or "<name> (<source>)"."""
     groups = [w["abilities"] for w in every_warscroll(data) if w.get("id") == owner]
+    f = data["faction"]
+    groups += [t["entries"] for t in f["enhancement_tables"] + f["lores"]
+               if owner in (t["name"], "%s (%s)" % (t["name"], t.get("source", "")))]
     for a in data["armies_of_renown"]:
         if a["name"] == owner:
             groups += [a["battle_traits"]] + [t["entries"] for t in a["enhancement_tables"] + a["lores"]]
@@ -107,6 +116,7 @@ def rename_wahapedia_warscrolls(units, names):
 
 
 def apply_overrides(data, overrides):
+    data["faction"].update(overrides.get("faction", {}))
     for old, new in overrides.get("warscroll_names", {}).items():
         matched = [w for w in every_warscroll(data) if w["name"] == old]
         if not matched:

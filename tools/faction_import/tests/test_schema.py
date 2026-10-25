@@ -103,6 +103,27 @@ def test_army_of_renown_legends_comes_between_source_and_text():
     assert keys.index("source") < keys.index("legends") < keys.index("text")
 
 
+def fac(**kw):
+    f = {"id": "test", "name": "Test", "grand_alliance": "Order", "battle_traits": [],
+         "battle_formations": [], "enhancement_tables": [], "lores": []}
+    f.update(kw)
+    return f
+
+
+def test_faction_keeps_legends_when_set():
+    assert schema.faction(fac(legends=True))["legends"] is True
+
+
+@pytest.mark.parametrize("f", [fac(), fac(legends=False), fac(legends=None)], ids=["absent", "false", "none"])
+def test_faction_omits_legends_when_not_set(f):
+    assert "legends" not in schema.faction(f)
+
+
+def test_faction_legends_comes_right_after_grand_alliance():
+    keys = list(schema.faction(fac(legends=True)))
+    assert keys.index("legends") == keys.index("grand_alliance") + 1
+
+
 def test_tidy_removes_space_inside_opening_quote():
     assert schema.tidy("the ‘ Tester’") == "the ‘Tester’"
 

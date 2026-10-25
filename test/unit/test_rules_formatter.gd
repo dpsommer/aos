@@ -353,6 +353,35 @@ func test_faction_rules_of_empty_faction_is_empty() -> void:
 	assert_eq(RulesFormatter.faction_rules(Faction.new()), "")
 
 
+func _faction_with_trait(legends: bool) -> Faction:
+	var faction := Faction.new()
+	faction.battle_traits = [_ability({name = "Faction Trait"})]
+	faction.legends = legends
+	return faction
+
+
+func test_faction_rules_marks_legends() -> void:
+	assert_string_contains(RulesFormatter.faction_rules(_faction_with_trait(true)), "Legends")
+
+
+func test_faction_rules_omits_legends_mark_when_not_legends() -> void:
+	assert_false(RulesFormatter.faction_rules(_faction_with_trait(false)).contains("Legends"))
+
+
+func test_faction_rules_legends_mark_comes_before_battle_traits() -> void:
+	var faction := _faction_with_trait(true)
+	var output := RulesFormatter.faction_rules(faction)
+	assert_lt(output.find("Legends"), output.find(faction.battle_traits[0].name), output)
+
+
+func test_faction_rules_of_empty_legends_faction_is_only_the_mark() -> void:
+	var faction := Faction.new()
+	faction.legends = true
+	var output := RulesFormatter.faction_rules(faction)
+	assert_string_contains(output, "Legends")
+	assert_false(output.contains("\n"), output)
+
+
 func test_army_of_renown_contains_name_text_and_traits() -> void:
 	var army := ArmyOfRenown.new()
 	army.name = "Made-up Army"

@@ -1,0 +1,120 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Lofnir Drothkeepers",
+			"text": "When you pick the Fyreslayers faction for your army, you can choose for it to be a Lofnir Drothkeepers Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the DROTHKEEPERS keyword.\nROSTER OPTIONS\nAuric Runefather on Magmadroth\nAuric Runesmiter on Magmadroth\nAuric Runeson on Magmadroth\nAuric Runemaster\nAuric Runesmiter\nAuric Runeson\nVulkyn Flameseekers\nYou cannot include Regiments of Renown or faction terrain\nREGIMENT OPTIONS\nDROTHKEEPERS AURIC RUNESON and AURIC RUNESMITER units can be added to regiments led by a DROTHKEEPERS AURIC RUNEFATHER ON MAGMADROTH.",
+			"battle_traits": [
+				{
+					"name": "Daring Tamers",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Enemy MONSTERS have STRIKE-LAST while they are in combat with 2 or more friendly DROTHKEEPERS Vulkyn Flameseekers units."
+				},
+				{
+					"name": "Skilled Drothwranglers",
+					"category": "movement",
+					"timing": "Reaction: You declared a non-Charge Move\nability for a friendly Magmadroth",
+					"effect": "Pick a friendly Vulkyn Flameseekers unit and/or a friendly DROTHKEEPERS INFANTRY HERO that are not in combat and are wholly within 6\" of the MAGMADROTH to be the targets. Units that have hitched a lift this turn (see below) cannot be targets.\nRemove the targets from the battlefield. After the MAGMADROTH ends its move, you must set up each target on the battlefield, wholly within 6\" of the Magmadroth and not in combat. The targets have hitched a lift. Units that hitched a lift cannot use CHARGE abilities in the same turn."
+				},
+				{
+					"name": "Ferocious Heat",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly DROTHKEEPERS MONSTER that has not used a RAMPAGE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target",
+					"effect": "Roll a dice. On a 3+, ward rolls cannot be made for the target for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Rearing Strike",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly DROTHKEEPERS MONSTER that has not used a RAMPAGE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target.",
+					"effect": "Roll 2 dice. Add 2 to each roll if the target is a MONSTER. For each 5+, inflict D3 mortal damage on the target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Searing Claws",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly DROTHKEEPERS MONSTER that has not used a RAMPAGE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target",
+					"effect": "Roll a dice. On a 3+, for the rest of the turn, add 1 to the Rend characteristic of melee weapons used for attacks that target that enemy unit.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Raised Around Beasts",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "The melee weapons of friendly non-MONSTER units have Anti-MONSTER (+1 Rend) while they are wholly within 9\" of this unit."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Mastery Over Monsters",
+							"category": "control",
+							"timing": "Passive",
+							"effect": "While this unit is contesting an objective, enemy MONSTERS contesting that objective each have a maximum control score of 2."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Breath of Vulcatrix",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly DROTHKEEPERS PRIEST to chant this prayer, pick a visible friendly DROTHKEEPERS MAGMADROTH wholly within 12\" of them to be a target, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, the Damage characteristic of the target's Roaring Fyrestream is 3 instead of D3.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Molten Infernoth",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Molten Infernoth on the battlefield, pick a friendly DROTHKEEPERS PRIEST to chant this prayer, then make a chanting roll of D6.",
+							"effect": "Set up a Molten Infernoth wholly within 12\" of the chanter, visible to them and more than 9\" from all enemy units.",
+							"chanting_value": 6,
+							"keywords": [
+								"PRAYER",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"shared": "The Duardin Ascendant"
+		}
+	]
+}

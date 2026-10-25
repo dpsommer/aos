@@ -35,6 +35,38 @@ func test_title_shows_faction_name() -> void:
 	assert_eq(browser.title.text, faction.name)
 
 
+func test_title_is_faction_name_when_not_legends() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	faction.legends = false
+	browser.show_faction(faction)
+	assert_eq(browser.title.text, faction.name)
+
+
+func test_legends_faction_title_marks_legends() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	faction.legends = true
+	browser.show_faction(faction)
+	assert_string_contains(browser.title.text, "Legends")
+
+
+func test_legends_faction_title_starts_with_faction_name() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	faction.legends = true
+	browser.show_faction(faction)
+	assert_true(browser.title.text.begins_with(faction.name), browser.title.text)
+
+
+func test_legends_faction_rules_tab_shows_faction_rules() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	faction.legends = true
+	browser.show_faction(faction)
+	assert_eq(browser.rules.text, RulesFormatter.faction_rules(faction))
+
+
 func test_keeps_shown_faction() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()

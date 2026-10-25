@@ -6,7 +6,7 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 
 **File** | **Required** | **Contents**
 -- | -- | --
-`faction.json` | Yes | `id`, `name`, `grand_alliance` (`order`, `chaos`, `death`, `destruction`), `battle_traits`, `battle_formations`, `enhancement_tables`, `lores`
+`faction.json` | Yes | `id`, `name`, `grand_alliance` (`order`, `chaos`, `death`, `destruction`), `legends` (the whole faction has moved to Legends), `battle_traits`, `battle_formations`, `enhancement_tables`, `lores`
 `warscrolls.json` | No | `{"warscrolls": [...]}`: matched play warscrolls with battle profiles
 `armies_of_renown.json` | No | `{"armies_of_renown": [...]}`: name, source, `legends`, text (description and roster), battle traits, enhancement tables, lores
 `spearhead.json` | No | `{"spearheads": [...]}`: army list (`general`, `units`), battle traits, regiment abilities, enhancements, and the Spearhead versions of warscrolls
@@ -80,13 +80,14 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
    - `warscroll_names`: `{"<name>": "<name to use>"}`. Renames a warscroll everywhere and updates its id.
    - `army_names`: `{"<BSData name>": "<name to use>"}`. Renames an Army of Renown before merging, so it pairs with Wahapedia's, e.g. BSData's "New Summercourt" is Wahapedia's "The Knights of New Summercourt".
    - `wahapedia_warscroll_names`: `{"<Wahapedia name>": "<BSData name>"}`. Renames a Wahapedia unit before merging, so it pairs with BSData's when the names are too different to match, e.g. Wahapedia's "Monsta-killaz" is BSData's "Kruleboyz Monsta-killaz".
-   - `fields`: `{"<target>": {"<field>": <value>}}`. Replaces fields after merging, e.g. a casting value, a missing keyword or a misspelt weapon name. A target is a warscroll id or name, an Army of Renown name (e.g. to set `legends`), an ability name, or a weapon name. Use `"<warscroll id or Army of Renown name> > <weapon or ability name>"` when a name alone is ambiguous, e.g. Thundrik's Profiteers have both a weapon and an ability called "Aethermatic Anatomiser", and "Summon Chalice of Ushoran" is in two Flesh-eater Courts Armies of Renown.
+   - `faction`: `{"<field>": <value>}`. Sets fields of the faction itself after merging, e.g. `{"legends": true}` for Fyreslayers, which are being folded into Khazalite Holds; BSData doesn't mark a whole faction as Legends.
+   - `fields`: `{"<target>": {"<field>": <value>}}`. Replaces fields after merging, e.g. a casting value, a missing keyword or a misspelt weapon name. A target is a warscroll id or name, an Army of Renown name (e.g. to set `legends`), an ability name, or a weapon name. Use `"<owner> > <weapon or ability name>"` when a name alone is ambiguous, e.g. Thundrik's Profiteers have both a weapon and an ability called "Aethermatic Anatomiser", and "Summon Chalice of Ushoran" is in two Flesh-eater Courts Armies of Renown. An owner is a warscroll id, an Army of Renown name, or a faction enhancement table or lore name, written `"<name> (<source>)"` when several share a name (Fyreslayers have a "Vulkyn Gifts" lore from both Scourge of Ghyran and Scourge of Aqshy).
 
    The report lists differences before overrides are applied, so overridden fields still appear in it.
 
    `build.py` stops if an override matches nothing, so stale overrides get noticed.
    If the faction has a warscroll or Army of Renown another faction also has (e.g. a Death faction's Nagash), list it in `tools/faction_import/shared.json` and rebuild; see [Shared entries](#shared-entries).
-4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`.
+4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`. If the faction is Legends, also add it to `_LEGENDS`, which the Forge uses to label it without loading its data; `test_faction_data.gd` checks it agrees with `faction.json`.
 5. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
    ```sh
    PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/faction_import/tests

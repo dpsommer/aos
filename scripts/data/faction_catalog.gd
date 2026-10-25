@@ -48,6 +48,7 @@ const _DATA_DIRS := {
 	"Daughters of Khaine": "res://data/factions/daughters_of_khaine",
 	"Disciples of Tzeentch": "res://data/factions/disciples_of_tzeentch",
 	"Flesh-eater Courts": "res://data/factions/flesh_eater_courts",
+	"Fyreslayers": "res://data/factions/fyreslayers",
 	"Gloomspite Gitz": "res://data/factions/gloomspite_gitz",
 	"Hedonites of Slaanesh": "res://data/factions/hedonites_of_slaanesh",
 	"Helsmiths of Hashut": "res://data/factions/helsmiths_of_hashut",
@@ -69,6 +70,10 @@ const _DATA_DIRS := {
 	"Sylvaneth": "res://data/factions/sylvaneth",
 }
 
+## Factions moved to Legends as a whole. Matches the [code]legends[/code] flag in their faction.json,
+## so the Forge can label them without loading their data.
+const _LEGENDS := ["Fyreslayers"]
+
 static var _loaded := {}
 
 
@@ -80,6 +85,11 @@ static func factions_for(alliance: GrandAlliance.Type) -> PackedStringArray:
 ## Whether [param faction] has rules data and can be opened.
 static func is_available(faction: String) -> bool:
 	return _DATA_DIRS.has(faction)
+
+
+## Whether [param faction] has been moved to Legends.
+static func is_legends(faction: String) -> bool:
+	return faction in _LEGENDS
 
 
 ## Loads [param faction]'s data, caching it. Returns null and reports errors if it can't be loaded.

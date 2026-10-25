@@ -53,6 +53,21 @@ func test_grand_alliance_is_parsed_from_id() -> void:
 	assert_eq(_load("valid").grand_alliance, GrandAlliance.from_id(data.grand_alliance))
 
 
+func test_faction_without_legends_is_not_legends() -> void:
+	assert_false(_json("valid", "faction.json").has("legends"), "fixture faction should omit legends")
+	assert_false(_load("valid").legends)
+
+
+func test_faction_legends_comes_from_file() -> void:
+	var data := _json("legends", "faction.json")
+	assert_true(data.get("legends", false), "fixture faction should be legends")
+	assert_eq(_load("legends").legends, data.legends)
+
+
+func test_legends_faction_has_no_errors() -> void:
+	assert_eq(_errors("legends").size(), 0, "\n".join(_errors("legends")))
+
+
 func test_battle_trait_fields_come_from_file() -> void:
 	var expected: Dictionary = _json("valid", "faction.json").battle_traits[0]
 	var trait_: Ability = _load("valid").battle_traits[0]
@@ -455,6 +470,15 @@ func test_wrong_type_lore_source_returns_null() -> void:
 func test_wrong_type_lore_source_error_names_file_and_field_path() -> void:
 	assert_true(_has_error_naming(_errors("wrong_type_lore_source"), "faction.json", "lores[0].source"),
 			str(_errors("wrong_type_lore_source")))
+
+
+func test_wrong_type_faction_legends_returns_null() -> void:
+	assert_null(_load("wrong_type_legends"))
+
+
+func test_wrong_type_faction_legends_error_names_file_and_field() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_legends"), "faction.json", "legends"),
+			str(_errors("wrong_type_legends")))
 
 
 func test_wrong_type_army_legends_returns_null() -> void:

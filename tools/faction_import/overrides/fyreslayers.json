@@ -1,0 +1,13 @@
+{
+	"faction": {"legends": true},
+	"fields": {
+		"auric_hearthguard": {"keywords": ["CHAMPION", "DUARDIN", "FYRESLAYERS", "INFANTRY", "ORDER", "WARD (6+)"]},
+		"vulkyn_flameseekers": {"base_size": "4/9 32mm\n5/9 28.5mm"},
+		"scourge_of_aqshy_vulkyn_flameseekers": {"base_size": "4/9 32mm\n5/9 28.5mm"},
+		"magmic_battleforge > Spending the Forge": {"effect": "Heal (D3) each friendly FYRESLAYERS unit on the battlefield. Once this ability has been used, this terrain feature cannot use the 'Molten Blessing' ability for the rest of the battle."},
+		"Lofnir Drothkeepers > Breath of Vulcatrix": {"chanting_value": 4},
+		"Zharrgrim Blessings > Wrath of Vulcatrix": {"effect": "For the rest of the turn, the 'Battle Damaged' ability has no effect on the target and add 1 to the Attacks characteristic of the target's Companion weapons.\nIf the chanting roll was 8+, for the rest of the turn, add 1 to the Attacks characteristic of the target's Companion weapons for every 4 damage points the target has instead."},
+		"Vulkyn Gifts (Scourge of Ghyran) > Ichor of the Ur-Salamander": {"effect": "Until the start of your next turn, if any damage points were inflicted on an enemy unit by the target's 'Volcanic Blood' ability, after the damage sequence has been resolved, inflict 3 mortal damage on that enemy unit. If the chanting roll was 6+, inflict D3+3 mortal damage instead."},
+		"Lofnir Drothkeepers > Summon Molten Infernoth": {"declare": "If there is not a friendly Molten Infernoth on the battlefield, pick a friendly DROTHKEEPERS PRIEST to chant this prayer, then make a chanting roll of D6."}
+	}
+}

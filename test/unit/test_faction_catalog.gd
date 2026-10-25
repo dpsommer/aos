@@ -114,3 +114,34 @@ func test_from_id_parses_lowercase_display_name() -> void:
 
 func test_from_id_returns_negative_for_unknown_id() -> void:
 	assert_lt(GrandAlliance.from_id("not_an_alliance"), 0)
+
+
+func _first_legends() -> String:
+	for faction in _all_factions():
+		if FactionCatalog.is_legends(faction):
+			return faction
+	return ""
+
+
+func _first_available_not_legends() -> String:
+	for faction in _all_factions():
+		if FactionCatalog.is_available(faction) and not FactionCatalog.is_legends(faction):
+			return faction
+	return ""
+
+
+func test_unknown_faction_is_not_legends() -> void:
+	assert_false(FactionCatalog.is_legends("Not A Real Faction"))
+
+
+func test_legends_faction_matches_legends_flag_in_its_data() -> void:
+	var faction := _first_legends()
+	if faction.is_empty() or not FactionCatalog.is_available(faction):
+		pending("no listed Legends faction has data")
+		return
+	assert_true(FactionCatalog.load_faction(faction).legends, "%s data is not flagged legends" % faction)
+
+
+func test_non_legends_faction_matches_legends_flag_in_its_data() -> void:
+	var faction := _first_available_not_legends()
+	assert_false(FactionCatalog.load_faction(faction).legends, "%s data is flagged legends" % faction)

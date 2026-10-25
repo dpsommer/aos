@@ -63,7 +63,8 @@ func _populate_factions(alliance: GrandAlliance.Type) -> void:
 		child.queue_free()
 	for faction in FactionCatalog.factions_for(alliance):
 		var button := Button.new()
-		button.text = faction
+		button.text = faction + (" (Legends)" if FactionCatalog.is_legends(faction) else "")
+		button.set_meta(&"faction", faction)
 		button.custom_minimum_size = Vector2(240, 48)
 		if FactionCatalog.is_available(faction):
 			button.pressed.connect(_on_faction_pressed.bind(faction))

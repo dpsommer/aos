@@ -1,0 +1,200 @@
+{
+	"spearheads": [
+		{
+			"name": "Saga Axeband",
+			"text": "All Fyreslayers long for their name to echo forever in the heroic legends of their lodge, remembered as a byword for martial skill and boldness. Saga Axebands are wandering groups of Berzerkers in search of such glory. They are guided on their journey by a Battlesmith who bears witness to their deeds and who will one day honour the worthiest in the Hall of Fyre, thus preserving their tale for all time.\nThere is little subtlety to an Axeband’s war-making. These doughty duardin scorn danger and lack the patience to let battle come to them. Vulkite Berzerkers have a tendency to charge head-first at whatever threat presents itself, relying upon their natural hardiness and the god-given power stamped into their flesh to keep them alive while they carve their foes into smoking chunks of meat. As the fighting rages, the Axeband’s Battlesmith bellows tales of long-dead heroes that died in a manner befitting true offspring of Grimnir. In so doing, they incite their companions to ever more magnificent deeds, setting their runes ablaze with fervour. A band of Hearthguard Berzerkers forms an honour guard around the Battlesmith, their two-handed weapons lopping off the heads of any foe not cut down by their ward.",
+			"general": "Battlesmith",
+			"units": [
+				{
+					"count": 5,
+					"name": "Hearthguard Berzerkers"
+				},
+				{
+					"count": 5,
+					"name": "Vulkite Berzerkers"
+				},
+				{
+					"count": 5,
+					"name": "Vulkite Berzerkers"
+				},
+				{
+					"count": 5,
+					"name": "Vulkite Berzerkers"
+				},
+				{
+					"count": 5,
+					"name": "Vulkite Berzerkers"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "AWAKEN THE RUNES",
+					"category": "special",
+					"timing": "Start of Your Turn",
+					"frequency": "Once Per Battle Round",
+					"declare": "Pick 1 of the ur-gold runes from the ur-gold runes table, then make an activation roll of D6. Each urgold rune can only be activated once per battle.",
+					"effect": "On a 1-5, the rune’s standard effect applies. On a 6, the rune’s enhanced effect applies as well. The effects last until the start of your next turn."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "MAGMIC TUNNELS",
+					"category": "movement",
+					"timing": "Start of the First Battle Round",
+					"frequency": "Once Per Battle",
+					"effect": "Pick up to 2 friendly units. Remove them from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units."
+				},
+				{
+					"name": "FYRESTEEL THROWING AXES",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick any number of friendly units that are not in combat and are within 10\" of any enemy units.",
+					"effect": "For each of those units, pick a visible enemy unit within 10\" of it and roll a dice. On a 4+, inflict D3 mortal damage on that enemy unit."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "TOO STUBBORN TO DIE",
+					"category": "defensive",
+					"timing": "Start of Any Turn",
+					"effect": "Heal (D3) your general."
+				},
+				{
+					"name": "HORN OF GRIMNIR",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"declare": "Pick your general to use this ability if they are not in combat.",
+					"effect": "Roll a dice for each friendly unit on the battlefield that has any slain models. On a 3+, you can return 1 slain model to that unit."
+				},
+				{
+					"name": "SPIRIT OF GRIMNIR",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "You can re-roll activation rolls you make for the ‘Ur-gold Runes’ ability (see Battle Traits)."
+				},
+				{
+					"name": "POWERFUL PRESENCE",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Add 3 to your general’s control score."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "battlesmith",
+					"name": "Battlesmith",
+					"move": "4",
+					"health": 5,
+					"save": 5,
+					"control": 5,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Ancestral Battle-axe",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "ICON OF GRIMNIR",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "Add 1 to save rolls for friendly units while they are wholly within 12\" of this unit."
+						},
+						{
+							"name": "PLANT THE ICON",
+							"category": "defensive",
+							"timing": "Any Hero Phase",
+							"frequency": "Once Per Battle",
+							"effect": "For the rest of the turn, friendly units have WARD (5+) while they are wholly within 12\" of this unit."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "hearthguard_berzerkers",
+					"name": "Hearthguard Berzerkers",
+					"move": "4",
+					"health": 2,
+					"save": 6,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Flamestrike Poleaxe",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "DUTY UNTO DEATH",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "While your general is wholly within this unit’s combat range, both this unit and your general have WARD (5+)."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				},
+				{
+					"id": "vulkite_berzerkers",
+					"name": "Vulkite Berzerkers",
+					"move": "4",
+					"health": 2,
+					"save": 6,
+					"control": 1,
+					"ward": 6,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Fyresteel Handaxes",
+							"range": 0,
+							"attacks": "2",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Anti-charge (+1 Rend)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "WHIRLWIND OF DESTRUCTION",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Attacks characteristic of this unit’s melee weapons if it charged in the same turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"WARD (6+)"
+					]
+				}
+			]
+		}
+	]
+}

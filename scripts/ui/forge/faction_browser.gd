@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func show_faction(data: Faction) -> void:
 	faction = data
-	title.text = data.name
+	title.text = data.name + (" (Legends)" if data.legends else "")
 	rules.text = RulesFormatter.faction_rules(data)
 
 	var labels := PackedStringArray()

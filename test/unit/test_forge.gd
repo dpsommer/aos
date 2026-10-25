@@ -24,10 +24,10 @@ func _two_alliances() -> Array:
 	return [all[0], all[1]]
 
 
-func _faction_button_texts(forge: Forge) -> PackedStringArray:
+func _faction_button_names(forge: Forge) -> PackedStringArray:
 	var texts := PackedStringArray()
 	for child in forge.faction_grid.get_children():
-		texts.append((child as Button).text)
+		texts.append(child.get_meta(&"faction"))
 	return texts
 
 
@@ -99,7 +99,7 @@ func test_each_alliance_button_lists_that_alliances_factions() -> void:
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
 		var forge := _make_forge()
 		forge.alliance_buttons[alliance].pressed.emit()
-		assert_eq(_faction_button_texts(forge), FactionCatalog.factions_for(alliance))
+		assert_eq(_faction_button_names(forge), FactionCatalog.factions_for(alliance))
 
 
 func test_faction_title_is_alliance_display_name() -> void:
@@ -115,7 +115,7 @@ func test_choosing_second_alliance_leaves_no_buttons_from_first() -> void:
 	forge.show_factions(alliances[0])
 	forge.show_alliances()
 	forge.show_factions(alliances[1])
-	assert_eq(_faction_button_texts(forge), FactionCatalog.factions_for(alliances[1]))
+	assert_eq(_faction_button_names(forge), FactionCatalog.factions_for(alliances[1]))
 
 
 func test_showing_same_alliance_twice_does_not_duplicate_buttons() -> void:
@@ -148,7 +148,7 @@ func test_available_faction_buttons_are_enabled() -> void:
 		var forge := _make_forge()
 		forge.show_factions(alliance)
 		for button: Button in forge.faction_grid.get_children():
-			if FactionCatalog.is_available(button.text):
+			if FactionCatalog.is_available(button.get_meta(&"faction")):
 				assert_false(button.disabled, "%s is disabled" % button.text)
 
 
@@ -157,8 +157,77 @@ func test_unavailable_faction_buttons_are_disabled() -> void:
 		var forge := _make_forge()
 		forge.show_factions(alliance)
 		for button: Button in forge.faction_grid.get_children():
-			if not FactionCatalog.is_available(button.text):
+			if not FactionCatalog.is_available(button.get_meta(&"faction")):
 				assert_true(button.disabled, "%s is enabled" % button.text)
+
+
+## Returns the alliance listing the first Legends faction, or -1 if no faction is Legends.
+func _alliance_with_legends_faction() -> int:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		for faction in FactionCatalog.factions_for(alliance):
+			if FactionCatalog.is_legends(faction):
+				return alliance
+	return -1
+
+
+func test_faction_button_meta_is_plain_faction_name() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			assert_has(FactionCatalog.factions_for(alliance), button.get_meta(&"faction"),
+					"%s button meta isn't a listed faction" % button.text)
+
+
+func test_non_legends_faction_button_text_is_faction_name() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			var faction: String = button.get_meta(&"faction")
+			if not FactionCatalog.is_legends(faction):
+				assert_eq(button.text, faction)
+
+
+func test_legends_faction_button_text_marks_legends() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	for button: Button in forge.faction_grid.get_children():
+		if FactionCatalog.is_legends(button.get_meta(&"faction")):
+			assert_string_contains(button.text, "Legends")
+
+
+func test_legends_faction_button_text_starts_with_faction_name() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	for button: Button in forge.faction_grid.get_children():
+		var faction: String = button.get_meta(&"faction")
+		if FactionCatalog.is_legends(faction):
+			assert_true(button.text.begins_with(faction), button.text)
+
+
+func test_pressing_legends_faction_button_emits_plain_faction_name() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	for button: Button in forge.faction_grid.get_children():
+		var faction: String = button.get_meta(&"faction")
+		if FactionCatalog.is_legends(faction) and not button.disabled:
+			button.pressed.emit()
+			assert_signal_emitted_with_parameters(forge, "faction_selected", [alliance, faction])
+			return
+	pending("no Legends faction has data")
 
 
 func test_unavailable_faction_buttons_explain_why_in_tooltip() -> void:

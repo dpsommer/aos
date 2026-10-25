@@ -5,6 +5,7 @@ extends Resource
 @export var id: String
 @export var name: String
 @export var grand_alliance: GrandAlliance.Type
+@export var legends: bool
 @export var battle_traits: Array[Ability]
 @export var battle_formations: Array[BattleFormation]
 @export var enhancement_tables: Array[EnhancementTable]

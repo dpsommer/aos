@@ -1,0 +1,1712 @@
+{
+	"warscrolls": [
+		{
+			"id": "auric_flamekeeper",
+			"name": "Auric Flamekeeper",
+			"points": 80,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen",
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Brazier Axe",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Masterflame Rune",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If any friendly units have been destroyed during the battle, pick a friendly FYRESLAYERS INFANTRY unit wholly within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. If the roll is equal to or less than the number of FYRESLAYERS units that have been destroyed during the battle, pick 1 of the following effects to apply until the start of your next turn:",
+					"options": [
+						{
+							"name": "Grimnir's Grit",
+							"text": "The target has WARD (5+)."
+						},
+						{
+							"name": "Grimnir's Resolve",
+							"text": "Add 2 to charge rolls for the target."
+						},
+						{
+							"name": "Grimnir's Vengeance",
+							"text": "Add 1 to the Damage characteristic of the target's melee weapons."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "auric_hearthguard",
+			"name": "Auric Hearthguard",
+			"points": 120,
+			"unit_size": 5,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Magmapike",
+					"range": 12,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Magmapike",
+					"range": 0,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Molten Rockbolts",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Each time a shooting attack made by this unit scores a critical hit, subtract 1\" from the target unit's Move characteristic until the start of your next turn. This ability cannot reduce the target unit's unmodified Move characteristic below half"
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"DUARDIN",
+				"FYRESLAYERS",
+				"INFANTRY",
+				"ORDER",
+				"WARD (6+)"
+			]
+		},
+		{
+			"id": "auric_runefather",
+			"name": "Auric Runefather",
+			"points": 130,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Grimnir’s Chosen",
+				"Any FYRESLAYERS"
+			],
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Latchkey Grandaxe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Royal Retinue",
+					"category": "defensive",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly non-HERO FYRESLAYERS INFANTRY unit within this unit's combat range to be the royal retinue.",
+					"effect": "For the rest of the battle, while the royal retinue is wholly within 6\" of this unit, add 1 to hit rolls for attacks made by the royal retinue and this unit has WARD (4+)."
+				},
+				{
+					"name": "Commanding Presence",
+					"category": "control",
+					"timing": "End of Any Turn",
+					"effect": "Add the current battle round number to the control scores of friendly FYRESLAYERS INFANTRY units wholly within 12\" of this unit for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARMASTER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "auric_runefather_on_magmadroth",
+			"name": "Auric Runefather on Magmadroth",
+			"points": 320,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Grimnir’s Chosen",
+				"0-1 Vulcatrix’s Chosen",
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Vulcatrix’s Chosen.",
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Latchkey Grandaxe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				},
+				{
+					"name": "Magmadroth's Blazing Maw",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Magmadroth's Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Warrior-kings",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly FYRESLAYERS units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Raging Inferno",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, subtract 1 from save rolls for the target for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"ORDER",
+				"WARMASTER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"MAGMADROTH"
+			]
+		},
+		{
+			"id": "auric_runemaster",
+			"name": "Auric Runemaster",
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Grimnir’s Chosen",
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen",
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Brazier Staff",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "High Priest of the Zharrgrim",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "Each time a PRAYER chanted by this unit is answered, this unit gains a magmic power token."
+				},
+				{
+					"name": "Master of the Runes",
+					"category": "special",
+					"timing": "Reaction: You declared an UR-GOLD RUNE ability",
+					"effect": "Remove 3 of this unit's magmic power tokens. If you do so, apply the effect below that corresponds to the UR-GOLD RUNE ability that was used:",
+					"options": [
+						{
+							"name": "Rune of Fury",
+							"text": "For the rest of the battle round, add 1 to wound rolls for combat attacks made by friendly FYRESLAYERS units while they have STRIKE-FIRST."
+						},
+						{
+							"name": "Rune of Fiery Determination",
+							"text": "Add 1 to save rolls for friendly FYRESLAYERS units for the rest of the battle round."
+						},
+						{
+							"name": "Rune of Relentless Zeal",
+							"text": "Add 1 to run rolls and charge rolls for friendly FYRESLAYERS units for the rest of the battle round."
+						},
+						{
+							"name": "Rune of Searing Heat",
+							"text": "Add 1 to the Rend characteristic of melee weapons used by friendly FYRESLAYERS units for the rest of the battle round."
+						},
+						{
+							"name": "Rune of Farsight",
+							"text": "Increase the range of the 'Rune of Farsight' ability to 16\"."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY",
+				"PRIEST (2)"
+			]
+		},
+		{
+			"id": "auric_runesmiter",
+			"name": "Auric Runesmiter",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen",
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Latch-axe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Emergence",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "Pick this unit if it is underground.",
+					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units. Then, set up the other units that were set up underground with it (if any) wholly within 6\" of this unit and more than 9\" from all enemy units."
+				},
+				{
+					"name": "Magmic Tunnelling",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick this unit and any number of other units in its regiment if none of those units have been deployed.",
+					"effect": "Set up those units in reserve underground. They have now been deployed.",
+					"keywords": [
+						"DEPLOY"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY",
+				"PRIEST (1)"
+			]
+		},
+		{
+			"id": "auric_runesmiter_on_magmadroth",
+			"name": "Auric Runesmiter on Magmadroth",
+			"points": 280,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Vulcatrix’s Chosen",
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Latch-axe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Magmadroth's Blazing Maw",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Magmadroth's Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Runic Empowerment",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly FYRESLAYERS unit wholly within 12\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target's attacks for the rest of the turn."
+				},
+				{
+					"name": "Lashing Tail",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll 2D6. If the roll is equal to or less than the number of models in the target unit, inflict D3+3 mortal damage on the target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"MAGMADROTH",
+				"PRIEST (1)"
+			]
+		},
+		{
+			"id": "auric_runeson",
+			"name": "Auric Runeson",
+			"points": 90,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Grimnir’s Chosen",
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen.",
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fearless Charge",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly FYRESLAYERS INFANTRY units while they are wholly within 18\" of this unit."
+				},
+				{
+					"name": "Dauntless Assault",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"effect": "Pick a friendly non-HERO FYRESLAYERS INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "auric_runeson_on_magmadroth",
+			"name": "Auric Runeson on Magmadroth",
+			"points": 240,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Grimnir’s Chosen",
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Vulcatrix’s Chosen.",
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Magmadroth's Blazing Maw",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Magmadroth's Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
+				},
+				{
+					"name": "Dominating Roar",
+					"category": "control",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
+					"effect": "If this unit has fewer damage points than the target, subtract 10 from the target's control score for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Vying for Glory",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit destroys a MONSTER, add 1 to the Attacks characteristic of this unit's Ancestral Weapons for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"MAGMADROTH"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_auric_runeson_on_magmadroth",
+			"name": "Auric Runeson on Magmadroth",
+			"source": "Scourge of Aqshy",
+			"points": 330,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Grimnir’s Chosen",
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Vulcatrix’s Chosen. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Magmadroth's Blazing Maw",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Magmadroth's Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
+				},
+				{
+					"name": "Fire, Blood and Vengeance",
+					"category": "offensive",
+					"timing": "Deployment Phase",
+					"declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons, including Companion weapons, while the target is in combat, damaged or destroyed."
+				},
+				{
+					"name": "Seeing Red",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, pick 1 of the following effects:",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"options": [
+						{
+							"name": "Channelled Ire",
+							"text": "Add 1 to the Attacks characteristic of this unit's Companion melee weapons for the rest of the turn."
+						},
+						{
+							"name": "Cathartic Release",
+							"text": "Roll a number of dice equal to your fury level. For each 4+, Heal (1) this unit."
+						},
+						{
+							"name": "Shield of Anger",
+							"text": "This unit has WARD (5+) for the rest of the turn."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"MAGMADROTH"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_auric_runeson_on_magmadroth",
+			"name": "Auric Runeson on Magmadroth",
+			"source": "Scourge of Ghyran",
+			"points": 340,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Grimnir’s Chosen",
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Vulcatrix’s Chosen. This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": "10",
+			"health": 14,
+			"save": 4,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Roaring Fyrestream",
+					"range": 10,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Anti‑INFANTRY (+1 Rend)",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti‑MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Magmadroth's Blazing Maw",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3",
+					"abilities": [
+						"Companion"
+					]
+				},
+				{
+					"name": "Magmadroth's Claws and Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Volcanic Blood",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
+				},
+				{
+					"name": "Fire, Blood, and Vengeance",
+					"category": "offensive",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons, including Companion weapons, while the target is in combat, damaged, or destroyed."
+				},
+				{
+					"name": "Calamitous Crash",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"MAGMADROTH"
+			]
+		},
+		{
+			"id": "battlesmith",
+			"name": "Battlesmith",
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen.",
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 5,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Ancestral Battle-axe",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Icon of Grimnir",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Ignore negative modifiers to the control scores of friendly FYRESLAYERS units while they are wholly within 12\" of this unit."
+				},
+				{
+					"name": "Bard of the Lodge",
+					"category": "rallying",
+					"timing": "Passive",
+					"effect": "If a friendly unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "doomseeker",
+			"name": "Doomseeker",
+			"points": 80,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen.",
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Doomseeker Weapons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Runic Power",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit has 1 damage point. Add 2 to the Damage characteristic of this unit's melee weapons instead while this unit has 2 or more damage points."
+				},
+				{
+					"name": "Oathbound",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "Pick an enemy unit to be this unit's quarry. You can pick a unit that has been deployed in reserve.",
+					"effect": "Add 1 to hit rolls and wound rolls for attacks made by this unit that target its quarry.\nIf this unit is destroyed while it is in combat with its quarry, inflict 3 mortal damage on this unit's quarry immediately after the ability that destroyed this unit has been resolved."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "grimhold_exile",
+			"name": "Grimhold Exile",
+			"points": 90,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen.",
+			"move": "4",
+			"health": 6,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyre-rune Hammers",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Honour to Grimnir!",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick up to 3 friendly FYRESLAYERS INFANTRY units wholly within 12\" of this unit to be the targets.",
+					"effect": "You can re-roll charge rolls for the targets for the rest of the turn."
+				},
+				{
+					"name": "Last of the Lodge-fire",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a number of dice equal to the target's Health characteristic. For each 4+, inflict 1 mortal damage on the target.",
+					"keywords": [
+						"CORE",
+						"ATTACK",
+						"FIGHT"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "grimwrath_berzerker",
+			"name": "Grimwrath Berzerker",
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any FYRESLAYERS"
+			],
+			"notes": "This HERO can join an eligible regiment as Grimnir’s Chosen.",
+			"move": "4",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyrestorm Greataxe",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Grimwrath Oaths",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"effect": "Pick 1 of the following oaths for this unit to swear:",
+					"options": [
+						{
+							"name": "'I will guard them with my life!'",
+							"text": "While this unit is wholly within 6\" of another friendly FYRESLAYERS HERO:\n• Add 1 to hit rolls for this unit's attacks.\n• Add 1 to ward rolls for this unit.\nIf a friendly FYRESLAYERS HERO wholly within 6\" of this unit is destroyed, this effect no longer applies."
+						},
+						{
+							"name": "'I will not be stopped!'",
+							"text": "Add 1 to charge rolls for this unit, and add 1 to save rolls for this unit while it is in combat. If this unit uses the 'Retreat' or 'Rally' abilities, this effect no longer applies."
+						}
+					]
+				},
+				{
+					"name": "Battle-fury",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "If this unit is in combat, it can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the phase."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"INFANTRY"
+			]
+		},
+		{
+			"shared": "grombrindal_the_white_dwarf",
+			"regiment_options": [
+				"Any ORDER DUARDIN units"
+			]
+		},
+		{
+			"id": "hearthguard_berzerkers_with_berzerker_broadaxes",
+			"name": "Hearthguard Berzerkers with Berzerker Broadaxes",
+			"points": 100,
+			"unit_size": 5,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Berzerker Broadaxe",
+					"range": 0,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Duty Unto Death",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While any friendly FYRESLAYERS INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
+				},
+				{
+					"name": "Fires of Vengeance",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "While this unit is within the combat ranges of any damaged friendly FYRESLAYERS HEROES, add 1 to the Attacks characteristic of this unit's melee weapons."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN"
+			]
+		},
+		{
+			"id": "hearthguard_berzerkers_with_flamestrike_poleaxes",
+			"name": "Hearthguard Berzerkers with Flamestrike Poleaxes",
+			"points": 110,
+			"unit_size": 5,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Flamestrike Poleaxe",
+					"range": 0,
+					"attacks": "2",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Duty Unto Death",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While any friendly FYRESLAYERS INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
+				},
+				{
+					"name": "Smouldering Braziers",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN"
+			]
+		},
+		{
+			"id": "magmic_battleforge",
+			"name": "Magmic Battleforge",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "Use Model",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 8,
+			"save": 3,
+			"control": 0,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Spending the Forge",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to expend the power of the forge.",
+					"effect": "Heal (D3) each friendly FYRESLAYERS unit on the battlefield. Once this ability has been used, this terrain feature cannot use the 'Molten Blessing' ability for the rest of the battle."
+				},
+				{
+					"name": "Molten Blessing",
+					"category": "offensive",
+					"timing": "Start of Any Turn",
+					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to be the target.",
+					"effect": "Add 1 to chanting rolls for the target for the rest of the turn. In addition, the target can use the 'Unbind' ability this turn as if it had WIZARD (1)."
+				}
+			],
+			"keywords": [
+				"FACTION TERRAIN",
+				"FYRESLAYERS",
+				"ORDER",
+				"WARD (6+)"
+			],
+			"composition": "The following universal terrain abilities apply to this terrain feature (Terrain, 1.2): Cover, Impassable, Obscuring"
+		},
+		{
+			"id": "molten_infernoth",
+			"name": "Molten Infernoth",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"move": "8",
+			"health": 10,
+			"save": 5,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [
+				{
+					"name": "Raging Torrents of Lava",
+					"range": 8,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 2,
+					"damage": "D3",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Molten Claws",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Flamescarred",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this MANIFESTATION's attacks to be the target.",
+					"effect": "Subtract 1 from wound rolls for the target's combat attacks until the end of your next turn."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"INVOCATION",
+				"FLY",
+				"ORDER",
+				"FYRESLAYERS"
+			]
+		},
+		{
+			"id": "runic_fyrewall",
+			"name": "Runic Fyrewall",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "Use model",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 8,
+			"save": 3,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Roaring Rune-fire",
+					"category": "offensive",
+					"timing": "Enemy Movement Phase",
+					"declare": "Pick up to 3 enemy units within 6\" of this MANIFESTATION to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Subtract 3 from the target's control score for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"INVOCATION",
+				"ORDER",
+				"FYRESLAYERS"
+			]
+		},
+		{
+			"id": "the_chosen_axes",
+			"name": "The Chosen Axes",
+			"legends": true,
+			"points": 120,
+			"unit_size": 4,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "4",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyresteel Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				},
+				{
+					"name": "Latchkey Grandaxe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 3,
+					"wound": 3,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Berserk Fury",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				},
+				{
+					"name": "Fjul's Retinue",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit's Fjul-Grimnir is on the battlefield, ignore the first damage point that would be allocated to this unit each phase."
+				}
+			],
+			"keywords": [
+				"ORDER",
+				"INFANTRY",
+				"UNIQUE",
+				"CHAMPION",
+				"WARD (6+)",
+				"DUARDIN",
+				"FYRESLAYERS"
+			],
+			"composition": "The models in this unit are: Fjul-Grimnir (champion, armed with a Latchkey Grandaxe) Tefk Flamebearer (armed with Fyresteel Weapons) Vol Orrukbane (armed with Fyresteel Weapons) Mad Maegrim (armed with Fyresteel Weapons)"
+		},
+		{
+			"id": "vulkite_berzerkers_with_bladed_slingshields",
+			"name": "Vulkite Berzerkers with Bladed Slingshields",
+			"points": 140,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyresteel Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Berserk Fury",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"MUSICIAN (1/10)"
+			]
+		},
+		{
+			"id": "vulkite_berzerkers_with_fyresteel_weapons",
+			"name": "Vulkite Berzerkers with Fyresteel Weapons",
+			"points": 120,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fyresteel Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Whirlwind of Destruction",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons if this unit charged this turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"ORDER",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN",
+				"MUSICIAN (1/10)"
+			]
+		},
+		{
+			"id": "vulkyn_flameseekers",
+			"name": "Vulkyn Flameseekers",
+			"points": 160,
+			"unit_size": 9,
+			"base_size": "4/9 32mm\n5/9 28.5mm",
+			"can_reinforce": true,
+			"move": "4",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Vulkyn Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Emberteeth",
+					"range": 0,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Drothmasters",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, subtract D3 from the Damage characteristic of the target's Companion melee weapons for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"ORDER",
+				"CHAMPION (1/9)",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN"
+			],
+			"composition": "Each model in this unit is armed with Vulkyn Weapons. 1/9 models is a Kyndledroth and must replace their weapons with Emberteeth. The champion is a Vulkyn Runefather and cannot replace their weapons."
+		},
+		{
+			"id": "scourge_of_aqshy_vulkyn_flameseekers",
+			"name": "Vulkyn Flameseekers",
+			"source": "Scourge of Aqshy",
+			"points": 190,
+			"unit_size": 9,
+			"base_size": "4/9 32mm\n5/9 28.5mm",
+			"can_reinforce": true,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "4",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Vulkyn Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				},
+				{
+					"name": "Emberteeth",
+					"range": 0,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 3,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fiery Disposition",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, pick 1 of the following effects to apply until the start of your next turn, where X is equal to your fury level.",
+					"options": [
+						{
+							"name": "Vigour of the Ur-Salamander",
+							"text": "Add X\" to this unit's Move characteristic."
+						},
+						{
+							"name": "Fiery Determination",
+							"text": "Add X to this unit's control score."
+						},
+						{
+							"name": "Kyndlewrath",
+							"text": "Add X to the Attacks characteristic of this unit's Emberteeth."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"ORDER",
+				"CHAMPION (1/9)",
+				"WARD (6+)",
+				"FYRESLAYERS",
+				"DUARDIN"
+			],
+			"composition": "Each model in this unit is armed with Vulkyn Weapons. 1/9 models is a Kyndledroth and must replace their weapons with Emberteeth. The champion is a Vulkyn Runefather and cannot replace their weapons."
+		},
+		{
+			"id": "zharrgron_flame_spitter",
+			"name": "Zharrgron Flame-spitter",
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 5,
+			"save": 6,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [
+				{
+					"name": "Magma Blast",
+					"range": 18,
+					"attacks": "8",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Magma Blast",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "Add 1 to hit rolls for this MANIFESTATION's shooting attacks if the target unit has 10 or more models. Add 1 to hit rolls and wound rolls instead if the target unit has 15 or more models."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"INVOCATION",
+				"ORDER",
+				"FYRESLAYERS"
+			]
+		}
+	]
+}

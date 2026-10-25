@@ -86,8 +86,10 @@ def table(t):
 
 
 def faction(f):
-    return {
-        "id": f["id"], "name": f["name"], "grand_alliance": f["grand_alliance"],
+    out = {"id": f["id"], "name": f["name"], "grand_alliance": f["grand_alliance"]}
+    if f.get("legends"):
+        out["legends"] = True
+    return out | {
         "battle_traits": [ability(a) for a in f["battle_traits"]],
         "battle_formations": [{"name": b["name"], "points": b.get("points", 0),
                                "abilities": [ability(a) for a in b["abilities"]]} for b in f["battle_formations"]],

@@ -52,6 +52,11 @@ func test_every_faction_is_in_the_alliance_that_lists_it() -> void:
 		assert_has(FactionCatalog.factions_for(faction.grand_alliance), faction.name)
 
 
+func test_every_faction_is_legends_in_its_data_only_if_the_catalog_says_so() -> void:
+	for faction in _factions:
+		assert_eq(faction.legends, FactionCatalog.is_legends(faction.name), faction.name)
+
+
 func test_every_main_warscroll_has_health() -> void:
 	for faction in _factions:
 		for unit in faction.warscrolls:

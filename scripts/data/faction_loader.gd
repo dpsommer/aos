@@ -35,6 +35,7 @@ func load_faction(dir_path: String) -> Faction:
 		_error("grand_alliance", "is not a Grand Alliance")
 	else:
 		faction.grand_alliance = alliance
+	faction.legends = _bool(data, "legends", "")
 	faction.battle_traits = _abilities(data, "battle_traits", "")
 	for i in _array(data, "battle_formations", "").size():
 		faction.battle_formations.append(_battle_formation(data.battle_formations[i], "battle_formations[%d]" % i))

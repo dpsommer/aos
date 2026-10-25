@@ -147,6 +147,33 @@ def test_no_overrides_changes_nothing():
     assert d == data()
 
 
+def test_faction_override_sets_faction_field():
+    d = data()
+    build.apply_overrides(d, {"faction": {"legends": True}})
+    assert d["faction"]["legends"] is True
+
+
+def test_faction_override_keeps_other_faction_fields():
+    d = data()
+    build.apply_overrides(d, {"faction": {"legends": True}})
+    del d["faction"]["legends"]
+    assert d == data()
+
+
+def test_faction_override_replaces_existing_faction_field():
+    d = data()
+    replacement = [ability("Iron Will")]
+    build.apply_overrides(d, {"faction": {"battle_traits": replacement}})
+    assert d["faction"]["battle_traits"] == replacement
+
+
+def test_faction_override_leaves_warscrolls_and_armies_alone():
+    d = data()
+    build.apply_overrides(d, {"faction": {"legends": True}})
+    assert "legends" not in d["armies_of_renown"][0]
+    assert all("legends" not in w for w in d["warscrolls"])
+
+
 def weapon(name):
     return {"name": name, "attacks": "2", "hit": "4+", "wound": "4+", "rend": "-", "damage": "1"}
 
@@ -445,3 +472,84 @@ def test_army_of_renown_scoped_field_override_leaves_same_named_faction_ability_
 def test_unmatched_army_of_renown_scoped_field_override_exits():
     with pytest.raises(SystemExit):
         build.apply_overrides(data(), {"fields": {"Host > Rally Cry": {"timing": "Deployment"}}})
+
+
+# fields and replacements scoped to a faction enhancement table or lore
+
+def with_sourced_lores(d):
+    """[d] with two faction lores named "Gifts" that differ by source, each with an entry named "Ichor"."""
+    d["faction"]["lores"] = [{"name": "Gifts", "entries": [ability("Ichor")]},
+                             {"name": "Gifts", "source": "Scourge of Ghyran", "entries": [ability("Ichor")]}]
+    return d
+
+
+def test_lore_scoped_field_override_changes_that_lore_entry():
+    d = data()
+    d["faction"]["lores"] = [{"name": "Gifts", "entries": [ability("Ichor")]}]
+    build.apply_overrides(d, {"fields": {"Gifts > Ichor": {"timing": "Deployment"}}})
+    assert d["faction"]["lores"][0]["entries"][0]["timing"] == "Deployment"
+
+
+def test_enhancement_table_scoped_field_override_changes_that_table_entry():
+    d = data()
+    build.apply_overrides(d, {"fields": {"Heroic Traits > Bold Leader": {"timing": "Deployment"}}})
+    assert d["faction"]["enhancement_tables"][0]["entries"][0]["timing"] == "Deployment"
+
+
+def test_sourced_lore_scoped_field_override_changes_lore_with_that_source():
+    d = with_sourced_lores(data())
+    build.apply_overrides(d, {"fields": {"Gifts (Scourge of Ghyran) > Ichor": {"timing": "Deployment"}}})
+    assert d["faction"]["lores"][1]["entries"][0]["timing"] == "Deployment"
+
+
+def test_sourced_lore_scoped_field_override_leaves_lore_with_other_source_alone():
+    d = with_sourced_lores(data())
+    build.apply_overrides(d, {"fields": {"Gifts (Scourge of Ghyran) > Ichor": {"timing": "Deployment"}}})
+    assert d["faction"]["lores"][0]["entries"][0] == ability("Ichor")
+
+
+def test_lore_scoped_field_override_leaves_same_named_ability_elsewhere_alone():
+    d = data()
+    d["faction"]["lores"] = [{"name": "Gifts", "entries": [ability("Rally Cry")]}]
+    build.apply_overrides(d, {"fields": {"Gifts > Rally Cry": {"timing": "Deployment"}}})
+    assert d["warscrolls"][0]["abilities"][0] == ability("Rally Cry")
+
+
+@pytest.mark.parametrize("target", ["Gifts > Rally Cry", "Gifts (Scourge of Aqshy) > Ichor"])
+def test_unmatched_lore_scoped_field_override_exits(target):
+    d = with_sourced_lores(data())
+    with pytest.raises(SystemExit):
+        build.apply_overrides(d, {"fields": {target: {"timing": "Deployment"}}})
+
+
+def test_lore_scoped_replacement_changes_that_lore_entry():
+    d = data()
+    d["faction"]["lores"] = [{"name": "Gifts", "entries": [ability("Ichor")]}]
+    build.replace_with_wahapedia(d, {"Gifts > Ichor": "Ichor"}, [wh_ability("Ichor", "Y.")])
+    assert d["faction"]["lores"][0]["entries"][0]["effect"] == "Y."
+
+
+def test_enhancement_table_scoped_replacement_changes_that_table_entry():
+    d = data()
+    build.replace_with_wahapedia(d, {"Heroic Traits > Bold Leader": "Bold Leader"}, [wh_ability("Bold Leader", "Y.")])
+    assert d["faction"]["enhancement_tables"][0]["entries"][0]["effect"] == "Y."
+
+
+def test_sourced_lore_scoped_replacement_changes_only_lore_with_that_source():
+    d = with_sourced_lores(data())
+    build.replace_with_wahapedia(d, {"Gifts (Scourge of Ghyran) > Ichor": "Ichor"}, [wh_ability("Ichor", "Y.")])
+    assert [l["entries"][0]["effect"] for l in d["faction"]["lores"]] == ["X.", "Y."]
+
+
+def test_lore_scoped_replacement_leaves_same_named_ability_elsewhere_alone():
+    d = data()
+    d["faction"]["lores"] = [{"name": "Gifts", "entries": [ability("Rally Cry")]}]
+    build.replace_with_wahapedia(d, {"Gifts > Rally Cry": "Rally Cry"}, [wh_ability("Rally Cry", "Y.")])
+    assert d["warscrolls"][0]["abilities"][0] == ability("Rally Cry")
+
+
+@pytest.mark.parametrize("bs_name", ["Gifts > Rally Cry", "Gifts (Scourge of Aqshy) > Ichor"])
+def test_unmatched_lore_scoped_replacement_exits(bs_name):
+    d = with_sourced_lores(data())
+    with pytest.raises(SystemExit):
+        build.replace_with_wahapedia(d, {bs_name: "Ichor"}, [wh_ability("Ichor", "Y.")])
