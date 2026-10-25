@@ -4,6 +4,9 @@ extends GutTest
 ## FactionLoader returns null if it finds any error, so a faction that loads has no loader errors.
 ## Any errors are pushed by FactionCatalog and would also fail the suite.
 
+## Warscrolls whose Health and Save are "-": the Dais Arcanum is a platform for another unit.
+const _NO_HEALTH_OR_SAVE := ["Dais Arcanum"]
+
 var _factions: Array[Faction] = []
 var _unloaded := PackedStringArray()
 var _available_count := 0
@@ -52,12 +55,18 @@ func test_every_faction_is_in_the_alliance_that_lists_it() -> void:
 func test_every_main_warscroll_has_health() -> void:
 	for faction in _factions:
 		for unit in faction.warscrolls:
+			if unit.name in _NO_HEALTH_OR_SAVE:
+				assert_eq(unit.health, 0, "%s: %s" % [faction.name, unit.name])
+				continue
 			assert_gt(unit.health, 0, "%s: %s" % [faction.name, unit.name])
 
 
 func test_every_main_warscroll_has_save() -> void:
 	for faction in _factions:
 		for unit in faction.warscrolls:
+			if unit.name in _NO_HEALTH_OR_SAVE:
+				assert_eq(unit.save, 0, "%s: %s" % [faction.name, unit.name])
+				continue
 			assert_gt(unit.save, 0, "%s: %s" % [faction.name, unit.name])
 
 

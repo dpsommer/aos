@@ -2,7 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Change-cult Uprising",
-			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Change-cult Uprising Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CHANGE-CULT keyword.\nROSTER OPTIONS\nAny non- WARFLOCK ARCANITE units\nYou cannot include Regiments of Renown",
+			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Change-cult Uprising Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CHANGE-CULT keyword.\nROSTER OPTIONS\nAny non-WARFLOCK ARCANITE units\nYou cannot include Regiments of Renown",
 			"battle_traits": [
 				{
 					"name": "Silver Simulacrum",
@@ -130,7 +130,7 @@
 			"name": "Pyrofane Cult",
 			"source": "White Dwarf",
 			"legends": true,
-			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Pyrofane Cult Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the PYROFANE keyword.\nROSTER OPTIONS\nAny non- WARFLOCK ARCANITE\n0-1 Gaunt Summoner or Gaunt Summoner on Disc of Tzeentch\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nAny Pyrozealot can join to a regiment led by Gaunt Summoner, Gaunt Summoner on Disc of Tzeentch, Pyrofane Fusil-Major on Ogor Warhulk, Magister, Magister on Disc of Tzeentch",
+			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Pyrofane Cult Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the PYROFANE keyword.\nROSTER OPTIONS\nAny non-WARFLOCK ARCANITE\n0-1 Gaunt Summoner or Gaunt Summoner on Disc of Tzeentch\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nAny Pyrozealot can join to a regiment led by Gaunt Summoner, Gaunt Summoner on Disc of Tzeentch, Pyrofane Fusil-Major on Ogor Warhulk, Magister, Magister on Disc of Tzeentch",
 			"battle_traits": [
 				{
 					"name": "Wyrdflame Barrage",

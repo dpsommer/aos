@@ -25,9 +25,13 @@ ICON_CATEGORY = {
     "abShooting": "shooting", "abSpecial": "special",
 }
 
+def join_hyphens(s):
+    """Rejoins a word split after its hyphen by tags, e.g. '<span>non-</span><span>HERO</span>'."""
+    return re.sub(r"(?<=[A-Za-z]-) +(?=[A-Za-z])", "", s)
+
 def text(el):
     s = el.get_text(" ", strip=True) if isinstance(el, Tag) else str(el)
-    s = re.sub(r"\s+", " ", s)
+    s = join_hyphens(re.sub(r"\s+", " ", s))
     s = re.sub(r"\s+([,.:;)\]])", r"\1", s)
     s = re.sub(r"([(\[])\s+", r"\1", s)
     s = re.sub(r"\s+([’']s)\b", r"\1", s)
@@ -100,7 +104,7 @@ def text_join(nodes):
         else:
             t = text(n)
             if t: out.append(t)
-    s = " ".join(out)
+    s = join_hyphens(" ".join(out))
     s = re.sub(r"[ \t]*\n[ \t]*", "\n", s)
     s = re.sub(r"\n{2,}", "\n", s)
     s = re.sub(r"\s+([,.:;)\]])", r"\1", s)
@@ -269,7 +273,7 @@ def section_text(heading, stop=("h1", "h2", "h3")):
         cells = [re.sub(r"\s+", " ", c).strip() for c in line.split("\t")]
         cells = [c for c in cells if c]
         if cells: lines.append(" | ".join(cells))
-    text = "\n".join(lines)
+    text = join_hyphens("\n".join(lines))
     text = re.sub(r"\s+([,.:;)\]])", r"\1", text)
     text = re.sub(r"([(\[])\s+", r"\1", text)
     text = re.sub(r"\s+’s\b", "’s", text)

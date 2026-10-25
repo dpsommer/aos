@@ -37,7 +37,7 @@
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a friendly non- HERO unit to be the target.",
+					"declare": "Pick a friendly non-HERO unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for that unit’s shooting attacks for the rest of the phase."
 				},
 				{
@@ -574,7 +574,7 @@
 				{
 					"name": "RANGER DOCTRINES",
 					"category": "movement",
-					"timing": "Reaction: You declared a FIGHT ability for your general or a friendly non- HERO unit wholly within 12\" of your general",
+					"timing": "Reaction: You declared a FIGHT ability for your general or a friendly non-HERO unit wholly within 12\" of your general",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Immediately after that FIGHT ability has been resolved, pick a point on the battlefield within 6\" of your general. Remove the unit using this ability from the battlefield and set it up again within 1\" of that point and not in combat.",
 					"options": [
@@ -596,7 +596,7 @@
 					"name": "COME AND TAKE IT, BLAGGARDS!",
 					"category": "control",
 					"timing": "Passive",
-					"effect": "Add 5 to the control scores of friendly non- HERO units while they are in combat with any enemy units that have 6 or more models or a Health characteristic of 3 or more."
+					"effect": "Add 5 to the control scores of friendly non-HERO units while they are in combat with any enemy units that have 6 or more models or a Health characteristic of 3 or more."
 				}
 			],
 			"enhancements": [
@@ -849,21 +849,21 @@
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
-					"declare": "Pick a visible friendly non- HERO unit wholly within 12\" of your general to be the target.",
+					"declare": "Pick a visible friendly non-HERO unit wholly within 12\" of your general to be the target.",
 					"effect": "The target has WARD (4+) until the start of the next battle round."
 				},
 				{
 					"name": "STEP TO IT!",
 					"category": "movement",
-					"timing": "Reaction: You declared a RUN ability for a non- HERO unit wholly within 12\" of your general",
+					"timing": "Reaction: You declared a RUN ability for a non-HERO unit wholly within 12\" of your general",
 					"frequency": "Once Per Turn",
-					"effect": "Do not make a run roll as part of that RUN ability. Instead, add 6\" to that non- HERO unit’s Move characteristic to determine the distance each model in that unit can move as part of that RUN ability"
+					"effect": "Do not make a run roll as part of that RUN ability. Instead, add 6\" to that non-HERO unit’s Move characteristic to determine the distance each model in that unit can move as part of that RUN ability"
 				},
 				{
 					"name": "ARDENT DEMAND",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
-					"declare": "Pick a visible friendly non- HERO unit wholly within 12\" of your general to be the target.",
+					"declare": "Pick a visible friendly non-HERO unit wholly within 12\" of your general to be the target.",
 					"effect": "Add 1 to hit rolls for the target’s combat attacks for the rest of the turn."
 				}
 			],

@@ -411,7 +411,7 @@
 							"rend": 1,
 							"damage": "3",
 							"abilities": [
-								"Anti- MONSTER (+1 Rend)"
+								"Anti-MONSTER (+1 Rend)"
 							]
 						}
 					],
@@ -470,7 +470,7 @@
 							"rend": 1,
 							"damage": "1",
 							"abilities": [
-								"Anti- INFANTRY (+1 Rend)"
+								"Anti-INFANTRY (+1 Rend)"
 							]
 						}
 					],

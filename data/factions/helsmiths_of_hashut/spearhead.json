@@ -226,8 +226,8 @@
 							"rend": 1,
 							"damage": "D3",
 							"abilities": [
-								"Anti- INFANTRY (+1 Rend)",
-								"Anti- CAVALRY (+1 Rend)"
+								"Anti-INFANTRY (+1 Rend)",
+								"Anti-CAVALRY (+1 Rend)"
 							]
 						}
 					],

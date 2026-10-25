@@ -1,0 +1,39 @@
+{
+	"replace_with_wahapedia": {
+		"knight_zephyros > Vanguard Chamber": "Vanguard Chamber",
+		"judicators_with_boltstorm_crossbows > Hail of Bolts": "Hail of Bolts",
+		"Astral Templars > Thundrous Roar": "Tenacious Trackers"
+	},
+	"fields": {
+		"knight_zephyros": {"legends": true},
+		"knight_venator": {"base_size": "50mm"},
+		"celestar_ballista": {"base_size": "Celestar Ballista: 60mm, Celestar Ballista Crew: 40mm"},
+		"xandires_truthseekers": {"base_size": "Xandire's Truthseekers: 40mm, Taros (token): 25mm"},
+		"knight_judicator_with_gryph_hounds": {"base_size": "Knight-Judicator: 90 × 52mm, 2 x Gryph-hounds: 40mm"},
+		"lord_imperatant": {"base_size": "Lord-Imperatant: 40mm, Gryph-hound: 32mm"},
+		"lord_terminos": {"base_size": "Lord-Terminos: 40mm, Memorian: 25mm"},
+		"vanguard_raptors_with_longstrike_crossbows": {"base_size": "Raptor-Prime: 40mm, 2 x Vanguard-Raptors with Longstrike Crossbows: 60 × 35mm"},
+		"dracothian_guard_concussors_1_model": {"unit_size": 1},
+		"dracothian_guard_desolators_1_model": {"unit_size": 1},
+		"dracothian_guard_fulminators_1_model": {"unit_size": 1},
+		"dracothian_guard_tempestors_1_model": {"unit_size": 1},
+		"stormdrake_guard_1_model": {"unit_size": 1},
+		"drakesworn_templar > Skybolt Bow": {"wound": 3},
+		"lord_aquilor": {"control": 2},
+		"tornus_the_redeemed": {"ranged_weapons": [{"name": "Hallowed Greatspear", "range": 12, "attacks": "1", "hit": 3, "wound": 3, "rend": 2, "damage": "D3", "abilities": ["Crit (2 Hits)"]}]},
+		"scourge_of_ghyran_iridan_the_witness > Ariax's Talons": {"name": "Ariax's Plunging Talons"},
+		"everblaze_comet": {"keywords": ["WARD (6+)", "MANIFESTATION", "ENDLESS SPELL", "ORDER", "STORMCAST ETERNALS"]},
+		"Draconith Skywing > Regal Authority": {"casting_value": 7},
+		"astreia_solbright > Lightning Pulse": {"casting_value": 5},
+		"lord_arcanum_on_celestial_dracoline > Astreia's Aetherstave": {"name": "Aetherstave"},
+		"xandires_truthseekers > Stormcaller Bow": {"abilities": []},
+		"hamilcar_bear_eater > Hamilcar's Halberd": {"abilities": ["Anti-MONSTER (+1 Rend)", "Crit (Mortal)"]},
+		"lord_vigilant_on_gryph_stalker > Deliver Judgement": {
+			"declare": "Pick a friendly non-HERO RUINATION CHAMBER unit wholly within 12\" of this unit to be the target.",
+			"effect": "The target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn."
+		},
+		"Astral Templars > Summon Everblaze Comet": {"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, then make a casting roll of 2D6.", "casting_value": 6},
+		"Draconith Skywing > Summon Everblaze Comet": {"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly DRACONITH SKYWING WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"Heroes of the First-Forged > Summon Everblaze Comet": {"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly FIRST-FORGED WIZARD to cast this spell, then make a casting roll of 2D6."}
+	}
+}

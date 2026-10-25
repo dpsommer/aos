@@ -274,7 +274,7 @@
 							"rend": 1,
 							"damage": "D3",
 							"abilities": [
-								"Anti- MONSTER (+1 Rend)"
+								"Anti-MONSTER (+1 Rend)"
 							]
 						}
 					],
@@ -346,7 +346,7 @@
 				{
 					"name": "PLY THE SKIES",
 					"category": "movement",
-					"timing": "Reaction: You declared a non- CHARGE MOVE ability for an Arkanaut Frigate",
+					"timing": "Reaction: You declared a non-CHARGE MOVE ability for an Arkanaut Frigate",
 					"effect": "Pick a friendly INFANTRY unit that is wholly within the combat range of that Arkanaut Frigate and not in combat to be transported. Remove that INFANTRY unit from the battlefield. Then, when the Arkanaut Frigate ends its move, set up the INFANTRY unit on the battlefield again, wholly within the combat range of the Arkanaut Frigate and not in combat. A unit cannot use CHARGE abilities if it was transported in the same turn.",
 					"options": [
 						{

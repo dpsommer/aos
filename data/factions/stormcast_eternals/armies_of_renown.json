@@ -1,0 +1,503 @@
+{
+	"armies_of_renown": [
+		{
+			"name": "Astral Templars",
+			"source": "White Dwarf",
+			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be an Astral Templars Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ASTRAL TEMPLARS keyword.\nROSTER OPTIONS\nYndrasta, the Celestial Spear\nHamilcar Bear-Eater\nAny number of VANGUARD CHAMBER units\n1 NON-UNIQUE NON-VANGUARD CHAMBER STORMCAST ETERNALS unit for each friendly VANGUARD CHAMBER unit in your army\nYou cannot include Regiments of Renown\nYou cannot include faction terrain",
+			"battle_traits": [
+				{
+					"name": "Thrive on the Attack",
+					"category": "",
+					"timing": "Passive",
+					"effect": "Friendly ASTRAL TEMPLARS units cannot use the 'All-out Defence' command. However, up to 2 friendly ASTRAL TEMPLARS units can use the 'All-out Attack' command each phase."
+				},
+				{
+					"name": "Live off the Land",
+					"category": "",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly ASTRAL TEMPLARS unit that is wholly within enemy territory and not in combat to be the target.",
+					"effect": "Heal (D3) the target."
+				},
+				{
+					"name": "Hunter's Prowess",
+					"category": "",
+					"timing": "Passive",
+					"effect": "Each time you declare an ATTACK ability for a friendly ASTRAL TEMPLARS unit, you gain 1 hunter's prowess point.\nEach time a combat attack made by a friendly ASTRAL TEMPLARS unit scores a critical hit, you can spend 1 hunter's prowess point. If you do so, inflict 1 mortal damage on the target after the ATTACK ability has been resolved."
+				},
+				{
+					"name": "Tenacious Trackers",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "Pick a friendly ASTRAL TEMPLARS unit to be the target.",
+					"effect": "The next time you make a run roll for the target this phase, roll 1 additional dice, to a maximum of 2."
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Champion of Ursricht",
+							"category": "",
+							"timing": "Passive",
+							"effect": "Add 1 to the Damage characteristic of this unit's melee weapons for attacks that target an enemy HERO or MONSTER."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"source": "White Dwarf",
+					"entries": [
+						{
+							"name": "Godbeast Plate",
+							"category": "",
+							"timing": "Passive",
+							"effect": "If the unmodified wound roll for an attack made with a Companion weapon that targets this unit is 1-3, the attack fails and the attack sequence ends."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Manifestation Lore",
+					"source": "White Dwarf",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Everblaze Comet",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up an Everblaze Comet wholly within 18\" of the caster.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				},
+				{
+					"name": "Spell Lore",
+					"source": "White Dwarf",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Primal Blizzard",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Roll a dice for each model in the target unit. For each 6, inflict 1 mortal damage on the target.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Hunter's Wings",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, pick a visible friendly unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Until the start of your next turn:\n• Add 3 to the target's Move characteristic.\n• Subtract 1 from hit rolls and wound rolls for shooting attacks that target the target unit.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Prayer Lore",
+					"source": "White Dwarf",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Brawn of the White Bear",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly ASTRAL TEMPLARS PRIEST to chant this prayer, pick a visible friendly ASTRAL TEMPLARS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Add 1 to wound rolls for the target's combat attacks for the rest of the turn. If the chanting roll was 6+, you can pick up to 2 eligible units to be the targets instead of 1.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Draconith Skywing",
+			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be a Draconith Skywing Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the DRACONITH SKYWING keyword.\nROSTER OPTIONS\nStormdrake Guard\nKarazai the Scarred\nKrondys, Son of Dracothion\nIonus Cryptborn\nKnight-Draconis\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Shields of the Warden",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While any friendly Stormdrake Guard units are within a friendly Ionus Cryptborn's combat range:\n• That friendly Ionus Cryptborn has WARD (4+).\n• Each time you make a successful ward roll for that friendly Ionus Cryptborn, allocate 1 damage point to a friendly Stormdrake Guard unit within its combat range after the damage sequence for that friendly Ionus Cryptborn has been resolved (ward rolls cannot be made for those damage points)."
+				},
+				{
+					"name": "Thunderous Roar",
+					"category": "control",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly DRACONITH SKYWING MONSTER that has not used any RAMPAGE abilities this turn to use this ability. Then, pick up to 3 enemy units in combat with it to be the targets.",
+					"effect": "Roll a dice for each target. On a 3+, subtract 5 from that target's control score for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Exemplars of Fury",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic of Companion weapons used by friendly DRACONITH SKYWING HEROES while they are within 6\" of 2 or more friendly Stormdrake Guard units."
+				},
+				{
+					"name": "Aetheric Cyclone",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly DRACONITH SKYWING MONSTER that has not used any Rampage abilities this turn to use this ability. Then, pick an enemy unit in combat with it to be the target.",
+					"effect": "Roll a dice. On a 3+, subtract 1 from wound rolls for the target's attacks for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Fearless Fliers",
+							"category": "movement",
+							"timing": "End of Any Turn",
+							"effect": "If this unit is not in combat, it can immediately make a D6\" move and can end that move in combat"
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Celestium Ensign",
+							"category": "defensive",
+							"timing": "End of Any Turn",
+							"frequency": "Once Per Battle (Army)",
+							"effect": "Heal (3) each friendly DRACONITH SKYWING unit wholly within 12\" of this unit"
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Regal Authority",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly DRACONITH SKYWING WIZARD to cast this spell, pick a visible friendly DRACONITH SKYWING unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "Add 5 to the target's control score for the rest of the turn.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Sigmar's Grace",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly DRACONITH SKYWING PRIEST to chant this prayer, pick a friendly DRACONITH SKYWING unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Heal (D3) the target. If the chanting roll was 8+, Heal (2D3) the target instead.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Sanctification",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly DRACONITH SKYWING PRIEST to chant this prayer, then make a chanting roll of D6.",
+							"effect": "Until the start of your next turn, subtract 1 from casting rolls for enemy WIZARDS while they are within 30\" of the chanter. If the chanting roll was 12+, subtract 1 from casting rolls for enemy WIZARDS for the rest of the battle and friendly PRIESTS cannot use this ability again for the rest of the battle.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Everblaze Comet",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly DRACONITH SKYWING WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up an Everblaze Comet wholly within 18\" of the caster.",
+							"casting_value": 8,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Heroes of the First-Forged",
+			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be a Heroes of the First-Forged Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the FIRST-FORGED keyword.\nROSTER OPTIONS\nLord-Commander Bastian Carthalos (this unit gains the Warmaster keyword, must be included and must be your general).\nKarazai the Scarred\nKrondys, Son of Dracothion\nCelestant-Prime, Hammer of Sigmar\nYndrasta, the Celestial Spear\nWARRIOR CHAMBER HEROES\nPraetors\nAnnihilators\nAnnihilators with Meteoric Grandhammers\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "The Celestial Realm",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"declare": "If there are more friendly STORMCAST ETERNALS units on the battlefield than there are set up in reserve, pick a friendly STORMCAST ETERNALS unit that has not been deployed.",
+					"effect": "Set up that unit in reserve in the Celestial Realm. It has now been deployed.",
+					"keywords": [
+						"DEPLOY"
+					]
+				},
+				{
+					"name": "Scions of the Storm",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "Pick a friendly STORMCAST ETERNALS unit that is in the Celestial Realm.",
+					"effect": "Set up that unit anywhere on the battlefield more than 9\" from all enemy units."
+				},
+				{
+					"name": "Punch Through",
+					"category": "movement",
+					"timing": "Your Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly INFANTRY unit in combat that has not charged this turn to use this ability.",
+					"effect": "That unit can immediately use the 'Charge' ability and can move through enemy models when it does so."
+				},
+				{
+					"name": "Summon the Storm",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If a friendly Bastian Carthalos is on the battlefield and was not set up this turn, you can pick a friendly STORMCAST ETERNALS unit that is in the Celestial Realm.",
+					"effect": "Set up that unit wholly within 6\" of a friendly Bastian Carthalos and more than 3\" from all enemy units. If the target is a unit of Annihilators or Annihilators with Meteoric Grandhammers, for the rest of the turn, the target counts as having used the 'Scions of the Storm' ability for the purposes of the 'Blazing Impact' ability"
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Thegn of Bellicos",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons while it is wholly within 6\" of a friendly Bastian Carthalos."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Shield of Skjordamar",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"declare": "Pick an enemy unit in combat with this unit to be the target.",
+							"effect": "Roll a dice. On a 4+, ward rolls cannot be made for the target for the rest of the battle."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Spell Lore",
+					"kind": "spell",
+					"entries": [
+						{
+							"name": "Wreathed in the Storm",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly FIRST‑FORGED WIZARD to cast this spell, pick a visible friendly Stormcast Eternals unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+							"effect": "For the rest of the turn, each time you make an unmodified save roll of 6 for a combat attack that targets the target unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
+							"casting_value": 7,
+							"keywords": [
+								"SPELL",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Storm's Wrath",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly FIRST‑FORGED WIZARD to cast this spell, pick up to 3 visible enemy units within 9\" of them to be the targets, then make a casting roll of 2D6.",
+							"effect": "Inflict D3 mortal damage on each target.",
+							"casting_value": 6,
+							"keywords": [
+								"SPELL"
+							]
+						}
+					]
+				},
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Speed of the Righteous",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly FIRST‑FORGED PRIEST to chant this prayer, pick a visible friendly STORMCAST ETERNALS unit wholly within 12\" of them to be a target, then make a chanting roll of D6.",
+							"effect": "Add 2\" to the Move characteristic of the target for the rest of the turn. If the chanting roll was 6+, you can pick another eligible unit to be a second target.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						}
+					]
+				},
+				{
+					"name": "Manifestation Lore",
+					"kind": "manifestation",
+					"entries": [
+						{
+							"name": "Summon Everblaze Comet",
+							"category": "",
+							"timing": "Your Hero Phase",
+							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly FIRST-FORGED WIZARD to cast this spell, then make a casting roll of 2D6.",
+							"effect": "Set up an Everblaze Comet wholly within 18\" of the caster.",
+							"casting_value": 8,
+							"keywords": [
+								"SPELL",
+								"SUMMON"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ruination Brotherhood",
+			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be a Ruination Brotherhood Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the RUINATION BROTHERHOOD keyword.\nROSTER OPTIONS\nIridan the Witness (this unit gains the WARMASTER keyword, must be included and must be your general)\nAny RUINATION CHAMBER units\nLiberators\nKnight-Questors\nAny other non-HERO WARRIOR CHAMBER units\nYou cannot include Regiments of Renown",
+			"battle_traits": [
+				{
+					"name": "Ancient Aura",
+					"category": "defensive",
+					"timing": "Any Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly RUINATION CHAMBER unit.",
+					"effect": "That unit has WARD (5+) for the rest of the turn."
+				},
+				{
+					"name": "Temper the Flaw",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "You must use this ability at the end of each turn. Each friendly non-HERO RUINATION CHAMBER unit that used a FIGHT ability this turn is a target.",
+					"effect": "For each target, pick 1 of the following effects:\n• Guided: If the target is wholly within 12\" of any friendly RUINATION CHAMBER HEROES, return 1 slain model to it.\n• Tormented: If the target is not wholly within 12\" of any friendly RUINATION CHAMBER HEROES, it becomes tormented until the end of the next turn. While a unit is tormented, add 1 to the Attacks characteristic of its melee weapons but it cannot contest objectives or use commands."
+				},
+				{
+					"name": "Hallowed Presence",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While friendly WARRIOR CHAMBER units are wholly within 12\" of any friendly RUINATION CHAMBER units, those friendly WARRIOR CHAMBER units have WARD (6+)."
+				},
+				{
+					"name": "Entropic Screech",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly RUINATION CHAMBER MONSTER that has not used any RAMPAGE abilities this turn to use this ability. Then, pick up to 3 enemy units in combat with it to be the targets.",
+					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. The unit using this ability cannot use any more RAMPAGE abilities for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"enhancement_tables": [
+				{
+					"name": "Heroic Traits",
+					"entries": [
+						{
+							"name": "Corven Lord",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "If this unit has the 'Ruination Chamber', ability, it can use that ability once per turn regardless of whether another friendly unit has used it during the same turn."
+						}
+					]
+				},
+				{
+					"name": "Artefacts of Power",
+					"entries": [
+						{
+							"name": "Hallowed Scrolls",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "If this unit is Infantry, it has WARD (5+). Otherwise, it has WARD (6+)."
+						}
+					]
+				}
+			],
+			"lores": [
+				{
+					"name": "Prayer Lore",
+					"kind": "prayer",
+					"entries": [
+						{
+							"name": "Morrda's Embrace",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Roll a dice. If the roll exceeds the target's Health characteristic, 1 model in the target unit is slain. If the chanting roll was 10+, roll 2D6 instead.",
+							"chanting_value": 5,
+							"keywords": [
+								"PRAYER",
+								"UNLIMITED"
+							]
+						},
+						{
+							"name": "Murderous Flock",
+							"category": "defensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target unit. If the chanting roll was 10+, inflict 1 mortal damage on the target unit for each 4+ instead.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						},
+						{
+							"name": "Raven's Flight",
+							"category": "movement",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+							"effect": "Add 2\" to the target's Move characteristic for the rest of the turn. If the chanting roll was 8+, in addition, for the rest of the turn, the target can use CHARGE abilities even if they have used a RUN ability in the same turn.",
+							"chanting_value": 4,
+							"keywords": [
+								"PRAYER"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

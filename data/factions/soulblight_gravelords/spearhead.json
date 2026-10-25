@@ -295,14 +295,14 @@
 					"name": "OVERWHELMING HORDES",
 					"category": "offensive",
 					"timing": "Passive",
-					"effect": "Add 1 to wound rolls for combat attacks made by friendly non- HERO units that target a unit that has fewer models than the attacking unit."
+					"effect": "Add 1 to wound rolls for combat attacks made by friendly non-HERO units that target a unit that has fewer models than the attacking unit."
 				},
 				{
 					"name": "DEATHMARCH",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
-					"declare": "Pick a friendly non- HERO unit that is not in combat to be the target.",
+					"declare": "Pick a friendly non-HERO unit that is not in combat to be the target.",
 					"effect": "For the rest of the turn, add 1\" to the target’s Move characteristic and add 3 to its control score."
 				}
 			],

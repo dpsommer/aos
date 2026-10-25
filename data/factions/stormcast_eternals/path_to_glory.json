@@ -1,0 +1,89 @@
+{
+	"sections": [
+		{
+			"name": "Path to Glory",
+			"text": "Here, you will find additional rules to use with a Stormcast Eternals army while playing through a Path to Glory campaign. The Path to Glory content in this book is divided into two parts; the Anvil of Apotheosis and Paths for Stormcast Eternals units."
+		},
+		{
+			"name": "The Anvil of Apotheosis",
+			"text": "You can have 1 Anvil of Apotheosis hero on your Order of Battle and/or army roster, unless otherwise specified in the battlepack you are using. They can be your warlord.\nThere are 7 steps to follow to create your hero:\n1. Set a destiny point limit.\n2. Fill out the starting warscroll.\n3. Choose a Chamber.\n4. Pick your hero's origin and/or flaw.\n5. Choose a Battle Mount.\n6. Pick any Battle Mount Upgrades.\n7. Pick any other upgrades."
+		},
+		{
+			"name": "Step 1 - Set a Destiny Point Limit",
+			"text": "The Anvil of Apotheosis uses a currency called destiny points. First, you need to set a destiny point limit. This will determine how many destiny points you have to spend on your hero, what type of hero they will be and what their battle profile points cost will be. Pick 1 of the following:\nHERO TYPE | DESTINY POINT LIMIT | BATTLE PROFILE POINTS COST\nStormcast Eternals Knight | 10 | 150\nStormcast Eternals Templar | 30 | 250\nStormcast Eternals Lord | 50 | 350\nOver the next few steps, you will pick options for your hero. Each option has a destiny point cost, abbreviated as DP. Keep a record of the number of destiny points you have spent. You cannot exceed the limit you have set."
+		},
+		{
+			"name": "Step 2 - Fill Out The Starting Warscroll",
+			"text": "To begin with, your hero has the following warscroll:",
+			"warscrolls": [
+				{
+					"id": "stormcast_eternals_hero",
+					"name": "Stormcast Eternals Hero",
+					"move": "5",
+					"health": 5,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Warblade",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [],
+					"keywords": [
+						"HERO",
+						"INFANTRY",
+						"ORDER",
+						"STORMCAST ETERNALS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Step 3 - Choose a Chamber",
+			"text": "You must pick 1 of the following Chambers for your hero to belong to:\nWarrior Chamber\n-0DP\nYour hero gains the WARRIOR CHAMBER keyword and the following regiment options:\nRegiment Options | Any WARRIOR CHAMBER units\nVanguard Chamber\n-4DP\nYour hero gains the VANGUARD CHAMBER keyword and the following ability and regiment options:\nPassive\nVANGUARD CHAMBER\nEffect: This unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn.\nRegiment Options | Any VANGUARD CHAMBER units\nExtremis Chamber\n-4DP\nYour hero gains the EXTREMIS CHAMBER keyword and the following ability and regiment options:\nPassive\nEXTREMIS CHAMBER\nEffect: Each time you make an unmodified save roll of 6 for a combat attack that targets l his unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.\nRegiment Options | Any EXTREMIS CHAMBER units\nRuination Chamber\n-4DP\nYour hero gains the RUINATION CHAMBER keyword and the following ability and regiment options:\nOnce Per Turn (Army), Reaction: This, unit was picked as the target of a non-CORE abilily\nRUINATION CHAMBER\nEffect: Make a resistance roll of D6. On a 4+, that ability has no effect on this unit.\nRegiment Options | Any RUINATION CHAMBER units"
+		},
+		{
+			"name": "Step 4 - Pick Your Hero's Origin And/Or Flaw",
+			"text": "You can pick up to 1 origin and up to 1 flaw for your hero. Each adds an ability to your hero’s warscroll. However, instead of costing destiny points, flaws give you extra destiny points to spend elsewhere."
+		},
+		{
+			"name": "Origins",
+			"text": "Your Charge Phase\n-4DP\nTRIBAL WARLEADER\nDeclare: Pick up to 2 other friendly units wholly within 12\" of this unit to be the targets.\nEffect: For the rest of the turn, add 1 to charge rolls for this unit and the targets.\nPassive\n-2DP\nSNATCHED FROM THE GRAVE\nEffect: Enemy units cannot use the’ Rally’ command while they are within 18\" of this unit.\nPassive\n-2DP\nFRESHLY FORGED\nEffect: When this unit earns the Aspiring rank on its Path, it gets both the abilities for that rank instead of just one of them.\nEnd of Any Turn\n-4DP\nREDEEMED\nDeclare: Pick up to 2 other friendly units wholly within 12\" of this unit to be the targets.\nEffect: Heal (D3) this unit and each target."
+		},
+		{
+			"name": "Flaws",
+			"text": "Passive\n+4DP\nFRACTURED SOUL\nDeclare: This unit must use this ability at the end of each turn.\nEffect: Roll a dice. On a 4+, allocate l damage point to this unit (a ward roll cannot be made for that damage point).\nPassive\n+4DP\nFUELLED BY HATRED\nEffect: In each combat phase, if this unit is in combat and does not have STRIKE-LAST, after friendly units with STRIKE-FIRST have been picked to use a FIGHT ability, this unit must be the next friendly unit that is picked to use a FIGHT ability.\nPassive\n+2DP\nUNVANQUISHABLE PRIDE\nEffect: This unit cannot use RETREAT abilities.\nPassive\n+4DP\nBRASH AND IMPULSIVE\nEffect: This unit cannot contest objectives."
+		},
+		{
+			"name": "Step 5 - Choose a Battle Mount",
+			"text": "You can pick up to l Battle Mount for your hero. If your hero has the EXTREMIS CHAMBER keyword, you must pick a Battle Mount for them."
+		},
+		{
+			"name": "BATTLE MOUNTS",
+			"text": "Battle Mount\n-5DP\nNOBLE BEAST: There are many warbeasts employed by the Stormcast Eternals in battle, from Gryph-chargers to Dracoths - or even the rarely seen Dracolines.\nAdd the following weapon to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nNoble Beast's Claws\nCompanion | 3 | 4+ | 3+ | 2 | 1\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 10\".\nChange the Health characteristic to 8.\nReplace the INFANTRY keyword with the CAVALRY keyword.\nBattle Mount\n-10DP\nFLYING NOBLE BEAST: Some champions of the Stormcast Eternals take to battle upon a great winged beast such as a Draconith or Tauralon.\nAdd the following weapon and ability to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nNoble Beast's Claws\nCompanion | 4 | 4+ | 2+ | 2 | 2\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 12\".\nChange the Health characteristic to 12.\nReplace the INFANTRY keyword with the following keywords: MONSTER, FLY.\nBattle Mount\n-20DP\nMIGHTY FLYING NOBLE BEAST: Some of the greatest leaders of the Stormcasts have bonded with an awe-inspiring creature such as a Stardrake or ominous Morrgryph.\nAdd the following weapon and ability to your hero’s warscroll:\nMELEE WEAPONS | Atk | Hit | Wnd | Rnd | Dmg\nMighty Flying Noble Beast's Claws\nCompanion | 6 | 4+ | 2+ | 2 | 2\nPassive\nBATTLE DAMAGED Effect: While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Flying Noble Beast's Claws is 4.\nIn addition, make the following changes to your hero’s warscroll:\nChange the Move characteristic to 12\".\nChange the Health characteristic to 16.\nChange the Control characteristic to 5.\nReplace the INFANTRY keyword with the following keywords: MONSTER, FLY."
+		},
+		{
+			"name": "Step 6 - Battle Mount Upgrades",
+			"text": "If your hero has a Battle Mount, you can pick any number of Battle Mount Upgrades for them. The same upgrade cannot be picked more than once.\nBATTLE MOUNT UPGRADES\nUpgrade | Effect\nSwift\n-2DP\nCAVALRY only. Add 2\" to your hero’s Move characteristic.\nStormblast\n-3DP\nAdd the following ranged weapon to your hero’s warscroll. You cannot pick this upgrade if your hero has another Companion ranged weapon.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nStormblast\nCrit (2 Hits), Companion | 10\" | 1 | 3+ | 3+ | 2 | D3\nLegendary Beast\n-4DP\nMONSTER only. Add 2 to your hero’s Health characteristic.\nRending Claws\n-4DP\nMONSTER only. Your hero’s Mighty Flying Noble Beast’s Claws or Flying Noble Beast’s Claws have a Damage characteristic of 3.\nFiery Breath\n-5DP\nAdd the following ranged weapon to your hero’s war scroll. You cannot pick this upgrade if your hero has another Companion ranged weapon.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nFiery Breath\nShoot in Combat, Companion | 10\" | 4 | 2+ | 3+ | 2 | 1\nMighty Roar\n-5DP\nMONSTER only. Add the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), Any Combat Phase\nMIGHTY ROAR\nDeclare: Pick up to 3 enemy units in combat with this unit to be the targets.\nEffect: Roll a dice for each target. On a 4+, the target cannot use commands for the rest of the turn.\nKEYWORDS | RAMPAGE\nTitanic Duel\n-5DP\nMONSTER only. Add the following ability to your hero’s warscroll. You cannot pick this upgrade if your hero has another RAMPAGE ability.\nOnce Per Turn (Army), Any Combat Phase\nTITANIC DUEL\nEffect: Roll a dice. On a 3+, add 1 to the Damage characteristic of this unit’s Companion melee weapons for attacks that target enemy MONSTERS for the rest of the turn.\nKEYWORDS | RAMPAGE"
+		},
+		{
+			"name": "Step 7 - Pick any Other Upgrades",
+			"text": "Pick any number of other upgrades for your hero. The same upgrade cannol be picked more than once,\nUpgrade | Effect\nCommanding Presence\n-1DP\nAdd 1 to your hero's Control characteristic.\nFleet of Foot\n-1DP\nINFANTRY only. Add 1\" to your hero’s Move characteristic.\nIncredibly Tough\n-2DP\nINFANTRY only. Add 1 to your hero's Health characteristic.\nBlessed Sigmarite\n-2DP\nYour hero has WARD (6+).\nMasterful Warrior\n-3DP\nThe Hit characteristic of your hero’s Warblade is 2+.\nPreferred Enemy\n-3DP\nYour hero’s Warblade has Anti-X (+1 Rend), where X is 1 of the following keywords: INFANTRY, CAVALRY, MONSTER, WAR MACHINE, WIZARD or PRIEST.\nHeavy Boltstorm Pistol\n-3DP\nAdd the following ranged weapon to your hero’s warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nHeavy Boltstorm Pistol\nShoot in Combat | 12\" | 4 | 3+ | 3+ | 1 | 1\nLancer\n-4DP\nCAVALRY or MONSTER only. Your hero’s Warblade has Charge (+1 Damage).\nRelic Weapon\n-4DP\nYour hero’s Warblade has Crit (Mortal).\nRadiant Wings\n-4DP\nINFANTRY only. Change your hero’s Move characteristic to 12\" and your hero has FLY.\nLoyal Companion\n-4DP\nINFANTRY only. Your hero has the following ability:\nPassive\nLOYAL COMPANION\nEffect: This unit’s Loyal Companion is a token. This unit has WARD (5+) while its Loyal Companion is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove its Loyal Companion from the battlefield.\nBlade Master\n-5DP\nAdd 2 to the Attacks characteristic of your hero’s Warblade.\nMaster of the Magical Arts\n-6DP\nNon-PRIEST only. Your hero is a WIZARD (1). If this unil is already a WIZARD, add 1 to casting rolls for this unit\nWarrior-cleric\n-6DP\nNon-WIZARD only. Your hero is a PRIEST (1). If this unit is already a PRIEST, add 1 to chanting rolls for this unit.\nTerminus Greatbow\n-6DP\nAdd the following ranged weapon to your hero’s warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.\nRANGED WEAPONS | Rng | Atk | Hit | Wnd | Rnd | Dmg\nTerminus Grealbow | 18\" | 3 | 3+ | 3+ | 2 | 3"
+		},
+		{
+			"name": "Path of The Storm",
+			"text": "(STORMCAST ETHERNALS HERO only)\nASPIRING: When a HERO on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nINDOMITABLE SOUL\nEffect: Add 1 to this unit’s Health characteristic.\nPassive\nSTRENGTH OF THE TEMPEST\nEffect: Add 1 to wound rolls for this unit’s attacks.\nELITE: When a HERO on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Any Hero Phase\nNOBLE DEFENDER\nEffect: For the rest of the turn, if a friendly STORMCAST ETERNALS unit wholly within 12\" of this unit uses the’ All-out Defence’ command, no command points are spent.\nPassive\nLIGHTNING-WREATHED WEAPONS\nEffect: Thls unit’s melee weapons have Crit (Mortal).\nMIGHTY: When a HERO on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nTHE GOD-KING'S FAVOUR\nEffect: This unit has WARD (5+).\nEnd of Any Turn\nCELESTIAL HALO\nDeclare: Pick up to 3 enemy units in combat with this unit to be targets.\nEffect: Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nLEGENDARY: When a HERO on this Path gains this rank, pick 1 of the following abilities for them:\nReaction: You declared the’ Counter-charge’ command for this unit\nBOLD TACTICIAN\nEffect: Pick another friendly unit wholly within 12\" of this unit to be the target. After the’ Counter-charge’ command for this unit has been resolved, if this unit charged, the target can immediately use the ’Counter-charge’ command without any command points being spent.\nOnce Per Battle, Any Combat Phase\nSIGMAR'S JUDGEMENT\nEffect: This unit can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn."
+		},
+		{
+			"name": "Path of The Redeemer",
+			"text": "(non-HERO STORMCAST ETERNALS only)\nASPIRING: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nOnce Per Battle, Your Movement Phase\nHERALDS OF THE TEMPEST\nEffect: If this unit was set up on the battlefield using the’ Scions of the Storm’ ability this turn, add 1 to charge rolls for this unit for the rest of the turn.\nPassive\nMIGHTY RECLAIMERS\nEffect: Add 1 to hit rolls for combat attacks made by this unit that target an enemy unit that is contesting an objective.\nELITE: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nBLAZE OF GLORY\nEffect: Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. For each 4+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.\nPassive\nSPEED OF THE STORM\nEffect: Add 2\" to the Move characteristic of this unit.\nMIGHTY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nAny Hero Phase\nBLESSED BY AZYR\nEffect: Heal (D3) this unit.\nAny Combat Phase\nDEFENSIVE MASTERY\nEffect: For the rest of the turn, this unit has STRIKE-LAST and WARD (4+).\nLEGENDARY: When a unit on this Path gains this rank, pick 1 of the following abilities for them:\nPassive\nLIGHTNING-WREATHED WEAPONS\nEffect: This unit’s melee weapons have Crit (Mortal).\nPassive\nINDOMITABLE SOULS\nEffect: Add 1 to this unit’s Health characteristic."
+		}
+	]
+}

@@ -78,6 +78,27 @@ def test_profile_notes_without_base_size_are_unchanged():
     assert wahapedia.parse_profile(profile(LEGENDS_NOTE))["notes"] == LEGENDS_NOTE
 
 
+# text() / section_text()
+
+def tag(html):
+    return wahapedia.BeautifulSoup("<div>%s</div>" % html, "html.parser").div
+
+
+def test_text_joins_keyword_split_after_hyphen_by_tags():
+    html = '<span class="kwnon">non-</span><span class="kwb">HERO</span> unit'
+    assert wahapedia.text(tag(html)) == "non-HERO unit"
+
+
+def test_text_keeps_spaced_dash_between_words():
+    assert wahapedia.text(tag("Rend <b>-</b> Damage")) == "Rend - Damage"
+
+
+def test_section_text_joins_keyword_split_after_hyphen_by_tags():
+    soup = wahapedia.BeautifulSoup('<h3>Heading</h3><p>Pick a <span>non-</span><span>HERO</span> unit.</p>',
+                                   "html.parser")
+    assert wahapedia.section_text(soup.h3) == "Pick a non-HERO unit."
+
+
 # cell_texts() / table_rows()
 
 def cell(html):
@@ -151,6 +172,12 @@ def test_weapon_with_see_below_has_no_attack_sequence_characteristics():
     cells = '<td class="wsCell">1</td><td colspan="4">See below</td>'
     assert melee_weapons(melee_row("Perfect Strike", cells)) == [
         {"name": "Perfect Strike", "range": 0, "attacks": "1", "hit": 0, "wound": 0, "rend": 0, "damage": "-"}]
+
+
+def test_weapon_ability_split_after_hyphen_by_tags_is_joined():
+    cells = "".join('<td class="wsCell">%s</td>' % v for v in ["3", "3+", "4+", "1", "D3"])
+    name = 'Greatblade <span class="wsWeaponAbility">Anti-<span class="kwb">WIZARD</span> (+1 Rend)</span>'
+    assert melee_weapons(melee_row(name, cells))[0]["abilities"] == ["Anti-WIZARD (+1 Rend)"]
 
 
 # parse_unit_pages()

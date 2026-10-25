@@ -143,7 +143,7 @@
 			"base_size": "40mm",
 			"can_reinforce": false,
 			"regiment_options": [
-				"Any SYLVANETH non- MONSTER"
+				"Any SYLVANETH non-MONSTER"
 			],
 			"notes": "This HERO can join an eligible regiment as a Forest Sentinel.",
 			"move": "12",

@@ -1,0 +1,581 @@
+{
+	"spearheads": [
+		{
+			"name": "Vigilant Brotherhood",
+			"text": "Only when the hordes of Chaos threaten to choke all life from the realms does the God-King call upon the Vigilant Brotherhoods. These are elite formations led by Stormcasts of the Ruination chambers, warriors who have seen battle so many times and whose souls have been so eroded that they are close to pure vessels of Sigmar’s will. Though their lack of humanity renders them ruthless, they are nigh incorruptible, their sense of self too diminished for Chaos to find true purchase. This allows them to traverse lands that are so twisted that other warriors would soon wither or mutate upon entering them.\nEach Vigilant Brotherhood is led by a Lord-Vigilant. These masterful commanders are hewn from centuries of service, and they tread the thin line between preserving humanity and achieving victory at all costs. Each is chosen by their Gryph-stalker mount, creatures born under the waxing of the fell moon Dharroth and that can detect which Stormcast souls are most resistant to entropy. Swooping above them come Prosecutors wielding flaming sigmarite spears. Though each is an exemplar of Sigmar’s creed, their exposure to the Cursed Skies has transformed them into shells of their former selves, leading them to pursue the eradication of Chaos at the expense of all else. A Lord-Veritant always accompanies each Vigilant Brotherhood, keeping watch over the state of their comrades’ fading identities whilst adding their considerable might to the force. The final element of the Brotherhood is a core of Liberators, unyielding champions of order who have perished again and again in defence of the Mortal Realms.",
+			"general": "Lord-Vigilant on Gryph-stalker",
+			"units": [
+				{
+					"count": 1,
+					"name": "Lord-Veritant"
+				},
+				{
+					"count": 3,
+					"name": "Prosecutors"
+				},
+				{
+					"count": 5,
+					"name": "Liberators"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "SHIELD OF AZYR",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn",
+					"declare": "Pick a friendly unit.",
+					"effect": "Until the start of your next turn, that unit has WARD (5+)."
+				},
+				{
+					"name": "STORM CHARGE",
+					"category": "movement",
+					"timing": "Your Charge Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit that is not in combat.",
+					"effect": "That unit can use CHARGE abilities this turn even if it used a RUN ability in the same turn."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "STRIKE WHERE NEEDED",
+					"category": "movement",
+					"timing": "Reaction: You declared a RETREAT ability",
+					"frequency": "Once Per Battle",
+					"effect": "No mortal damage is inflicted on that unit by that RETREAT ability. In addition, that unit can still use CHARGE abilities this turn even though it used a RETREAT ability.",
+					"options": [
+						{
+							"name": "Used By",
+							"text": "The unit using that RETREAT ability"
+						}
+					]
+				},
+				{
+					"name": "BLAZE OF GLORY",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit that is in combat.",
+					"effect": "Until the end of the phase, each time a model in that unit is slain, make a vengeance roll of D6. On a 4+, inflict 1 mortal damage on an enemy unit in combat with that unit."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "HALLOWED SCROLLS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has WARD (5+)."
+				},
+				{
+					"name": "QUICKSILVER DRAUGHT",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Your general has STRIKE-FIRST this phase."
+				},
+				{
+					"name": "MORRDA'S TALON",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Your general’s Hallowed Greataxe has Crit (Mortal)."
+				},
+				{
+					"name": "NULL PENDANT",
+					"category": "control",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Battle",
+					"declare": "Roll a dice for each enemy unit contesting the same objective as your general.",
+					"effect": "On a 2+, subtract the roll from the control score of that enemy unit this turn."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "lord_vigilant_on_gryph_stalker",
+					"name": "Lord-Vigilant on Gryph-stalker",
+					"move": "12",
+					"health": 8,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Hallowed Greataxe",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 3,
+							"rend": 2,
+							"damage": "2"
+						},
+						{
+							"name": "Gryph-stalker’s Beak and Talons",
+							"range": 0,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "DELIVER JUDGEMENT",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"frequency": "Once Per Battle",
+							"declare": "Pick a friendly non-HERO unit wholly within 12\" of this unit to be the target.",
+							"effect": "The target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the phase."
+						},
+						{
+							"name": "PLAN THE ATTACK",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick an objective you do not control.",
+							"effect": "For the rest of the turn, add 1 to hit rolls for combat attacks made by friendly units that target enemy units contesting that objective."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"CAVALRY"
+					]
+				},
+				{
+					"id": "liberators",
+					"name": "Liberators",
+					"move": "5",
+					"health": 2,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Warhammer",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						},
+						{
+							"name": "Grandhammer",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2",
+							"abilities": [
+								"Crit (Mortal)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "STALWART DEFENDERS",
+							"category": "control",
+							"timing": "Passive",
+							"effect": "Add 3 to this unit’s control score while it contests an objective wholly within friendly territory."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"REINFORCEMENTS"
+					],
+					"composition": "This unit has 4 Liberators armed with a Warhammer and 1 Liberator armed with a Grandhammer."
+				},
+				{
+					"id": "lord_veritant",
+					"name": "Lord-Veritant",
+					"move": "5",
+					"health": 6,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Staff of Abjuration",
+							"range": 0,
+							"attacks": "1",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "3"
+						},
+						{
+							"name": "Judgement Blade",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3",
+							"abilities": [
+								"Anti-WIZARD (+1 Rend)",
+								"Anti-PRIEST (+1 Rend)"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "SENSE UNHOLY SORCERY",
+							"category": "defensive",
+							"timing": "Passive",
+							"effect": "This unit’s Gryph-crow is a token. This unit has WARD (5+) while its Gryph-crow is on the battlefield.\nIf you make an unmodified ward roll of 1 for this unit, remove its Gryph-crow from the battlefield."
+						},
+						{
+							"name": "CLEANSING FIRES",
+							"category": "offensive",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a chanting roll of D6.",
+							"effect": "On a 3+, roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target unit."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"PRIEST",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "prosecutors",
+					"name": "Prosecutors",
+					"move": "12",
+					"health": 2,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [
+						{
+							"name": "Stormcall Javelin",
+							"range": 10,
+							"attacks": "1",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Stormcall Javelin",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "SKIRMISHERS",
+							"category": "special",
+							"timing": "Passive",
+							"effect": "This unit has a coherency range of 2\"."
+						},
+						{
+							"name": "HERALDS OF RIGHTEOUSNESS",
+							"category": "movement",
+							"timing": "Passive",
+							"effect": "When you make a charge roll for this unit, roll 1 additional dice."
+						}
+					],
+					"keywords": [
+						"INFANTRY",
+						"FLY",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Yndrasta's Spearhead",
+			"text": "The warriors under Yndrasta’s command ensure that the enemy overextend themselves before the killing strike is dealt. That deadly blow is almost always struck by Sigmar’s Huntress herself. It is her spear that plunges into the heart of the enemy’s most monstrous champion, and it is her hand that raises their decapitated head to the skies to the thunder of Sigmar’s approval.\nYndrasta is one of Sigmar’s mightiest champions, her role to hunt down the deadliest and most evil of foes. Her Spearhead formation works in two distinct elements. The first is based around a small force of Vanquishers that strike from the heavens in a blinding column of lightning. At their head, a Knight-Vexillor raises a magical Banner of Apotheosis to heal any wounds they suffer, while a Stormstrike Chariot adds some serious punch to their charge. When the foe musters a counter-attack, its commanders and warbeasts seeking to overrun the Stormcast Eternals infantry, the second part of this dual assault descends in a blaze of force. Here the Annihilators are in their element, their meteoric charge crushing all but the most formidable foes. Yndrasta, waiting for the foe to reveal their hand, is often the last to strike – and when she does so, she is quite capable of slaying even a rampaging gargant with a series of pinpoint spear-thrusts.",
+			"general": "Yndrasta, the Celestial Spear",
+			"units": [
+				{
+					"count": 1,
+					"name": "Knight-Vexillor"
+				},
+				{
+					"count": 3,
+					"name": "Annihilators"
+				},
+				{
+					"count": 5,
+					"name": "Vanquishers"
+				},
+				{
+					"count": 5,
+					"name": "Vanquishers"
+				},
+				{
+					"count": 1,
+					"name": "Stormstrike Chariot"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "LIGHTNING-STRIKE ARRIVAL",
+					"category": "special",
+					"timing": "Your Movement Phase",
+					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
+					"keywords": [
+						"CORE"
+					]
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "DEFEND TO THE LAST",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Friendly units have WARD (6+) while they are contesting an objective you control."
+				},
+				{
+					"name": "DRIVE THEM BACK",
+					"category": "offensive",
+					"timing": "End of Any Turn",
+					"declare": "Pick any number of friendly units that are both contesting an objective and in combat.",
+					"effect": "Each of those units can make a pile-in move. For each unit that did so, pick an enemy unit within 1\" of it and roll a dice. On a 4+, inflict 1 mortal damage on that enemy unit."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "THE PRIME HUNTRESS",
+					"category": "shooting",
+					"timing": "Passive",
+					"effect": "The Damage characteristic of Thengavar (Yndrasta’s spear) is 2D6 for attacks that target a MONSTER."
+				},
+				{
+					"name": "DAZZLING RADIANCE",
+					"category": "rallying",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick your general to use this ability if they were set up this phase.",
+					"effect": "You can return 1 slain model to each friendly unit wholly within 12\" of your general."
+				},
+				{
+					"name": "STRIKE WITH THE TEMPEST'S RAGE",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Your general has STRIKE-FIRST if they charged in the same turn."
+				},
+				{
+					"name": "HAWK OF THE CELESTIAL SKIES",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Until the end of the phase, add 1 to hit rolls for attacks made by friendly units while they are wholly within 12\" of your general."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "yndrasta_the_celestial_spear",
+					"name": "Yndrasta, the Celestial Spear",
+					"move": "12",
+					"health": 8,
+					"save": 3,
+					"control": 2,
+					"ward": 6,
+					"ranged_weapons": [
+						{
+							"name": "Thengavar",
+							"range": 12,
+							"attacks": "1",
+							"hit": 3,
+							"wound": 2,
+							"rend": 2,
+							"damage": "4",
+							"abilities": [
+								"Shoot in Combat"
+							]
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Blade of the High Heavens",
+							"range": 0,
+							"attacks": "5",
+							"hit": 3,
+							"wound": 3,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "CHAMPION OF SIGMAR",
+							"category": "defensive",
+							"timing": "Any Combat Phase",
+							"frequency": "Once Per Battle",
+							"effect": "This unit has WARD (5+) this phase."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"FLY",
+						"WARD (6+)",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "stormstrike_chariot",
+					"name": "Stormstrike Chariot",
+					"move": "10",
+					"health": 10,
+					"save": 3,
+					"control": 2,
+					"ranged_weapons": [
+						{
+							"name": "Great Stormbow",
+							"range": 18,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Stormstrike Axe",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						},
+						{
+							"name": "Gryph-chargers’ Beaks and Claws",
+							"range": 0,
+							"attacks": "6",
+							"hit": 4,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1",
+							"abilities": [
+								"Companion"
+							]
+						}
+					],
+					"abilities": [
+						{
+							"name": "AZYR UNLEASHED",
+							"category": "offensive",
+							"timing": "Any Charge Phase",
+							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
+							"effect": "On a 2+, inflict D3 mortal damage on the target."
+						}
+					],
+					"keywords": [
+						"WAR MACHINE"
+					]
+				},
+				{
+					"id": "knight_vexillor",
+					"name": "Knight-Vexillor",
+					"move": "5",
+					"health": 6,
+					"save": 3,
+					"control": 5,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Sigmarite Warblade",
+							"range": 0,
+							"attacks": "4",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "BANNER OF THE REFORGED",
+							"category": "special",
+							"timing": "Your Hero Phase",
+							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+							"effect": "Heal (D3) the target. In addition, add 3 to that unit’s control score until the start of your next turn."
+						}
+					],
+					"keywords": [
+						"HERO",
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "vanquishers",
+					"name": "Vanquishers",
+					"move": "5",
+					"health": 2,
+					"save": 3,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Celestial Greatsword",
+							"range": 0,
+							"attacks": "2",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "1"
+						}
+					],
+					"abilities": [
+						{
+							"name": "LIGHTNING STRIKES",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "Add 1 to the Damage characteristic of this unit’s Celestial Greatswords for attacks that target an enemy unit that has 5 or more models."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				},
+				{
+					"id": "annihilators",
+					"name": "Annihilators",
+					"move": "4",
+					"health": 3,
+					"save": 2,
+					"control": 1,
+					"ranged_weapons": [],
+					"melee_weapons": [
+						{
+							"name": "Meteoric Hammer",
+							"range": 0,
+							"attacks": "3",
+							"hit": 3,
+							"wound": 3,
+							"rend": 1,
+							"damage": "2"
+						}
+					],
+					"abilities": [
+						{
+							"name": "FORCE OF A FALLING STAR",
+							"category": "defensive",
+							"timing": "Any Charge Phase",
+							"declare": "If this unit charged this phase and the unmodified charge roll was 8+, pick an enemy unit within 1\" of it to be the target.",
+							"effect": "The target has STRIKE-LAST this turn."
+						}
+					],
+					"keywords": [
+						"INFANTRY"
+					]
+				}
+			]
+		}
+	]
+}

@@ -65,6 +65,7 @@ const _DATA_DIRS := {
 	"Slaves to Darkness": "res://data/factions/slaves_to_darkness",
 	"Sons of Behemat": "res://data/factions/sons_of_behemat",
 	"Soulblight Gravelords": "res://data/factions/soulblight_gravelords",
+	"Stormcast Eternals": "res://data/factions/stormcast_eternals",
 	"Sylvaneth": "res://data/factions/sylvaneth",
 }
 
