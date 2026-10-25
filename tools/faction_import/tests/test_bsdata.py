@@ -397,6 +397,21 @@ def test_each_unit_appears_once(faction_data):
     assert len(names) == len(set(names))
 
 
+def with_unlisted_gunners_copy(tmp_path):
+    copy = ('<selectionEntry id="u-gunners-copy" name="Test Gunners (Scourge of Aqshy)" type="unit"'
+            ' publicationId="pub-bt"/>\n    <selectionEntry id="u-warden"')
+    d = edited_fixture(tmp_path, [("Testers - Library.cat", '<selectionEntry id="u-warden"', copy)])
+    return bsdata.read_faction(bsdata.Catalogues(str(d)), FACTION)
+
+
+def test_unlisted_library_copy_of_listed_unit_is_skipped(tmp_path):
+    assert [w["name"] for w in with_unlisted_gunners_copy(tmp_path)[1]].count("Test Gunners") == 1
+
+
+def test_listed_unit_is_kept_over_unlisted_copy(tmp_path):
+    assert "points" in warscroll(with_unlisted_gunners_copy(tmp_path), "Test Gunners")
+
+
 # faction rules
 
 def test_grand_alliance_comes_from_unit_categories(faction_data):

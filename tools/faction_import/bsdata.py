@@ -482,11 +482,16 @@ def units_of(cats, name, aor_roots):
     units = [(unit, link if points_of_link(link) else links[unit.get("id")]) for unit, link in unit_links(cats, root)
              if not unit.get("name").startswith("Anvil of Apotheosis")]
     listed = {unit.get("id") for unit, _ in units}
+    # A library can hold a copy of a listed unit under another id for an Army of Renown to link
+    # (Sons of Behemat's King Brodd's Stomp has its own Gatebreaker Mega-Gargant (Scourge of Aqshy)).
+    names = {unit.get("name") for unit, _ in units}
     shared = [u for r in libraries(cats, name) + aor_roots
               for u in kids(r, "sharedSelectionEntries", "selectionEntry") if u.get("type") == "unit"]
     for unit in shared:
-        if unit.get("id") not in listed and not unit.get("name").startswith("Anvil of Apotheosis"):
+        if (unit.get("id") not in listed and unit.get("name") not in names
+                and not unit.get("name").startswith("Anvil of Apotheosis")):
             listed.add(unit.get("id"))
+            names.add(unit.get("name"))
             units.append((unit, links.get(unit.get("id"))))
     return units
 

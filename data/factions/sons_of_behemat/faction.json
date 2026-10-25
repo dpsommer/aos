@@ -1,0 +1,489 @@
+{
+	"id": "sons_of_behemat",
+	"name": "Sons of Behemat",
+	"grand_alliance": "destruction",
+	"battle_traits": [
+		{
+			"name": "Take a Run at It",
+			"category": "movement",
+			"timing": "Your Movement Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick any number of friendly BIG or LITTLE units to be the targets.",
+			"effect": "Roll a dice. If the roll is lower than the number of targets picked, this ability has no effect. Otherwise, pick an effect for each target. The effects must be different unless specified otherwise.\n• Pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll. You can pick this effect for multiple targets.\n• The target is building momentum for the rest of the turn.\n• If the target is within 3\" of a battlefield edge, remove it from the battlefield and set it up in reserve beyond the horizon.\n• For the rest of the phase, the target can pass through enemy models and terrain features when using MOVE abilities as if it had FLY."
+		},
+		{
+			"name": "Argy Bargy",
+			"category": "movement",
+			"timing": "Your Charge Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick any number of friendly BIG or LITTLE units to be the targets.",
+			"effect": "Roll a dice. If the roll is lower than the number of targets picked, this ability has no effect. Otherwise, pick an effect for each target. The effects must be different unless specified otherwise.\n• Pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll. You can pick this effect for multiple targets.\n• If the target is building momentum, it is no longer building momentum and is getting ready for the rest of the turn instead.\n• For the rest of the turn, each time the target makes a pile-in move, add 3\" to the distance it can move."
+		},
+		{
+			"name": "Haring Back",
+			"category": "rallying",
+			"timing": "End of Your Turn",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "If a friendly unit is in reserve beyond the horizon, you must pick that unit to use this ability.",
+			"effect": "Set up that unit within 1\" of a battlefield edge and more than 9\" from all enemy units. If it is not possible to set it up, it wanders off and is automatically destroyed."
+		},
+		{
+			"name": "The Big One",
+			"category": "offensive",
+			"timing": "End of Your Turn",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick any number of friendly BIG or LITTLE units to be the targets.",
+			"effect": "Roll a dice. If the roll is lower than the number of targets picked, this ability has no effect. Otherwise, pick an effect for each target. The effects must be different unless specified otherwise.\n• Pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll. You can pick this effect for multiple targets.\n• If the target is prepping the big one, pick an enemy unit in combat with it and roll any number of dice. If any of the rolls are a 1, the target is no longer prepping the big one. Otherwise, add the results together, then inflict an amount of mortal damage on that enemy unit equal to the total."
+		},
+		{
+			"name": "Wrathful Rampaging",
+			"category": "offensive",
+			"timing": "Any Combat Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick any number of friendly SONS OF BEHEMAT units to be the targets.",
+			"effect": "Roll a dice. If the roll is lower than the number of targets picked, this ability has no effect. Otherwise, pick an effect for each target. The effects must be different unless specified otherwise.\n• Pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll. You can pick this effect for multiple targets.\n• If the target is LITTLE and is getting ready, it is no longer getting ready and has STRIKE-FIRST for the rest of the turn instead.\n• If the target is BIG and is getting ready, it is no longer getting ready. Instead, either it has STRIKE-FIRST for the rest of the turn or it is prepping the big one for the rest of the turn."
+		}
+	],
+	"battle_formations": [
+		{
+			"name": "Conquering Stomp",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Arrogant Big 'Uns",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "In the first battle round, subtract 1 from hit rolls for combat attacks that target friendly BIG and LITTLE units that have not charged in the same turn."
+				}
+			]
+		},
+		{
+			"name": "Eager Louts",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Ten-League Strides",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Each time a friendly BIG or LITTLE unit uses the 'Redeploy' command or the 'Run' ability, if you roll a 1-2 when determining the distance that unit can move, you can use a value of 3 instead."
+				}
+			]
+		},
+		{
+			"name": "Heirs of the Old Ways",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Brute Spirituality",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly BIG or LITTLE unit to use this ability, then pick an enemy WIZARD or PRIEST within 18\" of it to be the target.",
+					"effect": "Make a rampage roll of D6. If the roll equals or exceeds the target's Control characteristic:\n• The target has a maximum power level of 1 until the start of your next turn.\n• All MANIFESTATIONS that were summoned by the target are banished and removed from play.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			]
+		},
+		{
+			"name": "Looting Leviathans",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Get to the Goods",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Each time a friendly BIG or LITTLE unit that charged in the same turn makes a pile-in move, that unit can pass across enemy models in non-MONSTER units."
+				}
+			]
+		},
+		{
+			"name": "Manskittle Mob",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Strike! Hur Hur!",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick up to 2 friendly MEGA-GARGANT units within 3\" of any terrain features and pick any friendly GARGANT units within 3\" of any terrain features to be the targets.",
+					"effect": "Double the Attacks characteristic of each target's ranged weapons for the rest of the turn. If the target has no ranged weapons, pick an enemy unit within 12\" of the target instead and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll."
+				}
+			]
+		},
+		{
+			"name": "Big Toes",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Lofty Louts",
+					"category": "offensive",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly Mancrusher Gargant unit to be the target.",
+					"effect": "For the rest of the battle, add 1 to hit rolls for combat attacks made by friendly GARGANT units while they are wholly within 12\" of the target and not wholly within 12\" of any friendly MEGA-GARGANT units."
+				}
+			]
+		}
+	],
+	"enhancement_tables": [
+		{
+			"name": "Heroic Traits",
+			"group": "Big Personalities",
+			"entries": [
+				{
+					"name": "Brute of Brutes",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's combat attacks."
+				},
+				{
+					"name": "Spell-chomper",
+					"category": "special",
+					"timing": "Passive",
+					"effect": "This unit can use UNBIND and BANISH abilities as if it had WIZARD (1). In addition, each time an enemy MANIFESTATION within this unit's combat range is banished, Heal (D3) this unit."
+				},
+				{
+					"name": "Always First In",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"effect": "This unit can move 2D6\". It must end that move more than 9\" from all enemy units."
+				},
+				{
+					"name": "Unreasonable Tyrant",
+					"category": "movement",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick another visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of this unit to be the target.",
+					"effect": "Add 1 to charge rolls for the target for the rest of the turn."
+				},
+				{
+					"name": "Thundering Titan",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this turn, pick a non-HERO enemy unit in combat with it to be the target.",
+					"effect": "Make a rampage roll of D6. If the roll equals or exceeds the target's Control characteristic, this unit cannot be picked to be the target of pile-in moves made by the target while there are other friendly SONS OF BEHEMAT units in combat with the target.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "One-hit Wonder",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "This unit can make a pile-in move. Then, roll a dice. Add 1 to the roll for each battle round in which this unit was on the battlefield in both combat phases and did not use any FIGHT abilities. On a 6+, inflict 4D6 mortal damage on the target.",
+					"keywords": [
+						"CORE",
+						"ATTACK",
+						"FIGHT",
+						"RAMPAGE"
+					]
+				}
+			]
+		},
+		{
+			"name": "Heroic Traits",
+			"group": "Big Personalities",
+			"source": "Scourge of Ghyran",
+			"entries": [
+				{
+					"name": "Grabby",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to hit rolls for this unit's combat attacks that target an enemy unit contesting an objective you do not control."
+				},
+				{
+					"name": "Terrifying Hulk",
+					"category": "defensive",
+					"timing": "Reaction: Your opponent declared a CHARGE ability for a visible non-MONSTER enemy unit within 12\" of this unit",
+					"frequency": "Once Per Turn",
+					"effect": "If this unit is not in combat, roll a dice. On a 3+, you can change one of the dice in that charge roll to a 1."
+				},
+				{
+					"name": "Mega-Grump",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "This unit has Ward (5+) while it has 25 or more damage points."
+				}
+			]
+		},
+		{
+			"name": "Artefacts of Power",
+			"group": "Titanic Trophies",
+			"entries": [
+				{
+					"name": "Glowy Lantern",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"effect": "If this unit is a WIZARD or PRIEST, add 1 to its power level for the rest of the battle. Otherwise, pick either the WIZARD (1) or PRIEST (1) keyword. This unit has that keyword for the rest of the battle.",
+					"points": 20
+				},
+				{
+					"name": "Krakenskin Sandals",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to the Attacks characteristic, Rend characteristic and Damage characteristic of this unit's Almighty Stomp.",
+					"points": 10
+				},
+				{
+					"name": "Enchanted Portcullis",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore modifiers to save rolls for shooting attacks that target this unit (positive and negative)."
+				},
+				{
+					"name": "Massive Stuffin' Sack",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll 3 dice. For each roll that is at least double the target's Health characteristic, 1 model in the target unit is automatically slain."
+				},
+				{
+					"name": "Mantle of the Wood-Kings",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "If this unit charged in the same turn, while it is in combat with 2 or more enemy units, add 1 to hit rolls for its combat attacks for the rest of the turn."
+				},
+				{
+					"name": "Protecty Bits",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Ignore the first damage point that would be allocated to this unit in each phase."
+				}
+			]
+		},
+		{
+			"name": "Realm-shaking Rampages",
+			"entries": [
+				{
+					"name": "Hammer Throw",
+					"category": "movement",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is not in combat, pick a friendly Mancrusher Gargant within its combat range to be the target.",
+					"effect": "Roll 3D6. On a 4+, remove the target from the battlefield and set it up again wholly within a number of inches of this unit equal to the roll and visible to this unit. It can be set up in combat. The target cannot use CHARGE abilities for the rest of the turn.\n\nIf the target is set up in combat:\n• Inflict D3 mortal damage on the target.\n• Inflict 1 mortal damage on each enemy unit in combat with the target.\n• The target has charged this turn.",
+					"keywords": [
+						"CORE",
+						"ATTACK",
+						"SHOOT",
+						"RAMPAGE"
+					],
+					"points": 20
+				},
+				{
+					"name": "Earthshaking Roar",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Make a rampage roll of D6. On a 3+, the target cannot use commands for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"points": 20
+				},
+				{
+					"name": "Battered Shrimp",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy non-MONSTER HERO in combat with this unit to be the target.",
+					"effect": "Both players roll off. If you win the roll-off, roll off again. Keep rolling off in this way until you lose the roll-off. Then, inflict an amount of mortal damage on the target equal to the number of roll-offs made as part of this ability that you won this turn.",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"points": 20
+				},
+				{
+					"name": "Windmill Walloping",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy MONSTER or WAR MACHINE in combat with this unit to be the target.",
+					"effect": "Roll a number of dice equal to the target's Health characteristic. Add 1 to each roll for each consecutive turn in which the target was picked to be the target of this ability. For each 6+, allocate 1 mortal damage to the target (ward rolls cannot be made for those damage points).",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"points": 20
+				},
+				{
+					"name": "Colossal Slam",
+					"category": "movement",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy MONSTER or WAR MACHINE that has no more than 1 model and is in combat with this unit to be the target.",
+					"effect": "If 2 or more friendly BIG or LITTLE units are in combat with the target, apply the effect below. Otherwise, make a rampage roll of D6. Subtract 1 from the roll if the target has a higher Health characteristic than this unit. On a 3+, apply the effect below.\n\nRemove the target from the battlefield and set it up again in combat with this unit. Then, inflict D3 mortal damage on the target.",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"points": 20
+				},
+				{
+					"name": "Rancid Flatulence",
+					"category": "control",
+					"timing": "End of Any Turn",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "For the rest of the turn, enemy units have a maximum control score of 1 while they are in combat with this unit.",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"points": 20
+				}
+			]
+		},
+		{
+			"name": "Cracked Heels",
+			"source": "Scourge of Aqshy",
+			"entries": [
+				{
+					"name": "That Boy's Not Right",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"effect": "Roll a dice. On a 5+, this unit can use a PRAYER ability from the prayer lore you picked during army composition as if it had PRIEST (1). Instead of making a chanting roll for that prayer, the chanting roll is 5 and cannot be modified.",
+					"points": 10
+				},
+				{
+					"name": "Up For It",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "This unit's melee weapons have Charge (+1 Damage).",
+					"points": 10
+				},
+				{
+					"name": "Always On Guard",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "This unit has WARD (5+) while it is wholly within 12\" of and visible to a friendly BIG unit.",
+					"points": 10
+				}
+			]
+		}
+	],
+	"lores": [
+		{
+			"name": "Lore of Behemat",
+			"kind": "spell",
+			"entries": [
+				{
+					"name": "Pipsqueak Curse",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Subtract 1 from wound rolls for the target's attacks until the start of your next turn.",
+					"casting_value": 7,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "Energy Surge",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT WIZARD to cast this spell, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "If the target is BIG, add 1 to rampage rolls for it until the start of your next turn. If the target is LITTLE, until the start of your next turn, it can use CHARGE abilities even if it used a RUN ability in the same turn.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "Thornfang's Wrath",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT WIZARD to cast this spell, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "The target's melee weapons have Crit (Mortal) for the rest of the turn.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			]
+		},
+		{
+			"name": "Prayers of the World Titan",
+			"kind": "prayer",
+			"entries": [
+				{
+					"name": "Behemat's Vengeance",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 18\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "If the chanting roll was 8+, you can pick another eligible unit to be a second target. Add 1 to the Attacks characteristic of each target's melee weapons for the rest of the turn.",
+					"chanting_value": 4,
+					"keywords": [
+						"PRAYER"
+					]
+				},
+				{
+					"name": "Might of the Earth",
+					"category": "rallying",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick each friendly SONS OF BEHEMAT unit on the battlefield to be the targets, then make a chanting roll of D6.",
+					"effect": "Heal (D3) each target. If the chanting roll was 8+, Heal (3) each target instead.",
+					"chanting_value": 4,
+					"keywords": [
+						"PRAYER"
+					]
+				},
+				{
+					"name": "World Titan's Stride",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 18\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "For the rest of the turn, add 3\" to the target's Move characteristic and models in the target unit can pass across enemy models and terrain features as if it had FLY. In addition, if the chanting roll was 6+, for the rest of the turn, each time the target uses the 'Normal Move' or 'Run' ability, after that ability has been resolved, inflict D3 mortal damage on each enemy unit the target passed across as part of that move.",
+					"chanting_value": 3,
+					"keywords": [
+						"PRAYER",
+						"UNLIMITED"
+					]
+				}
+			]
+		},
+		{
+			"name": "Brodd's Bellows",
+			"source": "Scourge of Aqshy",
+			"kind": "prayer",
+			"entries": [
+				{
+					"name": "Rock Bottom",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible friendly SONS OF BEHEMAT unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "If the chanting roll was 6+, you can pick another eligible unit to be a second target. Until the start of your next turn:\n• Ignore the effects of the 'Battle Damaged' ability on each target.\n• Each target has WARD (6+).",
+					"chanting_value": 3,
+					"keywords": [
+						"PRAYER",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "The Terrible Toes",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "Roll a dice for each model in the target unit. If the chanting roll was 8+, add 1 to the roll. For each 6+, inflict 1 mortal damage on the target. Then, if any enemy models are slain by this ability, halve the target's Move characteristic until the start of your next turn.",
+					"chanting_value": 4,
+					"keywords": [
+						"PRAYER"
+					]
+				},
+				{
+					"name": "Vocal Tectonics",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "If the chanting roll was 10+, you can pick another eligible unit to be a second target. Until the start of your next turn, each target has STRIKE-LAST.",
+					"chanting_value": 5,
+					"keywords": [
+						"PRAYER"
+					]
+				}
+			]
+		}
+	]
+}

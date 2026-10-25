@@ -1,0 +1,1117 @@
+{
+	"warscrolls": [
+		{
+			"id": "ancient_ghyrochs",
+			"name": "Ancient Ghyrochs",
+			"points": 0,
+			"unit_size": 2,
+			"base_size": "105 × 70mm",
+			"can_reinforce": false,
+			"notes": "This unit can only be taken in Ma Maegran’s regiment. This unit cannot be reinforced.",
+			"move": "8",
+			"health": 7,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Mighty Horns and Hooves",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Beast",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "This unit has a maximum control score of 1."
+				},
+				{
+					"name": "Wellspring of Life Energy",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"effect": "Heal (3) this unit."
+				}
+			],
+			"keywords": [
+				"BEAST",
+				"UNIQUE",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT"
+			]
+		},
+		{
+			"id": "beast_smasher_mega_gargant",
+			"name": "Beast-smasher Mega-Gargant",
+			"points": 380,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any SONS OF BEHEMAT",
+				"0-1 Eager Lout"
+			],
+			"notes": "This HERO can join an eligible regiment as an Eager Lout.",
+			"move": "10",
+			"health": 25,
+			"save": 4,
+			"control": 10,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Menhir Club: Calamitous Sweep",
+					"range": 0,
+					"attacks": "16",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Menhir Club: Crushing Blow",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				},
+				{
+					"name": "Almighty Stomp",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Menhir Club is 11 for Calamitous Sweep and 4 for Crushing Blow."
+				},
+				{
+					"name": "Leader of the Pack",
+					"category": "offensive",
+					"timing": "Reaction: You declared a Fight ability for this unit",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick another visible friendly SONS OF BEHEMAT unit wholly within 12\" of this unit to be the target and make a rampage roll of D6. Add 1 to the roll if the target is LITTLE. On a 3+, the target's melee weapons have Crit (2 Hits) for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Primal Aura",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Make a rampage roll of D6. Add 1 to the roll for each other friendly BIG or LITTLE unit that is in combat and within this unit's combat range. On a 3+, subtract 1 from ward rolls for damage points inflicted by abilities used by this unit for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Menhir Club",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Menhir Club."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"BIG"
+			]
+		},
+		{
+			"id": "boss_stompers",
+			"name": "Boss-stompers",
+			"points": 370,
+			"unit_size": 3,
+			"base_size": "90mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "8",
+			"health": 12,
+			"save": 5,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Stomper's Clubs",
+					"range": 0,
+					"attacks": "7",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "'Eadbutt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Quit Hogging Da Fun!",
+					"category": "offensive",
+					"timing": "Reaction: You declared a Fight ability for this unit in the enemy combat phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick a visible friendly BIG unit that has not used a FIGHT ability this turn and is wholly within 12\" of this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"MONSTER",
+				"CHAMPION",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"LITTLE"
+			]
+		},
+		{
+			"id": "gatebreaker_mega_gargant",
+			"name": "Gatebreaker Mega-Gargant",
+			"points": 400,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any SONS OF BEHEMAT",
+				"0-1 Eager Lout"
+			],
+			"notes": "This HERO can join an eligible regiment as an Eager Lout.",
+			"move": "10",
+			"health": 25,
+			"save": 4,
+			"control": 10,
+			"ranged_weapons": [
+				{
+					"name": "Hurled Boulder",
+					"range": 18,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Fortcrusha Flail: Calamitous Sweep",
+					"range": 0,
+					"attacks": "16",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Fortcrusha Flail: Crushing Blow",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				},
+				{
+					"name": "Almighty Stomp",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Fortcrusha Flail is 11 for Calamitous Sweep and 4 for Crushing Blow."
+				},
+				{
+					"name": "Fortcrusha Flail",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Fortcrusha Flail."
+				},
+				{
+					"name": "Rip It Up and Chuck It",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a terrain feature within 3\" of this unit that is not uprooted, then pick a friendly SONS OF BEHEMAT unit within 3\" of that terrain feature to be the target.",
+					"effect": "Make a rampage roll of D6. On a 3+:\n• If the target is another BIG unit, excluding Gatebreaker Mega-Gargants, it is armed with a Hurled Boulder for the rest of the turn (see the weapon profile on this unit's warscroll. Modifiers to this unit's ranged weapons or shooting attacks do not apply to the target).\n• If the target is a Gatebreaker Mega-Gargant or a LITTLE unit, add 1 to the Attacks characteristic of its ranged weapons for the rest of the turn.\n• That terrain feature is uprooted for the rest of the battle. If it is FACTION TERRAIN, inflict an amount of mortal damage on it equal to the rampage roll.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Primal Reckoning",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of this unit's Fortcrusha Flail: Crushing Blow for each friendly SONS OF BEHEMAT unit that has been destroyed this battle, to a maximum of 10."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"BIG"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_gatebreaker_mega_gargant",
+			"name": "Gatebreaker Mega-Gargant",
+			"source": "Scourge of Aqshy",
+			"points": 400,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Eager Lout",
+				"Any SONS OF BEHEMAT"
+			],
+			"notes": "This HERO can join an eligible regiment as an Eager Lout. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "10",
+			"health": 25,
+			"save": 4,
+			"control": 10,
+			"ranged_weapons": [
+				{
+					"name": "Hurled Boulder",
+					"range": 18,
+					"attacks": "1",
+					"hit": 3,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Fortcrusha Flail: Calamitous Sweep",
+					"range": 0,
+					"attacks": "16",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Fortcrusha Flail: Crushing Blow",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				},
+				{
+					"name": "Almighty Stomp",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Fortcrusha Flail is 11 for Calamitous Sweep and 4 for Crushing Blow."
+				},
+				{
+					"name": "Fortcrusha Flail",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Fortcrusha Flail."
+				},
+				{
+					"name": "It's Goin' Down",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "Until the start of your next turn:\n• This unit has a Move characteristic of 4D6\".\n• While this unit is within 1\" of a terrain feature, the Attacks characteristic of its Hurled Boulder is D6 instead of 1."
+				},
+				{
+					"name": "Off in a Huff",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "You and your opponent must roll off. Each player adds their fury level to their roll. Then, this unit can move a distance up to its Move characteristic. It can move through the combat ranges of enemy units, but it cannot end that move in combat unless you won the roll-off.",
+					"keywords": [
+						"CORE",
+						"MOVE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"BIG"
+			]
+		},
+		{
+			"id": "king_brodd",
+			"name": "King Brodd",
+			"points": 430,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Eager Lout",
+				"Any SONS OF BEHEMAT"
+			],
+			"move": "10",
+			"health": 28,
+			"save": 4,
+			"control": 10,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Obelisk of Tor Crania: Calamitous Sweep",
+					"range": 0,
+					"attacks": "20",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Obelisk of Tor Crania: Crushing Blow",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "5"
+				},
+				{
+					"name": "Almighty Stomp",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of this unit's Obelisk of Tor Crania is 13 for Calamitous Sweep and 4 for Crushing Blow."
+				},
+				{
+					"name": "Obelisk of Tor Crania",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Obelisk of Tor Crania."
+				},
+				{
+					"name": "Power of Behemat",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
+					"effect": "If the chanting roll was 7+, you can pick another eligible unit to be a second target. Add 1 to the Rend characteristic of each target's melee weapons for the rest of the turn.",
+					"chanting_value": 4,
+					"keywords": [
+						"PRAYER"
+					]
+				},
+				{
+					"name": "Court of Creepers",
+					"category": "special",
+					"timing": "Any Charge Phase",
+					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
+					"effect": "Roll a dice. Add 1 to the roll if this unit charged this turn. On a 3+:\n• Add 1 to hit rolls for this unit's combat attacks that target that enemy unit for the rest of the turn.\n• The target cannot use RAMPAGE abilities for the rest of the turn.\n• The target no longer has any artefacts of power."
+				},
+				{
+					"name": "Set 'Em Up, Then Knock 'Em Down!",
+					"category": "defensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+					"effect": "If there are 3 or more friendly BIG or LITTLE models in combat with the target, apply the effect below. Otherwise, make a rampage roll of D6. On a 3+, apply the effect below.\n\nFor the rest of the turn, subtract 1 from hit rolls for the target's combat attacks while it is in combat with 2 or more friendly BIG or LITTLE models.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"WARMASTER",
+				"UNIQUE",
+				"MONSTER",
+				"PRIEST (1)",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"BIG"
+			]
+		},
+		{
+			"shared": "kragnos_the_end_of_empires",
+			"regiment_options": [
+				"Any SONS OF BEHEMAT"
+			],
+			"keywords": [
+				"SONS OF BEHEMAT"
+			]
+		},
+		{
+			"id": "kraken_eater_mega_gargant",
+			"name": "Kraken-eater Mega-Gargant",
+			"points": 370,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any SONS OF BEHEMAT",
+				"0-1 Eager Lout"
+			],
+			"notes": "This HERO can join an eligible regiment as an Eager Lout.",
+			"move": "10",
+			"health": 25,
+			"save": 4,
+			"control": 10,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Shipwrecka Warclub: Calamitous Sweep",
+					"range": 0,
+					"attacks": "16",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Shipwrecka Warclub: Crushing Blow",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				},
+				{
+					"name": "Almighty Stomp",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Shipwrecka Warclub is 11 for Calamitous Sweep and 4 for Crushing Blow."
+				},
+				{
+					"name": "Shipwrecka Warclub",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Shipwrecka Warclub."
+				},
+				{
+					"name": "Get Orf Me Land!",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick an objective or terrain feature on the battlefield to be the target.",
+					"effect": "For the rest of the battle, the target is this unit's loot hoard.\n\nWhile the unit that used this ability is contesting its loot hoard, add 10 to its control score.\n\nWhile the unit that used this ability is not contesting its loot hoard, add 2 to the Attacks characteristic of its Almighty Stomp."
+				},
+				{
+					"name": "Greedy Show-Offs",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick another visible friendly BIG or LITTLE unit wholly within 12\" of this unit to be the target.",
+					"effect": "If this unit is contesting its loot hoard, apply the effect below. Otherwise, make a rampage roll of D6. On a 3+, apply the effect below.\n\nAdd 1 to charge rolls for the target for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"BIG"
+			]
+		},
+		{
+			"id": "scourge_of_ghyran_kraken_eater_mega_gargant",
+			"name": "Kraken-eater Mega-Gargant",
+			"source": "Scourge of Ghyran",
+			"points": 430,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Eager Lout",
+				"Any SONS OF BEHEMAT"
+			],
+			"notes": "This HERO can join an eligible regiment as an Eager Lout. This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
+			"move": "10",
+			"health": 35,
+			"save": 4,
+			"control": 20,
+			"ranged_weapons": [
+				{
+					"name": "Hurled Debris",
+					"range": 24,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Death Grip",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D6",
+					"abilities": [
+						"Anti-HERO (+1 Rend)"
+					]
+				},
+				{
+					"name": "Spine-shattering Stomp",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3",
+					"abilities": [
+						"Anti-INFANTRY (+1 Rend)"
+					]
+				},
+				{
+					"name": "Shipwrecka Warclub",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "5"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Shipwrecka Warclub is 3 and this unit has a Control characteristic of 10."
+				},
+				{
+					"name": "Lurking Beneath the Waves",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick this unit if it has not been deployed.",
+					"effect": "Set up this unit in reserve beneath the waves. It has now been deployed."
+				},
+				{
+					"name": "Emerge from the Deep",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"declare": "Pick this unit if it is beneath the waves.",
+					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units and wholly within 9\" of a battlefield edge."
+				},
+				{
+					"name": "Son of Behemat",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
+				},
+				{
+					"name": "Longshanks",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "This unit can pass through models in non-MONSTER units and parts of terrain features that are less than 4\" tall."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"MEGA-GARGANT"
+			]
+		},
+		{
+			"id": "ma_maegran_chooser_of_the_mighty",
+			"name": "Ma Maegran, Chooser of the Mighty",
+			"points": 370,
+			"unit_size": 1,
+			"base_size": "90mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Ancient Ghyrochs (required)",
+				"0-1 Eager Lout",
+				"Any SONS OF BEHEMAT"
+			],
+			"move": "8",
+			"health": 15,
+			"save": 4,
+			"control": 10,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Spear of Krum Kalda",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Spear of Krum Kalda is 3."
+				},
+				{
+					"name": "Shepherdess",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a visible friendly Ancient Ghyrochs unit wholly within 12\" of this unit to be the target.",
+					"effect": "If the target is within this unit's combat range, pick 1 of the effects below. Otherwise, make a rampage roll of D6. On a 3+, pick 1 of the effects below.",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"options": [
+						{
+							"name": "Gore their Guts!",
+							"text": "If the target is in combat, add 1 to the Damage characteristic of the target's Mighty Horns and Hooves for the rest of the turn."
+						},
+						{
+							"name": "Ghyroch Rush",
+							"text": "If the target is not in combat, it can move 3\". It can move into combat."
+						},
+						{
+							"name": "Reservoirs of Jade Energy",
+							"text": "Add 1 to this unit's casting power level until the start of your next turn."
+						}
+					]
+				},
+				{
+					"name": "Creepy Cantrips",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"declare": "Pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+					"effect": "Until the start of your next turn, add 1 to rampage rolls for the target and add 1 to hit rolls for the target's combat attacks.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "The Wandering Witch",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "While this unit is wholly within 12\" of another friendly SONS OF BEHEMAT MONSTER unit, this unit is not visible to enemy units more than 12\" away from it."
+				},
+				{
+					"name": "Chooser of the Mighty",
+					"category": "special",
+					"timing": "Any Movement Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick another visible friendly LITTLE unit wholly within 12\" of this unit to be mighty.",
+					"effect": "Pick 1 of the following effects:\n\n• For the rest of the turn, each time you make an unmodified wound roll of 6 for a combat attack made by the mighty unit, inflict 1 mortal damage on the target of the attack after the FIGHT ability has been resolved.\n\n• Pick a point on the battlefield within 1\" of the mighty unit, then pick a friendly non-UNIQUE BIG unit that has been destroyed to be the target. Set up a replacement unit identical to the target within 1\" of that point, then allocate 10 damage points to it (ward rolls cannot be made for those damage points). The replacement unit can only be set up in combat with units that the mighty unit was in combat with when it was picked to be mighty. Then, 1 model in the mighty unit is slain."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"UNIQUE",
+				"MONSTER",
+				"WIZARD (1)",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"LITTLE"
+			]
+		},
+		{
+			"id": "mancrusher_gargant",
+			"name": "Mancrusher Gargant",
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "90 × 52mm",
+			"can_reinforce": false,
+			"move": "8",
+			"health": 12,
+			"save": 5,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Throwin' Rocks",
+					"range": 12,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Gigantic Weapon",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "'Eadbutt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Bet You Can't...",
+					"category": "special",
+					"timing": "Deployment Phase",
+					"frequency": "Once Per Battle (Army)",
+					"declare": "Pick each friendly Mancrusher Gargant on the battlefield to be the targets.",
+					"effect": "Pick 1 of the following effects:",
+					"options": [
+						{
+							"name": "...Kill the Big 'Eads!",
+							"text": "For the rest of the battle, add 1 to the Attacks characteristic of each target's melee weapons while they are in combat with any enemy HEROES or MONSTERS."
+						},
+						{
+							"name": "...Get There Before Me!",
+							"text": "Up to 3 of the targets can each use the 'Normal Move' ability as if it were your movement phase."
+						},
+						{
+							"name": "...Grab That!",
+							"text": "Add 5 to each target's control score for the rest of the battle."
+						}
+					]
+				},
+				{
+					"name": "Excitable Followers",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"effect": "While this unit is wholly within 12\" of a visible friendly SONS OF BEHEMAT HERO, this unit can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"LITTLE"
+			]
+		},
+		{
+			"id": "scourge_of_aqshy_mancrusher_gargant",
+			"name": "Mancrusher Gargant",
+			"source": "Scourge of Aqshy",
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "90 × 52mm",
+			"can_reinforce": false,
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"move": "8",
+			"health": 12,
+			"save": 5,
+			"control": 10,
+			"ranged_weapons": [
+				{
+					"name": "Throwin' Rocks",
+					"range": 12,
+					"attacks": "1",
+					"hit": 5,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "'Eadbutt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				},
+				{
+					"name": "Massive Club",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Mighty Kick",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Statue Tossing",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "For the rest of the turn, the Damage characteristic of this unit's Throwin' Rocks is 3 instead of D3.\nThen, you can spend up to 3 rage dice. If you do:\n• For each rage dice spent, add 2 to the Attacks characteristic of this unit's Throwin' Rocks for the rest of the turn.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7."
+				}
+			],
+			"keywords": [
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"LITTLE"
+			]
+		},
+		{
+			"id": "rock_hurlers",
+			"name": "Rock-hurlers",
+			"points": 380,
+			"unit_size": 3,
+			"base_size": "90mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "8",
+			"health": 12,
+			"save": 5,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Hurlin' Rocks",
+					"range": 12,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Massive Club and Rocks",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "'Eadbutt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Drop, Toss or Roll",
+					"category": "shooting",
+					"timing": "Any Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Pick 1 of the following effects to apply for the rest of the turn:",
+					"keywords": [
+						"RAMPAGE"
+					],
+					"options": [
+						{
+							"name": "Drop",
+							"text": "This unit's ranged weapons have Shoot in Combat and this unit can use the 'Covering Fire' command even if it is in combat."
+						},
+						{
+							"name": "Toss",
+							"text": "Add 6\" to the Range characteristic of this unit's ranged weapons."
+						},
+						{
+							"name": "Roll",
+							"text": "Add 1 to hit rolls for this unit's shooting attacks."
+						}
+					]
+				}
+			],
+			"keywords": [
+				"MONSTER",
+				"CHAMPION",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"LITTLE"
+			]
+		},
+		{
+			"id": "warstomper_mega_gargant",
+			"name": "Warstomper Mega-Gargant",
+			"points": 390,
+			"unit_size": 1,
+			"base_size": "130mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any SONS OF BEHEMAT",
+				"0-1 Eager Lout"
+			],
+			"notes": "This HERO can join an eligible regiment as an Eager Lout.",
+			"move": "10",
+			"health": 25,
+			"save": 4,
+			"control": 10,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Titanic Boulderclub: Calamitous Sweep",
+					"range": 0,
+					"attacks": "16",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				},
+				{
+					"name": "Titanic Boulderclub: Crushing Blow",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				},
+				{
+					"name": "Almighty Stomp",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Battle Damaged",
+					"category": "damage",
+					"timing": "Passive",
+					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Titanic Boulderclub is 11 for Calamitous Sweep and 4 for Crushing Blow."
+				},
+				{
+					"name": "Don't Stomp Those; Stomp Them!",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick another visible friendly BIG or LITTLE unit wholly within 12\" of this unit and that has not been set up this turn to be the target.",
+					"effect": "The target can move 2D6\". It can pass through and end that move within the combat ranges of enemy units that it was in combat with at the start of the move, but not those of other enemy units. It does not have to end the move in combat."
+				},
+				{
+					"name": "Almightier Stompin'",
+					"category": "offensive",
+					"timing": "Your Combat Phase",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
+					"effect": "Make a rampage roll of D3. For the rest of the turn, add the roll to the Attacks characteristic of this unit's Almighty Stomp, but all of this unit's attacks made with that weapon must target the target unit.\n\nIf any models are slain by those attacks, for the rest of the turn, enemy units have a maximum control score of 1 while they are in combat with this unit.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Titanic Boulderclub",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Titanic Boulderclub."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"MONSTER",
+				"DESTRUCTION",
+				"SONS OF BEHEMAT",
+				"BIG"
+			]
+		}
+	]
+}

@@ -110,7 +110,7 @@ The first faction built with a shared entry writes it to `data/shared/` (or `--s
 
 How the BSData catalogues map to the data:
 
-- Units are those `<Faction>.cat` links to, one warscroll per link (a second link can rename the unit, e.g. "Crypt Flayers (2 Models)"), plus unlisted units in the library or a library it links (e.g. units added during a battle, or the Orruk manifestations) and units defined by Army of Renown catalogues (e.g. Grombrindal). The Anvil of Apotheosis hero is left out; it's in Path to Glory.
+- Units are those `<Faction>.cat` links to, one warscroll per link (a second link can rename the unit, e.g. "Crypt Flayers (2 Models)"), plus unlisted units in the library or a library it links (e.g. units added during a battle, or the Orruk manifestations), except a copy of a listed unit under another id (Sons of Behemat's library has a second Gatebreaker Mega-Gargant (Scourge of Aqshy) for King Brodd's Stomp) and units defined by Army of Renown catalogues (e.g. Grombrindal). The Anvil of Apotheosis hero is left out; it's in Path to Glory.
 - Points and reinforcement come from the faction catalogue's link to each unit. `source` and `legends` come from the unit's publication, and a "(Scourge of …)" name suffix becomes the `source`.
 - Abilities include shared profiles an entry links to with an `infoLink`, such as each Flesh-eater Courts hero's Delusion, except core rules abilities (profiles named like one in the game system, e.g. Beast).
 - `non-<KEYWORD>` categories (Ogor Mawtribes' `non-BEASTCLAW`) only restrict list building, so they aren't keywords.

@@ -1,0 +1,274 @@
+{
+	"spearheads": [
+		{
+			"name": "Wallsmasher Stomp",
+			"text": "The towering progeny of the godbeast Behemat do not travel in great numbers. The more gargants, the less food, which is unacceptable to these lazy but highly destructive braggarts. Those who do roam with company form rough hierarchies known as ‘stomps’, bossed around by the biggest and strongest Mega-Gargant within their territory.\nOn occasion, tired of living under the heel of their boss, some Mancrusher Gargants will break away to claim their own territories. Accompanied by a couple of their best lackeys, they head off into the hills in search of food – or to find some humie settlement to smash into bits. Gargants fight with little finesse or strategy, but their large size means they can simply overpower their foes regardless. One swing of their mammoth clubs or leathery feet can knock down walls or crumple a line of pike-wielding ‘pipsqueaks’. If their tiny foes scurry around out of reach, the gargant needs only to scoop up a great boulder to hurl and splatter them like bugs. Most gargants bear some kind of sack for carrying such delicacies around, as well as souvenirs to brag of their battle prowess. As the Mancrushers are of similar stature, competitions often erupt as to who can crush the most enemies. Some smaller stomps change leadership regularly based on such rowdy contests.",
+			"general": "Mancrusher Gargant",
+			"units": [
+				{
+					"count": 1,
+					"name": "Mancrusher Gargant"
+				},
+				{
+					"count": 1,
+					"name": "Mancrusher Gargant"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "BELLOWING ROAR",
+					"category": "defensive",
+					"timing": "Any Combat Phase",
+					"declare": "Pick a friendly unit to use this ability, pick an enemy unit in combat with it to be the target, then roll a dice.",
+					"effect": "On a 2+, subtract 1 from hit rolls for attacks made by the target unit this phase."
+				},
+				{
+					"name": "‘GRAB THOSE ROCKS AND CHUCK ’EM!’",
+					"category": "shooting",
+					"timing": "Your Hero Phase",
+					"declare": "Pick your general to use this ability, then pick another friendly unit wholly within 12\" of them.",
+					"effect": "Add 1 to the Attacks characteristic of that unit’s Throwin’ Rocks this turn."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "FOE-CHOMPERS",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Each time an enemy model is slain by a friendly unit’s ‘Stuff ’Em In Me Bag’ ability, Heal (D3) that unit."
+				},
+				{
+					"name": "EARTH-SHAKING CHARGE",
+					"category": "defensive",
+					"timing": "Any Charge Phase",
+					"frequency": "Once Per Phase (Army)",
+					"declare": "Pick a friendly unit that charged this phase to use this ability, then roll a dice for each enemy unit in combat with it.",
+					"effect": "On a 3+, that enemy unit has STRIKE-LAST this turn."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "MONSTROUSLY TOUGH",
+					"category": "defensive",
+					"timing": "Passive",
+					"effect": "Your general has a Health characteristic of 15 instead of 12."
+				},
+				{
+					"name": "LANKY GIT",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "When you make a charge roll for your general, roll 3D6 instead of 2D6."
+				},
+				{
+					"name": "EXTRA-BIG BAG",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "When your general uses their ‘Stuff ’Em In Me Bag’ ability, you can pick 2 enemy units instead of 1 (roll for each)."
+				},
+				{
+					"name": "FURIOUSLY TERRITORIAL",
+					"category": "offensive",
+					"timing": "Passive",
+					"effect": "Add 1 to hit rolls for attacks made by your general that target an enemy unit that is contesting an objective you do not control."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "mancrusher_gargant",
+					"name": "Mancrusher Gargant",
+					"move": "8",
+					"health": 12,
+					"save": 5,
+					"control": 10,
+					"ranged_weapons": [
+						{
+							"name": "Throwin’ Rocks",
+							"range": 12,
+							"attacks": "1",
+							"hit": 5,
+							"wound": 2,
+							"rend": 2,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Massive Club",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "'Eadbutt",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "4"
+						},
+						{
+							"name": "Mighty Kick",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "D3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "STUFF 'EM IN ME BAG",
+							"category": "offensive",
+							"timing": "Any Combat Phase",
+							"declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
+							"effect": "If the roll is at least double the target unit’s Health characteristic, 1 model in that unit is slain."
+						},
+						{
+							"name": "TIMBER!",
+							"category": "offensive",
+							"timing": "Passive",
+							"effect": "If this model is slain, before removing it from the battlefield, the players must roll off. The winner picks a point on the battlefield up to 3\" from this model. Inflict D3 mortal damage on each enemy unit within 2\" of that point. This model is then removed from the battlefield."
+						}
+					],
+					"keywords": [
+						"MONSTER",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		},
+		{
+			"name": "Stone Lobbas",
+			"text": "Gargants are creatures who are easily bored. This is not very good news for anyone nearby, since a bored gargant is a violent gargant - well, even more violent than normal. What is even worse, though, is when several bored gargants get together in one place. Sometimes ransacking an outpost or kicking over a convoy just isn't enough; they need something more directly competitive to amuse themselves with. It is as a result of this selfish search for diversion that mobs of Stone Lobbas end up stomping the lands.\nStone Lobbas are exactly what the name implies: groups of gargants who, at least for the moment, have decided to entertain themselves by picking up heavy boulders or other bits of debris and chucking them at things. The target might be a castle wall, an ancient shrine or, their favourite, a huddle of pipsqueaks - little cheers up a gargant more than listening to the resulting splat of meat and snap of bones. There's always one gargant who proves better at this sort of game than the rest, however, and this Boulder Basher' quite literally gets to call the shots. The more the gargants compete to show off their skills, the worse the ensuing destruction...",
+			"general": "Rock-hurlers",
+			"units": [
+				{
+					"count": 1,
+					"name": "Rock-hurlers"
+				},
+				{
+					"count": 1,
+					"name": "Rock-hurlers"
+				}
+			],
+			"battle_traits": [
+				{
+					"name": "BOWLED OVER",
+					"category": "movement",
+					"timing": "Your Shooting Phase",
+					"declare": "Pick an enemy unit that was allocated any damage points by a friendly unit’s shooting attacks this turn to be the target.",
+					"effect": "Roll a dice. On a 3+, until the start of your next turn, each time your opponent makes a charge roll for the target, they must change the highest D6 to match the lowest D6."
+				},
+				{
+					"name": "CLOSE ONE EYE",
+					"category": "shooting",
+					"timing": "Your Hero Phase",
+					"declare": "Pick your general to use this ability, then pick another friendly unit wholly within 12\" of them to be the target.",
+					"effect": "Add 1 to hit rolls for the target’s shooting attacks for the rest of the turn."
+				}
+			],
+			"regiment_abilities": [
+				{
+					"name": "SURLY SORTS",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"declare": "Pick a friendly unit in combat to be the target.",
+					"effect": "Add 1 to the Attacks characteristic of the target’s melee weapons for the rest of the turn."
+				},
+				{
+					"name": "GREEDY AND GRABBY",
+					"category": "control",
+					"timing": "Passive",
+					"effect": "Add 5 to the control scores of friendly units."
+				}
+			],
+			"enhancements": [
+				{
+					"name": "’ARD ’EAD",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Add 1 to hit rolls for combat attacks made with your general’s ’Eadbutt for the rest of the turn."
+				},
+				{
+					"name": "HUMONGOUS STRIDES",
+					"category": "movement",
+					"timing": "Passive",
+					"effect": "Add 1 to charge rolls for your general."
+				},
+				{
+					"name": "LUCKY ROCK",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Battle",
+					"effect": "Add 1 to the Attacks characteristic of your general’s Hurlin’ Rocks for the rest of the turn."
+				},
+				{
+					"name": "HUNGRY GOBBLER",
+					"category": "defensive",
+					"timing": "End of Any Turn",
+					"effect": "If any enemy models were slain by your general’s combat attacks this turn, Heal (D3) your general."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "rock_hurlers",
+					"name": "Rock-hurlers",
+					"move": "8",
+					"health": 12,
+					"save": 5,
+					"control": 5,
+					"ranged_weapons": [
+						{
+							"name": "Hurlin’ Rocks",
+							"range": 12,
+							"attacks": "3",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "D3"
+						}
+					],
+					"melee_weapons": [
+						{
+							"name": "Massive Clubs and Rocks",
+							"range": 0,
+							"attacks": "4",
+							"hit": 4,
+							"wound": 2,
+							"rend": 1,
+							"damage": "2"
+						},
+						{
+							"name": "’Eadbutt",
+							"range": 0,
+							"attacks": "1",
+							"hit": 4,
+							"wound": 2,
+							"rend": 2,
+							"damage": "3"
+						}
+					],
+					"abilities": [
+						{
+							"name": "DROP, TOSS OR ROLL",
+							"category": "shooting",
+							"timing": "Your Shooting Phase",
+							"effect": "Pick 1 of the following effects to apply to this unit for the rest of the turn. You cannot pick the same effect to apply to any other friendly units this turn.\nDrop: This unit’s ranged weapons have Shoot in Combat.\nToss: Add 6\" to the Range characteristic of this unit’s ranged weapons.\nRoll: Add 1 to hit rolls for this unit’s shooting attacks."
+						}
+					],
+					"keywords": [
+						"MONSTER",
+						"REINFORCEMENTS"
+					]
+				}
+			]
+		}
+	]
+}
