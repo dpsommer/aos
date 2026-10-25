@@ -3,9 +3,9 @@
 		"Khorgos Khul": "Korghos Khul"
 	},
 	"fields": {
-		"lord_of_khorne_on_juggernaut": {"move": 10},
-		"skarr_bloodwrath": {"health": 6, "ward": 0, "keywords": ["HERO", "UNIQUE", "CHAOS", "BLADES OF KHORNE", "BLOODBOUND", "INFANTRY"]},
-		"skullmaster_herald_of_khorne": {"move": 10},
+		"lord_of_khorne_on_juggernaut": {"notes": "", "move": 10},
+		"skarr_bloodwrath": {"notes": "", "health": 6, "ward": 0, "keywords": ["HERO", "UNIQUE", "CHAOS", "BLADES OF KHORNE", "BLOODBOUND", "INFANTRY"]},
+		"skullmaster_herald_of_khorne": {"notes": "", "move": 10},
 		"skullgrinder": {"control": 2},
 		"valkia_the_bloody": {"ward": 6, "keywords": ["HERO", "UNIQUE", "CHAOS", "BLADES OF KHORNE", "BLOODBOUND", "INFANTRY", "FLY", "WARD (6+)"]},
 		"khul_ascended": {"keywords": ["HERO", "CHAOS", "BLADES OF KHORNE", "WARMASTER", "UNIQUE", "INFANTRY", "FLY", "DAEMON", "WARD (5+)"]},

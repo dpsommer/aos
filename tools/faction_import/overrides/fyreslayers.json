@@ -3,7 +3,7 @@
 	"fields": {
 		"auric_hearthguard": {"keywords": ["CHAMPION", "DUARDIN", "FYRESLAYERS", "INFANTRY", "ORDER", "WARD (6+)"]},
 		"vulkyn_flameseekers": {"base_size": "4/9 32mm\n5/9 28.5mm"},
-		"scourge_of_aqshy_vulkyn_flameseekers": {"base_size": "4/9 32mm\n5/9 28.5mm"},
+		"scourge_of_aqshy_vulkyn_flameseekers": {"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.", "base_size": "4/9 32mm\n5/9 28.5mm"},
 		"magmic_battleforge > Spending the Forge": {"effect": "Heal (D3) each friendly FYRESLAYERS unit on the battlefield. Once this ability has been used, this terrain feature cannot use the 'Molten Blessing' ability for the rest of the battle."},
 		"Lofnir Drothkeepers > Breath of Vulcatrix": {"chanting_value": 4},
 		"Zharrgrim Blessings > Wrath of Vulcatrix": {"effect": "For the rest of the turn, the 'Battle Damaged' ability has no effect on the target and add 1 to the Attacks characteristic of the target's Companion weapons.\nIf the chanting roll was 8+, for the rest of the turn, add 1 to the Attacks characteristic of the target's Companion weapons for every 4 damage points the target has instead."},

@@ -38,6 +38,7 @@
 			]
 		},
 		"scourge_of_aqshy_huskard_on_thundertusk": {
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"keywords": [
 				"HERO",
 				"DESTRUCTION",
@@ -47,6 +48,8 @@
 				"BEASTCLAW",
 				"PRIEST (1)"
 			]
-		}
+		},
+		"butcher": {"regiment_options": ["0-1 Maw Nomad", "Any INFANTRY"]},
+		"firebelly": {"regiment_options": ["Any Gnoblars", "Any GUTBUSTERS", "0-1 Gnoblar Scraplauncher"]}
 	}
 }

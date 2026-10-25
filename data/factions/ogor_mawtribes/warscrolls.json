@@ -77,7 +77,6 @@
 			"base_size": "50mm",
 			"can_reinforce": false,
 			"regiment_options": [
-				"0-1 Scourge of Ghyran Gnoblar Scraplauncher",
 				"0-1 Maw Nomad",
 				"Any INFANTRY"
 			],
@@ -179,7 +178,6 @@
 			"regiment_options": [
 				"Any Gnoblars",
 				"Any GUTBUSTERS",
-				"0-1 Scourge of Ghyran Gnoblar Scraplauncher",
 				"0-1 Gnoblar Scraplauncher"
 			],
 			"notes": "This HERO can join an eligible regiment as a Maw Nomad. This unit will move to Warhammer Legends on 1 June 2027.",
@@ -1409,7 +1407,7 @@
 			"regiment_options": [
 				"Any OGOR MAWTRIBES"
 			],
-			"notes": "This HERO can join an eligible regiment as a Voice of the Everwinter. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "10",
 			"health": 14,
 			"save": 4,

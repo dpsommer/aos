@@ -422,7 +422,6 @@
 			"regiment_options": [
 				"Any SOULBLIGHT GRAVELORDS"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "10",
 			"health": 12,
 			"save": 4,
@@ -493,7 +492,7 @@
 			"regiment_options": [
 				"Any SOULBLIGHT GRAVELORDS"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026. You cannot include this unit and the Blades of the Hollow King in the same army.",
+			"notes": "You cannot include this unit and the Blades of the Hollow King in the same army.",
 			"move": "6",
 			"health": 6,
 			"save": 4,
@@ -951,7 +950,7 @@
 			"regiment_options": [
 				"Any DEADWALKERS"
 			],
-			"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer. This unit will move to Warhammer Legends on 1 June 2026.",
+			"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer.",
 			"move": "5",
 			"health": 6,
 			"save": 6,
@@ -1136,7 +1135,7 @@
 			"unit_size": 2,
 			"base_size": "40mm",
 			"can_reinforce": false,
-			"notes": "This unit cannot be reinforced. This unit will move to Warhammer Legends on 1 June 2026.",
+			"notes": "This unit cannot be reinforced.",
 			"move": "6",
 			"health": 4,
 			"save": 5,
@@ -2405,7 +2404,6 @@
 			"unit_size": 1,
 			"base_size": "130mm",
 			"can_reinforce": false,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "12",
 			"health": 14,
 			"save": 4,
@@ -2695,7 +2693,7 @@
 			"regiment_options": [
 				"Any SOULBLIGHT GRAVELORDS"
 			],
-			"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer. This unit will move to Warhammer Legends on 1 June 2026.",
+			"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer.",
 			"move": "5",
 			"health": 5,
 			"save": 6,
@@ -2918,7 +2916,6 @@
 			"regiment_options": [
 				"Any SOULBLIGHT GRAVELORDS"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "12",
 			"health": 16,
 			"save": 3,
@@ -3070,7 +3067,6 @@
 			"unit_size": 1,
 			"base_size": "50mm",
 			"can_reinforce": false,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "8",
 			"health": 8,
 			"save": 5,
@@ -3280,7 +3276,7 @@
 			"unit_size": 3,
 			"base_size": "32mm",
 			"can_reinforce": false,
-			"notes": "This unit cannot be reinforced. This unit will move to Warhammer Legends on 1 June 2026.",
+			"notes": "This unit cannot be reinforced.",
 			"move": "8",
 			"health": 3,
 			"save": 6,
@@ -3335,7 +3331,7 @@
 			"regiment_options": [
 				"Any DEATHRATTLE"
 			],
-			"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer. This unit will move to Warhammer Legends on 1 June 2026.",
+			"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer.",
 			"move": "4",
 			"health": 5,
 			"save": 4,

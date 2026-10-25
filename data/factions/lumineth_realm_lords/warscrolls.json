@@ -1268,7 +1268,7 @@
 				"Any Vanari Auralan Wardens",
 				"Any Vanari Bladelords"
 			],
-			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"notes": "This HERO can join an eligible regiment as a Lumineth Paragon. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "6",
 			"health": 5,
 			"save": 4,
@@ -2091,7 +2091,7 @@
 				"0-1 Ydrilan Riverblades",
 				"Any VANARI"
 			],
-			"notes": "This HERO can join an eligible regiment as a Lumineth Paragon Previously Vanari Lord Regent",
+			"notes": "This HERO can join an eligible regiment as a Lumineth Paragon",
 			"move": "14",
 			"health": 7,
 			"save": 3,

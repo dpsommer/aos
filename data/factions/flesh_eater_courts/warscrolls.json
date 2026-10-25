@@ -891,7 +891,7 @@
 			"regiment_options": [
 				"Any SERFS"
 			],
-			"notes": "This HERO can join an eligible regiment as a Flesh-eater Noble.",
+			"notes": "This HERO can join an eligible regiment as a Royal Attendant.",
 			"move": "6",
 			"health": 4,
 			"save": 5,
@@ -1034,7 +1034,6 @@
 			"regiment_options": [
 				"0-1 SERFS",
 				"Any Crypt Horrors",
-				"Any Crypt Horrors (2 models)",
 				"0-1 BEAST"
 			],
 			"notes": "This HERO can join an eligible regiment as a Royal Attendant.",
@@ -1181,7 +1180,6 @@
 			"base_size": "50mm",
 			"can_reinforce": false,
 			"regiment_options": [
-				"Any Crypt Flayers (2 models)",
 				"0-1 SERFS",
 				"Any Crypt Flayers",
 				"0-1 BEAST"

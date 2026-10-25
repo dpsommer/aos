@@ -27,6 +27,7 @@
 			"control": 5
 		},
 		"spirit_torment": {
+			"regiment_options": ["0-1 Black Coach", "Any INFANTRY"],
 			"health": 5
 		},
 		"pyregheists": {
@@ -97,6 +98,14 @@
 				"NIGHTHAUNT",
 				"WARD (6+)"
 			]
-		}
+		},
+		"guardian_of_souls": {"regiment_options": ["0-1 Black Coach", "Any INFANTRY"]},
+		"krulghast_cruciator": {"regiment_options": ["0-1 Black Coach", "Any INFANTRY"]},
+		"lord_executioner": {"regiment_options": ["0-1 Black Coach", "Any INFANTRY"]},
+		"lord_vitriolic": {"regiment_options": ["Any INFANTRY", "0-1 Black Coach"]},
+		"scriptor_mortis": {"regiment_options": ["Any INFANTRY", "0-1 Black Coach"]},
+		"cairn_wraith": {"regiment_options": ["0-1 Black Coach", "Any INFANTRY"], "notes": "This HERO can join an eligible regiment as a Cursed Soul."},
+		"tomb_banshee": {"regiment_options": ["0-1 Black Coach", "Any INFANTRY"], "notes": "This HERO can join an eligible regiment as a Cursed Soul."},
+		"glaivewraith_stalkers": {"notes": ""}
 	}
 }

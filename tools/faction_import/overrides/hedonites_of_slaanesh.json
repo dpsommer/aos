@@ -32,6 +32,8 @@
 		"exalted_chariot > Steeds' Poisoned Tongues": {"attacks": "8"},
 		"viceleader_herald_of_slaanesh": {"keywords": ["HERO", "CHAOS", "DAEMON", "HEDONITES OF SLAANESH", "WARD (6+)", "WIZARD (1)", "INFANTRY", "FLY"]},
 		"fiends > Pincers and Barbed Stinger": {"name": "Pincers and Tail Stinger"},
-		"thricefold_discord > Carnal Blades and Wicked Claws": {"name": "Thricefold Arsenal"}
+		"thricefold_discord > Carnal Blades and Wicked Claws": {"name": "Thricefold Arsenal"},
+		"thricefold_discord": {"regiment_options": ["0-1 Slaaneshi Beguiler", "Any HEDONITES OF SLAANESH"]},
+		"blissbarb_archers": {"base_size": "Blissbarb Archers: 28.5mm, Blissbrew Homonculus: 25mm"}
 	}
 }

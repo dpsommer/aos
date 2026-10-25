@@ -30,6 +30,6 @@
 		"slaughter_queen_on_cauldron_of_blood > Consecrated Revulsion": {"effect": "Add 1 to save rolls for visible friendly DAUGHTERS OF KHAINE INFANTRY units while they are wholly within 12\" of this unit."},
 		"gryselles_arenai": {"base_size": "Gryselle: 32mm, Kalexis, Retaria, Thrialla and Traxya: 28.5mm"},
 		"khainite_shadowstalkers": {"points": 130, "base_size": "Shroud Queen: 40mm, 1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades: 28.5mm"},
-		"scourge_of_aqshy_khainite_shadowstalkers": {"base_size": "Shroud Queen: 40mm, 1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades: 28.5mm"}
+		"scourge_of_aqshy_khainite_shadowstalkers": {"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.", "base_size": "Shroud Queen: 40mm, 1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades: 28.5mm"}
 	}
 }

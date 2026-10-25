@@ -6,6 +6,8 @@
 		"sunblood_pack": {"base_size": "Sunblood: 40mm, 2 × Saurus Bodyguard: 32mm, Venomites: 25mm"},
 		"the_jaws_of_itzl": {"base_size": "Kro-Jax, the Aegis: 40mm, So-Kar, Ro-Tak, the Guardian: 32mm, Sotek’s Venomites: 25mm"},
 		"the_starblood_stalkers": {"base_size": "Klaq-Trok: 32mm, Kixi-Taka, the Diviner, Otapatl, Huachi, Tok and Xepic: 25mm"},
-		"Kixi-Taka, the Diviner": {"effect": "While this unit's Kixi-Taka, the Diviner, is on the battlefield, it has WIZARD (1)."}
+		"Kixi-Taka, the Diviner": {"effect": "While this unit's Kixi-Taka, the Diviner, is on the battlefield, it has WIZARD (1)."},
+		"scourge_of_aqshy_slann_starmaster": {"regiment_options": ["0-1 Skink Starpriest or Favoured Spawning", "Any SERAPHON"]},
+		"scourge_of_aqshy_saurus_scar_veteran_on_aggradon": {"notes": "This HERO can join an eligible regiment as a Favoured Spawning. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack."}
 	}
 }

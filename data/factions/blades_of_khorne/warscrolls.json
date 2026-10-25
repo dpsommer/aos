@@ -1390,7 +1390,6 @@
 			"regiment_options": [
 				"Any BLOODBOUND"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "10",
 			"health": 8,
 			"save": 2,
@@ -1896,7 +1895,6 @@
 			"regiment_options": [
 				"Any BLOODBOUND"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "5",
 			"health": 6,
 			"save": 4,
@@ -2137,7 +2135,6 @@
 				"Any DAEMON CAVALRY",
 				"Any WAR MACHINE"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "10",
 			"health": 7,
 			"save": 4,

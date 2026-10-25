@@ -5,7 +5,7 @@
 		"Unhallowed Site": {"name": "Unholy Site"},
 		"Vile Transference": {"declare": "Pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6."},
 		"bloodseeker_palanquin > A Promising Concoction": {"declare": "Pick up to 3 visible friendly VAMPIRE units wholly within 12\" of this unit to be the targets."},
-		"gorslav_the_gravekeeper": {"health": 6},
+		"gorslav_the_gravekeeper": {"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer.", "health": 6},
 		"gorslav_the_gravekeeper > Keeper of the Corpse-gardens": {"effect": "While this unit is within the combat range of a friendly Deadwalker Zombies unit:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, inflict 1 mortal damage on a friendly Deadwalker Zombies unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."},
 		"mortis_engine > The Reliquary": {"effect": "When this unit is set up for the first time, place a stored energy dice beside it with the '1' facing up. Each time a friendly SOULBLIGHT GRAVELORDS WIZARD successfully casts a spell while it is within 12\" of this unit, increase the value of the stored energy dice beside this unit by 1 (to a maximum of 6)."},
 		"prince_vhordrai > Shordmaire's Claws": {"name": "Shordemaire's Claws"},
@@ -13,7 +13,7 @@
 		"prince_vhordrai > Battle Damaged": {"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Shordemaire's Claws is 5."},
 		"terrorgheist > Battle Damaged": {"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Skeletal Talons is 4."},
 		"terrorgheist > Sonic Assault": {"keywords": ["RAMPAGE"]},
-		"watch_captain_halgrim": {"move": "4", "base_size": "32mm"},
+		"watch_captain_halgrim": {"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer.", "move": "4", "base_size": "32mm"},
 		"watch_captain_halgrim > Cursed Halberd and Sabre": {"attacks": "4"},
 		"unholy_reliquary": {"keywords": ["DEATH", "WARD (6+)", "MANIFESTATION", "ENDLESS SPELL", "SOULBLIGHT GRAVELORDS"]},
 		"askurgan_trueblades":{"base_size": "Askurgan Exemplar, 2 x Askurgan Ascetics, Askurgan Pariah: 32mm, Curseblood: 40mm, 3 x Askurgan Acolytes: 28.5mm"},
@@ -36,6 +36,14 @@
 			"declare": "If there is not a friendly Unholy Reliquary on the battlefield, pick a friendly CRIMSON KEEP WIZARD to cast this spell, then make a casting roll of 2D6.",
 			"effect": "Set up an Unholy Reliquary endless spell wholly within 18\" of the caster, visible to them, and more than 3\" from all enemy units."
 		},
-		"Scions of Nulahmia > Scarlet Thirst": {"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, then make a casting roll of 2D6."}
+		"Scions of Nulahmia > Scarlet Thirst": {"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"bloodseeker_palanquin": {"notes": ""},
+		"cado_ezechiar_the_hollow_king": {"notes": "You cannot include this unit and the Blades of the Hollow King in the same army."},
+		"kosargi_nightguard": {"notes": "This unit cannot be reinforced."},
+		"terrorgheist": {"notes": ""},
+		"torgillius_the_chamberlain": {"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer."},
+		"vampire_lord_on_zombie_dragon": {"notes": ""},
+		"vargskyr": {"notes": ""},
+		"vyrkos_blood_born": {"notes": "This unit cannot be reinforced."}
 	}
 }

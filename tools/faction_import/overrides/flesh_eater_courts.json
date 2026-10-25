@@ -26,6 +26,9 @@
 		"crypt_flayers_2_models": {"unit_size": 2},
 		"crypt_horrors_2_models": {"unit_size": 2},
 		"royal_beastflayers": {"base_size": "Royal Flaymaster, Beastflayer Baron: 32mm, 2 x Offal Hounds: 40mm, 3 x Ghoul Trackers: 25mm, 3 x Ghoul Gore-Squires: 28.5mm"},
-		"high_falconer_felgryn": {"base_size": "High Falconer Felgryn: 32mm, Grype: 28.5mm"}
+		"high_falconer_felgryn": {"base_size": "High Falconer Felgryn: 32mm, Grype: 28.5mm"},
+		"crypt_haunter_courtier": {"regiment_options": ["0-1 SERFS", "Any Crypt Horrors", "0-1 BEAST"]},
+		"crypt_infernal_courtier": {"regiment_options": ["0-1 SERFS", "Any Crypt Flayers", "0-1 BEAST"]},
+		"crypt_ghast_courtier": {"notes": "This HERO can join an eligible regiment as a Royal Attendant."}
 	}
 }

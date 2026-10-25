@@ -375,11 +375,9 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
-				"Any INFANTRY",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"Any INFANTRY"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026. This HERO can join an eligible regiment as a Cursed Soul.",
+			"notes": "This HERO can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
 			"health": 5,
 			"save": 5,
@@ -700,7 +698,6 @@
 			"unit_size": 4,
 			"base_size": "32mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026.",
 			"move": "8",
 			"health": 2,
 			"save": 6,
@@ -795,9 +792,7 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
-				"Any INFANTRY",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"Any INFANTRY"
 			],
 			"notes": "This HERO can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
@@ -1029,9 +1024,7 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
-				"Any INFANTRY",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"Any INFANTRY"
 			],
 			"notes": "This Hero can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
@@ -1307,9 +1300,7 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
-				"Any INFANTRY",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"Any INFANTRY"
 			],
 			"notes": "This HERO can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
@@ -1368,9 +1359,7 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
-				"0-1 Black Coach",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"0-1 Black Coach"
 			],
 			"notes": "This HERO can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
@@ -1736,9 +1725,7 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
-				"0-1 Black Coach",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"0-1 Black Coach"
 			],
 			"notes": "This HERO can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
@@ -1930,9 +1917,7 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
-				"Any INFANTRY",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"Any INFANTRY"
 			],
 			"notes": "This HERO can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
@@ -2119,11 +2104,9 @@
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
-				"Any INFANTRY",
-				"0-1 Scourge of Ghyran Black Coach",
-				"0-1 Scourge of Aqshy Black Coach"
+				"Any INFANTRY"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2026. This HERO can join an eligible regiment as a Cursed Soul.",
+			"notes": "This HERO can join an eligible regiment as a Cursed Soul.",
 			"move": "8",
 			"health": 5,
 			"save": 5,

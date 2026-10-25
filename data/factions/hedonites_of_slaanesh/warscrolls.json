@@ -226,7 +226,7 @@
 			"name": "Blissbarb Archers",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": "Blissbarb Archers: 28.5mm, Blissbrew Homonculus: 25mm",
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,

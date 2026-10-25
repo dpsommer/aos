@@ -1442,7 +1442,7 @@
 				"0-1 Favoured Spawning",
 				"Any SAURUS"
 			],
-			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
+			"notes": "This HERO can join an eligible regiment as a Favoured Spawning. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "10",
 			"health": 8,
 			"save": 4,
@@ -1989,7 +1989,7 @@
 			"base_size": "80mm",
 			"can_reinforce": false,
 			"regiment_options": [
-				"0-1 Skink Starpriest, Skink Starseer or Favoured Spawning",
+				"0-1 Skink Starpriest or Favoured Spawning",
 				"Any SERAPHON"
 			],
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",

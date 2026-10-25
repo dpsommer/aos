@@ -5,9 +5,9 @@
 		"Astral Templars > Thundrous Roar": "Tenacious Trackers"
 	},
 	"fields": {
-		"knight_zephyros": {"legends": true},
-		"knight_venator": {"base_size": "50mm"},
-		"celestar_ballista": {"base_size": "Celestar Ballista: 60mm, Celestar Ballista Crew: 40mm"},
+		"knight_zephyros": {"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR", "legends": true},
+		"knight_venator": {"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR", "base_size": "50mm"},
+		"celestar_ballista": {"notes": "", "base_size": "Celestar Ballista: 60mm, Celestar Ballista Crew: 40mm"},
 		"xandires_truthseekers": {"base_size": "Xandire's Truthseekers: 40mm, Taros (token): 25mm"},
 		"knight_judicator_with_gryph_hounds": {"base_size": "Knight-Judicator: 90 × 52mm, 2 x Gryph-hounds: 40mm"},
 		"lord_imperatant": {"base_size": "Lord-Imperatant: 40mm, Gryph-hound: 32mm"},
@@ -34,6 +34,21 @@
 		},
 		"Astral Templars > Summon Everblaze Comet": {"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, then make a casting roll of 2D6.", "casting_value": 6},
 		"Draconith Skywing > Summon Everblaze Comet": {"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly DRACONITH SKYWING WIZARD to cast this spell, then make a casting roll of 2D6."},
-		"Heroes of the First-Forged > Summon Everblaze Comet": {"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly FIRST-FORGED WIZARD to cast this spell, then make a casting roll of 2D6."}
+		"Heroes of the First-Forged > Summon Everblaze Comet": {"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly FIRST-FORGED WIZARD to cast this spell, then make a casting roll of 2D6."},
+		"astreia_solbright": {"notes": ""},
+		"aventis_firestrike_magister_of_hammerhal": {"notes": ""},
+		"castigators": {"notes": ""},
+		"decimators": {"notes": ""},
+		"evocators": {"notes": ""},
+		"evocators_on_celestial_dracolines": {"notes": ""},
+		"gavriel_sureheart": {"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR"},
+		"judicators_with_boltstorm_crossbows": {"notes": ""},
+		"judicators_with_skybolt_bows": {"notes": ""},
+		"lord_arcanum_on_celestial_dracoline": {"notes": ""},
+		"lord_arcanum_on_gryph_charger": {"notes": ""},
+		"lord_arcanum_on_tauralon": {"notes": ""},
+		"protectors": {"notes": ""},
+		"retributors": {"notes": ""},
+		"sequitors": {"notes": ""}
 	}
 }

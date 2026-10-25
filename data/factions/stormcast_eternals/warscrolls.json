@@ -147,7 +147,6 @@
 			"regiment_options": [
 				"Any STORMCAST ETERNALS"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "10",
 			"health": 8,
 			"save": 3,
@@ -226,7 +225,6 @@
 			"regiment_options": [
 				"Any STORMCAST ETERNALS"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "14",
 			"health": 12,
 			"save": 3,
@@ -304,7 +302,6 @@
 			"unit_size": 3,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "5",
 			"health": 2,
 			"save": 3,
@@ -439,7 +436,6 @@
 			"unit_size": 1,
 			"base_size": "Celestar Ballista: 60mm, Celestar Ballista Crew: 40mm",
 			"can_reinforce": false,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "3",
 			"health": 6,
 			"save": 3,
@@ -571,7 +567,6 @@
 			"unit_size": 5,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "4",
 			"health": 3,
 			"save": 3,
@@ -1447,7 +1442,6 @@
 			"unit_size": 5,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "5",
 			"health": 3,
 			"save": 3,
@@ -1498,7 +1492,6 @@
 			"unit_size": 3,
 			"base_size": "90 × 52mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "10",
 			"health": 5,
 			"save": 3,
@@ -1623,7 +1616,7 @@
 				"0-1 Gryph-hounds",
 				"Any INFANTRY"
 			],
-			"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR This unit will move to Warhammer Legends on 1 June 2025.",
+			"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR",
 			"move": "5",
 			"health": 6,
 			"save": 3,
@@ -2159,7 +2152,6 @@
 			"unit_size": 5,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "5",
 			"health": 2,
 			"save": 3,
@@ -2228,7 +2220,6 @@
 			"unit_size": 5,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "5",
 			"health": 2,
 			"save": 3,
@@ -2861,7 +2852,7 @@
 				"0-1 Gryph-hounds",
 				"Any WARRIOR CHAMBER INFANTRY"
 			],
-			"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR This unit will move to Warhammer Legends on 1 June 2025.",
+			"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR",
 			"move": "12",
 			"health": 6,
 			"save": 3,
@@ -2985,7 +2976,7 @@
 				"0-1 Gryph-hounds",
 				"Any VANGUARD CHAMBER"
 			],
-			"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR This unit will move to Warhammer Legends on 1 June 2025.",
+			"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR",
 			"move": "7",
 			"health": 6,
 			"save": 3,
@@ -3408,7 +3399,6 @@
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER CAVALRY"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "10",
 			"health": 8,
 			"save": 3,
@@ -3474,7 +3464,6 @@
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "12",
 			"health": 8,
 			"save": 3,
@@ -3538,7 +3527,6 @@
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER"
 			],
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "14",
 			"health": 12,
 			"save": 3,
@@ -4729,7 +4717,6 @@
 			"unit_size": 5,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "4",
 			"health": 3,
 			"save": 3,
@@ -4890,7 +4877,6 @@
 			"unit_size": 5,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "4",
 			"health": 3,
 			"save": 3,
@@ -4947,7 +4933,6 @@
 			"unit_size": 5,
 			"base_size": "40mm",
 			"can_reinforce": true,
-			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
 			"move": "5",
 			"health": 2,
 			"save": 3,
