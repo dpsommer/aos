@@ -129,6 +129,29 @@ static func army_of_renown(army: ArmyOfRenown) -> String:
 	return "\n\n".join(parts)
 
 
+static func regiment_of_renown(regiment: RegimentOfRenown) -> String:
+	var parts := PackedStringArray([heading("%s (%d pts)" % [regiment.name, regiment.points])])
+	if not regiment.source.is_empty():
+		parts.append("[i]Source: %s[/i]" % _escape(regiment.source))
+	if regiment.legends:
+		parts.append("[i]Legends[/i]")
+	if not regiment.text.is_empty():
+		parts.append(_escape(regiment.text))
+	var roster := PackedStringArray()
+	for unit in regiment.units:
+		var line := "%d %s" % [unit.count, unit.name]
+		if not unit.notes.is_empty():
+			line += " (%s)" % unit.notes
+		roster.append("[indent]%s[/indent]" % _escape(line))
+	if not roster.is_empty():
+		parts.append("[b]Units:[/b]\n%s" % "\n".join(roster))
+	if not regiment.abilities.is_empty():
+		parts.append(abilities(regiment.abilities))
+	for unit in regiment.warscrolls:
+		parts.append(warscroll(unit))
+	return "\n\n".join(parts)
+
+
 static func spearhead(army: Spearhead) -> String:
 	var parts := PackedStringArray([heading(army.name)])
 	if not army.text.is_empty():

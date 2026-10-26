@@ -1,0 +1,15 @@
+{
+	"regiments_of_renown": [
+		{
+			"name": "Regiment",
+			"points": 10,
+			"units": [
+				{
+					"count": "one",
+					"name": "Unit",
+					"warscroll": "unit"
+				}
+			]
+		}
+	]
+}

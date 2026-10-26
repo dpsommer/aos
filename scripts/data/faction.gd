@@ -12,6 +12,8 @@ extends Resource
 @export var lores: Array[Lore]
 @export var warscrolls: Array[Warscroll]
 @export var armies_of_renown: Array[ArmyOfRenown]
+## Regiments of Renown the faction's armies can include.
+@export var regiments_of_renown: Array[RegimentOfRenown]
 @export var spearheads: Array[Spearhead]
 @export var path_to_glory: Array[RulesSection]
 

@@ -9,6 +9,7 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 `faction.json` | Yes | `id`, `name`, `grand_alliance` (`order`, `chaos`, `death`, `destruction`), `legends` (the whole faction has moved to Legends), `battle_traits`, `battle_formations`, `enhancement_tables`, `lores`
 `warscrolls.json` | No | `{"warscrolls": [...]}`: matched play warscrolls with battle profiles
 `armies_of_renown.json` | No | `{"armies_of_renown": [...]}`: name, source, `legends`, text (description and roster), battle traits, enhancement tables, lores
+`regiments_of_renown.json` | No | `{"regiments_of_renown": [{"shared": "<name>"}, ...]}`: the Regiments of Renown the faction's armies can include, which live in `data/shared/regiments_of_renown.json`; see [Regiments of Renown](#regiments-of-renown)
 `spearhead.json` | No | `{"spearheads": [...]}`: army list (`general`, `units`), battle traits, regiment abilities, enhancements, and the Spearhead versions of warscrolls
 `path_to_glory.json` | No | `{"sections": [...]}`: titled text sections, plus any warscrolls (e.g. the Anvil of Apotheosis hero)
 
@@ -31,6 +32,8 @@ Fix a typo in a shared entry once, in `tools/faction_import/shared.json`, not in
 `BattleFormation` | **`name`**, `points`, `abilities`
 `EnhancementTable` | **`name`** (type, e.g. "Heroic Traits"), `group` (e.g. "Lords of the Sky-fleets"), `source`, `entries`
 `Lore` | **`name`**, `kind` (spell, prayer, manifestation), `points` (always written in `faction.json`, usually 0), `source`, `entries`
+`RegimentOfRenown` | **`name`**, `source`, `legends`, **`points`**, `text` (rules and notes for the whole regiment, e.g. a keyword its units gain), `units` (`[{count, name, faction, warscroll, notes}]`, see below), `abilities`, `warscrolls` (units the regiment defines itself)
+`RegimentUnit` | **`count`**, **`name`**, `faction` (the home faction's id; empty for a unit in the regiment's own `warscrolls`), **`warscroll`** (the warscroll's id there), `notes` (which size or model, e.g. "10 models", "the Aelsling")
 `Spearhead` | **`name`**, `text`, **`general`**, `units` (`[{count, name, notes}]`, names match the Spearhead's own warscrolls), `battle_traits`, `regiment_abilities`, `enhancements`, `warscrolls`
 `RulesSection` | **`name`**, `text`, `warscrolls`
 
@@ -105,7 +108,8 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
    `build.py` stops if an override matches nothing, so stale overrides get noticed.
    If the faction has a warscroll or Army of Renown another faction also has (e.g. a Death faction's Nagash), list it in `tools/faction_import/shared.json` and rebuild; see [Shared entries](#shared-entries).
 4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`. If the faction is Legends, also add it to `_LEGENDS`, which the Forge uses to label it without loading its data; `test_faction_data.gd` checks it agrees with `faction.json`.
-5. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
+5. Rerun `build_regiments.py` so the faction gets the Regiments of Renown it can include and any regiment with its units can find their warscrolls; see [Regiments of Renown](#regiments-of-renown).
+6. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
    ```sh
    PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/faction_import/tests
    ```
@@ -139,6 +143,24 @@ How the BSData catalogues map to the data:
 - An Army of Renown is each `<Faction> - <Name>.cat` (a `[LEGENDS]` tag in the name, even without its closing bracket, marks it `legends`), plus the shared catalogue it links to when its rules live there (e.g. `The Duardin Ascendant [LEGENDS].cat`). Catalogue links are followed by target id, since a link's name can differ from the file's ("þ Legions of Nagash" is `Legions of Nagash [LEGENDS].cat`).
 
 The Wahapedia parsers rely on Wahapedia's page structure. A unit page whose sheet is a Regiment of Renown (Slaves to Darkness links the Curse-Steel Battery) is skipped, since it holds the regiment's rules rather than a warscroll. They read the faction page's headings: Battle Traits, Battle Formations, `… Lore`, other enhancement types, and Armies of Renown (sections with a ROSTER OPTIONS heading, or that mention roster options, since Beastclaw Alfrostun's heading is missing), Path to Glory and Spearhead. A Spearhead army list's General and Units headings may be upper case (Ironjawz Bigmob). Spearhead army lists sometimes use the singular ("Sunsteala Wheela"), shorten unit names ("Dominator Engine") or reorder their words ("Freeguild Command Corps Whisperblade" for "Whisperblade, Freeguild Command Corps"); these are resolved to the Spearhead's warscroll by unique prefix, by matching words, or by a close spelling ("lronguts" for "Ironguts"). Each list item is its own entry; a unit listed without a count (a named character, or a hero such as "Varghulf Courtier") counts as 1, and notes ("with 1 Blackpowder Squire token", "with Venomites token", "with 1 Blissbrew Homonculus", or a parenthetical) become the unit's `notes`, as does a closing line for every unit of a kind ("Each unit of Gutter Runners has 1 Bomb Rat token."); the general's notes are dropped, except a designer's note (Scrapglutt's Mantrappers), which is added to the Spearhead's `text`. Text under a Spearhead's Battle Traits heading that isn't in an ability block is kept: when an ability follows, it's that ability's `text` (which units start in reserve before the ability that sets them up, e.g. the Bad Moon Madmob's "Squigalanche"); otherwise it's a battle trait of its own, named by its title, with any table rows ("18+ | SADISTIC SPITE: …") as `options` named "18+: Sadistic Spite" (the Blades of the Lurid Dream's "Temptations of Slaanesh").
+
+## Regiments of Renown
+
+A Regiment of Renown is a pre-built group of units with abilities of its own that armies of other factions can include (core rules 3.5). Each is stored once in `data/shared/regiments_of_renown.json` (`{"regiments_of_renown": [...]}`, in the `RegimentOfRenown` shape), and every faction that can include it lists `{"shared": "<name>"}` in its `regiments_of_renown.json`. A regiment's units point at the warscrolls of their home faction by faction and warscroll id (Arkhan the Black is `ossiarch_bonereapers` / `arkhan_the_black_mortarch_of_sacrament`), so the loader doesn't load other factions; `test_faction_data.gd` checks every unit resolves. A unit the regiments catalogue defines itself (Gotrek Gurnisson, Mask of the Deceiver, the Outlaw Cogforts) has no faction and is in the regiment's `warscrolls`.
+
+`tools/faction_import/build_regiments.py` builds them all, after the factions they draw units from:
+
+```sh
+python -I tools/faction_import/fetch.py --regiments <download dir>
+python -I tools/faction_import/build_regiments.py <download dir> > report.txt
+```
+
+It writes the shared file and the `regiments_of_renown.json` of every faction in `data/factions/`, so rerun it after adding a faction. A unit that resolves to no warscroll stops the build.
+
+- **BSData** (`Regiments of Renown.cat` and the game system) is the primary source. Each regiment's force entry in the game system has its points and the faction catalogues it is allowed for, the catalogue's "Regiment of Renown: <name>" upgrade entry has its abilities, and its unit links shown for that force are its units, with the count each link's minimum is set to. Regiments only for Path to Glory campaigns (the Ravaged Coast's Realmstone Innovator, Sinister Nullifier, Warped Saboteur and Weird-Crafta, and the Regiment of Ghyran) are left out. Factions that aren't built (Beasts of Chaos and Bonesplitterz) get no references; the report lists them.
+- **Wahapedia** has a page for each regiment under every faction that can include it, which faction pages don't link, so `fetch.py --regiments` tries each allowed faction and spellings of the name; names it can't derive go in the overrides' `wahapedia_names`. The page supplies unit size notes, units BSData misses (the Sigil Convocation's three manifestations), notes such as Krittok's Clawpack's keyword, each unit's home faction (from its link), and the order of units and abilities. Its unit counts sometimes count models ("5 Vanari Dawnriders" is one unit), so counts come from BSData. Its background description is left out.
+
+The report lists points, legends, factions, unit names and abilities that differ. Wahapedia also lists Armies of Renown (Legion of the First Prince) among the factions; those BSData allows with their faction aren't reported. Fix BSData with `tools/faction_import/overrides/regiments_of_renown.json`: `wahapedia_names`, `replace_with_wahapedia` and `fields` as for a faction (targets are `"<regiment>"` or `"<regiment> > <ability or unit name>"`; a unit's `faction` and `warscroll` can be set to point it at another warscroll), plus `add_from_wahapedia`, a list of `"<regiment> > <Wahapedia ability>"` only Wahapedia prints (the Godmarked Ascendant's 'Gifts of Chaos'), and `remove`, a list of `"<regiment> > <ability>"` that BSData gives the wrong regiment (its Heralds of the Bone-tithe has the Dawnrider Lance's 'Masters of All Terrain'). An ability can be the regiment's or one of its own warscrolls' (Mask of the Deceiver's 'Forceful Command', which BSData calls 'Unstoppable Battle Fury'). The [Regiments of Renown PDF](https://assets.warhammer-community.com/eng_sept25_aos_regiments_of_renown-fmuoilpm8f-06hzdipnzs.pdf) (September 2025) has the regiments not in a battletome and settles their disagreements.
 
 ## Exporting
 

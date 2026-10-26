@@ -421,6 +421,88 @@ func test_army_of_renown_legends_mark_adds_a_line() -> void:
 	assert_gt(lines.call(_army(true)), lines.call(_army(false)))
 
 
+func _regiment(fields := {}) -> RegimentOfRenown:
+	var regiment := RegimentOfRenown.new()
+	regiment.name = "Made-up Regiment"
+	regiment.points = 275
+	for key: String in fields:
+		if fields[key] is Array:
+			regiment.get(key).assign(fields[key])
+		else:
+			regiment.set(key, fields[key])
+	return regiment
+
+
+func _regiment_unit(count: int, unit_name: String, notes := "") -> RegimentUnit:
+	var unit := RegimentUnit.new()
+	unit.count = count
+	unit.name = unit_name
+	unit.notes = notes
+	return unit
+
+
+func test_regiment_of_renown_contains_name_and_points() -> void:
+	var regiment := _regiment()
+	var output := RulesFormatter.regiment_of_renown(regiment)
+	assert_string_contains(output, regiment.name)
+	assert_string_contains(output, str(regiment.points))
+
+
+func test_regiment_of_renown_contains_source_and_text() -> void:
+	var regiment := _regiment({source = "Made-up Book", text = "Regiment restrictions."})
+	var output := RulesFormatter.regiment_of_renown(regiment)
+	assert_string_contains(output, regiment.source)
+	assert_string_contains(output, regiment.text)
+
+
+func test_regiment_of_renown_marks_legends() -> void:
+	assert_string_contains(RulesFormatter.regiment_of_renown(_regiment({legends = true})), "Legends")
+
+
+func test_regiment_of_renown_omits_legends_mark_when_not_legends() -> void:
+	assert_false(RulesFormatter.regiment_of_renown(_regiment()).contains("Legends"))
+
+
+func test_regiment_of_renown_omits_source_when_empty() -> void:
+	assert_false(RulesFormatter.regiment_of_renown(_regiment()).contains("Source"))
+
+
+func test_regiment_of_renown_lists_units_with_counts_and_notes() -> void:
+	var regiment := _regiment({units = [_regiment_unit(3, "Made-up Troops", "incl. Banner"), _regiment_unit(1, "Made-up Lord")]})
+	var output := RulesFormatter.regiment_of_renown(regiment)
+	for value in ["3", "Made-up Troops", "incl. Banner", "1", "Made-up Lord"]:
+		assert_string_contains(output, value)
+
+
+func test_regiment_of_renown_unit_without_notes_has_no_empty_brackets() -> void:
+	var output := RulesFormatter.regiment_of_renown(_regiment({units = [_regiment_unit(1, "Made-up Lord")]}))
+	assert_false(output.contains("()"), output)
+
+
+func test_regiment_of_renown_omits_units_section_without_units() -> void:
+	assert_false(RulesFormatter.regiment_of_renown(_regiment()).contains("Units"))
+
+
+func test_regiment_of_renown_contains_abilities() -> void:
+	var regiment := _regiment({abilities = [_ability({name = "Regiment Ability"})] as Array[Ability]})
+	assert_string_contains(RulesFormatter.regiment_of_renown(regiment), "Regiment Ability")
+
+
+func test_regiment_of_renown_contains_its_warscrolls() -> void:
+	var regiment := _regiment({warscrolls = [_warscroll({name = "Regiment Hero"})] as Array[Warscroll]})
+	assert_string_contains(RulesFormatter.regiment_of_renown(regiment), "Regiment Hero")
+
+
+func test_regiment_of_renown_escapes_bbcode_in_text() -> void:
+	var output := RulesFormatter.regiment_of_renown(_regiment({text = "Take [b]bold[/b] steps."}))
+	assert_false(output.contains("Take [b]bold"), output)
+
+
+func test_regiment_of_renown_escapes_bbcode_in_unit_names() -> void:
+	var regiment := _regiment({units = [_regiment_unit(1, "[url]Evil[/url]")]})
+	assert_false(RulesFormatter.regiment_of_renown(regiment).contains("[url]Evil"))
+
+
 func test_spearhead_contains_general_and_units() -> void:
 	var army := Spearhead.new()
 	army.name = "Made-up Spearhead"

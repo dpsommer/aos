@@ -1,0 +1,12 @@
+{
+	"regiments_of_renown": [
+		{
+			"shared": "Shared Regiment"
+		},
+		{
+			"name": "Own Regiment",
+			"points": 90,
+			"units": []
+		}
+	]
+}

@@ -1,6 +1,7 @@
 class_name FactionBrowser
 extends Control
-## Read-only view of a faction's rules, warscrolls, Armies of Renown, Spearheads and Path to Glory.
+## Read-only view of a faction's rules, warscrolls, Armies of Renown, Regiments of Renown, Spearheads
+## and Path to Glory.
 
 signal back_pressed
 
@@ -12,6 +13,7 @@ var faction: Faction
 @onready var rules: RichTextLabel = %Rules
 @onready var warscrolls: RulesListView = %Warscrolls
 @onready var armies_of_renown: RulesListView = %ArmiesOfRenown
+@onready var regiments_of_renown: RulesListView = %RegimentsOfRenown
 @onready var spearheads: RulesListView = %Spearheads
 @onready var path_to_glory: RulesListView = %PathToGlory
 
@@ -21,6 +23,7 @@ func _ready() -> void:
 		rules: "Rules",
 		warscrolls: "Warscrolls",
 		armies_of_renown: "Armies of Renown",
+		regiments_of_renown: "Regiments of Renown",
 		spearheads: "Spearhead",
 		path_to_glory: "Path to Glory",
 	}
@@ -50,6 +53,12 @@ func show_faction(data: Faction) -> void:
 	for army in data.armies_of_renown:
 		labels.append(army.name + (" (Legends)" if army.legends else ""))
 	armies_of_renown.populate(labels, func(i: int) -> String: return RulesFormatter.army_of_renown(data.armies_of_renown[i]))
+
+	labels = PackedStringArray()
+	for regiment in data.regiments_of_renown:
+		labels.append("%s%s - %d pts" % [regiment.name, " (Legends)" if regiment.legends else "", regiment.points])
+	regiments_of_renown.populate(labels,
+			func(i: int) -> String: return RulesFormatter.regiment_of_renown(data.regiments_of_renown[i]))
 
 	labels = PackedStringArray()
 	for army in data.spearheads:

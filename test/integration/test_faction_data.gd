@@ -105,6 +105,56 @@ func test_every_spearhead_unit_has_a_warscroll() -> void:
 						"%s: %s unit %s" % [faction.name, spearhead.name, unit.name])
 
 
+func _faction_with_id(faction_id: String) -> Faction:
+	for faction in _factions:
+		if faction.id == faction_id:
+			return faction
+	return null
+
+
+func test_some_faction_has_a_regiment_of_renown() -> void:
+	var count := 0
+	for faction in _factions:
+		count += faction.regiments_of_renown.size()
+	assert_gt(count, 0)
+
+
+func test_every_regiment_of_renown_unit_has_a_warscroll() -> void:
+	for faction in _factions:
+		for regiment in faction.regiments_of_renown:
+			for unit in regiment.units:
+				var where := "%s: %s unit %s" % [faction.name, regiment.name, unit.name]
+				if unit.faction_id.is_empty():
+					assert_not_null(regiment.get_warscroll(unit.warscroll_id), where)
+					continue
+				var home := _faction_with_id(unit.faction_id)
+				assert_not_null(home, "%s: no faction %s" % [where, unit.faction_id])
+				if home:
+					assert_not_null(home.get_warscroll(unit.warscroll_id), "%s: no warscroll %s" % [where, unit.warscroll_id])
+
+
+func test_every_regiment_of_renown_unit_warscroll_has_its_name() -> void:
+	for faction in _factions:
+		for regiment in faction.regiments_of_renown:
+			for unit in regiment.units:
+				var home := _faction_with_id(unit.faction_id)
+				var warscroll := regiment.get_warscroll(unit.warscroll_id) if unit.faction_id.is_empty() \
+						else (home.get_warscroll(unit.warscroll_id) if home else null)
+				if warscroll:
+					assert_eq(warscroll.name, unit.name, "%s: %s" % [faction.name, regiment.name])
+
+
+func test_no_faction_lists_a_regiment_of_renown_of_its_own_units_only() -> void:
+	# A Regiment of Renown is for other factions' armies; a faction never includes one made only
+	# of its own units.
+	for faction in _factions:
+		for regiment in faction.regiments_of_renown:
+			var own := true
+			for unit in regiment.units:
+				own = own and unit.faction_id == faction.id
+			assert_false(own, "%s: %s" % [faction.name, regiment.name])
+
+
 ## Returns every lore in [param faction], including those of its armies of renown.
 func _all_lores(faction: Faction) -> Array[Lore]:
 	var lores: Array[Lore] = faction.lores.duplicate()
@@ -169,6 +219,10 @@ func _all_abilities() -> Array:
 			_collect(out, army_where, army.battle_traits)
 			_collect_tables(out, army_where, army.enhancement_tables)
 			_collect_lores(out, army_where, army.lores)
+		for regiment in faction.regiments_of_renown:
+			var regiment_where := "%s: %s" % [where, regiment.name]
+			_collect(out, regiment_where, regiment.abilities)
+			_collect_warscrolls(out, regiment_where, regiment.warscrolls)
 		for spearhead in faction.spearheads:
 			var spearhead_where := "%s: %s" % [where, spearhead.name]
 			_collect(out, spearhead_where, spearhead.battle_traits)

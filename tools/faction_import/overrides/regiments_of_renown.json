@@ -1,0 +1,68 @@
+{
+	"wahapedia_names": {
+		"Big Drogg Fort-kicker": "Big Drogg Fort-Kicka",
+		"Heroes of the Jade Abbey": "Heroes of The Jade Abbey",
+		"The Beast of Castle Sterneiste": "The Beast of Castle Sternieste",
+		"The Sterneiste Garrison": "The Sternieste Garrison"
+	},
+	"replace_with_wahapedia": {
+		"Namarti Shore Raid > Hunt of the Bloodthirsty Shiver": "Launch the Attack",
+		"The Sorrowmourn Choir > Bulwark of the Necropolis": "Harvesters of Sorrow",
+		"The Coven of Thryx > Sparks of Profane Potential": "Sparks of Profane Potential",
+		"Da Hurtlin' Hogz > Pullin' Ahead": "Pullin' Ahead",
+		"Mask of the Deceiver > Unstoppable Battle Fury": "Forceful Command",
+		"Brand's Oathbound > Favour of the Gods": "Favour of the Gods",
+		"Big Grikk's Kruleshots > Skewer It Again!": "Skewer It Again!",
+		"The Accursed Reflection > Spew Forth Sin": "Spew Forth Sin"
+	},
+	"add_from_wahapedia": [
+		"Godmarked Ascendant > Gifts of Chaos"
+	],
+	"remove": [
+		"Heralds of the Bone-tithe > Masters of All Terrain"
+	],
+	"fields": {
+		"The Coven of Thryx > Bolt of Tzeentch": {
+			"casting_value": 6
+		},
+		"Hargax's Pit-beasts > Bestial Domination": {
+			"used_by": "The unit using that FIGHT ability.",
+			"effect": "Pick a unit in this Regiment of Renown that has not used a FIGHT ability this turn to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
+		},
+		"Phulgoth's Shudderhood > Nauseating Convalescence": {
+			"timing": "Any Hero Phase"
+		},
+		"Rogue Engine > Mercenary Attitudes": {
+			"timing": "Your Hero Phase",
+			"frequency": ""
+		},
+		"Seeker of the Dread Dirge > Dirge of Desolation": {
+			"effect": "Roll a D3 for each enemy unit contesting the target. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll. If the chanting roll was 12+, you can pick another terrain feature to be a second target."
+		},
+		"Seeker of the Dread Dirge > All-Consuming Search": {
+			"declare": "Pick the Ashen Elder in this Regiment of Renown to use this ability. Then, pick an objective or Place of Power that they are contesting and that has not been picked to be the target of this ability this battle to be the target.",
+			"effect": "Roll 6 dice. For each 5+, give this unit 1 ritual point."
+		},
+		"Heroes of the Jade Abbey > Edmark Valoran, the Manticore Knight": {
+			"notes": "0-1, +110 pts"
+		},
+		"Heroes of the Jade Abbey > Bren Tylis, the Renegade Saint": {
+			"notes": "0-1, +120 pts"
+		},
+		"Heroes of the Jade Abbey > Inara Sion, the Cleansing Blade": {
+			"notes": "0-1, +120 pts"
+		},
+		"Heroes of the Jade Abbey > Drolf Ironhead, the Grizzled Explorer": {
+			"notes": "0-1, +100 pts"
+		},
+		"Heroes of the Jade Abbey > Kelthannor, the Forest Prince": {
+			"notes": "0-1, +150 pts"
+		},
+		"Heroes of the Jade Abbey > Jacobus Vyne, the Jade Wizard": {
+			"notes": "0-1, +130 pts"
+		},
+		"Heroes of the Jade Abbey > Drasher Vorn, the Rampaging Beast": {
+			"notes": "0-1, +150 pts"
+		}
+	}
+}
