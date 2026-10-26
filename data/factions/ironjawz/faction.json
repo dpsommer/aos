@@ -243,6 +243,7 @@
 		{
 			"name": "Lore of the Weird",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Bash 'Em, Ladz",
@@ -283,6 +284,7 @@
 		{
 			"name": "Warbeats",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Get 'Em Beat",
@@ -323,6 +325,7 @@
 		{
 			"name": "Manifestations of Gorkamorka",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Foot of Gork",

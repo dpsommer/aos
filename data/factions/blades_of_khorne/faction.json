@@ -284,6 +284,7 @@
 		{
 			"name": "Judgements of Khorne",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Hexgorger Skulls",
@@ -326,6 +327,7 @@
 		{
 			"name": "Blood Blessings of Khorne",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Uncontrollable Rage",
@@ -367,6 +369,7 @@
 			"name": "Gifts of the Blood God",
 			"source": "Scourge of Ghyran",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Goreflesh",
@@ -408,6 +411,7 @@
 			"name": "Proclamations of Murder",
 			"source": "Scourge of Aqshy",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Gift of Apoplexy",

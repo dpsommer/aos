@@ -288,6 +288,7 @@
 		{
 			"name": "Lore of the Storm",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Lightning Blast",
@@ -328,6 +329,7 @@
 		{
 			"name": "Manifestations of the Storm",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Dais Arcanum",
@@ -370,6 +372,7 @@
 		{
 			"name": "Prayers of the Stormhosts",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Healing Storm",

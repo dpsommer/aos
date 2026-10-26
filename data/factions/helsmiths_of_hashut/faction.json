@@ -255,6 +255,7 @@
 		{
 			"name": "Lore of Infernal Power",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Hateful Fractures",
@@ -295,6 +296,7 @@
 		{
 			"name": "Prayers of the Scorched Sect",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Black Flames of Hashut",

@@ -277,6 +277,7 @@
 		{
 			"name": "Lore of the Swamp",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Da Black Pit",
@@ -317,6 +318,7 @@
 		{
 			"name": "Manifestations of Gorkamorka",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Foot of Gork",

@@ -242,6 +242,7 @@
 		{
 			"name": "Lore of Hysh",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Beacon of Hysh",
@@ -282,6 +283,7 @@
 		{
 			"name": "Lore of the Awakened Realms",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Focused Erosion",
@@ -366,6 +368,7 @@
 		{
 			"name": "Manifestations of Hysh",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Hyshian Twinstones",

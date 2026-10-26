@@ -256,6 +256,7 @@
 		{
 			"name": "Lore of Ossian Sorcery",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Empower Nadirite Weapons",
@@ -297,6 +298,7 @@
 			"name": "Lore of Necrotheurgy",
 			"source": "Scourge of Ghyran",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Bolster Creation",
@@ -337,6 +339,7 @@
 		{
 			"name": "Horrors of the Necropolis",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Nightmare Predator",

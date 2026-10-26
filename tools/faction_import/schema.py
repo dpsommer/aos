@@ -79,12 +79,14 @@ def warscroll(w, with_profile=True):
     return out
 
 
-def table(t):
-    """An enhancement table or a lore."""
+def table(t, points=False):
+    """An enhancement table or a lore. `points` writes them even when 0, as faction lores have."""
     out = {"name": t["name"]}
-    for k in ("group", "source", "kind", "points"):
+    for k in ("group", "source", "kind"):
         if t.get(k):
             out[k] = t[k]
+    if points or t.get("points"):
+        out["points"] = t.get("points") or 0
     out["entries"] = [ability(e) for e in t["entries"]]
     return out
 
@@ -98,7 +100,7 @@ def faction(f):
         "battle_formations": [{"name": b["name"], "points": b.get("points", 0),
                                "abilities": [ability(a) for a in b["abilities"]]} for b in f["battle_formations"]],
         "enhancement_tables": [table(t) for t in f["enhancement_tables"]],
-        "lores": [table(t) for t in f["lores"]],
+        "lores": [table(t, points=True) for t in f["lores"]],
     }
 
 
