@@ -51,7 +51,6 @@ func _battlepack(dir_path: String) -> Battlepack:
 					_error("battleplan_tables[%d][%d]" % [i, j], "must be a string")
 		pack.battleplan_tables.append(names)
 	pack.season_rules = _abilities(data, "season_rules", "")
-	pack.updated_abilities = _abilities(data, "updated_abilities", "")
 	pack.faqs = _faqs(data, "")
 
 	data = _read(dir_path, "battle_tactics.json", true)

@@ -166,13 +166,6 @@ func test_season_rules_come_from_file() -> void:
 	assert_eq(_pack().season_rules[0].name, expected[0].name)
 
 
-func test_updated_ability_options_come_from_file() -> void:
-	var expected: Dictionary = _json("valid", "battlepack.json").updated_abilities[0]
-	var ability := _pack().updated_abilities[0]
-	assert_eq([ability.name, ability.options.size()], [expected.name, expected.options.size()])
-	assert_eq([ability.options[0].name, ability.options[0].text], [expected.options[0].name, expected.options[0].text])
-
-
 func test_battlepack_faqs_come_from_file() -> void:
 	var expected: Dictionary = _json("valid", "battlepack.json").faqs[0]
 	assert_eq(_pack().faqs[0], {"about": expected.about, "question": expected.question, "answer": expected.answer})

@@ -13,8 +13,6 @@ extends Resource
 @export var battleplan_tables: Array[PackedStringArray]
 ## Abilities both players can use in every battle, e.g. 'Eruption of Fury'.
 @export var season_rules: Array[Ability]
-## The battlepack's versions of core abilities, each replacing the core ability of the same name.
-@export var updated_abilities: Array[Ability]
 ## Rulings on the battlepack and season rules, each {"about": String, "question": String,
 ## "answer": String}.
 @export var faqs: Array[Dictionary]

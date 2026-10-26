@@ -146,7 +146,7 @@
 			"category": "special",
 			"timing": "Enemy Hero Phase",
 			"declare": "Pick a friendly WIZARD or PRIEST to use this ability.",
-			"effect": "That friendly unit can use a SPELL or PRAYER ability (as appropriate) as if it were your hero phase. If you do so, subtract 1 from casting rolls or chanting rolls made as part of that ability.",
+			"effect": "That friendly unit can use a SPELL, PRAYER or BANISH ability (as appropriate) as if it were your hero phase. If you do so, subtract 1 from casting rolls or chanting rolls made as part of that ability.",
 			"command_points": 1
 		},
 		{
@@ -217,7 +217,7 @@
 			"category": "defensive",
 			"timing": "Reaction: Opponent declared an ATTACK ability",
 			"used_by": "A unit targeted by that ATTACK ability.",
-			"effect": "Add 1 to save rolls for that unit in this phase.",
+			"effect": "Add 1 to save rolls for that unit until that ATTACK ability has been resolved.",
 			"command_points": 1
 		},
 		{
@@ -237,10 +237,25 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Start of Any Turn",
+			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly HERO within 3\" of any Places of Power to use this ability.",
-			"effect": "Roll a dice. On a 1, inflict D3 mortal damage on that HERO. On a 2+:\n• If that HERO is a WIZARD or PRIEST, add 1 to casting rolls or chanting rolls for that HERO this turn.\n• If that HERO is not a WIZARD or PRIEST, they can use the ‘Unbind’ or ‘Banish Manifestation’ ability this turn as if they had WIZARD (1).",
+			"effect": "Roll a dice. On a 1, inflict D3 mortal damage on that HERO. On a 2+, pick 1 of the following effects:",
 			"keywords": [
 				"CORE"
+			],
+			"options": [
+				{
+					"name": "Ignite Fury",
+					"text": "Gain 2 rage dice, then increase your fury level by 2, to a maximum of 7."
+				},
+				{
+					"name": "Channel Wrath",
+					"text": "If that HERO is a WIZARD or PRIEST, add 1 to casting rolls or chanting rolls for that HERO for the rest of the turn."
+				},
+				{
+					"name": "Dizzying Rage",
+					"text": "For the rest of the turn, if that HERO is not a WIZARD or PRIEST, they can use the ’Unbind’ or ’Banish Manifestation’ ability as if they had WIZARD (1)."
+				}
 			]
 		},
 		{
@@ -255,12 +270,25 @@
 			]
 		},
 		{
+			"name": "Sacred Rites",
+			"type": "prayer",
+			"category": "special",
+			"timing": "Your Hero Phase",
+			"declare": "Pick a friendly PRIEST to use this ability, then make a chanting roll of D6. On an unmodified chanting roll of 1, remove 1 ritual point from that PRIEST instead of D3.",
+			"effect": "Give a number of ritual points to the PRIEST equal to the unmodified chanting roll and do not reset the PRIEST’s ritual points to 0.",
+			"text": "All PRIESTS know this prayer.",
+			"keywords": [
+				"PRAYER",
+				"UNLIMITED"
+			]
+		},
+		{
 			"name": "Banish Manifestation",
 			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
-			"declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a manifestation within 30\" of them to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy manifestation on the battlefield after the first.",
-			"effect": "If the banishment roll equals or exceeds the banishment value listed on the manifestation’s warscroll, it is banished and removed from play. You cannot pick the same manifestation as the target of this ability more than once per turn.",
+			"declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a MANIFESTATION within 30\" of them that was not summoned this turn to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy MANIFESTATION on the battlefield after the first. You cannot pick the same MANIFESTATION to be the target of this ability more than once per turn.",
+			"effect": "If the banishment roll equals or exceeds the banishment value listed on the MANIFESTATION’s warscroll, it is banished and removed from play.",
 			"keywords": [
 				"BANISH"
 			]
@@ -285,15 +313,6 @@
 			"category": "control",
 			"timing": "Passive",
 			"effect": "While this unit contains any standard bearers, add 1 to this unit’s control score."
-		},
-		{
-			"name": "Tactical Gambit",
-			"type": "active",
-			"category": "special",
-			"timing": "Start of Your Turn",
-			"frequency": "Once Per Battle Round",
-			"effect": "Pick 1 battle tactic that you have not yet attempted. You can attempt to complete that battle tactic this turn.",
-			"text": "You cannot use this ability if you went second in the previous battle round and chose to go first in the current battle round."
 		}
 	],
 	"weapon_abilities": [
@@ -367,7 +386,7 @@
 			"type": "passive",
 			"category": "",
 			"timing": "Passive",
-			"effect": "A unit cannot be targeted by shooting attacks made by enemy units that are not within its combat range if it is behind or wholly on this terrain feature, unless it has the FLY keyword."
+			"effect": "While every model in a non-MONSTER non-WAR MACHINE unit that does not have the FLY keyword is within 1\" of this terrain feature, the following apply:\n• That unit is only visible to enemy units that are within its combat range.\n• The Range characteristic of that unit’s ranged weapons is halved (rounding down to the nearest inch)."
 		},
 		{
 			"name": "Place of Power",
