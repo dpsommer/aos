@@ -23,7 +23,28 @@
 					"name": "Slaangor Fiendbloods"
 				}
 			],
-			"battle_traits": [],
+			"battle_traits": [
+				{
+					"name": "TEMPTATIONS OF SLAANESH",
+					"category": "special",
+					"timing": "",
+					"effect": "You receive 6 temptation dice at the start of the battle round. Each time your opponent makes a failed hit roll, a failed wound roll or a failed save roll, you can offer them a temptation dice. If they accept your offer, that roll is replaced with a 6. Rolls replaced in this way cannot be re-rolled or modified.\nEach time your opponent accepts your offer of a temptation dice, you gain D6 depravity points. Each time your opponent rejects your offer of a temptation dice, inflict D3 mortal damage on the unit for which the roll was made.\nYou cannot offer your opponent a temptation dice for the same enemy unit more than once per phase. At the end of the battle round, all remaining temptation dice are lost.\nAll friendly units gain passive abilities from the table below based on the number of depravity points you have. These abilities are cumulative.",
+					"options": [
+						{
+							"name": "12+: Tantalising Torment",
+							"text": "This unit can use a RUN ability and still use CHARGE abilities later in the turn"
+						},
+						{
+							"name": "18+: Sadistic Spite",
+							"text": "This unit’s melee weapons have Crit (Mortal)."
+						},
+						{
+							"name": "24+: Oblivious Indulgence",
+							"text": "This unit has WARD (5+)."
+						}
+					]
+				}
+			],
 			"regiment_abilities": [
 				{
 					"name": "UNPARALLELED SPEED",

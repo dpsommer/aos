@@ -260,7 +260,8 @@
 					"name": "DREADED ARRIVAL",
 					"category": "movement",
 					"timing": "Your Movement Phase",
-					"effect": "Set up this unit wholly within your territory, within 1\" of a battlefield edge and more than 6\" from all enemy units."
+					"effect": "Set up this unit wholly within your territory, within 1\" of a battlefield edge and more than 6\" from all enemy units.",
+					"text": "Your Chaos Knights unit is not set up during the deployment phase. Instead, from the second battle round onwards, they can use the Dreaded Arrival ability"
 				},
 				{
 					"name": "EYE OF THE GODS",

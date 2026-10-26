@@ -164,6 +164,25 @@ def test_split_frequency_keeps_battle_round_whole(timing, expected):
     assert schema.split_frequency(timing) == expected
 
 
+@pytest.mark.parametrize("timing, expected", [
+    ("Once Per Battle, (Army) Your Movement Phase", ("Once Per Battle (Army)", "Your Movement Phase")),
+    ("Once Per Turn, (Army) Any Combat Phase", ("Once Per Turn (Army)", "Any Combat Phase")),
+    ("Once Per Battle Round, (Army) Start of Battle Round", ("Once Per Battle Round (Army)", "Start of Battle Round")),
+    ("Once Per Turn, (Army, Each Player) Any Hero Phase", ("Once Per Turn (Army, Each Player)", "Any Hero Phase")),
+    ("Once Per Battle, (army) Your Movement Phase", ("Once Per Battle (Army)", "Your Movement Phase")),
+])
+def test_split_frequency_accepts_comma_before_army(timing, expected):
+    assert schema.split_frequency(timing) == expected
+
+
+def test_split_frequency_with_army_and_no_timing_has_empty_timing():
+    assert schema.split_frequency("Once Per Battle (Army)") == ("Once Per Battle (Army)", "")
+
+
+def test_split_frequency_leaves_other_brackets_in_timing():
+    assert schema.split_frequency("Once Per Battle, (Reaction) Any Phase") == ("Once Per Battle", "(Reaction) Any Phase")
+
+
 @pytest.mark.parametrize("timing, frequency", [
     ("Once per Battle, Start of the First Battle Round", "Once Per Battle"),
     ("Once Per Turn (army), Any Hero Phase", "Once Per Turn (Army)"),

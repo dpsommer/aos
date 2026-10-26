@@ -98,11 +98,11 @@
 		},
 		{
 			"name": "Origins",
-			"text": "Passive\n-4DP\nSNEAKY GIT\nEffect: If this unit is not a MONSTER, while it is wholly on a terrain feature, it is not visible to enemy units that are not in combat with it. lf this unit is a MONSTER, subtract 1 from hit rolls for attacks that target this unit while it is wholly on a terrain feature.\nPassive\n-2DP\nSEEN THAT BEFORE!\nEffect: Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.\nOnce Per Battle, Your Hero Phase\n-2DP\nTHE BAD MOONBEAM\nEffect: For the rest of the battle round, this unit is affected by all of the faces of the Bad Moon."
+			"text": "Passive\n-4DP\nSNEAKY GIT\nEffect: If this unit is not a MONSTER, while it is wholly on a terrain feature, it is not visible to enemy units that are not within this unit’s combat range. lf this unit is a MONSTER, subtract 1 from hit rolls for attacks that target this unit while it is wholly on a terrain feature.\nPassive\n-2DP\nSEEN THAT BEFORE!\nEffect: Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.\nOnce Per Battle, Your Hero Phase\n-2DP\nTHE BAD MOONBEAM\nEffect: For the rest of the battle round, this unit is affected by all of the faces of the Bad Moon."
 		},
 		{
 			"name": "Flaws",
-			"text": "Passive\n+2DP\nLAST TO THE FIGHT\nEffect: This unit has STRIKE-LAST.\nReaction: This unit must use this ability if you declared a MOVE ability for it\n+4DP\nSHROOMIST\nEffect: Roll 2D6. If the total is equal to or lower than this unit’s Control characteristic, it cannot use MOVE abilities this phase.\nPassive\n+2DP\nGITTISHLY OVERCONFIDENT\nEffect: In your charge phase, if this unit is not in combat and there is an enemy HERO within 12\" of this unit, this unit must use the ' Charge' ability, and if the charge roll would allow it to finish within ½\" of that enemy HERO, it must do so."
+			"text": "Passive\n+2DP\nLAST TO THE FIGHT\nEffect: This unit has STRIKE-LAST.\nReaction: This unit must use this ability if you declared a MOVE ability for it\n+4DP\nSHROOMIST\nEffect: Roll 2D6. If the total is equal to or lower than this unit’s Control characteristic, that MOVE ability has no effect.\nPassive\n+2DP\nGITTISHLY OVERCONFIDENT\nEffect: In your charge phase, if this unit is not in combat and there is an enemy HERO within 12\" of this unit, this unit must use the ' Charge' ability, and if the charge roll would allow it to finish within ½\" of that enemy HERO, it must do so."
 		},
 		{
 			"name": "Step 5 - Choose a Battle Mount",

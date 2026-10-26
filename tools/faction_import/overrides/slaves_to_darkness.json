@@ -14,6 +14,7 @@
 		"iron_golem > Legion Weapons": {"rend": 0},
 		"scions_of_the_flame > Scion Weapons": {"rend": 0},
 		"spire_tyrants > Gladiator Weapons": {"rend": 0},
+		"splintered_fang": {"can_reinforce": false, "notes": "This unit cannot be reinforced."},
 		"splintered_fang > Poisoned Weapons": {"rend": 0},
 		"the_gnarlspirit_pack > Gnarlspirit Weapons": {"abilities": ["Crit (Mortal)"]},
 		"godsworn_hunt": {"keywords": ["CHAOS", "SLAVES TO DARKNESS", "UNDIVIDED", "DARKOATH", "INFANTRY", "CHAMPION", "UNIQUE"]},

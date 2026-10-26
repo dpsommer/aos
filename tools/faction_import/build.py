@@ -17,7 +17,8 @@ two are printed as a report and never stop the build; fix a wrong value with an 
         "wahapedia_warscroll_names": {"<Wahapedia unit name>": "<BSData name>"},
         "replace_with_wahapedia": {"<BSData ability name>": "<Wahapedia ability name>"},
         "faction": {"<field>": <value>},
-        "fields": {"<target>": {"<field>": <value>}}
+        "fields": {"<target>": {"<field>": <value>}},
+        "path_to_glory": {"<section name>": {"<text>": "<replacement>"}}
     }
 
 faction sets fields of the faction itself, e.g. "legends" for a faction moved to Legends.
@@ -26,6 +27,9 @@ A fields <target> is a warscroll name or id, an Army of Renown name, an ability 
 "<owner> > <weapon or ability name>" where a name alone is ambiguous. An owner is a warscroll id, an
 Army of Renown name, or a faction enhancement table or lore name, as "<name> (<source>)" when several
 share a name.
+path_to_glory replaces text in a Path to Glory section, which is stored as text rather than as
+abilities; each text must appear in the section exactly once.
+
 replace_with_wahapedia swaps an ability for Wahapedia's version, for when BSData has the
 wrong rule; it, army_names and wahapedia_warscroll_names apply before merging, so the renamed items
 pair with the other source's (Wahapedia's "Monsta-killaz" is BSData's "Kruleboyz Monsta-killaz"). Its BSData name can be "<warscroll id or Army of Renown
@@ -146,6 +150,15 @@ def apply_overrides(data, overrides):
             sys.exit("field override %r matches no warscroll, Army of Renown, ability or weapon" % name)
         for item in matched:
             item.update(fields)
+    for section_name, replacements in overrides.get("path_to_glory", {}).items():
+        section = next((p for p in data["path_to_glory"] if p["name"] == section_name), None)
+        if section is None:
+            sys.exit("path_to_glory override %r matches no Path to Glory section" % section_name)
+        for old, new in replacements.items():
+            if section["text"].count(old) != 1:
+                sys.exit("path_to_glory override text %r appears %d times in %r, not once"
+                         % (old, section["text"].count(old), section_name))
+            section["text"] = section["text"].replace(old, new)
 
 
 # A Wahapedia faction page with nothing on it, for building from BSData alone.

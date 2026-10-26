@@ -23,6 +23,10 @@
 			"options": [{"name": "Designer’s Note", "text": "When you use this ability, you are not using the 'Blessings of Khaine' ability."}]
 		},
 		"Hero of the Killing Games": {"timing": "Any Combat Phase"},
+		"morathi_khaine > The Iron Heart of Khaine": {
+			"effect": "Each time you perform a blood rite, immediately after the ability that destroyed a unit has been resolved, pick 1 of the following effects:\n• Until the start of your next turn, this unit is only visible to enemy units while those units are within its combat range.\n• Heal (D6) this unit or a friendly Shadow Queen.\n• A friendly Shadow Queen can immediately use the 'Normal Move' or 'Retreat' ability as if it was your movement phase even if it has already used that ability or another CORE ability this phase.\n• Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.\n• For the rest of the turn, set this unit's Control characteristic to 5 and a friendly Shadow Queen's Control characteristic to 15.",
+			"options": [{"name": "Designer’s Note", "text": "If the Shadow Queen retreats with the 'Iron Heart of Khaine' ability, she cannot subsequently use the 'Fight' ability in the same combat phase."}]
+		},
 		"heart_of_fury": {"keywords": ["WARD (6+)", "MANIFESTATION", "ENDLESS SPELL", "ORDER", "DAUGHTERS OF KHAINE"]},
 		"morgwaeths_blade_coven > Sacrificial Weapons": {"hit": 3, "abilities": ["Crit (Auto-wound)"]},
 		"hag_queen_on_cauldron_of_blood > Wrathful Repulsion": {"timing": "Any Combat Phase", "frequency": "Once Per Turn (Army)"},

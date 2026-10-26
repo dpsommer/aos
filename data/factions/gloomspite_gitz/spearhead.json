@@ -323,7 +323,8 @@
 					"name": "SQUIGALANCHE",
 					"category": "movement",
 					"timing": "Your Movement Phase",
-					"effect": "Set up this unit wholly within your territory, wholly within 3\" of a battlefield edge and more than 6\" from all enemy units."
+					"effect": "Set up this unit wholly within your territory, wholly within 3\" of a battlefield edge and more than 6\" from all enemy units.",
+					"text": "One of your units of Squig Hoppers is not set up during the deployment phase. Instead, from the third battle round onwards, they can use the Squigalanche ability."
 				},
 				{
 					"name": "UNDER THE LIGHT OF THE BAD MOON",
@@ -359,8 +360,8 @@
 				{
 					"name": "THE HAND OF GORK",
 					"category": "movement",
-					"timing": "(Army) Your Movement Phase",
-					"frequency": "Once Per Battle",
+					"timing": "Your Movement Phase",
+					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly unit that is not in combat to use this ability.",
 					"effect": "Remove that unit from the battlefield and set it up again more than 9\" from all enemy units.",
 					"keywords": [

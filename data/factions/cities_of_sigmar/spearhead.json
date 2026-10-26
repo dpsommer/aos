@@ -812,7 +812,8 @@
 					"name": "SUDDEN AMBUSH",
 					"category": "movement",
 					"timing": "Your Movement Phase",
-					"effect": "Set up this unit within 6\" of an enemy unit and not in combat."
+					"effect": "Set up this unit within 6\" of an enemy unit and not in combat.",
+					"text": "Your Whisperblade is not set up during the deployment phase. Instead, from the second battle round onwards, it can use the following ability:"
 				},
 				{
 					"name": "LADY OF THE WHEEL",

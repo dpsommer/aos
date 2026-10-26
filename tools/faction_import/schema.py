@@ -5,14 +5,18 @@ empty optional fields dropped and defaults filled in, so output diffs stay small
 """
 import re
 
-FREQUENCY = re.compile(r"^(Once Per (?:Battle Round|Battle|Turn|Phase)(?: \((?:Army|Army, Each Player)\))?),?\s*(.*)$", re.I)
+# The comma can come before "(Army)" as well as after it (Wahapedia's "Once Per Battle, (Army) Your
+# Movement Phase" for the Bad Moon Madmob's 'The Hand of Gork').
+FREQUENCY = re.compile(r"^(Once Per (?:Battle Round|Battle|Turn|Phase))(?:,?\s*(\((?:Army|Army, Each Player)\)))?,?\s*(.*)$", re.I)
 
 
 def split_frequency(timing):
     """Splits "Once Per Turn (Army), Any Combat Phase" into its frequency and timing. Catalogues
     sometimes write "Once per" or "(army)", so the frequency is title-cased."""
     m = FREQUENCY.match(timing)
-    return (m.group(1).title(), m.group(2)) if m else ("", timing)
+    if not m:
+        return "", timing
+    return " ".join(g for g in m.group(1, 2) if g).title(), m.group(3)
 
 
 def move(value):

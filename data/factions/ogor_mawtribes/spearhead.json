@@ -31,7 +31,8 @@
 					"name": "LET'S GET STUCK IN",
 					"category": "movement",
 					"timing": "Your Movement Phase",
-					"effect": "Set up this unit wholly within friendly territory, wholly within 6\" of the battlefield edge, and not in combat."
+					"effect": "Set up this unit wholly within friendly territory, wholly within 6\" of the battlefield edge, and not in combat.",
+					"text": "A unit of Ironguts with 4 models is not set up during the deployment phase. Instead, in the third battle round, that unit can use the following ability:"
 				}
 			],
 			"regiment_abilities": [
@@ -305,6 +306,7 @@
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit anywhere on the battlefield, within 1\" of a battlefield edge and more than 6\" from all enemy units.",
+					"text": "Your Ironblaster, Mournfang Pack and 1 unit of Ogor Gluttons are not set up during the deployment phase. Instead, from the third battle round onwards, they can use the following ability:",
 					"keywords": [
 						"CORE"
 					]

@@ -2103,7 +2103,7 @@
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy MANIFESTATION within 12\" of this unit and that was not set up this turn to be the target.",
-					"effect": "Make an arcane manipulation roll of 2D6. If the roll equals or exceeds the target's banishment value, set up an ENDLESS SPELL that can be summoned using a SUMMON spell that this unit can cast within 1\" of the target and more than 3\" from all enemy units and other enemy MANIFESTATIONS. If that ENDLESS SPELL has multiple parts, both parts must be set up within 1\" of the target. This unit has summoned that ENDLESS SPELL. If there is already a friendly ENDLESS SPELL of the same type on the battlefield, it is immediately banished and removed from play before being set up as described above. Then, the target is banished and removed from play.'"
+					"effect": "Make an arcane manipulation roll of 2D6. If the roll equals or exceeds the target's banishment value, set up an ENDLESS SPELL that can be summoned using a SUMMON spell that this unit can cast within 1\" of the target and more than 3\" from all enemy units and other enemy MANIFESTATIONS. If that ENDLESS SPELL has multiple parts, both parts must be set up within 1\" of the target. This unit has summoned that ENDLESS SPELL. If there is already a friendly ENDLESS SPELL of the same type on the battlefield, it is immediately banished and removed from play before being set up as described above. Then, the target is banished and removed from play."
 				},
 				{
 					"name": "The Four Corners of the Realms",

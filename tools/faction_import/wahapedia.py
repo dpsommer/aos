@@ -326,6 +326,43 @@ def dp(ab):
         ab["destiny_points"] = int(m.group(1)); ab["timing"] = ab["timing"][:m.start()].strip()
     return ab
 
+def trait_rows(table):
+    """Options from a table of rows such as "18+ | SADISTIC SPITE: This unit's melee weapons have
+    Crit (Mortal).", named "18+: Sadistic Spite". The first row is the table's header."""
+    options = []
+    for tr in table.find_all("tr")[1:]:
+        cells = tr.find_all("td", recursive=False)
+        name_el = cells[-1].find("b") if len(cells) >= 2 else None
+        if name_el is None:
+            continue
+        name = " ".join(w.capitalize() for w in text(name_el).rstrip(":").split())
+        name_el.extract()
+        options.append({"name": "%s: %s" % (text(cells[0]), name), "text": text(cells[-1])})
+    return options
+
+
+def spearhead_battle_trait_rules(heading):
+    """The rules under a Spearhead's Battle Traits heading that aren't in an ability block, as
+    (title, text, options, followed by an ability). Some say which units start in reserve
+    before the ability that sets them up (the Bad Moon Madmob's 'Squigalanche'); others are rules
+    of their own, with a title and a table (the Blades of the Lurid Dream's 'Temptations of
+    Slaanesh')."""
+    body = heading.find_next_sibling(class_="Columns2")
+    title, nodes, options = "", [], []
+    for c in body.children if body is not None else []:
+        if isinstance(c, Tag) and c.select_one(".abHeader") is not None:
+            return title, text_join(nodes), options, True
+        if isinstance(c, Tag) and "h_custom" in (c.get("class") or []):
+            title = text(c)
+        elif isinstance(c, Tag) and c.find("table") is not None:
+            options += trait_rows(c.find("table", class_="customTable") or c.find("table"))
+        elif isinstance(c, Tag) and c.name == "br":
+            nodes.append("\n")
+        else:
+            nodes.append(c)
+    return title, text_join(nodes), options, False
+
+
 def parse_faction_page(path):
     """Faction rules, Armies of Renown, Spearheads and Path to Glory from a Wahapedia faction page."""
     soup = BeautifulSoup(open(path, encoding="utf-8").read(), "lxml")
@@ -375,6 +412,7 @@ def parse_faction_page(path):
     pts = {}
     mode = "faction"
     cur_aor = cur_sh = cur_ptg = cur_table = cur_formation = None
+    preamble = ""
 
     def new_table(name, group=""):
         t = {"name": name, "entries": []}
@@ -425,7 +463,16 @@ def parse_faction_page(path):
                     cur_table = {"name": title, "entries": []}; cur_aor["enhancement_tables"].append(cur_table)
                 continue
             if mode == "spearhead":
-                h3 = title; continue
+                h3 = title
+                if title == "Battle Traits" and cur_sh is not None:
+                    rule_title, rule_text, options, before_ability = spearhead_battle_trait_rules(el)
+                    if before_ability:
+                        preamble = rule_text
+                    elif rule_title and (rule_text or options):
+                        cur_sh["battle_traits"].append({
+                            "name": rule_title, "category": "special",
+                            "timing": "", "frequency": "", "effect": rule_text, "options": options})
+                continue
             # Faction mode. An h2 is Battle Traits, Battle Formations, a lore type ("Spell Lore",
             # "Prayer Lore", "Manifestation Lore") or an enhancement type ("Heroic Traits",
             # "Great Endrinworks"...). An h3 under it names a formation, lore or enhancement table.
@@ -478,6 +525,10 @@ def parse_faction_page(path):
         elif mode == "spearhead" and cur_sh is not None:
             key = {"Battle Traits": "battle_traits", "Regiment Abilities": "regiment_abilities", "Enhancements": "enhancements"}.get(h3)
             if key: cur_sh[key].append(a)
+            # Which units start in reserve goes with the ability that sets them up.
+            if key == "battle_traits" and preamble:
+                a["text"] = (preamble + "\n" + a.get("text", "")).strip()
+                preamble = ""
         elif mode == "ptg":
             pass  # PtG abilities are kept in the section text
     return {"faction": faction, "armies_of_renown": aors, "spearheads": spearheads, "path_to_glory": ptg}

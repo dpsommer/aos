@@ -22,6 +22,6 @@
 
 ### Gameplay
 
-None yet.
+- [Faction FAQs](gameplay/faq/README.md): each faction's official FAQ rulings from the latest rules update
 
 Add new documents to this index.

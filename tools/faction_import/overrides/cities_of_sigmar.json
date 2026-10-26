@@ -32,11 +32,12 @@
 		"jorvan_kreel_heir_of_the_kraken": {"keywords": ["UNIQUE", "HERO", "INFANTRY", "ORDER", "CITIES OF SIGMAR", "SIGMARITE"], "base_size": "Jorvan Kreel: 32mm, Thexa: 25mm"},
 		"freeguild_marshal_and_relic_envoy": {"base_size": "Freeguild Marshal: 32mm, Relic Envoy: 28.5mm"},
 		"tolls_companions": {"base_size": "Valius, the Keeper Aqshian: 40mm, Mistress Verentia, Balthas the gryph-hound and Lyssa Revenya: 28.5mm"},
-		"wildercorps_hunters": {"base_size": "Wildercorps Warden, Arbalest: 40mm, 2 x Leatherhides and Trailblazer: 28.5mm, 2 x Scouts and 4 x Trailhounds: 25mm"},
+		"wildercorps_hunters": {"base_size": "Wildercorps Warden, Arbalest: 40mm, 2 x Leatherhides and Trailblazer: 28.5mm, 2 x Scouts and 4 x Trailhounds: 25mm", "can_reinforce": false, "notes": "This unit cannot be reinforced."},
 		"allies_of_the_free_cities_vulkyn_flameseekers": {"base_size": "Kyndledroth, Drothmaster, Drothblood Thane and Vulkyn Runefather: 32mm, 5 x Scalebreakers: 28.5mm"},
 		"allies_of_the_free_cities_auric_hearthguard": {"can_reinforce": true},
 		"allies_of_the_free_cities_vanari_auralan_sentinels": {"can_reinforce": true},
 		"allies_of_the_free_cities_vanari_auralan_wardens": {"can_reinforce": true},
-		"hexbanes_hunters": {"base_size": "Haskel Hexbane: 32mm, Brydget Axwold, Quiet Pock and Aemos Duncarrow: 28.5mm, Ratspike and Grotbiter: 25mm"}
+		"hexbanes_hunters": {"base_size": "Haskel Hexbane: 32mm, Brydget Axwold, Quiet Pock and Aemos Duncarrow: 28.5mm, Ratspike and Grotbiter: 25mm"},
+		"erasmus_zonn_the_enlightened_one > Realmsphere Mastery": {"effect": "Make an arcane manipulation roll of 2D6. If the roll equals or exceeds the target's banishment value, set up an ENDLESS SPELL that can be summoned using a SUMMON spell that this unit can cast within 1\" of the target and more than 3\" from all enemy units and other enemy MANIFESTATIONS. If that ENDLESS SPELL has multiple parts, both parts must be set up within 1\" of the target. This unit has summoned that ENDLESS SPELL. If there is already a friendly ENDLESS SPELL of the same type on the battlefield, it is immediately banished and removed from play before being set up as described above. Then, the target is banished and removed from play."}
 	}
 }

@@ -687,3 +687,51 @@ def test_build_with_wahapedia_reports_bsdata_only_items(bsdata_only, tmp_path, m
     monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
     _, report = build.build("bs", str(tmp_path), "id", "Faction", {})
     assert report.lines
+
+
+# path_to_glory overrides
+
+def with_ptg(*sections):
+    d = data()
+    d["path_to_glory"] = [{"name": name, "text": text, "warscrolls": []} for name, text in sections]
+    return d
+
+
+def test_path_to_glory_override_replaces_text_in_section():
+    d = with_ptg(("Quests", "Gain 1 glory point. Then rest."))
+    build.apply_overrides(d, {"path_to_glory": {"Quests": {"1 glory point": "2 glory points"}}})
+    assert d["path_to_glory"][0]["text"] == "Gain 2 glory points. Then rest."
+
+
+def test_path_to_glory_override_applies_every_replacement_in_section():
+    d = with_ptg(("Quests", "Alpha then beta."))
+    build.apply_overrides(d, {"path_to_glory": {"Quests": {"Alpha": "Gamma", "beta": "delta"}}})
+    assert d["path_to_glory"][0]["text"] == "Gamma then delta."
+
+
+def test_path_to_glory_override_leaves_other_sections_alone():
+    d = with_ptg(("Quests", "Same words."), ("Veterans", "Same words."))
+    build.apply_overrides(d, {"path_to_glory": {"Quests": {"Same": "Other"}}})
+    assert d["path_to_glory"][1]["text"] == "Same words."
+
+
+def test_path_to_glory_override_for_missing_section_exits():
+    with pytest.raises(SystemExit):
+        build.apply_overrides(with_ptg(("Quests", "Text.")), {"path_to_glory": {"Nowhere": {"Text": "T"}}})
+
+
+def test_path_to_glory_override_for_absent_text_exits():
+    with pytest.raises(SystemExit):
+        build.apply_overrides(with_ptg(("Quests", "Text.")), {"path_to_glory": {"Quests": {"Missing": "M"}}})
+
+
+def test_path_to_glory_override_for_repeated_text_exits():
+    with pytest.raises(SystemExit):
+        build.apply_overrides(with_ptg(("Quests", "Roll. Roll again.")), {"path_to_glory": {"Quests": {"Roll": "R"}}})
+
+
+def test_path_to_glory_override_exit_does_not_change_text():
+    d = with_ptg(("Quests", "Roll. Roll again."))
+    with pytest.raises(SystemExit):
+        build.apply_overrides(d, {"path_to_glory": {"Quests": {"Roll": "R"}}})
+    assert d["path_to_glory"][0]["text"] == "Roll. Roll again."

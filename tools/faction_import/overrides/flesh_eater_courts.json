@@ -30,5 +30,14 @@
 		"crypt_haunter_courtier": {"regiment_options": ["0-1 SERFS", "Any Crypt Horrors", "0-1 BEAST"]},
 		"crypt_infernal_courtier": {"regiment_options": ["0-1 SERFS", "Any Crypt Flayers", "0-1 BEAST"]},
 		"crypt_ghast_courtier": {"notes": "This HERO can join an eligible regiment as a Royal Attendant."}
+	},
+	"path_to_glory": {
+		"Step 6 - Pick any Battle Mount Upgrades": {
+			"End of Any Turn\nPOWERFUL MAW": "Once Per Turn (Army), End of Any Turn\nPOWERFUL MAW",
+			"Any Charge Phase\nMAGNIFICENT MONSTROSITY": "Once Per Turn (Army), Any Charge Phase\nMAGNIFICENT MONSTROSITY"
+		},
+		"Step 7 - Pick any Other Upgrades": {
+			"Colony of Bats\nCrit (Mortal) |": "Colony of Bats\nCrit (Mortal), Companion |"
+		}
 	}
 }

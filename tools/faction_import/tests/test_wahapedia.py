@@ -196,3 +196,91 @@ def test_regiment_of_renown_sheet_is_not_a_warscroll(tmp_path):
 
 def test_warscroll_sheet_with_nails_header_is_a_warscroll(tmp_path):
     assert [w["name"] for w in unit_page(tmp_path, '<span class="nails">•</span>WARSCROLL<span class="nails">•</span>')] == ["Test Unit"]
+
+
+# Spearhead Battle Traits outside ability blocks
+
+SPEARHEAD_PAGE = """<html><body>
+<h2>Faction Rules</h2>
+<h2>SPEARHEAD</h2>
+<h2>Madmob</h2>
+<table><tr><td>General</td><td>1 Loonboss</td></tr></table>
+<div><h3>Battle Traits</h3><div class="Columns2">%s</div></div>
+<div><h3>Regiment Abilities</h3></div>
+</body></html>"""
+
+ABILITY = ('<div class="BreakInsideAvoid"><table><tr><td class="abHeader">Your Movement Phase</td></tr></table>'
+           '<div class="abBody"><b>SQUIGALANCHE:</b> <b>Effect:</b> Set up the unit.</div></div>')
+
+RESERVE = "One of your units of Squig Hoppers is not set up during the deployment phase."
+
+TRAIT_TABLE = ('<div><table class="customTable">'
+               '<tr><td>Roll</td><td>Temptation</td></tr>'
+               '<tr><td>18+</td><td><b>SADISTIC SPITE:</b> This unit\'s melee weapons have Crit (Mortal).</td></tr>'
+               '<tr><td>12-17</td><td><b>HEEDLESS FURY:</b> Add 1 to charge rolls.</td></tr>'
+               '</table></div>')
+
+
+def battle_traits(tmp_path, body):
+    return parse(tmp_path, SPEARHEAD_PAGE % body)["spearheads"][0]["battle_traits"]
+
+
+def test_spearhead_text_before_ability_becomes_its_text(tmp_path):
+    traits = battle_traits(tmp_path, RESERVE + "<br><br>" + ABILITY)
+    assert [t["name"] for t in traits] == ["SQUIGALANCHE"]
+    assert traits[0]["text"] == RESERVE
+
+
+def test_spearhead_text_before_ability_keeps_ability_effect(tmp_path):
+    traits = battle_traits(tmp_path, RESERVE + "<br><br>" + ABILITY)
+    assert traits[0]["effect"] == "Set up the unit."
+
+
+def test_spearhead_ability_alone_has_no_text(tmp_path):
+    traits = battle_traits(tmp_path, ABILITY)
+    assert [t["name"] for t in traits] == ["SQUIGALANCHE"]
+    assert "text" not in traits[0]
+
+
+def test_spearhead_text_before_ability_does_not_reach_regiment_abilities(tmp_path):
+    page = (SPEARHEAD_PAGE % (RESERVE + "<br><br>" + ABILITY)).replace(
+        '<div><h3>Regiment Abilities</h3></div>', '<div><h3>Regiment Abilities</h3>%s</div>' % ABILITY)
+    regiment = parse(tmp_path, page)["spearheads"][0]["regiment_abilities"]
+    assert "text" not in regiment[0]
+
+
+def titled_rule(text_html="Each turn, roll on the table below.", table=TRAIT_TABLE):
+    return '<div class="h_custom">TEMPTATIONS</div>' + text_html + table
+
+
+def test_spearhead_titled_rule_without_ability_becomes_battle_trait(tmp_path):
+    traits = battle_traits(tmp_path, titled_rule())
+    assert [t["name"] for t in traits] == ["TEMPTATIONS"]
+
+
+def test_spearhead_titled_rule_effect_is_its_text(tmp_path):
+    trait = battle_traits(tmp_path, titled_rule())[0]
+    assert trait["effect"] == "Each turn, roll on the table below."
+
+
+def test_spearhead_titled_rule_options_come_from_table_rows_without_header(tmp_path):
+    options = battle_traits(tmp_path, titled_rule())[0]["options"]
+    assert options == [
+        {"name": "18+: Sadistic Spite", "text": "This unit's melee weapons have Crit (Mortal)."},
+        {"name": "12-17: Heedless Fury", "text": "Add 1 to charge rolls."},
+    ]
+
+
+def test_spearhead_titled_rule_without_table_has_no_options(tmp_path):
+    trait = battle_traits(tmp_path, titled_rule(table=""))[0]
+    assert trait["effect"] == "Each turn, roll on the table below."
+    assert not trait.get("options")
+
+
+def test_spearhead_untitled_text_without_ability_is_dropped(tmp_path):
+    assert battle_traits(tmp_path, RESERVE) == []
+
+
+def test_spearhead_titled_rule_table_is_not_the_army_table(tmp_path):
+    army = parse(tmp_path, SPEARHEAD_PAGE % titled_rule())["spearheads"][0]["army"]
+    assert army == [["General", "1 Loonboss"]]
