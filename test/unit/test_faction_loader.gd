@@ -719,3 +719,42 @@ func test_shared_entries_are_read_again_for_each_load() -> void:
 	loader.load_faction(_dir("shared_refs"))
 	loader.shared_dir = _dir("no_such_shared_dir")
 	assert_null(loader.load_faction(_dir("shared_refs")))
+
+
+# Ability used_by and command_points
+
+func test_ability_used_by_comes_from_file() -> void:
+	var expected: Dictionary = _json("ability_extras", "faction.json").battle_traits[0]
+	assert_eq(_load("ability_extras").battle_traits[0].used_by, expected.used_by)
+
+
+func test_ability_command_points_come_from_file() -> void:
+	var expected: Dictionary = _json("ability_extras", "faction.json").battle_traits[0]
+	var ability: Ability = _load("ability_extras").battle_traits[0]
+	assert_typeof(ability.command_points, TYPE_INT)
+	assert_eq(ability.command_points, int(expected.command_points))
+
+
+func test_absent_used_by_and_command_points_default_to_empty_and_zero() -> void:
+	var expected: Dictionary = _json("valid", "faction.json").battle_traits[0]
+	assert_false(expected.has("used_by") or expected.has("command_points"), "fixture trait should omit both")
+	var trait_: Ability = _load("valid").battle_traits[0]
+	assert_eq([trait_.used_by, trait_.command_points], ["", 0])
+
+
+func test_wrong_type_used_by_returns_null() -> void:
+	assert_null(_load("wrong_type_used_by"))
+
+
+func test_wrong_type_used_by_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_used_by"), "faction.json", "battle_traits[0].used_by"),
+			str(_errors("wrong_type_used_by")))
+
+
+func test_fractional_command_points_returns_null() -> void:
+	assert_null(_load("fractional_command_points"))
+
+
+func test_fractional_command_points_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("fractional_command_points"), "faction.json",
+			"battle_traits[0].command_points"), str(_errors("fractional_command_points")))

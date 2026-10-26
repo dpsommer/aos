@@ -101,6 +101,9 @@ def text_join(nodes):
     for n in nodes:
         if n == "\n":
             out.append("\n")
+        elif isinstance(n, Tag) and n.name in ("ul", "ol"):
+            # Each list item on a line of its own, bulleted as BSData's text is.
+            out += [x for li in n.find_all("li") for x in ("\n", "• " + text(li))] + ["\n"]
         else:
             t = text(n)
             if t: out.append(t)
@@ -108,6 +111,7 @@ def text_join(nodes):
     s = re.sub(r"[ \t]*\n[ \t]*", "\n", s)
     s = re.sub(r"\n{2,}", "\n", s)
     s = re.sub(r"\s+([,.:;)\]])", r"\1", s)
+    s = re.sub(r"([(\[])\s+", r"\1", s)
     s = re.sub(r"\s+([’']s)\b", r"\1", s)
     return s.strip()
 
@@ -361,6 +365,39 @@ def spearhead_battle_trait_rules(heading):
         else:
             nodes.append(c)
     return title, text_join(nodes), options, False
+
+
+def parse_manifestation_lores(path):
+    """The universal manifestation lores and their warscrolls from Wahapedia's Endless Spells page.
+    Each lore is an h3 under the "Manifestation Lore" h2, which starts with a points table; the
+    lores end at the Errata heading, and the warscrolls follow."""
+    soup = BeautifulSoup(open(path, encoding="utf-8").read(), "lxml")
+    for t in soup.select(".tooltip_templates, script, style, .noprint, .ShowFluff, .picSearch, .faqErrataSpoilerBody, .faqErrataHead"):
+        t.decompose()
+    lores, pts = [], {}
+    for el in soup.find("h2", string="Manifestation Lore").find_all_next(True):
+        cls = el.get("class") or []
+        if "datasheet" in cls or (el.name in ("h2", "h3") and text(el) == "Errata"):
+            break
+        if el.name == "h3":
+            lores.append({"name": text(el), "kind": "manifestation", "entries": []})
+        elif el.name == "table" and not lores:
+            pts.update(points_table(table_rows(el)))
+        elif "abBody" in cls and lores:
+            a = parse_ability(el.find_parent(class_="BreakInsideAvoid"))
+            if a: lores[-1]["entries"].append(a)
+    for lore in lores:
+        lore["points"] = pts.get(lore["name"].upper(), 0)
+    sheets = [s for s in soup.select(".datasheet") if not is_regiment_of_renown(s)]
+    warscrolls = []
+    for sheet in sheets:
+        w = parse_warscroll(sheet, "endless-spells")
+        # The page's summoning reference box isn't unit composition.
+        if w.get("composition", "").upper().startswith("SUMMONING REFERENCE"):
+            del w["composition"]
+        if all(x["name"] != w["name"] for x in warscrolls):
+            warscrolls.append(w)
+    return {"lores": lores, "warscrolls": warscrolls}
 
 
 def parse_faction_page(path):

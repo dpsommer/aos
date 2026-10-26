@@ -14,6 +14,7 @@
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
 - [Faction data](technical/faction-data.md): faction JSON format, sources, and how to add a faction
+- [Core rules data](technical/core-rules-data.md): JSON for the universal abilities and manifestation lores every army uses
 
 ### Design
 

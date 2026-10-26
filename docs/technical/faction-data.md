@@ -25,7 +25,7 @@ Fix a typo in a shared entry once, in `tools/faction_import/shared.json`, not in
 
 **Class** | **Fields** (required in bold)
 -- | --
-`Ability` | **`name`**, `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `casting_value` (spells), `chanting_value` (prayers), `source`
+`Ability` | **`name`**, `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `used_by` (reactions), `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `command_points` (commands), `casting_value` (spells), `chanting_value` (prayers), `source`
 `Weapon` | **`name`**, `range` (inches, 0 for melee), **`attacks`**, **`hit`**, **`wound`**, `rend`, **`damage`**, `abilities`. Attacks and damage are strings because they can be dice, e.g. `"2D6"` A weapon that skips the attack sequence (Wahapedia prints "See below", e.g. the Spearhead Bladelords' Perfect Strike) has `hit`, `wound` and `rend` of 0 and `damage` of `"-"`
 `Warscroll` | **`id`**, **`name`**, `source`, `legends`, **`points`**, **`unit_size`** (both optional in Spearhead and Path to Glory), `base_size`, `can_reinforce`, `regiment_options`, `notes`, **`move`** (string: inches, or dice such as `"D6+3"` for units that roll their move; `"0"` if the unit can't move), **`health`**, **`save`**, `ward`, **`control`**, `banishment` (manifestations), `ranged_weapons`, `melee_weapons`, `abilities`, `keywords`, `composition`
 `BattleFormation` | **`name`**, `points`, `abilities`
@@ -39,6 +39,8 @@ Characteristics such as `save`, `hit` and `wound` store the x of an x+ roll. `so
 The loader rejects the whole faction, collecting every problem in `errors`, if a file isn't valid JSON, a required field is missing, a field has the wrong type, or a reference names no shared entry.
 
 ## Sources
+
+The core rules' abilities and the universal manifestation lores are in `data/core/`; see [Core rules data](core-rules-data.md).
 
 Faction data is built by `tools/faction_import/` from two sources:
 

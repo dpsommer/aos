@@ -284,3 +284,120 @@ def test_spearhead_untitled_text_without_ability_is_dropped(tmp_path):
 def test_spearhead_titled_rule_table_is_not_the_army_table(tmp_path):
     army = parse(tmp_path, SPEARHEAD_PAGE % titled_rule())["spearheads"][0]["army"]
     assert army == [["General", "1 Loonboss"]]
+
+
+# text_join()
+
+def join_children(html):
+    from bs4 import BeautifulSoup
+    return wahapedia.text_join(list(BeautifulSoup(html, "lxml").find("div").children))
+
+
+def test_text_join_renders_list_items_as_bullet_lines():
+    assert join_children("<div>Pick one:<ul><li>First</li><li>Second</li></ul></div>") == "Pick one:\n• First\n• Second"
+
+
+def test_text_join_renders_ordered_list_items_as_bullet_lines():
+    assert join_children("<div><ol><li>First</li><li>Second</li></ol></div>") == "• First\n• Second"
+
+
+def test_text_join_keeps_text_after_a_list_on_its_own_line():
+    assert join_children("<div><ul><li>First</li></ul>Then stop.</div>") == "• First\nThen stop."
+
+
+def test_text_join_removes_whitespace_after_open_brackets():
+    assert wahapedia.text_join(["Roll (", "a dice", ") and [", "pick", "]"]) == "Roll (a dice) and [pick]"
+
+
+# parse_manifestation_lores()
+
+def block(header, name, body="", casting=None):
+    points = '<div class="abSpellPointsN">%s</div>' % casting if casting else ""
+    return ('<div class="BreakInsideAvoid"><table><tr><td class="abHeader"><img class="abLogo" src="/img/abSpecial.png">%s</td>'
+            '<td>%s</td></tr></table><div class="abBody"><b>%s:</b> <b>Effect:</b> %s</div></div>' % (header, points, name, body))
+
+
+def sheet(name, composition=None):
+    desc = '<div class="wsDescription">%s</div>' % composition if composition else ""
+    return '<div class="datasheet"><div class="wsBodyTop"><div class="wsHeaderIn">%s</div></div>%s</div>' % (name, desc)
+
+
+LORES_PAGE = """<html><body>
+<h2>Intro</h2><h3>Not A Lore</h3>
+<h2>Manifestation Lore</h2>
+<table><tr><td>Lore One</td><td>20</td></tr><tr><td>LORE TWO</td><td>10</td></tr><tr><td>Name</td><td>Points</td></tr></table>
+<h3>Lore One</h3>
+%s
+%s
+<h3>Lore Two</h3>
+%s
+<h2>Errata</h2>
+<h3>Lore Three</h3>
+%s
+%s
+%s
+%s
+</body></html>""" % (
+    block("Your Hero Phase", "SUMMON ONE", "Set up one.", casting=6),
+    block("Your Hero Phase", "SUMMON TWO", "Set up two.", casting=7),
+    block("Your Hero Phase", "SUMMON THREE", "Set up three.", casting=8),
+    block("Your Hero Phase", "AFTER ERRATA"),
+    sheet("Thing One", "SUMMONING REFERENCE: keep this"),
+    sheet("Thing One"),
+    sheet("Thing Two", "1 model"),
+)
+
+
+def parse_lores(tmp_path, page=LORES_PAGE):
+    path = tmp_path / "endless-spells.html"
+    path.write_text(page, encoding="utf-8")
+    return wahapedia.parse_manifestation_lores(str(path))
+
+
+def test_manifestation_lores_are_the_h3_headings_after_the_manifestation_lore_heading(tmp_path):
+    lores = parse_lores(tmp_path)["lores"]
+    assert [(l["name"], l["kind"]) for l in lores] == [("Lore One", "manifestation"), ("Lore Two", "manifestation")]
+
+
+def test_manifestation_lore_points_come_from_the_table_before_the_first_lore(tmp_path):
+    lores = parse_lores(tmp_path)["lores"]
+    assert [l["points"] for l in lores] == [20, 10]
+
+
+def test_manifestation_lore_without_a_points_row_has_zero_points(tmp_path):
+    page = LORES_PAGE.replace("<tr><td>LORE TWO</td><td>10</td></tr>", "")
+    assert parse_lores(tmp_path, page)["lores"][1]["points"] == 0
+
+
+def test_manifestation_lore_entries_are_its_ability_blocks(tmp_path):
+    lores = parse_lores(tmp_path)["lores"]
+    assert [[e["name"] for e in l["entries"]] for l in lores] == [["SUMMON ONE", "SUMMON TWO"], ["SUMMON THREE"]]
+
+
+def test_manifestation_lore_entry_is_parsed_as_an_ability(tmp_path):
+    entry = parse_lores(tmp_path)["lores"][0]["entries"][0]
+    assert (entry["timing"], entry["effect"], entry["casting_value"]) == ("Your Hero Phase", "Set up one.", 6)
+
+
+def test_manifestation_lores_stop_at_the_errata_heading(tmp_path):
+    names = [e["name"] for l in parse_lores(tmp_path)["lores"] for e in l["entries"]]
+    assert "AFTER ERRATA" not in names
+
+
+def test_manifestation_lores_stop_at_the_first_datasheet_without_errata(tmp_path):
+    page = LORES_PAGE.replace("<h2>Errata</h2>", "")
+    page = page.replace(sheet("Thing One", "SUMMONING REFERENCE: keep this"), sheet("Early") + block("Your Hero Phase", "LATE", "x"), 1)
+    lores = parse_lores(tmp_path, page)["lores"]
+    assert "LATE" not in [e["name"] for l in lores for e in l["entries"]]
+
+
+def test_manifestation_warscrolls_are_deduplicated_by_name(tmp_path):
+    assert [w["name"] for w in parse_lores(tmp_path)["warscrolls"]] == ["Thing One", "Thing Two"]
+
+
+def test_summoning_reference_composition_is_dropped(tmp_path):
+    assert "composition" not in parse_lores(tmp_path)["warscrolls"][0]
+
+
+def test_real_composition_is_kept(tmp_path):
+    assert parse_lores(tmp_path)["warscrolls"][1]["composition"] == "1 model"

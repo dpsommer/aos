@@ -16,8 +16,12 @@ extends Resource
 @export var keywords: PackedStringArray
 ## Named sub-effects the player picks from, each {"name": String, "text": String}.
 @export var options: Array[Dictionary]
+## Who uses a reaction, e.g. "The unit using that RUN ability." Empty if the ability declares it.
+@export var used_by: String
 ## Points cost when the ability is an enhancement.
 @export var points: int
+## Command point cost of a command. 0 if the ability isn't a command.
+@export var command_points: int
 ## Casting value of a spell. 0 if the ability isn't a spell.
 @export var casting_value: int
 ## Chanting value of a prayer. 0 if the ability isn't a prayer.

@@ -239,3 +239,24 @@ def test_move_keeps_multiple_dice():
 
 def test_move_of_unmoving_unit_is_zero():
     assert [schema.move("-"), schema.move(None)] == ["0", "0"]
+
+
+def test_ability_writes_used_by_and_command_points_when_set():
+    out = schema.ability({"name": "A", "used_by": "The unit.", "command_points": 2})
+    assert (out["used_by"], out["command_points"]) == ("The unit.", 2)
+
+
+def test_ability_omits_used_by_and_command_points_when_unset():
+    out = schema.ability({"name": "A", "used_by": "", "command_points": 0})
+    assert "used_by" not in out and "command_points" not in out
+
+
+def test_ability_orders_used_by_after_declare_and_command_points_after_points():
+    out = schema.ability({"name": "A", "command_points": 1, "points": 20, "used_by": "U", "declare": "D", "effect": "E"})
+    keys = list(out)
+    assert keys.index("used_by") == keys.index("declare") + 1
+    assert keys.index("command_points") == keys.index("points") + 1
+
+
+def test_tidy_converts_fraction_slash_half_to_half_sign():
+    assert schema.tidy({"effect": "within 1⁄2\" of it"}) == {"effect": "within ½\" of it"}

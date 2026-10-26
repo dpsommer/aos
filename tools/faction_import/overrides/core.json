@@ -1,0 +1,17 @@
+{
+	"fields": {
+		"aethervoid_pendulum > Scything Blade": {
+			"effect": "This MANIFESTATION can move a distance up to its Move characteristic in one direction (see ‘The Pendulum Swings’). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this MANIFESTATION passed across during that move or that are within ½\" of it to be the targets. Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+		},
+		"chronomantic_cogs > Mechanisms of Time": {
+			"options": [
+				{"name": "Increase Time Flow", "text": "Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this MANIFESTATION."},
+				{"name": "Decrease Time Flow", "text": "Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly WIZARDS while they are wholly within 12\" of this MANIFESTATION."}
+			]
+		},
+		"umbral_spellportal": {"save": 6},
+		"krondspine_incarnate_of_ghur > Wild Form": {
+			"effect": "Each time this MANIFESTATION is targeted by the ‘Banish Manifestation’ ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
+		}
+	}
+}
