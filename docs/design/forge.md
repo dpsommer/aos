@@ -6,7 +6,7 @@ Forge is the army builder, where players build and save armies to use in Quick P
 
 1. **Grand Alliance:** the player picks Order, Chaos, Death or Destruction. Back returns to the main menu.
 2. **Faction:** the factions of the chosen alliance are listed. Factions without rules data are disabled with a "Coming soon" tooltip, and factions moved to Legends (Fyreslayers) are labelled "(Legends)". Back returns to the alliance list, with the chosen alliance focused.
-3. **Faction browser:** picking a faction emits `faction_selected`, and `Main` opens the faction browser (`scenes/ui/forge/faction_browser.tscn`). Its title and rules tab mark a Legends faction. It is read-only, with tabs for the faction's rules (battle traits, formations, enhancements, lores), warscrolls, Armies of Renown, Spearhead and Path to Glory. Each list tab shows the selected entry's full rules. Back returns to the Forge on the same alliance's faction list.
+3. **Faction browser:** picking a faction emits `faction_selected`, and `Main` opens the faction browser (`scenes/ui/forge/faction_browser.tscn`). Its title and rules tab mark a Legends faction. It is read-only, with tabs for the faction's rules (battle traits, formations, enhancements, lores), warscrolls, Armies of Renown, Regiments of Renown (with each regiment's points, units and abilities), Spearhead and Path to Glory. Each list tab shows the selected entry's full rules. Back returns to the Forge on the same alliance's faction list.
 4. **Army builder:** not implemented.
 
 Esc (`ui_cancel`) does the same as the visible Back button on every screen.

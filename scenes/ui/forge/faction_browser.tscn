@@ -77,14 +77,20 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Spearheads" parent="Margin/Layout/Tabs" instance=ExtResource("2_list")]
+[node name="RegimentsOfRenown" parent="Margin/Layout/Tabs" instance=ExtResource("2_list")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="PathToGlory" parent="Margin/Layout/Tabs" instance=ExtResource("2_list")]
+[node name="Spearheads" parent="Margin/Layout/Tabs" instance=ExtResource("2_list")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 4
+
+[node name="PathToGlory" parent="Margin/Layout/Tabs" instance=ExtResource("2_list")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5

@@ -177,6 +177,68 @@ func test_first_army_of_renown_is_rendered() -> void:
 	assert_eq(browser.armies_of_renown.detail.text, RulesFormatter.army_of_renown(faction.armies_of_renown[0]))
 
 
+func test_regiments_of_renown_list_has_item_per_regiment() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	browser.show_faction(faction)
+	assert_gt(faction.regiments_of_renown.size(), 0, "fixture needs regiments of renown")
+	assert_eq(browser.regiments_of_renown.list.item_count, faction.regiments_of_renown.size())
+
+
+## Index of the first regiment in [param faction] whose legends flag is [param legends].
+func _regiment_index(faction: Faction, legends: bool) -> int:
+	for i in faction.regiments_of_renown.size():
+		if faction.regiments_of_renown[i].legends == legends:
+			return i
+	return -1
+
+
+func test_regiment_of_renown_label_has_name_and_points() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	var index := _regiment_index(faction, false)
+	assert_gt(index, -1, "fixture needs a regiment of renown that isn't legends")
+	browser.show_faction(faction)
+	var regiment := faction.regiments_of_renown[index]
+	assert_eq(browser.regiments_of_renown.list.get_item_text(index), "%s - %d pts" % [regiment.name, regiment.points])
+
+
+func test_legends_regiment_of_renown_label_marks_legends() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	var index := _regiment_index(faction, true)
+	assert_gt(index, -1, "fixture needs a legends regiment of renown")
+	browser.show_faction(faction)
+	var regiment := faction.regiments_of_renown[index]
+	var label := browser.regiments_of_renown.list.get_item_text(index)
+	assert_string_contains(label, regiment.name)
+	assert_string_contains(label, "Legends")
+	assert_string_contains(label, str(regiment.points))
+
+
+func test_selecting_regiment_of_renown_renders_it() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	var last := faction.regiments_of_renown.size() - 1
+	assert_gt(last, 0, "fixture needs several regiments of renown")
+	browser.show_faction(faction)
+	browser.regiments_of_renown.select(last)
+	assert_eq(browser.regiments_of_renown.detail.text, RulesFormatter.regiment_of_renown(faction.regiments_of_renown[last]))
+
+
+func test_first_regiment_of_renown_is_rendered() -> void:
+	var browser := _make_browser()
+	var faction := _fixture()
+	browser.show_faction(faction)
+	assert_eq(browser.regiments_of_renown.detail.text, RulesFormatter.regiment_of_renown(faction.regiments_of_renown[0]))
+
+
+func test_regiments_of_renown_tab_is_titled() -> void:
+	var browser := _make_browser()
+	var index := browser.tabs.get_tab_idx_from_control(browser.regiments_of_renown)
+	assert_eq(browser.tabs.get_tab_title(index), "Regiments of Renown")
+
+
 func test_spearheads_list_has_item_per_spearhead() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()
@@ -213,7 +275,8 @@ func test_empty_faction_leaves_lists_empty() -> void:
 	faction.name = "Empty"
 	browser.show_faction(faction)
 	assert_eq([browser.warscrolls.list.item_count, browser.armies_of_renown.list.item_count,
-			browser.spearheads.list.item_count, browser.path_to_glory.list.item_count], [0, 0, 0, 0])
+			browser.regiments_of_renown.list.item_count, browser.spearheads.list.item_count,
+			browser.path_to_glory.list.item_count], [0, 0, 0, 0, 0])
 
 
 func test_every_tab_has_a_title() -> void:

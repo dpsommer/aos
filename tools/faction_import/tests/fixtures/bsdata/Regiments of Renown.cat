@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogue id="cat-ror" name="Regiments of Renown" revision="1" gameSystemId="sys" library="true" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
+  <entryLinks>
+    <!-- Alpha Company: its count comes from a modifier on the link itself. -->
+    <entryLink id="rl-captain" name="Test Captain (1 model)" targetId="u-captain" type="selectionEntry">
+      <constraints><constraint id="rk-captain" type="min" field="selections" scope="parent" value="0"/></constraints>
+      <modifiers>
+        <modifier type="set" field="name" value="Test Captain (1 model)"/>
+        <modifier type="set" field="rk-captain" value="3.0">
+          <conditions><condition type="atLeast" childId="f-alpha" field="selections" scope="roster" value="1"/></conditions>
+        </modifier>
+      </modifiers>
+      <modifierGroups>
+        <modifierGroup>
+          <conditions><condition type="atLeast" childId="f-alpha" field="selections" scope="roster" value="1"/></conditions>
+        </modifierGroup>
+      </modifierGroups>
+    </entryLink>
+    <!-- Alpha Company: a second link whose count is set inside a modifier group. -->
+    <entryLink id="rl-riders" name="Test Riders" targetId="u-riders" type="selectionEntry">
+      <constraints><constraint id="rk-riders" type="min" field="selections" scope="parent" value="0"/></constraints>
+      <modifierGroups>
+        <modifierGroup>
+          <conditions><condition type="atLeast" childId="f-alpha" field="selections" scope="roster" value="1"/></conditions>
+          <modifiers><modifier type="set" field="rk-riders" value="2.0"/></modifiers>
+        </modifierGroup>
+        <modifierGroup>
+          <conditions><condition type="atLeast" childId="f-old" field="selections" scope="roster" value="1"/></conditions>
+          <modifiers><modifier type="set" field="rk-riders" value="9.0"/></modifiers>
+        </modifierGroup>
+      </modifierGroups>
+    </entryLink>
+    <!-- Alpha Company: a unit this catalogue defines itself. -->
+    <entryLink id="rl-own" name="Alpha Champion" targetId="u-alpha-champ" type="selectionEntry">
+      <modifiers>
+        <modifier type="set" field="hidden" value="true">
+          <conditions><condition type="notInstanceOf" childId="f-alpha" field="selections" scope="roster" value="1"/></conditions>
+        </modifier>
+      </modifiers>
+    </entryLink>
+    <!-- Alpha Company: not a unit, so it isn't one of the regiment's units. -->
+    <entryLink id="rl-upgrade" name="Alpha Banner" targetId="se-alpha-banner" type="selectionEntry">
+      <modifiers>
+        <modifier type="set" field="hidden" value="true">
+          <conditions><condition type="notInstanceOf" childId="f-alpha" field="selections" scope="roster" value="1"/></conditions>
+        </modifier>
+      </modifiers>
+    </entryLink>
+    <!-- Old Guard: no modifier sets a count, so there is one. -->
+    <entryLink id="rl-warden" name="Old Warden" targetId="u-warden" type="selectionEntry">
+      <modifiers>
+        <modifier type="set" field="hidden" value="true">
+          <conditions><condition type="notInstanceOf" childId="f-old" field="selections" scope="roster" value="1"/></conditions>
+        </modifier>
+      </modifiers>
+    </entryLink>
+    <!-- Not gated on any regiment, so it belongs to none. -->
+    <entryLink id="rl-ungated" name="Test Wraith" targetId="u-wraith" type="selectionEntry"/>
+  </entryLinks>
+  <sharedSelectionEntries>
+    <selectionEntry id="se-alpha" name="Regiment of Renown: Alpha Company" type="upgrade" publicationId="pub-gh">
+      <modifiers>
+        <modifier type="set" field="hidden" value="true">
+          <conditions><condition type="notInstanceOf" childId="f-alpha" field="selections" scope="roster" value="1"/></conditions>
+        </modifier>
+      </modifiers>
+      <profiles>
+        <profile id="p-alpha" name="Company Drill" typeId="ab" typeName="Ability (Passive)">
+          <characteristics><characteristic name="Effect" typeId="eff">Alpha units are steady.</characteristic></characteristics>
+          <attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>
+        </profile>
+      </profiles>
+    </selectionEntry>
+    <selectionEntry id="se-old" name="Regiment of Renown: Old Guard" type="upgrade">
+      <modifiers>
+        <modifier type="set" field="hidden" value="true">
+          <conditions><condition type="notInstanceOf" childId="f-old" field="selections" scope="roster" value="1"/></conditions>
+        </modifier>
+      </modifiers>
+      <profiles>
+        <profile id="p-old" name="Veteran Stand" typeId="ab" typeName="Ability (Passive)">
+          <characteristics><characteristic name="Effect" typeId="eff">Old Guard units hold.</characteristic></characteristics>
+          <attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>
+        </profile>
+      </profiles>
+    </selectionEntry>
+    <selectionEntry id="se-unrelated" name="Regiment of Renown: Unrelated" type="upgrade">
+      <profiles>
+        <profile id="p-unrelated" name="Unrelated Rule" typeId="ab" typeName="Ability (Passive)">
+          <characteristics><characteristic name="Effect" typeId="eff">Belongs to no regiment.</characteristic></characteristics>
+          <attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>
+        </profile>
+      </profiles>
+    </selectionEntry>
+    <selectionEntry id="se-alpha-banner" name="Alpha Banner" type="upgrade"/>
+    <selectionEntry id="u-alpha-champ" name="Alpha Champion" type="unit" publicationId="pub-gh">
+      <profiles>
+        <profile id="p-champ-unit" name="Alpha Champion" typeId="unit" typeName="Unit">
+          <characteristics>
+            <characteristic name="Move" typeId="mv">6"</characteristic>
+            <characteristic name="Health" typeId="hp">8</characteristic>
+            <characteristic name="Save" typeId="sv">3+</characteristic>
+            <characteristic name="Control" typeId="ct">3</characteristic>
+          </characteristics>
+        </profile>
+      </profiles>
+    </selectionEntry>
+  </sharedSelectionEntries>
+</catalogue>

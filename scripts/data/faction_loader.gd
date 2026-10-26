@@ -3,19 +3,20 @@ extends RefCounted
 ## Builds a [Faction] from a directory of JSON files.
 ##
 ## The directory holds faction.json plus optional warscrolls.json, armies_of_renown.json,
-## spearhead.json and path_to_glory.json. Warscrolls and Armies of Renown that several factions
-## use, such as Nagash, live once in [member shared_dir] and are referenced by the faction files.
+## regiments_of_renown.json, spearhead.json and path_to_glory.json. Warscrolls and Armies of Renown
+## that several factions use, such as Nagash, and every Regiment of Renown live once in
+## [member shared_dir] and are referenced by the faction files.
 ## See docs/technical/faction-data.md for the format. Problems are collected in [member errors]
 ## rather than reported, so callers decide how to surface them.
 
 ## Problems found by the last [method load_faction] call, each naming the file and field.
 var errors: PackedStringArray
-## Directory of the shared warscrolls.json and armies_of_renown.json.
+## Directory of the shared warscrolls.json, armies_of_renown.json and regiments_of_renown.json.
 var shared_dir := "res://data/shared"
 
 var _file: String
 ## Shared entries read by the current [method load_faction] call, by file name, then by id
-## (warscrolls) or name (Armies of Renown).
+## (warscrolls) or name (Armies and Regiments of Renown).
 var _shared := {}
 
 
@@ -55,6 +56,14 @@ func load_faction(dir_path: String) -> Faction:
 		var entry: Variant = _resolve_shared(data.armies_of_renown[i], path, "armies_of_renown.json", "armies_of_renown", "name")
 		if entry != null:
 			faction.armies_of_renown.append(_army_of_renown(entry, path))
+
+	data = _read(dir_path, "regiments_of_renown.json")
+	for i in _array(data, "regiments_of_renown", "").size():
+		var path := "regiments_of_renown[%d]" % i
+		var entry: Variant = _resolve_shared(data.regiments_of_renown[i], path, "regiments_of_renown.json",
+				"regiments_of_renown", "name")
+		if entry != null:
+			faction.regiments_of_renown.append(_regiment_of_renown(entry, path))
 
 	data = _read(dir_path, "spearhead.json")
 	for i in _array(data, "spearheads", "").size():
@@ -286,6 +295,33 @@ func _army_of_renown(data: Variant, path: String) -> ArmyOfRenown:
 		army.enhancement_tables = _enhancement_tables(data, path)
 		army.lores = _lores(data, path)
 	return army
+
+
+func _regiment_of_renown(data: Variant, path: String) -> RegimentOfRenown:
+	var regiment := RegimentOfRenown.new()
+	if not _is_object(data, path):
+		return regiment
+	regiment.name = _string(data, "name", path, true)
+	regiment.source = _string(data, "source", path)
+	regiment.legends = _bool(data, "legends", path)
+	regiment.points = _int(data, "points", path, true)
+	regiment.text = _string(data, "text", path)
+	var units := _array(data, "units", path)
+	for i in units.size():
+		var unit_path := "%s.units[%d]" % [path, i]
+		var unit := RegimentUnit.new()
+		if _is_object(units[i], unit_path):
+			unit.count = _int(units[i], "count", unit_path, true)
+			unit.name = _string(units[i], "name", unit_path, true)
+			unit.faction_id = _string(units[i], "faction", unit_path)
+			unit.warscroll_id = _string(units[i], "warscroll", unit_path, true)
+			unit.notes = _string(units[i], "notes", unit_path)
+		regiment.units.append(unit)
+	regiment.abilities = _abilities(data, "abilities", path)
+	var warscrolls := _array(data, "warscrolls", path)
+	for i in warscrolls.size():
+		regiment.warscrolls.append(_warscroll(warscrolls[i], "%s.warscrolls[%d]" % [path, i], true))
+	return regiment
 
 
 func _spearhead(data: Variant, path: String) -> Spearhead:

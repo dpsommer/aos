@@ -1,0 +1,58 @@
+{
+	"regiments_of_renown": [
+		{
+			"name": "Renowned Regiment",
+			"source": "Expansion",
+			"points": 300,
+			"text": "Regiment restrictions.",
+			"units": [
+				{
+					"count": 1,
+					"name": "Allied Hero",
+					"faction": "other_faction",
+					"warscroll": "allied_hero",
+					"notes": "1 model"
+				},
+				{
+					"count": 2,
+					"name": "Own Brute",
+					"warscroll": "own_brute"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Regiment Ability",
+					"effect": "Regiment effect."
+				}
+			],
+			"warscrolls": [
+				{
+					"id": "own_brute",
+					"name": "Own Brute",
+					"points": 100,
+					"unit_size": 1,
+					"move": "6",
+					"health": 8,
+					"save": 4,
+					"control": 2,
+					"keywords": [
+						"HERO"
+					]
+				}
+			]
+		},
+		{
+			"name": "Legendary Regiment",
+			"legends": true,
+			"points": 150,
+			"units": [
+				{
+					"count": 1,
+					"name": "Old Hero",
+					"warscroll": "old_hero"
+				}
+			],
+			"abilities": []
+		}
+	]
+}
