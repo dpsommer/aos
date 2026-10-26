@@ -215,6 +215,7 @@
 		{
 			"name": "Zharrgrim Blessings",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Prayer of Ash",
@@ -256,6 +257,7 @@
 			"name": "Vulkyn Gifts",
 			"source": "Scourge of Ghyran",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Ichor of the Ur-Salamander",
@@ -297,6 +299,7 @@
 			"name": "Vulkyn Gifts",
 			"source": "Scourge of Aqshy",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Ichor of the Ur-Salamander",
@@ -337,6 +340,7 @@
 		{
 			"name": "Magmic Invocations",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Runic Fyrewall",

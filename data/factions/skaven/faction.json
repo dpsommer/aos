@@ -279,6 +279,7 @@
 		{
 			"name": "Lore of Ruin",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Skitterleap",
@@ -319,6 +320,7 @@
 		{
 			"name": "Noxious Prayers",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Filth-crust",
@@ -359,6 +361,7 @@
 		{
 			"name": "Manifestations of Doom",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Warp Lightning Vortex",

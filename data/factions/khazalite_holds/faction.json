@@ -350,6 +350,7 @@
 			"name": "Vulkyn Gifts",
 			"source": "Scourge of Aqshy",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Fury of Vulcatrix",

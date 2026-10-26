@@ -341,6 +341,7 @@
 		{
 			"name": "Lore of the Damned",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Spite-tongue Curse",
@@ -381,6 +382,7 @@
 		{
 			"name": "Manifestations of Malevolence",
 			"kind": "manifestation",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Summon Darkfire Daemonrift",

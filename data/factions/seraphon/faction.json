@@ -288,6 +288,7 @@
 		{
 			"name": "Lore of Celestial Manipulation",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Mystical Unforging",
@@ -328,6 +329,7 @@
 		{
 			"name": "Lore of Primal Jungles",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Light of Chotec",

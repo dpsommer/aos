@@ -228,6 +228,7 @@
 		{
 			"name": "Lore of Malignance",
 			"kind": "spell",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Fleshy Abundance",
@@ -268,6 +269,7 @@
 		{
 			"name": "Lore of Virulence",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Gift of Disease",
@@ -309,6 +311,7 @@
 			"name": "Benedictions of Sickness",
 			"source": "Scourge of Ghyran",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Infectious Surge",
@@ -350,6 +353,7 @@
 			"name": "Benedictions of Sickness",
 			"source": "Scourge of Aqshy",
 			"kind": "prayer",
+			"points": 0,
 			"entries": [
 				{
 					"name": "Agonising Vomiting",

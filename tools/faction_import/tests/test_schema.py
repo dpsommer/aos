@@ -78,6 +78,21 @@ def test_table_drops_empty_group_and_source():
     assert "group" not in out and "source" not in out
 
 
+def test_faction_lore_points_default_to_zero():
+    out = schema.faction(fac(lores=[{"name": "Lore of Shadows", "kind": "spell", "entries": []}]))
+    assert out["lores"][0]["points"] == 0
+
+
+def test_faction_lore_keeps_points():
+    out = schema.faction(fac(lores=[{"name": "Bloodshadow Rites", "kind": "prayer", "points": 20, "entries": []}]))
+    assert out["lores"][0]["points"] == 20
+
+
+def test_faction_lore_points_come_after_kind():
+    keys = list(schema.faction(fac(lores=[{"name": "Lore", "kind": "spell", "entries": []}]))["lores"][0])
+    assert keys == ["name", "kind", "points", "entries"]
+
+
 def test_army_of_renown_text_defaults_to_empty():
     out = schema.army_of_renown({"name": "Host", "battle_traits": [], "enhancement_tables": [], "lores": []})
     assert out["text"] == ""
