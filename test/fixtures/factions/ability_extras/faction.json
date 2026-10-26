@@ -1,0 +1,1 @@
+{"id": "ability_extras", "name": "Ability Extras", "grand_alliance": "order", "battle_traits": [{"name": "Reaction", "timing": "Reaction: You declared a RUN ability", "used_by": "The unit using that RUN ability.", "command_points": 2}]}

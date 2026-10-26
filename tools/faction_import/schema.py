@@ -32,8 +32,8 @@ def slug(name):
 
 def ability(a):
     out = {"name": a["name"], "category": a.get("category", ""), "timing": a.get("timing", "")}
-    for k in ("frequency", "declare", "effect", "text", "casting_value", "chanting_value",
-              "keywords", "options", "points", "source"):
+    for k in ("frequency", "declare", "used_by", "effect", "text", "casting_value", "chanting_value",
+              "keywords", "options", "points", "command_points", "source"):
         if a.get(k):
             out[k] = a[k]
     return out
@@ -135,8 +135,10 @@ def rules_section(p):
 
 
 def tidy(o):
-    """Normalise spacing left over from inline tags inside quotes in Wahapedia text."""
+    """Normalise spacing left over from inline tags inside quotes in Wahapedia text, and its
+    fraction-slash halves ("1⁄2") to the "½" BSData uses."""
     if isinstance(o, str):
+        o = o.replace("1⁄2", "½")
         o = re.sub(r"‘\s+", "‘", o)
         return re.sub(r"\s+’(?![A-Za-z])", "’", o)
     if isinstance(o, list):
