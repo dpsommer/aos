@@ -1,6 +1,7 @@
 class_name CoreRules
 extends Resource
-## Rules every army uses: the core rules' abilities and the universal manifestation lores.
+## Rules every army uses: the core rules' abilities, the universal manifestation lores and the
+## General's Handbook battlepack.
 
 ## Deployment, core, command, magic and passive abilities, such as 'Normal Move' and 'Rally'.
 @export var abilities: Array[Ability]
@@ -12,6 +13,8 @@ extends Resource
 @export var manifestation_lores: Array[Lore]
 ## The manifestations those lores summon.
 @export var manifestations: Array[Warscroll]
+## The current General's Handbook battlepack: season rules, battle tactics and battleplans.
+@export var battlepack: Battlepack
 
 
 func get_ability(ability_name: String) -> Ability:

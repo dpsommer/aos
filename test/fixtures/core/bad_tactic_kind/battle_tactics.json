@@ -1,0 +1,16 @@
+{
+	"sections": [{"name": "Test Tactics Section", "text": "Tactics section text."}],
+	"cards": [
+		{
+			"number": 3,
+			"name": "Test Card",
+			"text": "Card rules.",
+			"tactics": [
+				{"name": "Test Affray", "kind": "affray", "condition": "First condition.", "victory_points": 4},
+				{"name": "Test Strike", "kind": "bogus", "condition": "Second condition.", "victory_points": 5},
+				{"name": "Test Domination", "kind": "domination", "condition": "Third condition.", "victory_points": 6}
+			],
+			"faqs": [{"about": "Test Strike", "question": "Card question?", "answer": "Card answer."}]
+		}
+	]
+}

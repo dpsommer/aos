@@ -1,0 +1,20 @@
+{
+	"sections": [{"name": "Test Maps Section", "text": "Maps section text."}],
+	"battleplans": [
+		{
+			"number": 2,
+			"table": 1,
+			"name": "Test Battleplan",
+			"map": "test.png",
+			"text": "Set-up rules.",
+			"twist": "Twist text.",
+			"abilities": [{"name": "Test Twist Ability", "category": "control", "timing": "Passive", "effect": "Twist effect."}],
+			"scoring": ["Score 1 victory point.", "Score 2 victory points."],
+			"objectives": [{"type": "Heldenhain", "x": "east", "y": 7}],
+			"terrain": [{"type": "obscuring", "size": "small", "x": 3, "y": 4.5}],
+			"attacker_territory": [{"x": 0, "y": 0, "width": 50, "depth": 10}],
+			"defender_territory": [{"x": 0, "y": 20, "width": 25, "depth": 10}, {"x": 25, "y": 15, "width": 25, "depth": 15}],
+			"faqs": [{"question": "Battleplan question?", "answer": "Battleplan answer."}]
+		}
+	]
+}
