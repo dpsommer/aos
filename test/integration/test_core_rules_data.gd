@@ -117,7 +117,6 @@ func test_fly_is_passive() -> void:
 func _battlepack_abilities() -> Array[Ability]:
 	var out: Array[Ability] = []
 	out.append_array(_rules.battlepack.season_rules)
-	out.append_array(_rules.battlepack.updated_abilities)
 	for battleplan in _rules.battlepack.battleplans:
 		out.append_array(battleplan.abilities)
 	return out
@@ -126,11 +125,6 @@ func _battlepack_abilities() -> Array[Ability]:
 func test_every_battlepack_ability_has_a_known_type() -> void:
 	for ability in _battlepack_abilities():
 		assert_has(Ability.TYPES, ability.type, ability.name)
-
-
-func test_every_updated_ability_replaces_a_core_ability() -> void:
-	for ability in _rules.battlepack.updated_abilities:
-		assert_not_null(_rules.get_ability(ability.name), ability.name)
 
 
 func test_every_battleplan_table_entry_names_a_battleplan() -> void:
@@ -208,3 +202,16 @@ func test_every_battlepack_faq_has_a_question_and_answer() -> void:
 	assert_gt(faqs.size(), 0)
 	for faq in faqs:
 		assert_false(faq.question.is_empty() or faq.answer.is_empty(), str(faq))
+
+
+func test_sacred_rites_is_an_unlimited_prayer() -> void:
+	var ability := _rules.get_ability("Sacred Rites")
+	assert_not_null(ability)
+	assert_eq([ability.type, "UNLIMITED" in ability.keywords], ["prayer", true])
+
+
+func test_activate_place_of_power_can_ignite_fury() -> void:
+	var ability := _rules.get_ability("Activate Place of Power")
+	assert_not_null(ability)
+	var option_names := ability.options.map(func(option: Dictionary) -> String: return option.name)
+	assert_has(option_names, "Ignite Fury")

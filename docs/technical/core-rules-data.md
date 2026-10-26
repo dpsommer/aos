@@ -6,9 +6,9 @@ Rules every army uses live as JSON in `data/core/`, in the same shapes as factio
 
 **File** | **Contents** | **Source**
 -- | -- | --
-`abilities.json` | `abilities`: the universal abilities: deployment (Deploy Unit, Deploy Regiment, Deploy Faction Terrain), core (Normal Move, Run, Retreat, Shoot, Charge, Fight), passive (Fly, Ward Save, Guarded Hero, Champion, Musician, Standard Bearer), commands (Rally, Magical Intervention, Redeploy, At the Double, Covering Fire, Counter-charge, Forward to Victory, All-out Attack, All-out Defence, Power Through), Activate Place of Power, Unbind, Banish Manifestation and Tactical Gambit. `weapon_abilities`: the universal weapon abilities (Anti-X, Crit…). `terrain_abilities`: the universal terrain abilities (Cover, Obscuring…) | Written by hand
+`abilities.json` | `abilities`: the universal abilities: deployment (Deploy Unit, Deploy Regiment, Deploy Faction Terrain), core (Normal Move, Run, Retreat, Shoot, Charge, Fight), passive (Fly, Ward Save, Guarded Hero, Champion, Musician, Standard Bearer), commands (Rally, Magical Intervention, Redeploy, At the Double, Covering Fire, Counter-charge, Forward to Victory, All-out Attack, All-out Defence, Power Through), Activate Place of Power, Unbind, Sacred Rites and Banish Manifestation. `weapon_abilities`: the universal weapon abilities (Anti-X, Crit…). `terrain_abilities`: the universal terrain abilities (Cover, Obscuring…) | Written by hand
 `manifestation_lores.json` | `lores`: the universal manifestation lores, which any army can take, with their points. `warscrolls`: the manifestations they summon | `tools/faction_import/build_core.py`
-`battlepack.json` | The General's Handbook 2026-27 matched play battlepack: `name`, `battle_rounds`, `battlefield` (`width`, `depth` in inches), `sections` (its rules, e.g. Glorious Victory, and Using the Scourge of Aqshy Rules), `battleplan_tables` (two lists of 6 battleplan names, in D6 order), `season_rules` (Raising the Heat, Simmering Rage, Eruption of Fury, Fight Through the Pain), `updated_abilities` (its version of Activate Place of Power) and `faqs` | Written by hand
+`battlepack.json` | The General's Handbook 2026-27 matched play battlepack: `name`, `battle_rounds`, `battlefield` (`width`, `depth` in inches), `sections` (its rules, e.g. Glorious Victory, and Using the Scourge of Aqshy Rules), `battleplan_tables` (two lists of 6 battleplan names, in D6 order), `season_rules` (Raising the Heat, Simmering Rage, Eruption of Fury, Fight Through the Pain) and `faqs` | Written by hand
 `battle_tactics.json` | `sections`: the Battle Tactics 2026-27 rules. `cards`: the 6 battle tactics cards | Written by hand
 `battleplans.json` | `sections`: the Battleplan Maps key. `battleplans`: the 12 battleplans with their maps | Written by hand; maps from `tools/battleplan_maps/extract_maps.py`
 
@@ -18,7 +18,9 @@ All are `Ability`, `Lore` and `Warscroll` objects. Commands have `command_points
 
 ## Abilities
 
-`abilities.json` is transcribed from [The Rules](https://assets.warhammer-community.com/eng_aos_core&key_the-rules_apr25-t7q3fbv0zb-bit50crc5k.pdf) (April 2025: Core Rules and Advanced Rules, not Spearhead) with the [Rules Updates](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf) (September 2026) errata applied: 'Deploy Regiment' and 'Companion' are the updated text. The April 2025 rules already include the other errata to these abilities. Section references such as "(see 16.0)" are the rules' own. Categories follow each ability's icon, using BSData's names. The example spell and prayer in the Magic module ('Mystic Shield', 'Resurrection') aren't universal, so they're left out. So are the rules' universal battle tactics: the current General's Handbook has players pick battle tactics from its own set of battle tactics cards (see [General's Handbook battlepack](#generals-handbook-battlepack)).
+`abilities.json` follows Wahapedia's [Core Rules](https://wahapedia.ru/aos4/the-rules/the-core-rules/) page: the Core Rules and the Advanced Rules 2026-27 (Commands, Terrain, Magic, Army Composition and Command Models) that the General's Handbook 2026-27 battlepack uses, with the errata the page lists applied. The page's text was first transcribed from [The Rules](https://assets.warhammer-community.com/eng_aos_core&key_the-rules_apr25-t7q3fbv0zb-bit50crc5k.pdf) (April 2025) and the [Rules Updates](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf) (September 2026). The Advanced Rules 2026-27 changed 'Magical Intervention' (it can also use a BANISH ability), 'All-out Defence' (lasts until the ATTACK ability is resolved), 'Banish Manifestation' (not a manifestation summoned this turn), 'Activate Place of Power' (Ignite Fury, Channel Wrath and Dizzying Rage options) and the Obscuring terrain ability (units within 1" are only visible within combat range), and dropped 'Tactical Gambit', as battle tactics now come from the battlepack's cards (see [General's Handbook battlepack](#generals-handbook-battlepack)).
+
+Section references such as "(see 16.0)" are the rules' own. Categories follow each ability's icon, using BSData's names. 'Sacred Rites' is included because all PRIESTS know it. The example spell and prayer in the Magic module ('Mystic Shield', 'Resurrection') aren't known by any WIZARD or PRIEST (they only know the spells and prayers on their warscroll and in their lores), so they're left out. So are faction abilities that the page quotes in FAQs, such as 'The Hand of Gork'.
 
 When a rules update changes one of these abilities, edit the file to match.
 
@@ -48,7 +50,7 @@ When the next General's Handbook replaces this one, replace these three files.
 
 **Class** | **Fields** (required in bold)
 -- | --
-`Battlepack` | **`name`**, **`battle_rounds`**, `battlefield_size` (from `battlefield`), `sections`, `battleplan_tables`, `season_rules`, `updated_abilities`, `faqs`, plus `battle_tactic_rules` and `battle_tactic_cards` (from `battle_tactics.json`) and `battleplan_rules` and `battleplans` (from `battleplans.json`)
+`Battlepack` | **`name`**, **`battle_rounds`**, `battlefield_size` (from `battlefield`), `sections`, `battleplan_tables`, `season_rules`, `faqs`, plus `battle_tactic_rules` and `battle_tactic_cards` (from `battle_tactics.json`) and `battleplan_rules` and `battleplans` (from `battleplans.json`)
 `BattleTacticCard` | **`number`**, **`name`**, `text` (rules for the whole card, e.g. picking the enemy hideout), `tactics`, `faqs`
 `BattleTactic` | **`name`**, **`kind`** (`affray`, `strike` or `domination`, in the order they must be completed), **`condition`**, **`victory_points`**
 `Battleplan` | **`number`**, **`table`** (1 or 2), **`name`**, `map` (the Wahapedia map image, used by the map tool; not loaded), `text` (set-up rules), `twist`, `abilities`, `scoring` (one victory point rule per entry), `objectives`, `terrain`, `attacker_territory`, `defender_territory`, `faqs`
@@ -56,7 +58,7 @@ When the next General's Handbook replaces this one, replace these three files.
 
 FAQs are `{"about", "question", "answer"}`, where `about` names the rule or section the ruling is on (the battlepack's FAQs cover several) and may be left out. Sections are `RulesSection`s and abilities are `Ability`s, as in faction data.
 
-`updated_abilities` are the battlepack's versions of core abilities: each replaces the core ability of the same name in battles using the battlepack. Its 'Activate Place of Power' (from the Terrain 2026-27 Advanced Rules) adds the Ignite Fury option, which gives rage dice; the core version stays in `abilities.json`.
+The handbook's Advanced Rules 2026-27 change some universal abilities, such as 'Activate Place of Power', which gains the Ignite Fury option for the season's rage dice. Those are in `abilities.json` (see [Abilities](#abilities)), not here.
 
 ### Errata
 

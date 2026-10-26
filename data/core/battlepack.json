@@ -118,34 +118,6 @@
 			"effect": "Before allocating damage to a friendly unit, you can spend any number of rage dice. For each rage dice spent, reduce your fury level by 1, to a minimum of 0, then roll a dice. On a 3+, remove 1 damage point from that unit’s damage pool."
 		}
 	],
-	"updated_abilities": [
-		{
-			"name": "Activate Place of Power",
-			"type": "active",
-			"category": "special",
-			"timing": "Start of Any Turn",
-			"frequency": "Once Per Turn (Army)",
-			"declare": "Pick a friendly HERO within 3\" of any Places of Power to use this ability.",
-			"effect": "Roll a dice. On a 1, inflict D3 mortal damage on that HERO. On a 2+, pick 1 of the following effects:",
-			"keywords": [
-				"CORE"
-			],
-			"options": [
-				{
-					"name": "Ignite Fury",
-					"text": "Gain 2 rage dice, then increase your fury level by 2, to a maximum of 7."
-				},
-				{
-					"name": "Channel Wrath",
-					"text": "If that HERO is a WIZARD or PRIEST, add 1 to casting rolls or chanting rolls for that HERO for the rest of the turn."
-				},
-				{
-					"name": "Dizzying Rage",
-					"text": "For the rest of the turn, if that HERO is not a WIZARD or PRIEST, they can use the ’Unbind’ or ’Banish Manifestation’ ability as if they had WIZARD (1)."
-				}
-			]
-		}
-	],
 	"faqs": [
 		{
 			"about": "Season Rules 2026-27",
