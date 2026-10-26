@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "World Runes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -13,6 +14,7 @@
 				},
 				{
 					"name": "Depict Rune",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -27,6 +29,7 @@
 				},
 				{
 					"name": "The Realms Fight Back",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -35,6 +38,7 @@
 				},
 				{
 					"name": "Entreat Spirit",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -48,6 +52,7 @@
 					"entries": [
 						{
 							"name": "World-mage",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Add 1 to casting rolls for this unit for each unique rune depicted on your battle scripture."
@@ -59,6 +64,7 @@
 					"entries": [
 						{
 							"name": "Aelementor Focus",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Hero Phase",
 							"declare": "Pick a terrain feature to be the target.",
@@ -74,6 +80,7 @@
 					"entries": [
 						{
 							"name": "Vexing Spirits",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly AELEMENTIRI CONCLAVE WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -91,6 +98,7 @@
 					"entries": [
 						{
 							"name": "Cycle Manifestation",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly AELEMENTIRI CONCLAVE WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Sanctum of Amyntok\n• Hyshian Twinstones\n• Rune of Petrification",
@@ -111,6 +119,7 @@
 			"battle_traits": [
 				{
 					"name": "Rewards of Valour",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -125,6 +134,7 @@
 				},
 				{
 					"name": "Labour of Control",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -133,6 +143,7 @@
 				},
 				{
 					"name": "Labour of Might",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -141,6 +152,7 @@
 				},
 				{
 					"name": "Labour of Precision",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -149,6 +161,7 @@
 				},
 				{
 					"name": "Blessing of Tyrion",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -162,6 +175,7 @@
 					"entries": [
 						{
 							"name": "Master Duellist",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Combat Phase",
 							"declare": "Pick a visible enemy HERO in combat with this unit to be the target.",
@@ -174,6 +188,7 @@
 					"entries": [
 						{
 							"name": "Swiftfeather Talisman",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"declare": "Pick a friendly LUMINETH REALM-LORDS unit wholly within 12\" of this unit to be the target.",
@@ -181,12 +196,14 @@
 						},
 						{
 							"name": "Nullstone Beads",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "This unit can use the 'Unbind' ability as if it had WIZARD (1)."
 						},
 						{
 							"name": "Phoenix Blade",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "This unit's combat attacks score critical hits on unmodified hit rolls of 5+."

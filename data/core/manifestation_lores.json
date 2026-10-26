@@ -7,6 +7,7 @@
 			"entries": [
 				{
 					"name": "Summon Chronomantic Cogs",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Chronomantic Cogs endless spell on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -19,6 +20,7 @@
 				},
 				{
 					"name": "Summon Aethervoid Pendulum",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Aethervoid Pendulum on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -31,6 +33,7 @@
 				},
 				{
 					"name": "Summon Quicksilver Swords",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Quicksilver Swords endless spell on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -50,6 +53,7 @@
 			"entries": [
 				{
 					"name": "Summon Soulscream Bridge",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Soulscream Bridge on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -62,6 +66,7 @@
 				},
 				{
 					"name": "Summon Lauchon the Soulseeker",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Lauchon the Soulseeker on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -74,6 +79,7 @@
 				},
 				{
 					"name": "Summon Horrorghast",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Horrorghast on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -86,6 +92,7 @@
 				},
 				{
 					"name": "Summon Shards of Valagharr",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Shards of Valagharr endless spell on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -105,6 +112,7 @@
 			"entries": [
 				{
 					"name": "Summon Krondspine Incarnate of Ghur",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Krondspine Incarnate of Ghur on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -124,6 +132,7 @@
 			"entries": [
 				{
 					"name": "Summon Soulsnare Shackles",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Soulsnare Shackles endless spell on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -136,6 +145,7 @@
 				},
 				{
 					"name": "Summon Malevolent Maelstrom",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Malevolent Maelstrom on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -148,6 +158,7 @@
 				},
 				{
 					"name": "Summon Purple Sun of Shyish",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Purple Sun of Shyish on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -160,6 +171,7 @@
 				},
 				{
 					"name": "Summon Suffocating Gravetide",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Suffocating Gravetide on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -179,6 +191,7 @@
 			"entries": [
 				{
 					"name": "Summon Burning Head",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly The Burning Head on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -191,6 +204,7 @@
 				},
 				{
 					"name": "Summon Emerald Lifeswarm",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Emerald Lifeswarm on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -203,6 +217,7 @@
 				},
 				{
 					"name": "Summon Ravenak's Gnashing Jaws",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Ravenak’s Gnashing Jaws endless spell on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -222,6 +237,7 @@
 			"entries": [
 				{
 					"name": "Summon Geminids of Uhl-Gysh",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Geminids of Uhl-Gysh endless spell on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -234,6 +250,7 @@
 				},
 				{
 					"name": "Summon Prismatic Palisade",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Prismatic Palisade on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -246,6 +263,7 @@
 				},
 				{
 					"name": "Summon Umbral Spellportal",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Umbral Spellportal on the battlefield, pick a friendly WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -277,12 +295,14 @@
 			"abilities": [
 				{
 					"name": "The Pendulum Swings",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This MANIFESTATION cannot use CHARGE or FIGHT abilities. In addition, when this MANIFESTATION moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing."
 				},
 				{
 					"name": "Scything Blade",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"effect": "This MANIFESTATION can move a distance up to its Move characteristic in one direction (see ‘The Pendulum Swings’). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this MANIFESTATION passed across during that move or that are within ½\" of it to be the targets. Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
@@ -316,6 +336,7 @@
 			"abilities": [
 				{
 					"name": "Mechanisms of Time",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn",
@@ -368,6 +389,7 @@
 			"abilities": [
 				{
 					"name": "Bounteous Healing",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly unit within 3\" of this MANIFESTATION to be the target.",
@@ -375,6 +397,7 @@
 				},
 				{
 					"name": "Restored Vigour",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (3) this MANIFESTATION."
@@ -414,12 +437,14 @@
 			"abilities": [
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION’s Health characteristic are allocated to it, this MANIFESTATION is destroyed and both its parts are removed from play.\nEach time this MANIFESTATION moves, both its parts must end within 9\" of each other.\nEach part of this MANIFESTATION is armed with Tendrils of Light and Shadow."
 				},
 				{
 					"name": "Tendrils of Light and Shadow",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Enemy units cannot use commands while they are within 3\" of either part of this MANIFESTATION."
@@ -473,6 +498,7 @@
 			"abilities": [
 				{
 					"name": "Harbinger of Horror",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy unit that was targeted by this MANIFESTATION’s shooting attacks this phase to be the target.",
@@ -516,18 +542,21 @@
 			"abilities": [
 				{
 					"name": "Wild Form",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time this MANIFESTATION is targeted by the ‘Banish Manifestation’ ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Arcane Predator",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "You can add 1 to the number of dice rolled when making charge rolls for this MANIFESTATION, to a maximum of 3, while it is within 18\" of any enemy MANIFESTATIONS, but if you do so, it must end the charge move within 1/2\" of an enemy MANIFESTATION."
 				},
 				{
 					"name": "Devourer of Magics",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "If this MANIFESTATION destroyed any enemy MANIFESTATIONS this turn, Heal (6) this MANIFESTATION."
@@ -571,6 +600,7 @@
 			"abilities": [
 				{
 					"name": "Traverse the Tides of Death",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly INFANTRY WIZARD HERO within 3\" of this MANIFESTATION to be the target.",
@@ -618,12 +648,14 @@
 			"abilities": [
 				{
 					"name": "Necrotic Vortex",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Give this MANIFESTATION 1 maelstrom point each time:\n• This MANIFESTATION is set up.\n• A unit successfully casts a spell while it is within 12\" of this MANIFESTATION.\n• A model is slain within 12\" of this MANIFESTATION.\nThis MANIFESTATION can have a maximum of 6 maelstrom points at once."
 				},
 				{
 					"name": "Morbid Detonation",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "You must, and can only, use this ability if this unit has 6 maelstrom points. Pick each unit (friendly and enemy) within 9\" of it to be the targets.",
@@ -654,6 +686,7 @@
 			"abilities": [
 				{
 					"name": "Blinding Light",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This MANIFESTATION cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this MANIFESTATION."
@@ -695,12 +728,14 @@
 			"abilities": [
 				{
 					"name": "Pull of the Nadir",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this MANIFESTATION."
 				},
 				{
 					"name": "End Given Form",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "This MANIFESTATION can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this MANIFESTATION passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
@@ -747,6 +782,7 @@
 			"abilities": [
 				{
 					"name": "Dancing Blades",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Ward rolls cannot be made for damage points inflicted by this MANIFESTATION’s attacks."
@@ -789,6 +825,7 @@
 			"abilities": [
 				{
 					"name": "Ravening Hunger",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this MANIFESTATION charged this turn, pick an enemy unit within 1\" of it to be the target.",
@@ -818,18 +855,21 @@
 			"abilities": [
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION’s Health characteristic are allocated to it, this MANIFESTATION is destroyed and both its parts are removed from play."
 				},
 				{
 					"name": "Ensnaring Soul-drain",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time an enemy unit uses a MOVE ability while it is within 9\" of any parts of this MANIFESTATION, the effects of the ‘FLY’ ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this MANIFESTATION."
 				},
 				{
 					"name": "Phantasmal Translocation",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Pick a part of this MANIFESTATION, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units."
@@ -858,12 +898,14 @@
 			"abilities": [
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION’s Health characteristic are allocated to it, this MANIFESTATION is destroyed and both its parts are removed from play."
 				},
 				{
 					"name": "Deathly Passage",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly unit wholly within 6\" of one part of this MANIFESTATION to be the target.",
@@ -893,12 +935,14 @@
 			"abilities": [
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION’s Health characteristic are allocated to it, this MANIFESTATION is destroyed and all its parts are removed from play."
 				},
 				{
 					"name": "Bound for the Great Oubliette",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "For each part of this MANIFESTATION, you can pick an enemy unit within 3\" of that part to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
@@ -941,6 +985,7 @@
 			"abilities": [
 				{
 					"name": "Pulled to the Grave",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "This MANIFESTATION can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this MANIFESTATION passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
@@ -1001,6 +1046,7 @@
 			"abilities": [
 				{
 					"name": "Burning Up",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each time this MANIFESTATION uses a SHOOT ability, after that ability has been resolved, allocate 1 damage point to this MANIFESTATION (ward rolls cannot be made for that damage point)."
@@ -1030,12 +1076,14 @@
 			"abilities": [
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION’s Health characteristic are allocated to it, this MANIFESTATION is destroyed and both its parts are removed from play."
 				},
 				{
 					"name": "Arcane Passage",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly WIZARD within 3\" of this MANIFESTATION to be the target.",

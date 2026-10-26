@@ -401,3 +401,21 @@ def test_summoning_reference_composition_is_dropped(tmp_path):
 
 def test_real_composition_is_kept(tmp_path):
     assert parse_lores(tmp_path)["warscrolls"][1]["composition"] == "1 model"
+
+
+# parse_ability()
+
+def ability_block(points_html):
+    html = ('<div><table><tr><td class="abHeader">Your Movement Phase</td>'
+            '<td>%s</td></tr></table><div class="abBody"><b>THE ABILITY:</b> '
+            '<b>Effect:</b> Do it.</div></div>' % points_html)
+    return wahapedia.BeautifulSoup(html, "html.parser").div
+
+
+def test_ability_command_points_come_from_command_points_element():
+    block = ability_block('<div class="abCommandPoints"><div class="abCommandPointsN">2</div></div>')
+    assert wahapedia.parse_ability(block)["command_points"] == 2
+
+
+def test_ability_without_command_points_element_has_none():
+    assert "command_points" not in wahapedia.parse_ability(ability_block(""))

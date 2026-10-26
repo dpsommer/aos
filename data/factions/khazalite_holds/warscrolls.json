@@ -27,18 +27,21 @@
 			"abilities": [
 				{
 					"name": "Fire-fuelled Anger",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Subtract 2 from Masterflame rune rolls for this unit while it has any grudge marks."
 				},
 				{
 					"name": "Relight the Fire",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is destroyed, before removing it from play, give each visible friendly GRIMMDRON unit within 6\" of it 1 grudge mark."
 				},
 				{
 					"name": "Masterflame Rune",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -100,12 +103,14 @@
 			"abilities": [
 				{
 					"name": "Focused Ire",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this unit's shooting attacks while it has any grudge marks."
 				},
 				{
 					"name": "Molten Rockbolts",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -150,6 +155,7 @@
 			"abilities": [
 				{
 					"name": "Royal Retinue",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -158,6 +164,7 @@
 				},
 				{
 					"name": "Commanding Presence",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit has any grudge marks, the royal retinue has WARD (4+) while it is wholly within 6\" of this unit."
@@ -226,12 +233,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Maw, Claws and Horns is 4."
 				},
 				{
 					"name": "Warrior-kings",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -239,6 +248,7 @@
 				},
 				{
 					"name": "Raging Inferno",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -250,6 +260,7 @@
 				},
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -292,12 +303,14 @@
 			"abilities": [
 				{
 					"name": "High Priest of the Zharrgrim",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a PRAYER chanted by this unit is answered, this unit gains a magmic power token."
 				},
 				{
 					"name": "Master of the Runes",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared an UR-GOLD RUNE ability",
 					"effect": "Remove 3 of this unit's magmic power tokens. If you do so, apply the effect below that corresponds to the UR-GOLD RUNE ability that was used:",
@@ -363,12 +376,14 @@
 			"abilities": [
 				{
 					"name": "Righteous Wrath",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to chanting rolls for this unit while it has any grudge marks."
 				},
 				{
 					"name": "Magmic Passage",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -440,18 +455,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Maw, Claws and Horns is 4."
 				},
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Runic Empowerment",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -460,6 +478,7 @@
 				},
 				{
 					"name": "Lashing Tail",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -511,12 +530,14 @@
 			"abilities": [
 				{
 					"name": "Fearless Charge",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to charge rolls for visible friendly KHAZALITE HOLDS INFANTRY units while they are wholly within 12\" of this unit. While this unit has any grudge marks, add 2 to charge rolls for visible friendly KHAZALITE HOLDS INFANTRY units while they are wholly within 12\" of this unit instead."
 				},
 				{
 					"name": "Dauntless Assault",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit or a non-HERO GRIMMDRON INFANTRY unit within 3\" of this unit",
 					"effect": "If you declared a FIGHT ability for this unit, pick a friendly non-HERO GRIMMDRON INFANTRY unit that has not used a FIGHT ability this turn, is within this unit's combat range and is visible to this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn.\nIf you declared a FIGHT ability for a friendly non-HERO GRIMMDRON INFANTRY unit, if this unit has not used a FIGHT ability this turn, it can be picked to use a FIGHT ability immediately after the FIGHT ability used by the friendly non-HERO GRIMMDRON INFANTRY unit has been resolved. If it is picked to do so, add 1 to hit rolls for this unit's attacks for the rest of the turn.",
@@ -594,18 +615,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Maw, Claws and Horns is 4."
 				},
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Packdroth",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a MOVE ability for this unit in your movement phase",
 					"frequency": "Once Per Turn (Army)",
@@ -613,6 +637,7 @@
 				},
 				{
 					"name": "Calamitous Crash",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -702,18 +727,21 @@
 			"abilities": [
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				},
 				{
 					"name": "Fire, Blood and Vengeance",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
@@ -721,6 +749,7 @@
 				},
 				{
 					"name": "Seeing Red",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -782,12 +811,14 @@
 			"abilities": [
 				{
 					"name": "Icon of Grimnir",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to the control scores of friendly FYRESLAYERS units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Bard of the Lodge",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "If a friendly unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -839,6 +870,7 @@
 			"abilities": [
 				{
 					"name": "Thrundok Hail",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -847,6 +879,7 @@
 				},
 				{
 					"name": "Settled with a Bullet",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for this unit's shooting attacks while it has any grudge marks."
@@ -902,6 +935,7 @@
 			"abilities": [
 				{
 					"name": "Blasted and Dazed",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -910,6 +944,7 @@
 				},
 				{
 					"name": "Grim Retaliation",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's ranged weapons while it has any grudge marks."
@@ -955,12 +990,14 @@
 			"abilities": [
 				{
 					"name": "Tough as Stone",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for combat attacks that target this unit while every model in this unit is within 3\" of an objective you control."
 				},
 				{
 					"name": "Remember Their Names",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for this unit's attacks while it has any grudge marks."
@@ -1004,12 +1041,14 @@
 			"abilities": [
 				{
 					"name": "Runic Power",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit has 1 damage point. Add 2 to the Damage characteristic of this unit's melee weapons instead while this unit has 2 or more damage points."
 				},
 				{
 					"name": "Oathbound",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick an enemy unit to be this unit's quarry. You can pick a unit that has been deployed in reserve.",
@@ -1052,12 +1091,14 @@
 			"abilities": [
 				{
 					"name": "Runes of Gazul",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from ward rolls for damage points inflicted by this unit's combat attacks."
 				},
 				{
 					"name": "Armour-crushing Swings",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1098,12 +1139,14 @@
 			"abilities": [
 				{
 					"name": "Icons of Valaya",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is destroyed, before removing it from play, give each visible friendly non-GHOLEM VALAYAN unit 1 grudge mark."
 				},
 				{
 					"name": "Shield Strike",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1149,18 +1192,21 @@
 			"abilities": [
 				{
 					"name": "Indifferent and Pragmatic",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit cannot have grudge marks and cannot be affected by ANCESTRAL VOW abilities."
 				},
 				{
 					"name": "Too Stubborn to Die",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "The first time this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (D3) this unit."
 				},
 				{
 					"name": "A Glorious Doom",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is in combat with any enemy HEROES or MONSTERS:\n• It can only pick those enemy units to be the targets of its combat attacks.\n• Add 2 to the Attacks characteristic of this unit's melee weapons for each enemy HERO or MONSTER unit in combat with it.",
@@ -1212,6 +1258,7 @@
 			"abilities": [
 				{
 					"name": "Wrathful Wanderer",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1219,12 +1266,14 @@
 				},
 				{
 					"name": "Alone but Never Outnumbered",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has STRIKE-FIRST while there are no other friendly units within 6\" of it."
 				},
 				{
 					"name": "Relentless Wrath",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1268,6 +1317,7 @@
 			"abilities": [
 				{
 					"name": "Grimwrath Oaths",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "Pick 1 of the following oaths for this unit to swear:",
@@ -1284,6 +1334,7 @@
 				},
 				{
 					"name": "Battle-fury",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -1327,12 +1378,14 @@
 			"abilities": [
 				{
 					"name": "Duty unto Death",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly GRIMMDRON INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				},
 				{
 					"name": "Fury of Grimnir",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1405,12 +1458,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Karak War Council's Armoury is 4."
 				},
 				{
 					"name": "Defend the High Throne!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"declare": "Pick another visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be the target. For each grudge mark this unit has, you can pick another eligible unit to be an additional target.",
@@ -1418,12 +1473,14 @@
 				},
 				{
 					"name": "High Kyng's War Council",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"effect": "Pick 1 of the following effects to apply until the start of your next turn:\nStonesmith's Disruption: The stonesmith causes the ground under a group of enemies to tremble violently, disrupting their cohesion. Pick a visible enemy unit within 12\" of this unit to be the target. The target has a maximum control score of 1.\nGrudgebearer's Denunciation: The exhortations of the grudgebearer instil in the duardin a relentless drive to enact vengeance on the foe. While they are wholly within 12\" of this unit, visible friendly KHAZALITE HOLDS units can use CHARGE abilities even if they used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on those friendly units by RETREAT abilities.\nHoldseeker's Guidance: The holdseeker reveals magically resonant areas of the battlefield to aid the efforts of those working the runes. Add 1 to casting rolls, chanting rolls and banishment rolls for friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Stirring the High Kyng's Ire",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Battle Round",
 					"declare": "Pick a visible enemy HERO within 18\" of this unit that has not been picked to be the target of this ability this battle to be the target.",
@@ -1431,6 +1488,7 @@
 				},
 				{
 					"name": "Tide of Stone",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1481,6 +1539,7 @@
 			"abilities": [
 				{
 					"name": "Book of Fallen Holds",
+					"type": "active",
 					"category": "control",
 					"timing": "Start of First Battle Round",
 					"frequency": "Once Per Battle (Army)",
@@ -1489,12 +1548,14 @@
 				},
 				{
 					"name": "Talisman of the Lost Karak",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is in combat, add 1 to hit rolls for combat attacks made by friendly non-HERO KHAZALITE HOLDS INFANTRY units while they are within 3\" of and visible to this unit."
 				},
 				{
 					"name": "Last of Her Clan",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick this unit and up to 2 other visible friendly non-HERO KHAZALITE HOLDS units wholly within 12\" of this unit to be the targets.",
@@ -1528,6 +1589,7 @@
 			"abilities": [
 				{
 					"name": "Spending the Forge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1536,6 +1598,7 @@
 				},
 				{
 					"name": "Molten Blessing",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to be the target.",
@@ -1585,12 +1648,14 @@
 			"abilities": [
 				{
 					"name": "Artillerist's Revenge",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "This unit's ranged weapons have Crit (2 Hits) while it has any grudge marks."
 				},
 				{
 					"name": "Oathkeeper Apprentice Runestriker",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1648,12 +1713,14 @@
 			"abilities": [
 				{
 					"name": "Vulcatrix's Fury",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has any grudge marks, add 1 to the Attacks characteristic of Companion weapons used by visible friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Drothmaster at Heart",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly Vulkyn Flameseekers or GRIMMDRON MONSTER unit wholly within 12\" of this unit to be the target.",
@@ -1661,6 +1728,7 @@
 				},
 				{
 					"name": "Smoke and Ash",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
 					"declare": "If this unit contains Ashtongue, pick a visible enemy unit within 9\" of this unit to be the target.",
@@ -1704,12 +1772,14 @@
 			"abilities": [
 				{
 					"name": "Grudgement of the Forge",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to unbinding rolls, banishment rolls and rhythmic hammering rolls for this unit while it has any grudge marks."
 				},
 				{
 					"name": "Rhythmic Hammering",
+					"type": "active",
 					"category": "special",
 					"timing": "You declared a SPELL ability from the 'Reverberations of the Runes' or the 'Resonance of the Runes' for this unit",
 					"effect": "If the casting roll for that spell equals or exceeds its casting value, make a rhythmic hammering roll of 2D6.\nIf a rhythmic hammering roll is lower than that spell's casting value, the spell fails and its effect is not resolved.\nIf a rhythmic hammering roll equals or exceeds that spell's casting value, increase the range of that spell by 3\". You can keep making rhythmic hammering rolls for that spell until you roll lower than its casting value. The effects of this ability are cumulative."
@@ -1764,12 +1834,14 @@
 			"abilities": [
 				{
 					"name": "Artillerist's Revenge",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "This unit's ranged weapons have Crit (2 Hits) while it has any grudge marks."
 				},
 				{
 					"name": "Stonebreaker Apprentice Runestriker",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1813,6 +1885,7 @@
 			"abilities": [
 				{
 					"name": "Steadfast Retribution",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1820,6 +1893,7 @@
 				},
 				{
 					"name": "Fight Shoulder to Shoulder",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit or a non-HERO KROMDRON INFANTRY unit within 3\" of and visible to this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1893,12 +1967,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Karak War Council's Armoury is 4."
 				},
 				{
 					"name": "Defend the Throne!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1907,6 +1983,7 @@
 				},
 				{
 					"name": "Karak War Council",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1914,6 +1991,7 @@
 				},
 				{
 					"name": "Forge a Path",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a MOVE ability for this unit in your movement phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1921,6 +1999,7 @@
 				},
 				{
 					"name": "Tectonic Impact",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1964,6 +2043,7 @@
 			"abilities": [
 				{
 					"name": "Shield Maidens",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1972,6 +2052,7 @@
 				},
 				{
 					"name": "Protection of Valaya",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit has any grudge marks, visible friendly KHAZALITE HOLDS INFANTRY and non-GHOLEM WAR MACHINE units have WARD (5+) while they are wholly within 6\" of this unit."
@@ -2018,6 +2099,7 @@
 			"abilities": [
 				{
 					"name": "Warriors of the Hearth",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2068,6 +2150,7 @@
 			"abilities": [
 				{
 					"name": "Berserk Fury",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -2111,6 +2194,7 @@
 			"abilities": [
 				{
 					"name": "Whirlwind of Destruction",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons if this unit charged this turn."
@@ -2170,12 +2254,14 @@
 			"abilities": [
 				{
 					"name": "Blunt Their Horns and Fangs!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has any grudge marks:\n• Subtract 2 from the Attacks characteristic of Companion melee weapons used by enemy MONSTERS while they are in combat with this unit.\n• Enemy MONSTERS cannot use RAMPAGE abilities while they are in combat with this unit."
 				},
 				{
 					"name": "Drothmasters",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2237,6 +2323,7 @@
 			"abilities": [
 				{
 					"name": "Fiery Disposition",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",

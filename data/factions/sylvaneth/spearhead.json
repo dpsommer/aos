@@ -21,6 +21,7 @@
 			"battle_traits": [
 				{
 					"name": "TARGET OF VENGEANCE",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -29,12 +30,14 @@
 				},
 				{
 					"name": "AIRBORNE COHESION",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Friendly units have a coherency range of 2\"."
 				},
 				{
 					"name": "SONG OF THE HUNT",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "You gain 1 chord each time an enemy quarry is destroyed. The following cumulative effects apply depending on the number of chords you have:\n1 chord Simple: Add 1 to run rolls and charge rolls for friendly units while they are within 9\" of the enemy quarry. 2 chords Tuneful: Add 1 to hit rolls for friendly units’ attacks while they are within 9\" of the enemy quarry. 3+ chords Melodic: Add 1 to wound rolls for friendly units’ attacks while they are within 9\" of the enemy quarry."
@@ -43,6 +46,7 @@
 			"regiment_abilities": [
 				{
 					"name": "LEAVES ON THE WIND",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -51,6 +55,7 @@
 				},
 				{
 					"name": "LIFEBRINGERS",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -60,12 +65,14 @@
 			"enhancements": [
 				{
 					"name": "HEAD OF THE HUNT",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of your general’s melee weapons while the enemy quarry is within 9\" of and visible to them."
 				},
 				{
 					"name": "BOLD SPIRIT",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -73,12 +80,14 @@
 				},
 				{
 					"name": "ZEPHYRKIN",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for your general",
 					"effect": "If your general charged this turn, they can move up to 2D6\" after that FIGHT ability has been resolved. They cannot end that move in combat."
 				},
 				{
 					"name": "CUNNING PURSUER",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While your general is in combat, add 1 to charge rolls for friendly units wholly within 12\" of them. Add 2 instead while your general is in combat with the quarry."
@@ -107,6 +116,7 @@
 					"abilities": [
 						{
 							"name": "HEARTWOOD HUNTING HORN",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
@@ -154,6 +164,7 @@
 					"abilities": [
 						{
 							"name": "ZEPHYRSPITES",
+							"type": "active",
 							"category": "movement",
 							"timing": "Reaction: You declared a SHOOT ability for this unit",
 							"effect": "After that SHOOT ability has been resolved, this unit can move up to D6\". It cannot move into combat during any part of that move.",
@@ -204,6 +215,7 @@
 					"abilities": [
 						{
 							"name": "SPITERIDER CHARGE",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
 							"declare": "If this unit charged this phase, pick a visible enemy unit within 1\" of it to be the target.",
@@ -252,6 +264,7 @@
 					"abilities": [
 						{
 							"name": "DEAFENING DRONE",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
 							"declare": "If this unit did not charge this turn, pick an enemy unit in combat with it to be the target.",
@@ -286,6 +299,7 @@
 			"battle_traits": [
 				{
 					"name": "LEY LINES",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn",
@@ -293,6 +307,7 @@
 				},
 				{
 					"name": "STRIKE AND FADE",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn",
@@ -303,6 +318,7 @@
 			"regiment_abilities": [
 				{
 					"name": "VENGEFUL SPIRITS OF THE LAND",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn",
@@ -311,6 +327,7 @@
 				},
 				{
 					"name": "WALKERS OF THE HIDDEN PATHS",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn",
@@ -321,6 +338,7 @@
 			"enhancements": [
 				{
 					"name": "REGROWTH",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly unit wholly within 18\" of your general to be the target, then make a casting roll of 2D6.",
@@ -328,6 +346,7 @@
 				},
 				{
 					"name": "TREESONG",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target, then make a casting roll of 2D6.",
@@ -335,12 +354,14 @@
 				},
 				{
 					"name": "GNARLED WARRIOR",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to save rolls for your general."
 				},
 				{
 					"name": "SEED OF REBIRTH",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If your general would be destroyed, before removing them from play, roll a dice. On a 3+, your general is not destroyed and any remaining damage points inflicted on them have no effect. Then, Heal (1) your general. This unit cannot use this ability again for the rest of the battle."
@@ -369,6 +390,7 @@
 					"abilities": [
 						{
 							"name": "VERDUROUS HARMONY",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible friendly unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -425,12 +447,14 @@
 					"abilities": [
 						{
 							"name": "BATTLE DAMAGED",
+							"type": "passive",
 							"category": "damage",
 							"timing": "Passive",
 							"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Massive Impaling Talons is 1."
 						},
 						{
 							"name": "GROUNDSHAKER",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
@@ -473,6 +497,7 @@
 					"abilities": [
 						{
 							"name": "ENVOYS OF THE EVERQUEEN",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While this unit is contesting an objective, friendly units contesting that objective have WARD (6+)."
@@ -504,6 +529,7 @@
 					"abilities": [
 						{
 							"name": "MARTIAL MEMORIES",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"effect": "Pick 1 of the following effects to apply to this unit this phase:",

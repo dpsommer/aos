@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "Notorious Bosses",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -20,6 +21,7 @@
 				},
 				{
 					"name": "The Power of the Waaagh!",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn",
@@ -28,12 +30,14 @@
 				},
 				{
 					"name": "Possessed by the Power of the Waaagh!",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a friendly unit has the POWER OF THE WAAAGH! keyword:\n• If that unit has the IRONJAWZ keyword, add 1 to run rolls and charge rolls for that unit.\n• If that unit has the KRULEBOYZ keyword, that unit's attacks score critical hits on unmodified hit rolls of 5+."
 				},
 				{
 					"name": "Rally the Warclans",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn",
@@ -47,12 +51,14 @@
 					"entries": [
 						{
 							"name": "Takin' Names",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "If an enemy HERO is destroyed by this unit, this unit has the POWER OF THE WAAAGH! keyword for the rest of the battle."
 						},
 						{
 							"name": "A Proper Sneak",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -64,6 +70,7 @@
 						},
 						{
 							"name": "Da Old One-Two",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -75,6 +82,7 @@
 						},
 						{
 							"name": "Get Krumpin'!",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -91,6 +99,7 @@
 					"entries": [
 						{
 							"name": "Da Sneaky Stab-slab",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -105,6 +114,7 @@
 					"entries": [
 						{
 							"name": "Summon Foot of Gork",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly BIG WAAAGH! WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -123,6 +133,7 @@
 					"entries": [
 						{
 							"name": "Unstoppable Waaagh!-beats",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly BIG WAAAGH! PRIEST to chant this prayer, pick a visible friendly non-HERO BIG WAAAGH! INFANTRY unit that is in combat and wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -140,6 +151,7 @@
 					"entries": [
 						{
 							"name": "Two Headz as One",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly BIG WAAAGH! WIZARD to cast this spell, pick a visible friendly BIG WAAAGH! INFANTRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -162,12 +174,14 @@
 			"battle_traits": [
 				{
 					"name": "Ethereal",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to save rolls for friendly LEGIONS OF NAGASH NIGHTHAUNT units, excluding Nagash."
 				},
 				{
 					"name": "Legions of Endless Dead",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Subtract 5 from the control scores of enemy units while they are in combat with 2 or more friendly units if any of those friendly units is Nagash or if none of those friendly units share any of the following keywords: SOULBLIGHT GRAVELORDS, FLESH-EATER COURTS, NIGHTHAUNT or OSSIARCH BONEREAPERS."
@@ -180,6 +194,7 @@
 					"entries": [
 						{
 							"name": "Inescapable Fate",
+							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
 							"frequency": "Once Per Battle",
@@ -194,6 +209,7 @@
 					"entries": [
 						{
 							"name": "Soul-shrive Amulet",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Hero Phase",
 							"frequency": "Once Per Battle",
@@ -211,6 +227,7 @@
 					"entries": [
 						{
 							"name": "Rise! Rise in My Name!",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick each other visible friendly LEGIONS OF NAGASH unit wholly within 24\" of the caster to be the targets, then make a casting roll of 2D6.",
@@ -222,6 +239,7 @@
 						},
 						{
 							"name": "My Undying Demand",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick the friendly Nagash to cast this spell, then make a casting roll of 2D6.",
@@ -233,6 +251,7 @@
 						},
 						{
 							"name": "Insanity and Nightmares Made Manifest",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly FLESH-EATER COURTS unit and a different friendly NIGHTHAUNT unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
@@ -244,6 +263,7 @@
 						},
 						{
 							"name": "Reap a Bloody Tithe",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly SOULBLIGHT GRAVELORDS unit and a different friendly OSSIARCH BONEREAPERS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
@@ -255,6 +275,7 @@
 						},
 						{
 							"name": "Rivers of Blood and Shallow Graves",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly FLESH-EATER COURTS unit and a different friendly SOULBLIGHT GRAVELORDS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
@@ -266,6 +287,7 @@
 						},
 						{
 							"name": "Delusion and Discipline",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly OSSIARCH BONEREAPERS unit and a different friendly FLESH-EATER COURTS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
@@ -277,6 +299,7 @@
 						},
 						{
 							"name": "Bringing Order to Horror",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly NIGHTHAUNT unit and a different friendly OSSIARCH BONEREAPERS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
@@ -288,6 +311,7 @@
 						},
 						{
 							"name": "Fell Blades and Bloody Fangs",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick a friendly NIGHTHAUNT unit and a different friendly SOULBLIGHT GRAVELORDS unit that are both wholly within 18\" of and visible to the caster and wholly within 12\" of each other to be the targets, then make a casting roll of 2D6.",
@@ -299,6 +323,7 @@
 						},
 						{
 							"name": "The Gaze of Nagash",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick the friendly Nagash to cast this spell. Then, pick 2 points on the battlefield within 18\" of and visible to him and within 12\" of each other. Then, draw a line between those points. Each visible enemy unit the line passes across is a target. Then, make a casting roll of 2D6.",
@@ -316,6 +341,7 @@
 					"entries": [
 						{
 							"name": "Summon Mortalis Terminexus",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Mortalis Terminexus on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -328,6 +354,7 @@
 						},
 						{
 							"name": "Summon Shyish Reaper",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Shyish Reaper on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -340,6 +367,7 @@
 						},
 						{
 							"name": "Summon Vault of Souls",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Vault of Souls on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -358,6 +386,7 @@
 					"entries": [
 						{
 							"name": "Summon Cadaverous Barricade",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Cadaverous Barricade on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -370,6 +399,7 @@
 						},
 						{
 							"name": "Summon Chalice of Ushoran",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Chalice of Ushoran on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -382,6 +412,7 @@
 						},
 						{
 							"name": "Summon Corpsemare Stampede",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Corpsemare Stampede on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -400,6 +431,7 @@
 					"entries": [
 						{
 							"name": "Summon Bone-tithe Shrieker",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Bone-tithe Shrieker on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -412,6 +444,7 @@
 						},
 						{
 							"name": "Summon Nightmare Predator",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Nightmare Predator on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -424,6 +457,7 @@
 						},
 						{
 							"name": "Summon Soulstealer Carrion",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Soulstealer Carrion on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -442,6 +476,7 @@
 					"entries": [
 						{
 							"name": "Summon Hand of Nagash",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Hand of Nagash on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -454,6 +489,7 @@
 						},
 						{
 							"name": "Summon Unholy Reliquary",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Unholy Reliquary on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -466,6 +502,7 @@
 						},
 						{
 							"name": "Summon Sanguine Swarm",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Sanguine Swarm on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -488,12 +525,14 @@
 			"battle_traits": [
 				{
 					"name": "Duardrazhal",
+					"type": "passive",
 					"category": "",
 					"timing": "Passive",
 					"effect": "Friendly DUARDIN ASCENDANT units are unified while they are wholly within 12\" of at least 1 FYRESLAYERS, 1 KHARADRON OVERLORDS, and 1 CITIES OF SIGMAR DUARDIN unit."
 				},
 				{
 					"name": "'As the Ancestors Intended!'",
+					"type": "active",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -502,6 +541,7 @@
 				},
 				{
 					"name": "'Pah! Now This Is a Shot...'",
+					"type": "active",
 					"category": "",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -510,6 +550,7 @@
 				},
 				{
 					"name": "'As One, Kinfolk!'",
+					"type": "active",
 					"category": "",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -518,6 +559,7 @@
 				},
 				{
 					"name": "'Settle Every Grudge! Khazuk!'",
+					"type": "active",
 					"category": "",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -532,6 +574,7 @@
 					"entries": [
 						{
 							"name": "Tireless Purpose",
+							"type": "passive",
 							"category": "",
 							"timing": "Passive",
 							"effect": "Each time a friendly DUARDIN ASCENDANT INFANTRY unit wholly within 12\" of this unit uses the 'Normal Move' ability, add 2\" to the distance that unit can move as part of that ability."
@@ -544,6 +587,7 @@
 					"entries": [
 						{
 							"name": "Valayan Hearth-banner",
+							"type": "active",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -561,6 +605,7 @@
 					"entries": [
 						{
 							"name": "Spirit of the White Dwarf",
+							"type": "prayer",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible friendly DUARDIN ASCENDANT unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -573,6 +618,7 @@
 						},
 						{
 							"name": "Oath of Restoration",
+							"type": "prayer",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DUARDIN ASCENDANT PRIEST to chant this prayer, pick a visible objective within 18\" of them that is contested by 2 or more friendly unified units to be the target, then make a chanting roll of D6.",

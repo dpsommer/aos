@@ -28,6 +28,40 @@ def test_ability_drops_unknown_fields():
     assert "destiny_points" not in schema.ability({"name": "A", "destiny_points": 1})
 
 
+def test_ability_type_is_second_key():
+    assert list(schema.ability({"name": "A", "timing": "Passive"}))[:2] == ["name", "type"]
+
+
+@pytest.mark.parametrize("fields,expected", [
+    ({"timing": "Passive"}, "passive"),
+    ({"timing": "Your Hero Phase", "casting_value": 6}, "spell"),
+    ({"timing": "Your Hero Phase", "keywords": ["SPELL"]}, "spell"),
+    ({"timing": "Your Hero Phase", "chanting_value": 4}, "prayer"),
+    ({"timing": "Your Hero Phase", "keywords": ["PRAYER"]}, "prayer"),
+    ({"timing": "Your Hero Phase", "command_points": 1}, "command"),
+    ({"timing": "Your Hero Phase"}, "active"),
+    ({}, "active"),
+], ids=["passive", "casting_value", "spell_keyword", "chanting_value", "prayer_keyword", "command", "active", "empty"])
+def test_ability_type(fields, expected):
+    assert schema.ability_type(dict({"name": "A"}, **fields)) == expected
+
+
+def test_passive_timing_beats_spell_keyword():
+    assert schema.ability_type({"timing": "Passive", "keywords": ["SPELL"]}) == "passive"
+
+
+def test_spell_beats_command_points():
+    assert schema.ability_type({"timing": "Your Hero Phase", "casting_value": 5, "command_points": 1}) == "spell"
+
+
+def test_prayer_beats_command_points():
+    assert schema.ability_type({"timing": "Your Hero Phase", "chanting_value": 4, "command_points": 1}) == "prayer"
+
+
+def test_ability_writes_computed_type():
+    assert schema.ability({"name": "A", "timing": "Your Hero Phase", "command_points": 2})["type"] == "command"
+
+
 def test_weapon_drops_empty_abilities():
     w = {"name": "Sword", "range": 0, "attacks": "2", "hit": 3, "wound": 4, "rend": 0, "damage": "1", "abilities": []}
     assert "abilities" not in schema.weapon(w)

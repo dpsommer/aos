@@ -6,12 +6,14 @@
 			"battle_traits": [
 				{
 					"name": "The Voice and the Talon",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The friendly Synessa and Dexcessa have the TWIN keyword."
 				},
 				{
 					"name": "The More Glorious Slaughter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Turn",
@@ -20,6 +22,7 @@
 				},
 				{
 					"name": "The Longer Shadow",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "If a friendly TWIN is contesting an objective you control and the other is not, pick the one that is not to use this ability.",
@@ -27,6 +30,7 @@
 				},
 				{
 					"name": "The Grander Visage",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -35,6 +39,7 @@
 				},
 				{
 					"name": "The Swifter Surge",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -43,6 +48,7 @@
 				},
 				{
 					"name": "The More Cunning Ruse",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -56,6 +62,7 @@
 					"entries": [
 						{
 							"name": "Tethered to the Twins",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -69,6 +76,7 @@
 					"entries": [
 						{
 							"name": "The Triplet Trinket",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While a friendly TWIN is within 3\" of and visible to this unit, subtract 1 from hit rolls for attacks that target that TWIN and this unit.\nWhile 2 friendly TWINS are within 3\" of and visible to this unit, subtract 1 from hit rolls and wound rolls for attacks that target those TWINS and this unit instead."
@@ -83,6 +91,7 @@
 					"entries": [
 						{
 							"name": "Essence Transfusion",
+							"type": "spell",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, pick a visible friendly Twin to be the donor, pick another visible friendly TWIN to be the target, then make a casting roll of 2D6.",
@@ -95,6 +104,7 @@
 						},
 						{
 							"name": "Sibilant Whispers",
+							"type": "spell",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -106,6 +116,7 @@
 						},
 						{
 							"name": "Ecstatic Furore",
+							"type": "spell",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, pick a visible friendly TWIN wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -123,6 +134,7 @@
 					"entries": [
 						{
 							"name": "Summon Manifestations of Depravity",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -143,6 +155,7 @@
 			"battle_traits": [
 				{
 					"name": "Perfection Made Manifest",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -151,6 +164,7 @@
 				},
 				{
 					"name": "The Prince in the Mirror",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"declare": "If the friendly Sigvald has been destroyed, pick him to be the target. He can be replaced even if he is a replacement unit.",
@@ -158,18 +172,21 @@
 				},
 				{
 					"name": "Infernal Handmaidens",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While the friendly Sigvald is within 3\" of and visible to any friendly DECADENT HOST DAEMON units, add 1 to wound rolls for combat attacks made by those DAEMON units."
 				},
 				{
 					"name": "All for the Prince",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While the friendly Sigvald is within the combat range of another friendly DECADENT HOST SYBARITE unit:\n• He has WARD (2+).\n• Each time you make a successful ward roll for him, allocate 1 damage point to another friendly DECADENT HOST unit within his combat range after the damage sequence has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Important People have Important Places to Be",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -177,6 +194,7 @@
 				},
 				{
 					"name": "Petulant Wrath",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -190,6 +208,7 @@
 					"entries": [
 						{
 							"name": "Protégé",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Reaction: You declared the 'The Prince in the Mirror' ability.",
 							"frequency": "Once Per Battle (Army)",
@@ -202,6 +221,7 @@
 					"entries": [
 						{
 							"name": "Mirror-plate",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Weapons used by this unit have a maximum Attacks characteristic of 1.\nWhile this unit is within 3\" of and visible to the friendly Sigvald, add 20 to the friendly Sigvald's control score."
@@ -216,6 +236,7 @@
 					"entries": [
 						{
 							"name": "Diverting Excruciation",
+							"type": "spell",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DECADENT HOST WIZARD to cast this spell, pick a visible friendly Sigvald wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -228,6 +249,7 @@
 						},
 						{
 							"name": "Visions of Eternal Bliss",
+							"type": "spell",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DECADENT HOST WIZARD to cast this spell, pick a visible friendly Sigvald wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -245,6 +267,7 @@
 					"entries": [
 						{
 							"name": "Summon Manifestations of Depravity",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DECADENT HOST WIZARD to cast this spell, then make a casting roll of 2D6.",

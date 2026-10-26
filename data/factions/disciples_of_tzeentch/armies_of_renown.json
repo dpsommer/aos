@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "Silver Simulacrum",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -19,6 +20,7 @@
 				},
 				{
 					"name": "Illusory Infiltration",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -27,6 +29,7 @@
 				},
 				{
 					"name": "Puppet on a String",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -41,6 +44,7 @@
 				},
 				{
 					"name": "Overtaken by Events",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -49,6 +53,7 @@
 				},
 				{
 					"name": "Seeds of Discord",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -62,6 +67,7 @@
 					"entries": [
 						{
 							"name": "Call of Anarchy",
+							"type": "command",
 							"category": "special",
 							"timing": "Your Movement Phase",
 							"declare": "Pick a terrain feature within 18\" of this unit, then pick a friendly non-HERO CHANGE-CULT unit that is masked by illusion or that has been destroyed to be the target.",
@@ -71,7 +77,8 @@
 									"name": "Designer’s Note",
 									"text": "Units can be set up in reserve masked by illusion using the Fatemaster's 'Long in the Planning' ability."
 								}
-							]
+							],
+							"command_points": 1
 						}
 					]
 				},
@@ -80,6 +87,7 @@
 					"entries": [
 						{
 							"name": "Spell-eater Pendant",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Each time this unit unbinds a spell or banishes an enemy MANIFESTATION, gain 1 fate point."
@@ -94,6 +102,7 @@
 					"entries": [
 						{
 							"name": "Eldritch Strength",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CHANGE-CULT WIZARD to cast this spell, pick a visible friendly CHANGE-CULT unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -112,6 +121,7 @@
 					"entries": [
 						{
 							"name": "Shifting Manifestations",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CHANGE-CULT WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Burning Sigil of Tzeentch\n• Daemonic Simulacrum\n• Tome of Eyes",
@@ -134,6 +144,7 @@
 			"battle_traits": [
 				{
 					"name": "Wyrdflame Barrage",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When picking targets for shooting attacks made by friendly units with weapons that have the Wyrdflame weapon ability, you can also pick terrain features that are visible to and within range of the attacking model to be targets. Non-FACTION TERRAIN terrain features are considered to have a Save characteristic of 5+ and infinite Health for the purposes of this ability.\nIf any damage points were allocated to a terrain feature by those attacks, after the SHOOT ability has been resolved, roll a dice. If the result is less than or equal to the number of damage points allocated to that terrain feature in this phase, it has the WYRDPYRE keyword for the rest of the battle.",
@@ -146,6 +157,7 @@
 				},
 				{
 					"name": "Hidden Instigator",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly WIZARD to use this ability if it has not been deployed.",
@@ -153,6 +165,7 @@
 				},
 				{
 					"name": "Deception Revealed",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a friendly WIZARD that is hidden among cultists to use this ability, then pick a friendly INFANTRY unit with 3 or more models to be the target.",
@@ -160,6 +173,7 @@
 				},
 				{
 					"name": "Immolation of the Realms",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -168,6 +182,7 @@
 				},
 				{
 					"name": "Ritual of Flame",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -182,6 +197,7 @@
 					"entries": [
 						{
 							"name": "Wyrdflame Aegis",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "You can ignore mortal damage inflicted on this unit by the 'Immolation of the Realms' ability, and if damage would have been inflicted upon it by that ability, the persisting effects from that ability apply to it as though it had been allocated damage by the ability."
@@ -194,6 +210,7 @@
 					"entries": [
 						{
 							"name": "Pyroflux Conduit",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"frequency": "Once Per Turn",
@@ -211,6 +228,7 @@
 					"entries": [
 						{
 							"name": "Flaming Weapon",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a visible friendly HERO wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -223,6 +241,7 @@
 						},
 						{
 							"name": "Summon Cult Leader",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a friendly WIZARD that has been destroyed to be the target, then make a casting roll of 2D6.",
@@ -234,6 +253,7 @@
 						},
 						{
 							"name": "Burning Anguish",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them and which had any damage points allocated to it this battle round by the 'Immolation of the Realms' ability to be the target, then make a casting roll of 2D6.",
@@ -253,6 +273,7 @@
 					"entries": [
 						{
 							"name": "Summon Burning Sigil of Tzeentch",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -273,12 +294,14 @@
 			"battle_traits": [
 				{
 					"name": "Masters of Destiny",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "Roll 9 dice and place them to one side. These are your destiny dice. Destiny dice can be spent during the battle to change certain dice rolls. You can never have more than 9 destiny dice at once.\nDuring the battle, instead of making a roll from the list below for a friendly ORACLES OF FATE unit, you can spend your destiny dice. The roll you would have made is replaced with the roll on the destiny dice you spend. If you want to replace a 2D6 roll, 3D6 roll, etc. you must spend a number of destiny dice equal to the number before 'D6'. Any rolls that have been replaced count as unmodified rolls, and they cannot be re-rolled or modified by other friendly abilities except for those that apply negative modifiers (but they can be modified by enemy abilities). You cannot spend destiny dice to replace re-rolls.\nDestiny dice can be spent in place of the following dice rolls:\n• Casting rolls\n• Unbinding rolls\n• Banishment rolls\n• Run rolls\n• Charge rolls in your turn\n• Hit rolls\n• Wound rolls\n• Save rolls"
 				},
 				{
 					"name": "Ninefold Blessings",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Your Turn",
 					"frequency": "Once Per Battle Round",
@@ -292,6 +315,7 @@
 					"entries": [
 						{
 							"name": "Nexus of Fate",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"effect": "Roll a dice. If you have 9 unspent destiny dice, you must replace 1 of your destiny dice with that roll. Otherwise, place that dice to one side as a destiny dice."
@@ -303,6 +327,7 @@
 					"entries": [
 						{
 							"name": "Corrupted Leystone",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"effect": "If this unit is contesting an objective, remove it from the battlefield and set it up again contesting an objective and more than 7\" from all enemy units."
@@ -317,6 +342,7 @@
 					"entries": [
 						{
 							"name": "Fateweaver's Gift",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ORACLES OF FATE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -349,6 +375,7 @@
 					"entries": [
 						{
 							"name": "Shifting Manifestations",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ORACLES OF FATE WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Burning Sigil of Tzeentch\n• Daemonic Simulacrum\n• Tome of Eyes",

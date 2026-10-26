@@ -93,6 +93,19 @@ def test_chanting_value_is_an_int(faction_data):
     assert isinstance(a["chanting_value"], int) and a["chanting_value"] > 0
 
 
+def test_command_points_come_from_cost_characteristic():
+    p = profile('typeName="Ability (Command)"><characteristics>'
+                '<characteristic name="Cost">2</characteristic></characteristics>')
+    out = bsdata.ability(p)
+    assert isinstance(out["command_points"], int) and out["command_points"] > 0
+
+
+def test_ability_without_cost_has_no_command_points():
+    p = profile('typeName="Ability (Activated)"><characteristics>'
+                '<characteristic name="Effect">X</characteristic></characteristics>')
+    assert "command_points" not in bsdata.ability(p)
+
+
 def test_ability_keywords_are_uppercased_list(faction_data):
     assert ability_of(faction_data, "Test Captain", "Rally Cry")["keywords"] == ["RALLY", "CORE"]
 

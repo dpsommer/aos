@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "Dormant Heroes",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "If there are more LORDS OF THE CLAN units on the battlefield than there are in reserve, pick a friendly LORDS OF THE CLAN MONSTER unit that has not been deployed.",
@@ -16,6 +17,7 @@
 				},
 				{
 					"name": "Elder Authority",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -30,16 +32,19 @@
 				},
 				{
 					"name": "Our Reach is Long",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The creeping overgrowth (referenced by other abilities) extends 6\" from each terrain feature that has a friendly overgrown token.\nIncrease this range by 1\" for each friendly LORDS OF THE CLAN unit that is wholly outside friendly territory."
 				},
 				{
 					"name": "Roused to Fury",
+					"type": "command",
 					"category": "special",
 					"timing": "Enemy Movement Phase",
 					"declare": "Pick an enemy unit within 9\" of a friendly Awakened Wyldwood to be the target.",
-					"effect": "Pick 1 of the following units:\n• A friendly LORDS OF THE CLAN unit that is in reserve as a dormant forest spirit.\n• A friendly LORDS OF THE CLAN MONSTER that has been destroyed.\nSet up the unit you picked, or a replacement unit if you picked a destroyed unit, within 9\" of the target, wholly within 6\" of that friendly Awakened Wyldwood and not in combat. If you set up a replacement unit, allocate 6 damage points to it (ward rolls cannot be made for those damage points).\nThen, remove that friendly Awakened Wyldwood from the battlefield."
+					"effect": "Pick 1 of the following units:\n• A friendly LORDS OF THE CLAN unit that is in reserve as a dormant forest spirit.\n• A friendly LORDS OF THE CLAN MONSTER that has been destroyed.\nSet up the unit you picked, or a replacement unit if you picked a destroyed unit, within 9\" of the target, wholly within 6\" of that friendly Awakened Wyldwood and not in combat. If you set up a replacement unit, allocate 6 damage points to it (ward rolls cannot be made for those damage points).\nThen, remove that friendly Awakened Wyldwood from the battlefield.",
+					"command_points": 1
 				}
 			],
 			"enhancement_tables": [
@@ -48,6 +53,7 @@
 					"entries": [
 						{
 							"name": "Ancient Might",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "This unit can use CHARGE abilities even if it is in combat. If the charge roll is 3 or less when it does so, it does not count as having charged."
@@ -59,6 +65,7 @@
 					"entries": [
 						{
 							"name": "Rejuvenating Companions",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
 							"effect": "Heal (3) this unit."
@@ -73,6 +80,7 @@
 					"entries": [
 						{
 							"name": "Call Forth the Forest",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LORDS OF THE CLAN WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -91,6 +99,7 @@
 					"entries": [
 						{
 							"name": "Song of Persistence",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LORDS OF THE CLAN PRIEST to chant this prayer, pick a friendly LORDS OF THE CLAN MONSTER that is wholly within the creeping overgrowth or that is visible to them and wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -109,6 +118,7 @@
 					"entries": [
 						{
 							"name": "Jade Winds",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LORDS OF THE CLAN WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Gladewyrm\n• Spiteswarm Hive\n• Vengeful Skullroot",
@@ -129,6 +139,7 @@
 			"battle_traits": [
 				{
 					"name": "The Sacred Groves",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -140,18 +151,21 @@
 				},
 				{
 					"name": "Jade Haven",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The Health characteristic of your Soulpod Grove is 18. The creeping overgrowth extends 12\" from your soulpod grove."
 				},
 				{
 					"name": "Vengeance for the Lost",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If your Soulpod Grove has been demolished this battle, add 2 to the Attacks characteristic of friendly SOULPOD GUARDIANS units' melee weapons."
 				},
 				{
 					"name": "Heart of the Forest",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "You cannot allocate more than 10 damage points per phase to a friendly SOULPOD GUARDIANS unit while it is wholly within 12\" of your Soulpod Grove (remaining damage points inflicted on it in that phase have no effect)."
@@ -163,6 +177,7 @@
 					"entries": [
 						{
 							"name": "Devoted Protector",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "If this unit is destroyed while it is wholly within 12\" of your Soulpod Grove, Heal (10) your Soulpod Grove."
@@ -174,6 +189,7 @@
 					"entries": [
 						{
 							"name": "Clarionbuds",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"frequency": "Once Per Battle",
@@ -190,6 +206,7 @@
 					"entries": [
 						{
 							"name": "Cradling Vines",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly SOULPOD GUARDIANS WIZARD to cast this spell, pick an objective within 18\" of them that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
@@ -208,6 +225,7 @@
 					"entries": [
 						{
 							"name": "Song of Vengeance",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly SOULPOD GUARDIANS PRIEST to chant this prayer, pick a visible friendly SOULPOD GUARDIANS that is wholly within 12\" of them and not in combat or that is wholly within 12\" of your Soulpod Grove to be the target, then make a chanting roll of D6.",
@@ -226,6 +244,7 @@
 					"entries": [
 						{
 							"name": "Jade Winds",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly SOULPOD GUARDIANS WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Gladewyrm\n• Spiteswarm Hive\n• Vengeful Skullroot",
@@ -246,6 +265,7 @@
 			"battle_traits": [
 				{
 					"name": "Nature Aetheric",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -254,6 +274,7 @@
 				},
 				{
 					"name": "Opening Horn Blast",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -262,6 +283,7 @@
 				},
 				{
 					"name": "Song of the Hunt",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The following cumulative effects apply to friendly EVERGREEN HUNT units depending on the number of chords you have:",
@@ -286,6 +308,7 @@
 				},
 				{
 					"name": "Rhythm of the Chase",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -294,6 +317,7 @@
 				},
 				{
 					"name": "Questing Tendrils",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -302,14 +326,17 @@
 				},
 				{
 					"name": "A Prize Quarry is Sighted",
+					"type": "command",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy unit within 9\" of a friendly EVERGREEN HUNT unit to be the target.",
-					"effect": "The target becomes the quarry for the rest of the battle. If there was already a quarry on the battlefield when you declared this ability, that unit is no longer the quarry."
+					"effect": "The target becomes the quarry for the rest of the battle. If there was already a quarry on the battlefield when you declared this ability, that unit is no longer the quarry.",
+					"command_points": 1
 				},
 				{
 					"name": "Merciful Strike",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -318,6 +345,7 @@
 				},
 				{
 					"name": "Abundant Growth",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -331,6 +359,7 @@
 					"entries": [
 						{
 							"name": "Sapwood Leader",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "If you pick this unit to be a target of the 'Abundant Growth' ability, Heal (3) this unit instead of Heal (1)."
@@ -342,6 +371,7 @@
 					"entries": [
 						{
 							"name": "Heartwood Hunting Horn",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Hero Phase",
 							"frequency": "Once Per Battle (Army)",

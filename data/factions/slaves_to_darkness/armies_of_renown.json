@@ -6,12 +6,14 @@
 			"battle_traits": [
 				{
 					"name": "First-damned Prince",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly Be'lakor is within the combat range of any friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON units:\n• That friendly Be'lakor has WARD (4+).\n• In addition, each time you make a successful ward roll for that friendly Be'lakor, allocate 1 damage point to a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON unit within Be'lakor's combat range after the damage sequence for Be'lakor has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Storm of Blackened Blades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -20,14 +22,17 @@
 				},
 				{
 					"name": "Daemonic Reinforcements",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON INFANTRY or CAVALRY unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of a friendly Be'lakor and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of a friendly Be'lakor and more than 9\" from all enemy units.",
+					"command_points": 1
 				},
 				{
 					"name": "Bestow Favour",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -41,6 +46,7 @@
 					"entries": [
 						{
 							"name": "Dread Marshal",
+							"type": "active",
 							"category": "movement",
 							"timing": "Any Charge Phase",
 							"declare": "Pick up to 3 friendly units wholly within 12\" of this unit to be the targets.",
@@ -53,6 +59,7 @@
 					"entries": [
 						{
 							"name": "Black Ritual Dagger",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Reaction: You declared a SPELL ability for a friendly unit wholly within 12\" of this unit.",
 							"frequency": "Once Per Turn",
@@ -68,6 +75,7 @@
 					"entries": [
 						{
 							"name": "Dark Cantrip",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, pick up to 3 visible enemy units within 18\" of them to be the targets, then make a casting roll of 2D6.",
@@ -80,6 +88,7 @@
 						},
 						{
 							"name": "Shroud in Darkness",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, pick a visible friendly LEGION OF THE FIRST PRINCE unit that is not in combat and is wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -97,6 +106,7 @@
 					"entries": [
 						{
 							"name": "Summon Eightfold Doom-Sigil",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Eightfold Doom-sigil on the battlefield, pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -117,6 +127,7 @@
 			"battle_traits": [
 				{
 					"name": "Demands of the Dark Gods",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Turn (Army)",
@@ -142,6 +153,7 @@
 				},
 				{
 					"name": "Knights of the First Circle",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "If there are more friendly SWORDS OF CHAOS units on the battlefield than there are set up in reserve, pick a friendly SWORDS OF CHAOS unit that has not been deployed.",
@@ -152,6 +164,7 @@
 				},
 				{
 					"name": "Descent from Ruinous Skies",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly SWORDS OF CHAOS unit that is in the Ruinous Skies.",
@@ -164,30 +177,35 @@
 					"entries": [
 						{
 							"name": "The Grimroot Order",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Add 1 to this unit's Health characteristic."
 						},
 						{
 							"name": "Tamers of Haradh's Torment",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Damage characteristic of this unit's Companion weapons."
 						},
 						{
 							"name": "The Hounds Apocalyptus",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "While this unit is wholly within enemy territory, add 1 to the Attacks characteristic of this unit's melee weapons."
 						},
 						{
 							"name": "The Blackstorm Apostates",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "Add 3\" to this unit's Move characteristic."
 						},
 						{
 							"name": "Betrayers of the Anvilking",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (6+)."
@@ -203,6 +221,7 @@
 			"battle_traits": [
 				{
 					"name": "Pledges to the Dark Gods",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a friendly SNOW PEAKS unit uses 1 of the following abilities and the effect of that ability is resolved, gain 1 oath point.\n• 'Oath of Bloodshed'\n• 'Oath of Murder'\n• 'Oath of Supremacy'\n• 'Oath of the Marauder'\n• 'Oath of the Raider'\n• 'Oath of Conquest'\n• 'Oath of Dark Sacrifice'",
@@ -215,6 +234,7 @@
 				},
 				{
 					"name": "Daemonfire Weapons",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Phase (Army)",
@@ -226,6 +246,7 @@
 				},
 				{
 					"name": "Speed of the Blood Crow",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Phase (Army)",
@@ -237,6 +258,7 @@
 				},
 				{
 					"name": "Hunger of Shesh'shan",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Phase (Army)",
@@ -248,6 +270,7 @@
 				},
 				{
 					"name": "Messengers of the Gods",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Phase (Army)",
@@ -259,6 +282,7 @@
 				},
 				{
 					"name": "Rage of Arkhar",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Phase (Army)",
@@ -270,6 +294,7 @@
 				},
 				{
 					"name": "Shroud of the Pale Elk",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared an ATTACK ability",
 					"frequency": "Once Per Phase (Army)",
@@ -286,6 +311,7 @@
 					"entries": [
 						{
 							"name": "Oath of Kinship",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "While this unit is within the combat range of another friendly SNOW PEAKS unit, add 1 to hit rolls for this unit's attacks."
@@ -297,6 +323,7 @@
 					"entries": [
 						{
 							"name": "Grand Offering",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Movement Phase",
 							"frequency": "Once Per Battle (Army)",

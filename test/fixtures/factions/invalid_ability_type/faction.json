@@ -1,0 +1,1 @@
+{"id": "invalid_ability_type", "name": "Fixture", "grand_alliance": "order", "battle_traits": [{"name": "Trait", "type": "bogus", "timing": "Passive"}]}

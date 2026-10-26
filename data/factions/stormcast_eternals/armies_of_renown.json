@@ -7,12 +7,14 @@
 			"battle_traits": [
 				{
 					"name": "Thrive on the Attack",
+					"type": "passive",
 					"category": "",
 					"timing": "Passive",
 					"effect": "Friendly ASTRAL TEMPLARS units cannot use the 'All-out Defence' command. However, up to 2 friendly ASTRAL TEMPLARS units can use the 'All-out Attack' command each phase."
 				},
 				{
 					"name": "Live off the Land",
+					"type": "active",
 					"category": "",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -21,16 +23,19 @@
 				},
 				{
 					"name": "Hunter's Prowess",
+					"type": "passive",
 					"category": "",
 					"timing": "Passive",
 					"effect": "Each time you declare an ATTACK ability for a friendly ASTRAL TEMPLARS unit, you gain 1 hunter's prowess point.\nEach time a combat attack made by a friendly ASTRAL TEMPLARS unit scores a critical hit, you can spend 1 hunter's prowess point. If you do so, inflict 1 mortal damage on the target after the ATTACK ability has been resolved."
 				},
 				{
 					"name": "Tenacious Trackers",
+					"type": "command",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly ASTRAL TEMPLARS unit to be the target.",
-					"effect": "The next time you make a run roll for the target this phase, roll 1 additional dice, to a maximum of 2."
+					"effect": "The next time you make a run roll for the target this phase, roll 1 additional dice, to a maximum of 2.",
+					"command_points": 1
 				}
 			],
 			"enhancement_tables": [
@@ -40,6 +45,7 @@
 					"entries": [
 						{
 							"name": "Champion of Ursricht",
+							"type": "passive",
 							"category": "",
 							"timing": "Passive",
 							"effect": "Add 1 to the Damage characteristic of this unit's melee weapons for attacks that target an enemy HERO or MONSTER."
@@ -52,6 +58,7 @@
 					"entries": [
 						{
 							"name": "Godbeast Plate",
+							"type": "passive",
 							"category": "",
 							"timing": "Passive",
 							"effect": "If the unmodified wound roll for an attack made with a Companion weapon that targets this unit is 1-3, the attack fails and the attack sequence ends."
@@ -67,6 +74,7 @@
 					"entries": [
 						{
 							"name": "Summon Everblaze Comet",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -86,6 +94,7 @@
 					"entries": [
 						{
 							"name": "Primal Blizzard",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -98,6 +107,7 @@
 						},
 						{
 							"name": "Hunter's Wings",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, pick a visible friendly unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -117,6 +127,7 @@
 					"entries": [
 						{
 							"name": "Brawn of the White Bear",
+							"type": "prayer",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ASTRAL TEMPLARS PRIEST to chant this prayer, pick a visible friendly ASTRAL TEMPLARS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -137,12 +148,14 @@
 			"battle_traits": [
 				{
 					"name": "Shields of the Warden",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly Stormdrake Guard units are within a friendly Ionus Cryptborn's combat range:\n• That friendly Ionus Cryptborn has WARD (4+).\n• Each time you make a successful ward roll for that friendly Ionus Cryptborn, allocate 1 damage point to a friendly Stormdrake Guard unit within its combat range after the damage sequence for that friendly Ionus Cryptborn has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Thunderous Roar",
+					"type": "active",
 					"category": "control",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -154,12 +167,14 @@
 				},
 				{
 					"name": "Exemplars of Fury",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of Companion weapons used by friendly DRACONITH SKYWING HEROES while they are within 6\" of 2 or more friendly Stormdrake Guard units."
 				},
 				{
 					"name": "Aetheric Cyclone",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -176,6 +191,7 @@
 					"entries": [
 						{
 							"name": "Fearless Fliers",
+							"type": "active",
 							"category": "movement",
 							"timing": "End of Any Turn",
 							"effect": "If this unit is not in combat, it can immediately make a D6\" move and can end that move in combat"
@@ -187,6 +203,7 @@
 					"entries": [
 						{
 							"name": "Celestium Ensign",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
 							"frequency": "Once Per Battle (Army)",
@@ -202,6 +219,7 @@
 					"entries": [
 						{
 							"name": "Regal Authority",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DRACONITH SKYWING WIZARD to cast this spell, pick a visible friendly DRACONITH SKYWING unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -220,6 +238,7 @@
 					"entries": [
 						{
 							"name": "Sigmar's Grace",
+							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DRACONITH SKYWING PRIEST to chant this prayer, pick a friendly DRACONITH SKYWING unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -232,6 +251,7 @@
 						},
 						{
 							"name": "Sanctification",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly DRACONITH SKYWING PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -249,6 +269,7 @@
 					"entries": [
 						{
 							"name": "Summon Everblaze Comet",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly DRACONITH SKYWING WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -269,6 +290,7 @@
 			"battle_traits": [
 				{
 					"name": "The Celestial Realm",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "If there are more friendly STORMCAST ETERNALS units on the battlefield than there are set up in reserve, pick a friendly STORMCAST ETERNALS unit that has not been deployed.",
@@ -279,6 +301,7 @@
 				},
 				{
 					"name": "Scions of the Storm",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly STORMCAST ETERNALS unit that is in the Celestial Realm.",
@@ -286,6 +309,7 @@
 				},
 				{
 					"name": "Punch Through",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -294,6 +318,7 @@
 				},
 				{
 					"name": "Summon the Storm",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -307,6 +332,7 @@
 					"entries": [
 						{
 							"name": "Thegn of Bellicos",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons while it is wholly within 6\" of a friendly Bastian Carthalos."
@@ -318,6 +344,7 @@
 					"entries": [
 						{
 							"name": "Shield of Skjordamar",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -333,6 +360,7 @@
 					"entries": [
 						{
 							"name": "Wreathed in the Storm",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly FIRST‑FORGED WIZARD to cast this spell, pick a visible friendly Stormcast Eternals unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -345,6 +373,7 @@
 						},
 						{
 							"name": "Storm's Wrath",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly FIRST‑FORGED WIZARD to cast this spell, pick up to 3 visible enemy units within 9\" of them to be the targets, then make a casting roll of 2D6.",
@@ -362,6 +391,7 @@
 					"entries": [
 						{
 							"name": "Speed of the Righteous",
+							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly FIRST‑FORGED PRIEST to chant this prayer, pick a visible friendly STORMCAST ETERNALS unit wholly within 12\" of them to be a target, then make a chanting roll of D6.",
@@ -380,6 +410,7 @@
 					"entries": [
 						{
 							"name": "Summon Everblaze Comet",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly FIRST-FORGED WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -400,6 +431,7 @@
 			"battle_traits": [
 				{
 					"name": "Ancient Aura",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -408,6 +440,7 @@
 				},
 				{
 					"name": "Temper the Flaw",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -416,12 +449,14 @@
 				},
 				{
 					"name": "Hallowed Presence",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While friendly WARRIOR CHAMBER units are wholly within 12\" of any friendly RUINATION CHAMBER units, those friendly WARRIOR CHAMBER units have WARD (6+)."
 				},
 				{
 					"name": "Entropic Screech",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -438,6 +473,7 @@
 					"entries": [
 						{
 							"name": "Corven Lord",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "If this unit has the 'Ruination Chamber', ability, it can use that ability once per turn regardless of whether another friendly unit has used it during the same turn."
@@ -449,6 +485,7 @@
 					"entries": [
 						{
 							"name": "Hallowed Scrolls",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "If this unit is Infantry, it has WARD (5+). Otherwise, it has WARD (6+)."
@@ -463,6 +500,7 @@
 					"entries": [
 						{
 							"name": "Morrda's Embrace",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -475,6 +513,7 @@
 						},
 						{
 							"name": "Murderous Flock",
+							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -486,6 +525,7 @@
 						},
 						{
 							"name": "Raven's Flight",
+							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",

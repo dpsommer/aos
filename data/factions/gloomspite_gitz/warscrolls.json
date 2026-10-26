@@ -55,12 +55,14 @@
 			"abilities": [
 				{
 					"name": "Timberrrrr!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "When this unit is destroyed, before removing it from play, the players must roll off. The winner picks a point on the battlefield within 3\" of this unit. Inflict D3 mortal damage on each unit (friendly and enemy) within 3\" of that point that has a lower Health characteristic than this unit."
 				},
 				{
 					"name": "Stuff 'Em in Me Bag",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -147,18 +149,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
 					"name": "Flinger",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "If any attacks made with this unit's Flinger score a hit, after the SHOOT ability has been resolved, roll a dice. On a 2+, halve the Move characteristic of the target unit until the start of your next turn."
 				},
 				{
 					"name": "Beast-binding Webbing",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -170,6 +175,7 @@
 				},
 				{
 					"name": "Wall Crawler",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can pass across terrain features as if it had FLY."
@@ -244,12 +250,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
 					"name": "Voracious Predator",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -261,6 +269,7 @@
 				},
 				{
 					"name": "Wall Crawler",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can pass across terrain features as if it had FLY."
@@ -290,11 +299,13 @@
 			"abilities": [
 				{
 					"name": "Moonclan Lairs",
+					"type": "command",
 					"category": "rallying",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO non-MONSTER non-WAR MACHINE GLOOMSPITE GITZ unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this terrain feature and more than 3\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this terrain feature and more than 3\" from all enemy units.",
+					"command_points": 1
 				}
 			],
 			"keywords": [
@@ -345,6 +356,7 @@
 			"abilities": [
 				{
 					"name": "Boing! Smash!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -419,6 +431,7 @@
 			"abilities": [
 				{
 					"name": "Borgit's Masterplan",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -427,6 +440,7 @@
 				},
 				{
 					"name": "Uglug the Troggoth",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit includes Uglug, ignore the first damage point allocated to it each phase."
@@ -472,6 +486,7 @@
 			"abilities": [
 				{
 					"name": "Shepherd of Destruction",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -482,12 +497,14 @@
 				},
 				{
 					"name": "Magical Resistance",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit."
 				},
 				{
 					"name": "Greater Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D6) this unit."
@@ -527,6 +544,7 @@
 			"abilities": [
 				{
 					"name": "Wade and Smash",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -537,12 +555,14 @@
 				},
 				{
 					"name": "Magical Resistance",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit."
 				},
 				{
 					"name": "Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) this unit."
@@ -603,6 +623,7 @@
 			"abilities": [
 				{
 					"name": "Shoddy Wing-like Gizmos",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -661,12 +682,14 @@
 			"abilities": [
 				{
 					"name": "Da Frazzlefangz",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While an enemy unit is within 6\" of this unit:\n• Subtract 1 from hit rolls for that enemy unit's attacks.\n• That enemy unit cannot use the 'All-out Attack' command."
 				},
 				{
 					"name": "Rip 'Em ta Bits",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -674,6 +697,7 @@
 				},
 				{
 					"name": "Time ta Scarper",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for a unit wholly within 9\" of this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -728,12 +752,14 @@
 			"abilities": [
 				{
 					"name": "Noxious Vomit",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "If any damage points are allocated to an enemy unit by attacks made with this unit's Noxious Vomit, that unit is drenched in vomit until the start of your next turn.\nWhile a unit is drenched in vomit:\n• Subtract 1 from save rolls for that unit.\n• Ignore positive modifiers to save rolls for that unit."
 				},
 				{
 					"name": "Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) this unit."
@@ -787,6 +813,7 @@
 			"abilities": [
 				{
 					"name": "Gut-Wrenching Stench",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -795,6 +822,7 @@
 				},
 				{
 					"name": "Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) this unit."
@@ -848,12 +876,14 @@
 			"abilities": [
 				{
 					"name": "Gimme All da Light",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly GITMOB units that are not Frazzlegit Shamans on War-Wheelas cannot be targeted by shooting attacks while they are wholly within 6\" of this unit."
 				},
 				{
 					"name": "Frazzlemist",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -912,6 +942,7 @@
 			"abilities": [
 				{
 					"name": "Deffcap Mushroom",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -954,12 +985,14 @@
 			"abilities": [
 				{
 					"name": "Hallucinogenic Fungus Brews",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "In the first battle round, this unit has WARD (4+). In the second battle round, this unit has WARD (5+). In the third and subsequent battle rounds, this unit has WARD (6+)."
 				},
 				{
 					"name": "Gobbapalooza Know-wotz",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1038,6 +1071,7 @@
 			"abilities": [
 				{
 					"name": "Quest's End",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
 					"declare": "This unit can only use this ability if you control the object of this unit's quest and this unit is contesting it.",
@@ -1045,6 +1079,7 @@
 				},
 				{
 					"name": "The Looncourt's Quest",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "Pick an objective or terrain feature within enemy territory to be the object of this unit's quest."
@@ -1103,6 +1138,7 @@
 			"abilities": [
 				{
 					"name": "I'm da Boss",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly Moonclan Stabbas unit wholly within 12\" of this unit to be the target.",
@@ -1120,6 +1156,7 @@
 				},
 				{
 					"name": "Let's Get Stabbin'!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO MOONCLAN INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
@@ -1180,6 +1217,7 @@
 			"abilities": [
 				{
 					"name": "Let's Get Bouncin'!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO MOONCLAN CAVALRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target\ncan be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
@@ -1249,12 +1287,14 @@
 			"abilities": [
 				{
 					"name": "Squig Rage",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6."
 				},
 				{
 					"name": "Bite da Moon!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1263,12 +1303,14 @@
 				},
 				{
 					"name": "Watch Out!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit."
 				},
 				{
 					"name": "Ker-splat!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1333,6 +1375,7 @@
 			"abilities": [
 				{
 					"name": "Gobbled Up",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit within 1\" of this unit to be the target.",
@@ -1340,6 +1383,7 @@
 				},
 				{
 					"name": "Goin' Somewhere?",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If a friendly MOONCLAN INFANTRY unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. However, friendly MOONCLAN INFANTRY units cannot use RETREAT abilities while they are within 12\" of this unit."
@@ -1380,12 +1424,14 @@
 			"abilities": [
 				{
 					"name": "Whirling Death",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit has STRIKE-FIRST."
 				},
 				{
 					"name": "Hidden Loons",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit if it has not been deployed.",
@@ -1396,6 +1442,7 @@
 				},
 				{
 					"name": "Release the Fanatics!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"declare": "Pick this unit if it is hidden among the mobs. Then, pick a friendly Moonclan Shootas or Moonclan Stabbas unit that has 10 or more models to be the target.",
@@ -1437,6 +1484,7 @@
 			"abilities": [
 				{
 					"name": "Lost in the Horde",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit if it has not been deployed.",
@@ -1447,6 +1495,7 @@
 				},
 				{
 					"name": "Whirling Destruction",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1496,6 +1545,7 @@
 			"abilities": [
 				{
 					"name": "Madcap Mushroom",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -1539,6 +1589,7 @@
 			"abilities": [
 				{
 					"name": "Lurid Light",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While friendly GLOOMSPITE GITZ units are wholly within 12\" of this MANIFESTATION they are affected by all four faces of the Bad Moon (Grinnin', Scowlin', Sulkin', and Cacklin')."
@@ -1603,18 +1654,21 @@
 			"abilities": [
 				{
 					"name": "Squig Rage",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6."
 				},
 				{
 					"name": "Watch Out!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit."
 				},
 				{
 					"name": "Giant Boing!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1677,24 +1731,28 @@
 			"abilities": [
 				{
 					"name": "Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) this unit."
 				},
 				{
 					"name": "Mollog's Mob",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Bat Squig, Spiteshroom and Stalagsquig are tokens. After setting up this unit on the battlefield for the first time, place its tokens next to it."
 				},
 				{
 					"name": "Unleash the Critters!",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"effect": "Pick 1 of the following effects:\nSpore Cloud: Remove this unit's Spiteshroom. For the rest of the turn, subtract 1 from hit rolls for attacks made by enemy units while they\nare in combat with this unit.\nBat Squig Attack!: Remove this unit's Bat Squig. Pick an enemy unit in combat with this unit to be the target and roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nRock-hard Skin: Remove this unit's Stalagsquig. Ignore all modifiers to save rolls for this unit (positive and negative) for the rest of the turn."
 				},
 				{
 					"name": "Bitey Distractions",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+) while any of its tokens are on the battlefield."
@@ -1745,6 +1803,7 @@
 			"abilities": [
 				{
 					"name": "Netters",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
@@ -1787,6 +1846,7 @@
 			"abilities": [
 				{
 					"name": "Netters",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
@@ -1821,6 +1881,7 @@
 			"abilities": [
 				{
 					"name": "Mutating Spores",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick up to 3 enemy units within 6\" of this MANIFESTATION to be the targets.",
@@ -1879,6 +1940,7 @@
 			"abilities": [
 				{
 					"name": "Secret Tunnels",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit if it has not been deployed.",
@@ -1889,6 +1951,7 @@
 				},
 				{
 					"name": "'Neh Neh Na-neh Neh! Can't Catch Me!\"",
+					"type": "active",
 					"category": "",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1897,6 +1960,7 @@
 				},
 				{
 					"name": "Emerge from the Depths",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick this unit if it is in a secret tunnel.",
@@ -1954,6 +2018,7 @@
 			"abilities": [
 				{
 					"name": "Hamstring",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1962,6 +2027,7 @@
 				},
 				{
 					"name": "Marking Your Territory",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Wolfgit Weapons while it contests an objective you control that is not contested by any other friendly units."
@@ -2014,6 +2080,7 @@
 			"abilities": [
 				{
 					"name": "Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) this unit."
@@ -2055,6 +2122,7 @@
 			"abilities": [
 				{
 					"name": "Blessings of the Cauldron",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD within 1\" of this MANIFESTATION to be the target.",
@@ -2112,6 +2180,7 @@
 			"abilities": [
 				{
 					"name": "Scuttle Away!",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2120,6 +2189,7 @@
 				},
 				{
 					"name": "Wall Crawler",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can pass across terrain features as if it had FLY."
@@ -2164,12 +2234,14 @@
 			"abilities": [
 				{
 					"name": "Endless Terrors",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (4+) while it is wholly within 12\" of any friendly ARACHNAROK units."
 				},
 				{
 					"name": "Wall Crawler",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This MANIFESTATION can pass across terrain features as if it had FLY."
@@ -2225,12 +2297,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
 					"name": "Realmweb Lurker",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit if it has not been deployed.",
@@ -2241,6 +2315,7 @@
 				},
 				{
 					"name": "Scuttling Terror",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2251,6 +2326,7 @@
 				},
 				{
 					"name": "Ambush from Beyond",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"declare": "Pick this unit if it is skittering through tunnels in reality.",
@@ -2258,6 +2334,7 @@
 				},
 				{
 					"name": "Wall Crawler",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can pass across terrain features as if it had FLY."
@@ -2303,6 +2380,7 @@
 			"abilities": [
 				{
 					"name": "Fangz of da Bad Moon",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -2314,6 +2392,7 @@
 				},
 				{
 					"name": "The Loonking's Entreaty",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'The Faces of the Bad Moon' ability",
 					"frequency": "Once Per Battle (Army)",
@@ -2321,6 +2400,7 @@
 				},
 				{
 					"name": "Babbling Wand",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time a friendly MOONCLAN unit wholly within 12\" of this unit uses the 'Redeploy' command, no command points are spent."
@@ -2380,6 +2460,7 @@
 			"abilities": [
 				{
 					"name": "Vicious Snarls and Great Howls",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2388,6 +2469,7 @@
 				},
 				{
 					"name": "Boss Snarlfang",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 2 to charge rolls for friendly GITMOB CAVALRY units while they are wholly within 12\" of this unit."
@@ -2455,6 +2537,7 @@
 			"abilities": [
 				{
 					"name": "Frazzlegit's Flame Stream",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY unit that this unit passed across during that move to be the target. Inflict D6 mortal damage on the target.",
@@ -2471,12 +2554,14 @@
 				},
 				{
 					"name": "Keepin' Up Wiv da Boss",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Sunsteala Wheelas unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
 					"name": "Da Glare of Frazzlegit",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -2539,6 +2624,7 @@
 			"abilities": [
 				{
 					"name": "Can't Catch Us!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2596,12 +2682,14 @@
 			"abilities": [
 				{
 					"name": "Markin' Territory",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, add 5 to its control score for the rest of the turn."
 				},
 				{
 					"name": "Frazzleburned Scrap",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2655,6 +2743,7 @@
 			"abilities": [
 				{
 					"name": "Looncap Mushrooms",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2719,6 +2808,7 @@
 			"abilities": [
 				{
 					"name": "Wall Crawler",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can pass across terrain features as if it had FLY."
@@ -2760,12 +2850,14 @@
 			"abilities": [
 				{
 					"name": "Puffshroom Frenzy",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of melee weapons used by other friendly MOONCLAN units while they are wholly within 12\" of this unit. Subtract 1 from the Attacks characteristic of melee weapons used by enemy units while they are in combat with this unit."
 				},
 				{
 					"name": "A Prod in the Right Direction",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "This unit can use the 'Normal Move' ability as if it were your movement phase."
@@ -2806,12 +2898,14 @@
 			"abilities": [
 				{
 					"name": "Choking Spore-clouds",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Attacks characteristic of weapons used by enemy units while they are in combat with this unit."
 				},
 				{
 					"name": "Spinning Loons",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2868,6 +2962,7 @@
 			"abilities": [
 				{
 					"name": "Feedin' Time",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2932,12 +3027,14 @@
 			"abilities": [
 				{
 					"name": "Squigs Gone Wild",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Herding Squigs",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"effect": "Roll a dice for each Squig Herder in this unit. For each 2+, you can return D3 slain Cave Squigs to this unit. For each 1, 1 Squig Herder in this unit is slain."
@@ -2990,6 +3087,7 @@
 			"abilities": [
 				{
 					"name": "Boing! Boing! Boing!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Movement Phase",
 					"declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
@@ -3054,6 +3152,7 @@
 			"abilities": [
 				{
 					"name": "Careening Destruction",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3128,6 +3227,7 @@
 			"abilities": [
 				{
 					"name": "Slice and Soar",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3187,12 +3287,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, when it uses the 'Malfunctioning Leystone' ability, roll 1 dice instead of 3."
 				},
 				{
 					"name": "Crushing Grip",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3204,12 +3306,14 @@
 				},
 				{
 					"name": "Malfunctioning Leystone",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Roll 3 dice. You must pick 1 of those dice and apply the effect that corresponds to its value. Effects 2-6 persist until the start of your next turn.\n1 Glyph of Shyish: Inflict D3 mortal damage on this unit.\n2 Glyph of Ghur: Add 1 to the Attacks characteristic of melee weapons used by friendly TROGGOTH units while they are wholly within 12\" of this unit.\n3 Glyph of Aqshy: Add 1 to the Rend characteristic of melee weapons used by friendly TROGGOTH units while they are wholly within 12\" of this unit.\n4 Glyph of Hysh: This unit can use Unbind abilities as if it had WIZARD (1).\n5 Glyph of Ulgu: Subtract 1 from hit rolls for shooting attacks that target friendly TROGGOTH units while they are wholly within 12\" of this unit.\n6 Glyph of Chamon: This unit has WARD (5+)."
 				},
 				{
 					"name": "Greater Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D6) this unit."
@@ -3259,6 +3363,7 @@
 			"abilities": [
 				{
 					"name": "Web Slingshot",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SPIDERFANG unit or terrain feature within 18\" of this unit to be the target.",
@@ -3266,6 +3371,7 @@
 				},
 				{
 					"name": "Speed of the Spider God",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly SPIDERFANG unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -3363,18 +3469,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
 					"name": "Catchweb Spidershrine",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for friendly SPIDERFANG WIZARDS while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Ensnaring Webbing",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3386,6 +3495,7 @@
 				},
 				{
 					"name": "Wall Crawler",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can pass across terrain features as if it had FLY."
@@ -3450,6 +3560,7 @@
 			"abilities": [
 				{
 					"name": "I Got Dis, Boss!",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly Snarlboss is within this unit's combat range, both this unit and that Snarlboss have WARD (5+)."
@@ -3510,12 +3621,14 @@
 			"abilities": [
 				{
 					"name": "Sniffer Spite",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "If this unit's Zarbag is on the battlefield and within 3\" of a terrain feature, roll a dice. On a 4+, add 1 to this unit's power level for the rest of the turn."
 				},
 				{
 					"name": "Zarbag",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Zarbag is on the battlefield, it has WIZARD (1)."

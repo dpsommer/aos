@@ -18,6 +18,7 @@
 			"abilities": [
 				{
 					"name": "Sigil of Doom",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly BLADES OF KHORNE unit wholly within 8\" of this MANIFESTATION to be the target. Then, pick a passive BLOOD TITHE ability that you have not unlocked this battle.",
@@ -77,6 +78,7 @@
 			"abilities": [
 				{
 					"name": "Crushing Onslaught",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "If the unmodified charge roll for this unit is 8+:\n• For the rest of the phase, this unit can pass through models in enemy units.\n• Enemy CAVALRY units passed through by this unit in this phase cannot make pile-in moves for the rest of the turn."
@@ -140,6 +142,7 @@
 			"abilities": [
 				{
 					"name": "Brass Stampede",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -189,6 +192,7 @@
 			"abilities": [
 				{
 					"name": "Ceaseless Violence",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -239,6 +243,7 @@
 			"abilities": [
 				{
 					"name": "Drawn to Slaughter",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You or your opponent declared the 'Eruption of Fury' ability for a unit within 12\" of this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -292,6 +297,7 @@
 			"abilities": [
 				{
 					"name": "The Blood Must Flow",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a Fight ability for this unit",
 					"effect": "Pick a friendly Bloodletters unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. For the rest of the turn, add 1 to hit rolls for combat attacks made by this unit and that friendly Bloodletters unit."
@@ -336,6 +342,7 @@
 			"abilities": [
 				{
 					"name": "Blood for the Blood God!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's melee weapons if it charged in the same turn."
@@ -384,12 +391,14 @@
 			"abilities": [
 				{
 					"name": "Icon of the Blood God",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "If a friendly BLOODBOUND unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
 					"name": "Rage of Khorne",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -437,6 +446,7 @@
 			"abilities": [
 				{
 					"name": "Whipped to Fury",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -488,12 +498,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Great Axe of Khorne is 3."
 				},
 				{
 					"name": "Shattering Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -505,6 +517,7 @@
 				},
 				{
 					"name": "Outrageous Carnage",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time an attack made by this unit scores a critical hit, inflict D3 mortal damage on each enemy unit within 8\" of it after the FIGHT ability has been resolved (and continue the attack sequence)."
@@ -570,12 +583,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Axe of Khorne is 4."
 				},
 				{
 					"name": "Ensnaring Lash",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -587,6 +602,7 @@
 				},
 				{
 					"name": "Beckon the Hunt",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -635,6 +651,7 @@
 			"abilities": [
 				{
 					"name": "No Respite",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is contesting an objective you do not control, it has Ward (5+)"
@@ -681,6 +698,7 @@
 			"abilities": [
 				{
 					"name": "Only the Worthy",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The following cumulative effects apply depending on the number of models in this unit that are slain.\n1+ Add 1 to charge rolls for this unit.\n4+ Add 1 to hit rolls for this unit's combat attacks.\n8+ Add 1 to wound rolls for this unit's combat attacks.\n16+ Double the Attacks characteristic of this unit's melee weapons and this unit's combat attacks score critical hits on unmodified hit rolls of 5+."
@@ -725,12 +743,14 @@
 			"abilities": [
 				{
 					"name": "The Scent of Blood",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"effect": "This unit can use the 'Normal Move' ability as if it were your movement phase."
 				},
 				{
 					"name": "Pack Hunters",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is wholly within 12\" of a friendly Flesh Hounds unit or a friendly Karanak, this unit's combat attacks score critical hits on unmodified hit rolls of 5+."
@@ -778,12 +798,14 @@
 			"abilities": [
 				{
 					"name": "Trophies of Glorious Deaths",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a command for a unit within 8\" of this unit",
 					"effect": "Roll a dice. On a 5+, that command has no effect, it still counts as having been used and the command points spent to use it are still lost. This reaction cannot be used more than once per command."
 				},
 				{
 					"name": "Killer of Kings",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -831,6 +853,7 @@
 			"abilities": [
 				{
 					"name": "Hunters of Mystics",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If the casting roll for an enemy WIZARD within 12\" of this unit contains 2 or more results of 1 or 2, the spell is miscast.\nIf the chanting roll for an enemy PRIEST within 12\" of this unit is an unmodified 2, the prayer fails and its effect is not resolved. In addition, your opponent cannot give that PRIEST any ritual points for the rest of the phase."
@@ -876,12 +899,14 @@
 			"abilities": [
 				{
 					"name": "Blood for the Blood God!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's melee weapons if it charged in the same turn."
 				},
 				{
 					"name": "Grisly Trophies",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If this unit is in a Blades of Khorne army and any enemy models were slain this turn by this unit's attacks, you gain 1 blood tithe point."
@@ -929,6 +954,7 @@
 			"abilities": [
 				{
 					"name": "Dromm, Wounder of Worlds",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Dromm, Wounder of Worlds, is on the battlefield, it has PRIEST (1) and can use UNBIND abilities as if it had WIZARD (1)"
@@ -979,12 +1005,14 @@
 			"abilities": [
 				{
 					"name": "Blood Marked",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (4+) against damage inflicted by SPELL abilities and abilities used by MANIFESTATIONS."
 				},
 				{
 					"name": "Offering of Blood",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1030,12 +1058,14 @@
 			"abilities": [
 				{
 					"name": "Hexgorgers",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "For each part of this MANIFESTATION that is within 8\" of a WIZARD (friendly or enemy), subtract 1 from casting rolls for that WIZARD."
 				},
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION's Health characteristic are allocated to it, this MANIFESTATION is destroyed and both its parts are removed from play.\nEach time this MANIFESTATION moves, both its parts must end within 8\" of each other. Each part of this MANIFESTATION is armed with a Stream of Molten Blood."
@@ -1081,12 +1111,14 @@
 			"abilities": [
 				{
 					"name": "Khornate Hound",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit's Kannat is a token. Each time you declare a FIGHT ability for this unit while its Kannat is on the battlefield, as a reaction, you can remove its Kannat from the battlefield and then add 1 to the Rend characteristic of this unit's Bloodied Weapons for the rest of the phase."
 				},
 				{
 					"name": "Gather the Skulls",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1139,6 +1171,7 @@
 			"abilities": [
 				{
 					"name": "Prey of the Blood God",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn",
@@ -1146,6 +1179,7 @@
 				},
 				{
 					"name": "Stalk the Prey",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "If this unit's quarry is on the battlefield, pick this unit and up to 1 friendly Flesh hounds unit to be the targets.",
@@ -1156,6 +1190,7 @@
 				},
 				{
 					"name": "First of the Pack",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While this unit is wholly within 12\" of a friendly Flesh Hounds unit, add 2 to charge rolls for this unit. In addition, while any friendly Flesh Hounds units are wholly within 12\" of this unit, they can ignore the effect of the 'Beast' ability."
@@ -1200,6 +1235,7 @@
 			"abilities": [
 				{
 					"name": "Horrific Predators",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1211,6 +1247,7 @@
 				},
 				{
 					"name": "Feast Upon Their Bones",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"effect": "Subtract 3 from the control scores of enemy non-MONSTER units while they are in combat with this unit."
@@ -1274,6 +1311,7 @@
 			"abilities": [
 				{
 					"name": "Retinue of Blood",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -1282,6 +1320,7 @@
 				},
 				{
 					"name": "Master of the Goretide",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1290,6 +1329,7 @@
 				},
 				{
 					"name": "Reality-Splitting Axe",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by combat attacks made by this unit to be the target.",
@@ -1345,12 +1385,14 @@
 			"abilities": [
 				{
 					"name": "Loathe the Arcane",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"effect": "This unit can use this ability if it is not in combat. This unit can move 3\" but must end that move closer to the unit that used the SPELL ability. It cannot move into combat during any part of that move."
 				},
 				{
 					"name": "Ascended Warlord",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1361,6 +1403,7 @@
 				},
 				{
 					"name": "Reality-Splitting Axe",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by combat attacks made by this unit to be the target.",
@@ -1424,12 +1467,14 @@
 			"abilities": [
 				{
 					"name": "Lord of the Brass Stampede",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for BLADES OF KHORNE CAVALRY units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Slaughterous Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
@@ -1489,6 +1534,7 @@
 			"abilities": [
 				{
 					"name": "No Respite",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll 2 dice. For each 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1549,12 +1595,14 @@
 			"abilities": [
 				{
 					"name": "Lord of the Bloodbound",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for friendly BLOODBOUND INFANTRY units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "'Bring Me Their Skull!'",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1617,6 +1665,7 @@
 			"abilities": [
 				{
 					"name": "Reality-Splitting Axe",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1625,6 +1674,7 @@
 				},
 				{
 					"name": "Howl of Blood-Curdling Savagery",
+					"type": "command",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1633,7 +1683,8 @@
 					"keywords": [
 						"MOVE",
 						"CHARGE"
-					]
+					],
+					"command_points": 1
 				}
 			],
 			"keywords": [
@@ -1686,6 +1737,7 @@
 			"abilities": [
 				{
 					"name": "Slaughterous Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
@@ -1735,6 +1787,7 @@
 			"abilities": [
 				{
 					"name": "Desecrating Blood Runes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1785,12 +1838,14 @@
 			"abilities": [
 				{
 					"name": "Bestial Leap",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"effect": "If this unit charged this phase, roll a dice. On a 3+, this unit can move 2D6\" as if it had FLY but must end that move in combat."
 				},
 				{
 					"name": "Brass Collar of Khorne",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
@@ -1851,12 +1906,14 @@
 			"abilities": [
 				{
 					"name": "Skarbrand's Rage",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, or if it did not use a FIGHT ability last turn, the effects of the 'Blood-drenched' ability apply to this unit."
 				},
 				{
 					"name": "Roar of Total Rage",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1868,6 +1925,7 @@
 				},
 				{
 					"name": "Inescapable Wrath",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
@@ -1918,6 +1976,7 @@
 			"abilities": [
 				{
 					"name": "The Slaughterborn",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Any Movement Phase",
 					"declare": "This unit can only use this ability if it has been destroyed.",
@@ -1928,6 +1987,7 @@
 				},
 				{
 					"name": "Murderous Paragon",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit is in combat, add 1 to the Attacks characteristic of melee weapons used by friendly Wrathmongers units while they are wholly within 12\" of this unit."
@@ -1957,12 +2017,14 @@
 			"abilities": [
 				{
 					"name": "Words of Hate",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this terrain feature has an Invoker:\n• Add 1 to chanting rolls for the Invoker.\n• The Invoker cannot use MOVE abilities.\n• Instead of measuring range or visibility to the Invoker, measure to this terrain feature instead.\n• All attacks that would target the Invoker target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Invoker. Then, set up the Invoker on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer an Invoker. If it is not possible to set up the Invoker, it is slain."
 				},
 				{
 					"name": "Ascend the Altar",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "If this terrain feature does not have an Invoker, pick a friendly BLADES OF KHORNE INFANTRY PRIEST within 3\" of it and not in combat to be the target.",
@@ -1970,6 +2032,7 @@
 				},
 				{
 					"name": "Hatred of Sorcery",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn",
@@ -1978,6 +2041,7 @@
 				},
 				{
 					"name": "Descend the Altar",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "If this terrain feature has an Invoker that was not placed on it this turn, set up the Invoker on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer an Invoker."
@@ -2047,12 +2111,14 @@
 			"abilities": [
 				{
 					"name": "Gruesome Bombardment",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "If any damage points are allocated to an enemy unit by a SHOOT ability used by this unit, subtract 3 from that enemy unit's control score for the rest of the turn."
 				},
 				{
 					"name": "Grind Their Bones, Seize Their Skulls",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "If any enemy models are slain by a FIGHT ability used by this unit, after that FIGHT ability has been resolved, this unit can immediately use a SHOOT ability as if it were your shooting phase."
@@ -2100,6 +2166,7 @@
 			"abilities": [
 				{
 					"name": "Bone-crushing Strikes",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2108,6 +2175,7 @@
 				},
 				{
 					"name": "Tempered by Fury",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -2172,6 +2240,7 @@
 			"abilities": [
 				{
 					"name": "Slaughterous Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
@@ -2179,6 +2248,7 @@
 				},
 				{
 					"name": "Herald of Trampling Death",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -2225,6 +2295,7 @@
 			"abilities": [
 				{
 					"name": "Trial of Skulls",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 8 to this unit's control score while it is in combat."
@@ -2274,6 +2345,7 @@
 			"abilities": [
 				{
 					"name": "Heroes' Bane",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target.",
@@ -2281,12 +2353,14 @@
 				},
 				{
 					"name": "The Eternal Duel",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "If an enemy HERO had any damage points allocated to it by this unit's combat attacks this turn and that HERO was destroyed this turn, Heal (X) this unit, where X is the number of damage points this unit has."
 				},
 				{
 					"name": "Drawn by Blood",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Enemy Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -2337,12 +2411,14 @@
 			"abilities": [
 				{
 					"name": "Scorn of Sorcery",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				},
 				{
 					"name": "Blood Sacrifice",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn",
@@ -2395,6 +2471,7 @@
 			"abilities": [
 				{
 					"name": "Borne on Wings of Blood",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit if it has not been deployed.",
@@ -2405,6 +2482,7 @@
 				},
 				{
 					"name": "The Red Angel of Slaughter",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"declare": "Pick this unit if it is soaring above the battlefield.",
@@ -2412,6 +2490,7 @@
 				},
 				{
 					"name": "The Gaze of Khorne",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If a friendly BLOODBOUND unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. However, friendly BLOODBOUND units cannot use RETREAT abilities while they are within 12\" of this unit."
@@ -2456,6 +2535,7 @@
 			"abilities": [
 				{
 					"name": "Hatred's Edge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this MANIFESTATION charged this turn, pick an enemy unit with a starting size greater than 1 that is in combat with this MANIFESTATION to be the target.",
@@ -2501,6 +2581,7 @@
 			"abilities": [
 				{
 					"name": "Bloodfury",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2509,6 +2590,7 @@
 				},
 				{
 					"name": "Crimson Haze",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is in combat, add 1 to the Attacks characteristic of melee weapons used by friendly BLOODBOUND units, excluding Wrathmongers units, while they are wholly within 12\" of this unit."
@@ -2571,12 +2653,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Axe of Khorne and Bloodflail is 4."
 				},
 				{
 					"name": "Vengeance of Khorne",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2588,6 +2672,7 @@
 				},
 				{
 					"name": "Commander of Tyrants",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2596,6 +2681,7 @@
 				},
 				{
 					"name": "Wrathful Dominance",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this unit's attacks that target an enemy HERO."

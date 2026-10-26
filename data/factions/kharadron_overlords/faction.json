@@ -5,12 +5,14 @@
 	"battle_traits": [
 		{
 			"name": "Skyvessel Cover",
+			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "Subtract 1 from hit rolls for attacks that target friendly KHARADRON OVERLORDS INFANTRY units that have not charged in the same turn while they are wholly within 6\" of a friendly Arkanaut Ironclad or Arkanaut Frigate that has not charged in the same turn."
 		},
 		{
 			"name": "Flying High",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -22,6 +24,7 @@
 		},
 		{
 			"name": "The Flagship",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -36,6 +39,7 @@
 		},
 		{
 			"name": "Descend from the Clouds",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"declare": "Pick a friendly SKYVESSEL in the clouds to use this ability.",
@@ -43,6 +47,7 @@
 		},
 		{
 			"name": "Transport Skyfarers",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase, Reaction: You declared a non-CHARGE MOVE ability for a friendly SKYVESSEL",
 			"declare": "The SKYVESSEL using that MOVE ability",
@@ -56,6 +61,7 @@
 			"abilities": [
 				{
 					"name": "Gritty Fortune-Hunters",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly Vongrim Harpoon Crew and Vongrim Salvagers units have WARD (6+) while they are contesting an objective."
@@ -68,6 +74,7 @@
 			"abilities": [
 				{
 					"name": "Entrenched Crews",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Turn (Army)",
@@ -82,6 +89,7 @@
 			"abilities": [
 				{
 					"name": "Extra Rappel Anchors",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Friendly Grundstok Gunhaulers can transport up to 2 friendly KHARADRON OVERLORDS INFANTRY units instead of 1 and with a combined model count of up to 6 instead of 5 (see Battle Traits)."
@@ -94,6 +102,7 @@
 			"abilities": [
 				{
 					"name": "Special Procurement",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -110,6 +119,7 @@
 			"entries": [
 				{
 					"name": "Shrewd Opportunist",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit and up to 2 other friendly KHARADRON OVERLORDS non-HERO INFANTRY units to be the targets.",
@@ -118,12 +128,14 @@
 				},
 				{
 					"name": "Bold as Brass",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 5 to this unit's control score."
 				},
 				{
 					"name": "Combat Grafter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -137,6 +149,7 @@
 			"entries": [
 				{
 					"name": "Voidstone Orb",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a WIZARD within 30\" of this unit",
 					"frequency": "Once Per Battle",
@@ -144,6 +157,7 @@
 				},
 				{
 					"name": "Celestium Burst Grenade",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle",
@@ -153,6 +167,7 @@
 				},
 				{
 					"name": "Blazebeard and Sons Bamboozling Flakgun",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a CHARGE ability for a unit within 12\" of this unit.",
 					"frequency": "Once Per Turn",
@@ -168,6 +183,7 @@
 			"entries": [
 				{
 					"name": "Spell in a Bottle",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -175,12 +191,14 @@
 				},
 				{
 					"name": "Karst-Bana Aether-Powered Combat Rig",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+). In addition, add 1 to the Attacks characteristic of this unit's melee weapons."
 				},
 				{
 					"name": "Emberstone Flare",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -196,6 +214,7 @@
 			"entries": [
 				{
 					"name": "Persistent Drillbill",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
@@ -203,6 +222,7 @@
 				},
 				{
 					"name": "Experimental Aether-powered Ejector Rig",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -210,6 +230,7 @@
 				},
 				{
 					"name": "Heat-seeking Auto-endrin",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
@@ -228,36 +249,42 @@
 			"entries": [
 				{
 					"name": "Hegsson Solutions 'Old Reliable' Hullplates",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+) against damage inflicted by shoot abilities."
 				},
 				{
 					"name": "Gruksson Wide-Bore Cylinders",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 2\" to this unit's Move characteristic."
 				},
 				{
 					"name": "Coalbeard's Collapsible Bombrack",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to each dice roll when using this unit's 'Heavy Bomb Racks', 'Medium Bomb Racks' or 'Light Bomb Racks' ability."
 				},
 				{
 					"name": "Tracer-Fire Rounds",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase, Reaction: You declared a SHOOT ability for this unit.",
 					"effect": "If all of the attacks target the same enemy unit, ignore negative modifiers to hit rolls for those attacks."
 				},
 				{
 					"name": "Grandiose Fuselage",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 5 to this unit's Control characteristic."
 				},
 				{
 					"name": "Nullstone Galvanisation",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"effect": "Inflict D6 mortal damage on each enemy MANIFESTATION within this unit's combat range."
@@ -270,12 +297,14 @@
 			"entries": [
 				{
 					"name": "Voidstone Repulser Vents",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: A friendly unit within 12\" of this unit was picked to be the target of an enemy SPELL ability.",
 					"effect": "Roll a dice. On a 4+:\n• Ignore the effect of that spell on that friendly unit.\n• Inflict D3 mortal damage on the caster.\nThis unit can use this ability more than once per phase but you can only roll once for each friendly unit per spell cast."
 				},
 				{
 					"name": "Blazebeard and Sons Ejector Pod",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -284,6 +313,7 @@
 				},
 				{
 					"name": "Zonbarcorp 'Dealbreaker' Battle Ram",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
@@ -297,6 +327,7 @@
 			"entries": [
 				{
 					"name": "Artycle 15, Point 4",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "• Add 1 to hit rolls for this unit's combat attacks that target an enemy unit that has FLY.\n• Add 1 to wound rolls for this unit's combat attacks that target an enemy unit that does not have FLY.",
@@ -304,6 +335,7 @@
 				},
 				{
 					"name": "Artycle 20, Amendment 2",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Charge Phase",
 					"frequency": "Once Per Battle",
@@ -313,6 +345,7 @@
 				},
 				{
 					"name": "Artycle 25, Point 6",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly KHARADRON OVERLORDS HEROES have WARD (5+) while they are within this unit's combat range.",

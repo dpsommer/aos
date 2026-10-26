@@ -26,6 +26,7 @@
 			"battle_traits": [
 				{
 					"name": "FORTIFY POSITION",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly CASTELITE units if they did not use a MOVE ability in the same turn."
@@ -34,6 +35,7 @@
 			"regiment_abilities": [
 				{
 					"name": "WELL PROVISIONED",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -42,6 +44,7 @@
 				},
 				{
 					"name": "RESPECTED LEADER",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -51,6 +54,7 @@
 			"enhancements": [
 				{
 					"name": "ADEPT TACTICIAN",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -59,12 +63,14 @@
 				},
 				{
 					"name": "BRACE!",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (5+)."
 				},
 				{
 					"name": "SHIELD BASH",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn",
@@ -73,6 +79,7 @@
 				},
 				{
 					"name": "POINT-BLANK VOLLEY",
+					"type": "active",
 					"category": "special",
 					"timing": "Enemy Combat Phase",
 					"frequency": "Once Per Turn",
@@ -113,6 +120,7 @@
 					"abilities": [
 						{
 							"name": "MARK TARGETS",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
 							"declare": "Pick an enemy unit that was targeted by this unit’s shooting attacks this turn to be the target.",
@@ -166,6 +174,7 @@
 					"abilities": [
 						{
 							"name": "EXPERT TRACKERS",
+							"type": "active",
 							"category": "control",
 							"timing": "Deployment Phase",
 							"effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase."
@@ -198,6 +207,7 @@
 					"abilities": [
 						{
 							"name": "BLAZING WEAPONS",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -242,12 +252,14 @@
 					"abilities": [
 						{
 							"name": "BLACKPOWDER SQUIRE",
+							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
 							"effect": "While this unit has a Blackpowder Squire token, this unit’s ranged weapons have Shoot in Combat."
 						},
 						{
 							"name": "CAN'T STOP!",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Shooting Phase",
 							"frequency": "Once Per Turn (Army)",
@@ -288,6 +300,7 @@
 			"battle_traits": [
 				{
 					"name": "THE OFFICAR'S ORDER",
+					"type": "active",
 					"category": "control",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round",
@@ -304,12 +317,14 @@
 			"regiment_abilities": [
 				{
 					"name": "FOR SIGMAR, CHARGE!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Friendly CAVALRY units have STRIKE-FIRST if they charged in the same turn."
 				},
 				{
 					"name": "IRONWELD DISCIPLINE",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Enemy Shooting Phase",
 					"frequency": "Once Per Turn",
@@ -320,6 +335,7 @@
 			"enhancements": [
 				{
 					"name": "FLASK OF LETHISIAN DARKWATER",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Battle",
@@ -327,6 +343,7 @@
 				},
 				{
 					"name": "BRAZIER OF HOLY FLAME",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"declare": "Pick a friendly Freeguild Steelhelms unit within your general’s combat range.",
@@ -334,12 +351,14 @@
 				},
 				{
 					"name": "HEIRLOOM BLADE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of your general’s Master-forged Longsword."
 				},
 				{
 					"name": "GLIMMERING",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each phase, you can re-roll 1 hit roll, or 1 wound roll, or 1 save roll made for your general."
@@ -393,6 +412,7 @@
 					"abilities": [
 						{
 							"name": "DECISIVE COMMANDER",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly Freeguild Steelhelms unit wholly within 12\" of this unit to be the target and roll a dice.",
@@ -455,6 +475,7 @@
 					"abilities": [
 						{
 							"name": "SHOT AND SHELL",
+							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
 							"effect": "Each time this unit uses a SHOOT ability, choose either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. The Cannonball can only be chosen if this unit has not used a MOVE ability that turn."
@@ -502,6 +523,7 @@
 					"abilities": [
 						{
 							"name": "DEVASTATING CHARGE",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
 							"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target and roll a dice.",
@@ -535,6 +557,7 @@
 					"abilities": [
 						{
 							"name": "CONSECRATE THE LAND",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Movement Phase",
 							"declare": "If this unit is contesting an objective you control that is not contested by any enemy models, roll a dice.",
@@ -573,6 +596,7 @@
 			"battle_traits": [
 				{
 					"name": "RANGER DOCTRINES",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for your general or a friendly non-HERO unit wholly within 12\" of your general",
 					"frequency": "Once Per Turn (Army)",
@@ -588,12 +612,14 @@
 			"regiment_abilities": [
 				{
 					"name": "CLOSE-QUARTERS DRILL",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Friendly units’ ranged weapons have Shoot in Combat but you must subtract 1 from hit rolls for their shooting attacks while they are in combat."
 				},
 				{
 					"name": "COME AND TAKE IT, BLAGGARDS!",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 5 to the control scores of friendly non-HERO units while they are in combat with any enemy units that have 6 or more models or a Health characteristic of 3 or more."
@@ -602,6 +628,7 @@
 			"enhancements": [
 				{
 					"name": "THROWING KNIVES",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick a visible enemy unit within 10\" of your general to be the target.",
@@ -609,12 +636,14 @@
 				},
 				{
 					"name": "HOT-BLOODED ENDURANCE",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Your general can use CHARGE abilities even if they used a RUN or RETREAT ability in the same turn and no mortal damage is inflicted on them by RETREAT abilities."
 				},
 				{
 					"name": "TRAINED RANGER",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -623,6 +652,7 @@
 				},
 				{
 					"name": "BLADE OF THE KRAKEN",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -652,6 +682,7 @@
 					"abilities": [
 						{
 							"name": "VETERAN SKIRMISHERS",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
@@ -659,6 +690,7 @@
 						},
 						{
 							"name": "PROWLING ASH PANTHER",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
 							"effect": "If this unit has the Thexa token, give that token to an enemy unit within 6\" of this unit.\nIf an enemy unit has the Thexa token, inflict D3 mortal damage on that enemy unit. Then, give this unit the Thexa token."
@@ -691,6 +723,7 @@
 					"abilities": [
 						{
 							"name": "CONSECRATE THE LAND",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick an objective within 12\" of this unit, then make a chanting roll of D6.",
@@ -735,6 +768,7 @@
 					"abilities": [
 						{
 							"name": "CINDER AND ASH",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
 							"frequency": "Once Per Turn (Army)",
@@ -769,6 +803,7 @@
 					"abilities": [
 						{
 							"name": "UNBREACHABLE WILL",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
 							"declare": "If this unit has not charged this turn, pick an enemy unit in combat with it to be the target.",
@@ -810,6 +845,7 @@
 			"battle_traits": [
 				{
 					"name": "SUDDEN AMBUSH",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit within 6\" of an enemy unit and not in combat.",
@@ -817,6 +853,7 @@
 				},
 				{
 					"name": "LADY OF THE WHEEL",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly model is slain by a combat attack, roll a number of dice equal to that model’s Health characteristic. For each 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -825,6 +862,7 @@
 			"regiment_abilities": [
 				{
 					"name": "FERVENT RUSH",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -833,6 +871,7 @@
 				},
 				{
 					"name": "FIERCE ZEALOTS",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to the control scores of friendly Freeguild Steelhelms units."
@@ -841,12 +880,14 @@
 			"enhancements": [
 				{
 					"name": "DEVOUT COMMANDER",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic and the Rend characteristic of your general’s Master-forged Weapon."
 				},
 				{
 					"name": "STAND FAST, COMRADES",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -855,6 +896,7 @@
 				},
 				{
 					"name": "STEP TO IT!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a RUN ability for a non-HERO unit wholly within 12\" of your general",
 					"frequency": "Once Per Turn",
@@ -862,6 +904,7 @@
 				},
 				{
 					"name": "ARDENT DEMAND",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a visible friendly non-HERO unit wholly within 12\" of your general to be the target.",
@@ -904,6 +947,7 @@
 					"abilities": [
 						{
 							"name": "MARSHAL’S ORDERS",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
@@ -911,6 +955,7 @@
 						},
 						{
 							"name": "RELIC ENVOY",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "While a friendly unit other than this unit has the Relic Envoy token, add 1 to wound rolls for that unit’s combat attacks.\nIf this unit is destroyed, remove the Relic Envoy token from the battlefield."
@@ -944,6 +989,7 @@
 					"abilities": [
 						{
 							"name": "VESSEL OF SIGMAR",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick up to 3 visible friendly or enemy units to be the targets.",
@@ -979,6 +1025,7 @@
 					"abilities": [
 						{
 							"name": "FOREWARNED IS FOREARMED",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "While it is your turn, this unit has STRIKE-FIRST."
@@ -1010,6 +1057,7 @@
 					"abilities": [
 						{
 							"name": "TALENTED CHAMPIONS",
+							"type": "active",
 							"category": "special",
 							"timing": "Reaction: You used a command",
 							"frequency": "Once Per Turn",
@@ -1050,6 +1098,7 @@
 					"abilities": [
 						{
 							"name": "FANATICAL FOLLOWERS",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Any Combat Phase",
 							"effect": "Return 1 slain model to this unit."

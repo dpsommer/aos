@@ -9,6 +9,7 @@
 			"battle_traits": [
 				{
 					"name": "The Summerking's Colours",
+					"type": "active",
 					"category": "control",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -17,6 +18,7 @@
 				},
 				{
 					"name": "A Duel, Good Sir",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -35,6 +37,7 @@
 				},
 				{
 					"name": "In Their Sire's Shadow",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -48,6 +51,7 @@
 				},
 				{
 					"name": "The Knight's Vow",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -56,12 +60,14 @@
 				},
 				{
 					"name": "Nightmarish Charge",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for combat attacks that target friendly NEW SUMMERCOURT units that charged in the same turn."
 				},
 				{
 					"name": "Red Errantry Hosts",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -75,6 +81,7 @@
 					"entries": [
 						{
 							"name": "Tip of the King's Lance",
+							"type": "active",
 							"category": "movement",
 							"timing": "Any Combat Phase",
 							"effect": "If this unit charged this turn, it can move 2D6\". It can pass through models in enemy units, but it must end that move in combat."
@@ -86,6 +93,7 @@
 					"entries": [
 						{
 							"name": "Feted Coronet",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (4+) until a friendly NEW SUMMERCOURT unit is destroyed."
@@ -100,6 +108,7 @@
 					"entries": [
 						{
 							"name": "Deranged Transformation",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, pick a visible friendly NEW SUMMERCOURT INFANTRY or CAVALRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -112,6 +121,7 @@
 						},
 						{
 							"name": "Miasma of Madness",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -129,6 +139,7 @@
 					"entries": [
 						{
 							"name": "Excommunication",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly NEW SUMMERCOURT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -147,6 +158,7 @@
 					"entries": [
 						{
 							"name": "Summon Corpsemare Stampede",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Corpsemare Stampede on the battlefield, pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -167,12 +179,14 @@
 			"battle_traits": [
 				{
 					"name": "The Equinox Parade",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "In the first battle round:\n• Add 1 to run rolls for friendly EQUINOX FEAST units for each other friendly EQUINOX FEAST unit that has used a RUN ability this phase.\n• Add D6\" to the distance friendly EQUINOX FEAST units can move when they use a RETREAT ability."
 				},
 				{
 					"name": "A Display of Falconry",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -181,18 +195,21 @@
 				},
 				{
 					"name": "The Ritual Dance",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "In the third battle round, while a friendly EQUINOX FEAST unit is in combat with an enemy unit that contains any champions, musicians or standard bearers, it can move 6\" instead of 3\" when it makes a pile-in move."
 				},
 				{
 					"name": "Eat Your Fill!",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "In the fourth battle round, each time a friendly EQUINOX FEAST unit uses a FIGHT ability, after that ability has been resolved:\n• If that unit is damaged, Heal (D3) that unit.\n• If that unit is not damaged, return up to 3 slain models to it."
 				},
 				{
 					"name": "Make Merry 'Til the Morn",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "In the fifth battle round, friendly EQUINOX FEAST units have WARD (4+) while they are within 3\" of 2 or more other visible friendly EQUINOX FEAST units."
@@ -204,6 +221,7 @@
 					"entries": [
 						{
 							"name": "Lord of Revelries",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Ignore the first damage point that would be allocated to this unit in each phase."
@@ -215,6 +233,7 @@
 					"entries": [
 						{
 							"name": "Broken Sceptre of the Solstice",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Your Movement Phase",
 							"frequency": "Once Per Battle",
@@ -231,6 +250,7 @@
 					"entries": [
 						{
 							"name": "Solarite Flares",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly EQUINOX FEAST WIZARD to cast this spell, pick a point on the battlefield that is visible to them, then pick each unit (friendly and enemy) within 3\" of that point to be the targets. Then, make a casting roll of 2D6.",
@@ -249,6 +269,7 @@
 					"entries": [
 						{
 							"name": "A Midsummer Mania",
+							"type": "prayer",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly EQUINOX FEAST PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them that has not been picked to be the target of this prayer this turn to be the target, then make a chanting roll of D6.",
@@ -267,6 +288,7 @@
 					"entries": [
 						{
 							"name": "Summon Chalice of Ushoran",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Chalice of Ushoran on the battlefield, pick a friendly EQUINOX FEAST WIZARD to cast this spell, then make a casting roll of 2D6.",

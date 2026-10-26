@@ -26,6 +26,7 @@
 			"regiment_abilities": [
 				{
 					"name": "MURDEROUS EPIPHANY",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -33,6 +34,7 @@
 				},
 				{
 					"name": "BLESSING OF KHAINE",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
@@ -42,12 +44,14 @@
 			"enhancements": [
 				{
 					"name": "BATHED IN BLOOD",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time a model is slain by your general, Heal (1) your general."
 				},
 				{
 					"name": "FLASK OF SHADEMIST",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -55,12 +59,14 @@
 				},
 				{
 					"name": "FUELLED BY REVENGE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly Blood Stalkers units while they are wholly within 12\" of your general."
 				},
 				{
 					"name": "ZEALOUS ORATOR",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly unit wholly within 9\" of your general that is not in combat. Roll a dice for each slain model from that unit.",
@@ -101,6 +107,7 @@
 					"abilities": [
 						{
 							"name": "ALL-OUT SLAUGHTER",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
@@ -108,6 +115,7 @@
 						},
 						{
 							"name": "TURNED TO CRYSTAL",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
 							"declare": "Pick an enemy unit within 1\" of this unit to be the target and roll a dice.",
@@ -165,6 +173,7 @@
 					"abilities": [
 						{
 							"name": "DOOMFIRE",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -212,6 +221,7 @@
 					"abilities": [
 						{
 							"name": "HEARTSEEKERS",
+							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
 							"effect": "Shooting attacks made by this unit score critical hits on unmodified hit rolls of 5+ if this unit did not use a MOVE ability in the same turn."
@@ -248,6 +258,7 @@
 					"abilities": [
 						{
 							"name": "FRENZIED FERVOUR",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Rend characteristic of this unit’s melee weapons if it charged in the same turn."
@@ -290,6 +301,7 @@
 			"battle_traits": [
 				{
 					"name": "SHADOWMASKED",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn",
@@ -300,6 +312,7 @@
 			"regiment_abilities": [
 				{
 					"name": "BLEED THEM PALE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -308,6 +321,7 @@
 				},
 				{
 					"name": "MURDEROUS STRIKE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly INFANTRY units that charged in the same turn."
@@ -316,6 +330,7 @@
 			"enhancements": [
 				{
 					"name": "SHADOW AVATAR",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Battle",
@@ -323,6 +338,7 @@
 				},
 				{
 					"name": "BOILING BLOOD",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick a visible enemy unit within 12\" of your general to be the target.",
@@ -330,6 +346,7 @@
 				},
 				{
 					"name": "FRENZIED EXHORTATIONS",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target.",
@@ -337,6 +354,7 @@
 				},
 				{
 					"name": "BLADED IMPACT",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If your general charged this phase, pick an enemy unit within 1\" of them to be the target.",
@@ -367,6 +385,7 @@
 					"abilities": [
 						{
 							"name": "CONSECRATED REVULSION",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible friendly INFANTRY unit wholly within 12\" of this unit to be the target.",
@@ -403,6 +422,7 @@
 					"abilities": [
 						{
 							"name": "BLOODY INCITEMENT",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
@@ -449,6 +469,7 @@
 					"abilities": [
 						{
 							"name": "SHADOW LEAP",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"frequency": "Once Per Battle",
@@ -483,6 +504,7 @@
 					"abilities": [
 						{
 							"name": "DANCE OF DEATH",
+							"type": "active",
 							"category": "movement",
 							"timing": "Enemy Combat Phase",
 							"frequency": "Once Per Turn (Army)",
@@ -518,6 +540,7 @@
 					"abilities": [
 						{
 							"name": "EXSANGUINATING GLARE",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
 							"declare": "If this unit is in combat, pick an enemy unit in combat with it to be the target. Otherwise, pick a visible enemy unit within 12\" of it to be the target.",

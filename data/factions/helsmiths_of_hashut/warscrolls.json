@@ -30,12 +30,14 @@
 			"abilities": [
 				{
 					"name": "Zealous Counter-Attack",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared the 'Counter-charge' command for this unit",
 					"effect": "This unit has STRIKE-FIRST for he rest of the turn."
 				},
 				{
 					"name": "Crush the Unworthy",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to charge rolls for each daemonic power point it has."
@@ -81,12 +83,14 @@
 			"abilities": [
 				{
 					"name": "Zealous Acolytes",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "• Add 1 to the Attacks characteristic of this unit's melee weapons while it is contesting an objective you do not control.\n• Add 10 to this unit's control score while it is contesting an objective you control."
 				},
 				{
 					"name": "Daemonic Resilience",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has:\n1 This unit has WARD (6+).\n2 This unit has WARD (5+).\n3 This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS, and abilites used by MANIFESTATIONS. Otherwise, it has WARD (5+)."
@@ -131,12 +135,14 @@
 			"abilities": [
 				{
 					"name": "Extract Power",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Your Turn",
 					"effect": "If this unit is contesting an objective, a Place of Power or a terrain feature and that objective, Place of Power or terrain feature has a friendly desolation token, give this unit 1 ritual point."
 				},
 				{
 					"name": "Stoked Fanaticism",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore the first damage point allocated to each friendly non-HOBGROT HELSMITHS OF HASHUT unit each phase while it is wholly within 6\" of this unit. Add 6\" to the range of this ability for each daemonic power point this unit has"
@@ -181,6 +187,7 @@
 			"abilities": [
 				{
 					"name": "Bull Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
@@ -188,6 +195,7 @@
 				},
 				{
 					"name": "Crush the Unworthy",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to charge rolls for each daemonic power point it has."
@@ -246,6 +254,7 @@
 			"abilities": [
 				{
 					"name": "Molten Mending",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -319,18 +328,21 @@
 			"abilities": [
 				{
 					"name": "Unholy Stampede",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a friendly HELSMITHS OF HASHUT CAVALRY unit is wholly within 12\" of this unit:\n• That unit can use a RETREAT ability and still use CHARGE abilities later in the turn.\n• No mortal damage is inflicted on that unit by RETREAT abilities."
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Horns and Hooves is 4."
 				},
 				{
 					"name": "Immolating Presence",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -342,6 +354,7 @@
 				},
 				{
 					"name": "Daemonic Resilience",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has:\n1 This unit has WARD (6+).\n2 This unit has WARD (5+).\n3 This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS, and abilites used by MANIFESTATIONS. Otherwise, it has WARD (5+)."
@@ -417,6 +430,7 @@
 			"abilities": [
 				{
 					"name": "Leech Realm-Magic",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -424,12 +438,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Horns and Hooves is 4."
 				},
 				{
 					"name": "Calamitous Shockwave",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -441,6 +457,7 @@
 				},
 				{
 					"name": "Daemonic Resilience",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has:\n1 This unit has WARD (6+).\n2 This unit has WARD (5+).\n3 This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS, and abilites used by MANIFESTATIONS. Otherwise, it has WARD (5+)."
@@ -497,6 +514,7 @@
 			"abilities": [
 				{
 					"name": "Hungering Flames",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -504,6 +522,7 @@
 				},
 				{
 					"name": "Watch Them Burn",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit and all of its attacks targeted the same enemy unit",
 					"effect": "Roll a number of dice equal to the number of daemonic power points this unit has for each other enemy unit within the combat range of the target of this unit's shooting attacks. For each 3+, inflict 1 mortal damage on the enemy unit being rolled for."
@@ -544,6 +563,7 @@
 			"abilities": [
 				{
 					"name": "Engine of Domination",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -551,6 +571,7 @@
 				},
 				{
 					"name": "Daemonic Strength",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "For each daemonic power point this unit has:\n• Add 1\" to its Move characteristic\n• Add 1 to the Attacks characteristic of its weapons."
@@ -606,6 +627,7 @@
 			"abilities": [
 				{
 					"name": "All Must Burn",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -614,6 +636,7 @@
 				},
 				{
 					"name": "Daemonic Strength",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "For each daemonic power point this unit has:\n• Add 1\" to its Move characteristic\n• Add 1 to the Attacks characteristic of its weapons."
@@ -652,6 +675,7 @@
 			"abilities": [
 				{
 					"name": "Disposable Lackeys",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"effect": "This unit can immediately use the 'Normal Move' ability as if it were your movement phase."
@@ -696,18 +720,21 @@
 			"abilities": [
 				{
 					"name": "Disciplined March",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When making run rolls for this unit, if you roll a 1-3, you can use a value of 4 instead."
 				},
 				{
 					"name": "Daemonic Resilience",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has:\n1 This unit has WARD (6+).\n2 This unit has WARD (5+).\n3 This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS, and abilites used by MANIFESTATIONS. Otherwise, it has WARD (5+)."
 				},
 				{
 					"name": "Sacred Gongs",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every MUSICIAN in this unit. If this unit uses the 'Rally' command, as a reaction, you can remove a Gong Carrier to make an additional rally roll of D6."
@@ -754,6 +781,7 @@
 			"abilities": [
 				{
 					"name": "Take Up Their Arms",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -762,12 +790,14 @@
 				},
 				{
 					"name": "Daemonic Resilience",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has:\n1 This unit has WARD (6+).\n2 This unit has WARD (5+).\n3 This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS, and abilites used by MANIFESTATIONS. Otherwise, it has WARD (5+)."
 				},
 				{
 					"name": "Sanctified Gongs",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every MUSICIAN in this unit. If this unit uses the 'Rally' command, make 2 additional rally rolls of D6 for each Gong Carrier in this unit, but for each unmodified rally roll of 1, you must remove a Gong Carrier from this unit after the command has been resolved."
@@ -813,6 +843,7 @@
 			"abilities": [
 				{
 					"name": "Conquered Lands",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If this unit is contesting an objective you control, pick a friendly non-HOBGROT HELSMITHS OF HASHUT unit wholly within 12\" of this unit to be the target.",
@@ -826,12 +857,14 @@
 				},
 				{
 					"name": "Daemonic Resilience",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has:\n1 This unit has WARD (6+).\n2 This unit has WARD (5+).\n3 This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS, and abilites used by MANIFESTATIONS. Otherwise, it has WARD (5+)."
 				},
 				{
 					"name": "Sacred Gongs",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every MUSICIAN in this unit. If this unit uses the 'Rally' command, as a reaction, you can remove a Gong Carrier to make an additional rally roll of D6."
@@ -883,6 +916,7 @@
 			"abilities": [
 				{
 					"name": "Hateful Hail",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -891,6 +925,7 @@
 				},
 				{
 					"name": "Manglers of Metal",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's ranged weapons for each daemonic power point this unit has."
@@ -943,6 +978,7 @@
 			"abilities": [
 				{
 					"name": "Scorched Remains",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -951,6 +987,7 @@
 				},
 				{
 					"name": "Manglers of Metal",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's ranged weapons for each daemonic power point this unit has."
@@ -1014,6 +1051,7 @@
 			"abilities": [
 				{
 					"name": "Infernal Empowerment",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Apply the effect(s) below that corresponds with the number of daemonic power points this unit has. These effects are cumulative.\n1+ Add 1\" to this unit's Move characteristic.\n2+ Add 1 to wound rolls for this unit's combat attacks.\n3+ Add 1 to the Rend characteristic of this unit's melee weapons."
@@ -1070,6 +1108,7 @@
 			"abilities": [
 				{
 					"name": "Ruinous Bombardment",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1078,6 +1117,7 @@
 				},
 				{
 					"name": "Calculated Trajectory",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this unit's shooting attacks that target an enemy unit with 5 or more models that is more than 12\" from this unit."
@@ -1146,6 +1186,7 @@
 			"abilities": [
 				{
 					"name": "Pitiless Trampling",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1157,12 +1198,14 @@
 				},
 				{
 					"name": "Peerless Among Daemonsmiths",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has:\n1 This unit has WARD (6+).\n2 Add 1 to casting rolls for this unit. In addition, this unit has WARD (5+).\n3 Add 2 to casting rolls for this unit. In addition, this unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS, and abilites used by MANIFESTATIONS. Otherwise, it has WARD (5+)."
 				},
 				{
 					"name": "The Curse of Stone",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a point on the battlefield within 9\" of this unit, then pick a second point on the battlefield within 9\" of the first point. Draw a line between the caster and the first point, and between the first and second points. Each enemy unit the lines pass across is a target. Then, make a casting roll of 2D6.",
@@ -1174,12 +1217,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Ghorrakos's Horns and Hooves is 4."
 				},
 				{
 					"name": "Master of Daemonic Power",
+					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
 					"effect": "Remove up to 3 daemonic power points in total from any combination of friendly units wholly within 18\" of this unit. Then, allocate them to a different friendly non-HOBGROT HELSMITHS OF HASHUT unit wholly within 18\" of this unit."
@@ -1231,12 +1276,14 @@
 			"abilities": [
 				{
 					"name": "'Fight, You Scum!'",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO HELSMITHS OF HASHUT INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of its melee weapons for the rest of the turn."
 				},
 				{
 					"name": "Black-Hearted Conqueror",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to the control scores of friendly HELSMITH OF HASHUT INFANTRY units while they are wholly within 6\" of this unit. Add 6\" to the range of this ability for each daemonic power point this unit has."
@@ -1284,6 +1331,7 @@
 			"abilities": [
 				{
 					"name": "Triumph or Perish, You Vermin!",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit has any daemonic power points, friendly non‑HOBGROT HELSMITHS OF HASHUT units, excluding War Despots, with 0 daemonic power points count as having 1 daemonic power point while they are wholly within 9\" of and visible to this unit.\nAdd 3\" to the range of this ability while this unit has 2 daemonic power points. Add 6\" to the range of this ability instead while this unit has 3 daemonic power points.",
@@ -1296,6 +1344,7 @@
 				},
 				{
 					"name": "Daemonfire Pistol",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",

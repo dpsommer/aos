@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Eldritch Illusions",
+			"type": "active",
 			"category": "movement",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -13,6 +14,7 @@
 		},
 		{
 			"name": "Smoke and Mirrors",
+			"type": "active",
 			"category": "movement",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -21,6 +23,7 @@
 		},
 		{
 			"name": "Silver Simulacrum",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -34,24 +37,28 @@
 		},
 		{
 			"name": "All Part of the Plan",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "You start the battle with 0 fate points. Gain 1 fate point each time:\n• You lose the priority roll.\n• A spell cast by a friendly DISCIPLES OF TZEENTCH unit is unbound.\n• A friendly DISCIPLES OF TZEENTCH unit miscasts a spell.\n• Your opponent gains control of an objective that you controlled at the start of the turn.\n• A friendly Argent Shard is demolished.\nYou can have a maximum of 9 fate points."
 		},
 		{
 			"name": "Destined to Serve",
+			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "Before allocating damage points to a friendly Disciples of Tzeentch unit, you can spend any number of fate points. For each fate point you spend, remove 1 damage point in that unit's damage pool."
 		},
 		{
 			"name": "Destined Arcana",
+			"type": "active",
 			"category": "special",
 			"timing": "Reaction: You declared a SPELL ability for a DISCIPLES OF TZEENTCH unit",
 			"effect": "Spend any number of fate points. For each fate point you spend, add 1 to the casting roll for that spell."
 		},
 		{
 			"name": "Destined for Battle",
+			"type": "active",
 			"category": "movement",
 			"timing": "Reaction: You declared a CHARGE ability for a DISCIPLES OF TZEENTCH unit in your turn",
 			"effect": "Spend any number of fate points. For each fate point you spend, add 1 to the charge roll for that CHARGE ability."
@@ -64,6 +71,7 @@
 			"abilities": [
 				{
 					"name": "Cometh the Hour",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If you make a charge roll of 9+ for a friendly DISCIPLES OF TZEENTCH unit, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn."
@@ -76,6 +84,7 @@
 			"abilities": [
 				{
 					"name": "Inevitable Ending",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -90,6 +99,7 @@
 			"abilities": [
 				{
 					"name": "Hideous Unpredictability",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -104,6 +114,7 @@
 			"abilities": [
 				{
 					"name": "Symbiotic Madness",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Friendly ARCANITE units' melee weapons have Crit (2 Hits) while they are wholly within 12\" of a friendly DISCIPLES OF TZEENTCH DAEMON unit."
@@ -116,6 +127,7 @@
 			"abilities": [
 				{
 					"name": "Sorcerers of War",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -130,6 +142,7 @@
 			"abilities": [
 				{
 					"name": "Twist of Fate",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a friendly DISCIPLES OF TZEENTCH unit uses an ability that requires you to spend 1 or more fate points, after that ability has been resoled, roll a dice. On a 4+, gain 1 fate point.\nIf you remove 1 or more damage points from the damage pool of a friendly DISCIPLES OF TZEENTCH unit as a result of the 'Destined to Serve' ability, after the damage sequence for that unit has been resolved, roll a dice. On a 4+, gain 1 fate point."
@@ -144,20 +157,24 @@
 			"entries": [
 				{
 					"name": "Silver Summoner",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly non-WARFLOCK ARCANITE unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) more than 9\" away from all enemy units and wholly within 12\" of a friendly Argent Shard that is visible to this unit.",
-					"points": 10
+					"points": 10,
+					"command_points": 1
 				},
 				{
 					"name": "Grand Illusionist",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"effect": "If this unit was set up this turn, it can move D3\". That move cannot pass through or end within the combat range of an enemy unit."
 				},
 				{
 					"name": "Devolving Aura",
+					"type": "active",
 					"category": "control",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
@@ -171,6 +188,7 @@
 			"entries": [
 				{
 					"name": "Fate Slicer",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"effect": "Gain 1 fate point if any models were slain by this unit this turn.",
@@ -178,12 +196,14 @@
 				},
 				{
 					"name": "Cloaked in Wyrdflame",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from wound rolls for attacks that target this unit."
 				},
 				{
 					"name": "Kairic Tome",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a DISCIPLES OF TZEENTCH unit wholly within 6\" of this unit",
 					"effect": "Add 1 to or subtract 1 from the casting roll for that spell. This unit can use this ability more than once per phase but only once per SPELL ability.",
@@ -198,12 +218,14 @@
 			"entries": [
 				{
 					"name": "Mutating Blade",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"effect": "Pick 1 of this unit's melee weapons. That weapon's Attacks characteristic is 2D6 for the rest of the battle."
 				},
 				{
 					"name": "Arcane Siphon",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -212,6 +234,7 @@
 				},
 				{
 					"name": "Spell-Catcher Amulet",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -227,6 +250,7 @@
 			"entries": [
 				{
 					"name": "Tome of Scorched Insight",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a non-SUMMON SPELL ability for this unit",
 					"effect": "Change the casting roll for that spell to a value of 12 that cannot be modified. That spell cannot be unbound and this unit cannot use that SPELL ability again for the rest of the battle.",
@@ -234,12 +258,14 @@
 				},
 				{
 					"name": "The Five Verses of Volarian",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit has a Move characteristic of 14\" and has FLY."
 				},
 				{
 					"name": "The Searing Eye",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, roll a dice. If the roll is the same as any of the dice in the casting roll, that spell is miscast. Otherwise, add the roll to the casting roll."
@@ -252,6 +278,7 @@
 			"entries": [
 				{
 					"name": "Vision of Defiant Supremacy",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -260,6 +287,7 @@
 				},
 				{
 					"name": "Vision of Destined Conquest",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Your Turn",
 					"frequency": "Once Per Battle",
@@ -268,6 +296,7 @@
 				},
 				{
 					"name": "Vision of Arcane Sacrifice",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While units (friendly or enemy) are within 6\" of this unit:\n• Add 1 to unbinding rolls for those units.\n• Spells cast by those units are miscast on an unmodified casting roll of 4 or less.\nThe first time this unit is destroyed, gain D6 fate points.",
@@ -284,6 +313,7 @@
 			"entries": [
 				{
 					"name": "Infernal Gateway",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
@@ -295,6 +325,7 @@
 				},
 				{
 					"name": "Wyrdflame Haze",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -306,6 +337,7 @@
 				},
 				{
 					"name": "Shield of Fate",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -324,6 +356,7 @@
 			"entries": [
 				{
 					"name": "Bolt of Tzeentch",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6",
@@ -336,6 +369,7 @@
 				},
 				{
 					"name": "Fold Reality",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a DISCIPLES OF TZEENTCH WIZARD to cast this spell, then you can pick a friendly non-MONSTER DISCIPLES OF TZEENTCH unit wholly within 12\" of the caster to be the target. Then, make a casting roll of 2D6.",
@@ -353,6 +387,7 @@
 				},
 				{
 					"name": "Transformed to Spawn",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -371,6 +406,7 @@
 			"entries": [
 				{
 					"name": "Summon Burning Sigil of Tzeentch",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly BURNING SIGIL OF TZEENTCH on the battlefield, pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -383,6 +419,7 @@
 				},
 				{
 					"name": "Summon Daemonic Simulacrum",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Daemonic Simulacrum on the battlefield, pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -395,6 +432,7 @@
 				},
 				{
 					"name": "Summon Tome of Eyes",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Tome of Eyes on the battlefield, pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",

@@ -11,12 +11,14 @@
 			"battle_traits": [
 				{
 					"name": "'Up and At 'Em!'",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When making run rolls for friendly IRONSUNZ units, if you roll a 1-2, you can use a value of 3 instead."
 				},
 				{
 					"name": "'Let's Try Dis...'",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -25,6 +27,7 @@
 				},
 				{
 					"name": "Keep On Smashin'",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -33,6 +36,7 @@
 				},
 				{
 					"name": "Ironsunz Waaagh!",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -50,6 +54,7 @@
 					"entries": [
 						{
 							"name": "Soulkrumpa",
+							"type": "active",
 							"category": "",
 							"timing": "End of Any Turn",
 							"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's combat attacks to be the target.",
@@ -63,6 +68,7 @@
 					"entries": [
 						{
 							"name": "Seen Dat Before",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -79,6 +85,7 @@
 					"entries": [
 						{
 							"name": "Brutal Troof",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly IRONSUNZ WIZARD to cast this spell, pick a visible friendly IRONSUNZ unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -91,6 +98,7 @@
 						},
 						{
 							"name": "Animosity",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly IRONSUNZ WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -102,6 +110,7 @@
 						},
 						{
 							"name": "Mork's Melee Miracle",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly IRONSUNZ WIZARD to cast this spell, pick a visible friendly IRONSUNZ unit wholly within 12\" of them to be the target, then make a casting roll of 2D6, subtracting the current battle round number from the roll.",
@@ -120,6 +129,7 @@
 					"entries": [
 						{
 							"name": "Summon Foot of Gork",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly IRONSUNZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -139,6 +149,7 @@
 					"entries": [
 						{
 							"name": "Ghurish Beat",
+							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly IRONSUNZ PRIEST to chant this prayer, pick a visible terrain feature within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -151,6 +162,7 @@
 						},
 						{
 							"name": "Krumpin' Beat",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly IRONSUNZ PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -162,6 +174,7 @@
 						},
 						{
 							"name": "Ironsunz Beat",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly IRONSUNZ PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -181,12 +194,14 @@
 			"battle_traits": [
 				{
 					"name": "Incessant Drive",
+					"type": "active",
 					"category": "special",
 					"timing": "End of the First Battle Round",
 					"effect": "Add 1 to the momentum scores of friendly MAW-GRUNTA units."
 				},
 				{
 					"name": "Fast and Furious",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -195,12 +210,14 @@
 				},
 				{
 					"name": "Monstrous Momentum",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add the current battle round number to the Move characteristic of friendly GRUNTA STAMPEDE units."
 				},
 				{
 					"name": "Eatin' on da Hoof",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -212,6 +229,7 @@
 				},
 				{
 					"name": "Wall of Hogflesh",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -220,6 +238,7 @@
 				},
 				{
 					"name": "Grunta Waaagh!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -233,6 +252,7 @@
 					"entries": [
 						{
 							"name": "Trophy Hunta",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "This unit's Pig-hakka has Anti-MONSTER (+1 Rend) and Anti-WAR MACHINE (+1 Rend)."
@@ -244,6 +264,7 @@
 					"entries": [
 						{
 							"name": "Da Boom Skull",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Reaction: You declared a command for a friendly GRUNTA STAMPEDE unit wholly within 18\" of this unit",
 							"effect": "Pick an enemy unit in combat with that friendly unit to be the target and roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -259,12 +280,14 @@
 			"battle_traits": [
 				{
 					"name": "Legendary Vandals",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Melee weapons used by friendly ZOGGROK'S IRONMONGERZ units have Anti-FACTION TERRAIN (+1 Rend) and Anti-WAR MACHINE (+1 Rend)."
 				},
 				{
 					"name": "Into Da Breach!",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -273,12 +296,14 @@
 				},
 				{
 					"name": "Ironclad Scrums",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly ZOGGROK'S IRONMONGERZ Ardboyz units with 3 or more models have WARD (5+) while they are wholly within 12\" of a different friendly ZOGGROK'S IRONMONGERZ Ardboyz unit with 3 or more models."
 				},
 				{
 					"name": "Shield of Scrap and Muscle",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly Zoggrok Anvilsmasha is within the combat range of a friendly Ardboyz unit:\n• That Zoggrok Anvilsmasha has WARD (4+).\n• Each time you make a successful ward roll for that Zoggrok Anvilsmasha, allocate 1 damage point to a friendly Ardboyz unit within its combat range after the damage sequence has been resolved (ward rolls cannot be made for those damage points)."
@@ -290,6 +315,7 @@
 					"entries": [
 						{
 							"name": "Oi! Back To It!",
+							"type": "passive",
 							"category": "rallying",
 							"timing": "Passive",
 							"effect": "If a friendly ZOGGROK'S IRONMONGERZ Ardboyz or BRUTES unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -301,6 +327,7 @@
 					"entries": [
 						{
 							"name": "Da Great Wollopa",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "If any damage points are allocated to an enemy unit by attacks made by this unit, that enemy unit is krump'd until the start of your next turn.\nWhile a unit is krump'd:\n• Subtract 1 from save rolls for that unit.\n• Ignore positive modifiers to save rolls for that unit."
@@ -315,6 +342,7 @@
 					"entries": [
 						{
 							"name": "The Green God's Hammer",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ZOGGROK'S IRONMONGERZ WIZARD to cast this spell, pick a visible friendly ZOGGROK'S IRONMONGERZ INFANTRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -333,6 +361,7 @@
 					"entries": [
 						{
 							"name": "Get 'Em, Gork!",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ZOGGROK'S IRONMONGERZ PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -351,6 +380,7 @@
 					"entries": [
 						{
 							"name": "Summon Gork-Roara",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Gork-Roara on the battlefield, pick a friendly ZOGGROK'S IRONMONGERZ WIZARD to cast this spell, then make a casting roll of 2D6.",

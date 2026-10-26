@@ -21,6 +21,7 @@
 			"battle_traits": [
 				{
 					"name": "OATHS OF DARKNESS",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -30,6 +31,7 @@
 			"regiment_abilities": [
 				{
 					"name": "RAGE OF ARKHAR",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -44,6 +46,7 @@
 				},
 				{
 					"name": "FEARLESS INVADERS",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -54,12 +57,14 @@
 			"enhancements": [
 				{
 					"name": "BLOODTHIRSTY BLADE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The Rend characteristic of your general’s Rune-etched Axe is 2."
 				},
 				{
 					"name": "CHAMPION OF RAIDS",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Charge Phase",
 					"declare": "Pick another friendly unit wholly within 12\" of your general to be the target.",
@@ -67,12 +72,14 @@
 				},
 				{
 					"name": "GODSHADOW TALISMAN",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (4+)."
 				},
 				{
 					"name": "FELL RITUALIST",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time you draw battle tactic cards, if your general is on the battlefield, you can choose to draw 1 additional battle tactic card, then put 1 of your battle tactic cards in your hand back at the bottom of your battle tactic deck."
@@ -105,6 +112,7 @@
 					"abilities": [
 						{
 							"name": "OATH OF SUPREMACY",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of your general to be the target.",
@@ -154,6 +162,7 @@
 					"abilities": [
 						{
 							"name": "SWIFT ATTACKERS",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
@@ -189,6 +198,7 @@
 					"abilities": [
 						{
 							"name": "VISIONS OF GLORY",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"effect": "If this unit includes a Godspeaker, roll 8 dice. For each 4+, until the start of your next turn, you can re-roll 1 hit roll, 1 wound roll, 1 run roll or 1 save roll for this unit."
@@ -221,6 +231,7 @@
 					"abilities": [
 						{
 							"name": "GLORIOUS DEATH",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking model, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -258,6 +269,7 @@
 			"battle_traits": [
 				{
 					"name": "DREADED ARRIVAL",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit wholly within your territory, within 1\" of a battlefield edge and more than 6\" from all enemy units.",
@@ -265,6 +277,7 @@
 				},
 				{
 					"name": "EYE OF THE GODS",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn",
@@ -275,12 +288,14 @@
 			"regiment_abilities": [
 				{
 					"name": "FIERCE CONQUERORS",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to the control scores of friendly Chaos Warriors units."
 				},
 				{
 					"name": "THE DREAD BANNER",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of the First Battle Round",
 					"frequency": "Once Per Battle",
@@ -291,18 +306,21 @@
 			"enhancements": [
 				{
 					"name": "MARK OF KHORNE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of your general’s melee weapons if they charged in the same turn."
 				},
 				{
 					"name": "MARK OF NURGLE",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from wound rolls for combat attacks that target your general."
 				},
 				{
 					"name": "MARK OF TZEENTCH",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -311,6 +329,7 @@
 				},
 				{
 					"name": "MARK OF SLAANESH",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Your general has STRIKE-FIRST."
@@ -342,12 +361,14 @@
 					"abilities": [
 						{
 							"name": "FAVOURED OF THE PANTHEON",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"effect": "Roll a dice. On a 4+, you can roll on the Eye of the Gods table for this unit."
 						},
 						{
 							"name": "IRON-WILLED CHAMPION",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target and roll a dice. You cannot pick this unit.",
@@ -402,6 +423,7 @@
 					"abilities": [
 						{
 							"name": "SWIFT DEATH",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Charge Phase",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
@@ -434,6 +456,7 @@
 					"abilities": [
 						{
 							"name": "BRINGERS OF DESOLATION",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to wound rolls for combat attacks made by this unit that target an enemy unit that is contesting an objective you do not control."
@@ -480,6 +503,7 @@
 					"abilities": [
 						{
 							"name": "IMPALING CHARGE",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Rend characteristic of this unit’s Cursed Lances if it charged in the same turn."

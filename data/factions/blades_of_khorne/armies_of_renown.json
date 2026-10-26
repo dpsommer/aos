@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "Murder-won Trophies",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -20,24 +21,28 @@
 				},
 				{
 					"name": "Brutal Lashmaster",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time a friendly Bloodstoker uses the 'Whipped to Fury' ability, another friendly GORECHOSEN CHAMPIONS HERO within its combat range can be picked to be the target of that ability instead of a non-HERO BLOODBOUND unit."
 				},
 				{
 					"name": "Legendary Slayers",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Blood-hungry weapons used by friendly GORECHOSEN CHAMPIONS units have Crit (Mortal)."
 				},
 				{
 					"name": "The Red God's Eye",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly GORECHOSEN CHAMPIONS units have WARD (6+)"
 				},
 				{
 					"name": "Hate-fuelled Killers",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "The first time each friendly GORECHOSEN CHAMPIONS unit would be destroyed, before removing it from play, roll a dice. On a 5+, that unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (1) that unit."
@@ -49,6 +54,7 @@
 					"entries": [
 						{
 							"name": "Crowned in Butchery",
+							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
 							"effect": "Add 20 to this unit's control score while it is in combat."
@@ -60,6 +66,7 @@
 					"entries": [
 						{
 							"name": "Warmonger's Icon",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -68,12 +75,14 @@
 						},
 						{
 							"name": "The Scarring Blade",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"effect": "Allocate D3 damage points to this unit (ward rolls cannot be made for those damage points). For the rest of the turn, add X to the Attacks characteristic of melee weapons used by friendly GORECHOSEN CHAMPIONS units, where X is equal to the number of damage points allocated to this unit this turn by this ability.\nFor the rest of the battle, this unit cannot use the 'Hate-fuelled Killers' ability and cannot be healed."
 						},
 						{
 							"name": "Bloodmist Skull",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (3+) against damage inflicted by shooting attacks."
@@ -88,6 +97,7 @@
 					"entries": [
 						{
 							"name": "Summon Wrath-axe",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Wrath-axe on the battlefield, pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -106,6 +116,7 @@
 					"entries": [
 						{
 							"name": "Skin of Brass",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GORECHOSEN CHAMPIONS PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -118,6 +129,7 @@
 						},
 						{
 							"name": "Cowed and Broken",
+							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GORECHOSEN CHAMPIONS PRIEST to chant this prayer, pick a visibleenemy unit within 12\" of them that is in combat with a friendly unit to be the target, then make a chanting roll of D6.",
@@ -129,6 +141,7 @@
 						},
 						{
 							"name": "Eruption of Apoplexy",
+							"type": "prayer",
 							"category": "shooting",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GORECHOSEN CHAMPIONS PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them that is in combat with a friendly unit to be the target, then make a chanting roll of D6.",
@@ -148,6 +161,7 @@
 			"battle_traits": [
 				{
 					"name": "Born of Butchery",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn",
@@ -156,6 +170,7 @@
 				},
 				{
 					"name": "Bellow of Hatred",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -167,6 +182,7 @@
 				},
 				{
 					"name": "Mage-eaters",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"frequency": "Once Per Turn (Army)",
@@ -174,6 +190,7 @@
 				},
 				{
 					"name": "First in His Sight",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Enemy Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -181,6 +198,7 @@
 				},
 				{
 					"name": "Drawn by Blood",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -192,6 +210,7 @@
 				},
 				{
 					"name": "The Price of Mercy",
+					"type": "active",
 					"category": "damage",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -200,6 +219,7 @@
 				},
 				{
 					"name": "Sunder the Sorcerous",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -213,6 +233,7 @@
 					"entries": [
 						{
 							"name": "Unrivalled Battlelust",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle (Army)",
@@ -225,6 +246,7 @@
 					"entries": [
 						{
 							"name": "Crown of the Slaughterborn",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Enemy units within 12\" of this unit cannot be healed and cannot have slain models returned to them."

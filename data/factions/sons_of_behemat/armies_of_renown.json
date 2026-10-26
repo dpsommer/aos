@@ -6,18 +6,21 @@
 			"battle_traits": [
 				{
 					"name": "Timberrrrr!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly BIG or LITTLE model is slain, before removing it from play, the players must roll off. The winner picks a point on the battlefield within 3\" of that model. Inflict D3 mortal damage on each unit (friendly and enemy) within 3\" of that point that has a lower Health characteristic than that model."
 				},
 				{
 					"name": "The World Titan's Prophet",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any other friendly BRODD'S STOMP units are within a friendly King Brodd's combat range:\n• That friendly King Brodd has WARD (5+).\n• Each time you make a successful ward roll for that friendly King Brodd, allocate 1 damage point to another friendly BRODD'S STOMP unit within its combat range after the damage sequence for that friendly King Brodd has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Wrath of Brodd",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -30,6 +33,7 @@
 				},
 				{
 					"name": "Double Stomp",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -42,6 +46,7 @@
 				},
 				{
 					"name": "Crafty Creepers",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -54,6 +59,7 @@
 				},
 				{
 					"name": "Smash It All to Bits",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -66,6 +72,7 @@
 				},
 				{
 					"name": "Watch This!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -83,6 +90,7 @@
 					"entries": [
 						{
 							"name": "I Can Do That Better",
+							"type": "active",
 							"category": "special",
 							"timing": "Reaction: You declared the 'Wrath of Brodd' ability for a friendly unit",
 							"frequency": "Once Per Battle (Army)",
@@ -95,6 +103,7 @@
 					"entries": [
 						{
 							"name": "Lucky Shiny Hat",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (4+) against damage points inflicted by SPELL and PRAYER abilities and by abilities used by MANIFESTATIONS."
@@ -109,6 +118,7 @@
 					"entries": [
 						{
 							"name": "High Expectations",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly BRODD'S STOMP PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -128,6 +138,7 @@
 			"battle_traits": [
 				{
 					"name": "I've Heard She Can...",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -153,6 +164,7 @@
 				},
 				{
 					"name": "Oi! Gerroff!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -161,6 +173,7 @@
 				},
 				{
 					"name": "Summon the Herd",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -169,6 +182,7 @@
 				},
 				{
 					"name": "Don't Let Nuffin' Happen to Her!",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While the friendly Ma Maegran is within the combat range of another friendly LITTLE unit:\n• She has WARD (5+).\n• Each time you make a successful ward roll for her, allocate 1 mortal damage to another friendly LITTLE unit within her combat range after the damage sequence for her has been resolved (ward rolls cannot be made for those damage points).\n• Ignore negative modifiers to hit rolls and wound rolls for that other friendly LITTLE unit's combat attacks."
@@ -180,12 +194,14 @@
 					"entries": [
 						{
 							"name": "Butt of the Lash",
+							"type": "active",
 							"category": "movement",
 							"timing": "Any Combat Phase",
 							"effect": "If this unit is wholly within 12\" of a friendly Ma Maegran, remove this unit from the battlefield and set it up again within her combat range. This unit can only be set up in combat with enemy units that are in combat with the friendly Ma Maegran."
 						},
 						{
 							"name": "Ghyranite Whirlstone",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
 							"declare": "Pick a visible friendly MATRIARCH'S MOB unit wholly within 12\" of this unit to be the target.",
@@ -201,6 +217,7 @@
 					"entries": [
 						{
 							"name": "A Shepherd's Watchful Eye",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick the friendly Ma Maegran to cast this spell, then make a casting roll of 2D6.",
@@ -212,6 +229,7 @@
 						},
 						{
 							"name": "Sic 'Em!",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick the friendly Ma Maegran to cast this spell, pick a visible friendly MATRIARCH'S MOB unit wholly within 12\" of her to be the target, then make a casting roll of 2D6.",
@@ -223,6 +241,7 @@
 						},
 						{
 							"name": "Mystical Demands",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick the friendly Ma Maegran to cast this spell, pick a visible friendly MATRIARCH'S MOB unit wholly within 18\" of her to be the target, then make a casting roll of 2D6.",
@@ -242,6 +261,7 @@
 			"battle_traits": [
 				{
 					"name": "Stomp! Stomp! Stomp! Stomp!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -250,6 +270,7 @@
 				},
 				{
 					"name": "Get In There, You Runts!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -258,6 +279,7 @@
 				},
 				{
 					"name": "Grab Those Rocks and Chuck 'Em!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -266,6 +288,7 @@
 				},
 				{
 					"name": "Gettin' Stuck In",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -274,6 +297,7 @@
 				},
 				{
 					"name": "Stompin' About",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -291,12 +315,14 @@
 					"entries": [
 						{
 							"name": "Absolutely Fuming",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 2 to the Attacks characteristic of this unit's Almighty Stomp if it did not use a FIGHT ability in the previous turn."
 						},
 						{
 							"name": "Eager for the Fight",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "When making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll."
@@ -308,12 +334,14 @@
 					"entries": [
 						{
 							"name": "Sparky Shield",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While they are wholly within 12\" of and visible to this unit, friendly STOMPER TRIBE units have WARD (6+) against damage inflicted by shooting attacks."
 						},
 						{
 							"name": "Club of the First Oak",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Your Turn",
 							"effect": "Heal (D3) this unit."
@@ -325,24 +353,28 @@
 					"entries": [
 						{
 							"name": "Future Stomper",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "This unit can use the 'Power Through' command even if it has not charged this turn."
 						},
 						{
 							"name": "Carefully Watched",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Reaction: You declared a Fight ability for this unit",
 							"effect": "Pick a friendly BIG unit that has not used a FIGHT ability this turn and is wholly within 12\" of this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. Add 1 to hit rolls for attacks made by this unit and the target for the rest of the turn."
 						},
 						{
 							"name": "Little Hopper",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "This unit can be picked to use the 'Stompin' About' ability even if it is not wholly within 12\" of and visible to a friendly BIG unit."
 						},
 						{
 							"name": "Keen Bean",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "While this unit is wholly within 12\" of and visible to a friendly BIG unit, it can use CHARGE abilities even if it used a RUN ability in the same turn."

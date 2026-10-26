@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "The Creeping Overgrowth",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "The creeping overgrowth is measured from each terrain feature that has a friendly overgrown token. The range of the creeping overgrowth is based on the number of friendly, overgrown tokens on the battlefield as shown:\n\n• 0-2 overgrown tokens: 6\"\n• 3-5 overgrown tokens: 9\"\n• 6-8 overgrown tokens: 12\"\n• 9+ overgrown tokens: Whole battlefield",
@@ -17,20 +18,25 @@
 		},
 		{
 			"name": "Fury of The Forest",
+			"type": "command",
 			"category": "offensive",
 			"timing": "Enemy Combat Phase",
 			"declare": "Pick a friendly SYLVANETH unit wholly within the creeping overgrowth and that is in combat with only 1 enemy unit to use this ability.",
-			"effect": "The unit using this ability has STRIKE-FIRST for the rest of the turn."
+			"effect": "The unit using this ability has STRIKE-FIRST for the rest of the turn.",
+			"command_points": 1
 		},
 		{
 			"name": "The Land Awakens",
+			"type": "command",
 			"category": "rallying",
 			"timing": "End of Your Turn",
 			"declare": "Pick a friendly non-HERO REVENANT INFANTRY unit or friendly Dryads unit that has been destroyed to be the target.",
-			"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within the creeping overgrowth and more than 9\" from all enemy units."
+			"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within the creeping overgrowth and more than 9\" from all enemy units.",
+			"command_points": 1
 		},
 		{
 			"name": "Endless Growth",
+			"type": "active",
 			"category": "special",
 			"timing": "End of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -39,6 +45,7 @@
 		},
 		{
 			"name": "Reclaimed By Nature",
+			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -46,6 +53,7 @@
 		},
 		{
 			"name": "Creeping Dread",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -60,6 +68,7 @@
 			"abilities": [
 				{
 					"name": "Fear of The Deepwoods",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "In the 'Creeping Dread' ability, replace 'while it is not wholly within 12\" of a HERO in their army' with 'while it is not wholly within 6\" of a HERO in their army'."
@@ -72,6 +81,7 @@
 			"abilities": [
 				{
 					"name": "Sacred Quarry",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -86,6 +96,7 @@
 			"abilities": [
 				{
 					"name": "Nature's Titans",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "When using the 'Endless Growth' ability, do not roll a D3 for MONSTER targets. Instead Heal (3) each of those targets."
@@ -98,6 +109,7 @@
 			"abilities": [
 				{
 					"name": "Memories Of The Fallen",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -112,6 +124,7 @@
 			"abilities": [
 				{
 					"name": "Walk the Hidden Paths",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -126,6 +139,7 @@
 			"abilities": [
 				{
 					"name": "Spiteful Dusk",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The first time each phase an enemy unit within the creeping overgrowth uses a command, inflict D3 mortal damage on that unit after that command has been resolved. If that command was a reaction, instead inflict D3 mortal damage on that unit after the ability that command was a reaction to has been resolved."
@@ -140,6 +154,7 @@
 			"entries": [
 				{
 					"name": "Spirit of The Dark Forest",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Battle",
@@ -148,12 +163,14 @@
 				},
 				{
 					"name": "Spellsinger",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is a WIZARD, add 1 to casting rolls for this unit.\nIf this unit is not a WIZARD, it can use the 'Unbind' ability as if it had WIZARD (1)."
 				},
 				{
 					"name": "Realmroot Guide",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -168,12 +185,14 @@
 			"entries": [
 				{
 					"name": "Seed of Rebirth",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "The first time this unit would be destroyed, before removing it from play, roll a die. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Heal (D3) this unit."
 				},
 				{
 					"name": "Amberglade Nectar",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -182,6 +201,7 @@
 				},
 				{
 					"name": "Wychwood Glaive",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit that had any damage points allocated to it by this unit's combat attacks this turn to be the target.",
@@ -196,12 +216,14 @@
 			"entries": [
 				{
 					"name": "Glamourweave",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each phase, you can re-roll 1 hit roll, 1 wound roll and 1 save roll for this unit."
 				},
 				{
 					"name": "Acorn of the Ages",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -209,6 +231,7 @@
 				},
 				{
 					"name": "Ranu's Lamentiri",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a unit within 30\" of this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -226,12 +249,14 @@
 			"entries": [
 				{
 					"name": "Dancing Mystiflies",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a unit within 30\" of this unit",
 					"effect": "• If this unit is not a WIZARD, it can use the 'Unbind' ability as if it had WIZARD (1). Otherwise, it can use the 'Unbind' ability an additional time each phase.\n• If this unit successfully unbinds the spell being reacted to and the caster is within the creeping overgrowth, inflict an amount of mortal damage on the caster equal to the difference between the casting roll and the unbinding roll, to a maximum of 6."
 				},
 				{
 					"name": "Glamourweave",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each phase, you can re-roll 1 hit roll, 1 wound roll and 1 save roll for this unit.",
@@ -239,6 +264,7 @@
 				},
 				{
 					"name": "Amulet of Resonance",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If this unit used the 'Eruption of Fury' ability this turn or you spent rage dice as part of the 'Fight Through the Pain' ability when resolving the damage sequence for this unit this turn, give 1 ritual point to each visible friendly SYLVANETH PRIEST wholly within 12\" of this unit."
@@ -251,6 +277,7 @@
 			"entries": [
 				{
 					"name": "Aspect of Harvestboon",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 2\" to this unit's Move characteristic while it is wholly within the creeping overgrowth.",
@@ -258,6 +285,7 @@
 				},
 				{
 					"name": "Aspect of Ironbark",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "When resolving the damage sequence for this unit, if you spend rage dice as part of the 'Fight Through the Pain' ability, you can re-roll any of the dice that determine whether damage points are removed from this unit's damage pool. After the damage sequence has been resolved, if you rolled a total of 10+ on those re-rolls, this ability has no effect for the rest of the battle.",
@@ -265,6 +293,7 @@
 				},
 				{
 					"name": "Aspect of Heartwood",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Endless Growth' ability",
 					"frequency": "Once Per Battle",
@@ -282,6 +311,7 @@
 			"entries": [
 				{
 					"name": "Jade Thorns",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SYLVANETH WIZARD to cast this spell, pick a visible friendly SYLVANETH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -294,6 +324,7 @@
 				},
 				{
 					"name": "Zephyrspite Rush",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SYLVANETH WIZARD to cast this spell, pick a visible friendly SYLVANETH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -305,6 +336,7 @@
 				},
 				{
 					"name": "Grasping Roots",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SYLVANETH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -323,6 +355,7 @@
 			"entries": [
 				{
 					"name": "Summon Gladewyrm",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Gladewyrm on the battlefield, pick a friendly SYLVANETH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -335,6 +368,7 @@
 				},
 				{
 					"name": "Summon Vengeful Skullroot",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Vengeful Skullroot on the battlefield, pick a friendly SYLVANETH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -347,6 +381,7 @@
 				},
 				{
 					"name": "Summon Spiteswarm Hive",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Spiteswarm Hive on the battlefield, pick a friendly SYLVANETH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -366,6 +401,7 @@
 			"entries": [
 				{
 					"name": "Song Of The Lost",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SYLVANETH PRIEST to chant this prayer, pick a friendly SYLVANETH unit that is wholly within the creeping overgrowth or that is visible to them and wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -378,6 +414,7 @@
 				},
 				{
 					"name": "Song Of War",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SYLVANETH PRIEST to chant this prayer, pick a friendly SYLVANETH unit that is wholly within the creeping overgrowth or that is visible to them and wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -389,6 +426,7 @@
 				},
 				{
 					"name": "Song Of Dread",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SYLVANETH PRIEST to chant this prayer, pick an enemy unit that is wholly within the creeping overgrowth or that is visible to them and within 18\" of them to be the target, then make a chanting roll of D6.",

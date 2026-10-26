@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "The Lurking Vermintide",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"declare": "Pick a friendly SKAVEN unit that has not been deployed.",
@@ -15,6 +16,7 @@
 		},
 		{
 			"name": "Always Three Clawsteps Ahead",
+			"type": "active",
 			"category": "movement",
 			"timing": "Enemy Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -23,12 +25,14 @@
 		},
 		{
 			"name": "Too Quick to Hit-hit",
+			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "No mortal damage is inflicted on friendly SKAVEN INFANTRY and CAVALRY units by RETREAT abilities."
 		},
 		{
 			"name": "Splinters of the Vermindoom",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Battle Round",
 			"frequency": "Once Per Battle Round (Army)",
@@ -37,6 +41,7 @@
 		},
 		{
 			"name": "Gnawhole Ambush",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"declare": "Pick a friendly SKAVEN unit that is in the tunnels below to use this ability.",
@@ -50,6 +55,7 @@
 			"abilities": [
 				{
 					"name": "Corrupted Earth",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -64,6 +70,7 @@
 			"abilities": [
 				{
 					"name": "Prized Creations",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -78,6 +85,7 @@
 			"abilities": [
 				{
 					"name": "Claw-picked",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -92,6 +100,7 @@
 			"abilities": [
 				{
 					"name": "Skryre Prototypes",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -106,6 +115,7 @@
 			"abilities": [
 				{
 					"name": "Kill-kill! Scurry-flee!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -120,6 +130,7 @@
 			"abilities": [
 				{
 					"name": "Will of the Horned Rat",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While a friendly SKAVEN DAEMON is within the combat range of a friendly non-HERO SKAVEN INFANTRY unit:\n• That SKAVEN DAEMON has WARD (4+).\n• Each time you make a successful ward roll for that SKAVEN DAEMON, allocate 1 mortal damage on a friendly non-HERO SKAVEN INFANTRY unit within that unit's combat range after the damage sequence for that unit has been resolved (ward rolls cannot be made for these damage points)."
@@ -132,6 +143,7 @@
 			"abilities": [
 				{
 					"name": "Backstabbing Allies",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly SKAVEN unit",
 					"frequency": "Once Per Turn (Army)",
@@ -147,18 +159,21 @@
 			"entries": [
 				{
 					"name": "Scurry Away",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase."
 				},
 				{
 					"name": "Short-tempered",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to run rolls and charge rolls for friendly SKAVEN units while they are wholly within 13\" of this unit."
 				},
 				{
 					"name": "Skilled Manipulator",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within the combat range of a friendly non-HERO SKAVEN INFANTRY unit:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO SKAVEN INFANTRY unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
@@ -172,6 +187,7 @@
 			"entries": [
 				{
 					"name": "Devious Underling",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick another friendly SKAVEN HERO on the battlefield with a Health characteristic that equals or exceeds this unit's Health characteristic to be the target.",
@@ -179,6 +195,7 @@
 				},
 				{
 					"name": "Fleshmeddler",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MOULDER unit wholly within 13\" of this unit to be the target.",
@@ -186,6 +203,7 @@
 				},
 				{
 					"name": "Pit Tinkerer",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "You can re-roll the random characteristic rolls for the Move characteristic of friendly SKRYRE WAR MACHINES while they are wholly within 13\" of this unit. In addition, each time a friendly SKRYRE WAR MACHINE wholly within 18\" of this unit uses the 'Rolling Doom' or 'Whirling Doom' ability, add 1 to the amount of mortal damage inflicted, if any."
@@ -199,12 +217,14 @@
 			"entries": [
 				{
 					"name": "Masterclan Connections",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL or UNBIND ability for a visible SKAVEN unit wholly within 13\" of this unit",
 					"effect": "Add D3 to that casting roll or unbinding roll."
 				},
 				{
 					"name": "Master of the Swarm",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time an ability returns 1 or more slain models to a friendly SKAVEN unit wholly within 13\" of this unit, after that ability has been resolved, you can return 1 additional slain model to it.",
@@ -212,6 +232,7 @@
 				},
 				{
 					"name": "Essence of the Gnaw",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick another visible friendly SKAVEN unit wholly within 13\" of this unit and in combat to be the target.",
@@ -226,12 +247,14 @@
 			"entries": [
 				{
 					"name": "Foulhide",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D3) this unit."
 				},
 				{
 					"name": "Warpstone Charm",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -239,6 +262,7 @@
 				},
 				{
 					"name": "Skavenbrew",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -253,6 +277,7 @@
 			"entries": [
 				{
 					"name": "Transplanted Brains",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"effect": "Pick 1 of the following brains. Its effects apply for the rest of the turn:\nWarpstone Addict's Brain:\n• Add 1 to hit rolls for this unit's combat attacks.\n• This unit has a maximum control score of 1.\nWarlock Whelp's Brain: Add 10 to this unit's control score.",
@@ -260,6 +285,7 @@
 				},
 				{
 					"name": "Anabolic Accelerators",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"effect": "If this unit was set up this turn, when making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll.",
@@ -267,6 +293,7 @@
 				},
 				{
 					"name": "Serrated Bone Protrusions",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "For each unmodified hit roll of 1 for a combat attack made by an enemy unit that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
@@ -283,6 +310,7 @@
 			"entries": [
 				{
 					"name": "Skitterleap",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SKAVEN WIZARD to cast this spell, pick a visible friendly SKAVEN HERO wholly within 13\" of them to be the target, then make a casting roll of 2D6.",
@@ -295,6 +323,7 @@
 				},
 				{
 					"name": "Wither",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SKAVEN WIZARD to cast this spell, pick a visible enemy unit within 13\" of them to be the target, then make a casting roll of 2D6.",
@@ -306,6 +335,7 @@
 				},
 				{
 					"name": "Warpgale",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SKAVEN WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -324,6 +354,7 @@
 			"entries": [
 				{
 					"name": "Filth-crust",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SKAVEN PRIEST to chant this prayer, pick a visible friendly SKAVEN INFANTRY unit wholly within 13\" of them to be the target, then make a chanting roll of D6.",
@@ -336,6 +367,7 @@
 				},
 				{
 					"name": "Bile-torrent",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SKAVEN PRIEST to chant this prayer, pick a visible enemy unit within 13\" of them to be the target, then make a chanting roll of D6.",
@@ -347,6 +379,7 @@
 				},
 				{
 					"name": "Rabid-tough",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SKAVEN PRIEST to chant this prayer, pick a visible friendly SKAVEN INFANTRY unit wholly within 13\" of them to be the target, then make a chanting roll of D6.",
@@ -365,6 +398,7 @@
 			"entries": [
 				{
 					"name": "Summon Warp Lightning Vortex",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Warp Lightning Vortex on the battlefield, pick a friendly SKAVEN WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -377,6 +411,7 @@
 				},
 				{
 					"name": "Summon Vermintide",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Vermintide on the battlefield, pick a friendly SKAVEN WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -389,6 +424,7 @@
 				},
 				{
 					"name": "Summon Bell of Doom",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Bell of Doom on the battlefield, pick a friendly SKAVEN WIZARD to cast this spell, then make a casting roll of 2D6.",

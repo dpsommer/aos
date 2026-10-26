@@ -758,3 +758,45 @@ func test_fractional_command_points_returns_null() -> void:
 func test_fractional_command_points_error_names_file_and_field_path() -> void:
 	assert_true(_has_error_naming(_errors("fractional_command_points"), "faction.json",
 			"battle_traits[0].command_points"), str(_errors("fractional_command_points")))
+
+
+# Ability type
+
+func test_ability_type_comes_from_file() -> void:
+	var expected: Dictionary = _json("ability_type", "faction.json").battle_traits[0]
+	assert_eq(_load("ability_type").battle_traits[0].type, expected.type)
+
+
+func test_ability_type_from_file_is_a_known_type() -> void:
+	var expected: Dictionary = _json("ability_type", "faction.json").battle_traits[0]
+	assert_has(Ability.TYPES, expected.type)
+	assert_eq(_errors("ability_type").size(), 0, "\n".join(_errors("ability_type")))
+
+
+func test_absent_ability_type_defaults_to_empty() -> void:
+	assert_false(_json("valid", "faction.json").battle_traits[0].has("type"), "fixture trait should omit type")
+	assert_eq(_load("valid").battle_traits[0].type, "")
+
+
+func test_invalid_ability_type_returns_null() -> void:
+	assert_null(_load("invalid_ability_type"))
+
+
+func test_invalid_ability_type_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("invalid_ability_type"), "faction.json", "battle_traits[0].type"),
+			str(_errors("invalid_ability_type")))
+
+
+func test_invalid_ability_type_error_lists_the_allowed_types() -> void:
+	var errors := "\n".join(_errors("invalid_ability_type"))
+	for allowed in Ability.TYPES:
+		assert_string_contains(errors, allowed)
+
+
+func test_wrong_type_ability_type_returns_null() -> void:
+	assert_null(_load("wrong_type_ability_type"))
+
+
+func test_wrong_type_ability_type_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("wrong_type_ability_type"), "faction.json", "battle_traits[0].type"),
+			str(_errors("wrong_type_ability_type")))

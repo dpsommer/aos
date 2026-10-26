@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "Rising Fire",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The following cumulative effects apply to friendly GRAND FORGEHOST units in each battle round after the first.",
@@ -30,17 +31,20 @@
 				},
 				{
 					"name": "Masterful Daemonworks",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly GRAND FORGEHOST WAR MACHINES have WARD (6+)."
 				},
 				{
 					"name": "Dread Ranks Unbroken",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO GRAND FORGEHOST INFANTRY unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of the battlefield edge and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of the battlefield edge and more than 9\" from all enemy units.",
+					"command_points": 1
 				}
 			],
 			"enhancement_tables": [
@@ -49,6 +53,7 @@
 					"entries": [
 						{
 							"name": "Ruthless Overseer",
+							"type": "passive",
 							"category": "rallying",
 							"timing": "Passive",
 							"effect": "Each time a friendly GRAND FORGEHOST unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -60,6 +65,7 @@
 					"entries": [
 						{
 							"name": "Talisman of Obsidian",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Subtract 1 from hit rolls for attacks that target this unit."
@@ -74,6 +80,7 @@
 					"entries": [
 						{
 							"name": "Reinforce Daemonsteel",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -86,6 +93,7 @@
 						},
 						{
 							"name": "Shackling Curse",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -103,6 +111,7 @@
 					"entries": [
 						{
 							"name": "Grasp of Stone",
+							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -115,6 +124,7 @@
 						},
 						{
 							"name": "Lava Storm",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GRAND FORGEHOST PRIEST to chant this prayer. Pick an enemy unit to be the target and roll 6 dice. For each 6, pick an additional enemy unit to be a target. Then, make a chanting roll of D6.",
@@ -134,22 +144,26 @@
 			"battle_traits": [
 				{
 					"name": "Let the Realms Tremble",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add X to charge rolls for friendly ZIGGURAT STAMPEDE units, where X is the number of friendly ZIGGURAT STAMPEDE units that have already charged this phase."
 				},
 				{
 					"name": "'Break them, One and All...'",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Any number of friendly ZIGGURAT STAMPEDE units can use the 'Power Through' command in the same turn."
 				},
 				{
 					"name": "Run Roughshod",
+					"type": "command",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly ZIGGURAT STAMPEDE unit in combat to be the target.",
-					"effect": "For the rest of the turn:\n• The target can use SHOOT and/or CHARGE abilities even if it used a RETREAT ability in the same turn.\n• No mortal damage is inflicted on the target by RETREAT abilities."
+					"effect": "For the rest of the turn:\n• The target can use SHOOT and/or CHARGE abilities even if it used a RETREAT ability in the same turn.\n• No mortal damage is inflicted on the target by RETREAT abilities.",
+					"command_points": 1
 				}
 			],
 			"enhancement_tables": [
@@ -158,6 +172,7 @@
 					"entries": [
 						{
 							"name": "Raging Animus",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict D3 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -169,6 +184,7 @@
 					"entries": [
 						{
 							"name": "Visage of the Great Bull",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "In your charge phase, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
@@ -183,6 +199,7 @@
 					"entries": [
 						{
 							"name": "Searing Detonation",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ZIGGURAT STAMPEDE WIZARD to cast this spell, then pick each enemy unit in combat with them to be the targets, then make a casting roll of 2D6.",
@@ -195,6 +212,7 @@
 						},
 						{
 							"name": "Flaming Weapons",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ZIGGURAT STAMPEDE to cast this spell, pick a visible friendly ZIGGURAT STAMPEDE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -206,6 +224,7 @@
 						},
 						{
 							"name": "Burn to Ash",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ZIGGURAT STAMPEDE WIZARD to cast this spell, pick a terrain feature within 18\" of them to be the target, then make a casting roll of 2D6.",

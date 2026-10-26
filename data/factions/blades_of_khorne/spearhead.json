@@ -21,12 +21,14 @@
 			"battle_traits": [
 				{
 					"name": "THE QUARRY",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"effect": "If no enemy units are the quarry, pick an enemy unit to be the quarry (you can pick an enemy unit in reserve)."
 				},
 				{
 					"name": "BLOOD-DRENCHED",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn",
@@ -37,12 +39,14 @@
 			"regiment_abilities": [
 				{
 					"name": "THE SCENT OF BLOOD",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls and add 1 to wound rolls for combat attacks that target an enemy unit that had any damage points allocated to it this turn."
 				},
 				{
 					"name": "SAVAGERY UPON SAVAGERY",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -53,12 +57,14 @@
 			"enhancements": [
 				{
 					"name": "SUSTAINED BY GORE",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D3) your general."
 				},
 				{
 					"name": "KILLING POUNCE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -66,12 +72,14 @@
 				},
 				{
 					"name": "EVASIVE HUNTER",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls and wound rolls for shooting attacks that target your general."
 				},
 				{
 					"name": "FURIOUS BITES",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"effect": "If your general is in combat with the quarry, inflict D3 mortal damage on the quarry."
@@ -104,6 +112,7 @@
 					"abilities": [
 						{
 							"name": "STALK THE PREY",
+							"type": "active",
 							"category": "movement",
 							"timing": "Any Hero Phase",
 							"effect": "This unit can move D6\". It cannot end that move in combat unless it was in combat at the start of that move and, if there is an enemy quarry on the battlefield, it must end that move closer to the quarry."
@@ -138,6 +147,7 @@
 					"abilities": [
 						{
 							"name": "UNFLAGGING HUNTERS",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "Add 1 to charge rolls for this unit."
@@ -174,6 +184,7 @@
 					"abilities": [
 						{
 							"name": "PACK HUNTERS",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"declare": "Pick an enemy unit in combat with both this unit and a friendly Flesh Hounds unit to be the target.",
@@ -212,12 +223,14 @@
 			"battle_traits": [
 				{
 					"name": "THE BLOOD TITHE",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a unit is destroyed during the battle, you receive 1 blood tithe point."
 				},
 				{
 					"name": "HEADS MUST ROLL",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn",
@@ -226,6 +239,7 @@
 				},
 				{
 					"name": "MURDERLUST",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn",
@@ -236,6 +250,7 @@
 			"regiment_abilities": [
 				{
 					"name": "FAVOURED OF KHORNE",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Your Turn",
 					"frequency": "Once Per Turn",
@@ -243,6 +258,7 @@
 				},
 				{
 					"name": "BLOOD-WOKEN RUNES",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly units have WARD (5+) if they have used a FIGHT ability in the same phase."
@@ -251,6 +267,7 @@
 			"enhancements": [
 				{
 					"name": "RESANGUINATION",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly unit wholly within 16\" of your general, then make a chanting roll of D6.",
@@ -258,6 +275,7 @@
 				},
 				{
 					"name": "HEADHUNTER",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO in combat with your general.",
@@ -265,12 +283,14 @@
 				},
 				{
 					"name": "THE CRIMSON PLATE",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (5+)."
 				},
 				{
 					"name": "UNHOLY FLAMES",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly unit wholly within 16\" of your general, then make a chanting roll of D6.",
@@ -300,6 +320,7 @@
 					"abilities": [
 						{
 							"name": "BLOOD BOIL",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible enemy unit within 16\" of this unit to be the target, then make a chanting roll of D6.",
@@ -307,6 +328,7 @@
 						},
 						{
 							"name": "BLOOD SACRIFICE",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit within this unit’s combat range to be the target.",
@@ -341,6 +363,7 @@
 					"abilities": [
 						{
 							"name": "NO RESPITE",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Each time a model in this unit is slain, you can pick an enemy unit in combat with this unit and roll a dice. On a 4+, inflict 1 mortal damage on that enemy unit."
@@ -372,6 +395,7 @@
 					"abilities": [
 						{
 							"name": "FRENZIED DEVOTION",
+							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
 							"effect": "If this unit is within 8\" of your general, you can return D3 slain models to this unit."
@@ -418,6 +442,7 @@
 					"abilities": [
 						{
 							"name": "BRASS STAMPEDE",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Charge Phase",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a dice.",

@@ -6,12 +6,14 @@
 			"battle_traits": [
 				{
 					"name": "Monstrous Entourage",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "The Companion weapon ability has no effect on MUTATED MENAGERIE units.\nWhile a friendly Thanquol is within the combat range of another friendly MUTATED MENAGERIE unit:\n• That Thanquol has WARD (4+).\n• Each time you make a successful ward roll for that Thanquol, allocate 1 damage point to a friendly MUTATED MENAGERIE unit within its combat range after the damage sequence has been resolved."
 				},
 				{
 					"name": "Spiteful Swarms",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -23,6 +25,7 @@
 				},
 				{
 					"name": "More-more Mutation!",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -31,6 +34,7 @@
 				},
 				{
 					"name": "Rampaging Demise",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -47,6 +51,7 @@
 					"entries": [
 						{
 							"name": "Pack Tactics",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -60,6 +65,7 @@
 					"entries": [
 						{
 							"name": "Warpstone Innards",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -76,6 +82,7 @@
 					"entries": [
 						{
 							"name": "Untapped Mutation",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly MUTATED MENAGERIE WIZARD to cast this spell, pick up to 3 visible friendly MUTATED MENAGERIE units wholly within 13\" of them that are affected by the 'More-more Mutation!' ability to be the targets, then make a casting roll of 2D6.",
@@ -94,6 +101,7 @@
 					"entries": [
 						{
 							"name": "Summon Warp Lightning Vortex",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Warp Lightning Vortex on the battlefield, pick a friendly SKAVEN WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -114,12 +122,14 @@
 			"battle_traits": [
 				{
 					"name": "Disciples of Vizzik",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly Vizzik Skour is within the combat range of another friendly GNAWHORDE unit:\n• That friendly Vizzik Skour has WARD (4+).\n• Each time you make a successful ward roll for that Vizzik Skour, allocate 1 damage point to a friendly GNAWHORDE unit within its combat range after the damage sequence has been resolved."
 				},
 				{
 					"name": "Unstoppable Warp-volley",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -131,6 +141,7 @@
 				},
 				{
 					"name": "Frenzied Momentum",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -142,6 +153,7 @@
 				},
 				{
 					"name": "Reckless Abandon",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -158,6 +170,7 @@
 					"entries": [
 						{
 							"name": "Harbinger of the Great Ascendancy",
+							"type": "active",
 							"category": "special",
 							"timing": "Start of Any Turn",
 							"frequency": "Once Per Battle",
@@ -170,6 +183,7 @@
 					"entries": [
 						{
 							"name": "Icon of Great-total Supremacy",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -185,6 +199,7 @@
 					"entries": [
 						{
 							"name": "Deafening Frenzy",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GNAWHORDE WIZARD to cast this spell, pick a visible friendly GNAWHORDE INFANTRY unit wholly within 13\" of them to be the target, then make a casting roll of 2D6. The casting roll for this spell cannot be modified.",
@@ -203,6 +218,7 @@
 					"entries": [
 						{
 							"name": "Reverberating Ritual",
+							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GNAWHORDE PRIEST to chant this prayer, pick a visible friendly GNAWHORDE INFANTRY unit wholly within 13\" of them to be the target, then make a chanting roll of D6.",
@@ -221,6 +237,7 @@
 					"entries": [
 						{
 							"name": "Summon Vermintide",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Vermintide on the battlefield, pick a friendly GNAWHORDE WIZARD to cast this spell, then make a casting roll of 2D6.",

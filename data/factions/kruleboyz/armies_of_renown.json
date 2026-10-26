@@ -9,12 +9,14 @@
 			"battle_traits": [
 				{
 					"name": "Crawly Swarm",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for combat attacks that target friendly MURKVAST MENAGERIE units while they are wholly within 12\" of a friendly MURKVAST MENAGERIE MONSTER that has not charged this turn."
 				},
 				{
 					"name": "Propa Grisly",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -26,6 +28,7 @@
 				},
 				{
 					"name": "After It, Ladz!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -39,6 +42,7 @@
 					"entries": [
 						{
 							"name": "Grim Diet",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (5+)"
@@ -50,6 +54,7 @@
 					"entries": [
 						{
 							"name": "Skinwriggla Larvae",
+							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -66,6 +71,7 @@
 					"entries": [
 						{
 							"name": "Morkish Mist",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly MURKVAST MENAGERIE WIZARD to cast this spell, pick a visible friendly MURKVAST MENAGERIE INFANTRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -84,6 +90,7 @@
 					"entries": [
 						{
 							"name": "Summon Foot of Gork",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly MURKVAST MENAGERIE WIZARD to cast this spell, then make a casting roll of 2D6.",

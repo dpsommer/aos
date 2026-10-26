@@ -6,18 +6,21 @@
 			"battle_traits": [
 				{
 					"name": "The Moon and the Loon",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a friendly unit is wholly within 9\" of a friendly Skragrott, a friendly Malevolent Moon or a friendly Bad Moon Loonshrine:\n• Add 5 to the control scores of friendly non-SQUIG MOONCLAN units.\n• Instead of rolling the dice to determine the Move characteristic of a friendly SQUIG unit, you can use a value of 4."
 				},
 				{
 					"name": "Da King's Guards",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly TROGGOTH unit is within the combat range of a friendly HERO:\n• That friendly HERO has WARD (4+).\n• Each time you make a successful ward roll for that HERO, allocate 1 damage point to a friendly TROGGOTH unit within that HERO's combat range after the damage sequence for that HERO has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Da Loonking's Court",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -38,6 +41,7 @@
 					"entries": [
 						{
 							"name": "Da King's Adjutant",
+							"type": "active",
 							"category": "rallying",
 							"timing": "End of Your Turn",
 							"frequency": "Once Per Battle (Army)",
@@ -46,6 +50,7 @@
 						},
 						{
 							"name": "Glarejester",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"declare": "Pick a friendly INFANTRY unit within 3\" of this unit and that is not in combat to be the target.",
@@ -59,18 +64,21 @@
 					"entries": [
 						{
 							"name": "Moonhoned Shiv",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Deployment Phase",
 							"effect": "Pick 1 of this unit's non-Companion melee weapons. Add 1 to the Attacks characteristic of that weapon for the rest of the battle. In addition, each time this unit uses a RETREAT ability, add 1 to the Attacks characteristic of that weapon for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
 						},
 						{
 							"name": "Loonstone Medallion",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (6+). While this unit is contesting an objective that is not being contested by any other friendly units, it has WARD (5+)."
 						},
 						{
 							"name": "Wotnot of Prestige",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
 							"declare": "Pick a point on the battlefield within 9\" of this unit. Each visible enemy unit within 3\" of that point is a target.",
@@ -86,6 +94,7 @@
 					"entries": [
 						{
 							"name": "Da Loonking's Command",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly KING'S GITZ WIZARD to cast this spell, pick a visible friendly unit wholly within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -98,6 +107,7 @@
 						},
 						{
 							"name": "Right Gitz in da Right Place",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly KING'S GITZ WIZARD to cast this spell, pick a visible friendly unit wholly within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -115,6 +125,7 @@
 					"entries": [
 						{
 							"name": "Summon Malevolent Moon",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Malevolent Moon on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -135,6 +146,7 @@
 			"battle_traits": [
 				{
 					"name": "Get Around 'Em",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly DROGGZ'S GITMOB unit that has not been deployed.",
@@ -145,6 +157,7 @@
 				},
 				{
 					"name": "Glowering Light",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -153,6 +166,7 @@
 				},
 				{
 					"name": "Surprise, Ya Gitz!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly DROGGZ'S GITMOB unit that is outflanking the enemy.",
@@ -160,6 +174,7 @@
 				},
 				{
 					"name": "Dis Fight's Not Fer Me",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -173,12 +188,14 @@
 					"entries": [
 						{
 							"name": "Stick 'Em and Run",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Each time this unit uses a RETREAT ability or the 'Frazzlegit's Flame Stream' ability, before moving this unit, pick an enemy unit in combat with it and roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 						},
 						{
 							"name": "Plucky Git",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While this unit has no damage points, friendly DROGGZ'S GITMOB units have WARD (6+) while they are wholly within 9\" of this unit."
@@ -190,6 +207,7 @@
 					"entries": [
 						{
 							"name": "Glareface's Grin",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Shooting Phase",
 							"frequency": "Once Per Battle (Army)",
@@ -206,6 +224,7 @@
 					"entries": [
 						{
 							"name": "Frazzleblast",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly WIZARD to cast this spell, pick a visible friendly DROGGZ'S GITMOB unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -224,6 +243,7 @@
 					"entries": [
 						{
 							"name": "Summon Mork's Mighty Mushroom",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Mork's Mighty Mushroom on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -244,24 +264,28 @@
 			"battle_traits": [
 				{
 					"name": "Herd Healing",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly TROGGOTH unit uses a FIGHT ability, after that ability has been resolved, Heal (D3) that unit."
 				},
 				{
 					"name": "Aura of Haywire Magic",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The effects of a friendly Trugg's 'Malfunctioning Leystone' ability affect friendly TRUGG'S TROGGHERD units anywhere on the battlefield instead of only those wholly within 12\" of that friendly Trugg."
 				},
 				{
 					"name": "Moon-toughened Hide",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "In battle rounds 2 and 3, subtract 1 from the Rend characteristic of melee weapons used for attacks that target friendly TRUGG'S TROGGHERD units."
 				},
 				{
 					"name": "Living Landmark",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -273,6 +297,7 @@
 				},
 				{
 					"name": "Broken Slumber",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly TRUGG'S TROGGHERD unit that is a living landmark.",
@@ -285,6 +310,7 @@
 					"entries": [
 						{
 							"name": "Loonstone Teef",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -297,6 +323,7 @@
 					"entries": [
 						{
 							"name": "Crunchy Shinies",
+							"type": "active",
 							"category": "movement",
 							"timing": "Any Movement Phase",
 							"frequency": "Once Per Battle",

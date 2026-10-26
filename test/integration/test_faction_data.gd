@@ -129,3 +129,97 @@ func test_every_prayer_lore_entry_has_a_chanting_value() -> void:
 				continue
 			for entry in lore.entries:
 				assert_gt(entry.chanting_value, 0, "%s: %s %s" % [faction.name, lore.name, entry.name])
+
+
+# Ability types
+
+func _collect(out: Array, where: String, abilities: Array) -> void:
+	for ability: Ability in abilities:
+		out.append([where, ability])
+
+
+func _collect_tables(out: Array, where: String, tables: Array[EnhancementTable]) -> void:
+	for table in tables:
+		_collect(out, "%s: %s" % [where, table.name], table.entries)
+
+
+func _collect_lores(out: Array, where: String, lores: Array[Lore]) -> void:
+	for lore in lores:
+		_collect(out, "%s: %s" % [where, lore.name], lore.entries)
+
+
+func _collect_warscrolls(out: Array, where: String, warscrolls: Array[Warscroll]) -> void:
+	for unit in warscrolls:
+		_collect(out, "%s: %s" % [where, unit.name], unit.abilities)
+
+
+## Returns [[where, Ability], ...] for every ability in every loaded faction.
+func _all_abilities() -> Array:
+	var out := []
+	for faction in _factions:
+		var where := faction.name
+		_collect(out, where, faction.battle_traits)
+		for formation in faction.battle_formations:
+			_collect(out, "%s: %s" % [where, formation.name], formation.abilities)
+		_collect_tables(out, where, faction.enhancement_tables)
+		_collect_lores(out, where, faction.lores)
+		_collect_warscrolls(out, where, faction.warscrolls)
+		for army in faction.armies_of_renown:
+			var army_where := "%s: %s" % [where, army.name]
+			_collect(out, army_where, army.battle_traits)
+			_collect_tables(out, army_where, army.enhancement_tables)
+			_collect_lores(out, army_where, army.lores)
+		for spearhead in faction.spearheads:
+			var spearhead_where := "%s: %s" % [where, spearhead.name]
+			_collect(out, spearhead_where, spearhead.battle_traits)
+			_collect(out, spearhead_where, spearhead.regiment_abilities)
+			_collect(out, spearhead_where, spearhead.enhancements)
+			_collect_warscrolls(out, spearhead_where, spearhead.warscrolls)
+	return out
+
+
+func _find(abilities: Array, where_prefix: String, ability_name: String) -> Ability:
+	for pair: Array in abilities:
+		if (pair[0] as String).begins_with(where_prefix) and pair[1].name == ability_name:
+			return pair[1]
+	return null
+
+
+func test_abilities_were_collected() -> void:
+	assert_gt(_all_abilities().size(), 0)
+
+
+func test_every_faction_ability_has_a_known_type() -> void:
+	for pair: Array in _all_abilities():
+		assert_has(Ability.TYPES, pair[1].type, "%s: %s" % [pair[0], pair[1].name])
+
+
+func test_every_faction_ability_with_command_points_is_a_command() -> void:
+	for pair: Array in _all_abilities():
+		if pair[1].command_points > 0:
+			assert_eq(pair[1].type, "command", "%s: %s" % [pair[0], pair[1].name])
+
+
+func test_every_faction_command_has_command_points() -> void:
+	for pair: Array in _all_abilities():
+		if pair[1].type == "command":
+			assert_gt(pair[1].command_points, 0, "%s: %s" % [pair[0], pair[1].name])
+
+
+func test_every_faction_spell_has_a_casting_value_or_spell_keyword() -> void:
+	for pair: Array in _all_abilities():
+		var ability: Ability = pair[1]
+		if ability.type == "spell":
+			assert_true(ability.casting_value > 0 or "SPELL" in ability.keywords, "%s: %s" % [pair[0], ability.name])
+
+
+func test_alarielle_the_goddess_of_life_is_a_two_point_command() -> void:
+	var ability := _find(_all_abilities(), "Sylvaneth: Alarielle the Everqueen", "The Goddess Of Life")
+	assert_not_null(ability)
+	assert_eq([ability.type, ability.command_points], ["command", 2])
+
+
+func test_summon_loyal_subjects_is_a_one_point_command() -> void:
+	var ability := _find(_all_abilities(), "Flesh-eater Courts", "Summon Loyal Subjects")
+	assert_not_null(ability)
+	assert_eq([ability.type, ability.command_points], ["command", 1])

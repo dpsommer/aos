@@ -21,6 +21,7 @@
 			"battle_traits": [
 				{
 					"name": "SHIELD OF AZYR",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn",
@@ -29,6 +30,7 @@
 				},
 				{
 					"name": "STORM CHARGE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Battle",
@@ -39,6 +41,7 @@
 			"regiment_abilities": [
 				{
 					"name": "STRIKE WHERE NEEDED",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a RETREAT ability",
 					"frequency": "Once Per Battle",
@@ -52,6 +55,7 @@
 				},
 				{
 					"name": "BLAZE OF GLORY",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -62,12 +66,14 @@
 			"enhancements": [
 				{
 					"name": "HALLOWED SCROLLS",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (5+)."
 				},
 				{
 					"name": "QUICKSILVER DRAUGHT",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -75,12 +81,14 @@
 				},
 				{
 					"name": "MORRDA'S TALON",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Your general’s Hallowed Greataxe has Crit (Mortal)."
 				},
 				{
 					"name": "NULL PENDANT",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle",
@@ -123,6 +131,7 @@
 					"abilities": [
 						{
 							"name": "DELIVER JUDGEMENT",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -131,6 +140,7 @@
 						},
 						{
 							"name": "PLAN THE ATTACK",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick an objective you do not control.",
@@ -179,6 +189,7 @@
 					"abilities": [
 						{
 							"name": "STALWART DEFENDERS",
+							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
 							"effect": "Add 3 to this unit’s control score while it contests an objective wholly within friendly territory."
@@ -225,12 +236,14 @@
 					"abilities": [
 						{
 							"name": "SENSE UNHOLY SORCERY",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit’s Gryph-crow is a token. This unit has WARD (5+) while its Gryph-crow is on the battlefield.\nIf you make an unmodified ward roll of 1 for this unit, remove its Gryph-crow from the battlefield."
 						},
 						{
 							"name": "CLEANSING FIRES",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -275,12 +288,14 @@
 					"abilities": [
 						{
 							"name": "SKIRMISHERS",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "This unit has a coherency range of 2\"."
 						},
 						{
 							"name": "HERALDS OF RIGHTEOUSNESS",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "When you make a charge roll for this unit, roll 1 additional dice."
@@ -323,6 +338,7 @@
 			"battle_traits": [
 				{
 					"name": "LIGHTNING-STRIKE ARRIVAL",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
@@ -334,12 +350,14 @@
 			"regiment_abilities": [
 				{
 					"name": "DEFEND TO THE LAST",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly units have WARD (6+) while they are contesting an objective you control."
 				},
 				{
 					"name": "DRIVE THEM BACK",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick any number of friendly units that are both contesting an objective and in combat.",
@@ -349,12 +367,14 @@
 			"enhancements": [
 				{
 					"name": "THE PRIME HUNTRESS",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "The Damage characteristic of Thengavar (Yndrasta’s spear) is 2D6 for attacks that target a MONSTER."
 				},
 				{
 					"name": "DAZZLING RADIANCE",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -363,12 +383,14 @@
 				},
 				{
 					"name": "STRIKE WITH THE TEMPEST'S RAGE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Your general has STRIKE-FIRST if they charged in the same turn."
 				},
 				{
 					"name": "HAWK OF THE CELESTIAL SKIES",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -412,6 +434,7 @@
 					"abilities": [
 						{
 							"name": "CHAMPION OF SIGMAR",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -469,6 +492,7 @@
 					"abilities": [
 						{
 							"name": "AZYR UNLEASHED",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
@@ -501,6 +525,7 @@
 					"abilities": [
 						{
 							"name": "BANNER OF THE REFORGED",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
@@ -534,6 +559,7 @@
 					"abilities": [
 						{
 							"name": "LIGHTNING STRIKES",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Damage characteristic of this unit’s Celestial Greatswords for attacks that target an enemy unit that has 5 or more models."
@@ -565,6 +591,7 @@
 					"abilities": [
 						{
 							"name": "FORCE OF A FALLING STAR",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Charge Phase",
 							"declare": "If this unit charged this phase and the unmodified charge roll was 8+, pick an enemy unit within 1\" of it to be the target.",

@@ -182,6 +182,18 @@ def test_different_timings_are_reported():
     assert len(report.lines) == 1 and "timing" in report.lines[0]
 
 
+def test_differing_command_points_are_reported():
+    report = merge.Report()
+    merge.compare_ability(report, "x", ab(), ab(command_points=1))
+    assert len(report.lines) == 1 and "command_points" in report.lines[0]
+
+
+def test_equal_command_points_are_not_reported():
+    report = merge.Report()
+    merge.compare_ability(report, "x", ab(command_points=1), ab(command_points=1))
+    assert report.lines == []
+
+
 # merge_warscrolls()
 
 @pytest.mark.parametrize("field,value", [

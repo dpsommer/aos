@@ -25,6 +25,7 @@
 			"battle_traits": [
 				{
 					"name": "SWOOP DOWN",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
@@ -34,6 +35,7 @@
 				},
 				{
 					"name": "THE HUNGER",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly VAMPIRE unit uses a FIGHT ability, after all of its attacks have been resolved, Heal (X) that VAMPIRE unit where X is the number of damage points allocated by those attacks."
@@ -42,6 +44,7 @@
 			"regiment_abilities": [
 				{
 					"name": "ENDLESS LEGIONS",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -53,6 +56,7 @@
 				},
 				{
 					"name": "RUINOUS CHARGERS",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "Pick your Blood Knights unit to use this ability if it charged this turn.",
@@ -62,6 +66,7 @@
 			"enhancements": [
 				{
 					"name": "GRAVE-SAND SHARD",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the ‘Skeleton Legion’ ability for a unit within 9\" of your general",
 					"frequency": "Once Per Battle",
@@ -69,12 +74,14 @@
 				},
 				{
 					"name": "AURA OF NIGHT",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to save rolls for shooting attacks that target your general."
 				},
 				{
 					"name": "CLOUD OF BATS",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -85,6 +92,7 @@
 				},
 				{
 					"name": "SPIRIT GALE",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -115,6 +123,7 @@
 					"abilities": [
 						{
 							"name": "VILE TRANSFERENCE",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible enemy unit within 6\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -155,6 +164,7 @@
 					"abilities": [
 						{
 							"name": "THE SCENT OF GORE",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to wound rolls for attacks made by this unit that target a damaged unit."
@@ -190,6 +200,7 @@
 					"abilities": [
 						{
 							"name": "SKELETON LEGION",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Your Combat Phase",
 							"effect": "For each slain model from this unit, make a legion roll of D6. For each 6, return 1 slain model to this unit."
@@ -238,6 +249,7 @@
 					"abilities": [
 						{
 							"name": "RIDERS OF RUIN",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "Models in this unit can pass across enemy INFANTRY models as if this unit had FLY."
@@ -276,6 +288,7 @@
 			"battle_traits": [
 				{
 					"name": "THE RISING DEAD",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -283,6 +296,7 @@
 				},
 				{
 					"name": "AURA OF ANTIQUITY",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -293,12 +307,14 @@
 			"regiment_abilities": [
 				{
 					"name": "OVERWHELMING HORDES",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for combat attacks made by friendly non-HERO units that target a unit that has fewer models than the attacking unit."
 				},
 				{
 					"name": "DEATHMARCH",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -309,12 +325,14 @@
 			"enhancements": [
 				{
 					"name": "SHYISHAN BLADE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The Rend characteristic of your general’s Baleful Tomb Blade is 2."
 				},
 				{
 					"name": "PROPELLED BY HATE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "Pick another friendly unit wholly within 12\" of your general to be the target.",
@@ -322,12 +340,14 @@
 				},
 				{
 					"name": "STOLEN ANIMUS",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time your general scores a critical hit, Heal (2) your general after the ATTACK ability has been resolved."
 				},
 				{
 					"name": "SOUL-DRAIN PENDANT",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -362,6 +382,7 @@
 					"abilities": [
 						{
 							"name": "KING OF SHAMBLING BONES",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
@@ -413,6 +434,7 @@
 					"abilities": [
 						{
 							"name": "CURSED TO RISE ONCE MORE",
+							"type": "active",
 							"category": "rallying",
 							"timing": "End of Your Turn",
 							"effect": "You can return 1 slain model to this unit."
@@ -446,6 +468,7 @@
 					"abilities": [
 						{
 							"name": "SKELETON LEGION",
+							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
 							"effect": "You can return D3 slain models to this unit."
@@ -482,6 +505,7 @@
 					"abilities": [
 						{
 							"name": "GUARDIANS OF THE KING",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While your general is within this unit’s combat range, both this unit and your general have WARD (5+)."

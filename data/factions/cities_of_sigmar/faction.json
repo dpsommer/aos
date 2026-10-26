@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Form Up",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Battle Round",
 			"declare": "Pick a friendly CITIES OF SIGMAR unit to use this ability, then pick 2 other visible friendly CITIES OF SIGMAR units wholly within 12\" of it to be the targets.\nThe unit using this ability and the targets:\n• cannot be under orders.\n• must each be a different unit type.",
@@ -21,6 +22,7 @@
 		},
 		{
 			"name": "Take Aim",
+			"type": "active",
 			"category": "shooting",
 			"timing": "Your Shooting Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -29,6 +31,7 @@
 		},
 		{
 			"name": "Sound the Attack",
+			"type": "active",
 			"category": "movement",
 			"timing": "Reaction: You declared a CHARGE ability for a unit that is under orders",
 			"frequency": "Once Per Turn (Army)",
@@ -36,6 +39,7 @@
 		},
 		{
 			"name": "Into Them, You Dogs!",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Any Combat Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -44,6 +48,7 @@
 		},
 		{
 			"name": "Hurl Them Back!",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Any Combat Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -58,6 +63,7 @@
 			"abilities": [
 				{
 					"name": "To the Last",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly unit that is under orders uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -70,6 +76,7 @@
 			"abilities": [
 				{
 					"name": "Masters of the Arcane",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to arcane manipulation rolls and banishment rolls for friendly WIZARDS that are under orders.",
@@ -88,6 +95,7 @@
 			"abilities": [
 				{
 					"name": "Throngs of the Faithful",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: Your opponent declared a FIGHT ability.",
 					"frequency": "Once Per Turn (Army)",
@@ -101,6 +109,7 @@
 			"abilities": [
 				{
 					"name": "Dawnbringer Crusade",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -118,6 +127,7 @@
 			"abilities": [
 				{
 					"name": "Canny Crews",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -132,6 +142,7 @@
 			"abilities": [
 				{
 					"name": "Front-Line Leader",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -146,6 +157,7 @@
 			"abilities": [
 				{
 					"name": "Have No Mercy",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Turn (Army)",
@@ -160,6 +172,7 @@
 			"abilities": [
 				{
 					"name": "I've Seen Worse and Killed Better",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -176,18 +189,21 @@
 			"entries": [
 				{
 					"name": "Stentorian General",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from ward rolls for enemy units while they are in combat with any visible friendly units that are wholly within 12\" of this unit and under orders."
 				},
 				{
 					"name": "Beloved Leader",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to hit rolls and wound rolls applied by enemy abilities for attacks made by visible friendly units that are wholly within 12\" of this unit and under orders."
 				},
 				{
 					"name": "Grizzled Drillmaster",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Other visible friendly units have WARD (6+) while they are wholly within 12\" of this unit and under orders."
@@ -201,6 +217,7 @@
 			"entries": [
 				{
 					"name": "Astute Tactician",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR unit wholly within 12\" of this unit to be the target.",
@@ -208,6 +225,7 @@
 				},
 				{
 					"name": "Draw Steel!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit charged this turn, pick a friendly CITIES OF SIGMAR HUMAN unit that charged this turn and is wholly within 12\" of this unit to be the target.",
@@ -215,6 +233,7 @@
 				},
 				{
 					"name": "Cosmopolitan Leader",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR INFANTRY or CAVALRY unit wholly within 12\" of this unit to be the target. If this unit is HUMAN, pick up to 3 eligible units to be the targets instead.",
@@ -230,18 +249,21 @@
 			"entries": [
 				{
 					"name": "Pious Veteran",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time you pick targets while declaring a PRAYER ability used by a friendly CITIES OF SIGMAR PRIEST, if this unit is eligible to be picked, you can pick it to be an additional target"
 				},
 				{
 					"name": "Bristling Attitude",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a CHARGE ability for a visible unit within 12\" of this unit",
 					"effect": "Spend any number of rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, roll X dice, where X is the number of rage dice spent. For each 3+, subtract 1 from the charge roll."
 				},
 				{
 					"name": "Cosmopolitan Leader",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick up to 3 visible friendly non‑WAR MACHINE SIGMARITE units wholly within 12\" of this unit to be the targets.",
@@ -255,6 +277,7 @@
 			"entries": [
 				{
 					"name": "The Last Blade of Embergard",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"effect": "This unit can use this ability while it is in reserve. Pick 1 of this unit's non-Companion melee weapons. Add 2 to that weapon's Attacks characteristic and Rend characteristic for the rest of the battle.",
@@ -262,12 +285,14 @@
 				},
 				{
 					"name": "Bones of Saint Ignifus",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL or PRAYER ability for a visible unit that is wholly within 12\" of this unit and under orders",
 					"effect": "Add 1 to the casting roll or chanting roll for that ability."
 				},
 				{
 					"name": "The Sphere Celestial",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "If this unit is not in combat, pick a point on the battlefield within 1\" of this unit and more than 3\" from all other units (friendly and enemy) and terrain features to be the target point. Then, pick another visible friendly CITIES OF SIGMAR INFANTRY or CAVALRY HERO that is wholly within 18\" of this unit and not in combat to be the target unit.",
@@ -281,6 +306,7 @@
 			"entries": [
 				{
 					"name": "Prototype Arco-Combustor Uninhibitor",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -288,12 +314,14 @@
 				},
 				{
 					"name": "Emergency Bellows",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "Remove 1 of this unit's heat tokens."
 				},
 				{
 					"name": "Grapple-net Launcher",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Combat Phase",
 					"frequency": "Once Per Battle",
@@ -308,6 +336,7 @@
 			"entries": [
 				{
 					"name": "Twin-tailed Comet of Honour",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "While this unit has any champions, add 5 to this unit's control score.",
@@ -315,6 +344,7 @@
 				},
 				{
 					"name": "The Living City Cross",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit has any champions, subtract 1 from hit rolls for shooting attacks that target this unit.",
@@ -322,6 +352,7 @@
 				},
 				{
 					"name": "Aqshian Order of Merit",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit has any champions, if an enemy unit in combat with this unit uses the 'Eruption of Fury' ability, when resolving attacks as part of that ability, on an unmodified hit roll of 6, do not inflict an additional D3 mortal damage on each unit in combat with that unit.",
@@ -338,6 +369,7 @@
 			"entries": [
 				{
 					"name": "Speed of the Twin-tailed Comet",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -350,6 +382,7 @@
 				},
 				{
 					"name": "Curse of Scorched Metal",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -361,6 +394,7 @@
 				},
 				{
 					"name": "High Star's Light",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR WIZARD to cast this spell, pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -379,6 +413,7 @@
 			"entries": [
 				{
 					"name": "Holy Aegis",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR PRIEST to chant this prayer, pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -391,6 +426,7 @@
 				},
 				{
 					"name": "Reckoning of Sinners",
+					"type": "prayer",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR PRIEST to chant this prayer, pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -402,6 +438,7 @@
 				},
 				{
 					"name": "Benediction of the High Heavens",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR PRIEST to chant this prayer, pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",

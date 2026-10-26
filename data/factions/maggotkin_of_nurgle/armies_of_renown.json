@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "Revolution and Revulsion",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -14,6 +15,7 @@
 				},
 				{
 					"name": "Unnatural Vitality",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly non-MONSTER CYCLE OF CORRUPTION HEROES have WARD (4+).",
@@ -23,6 +25,7 @@
 				},
 				{
 					"name": "Fecund Vigour",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -33,6 +36,7 @@
 				},
 				{
 					"name": "Burgeoning Filth",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Subtract 3 from the control scores of enemy units while they are in combat with any friendly CYCLE OF CORRUPTION units.",
@@ -42,6 +46,7 @@
 				},
 				{
 					"name": "Plague of Misery",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While enemy units are within 12\" of any friendly CYCLE OF CORRUPTION units, they cannot use abilities that heal or return slain models to a unit.",
@@ -51,6 +56,7 @@
 				},
 				{
 					"name": "Nauseous Revulsion",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Subtract 1 from charge rolls for enemy units.",
@@ -60,6 +66,7 @@
 				},
 				{
 					"name": "Rampant Disease",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Melee weapons used by friendly non-HERO CYCLE OF CORRUPTION units have Crit (2 Hits).",
@@ -69,6 +76,7 @@
 				},
 				{
 					"name": "Corrupted Regrowth",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -84,6 +92,7 @@
 					"entries": [
 						{
 							"name": "Utterly Disgusting",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Subtract 1 from hit rolls for attacks that target this unit."
@@ -95,6 +104,7 @@
 					"entries": [
 						{
 							"name": "Cankerous Nail",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Rend characteristic of this unit's melee weapons."
@@ -109,6 +119,7 @@
 					"entries": [
 						{
 							"name": "Epidermal Crustitis",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CYCLE OF CORRUPTION WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -121,6 +132,7 @@
 						},
 						{
 							"name": "Rank and Vile",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CYCLE OF CORRUPTION WIZARD to cast this spell, pick a visible enemy INFANTRY unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -132,6 +144,7 @@
 						},
 						{
 							"name": "Spittledrain",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CYCLE OF CORRUPTION WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -149,6 +162,7 @@
 					"entries": [
 						{
 							"name": "Bacterial Blessing",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CYCLE OF CORRUPTION PRIEST to chant this prayer, pick a visible friendly CYCLE OF CORRUPTION unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -161,6 +175,7 @@
 						},
 						{
 							"name": "Ever Turning",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CYCLE OF CORRUPTION PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -172,6 +187,7 @@
 						},
 						{
 							"name": "Virulent Agonies",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CYCLE OF CORRUPTION PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -191,6 +207,7 @@
 			"battle_traits": [
 				{
 					"name": "The Garden Grows",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -198,6 +215,7 @@
 				},
 				{
 					"name": "Transplanting",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -206,6 +224,7 @@
 				},
 				{
 					"name": "Head Gardener",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -213,6 +232,7 @@
 				},
 				{
 					"name": "Putrescent Sap",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -221,12 +241,14 @@
 				},
 				{
 					"name": "Foul Fauna",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 2\" to the Move characteristic of friendly GARDENERS OF NURGLE Beasts of Nurgle and Plague Drones units while they are wholly within 6\" of any friendly Feculent Gnarlmaws."
 				},
 				{
 					"name": "Sickly Spores",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly GARDENERS OF NURGLE INFANTRY unit is wholly within 12\" of a friendly Feculent Gnarlmaw, ignore the first damage point that would be allocated to it in each phase."
@@ -238,6 +260,7 @@
 					"entries": [
 						{
 							"name": "Foetid Orchardist",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to hit rolls for this unit's combat attacks while it is wholly within 7\" of any friendly Feculent Gnarlmaws."
@@ -249,6 +272,7 @@
 					"entries": [
 						{
 							"name": "Stinking Sporeseed",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Movement Phase",
 							"frequency": "Once Per Battle",
@@ -264,6 +288,7 @@
 					"entries": [
 						{
 							"name": "Munificent Blights",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GARDENERS OF NURGLE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -276,6 +301,7 @@
 						},
 						{
 							"name": "Scumfall",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GARDENERS OF NURGLE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -287,6 +313,7 @@
 						},
 						{
 							"name": "Canopy of Virulence",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GARDENERS OF NURGLE WIZARD to cast this spell, pick a visible friendly GARDENERS OF NURGLE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",

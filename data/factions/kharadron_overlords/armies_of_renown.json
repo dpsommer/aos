@@ -6,18 +6,21 @@
 			"battle_traits": [
 				{
 					"name": "Transport Skyfarers",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase, Reaction: You declared a non-CHARGE MOVE ability for a friendly SKYVESSEL",
 					"effect": "Pick a number of units up to that SKYVESSEL's Transport Capacity (see its warscroll) that are wholly within 6\" of it to be the targets. Units that have been transported this turn cannot be targets.\nRemove the targets from the battlefield. After the SKYVESSEL ends its move, you must set up each target unit on the battlefield, wholly within 6\" of that SKYVESSEL and not in combat. Those units have been transported. A unit cannot use CHARGE abilities if it was transported in the same turn."
 				},
 				{
 					"name": "Gun Butt Low Blow",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While a friendly EXPEDITIONARY FORCE INFANTRY unit is contesting an objective that you control, its melee weapons have Crit (Mortal)."
 				},
 				{
 					"name": "No Safe Haven",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit to be the target.",
@@ -25,6 +28,7 @@
 				},
 				{
 					"name": "Grudgefire Rounds",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -38,6 +42,7 @@
 					"entries": [
 						{
 							"name": "Entrenchment Expert",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Reaction: You declared the 'All-Out Defence' command for a friendly unit wholly within 12\" of this HERO",
 							"effect": "That friendly unit has WARD (5+) for the rest of the turn."
@@ -49,6 +54,7 @@
 					"entries": [
 						{
 							"name": "Aetheric Nullifier",
+							"type": "active",
 							"category": "special",
 							"timing": "Opponent declared a SHOOT or FIGHT ability for a MANIFESTATION within 9\" of the bearer",
 							"effect": "Roll 2D6. If the roll equals or exceeds the banishment value listed on the MANIFESTATION's warscroll, it is banished and removed from play. You cannot pick the same MANIFESTATION to be the target of this ability more than once per phase."
@@ -64,6 +70,7 @@
 			"battle_traits": [
 				{
 					"name": "Initial Investment",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -71,6 +78,7 @@
 				},
 				{
 					"name": "Aggressive Acquisitions",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -82,6 +90,7 @@
 				},
 				{
 					"name": "Secure Investments",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -93,6 +102,7 @@
 				},
 				{
 					"name": "Settling Accounts",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -104,6 +114,7 @@
 				},
 				{
 					"name": "Market Dominance",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -115,6 +126,7 @@
 				},
 				{
 					"name": "Hostile Takeover",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -131,12 +143,14 @@
 					"entries": [
 						{
 							"name": "Territorial Trailblazer",
+							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
 							"effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit."
 						},
 						{
 							"name": "Copper Fingers",
+							"type": "active",
 							"category": "special",
 							"timing": "Reaction: You declared the 'Endrinworks Outpost' ability for a Zontari Endrin Dock",
 							"frequency": "Once Per Battle",
@@ -149,12 +163,14 @@
 					"entries": [
 						{
 							"name": "Thorgsson's Universal Automaton Actuator",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "Add 6\" to the Move characteristic of friendly AUTO-ENDRINS while they are wholly within 6\" of this unit."
 						},
 						{
 							"name": "Rockbuster Charges",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Movement Phase",
 							"declare": "Pick a terrain feature that this unit passed across this turn. Each enemy unit within 1\" of that terrain feature is a target.",
@@ -174,12 +190,14 @@
 			"battle_traits": [
 				{
 					"name": "Loyalty to the Magnate",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly Brokk Grungsson is wholly within the combat range of another friendly MAGNATE'S CREW INFANTRY unit, both those units have WARD (5+)"
 				},
 				{
 					"name": "Pay Your Debts",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -188,6 +206,7 @@
 				},
 				{
 					"name": "Bold Moves",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -199,6 +218,7 @@
 				},
 				{
 					"name": "Cutting-Edge Endrinpacks",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -207,6 +227,7 @@
 				},
 				{
 					"name": "Invictunite-lined Hull",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -215,6 +236,7 @@
 				},
 				{
 					"name": "Constant Barrage",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -228,12 +250,14 @@
 					"entries": [
 						{
 							"name": "Master of Discipline",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "Each time a friendly MAGNATE'S CREW INFANTRY unit wholly within 12\" of this unit uses the 'Redeploy' command, you can re-roll the dice."
 						},
 						{
 							"name": "Flanking Fire",
+							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
 							"effect": "Add 1 to hit rolls for shooting attacks made by friendly MAGNATE'S CREW SKYVESSELS that target an enemy unit in combat with this unit."
@@ -245,12 +269,14 @@
 					"entries": [
 						{
 							"name": "Aerodynamism",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "If the unit moved this turn, subtract 1 from hit rolls for attacks that target this unit for the rest of the turn."
 						},
 						{
 							"name": "Guns for All Occasions",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Your Turn",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",

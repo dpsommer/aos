@@ -6,12 +6,14 @@
 			"battle_traits": [
 				{
 					"name": "Grimmdron Grudges",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a friendly FYRD OF FYREPEAK unit destroys an enemy unit, give that friendly unit 1 grudge mark."
 				},
 				{
 					"name": "Rune of Fortune",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -22,6 +24,7 @@
 				},
 				{
 					"name": "Rune of Spellbreaking",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -32,6 +35,7 @@
 				},
 				{
 					"name": "Rune of Guarding",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -42,6 +46,7 @@
 				},
 				{
 					"name": "Rune of Speed",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -52,6 +57,7 @@
 				},
 				{
 					"name": "Rune of Striking",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -67,6 +73,7 @@
 					"entries": [
 						{
 							"name": "Foe-seeker",
+							"type": "active",
 							"category": "special",
 							"timing": "Deployment Phase",
 							"declare": "Pick an enemy HERO to be the nemesis for the rest of the battle. You can pick an enemy unit in reserve.",
@@ -79,6 +86,7 @@
 					"entries": [
 						{
 							"name": "Lodge Relic",
+							"type": "passive",
 							"category": "rallying",
 							"timing": "Passive",
 							"effect": "While this HERO is damaged and the number of damage points allocated to it is equal to or greater than half its Health characteristic (rounding down), the melee weapons of other friendly FYRD OF FYREPEAK units have Crit (Mortal) while they are wholly within 6\" of and visible to it."
@@ -93,6 +101,7 @@
 					"entries": [
 						{
 							"name": "Grimnir's Protection",
+							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly FYRD OF FYREPEAK PRIEST to chant this prayer, pick a visible friendly FYRD OF FYREPEAK unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -105,6 +114,7 @@
 						},
 						{
 							"name": "Grimnir's Geyser",
+							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly FYRD OF FYREPEAK PRIEST to chant this prayer, pick a visible friendly FYRD OF FYREPEAK unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -116,6 +126,7 @@
 						},
 						{
 							"name": "Grimnir's Fury",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly FYRD OF FYREPEAK PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -135,6 +146,7 @@
 			"battle_traits": [
 				{
 					"name": "Venerated Sentinels",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -143,6 +155,7 @@
 				},
 				{
 					"name": "High Kyng's Grudgebearer",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick up to D3 visible enemy units visible to your High Kyng Valankrom to be the targets.",
@@ -150,6 +163,7 @@
 				},
 				{
 					"name": "Make Them Pay for Their Affronts",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -158,6 +172,7 @@
 				},
 				{
 					"name": "The Gall of It!",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -166,18 +181,21 @@
 				},
 				{
 					"name": "Never Forget Their Perfidy",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Friendly THRONG OF VALANKROM units count as having 1 grudge mark while they are in combat with an enemy wrongdoer unit."
 				},
 				{
 					"name": "Dreng Tromm!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If your High Kyng Valankrom has been destroyed, add 1 to the Attacks characteristic of melee weapons used by friendly THRONG OF VALANKROM units for the rest of the battle."
 				},
 				{
 					"name": "The Hour of Judgement",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -191,6 +209,7 @@
 					"entries": [
 						{
 							"name": "Fearless and Honour-bound",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "Add 1 to charge rolls for friendly THRONG OF VALANKROM units while they are wholly within 12\" of and visible to this unit."
@@ -202,6 +221,7 @@
 					"entries": [
 						{
 							"name": "Grombrindalian Pipe",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle (Army)",
@@ -217,6 +237,7 @@
 					"entries": [
 						{
 							"name": "Rune of Vigour",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly THRONG OF VALANKROM WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -229,6 +250,7 @@
 						},
 						{
 							"name": "Rune of Banishment",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly THRONG OF VALANKROM WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -240,6 +262,7 @@
 						},
 						{
 							"name": "Rune of Upheaval",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly THRONG OF VALANKROM WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -259,6 +282,7 @@
 			"battle_traits": [
 				{
 					"name": "Stone and Sky",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Turn (Army)",
@@ -267,12 +291,14 @@
 				},
 				{
 					"name": "Duardin Pride",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 10 to the control scores of friendly THRONGANKOR ALLIANCE units while they are wholly within 12\" of and visible to any friendly STONE AND SKY units."
 				},
 				{
 					"name": "Hammer and Anvil",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -281,6 +307,7 @@
 				},
 				{
 					"name": "Transport Duardin",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a MOVE ability for a friendly SKYVESSEL in your movement phase",
 					"frequency": "Once Per Turn (Army)",
@@ -288,6 +315,7 @@
 				},
 				{
 					"name": "The Vice",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -296,6 +324,7 @@
 				},
 				{
 					"name": "Allied Grudgement",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a command for a unit within 12\" of and visible to a STONE AND SKY unit in your army",
 					"frequency": "Once Per Battle Round (Army)",
@@ -308,6 +337,7 @@
 					"entries": [
 						{
 							"name": "Stronger When Alloyed",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "If this unit is a KHAZALITE HOLDS unit, add 2 to the Attacks characteristic of its melee weapons while it is within 3\" of any visible friendly KHARADRON OVERLORDS units. If this unit is a KHARADRON OVERLORDS unit, add 2 to the Attacks characteristic of its melee weapons while it is within 3\" of any visible friendly KHAZALITE HOLDS units."
@@ -319,6 +349,7 @@
 					"entries": [
 						{
 							"name": "Throngankor Flare",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -335,6 +366,7 @@
 					"entries": [
 						{
 							"name": "Rune of Spirit",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly THRONGANKOR ALLIANCE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -347,6 +379,7 @@
 						},
 						{
 							"name": "Rune of Defence",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly THRONGANKOR ALLIANCE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -364,6 +397,7 @@
 					"entries": [
 						{
 							"name": "Redeclaration of Alliance",
+							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly THRONGANKOR ALLIANCE PRIEST to chant this prayer, then make a chanting roll of D6.",

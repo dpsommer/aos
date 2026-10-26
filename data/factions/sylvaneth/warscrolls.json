@@ -56,12 +56,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Wardroth Beetle's Antlers is 4."
 				},
 				{
 					"name": "Metamorphosis",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -73,6 +75,7 @@
 				},
 				{
 					"name": "Lifebloom",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -80,6 +83,7 @@
 				},
 				{
 					"name": "Living Battering Ram",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -91,14 +95,17 @@
 				},
 				{
 					"name": "The Goddess Of Life",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
 					"declare": "This unit can use this ability even if it has been destroyed.",
-					"effect": "Set up a replacement unit with 8 damage points allocated to it (ward rolls cannot be made for those damage points) wholly within the creeping overgrowth and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with 8 damage points allocated to it (ward rolls cannot be made for those damage points) wholly within the creeping overgrowth and more than 9\" from all enemy units.",
+					"command_points": 2
 				},
 				{
 					"name": "Seasons Of War",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"declare": "You must use this ability.",
@@ -165,12 +172,14 @@
 			"abilities": [
 				{
 					"name": "Fight And Fly",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "If this unit charged this turn, this unit can move up to 2D6\" after that FIGHT ability has been resolved. It cannot end that move in combat."
 				},
 				{
 					"name": "Gossamid Commander",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -203,12 +212,14 @@
 			"abilities": [
 				{
 					"name": "Budding Forest",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When this terrain feature is set up, give it a friendly overgrown token."
 				},
 				{
 					"name": "Vengeful Forest Spirits",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -217,6 +228,7 @@
 				},
 				{
 					"name": "Ever Growing",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round",
@@ -275,6 +287,7 @@
 			"abilities": [
 				{
 					"name": "Huntmaster's Strike",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -282,12 +295,14 @@
 				},
 				{
 					"name": "Kurnothi War-horn",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 2\" to the Move characteristic of friendly KURNOTHI units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Rhythm of the Chase",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -299,6 +314,7 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnelian Greatspite's Mandibles is 3."
@@ -344,6 +360,7 @@
 			"abilities": [
 				{
 					"name": "Slay The Trespassers!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -385,6 +402,7 @@
 			"abilities": [
 				{
 					"name": "One With The Forest",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls and wound rolls for attacks that target this unit while it is wholly within the creeping overgrowth."
@@ -442,12 +460,14 @@
 			"abilities": [
 				{
 					"name": "Terror Of The Deep Woods",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Enemy units cannot use RUN or RETREAT abilities while they are within 9\" of this unit."
 				},
 				{
 					"name": "Enrage The Spites",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick up to 3 enemy units that are visible to and within 12\" of this unit or that are within the creeping overgrowth to be the targets, then make a casting roll of 2D6.",
@@ -459,6 +479,7 @@
 				},
 				{
 					"name": "Merciless Ambush",
+					"type": "command",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "If this unit is not in combat and has not used a RUN or RETREAT ability this turn, make a charge roll of 2D6.",
@@ -468,7 +489,8 @@
 						"MOVE",
 						"CHARGE",
 						"RAMPAGE"
-					]
+					],
+					"command_points": 1
 				}
 			],
 			"keywords": [
@@ -516,12 +538,14 @@
 			"abilities": [
 				{
 					"name": "Strength From Spite",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Ward rolls cannot be made for damage points inflicted by this unit's attacks."
 				},
 				{
 					"name": "Twisted Spirit-Song",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly SYLVANETH unit wholly within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
@@ -533,6 +557,7 @@
 				},
 				{
 					"name": "Vicious Spiteswarms",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a Charge ability for a unit within 18\" of this unit",
 					"effect": "Your opponent must pick 1 of the following:",
@@ -592,6 +617,7 @@
 			"abilities": [
 				{
 					"name": "Eldritch Hunters",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "If this MANIFESTATION is not in combat, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy non-WIZARD non-PRIEST units and more than 3\" from all enemy WIZARDS and enemy PRIESTS.",
@@ -601,6 +627,7 @@
 				},
 				{
 					"name": "Feed on Eldritch Energy",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Subtract 1 from casting rolls, unbinding rolls, chanting rolls and banishment rolls for enemy units while they are in combat with this MANIFESTATION"
@@ -654,12 +681,14 @@
 			"abilities": [
 				{
 					"name": "Forest Fighters",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
 				},
 				{
 					"name": "Zephyrspites",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
 					"effect": "After that SHOOT ability has been resolved, this unit can move up to D6\". It cannot move into combat during any part of that move.",
@@ -719,6 +748,7 @@
 			"abilities": [
 				{
 					"name": "Soulshriek",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -727,6 +757,7 @@
 				},
 				{
 					"name": "Regenesis",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SYLVANETH unit that is wholly within the creeping overgrowth or that is visible to and wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -789,6 +820,7 @@
 			"abilities": [
 				{
 					"name": "Debilitating Shot",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy unit that has no more than 1 model and that had any damage points allocated to it this phase by this unit's shooting attacks to be the target.",
@@ -796,6 +828,7 @@
 				},
 				{
 					"name": "Clarion of the Forest Prince",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly non-WAR MACHINE unit wholly within 12\" of this unit to be the target.",
@@ -850,12 +883,14 @@
 			"abilities": [
 				{
 					"name": "Hunter's Endurance",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit while it is wholly within the creeping overgrowth."
 				},
 				{
 					"name": "Steady Aim",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -899,12 +934,14 @@
 			"abilities": [
 				{
 					"name": "Hunter's Endurance",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit while it is wholly within the creeping overgrowth."
 				},
 				{
 					"name": "Crashing Impact",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit charged this turn, pick an enemy unit that is in combat with this unit to be the target.",
@@ -950,12 +987,14 @@
 			"abilities": [
 				{
 					"name": "Hunter's Endurance",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit while it is wholly within the creeping overgrowth."
 				},
 				{
 					"name": "Vital Rangers",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1002,12 +1041,14 @@
 			"abilities": [
 				{
 					"name": "Hunter's Endurance",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit while it is wholly within the creeping overgrowth."
 				},
 				{
 					"name": "Tanglethorn Thicket",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
@@ -1062,6 +1103,7 @@
 			"abilities": [
 				{
 					"name": "Graceful Leaps",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time this unit makes a pile-in move:\n• Add 3\" to the distance this unit can move.\n• This unit can pass through models in enemy units."
@@ -1118,6 +1160,7 @@
 			"abilities": [
 				{
 					"name": "Deafening Drone",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1126,6 +1169,7 @@
 				},
 				{
 					"name": "Forest Fighters",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
@@ -1186,6 +1230,7 @@
 			"abilities": [
 				{
 					"name": "Lamentiri Life Energies",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1194,6 +1239,7 @@
 				},
 				{
 					"name": "Forest Fighters",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
@@ -1247,12 +1293,14 @@
 			"abilities": [
 				{
 					"name": "Karthaen",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Karthaen, Huntcaller, is on the battlefield, it has WIZARD (1)."
 				},
 				{
 					"name": "Fleet of Foot",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
@@ -1324,6 +1372,7 @@
 			"abilities": [
 				{
 					"name": "Groundshaker",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1335,12 +1384,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Guardian Sword is 3."
 				},
 				{
 					"name": "Guardian Of The Glades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a CHARGE ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1384,6 +1435,7 @@
 			"abilities": [
 				{
 					"name": "Shadowcreep",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1440,6 +1492,7 @@
 			"abilities": [
 				{
 					"name": "Strike And Fade",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1447,6 +1500,7 @@
 				},
 				{
 					"name": "Forest Fighters",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
@@ -1507,6 +1561,7 @@
 			"abilities": [
 				{
 					"name": "Anger The Hive",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "If this MANIFESTATION was not set up this turn, add 10 to the Attacks characteristic of this MANIFESTATION's ranged weapons for the rest of the phase, but all of the shooting attacks it makes this phase must target an enemy unit within 9\" of it."
@@ -1563,6 +1618,7 @@
 			"abilities": [
 				{
 					"name": "Verdian Crown",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -1571,6 +1627,7 @@
 				},
 				{
 					"name": "Protection Of The Everqueen",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6. Add 1 to the roll if this unit is wholly within the creeping overgrowth.",
@@ -1582,6 +1639,7 @@
 				},
 				{
 					"name": "Hands Of The Everqueen",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1651,6 +1709,7 @@
 			"abilities": [
 				{
 					"name": "Latching Paraspites",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1659,6 +1718,7 @@
 				},
 				{
 					"name": "Pain-Induced Frenzy",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit's melee weapons have Crit (2 Hits) if it charged in the same turn."
@@ -1727,6 +1787,7 @@
 			"abilities": [
 				{
 					"name": "Strangling Grasp",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1738,12 +1799,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Sweeping Blows is 3."
 				},
 				{
 					"name": "Lash And Tangle",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1813,6 +1876,7 @@
 			"abilities": [
 				{
 					"name": "Eldest Of Elders",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1824,12 +1888,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Sweeping Blows is 3."
 				},
 				{
 					"name": "Awaken Slumbering Spirits",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1903,6 +1969,7 @@
 			"abilities": [
 				{
 					"name": "Jade Abjuration",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick this unit or a visible friendly Awakened Wyldwood wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1914,12 +1981,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Sweeping Blows is 3."
 				},
 				{
 					"name": "Arcane Osmosis",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1961,6 +2030,7 @@
 			"abilities": [
 				{
 					"name": "Warriors of the Woods",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is in combat and has not charged this turn, add 1 to the Damage characteristic of this unit's melee weapons."
@@ -2004,6 +2074,7 @@
 			"abilities": [
 				{
 					"name": "Vengeful Terrors",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks made by enemy units while they are within 6\" of this MANIFESTATION."
@@ -2048,6 +2119,7 @@
 			"abilities": [
 				{
 					"name": "Rousing Accompaniment",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You made an unmodified chanting roll of 1 for a SYLVANETH PRIEST wholly within 12\" of this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -2055,6 +2127,7 @@
 				},
 				{
 					"name": "Alarielle's Song",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Friendly SYLVANETH units have WARD (6+) while they are wholly within 12\" of this unit. Subtract 1 from ward rolls for enemy units while they are within 12\" of this unit."
@@ -2124,12 +2197,14 @@
 			"abilities": [
 				{
 					"name": "Ylthari",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Ylthari is on the battlefield, it has WIZARD (1)."
 				},
 				{
 					"name": "Bitterness of the Soul",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Enchanted Glade Weapons for each model in this unit that is slain.",

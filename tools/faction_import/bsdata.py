@@ -174,6 +174,9 @@ def ability(profile, name=None):
         out["casting_value"] = int_or(chars["Casting Value"])
     if chars.get("Chanting Value"):
         out["chanting_value"] = int_or(chars["Chanting Value"])
+    # Commands ("Ability (Command)") have their command point cost as a Cost characteristic.
+    if chars.get("Cost"):
+        out["command_points"] = int_or(chars["Cost"])
     keywords = [k.strip() for k in markup(chars.get("Keywords")).upper().split(",") if k.strip()]
     if keywords:
         out["keywords"] = keywords

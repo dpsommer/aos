@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "The Royal Crypt",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -17,18 +18,21 @@
 				},
 				{
 					"name": "Grave Sentinels",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The melee weapons used by friendly BARROW LEGION units have Anti-charge (+1 Rend) while they are wholly within 9\" of a friendly Cursed Sepulchre."
 				},
 				{
 					"name": "All to Dust",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "In the third and subsequent battle rounds, while a friendly Cursed Sepulchre is on the battlefield, subtract 1 from save rolls for enemy units."
 				},
 				{
 					"name": "Gifts to the Petty Kingdoms",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -43,6 +47,7 @@
 				},
 				{
 					"name": "Endless Legions of Bone",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Battle Round (Army)",
@@ -56,6 +61,7 @@
 					"entries": [
 						{
 							"name": "Restless Tyrant",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"declare": "Pick a friendly BARROW LEGION unit wholly within 12\" of this unit to be the target.",
@@ -63,12 +69,14 @@
 						},
 						{
 							"name": "Spirit-eater",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
 							"effect": "If any models were slain by your general this turn, Heal (D6) your general."
 						},
 						{
 							"name": "Lord of the Arcane Aegis",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Deployment Phase",
 							"effect": "Pick 1 of the following keywords:\n• INFANTRY\n• CAVALRY\n• MONSTER\n• BEAST\nFor the rest of the battle, each time an attack targets this unit, if the attacking unit has the keyword you picked, an unmodified save roll of 4+ for that attack is always successful."
@@ -80,12 +88,14 @@
 					"entries": [
 						{
 							"name": "Ring of Stricken Souls",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (5+)"
 						},
 						{
 							"name": "Crown of Cold Command",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Hero Phase",
 							"frequency": "Once Per Turn",
@@ -94,6 +104,7 @@
 						},
 						{
 							"name": "Crypt Dagger",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
 							"frequency": "Once Per Battle",
@@ -102,12 +113,14 @@
 						},
 						{
 							"name": "Grave-sand Pendant",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "If this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (1) this unit. This unit cannot use this ability again for the rest of the battle."
 						},
 						{
 							"name": "Amulet of Nightmares",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -125,6 +138,7 @@
 			"battle_traits": [
 				{
 					"name": "The Crimson Keep",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly CRIMSON KEEP unit that has not been deployed.",
@@ -135,13 +149,16 @@
 				},
 				{
 					"name": "Carve a Bloody Path",
+					"type": "command",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "Pick a friendly Blood Knights unit that is in combat to use this ability.",
-					"effect": "That unit can use a CHARGE ability even though it is in combat and even if it has already used a CHARGE ability this turn."
+					"effect": "That unit can use a CHARGE ability even though it is in combat and even if it has already used a CHARGE ability this turn.",
+					"command_points": 1
 				},
 				{
 					"name": "From a Quarter Unseen",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -150,6 +167,7 @@
 				},
 				{
 					"name": "Blood Rampage",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -166,6 +184,7 @@
 					"entries": [
 						{
 							"name": "Immortal Dedication",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Combat Phase",
 							"effect": "This unit receives D3 martial prowess tokens. Each martial prowess token can be spent to do 1 of the following:\n• Re-roll a hit roll for this unit.\n• Re-roll a wound roll for this unit.\n• Re-roll a save roll for this unit.\nAt the start of the next turn, remove all this unit's martial prowess tokens."
@@ -177,6 +196,7 @@
 					"entries": [
 						{
 							"name": "Chalice of the Blood Dragon",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
 							"frequency": "Once Per Battle",
@@ -192,6 +212,7 @@
 					"entries": [
 						{
 							"name": "Siphon Strength",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CRIMSON KEEP WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -204,6 +225,7 @@
 						},
 						{
 							"name": "Deathly Gale",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CRIMSON KEEP WIZARD to cast this spell, pick a visible friendly CRIMSON KEEP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -215,6 +237,7 @@
 						},
 						{
 							"name": "Awakened Fury",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CRIMSON KEEP WIZARD to cast this spell, pick a visible friendly CRIMSON KEEP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -232,6 +255,7 @@
 					"entries": [
 						{
 							"name": "Summon Unholy Reliquary",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Unholy Reliquary on the battlefield, pick a friendly CRIMSON KEEP WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -255,6 +279,7 @@
 			"battle_traits": [
 				{
 					"name": "Thaumic Realignment",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -266,6 +291,7 @@
 				},
 				{
 					"name": "Recruitment Drive",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -277,6 +303,7 @@
 				},
 				{
 					"name": "Seek Worthy Blood",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -288,6 +315,7 @@
 				},
 				{
 					"name": "The Queen's Prize",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -304,6 +332,7 @@
 					"entries": [
 						{
 							"name": "Keeper of the Royal Menagerie",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly Dire Wolves or Fell Bats unit that has been destroyed to be the target.",
@@ -316,6 +345,7 @@
 					"entries": [
 						{
 							"name": "Amulet of Leeches",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While this unit is within the combat range of a friendly Dire Wolves or Fell Bats unit:\n• This unit has WARD (5+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly Dire Wolves or Fell Bats unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
@@ -330,6 +360,7 @@
 					"entries": [
 						{
 							"name": "Invocation of Nulahmia",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, pick a visible friendly Dire Wolves or Fell Bats unit wholly within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -342,6 +373,7 @@
 						},
 						{
 							"name": "Thrall Drain",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, pick a friendly unit wholly within 12\" of them to be the target, then make a casting roll of 2D6",
@@ -353,6 +385,7 @@
 						},
 						{
 							"name": "Scarlet Thirst",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, then make a casting roll of 2D6.",

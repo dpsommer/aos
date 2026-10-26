@@ -33,12 +33,14 @@
 			"battle_traits": [
 				{
 					"name": "CHAMELEON AMBUSH",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units."
 				},
 				{
 					"name": "VENGEANCE OF AZYR",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -49,6 +51,7 @@
 			"regiment_abilities": [
 				{
 					"name": "SCALED AEGIS",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SAURUS unit to be the target",
@@ -56,6 +59,7 @@
 				},
 				{
 					"name": "FOLLOWERS OF HUANCHI",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick a friendly SKINK unit to be the target.",
@@ -65,6 +69,7 @@
 			"enhancements": [
 				{
 					"name": "INSTINCTIVE COMMANDER",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general and not in combat to be the target.",
@@ -72,6 +77,7 @@
 				},
 				{
 					"name": "VENOMITE SWARM",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with your general to be the target.",
@@ -79,6 +85,7 @@
 				},
 				{
 					"name": "SAVAGE MAULING",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with your general to be the target.",
@@ -86,6 +93,7 @@
 				},
 				{
 					"name": "BLESSED BY THE OLD ONES",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"declare": "Your general must use this ability if it has been destroyed. Roll a dice.",
@@ -115,12 +123,14 @@
 					"abilities": [
 						{
 							"name": "SCALED PROTECTORS",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "While this unit includes a Sunblood, ignore the first damage point that would be allocated to this unit each phase and add 1 to this unit’s control score."
 						},
 						{
 							"name": "SAVAGE BELLOW",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target and roll a dice.",
@@ -171,6 +181,7 @@
 					"abilities": [
 						{
 							"name": "SUN ACOLYTES",
+							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
 							"effect": "This unit has a crew of 3 Sun Acolytes that are tokens. Add 1 to this unit’s control score for each Sun Acolyte it has. If this unit has no Sun Acolytes, it has a maximum control score of 1. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Sun Acolytes from the battlefield after the Attack ability has been resolved (the damage point is still inflicted)."
@@ -202,6 +213,7 @@
 					"abilities": [
 						{
 							"name": "ORDERED COHORTS",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Add 1 to save rolls for this unit while it is contesting an objective you control."
@@ -236,6 +248,7 @@
 					"abilities": [
 						{
 							"name": "NERVE-SHREDDING SCREECHES",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -280,6 +293,7 @@
 					"abilities": [
 						{
 							"name": "STAR-VENOM",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Any Shooting Phase",
 							"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit’s Dartpipe to be the target.",
@@ -313,6 +327,7 @@
 			"battle_traits": [
 				{
 					"name": "BEAST OF THE DARK JUNGLES",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick your general to use this ability if they are in combat.",
@@ -332,6 +347,7 @@
 			"regiment_abilities": [
 				{
 					"name": "PREDATORY FIGHTERS",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Phase",
@@ -340,6 +356,7 @@
 				},
 				{
 					"name": "TEMPLE-CITY GUARDIANS",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly units have WARD (6+) while they are wholly within friendly territory."
@@ -348,18 +365,21 @@
 			"enhancements": [
 				{
 					"name": "SOTEK'S GAZE",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"effect": "Roll a dice. Add the roll to your general’s control score this turn."
 				},
 				{
 					"name": "BLADE OF REALITIES",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of your general’s Relic Celestite Weapon."
 				},
 				{
 					"name": "ANCIENT STRATEGIST",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Battle",
@@ -368,6 +388,7 @@
 				},
 				{
 					"name": "THE WRATH OF CHOTEC",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "The Attacks characteristic of your general’s Sunbolt Gauntlet is 6 instead of D6."
@@ -421,12 +442,14 @@
 					"abilities": [
 						{
 							"name": "BATTLE DAMAGED",
+							"type": "passive",
 							"category": "damage",
 							"timing": "Passive",
 							"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur’s Massive Jaws is 1."
 						},
 						{
 							"name": "ANCIENT WARLORD",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
@@ -460,6 +483,7 @@
 					"abilities": [
 						{
 							"name": "ORDERED COHORTS",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Add 1 to save rolls for this unit while it is contesting an objective you control."
@@ -491,6 +515,7 @@
 					"abilities": [
 						{
 							"name": "BRUTAL BLOWS",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "This unit’s melee weapons have Crit (2 Hits) if the target unit has 5 or more models."

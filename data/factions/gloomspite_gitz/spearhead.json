@@ -29,6 +29,7 @@
 			"battle_traits": [
 				{
 					"name": "FAST AS FRAZZLEGIT",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Friendly units can use CHARGE abilities even if they used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on friendly units by RETREAT abilities."
@@ -37,6 +38,7 @@
 			"regiment_abilities": [
 				{
 					"name": "FLANKIN' FORCE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -44,6 +46,7 @@
 				},
 				{
 					"name": "FRAZZLEBOOM",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly WAR MACHINE is destroyed, before removing it from play, pick an enemy unit within 3\" of that WAR MACHINE and roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll."
@@ -52,6 +55,7 @@
 			"enhancements": [
 				{
 					"name": "KUNNIN' AS A SNARLFANG",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -59,6 +63,7 @@
 				},
 				{
 					"name": "SUNSTEALA SHARD",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Battle",
@@ -66,6 +71,7 @@
 				},
 				{
 					"name": "GLARE OF FRAZZLEGIT",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -74,6 +80,7 @@
 				},
 				{
 					"name": "DEVIOUS BACKSTABBA",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target.",
@@ -115,6 +122,7 @@
 					"abilities": [
 						{
 							"name": "GREAT SNARLIN' HOWL",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Turn (Army)",
@@ -171,6 +179,7 @@
 					"abilities": [
 						{
 							"name": "CAREENING DESTRUCTION",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY unit that this unit passed across during that move to be the target. Inflict D3 mortal damage on the target.",
@@ -227,6 +236,7 @@
 					"abilities": [
 						{
 							"name": "FRAZZLEBURNED SCRAP",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
@@ -280,6 +290,7 @@
 					"abilities": [
 						{
 							"name": "I GOT DIS, BOSS",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While a friendly Snarlboss is within this unit’s combat range, both this unit and that Snarlboss have WARD (5+)."
@@ -321,6 +332,7 @@
 			"battle_traits": [
 				{
 					"name": "SQUIGALANCHE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit wholly within your territory, wholly within 3\" of a battlefield edge and more than 6\" from all enemy units.",
@@ -328,6 +340,7 @@
 				},
 				{
 					"name": "UNDER THE LIGHT OF THE BAD MOON",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of the First Battle Round",
 					"frequency": "Once Per Battle",
@@ -352,6 +365,7 @@
 			"regiment_abilities": [
 				{
 					"name": "THE LUNATIC HORDES",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly Moonclan Stabbas unit to use this ability.",
@@ -359,6 +373,7 @@
 				},
 				{
 					"name": "THE HAND OF GORK",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -372,6 +387,7 @@
 			"enhancements": [
 				{
 					"name": "FIGHT ANOTHER DAY",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"declare": "Pick your general to use this ability if they used a FIGHT ability this turn.",
@@ -379,18 +395,21 @@
 				},
 				{
 					"name": "HALLUCINOGENIC FUNGUS BREW",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (4+) in the first battle round, WARD (5+) in the second battle round, and WARD (6+) in the third and fourth battle rounds."
 				},
 				{
 					"name": "THE CLAMMY COWL",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target your general."
 				},
 				{
 					"name": "NIGHTSHADE MUSHROOM",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Battle",
@@ -422,6 +441,7 @@
 					"abilities": [
 						{
 							"name": "I'M DA BOSS",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly Moonclan Stabbas unit wholly within 12\" of this unit to be the target.",
@@ -478,6 +498,7 @@
 					"abilities": [
 						{
 							"name": "BOING! BOING! BOING!",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Movement Phase",
 							"declare": "Pick an enemy unit that any models in this unit passed across this phase to be the target, then roll a dice for each model in this unit that did so.",
@@ -511,6 +532,7 @@
 					"abilities": [
 						{
 							"name": "NETTERS",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
@@ -554,6 +576,7 @@
 					"abilities": [
 						{
 							"name": "REGENERATION",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Start of Any Turn",
 							"effect": "Heal (D3) this unit."

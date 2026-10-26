@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Blighted Regrowth",
+			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
 			"declare": "You can use this ability if there are no friendly Feculent Gnarlmaws on the battlefield.",
@@ -12,6 +13,7 @@
 		},
 		{
 			"name": "Blessed By the Plaguefather",
+			"type": "active",
 			"category": "special",
 			"timing": "End of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -33,6 +35,7 @@
 		},
 		{
 			"name": "Wracked with Disease",
+			"type": "active",
 			"category": "offensive",
 			"timing": "End of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -41,6 +44,7 @@
 		},
 		{
 			"name": "Ceaseless Infectors",
+			"type": "active",
 			"category": "special",
 			"timing": "End of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -49,12 +53,14 @@
 		},
 		{
 			"name": "Burst Pustules",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "Each time a DISEASED enemy unit is destroyed, before the last model in the unit is removed from play, roll a dice. On a 3+, pick another enemy unit within 9\" of that model to be the target. You cannot pick a MANIFESTATION or terrain feature. The target has the DISEASED keyword."
 		},
 		{
 			"name": "Desperate Remedies",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "If an ability would heal or return slain models to a DISEASED enemy unit, that ability does not heal or return any slain models to it. Instead, it no longer has the DISEASED keyword."
@@ -67,6 +73,7 @@
 			"abilities": [
 				{
 					"name": "Plague Progenitor",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -81,6 +88,7 @@
 			"abilities": [
 				{
 					"name": "Vectors of Contagion",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 5 to the control scores of friendly non-HERO ROTBRINGERS units while they are wholly within 12\" of any friendly MAGGOTKIN OF NURGLE DAEMON units."
@@ -93,6 +101,7 @@
 			"abilities": [
 				{
 					"name": "Denizens of the Garden",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Companion weapons used by friendly MAGGOTKIN OF NURGLE units have Crit (2 Hits)."
@@ -105,6 +114,7 @@
 			"abilities": [
 				{
 					"name": "Filth-laden Daemonic Blooms",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time you make a run roll for a friendly non-MONSTER MAGGOTKIN OF NURGLE DAEMON unit, you can change that roll to a 4."
@@ -119,12 +129,14 @@
 			"entries": [
 				{
 					"name": "Grandfather's Blessing",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "If this unit is in combat with a DISEASED enemy unit, Heal (D3) this unit."
 				},
 				{
 					"name": "Gift of Febrile Frenzy",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a visible friendly non-HERO MAGGOTKIN OF NURGLE unit that is wholly within 12\" of this unit to be the target.",
@@ -132,6 +144,7 @@
 				},
 				{
 					"name": "Overpowering Stench",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -146,6 +159,7 @@
 			"entries": [
 				{
 					"name": "Living Plague",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -154,12 +168,14 @@
 				},
 				{
 					"name": "Unctuous Preacher",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is not a PRIEST, it has PRIEST (1). If this unit is already a PRIEST, add 1 to chanting rolls for this unit."
 				},
 				{
 					"name": "Corpulent Avalanche",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
@@ -173,6 +189,7 @@
 			"entries": [
 				{
 					"name": "The Witherstave",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
@@ -180,6 +197,7 @@
 				},
 				{
 					"name": "The Carrion Dirge",
+					"type": "active",
 					"category": "control",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -188,6 +206,7 @@
 				},
 				{
 					"name": "Rustfang",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
@@ -201,6 +220,7 @@
 			"entries": [
 				{
 					"name": "Snuggling Sickness",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -209,6 +229,7 @@
 				},
 				{
 					"name": "Chuckling Murrain",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Your opponent must spend 1 additional rage dice for a unit to use the 'Eruption of Fury' ability while it is in combat with this unit.\n\nWhen resolving the damage sequence for enemy units in combat with this unit, each time your opponent would spend rage dice as part of the 'Fight Through the Pain' ability, they must spend 1 additional rage dice.\n\nIn both cases, that additional dice does not count towards the number of rage dice spent for the purposes of the ability.",
@@ -216,6 +237,7 @@
 				},
 				{
 					"name": "The Weeping Flux",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain by a combat attack, roll a number of dice equal to this unit's Health characteristic. For each 6, inflict 1 mortal damage on the attacking unit.",
@@ -232,6 +254,7 @@
 			"entries": [
 				{
 					"name": "Fleshy Abundance",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE WIZARD to cast this spell, pick a visible friendly MAGGOTKIN OF NURGLE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -244,6 +267,7 @@
 				},
 				{
 					"name": "Crippling Despair",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -255,6 +279,7 @@
 				},
 				{
 					"name": "Cloying Quagmire",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -273,6 +298,7 @@
 			"entries": [
 				{
 					"name": "Gift of Disease",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -285,6 +311,7 @@
 				},
 				{
 					"name": "Favoured Poxes",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of the chanter to be the target, then make a chanting roll of D6.",
@@ -296,6 +323,7 @@
 				},
 				{
 					"name": "Bloated with Sickness",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible friendly non-MONSTER MAGGOTKIN OF NURGLE unit wholly within 12\" of the chanter to be the target, then make a chanting roll of D6.",
@@ -315,6 +343,7 @@
 			"entries": [
 				{
 					"name": "Infectious Surge",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible friendly MAGGOTKIN OF NURGLE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -327,6 +356,7 @@
 				},
 				{
 					"name": "Frothing Mucus",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible friendly MAGGOTKIN OF NURGLE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -338,6 +368,7 @@
 				},
 				{
 					"name": "Agonising Vomiting",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -357,6 +388,7 @@
 			"entries": [
 				{
 					"name": "Agonising Vomiting",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -368,6 +400,7 @@
 				},
 				{
 					"name": "Febrile Advance",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible friendly MAGGOTKIN OF NURGLE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -380,6 +413,7 @@
 				},
 				{
 					"name": "Blunting Blight",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",

@@ -44,6 +44,7 @@
 			"abilities": [
 				{
 					"name": "Soulgorgers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -52,6 +53,7 @@
 				},
 				{
 					"name": "Mutilating Blades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -125,6 +127,7 @@
 			"abilities": [
 				{
 					"name": "Slavering for Sensation",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick up to 2 friendly Hellflayer units wholly within 12\" of this unit to be the targets.",
@@ -132,6 +135,7 @@
 				},
 				{
 					"name": "Soulscent",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"declare": "Pick up to 3 enemy units that this unit passed across this phase to be the targets.",
@@ -139,6 +143,7 @@
 				},
 				{
 					"name": "Threshing Doom",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When this unit moves, it can pass through models in enemy INFANTRY units and can pass through the combat ranges of enemy INFANTRY units, but it cannot end a move in combat unless specified in the ability used."
@@ -198,6 +203,7 @@
 			"abilities": [
 				{
 					"name": "Thrillseeking Cavalcade",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Charge Phase",
 					"declare": "Pick up to 3 friendly Seeker Chariot units wholly within 12\" of this unit to be the targets.",
@@ -205,6 +211,7 @@
 				},
 				{
 					"name": "Mutilating Blades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -257,12 +264,14 @@
 			"abilities": [
 				{
 					"name": "Blissbrew Homonculus",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit's Blissbrew Homonculi are tokens. There is 1 Blissbrew Homonculus for every 10 models in this unit.\n\n\nThis unit has WARD (6+) while it has any Blissbrew Homonculi. If you make an unmodified ward roll of 1 for this unit, remove 1 of this unit's Blissbrew Homonculi from the battlefield (the damage point is still inflicted)."
 				},
 				{
 					"name": "The Thrill Of Combat",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -326,6 +335,7 @@
 			"abilities": [
 				{
 					"name": "Adrenaline Archers",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -390,6 +400,7 @@
 			"abilities": [
 				{
 					"name": "Numbing Toxins",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -437,6 +448,7 @@
 			"abilities": [
 				{
 					"name": "The Mirror's Depths",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -451,6 +463,7 @@
 				},
 				{
 					"name": "Swallow Energy",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -498,6 +511,7 @@
 			"abilities": [
 				{
 					"name": "Lithe and Swift",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -550,12 +564,14 @@
 			"abilities": [
 				{
 					"name": "Joyous Battle Fury",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If any enemy models were slain by this unit's combat attacks this turn, Heal (D3) this unit, and add 1 to the Attacks characteristic of this unit's Impaling Talons for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
 				},
 				{
 					"name": "Redolence of Violence",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -567,12 +583,14 @@
 				},
 				{
 					"name": "Fleeting Dance of Death",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use CHARGE abilities even if it is in combat."
 				},
 				{
 					"name": "You! Amuse Us!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly PARAGON that has not used a FIGHT ability this turn and is within this unit’s combat range and visible to this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
@@ -620,6 +638,7 @@
 			"abilities": [
 				{
 					"name": "Flensing Tongues",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this MANIFESTATION to be the target.",
@@ -676,6 +695,7 @@
 			"abilities": [
 				{
 					"name": "Excess of Blades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -707,6 +727,7 @@
 			"abilities": [
 				{
 					"name": "Damned Conduit",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -752,12 +773,14 @@
 			"abilities": [
 				{
 					"name": "Arcane Disruption",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Subtract 1 from casting rolls and unbinding rolls for enemy WIZARDS while they are within 12\" of this unit."
 				},
 				{
 					"name": "Disharmonious Song",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -831,6 +854,7 @@
 			"abilities": [
 				{
 					"name": "Gorge on Excess",
+					"type": "active",
 					"category": "rally",
 					"timing": "End of Enemy Turn",
 					"declare": "Pick a friendly SYBARITE unit wholly within 12\" of this unit to be the target.",
@@ -838,6 +862,7 @@
 				},
 				{
 					"name": "Paragon Of Gluttony",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
 					"effect": "Pick 1 of the following delicacies for Glutos to savour. You cannot pick a delicacy that you picked in the previous turn. The effect applies for the rest of the turn.",
@@ -862,6 +887,7 @@
 				},
 				{
 					"name": "Crippling Famishment",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -873,6 +899,7 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Kyazu's Greatblade and Mutants' Claws is 4."
@@ -944,6 +971,7 @@
 			"abilities": [
 				{
 					"name": "Soulscent",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"declare": "Pick up to 3 enemy units that this unit passed across this phase to be the targets.",
@@ -951,6 +979,7 @@
 				},
 				{
 					"name": "Threshing Doom",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When this unit moves, it can pass through models in enemy INFANTRY units and can pass through the combat ranges of enemy INFANTRY units, but it cannot end a move in combat unless specified in the ability used."
@@ -1007,6 +1036,7 @@
 			"abilities": [
 				{
 					"name": "Maiming Charge",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, subtract 3 from the control scores of enemy INFANTRY units while they are in combat with this unit."
@@ -1053,12 +1083,14 @@
 			"abilities": [
 				{
 					"name": "Spell-Shredding Symphony",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND and BANISH abilities as if it had WIZARD (1). In addition, each time this unit successfully unbinds a spell, inflict D3 mortal damage on the caster and each time this unit successfully banishes a MANIFESTATION, inflict D3 mortal damage on the unit that summoned that MANIFESTATION."
 				},
 				{
 					"name": "Maestros Of Discordance",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1107,12 +1139,14 @@
 			"abilities": [
 				{
 					"name": "Delightful Defeatism",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a visible enemy unit within 18\" of this unit uses the 'Rally' command, your opponent must make 3 fewer rally rolls of D6."
 				},
 				{
 					"name": "Like Nails on a Chalkboard",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: Opponent declared the 'Eruption of Fury' ability for a unit within 12\" of and visible to this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1168,13 +1202,16 @@
 			"abilities": [
 				{
 					"name": "Locus of Slaanesh",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly non-HERO HEDONITES OF SLAANESH DAEMON unit that started the battle with 3 or more models and has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
+					"command_points": 1
 				},
 				{
 					"name": "Dark Temptations",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1196,12 +1233,14 @@
 				},
 				{
 					"name": "Supernatural Grace",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit by RETREAT abilities."
 				},
 				{
 					"name": "Cacophonic Choir",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick any number of visible enemy units within 12\" of this unit to be the targets, then make a casting roll of 2D6. Subtract 1 from the casting roll for each target you picked after the first.",
@@ -1210,6 +1249,7 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Elegant Greatblade is 3."
@@ -1255,6 +1295,7 @@
 			"abilities": [
 				{
 					"name": "'You First, I Insist...'",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1266,6 +1307,7 @@
 				},
 				{
 					"name": "Allow Me To Demonstrate",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1310,12 +1352,14 @@
 			"abilities": [
 				{
 					"name": "Slaughterous Celebrants",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While they are wholly within 12\" of and visible to this unit, melee weapons used by friendly HEDONITES OF SLAANESH INFANTRY units have Anti-charge (+1 Rend)."
 				},
 				{
 					"name": "Master Of The Revels",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1364,12 +1408,14 @@
 			"abilities": [
 				{
 					"name": "Share the Pain",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+) while it is in combat. In addition, each time you make a successful ward roll for this unit for a damage point inflicted by a combat attack, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Atrocious Ministrations",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly HEDONITES OF SLAANESH INFANTRY unit wholly within 12\" of this unit to be the target.",
@@ -1402,6 +1448,7 @@
 			"abilities": [
 				{
 					"name": "Irresistible Lure",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: Opponent declared a MOVE ability for a unit within 18\" of and visible to this MANIFESTATION",
 					"frequency": "Once Per Phase (Army)",
@@ -1442,12 +1489,14 @@
 			"abilities": [
 				{
 					"name": "False Serenity",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit has not charged this turn, it has WARD (5+)."
 				},
 				{
 					"name": "Dance of the Wailing Blade",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1503,6 +1552,7 @@
 			"abilities": [
 				{
 					"name": "Mutilating Blades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -1559,6 +1609,7 @@
 			"abilities": [
 				{
 					"name": "Quicksilver Speed",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1619,6 +1670,7 @@
 			"abilities": [
 				{
 					"name": "An Exquisite Trophy",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
@@ -1626,6 +1678,7 @@
 				},
 				{
 					"name": "Paramount Hunter",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a CHARGE ability for a HERO within 12\" of this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1639,12 +1692,14 @@
 				},
 				{
 					"name": "Supernatural Grace",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit by RETREAT abilities."
 				},
 				{
 					"name": "Refine Senses",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6. Add 1 to the casting roll if this unit is the target.",
@@ -1656,6 +1711,7 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Soulpiercer is 4."
@@ -1705,6 +1761,7 @@
 			"abilities": [
 				{
 					"name": "Truths Of The Twisted Mirror",
+					"type": "spell",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "If this unit is a PARAGON, pick a visible enemy unit within 12\" of it to be the target, then make a casting roll of 2D6.",
@@ -1716,6 +1773,7 @@
 				},
 				{
 					"name": "Bargain With The Mist-Daemons",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1766,12 +1824,14 @@
 			"abilities": [
 				{
 					"name": "Shardslash",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from ward rolls for damage points inflicted by this unit's combat attacks."
 				},
 				{
 					"name": "Gaze Upon My Magnificence And Weep",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit has not used a TEMPTATION ability this turn, pick an enemy unit in combat with this unit to be the target.",
@@ -1792,6 +1852,7 @@
 				},
 				{
 					"name": "Paragon Of Vainglory",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn and the unmodified charge roll was 6+ for the rest of the turn:\n\n\n• This unit has STRIKE-FIRST.\n• The Attacks characteristic of this unit's Shardslash is equal to the unmodified charge roll.\n• Melee weapons, including Companion weapons, used by other friendly HEDONITES OF SLAANESH units have Crit (2 Hits) while they are wholly within 12\" of and visible to this unit."
@@ -1838,6 +1899,7 @@
 			"abilities": [
 				{
 					"name": "Veiled Threat",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "Set up this unit in reserve waiting in ambush. It has now been deployed.",
@@ -1847,6 +1909,7 @@
 				},
 				{
 					"name": "Instinctive Advance",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a command for a unit within 12\" of this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1854,6 +1917,7 @@
 				},
 				{
 					"name": "Bestial Onslaught",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"declare": "Pick this unit if it is waiting in ambush.",
@@ -1899,6 +1963,7 @@
 			"abilities": [
 				{
 					"name": "Veiled Threat",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit if it has not been deployed.",
@@ -1909,6 +1974,7 @@
 				},
 				{
 					"name": "Bestial Onslaught",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"declare": "Pick this unit if it is waiting in ambush.",
@@ -1916,6 +1982,7 @@
 				},
 				{
 					"name": "Instinctive Advance",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a command for a unit within 12\" of this unit",
 					"frequency": "Once Per Phase (Army)",
@@ -1971,6 +2038,7 @@
 			"abilities": [
 				{
 					"name": "Unrivalled Velocity",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a CHARGE ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -2025,12 +2093,14 @@
 			"abilities": [
 				{
 					"name": "Champions Of The Gilded Throne",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, instead of picking 1 unit, you can pick a friendly non-HERO HEDONITES OF SLAANESH DAEMON unit wholly within 18\" of this unit and a friendly non-HERO SYBARITE unit wholly within 18\" of this unit. Resolve the second FIGHT ability immediately after the first."
 				},
 				{
 					"name": "Unholy Symbiosis",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick up to 1 visible friendly SYBARITE unit and up to 1 visible friendly HEDONITES OF SLAANESH DAEMON unit to be the targets, then make a casting roll of 2D6.",
@@ -2042,6 +2112,7 @@
 				},
 				{
 					"name": "Violent Offerings",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated this turn by this unit's combat attacks to an enemy WIZARD, PRIEST, UNIQUE unit or unit with an artefact of power, and that enemy unit has been destroyed, add 1 to this unit's power level for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
@@ -2100,6 +2171,7 @@
 			"abilities": [
 				{
 					"name": "Wandering Minds",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick up to 1 visible friendly non-HERO SYBARITE INFANTRY unit and up to 1 visible friendly non-HERO HEDONITES OF SLAANESH DAEMON INFANTRY unit to be the targets, then make a casting roll of 2D6.",
@@ -2111,12 +2183,14 @@
 				},
 				{
 					"name": "Violent Offerings",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated to an enemy WIZARD or PRIEST by this unit's combat attacks this turn and that enemy unit has been destroyed, add 1 to this unit's power level for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
 				},
 				{
 					"name": "Champions of the Gilded Throne",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, instead of picking 1 unit, you can pick a friendly non-HERO HEDONITES OF SLAANESH DAEMON unit wholly within 18\" of this unit and a friendly non-HERO SYBARITE unit wholly within 18\" of this unit. Resolve the second FIGHT ability immediately after the first."
@@ -2160,12 +2234,14 @@
 			"abilities": [
 				{
 					"name": "Pah! Unworthy!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is damaged or has fewer than half its starting models, add 1 to the Rend characteristic of its melee weapons."
 				},
 				{
 					"name": "Ego-driven Excess",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -2225,6 +2301,7 @@
 			"abilities": [
 				{
 					"name": "Arcane Seductor",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"declare": "Pick a visible enemy WIZARD or PRIEST within 18\" of this unit to be the target.",
@@ -2232,6 +2309,7 @@
 				},
 				{
 					"name": "Enthralling Splendour",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2243,6 +2321,7 @@
 				},
 				{
 					"name": "Whispers of Desire",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -2293,12 +2372,14 @@
 			"abilities": [
 				{
 					"name": "Slicing Fervour",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit has STRIKE-FIRST while it is in combat with a blissmarked unit."
 				},
 				{
 					"name": "Blissbarb Shafts",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2350,6 +2431,7 @@
 			"abilities": [
 				{
 					"name": "The Endless Dance",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"effect": "Pick 1 of the following effects:",
@@ -2370,6 +2452,7 @@
 				},
 				{
 					"name": "Captive Audience",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Enemy units cannot use RETREAT abilities while they are in combat with this unit."
@@ -2414,12 +2497,14 @@
 			"abilities": [
 				{
 					"name": "Indulgence Given Form",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time an enemy unit uses a command while it is within 12\" of this unit, give 1 indulgence point to this unit, to a maximum of 6."
 				},
 				{
 					"name": "Sublime Harmonies",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Vashtiss is on the battlefield, it has WIZARD (1). In addition, each time you make a casting roll for this unit, you can spend any number of indulgence points it has. For each point spent, add 1 to the casting roll."
@@ -2471,6 +2556,7 @@
 			"abilities": [
 				{
 					"name": "Thricefold Court",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2492,6 +2578,7 @@
 				},
 				{
 					"name": "Gifts Of Pain And Pleasure",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick either a visible friendly HEDONITES OF SLAANESH INFANTRY unit wholly within 12\" of this unit or a visible enemy unit wholly within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
@@ -2545,12 +2632,14 @@
 			"abilities": [
 				{
 					"name": "Lust for Violence",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Daemonettes unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
 					"name": "Lithe and Swift",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's Ravaging Claws for the rest of the turn if this unit charged in the same turn."
@@ -2598,6 +2687,7 @@
 			"abilities": [
 				{
 					"name": "Exquisite Agony",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit in combat with this MANIFESTATION to be the target.",

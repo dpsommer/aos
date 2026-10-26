@@ -17,6 +17,7 @@
 			"abilities": [
 				{
 					"name": "Magical Focus",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -24,6 +25,7 @@
 				},
 				{
 					"name": "Sorcerous Duplication",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -78,6 +80,7 @@
 			"abilities": [
 				{
 					"name": "Split Again",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "Roll a dice for each Blue Horror model in this unit that is slain. For each 3+, if there are fewer Brimstone Horrors models in this unit than its starting size, you can add 1 Brimstone Horrors model to this unit.",
@@ -90,6 +93,7 @@
 				},
 				{
 					"name": "Immolation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Slain Brimstone Horrors cannot be returned to this unit. When setting up a replacement unit for this unit, Brimstone Horror models are ignored when determining the number of models in this unit, and you cannot pick them to be set up."
@@ -158,6 +162,7 @@
 			"abilities": [
 				{
 					"name": "Fiery Death From Above",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -192,6 +197,7 @@
 			"abilities": [
 				{
 					"name": "Radiant Transmogrification",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "This MANIFESTATION must use this ability in each hero phase. Pick each unit (friendly and enemy) within 9\" of this MANIFESTATION to be the targets.",
@@ -237,12 +243,14 @@
 			"abilities": [
 				{
 					"name": "Locus of Command",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly DISCIPLES OF TZEENTCH DAEMON unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
 					"name": "Weapon Curse",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -290,6 +298,7 @@
 			"abilities": [
 				{
 					"name": "A Twisted Fate",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "This unit must be deployed using this ability.",
@@ -300,6 +309,7 @@
 				},
 				{
 					"name": "Waves of Mutation",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time this unit or the replacement of this unit is destroyed, set up a replacement unit in reserve masked by illusion. Each friendly Chaos Spawn of Tzeentch unit can be replaced any number of times."
@@ -352,6 +362,7 @@
 			"abilities": [
 				{
 					"name": "Armour-bane Curse",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target then make a casting roll of 2D6.",
@@ -363,6 +374,7 @@
 				},
 				{
 					"name": "With Spell and Sword",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -410,6 +422,7 @@
 			"abilities": [
 				{
 					"name": "Jaws of Fate",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 2 to the Attacks characteristic of this unit's Snapping Jaws for each fate point you have."
@@ -466,6 +479,7 @@
 			"abilities": [
 				{
 					"name": "Power Leech",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn",
@@ -473,6 +487,7 @@
 				},
 				{
 					"name": "Keeper of the Pandaemonium",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "You can return D3 slain models to this unit."
@@ -531,6 +546,7 @@
 			"abilities": [
 				{
 					"name": "Unnatural Heat",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -539,6 +555,7 @@
 				},
 				{
 					"name": "Heart of the Inferno",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -593,6 +610,7 @@
 			"abilities": [
 				{
 					"name": "Brimstone Horror",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Brimstone Horror is a token. When this unit's Blue Horror is slain, place this unit's Brimstone Horror on the battlefield. Add 1 to the Damage characteristic of this unit's Mighty Sorcerous Bolt while its Brimstone Horror is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove this unit's Brimstone Horror from the battlefield."
@@ -639,6 +657,7 @@
 			"abilities": [
 				{
 					"name": "Bound Retinue",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -647,6 +666,7 @@
 				},
 				{
 					"name": "Long in the Planning",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -707,12 +727,14 @@
 			"abilities": [
 				{
 					"name": "Soulbound Shield",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per SPELL ability."
 				},
 				{
 					"name": "Lord of Fate",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for attacks made by friendly ARCANITE units while they are wholly within 12\" of this unit."
@@ -772,6 +794,7 @@
 			"abilities": [
 				{
 					"name": "Fuel for the Flames",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -780,6 +803,7 @@
 				},
 				{
 					"name": "Spread the Inferno",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Companion weapons used by friendly DISCIPLES OF TZEENTCH units have Crit (2 Hits) while they are wholly within 12\" of this unit."
@@ -837,6 +861,7 @@
 			"abilities": [
 				{
 					"name": "Capricious Wyrdflame",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -845,6 +870,7 @@
 				},
 				{
 					"name": "Lingering Burns",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -915,6 +941,7 @@
 			"abilities": [
 				{
 					"name": "Arcane Tome",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -977,6 +1004,7 @@
 			"abilities": [
 				{
 					"name": "Leaden Limbs",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -985,12 +1013,14 @@
 				},
 				{
 					"name": "Masters of the Silver Towers",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Enemy units cannot end a charge move within 1/2\" of a friendly Argent Shard that is wholly within 12\" of this unit and was set up on the battlefield in the same turn."
 				},
 				{
 					"name": "All Belongs to Tzeentch",
+					"type": "active",
 					"category": "control",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -1064,12 +1094,14 @@
 			"abilities": [
 				{
 					"name": "Masters of the Silver Towers",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Enemy units cannot end a charge move within 1/2\" of a friendly Argent Shard that is wholly within 12\" of this unit and was set up on the battlefield in the same turn."
 				},
 				{
 					"name": "Arcane Imprisonment",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target, then make a casting roll of 2D6.",
@@ -1081,6 +1113,7 @@
 				},
 				{
 					"name": "All Belongs to Tzeentch",
+					"type": "active",
 					"category": "control",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -1128,18 +1161,21 @@
 			"abilities": [
 				{
 					"name": "Silver Monoliths",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit while it is wholly within 12\" of a friendly Argent Shard."
 				},
 				{
 					"name": "Idolarc",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Idolarc is a token. After setting up this unit on the battlefield for the first time, place its Idolarc next to it."
 				},
 				{
 					"name": "Chosen by the Stone",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1182,6 +1218,7 @@
 			"abilities": [
 				{
 					"name": "Driven by Destiny",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1227,12 +1264,14 @@
 			"abilities": [
 				{
 					"name": "Empowered by Magic",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit is wholly within 12\" of any MANIFESTATIONS (friendly or enemy)."
 				},
 				{
 					"name": "Vulcharc",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1289,24 +1328,28 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, subtract 1 from its power level."
 				},
 				{
 					"name": "Master of Destiny",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit has not already engineered the outcome this battle round, instead of making a casting roll, unbinding roll, banishment roll, hit roll, wound roll or save roll for a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit, this unit can engineer the outcome.\nIf the roll would have been a D6 roll, you can use a value of 6 for it that cannot be modified. If the roll would have been a 2D6 roll, you can use a value of 9 for it that cannot be modified."
 				},
 				{
 					"name": "Mastery of Magic",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When you make a casting roll for this unit, you can change the lowest D6 to match the highest D6."
 				},
 				{
 					"name": "Fateful Reverse",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1318,6 +1361,7 @@
 				},
 				{
 					"name": "Beacon of Sorcery",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls and unbinding rolls for friendly DISCIPLES OF TZEENTCH WIZARDS while they are wholly within 12\" of this unit.\nIn addition, if a friendly DISCIPLES OF TZEENTCH WIZARD wholly within 12\" of this unit unbinds a spell, no command points are spent for that WIZARD to use the 'Magical Intervention' command in that phase."
@@ -1381,20 +1425,24 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, subtract 1 from its power level."
 				},
 				{
 					"name": "Summon Daemons of Tzeentch",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO DISCIPLES OF TZEENTCH DAEMON unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
+					"command_points": 1
 				},
 				{
 					"name": "Temporal Manipulation",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick another visible friendly DISCIPLES OF TZEENTCH unit that was not set up this turn and that is wholly within 18\" of this unit to be the target. Then, make a casting roll of 2D6.",
@@ -1407,6 +1455,7 @@
 				},
 				{
 					"name": "Locus of Impossibility",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit. In addition, subtract 1 from hit rolls for attacks that target friendly DISCIPLES OF TZEENTCH DAEMON units while they are wholly within 12\" of this unit."
@@ -1463,14 +1512,17 @@
 			"abilities": [
 				{
 					"name": "Imbued with Arcane Fire",
+					"type": "command",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
-					"effect": "The target's melee weapons have Crit (Mortal) until the start of your next turn."
+					"effect": "The target's melee weapons have Crit (Mortal) until the start of your next turn.",
+					"command_points": 1
 				},
 				{
 					"name": "Spellmaster",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a WIZARD within 30\" of this unit and the casting roll equalled or exceeded the spell's casting value and that spell has not been unbound",
 					"frequency": "Once Per Turn (Army)",
@@ -1541,12 +1593,14 @@
 			"abilities": [
 				{
 					"name": "Fates Converge",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While you have 6 or more fate points, add 1 to the Attacks characteristic of melee weapons used by friendly ARCANITE units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Spellmaster",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a WIZARD within 30\" of this unit and the casting roll equalled or exceeded the spell's casting value and that spell has not been unbound",
 					"frequency": "Once Per Turn (Army)",
@@ -1613,12 +1667,14 @@
 			"abilities": [
 				{
 					"name": "Arcane Absorption",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated to an enemy WIZARD or PRIEST by this unit's attacks this turn and that enemy unit has been destroyed:\n• Heal (7) this unit.\n• Add 1 to this unit's power level for the rest of the battle.\nThis unit can be affected by this ability multiple times and the effects are cumulative."
 				},
 				{
 					"name": "Thaumaturgic Hunger",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a SPELL ability for a unit within 30\" of this unit.",
 					"effect": "This unit can move 6\". It can move into combat and must end that move closer to the caster. If this unit was in combat at the start of the move, it must end that move in combat.",
@@ -1685,12 +1741,14 @@
 			"abilities": [
 				{
 					"name": "Soul-Deep Devotion",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within a friendly non-HERO ARCANITE unit's combat range:\n• This unit has Ward (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO ARCANITE unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Wrath of the Thaumaturge",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1757,6 +1815,7 @@
 			"abilities": [
 				{
 					"name": "Wrath of the Thaumaturge",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1769,6 +1828,7 @@
 				},
 				{
 					"name": "Soul-Deep Devotion",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within a friendly non-HERO ARCANITE unit's combat range:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO ARCANITE unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
@@ -1824,6 +1884,7 @@
 			"abilities": [
 				{
 					"name": "Lunatic Demise",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain, before removing the model from play, pick 1 of the following effects:",
@@ -1904,18 +1965,21 @@
 			"abilities": [
 				{
 					"name": "Fusiliers, Fire!",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a SHOOT ability, if it is in a fortified position, it can pick either of the ranged weapon profiles for all the attacks it makes with its Fusil-cannons. If it is not in a fortified position, use the Mobile weapon characteristics."
 				},
 				{
 					"name": "Blackpowder Squire",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "This unit has a Blackpowder Squire token. Each time this unit uses a SHOOT ability, if this unit's Blackpowder Squire is on the battlefield, you can re-roll 1 hit roll. If a hit roll re-rolled in this manner is 1, remove this unit's Blackpowder Squire from the battlefield."
 				},
 				{
 					"name": "Fortify Position",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
 					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
@@ -1982,6 +2046,7 @@
 			"abilities": [
 				{
 					"name": "Light Up Targets",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick an enemy unit that was targeted by this unit's shooting attacks this turn to be the target.",
@@ -1989,6 +2054,7 @@
 				},
 				{
 					"name": "Fortify Position",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
 					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
@@ -2060,12 +2126,14 @@
 			"abilities": [
 				{
 					"name": "Shot and Shell",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a SHOOT ability, if it is in a fortified position, pick either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. If it is not in a fortified position, use the Grapeshot weapon characteristics."
 				},
 				{
 					"name": "Fortify Position",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
 					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
@@ -2111,6 +2179,7 @@
 			"abilities": [
 				{
 					"name": "Pyromaniacs",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+) while it is wholly within 6\" of a WYRDPYRE."
@@ -2159,6 +2228,7 @@
 			"abilities": [
 				{
 					"name": "Drawn to Magic",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2213,6 +2283,7 @@
 			"abilities": [
 				{
 					"name": "Imperilling Slashes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2273,6 +2344,7 @@
 			"abilities": [
 				{
 					"name": "Treacherous Bond",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly unit within this unit's combat range to be the target, then make a casting roll of 2D6.",
@@ -2284,6 +2356,7 @@
 				},
 				{
 					"name": "Scrolls of Sorcery",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "The next time this unit uses a non-SUMMON SPELL ability this phase, do not make a casting roll as part of that ability. Instead, roll a dice. On a 2+, the spell is successfully cast and cannot be unbound."
@@ -2333,6 +2406,7 @@
 			"abilities": [
 				{
 					"name": "Arch-Deceiver",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "This unit can only use this ability if it is masked by illusion. Pick a model in a friendly DISCIPLES OF TZEENTCH unit to be the target.",
@@ -2340,12 +2414,14 @@
 				},
 				{
 					"name": "Puckish Misdirection",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While they are wholly within 12\" of this unit, friendly DISCIPLES OF TZEENTCH units can use the 'Redeploy' command even if they were set up in the same turn."
 				},
 				{
 					"name": "Whispers of Treachery",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -2395,6 +2471,7 @@
 			"abilities": [
 				{
 					"name": "Compendium of Dark Knowledge",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly DISCIPLES OF TZEENTCH WIZARD within 3\" of this MANIFESTATION to be the target.",
@@ -2457,6 +2534,7 @@
 			"abilities": [
 				{
 					"name": "All Too Predictable",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit charged this turn, pick 1 of the following effects to apply for the rest of the turn:\n• This unit's Tzeentchian Spear and Vicious Beak has Crit (2 Hits)\n• Add 1 to the Rend characteristic of this unit's Tzeentchian Spear and Vicious Beak."
@@ -2499,6 +2577,7 @@
 			"abilities": [
 				{
 					"name": "Vicious Protectors",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While there is a visible friendly ARCANITE HERO within this unit's combat range:\n• Subtract 1 from hit rolls for combat attacks that target that friendly ARCANITE HERO.\n• Add 1 to hit rolls for this unit's combat attacks."
@@ -2542,6 +2621,7 @@
 			"abilities": [
 				{
 					"name": "Eldritch Raiders",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for this unit's attacks while it is wholly within enemy territory."
@@ -2601,6 +2681,7 @@
 			"abilities": [
 				{
 					"name": "Avian Swiftness",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
@@ -2608,6 +2689,7 @@
 				},
 				{
 					"name": "Wit of Beasts",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2674,12 +2756,14 @@
 			"abilities": [
 				{
 					"name": "Guided by the Future",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's shooting attacks."
 				},
 				{
 					"name": "Destined Quarry",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick an enemy unit that had any damage points allocated to it by this unit's attacks this phase to be the target.",

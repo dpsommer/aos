@@ -43,6 +43,7 @@
 			"abilities": [
 				{
 					"name": "Skewering Bolts",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -50,6 +51,7 @@
 				},
 				{
 					"name": "Pick 'Em Off",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, add 1 to hit rolls for this unit's shooting attacks for the rest of the turn."
@@ -107,6 +109,7 @@
 			"abilities": [
 				{
 					"name": "Tear Limb From Limb",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -118,12 +121,14 @@
 				},
 				{
 					"name": "Breaka-harness",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "Make a breaka-roll of D3.\n• Inflict an amount of mortal damage on this unit equal to the breaka-roll.\n• Double the breaka-roll and add that value to the Attacks characteristic of this unit's Mirebrute's Clubs for the rest of the turn."
 				},
 				{
 					"name": "Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) this unit."
@@ -167,6 +172,7 @@
 			"abilities": [
 				{
 					"name": "Roar of Kragnos",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit's Hurrk da Howla is on the battlefield, pick an enemy unit in combat with this unit to be the target.",
@@ -214,6 +220,7 @@
 			"abilities": [
 				{
 					"name": "Easy Meat",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -295,18 +302,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Killabeak's Talons and Beak is 5."
 				},
 				{
 					"name": "Screamin' Mandrakk",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"effect": "This unit uses the 'Unbind' ability but the unbinding roll is 3D6 instead of 2D6."
 				},
 				{
 					"name": "Crush to Death",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -318,12 +328,14 @@
 				},
 				{
 					"name": "Mork Sez No!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit unbinds a spell, inflict D3 mortal damage on the caster. If the unbinding roll was 10+, inflict D6 mortal damage on the caster instead."
 				},
 				{
 					"name": "Strangle Hex",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -378,6 +390,7 @@
 			"abilities": [
 				{
 					"name": "Scare Taktikz",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for attacks made by non-HERO units that target this unit for the rest of the turn."
@@ -427,6 +440,7 @@
 			"abilities": [
 				{
 					"name": "Toxic Stash",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -435,6 +449,7 @@
 				},
 				{
 					"name": "Kompany Taktikz",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Hobgrot Slittaz unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn."
@@ -486,6 +501,7 @@
 			"abilities": [
 				{
 					"name": "Scrap-bang",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -560,18 +576,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Vulcha's Talons and Beak is 5."
 				},
 				{
 					"name": "Commanding View",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly Gutrippaz unit wholly within 12\" of this unit",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
 					"name": "Vulcha Dive",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -636,12 +655,14 @@
 			"abilities": [
 				{
 					"name": "That's Ours, Ya Gitz",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is contesting an objective you do not control, add 1 to hit rolls for combat attacks made by friendly KRULEBOYZ units wholly within 12\" of this unit."
 				},
 				{
 					"name": "All Part of da Plan",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick another friendly KRULEBOYZ unit wholly within 9\" of this unit to be the target.",
@@ -703,6 +724,7 @@
 			"abilities": [
 				{
 					"name": "Prowling the Flanks",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -710,6 +732,7 @@
 				},
 				{
 					"name": "Drag 'Em Out",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -772,6 +795,7 @@
 			"abilities": [
 				{
 					"name": "Drag 'Em Out",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -780,6 +804,7 @@
 				},
 				{
 					"name": "Prowling the Flanks",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -839,12 +864,14 @@
 			"abilities": [
 				{
 					"name": "Keep 'Em in Line",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared the 'All-out Attack' command for a friendly KRULEBOYZ INFANTRY unit",
 					"effect": "If this unit is wholly within 12\" of the unit using the 'All-out Attack' command, add 1 to wound rolls for combat attacks made by that unit for the rest of the phase."
 				},
 				{
 					"name": "Unleash the Stab-grot!",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -852,6 +879,7 @@
 				},
 				{
 					"name": "Stab-grot",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Stab-grot is a token. If this unit's Stab-grot has been removed, it can no longer attack with its Stab-grot's Shiv and it cannot use the 'Unleash the Stab-grot!' ability."
@@ -899,6 +927,7 @@
 			"abilities": [
 				{
 					"name": "Just Keep Stabbin'",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -907,6 +936,7 @@
 				},
 				{
 					"name": "Jump 'Em, Ladz, Or Else!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -962,12 +992,14 @@
 			"abilities": [
 				{
 					"name": "Klutcha-grot",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Klutcha-grot is a token. If it is removed from the battlefield, this unit cannot use the 'A Tough Grot to Swallow' ability."
 				},
 				{
 					"name": "Bait and Trap",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
@@ -975,6 +1007,7 @@
 				},
 				{
 					"name": "A Tough Grot to Swallow",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a RAMPAGE ability for an enemy MONSTER within 6\" of this unit",
 					"frequency": "Once Per Turn",
@@ -1043,12 +1076,14 @@
 			"abilities": [
 				{
 					"name": "Man-skewer Crossbows",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a SHOOT ability, pick either the Hasty Shot or Aimed Shot weapon characteristics for all the attacks it makes with its Man‑skewer Crossbows."
 				},
 				{
 					"name": "Pick 'Em Off",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, add 1 to hit rolls for this unit's shooting attacks for the rest of the turn."
@@ -1099,12 +1134,14 @@
 			"abilities": [
 				{
 					"name": "On da March",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While they are wholly within 12\" of this unit, friendly KRULEBOYZ INFANTRY units can use CHARGE abilities even if they used a RUN ability in the same turn."
 				},
 				{
 					"name": "Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) this unit."
@@ -1152,12 +1189,14 @@
 			"abilities": [
 				{
 					"name": "Power of Kragnos",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly KRULEBOYZ units have WARD (6+) while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Breath of the Mire-drakes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick each enemy unit in combat with this unit to be the targets.",
@@ -1187,12 +1226,14 @@
 			"abilities": [
 				{
 					"name": "Man da Tower!",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this terrain feature has a Shouty Boss:\n• The Shouty Boss cannot use MOVE abilities.\n• Instead of measuring range or visibility to and from the Shouty Boss, measure to and from this terrain feature instead.\n• All attacks that would target the Shouty Boss target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain."
 				},
 				{
 					"name": "Up We Go!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "If this terrain feature does not have a Shouty Boss , pick a friendly KRULEBOYZ INFANTRY HERO that is not in combat and is within 3\" of it to be the target.",
@@ -1200,12 +1241,14 @@
 				},
 				{
 					"name": "Sinister Stare",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to dirty trick rolls for friendly KRULEBOYZ units wholly within 12\" of this terrain feature or for enemy units within 12\" of this terrain feature. If this terrain feature has a Shouty Boss, add 1 to dirty trick rolls for friendly KRULEBOYZ units wholly within 18\" of this terrain feature instead of wholly within 12\" or for enemy units within 18\" of this terrain feature instead of within 12\"."
 				},
 				{
 					"name": "I'm Off!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "If this terrain feature has a Shouty Boss that was not placed on it this turn, set up the Shouty Boss on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss."
@@ -1276,12 +1319,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Sludgeraker's Talons is 4."
 				},
 				{
 					"name": "Festering Wounds",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1293,6 +1338,7 @@
 				},
 				{
 					"name": "Sludgeraker Venom",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KRULEBOYZ unit wholly within 12\" of this unit to be the target.",
@@ -1364,12 +1410,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Sloppklaw's Talons is 4."
 				},
 				{
 					"name": "Kountin' Krew",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly Hobgrot Slittaz unit within this unit's combat range to be the target.",
@@ -1377,6 +1425,7 @@
 				},
 				{
 					"name": "Aggravate Wounds",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1388,6 +1437,7 @@
 				},
 				{
 					"name": "Bet-master",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"declare": "Pick an enemy unit on the battlefield to be the bet.",
@@ -1451,18 +1501,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Sloppklaw's Bite and Talons is 4."
 				},
 				{
 					"name": "Rigged Odds",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The first time you fail a dirty trick roll each turn, give this unit 1 betting chip.\nEach time you make a dirty trick roll for an ability that targets a unit wholly within 12\" of this unit, you can spend any number of betting chips after seeing the result of the roll. For each betting chip you spend, add 1 to that dirty trick roll."
 				},
 				{
 					"name": "Thrashing Tail",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1514,12 +1567,14 @@
 			"abilities": [
 				{
 					"name": "Pot-grot",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Pot-grot is a token. Add 1 to casting rolls for this unit while its Pot-grot is on the battlefield. If you make an unmodified casting roll of 4 or less for this unit, remove its Pot-grot from the battlefield."
 				},
 				{
 					"name": "Foul Elixirs",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
