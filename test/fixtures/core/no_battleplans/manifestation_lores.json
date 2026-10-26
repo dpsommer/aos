@@ -1,0 +1,10 @@
+{
+	"lores": [
+		{"name": "Test Lore", "kind": "manifestation", "points": 10, "entries": [
+			{"name": "Summon Test Thing", "category": "special", "timing": "Your Hero Phase", "casting_value": 6, "keywords": ["SPELL", "SUMMON"]}
+		]}
+	],
+	"warscrolls": [
+		{"id": "test_thing", "name": "Test Thing", "points": 0, "unit_size": 1, "move": "6", "health": 8, "save": 5, "control": 0, "banishment": 7, "keywords": ["MANIFESTATION"]}
+	]
+}

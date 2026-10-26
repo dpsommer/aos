@@ -1,0 +1,10 @@
+{
+	"name": "Test Battlepack",
+	"battle_rounds": 4,
+	"battlefield": {"width": 50, "depth": 30},
+	"sections": [{"name": "Test Section", "text": "Section text."}],
+	"battleplan_tables": [["Test Battleplan", "Other Battleplan"], ["Third Battleplan"]],
+	"season_rules": [{"name": "Test Season Rule", "category": "special", "timing": "Deployment Phase", "frequency": "Once Per Battle (Army)", "effect": "Do a thing."}],
+	"updated_abilities": [{"name": "Test Updated Ability", "category": "special", "timing": "Start of Any Turn", "effect": "Roll a dice.", "options": [{"name": "Test Option", "text": "Option text."}]}],
+	"faqs": [{"about": "Test Season Rule", "question": "Test question?", "answer": "Test answer."}]
+}

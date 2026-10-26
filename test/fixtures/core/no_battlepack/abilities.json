@@ -1,0 +1,8 @@
+{
+	"abilities": [
+		{"name": "Test Command", "category": "special", "timing": "Your Hero Phase", "command_points": 1, "effect": "Do a thing."},
+		{"name": "Test Reaction", "category": "movement", "timing": "Reaction: You declared a RUN ability", "used_by": "The unit using that RUN ability.", "command_points": 2}
+	],
+	"weapon_abilities": [{"name": "Test Weapon Ability", "category": "damage", "timing": "Passive", "effect": "Weapon effect."}],
+	"terrain_abilities": [{"name": "Test Terrain Ability", "category": "defensive", "timing": "Passive", "effect": "Terrain effect."}]
+}

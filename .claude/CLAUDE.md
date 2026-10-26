@@ -17,7 +17,7 @@ The project is at an early stage. The main scene is `scenes/main.tscn` (`Main`),
   - `testing.md`: test layout, how to run tests headless, and the testing rules. Follow it when writing tests.
   - `rules-reference.md`: the official rules PDFs and how to use them.
   - `faction-data.md`: faction JSON format in `data/factions/`, sources (BSData first, Wahapedia for gaps), and how to add a faction with `tools/faction_import/`.
-  - `core-rules-data.md`: core rules abilities and universal manifestation lores in `data/core/`.
+  - `core-rules-data.md`: core rules abilities, universal manifestation lores and the General's Handbook 2026-27 battlepack in `data/core/`.
 - `docs/design/`: game design (modes, UI, army builder, AI).
 - `docs/gameplay/`: how tabletop rules are implemented in the simulator.
 

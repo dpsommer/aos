@@ -1,0 +1,181 @@
+{
+	"name": "General’s Handbook 2026-27",
+	"battle_rounds": 5,
+	"battlefield": {
+		"width": 60,
+		"depth": 44
+	},
+	"sections": [
+		{
+			"name": "Pick Your Armies",
+			"text": "Each player picks an army using the rules in Army Composition 2026-27 (Advanced Rules)."
+		},
+		{
+			"name": "Advanced Rules",
+			"text": "In addition to the Core Rules and the Season Rules 2026-27, this battlepack uses the following Advanced Rules:\n• Battle Tactics 2026-27\n• Commands 2026-27\n• Terrain 2026-27\n• Magic 2026-27\n• Army Composition 2026-27\n• Command Models 2026-27"
+		},
+		{
+			"name": "Determine the Battleplan",
+			"text": "One player rolls a dice to determine which battleplan table to use. On a 1-3, use battleplan table 1. On a 4-6, use battleplan table 2. The other player then rolls a dice to determine the battleplan. Alternatively, feel free to pick the battleplan you wish to play."
+		},
+		{
+			"name": "Attacker and Defender",
+			"text": "The players roll off. The winner chooses which player is the attacker and which is the defender."
+		},
+		{
+			"name": "Objectives and Terrain",
+			"text": "This battlepack contains 6 special objectives called Aqshian objectives: 2 Sun Seekers objectives, 2 Golden Lions objectives, 1 Heldenhain objective and 1 Scions of the Comet objective. The objective itself is the 40mm diameter circle located in the centre, while the surrounding area extending 3\" from the objective is the control zone. To contest an Aqshian objective, a unit must be within the control zone of that objective.\nSome battleplans will use more than 1 of the same type of Aqshian objective. For example, they could include 2 Sun Seekers objectives and/or 2 Golden Lions objectives. In these battleplans, the rules refer to 2 of the same type of objective as a pair or paired. When a rule requires a player to control a pair of objectives, the player has to control both objectives in that pair. When a player has to pick ‘a pair of objectives’, they can only pick a single pair of Aqshian objectives of the same type.\nThe defender sets up Aqshian objectives in the locations indicated on the battlefield map. The objectives must be those indicated on the battlefield map; for example, if the map shows a Heldenhain objective, the Heldenhain objective must be set up in that location.\nThen, the defender sets up terrain features. We recommend 4 small and 4 medium terrain features. Each terrain feature must be set up more than 3\" from the battlefield edge, more than 3\" from all objectives and more than 6\" from all other terrain features. Alternatively, the battlefield can be set up as shown on the corresponding battlefield terrain layout map while maintaining the distance restrictions between the battlefield edge, objectives and other terrain features as detailed above."
+		},
+		{
+			"name": "Territory",
+			"text": "After objectives and terrain features have been set up, the attacker picks which territory is their territory. The other territory is the defender’s territory. The players then resolve the deployment phase. The attacker begins deployment (Core Rules, 10.0)."
+		},
+		{
+			"name": "Battle Length",
+			"text": "Battles that use this battlepack last for 5 battle rounds."
+		},
+		{
+			"name": "Glorious Victory",
+			"text": "Each battleplan will describe how to score victory points. At the end of the battle, if one player has at least 5 victory points more than their opponent, they win a major victory. If one player has fewer than 5 victory points more than their opponent, they win a minor victory. If the players are tied on victory points, the player who completed the most battle tactics wins a minor victory. If the players are tied on victory points and completed the same number of battle tactics, the battle is a draw."
+		},
+		{
+			"name": "Battle Tactics",
+			"text": "If you are using this battlepack, you must pick battle tactics cards from this battlepack to add to your army roster during army composition.\nAt the start of the battle, you must reveal your choice of battle tactics cards to your opponent. If the battle tactics cards instruct you to pick something, you must tell your opponent what you have picked and vice versa."
+		},
+		{
+			"name": "Battlefield Size",
+			"text": "The battleplans in this battlepack have been designed for 1000- or 2000-point battles and we recommend a 44\" × 60\" battlefield with 8 terrain features. However, some players prefer to use a 30\" × 44\" battlefield with 4 terrain features for 1000-point battles.\nIf you have agreed on a points limit outside these bounds, feel free to adjust the battlefield size and number of terrain features appropriately."
+		},
+		{
+			"name": "Matched Play Publications 2026-27",
+			"text": "The publications whose rules you are allowed to use in Matched Play battles:\n• Warhammer Age of Sigmar Core Book\n• General’s Handbook 2026-27\n• Warhammer Age of Sigmar Faction Packs\n• Battle Profiles & Rules Updates\n• Battletome publications, excluding Warhammer Legends rules\nBattletomes: When a battletome is released, it will supersede the rules set out in the Faction Pack for that faction.\nDigital Updates: Digital updates released on warhammer-community.com say whether that rules set is legal for use and, if so, in which types of battlepacks it can be used.\nBattlescrolls: Battlescrolls are rules updates that focus on balancing the game meta more actively. Sometimes they are simply useful summaries of corrections that also appear in the relevant errata documents. At other times, they appear as sets of entirely new rules that, while not compulsory, are highly recommended for use in Matched Play battles. The rules in battlescrolls will always be used at official Warhammer Age of Sigmar events.\nErrata: Errata documents are considered to be part of the publications that they are correcting."
+		},
+		{
+			"name": "Using the Scourge of Aqshy Rules",
+			"text": "The Scourge of Aqshy rules are a set of seasonal rules that include additional faction rules and alternative warscrolls for every faction. These rules are for use in battles that use the General’s Handbook 2026-27 battlepack.\nScourge of Aqshy Warscrolls: If you wish to use a Scourge of Aqshy warscroll, every instance of that unit in your army must use that warscroll. You cannot use the printed (i.e. battletome or faction pack) version of the warscroll for one unit and the Scourge of Aqshy warscroll for another.\nIf you decide to use the Scourge of Aqshy version of a warscroll, you do not have to use all other Scourge of Aqshy warscrolls for your faction.\nIn addition, other rules that interact with the printed version of that unit interact with the Scourge of Aqshy version too. For example, a rule (including regiment options) that calls out a unit type by the name on its warscroll interacts with both the printed version of that unit and the Scourge of Aqshy version; they are synonymous in this regard.\nScourge of Aqshy Faction Rules: The additional faction rules consist of a variety of battle formations, artefacts of power tables, heroic traits tables, special enhancement tables (such as monstrous traits), spell lores and prayer lores.\nWhen picking your army’s battle formation, you can pick 1 of the Scourge of Aqshy battle formations available to your faction instead of any others available to it. In other words, you can still only pick 1 battle formation for your army.\nIf you pick from a Scourge of Aqshy artefacts of power or heroic traits table, you pick from that table instead of other such tables available to your faction, not in addition to. This is stated in the rules that accompany the relevant table.\nSome of the Scourge of Aqshy enhancement tables are special enhancements unique to that faction, for example monstrous traits. This is an enhancement table available to your faction like any other; therefore, you can pick 1 enhancement from it for your army, as per the Army Composition rules, 4.1."
+		}
+	],
+	"battleplan_tables": [
+		[
+			"Into the Fire",
+			"Bloodstained Coasts",
+			"Avalanche of Ash",
+			"Caverns of Slaughter",
+			"What’s Yours Is Ours",
+			"Hidden Under Ash-clouds"
+		],
+		[
+			"Warped Ruins",
+			"Curse of the Gnaw",
+			"Seize the Embers",
+			"Treacherous Ground",
+			"Escape from the Coast",
+			"Power of the Realms"
+		]
+	],
+	"season_rules": [
+		{
+			"name": "Raising the Heat",
+			"type": "active",
+			"category": "special",
+			"timing": "Deployment Phase",
+			"frequency": "Once Per Battle (Army)",
+			"effect": "If you are the attacker, set your fury level to 1. If you are the defender, set your fury level to 2."
+		},
+		{
+			"name": "Simmering Rage",
+			"type": "active",
+			"category": "special",
+			"timing": "Start of Battle Round",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "You must use this ability.",
+			"effect": "Gain a number of rage dice equal to your fury level. At the end of the battle round, any unspent rage dice are lost."
+		},
+		{
+			"name": "Eruption of Fury",
+			"type": "active",
+			"category": "offensive",
+			"timing": "End of Any Turn",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly unit to use this ability, then pick an enemy unit in combat with that friendly unit to be the target.",
+			"effect": "Pick 1 of the melee weapons that the unit using this ability is armed with. Then, spend up to 3 rage dice.\nResolve a number of combat attacks against the target using the melee weapon you picked equal to the number of rage dice you spent.\nThose attacks cannot score critical hits. Instead, for each unmodified hit roll of 6 for those attacks:\n• Inflict an additional D3 mortal damage on each enemy unit in combat with the unit using this ability.\n• Your opponent must increase their fury level by 1, to a maximum of 7.\nFor each unmodified hit roll of 1 for those attacks, allocate D3 mortal damage to this unit after the damage sequence has been resolved (ward rolls cannot be made for those damage points).",
+			"keywords": [
+				"ATTACK",
+				"FIGHT"
+			],
+			"options": [
+				{
+					"name": "Designer’s Note",
+					"text": "Rage dice do not add to the Attacks characteristic of the weapon you pick; if you spend 3 rage dice to use this ability, you only make 3 combat attacks."
+				}
+			]
+		},
+		{
+			"name": "Fight Through the Pain",
+			"type": "passive",
+			"category": "defensive",
+			"timing": "Passive",
+			"effect": "Before allocating damage to a friendly unit, you can spend any number of rage dice. For each rage dice spent, reduce your fury level by 1, to a minimum of 0, then roll a dice. On a 3+, remove 1 damage point from that unit’s damage pool."
+		}
+	],
+	"updated_abilities": [
+		{
+			"name": "Activate Place of Power",
+			"type": "active",
+			"category": "special",
+			"timing": "Start of Any Turn",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly HERO within 3\" of any Places of Power to use this ability.",
+			"effect": "Roll a dice. On a 1, inflict D3 mortal damage on that HERO. On a 2+, pick 1 of the following effects:",
+			"keywords": [
+				"CORE"
+			],
+			"options": [
+				{
+					"name": "Ignite Fury",
+					"text": "Gain 2 rage dice, then increase your fury level by 2, to a maximum of 7."
+				},
+				{
+					"name": "Channel Wrath",
+					"text": "If that HERO is a WIZARD or PRIEST, add 1 to casting rolls or chanting rolls for that HERO for the rest of the turn."
+				},
+				{
+					"name": "Dizzying Rage",
+					"text": "For the rest of the turn, if that HERO is not a WIZARD or PRIEST, they can use the ’Unbind’ or ’Banish Manifestation’ ability as if they had WIZARD (1)."
+				}
+			]
+		}
+	],
+	"faqs": [
+		{
+			"about": "Season Rules 2026-27",
+			"question": "How do manifestations and faction terrain interact with the new seasonal abilities?",
+			"answer": "Manifestations and faction terrain cannot use ‘Eruption of Fury’ or benefit from ‘Fight Through the Pain’, as they are not units. Enemy manifestations and faction terrain can only be targeted by ‘Eruption of Fury’ if they have a Move characteristic – the friendly unit will not be in combat with them in the End of Turn phase if they do not."
+		},
+		{
+			"about": "Eruption of Fury",
+			"question": "When using ‘Eruption of Fury’, can I use a reaction to pick another unit to use a FIGHT ability immediately after?",
+			"answer": "No – while you can use reactions to ‘Eruption of Fury’, abilities that let you pick a unit to immediately use a FIGHT ability do not override the restrictions of the FIGHT ability. As a result, you cannot use them to have a unit fight outside the combat phase."
+		},
+		{
+			"about": "Eruption of Fury",
+			"question": "Do STRIKE-FIRST or STRIKE-LAST have any effect when using ‘Eruption of Fury’?",
+			"answer": "No."
+		},
+		{
+			"about": "Fight Through the Pain",
+			"question": "When applying the effect of ‘Fight Through the Pain’, are rage dice spent one at a time or all at once?",
+			"answer": "All at once."
+		},
+		{
+			"about": "Using the Scourge of Aqshy Rules",
+			"question": "Can I include Scourge of Aqshy units in an Army of Renown instead of their standard version?",
+			"answer": "Yes."
+		},
+		{
+			"about": "Using the Scourge of Aqshy Rules",
+			"question": "Can I include Scourge of Aqshy units in a Regiment of Renown instead of their standard version?",
+			"answer": "No."
+		}
+	]
+}
