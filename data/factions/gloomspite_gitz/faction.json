@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "The Faces of the Bad Moon",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Battle Round",
 			"frequency": "Once Per Battle Round (Army)",
@@ -13,6 +14,7 @@
 		},
 		{
 			"name": "Creeping Gloom",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -21,6 +23,7 @@
 		},
 		{
 			"name": "Under the Light of the Bad Moon",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "During the battle, the effects below apply to friendly GLOOMSPITE GITZ units based on the current face of the Bad Moon:",
@@ -55,6 +58,7 @@
 			"abilities": [
 				{
 					"name": "Spreading Loonacy",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -69,6 +73,7 @@
 			"abilities": [
 				{
 					"name": "Herd Healing",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly TROGGOTH unit uses a FIGHT ability, after that ability has been resolved, Heal (D3) that unit."
@@ -81,6 +86,7 @@
 			"abilities": [
 				{
 					"name": "Bouncing Fury",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly SQUIG unit charges, add 1 to the Attacks characteristic of its Fang-filled Gobs, Massive Fang-filled Gobs or Huge Fang-filled Gobs for the rest of the turn."
@@ -93,6 +99,7 @@
 			"abilities": [
 				{
 					"name": "Git and Run",
+					"type": "active",
 					"category": "",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly GITMOB unit that is in combat to use this ability. Then, you can pick an enemy unit in combat with that GITMOB unit to be the target. The same enemy unit cannot be picked to be the target of this ability more than once per phase.",
@@ -111,6 +118,7 @@
 			"abilities": [
 				{
 					"name": "Extra Snappy",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -125,6 +133,7 @@
 			"abilities": [
 				{
 					"name": "Grots Upon Grots",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -141,12 +150,14 @@
 			"entries": [
 				{
 					"name": "The Clammy Hand",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly GLOOMSPITE GITZ unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
 					"name": "Loontouched",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is not a WIZARD, it has WIZARD (1). Otherwise, add 1 to casting rolls for this unit.",
@@ -154,6 +165,7 @@
 				},
 				{
 					"name": "Fight Another Day",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
@@ -166,6 +178,7 @@
 			"entries": [
 				{
 					"name": "The Clammy Cowl",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit.",
@@ -173,6 +186,7 @@
 				},
 				{
 					"name": "Backstabber's Blade",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle",
@@ -181,6 +195,7 @@
 				},
 				{
 					"name": "Leering Gitshield",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time an unmodified hit roll for an attack that targets this unit is 1, inflict 1 mortal damage on the attacking unit after the ATTACK ability has been resolved."
@@ -193,6 +208,7 @@
 			"entries": [
 				{
 					"name": "Fizzcap",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -201,6 +217,7 @@
 				},
 				{
 					"name": "Spoofshrooms",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"effect": "Roll a dice. If this unit is GITMOB, roll D3+3 instead. This unit can move a distance in inches up to the roll. It can move through the combat ranges of enemy units but cannot end that move in combat.",
@@ -211,6 +228,7 @@
 				},
 				{
 					"name": "Glitzy Bitz Rolla",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\n\nIf this unit is a non-TROGGOTH unit, add 1 to wound rolls for its attacks for the rest of the turn.\n\nIf this unit is a TROGGOTH, pick 1 of the following effects to apply for the rest of the turn:\n• Set the Damage characteristic of this unit's Colossal Boulder Club to 6.\n• Set the Damage characteristic of this unit's Throwin' Boulders to 3.\n• Set the Attacks characteristic of this unit's Noxious Vomit to 3.",
@@ -227,6 +245,7 @@
 			"entries": [
 				{
 					"name": "Bad Portents",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -239,6 +258,7 @@
 				},
 				{
 					"name": "Spore Maws",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick up to 3 visible enemy units within 12\" of them to be the targets, then make a casting roll of 2D6.",
@@ -250,6 +270,7 @@
 				},
 				{
 					"name": "The Hand of Gork",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick a visible friendly GLOOMSPITE GITZ unit wholly within 12\" of them and not in combat to be the target, then make a casting roll of 2D6.",
@@ -269,6 +290,7 @@
 			"entries": [
 				{
 					"name": "Bright Fright",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick up to 3 friendly visible GLOOMSPITE GITZ units wholly within 12\" of them to be the targets, then make a casting roll of 2D6.",
@@ -281,6 +303,7 @@
 				},
 				{
 					"name": "Gitspeed",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -292,6 +315,7 @@
 				},
 				{
 					"name": "Gaze of Glareface",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ Wizard to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -310,6 +334,7 @@
 			"entries": [
 				{
 					"name": "Summon Mork's Mighty Mushroom",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Mork's Mighty Mushroom on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -322,6 +347,7 @@
 				},
 				{
 					"name": "Summon Scuttletide",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Scuttletide on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -334,6 +360,7 @@
 				},
 				{
 					"name": "Summon Scrapskuttle's Arachnacauldron",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Scrapskuttle's Arachnacauldron on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -346,6 +373,7 @@
 				},
 				{
 					"name": "Summon Malevolent Moon",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Malevolent Moon on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -366,6 +394,7 @@
 			"entries": [
 				{
 					"name": "Itchy Nuisance",
+					"type": "spell",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick an objective within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -378,6 +407,7 @@
 				},
 				{
 					"name": "Loonshrine Glow",
+					"type": "spell",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -389,6 +419,7 @@
 				},
 				{
 					"name": "Puffballoons",
+					"type": "spell",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick a visible friendly GLOOMSPITE GITZ unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",

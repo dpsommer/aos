@@ -29,6 +29,7 @@
 			"battle_traits": [
 				{
 					"name": "DAEMONIC SUMMONING",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
@@ -38,12 +39,14 @@
 				},
 				{
 					"name": "DISEASED",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time an attack made by a friendly model scores a critical hit, you receive 1 disease point, to a maximum of 7."
 				},
 				{
 					"name": "NURGLE'S EMBRACE",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"effect": "Spend any number of your disease points. For each disease point you spend, pick an enemy unit that is in combat with any of your units and roll a dice. On a 5+, inflict 1 mortal damage on that unit (you can pick the same unit more than once)."
@@ -52,6 +55,7 @@
 			"regiment_abilities": [
 				{
 					"name": "LOCUS OF FECUNDITY",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Phase",
@@ -60,6 +64,7 @@
 				},
 				{
 					"name": "INFESTED WITH WONDERS",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly model is slain, before it is removed from play, you can pick an enemy unit within 1\" of it and roll a dice. On a 4+, inflict 1 mortal damage on that unit."
@@ -68,6 +73,7 @@
 			"enhancements": [
 				{
 					"name": "SUMMONER OF PLAGUEBEARERS",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"declare": "Pick a friendly Plaguebearers unit wholly within 14\" of your general.",
@@ -75,6 +81,7 @@
 				},
 				{
 					"name": "PESTILENT BREATH",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick an enemy unit within 7\" of your general and roll a dice for each model in that unit.",
@@ -82,6 +89,7 @@
 				},
 				{
 					"name": "GARDENER OF NURGLE",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
 					"declare": "If your general is contesting an objective not contested by any enemy models, roll a dice.",
@@ -89,6 +97,7 @@
 				},
 				{
 					"name": "GIFT OF FEBRILE FRENZY",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -132,6 +141,7 @@
 					"abilities": [
 						{
 							"name": "KEEP COUNTING, I'M WATCHING YOU",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly Plaguebearers unit wholly within 14\" of this unit to be the target.",
@@ -180,6 +190,7 @@
 					"abilities": [
 						{
 							"name": "CLOUD OF FLIES",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
@@ -213,6 +224,7 @@
 					"abilities": [
 						{
 							"name": "RELENTLESS ATTACKERS",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
 							"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target and roll a dice for each model in this unit that is within the target unit’s combat range.",
@@ -259,6 +271,7 @@
 					"abilities": [
 						{
 							"name": "WRACK AND RUIN",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
@@ -298,6 +311,7 @@
 			"battle_traits": [
 				{
 					"name": "NUMBERLESS PESTS",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target friendly units.",
@@ -307,6 +321,7 @@
 				},
 				{
 					"name": "NAUSEOUS REVULSION",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Subtract 1 from charge rolls for enemy units.",
@@ -316,6 +331,7 @@
 				},
 				{
 					"name": "PLAGUE OF MISERY",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While enemy units are within 6\" of any friendly units, they cannot use abilities that heal or return slain models to a unit.",
@@ -325,6 +341,7 @@
 				},
 				{
 					"name": "BURGEONING FILTH",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Subtract 3 from the control scores of enemy units while they are in combat with any friendly units.",
@@ -336,6 +353,7 @@
 			"regiment_abilities": [
 				{
 					"name": "CORRUPTION OF THE LAND",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -344,6 +362,7 @@
 				},
 				{
 					"name": "PUTREFIED GROUND",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Battle",
@@ -353,12 +372,14 @@
 			"enhancements": [
 				{
 					"name": "UNNATURAL VITALITY",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (4+)."
 				},
 				{
 					"name": "GASEOUS EMANATION",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -367,12 +388,14 @@
 				},
 				{
 					"name": "SUBCUTANEOUS SUPPURATION",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from wound rolls for attacks that target your general."
 				},
 				{
 					"name": "OVERRIPE DEATH'S HEADS",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "If your general is not in combat, pick a visible enemy unit within 7\" of them to be the target.",
@@ -403,6 +426,7 @@
 					"abilities": [
 						{
 							"name": "FLESHY ABUNDANCE",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -442,6 +466,7 @@
 					"abilities": [
 						{
 							"name": "ENDLESS SWARM",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
 							"effect": "Heal (D3) this unit."
@@ -478,6 +503,7 @@
 					"abilities": [
 						{
 							"name": "ATTENTION SEEKERS",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
 							"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
@@ -525,6 +551,7 @@
 					"abilities": [
 						{
 							"name": "BILEWOOD STILTS",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "No mortal damage is inflicted on this unit when it uses RETREAT abilities."

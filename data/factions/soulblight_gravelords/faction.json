@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Ancient Burial Sites",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -18,6 +19,7 @@
 		},
 		{
 			"name": "The Unquiet Dead",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"declare": "Pick a friendly DEATHRATTLE or DEADWALKERS unit that has not been deployed.",
@@ -28,6 +30,7 @@
 		},
 		{
 			"name": "The Rising Dead",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"declare": "Pick a friendly unit that is in the grave.",
@@ -35,6 +38,7 @@
 		},
 		{
 			"name": "Deathly Invocation",
+			"type": "active",
 			"category": "rallying",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -43,6 +47,7 @@
 		},
 		{
 			"name": "Endless Legions",
+			"type": "active",
 			"category": "rallying",
 			"timing": "Any Movement Phase",
 			"frequency": "Once Per Battle Round (Army)",
@@ -51,6 +56,7 @@
 		},
 		{
 			"name": "The Hunger",
+			"type": "active",
 			"category": "defensive",
 			"timing": "End of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -65,6 +71,7 @@
 			"abilities": [
 				{
 					"name": "Horror Unending",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "You can pick 1 additional target when using the 'Deathly Invocation' ability."
@@ -77,6 +84,7 @@
 			"abilities": [
 				{
 					"name": "Dragged Down and Torn Apart",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -91,6 +99,7 @@
 			"abilities": [
 				{
 					"name": "Aristocracy of the Night",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for friendly VAMPIRE units that are not in combat and add 1 to wound rolls for combat attacks made by friendly VAMPIRE units that charged in the same turn."
@@ -103,6 +112,7 @@
 			"abilities": [
 				{
 					"name": "Tide of Bones and Blades",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly DEATHRATTLE units that charged in the same turn for attacks that target a unit that has fewer models than the attacking unit."
@@ -115,6 +125,7 @@
 			"abilities": [
 				{
 					"name": "Wardens of the Wolf",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time 1 or more slain models are returned to a friendly SOULBLIGHT GRAVELORDS INFANTRY or BEAST unit wholly within 12\" of a friendly Belladamma Volga, Radukar the Wolf, Radukar the Beast, Ivya Volga, Lady Annika, Kritza, Torgillius the Chamberlain, Gorslav the Gravekeeper or Watch Captain Halgrim, add 1 to the number of slain models returned to that unit."
@@ -127,6 +138,7 @@
 			"abilities": [
 				{
 					"name": "Unholy Site",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -141,6 +153,7 @@
 			"abilities": [
 				{
 					"name": "The Speed of Death",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -157,6 +170,7 @@
 			"entries": [
 				{
 					"name": "Lash of the Sire",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick another friendly SOULBLIGHT GRAVELORDS unit within this unit's combat range to be the target.",
@@ -165,6 +179,7 @@
 				},
 				{
 					"name": "Unbending Will",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DEATHRATTLE or DEADWALKERS unit that has 2 or more models and is wholly within 12\" of this unit to be the target.",
@@ -172,6 +187,7 @@
 				},
 				{
 					"name": "Unhinged Rampager",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "You can re-roll charge rolls for this unit in your charge phase."
@@ -185,18 +201,21 @@
 			"entries": [
 				{
 					"name": "Immortal Ego",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each phase, you can re-roll 1 hit roll, 1 wound roll and 1 save roll for this unit."
 				},
 				{
 					"name": "Furious Endings",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a MANIFESTATION within 12\" of this unit is removed from play, gain 1 rage dice."
 				},
 				{
 					"name": "Eternal Thrall",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick another friendly non-UNIQUE SOULBLIGHT GRAVELORDS INFANTRY HERO to be the target.",
@@ -211,18 +230,21 @@
 			"entries": [
 				{
 					"name": "Immortal Ego",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each phase, you can re-roll 1 hit roll, 1 wound roll and 1 save roll for this unit."
 				},
 				{
 					"name": "Frightening Vitality",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time an ability would heal exactly 1 or 2 of this unit's damage points, heal 3 damage points instead."
 				},
 				{
 					"name": "A Wastrel and a Vagabond",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While a friendly Deadwalker Zombies or Deathrattle Skeletons unit is wholly within 12\" of this unit:\n• Add 2 to run rolls for that unit.\n• Add 3\" to the distance that unit can move when it piles in."
@@ -235,18 +257,21 @@
 			"entries": [
 				{
 					"name": "Terminus Clock",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, subtract 1 from casting rolls for enemy WIZARDS while they are within 18\" of this unit."
 				},
 				{
 					"name": "Shard of Night",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore modifiers to save rolls for shooting attacks that target this unit (positive and negative)."
 				},
 				{
 					"name": "Amulet of Graves",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -260,6 +285,7 @@
 			"entries": [
 				{
 					"name": "The Empty Graveyard",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"effect": "Remove this unit from the battlefield and set it up again more than 9\" from all enemy units and either wholly within 7\" of a terrain feature or wholly within 7\" of the battlefield edge. This unit cannot use MOVE abilities in the first turn of the first battle round.",
@@ -267,6 +293,7 @@
 				},
 				{
 					"name": "The Never-Dead",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, for the rest of the turn, each time you make an unmodified save roll of 5+ for an attack that targets this unit, the attack fails and the attack sequence ends.",
@@ -274,6 +301,7 @@
 				},
 				{
 					"name": "The Incarnadine Killers",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"effect": "If this unit is not in combat and an enemy unit was destroyed by its combat attacks this turn, this unit can move up to D6\". It can end that move in combat.",
@@ -290,6 +318,7 @@
 			"entries": [
 				{
 					"name": "Vile Transference",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -302,6 +331,7 @@
 				},
 				{
 					"name": "Prison of Grief",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -313,6 +343,7 @@
 				},
 				{
 					"name": "Waste Away",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -331,6 +362,7 @@
 			"entries": [
 				{
 					"name": "Summon Hand of Nagash",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Hand of Nagash on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -343,6 +375,7 @@
 				},
 				{
 					"name": "Summon Sanguine Swarm",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Sanguine Swarm on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -355,6 +388,7 @@
 				},
 				{
 					"name": "Summon Unholy Reliquary",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Unholy Reliquary on the battlefield, pick a friendly SOULBLIGHT GRAVELORDS WIZARD to cast this spell, then make a casting roll of 2D6.",

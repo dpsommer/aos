@@ -30,12 +30,14 @@
 			"abilities": [
 				{
 					"name": "Iron-fisted Commander",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "If a friendly Ardboyz unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
 					"name": "Get Bashin'!",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to shield bash rolls for friendly Ardboyz units while they are wholly within 12\" of this unit."
@@ -77,6 +79,7 @@
 			"abilities": [
 				{
 					"name": "Shield Bash",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit within 1\" of this unit to be the target.",
@@ -107,12 +110,14 @@
 			"abilities": [
 				{
 					"name": "Man da Tower!",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this terrain feature has a Shouty Boss:\n• The Shouty Boss cannot use MOVE abilities.\n• Instead of measuring range or visibility to and from the Shouty Boss, measure to and from this terrain feature instead.\n• All attacks that would target the Shouty Boss target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain."
 				},
 				{
 					"name": "Up We Go!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "If this terrain feature does not have a Shouty Boss , pick a friendly IRONJAWZ INFANTRY HERO that is not in combat and is within 3\" of it to be the target.",
@@ -120,6 +125,7 @@
 				},
 				{
 					"name": "Aggressively Bossy",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn",
@@ -142,6 +148,7 @@
 				},
 				{
 					"name": "I'm Off!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "If this terrain feature has a Shouty Boss that was not placed on it this turn, set up the Shouty Boss on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shouty Boss."
@@ -183,12 +190,14 @@
 			"abilities": [
 				{
 					"name": "Berserkers",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn."
 				},
 				{
 					"name": "Unleashed Rage",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
@@ -239,6 +248,7 @@
 			"abilities": [
 				{
 					"name": "You Messin'?",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Enemy units with a Health characteristic of 1 or 2 cannot contest objectives while they are in combat with this unit."
@@ -293,6 +303,7 @@
 			"abilities": [
 				{
 					"name": "You Call Dat A Punch?",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: Opponent declared an Attack ability that targeted this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -371,6 +382,7 @@
 			"abilities": [
 				{
 					"name": "Show 'Em Who's da Overboss",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
@@ -378,12 +390,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bossbiter's Fists and Tail is 4."
 				},
 				{
 					"name": "Wun of da Boyz",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly Brutes, Brute Ragerz or Weirdbrute Wrekkaz unit within this unit's combat range to be the cronies.",
@@ -391,6 +405,7 @@
 				},
 				{
 					"name": "Grotkicker",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -473,12 +488,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bigteef's Fists and Tail is 6."
 				},
 				{
 					"name": "Monster Grapple",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -490,6 +507,7 @@
 				},
 				{
 					"name": "Voice of Gork",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a WAAAGH! ability",
 					"frequency": "Once Per Battle",
@@ -497,6 +515,7 @@
 				},
 				{
 					"name": "Strength From Victory",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
@@ -555,6 +574,7 @@
 			"abilities": [
 				{
 					"name": "Gore-grunta Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -612,6 +632,7 @@
 			"abilities": [
 				{
 					"name": "Barge Through",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When this unit moves, it can pass through models in enemy INFANTRY units and can pass through the combat ranges of enemy Infantry units, but it cannot end the move in combat unless specified in the ability used."
@@ -658,6 +679,7 @@
 			"abilities": [
 				{
 					"name": "Dead 'Ard",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from wound rolls for attacks that target this unit."
@@ -734,6 +756,7 @@
 			"abilities": [
 				{
 					"name": "Flattened into the Mud",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -745,6 +768,7 @@
 				},
 				{
 					"name": "Unstoppable Momentum",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
@@ -816,6 +840,7 @@
 			"abilities": [
 				{
 					"name": "Carve a Path",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -828,6 +853,7 @@
 				},
 				{
 					"name": "Unstoppable Momentum",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
@@ -871,12 +897,14 @@
 			"abilities": [
 				{
 					"name": "Lead da Brutes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly BRUTE unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn."
 				},
 				{
 					"name": "Strength From Victory",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
@@ -921,6 +949,7 @@
 			"abilities": [
 				{
 					"name": "Get In There And Wallop 'Em!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle Round (Army)",
@@ -929,6 +958,7 @@
 				},
 				{
 					"name": "You Ain't Gonna Show Me Up",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1003,12 +1033,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Maw-krusha's Fists and Tail is 5."
 				},
 				{
 					"name": "Destructive Bulk",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1019,6 +1051,7 @@
 				},
 				{
 					"name": "Strength From Victory",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
@@ -1064,6 +1097,7 @@
 			"abilities": [
 				{
 					"name": "In Their Element",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The first time an enemy MONSTER is destroyed by this unit, add 1 to wound rolls for this unit's attacks for the rest of the battle."
@@ -1146,12 +1180,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Maw-grunta's Tusks is 3."
 				},
 				{
 					"name": "Head of the Stampede",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1163,6 +1199,7 @@
 				},
 				{
 					"name": "Unstoppable Momentum",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
@@ -1206,6 +1243,7 @@
 			"abilities": [
 				{
 					"name": "Rhythm of Destruction",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If any enemy models were slain this turn by this unit's combat attacks, give this unit D3 ritual points."
@@ -1249,6 +1287,7 @@
 			"abilities": [
 				{
 					"name": "Berserkers",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn."
@@ -1294,6 +1333,7 @@
 			"abilities": [
 				{
 					"name": "Propa Wonky",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1352,6 +1392,7 @@
 			"abilities": [
 				{
 					"name": "Brutal Power",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to this unit's power level while there are any friendly IRONJAWZ units that have 10 or more models wholly within 12\" of it."
@@ -1413,12 +1454,14 @@
 			"abilities": [
 				{
 					"name": "Klonk",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Klonk is a token. You can re-roll forgin' rolls for this unit while this unit's Klonk is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove this unit's Klonk from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
 				},
 				{
 					"name": "Power of da Great Green God",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly IRONJAWZ INFANTRY unit wholly within 12\" of this unit to be the target.",
@@ -1426,6 +1469,7 @@
 				},
 				{
 					"name": "Ward-smashing Choppa",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If an attack made with this unit's WARD-SMASHING CHOPPA scores a hit, the target has the WARD‑SMASHED keyword for the rest of the battle. Ward rolls cannot be made for a WARD‑SMASHED unit even if this unit has been destroyed."

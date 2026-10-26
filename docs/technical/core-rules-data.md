@@ -9,7 +9,7 @@ Rules every army uses live as JSON in `data/core/`, in the same shapes as factio
 `abilities.json` | `abilities`: the universal abilities: deployment (Deploy Unit, Deploy Regiment, Deploy Faction Terrain), core (Normal Move, Run, Retreat, Shoot, Charge, Fight), passive (Fly, Ward Save, Guarded Hero, Champion, Musician, Standard Bearer), commands (Rally, Magical Intervention, Redeploy, At the Double, Covering Fire, Counter-charge, Forward to Victory, All-out Attack, All-out Defence, Power Through), Activate Place of Power, Unbind, Banish Manifestation and Tactical Gambit. `weapon_abilities`: the universal weapon abilities (Anti-X, Crit…). `terrain_abilities`: the universal terrain abilities (Cover, Obscuring…) | Written by hand
 `manifestation_lores.json` | `lores`: the universal manifestation lores, which any army can take, with their points. `warscrolls`: the manifestations they summon | `tools/faction_import/build_core.py`
 
-All are `Ability`, `Lore` and `Warscroll` objects. Commands have `command_points` (their cost), and reactions such as 'At the Double' have `used_by` in place of `declare`. Weapon and terrain abilities only have a `name`, a `timing` of "Passive" and an `effect`.
+All are `Ability`, `Lore` and `Warscroll` objects. Commands have `command_points` (their cost), and reactions such as 'At the Double' have `used_by` in place of `declare`. Weapon and terrain abilities only have a `name`, a `type` of "passive", a `timing` of "Passive" and an `effect`. Every ability's `type` follows the same rules as faction data's (see [Ability types](faction-data.md#ability-types)).
 
 ## Abilities
 

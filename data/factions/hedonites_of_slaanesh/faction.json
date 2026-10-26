@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Paragons Of Slaanesh",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Your Turn",
 			"declare": "If there are fewer than 3 friendly PARAGONS on the battlefield, pick a friendly HEDONITES OF SLAANESH unit that does not have the PARAGON keyword and has not had the PARAGON keyword this battle to be the target.",
@@ -18,12 +19,14 @@
 		},
 		{
 			"name": "Fall From Grace",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "A friendly non-UNIQUE PARAGON immediately loses the PARAGON keyword when any of the following happen:\n\n• That PARAGON has 3 or more damage points allocated to it by the same use of a non-ATTACK ability.\n• That PARAGON uses a CHARGE ability and the unmodified charge roll is 5 or less (after any re-rolls).\n• A spell cast by that PARAGON is miscast (after any re-rolls)."
 		},
 		{
 			"name": "Sensuous Arcana",
+			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -35,6 +38,7 @@
 		},
 		{
 			"name": "Cutting Barbs",
+			"type": "active",
 			"category": "special",
 			"timing": "Any Movement Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -56,6 +60,7 @@
 		},
 		{
 			"name": "Beguiling Glance",
+			"type": "active",
 			"category": "movement",
 			"timing": "Any Shooting Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -77,6 +82,7 @@
 		},
 		{
 			"name": "Chief Of Revels",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Charge Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -88,6 +94,7 @@
 		},
 		{
 			"name": "Enthralling Vanity",
+			"type": "active",
 			"category": "special",
 			"timing": "Any Combat Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -109,6 +116,7 @@
 		},
 		{
 			"name": "Excess Of Agility",
+			"type": "active",
 			"category": "defensive",
 			"timing": "Any Combat Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -126,6 +134,7 @@
 			"abilities": [
 				{
 					"name": "In Search Of Sin",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -140,10 +149,12 @@
 			"abilities": [
 				{
 					"name": "Sadistic Tendencies",
+					"type": "command",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH unit to use this ability, then pick an enemy unit in combat with that unit and that had any damage points allocated to it this turn to be the target.",
-					"effect": "For the rest of the turn:\n• All of the combat attacks made by that friendly unit must target that enemy unit.\n• Add 1 to the Attacks characteristic of that friendly unit's melee weapons."
+					"effect": "For the rest of the turn:\n• All of the combat attacks made by that friendly unit must target that enemy unit.\n• Add 1 to the Attacks characteristic of that friendly unit's melee weapons.",
+					"command_points": 1
 				}
 			]
 		},
@@ -153,6 +164,7 @@
 			"abilities": [
 				{
 					"name": "Godly Spoor",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While they are wholly within 9\" of a battlefield edge, friendly HEDONITES OF SLAANESH units can use CHARGE abilities even if they used a RUN ability in the same turn."
@@ -165,6 +177,7 @@
 			"abilities": [
 				{
 					"name": "Amidst The Phantasmagoria",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -179,6 +192,7 @@
 			"abilities": [
 				{
 					"name": "Prodigy of Excess",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -199,6 +213,7 @@
 			"abilities": [
 				{
 					"name": "Ecstatic Revellers",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly SYBARITE INFANTRY units while they are wholly outside friendly territory"
@@ -213,6 +228,7 @@
 			"entries": [
 				{
 					"name": "Centre Of Attention",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
@@ -220,6 +236,7 @@
 				},
 				{
 					"name": "Dilettante",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -227,6 +244,7 @@
 				},
 				{
 					"name": "Unseemly Vitality",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D3) this unit."
@@ -240,14 +258,17 @@
 			"entries": [
 				{
 					"name": "Celebrity Warlord",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly non-HERO SYBARITE unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
+					"command_points": 1
 				},
 				{
 					"name": "Master of Temptation",
+					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
 					"declare": "You can only use this ability if your opponent has any temptation dice. Pick a visible enemy unit within 18\" of this unit to be the target.",
@@ -255,6 +276,7 @@
 				},
 				{
 					"name": "The Need For Perfection",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The first time each turn that an unmodified charge roll, casting roll, unbinding roll or banishment roll for a friendly non-EUPHORIC unit wholly within 12\" of this unit is 5 or less, that unit has the EUPHORIC keyword for the rest of the turn."
@@ -268,6 +290,7 @@
 			"entries": [
 				{
 					"name": "Agonisingly Elusive",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -279,14 +302,17 @@
 				},
 				{
 					"name": "Incensed",
+					"type": "command",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an objective within 6\" of this unit to be the target.",
 					"effect": "Until the start of your next turn, friendly HEDONITES OF SLAANESH units are not visible to enemy units more than 9\" from them while all models in those friendly units are contesting the target objective.",
-					"points": 10
+					"points": 10,
+					"command_points": 1
 				},
 				{
 					"name": "Arcane Magnetism",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit has 3 or more damage points, it can use a SPELL ability as if it were your hero phase, as if that ability had the UNLIMITED keyword and as if this unit had WIZARD (1)."
@@ -299,21 +325,25 @@
 			"entries": [
 				{
 					"name": "Bashful Visage",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While they are wholly within 6\" of this unit, friendly non-MONSTER non-WAR MACHINE HEDONITES OF SLAANESH units are not visible to enemy units more than 12\" from them."
 				},
 				{
 					"name": "Crown Of The Ur-Slaanesh",
+					"type": "command",
 					"category": "rally",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly non-HERO INFANTRY HEDONITES OF SLAANESH unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
-					"points": 20
+					"points": 20,
+					"command_points": 1
 				},
 				{
 					"name": "The Rod Of Misrule",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "Pick another visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of this unit to be the target.",
@@ -328,6 +358,7 @@
 			"entries": [
 				{
 					"name": "Obsession with Control",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick an objective to be the target.",
@@ -336,6 +367,7 @@
 				},
 				{
 					"name": "Obsession with Form",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: You declared the 'Run' ability for this unit",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit for the rest of the turn.",
@@ -343,6 +375,7 @@
 				},
 				{
 					"name": "Obsession with Pain",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit is damaged, spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, add 1 to the Rend characteristic of this unit's non-COMPANION melee weapons for the rest of the turn.",
@@ -359,6 +392,7 @@
 			"entries": [
 				{
 					"name": "Hysterical Frenzy",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, pick a visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -371,6 +405,7 @@
 				},
 				{
 					"name": "Last Ecstasy",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, pick a visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -382,6 +417,7 @@
 				},
 				{
 					"name": "Overwhelming Acquiescence",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -400,6 +436,7 @@
 			"entries": [
 				{
 					"name": "Summon Dreadful Visage",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Dreadful Visage on the battlefield, pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -412,6 +449,7 @@
 				},
 				{
 					"name": "Summon Mesmerising Mirror",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Mesmerising Mirror on the battlefield, pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -424,6 +462,7 @@
 				},
 				{
 					"name": "Summon Wheels of Excruciation",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Wheels of Excruciation endless spell on the battlefield, pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, then make a casting roll of 2D6.",

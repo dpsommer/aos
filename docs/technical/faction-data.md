@@ -25,7 +25,7 @@ Fix a typo in a shared entry once, in `tools/faction_import/shared.json`, not in
 
 **Class** | **Fields** (required in bold)
 -- | --
-`Ability` | **`name`**, `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `used_by` (reactions), `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `command_points` (commands), `casting_value` (spells), `chanting_value` (prayers), `source`
+`Ability` | **`name`**, `type` (`active`, `passive`, `command`, `spell` or `prayer`; see [Ability types](#ability-types)), `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `used_by` (reactions), `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `command_points` (commands), `casting_value` (spells), `chanting_value` (prayers), `source`
 `Weapon` | **`name`**, `range` (inches, 0 for melee), **`attacks`**, **`hit`**, **`wound`**, `rend`, **`damage`**, `abilities`. Attacks and damage are strings because they can be dice, e.g. `"2D6"` A weapon that skips the attack sequence (Wahapedia prints "See below", e.g. the Spearhead Bladelords' Perfect Strike) has `hit`, `wound` and `rend` of 0 and `damage` of `"-"`
 `Warscroll` | **`id`**, **`name`**, `source`, `legends`, **`points`**, **`unit_size`** (both optional in Spearhead and Path to Glory), `base_size`, `can_reinforce`, `regiment_options`, `notes`, **`move`** (string: inches, or dice such as `"D6+3"` for units that roll their move; `"0"` if the unit can't move), **`health`**, **`save`**, `ward`, **`control`**, `banishment` (manifestations), `ranged_weapons`, `melee_weapons`, `abilities`, `keywords`, `composition`
 `BattleFormation` | **`name`**, `points`, `abilities`
@@ -33,6 +33,12 @@ Fix a typo in a shared entry once, in `tools/faction_import/shared.json`, not in
 `Lore` | **`name`**, `kind` (spell, prayer, manifestation), `points` (always written in `faction.json`, usually 0), `source`, `entries`
 `Spearhead` | **`name`**, `text`, **`general`**, `units` (`[{count, name, notes}]`, names match the Spearhead's own warscrolls), `battle_traits`, `regiment_abilities`, `enhancements`, `warscrolls`
 `RulesSection` | **`name`**, `text`, `warscrolls`
+
+### Ability types
+
+`schema.ability` sets every ability's `type` from its own fields, in this order: a `timing` of "Passive" is `passive`; a `casting_value` or SPELL keyword is `spell`; a `chanting_value` or PRAYER keyword is `prayer`; a `command_points` cost is `command`; anything else, including reactions and abilities that spend a faction resource (Blades of Khorne's Blood Tithe, Disciples of Tzeentch's fate points), is `active`. BSData's profile types say the same for all but a few profiles it mislabels (Ironjawz's 'Tireless Warmaker' is "Activated" but Passive), so they aren't used.
+
+A command's `command_points` is its cost: BSData's "Ability (Command)" profiles have it as a Cost characteristic, and Wahapedia shows it in the ability's top-right corner, which the parser reads for Wahapedia-only abilities such as Spearheads'. The diff report compares the two. Wahapedia marks Disciples of Tzeentch's 'Vision of Defiant Supremacy' as a 1 CP command where BSData has an activated ability; BSData's is kept until the battletome settles it.
 
 Characteristics such as `save`, `hit` and `wound` store the x of an x+ roll. `source` names the expansion a rule comes from (e.g. "Scourge of Aqshy"); it's empty for battletome rules. Path to Glory is stored as text because its content is too varied to model usefully yet.
 

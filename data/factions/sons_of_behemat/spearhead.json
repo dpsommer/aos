@@ -17,6 +17,7 @@
 			"battle_traits": [
 				{
 					"name": "BELLOWING ROAR",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a friendly unit to use this ability, pick an enemy unit in combat with it to be the target, then roll a dice.",
@@ -24,6 +25,7 @@
 				},
 				{
 					"name": "‘GRAB THOSE ROCKS AND CHUCK ’EM!’",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Hero Phase",
 					"declare": "Pick your general to use this ability, then pick another friendly unit wholly within 12\" of them.",
@@ -33,12 +35,14 @@
 			"regiment_abilities": [
 				{
 					"name": "FOE-CHOMPERS",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time an enemy model is slain by a friendly unit’s ‘Stuff ’Em In Me Bag’ ability, Heal (D3) that unit."
 				},
 				{
 					"name": "EARTH-SHAKING CHARGE",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Phase (Army)",
@@ -49,24 +53,28 @@
 			"enhancements": [
 				{
 					"name": "MONSTROUSLY TOUGH",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has a Health characteristic of 15 instead of 12."
 				},
 				{
 					"name": "LANKY GIT",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When you make a charge roll for your general, roll 3D6 instead of 2D6."
 				},
 				{
 					"name": "EXTRA-BIG BAG",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "When your general uses their ‘Stuff ’Em In Me Bag’ ability, you can pick 2 enemy units instead of 1 (roll for each)."
 				},
 				{
 					"name": "FURIOUSLY TERRITORIAL",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for attacks made by your general that target an enemy unit that is contesting an objective you do not control."
@@ -123,6 +131,7 @@
 					"abilities": [
 						{
 							"name": "STUFF 'EM IN ME BAG",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
@@ -130,6 +139,7 @@
 						},
 						{
 							"name": "TIMBER!",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "If this model is slain, before removing it from the battlefield, the players must roll off. The winner picks a point on the battlefield up to 3\" from this model. Inflict D3 mortal damage on each enemy unit within 2\" of that point. This model is then removed from the battlefield."
@@ -159,6 +169,7 @@
 			"battle_traits": [
 				{
 					"name": "BOWLED OVER",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick an enemy unit that was allocated any damage points by a friendly unit’s shooting attacks this turn to be the target.",
@@ -166,6 +177,7 @@
 				},
 				{
 					"name": "CLOSE ONE EYE",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Hero Phase",
 					"declare": "Pick your general to use this ability, then pick another friendly unit wholly within 12\" of them to be the target.",
@@ -175,6 +187,7 @@
 			"regiment_abilities": [
 				{
 					"name": "SURLY SORTS",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -183,6 +196,7 @@
 				},
 				{
 					"name": "GREEDY AND GRABBY",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 5 to the control scores of friendly units."
@@ -191,6 +205,7 @@
 			"enhancements": [
 				{
 					"name": "’ARD ’EAD",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -198,12 +213,14 @@
 				},
 				{
 					"name": "HUMONGOUS STRIDES",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to charge rolls for your general."
 				},
 				{
 					"name": "LUCKY ROCK",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle",
@@ -211,6 +228,7 @@
 				},
 				{
 					"name": "HUNGRY GOBBLER",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "If any enemy models were slain by your general’s combat attacks this turn, Heal (D3) your general."
@@ -258,6 +276,7 @@
 					"abilities": [
 						{
 							"name": "DROP, TOSS OR ROLL",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
 							"effect": "Pick 1 of the following effects to apply to this unit for the rest of the turn. You cannot pick the same effect to apply to any other friendly units this turn.\nDrop: This unit’s ranged weapons have Shoot in Combat.\nToss: Add 6\" to the Range characteristic of this unit’s ranged weapons.\nRoll: Add 1 to hit rolls for this unit’s shooting attacks."

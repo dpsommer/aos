@@ -2,9 +2,14 @@ class_name Ability
 extends Resource
 ## A rule with a timing and effect: battle traits, enhancements, warscroll abilities, prayers.
 
+## Values of [member type].
+const TYPES: PackedStringArray = ["active", "passive", "command", "spell", "prayer"]
+
 ## Icon category, e.g. "offensive", "movement", "special".
 @export var category: String
 @export var name: String
+## How the ability is used: "active", "passive", "command", "spell" or "prayer".
+@export var type: String
 ## When the ability is used, e.g. "Passive" or "Your Hero Phase".
 @export var timing: String
 ## Usage limit, e.g. "Once Per Battle". Empty if unlimited.

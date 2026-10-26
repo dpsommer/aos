@@ -47,18 +47,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of the Thanatorg's Claws and Fangs is 4."
 				},
 				{
 					"name": "Warlord of the First Circle",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If a friendly Varanguard unit uses the 'Relentless Killers' ability while it is wholly within 12\" of this unit, that unit does not have STRIKE-LAST as a result of that ability."
 				},
 				{
 					"name": "Gorbolga the Accurs'd",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit is in combat, roll a dice and apply the corresponding effect:",
@@ -83,12 +86,14 @@
 				},
 				{
 					"name": "Blood of Molten Varanite",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Roll a dice each time a damage point inflicted by a combat attack is allocated to this unit. On a 4+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Roar of Domination",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -158,12 +163,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of The Thanatorg's Claws and Fangs is 4."
 				},
 				{
 					"name": "Mutative Spear",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's combat attacks to be the target.",
@@ -171,6 +178,7 @@
 				},
 				{
 					"name": "Champion of the Undivided",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"declare": "Pick a friendly non-UNIQUE SLAVES TO DARKNESS unit wholly within 12\" of this unit and that does not have a Pledge to Chaos keyword to be the target.",
@@ -178,12 +186,14 @@
 				},
 				{
 					"name": "Unending Will to Conquer",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "If this unit is contesting an objective you do not control. Heal (D6) this unit."
 				},
 				{
 					"name": "Unstoppable Invasion",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -262,18 +272,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Dorghar's Claws and Tails is 4."
 				},
 				{
 					"name": "The Slayer of Kings",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, if the unmodified wound roll for 2 or more attacks made with The Slayer of Kings that target the same HERO is 6, that HERO is automatically destroyed."
 				},
 				{
 					"name": "The Eye of Sheerian",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -281,6 +294,7 @@
 				},
 				{
 					"name": "Three-headed Titan",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -353,6 +367,7 @@
 			"abilities": [
 				{
 					"name": "Spear-Carrier",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle",
@@ -360,6 +375,7 @@
 				},
 				{
 					"name": "Unknowing Herald",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Battle",
@@ -422,18 +438,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Blade of Shadows is 6."
 				},
 				{
 					"name": "Shadow Form",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore modifiers to save rolls for this unit (positive and negative)."
 				},
 				{
 					"name": "The Dark Master",
+					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Battle",
@@ -442,6 +461,7 @@
 				},
 				{
 					"name": "Enfeeble Foe",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -453,6 +473,7 @@
 				},
 				{
 					"name": "Deadly Trap",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -511,6 +532,7 @@
 			"abilities": [
 				{
 					"name": "Marshal of the Legions",
+					"type": "active",
 					"category": "offensive",
 					"timing": "You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO DAEMON or Chaos Legionnaires unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
@@ -579,6 +601,7 @@
 			"abilities": [
 				{
 					"name": "Swift Death",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -622,6 +645,7 @@
 			"abilities": [
 				{
 					"name": "Heralds of Ruination",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -665,6 +689,7 @@
 			"abilities": [
 				{
 					"name": "Sneaky Little Devils",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
@@ -720,6 +745,7 @@
 			"abilities": [
 				{
 					"name": "Impaling Charge",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to the Rend characteristic of its Cursed Lances."
@@ -761,6 +787,7 @@
 			"abilities": [
 				{
 					"name": "Sow Confusion",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -810,6 +837,7 @@
 			"abilities": [
 				{
 					"name": "Glory in Battle",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO WARRIORS OF CHAOS INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn."
@@ -869,6 +897,7 @@
 			"abilities": [
 				{
 					"name": "The Knights of Chaos",
+					"type": "active",
 					"category": "offensive",
 					"timing": "You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO WARRIORS OF CHAOS CAVALRY unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn."
@@ -929,6 +958,7 @@
 			"abilities": [
 				{
 					"name": "Drive the Legions Forward",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -937,6 +967,7 @@
 				},
 				{
 					"name": "Brutish Rampage",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick up to 3 enemy units within 1\" of it to be the targets.",
@@ -999,6 +1030,7 @@
 			"abilities": [
 				{
 					"name": "Ferocious Influence",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1007,6 +1039,7 @@
 				},
 				{
 					"name": "Wrathful Abandon",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1070,12 +1103,14 @@
 			"abilities": [
 				{
 					"name": "Iron-willed Overlord",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 2 to the control scores of friendly WARRIORS OF CHAOS units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Apex Predator",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1127,6 +1162,7 @@
 			"abilities": [
 				{
 					"name": "Oracular Visions",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1188,6 +1224,7 @@
 			"abilities": [
 				{
 					"name": "Oracular Visions",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1196,6 +1233,7 @@
 				},
 				{
 					"name": "Venomous Tail Strike",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1246,6 +1284,7 @@
 			"abilities": [
 				{
 					"name": "Drawn to Power",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit is wholly within 12\" of a friendly Daemon Prince, you can re-roll the random characteristic rolls for this unit's Move and Attacks characteristics."
@@ -1286,6 +1325,7 @@
 			"abilities": [
 				{
 					"name": "Bringers of Desolation",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's Rune-etched Weapons while it is contesting an objective you control."
@@ -1332,6 +1372,7 @@
 			"abilities": [
 				{
 					"name": "For the Glory of the Dark Gods",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1391,12 +1432,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Flailing Fists is 4."
 				},
 				{
 					"name": "Favour of Chaos",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly SLAVES TO DARKNESS unit wholly within 12\" of this unit to be the target. Then, make a chanting roll of D6.",
@@ -1408,6 +1451,7 @@
 				},
 				{
 					"name": "Protection of the Dark Gods",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly WARRIORS OF CHAOS units have WARD (6+) while they are wholly within 12\" of this unit."
@@ -1465,6 +1509,7 @@
 			"abilities": [
 				{
 					"name": "Strike from the Shadows",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick this unit if it is lurking in the shadows.",
@@ -1472,6 +1517,7 @@
 				},
 				{
 					"name": "Shadow-lurkers",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit if it has not been deployed.",
@@ -1529,12 +1575,14 @@
 			"abilities": [
 				{
 					"name": "Acrobatic Leaps",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
 				},
 				{
 					"name": "Shattered Gloom Globes",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -1583,18 +1631,21 @@
 			"abilities": [
 				{
 					"name": "Immortal Champion",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "Roll a dice. On a 4+, this unit has STRIKE-FIRST for the rest of the turn."
 				},
 				{
 					"name": "Airborne Horror",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "If this unit has Wings, it has a Move characteristic of 10\" and has FLY."
 				},
 				{
 					"name": "The Mounted Skulls of the Fallen",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit has a Trophy Rack, its Hellforged Weapons also have Anti-HERO (+1 Rend)."
@@ -1651,6 +1702,7 @@
 			"abilities": [
 				{
 					"name": "Fuelled by Sorcery",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a spell is successfully cast by a unit within 12\" of this MANIFESTATION, give this MANIFESTATION 1 ruinous energy point, to a maximum of 6.\nEach time this MANIFESTATION uses a SHOOT ability, add 1 to the Attacks characteristic of its Darkfire Torrent for each ruinous energy point it has.\nIf this MANIFESTATION is removed from play, all of its ruinous energy points are lost."
@@ -1700,12 +1752,14 @@
 			"abilities": [
 				{
 					"name": "Tribal Warleader",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO DARKOATH INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn."
 				},
 				{
 					"name": "Oath of Murder",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle",
@@ -1767,12 +1821,14 @@
 			"abilities": [
 				{
 					"name": "Cavalry Warleader",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "You can re-roll charge rolls for friendly DARKOATH CAVALRY units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Oath of Murder",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle",
@@ -1847,12 +1903,14 @@
 			"abilities": [
 				{
 					"name": "Swift Attackers",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
 				},
 				{
 					"name": "Oath of the Raider",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -1896,6 +1954,7 @@
 			"abilities": [
 				{
 					"name": "Oath of the Marauder",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -1903,6 +1962,7 @@
 				},
 				{
 					"name": "Glorious Death",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is wholly within 12\" of any friendly DARKOATH HEROES, each time a model in this unit is slain by a combat attack and that model was in combat with the attacking model, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1947,6 +2007,7 @@
 			"abilities": [
 				{
 					"name": "Oath of Conquest",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -1997,6 +2058,7 @@
 			"abilities": [
 				{
 					"name": "Ruin-blessed Conqueror",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2005,6 +2067,7 @@
 				},
 				{
 					"name": "Oath of Supremacy",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -2062,12 +2125,14 @@
 			"abilities": [
 				{
 					"name": "Feed on Flesh",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a model (friendly or enemy) is slain within 12\" of this unit, give this unit a sacrifice point, to a maximum of 6. If there are more than 1 friendly Darkoath Wilderfiend units within 12\" of the slain model, only 1 of them can be given a sacrifice point for that slain model."
 				},
 				{
 					"name": "Primal Sorcery",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Pick 1 of the following effects:",
@@ -2113,6 +2178,7 @@
 			"abilities": [
 				{
 					"name": "Empowered by Atrocity",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If 2 or more units (friendly or enemy) were destroyed this turn, for the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly SLAVES TO DARKNESS units while they are wholly within 12\" of this MANIFESTATION."
@@ -2172,12 +2238,14 @@
 			"abilities": [
 				{
 					"name": "Network of Spies",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a command for a unit within 12\" of this unit",
 					"effect": "Roll a dice. Add 1 to the roll if the enemy unit is in combat with a friendly Chaos Legionnaires or Chaos Furies unit. On a 5+, that command has no effect. The command still counts as having been used and the command points spent to use the command are still lost."
 				},
 				{
 					"name": "Veins of Black Lightning",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"declare": "This unit can use this ability if it has been destroyed.",
@@ -2230,6 +2298,7 @@
 			"abilities": [
 				{
 					"name": "Glory-seeker",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons for attacks that target HEROES or MONSTERS."
@@ -2282,6 +2351,7 @@
 			"abilities": [
 				{
 					"name": "Cursed Destroyers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2341,6 +2411,7 @@
 			"abilities": [
 				{
 					"name": "Minions of the Silver Tower",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly unit that has not been deployed to be the target",
@@ -2351,6 +2422,7 @@
 				},
 				{
 					"name": "Book of Profane Secrets",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly unit in a Silver Tower to be the target.",
@@ -2358,6 +2430,7 @@
 				},
 				{
 					"name": "Divert Realmgate",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6",
@@ -2434,6 +2507,7 @@
 			"abilities": [
 				{
 					"name": "Minions of the Silver Tower",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly unit that has not been deployed to be the target",
@@ -2444,6 +2518,7 @@
 				},
 				{
 					"name": "Book of Profane Secrets",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly unit in a Silver Tower to be the target.",
@@ -2451,6 +2526,7 @@
 				},
 				{
 					"name": "Arcane Imprisonment",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an enemy Hero in combat with this unit to be the target, then make a casting roll of 2D6.",
@@ -2517,6 +2593,7 @@
 			"abilities": [
 				{
 					"name": "Oath of Conquest",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -2524,6 +2601,7 @@
 				},
 				{
 					"name": "Theddra Skull-scryer",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Theddra Skull-scryer is on the battlefield, it has WIZARD (1)."
@@ -2596,6 +2674,7 @@
 			"abilities": [
 				{
 					"name": "Brutal Momentum",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When this unit uses the 'Power Through' command, inflict an additional D3 mortal damage on the target and add 3\" to the distance this unit can move as part of that ability"
@@ -2642,6 +2721,7 @@
 			"abilities": [
 				{
 					"name": "Carve a Path to Glory",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "This unit can only use this ability if it is in combat with an enemy HERO.",
@@ -2649,6 +2729,7 @@
 				},
 				{
 					"name": "Oath of Bloodshed",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle",
@@ -2707,6 +2788,7 @@
 			"abilities": [
 				{
 					"name": "Stampede of Iron",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -2762,12 +2844,14 @@
 			"abilities": [
 				{
 					"name": "Ogor Breacher",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit includes an Ogor Breacher, ignore the first damage point that would be allocated to this unit in each phase."
 				},
 				{
 					"name": "Iron Resilience",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 1 to save rolls for this unit if it has not used a MOVE ability in the same turn."
@@ -2814,12 +2898,14 @@
 			"abilities": [
 				{
 					"name": "Ravagers of the Mortal Realms",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+) while it is contesting an objective you control."
 				},
 				{
 					"name": "Zarshia Bittersoul",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Zarshia Bittersoul is on the battlefield, it has WIZARD (1)."
@@ -2866,6 +2952,7 @@
 			"abilities": [
 				{
 					"name": "Attention Seekers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2932,6 +3019,7 @@
 			"abilities": [
 				{
 					"name": "Slaughterous Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
@@ -2982,6 +3070,7 @@
 			"abilities": [
 				{
 					"name": "The Thinning Veil",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "If this unit is in combat, you can return D3 slain models to this unit."
@@ -3032,6 +3121,7 @@
 			"abilities": [
 				{
 					"name": "Soporific Musk",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3040,6 +3130,7 @@
 				},
 				{
 					"name": "Disruptive Song",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Subtract 1 from casting rolls and unbinding rolls for enemy WIZARDS while they are within 12\" of this unit."
@@ -3098,6 +3189,7 @@
 			"abilities": [
 				{
 					"name": "Wyrdflame of Tzeentch",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3170,6 +3262,7 @@
 			"abilities": [
 				{
 					"name": "Soulscent",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"declare": "Pick up to 3 enemy units that this unit passed across this phase to be the targets.",
@@ -3177,6 +3270,7 @@
 				},
 				{
 					"name": "Threshing Doom",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When this unit moves, it can pass through models in enemy INFANTRY units and can pass through the combat ranges of enemy INFANTRY units, but it cannot end a move in combat unless specified in the ability used."
@@ -3223,6 +3317,7 @@
 			"abilities": [
 				{
 					"name": "Cloud of Flies",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
@@ -3273,6 +3368,7 @@
 			"abilities": [
 				{
 					"name": "Slashing Fins",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
@@ -3316,6 +3412,7 @@
 			"abilities": [
 				{
 					"name": "Dominate Mind",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3374,12 +3471,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Betentacled Maw is 8."
 				},
 				{
 					"name": "Aura of Mutation",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3391,6 +3490,7 @@
 				},
 				{
 					"name": "Mutant Regeneration",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"effect": "Heal (D3) this unit."
@@ -3420,12 +3520,14 @@
 			"abilities": [
 				{
 					"name": "Draw Power",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Roll a dice. Give a number of power points to this terrain feature equal to the roll. This terrain feature can have a maximum of 12 power points at once."
 				},
 				{
 					"name": "Corrupt the Realms",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "If this terrain feature has 9 or more power points, pick an objective or terrain feature within 24\" of this terrain feature to be the source. Then, pick any number of enemy units within 3\" of the source to be the targets.",
@@ -3433,6 +3535,7 @@
 				},
 				{
 					"name": "Infernal Sorcery",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If this terrain feature has 3 or more power points, pick a friendly SLAVES TO DARKNESS WIZARD within 3\" of this terrain feature to be the target.",
@@ -3491,12 +3594,14 @@
 			"abilities": [
 				{
 					"name": "Myrmidon Rage",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is damaged, add 2 to the Attacks characteristic of its melee weapons."
 				},
 				{
 					"name": "Pit Master",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Ogroid Theridons unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
@@ -3538,6 +3643,7 @@
 			"abilities": [
 				{
 					"name": "Unleashed Savagery",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -3582,6 +3688,7 @@
 			"abilities": [
 				{
 					"name": "Crazed Flock",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to the Attacks characteristic of its melee weapons. This ability also affects Companion weapons."
@@ -3624,6 +3731,7 @@
 			"abilities": [
 				{
 					"name": "Debilitating Shockwave",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"declare": "If this MANIFESTATION charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -3682,6 +3790,7 @@
 			"abilities": [
 				{
 					"name": "All Shall Burn",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Flameburst Pots and Infernal Fires for attacks that target WAR MACHINES or INFANTRY units with 10 or more models."
@@ -3750,12 +3859,14 @@
 			"abilities": [
 				{
 					"name": "Swift as the Wind",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Only critical hits score successful hits for shooting attacks that target this unit."
 				},
 				{
 					"name": "Uncanny Shot",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Singri's Warbow for attacks that target enemy units that are within 6\" of a friendly Gunnar Brand."
@@ -3813,12 +3924,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Razor-tipped Claws is 5."
 				},
 				{
 					"name": "Rampaging Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3830,6 +3943,7 @@
 				},
 				{
 					"name": "Sigils of Domination",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly SLAVES TO DARKNESS HERO within this unit's combat range to be this unit's master.",
@@ -3913,12 +4027,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Piston-driven Legs and Daemonic Blade or Claw is 6."
 				},
 				{
 					"name": "Piston-driven Carnage",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3930,6 +4046,7 @@
 				},
 				{
 					"name": "Implacable Advance",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use CHARGE abilities even if it used a RUN ability in the same turn."
@@ -3973,6 +4090,7 @@
 			"abilities": [
 				{
 					"name": "Fight for Glory",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The first time each turn that this unit is picked to use a FIGHT ability in the combat phase, if this unit is wholly within 12\" of any friendly SLAVES TO DARKNESS HEROES, add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the turn."
@@ -4017,6 +4135,7 @@
 			"abilities": [
 				{
 					"name": "Slithering Serpents",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "If this unit's Serpents are on the battlefield, pick an enemy unit in combat with this unit to be the target.",
@@ -4024,6 +4143,7 @@
 				},
 				{
 					"name": "Paralysing Strikes",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, if its attacks score 2 or more critical hits against the same enemy unit, that unit has STRIKE-LAST for the rest of the turn."
@@ -4091,6 +4211,7 @@
 			"abilities": [
 				{
 					"name": "Creeping Summons",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "Roll a dice. On a 2+, you can return D3 slain Spider Swarms to this unit."
@@ -4136,6 +4257,7 @@
 			"abilities": [
 				{
 					"name": "Oath of Dark Sacrifice",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -4143,6 +4265,7 @@
 				},
 				{
 					"name": "Sarrakkar Blackwing",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Sarrakkar Blackwing is on the battlefield, it has WIZARD (1)."
@@ -4198,12 +4321,14 @@
 			"abilities": [
 				{
 					"name": "Broken Nadja",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Broken Nadja is on the battlefield, it has WIZARD (1)."
 				},
 				{
 					"name": "Withering Death",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy HERO within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -4266,6 +4391,7 @@
 			"abilities": [
 				{
 					"name": "Frozen in Fear",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Enemy units cannot use the 'Redeploy' or 'Rally' commands while they are within 12\" of this unit."
@@ -4310,12 +4436,14 @@
 			"abilities": [
 				{
 					"name": "Unleash the Beast",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"effect": "This unit can use the 'Normal Move' ability as if it were your movement phase."
 				},
 				{
 					"name": "Jagged Harpoon",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "If this unit includes a First Fang, pick an enemy unit in combat with this unit to be the target.",
@@ -4373,6 +4501,7 @@
 			"abilities": [
 				{
 					"name": "Relentless Killers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",

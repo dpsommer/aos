@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Thorgrim's Beard! There Are Grudges to Be Settled!",
+			"type": "active",
 			"category": "special",
 			"timing": "End of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -12,12 +13,14 @@
 		},
 		{
 			"name": "Reclaim the Karaks",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "Immediately after your opponent gains control of an objective within your territory, you can give 1 grudge mark to a friendly KHAZALITE HOLDS unit.\nEach time a friendly KHAZALITE HOLDS unit uses the 'Retreat' ability, after that ability has been resolved, you must remove 1 grudge mark from that unit (if it has one)."
 		},
 		{
 			"name": "Let It Be Known!",
+			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -26,6 +29,7 @@
 		},
 		{
 			"name": "Gazul, Remember the Fallen!",
+			"type": "passive",
 			"category": "offensive",
 			"timing": "Passive",
 			"effect": "While at least half the models in a DUARDIN KHAZALITE HOLDS unit have been slain, add 1 to the Attacks characteristic of its melee weapons.",
@@ -38,6 +42,7 @@
 		},
 		{
 			"name": "We Honour Valaya!",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -49,6 +54,7 @@
 		},
 		{
 			"name": "Inghilde, Our Light in the Darkness",
+			"type": "active",
 			"category": "movement",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -60,6 +66,7 @@
 		},
 		{
 			"name": "By Grungni, Stand Firm!",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -71,6 +78,7 @@
 		},
 		{
 			"name": "Grimnir's Wrath Will Burn Bright!",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -82,6 +90,7 @@
 		},
 		{
 			"name": "Enlighten Us with Your Wisdom, Grombrindal!",
+			"type": "active",
 			"category": "defensive",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -98,6 +107,7 @@
 			"abilities": [
 				{
 					"name": "Bellicose Belligerents",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Subtract 3 from the control scores of enemy units while they are in combat with any friendly KHAZALITE HOLDS units."
@@ -110,6 +120,7 @@
 			"abilities": [
 				{
 					"name": "Lock Shields!",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for shooting attacks that target friendly KHAZALITE HOLDS units while they are wholly within friendly territory or while every model in the unit is contesting an objective you control."
@@ -122,6 +133,7 @@
 			"abilities": [
 				{
 					"name": "Stalwart Resolve",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While an enemy unit is in combat with a friendly KHAZALITE HOLDS unit, subtract 1 from the number of inches that enemy unit can move when it makes a pile in move, to a minimum of 1\"."
@@ -134,6 +146,7 @@
 			"abilities": [
 				{
 					"name": "Well-travelled Roamers",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a RUN or CHARGE ability for a KHAZALITE HOLDS unit",
 					"frequency": "Once Per Turn (Army)",
@@ -149,6 +162,7 @@
 			"entries": [
 				{
 					"name": "Hearthflares",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an objective within 12\" of this unit to be the target.",
@@ -156,12 +170,14 @@
 				},
 				{
 					"name": "Flamescale Rune Cloak",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit if it has not charged this turn."
 				},
 				{
 					"name": "Deep-earth Runic Weapon",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"declare": "Pick 1 of this unit's non-Companion melee weapons to be the runic weapon. This unit can use this ability even if it is in reserve.",
@@ -175,12 +191,14 @@
 			"entries": [
 				{
 					"name": "Long of Beard or Braid",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
 					"name": "Innate Resonance",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is not a PRIEST, it has WIZARD (1). If this unit already has WIZARD (1), it has WIZARD (2) instead. In addition, enemy MANIFESTATIONS have STRIKE-LAST while they are within 12\" of this unit.",
@@ -188,6 +206,7 @@
 				},
 				{
 					"name": "Sworn to Vengeance",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated to an enemy unit by attacks made with this unit's non-Companion weapons this turn and that enemy unit has been destroyed, give this unit a vengeance token, to a maximum of 3. Until the end of the next turn, add 1 to the Attacks characteristic of this unit's non-Companion melee weapons for each vengeance token it has."
@@ -200,6 +219,7 @@
 			"entries": [
 				{
 					"name": "Aureate Hide",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "After that FIGHT ability has been resolved, if any enemy models were slain by that FIGHT ability, you can pick a visible friendly FYRESLAYERS PRIEST wholly within 12\" of this unit. Give that PRIEST D3 ritual points.",
@@ -207,6 +227,7 @@
 				},
 				{
 					"name": "Intense Fyrestream",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, for the rest of the turn:\n• Add X\" to the Range characteristic and X to the Attacks characteristic of this unit's Companion ranged weapons, where X is equal to your fury level.\n• This unit's Companion ranged weapons have Shoot in Combat.",
@@ -214,6 +235,7 @@
 				},
 				{
 					"name": "Thickened Scales",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
@@ -230,6 +252,7 @@
 			"entries": [
 				{
 					"name": "Rune of Dismay",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -242,6 +265,7 @@
 				},
 				{
 					"name": "Rune of Courage",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -253,6 +277,7 @@
 				},
 				{
 					"name": "Rune of the Furnace",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -271,6 +296,7 @@
 			"entries": [
 				{
 					"name": "Rune of Might",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -283,6 +309,7 @@
 				},
 				{
 					"name": "Rune of Sanctuary",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -294,6 +321,7 @@
 				},
 				{
 					"name": "Rune of Warding",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -312,6 +340,7 @@
 			"entries": [
 				{
 					"name": "Recitation to Valaya",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS PRIEST to chant this prayer, pick a visible friendly KHAZALITE HOLDS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -324,6 +353,7 @@
 				},
 				{
 					"name": "Recitation to Gazul",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -335,6 +365,7 @@
 				},
 				{
 					"name": "Recitation to Grimnir",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly KHAZALITE HOLDS PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -354,6 +385,7 @@
 			"entries": [
 				{
 					"name": "Fury of Vulcatrix",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST to chant this prayer, pick a visible friendly FYRESLAYERS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -365,6 +397,7 @@
 				},
 				{
 					"name": "Ichor of the Ur-Salamander",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST to chant this prayer, pick a visible friendly FYRESLAYERS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -377,6 +410,7 @@
 				},
 				{
 					"name": "Blazing Impetus",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST to chant this prayer, pick a visible friendly FYRESLAYERS unit that was not set up this turn and that is wholly within 12\" of them to be the target, then make a chanting roll of D6.",

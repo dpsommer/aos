@@ -25,6 +25,7 @@
 			"battle_traits": [
 				{
 					"name": "'ERE WE GO!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
@@ -34,6 +35,7 @@
 				},
 				{
 					"name": "MIGHTY DESTROYERS",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -44,12 +46,14 @@
 			"regiment_abilities": [
 				{
 					"name": "NATURAL DISASTER",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If you make an unmodified charge roll of 8+ for a friendly unit, add 1 to the Attacks characteristic of that unit’s melee weapons for the rest of the turn."
 				},
 				{
 					"name": "A PROPER RUCKUS",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the ‘Mighty Destroyers’ ability",
 					"frequency": "Once Per Battle",
@@ -59,24 +63,28 @@
 			"enhancements": [
 				{
 					"name": "AMBERSTONE WHETSTONE",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The Rend characteristic of your general’s melee weapons is 2."
 				},
 				{
 					"name": "ARMOUR OF GORK",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (6+)."
 				},
 				{
 					"name": "TROPHY SKULLS",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Your general’s Control characteristic is 5."
 				},
 				{
 					"name": "MEGA BOSSY",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly units while they are wholly within 12\" of this unit."
@@ -105,6 +113,7 @@
 					"abilities": [
 						{
 							"name": "GET STUCK IN, LADZ",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
@@ -138,6 +147,7 @@
 					"abilities": [
 						{
 							"name": "YOU MESSIN'?",
+							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
 							"effect": "Enemy models with a Health characteristic of 1 or 2 cannot contest objectives while they are in combat with this unit."
@@ -169,6 +179,7 @@
 					"abilities": [
 						{
 							"name": "UNLEASHED RAGE",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
@@ -204,6 +215,7 @@
 					"abilities": [
 						{
 							"name": "SHIELD BASH",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit within 1\" of this unit to be the target.",

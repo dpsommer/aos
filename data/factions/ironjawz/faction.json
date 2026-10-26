@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Mighty Destroyers",
+			"type": "active",
 			"category": "movement",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -13,6 +14,7 @@
 		},
 		{
 			"name": "Ironjawz Waaagh!",
+			"type": "active",
 			"category": "special",
 			"timing": "Your Charge Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -30,6 +32,7 @@
 			"abilities": [
 				{
 					"name": "Natural Disaster",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If you make an unmodified charge roll of 8+ for a friendly non-HERO IRONJAWZ unit, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn."
@@ -42,6 +45,7 @@
 			"abilities": [
 				{
 					"name": "Spirit of Gork",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly IRONJAWZ INFANTRY units have WARD (6+) while they are wholly within 12\" of any friendly IRONJAWZ WIZARDS or PRIESTS."
@@ -54,6 +58,7 @@
 			"abilities": [
 				{
 					"name": "Smashin' and Bashin'",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "The first time each turn that an enemy unit is destroyed by a FIGHT ability used by a friendly IRONJAWZ unit, add 1 to hit rolls for combat attacks made by the next friendly IRONJAWZ unit that is picked to use a FIGHT ability for the rest of the turn."
@@ -66,6 +71,7 @@
 			"abilities": [
 				{
 					"name": "'Ere We Come",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add the number of enemy units that have been destroyed this battle to the Move characteristic of friendly Gore-gruntas and MAW-GRUNTA units, to a maximum of +4."
@@ -78,6 +84,7 @@
 			"abilities": [
 				{
 					"name": "Mightiest Destroyers",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle Round (Army)",
@@ -91,6 +98,7 @@
 			"abilities": [
 				{
 					"name": "Duff Up da Big Thing",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -107,18 +115,21 @@
 			"entries": [
 				{
 					"name": "An Eye for da Fight",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly IRONJAWZ unit wholly within 12\" of this unit",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
 					"name": "Mega Bossy",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly IRONJAWZ units while they are wholly within 18\" of this unit."
 				},
 				{
 					"name": "Hulking Brute",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
@@ -132,18 +143,21 @@
 			"entries": [
 				{
 					"name": "Trophy Skulls",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 10 to this unit's control score."
 				},
 				{
 					"name": "Armour of Gork",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has WARD (6+)."
 				},
 				{
 					"name": "Amberbone Whetstone",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"effect": "Pick 1 of this unit's weapons. Add 1 to the Rend characteristic of that weapon for the rest of the battle."
@@ -157,6 +171,7 @@
 			"entries": [
 				{
 					"name": "Chimeric Mantle",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -164,6 +179,7 @@
 				},
 				{
 					"name": "Horn of Shattatusk",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared the 'Ironjawz Waaagh!' ability and picked this unit to be the target",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of Companion weapons used by friendly IRONJAWZ units while they are wholly within 18\" of this unit.",
@@ -171,6 +187,7 @@
 				},
 				{
 					"name": "Weird Skullz",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
@@ -185,6 +202,7 @@
 			"entries": [
 				{
 					"name": "Big 'Un",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Companion weapons.",
@@ -192,6 +210,7 @@
 				},
 				{
 					"name": "Fast 'Un",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -200,6 +219,7 @@
 				},
 				{
 					"name": "Angry 'Un",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
@@ -214,6 +234,7 @@
 			"entries": [
 				{
 					"name": "Mad 'Un",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -225,12 +246,14 @@
 				},
 				{
 					"name": "Big 'Un",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Companion weapons."
 				},
 				{
 					"name": "Fast 'Un",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -247,6 +270,7 @@
 			"entries": [
 				{
 					"name": "Bash 'Em, Ladz",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly IRONJAWZ WIZARD to cast this spell, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -259,6 +283,7 @@
 				},
 				{
 					"name": "Mighty 'Eadbutt",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly IRONJAWZ WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -270,6 +295,7 @@
 				},
 				{
 					"name": "Da Great Big Green Hand of Gork",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly IRONJAWZ WIZARD to cast this spell, pick a visible friendly unit wholly within 12\" of them and not in combat to be the target, then make a casting roll of 2D6.",
@@ -288,6 +314,7 @@
 			"entries": [
 				{
 					"name": "Get 'Em Beat",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly IRONJAWZ PRIEST to chant this prayer, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -300,6 +327,7 @@
 				},
 				{
 					"name": "Fixin' Beat",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly IRONJAWZ PRIEST to chant this prayer, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -311,6 +339,7 @@
 				},
 				{
 					"name": "Killa Beat",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly IRONJAWZ PRIEST to chant this prayer, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -329,6 +358,7 @@
 			"entries": [
 				{
 					"name": "Summon Foot of Gork",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly IRONJAWZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -341,6 +371,7 @@
 				},
 				{
 					"name": "Summon Morkspit Marsh",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Morkspit Marsh on the battlefield, pick a friendly IRONJAWZ WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -353,6 +384,7 @@
 				},
 				{
 					"name": "Summon Gork-Roara",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Gork-Roara on the battlefield, pick a friendly IRONJAWZ WIZARD to cast this spell, then make a casting roll of 2D6.",

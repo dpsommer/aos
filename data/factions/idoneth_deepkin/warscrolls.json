@@ -28,12 +28,14 @@
 			"abilities": [
 				{
 					"name": "Crushing Coil",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for attacks made by friendly IDONETH DEEPKIN MANIFESTATIONS that target an ensnared enemy unit."
 				},
 				{
 					"name": "Watery Clutch",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -114,12 +116,14 @@
 			"abilities": [
 				{
 					"name": "Bloodthirsty Predators",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's Allopex's Ferocious Bite while it is within 6\" of any damaged enemy units or while it is within 6\" of any enemy units that had any models slain in the same turn."
 				},
 				{
 					"name": "Ensnared",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy MONSTER or CAVALRY unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
@@ -174,6 +178,7 @@
 			"abilities": [
 				{
 					"name": "Biovoltaic Barrier",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -181,6 +186,7 @@
 				},
 				{
 					"name": "Galv-shields",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+) if it charged in the same turn."
@@ -243,6 +249,7 @@
 			"abilities": [
 				{
 					"name": "Wave Rider",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -250,6 +257,7 @@
 				},
 				{
 					"name": "Crest of the Wave",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -319,12 +327,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Leviadon's Scythed Fins and Crushing Jaws is 5."
 				},
 				{
 					"name": "Crushing Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -336,6 +346,7 @@
 				},
 				{
 					"name": "Void Drum",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly IDONETH DEEPKIN units have WARD (5+) while they are wholly within 6\" of this unit."
@@ -393,6 +404,7 @@
 			"abilities": [
 				{
 					"name": "Biovoltaic Blast",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -441,12 +453,14 @@
 			"abilities": [
 				{
 					"name": "Thrallmaster",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Namarti Thralls unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
 					"name": "Akhelian Insights",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Melee weapons used by friendly NAMARTI units have Crit (2 Hits) while they are wholly within 12\" of this unit."
@@ -492,6 +506,7 @@
 			"abilities": [
 				{
 					"name": "Raider Captain",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -500,6 +515,7 @@
 				},
 				{
 					"name": "Way of the Vortex",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit and friendly NAMARTI units while they are wholly within 12\" of this unit."
@@ -554,6 +570,7 @@
 			"abilities": [
 				{
 					"name": "Phase Ink",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit's Cephanyr is on the battlefield, pick an enemy unit in combat with this unit to be the target.",
@@ -561,6 +578,7 @@
 				},
 				{
 					"name": "Cyreni of the Abyss",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Cyreni of the Abyss is on the battlefield, it has WIZARD (1)."
@@ -619,18 +637,21 @@
 			"abilities": [
 				{
 					"name": "Dormant Energies",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit."
 				},
 				{
 					"name": "Tranquillity of the Abyss",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to the control scores of friendly IDONETH DEEPKIN units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Vengeful Waves",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -642,6 +663,7 @@
 				},
 				{
 					"name": "Tsunami of Terror",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick up to 3 different visible enemy units within 12\" of this unit to be the targets, then make a casting roll of 2D6.",
@@ -698,18 +720,21 @@
 			"abilities": [
 				{
 					"name": "Drench With Hate",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for combat attacks made by friendly IDONETH DEEPKIN units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Crashing Upon the Foe",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit by RETREAT abilities."
 				},
 				{
 					"name": "Pulled Into the Depths",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -772,12 +797,14 @@
 			"abilities": [
 				{
 					"name": "Elathain's Lurelight",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "Roll a D3. On a 2+, return a number of slain models to this unit equal to the roll."
 				},
 				{
 					"name": "Soulnet",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit's Elathain Ill-fated is on the battlefield, pick an enemy INFANTRY unit in combat with this unit to be the target.",
@@ -812,6 +839,7 @@
 			"abilities": [
 				{
 					"name": "Rise from the Depths",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "This ability must be used instead of the 'Deploy Faction Terrain' ability.",
@@ -822,12 +850,14 @@
 				},
 				{
 					"name": "Guardians of the Deep",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 1 to save rolls for friendly IDONETH DEEPKIN INFANTRY and CAVALRY units while they are wholly within 6\" of this terrain feature."
 				},
 				{
 					"name": "Phantasmal Ruin",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Models can pass through this terrain feature but cannot be set up on or end moves on any part of this terrain feature.\nEach time an enemy unit ends a move that passed through or across this terrain feature, roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll."
@@ -873,6 +903,7 @@
 			"abilities": [
 				{
 					"name": "The Surging Sea",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -881,6 +912,7 @@
 				},
 				{
 					"name": "Rapid Approach",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn"
@@ -925,6 +957,7 @@
 			"abilities": [
 				{
 					"name": "Storm of Blades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -932,6 +965,7 @@
 				},
 				{
 					"name": "Whirlpool's Fury",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Enemy units cannot use RETREAT abilities while they are in combat with this unit.\nFriendly units that use a RETREAT ability while they are wholly within 12\" of this unit can still use SHOOT and/or CHARGE abilities later in the turn.\nNo mortal damage is inflicted on friendly IDONETH DEEPKIN units by RETREAT abilities while they are wholly within 12\" of this unit."
@@ -977,18 +1011,21 @@
 			"abilities": [
 				{
 					"name": "Surrender to the Sea",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When this MANIFESTATION is removed from play, each friendly Abyssal Tendril on the battlefield is automatically removed from play."
 				},
 				{
 					"name": "Grasping Tendrils",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"effect": "Roll a dice. Add 1 to the roll if it is your turn.\nOn a 4+:\n• You can remove 1 friendly Abyssal Tendril from the battlefield.\n• If there are fewer than 2 friendly Abyssal Tendrils on the battlefield, you can set up an Abyssal Tendril wholly within 9\" of this MANIFESTATION."
 				},
 				{
 					"name": "Wild Form",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time this MANIFESTATION is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
@@ -1047,6 +1084,7 @@
 			"abilities": [
 				{
 					"name": "Lurelight",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"declare": "Pick up to 3 different friendly NAMARTI units wholly within 12\" of this unit to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
@@ -1054,6 +1092,7 @@
 				},
 				{
 					"name": "Hangman's Knot",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target.",
@@ -1100,6 +1139,7 @@
 			"abilities": [
 				{
 					"name": "Finder of Ways",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Unpredictable Tide' ability or the 'Steed of Tides' ability",
 					"effect": "Instead of setting up the targets as described in the ability used, set them up on the battlefield wholly within 12\" of this unit and more than 7\" from all enemy units."
@@ -1146,6 +1186,7 @@
 			"abilities": [
 				{
 					"name": "Master of the Ethersea",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1209,6 +1250,7 @@
 			"abilities": [
 				{
 					"name": "Master of the Ethersea",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1272,6 +1314,7 @@
 			"abilities": [
 				{
 					"name": "Fount of Willpower",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a friendly ISHARANN unit wholly within 12\" of this unit",
 					"frequency": "Once Per Turn",
@@ -1279,12 +1322,14 @@
 				},
 				{
 					"name": "Catalogue of Souls",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time an enemy unit is destroyed, give this unit a soul-quota token."
 				},
 				{
 					"name": "Empowered by Memory",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly IDONETH DEEPKIN unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1362,6 +1407,7 @@
 			"abilities": [
 				{
 					"name": "Siren Song of The Abyss",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick up to 3 friendly IDONETH DEEPKIN units wholly within 12\" of this unit to be the targets.",
@@ -1369,6 +1415,7 @@
 				},
 				{
 					"name": "Crushing Pressure",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1431,6 +1478,7 @@
 			"abilities": [
 				{
 					"name": "Strike On the Move",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "This unit can use SHOOT abilities even if it used a RUN or RETREAT ability in the same turn."
@@ -1486,6 +1534,7 @@
 			"abilities": [
 				{
 					"name": "Merciless Hunters",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1531,6 +1580,7 @@
 			"abilities": [
 				{
 					"name": "Sweeping Blows",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "If any damage points inflicted by attacks made as part of that FIGHT ability are allocated to any enemy units, subtract 1 from wound rolls for attacks made by those enemy units for the rest of the turn."
@@ -1577,6 +1627,7 @@
 			"abilities": [
 				{
 					"name": "Hit-and-Run Tactics",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit is in combat or charged this turn, this unit can make a pile-in move. Then, if this unit is in combat, you must pick 1 or more enemy units to be the target(s) of this unit's attacks.",
@@ -1642,18 +1693,21 @@
 			"abilities": [
 				{
 					"name": "First Among Akhelians",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for combat attacks made by other friendly AKHELIAN units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Cealith, the High King's Shield",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (3+) against mortal damage inflicted by SPELL abilities, PRAYER abilities or abilities used by MANIFESTATIONS."
 				},
 				{
 					"name": "Supreme Lord of Tides",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",

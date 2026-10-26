@@ -34,12 +34,14 @@
 			"abilities": [
 				{
 					"name": "Drifting on Spectral Tides",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"effect": "Roll a dice. On a 3+, this unit can immediately use the 'Normal Move' or the 'Retreat' ability as if it were your movement phase."
 				},
 				{
 					"name": "Passage Through the Underworlds",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -115,6 +117,7 @@
 			"abilities": [
 				{
 					"name": "Runaway Coach",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -122,6 +125,7 @@
 				},
 				{
 					"name": "Nimbus of Power",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -132,6 +136,7 @@
 				},
 				{
 					"name": "Evocation of Death",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"declare": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit was destroyed this turn, pick a friendly non-UNIQUE NIGHTHAUNT HERO that has been destroyed.",
@@ -192,6 +197,7 @@
 			"abilities": [
 				{
 					"name": "Spectral Attendants",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -213,6 +219,7 @@
 				},
 				{
 					"name": "One Stop, No Return",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -221,6 +228,7 @@
 				},
 				{
 					"name": "Spectral Carriage",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"effect": "For the rest of the phase, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
@@ -280,12 +288,14 @@
 			"abilities": [
 				{
 					"name": "Spectral Carriage",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"effect": "For the rest of the phase, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
 				},
 				{
 					"name": "One Stop, No Return",
+					"type": "active",
 					"category": "control",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -294,6 +304,7 @@
 				},
 				{
 					"name": "Spectral Attendants",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -352,6 +363,7 @@
 			"abilities": [
 				{
 					"name": "Thrashing Desperation",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit contests an objective you control, enemy units cannot finish a charge move within 1/2\" of a model in this unit unless the unmodified charge roll was 7 or more."
@@ -401,6 +413,7 @@
 			"abilities": [
 				{
 					"name": "Eager Death-Dealers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -461,6 +474,7 @@
 			"abilities": [
 				{
 					"name": "Another Link in the Chain",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "Roll a dice. Add 1 to the roll if this unit is wholly within 12\" of any friendly Spirit Torments. On a 3+, for the rest of the turn, add 1 to hit rolls for combat attacks made by friendly NIGHTHAUNT units while they are wholly within 12\" of this unit."
@@ -504,6 +518,7 @@
 			"abilities": [
 				{
 					"name": "Chilling Horde",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -563,6 +578,7 @@
 			"abilities": [
 				{
 					"name": "Black-hearted Lackeys",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -623,12 +639,14 @@
 			"abilities": [
 				{
 					"name": "Curse of Loyalty",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, add 3 to the control scores of friendly NIGHTHAUNT units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Phantasmal Discorporation",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -676,6 +694,7 @@
 			"abilities": [
 				{
 					"name": "Harrowing Shrieks",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Enemy units cannot be healed or have slain models returned to them while they are in combat with this unit."
@@ -722,6 +741,7 @@
 			"abilities": [
 				{
 					"name": "Unerring Hunters",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -768,6 +788,7 @@
 			"abilities": [
 				{
 					"name": "Reaped Like Corn",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit that is within the combat ranges of 5 or more models in this unit to be the target.",
@@ -818,6 +839,7 @@
 			"abilities": [
 				{
 					"name": "Nightmare Lantern",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -879,6 +901,7 @@
 			"abilities": [
 				{
 					"name": "Spectral Hunters",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -928,12 +951,14 @@
 			"abilities": [
 				{
 					"name": "Stolen Hours",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, after that FIGHT ability has been resolved, Heal (X) this unit, where X is the number of damage points allocated to enemy units by combat attacks made as part of that FIGHT ability."
 				},
 				{
 					"name": "Infantry Overseer",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO NIGHTHAUNT INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
@@ -995,12 +1020,14 @@
 			"abilities": [
 				{
 					"name": "Stolen Hours",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, after that FIGHT ability has been resolved, Heal (X) this unit, where X is the number of damage points allocated to enemy units by combat attacks made as part of that FIGHT ability."
 				},
 				{
 					"name": "Cavalry Overseer",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO NIGHTHAUNT CAVALRY or WAR MACHINE unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
@@ -1064,6 +1091,7 @@
 			"abilities": [
 				{
 					"name": "Empowered Through Excruciation",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore the first damage point that would be allocated to each friendly NIGHTHAUNT unit wholly within 12\" of this unit in each phase."
@@ -1112,6 +1140,7 @@
 			"abilities": [
 				{
 					"name": "Hail Kurdoss! King of Nothing!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Charge Phase",
 					"declare": "If this unit charged this phase, pick a friendly Craventhrone Guard unit that is not in combat to be the target.",
@@ -1119,6 +1148,7 @@
 				},
 				{
 					"name": "If I Cannot Rule, None Shall Rule!",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a command for a unit within 12\" of this unit",
 					"frequency": "Once Per Turn",
@@ -1171,6 +1201,7 @@
 			"abilities": [
 				{
 					"name": "A Traitor's Legacy",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit is in combat, pick a visible friendly NIGHTHAUNT unit wholly within 12\" of this unit to be the target.",
@@ -1192,6 +1223,7 @@
 				},
 				{
 					"name": "Inescapable Mockery",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls and wound rolls for this unit's combat attacks that target an enemy unit that has a lower Control characteristic than this unit."
@@ -1255,6 +1287,7 @@
 			"abilities": [
 				{
 					"name": "No Rest for the Wicked",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -1263,12 +1296,14 @@
 				},
 				{
 					"name": "Mortarch of Grief",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If the unmodified hit roll or unmodified wound roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 				},
 				{
 					"name": "Grief-stricken",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1327,6 +1362,7 @@
 			"abilities": [
 				{
 					"name": "Ghastly Descent",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy INFANTRY or CAVALRY HERO that had any damage points allocated to it this turn by this unit's attacks to be the target.",
@@ -1334,6 +1370,7 @@
 				},
 				{
 					"name": "Staring Death in the Face",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1398,6 +1435,7 @@
 			"abilities": [
 				{
 					"name": "Spectral Alchemy",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1458,6 +1496,7 @@
 			"abilities": [
 				{
 					"name": "Keeper of Mortality",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly NIGHTHAUNT unit within 3\" of this MANIFESTATION to be the target.",
@@ -1503,6 +1542,7 @@
 			"abilities": [
 				{
 					"name": "Spell-eaters",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"effect": "If a friendly NIGHTHAUNT unit wholly within 12\" of this unit was picked to be the target of that spell, this unit can use the 'Unbind' ability as if it had WIZARD (1). Add 1 to the unbinding roll for that ability. If the spell is unbound, inflict D3 mortal damage on the caster."
@@ -1546,6 +1586,7 @@
 			"abilities": [
 				{
 					"name": "Awful Refashioning",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1554,12 +1595,14 @@
 				},
 				{
 					"name": "Screams of the Penitent",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Enemy units cannot use commands while they are within 3\" of this terrain feature."
 				},
 				{
 					"name": "Hungry Crypts",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1618,6 +1661,7 @@
 			"abilities": [
 				{
 					"name": "Light a Pyre",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1682,6 +1726,7 @@
 			"abilities": [
 				{
 					"name": "Corpse Candles",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick either this unit or a visible enemy unit within 12\" of this unit to be the target.",
@@ -1689,12 +1734,14 @@
 				},
 				{
 					"name": "Grim Justice",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls and wound rolls for attacks made with this unit's Fellreaper if the target is a PRIEST or a WIZARD."
 				},
 				{
 					"name": "Wraithstorm",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1751,6 +1798,7 @@
 			"abilities": [
 				{
 					"name": "Sentenced to Eternal Torment",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1759,6 +1807,7 @@
 				},
 				{
 					"name": "Judge, Jury and Executioner",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly NIGHTHAUNT INFANTRY unit uses a FIGHT ability, if all of its attacks target the same SENTENCED enemy unit, that friendly unit's melee weapons have Crit (Mortal) for that FIGHT ability."
@@ -1804,6 +1853,7 @@
 			"abilities": [
 				{
 					"name": "Soulreaper",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 2 to the Attacks characteristic of this MANIFESTATION's Almighty Reap if it charged in the same turn."
@@ -1848,6 +1898,7 @@
 			"abilities": [
 				{
 					"name": "Drawn to War",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly NIGHTHAUNT INFANTRY HEROES have WARD (4+) while they are wholly within this unit's combat range."
@@ -1893,6 +1944,7 @@
 			"abilities": [
 				{
 					"name": "Terrifying Spectres",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1943,6 +1995,7 @@
 			"abilities": [
 				{
 					"name": "Captured Soul Energy",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly NIGHTHAUNT unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -1998,6 +2051,7 @@
 			"abilities": [
 				{
 					"name": "Furious Indictment",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an enemy unit within 12\" of this unit to be the target.",
@@ -2071,6 +2125,7 @@
 			"abilities": [
 				{
 					"name": "Ghostly Howl",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2079,6 +2134,7 @@
 				},
 				{
 					"name": "The Briar Queen",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Briar Queen is on the battlefield, it has WIZARD (1)."
@@ -2143,12 +2199,14 @@
 			"abilities": [
 				{
 					"name": "Cacophony of Sorrow",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "While there are any visible friendly Myrmourn Banshees units within this unit's combat range, ignore positive modifiers to the control scores of enemy units within 12\" of this unit."
 				},
 				{
 					"name": "Ghostly Howl",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Battle",
@@ -2183,12 +2241,14 @@
 			"abilities": [
 				{
 					"name": "Siphon Souls",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a model from a friendly or enemy unit is slain within 12\" of this MANIFESTATION, give this MANIFESTATION a soul point, to a maximum of 6."
 				},
 				{
 					"name": "Soul Eruption",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "If this MANIFESTATION has 6 soul points, pick any number of enemy units within 6\" of this unit to be the targets.",

@@ -6,6 +6,7 @@
 			"battle_traits": [
 				{
 					"name": "Form Up, Allies!",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"declare": "Pick a friendly ALLIES OF THE FREE CITIES unit to use this ability, then pick 2 other visible friendly ALLIES OF THE FREE CITIES units wholly within 12\" of it to be the targets.\nThe unit using this ability and the targets:\n• cannot be under orders\n• must each be a different unit type.",
@@ -19,6 +20,7 @@
 				},
 				{
 					"name": "Forces of Order",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While 3 friendly ALLIES OF THE FREE CITIES units are wholly within 12\" of each other and 1 of those units has the AELF keyword, 1 of those units has the DUARDIN keyword, and 1 of those units has the SIGMARITE keyword:\n• Those units have WARD (5+) against shooting attacks.\n• Add 3 to those units' control scores.\n• Add 1 to wound rolls for those units' combat attacks."
@@ -30,6 +32,7 @@
 					"entries": [
 						{
 							"name": "Respected Commander",
+							"type": "active",
 							"category": "movement",
 							"timing": "Reaction: You declared the 'Redeploy' command for a visible ALLIES OF THE FREE CITIES unit wholly within 18\" of this unit",
 							"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
@@ -41,6 +44,7 @@
 					"entries": [
 						{
 							"name": "Signet of the City",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Hero Phase",
 							"frequency": "Once Per Battle (Army)",
@@ -57,6 +61,7 @@
 					"entries": [
 						{
 							"name": "These Realms Are Ours",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ALLIES OF THE FREE CITIES WIZARD to cast this spell, pick an objective within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -75,6 +80,7 @@
 					"entries": [
 						{
 							"name": "Divine Mandate",
+							"type": "prayer",
 							"category": "control",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ALLIES OF THE FREE CITIES PRIEST to chant this prayer, pick a visible friendly ALLIES OF THE FREE CITIES unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -96,6 +102,7 @@
 			"battle_traits": [
 				{
 					"name": "Soldiers of the Fastness",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -104,6 +111,7 @@
 				},
 				{
 					"name": "Ceaseless Salvoes",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -118,6 +126,7 @@
 				},
 				{
 					"name": "A Greywater Welcome",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle",
 					"frequency": "Once Per Battle",
@@ -138,6 +147,7 @@
 					"entries": [
 						{
 							"name": "The Predicament",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Melee weapons used for combat attacks made by this unit that target a pinned enemy unit have Crit (2 Hits)."
@@ -150,6 +160,7 @@
 					"entries": [
 						{
 							"name": "Seat on the Council",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -164,6 +175,7 @@
 					"entries": [
 						{
 							"name": "Close-range Salvo!",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
 							"frequency": "Once Per Battle",
@@ -171,6 +183,7 @@
 						},
 						{
 							"name": "Deafen Them with Fire!",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
 							"frequency": "Once Per Battle",
@@ -179,6 +192,7 @@
 						},
 						{
 							"name": "Hold Them Back!",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Shooting Phase",
 							"frequency": "Once Per Battle",
@@ -187,6 +201,7 @@
 						},
 						{
 							"name": "Repel the Enemy!",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -194,6 +209,7 @@
 						},
 						{
 							"name": "Hunker Down!",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Enemy Movement Phase",
 							"frequency": "Once Per Battle",
@@ -201,6 +217,7 @@
 						},
 						{
 							"name": "Load Smokeshots!",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Shooting Phase",
 							"frequency": "Once Per Battle",
@@ -218,6 +235,7 @@
 			"battle_traits": [
 				{
 					"name": "Blackshore Discipline",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -226,6 +244,7 @@
 				},
 				{
 					"name": "Under the Raven's Wings",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -234,6 +253,7 @@
 				},
 				{
 					"name": "Strength from the Departed",
+					"type": "active",
 					"category": "special",
 					"timing": "Pick a friendly LETHIS unit that has had models slain this battle to be the target.",
 					"effect": "Pick 1 of the following effects. You cannot pick the same effect you picked in the previous battle round.",
@@ -260,6 +280,7 @@
 					"entries": [
 						{
 							"name": "Raven's Eye Talisman",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Enemy units cannot be set up within 12\" of this unit."
@@ -272,6 +293,7 @@
 					"entries": [
 						{
 							"name": "Acolyte of the Raven",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "If this unit is not a PRIEST or WIZARD, it has PRIEST (1).\nIf this unit already has PRIEST (1), add 1 to chanting rolls for it.\nIf this unit is already a WIZARD, add 1 to casting rolls for it."
@@ -287,6 +309,7 @@
 					"entries": [
 						{
 							"name": "The Raven's Protection",
+							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LETHIS PRIEST to chant this prayer, pick a visible friendly non-WAR MACHINE LETHIS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -299,6 +322,7 @@
 						},
 						{
 							"name": "The Raven's Blessing",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LETHIS PRIEST to chant this prayer, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -310,6 +334,7 @@
 						},
 						{
 							"name": "The Raven's Price",
+							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LETHIS PRIEST to chant this prayer, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -328,6 +353,7 @@
 					"entries": [
 						{
 							"name": "Hand of Demise",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -339,6 +365,7 @@
 						},
 						{
 							"name": "Amethyst Haze",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -350,6 +377,7 @@
 						},
 						{
 							"name": "Bind in Death",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -373,6 +401,7 @@
 			"battle_traits": [
 				{
 					"name": "Form Up, Iron March",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"declare": "Pick a friendly IRON MARCH unit to use this ability, then pick either 1 or 2 other visible friendly IRON MARCH units wholly within 12\" of it to be the targets.\nThe unit using this ability and the targets:\n• cannot be under orders\n• must each be a different unit type.",
@@ -391,18 +420,21 @@
 					"entries": [
 						{
 							"name": "Castellan-Captain Vyan Philsin",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to wound rolls for combat attacks made by friendly IRON MARCH INFANTRY while they are wholly within 12\" of this unit and under orders."
 						},
 						{
 							"name": "Commodore de Graçon",
+							"type": "active",
 							"category": "movement",
 							"timing": "Deployment Phase",
 							"effect": "This unit and up to 1 other friendly IRON MARCH WAR MACHINE within this unit's combat range can use the 'Normal Move' ability as if it were your movement phase."
 						},
 						{
 							"name": "Castellan-Captain Regan Vandercloud",
+							"type": "active",
 							"category": "special",
 							"timing": "Any Charge Phase",
 							"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
@@ -415,18 +447,21 @@
 					"entries": [
 						{
 							"name": "Engineer Kirsta Loudren",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "If this unit is destroyed, before removing it from play, roll a dice for each visible unit (friendly and enemy) within its combat range. On a 3+, inflict an amount of mortal damage on that unit equal to the roll."
 						},
 						{
 							"name": "Engineer Gurren Ashbrow",
+							"type": "passive",
 							"category": "rallying",
 							"timing": "Passive",
 							"effect": "Each time this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 						},
 						{
 							"name": "Engineer Bartel Holst",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "This unit has WARD (6+) and STRIKE-LAST."
@@ -438,18 +473,21 @@
 					"entries": [
 						{
 							"name": "Battle-Priest Solantra Whyl",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "This unit has PRIEST (1)"
 						},
 						{
 							"name": "Broadmoore and Louse",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Add 2 to the Attacks characteristic of this unit's Crew's Leadshotters. In addition, if this unit is destroyed, before removing it from play, roll a dice. On a 3+, you can set up a Freeguild Marshal and Relic Envoy wholly within 6\" of this unit and not in combat. That unit has the IRON MARCH keyword."
 						},
 						{
 							"name": "Master Sapper Gavelock Fiske",
+							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
 							"effect": "This unit's ranged weapons have Anti-FACTION TERRAIN (+1 Rend) and Anti-WAR MACHINE (+1 Rend)."
@@ -464,6 +502,7 @@
 					"entries": [
 						{
 							"name": "The Chant of Iron",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly IRON MARCH PRIEST to chant this prayer, pick either a visible enemy unit within 18\" of them or a visible friendly IRON MARCH unit that is wholly within 12\" of them and that has not been picked to be the target of this ability this turn to be the target, then make a chanting roll of D6.",

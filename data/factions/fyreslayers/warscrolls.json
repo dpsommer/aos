@@ -31,6 +31,7 @@
 			"abilities": [
 				{
 					"name": "Masterflame Rune",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -101,6 +102,7 @@
 			"abilities": [
 				{
 					"name": "Molten Rockbolts",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time a shooting attack made by this unit scores a critical hit, subtract 1\" from the target unit's Move characteristic until the start of your next turn. This ability cannot reduce the target unit's unmodified Move characteristic below half"
@@ -146,6 +148,7 @@
 			"abilities": [
 				{
 					"name": "Royal Retinue",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -154,6 +157,7 @@
 				},
 				{
 					"name": "Commanding Presence",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"effect": "Add the current battle round number to the control scores of friendly FYRESLAYERS INFANTRY units wholly within 12\" of this unit for the rest of the turn."
@@ -240,12 +244,14 @@
 			"abilities": [
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Warrior-kings",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -253,6 +259,7 @@
 				},
 				{
 					"name": "Raging Inferno",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -264,6 +271,7 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
@@ -312,12 +320,14 @@
 			"abilities": [
 				{
 					"name": "High Priest of the Zharrgrim",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a PRAYER chanted by this unit is answered, this unit gains a magmic power token."
 				},
 				{
 					"name": "Master of the Runes",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared an UR-GOLD RUNE ability",
 					"effect": "Remove 3 of this unit's magmic power tokens. If you do so, apply the effect below that corresponds to the UR-GOLD RUNE ability that was used:",
@@ -386,6 +396,7 @@
 			"abilities": [
 				{
 					"name": "Emergence",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick this unit if it is underground.",
@@ -393,6 +404,7 @@
 				},
 				{
 					"name": "Magmic Tunnelling",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit and any number of other units in its regiment if none of those units have been deployed.",
@@ -481,12 +493,14 @@
 			"abilities": [
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Runic Empowerment",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FYRESLAYERS unit wholly within 12\" of this unit to be the target.",
@@ -494,6 +508,7 @@
 				},
 				{
 					"name": "Lashing Tail",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -505,6 +520,7 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
@@ -556,12 +572,14 @@
 			"abilities": [
 				{
 					"name": "Fearless Charge",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly FYRESLAYERS INFANTRY units while they are wholly within 18\" of this unit."
 				},
 				{
 					"name": "Dauntless Assault",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO FYRESLAYERS INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
@@ -649,18 +667,21 @@
 			"abilities": [
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				},
 				{
 					"name": "Dominating Roar",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -672,6 +693,7 @@
 				},
 				{
 					"name": "Vying for Glory",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit destroys a MONSTER, add 1 to the Attacks characteristic of this unit's Ancestral Weapons for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
@@ -761,18 +783,21 @@
 			"abilities": [
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				},
 				{
 					"name": "Fire, Blood and Vengeance",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
@@ -780,6 +805,7 @@
 				},
 				{
 					"name": "Seeing Red",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -887,18 +913,21 @@
 			"abilities": [
 				{
 					"name": "Volcanic Blood",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				},
 				{
 					"name": "Fire, Blood, and Vengeance",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -907,6 +936,7 @@
 				},
 				{
 					"name": "Calamitous Crash",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -958,12 +988,14 @@
 			"abilities": [
 				{
 					"name": "Icon of Grimnir",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to the control scores of friendly FYRESLAYERS units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Bard of the Lodge",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "If a friendly unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -1009,12 +1041,14 @@
 			"abilities": [
 				{
 					"name": "Runic Power",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit has 1 damage point. Add 2 to the Damage characteristic of this unit's melee weapons instead while this unit has 2 or more damage points."
 				},
 				{
 					"name": "Oathbound",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick an enemy unit to be this unit's quarry. You can pick a unit that has been deployed in reserve.",
@@ -1061,6 +1095,7 @@
 			"abilities": [
 				{
 					"name": "Honour to Grimnir!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -1069,6 +1104,7 @@
 				},
 				{
 					"name": "Last of the Lodge-fire",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -1121,6 +1157,7 @@
 			"abilities": [
 				{
 					"name": "Grimwrath Oaths",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "Pick 1 of the following oaths for this unit to swear:",
@@ -1137,6 +1174,7 @@
 				},
 				{
 					"name": "Battle-fury",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -1185,12 +1223,14 @@
 			"abilities": [
 				{
 					"name": "Duty Unto Death",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly FYRESLAYERS INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				},
 				{
 					"name": "Fires of Vengeance",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is within the combat ranges of any damaged friendly FYRESLAYERS HEROES, add 1 to the Attacks characteristic of this unit's melee weapons."
@@ -1235,12 +1275,14 @@
 			"abilities": [
 				{
 					"name": "Duty Unto Death",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly FYRESLAYERS INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				},
 				{
 					"name": "Smouldering Braziers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -1273,6 +1315,7 @@
 			"abilities": [
 				{
 					"name": "Spending the Forge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1281,6 +1324,7 @@
 				},
 				{
 					"name": "Molten Blessing",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to be the target.",
@@ -1339,6 +1383,7 @@
 			"abilities": [
 				{
 					"name": "Flamescarred",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this MANIFESTATION's attacks to be the target.",
@@ -1372,6 +1417,7 @@
 			"abilities": [
 				{
 					"name": "Roaring Rune-fire",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Movement Phase",
 					"declare": "Pick up to 3 enemy units within 6\" of this MANIFESTATION to be the targets.",
@@ -1424,12 +1470,14 @@
 			"abilities": [
 				{
 					"name": "Berserk Fury",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Fjul's Retinue",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit's Fjul-Grimnir is on the battlefield, ignore the first damage point that would be allocated to this unit each phase."
@@ -1473,6 +1521,7 @@
 			"abilities": [
 				{
 					"name": "Berserk Fury",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1515,6 +1564,7 @@
 			"abilities": [
 				{
 					"name": "Whirlwind of Destruction",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons if this unit charged this turn."
@@ -1573,6 +1623,7 @@
 			"abilities": [
 				{
 					"name": "Drothmasters",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
@@ -1634,6 +1685,7 @@
 			"abilities": [
 				{
 					"name": "Fiery Disposition",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1695,6 +1747,7 @@
 			"abilities": [
 				{
 					"name": "Magma Blast",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this MANIFESTATION's shooting attacks if the target unit has 10 or more models. Add 1 to hit rolls and wound rolls instead if the target unit has 15 or more models."

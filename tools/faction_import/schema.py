@@ -30,8 +30,23 @@ def slug(name):
     return re.sub(r"[^a-z0-9]+", "_", name.lower().replace("’", "").replace("'", "")).strip("_")
 
 
+def ability_type(a):
+    """"passive", "spell", "prayer", "command" or "active", from the ability's own fields rather than
+    BSData's profile type, which mislabels a few (Ironjawz's passive 'Tireless Warmaker' is Activated)."""
+    keywords = a.get("keywords") or []
+    if a.get("timing") == "Passive":
+        return "passive"
+    if a.get("casting_value") or "SPELL" in keywords:
+        return "spell"
+    if a.get("chanting_value") or "PRAYER" in keywords:
+        return "prayer"
+    if a.get("command_points"):
+        return "command"
+    return "active"
+
+
 def ability(a):
-    out = {"name": a["name"], "category": a.get("category", ""), "timing": a.get("timing", "")}
+    out = {"name": a["name"], "type": ability_type(a), "category": a.get("category", ""), "timing": a.get("timing", "")}
     for k in ("frequency", "declare", "used_by", "effect", "text", "casting_value", "chanting_value",
               "keywords", "options", "points", "command_points", "source"):
         if a.get(k):

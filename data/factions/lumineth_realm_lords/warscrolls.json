@@ -39,12 +39,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stoneheart Worldhammer is 3."
 				},
 				{
 					"name": "Rain of Stone",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -56,6 +58,7 @@
 				},
 				{
 					"name": "With the Force of a Landslide",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's Stoneheart Worldhammer for each instance of Alaithi, Rune of the Mountain depicted on your battle scripture."
@@ -94,6 +97,7 @@
 			"abilities": [
 				{
 					"name": "Fortitude of the Earth",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While you have 2 or more instances of Alaithi, Rune of the Mountain depicted on your battle scripture, this unit's Save characteristic is 3+."
@@ -141,6 +145,7 @@
 			"abilities": [
 				{
 					"name": "Strength of Stone",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -149,6 +154,7 @@
 				},
 				{
 					"name": "Raise the Earth",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an objective within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -202,12 +208,14 @@
 			"abilities": [
 				{
 					"name": "Elemental Endurance",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit is picked to be a target of the 'Depict Rune' ability, for the rest of that battle round, when resolving the damage sequence for a friendly LUMINETH REALM-LORDS unit while it is wholly within 12\" of this unit, if you spend rage dice as part of the 'Fight Through the Pain' ability, remove 1 damage point from that unit's damage pool on a 2+ instead of a 3+."
 				},
 				{
 					"name": "Earth's Grip",
+					"type": "spell",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit that has no more than 1 model\nand is within 18\" of this unit to be the target, then make a casting roll\nof 2D6.",
@@ -284,18 +292,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Celennar's Moonbright Talons is 3."
 				},
 				{
 					"name": "Aura of Celennar",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls and banishment rolls for friendly LUMINETH REALM-LORDS WIZARDS while they are wholly within 12\" of this unit.\nIn addition, this unit can use SPELL abilities from the Lore of Hysh, the Lore of the Awakened Realms and the warscrolls of all friendly LUMINETH REALM-LORDS WIZARDS on the battlefield."
 				},
 				{
 					"name": "Archmage",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn",
@@ -313,6 +324,7 @@
 				},
 				{
 					"name": "Discs of the Aelementiri",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle (Army)",
@@ -327,6 +339,7 @@
 				},
 				{
 					"name": "The Light of Truth",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick any number of different visible enemy units within 18\" of this unit to be the targets, then make a casting roll of 2D6.",
@@ -395,18 +408,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Firestealer Hammers is 4."
 				},
 				{
 					"name": "Call of the Mountains",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a visible friendly ALARITH unit is wholly within 12\" of this unit:\n• You are treated as having 1 additional instance of Alaithi, Rune of the Mountain depicted on your battle scripture for the purposes of the abilities on that unit's warscroll.\n• If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of Alaithi, Rune of the Mountain on your battle scripture."
 				},
 				{
 					"name": "Unbreakable Bulwark",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -418,6 +434,7 @@
 				},
 				{
 					"name": "With the Force of a Landslide",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's Firestealer Hammers for each instance of Alaithi, Rune of the Mountain depicted on your battle scripture."
@@ -485,6 +502,7 @@
 			"abilities": [
 				{
 					"name": "Total Eclipse",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -496,6 +514,7 @@
 				},
 				{
 					"name": "Equal Prodigies",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick whether Ellania leads or Ellathor leads.",
@@ -503,6 +522,7 @@
 				},
 				{
 					"name": "Sudden Translocation",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "This unit can only use this ability if any enemy models were slain this turn by this unit's combat attacks.",
@@ -566,12 +586,14 @@
 			"abilities": [
 				{
 					"name": "Hunters of Majestic Beasts",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "The Damage characteristic of this unit's Bow of the Wind's Vengeance is 3 for attacks that target MONSTERS."
 				},
 				{
 					"name": "Spirit of the Wind",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -582,6 +604,7 @@
 				},
 				{
 					"name": "Hurricane Winds",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -653,6 +676,7 @@
 			"abilities": [
 				{
 					"name": "Guided by the Winds",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "While you have 2 or more instances of Oreali, Rune of the Wind depicted on your battle scripture, add 6\" to the Range characteristic of this unit's Windcharger Bows."
@@ -713,6 +737,7 @@
 			"abilities": [
 				{
 					"name": "Windleap",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -721,6 +746,7 @@
 				},
 				{
 					"name": "Transporting Vortex",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly LUMINETH REALM‑LORDS unit wholly within 12\" of this unit and not in combat to be the target, then make a casting roll of 2D6.",
@@ -770,12 +796,14 @@
 			"abilities": [
 				{
 					"name": "Reservoir of Power",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a unit (friendly or enemy) successfully casts a spell while it is within 12\" of this MANIFESTATION, give this MANIFESTATION 1 arcane charge point.\nThis MANIFESTATION can have a maximum of 6 arcane charge points."
 				},
 				{
 					"name": "Release Arcane Charge",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL or UNBIND ability for a LUMINETH REALM-LORDS WIZARD within 3\" of this MANIFESTATION",
 					"frequency": "Once Per Turn (Army)",
@@ -849,6 +877,7 @@
 			"abilities": [
 				{
 					"name": "Focused Fury",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6. Add 2 to the roll if this unit is in combat.",
@@ -860,6 +889,7 @@
 				},
 				{
 					"name": "Champion of the Lord Phoenix",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a visible friendly VANARI unit is wholly within 12\" of this unit:\n• You are treated as having 1 additional instance of Varinor, Rune of Strength depicted on your battle scripture for the purposes of the abilities on that unit's warscroll.\n• If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of Varinor, Rune of Strength on your battle scripture."
@@ -917,12 +947,14 @@
 			"abilities": [
 				{
 					"name": "Myari Lightcaller",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Myari Lightcaller is on the battlefield, it has WIZARD (1) and the SCINARI keyword."
 				},
 				{
 					"name": "Dazzling Light",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an objective that you do not control that is within 18\" of and visible to this unit's Myari Lightcaller, then make a casting roll of 2D6.",
@@ -963,6 +995,7 @@
 			"abilities": [
 				{
 					"name": "Turn to Stone",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"effect": "Roll a D3 for each enemy unit within 6\" of this MANIFESTATION. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If an enemy unit has at least 3 mortal damage inflicted on it by this ability this turn, it has STRIKE-LAST for the rest of the turn."
@@ -994,12 +1027,14 @@
 			"abilities": [
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION's Health characteristic are allocated to it, this MANIFESTATION is destroyed and all its parts are removed from play."
 				},
 				{
 					"name": "Sigil of Yngra",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a friendly unit with a Health characteristic of 10 or less is wholly inside the ring formed by this MANIFESTATION:\n• That unit is not visible to enemy units that are not within its combat range.\n• Enemy abilities that would target that unit must target this MANIFESTATION instead."
@@ -1045,6 +1080,7 @@
 			"abilities": [
 				{
 					"name": "Realmscribe",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Depict Rune' ability",
 					"frequency": "Once Per Battle (Army)",
@@ -1093,6 +1129,7 @@
 			"abilities": [
 				{
 					"name": "Darkness of the Soul",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1155,6 +1192,7 @@
 			"abilities": [
 				{
 					"name": "Rune of Enthlai",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared an UNLIMITED SPELL ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1162,6 +1200,7 @@
 				},
 				{
 					"name": "Clarity of Thought",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly LUMINETH REALM‑LORDS INFANTRY unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1231,6 +1270,7 @@
 			"abilities": [
 				{
 					"name": "Arcane Discovery",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1239,6 +1279,7 @@
 				},
 				{
 					"name": "Independent Operative",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1304,6 +1345,7 @@
 			"abilities": [
 				{
 					"name": "Arcane Nullification",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1322,6 +1364,7 @@
 				},
 				{
 					"name": "Leashed Fury",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1387,12 +1430,14 @@
 			"abilities": [
 				{
 					"name": "Call of the Winds",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a visible friendly HURAKAN unit is wholly within 12\" of this unit:\n• You are treated as having 1 additional instance of Oreali, Rune of the Wind depicted on your battle scripture for the purposes of the abilities on that unit's warscroll.\n• If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of Oreali, Rune of the Wind on your battle scripture."
 				},
 				{
 					"name": "Searing Desert Winds",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1404,6 +1449,7 @@
 				},
 				{
 					"name": "Spirit of the Wind",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1440,12 +1486,14 @@
 			"abilities": [
 				{
 					"name": "Shrine Guardian",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this terrain feature has a Shrine Guardian:\n• This terrain feature has a Move characteristic of 6\" and can use non-command non-CHARGE MOVE abilities as if it were a unit. It cannot end a MOVE ability within the combat range of an enemy unit.\n• The Shrine Guardian cannot use MOVE abilities and remains on this terrain feature each time it moves.\n• Instead of measuring range or visibility to the Shrine Guardian, measure to this terrain feature instead.\n• All attacks that would target the Shrine Guardian target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shrine Guardian. Then, set up the Shrine Guardian on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian. If it is not possible to set up the Shrine Guardian, it is slain."
 				},
 				{
 					"name": "Enter the Shrine",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "If this terrain feature does not have a Shrine Guardian, pick a friendly LUMINETH REALM‑LORDS INFANTRY HERO within 3\" of it and not in combat to be the target.",
@@ -1453,6 +1501,7 @@
 				},
 				{
 					"name": "Cleansing Rituals",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a LUMINETH REALM-LORDS unit wholly within 12\" of this terrain feature",
 					"frequency": "Once Per Turn",
@@ -1460,6 +1509,7 @@
 				},
 				{
 					"name": "Exit the Shrine",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "If this terrain feature has a Shrine Guardian that was not placed on it this turn, set up the Shrine Guardian on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian."
@@ -1534,16 +1584,19 @@
 			"abilities": [
 				{
 					"name": "Supreme Swordmaster",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's combat attacks."
 				},
 				{
 					"name": "Valorous Intervention",
+					"type": "command",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"declare": "This unit cannot use this ability if it is in combat. Pick a friendly LUMINETH REALM-LORDS unit that is in combat to be the target.",
-					"effect": "Remove this unit from the battlefield and set it up again within 1\" of the target, within 1\" of an enemy unit and in combat. This unit has charged."
+					"effect": "Remove this unit from the battlefield and set it up again within 1\" of the target, within 1\" of an enemy unit and in combat. This unit has charged.",
+					"command_points": 1
 				}
 			],
 			"keywords": [
@@ -1615,12 +1668,14 @@
 			"abilities": [
 				{
 					"name": "Supreme Swordmaster",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's attacks. In addition, ignore negative modifiers to the characteristics of this unit's melee weapons."
 				},
 				{
 					"name": "Eternal Light",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "If this unit is destroyed and if a friendly LUMINETH REALM-LORDS WIZARD successfully casts a SUMMON spell, instead of resolving the effect of that SUMMON spell, you can set up a replacement unit for this unit more than 9\" from all enemy units and wholly within 12\" of the unit that used that SUMMON spell. This ability is still in effect even if this unit is not on the battlefield."
@@ -1689,12 +1744,14 @@
 			"abilities": [
 				{
 					"name": "Masters of the Zephyr",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Tzul is a token. After setting up this unit on the battlefield for the first time, place its Tzul next to it.\n• While this unit's Tzul is next to it, it has FLY.\n• While this unit's Thyrielle is on the battlefield, it has WIZARD (1)."
 				},
 				{
 					"name": "One with the Wind",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"declare": "Pick an enemy INFANTRY or CAVALRY unit that this unit passed across this phase to be the target.",
@@ -1702,6 +1759,7 @@
 				},
 				{
 					"name": "The Living Gale",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy unit with this unit's Tzul next\nto it to be the target.",
@@ -1764,6 +1822,7 @@
 			"abilities": [
 				{
 					"name": "Lofted Shots",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "For the rest of the turn, add 6\" to the Range characteristic of this unit's Auralan Bows but subtract 1 from hit rolls for this unit's shooting attacks."
@@ -1808,6 +1867,7 @@
 			"abilities": [
 				{
 					"name": "Anticipated Strike",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit has not charged this turn, ignore the effect of the Charge (+1 Damage) ability for combat attacks made by enemy units that target this unit."
@@ -1855,6 +1915,7 @@
 			"abilities": [
 				{
 					"name": "World Banner",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "While a visible friendly LUMINETH REALM-LORDS unit is wholly within 12\" of this unit, it can use the 'Rally' command even if it is in combat."
@@ -1903,6 +1964,7 @@
 			"abilities": [
 				{
 					"name": "Defend the Banner",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 1 to save rolls for friendly VANARI INFANTRY units while they are contesting the same objective as this unit."
@@ -1946,12 +2008,14 @@
 			"abilities": [
 				{
 					"name": "Masters of Combat",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Sunmetal Blades for each instance of Varinor, Rune of Strength depicted on your battle scripture."
 				},
 				{
 					"name": "Guardians of the Scinari",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly SCINARI HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
@@ -2008,6 +2072,7 @@
 			"abilities": [
 				{
 					"name": "Dawnrider Charge",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Dawnrider Lances and Blades if it charged in the same turn."
@@ -2057,12 +2122,14 @@
 			"abilities": [
 				{
 					"name": "Shining Example",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly LUMINETH REALM-LORDS unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
 					"name": "Wall of Blades",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2126,12 +2193,14 @@
 			"abilities": [
 				{
 					"name": "Lead the Charge",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "You can re-roll charge rolls for friendly LUMINETH REALM-LORDS units while they are wholly within 6\" of this unit."
 				},
 				{
 					"name": "Purest Aetherquartz",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -2187,6 +2256,7 @@
 			"abilities": [
 				{
 					"name": "Blinding Bolts",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2195,6 +2265,7 @@
 				},
 				{
 					"name": "Scryhawks",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 6\" to the Range characteristic of this unit's Starshard Bolts while it is wholly within 12\" of any friendly Vanari Auralan Sentinels units."
@@ -2246,6 +2317,7 @@
 			"abilities": [
 				{
 					"name": "Relentless as the Driving Current",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2253,6 +2325,7 @@
 				},
 				{
 					"name": "Travel the Waterways",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",

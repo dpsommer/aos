@@ -84,7 +84,8 @@ def parse_ability(block):
         kw_text = (kw_text + ", " + text(kw_block)).strip(", ")
     keywords = [k.strip() for k in kw_text.split(",") if k.strip()]
     a = {"name": name, "category": category, "timing": timing, "frequency": frequency}
-    for key, sel in (("casting_value", ".abSpellPointsN"), ("chanting_value", ".abPrayerPointsN")):
+    for key, sel in (("casting_value", ".abSpellPointsN"), ("chanting_value", ".abPrayerPointsN"),
+                     ("command_points", ".abCommandPointsN")):
         value = block.select_one(sel)
         if value is not None:
             a[key] = int_or(text(value))

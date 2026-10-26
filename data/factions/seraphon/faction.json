@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "The Great Plan",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle",
@@ -13,6 +14,7 @@
 		},
 		{
 			"name": "Further the Great Plan",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Battle Round",
 			"frequency": "Once Per Battle Round",
@@ -21,6 +23,7 @@
 		},
 		{
 			"name": "Itzl the Tamer",
+			"type": "passive",
 			"category": "offensive",
 			"timing": "Passive",
 			"effect": "Companion weapons used by friendly SERAPHON units have Crit (2 Hits).",
@@ -30,6 +33,7 @@
 		},
 		{
 			"name": "Quetzl the Preserver",
+			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "Subtract 1 from the Rend characteristic of melee weapons for attacks that target friendly SERAPHON units that are wholly within friendly territory.",
@@ -39,6 +43,7 @@
 		},
 		{
 			"name": "Sotek the Deliverer",
+			"type": "passive",
 			"category": "movement",
 			"timing": "Passive",
 			"effect": "Add 2 to the Move characteristic of friendly SERAPHON units.",
@@ -48,6 +53,7 @@
 		},
 		{
 			"name": "Tepok the Seer",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "Add 1 to casting rolls for friendly SERAPHON units.",
@@ -63,6 +69,7 @@
 			"abilities": [
 				{
 					"name": "Celestial Translocation",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -77,6 +84,7 @@
 			"abilities": [
 				{
 					"name": "Vengeance of Azyr",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -91,6 +99,7 @@
 			"abilities": [
 				{
 					"name": "Nimble and Quick",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -105,6 +114,7 @@
 			"abilities": [
 				{
 					"name": "Scaly Monstrosities",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 2 to the Health characteristic of friendly SERAPHON MONSTER units"
@@ -119,18 +129,21 @@
 			"entries": [
 				{
 					"name": "Being of the Stars",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore modifiers to save rolls for this unit (positive and negative)."
 				},
 				{
 					"name": "Reptilian Cunning",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, if a friendly unit wholly within 12\" of this unit uses the 'All-out Attack' command in the combat phase, no command points are spent."
 				},
 				{
 					"name": "Beastmaster",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 2\" to the Move characteristic of friendly SERAPHON CAVALRY and SERAPHON MONSTER units for the rest of the phase if they are wholly within 12\" of this unit at the start of the move."
@@ -144,6 +157,7 @@
 			"entries": [
 				{
 					"name": "Keeper of the Old Ways",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Further the Great Plan' ability",
 					"frequency": "Once Per Turn",
@@ -151,12 +165,14 @@
 				},
 				{
 					"name": "Child of the Stars",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (D3) this unit. This unit cannot use this ability again for the rest of the battle."
 				},
 				{
 					"name": "Chosen of Quetzl",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a visible friendly non-MONSTER SKINK unit that is in combat and is wholly within 12\" of this unit to be the target.",
@@ -171,12 +187,14 @@
 			"entries": [
 				{
 					"name": "Arcane Determination",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 10 to this unit's control score while it is wholly within 12\" of a friendly MANIFESTATION."
 				},
 				{
 					"name": "Calm and Collected",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Battle",
@@ -184,6 +202,7 @@
 				},
 				{
 					"name": "Lord of Space and Time",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Your Turn",
 					"declare": "Pick any number of friendly SERAPHON units wholly within 12\" of this unit that have not used a MOVE ability this turn to be the targets.",
@@ -198,6 +217,7 @@
 			"entries": [
 				{
 					"name": "Coatl Familiar",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a friendly SERAPHON WIZARD within this unit's combat range",
 					"frequency": "Once Per Battle",
@@ -206,12 +226,14 @@
 				},
 				{
 					"name": "Incandescent Rectrices",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"effect": "Heal (D3) this unit."
 				},
 				{
 					"name": "Bloodrage Pendant",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons. Add 2 instead if the number of damage points allocated to this unit is equal to or greater than half of this unit's Health characteristic (rounding up)."
@@ -225,18 +247,21 @@
 			"entries": [
 				{
 					"name": "Titan of the Land",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit counts as a terrain piece for the purpose of picking targets for the friendly Realmshaper Engine's 'Power Unleashed' ability. Do not inflict any mortal damage on this unit as part of that ability"
 				},
 				{
 					"name": "Ancient Defender",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for attacks made by this unit's Companion weapons."
 				},
 				{
 					"name": "Armour Cruncher",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -254,6 +279,7 @@
 			"entries": [
 				{
 					"name": "Armour Cruncher",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -265,6 +291,7 @@
 				},
 				{
 					"name": "Titanic Slam",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -276,6 +303,7 @@
 				},
 				{
 					"name": "Chameleonic Camouflage",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit has not used a MOVE ability in the same turn, it is not visible to enemy units more than 12\" away",
@@ -292,6 +320,7 @@
 			"entries": [
 				{
 					"name": "Mystical Unforging",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SERAPHON WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -304,6 +333,7 @@
 				},
 				{
 					"name": "Comet's Call",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SERAPHON WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -315,6 +345,7 @@
 				},
 				{
 					"name": "Speed of Huanchi",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SERAPHON WIZARD to cast this spell, pick a visible friendly SERAPHON unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -333,6 +364,7 @@
 			"entries": [
 				{
 					"name": "Light of Chotec",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SERAPHON WIZARD to cast this spell, pick a visible friendly SERAPHON unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -345,6 +377,7 @@
 				},
 				{
 					"name": "The Earth Trembles",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SERAPHON WIZARD to cast this spell, pick a point on the battlefield within 18\" of them to be the target point, then make a casting roll of 2D6.",
@@ -356,6 +389,7 @@
 				},
 				{
 					"name": "Empowered Celestite",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SERAPHON WIZARD to cast this spell, pick a visible friendly SAURUS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",

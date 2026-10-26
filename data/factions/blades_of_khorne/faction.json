@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Blood-drenched",
+			"type": "active",
 			"category": "special",
 			"timing": "Reaction: You declared the 'Skulls for the Skull Throne' ability",
 			"frequency": "Once Per Turn",
@@ -30,12 +31,14 @@
 		},
 		{
 			"name": "Blood for the Blood God",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "Earn 1 blood tithe point each time a unit (friendly or enemy) is destroyed. Blood tithe points are spent to unlock BLOOD TITHE abilities. You can only use BLOOD TITHE abilities that are unlocked. Once a BLOOD TITHE ability is unlocked, you do not need to spend further blood tithe points to use it."
 		},
 		{
 			"name": "Skulls for the Skull Throne",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -43,6 +46,7 @@
 		},
 		{
 			"name": "Murderlust",
+			"type": "active",
 			"category": "movement",
 			"timing": "Reaction: You declared a CHARGE ability.",
 			"frequency": "Once Per Turn (Army)",
@@ -53,6 +57,7 @@
 		},
 		{
 			"name": "Divine Scorn",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Any Turn",
 			"frequency": "Once Per Turn",
@@ -64,6 +69,7 @@
 		},
 		{
 			"name": "Punish the Pacifist",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Your Combat Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -75,6 +81,7 @@
 		},
 		{
 			"name": "Murder the Mystic",
+			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -86,6 +93,7 @@
 		},
 		{
 			"name": "Glorious Combat or Naught",
+			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "Subtract 1 from hit rolls for shooting attacks that target friendly BLADES OF KHORNE units.",
@@ -95,6 +103,7 @@
 		},
 		{
 			"name": "Revel in Battle",
+			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "Other than the Companion weapon ability, weapon abilities for combat attacks made by enemy units that charged this turn and that target a friendly BLADES OF KHORNE unit have no effect.",
@@ -104,6 +113,7 @@
 		},
 		{
 			"name": "Slaughter Triumphant",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "Add 1 to the Attacks characteristic of weapons used by friendly BLADES OF KHORNE units that charged in the same turn.",
@@ -113,6 +123,7 @@
 		},
 		{
 			"name": "Cleave Wide the Grin of Khorne",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "Add 1 to hit rolls for combat attacks made by friendly BLADES OF KHORNE units.",
@@ -128,6 +139,7 @@
 			"abilities": [
 				{
 					"name": "Butchers of Nations",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for a friendly BLADES OF KHORNE DAEMON unit",
 					"frequency": "Once Per Turn (Army)",
@@ -141,6 +153,7 @@
 			"abilities": [
 				{
 					"name": "Tireless Conquerors",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for combat attacks made by friendly BLOODBOUND units that target an enemy unit that is contesting an objective you do not control."
@@ -153,6 +166,7 @@
 			"abilities": [
 				{
 					"name": "Drawn to Carnage",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add X to charge rolls for friendly BLADES OF KHORNE units, where X is the number of friendly BLADES OF KHORNE CAVALRY or MONSTER units that have already charged this phase and that are wholly within 12\" of the unit being rolled for."
@@ -165,6 +179,7 @@
 			"abilities": [
 				{
 					"name": "Eager Killers",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Your Turn",
 					"effect": "Each friendly BLADES OF KHORNE DAEMON unit that has used a FIGHT ability this turn and is not in combat can move D6\". It cannot end that move in combat."
@@ -177,6 +192,7 @@
 			"abilities": [
 				{
 					"name": "Bloody Competitors",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -191,6 +207,7 @@
 			"abilities": [
 				{
 					"name": "Tide of Savagery",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -207,12 +224,14 @@
 			"entries": [
 				{
 					"name": "Magical Scorn",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Subtract 1 from casting rolls for WIZARDS while they are within 12\" of this unit.\nSubtract 1 from chanting rolls for enemy PRIESTS while they are within 12\" of this unit."
 				},
 				{
 					"name": "Frenzied Taskmaster",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE INFANTRY or CAVALRY unit within this unit's combat range that is not in combat to be the target.",
@@ -220,6 +239,7 @@
 				},
 				{
 					"name": "Skull Collector",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"effect": "If any damage points were allocated to an enemy HERO by this unit's combat attacks this turn and that enemy HERO has been destroyed, add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the battle.\nThis unit can be affected by this ability multiple times and the effects are cumulative."
@@ -232,12 +252,14 @@
 			"entries": [
 				{
 					"name": "Collar of Contempt",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1). Each time this unit successfully unbinds a spell, inflict D3 mortal damage on the caster."
 				},
 				{
 					"name": "Butcher's Blade",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Your Turn",
 					"declare": "Pick each enemy unit that had any damage points allocated to it this turn by this unit's combat attacks to be the targets.",
@@ -245,6 +267,7 @@
 				},
 				{
 					"name": "Ar'gath, the King of Blades",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Ward rolls cannot be made for enemy HEROES while they are in combat with this unit."
@@ -257,6 +280,7 @@
 			"entries": [
 				{
 					"name": "Brass Flesh",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Unmodified save rolls of 5+ for this unit cannot fail.",
@@ -264,6 +288,7 @@
 				},
 				{
 					"name": "Scorpion Tails",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -272,6 +297,7 @@
 				},
 				{
 					"name": "Blade-Limbs",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit is picked to use the 'Eruption of Fury' ability, for each unmodified hit roll of 6 for the attacks made as part of that ability, inflict an additional 3 mortal damage on each enemy unit in combat with this unit instead of D3.",
@@ -288,6 +314,7 @@
 			"entries": [
 				{
 					"name": "Summon Hexgorger Skulls",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Hexgorger Skulls invocation on the battlefield, pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -300,6 +327,7 @@
 				},
 				{
 					"name": "Summon Wrath-axe",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Wrath-axe on the battlefield, pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -312,6 +340,7 @@
 				},
 				{
 					"name": "Summon Bleeding Icon",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Bleeding Icon on the battlefield, pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, then make a chanting roll of D6.",
@@ -331,6 +360,7 @@
 			"entries": [
 				{
 					"name": "Uncontrollable Rage",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -343,6 +373,7 @@
 				},
 				{
 					"name": "Blood Boil",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -354,6 +385,7 @@
 				},
 				{
 					"name": "Final Act of Violence",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible friendly BLADES OF KHORNE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -373,6 +405,7 @@
 			"entries": [
 				{
 					"name": "Goreflesh",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible friendly BLADES OF KHORNE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -385,6 +418,7 @@
 				},
 				{
 					"name": "Runes of Loathing",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a friendly BLADES OF KHORNE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -396,6 +430,7 @@
 				},
 				{
 					"name": "Gift of Apoplexy",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -415,6 +450,7 @@
 			"entries": [
 				{
 					"name": "Gift of Apoplexy",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -426,6 +462,7 @@
 				},
 				{
 					"name": "Stoke the Flames",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible friendly BLADES OF KHORNE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -438,6 +475,7 @@
 				},
 				{
 					"name": "Fetters of Blood",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",

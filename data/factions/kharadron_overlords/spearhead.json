@@ -21,6 +21,7 @@
 			"battle_traits": [
 				{
 					"name": "GUNHAULER ESCORT",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target friendly KHARADRON OVERLORDS INFANTRY units while they are wholly within 6\" of a friendly Grundstok Gunhauler."
@@ -29,6 +30,7 @@
 			"regiment_abilities": [
 				{
 					"name": "RAPID RELOCATION",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -37,6 +39,7 @@
 				},
 				{
 					"name": "PROPELLER DOWNDRAUGHT",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from charge rolls for enemy units while they are within 9\" of a friendly Grundstok Gunhauler."
@@ -45,6 +48,7 @@
 			"enhancements": [
 				{
 					"name": "EMERGENCY FUEL INJECTION PODS",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -52,6 +56,7 @@
 				},
 				{
 					"name": "CELESTIUM-BURST BOMBLETS",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with your general to be the target.",
@@ -59,12 +64,14 @@
 				},
 				{
 					"name": "PROSPECTOR AND PIONEER",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 2 to your general’s control score."
 				},
 				{
 					"name": "EXTRACTION FAIL-SAFES",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the number of damage points inflicted on this unit when it uses a RETREAT ability."
@@ -112,6 +119,7 @@
 					"abilities": [
 						{
 							"name": "ENDRINMASTER EXTRAORDINAIRE",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit with the FLY keyword that is wholly within 12\" of this unit to be the target.",
@@ -156,6 +164,7 @@
 					"abilities": [
 						{
 							"name": "GUNHAULER OVERWATCH",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
@@ -220,6 +229,7 @@
 					"abilities": [
 						{
 							"name": "BEWILDERBLAST ROUNDS",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Shooting Phase",
 							"frequency": "Once Per Battle (Army)",
@@ -304,6 +314,7 @@
 					"abilities": [
 						{
 							"name": "CLOUDWEAVING SKYFARERS",
+							"type": "active",
 							"category": "movement",
 							"timing": "Enemy Movement Phase",
 							"effect": "Roll a dice. On a 3+, this unit can use the ‘Normal Move’ ability as if it were your movement phase."
@@ -345,6 +356,7 @@
 			"battle_traits": [
 				{
 					"name": "PLY THE SKIES",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a non-CHARGE MOVE ability for an Arkanaut Frigate",
 					"effect": "Pick a friendly INFANTRY unit that is wholly within the combat range of that Arkanaut Frigate and not in combat to be transported. Remove that INFANTRY unit from the battlefield. Then, when the Arkanaut Frigate ends its move, set up the INFANTRY unit on the battlefield again, wholly within the combat range of the Arkanaut Frigate and not in combat. A unit cannot use CHARGE abilities if it was transported in the same turn.",
@@ -359,6 +371,7 @@
 			"regiment_abilities": [
 				{
 					"name": "ASSAULT BOAT",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -367,6 +380,7 @@
 				},
 				{
 					"name": "DISENGAGE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -377,12 +391,14 @@
 			"enhancements": [
 				{
 					"name": "MASTERWROUGHT ARMOUR",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (6+)."
 				},
 				{
 					"name": "THERE'S NO REWARD WITHOUT RISK",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a CHARGE ability for a unit wholly within 12\" of your general",
 					"frequency": "Once Per Battle",
@@ -390,6 +406,7 @@
 				},
 				{
 					"name": "FLASK OF VINTAGE GOROGNA",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -397,6 +414,7 @@
 				},
 				{
 					"name": "LEAVE NO DUARDIN BEHIND",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -440,6 +458,7 @@
 					"abilities": [
 						{
 							"name": "ALWAYS TAKE WHAT YOU ARE OWED",
+							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of this unit to be the target.",
@@ -507,6 +526,7 @@
 					"abilities": [
 						{
 							"name": "TIMED CHARGES",
+							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
 							"declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
@@ -564,12 +584,14 @@
 					"abilities": [
 						{
 							"name": "BATTLE DAMAGED",
+							"type": "passive",
 							"category": "damage",
 							"timing": "Passive",
 							"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Heavy Skyhook is 1."
 						},
 						{
 							"name": "BOMB RACKS",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Movement Phase",
 							"frequency": "Once Per Battle",
@@ -656,6 +678,7 @@
 					"abilities": [
 						{
 							"name": "GLORY-SEEKERS",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to hit rolls for attacks made by this unit that target a unit contesting an objective."

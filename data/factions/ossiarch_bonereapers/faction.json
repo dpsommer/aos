@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Immortal Elite",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Battle Round",
 			"frequency": "Once Per Battle Round (Army)",
@@ -16,6 +17,7 @@
 		},
 		{
 			"name": "Remorseless March",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"declare": "Pick a friendly OSSIARCH BONEREAPERS unit that has not used a RELENTLESS DISCIPLINE ability this phase to use this ability.",
@@ -26,6 +28,7 @@
 		},
 		{
 			"name": "Impassive Retreat",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"declare": "Pick a friendly OSSIARCH BONEREAPERS unit that has not used a RELENTLESS DISCIPLINE ability this phase to use this ability.",
@@ -36,6 +39,7 @@
 		},
 		{
 			"name": "Ruthless Extermination",
+			"type": "active",
 			"category": "shooting",
 			"timing": "Reaction: You declared a SHOOT ability for a unit that has not used a RELENTLESS DISCIPLINE ability this phase",
 			"frequency": "Once Per Turn (Army)",
@@ -46,6 +50,7 @@
 		},
 		{
 			"name": "Pitiless Assault",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Reaction: You declared a FIGHT ability for a unit that has not used a RELENTLESS DISCIPLINE ability this phase.",
 			"effect": "Spend 1 relentless discipline point. Add 1 to wound rolls for attacks made as part of that FIGHT ability.",
@@ -55,6 +60,7 @@
 		},
 		{
 			"name": "Inviolate Legions",
+			"type": "active",
 			"category": "defensive",
 			"timing": "Reaction: Opponent declared an ATTACK ability.",
 			"effect": "Spend 1 relentless discipline point. That unit has WARD (5+) against damage points inflicted by attacks made as part of that ATTACK ability.",
@@ -70,6 +76,7 @@
 			"abilities": [
 				{
 					"name": "Grim Sentinels",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Melee weapons used by friendly OSSIARCH BONEREAPERS units have Anti-charge (+1 Rend) while they are wholly within neutral territory or wholly within 6\" of both enemy and friendly territory."
@@ -82,6 +89,7 @@
 			"abilities": [
 				{
 					"name": "Nadirite Wedge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -96,6 +104,7 @@
 			"abilities": [
 				{
 					"name": "Silent Empire",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -110,6 +119,7 @@
 			"abilities": [
 				{
 					"name": "Unfaltering Pace",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a RUN ability for a friendly OSSIARCH BONEREAPERS unit.",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
@@ -122,6 +132,7 @@
 			"abilities": [
 				{
 					"name": "Plentiful Bone",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -136,6 +147,7 @@
 			"abilities": [
 				{
 					"name": "Disciplined Hekatoi",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -152,6 +164,7 @@
 			"entries": [
 				{
 					"name": "Manufactured Mind",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle",
@@ -159,12 +172,14 @@
 				},
 				{
 					"name": "Immaculate Defender",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore the first damage point allocated to each friendly OSSIARCH BONEREAPERS INFANTRY unit in the combat phase while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Imperious Will",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for a non-HERO OSSIARCH BONEREAPERS unit wholly within 12\" of this unit.",
 					"effect": "Pick an enemy unit in combat with that non-HERO unit and that did not charge this turn to be the target. Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. This unit can use this ability more than once per phase but only once per FIGHT ability.",
@@ -178,18 +193,21 @@
 			"entries": [
 				{
 					"name": "Shard of the Necris",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4 and this unit did not charge in the same turn, the attack fails and the attack sequence ends."
 				},
 				{
 					"name": "Blade of the Nadir",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"effect": "Pick 1 of this unit's non-Companion melee weapons. For the rest of the battle, each time you make an unmodified wound roll of 6 for a combat attack made with that weapon, inflict D3 mortal damage on the target of the attack after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Amulet of Gnosis",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "No mortal damage is inflicted on friendly OSSIARCH BONEREAPERS units by RETREAT abilities while they are wholly within 12\" of this unit."
@@ -203,12 +221,14 @@
 			"entries": [
 				{
 					"name": "Banner of Old Ossia",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Rally' command for a visible OSSIARCH BONEREAPERS unit wholly within 12\" of this unit",
 					"effect": "When resolving that command, you can spend rally points in the following additional ways:\n• For each rally point spent, Heal (1) another visible friendly non-HERO OSSIARCH BONEREAPERS unit wholly within 12\" of this unit.\n• You can spend a number of rally points equal to the Health characteristic of that unit to return a slain model to a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of this unit."
 				},
 				{
 					"name": "Scarabaean Cloak",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -216,6 +236,7 @@
 				},
 				{
 					"name": "Soulweb Gem",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle",
@@ -230,6 +251,7 @@
 			"entries": [
 				{
 					"name": "Perpetually Empowered Weapons",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit's melee weapons, including Companion weapons, have Crit (2 Hits).",
@@ -237,6 +259,7 @@
 				},
 				{
 					"name": "Elongated Tibias",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to charge rolls for this unit.",
@@ -244,6 +267,7 @@
 				},
 				{
 					"name": "Utterly Unquestioning",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a RELENTLESS DISCIPLINE ability, roll a dice as a reaction. On a 5+, subtract 1 from the number of relentless discipline points that must be spent to use that ability.",
@@ -260,6 +284,7 @@
 			"entries": [
 				{
 					"name": "Empower Nadirite Weapons",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, pick a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -272,6 +297,7 @@
 				},
 				{
 					"name": "Immolating Flames",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, pick a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -283,6 +309,7 @@
 				},
 				{
 					"name": "Drain Vitality",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -302,6 +329,7 @@
 			"entries": [
 				{
 					"name": "Bolster Creation",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, pick a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -314,6 +342,7 @@
 				},
 				{
 					"name": "Invigorate the Ranks",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, pick a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -325,6 +354,7 @@
 				},
 				{
 					"name": "Soul-Claim",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then pick a visible enemy unit within 18\" of them to be the enemy target. Then, you can pick a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of that WIZARD to be a friendly target. Then make a casting roll of 2D6.",
@@ -343,6 +373,7 @@
 			"entries": [
 				{
 					"name": "Summon Nightmare Predator",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Nightmare Predator on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -355,6 +386,7 @@
 				},
 				{
 					"name": "Summon Bone-tithe Shrieker",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Bone‑tithe Shrieker on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -367,6 +399,7 @@
 				},
 				{
 					"name": "Summon Soulstealer Carrion",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Soulstealer Carrion on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",

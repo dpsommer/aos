@@ -28,12 +28,14 @@
 			"abilities": [
 				{
 					"name": "Lord of Murder Incarnate",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This MANIFESTATION is affected by the 'Blessings of Khaine' ability as if it were a unit."
 				},
 				{
 					"name": "Wrath of Khaine",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add X to the Attacks characteristic of this MANIFESTATION's melee weapons, where X is the number of times you have used the 'Blessings of Khaine' ability this battle, to a maximum of 3."
@@ -75,6 +77,7 @@
 			"abilities": [
 				{
 					"name": "Unnatural Edge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this MANIFESTATION charged this turn, pick an enemy unit in combat with it to be the target.",
@@ -127,12 +130,14 @@
 			"abilities": [
 				{
 					"name": "Wicked Wardens",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is wholly within 12\" of a friendly Hag Queen on Cauldron of Blood, Slaughter Queen on Cauldron of Blood or Shrine of Dark Tribute, this unit's melee weapons have ANTI-CHARGE (+1 REND)."
 				},
 				{
 					"name": "Crimson Offerings",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Blessings of Khaine' ability",
 					"frequency": "Once Per Turn (Army)",
@@ -179,6 +184,7 @@
 			"abilities": [
 				{
 					"name": "Crystal Touch",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -234,6 +240,7 @@
 			"abilities": [
 				{
 					"name": "Barbed Arrows",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -281,6 +288,7 @@
 			"abilities": [
 				{
 					"name": "Exsanguinating Glare",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -289,6 +297,7 @@
 				},
 				{
 					"name": "Arcane Resonance",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit when it uses a SUMMON ability and add 1 to banishment rolls for this unit.",
@@ -351,6 +360,7 @@
 			"abilities": [
 				{
 					"name": "Aura of Agony",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -361,6 +371,7 @@
 				},
 				{
 					"name": "Born of Slaughter",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there are fewer friendly Avatars of Khaine on the battlefield than there are friendly Bloodwrack Shrines on the battlefield, make a casting roll of 2D6.",
@@ -373,6 +384,7 @@
 				},
 				{
 					"name": "Agonising Spasms",
+					"type": "active",
 					"category": "control",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
 					"effect": "After that SHOOT ability has been resolved, if all of this unit's attacks made as part of that SHOOT ability targeted the same enemy unit and any enemy models were slain by those attacks, roll a dice. On a 3+, that enemy unit has a maximum control score of 1 for the rest of the turn."
@@ -434,6 +446,7 @@
 			"abilities": [
 				{
 					"name": "Wracking Gaze",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -442,6 +455,7 @@
 				},
 				{
 					"name": "Reflected Agony",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -491,6 +505,7 @@
 			"abilities": [
 				{
 					"name": "Crushing Coils",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this MANIFESTATION to be the target.",
@@ -498,6 +513,7 @@
 				},
 				{
 					"name": "Bind and Bite",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit's combat attacks score critical hits on unmodified hit rolls of 4+ if the target of those attacks has STRIKE-LAST."
@@ -561,6 +577,7 @@
 			"abilities": [
 				{
 					"name": "Outmanoeuvre",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When this unit uses the 'Redeploy' command, if you roll a 1-3 when determining the distance this unit can move, you can use a value of 4 instead."
@@ -608,6 +625,7 @@
 			"abilities": [
 				{
 					"name": "Acrobatic Bloodshed",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -657,6 +675,7 @@
 			"abilities": [
 				{
 					"name": "Catechisms of Violence",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -719,6 +738,7 @@
 			"abilities": [
 				{
 					"name": "Wrathful Repulsion",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -730,6 +750,7 @@
 				},
 				{
 					"name": "Roaring Idol",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -765,6 +786,7 @@
 			"abilities": [
 				{
 					"name": "Locus of the Murder God",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from wound rolls for attacks that target friendly DAUGHTERS OF KHAINE INFANTRY units while they are wholly within 12\" of this MANIFESTATION."
@@ -809,6 +831,7 @@
 			"abilities": [
 				{
 					"name": "Paragon of Slaughter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -865,6 +888,7 @@
 			"abilities": [
 				{
 					"name": "Shadow Leap",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -919,6 +943,7 @@
 			"abilities": [
 				{
 					"name": "Shadow Lariat",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -972,6 +997,7 @@
 			"abilities": [
 				{
 					"name": "Fire and Flight",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -1014,6 +1040,7 @@
 			"abilities": [
 				{
 					"name": "Fight and Flight",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1076,6 +1103,7 @@
 			"abilities": [
 				{
 					"name": "Rituals of Prophecy",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Roll 6 dice:\n• For each 1, add 1 to the Attacks characteristic of this unit's melee weapons until the start of your next turn.\n• For each 3, add 1\" to this unit's Move characteristic until the start of your next turn.\n• If any of the rolls are a 6, add 1 to save rolls for this unit until the start of your next turn."
@@ -1122,12 +1150,14 @@
 			"abilities": [
 				{
 					"name": "The Croneseer",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time you perform a blood rite, immediately after the ability that destroyed a unit has been resolved, give this unit 1 prophecy token.\n• While this unit has 2 or more prophecy tokens, this unit cannot be picked to be the target of shooting attacks or SPELL abilities used by enemy units.\n• While this unit has 3 or more prophecy tokens, you can re-roll unmodified chanting rolls of 1 for this unit.\n• While this unit has 4 or more prophecy tokens, if the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 				},
 				{
 					"name": "Omens of Doom",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Make a chanting roll of D6.",
@@ -1200,14 +1230,17 @@
 			"abilities": [
 				{
 					"name": "Gift of Foresight",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly non-UNIQUE DAUGHTERS OF KHAINE AELF INFANTRY or CAVALRY unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 9\" of a battlefield edge and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 9\" of a battlefield edge and more than 9\" from all enemy units.",
+					"command_points": 1
 				},
 				{
 					"name": "Blood Ritual",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE AELF INFANTRY or CAVALRY unit wholly within 12\" of this unit to be the target. Then, make a chanting roll of D6.",
@@ -1233,6 +1266,7 @@
 				},
 				{
 					"name": "The Croneseer",
+					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
 					"effect": "Give this unit D3 ritual points."
@@ -1298,6 +1332,7 @@
 			"abilities": [
 				{
 					"name": "Hidden Agent",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "If this unit has not been deployed, set up this unit in reserve in hiding. It has now been deployed.",
@@ -1307,6 +1342,7 @@
 				},
 				{
 					"name": "Strike from the Shadows",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick this unit if it is in hiding. Then, pick a friendly INFANTRY unit that has 5 or more models to be the target.",
@@ -1314,6 +1350,7 @@
 				},
 				{
 					"name": "Vial of Secrets",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
@@ -1363,6 +1400,7 @@
 			"abilities": [
 				{
 					"name": "Ironscale's Fury",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1416,6 +1454,7 @@
 			"abilities": [
 				{
 					"name": "Frenzied Slaughter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1466,6 +1505,7 @@
 			"abilities": [
 				{
 					"name": "Surge of Hatred",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick either a friendly Shadow Queen wholly within 12\" of this unit and in combat or a visible friendly non-HERO DAUGHTERS OF KHAINE unit wholly within 12\" of this unit and in combat to be the target, then make a casting roll of 2D6.",
@@ -1477,6 +1517,7 @@
 				},
 				{
 					"name": "The Iron Heart of Khaine",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time you perform a blood rite, immediately after the ability that destroyed a unit has been resolved, pick 1 of the following effects:\n• Until the start of your next turn, this unit is only visible to enemy units while those units are within its combat range.\n• Heal (D6) this unit or a friendly Shadow Queen.\n• A friendly Shadow Queen can immediately use the 'Normal Move' or 'Retreat' ability as if it was your movement phase even if it has already used that ability or another CORE ability this phase.\n• Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.\n• For the rest of the turn, set this unit's Control characteristic to 5 and a friendly Shadow Queen's Control characteristic to 15.",
@@ -1489,6 +1530,7 @@
 				},
 				{
 					"name": "Divine Matriarch",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE PRIEST or WIZARD wholly within 12\" of this unit to be the target.",
@@ -1552,12 +1594,14 @@
 			"abilities": [
 				{
 					"name": "Morgwaeth the Bloodied",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Morgwaeth the Bloodied is on the battlefield, it has PRIEST (1)."
 				},
 				{
 					"name": "Witchbrew",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1593,6 +1637,7 @@
 			"abilities": [
 				{
 					"name": "In Dark Communion",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE WIZARD or PRIEST within 3\" of this terrain feature to be the target.",
@@ -1600,6 +1645,7 @@
 				},
 				{
 					"name": "Call to Murder",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Pick a blessing from the 'Blessings of Khaine' ability that is active. That blessing is no longer active. Then, pick a blessing that is not active. That blessing is now active.",
@@ -1646,6 +1692,7 @@
 			"abilities": [
 				{
 					"name": "Dance of Death",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1696,6 +1743,7 @@
 			"abilities": [
 				{
 					"name": "Fanatical Blademaster",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1759,12 +1807,14 @@
 			"abilities": [
 				{
 					"name": "Consecrated Revulsion",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 1 to save rolls for visible friendly DAUGHTERS OF KHAINE INFANTRY units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Icon of Slaughter",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. In addition, if there are any friendly Hag Queens on Cauldrons of Blood on the battlefield when that command is used, you receive D3 additional rally points.",
@@ -1822,6 +1872,7 @@
 			"abilities": [
 				{
 					"name": "Mask of Shadowed Mirrors",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -1829,6 +1880,7 @@
 				},
 				{
 					"name": "Shadow Leap",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
@@ -1888,6 +1940,7 @@
 			"abilities": [
 				{
 					"name": "Coils of the Shadow",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1899,12 +1952,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Heartrender is 5."
 				},
 				{
 					"name": "Crown of Serpents",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -1912,6 +1967,7 @@
 				},
 				{
 					"name": "Two Bodies, One Soul",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1956,6 +2012,7 @@
 			"abilities": [
 				{
 					"name": "Frenzied Fervour",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's melee weapons if it charged in the same turn."

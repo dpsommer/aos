@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Take a Run at It",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -13,6 +14,7 @@
 		},
 		{
 			"name": "Argy Bargy",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Charge Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -21,6 +23,7 @@
 		},
 		{
 			"name": "Haring Back",
+			"type": "active",
 			"category": "rallying",
 			"timing": "End of Your Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -29,6 +32,7 @@
 		},
 		{
 			"name": "The Big One",
+			"type": "active",
 			"category": "offensive",
 			"timing": "End of Your Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -37,6 +41,7 @@
 		},
 		{
 			"name": "Wrathful Rampaging",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Any Combat Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -51,6 +56,7 @@
 			"abilities": [
 				{
 					"name": "Arrogant Big 'Uns",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "In the first battle round, subtract 1 from hit rolls for combat attacks that target friendly BIG and LITTLE units that have not charged in the same turn."
@@ -63,6 +69,7 @@
 			"abilities": [
 				{
 					"name": "Ten-League Strides",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time a friendly BIG or LITTLE unit uses the 'Redeploy' command or the 'Run' ability, if you roll a 1-2 when determining the distance that unit can move, you can use a value of 3 instead."
@@ -75,6 +82,7 @@
 			"abilities": [
 				{
 					"name": "Brute Spirituality",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -92,6 +100,7 @@
 			"abilities": [
 				{
 					"name": "Get to the Goods",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Each time a friendly BIG or LITTLE unit that charged in the same turn makes a pile-in move, that unit can pass across enemy models in non-MONSTER units."
@@ -104,6 +113,7 @@
 			"abilities": [
 				{
 					"name": "Strike! Hur Hur!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -118,6 +128,7 @@
 			"abilities": [
 				{
 					"name": "Lofty Louts",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -134,24 +145,28 @@
 			"entries": [
 				{
 					"name": "Brute of Brutes",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's combat attacks."
 				},
 				{
 					"name": "Spell-chomper",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND and BANISH abilities as if it had WIZARD (1). In addition, each time an enemy MANIFESTATION within this unit's combat range is banished, Heal (D3) this unit."
 				},
 				{
 					"name": "Always First In",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"effect": "This unit can move 2D6\". It must end that move more than 9\" from all enemy units."
 				},
 				{
 					"name": "Unreasonable Tyrant",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -160,6 +175,7 @@
 				},
 				{
 					"name": "Thundering Titan",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -171,6 +187,7 @@
 				},
 				{
 					"name": "One-hit Wonder",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -192,12 +209,14 @@
 			"entries": [
 				{
 					"name": "Grabby",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this unit's combat attacks that target an enemy unit contesting an objective you do not control."
 				},
 				{
 					"name": "Terrifying Hulk",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Your opponent declared a CHARGE ability for a visible non-MONSTER enemy unit within 12\" of this unit",
 					"frequency": "Once Per Turn",
@@ -205,6 +224,7 @@
 				},
 				{
 					"name": "Mega-Grump",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has Ward (5+) while it has 25 or more damage points."
@@ -217,6 +237,7 @@
 			"entries": [
 				{
 					"name": "Glowy Lantern",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "If this unit is a WIZARD or PRIEST, add 1 to its power level for the rest of the battle. Otherwise, pick either the WIZARD (1) or PRIEST (1) keyword. This unit has that keyword for the rest of the battle.",
@@ -224,6 +245,7 @@
 				},
 				{
 					"name": "Krakenskin Sandals",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic, Rend characteristic and Damage characteristic of this unit's Almighty Stomp.",
@@ -231,12 +253,14 @@
 				},
 				{
 					"name": "Enchanted Portcullis",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore modifiers to save rolls for shooting attacks that target this unit (positive and negative)."
 				},
 				{
 					"name": "Massive Stuffin' Sack",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -244,12 +268,14 @@
 				},
 				{
 					"name": "Mantle of the Wood-Kings",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit charged in the same turn, while it is in combat with 2 or more enemy units, add 1 to hit rolls for its combat attacks for the rest of the turn."
 				},
 				{
 					"name": "Protecty Bits",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore the first damage point that would be allocated to this unit in each phase."
@@ -261,6 +287,7 @@
 			"entries": [
 				{
 					"name": "Hammer Throw",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -276,6 +303,7 @@
 				},
 				{
 					"name": "Earthshaking Roar",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -288,6 +316,7 @@
 				},
 				{
 					"name": "Battered Shrimp",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -300,6 +329,7 @@
 				},
 				{
 					"name": "Windmill Walloping",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -312,6 +342,7 @@
 				},
 				{
 					"name": "Colossal Slam",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -324,6 +355,7 @@
 				},
 				{
 					"name": "Rancid Flatulence",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -341,6 +373,7 @@
 			"entries": [
 				{
 					"name": "That Boy's Not Right",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Roll a dice. On a 5+, this unit can use a PRAYER ability from the prayer lore you picked during army composition as if it had PRIEST (1). Instead of making a chanting roll for that prayer, the chanting roll is 5 and cannot be modified.",
@@ -348,6 +381,7 @@
 				},
 				{
 					"name": "Up For It",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit's melee weapons have Charge (+1 Damage).",
@@ -355,6 +389,7 @@
 				},
 				{
 					"name": "Always On Guard",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (5+) while it is wholly within 12\" of and visible to a friendly BIG unit.",
@@ -371,6 +406,7 @@
 			"entries": [
 				{
 					"name": "Pipsqueak Curse",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -382,6 +418,7 @@
 				},
 				{
 					"name": "Energy Surge",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT WIZARD to cast this spell, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -394,6 +431,7 @@
 				},
 				{
 					"name": "Thornfang's Wrath",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT WIZARD to cast this spell, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -412,6 +450,7 @@
 			"entries": [
 				{
 					"name": "Behemat's Vengeance",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -423,6 +462,7 @@
 				},
 				{
 					"name": "Might of the Earth",
+					"type": "prayer",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick each friendly SONS OF BEHEMAT unit on the battlefield to be the targets, then make a chanting roll of D6.",
@@ -434,6 +474,7 @@
 				},
 				{
 					"name": "World Titan's Stride",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -454,6 +495,7 @@
 			"entries": [
 				{
 					"name": "Rock Bottom",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible friendly SONS OF BEHEMAT unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -466,6 +508,7 @@
 				},
 				{
 					"name": "The Terrible Toes",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -477,6 +520,7 @@
 				},
 				{
 					"name": "Vocal Tectonics",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SONS OF BEHEMAT PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",

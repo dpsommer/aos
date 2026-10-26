@@ -31,12 +31,14 @@
 			"abilities": [
 				{
 					"name": "Beast",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "This unit has a maximum control score of 1."
 				},
 				{
 					"name": "Wellspring of Life Energy",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (3) this unit."
@@ -101,12 +103,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Menhir Club is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
 					"name": "Leader of the Pack",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a Fight ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -117,6 +121,7 @@
 				},
 				{
 					"name": "Primal Aura",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -127,6 +132,7 @@
 				},
 				{
 					"name": "Menhir Club",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Menhir Club."
@@ -176,6 +182,7 @@
 			"abilities": [
 				{
 					"name": "Quit Hogging Da Fun!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a Fight ability for this unit in the enemy combat phase",
 					"frequency": "Once Per Turn (Army)",
@@ -255,18 +262,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Fortcrusha Flail is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
 					"name": "Fortcrusha Flail",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Fortcrusha Flail."
 				},
 				{
 					"name": "Rip It Up and Chuck It",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -278,6 +288,7 @@
 				},
 				{
 					"name": "Primal Reckoning",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -355,18 +366,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Fortcrusha Flail is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
 					"name": "Fortcrusha Flail",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Fortcrusha Flail."
 				},
 				{
 					"name": "It's Goin' Down",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -374,6 +388,7 @@
 				},
 				{
 					"name": "Off in a Huff",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -443,18 +458,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of this unit's Obelisk of Tor Crania is 13 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
 					"name": "Obelisk of Tor Crania",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Obelisk of Tor Crania."
 				},
 				{
 					"name": "Power of Behemat",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -466,6 +484,7 @@
 				},
 				{
 					"name": "Court of Creepers",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
@@ -473,6 +492,7 @@
 				},
 				{
 					"name": "Set 'Em Up, Then Knock 'Em Down!",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -555,18 +575,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Shipwrecka Warclub is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
 					"name": "Shipwrecka Warclub",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Shipwrecka Warclub."
 				},
 				{
 					"name": "Get Orf Me Land!",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -575,6 +598,7 @@
 				},
 				{
 					"name": "Greedy Show-Offs",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -659,12 +683,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Shipwrecka Warclub is 3 and this unit has a Control characteristic of 10."
 				},
 				{
 					"name": "Lurking Beneath the Waves",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -673,6 +699,7 @@
 				},
 				{
 					"name": "Emerge from the Deep",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick this unit if it is beneath the waves.",
@@ -680,12 +707,14 @@
 				},
 				{
 					"name": "Son of Behemat",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Longshanks",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can pass through models in non-MONSTER units and parts of terrain features that are less than 4\" tall."
@@ -730,12 +759,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Spear of Krum Kalda is 3."
 				},
 				{
 					"name": "Shepherdess",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -761,6 +792,7 @@
 				},
 				{
 					"name": "Creepy Cantrips",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -772,12 +804,14 @@
 				},
 				{
 					"name": "The Wandering Witch",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is wholly within 12\" of another friendly SONS OF BEHEMAT MONSTER unit, this unit is not visible to enemy units more than 12\" away from it."
 				},
 				{
 					"name": "Chooser of the Mighty",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Battle",
@@ -840,6 +874,7 @@
 			"abilities": [
 				{
 					"name": "Bet You Can't...",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -862,12 +897,14 @@
 				},
 				{
 					"name": "Excitable Followers",
+					"type": "command",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "While this unit is wholly within 12\" of a visible friendly SONS OF BEHEMAT HERO, this unit can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the turn.",
 					"keywords": [
 						"RAMPAGE"
-					]
+					],
+					"command_points": 1
 				}
 			],
 			"keywords": [
@@ -933,6 +970,7 @@
 			"abilities": [
 				{
 					"name": "Statue Tossing",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -992,6 +1030,7 @@
 			"abilities": [
 				{
 					"name": "Drop, Toss or Roll",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1075,12 +1114,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Titanic Boulderclub is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
 					"name": "Don't Stomp Those; Stomp Them!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1089,6 +1130,7 @@
 				},
 				{
 					"name": "Almightier Stompin'",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1100,6 +1142,7 @@
 				},
 				{
 					"name": "Titanic Boulderclub",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Titanic Boulderclub."

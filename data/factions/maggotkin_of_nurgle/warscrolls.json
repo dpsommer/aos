@@ -30,6 +30,7 @@
 			"abilities": [
 				{
 					"name": "Attention Seekers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -83,6 +84,7 @@
 			"abilities": [
 				{
 					"name": "Ruptured Cysts",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible DISEASED enemy unit within 18\" of this unit to be the target, then make a chanting roll of D6.",
@@ -94,6 +96,7 @@
 				},
 				{
 					"name": "Scry the Filth",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Pick 1 of the following effects to apply for the rest of the turn:\n• Add 1 to casting rolls for friendly MAGGOTKIN OF NURGLE WIZARDS while they are within 3\" of this unit.\n• Add 1 to chanting rolls for friendly MAGGOTKIN OF NURGLE PRIESTS while they are within 3\" of this unit."
@@ -170,12 +173,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bilespurter's Claws is 3."
 				},
 				{
 					"name": "Daemon Flies",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -187,6 +192,7 @@
 				},
 				{
 					"name": "Miasma of Pestilence",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -239,6 +245,7 @@
 			"abilities": [
 				{
 					"name": "Utter Defilement",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "This unit's Pestilent Pollutants are tokens. This unit has 2 Pestilent Pollutants. Pick an objective or terrain feature within 12\" of this unit to be the target.",
@@ -246,6 +253,7 @@
 				},
 				{
 					"name": "From the Tainted Earth",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "Remove this unit from the battlefield and set it up again more than 9\" from all enemy units and wholly within 3\" of:\n• An objective or terrain feature that has a friendly Pestilent Pollutant, or\n• A POLLUTED terrain feature (see Gelgus Pust's warscroll), or\n• An objective you control",
@@ -256,6 +264,7 @@
 				},
 				{
 					"name": "Entropy Endures",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit has 2 models and would be automatically destroyed, it is not automatically destroyed. Instead, 1 model in this unit is slain."
@@ -304,6 +313,7 @@
 			"abilities": [
 				{
 					"name": "Scumboil Pox",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy WIZARD or PRIEST within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -315,6 +325,7 @@
 				},
 				{
 					"name": "Delightful Brews, Splendid Restoratives",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible unit within this unit's combat range to be the target.",
@@ -376,6 +387,7 @@
 			"abilities": [
 				{
 					"name": "Tallyman of Nurgle",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "You gain a number of tally points equal to the current battle round number.\nDuring the battle round, you can spend your tally points. For each tally point you spend, you can re-roll 1 hit roll, 1 wound roll, 1 save roll or 1 ward roll for a friendly MAGGOTKIN OF NURGLE unit wholly within 12\" of this unit.\nAt the end of the battle round, any unspent tally points are lost."
@@ -418,12 +430,14 @@
 			"abilities": [
 				{
 					"name": "Rot-Blossom",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly ROTBRINGERS units have WARD (5+) while they are wholly within 12\" of this terrain feature."
 				},
 				{
 					"name": "Tendrils of Corruption",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"effect": "For the rest of the phase, this terrain feature has a Move characteristic of 3\" and can immediately move 3\". It cannot move through or end that move within the combat ranges of enemy units and it cannot end that move on an objective or another terrain feature.",
@@ -436,6 +450,7 @@
 				},
 				{
 					"name": "Riddled With Disease",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly MAGGOTKIN OF NURGLE DAEMON unit wholly within 12\" of this terrain feature uses the 'Rally' command, you can make 1 additional rally roll of D6. If that unit is a non-HERO unit, you can make 3 additional rally rolls of D6 instead."
@@ -496,12 +511,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Gathoblyt's Fanged Maw is 3."
 				},
 				{
 					"name": "Vile Poisons and Debilitating Toxins",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -513,12 +530,14 @@
 				},
 				{
 					"name": "Annelid Engorgement",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"effect": "For each enemy unit that was in combat with this unit this turn and was destroyed this turn, this unit gains D3 leech points for the rest of the battle. Until the end of the next turn, add 1 to this unit's Control characteristic for each leech point it currently has."
 				},
 				{
 					"name": "The Leechlord's Curse",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -574,6 +593,7 @@
 			"abilities": [
 				{
 					"name": "Grin of the Grandfather",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick each enemy unit in combat with this unit to be the targets.",
@@ -581,6 +601,7 @@
 				},
 				{
 					"name": "Parasitic Infestation",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "Pick each enemy unit that charged this turn and is in combat with this unit to be the targets.",
@@ -588,12 +609,14 @@
 				},
 				{
 					"name": "Polluting Aura",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly MAGGOTKIN OF NURGLE unit is wholly within 6\" of a POLLUTED terrain feature, each time that unit uses or is the target of an ability that would heal 1 or more damage points, add 1 to the number of damage points healed.\nWhile an enemy unit is within 6\" of a POLLUTED terrain feature, each time that unit uses or is the target of an ability that would heal 1 or more damage points, subtract 1 from the number of damage points healed, to a minimum of 0."
 				},
 				{
 					"name": "Master Contaminator",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -644,12 +667,14 @@
 			"abilities": [
 				{
 					"name": "Seeds of Rot",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When using the 'Blessed by the Plaguefather' ability, if you choose to infect an enemy unit, you can pick an enemy unit that is contesting an objective that is seeded with rot."
 				},
 				{
 					"name": "Blooming Plague",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "Pick an objective that is contested by this unit to be the target.",
@@ -712,6 +737,7 @@
 			"abilities": [
 				{
 					"name": "Bloated With Corruption",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -723,6 +749,7 @@
 				},
 				{
 					"name": "Plague Wind",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target. You cannot pick a MANIFESTATION or terrain feature. Then, make a casting roll of 2D6.",
@@ -734,14 +761,17 @@
 				},
 				{
 					"name": "Locus of Nurgle",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly MAGGOTKIN OF NURGLE DAEMON unit that started the battle with 3 or more models and that has been destroyed to be the target",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of this unit or a friendly Feculent Gnarlmaw and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of this unit or a friendly Feculent Gnarlmaw and more than 9\" from all enemy units.",
+					"command_points": 1
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Colossal Blight Weapons is 3."
@@ -792,6 +822,7 @@
 			"abilities": [
 				{
 					"name": "Pestilential Beachhead",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick this unit if it is aboard the Slime Fleet.",
@@ -799,6 +830,7 @@
 				},
 				{
 					"name": "Flailing Tentacles",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy INFANTRY HERO in combat with this unit to be the target.",
@@ -806,6 +838,7 @@
 				},
 				{
 					"name": "Master of the Slime Fleet",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick a regiment led by this unit to be the target if no units from that regiment have been deployed.",
@@ -871,6 +904,7 @@
 			"abilities": [
 				{
 					"name": "Knell of Doom",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -879,6 +913,7 @@
 				},
 				{
 					"name": "Omens of Decay",
+					"type": "prayer",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -938,12 +973,14 @@
 			"abilities": [
 				{
 					"name": "Cultivating the Garden of Nurgle",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"effect": "If there is no more than 1 friendly Feculent Gnarlmaw on the battlefield, you can set up a Feculent Gnarlmaw wholly within 12\" of this unit and more than 3\" from all enemy units, objectives and other terrain features."
 				},
 				{
 					"name": "Beast Handler",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly Beast of Nurgle unit that has been destroyed.",
@@ -951,6 +988,7 @@
 				},
 				{
 					"name": "Gnarlmaw Whisperer",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Your Turn",
 					"declare": "Pick a friendly Feculent Gnarlmaw to be the target.",
@@ -1012,6 +1050,7 @@
 			"abilities": [
 				{
 					"name": "Master of Rot Flies",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit charged this turn, pick this unit and up to 2 friendly Pusgoyle Blightlords units wholly within 12\" of this unit to be the targets.",
@@ -1019,6 +1058,7 @@
 				},
 				{
 					"name": "Vectors of Foulest Contagion",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1070,6 +1110,7 @@
 			"abilities": [
 				{
 					"name": "Thrice-ripened Death's Heads",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1078,6 +1119,7 @@
 				},
 				{
 					"name": "Festering Bulwark",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1128,6 +1170,7 @@
 			"abilities": [
 				{
 					"name": "Sevenfold Slaughter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1136,6 +1179,7 @@
 				},
 				{
 					"name": "Lord of the Infected Legions",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for combat attacks made by friendly Rotswords units that did not charge this turn while they are wholly within 12\" of this unit."
@@ -1207,18 +1251,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Tripletongue's Claws is 3."
 				},
 				{
 					"name": "Gigantic Nurgling-kin",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (X) this unit, where X is half the number of damage points this unit has (rounding up)."
 				},
 				{
 					"name": "Tide of Nurglings",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1230,6 +1277,7 @@
 				},
 				{
 					"name": "Lord of Nurglings",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While any friendly Nurglings units are wholly within 12\" of this unit:\n• Ignore the first damage point that would be allocated to that Nurglings unit each phase.\n• That Nurglings unit can ignore the effect of the 'Beast' ability."
@@ -1275,6 +1323,7 @@
 			"abilities": [
 				{
 					"name": "Endless Swarm",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1347,12 +1396,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Whippermaw's Claws is 3."
 				},
 				{
 					"name": "Grasping Tongue",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1364,6 +1415,7 @@
 				},
 				{
 					"name": "Acid Ichor",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1406,6 +1458,7 @@
 			"abilities": [
 				{
 					"name": "Bestial Desecration",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's melee weapons while it is not within enemy territory."
@@ -1452,6 +1505,7 @@
 			"abilities": [
 				{
 					"name": "Cloud of Flies",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit while it is contesting an objective you control."
@@ -1510,12 +1564,14 @@
 			"abilities": [
 				{
 					"name": "Ripe Pastures",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit by RETREAT abilities."
 				},
 				{
 					"name": "Dispersed Formation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
@@ -1567,6 +1623,7 @@
 			"abilities": [
 				{
 					"name": "Captain of the Plague Legions",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Plaguebearers unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn."
@@ -1612,12 +1669,14 @@
 			"abilities": [
 				{
 					"name": "Mire Kelpies",
+					"type": "passive",
 					"category": "black",
 					"timing": "Passive",
 					"effect": "This unit's Mire Kelpies are tokens. There are 6 Mire Kelpies for every 14 models in this unit."
 				},
 				{
 					"name": "Contagious Catarrh",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1676,12 +1735,14 @@
 			"abilities": [
 				{
 					"name": "Relentless Attackers",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Flyrider's Arsenal for attacks that target enemy units contesting an objective."
 				},
 				{
 					"name": "Dispersed Formation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
@@ -1739,12 +1800,14 @@
 			"abilities": [
 				{
 					"name": "Relentless Attackers",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of this unit's Flyrider's Arsenal for attacks that target enemy units contesting an objective."
 				},
 				{
 					"name": "Dispersed Formation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
@@ -1790,6 +1853,7 @@
 			"abilities": [
 				{
 					"name": "Discomfiting Stench",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1840,6 +1904,7 @@
 			"abilities": [
 				{
 					"name": "Putrescent Piety",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -1847,6 +1912,7 @@
 				},
 				{
 					"name": "Disgustingly Devoted",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1895,6 +1961,7 @@
 			"abilities": [
 				{
 					"name": "Tainted Sorceries",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an enemy unit that was picked to be the target of a spell that was successfully cast by this unit this phase to be the target.",
@@ -1951,12 +2018,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Gnarlrod is 3."
 				},
 				{
 					"name": "Mountain of Loathsome Flesh",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1968,12 +2037,14 @@
 				},
 				{
 					"name": "Bringer of Plenty",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for friendly MAGGOTKIN OF NURGLE units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Deluge of Nurgle",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick each enemy unit within 18\" of this unit to be the enemy targets, then pick each friendly MAGGOTKIN OF NURGLE unit within 18\" of this unit to be the friendly targets. Then, make a casting roll of 2D6.",
@@ -2051,12 +2122,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Gnarlrod is 3."
 				},
 				{
 					"name": "Tentacular Grip",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2068,12 +2141,14 @@
 				},
 				{
 					"name": "Bringer of Plenty",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit."
 				},
 				{
 					"name": "Virulent Downpour",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -2085,6 +2160,7 @@
 				},
 				{
 					"name": "Befouled Rainfall",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from save rolls for enemy units while they are within 6\" of this unit."
@@ -2142,6 +2218,7 @@
 			"abilities": [
 				{
 					"name": "Virulent Concoctions",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When picking an enemy unit to be the target of the 'infect' effect of the 'Blessed by the Plaguefather' ability, you can pick an enemy unit that had any damage points allocated to it by this unit's shooting attacks this turn to be the target, even if that unit is not within 7\" of any friendly MAGGOTKIN OF NURGLE units. You cannot pick a MANIFESTATION or terrain feature."
@@ -2186,6 +2263,7 @@
 			"abilities": [
 				{
 					"name": "Sweat-Soaked and Reeking",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2235,6 +2313,7 @@
 			"abilities": [
 				{
 					"name": "Purulent Profusion",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -2246,6 +2325,7 @@
 				},
 				{
 					"name": "Rampant Defilement",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a friendly Pestigors unit wholly within 12\" of this unit to be the target.",
@@ -2294,6 +2374,7 @@
 			"abilities": [
 				{
 					"name": "Jolly Gutpipes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2352,6 +2433,7 @@
 			"abilities": [
 				{
 					"name": "Pall of Exhaustion",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2412,6 +2494,7 @@
 			"abilities": [
 				{
 					"name": "Indolent Bludgeoning",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2472,6 +2555,7 @@
 			"abilities": [
 				{
 					"name": "Keep Counting, I'm Watching You",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2490,6 +2574,7 @@
 				},
 				{
 					"name": "Stupefying Sneezes",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2555,12 +2640,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Ghurk's Tentacle is 3."
 				},
 				{
 					"name": "Blighted Stampede",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Counter-charge' command for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -2571,6 +2658,7 @@
 				},
 				{
 					"name": "Overgrowth of Flesh",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -2582,12 +2670,14 @@
 				},
 				{
 					"name": "Horrific Opponent",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Subtract 5 from the control scores of enemy units while they are in combat with this unit."
 				},
 				{
 					"name": "Tentacle Trap",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
@@ -2635,6 +2725,7 @@
 			"abilities": [
 				{
 					"name": "Retchling",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -2642,6 +2733,7 @@
 				},
 				{
 					"name": "Fecula Flyblown",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Fecula Flyblown is on the battlefield, it has WIZARD (1)."

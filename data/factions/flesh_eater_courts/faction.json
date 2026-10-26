@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "A Kingdom Deluded",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -13,6 +14,7 @@
 		},
 		{
 			"name": "A Splendid Pageant",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "While you believe this DELUSION:\n• Each time a friendly FLESH-EATER COURTS unit wholly within 12\" of a friendly FLESH-EATER COURTS HERO uses a RUN ability, if you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead.\n• While a friendly FLESH-EATER COURTS INFANTRY HERO unit is within the combat range of a friendly FLESH-EATER COURTS INFANTRY unit that has 5 or more models, that HERO is not visible to enemy units more than 6\" away.",
@@ -22,6 +24,7 @@
 		},
 		{
 			"name": "A Glorious Banquet",
+			"type": "passive",
 			"category": "offensive",
 			"timing": "Passive",
 			"effect": "While you believe this DELUSION, add 1 to hit rolls for combat attacks made by friendly FLESH-EATER COURTS units that charged in the same turn while they are wholly within 12\" of any friendly FLESH-EATER COURTS HEROES.",
@@ -31,6 +34,7 @@
 		},
 		{
 			"name": "Royal Blood",
+			"type": "active",
 			"category": "defensive",
 			"timing": "Your Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -39,14 +43,17 @@
 		},
 		{
 			"name": "Summon Loyal Subjects",
+			"type": "command",
 			"category": "rallying",
 			"timing": "Your Movement Phase",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly ABHORRANT to use this ability, then pick a friendly SERFS or KNIGHTS unit that has been destroyed to be the target.",
-			"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of a battlefield edge and more than 9\" from all enemy units."
+			"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of a battlefield edge and more than 9\" from all enemy units.",
+			"command_points": 1
 		},
 		{
 			"name": "Muster Guard",
+			"type": "active",
 			"category": "rallying",
 			"timing": "Your Movement Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -55,6 +62,7 @@
 		},
 		{
 			"name": "Feeding Frenzy",
+			"type": "active",
 			"category": "offensive",
 			"timing": "Any Combat Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -69,6 +77,7 @@
 			"abilities": [
 				{
 					"name": "Sound the Charge",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly KNIGHTS that charged in the same turn while they are wholly within 12\" of any friendly FLESH-EATER COURTS HEROES."
@@ -81,6 +90,7 @@
 			"abilities": [
 				{
 					"name": "Like Snapping Hounds",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -95,6 +105,7 @@
 			"abilities": [
 				{
 					"name": "Raise the Banners",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time another ability returns at least 1 slain model to a friendly unit that is not in combat, after that ability has been resolved, if that unit is a SERFS unit, you can return 1 additional slain model to it, and if it is a KNIGHTS unit, roll a dice. On a 4+, you can return 1 additional slain model to it."
@@ -107,6 +118,7 @@
 			"abilities": [
 				{
 					"name": "Indulge, My Pretties",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While a friendly non-HERO FLESH-EATER COURTS MONSTER or BEAST is wholly within 12\" of any friendly FLESH-EATER COURTS HEROES:\n• That non-HERO can use a RAMPAGE ability on its warscroll even if that ability has already been used by another friendly MONSTER in the same turn.\n• If that non-HERO unit charged in the same turn and the unmodified charge roll was 9+, it has STRIKE-FIRST for the rest of the turn."
@@ -119,10 +131,12 @@
 			"abilities": [
 				{
 					"name": "Overwhelming Hordes",
+					"type": "command",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a friendly SERFS unit that did not charge this turn and is in combat to use this ability, then pick an enemy unit in combat with that SERFS unit to be the target.",
-					"effect": "The target cannot make pile-in moves for the rest of the turn."
+					"effect": "The target cannot make pile-in moves for the rest of the turn.",
+					"command_points": 1
 				}
 			]
 		},
@@ -132,6 +146,7 @@
 			"abilities": [
 				{
 					"name": "The Blessing of the Chalice",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly FLESH-EATER COURTS HEROES have WARD (5+) if they have destroyed a unit this battle."
@@ -146,6 +161,7 @@
 			"entries": [
 				{
 					"name": "Stronger in Madness",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore the first damage point that would be allocated to this unit each phase.\nIn addition, other than the Companion weapon ability, weapon abilities for combat attacks that target this unit have no effect.",
@@ -153,6 +169,7 @@
 				},
 				{
 					"name": "Savage Beyond Reason",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons, including Companion weapons, if it did not use a FIGHT ability in the previous turn. Add 2 to the Attacks characteristic of those weapons instead while this unit has not used a FIGHT ability this battle.",
@@ -160,6 +177,7 @@
 				},
 				{
 					"name": "Cruel Taskmaster",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "Pick a friendly non-HERO FLESH-EATER COURTS unit wholly within 12\" of this unit to be the target.",
@@ -173,6 +191,7 @@
 			"entries": [
 				{
 					"name": "The Splintered Femur",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Your Turn",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -180,6 +199,7 @@
 				},
 				{
 					"name": "Charnel Vestments",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is not a PRIEST, it has PRIEST (1). If this unit is already a PRIEST, add 1 to chanting rolls for this unit. If this unit is a Wizard, it cannot use SPELL abilities and PRAYER abilities in the same phase.",
@@ -187,6 +207,7 @@
 				},
 				{
 					"name": "The Grisly Pennant",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
@@ -202,6 +223,7 @@
 			"entries": [
 				{
 					"name": "Fool's Cap",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
@@ -209,6 +231,7 @@
 				},
 				{
 					"name": "Flayed Flags",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an objective you do not control within 18\" of this unit to be the target.",
@@ -216,6 +239,7 @@
 				},
 				{
 					"name": "Ring of Nightmarish Visions",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -230,6 +254,7 @@
 			"entries": [
 				{
 					"name": "Revered Monstrosity",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for combat attacks made with Companion weapons by other friendly non‑UNIQUE FLESH-EATER COURTS MONSTERS while they are wholly within 12\" of this unit.",
@@ -237,12 +262,14 @@
 				},
 				{
 					"name": "Savage Abomination",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of this unit's Companion melee weapons."
 				},
 				{
 					"name": "Horribly Resilient",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D3) this unit. If this unit is not a HERO, Heal (2D3) this unit instead."
@@ -255,6 +282,7 @@
 			"entries": [
 				{
 					"name": "Homage and Fealty",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Deployment Phase",
 					"declare": "If this unit is a KNIGHT, pick a friendly SERF unit wholly within 12\" of it to be the target. If this unit is a SERF, pick a friendly KNIGHT unit wholly within 12\" of it to be the target.",
@@ -263,6 +291,7 @@
 				},
 				{
 					"name": "Defenders of Chivalry",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While your fury level is 7, add 1 to the Rend characteristic of this unit's melee weapons.",
@@ -270,6 +299,7 @@
 				},
 				{
 					"name": "Loyal Squires",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "Pick an enemy unit in combat with a friendly VARGHULF COURTIER to be the target.",
@@ -287,6 +317,7 @@
 			"entries": [
 				{
 					"name": "Charnel Feast",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FLESH-EATER COURTS WIZARD to cast this spell and pick a visible enemy unit within 18\" of them to be the target. You can also pick a friendly SERFS unit within 6\" of the target to be the raised ranks. Then, make a casting roll of 2D6.",
@@ -298,6 +329,7 @@
 				},
 				{
 					"name": "Deranged Transformation",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, pick a visible friendly FLESH-EATER COURTS INFANTRY or CAVALRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -310,6 +342,7 @@
 				},
 				{
 					"name": "Miasma of Madness",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -328,6 +361,7 @@
 			"entries": [
 				{
 					"name": "Excommunication",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FLESH-EATER COURTS PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -340,6 +374,7 @@
 				},
 				{
 					"name": "Charnel Conviction",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FLESH-EATER COURTS PRIEST to chant this prayer, pick a visible friendly FLESH-EATER COURTS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -351,6 +386,7 @@
 				},
 				{
 					"name": "The Summerking's Favour",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly FLESH-EATER COURTS PRIEST to chant this prayer, pick a visible friendly FLESH-EATER COURTS HERO wholly within 12\" of them to be the target, then make a chanting roll of D6. You cannot pick Nagash to be the target of this prayer.",
@@ -379,6 +415,7 @@
 			"entries": [
 				{
 					"name": "Summon Cadaverous Barricade",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Cadaverous Barricade on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -391,6 +428,7 @@
 				},
 				{
 					"name": "Summon Corpsemare Stampede",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Corpsemare Stampede on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -403,6 +441,7 @@
 				},
 				{
 					"name": "Summon Chalice of Ushoran",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Chalice of Ushoran on the battlefield, pick a friendly FLESH-EATER COURTS WIZARD to cast this spell, then make a casting roll of 2D6.",

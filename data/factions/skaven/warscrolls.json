@@ -41,12 +41,14 @@
 			"abilities": [
 				{
 					"name": "Gas Clouds",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Poisoned Wind Globes for attacks that target an enemy unit that has 10 or more models."
 				},
 				{
 					"name": "Hidden Weapon Team",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within the combat range of a friendly Clanrats unit that has 5 or more models, and there are no other friendly WEAPON TEAM units within that unit's combat range, this unit is not visible to enemy units more than 13\" away."
@@ -114,6 +116,7 @@
 			"abilities": [
 				{
 					"name": "Overseers of the Enginecovens",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If a friendly SKRYRE unit wholly within 13\" of this unit uses the 'Covering Fire' command, no command points are spent."
@@ -156,6 +159,7 @@
 			"abilities": [
 				{
 					"name": "Toll of Doom",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from wound rolls for attacks that target friendly SKAVEN INFANTRY units while they are wholly within 13\" of this MANIFESTATION."
@@ -222,6 +226,7 @@
 			"abilities": [
 				{
 					"name": "Warpstone Fumes",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -232,6 +237,7 @@
 				},
 				{
 					"name": "Regenerating Terror",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D6) this unit."
@@ -299,6 +305,7 @@
 			"abilities": [
 				{
 					"name": "Lend A Claw",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -310,6 +317,7 @@
 				},
 				{
 					"name": "Regenerating Terror",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D6) this unit."
@@ -352,6 +360,7 @@
 			"abilities": [
 				{
 					"name": "Seething Swarm",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "You can return D3 slain models to this unit."
@@ -397,12 +406,14 @@
 			"abilities": [
 				{
 					"name": "Cornered Rat",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is damaged, add 3 to the Attacks characteristic of its Warpforged Blade."
 				},
 				{
 					"name": "Gnash-gnaw on Their Bones!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO VERMINUS INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
@@ -472,12 +483,14 @@
 			"abilities": [
 				{
 					"name": "Cornered Rat",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is damaged, add 3 to the Attacks characteristic of its Warpforged Halberd."
 				},
 				{
 					"name": "Cruel Commander",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly non-HERO VERMINUS INFANTRY unit wholly within 13\" of this unit to be the target.",
@@ -542,12 +555,14 @@
 			"abilities": [
 				{
 					"name": "Shadowy Killers",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 				},
 				{
 					"name": "Running Death",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While friendly ESHIN units are wholly within 13\" of this unit, they can use SHOOT and/or CHARGE abilities even if they used a RUN ability in the same turn."
@@ -598,12 +613,14 @@
 			"abilities": [
 				{
 					"name": "Master of Assassins",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Double the Damage characteristic of this unit's melee weapons for attacks that target an enemy HERO."
 				},
 				{
 					"name": "Shadowblood Cloak",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a visible friendly ESHIN unit that has 2 or more models and that is wholly within 18\" of this unit to be the target.",
@@ -611,6 +628,7 @@
 				},
 				{
 					"name": "Diversionary Assault",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "Pick a visible friendly Gutter Runners unit wholly within\n13\" of this unit to be the target.",
@@ -658,6 +676,7 @@
 			"abilities": [
 				{
 					"name": "Whirling Doom",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -714,6 +733,7 @@
 			"abilities": [
 				{
 					"name": "Rolling Doom",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"effect": "This unit can move a distance up to its MOVE characteristic. This unit can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat.\nThen, pick up to 3 enemy units that this unit passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
@@ -752,12 +772,14 @@
 			"abilities": [
 				{
 					"name": "Volatile Ground",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Models can pass through this terrain feature but cannot be set up on or end moves on any part of this terrain feature.\nEach time an enemy unit ends a move that passed through or across this terrain feature, roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll."
 				},
 				{
 					"name": "Tunnels Through Reality",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly SKAVEN unit that is not in combat and is wholly within 6\" of this terrain feature to be the target.",
@@ -765,11 +787,13 @@
 				},
 				{
 					"name": "The Endless Vermintide",
+					"type": "command",
 					"category": "rallying",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO SKAVEN INFANTRY unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of a friendly Gnawhole and more than 3\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of a friendly Gnawhole and more than 3\" from all enemy units.",
+					"command_points": 1
 				}
 			],
 			"keywords": [
@@ -809,6 +833,7 @@
 			"abilities": [
 				{
 					"name": "Warpstone Shards",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "The next time you make a casting roll for this unit this phase, roll 3D6 instead of 2D6. This roll cannot be rerolled or modified.\nIf the casting roll is 13, the spell is successfully cast and cannot be unbound. After the effect of that spell has been resolved, inflict D3 mortal damage on this unit.\nIf the casting roll is not 13, remove 1 dice of your choice from the casting roll and use the remaining 2D6 as the casting roll."
@@ -878,24 +903,28 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Bulk is 4."
 				},
 				{
 					"name": "Altar of the Horned Rat",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly SKAVEN INFANTRY units have WARD (6+) while they are wholly within 13\" of this unit."
 				},
 				{
 					"name": "Peal of Doom",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Roll a dice and apply the corresponding effect:\n1 Magical Backlash: Inflict D3 mortal damage on this unit.\n2-4 Wall of Unholy Sound: Until the start of your next turn, subtract 1 from hit rolls for combat attacks made by enemy units while they are within 13\" of this unit.\n5-6 Apocalyptic Doom: Roll a D3 for each enemy unit within 13\" of this unit. On a 2+, inflict an amount of mortal damage on that unit equal to the roll."
 				},
 				{
 					"name": "Cracks Call",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit that does not have FLY and is within 13\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -971,18 +1000,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Bulk is 4."
 				},
 				{
 					"name": "The Bell Tolls",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If the current battle round number is odd, add 2\" to the Move characteristic of friendly SKAVEN units while they are wholly within 13\" of this unit. If the current battle round number is even, subtract 1 from hit rolls for attacks made by enemy units that target a friendly SKAVEN unit while it is wholly within 13\" of this unit."
 				},
 				{
 					"name": "Echoes of the Vermindoom",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -991,6 +1023,7 @@
 				},
 				{
 					"name": "Pealing Portal",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -1068,18 +1101,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Bulk is 4."
 				},
 				{
 					"name": "The Bell Tolls",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If the current battle round number is odd, add 2\" to the Move characteristic of friendly SKAVEN units while they are wholly within 13\" of this unit. If the current battle round number is even, subtract 1 from hit rolls for attacks made by enemy units that target a friendly SKAVEN unit while it is wholly within 13\" of this unit."
 				},
 				{
 					"name": "Echoes of the Vermindoom",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1088,6 +1124,7 @@
 				},
 				{
 					"name": "Gnaw Through Reality",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -1152,6 +1189,7 @@
 			"abilities": [
 				{
 					"name": "Bomb Rats",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1160,6 +1198,7 @@
 				},
 				{
 					"name": "Detonate",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "This unit can use this ability even if it has been destroyed. Pick each enemy unit that has a friendly Bomb Rat token to be a target.",
@@ -1206,12 +1245,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Gnashing Teeth and Flailing Fists is 8."
 				},
 				{
 					"name": "Avalanche of Flesh",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1223,12 +1264,14 @@
 				},
 				{
 					"name": "Regenerating Monstrosity",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D6) this unit."
 				},
 				{
 					"name": "Too Horrible to Die",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The first time this unit would be destroyed, before removing it from the battlefield, roll a dice and apply the corresponding effect:\n1 Dead: This unit is destroyed.\n2-4 The Rats Emerge: Roll a D3 for each enemy unit in combat with this unit. On a 2+, inflict an amount of mortal damage on that unit equal to the roll. Then, this unit is destroyed.\n5-6 It's Alive!: This unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (D6) this unit."
@@ -1287,18 +1330,21 @@
 			"abilities": [
 				{
 					"name": "Foster Competition",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for friendly Stormvermin units while they are wholly within 13\"of this unit."
 				},
 				{
 					"name": "Doomfang",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "This unit has STRIKE-FIRST for the rest of the turn but it cannot use commands this phase."
 				},
 				{
 					"name": "A Reputation For Cunning",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
 					"effect": "You can pick 2 different eligible units to use the 'Always Three Clawsteps Ahead' ability this phase instead of 1, but at least 1 of those units must have the VERMINUS keyword."
@@ -1348,6 +1394,7 @@
 			"abilities": [
 				{
 					"name": "The Thirteen-headed One",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Pick 1 of the following effects to apply until the start of your next turn. You cannot pick the same effect more than once per battle.",
@@ -1380,6 +1427,7 @@
 				},
 				{
 					"name": "Terrifying Monstrosity",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1391,6 +1439,7 @@
 				},
 				{
 					"name": "The Dreaded Thirteenth Spell",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 13\" to be the target, then make a casting roll of 2D6.",
@@ -1466,6 +1515,7 @@
 			"abilities": [
 				{
 					"name": "Lord of Flesh-grafting",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick another friendly MOULDER unit wholly within 13\" of this unit to be the target.",
@@ -1473,6 +1523,7 @@
 				},
 				{
 					"name": "Tyrannical Packmaster",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "Pick another friendly MOULDER unit within this unit's combat range to be the target.",
@@ -1531,6 +1582,7 @@
 			"abilities": [
 				{
 					"name": "Grappling Hooks",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1539,6 +1591,7 @@
 				},
 				{
 					"name": "Smoke Bombs",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1590,12 +1643,14 @@
 			"abilities": [
 				{
 					"name": "Frenzied Assault",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit charged in the same turn, add 1 to the Attacks characteristic of its melee weapons for the rest of the turn."
 				},
 				{
 					"name": "Enshrouding Fumes",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
@@ -1647,6 +1702,7 @@
 			"abilities": [
 				{
 					"name": "Bubonic Barrage",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses a SHOOT ability, if all of its attacks targeted the same enemy unit, after that ability has been resolved, roll a dice. If the result is equal to or less than the number of models in that enemy unit that were slain by attacks made by this unit's Plagueclaw Catapult this phase, that enemy unit has STRIKE‑LAST for the rest of the turn."
@@ -1688,6 +1744,7 @@
 			"abilities": [
 				{
 					"name": "Spreaders of Filth and Disease",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 6+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1745,12 +1802,14 @@
 			"abilities": [
 				{
 					"name": "Plague Rat",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Plague rat is a token. If you make an unmodified chanting roll of 1 for this unit while its Plague rat is on the battlefield, you can remove its Plague rat from the battlefield and then re-roll that chanting roll."
 				},
 				{
 					"name": "Enshrouding Fumes",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
@@ -1800,6 +1859,7 @@
 			"abilities": [
 				{
 					"name": "Feed on Pestilence",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a FIGHT ability for a friendly PESTILENS unit wholly within 13\" of this unit",
 					"effect": "Give this unit 1 ritual point."
@@ -1884,18 +1944,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Great Plague Censer is 2."
 				},
 				{
 					"name": "Corrupting Influence",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from ward rolls for enemy units while they are within 13\" of this unit."
 				},
 				{
 					"name": "Altar of the Great Corruptor",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly PESTILENS units have WARD (6+) while they are wholly within 13\" of this unit."
@@ -1951,6 +2014,7 @@
 			"abilities": [
 				{
 					"name": "Hidden Weapon Team",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within the combat range of a friendly Clanrats unit that has 5 or more models, and there are no other friendly WEAPON TEAM units within that unit's combat range, this unit is not visible to enemy units more than 13\" away."
@@ -2004,6 +2068,7 @@
 			"abilities": [
 				{
 					"name": "More-more Warpstone Bullets!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2011,6 +2076,7 @@
 				},
 				{
 					"name": "Overwhelming Fire",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this unit's shooting attacks that target an enemy unit that has 10 or more models."
@@ -2062,6 +2128,7 @@
 			"abilities": [
 				{
 					"name": "Unleashed Warp-fury",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "Inflict D3 mortal damage on this unit. Then, add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the turn."
@@ -2117,12 +2184,14 @@
 			"abilities": [
 				{
 					"name": "Enshrouding Fumes",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
 				},
 				{
 					"name": "Skritter",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Skritter is a token. If you make a chanting roll of 1 for this unit while its Skritter is on the battlefield, you can remove its Skritter from the battlefield and then re-roll that chanting roll."
@@ -2196,12 +2265,14 @@
 			"abilities": [
 				{
 					"name": "Sneaky Infiltrators",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While each model in this unit is within 1\" of a terrain feature, this unit cannot be targeted by shooting attacks unless the attacking model is within 9\" of it."
 				},
 				{
 					"name": "Shadowy Killers",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
@@ -2256,6 +2327,7 @@
 			"abilities": [
 				{
 					"name": "Seething Swarm",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "You can return D3 slain models to this unit."
@@ -2357,6 +2429,7 @@
 			"abilities": [
 				{
 					"name": "Grinderfist Tunnellers",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2365,6 +2438,7 @@
 				},
 				{
 					"name": "Shock Gauntlets",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time an attack made with this unit's Shock Gauntlets scores a critical hit, that attack scores D6 hits on the target unit instead of 1. Make a wound roll for each hit."
@@ -2408,6 +2482,7 @@
 			"abilities": [
 				{
 					"name": "Elite Bodyguard",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly SKAVEN INFANTRY HEROES have WARD (5+) while they are within this unit's combat range."
@@ -2479,24 +2554,28 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Warpfire Braziers is 4."
 				},
 				{
 					"name": "Staff of the Horned Rat",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit."
 				},
 				{
 					"name": "Warp-amulet",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D3) this unit."
 				},
 				{
 					"name": "Boneripper Rampage",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2508,6 +2587,7 @@
 				},
 				{
 					"name": "Terrible Madness",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 13\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -2564,6 +2644,7 @@
 			"abilities": [
 				{
 					"name": "Lord of Great Plagues",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2585,6 +2666,7 @@
 				},
 				{
 					"name": "Plaguemaster",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2655,6 +2737,7 @@
 			"abilities": [
 				{
 					"name": "Foetid Features",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -2676,6 +2759,7 @@
 				},
 				{
 					"name": "Seething Blight",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2744,12 +2828,14 @@
 			"abilities": [
 				{
 					"name": "Lord of Assassins",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly ESHIN INFANTRY unit wholly within 13\" of this unit",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
 					"name": "Burst From the Shadows",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2810,6 +2896,7 @@
 			"abilities": [
 				{
 					"name": "Tyrant of Battle",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2818,6 +2905,7 @@
 				},
 				{
 					"name": "Killing Blow",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2870,12 +2958,14 @@
 			"abilities": [
 				{
 					"name": "Divine the Future",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While this unit is on the battlefield, add 2\" to the distance friendly units can move when using the 'Always Three Clawsteps Ahead' ability."
 				},
 				{
 					"name": "Arch-Manipulator",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2887,6 +2977,7 @@
 				},
 				{
 					"name": "Hurl Scry-orb",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -2895,6 +2986,7 @@
 				},
 				{
 					"name": "Tectonic Splintering",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" to be the target, then make a casting roll of 2D6.",
@@ -2947,6 +3039,7 @@
 			"abilities": [
 				{
 					"name": "More-more Rats",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "Heal (D6) this Manifestation."
@@ -3007,6 +3100,7 @@
 			"abilities": [
 				{
 					"name": "Fissures In Reality",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick each enemy unit in combat with this unit to be the targets.",
@@ -3014,6 +3108,7 @@
 				},
 				{
 					"name": "Prophet of the Horned Rat",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -3021,6 +3116,7 @@
 				},
 				{
 					"name": "Gaze of the Gnaw",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3032,6 +3128,7 @@
 				},
 				{
 					"name": "The Death Frenzy",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy unit within 13\"of this unit or a visible friendly SKAVEN INFANTRY unit within 13\" of this unit to be the target, then make a chanting roll of D6.",
@@ -3099,12 +3196,14 @@
 			"abilities": [
 				{
 					"name": "More-more Doom!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit, it was not set up this turn and it has not used a MOVE ability this turn",
 					"effect": "Roll a dice. On a 2+, set the Damage characteristic of its Doomrocket to D3+3 for the rest of the turn. On a 1, inflict D3 mortal damage on this unit."
 				},
 				{
 					"name": "Explosive Payload",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this unit's shooting attacks that target an enemy unit that has 10 or more models."
@@ -3162,12 +3261,14 @@
 			"abilities": [
 				{
 					"name": "More-more Warp Energy!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit, it was not set up this turn and it has not used a MOVE ability this turn",
 					"effect": "Roll a dice. On a 2+, set the Damage characteristic of this unit's Warplock Musket to 3 for the rest of the turn. On a 1, inflict D3 mortal damage on this unit."
 				},
 				{
 					"name": "Sniper-master",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3228,6 +3329,7 @@
 			"abilities": [
 				{
 					"name": "More-more Warpvolt Doom!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Warpvolt Obliterator to be the target.",
@@ -3235,6 +3337,7 @@
 				},
 				{
 					"name": "Lightning Master",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -3290,6 +3393,7 @@
 			"abilities": [
 				{
 					"name": "Hidden Weapon Team",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within the combat range of a friendly Clanrats unit that has 5 or more models, and there are no other friendly WEAPON TEAM units within that unit's combat range, this unit is not visible to enemy units more than 13\" away."
@@ -3339,6 +3443,7 @@
 			"abilities": [
 				{
 					"name": "Tunnel Skulkers",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -3350,6 +3455,7 @@
 				},
 				{
 					"name": "Warp-ambush",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "You can only use this ability if this unit is in the tunnels below.",
@@ -3400,6 +3506,7 @@
 			"abilities": [
 				{
 					"name": "More-more Warp Lightning!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3407,6 +3514,7 @@
 				},
 				{
 					"name": "Warp Lightning Blast",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each attack made with this weapon in a single phase must target the same enemy unit. Each hit inflicts 1 mortal damage on the target and the attack sequence ends."
@@ -3437,12 +3545,14 @@
 			"abilities": [
 				{
 					"name": "Multiple Parts",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When a number of damage points equal to this MANIFESTATION's Health characteristic are allocated to it, this MANIFESTATION is destroyed and all its parts are removed from play."
 				},
 				{
 					"name": "Warp Lightning Bolts",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"declare": "If this MANIFESTATION was not set up this turn, pick each enemy unit within 6\" of this MANIFESTATION to be the targets.",
@@ -3450,6 +3560,7 @@
 				},
 				{
 					"name": "Warp Vortex",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Subtract 2 from run rolls and charge rolls for enemy units while they are within 6\" of this MANIFESTATION. In addition, if an enemy unit passes across this MANIFESTATION and/or the round-cornered triangle formed by drawing a line around all the bases of the MANIFESTATION's parts, inflict D3 mortal damage on that enemy unit after the MOVE ability has been resolved."
@@ -3502,6 +3613,7 @@
 			"abilities": [
 				{
 					"name": "Warpstone Snipers",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, add 6\" to the Range characteristic of this unit's Warplock Jezzails for the rest of the turn."
@@ -3556,6 +3668,7 @@
 			"abilities": [
 				{
 					"name": "Hidden Weapon Team",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within the combat range of a friendly Clanrats unit that has 5 or more models, and there are no other friendly WEAPON TEAM units within that unit's combat range, this unit is not visible to enemy units more than 13\" away."
@@ -3631,6 +3744,7 @@
 			"abilities": [
 				{
 					"name": "Ka-boom!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -3639,6 +3753,7 @@
 				},
 				{
 					"name": "Tunneling Team",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "Set up this unit in reserve drilling beneath the surface. It has now been deployed.",
@@ -3648,6 +3763,7 @@
 				},
 				{
 					"name": "Tunnelpack Ambush",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick this unit if it is drilling beneath the surface.",

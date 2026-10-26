@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Eat 'Em Alive",
+			"type": "active",
 			"category": "special",
 			"timing": "End of Any Turn",
 			"declare": "Pick a friendly OGOR unit that used a FIGHT ability that targeted a unit, excluding FACTION TERRAIN, this turn to use this ability. Then, you can pick an enemy unit in combat with it to be the target. The same enemy unit cannot be picked to be the target of this ability more than once per turn.",
@@ -18,6 +19,7 @@
 		},
 		{
 			"name": "Jaws of the Beast",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -29,6 +31,7 @@
 		},
 		{
 			"name": "Bull Charge",
+			"type": "active",
 			"category": "movement",
 			"timing": "Any Charge Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -43,6 +46,7 @@
 		},
 		{
 			"name": "Closing the Jaws",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"declare": "Pick a friendly BEASTCLAW HERO that is tracking the prey.",
@@ -56,6 +60,7 @@
 			"abilities": [
 				{
 					"name": "Feast of Bloodshed",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -73,6 +78,7 @@
 			"abilities": [
 				{
 					"name": "Prowling Predators",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target friendly OGOR MAWTRIBES units while they are wholly within 9\" of a battlefield edge and have not charged this turn."
@@ -85,6 +91,7 @@
 			"abilities": [
 				{
 					"name": "Smash and Grab",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -99,6 +106,7 @@
 			"abilities": [
 				{
 					"name": "Grub's Up, Mateys!",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -113,6 +121,7 @@
 			"abilities": [
 				{
 					"name": "Fixated on Feeding",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -132,6 +141,7 @@
 			"abilities": [
 				{
 					"name": "Postprandial Warfare",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -148,18 +158,21 @@
 			"entries": [
 				{
 					"name": "Leave Not a Morsel",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While they are within 6\" of and visible to this unit, enemy units cannot be healed or have slain models returned to them."
 				},
 				{
 					"name": "Dreaded Far and Wide",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to:\n• This unit's control score.\n• Hit rolls and wound rolls for this unit's non-Companion attacks.\n• Charge rolls for this unit.\n• The number of dice rolled when making charge rolls for this unit."
 				},
 				{
 					"name": "The Crusherguts",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -174,18 +187,21 @@
 			"entries": [
 				{
 					"name": "Trophy Rack",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"effect": "Pick 1 of the following trophies. For the rest of the battle, melee weapons used by other friendly OGOR MAWTRIBES units have the corresponding weapon ability while they are wholly within 6\" of and visible to this unit:\n\n• Squeezed Head: ANTI-MONSTER (+1 REND)\n• Smashed City Rubble: ANTI-WAR MACHINE (+1 REND)\n• Torn Appendages: ANTI-CAVALRY (+1 REND)"
 				},
 				{
 					"name": "Carvalox Hide",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (6+). It also has WARD (4+) against damage points inflicted by SPELL abilities, PRAYER abilities and abilities used by MANIFESTATIONS."
 				},
 				{
 					"name": "Mantle of Entrails",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -201,18 +217,21 @@
 			"entries": [
 				{
 					"name": "A Choice Cut",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "• This unit cannot use RUN abilities.\n• Ignore the first damage point that would be allocated to each friendly OGOR INFANTRY unit each phase while they are wholly within 12\" of and visible to this unit."
 				},
 				{
 					"name": "Rusty Grater",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Each time this unit uses the 'Eruption of Fury' ability, after that ability has been resolved, Heal (D3) this unit."
 				},
 				{
 					"name": "Key to the Larder",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"declare": "Pick a friendly OGOR INFANTRY unit on the battlefield to be the target.",
@@ -226,18 +245,21 @@
 			"entries": [
 				{
 					"name": "Gutslugger",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for this unit's combat attacks if it did not charge in the same turn."
 				},
 				{
 					"name": "Mage-Swallower",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from ward rolls for enemy units while they are within 6\" of this unit."
 				},
 				{
 					"name": "Megagobbler",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -252,6 +274,7 @@
 			"entries": [
 				{
 					"name": "Extremely Obstinate",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "This unit has a Control characteristic of 15.",
@@ -259,6 +282,7 @@
 				},
 				{
 					"name": "Horn Toss",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit that has no more than 1 model, that is in combat with this unit and that has charged this turn to be the target.",
@@ -270,6 +294,7 @@
 				},
 				{
 					"name": "Grumpy Alpha",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Charge Phase",
 					"declare": "If this unit is in combat, pick another visible friendly OGOR MONSTER wholly within 12\" of this unit that is not in combat to be the target.",
@@ -290,6 +315,7 @@
 			"entries": [
 				{
 					"name": "Blood Feast",
+					"type": "spell",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OGOR MAWTRIBES WIZARD to cast this spell, pick a visible friendly OGOR MAWTRIBES unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -302,6 +328,7 @@
 				},
 				{
 					"name": "Shincruncher",
+					"type": "spell",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OGOR MAWTRIBES WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -319,6 +346,7 @@
 				},
 				{
 					"name": "Tallowflage",
+					"type": "spell",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OGOR MAWTRIBES WIZARD to cast this spell, pick a visible friendly OGOR MAWTRIBES unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -337,6 +365,7 @@
 			"entries": [
 				{
 					"name": "Freezing Tailwinds",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OGOR MAWTRIBES PRIEST to chant this prayer, pick a visible friendly OGOR MAWTRIBES unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -349,6 +378,7 @@
 				},
 				{
 					"name": "Pulverising Hailstorm",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OGOR MAWTRIBES PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -360,6 +390,7 @@
 				},
 				{
 					"name": "Fortifying Hoarfrost",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly OGOR MAWTRIBES PRIEST to chant this prayer, pick a visible friendly OGOR MAWTRIBES unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",

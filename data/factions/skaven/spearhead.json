@@ -29,6 +29,7 @@
 			"battle_traits": [
 				{
 					"name": "THE LURKING VERMINTIDE",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -40,6 +41,7 @@
 				},
 				{
 					"name": "GNAWHOLE AMBUSH",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly unit that is in the tunnels below to use this ability.",
@@ -52,6 +54,7 @@
 			"regiment_abilities": [
 				{
 					"name": "WARPSTONE-LACED BULLETS",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle",
@@ -60,6 +63,7 @@
 				},
 				{
 					"name": "TOO QUICK TO HIT-HIT",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "No mortal damage is inflicted on friendly units when they use RETREAT abilities."
@@ -68,24 +72,28 @@
 			"enhancements": [
 				{
 					"name": "LEAD THE SEETHING HORDE",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared the ‘Call for Reinforcements’ ability",
 					"effect": "Instead of using the set-up instructions in the ‘Call for Reinforcements’ ability, the replacement unit can be set up wholly within 13\" of this unit and not in combat."
 				},
 				{
 					"name": "WARPSTONE CHARM",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from save rolls for enemy units in combat with your general."
 				},
 				{
 					"name": "SKRYRE CONNECTIONS",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Your general’s Ratling Pistol has an Attacks characteristic of 2D6 instead of D6."
 				},
 				{
 					"name": "CLOAK OF STITCHED VICTORIES",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (5+)."
@@ -141,6 +149,7 @@
 					"abilities": [
 						{
 							"name": "CORNERED RAT",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "While this unit is damaged, add 3 to the Attacks characteristic of its Warpforged Halberd."
@@ -174,6 +183,7 @@
 					"abilities": [
 						{
 							"name": "WILL OF THE HORNED RAT",
+							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 13\" of this unit to be the target, then roll a dice.",
@@ -181,6 +191,7 @@
 						},
 						{
 							"name": "WITHER",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible enemy unit within 13\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -228,6 +239,7 @@
 					"abilities": [
 						{
 							"name": "MORE-MORE WARP ENERGY!",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Reaction: You declared a SHOOT ability for this unit and it has not used a MOVE ability this turn",
 							"effect": "Roll a dice. On a 2+, set the Damage characteristic of its Warplock Musket to 3 this phase. On a 1, inflict D3 mortal damage on this unit."
@@ -260,6 +272,7 @@
 					"abilities": [
 						{
 							"name": "SEETHING SWARM",
+							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
 							"effect": "You can return D3 slain models to this unit."
@@ -305,6 +318,7 @@
 					"abilities": [
 						{
 							"name": "UNLEASHED WARP-FURY",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase, Once Per Battle",
 							"effect": "Inflict D3 mortal damage on this unit. Then, add 1 to the Attacks characteristic of its melee weapons this phase."
@@ -344,6 +358,7 @@
 			"battle_traits": [
 				{
 					"name": "CLOAKED IN SHADOW",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -354,6 +369,7 @@
 			"regiment_abilities": [
 				{
 					"name": "WAY OF THE SKITTERING SHADE",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -362,6 +378,7 @@
 				},
 				{
 					"name": "WAY OF THE FIENDISH CLAW",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -372,24 +389,28 @@
 			"enhancements": [
 				{
 					"name": "MURDEROUS ACROBATICS",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When your general uses the ‘Charge’ ability, they can pass through enemy models."
 				},
 				{
 					"name": "JUST ANOTHER SHADOW",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While your general is wholly within the combat range of a friendly unit that has 3 or more models, your general has WARD (4+)."
 				},
 				{
 					"name": "MASTER OF SHADOWS",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When your general uses the ‘Cloaked in Shadow’ ability, add 1 to the shadow-travel roll."
 				},
 				{
 					"name": "DEATH SCREECH",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit within 6\" of your general to be the target.",
@@ -423,6 +444,7 @@
 					"abilities": [
 						{
 							"name": "GO-GO, HUNT THEM DOWN",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible friendly Gutter Runners unit wholly within 12\" of this unit to be the target. Then, roll a dice.",
@@ -462,6 +484,7 @@
 					"abilities": [
 						{
 							"name": "SHADOWY KILLERS",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
@@ -499,6 +522,7 @@
 					"abilities": [
 						{
 							"name": "BOMB RATS",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Charge Phase",
 							"frequency": "Once Per Turn (Army)",
@@ -552,6 +576,7 @@
 					"abilities": [
 						{
 							"name": "SMOKE BOMBS",
+							"type": "active",
 							"category": "movement",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Turn (Army)",
@@ -592,6 +617,7 @@
 			"battle_traits": [
 				{
 					"name": "ALWAYS THREE CLAWSTEPS AHEAD",
+					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
 					"frequency": "Once Per Phase",
@@ -602,6 +628,7 @@
 			"regiment_abilities": [
 				{
 					"name": "WARPSTONE-LACED ARMOUR",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared an ATTACK ability and targeted your Stormfiends unit",
 					"frequency": "Once Per Battle",
@@ -615,6 +642,7 @@
 				},
 				{
 					"name": "ENDLESS SWARM OF RATS",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "When a friendly Clanrats unit uses its ‘Seething Swarm’ ability, you can return D6 slain models to that unit instead of D3."
@@ -623,12 +651,14 @@
 			"enhancements": [
 				{
 					"name": "SKILLED MANIPULATOR",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general has WARD (4+) while they are within 1\" of any friendly Clanrats units."
 				},
 				{
 					"name": "CAGE OF WARP LIGHTNING",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -637,6 +667,7 @@
 				},
 				{
 					"name": "SKITTERLEAP",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -644,6 +675,7 @@
 				},
 				{
 					"name": "SCURRY AWAY",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
 					"effect": "Roll a dice. On a 3+, this unit can immediately use the ‘Retreat’ ability as if it were your movement phase. If it does so, no mortal damage is inflicted on it."
@@ -672,6 +704,7 @@
 					"abilities": [
 						{
 							"name": "WILL OF THE HORNED RAT",
+							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 13\" of this unit to be the target, then roll a dice.",
@@ -679,6 +712,7 @@
 						},
 						{
 							"name": "WITHER",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible enemy unit within 13\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -713,6 +747,7 @@
 					"abilities": [
 						{
 							"name": "SEETHING SWARM",
+							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
 							"effect": "You can return D3 slain models to this unit."
@@ -773,6 +808,7 @@
 					"abilities": [
 						{
 							"name": "SHOCK GAUNTLETS",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Each time an attack made with this unit’s Shock Gauntlets scores a critical hit, that attack scores D6 hits instead of 1 (make a wound roll for each hit)."
@@ -815,6 +851,7 @@
 					"abilities": [
 						{
 							"name": "WARP LIGHTNING BLAST",
+							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
 							"effect": "Each attack made with this weapon in a single phase must target the same enemy unit. Each hit inflicts 1 mortal damage on the target and the attack sequence ends."

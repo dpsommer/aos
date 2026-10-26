@@ -148,6 +148,9 @@ func _ability(data: Variant, path: String) -> Ability:
 	if not _is_object(data, path):
 		return ability
 	ability.name = _string(data, "name", path, true)
+	ability.type = _string(data, "type", path)
+	if not ability.type.is_empty() and not ability.type in Ability.TYPES:
+		_error(_join(path, "type"), "must be one of %s" % ", ".join(Ability.TYPES))
 	ability.category = _string(data, "category", path)
 	ability.timing = _string(data, "timing", path)
 	ability.frequency = _string(data, "frequency", path)

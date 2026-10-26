@@ -9,12 +9,14 @@
 			"battle_traits": [
 				{
 					"name": "Ethereal",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to save rolls for friendly NIGHTHAUNT units."
 				},
 				{
 					"name": "The Speed of Death",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -23,6 +25,7 @@
 				},
 				{
 					"name": "Spectral Swiftness",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -36,6 +39,7 @@
 				},
 				{
 					"name": "Pitiless Reapers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -49,6 +53,7 @@
 					"entries": [
 						{
 							"name": "Silent Overseer",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Charge Phase",
 							"declare": "Pick up to 3 friendly CLATTERING PROCESSION units wholly within 12\" of this unit to be the targets.",
@@ -61,6 +66,7 @@
 					"entries": [
 						{
 							"name": "Talisman of the Nadir",
+							"type": "active",
 							"category": "rallying",
 							"timing": "Reaction: Opponent declared a SPELL ability",
 							"effect": "If a friendly CLATTERING PROCESSION unit wholly within 12\" of this unit was picked to be the target of that spell, this unit can use the 'Unbind' ability as if it had WIZARD (1). Add 1 to the unbinding roll for that ability."
@@ -75,6 +81,7 @@
 					"entries": [
 						{
 							"name": "Spectral Lashes",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CLATTERING PROCESSION WIZARD to cast this spell, pick a visible friendly CLATTERING PROCESSION unit wholly within 12\" of them and that has not been picked to be the target of this ability this turn to be the target, then make a casting roll of 2D6.",
@@ -87,6 +94,7 @@
 						},
 						{
 							"name": "Fell Riders",
+							"type": "spell",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly CLATTERING PROCESSION WIZARD to cast this spell, pick the caster and up to 1 other visible friendly CLATTERING PROCESSION unit wholly within 12\" of them to be the targets, then make a casting roll of 2D6.",
@@ -104,6 +112,7 @@
 					"entries": [
 						{
 							"name": "Summon Shyish Reaper",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Shyish Reaper on the battlefield, pick a friendly CLATTERING PROCESSION WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -124,12 +133,14 @@
 			"battle_traits": [
 				{
 					"name": "Ethereal",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to save rolls for friendly NIGHTHAUNT units, excluding Nagash."
 				},
 				{
 					"name": "Gather Power",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The following effects apply to the friendly Nagash during the first and second battle rounds, as shown:",
@@ -146,6 +157,7 @@
 				},
 				{
 					"name": "The Ritual Begins",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "You must use this ability to set up the friendly Nagash. Pick a friendly Nexus of Grief wholly within friendly territory to be the ritual site.",
@@ -156,6 +168,7 @@
 				},
 				{
 					"name": "Unholy Vessel",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The ritual site has WARD (4+) and cannot use the 'Hungry Crypts' ability."
@@ -167,6 +180,7 @@
 					"entries": [
 						{
 							"name": "Damned Vessel",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Each time you declare a SPELL ability for a friendly Nagash within 18\" of this unit, you can measure the range and visibility of that SPELL ability from this unit instead of that Nagash."
@@ -178,6 +192,7 @@
 					"entries": [
 						{
 							"name": "The Seal of Nagash",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -193,6 +208,7 @@
 					"entries": [
 						{
 							"name": "Divine Terror",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ETERNAL NIGHTMARE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -205,6 +221,7 @@
 						},
 						{
 							"name": "The Will of Nagash",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ETERNAL NIGHTMARE WIZARD to cast this spell, pick a visible friendly ETERNAL NIGHTMARE INFANTRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -222,6 +239,7 @@
 					"entries": [
 						{
 							"name": "Summon Shyish Reaper",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Shyish Reaper on the battlefield, pick a friendly ETERNAL NIGHTMARE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -234,6 +252,7 @@
 						},
 						{
 							"name": "Summon Mortalis Terminexus",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Mortalis Terminexus on the battlefield, pick a friendly ETERNAL NIGHTMARE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -246,6 +265,7 @@
 						},
 						{
 							"name": "Summon Vault of Souls",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "If there is not a friendly Vault of Souls on the battlefield, pick a friendly ETERNAL NIGHTMARE WIZARD to cast this spell, then make a casting roll of 2D6.",

@@ -6,12 +6,14 @@
 			"battle_traits": [
 				{
 					"name": "Masked by the Endless White",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly ALFROSTUN units are not visible to enemy units more than 12\" away."
 				},
 				{
 					"name": "A Clan of Hunters",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -20,6 +22,7 @@
 				},
 				{
 					"name": "Grasp of the Everwinter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -28,6 +31,7 @@
 				},
 				{
 					"name": "Run 'Em Down",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time an enemy unit in combat with a friendly ALFROSTUN unit uses a RETREAT ability, after that ability has been resolved, inflict D3 mortal damage on that enemy unit.",
@@ -40,6 +44,7 @@
 				},
 				{
 					"name": "Fearsome Breed",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Subtract 1 from charge rolls for enemy units while they are within 12\" of a friendly ALFROSTUN MONSTER. Subtract 2 from charge rolls for enemy units while they are within 6\" of a friendly ALFROSTUN MONSTER instead."
@@ -52,6 +57,7 @@
 					"entries": [
 						{
 							"name": "Hard-Bitten Chieftain",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Other than the Companion ability, weapon abilities for attacks that target this unit made by enemy units that charged in the same turn have no effect."
@@ -64,6 +70,7 @@
 					"entries": [
 						{
 							"name": "Alvagr Rune-Tokens",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle (Army)",
@@ -79,6 +86,7 @@
 					"entries": [
 						{
 							"name": "Keening Gale",
+							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ALFROSTUN PRIEST to chant this prayer, pick a visible friendly ALFROSTUN unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -91,6 +99,7 @@
 						},
 						{
 							"name": "Terrors of the Old Ice",
+							"type": "prayer",
 							"category": "control",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ALFROSTUN PRIEST to chant this prayer, pick an objective or terrain feature wholly within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -102,6 +111,7 @@
 						},
 						{
 							"name": "Avalanche Voice",
+							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ALFROSTUN PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
@@ -121,6 +131,7 @@
 			"battle_traits": [
 				{
 					"name": "Prepare the Feast",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -128,6 +139,7 @@
 				},
 				{
 					"name": "Ooh, That Looks Tasty...",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time an enemy unit is destroyed, you gain a number of raw ingredients.\n\nThe number of raw ingredients yielded by a destroyed unit is the Health characteristic of that unit multiplied by the number of starting models in that unit.",
@@ -140,6 +152,7 @@
 				},
 				{
 					"name": "Gland Goulash",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -148,6 +161,7 @@
 				},
 				{
 					"name": "Bone-Slurry Soup",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -156,6 +170,7 @@
 				},
 				{
 					"name": "The Organ Platter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -164,6 +179,7 @@
 				},
 				{
 					"name": "Gore-Offal Dumplings",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -172,6 +188,7 @@
 				},
 				{
 					"name": "Unwashed Innards",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -180,6 +197,7 @@
 				},
 				{
 					"name": "Fried Limbs",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -194,6 +212,7 @@
 					"entries": [
 						{
 							"name": "Indomitable Guts",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Add 1 to ward rolls for this unit."
@@ -206,6 +225,7 @@
 					"entries": [
 						{
 							"name": "Overflowing Larder",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"frequency": "Once Per Battle",
@@ -221,6 +241,7 @@
 					"entries": [
 						{
 							"name": "Bonecruncher",
+							"type": "spell",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GOLLOP WIZARD to cast this spell, pick a visible enemy unit within 18\" of them that has not been picked to be the target of this ability this turn to be the target, then make a casting roll of 2D6.",
@@ -233,6 +254,7 @@
 						},
 						{
 							"name": "Bloodgruel",
+							"type": "spell",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GOLLOP WIZARD to cast this spell, pick a visible friendly GOLLOP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -244,6 +266,7 @@
 						},
 						{
 							"name": "The Cosmos Writhes",
+							"type": "spell",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly GOLLOP WIZARD to cast this spell, pick a visible friendly GOLLOP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -263,18 +286,21 @@
 			"battle_traits": [
 				{
 					"name": "Bloodthirsty Arrogance",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets a friendly MEATFIST INFANTRY unit that did not charge in the same turn, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Fleshy Stampede",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 2 to run rolls for friendly MEATFIST units."
 				},
 				{
 					"name": "Meaty Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "Pick a friendly MEATFIST unit that charged this turn to use this ability, then pick a visible enemy unit within 1\" of it and that has not been picked to be the target of this ability this phase to be the target.",
@@ -282,6 +308,7 @@
 				},
 				{
 					"name": "The Unstoppable Feast",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -290,12 +317,14 @@
 				},
 				{
 					"name": "Gluttonous Conquerors",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 1 to the Control characteristic of friendly MEATFIST units while they are in combat."
 				},
 				{
 					"name": "Greedy Chompers",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -304,6 +333,7 @@
 				},
 				{
 					"name": "Gruesome Devourers",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -318,18 +348,21 @@
 					"entries": [
 						{
 							"name": "Thick Blubber",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Subtract 1 from wound rolls for shooting attacks that target this unit."
 						},
 						{
 							"name": "Overpowering Mass",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "When making meaty charge rolls for this unit, you can re-roll unmodified rolls of 1."
 						},
 						{
 							"name": "Force of Savage Personality",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Enemy units and enemy MANIFESTATIONS cannot be set up within 12\" of this unit."
@@ -342,6 +375,7 @@
 					"entries": [
 						{
 							"name": "Snott, Gnoblar Thief",
+							"type": "active",
 							"category": "special",
 							"timing": "Start of Any Turn",
 							"declare": "Pick a visible enemy HERO that has any artefacts of power to be the target.",
@@ -349,6 +383,7 @@
 						},
 						{
 							"name": "Trapper's Arsenal",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
 							"frequency": "Once Per Battle",
@@ -357,6 +392,7 @@
 						},
 						{
 							"name": "Rusty Leadbelcher Gun",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
 							"frequency": "Once Per Battle",
@@ -384,18 +420,21 @@
 			"battle_traits": [
 				{
 					"name": "Tasty Morsels",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a model is slain by a friendly Mawpit’s ‘Hungry Sinkhole’ ability, you gain 1 tasty morsel."
 				},
 				{
 					"name": "Driven by Starvation",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Friendly Gorger Mawpack units can use CHARGE abilities even if they used a RUN ability in the same turn unless they are wholly within 3\" of a terrain feature."
 				},
 				{
 					"name": "Trampling Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "Pick a friendly ROVING MAW unit that charged this turn to use this ability, then pick a visible enemy unit within 1\" of it to be the target.",
@@ -403,12 +442,14 @@
 				},
 				{
 					"name": "The Realm Hungers",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Units and MANIFESTATIONS are vulnerable to Mawpits while they are on the battlefield unless they are wholly within 1\" of a terrain feature that is not a Mawpit. This ability has no effect on ROVING MAW units or units that have FLY."
 				},
 				{
 					"name": "Mawpits of Ghur",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -421,6 +462,7 @@
 					"entries": [
 						{
 							"name": "Prime Gutserver",
+							"type": "active",
 							"category": "special",
 							"timing": "Start of Battle Round",
 							"frequency": "Once Per Battle Round (Army)",
@@ -433,6 +475,7 @@
 					"entries": [
 						{
 							"name": "Flasks of Congealed Maw-juices",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Friendly Mawpits within this unit's combat range have WARD (5+)."
@@ -447,6 +490,7 @@
 					"entries": [
 						{
 							"name": "Mawmeat",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ROVING MAW WIZARD to cast this spell, pick a visible terrain feature within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -459,6 +503,7 @@
 						},
 						{
 							"name": "Retcher",
+							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly ROVING MAW WIZARD to cast this spell, then make a casting roll of 2D6.",

@@ -61,3 +61,52 @@ func test_every_command_has_a_timing() -> void:
 func test_lore_points_match_the_battle_profiles() -> void:
 	for lore in _rules.manifestation_lores:
 		assert_eq(lore.points, _POINTS.get(lore.name, 0), lore.name)
+
+
+# Ability types
+
+func _all_abilities() -> Array[Ability]:
+	var out: Array[Ability] = []
+	out.append_array(_rules.abilities)
+	out.append_array(_rules.weapon_abilities)
+	out.append_array(_rules.terrain_abilities)
+	for lore in _rules.manifestation_lores:
+		out.append_array(lore.entries)
+	for warscroll in _rules.manifestations:
+		out.append_array(warscroll.abilities)
+	return out
+
+
+func test_every_core_ability_has_a_known_type() -> void:
+	for ability in _all_abilities():
+		assert_has(Ability.TYPES, ability.type, ability.name)
+
+
+func test_every_core_ability_with_command_points_is_a_command() -> void:
+	for ability in _all_abilities():
+		if ability.command_points > 0:
+			assert_eq(ability.type, "command", ability.name)
+
+
+func test_every_core_command_has_command_points() -> void:
+	for ability in _all_abilities():
+		if ability.type == "command":
+			assert_gt(ability.command_points, 0, ability.name)
+
+
+func test_every_core_spell_has_a_casting_value_or_spell_keyword() -> void:
+	for ability in _all_abilities():
+		if ability.type == "spell":
+			assert_true(ability.casting_value > 0 or "SPELL" in ability.keywords, ability.name)
+
+
+func test_counter_charge_is_a_two_point_command() -> void:
+	var ability := _rules.get_ability("Counter-charge")
+	assert_not_null(ability)
+	assert_eq([ability.type, ability.command_points], ["command", 2])
+
+
+func test_fly_is_passive() -> void:
+	var ability := _rules.get_ability("Fly")
+	assert_not_null(ability)
+	assert_eq(ability.type, "passive")

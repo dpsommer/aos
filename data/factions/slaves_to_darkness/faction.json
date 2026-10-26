@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Eye of the Gods",
+			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -13,6 +14,7 @@
 		},
 		{
 			"name": "Pledge to Chaos",
+			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -21,6 +23,7 @@
 		},
 		{
 			"name": "Dark Apotheosis",
+			"type": "active",
 			"category": "special",
 			"timing": "Any Hero Phase",
 			"frequency": "Once Per Battle (Army)",
@@ -39,6 +42,7 @@
 		},
 		{
 			"name": "Pledged to Tzeentch",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
 			"frequency": "Once Per Turn (Army)",
@@ -47,18 +51,21 @@
 		},
 		{
 			"name": "Pledged to Khorne",
+			"type": "passive",
 			"category": "offensive",
 			"timing": "Passive",
 			"effect": "Add 1 to the Attacks characteristic of melee weapons used by friendly PLEDGED TO KHORNE units."
 		},
 		{
 			"name": "Pledged to Nurgle",
+			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
 			"effect": "Friendly PLEDGED TO NURGLE units have WARD (6+). If a unit already has WARD (6+), it has WARD (5+) instead."
 		},
 		{
 			"name": "Pledged to Slaanesh",
+			"type": "active",
 			"category": "movement",
 			"timing": "Your Charge Phase",
 			"effect": "For the rest of the turn, when making charge rolls for friendly PLEDGED TO SLAANESH units, you can roll 1 additional dice (to a maximum of 3), but if you do, you must discard 1 dice of your choice."
@@ -71,6 +78,7 @@
 			"abilities": [
 				{
 					"name": "United in Darkness",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "While there is at least 1 friendly WARRIORS OF CHAOS HERO and 1 other friendly DAEMON HERO or DARKOATH HERO on the battlefield, add 2 to the control scores of friendly SLAVES TO DARKNESS units while they are contesting an objective that is wholly outside friendly territory."
@@ -83,6 +91,7 @@
 			"abilities": [
 				{
 					"name": "You Will Serve!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -97,6 +106,7 @@
 			"abilities": [
 				{
 					"name": "Ironclad Onslaught",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Your Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -111,11 +121,13 @@
 			"abilities": [
 				{
 					"name": "Rally the Tribes",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If there is a friendly DARKOATH HERO on the battlefield, pick a friendly non-HERO non-UNIQUE DARKOATH unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) on the battlefield, wholly within 6\" of a battlefield edge and more than 3\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) on the battlefield, wholly within 6\" of a battlefield edge and more than 3\" from all enemy units.",
+					"command_points": 1
 				}
 			]
 		},
@@ -125,6 +137,7 @@
 			"abilities": [
 				{
 					"name": "Devotees of Ruin",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -139,6 +152,7 @@
 			"abilities": [
 				{
 					"name": "Paragons of Darkness",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 2 to the Attacks characteristic of melee weapons used by friendly non-MONSTER SLAVES TO DARKNESS HEROES."
@@ -153,12 +167,14 @@
 			"entries": [
 				{
 					"name": "Favoured of the Pantheon",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is picked as the target of the 'Eye of the Gods' ability, it gains 3 Dark Apotheosis points."
 				},
 				{
 					"name": "Deathmonger",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -166,6 +182,7 @@
 				},
 				{
 					"name": "Radiance of Dark Glory",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"declare": "Pick each damaged friendly unit wholly within 12\" of this unit to be the targets.",
@@ -179,6 +196,7 @@
 			"entries": [
 				{
 					"name": "Infernal Puppet",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Battle",
@@ -187,12 +205,14 @@
 				},
 				{
 					"name": "The Conquerer's Crown",
+					"type": "passive",
 					"category": "",
 					"timing": "Passive",
 					"effect": "Subtract 5 from the control scores of enemy INFANTRY units while they are in combat with this unit."
 				},
 				{
 					"name": "Realmwarper's Twist-rune",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -208,6 +228,7 @@
 			"entries": [
 				{
 					"name": "Amulet of Chaos",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the enemy target. Then, you can pick a friendly DARKOATH INFANTRY unit in combat with that enemy unit to be the friendly target.",
@@ -215,12 +236,14 @@
 				},
 				{
 					"name": "The Varanite Shackle",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Friendly non-WARRIORS OF CHAOS SLAVES TO DARKNESS units have WARD (6+) while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Head of the Unworthy",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If a friendly SLAVES TO DARKNESS HERO with any Dark Apotheosis points is destroyed, give this unit 8 Dark Apotheosis points."
@@ -234,6 +257,7 @@
 			"entries": [
 				{
 					"name": "Aelfskin Scroll",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a WIZARD within 18\" of this unit",
 					"frequency": "Once Per Battle",
@@ -241,12 +265,14 @@
 				},
 				{
 					"name": "Darkflame Pendant",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Weapons used for attacks that target this unit have a maximum Damage characteristic of 1."
 				},
 				{
 					"name": "Rune of Murder",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -261,6 +287,7 @@
 			"entries": [
 				{
 					"name": "The Dread Banner",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit includes any standard bearers, enemy units cannot use commands while they are in combat with this unit.",
@@ -270,6 +297,7 @@
 				},
 				{
 					"name": "The Banner of Rage",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit has the PLEDGED TO KHORNE keyword.\nIn addition, while this unit includes any standard bearers, add 1 to wound rolls for this unit's combat attacks.",
@@ -279,6 +307,7 @@
 				},
 				{
 					"name": "The Blasted Standard",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has the PLEDGED TO TZEENTCH keyword.\nIn addition, while this unit includes any standard bearers, this unit has WARD (4+) against damage inflicted by shooting attacks.",
@@ -288,6 +317,7 @@
 				},
 				{
 					"name": "The Eroding Icon",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has the PLEDGED TO NURGLE keyword.\nIn addition, while this unit includes any standard bearers, attacks that target this unit cannot score critical hits (treat them as regular hits instead).",
@@ -297,6 +327,7 @@
 				},
 				{
 					"name": "The Banner of Screaming Flesh",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "This unit has the PLEDGED TO SLAANESH keyword.\nIn addition, while this unit includes any standard bearers, if this unit charged this turn, add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the turn.",
@@ -312,6 +343,7 @@
 			"entries": [
 				{
 					"name": "Brand of Unbreakable Bonds",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -321,6 +353,7 @@
 				},
 				{
 					"name": "Brand of Apoplexy",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While your fury level is 7, add 1 to the Damage characteristic of this unit's weapons.",
@@ -328,6 +361,7 @@
 				},
 				{
 					"name": "Brand of the Unaligned",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "This unit cannot use this ability if it has an Ensorcelled Banner.",
@@ -345,6 +379,7 @@
 			"entries": [
 				{
 					"name": "Spite-tongue Curse",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SLAVES TO DARKNESS WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6. If the casting attempt is unsuccessful or if the spell is unbound, inflict D3 mortal damage on the caster.",
@@ -357,6 +392,7 @@
 				},
 				{
 					"name": "Binding Damnation",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SLAVES TO DARKNESS WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -368,6 +404,7 @@
 				},
 				{
 					"name": "Daemonic Speed",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly SLAVES TO DARKNESS WIZARD to cast this spell, pick a visible friendly SLAVES TO DARKNESS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -386,6 +423,7 @@
 			"entries": [
 				{
 					"name": "Summon Darkfire Daemonrift",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Darkfire Daemonrift on the battlefield, pick a friendly SLAVES TO DARKNESS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -398,6 +436,7 @@
 				},
 				{
 					"name": "Summon Eightfold Doom-Sigil",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Eightfold Doom-sigil on the battlefield, pick a friendly SLAVES TO DARKNESS WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -410,6 +449,7 @@
 				},
 				{
 					"name": "Summon Realmscourge Rupture",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Realmscourge Rupture on the battlefield, pick a friendly SLAVES TO DARKNESS WIZARD to cast this spell, then make a casting roll of 2D6.",

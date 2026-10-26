@@ -21,18 +21,21 @@
 			"battle_traits": [
 				{
 					"name": "NOBLE DEEDS",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a friendly HERO uses a FIGHT ability, after its attacks have been resolved, give that HERO a number of noble deeds points equal to the number of damage points allocated by that ability. Each HERO can have a maximum of 6 noble deeds points at any time."
 				},
 				{
 					"name": "FEEDING FRENZY",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Attacks characteristic of melee weapons used by friendly units while they are wholly within 12\" of any friendly HEROES that have 6 noble deeds points."
 				},
 				{
 					"name": "SUMMON LOYAL SUBJECTS",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly HERO with any noble deeds points to use this ability.",
@@ -42,12 +45,14 @@
 			"regiment_abilities": [
 				{
 					"name": "CRUSADING ARMY",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to run rolls and charge rolls for friendly units."
 				},
 				{
 					"name": "DEFENDERS OF THE REALM",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 1 to save rolls for friendly units that are contesting an objective you control."
@@ -56,18 +61,21 @@
 			"enhancements": [
 				{
 					"name": "ULGUAN CLOAK",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Your general is not visible to enemy models that are more than 12\" away from them."
 				},
 				{
 					"name": "ROUSING ORATION",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Roll a dice for each friendly unit wholly within 12\" of your general. Do not roll a dice for your general. For each 5+, give 1 noble deeds point to your general."
 				},
 				{
 					"name": "BLOOD-RIVER CHALICE",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Battle",
@@ -75,6 +83,7 @@
 				},
 				{
 					"name": "CRIMSON VICTUALS",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of your general to be the target, then make a casting roll of 2D6.",
@@ -105,6 +114,7 @@
 					"abilities": [
 						{
 							"name": "DERANGED TRANSFORMATION",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a visible friendly unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -140,6 +150,7 @@
 					"abilities": [
 						{
 							"name": "ROYAL BODYGUARD",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Add 1 to ward rolls for friendly HEROES that are wholly within this unit’s combat range."
@@ -189,6 +200,7 @@
 					"abilities": [
 						{
 							"name": "PREDATOR'S POUNCE",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit when it uses RETREAT abilities."
@@ -232,6 +244,7 @@
 					"abilities": [
 						{
 							"name": "VICTORY FEAST",
+							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
 							"effect": "If any models were slain by this unit this turn, Heal (D6) this unit, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it."
@@ -266,6 +279,7 @@
 			"battle_traits": [
 				{
 					"name": "DELUSIONS AND MADNESS",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"frequency": "Once Per Battle Round (Army)",
@@ -274,6 +288,7 @@
 				},
 				{
 					"name": "DELUSION OF THE GREAT FEAST",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -285,6 +300,7 @@
 				},
 				{
 					"name": "DELUSION OF THE KNIGHTLY HOST",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While you believe this DELUSION, if the unmodified charge roll for a friendly HERO or KNIGHTS unit is 8+, add 1 to hit rolls for that unit’s combat attacks for the rest of the turn.",
@@ -296,6 +312,7 @@
 			"regiment_abilities": [
 				{
 					"name": "DELUSION OF THE SENTINEL",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While you believe this DELUSION, add 1 to ward rolls for friendly units while each model in the unit is contesting an objective.",
@@ -305,6 +322,7 @@
 				},
 				{
 					"name": "DELUSION OF THE HUNTER",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While you believe this DELUSION, add 1 to wound rolls for combat attacks made by friendly units while no models in the unit are contesting an objective.",
@@ -316,6 +334,7 @@
 			"enhancements": [
 				{
 					"name": "ALMOST LUCID",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the ‘Delusions and Madness’ ability",
 					"frequency": "Once Per Battle",
@@ -323,6 +342,7 @@
 				},
 				{
 					"name": "A WORTHY CHALLENGE",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -331,12 +351,14 @@
 				},
 				{
 					"name": "COMPANION OF THE HUNT",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"effect": "If your general is not in combat, they can move 3\". They cannot move into combat during any part of that move."
 				},
 				{
 					"name": "CHOIRMASTER",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle",
@@ -368,6 +390,7 @@
 					"abilities": [
 						{
 							"name": "SOUND THE PURSUIT!",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -405,6 +428,7 @@
 					"abilities": [
 						{
 							"name": "HOLY BLADES OF BONE",
+							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
 							"declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target.",
@@ -440,6 +464,7 @@
 					"abilities": [
 						{
 							"name": "LIE OF THE LAND",
+							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
 							"effect": "If this unit is not in combat and is wholly within 6\" of a battlefield edge, remove this unit from the battlefield and set it up again wholly within 6\" of a battlefield edge and more than 6\" from all enemy units"
@@ -486,6 +511,7 @@
 					"abilities": [
 						{
 							"name": "UNHOLY CHORUS",
+							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
 							"declare": "Pick a visible enemy unit within 10\" of this unit to be the target.",

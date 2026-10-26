@@ -47,6 +47,7 @@
 			"abilities": [
 				{
 					"name": "Unstoppable Charge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -55,6 +56,7 @@
 				},
 				{
 					"name": "Still Their Breath!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a friendly non-HERO OSSIARCH BONEREAPERS CAVALRY unit wholly within 12\" of this unit to be the target.",
@@ -118,18 +120,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Razarak's Ebon Claws is 3."
 				},
 				{
 					"name": "The Staff of Spirits",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit. Each time this unit successfully casts a spell, Heal (1) this unit after that SPELL ability has been resolved."
 				},
 				{
 					"name": "The Doom of Traitors",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -147,6 +152,7 @@
 				},
 				{
 					"name": "Mortarch of Sacrament",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a SPELL ability for a unit within 18\" of this unit",
 					"frequency": "Once Per Turn",
@@ -154,6 +160,7 @@
 				},
 				{
 					"name": "Curse of Years",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -203,6 +210,7 @@
 			"abilities": [
 				{
 					"name": "Deathly Aura",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Enemy units cannot be set up within X\" of this terrain feature, where X is determined by the current battle round, as follows:\n1 9\"\n2 12\"\n3 15\"\n4 18\"\n5 21\""
@@ -256,6 +264,7 @@
 			"abilities": [
 				{
 					"name": "No Escape",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from ward rolls for enemy units while they are within 12\" of this MANIFESTATION."
@@ -297,6 +306,7 @@
 			"abilities": [
 				{
 					"name": "Bone Harvest",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -304,12 +314,14 @@
 				},
 				{
 					"name": "Bone Cage",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit is either full or empty. It starts the battle full."
 				},
 				{
 					"name": "Repair Construct",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -351,6 +363,7 @@
 			"abilities": [
 				{
 					"name": "Immortal Bulwark",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -409,6 +422,7 @@
 			"abilities": [
 				{
 					"name": "Nadirite Bow",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
 					"declare": "If this unit's Nohem is on the battlefield, pick a visible enemy unit within 18\" of this unit to be the target.",
@@ -416,6 +430,7 @@
 				},
 				{
 					"name": "Mir Kainan",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Mir Kainan is on the battlefield, this unit has WIZARD (1), RELENTLESS DISCIPLINE (2) and can be picked as the target of the 'Immortal Elite' ability as if it had the HERO\nkeyword."
@@ -484,18 +499,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the number after its RELENTLESS DISCIPLINE keyword is 4."
 				},
 				{
 					"name": "Mortarch of the Necropolis",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to the control scores of visible friendly OSSIARCH BONEREAPERS units that have used any RELENTLESS DISCIPLINE abilities this turn."
 				},
 				{
 					"name": "Aviarch Spymaster",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
@@ -503,6 +521,7 @@
 				},
 				{
 					"name": "You Dare?!",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
 					"frequency": "Once Per Battle",
@@ -511,6 +530,7 @@
 				},
 				{
 					"name": "Supreme Lord of the Bonereaper Legions",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit is not in combat, pick a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of this unit that is in combat and has not used a RELENTLESS DISCIPLINE ability this phase to be the target.",
@@ -567,6 +587,7 @@
 			"abilities": [
 				{
 					"name": "Deathrider Wedge",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the enemy target. Then, you can pick a friendly Liege-Kavalos within this unit's combat range to be the friendly target.",
@@ -626,6 +647,7 @@
 			"abilities": [
 				{
 					"name": "Scything Assault",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
@@ -638,6 +660,7 @@
 				},
 				{
 					"name": "Pinning Attacks",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -699,12 +722,14 @@
 			"abilities": [
 				{
 					"name": "Deathrider Commander",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "This unit and visible friendly Kavalos Deathriders units wholly within 12\" Of this unit can move 12\" instead of 10\" when they use the 'Deathrider Wedge' ability."
 				},
 				{
 					"name": "Master of Cavalry",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Kavalos Deathriders unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's combat attacks for the rest of the turn."
@@ -766,6 +791,7 @@
 			"abilities": [
 				{
 					"name": "Grind Them to Dust",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -774,6 +800,7 @@
 				},
 				{
 					"name": "Masterful Charioteer",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -823,6 +850,7 @@
 			"abilities": [
 				{
 					"name": "Clinical Efficiency",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase, Reaction: You declared a FIGHT ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -869,6 +897,7 @@
 			"abilities": [
 				{
 					"name": "Discharge Armour",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -877,6 +906,7 @@
 				},
 				{
 					"name": "Ebon-wrought Armour",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit has WARD (3+) against damage points inflicted by SPELL abilities, PRAYER abilities and abilities used by MANIFESTATIONS."
@@ -921,6 +951,7 @@
 			"abilities": [
 				{
 					"name": "Harbingers of Death",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
@@ -974,6 +1005,7 @@
 			"abilities": [
 				{
 					"name": "Deathly Barrage",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: You declared a SHOOT ability for this unit.",
 					"frequency": "Once Per Turn (Army)",
@@ -981,6 +1013,7 @@
 				},
 				{
 					"name": "Cursed Stele",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1024,6 +1057,7 @@
 			"abilities": [
 				{
 					"name": "Shields of the Legion",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared an ATTACK ability that targeted a visible OSSIARCH BONEREAPERS unit within this unit's combat range.",
 					"frequency": "Once Per Phase (Army)",
@@ -1072,6 +1106,7 @@
 			"abilities": [
 				{
 					"name": "Shields of the Legion",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: A friendly OSSIARCH BONEREAPERS WAR MACHINE or WIZARD within this unit's combat range was targeted by an ATTACK ability",
 					"frequency": "Once Per Phase (Army)",
@@ -1124,12 +1159,14 @@
 			"abilities": [
 				{
 					"name": "Balefire Braziers",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Balefire Braziers are tokens. There are 2 Balefire Braziers for every 10 models in this unit. After setting up this unit on the battlefield for the first time, place its Balefire Braziers next to it."
 				},
 				{
 					"name": "Cursed Flames",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SHOOT ability for this unit.",
 					"frequency": "Once Per Turn (Army)",
@@ -1137,6 +1174,7 @@
 				},
 				{
 					"name": "Atavistic Nightmares",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "While any of this unit's Balefire Braziers are next to an enemy unit, subtract 3 from the control scores of enemy units within that enemy unit's combat range.\nIf an ability would heal or return slain models to an enemy unit while any of this unit's Balefire Braziers are next to it, that ability does not heal or return any slain models to it. Instead, place those Balefire Braziers next to this unit."
@@ -1182,16 +1220,19 @@
 			"abilities": [
 				{
 					"name": "Legion Quartermaster",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly non-HERO OSSIARCH BONEREAPERS unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
 					"name": "Boneshaper",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "If this unit is not in combat, pick a friendly Mortek Guard or Mortek Triaxes unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and not in combat."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and not in combat.",
+					"command_points": 1
 				}
 			],
 			"keywords": [
@@ -1240,13 +1281,16 @@
 			"abilities": [
 				{
 					"name": "Boneshaper",
+					"type": "command",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "If this unit is not in combat, pick a friendly Mortek Guard unit that has been destroyed to be the target.",
-					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units."
+					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
+					"command_points": 1
 				},
 				{
 					"name": "Legion Quartermaster",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time a friendly non-HERO OSSIARCH BONEREAPERS unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -1295,6 +1339,7 @@
 			"abilities": [
 				{
 					"name": "Refined Creations",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1345,6 +1390,7 @@
 			"abilities": [
 				{
 					"name": "Soul-guide",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly OSSIARCH BONEREAPERS unit wholly within 12\" of the caster to be the target, then make a casting roll of 2D6.",
@@ -1400,12 +1446,14 @@
 			"abilities": [
 				{
 					"name": "Soulreaper",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from wound rolls for combat attacks made by enemy units while they are in combat with this unit."
 				},
 				{
 					"name": "Necrotic Blast",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1454,6 +1502,7 @@
 			"abilities": [
 				{
 					"name": "Necrocaches",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1462,6 +1511,7 @@
 				},
 				{
 					"name": "No Escaping the Tithe",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1509,6 +1559,7 @@
 			"abilities": [
 				{
 					"name": "The Coldness of Death",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1516,6 +1567,7 @@
 				},
 				{
 					"name": "Terminate their Command",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1546,6 +1598,7 @@
 			"abilities": [
 				{
 					"name": "Invocation of Nagash",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "This unit can cast this spell more than once per phase. Pick a visible unit wholly within 18\" of this unit that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
@@ -1587,6 +1640,7 @@
 			"abilities": [
 				{
 					"name": "Fourfold Slayers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1629,6 +1683,7 @@
 			"abilities": [
 				{
 					"name": "Death Incarnate",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"effect": "If this MANIFESTATION was destroyed or banished this turn and the unit that summoned it is on the battlefield, roll a dice. On a 4+, set up this MANIFESTATION again, wholly within 12\" of the unit that summoned it and more than 9\" from all enemy units. That unit has summoned that MANIFESTATION. Add 1 to the roll if any enemy models were slain by this MANIFESTATION's combat attacks this turn."
@@ -1671,6 +1726,7 @@
 			"abilities": [
 				{
 					"name": "Aviarch Sentry",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Subtract 10 from the control scores of enemy units while they are within 6\" of this MANIFESTATION."
@@ -1712,6 +1768,7 @@
 			"abilities": [
 				{
 					"name": "Bone-deep Savagery",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1719,6 +1776,7 @@
 				},
 				{
 					"name": "Hunters Unleashed",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"effect": "This unit can use the 'Normal Move' ability as if it were your movement phase."
@@ -1761,12 +1819,14 @@
 			"abilities": [
 				{
 					"name": "Truebone Mastery",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Spend any number of this unit's portions of truebone. For each portion spent, pick 1 of the effects below. Each effect can be picked multiple times and the effects are cumulative.\n• Add 1 to casting rolls for this unit for the rest of the turn.\n• Add 1 to banishment rolls for this unit for the rest of the turn.\n• Gain 1 relentless discipline point.\n• Return 1 slain model to this unit."
 				},
 				{
 					"name": "Seeker of Truebone",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can be picked to be the target of the 'Immortal Elite' ability as if it had the HERO keyword.\nEach time a visible enemy unit within 12\" of this unit is destroyed, roll a dice. On a 3+, this unit gains 1 portion of truebone. Each time a visible friendly non-BEAST OSSIARCH BONEREAPERS unit wholly within 12\" of this unit is destroyed, this unit gains 1 portion of truebone."
@@ -1830,6 +1890,7 @@
 			"abilities": [
 				{
 					"name": "Crushing Bonebulk",
+					"type": "active",
 					"category": "",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1841,6 +1902,7 @@
 				},
 				{
 					"name": "Battlefield Enhancements",
+					"type": "active",
 					"category": "",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Battle (Army)",
@@ -1901,13 +1963,16 @@
 			"abilities": [
 				{
 					"name": "Voice of Nagash",
+					"type": "command",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
-					"effect": "The target cannot be picked to be the target of or be affected by any non-CORE abilities used by other enemy units for the rest of the turn."
+					"effect": "The target cannot be picked to be the target of or be affected by any non-CORE abilities used by other enemy units for the rest of the turn.",
+					"command_points": 1
 				},
 				{
 					"name": "Mortal Contract",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -1973,12 +2038,14 @@
 			"abilities": [
 				{
 					"name": "Master of the Bone-Tithe",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "Your opponent must pick 1 of the following effects:\nPay the Tithe: Your opponent must pick a unit in their army on the battlefield to be the target. They cannot pick a MANIFESTATION or terrain feature. Then:\n• Inflict D6 mortal damage on the target.\n• Until the start of your next turn, the target cannot be healed, have slain models returned to it or be replaced.\nDeny the Ossiarchs their Rightful Due: Pick 1 of the following effects:\n• You gain 4 relentless discipline points.\n• Pick an objective you do not control. For the rest of the turn, add 5 to the control scores of friendly OSSIARCH BONEREAPERS units while they are contesting that objective.\n• For the rest of the turn, add 2 to the Attacks characteristic and add 6\" to the Range characteristic of this unit's Gaze of Death."
 				},
 				{
 					"name": "Cowed into Inaction",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy HERO within 18\" of this unit to be the target, then make a casting roll of 2D6.",

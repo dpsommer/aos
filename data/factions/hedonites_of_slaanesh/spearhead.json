@@ -26,6 +26,7 @@
 			"battle_traits": [
 				{
 					"name": "TEMPTATIONS OF SLAANESH",
+					"type": "active",
 					"category": "special",
 					"timing": "",
 					"effect": "You receive 6 temptation dice at the start of the battle round. Each time your opponent makes a failed hit roll, a failed wound roll or a failed save roll, you can offer them a temptation dice. If they accept your offer, that roll is replaced with a 6. Rolls replaced in this way cannot be re-rolled or modified.\nEach time your opponent accepts your offer of a temptation dice, you gain D6 depravity points. Each time your opponent rejects your offer of a temptation dice, inflict D3 mortal damage on the unit for which the roll was made.\nYou cannot offer your opponent a temptation dice for the same enemy unit more than once per phase. At the end of the battle round, all remaining temptation dice are lost.\nAll friendly units gain passive abilities from the table below based on the number of depravity points you have. These abilities are cumulative.",
@@ -48,6 +49,7 @@
 			"regiment_abilities": [
 				{
 					"name": "UNPARALLELED SPEED",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -56,6 +58,7 @@
 				},
 				{
 					"name": "LOCUS OF DIVERSION",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly unit to use this ability.",
@@ -65,6 +68,7 @@
 			"enhancements": [
 				{
 					"name": "SCEPTRE OF DOMINATION",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Roll a dice for each enemy unit in combat with your general.",
@@ -72,6 +76,7 @@
 				},
 				{
 					"name": "CACOPHONIC CHOIR",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -79,6 +84,7 @@
 				},
 				{
 					"name": "TWISTED MIRROR",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn",
@@ -87,6 +93,7 @@
 				},
 				{
 					"name": "PENDANT OF SLAANESH",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"effect": "Heal (D3) your general."
@@ -115,6 +122,7 @@
 					"abilities": [
 						{
 							"name": "VISION OF DAMNATION",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Make a casting roll of 2D6.",
@@ -164,6 +172,7 @@
 					"abilities": [
 						{
 							"name": "UNRIVALLED VELOCITY",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "You can re-roll charge rolls for this unit."
@@ -205,6 +214,7 @@
 					"abilities": [
 						{
 							"name": "SLAUGHTER AT ANY COST",
+							"type": "active",
 							"category": "movement",
 							"timing": "Enemy Shooting Phase",
 							"declare": "This unit can use this ability if any damage points were allocated to it this turn.",
@@ -249,6 +259,7 @@
 					"abilities": [
 						{
 							"name": "LIGHT-FOOTED KILLERS",
+							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
 							"effect": "This unit can use SHOOT abilities even if it used a RUN ability in the same turn."
@@ -287,6 +298,7 @@
 			"battle_traits": [
 				{
 					"name": "FAVOUR MOST FICKLE",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "The following effects apply based on the number of friendly units on the battlefield. These effects are not cumulative:",
@@ -317,12 +329,14 @@
 			"regiment_abilities": [
 				{
 					"name": "BRINGERS OF DEGRADATION",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, you can pick 2 friendly Daemonettes units instead of 1 unit. Resolve the second FIGHT ability immediately after the first."
 				},
 				{
 					"name": "DAEMONIC ONSLAUGHT",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -333,12 +347,14 @@
 			"enhancements": [
 				{
 					"name": "TWISTED GRACE",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "When your general makes a pile-in move, if they charged in the same turn, add D6\" to the distance they can move."
 				},
 				{
 					"name": "EXCESS OF VIOLENCE",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -347,12 +363,14 @@
 				},
 				{
 					"name": "HIGH COURTIERS",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While your general is wholly within the combat range of a friendly Daemonettes unit, both units have WARD (5+)."
 				},
 				{
 					"name": "IRRESISTIBLE SOUL-MUSK",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -384,12 +402,14 @@
 					"abilities": [
 						{
 							"name": "THRICEFOLD COURT",
+							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
 							"effect": "Each model in this unit is treated as an individual unit when determining the effect of the ‘Favour Most Fickle’ battle trait."
 						},
 						{
 							"name": "DISPENSERS OF FAVOUR",
+							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
 							"declare": "Pick up to X different friendly units wholly within 12\" of this unit to be the targets, where X is the number of models in this unit. Then, make a casting roll of 2D6.",
@@ -426,6 +446,7 @@
 					"abilities": [
 						{
 							"name": "SOPORIFIC MUSK",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Charge Phase",
 							"frequency": "Once Per Turn (Army)",
@@ -461,6 +482,7 @@
 					"abilities": [
 						{
 							"name": "LITHE AND SWIFT",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Attacks characteristic of this unit’s Piercing Claws if it charged in the same turn."
@@ -510,6 +532,7 @@
 					"abilities": [
 						{
 							"name": "QUICKSILVER SPEED",
+							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
 							"effect": "When making run rolls for this unit, if you roll a 1-3, you can use a value of 4 instead."

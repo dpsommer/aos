@@ -29,6 +29,7 @@
 			"battle_traits": [
 				{
 					"name": "AWAKEN THE RUNES",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Your Turn",
 					"frequency": "Once Per Battle Round",
@@ -39,6 +40,7 @@
 			"regiment_abilities": [
 				{
 					"name": "MAGMIC TUNNELS",
+					"type": "active",
 					"category": "movement",
 					"timing": "Start of the First Battle Round",
 					"frequency": "Once Per Battle",
@@ -46,6 +48,7 @@
 				},
 				{
 					"name": "FYRESTEEL THROWING AXES",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -56,12 +59,14 @@
 			"enhancements": [
 				{
 					"name": "TOO STUBBORN TO DIE",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
 					"effect": "Heal (D3) your general."
 				},
 				{
 					"name": "HORN OF GRIMNIR",
+					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
 					"declare": "Pick your general to use this ability if they are not in combat.",
@@ -69,12 +74,14 @@
 				},
 				{
 					"name": "SPIRIT OF GRIMNIR",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "You can re-roll activation rolls you make for the ‘Ur-gold Runes’ ability (see Battle Traits)."
 				},
 				{
 					"name": "POWERFUL PRESENCE",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to your general’s control score."
@@ -104,12 +111,14 @@
 					"abilities": [
 						{
 							"name": "ICON OF GRIMNIR",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "Add 1 to save rolls for friendly units while they are wholly within 12\" of this unit."
 						},
 						{
 							"name": "PLANT THE ICON",
+							"type": "active",
 							"category": "defensive",
 							"timing": "Any Hero Phase",
 							"frequency": "Once Per Battle",
@@ -148,6 +157,7 @@
 					"abilities": [
 						{
 							"name": "DUTY UNTO DEATH",
+							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
 							"effect": "While your general is wholly within this unit’s combat range, both this unit and your general have WARD (5+)."
@@ -184,6 +194,7 @@
 					"abilities": [
 						{
 							"name": "WHIRLWIND OF DESTRUCTION",
+							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
 							"effect": "Add 1 to the Attacks characteristic of this unit’s melee weapons if it charged in the same turn."

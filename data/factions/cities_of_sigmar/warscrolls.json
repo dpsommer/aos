@@ -31,6 +31,7 @@
 			"abilities": [
 				{
 					"name": "Runic Crucible",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -79,6 +80,7 @@
 			"abilities": [
 				{
 					"name": "Crucible of Rage",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -139,6 +141,7 @@
 			"abilities": [
 				{
 					"name": "Lava-encrusted",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "While this unit is under orders, each time a shooting attack made by this unit scores a critical hit, subtract 1\" from the target unit's Move characteristic until the start of your next turn (this effect is cumulative). This ability cannot reduce the target unit's unmodified Move characteristic below half its starting value."
@@ -195,6 +198,7 @@
 			"abilities": [
 				{
 					"name": "Fire Lofted Shots",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "If this unit is under orders, for the rest of the turn:\n• Add 6\" to the Range characteristic of this unit's Auralan Bows.\n• Subtract 1 from hit rolls for this unit's shooting attacks."
@@ -240,6 +244,7 @@
 			"abilities": [
 				{
 					"name": "Protective Pike-wall",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit is under orders and has not charged this turn, ignore the effect of the Charge (+1 Damage) ability for combat attacks made by enemy units that target this unit."
@@ -298,6 +303,7 @@
 			"abilities": [
 				{
 					"name": "Allies Drothmasters",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
@@ -346,6 +352,7 @@
 			"abilities": [
 				{
 					"name": "Deathly Candlelight",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -357,6 +364,7 @@
 				},
 				{
 					"name": "Ominous Presence",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -403,6 +411,7 @@
 			"abilities": [
 				{
 					"name": "Incandescent Incineration",
+					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
@@ -411,6 +420,7 @@
 				},
 				{
 					"name": "The Flames of Aqshy",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -460,12 +470,14 @@
 			"abilities": [
 				{
 					"name": "Hidden Murderer",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is within the combat range of a friendly INFANTRY unit that has 5 or more models and there are no enemy units within this unit's combat range, this unit is not visible to enemy units."
 				},
 				{
 					"name": "In for the Kill",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -510,6 +522,7 @@
 			"abilities": [
 				{
 					"name": "Protective Focus",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -568,6 +581,7 @@
 			"abilities": [
 				{
 					"name": "Storm of Shemtek",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -576,6 +590,7 @@
 				},
 				{
 					"name": "Portents of Battle",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -648,6 +663,7 @@
 			"abilities": [
 				{
 					"name": "Ghurish Ferocity",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -658,6 +674,7 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Griffon's Razor Claws and Twin Beaks is 4."
@@ -726,12 +743,14 @@
 			"abilities": [
 				{
 					"name": "Searing Beam of Light",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each time this unit attacks with its Searing Beam of Light, pick a point on the battlefield within range to be the target. If the attack scores a hit, draw a straight line between that point and the closest point on this unit's base. Inflict D3 mortal damage on each visible unit (friendly and enemy) that the line passes across."
 				},
 				{
 					"name": "Aura of Protection",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -788,6 +807,7 @@
 			"abilities": [
 				{
 					"name": "Swift Shots",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -837,6 +857,7 @@
 			"abilities": [
 				{
 					"name": "'At Them, You Curs!'",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Black Ark Corsairs unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn."
@@ -877,6 +898,7 @@
 			"abilities": [
 				{
 					"name": "Steel and Sorcery",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly CITIES OF SIGMAR AELF INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
@@ -922,6 +944,7 @@
 			"abilities": [
 				{
 					"name": "Merciless Conquerors",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -965,6 +988,7 @@
 			"abilities": [
 				{
 					"name": "Well Travelled",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle",
@@ -972,6 +996,7 @@
 				},
 				{
 					"name": "Yondara's Guidance",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "The first time this unit would be destroyed, before removing it from the battlefield, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (5) this unit."
@@ -1017,18 +1042,21 @@
 			"abilities": [
 				{
 					"name": "Pater Filius",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Pater Filius is on the battlefield, it has PRIEST (1)."
 				},
 				{
 					"name": "Crackling with Faith",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a combat attack made by this unit scores a critical hit, you can pick an enemy unit within 6\" of this unit that was not the target of that combat attack. Inflict 1 mortal damage on that enemy unit after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Bolt from the Blue",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "You can pick a visible enemy unit within 12\" of this unit to be the target. Then, make a chanting roll of D6.",
@@ -1096,6 +1124,7 @@
 			"abilities": [
 				{
 					"name": "Relentless Hunters",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
 					"declare": "This unit can use this ability even if it is in the shadows. If there is no enemy mark, pick an enemy HERO on the battlefield to be the target. If there are no enemy HEROES on the battlefield, pick an enemy non-HERO unit on the battlefield to be the target instead.",
@@ -1103,6 +1132,7 @@
 				},
 				{
 					"name": "Right Tools for the Job",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Double the Damage characteristic of this unit's melee weapons for attacks that target the enemy mark."
@@ -1186,12 +1216,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
 					"name": "Full Power!",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1199,12 +1231,14 @@
 				},
 				{
 					"name": "Overheating",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Immediately after resolving this unit's 'Full Power!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
 				},
 				{
 					"name": "Special Ammunition",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit.",
 					"frequency": "Once Per Turn (Army)",
@@ -1263,6 +1297,7 @@
 			"abilities": [
 				{
 					"name": "Storm of Shemtek",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1271,6 +1306,7 @@
 				},
 				{
 					"name": "Portents of Battle",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1325,6 +1361,7 @@
 			"abilities": [
 				{
 					"name": "Direct the Gyrocorps",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1400,12 +1437,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
 					"name": "Full Charge!",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1413,12 +1452,14 @@
 				},
 				{
 					"name": "Overheating",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Immediately after resolving this unit's 'Full Charge!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
 				},
 				{
 					"name": "All Aboard!",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick up to 1 friendly SIGMARITE INFANTRY HERO and up to 1 friendly non-HERO SIGMARITE INFANTRY unit that have not been deployed.",
@@ -1429,6 +1470,7 @@
 				},
 				{
 					"name": "Sally Forth",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -1499,6 +1541,7 @@
 			"abilities": [
 				{
 					"name": "Sow Havoc",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1556,6 +1599,7 @@
 			"abilities": [
 				{
 					"name": "Storm of Iron-tipped Bolts",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1589,6 +1633,7 @@
 			"abilities": [
 				{
 					"name": "Hauled to War",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Normal Move' ability for a CITIES OF SIGMAR INFANTRY unit within 3\" of this terrain feature",
 					"frequency": "Once Per Turn (Army)",
@@ -1596,6 +1641,7 @@
 				},
 				{
 					"name": "Fury of the Faithful",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a visible enemy unit within 6\" of this terrain feature to be the target.",
@@ -1652,6 +1698,7 @@
 			"abilities": [
 				{
 					"name": "Scythed Runners",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1708,6 +1755,7 @@
 			"abilities": [
 				{
 					"name": "Bestial Instincts",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1755,6 +1803,7 @@
 			"abilities": [
 				{
 					"name": "Fury of the Wildlands",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "You must use this ability.",
@@ -1762,6 +1811,7 @@
 				},
 				{
 					"name": "Ebon Claw",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"effect": "Allocate D3 damage points to this unit (ward rolls cannot be made for those damage points). Then, add the number of damage points allocated to this unit by this ability this turn to the Attacks characteristic of this unit's melee weapons for the rest of the turn."
@@ -1849,12 +1899,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Black Dragon's Claws is 4."
 				},
 				{
 					"name": "Indiscriminate Slaughter",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1866,6 +1918,7 @@
 				},
 				{
 					"name": "Under the Shadow of Black Wings",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to charge rolls for friendly CITIES OF SIGMAR AELF CAVALRY units while they are wholly within 12\" of this unit."
@@ -1910,6 +1963,7 @@
 			"abilities": [
 				{
 					"name": "Coven Guard",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1963,6 +2017,7 @@
 			"abilities": [
 				{
 					"name": "Expert Ranger",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "If this unit is not in combat, pick a non-FACTION TERRAIN terrain feature within 3\" of this unit to be the target.",
@@ -1970,6 +2025,7 @@
 				},
 				{
 					"name": "Runic Axes",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is in combat with 2 or more enemy units, this unit's Runic Axes have Crit (2 Hits)."
@@ -2011,12 +2067,14 @@
 			"abilities": [
 				{
 					"name": "Shield of the Manticore",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly INFANTRY HEROES while those friendly units are within 3\" of this unit."
 				},
 				{
 					"name": "Emberstone-riddled Flesh",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after that FIGHT ability has been resolved."
@@ -2076,6 +2134,7 @@
 			"abilities": [
 				{
 					"name": "Lantern of All-Knowledge",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"effect": "If this unit is wholly within 9\" of a corner of the battlefield, pick 1 of the following effects to apply until the start of your next turn:",
@@ -2100,6 +2159,7 @@
 				},
 				{
 					"name": "Realmsphere Mastery",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy MANIFESTATION within 12\" of this unit and that was not set up this turn to be the target.",
@@ -2107,6 +2167,7 @@
 				},
 				{
 					"name": "The Four Corners of the Realms",
+					"type": "spell",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -2155,6 +2216,7 @@
 			"abilities": [
 				{
 					"name": "Severing Strike",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2198,6 +2260,7 @@
 			"abilities": [
 				{
 					"name": "Glorious Martyrs",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While a friendly SIGMARITE PRIEST is wholly within this unit's combat range, add 1 to wound rolls for this unit's combat attacks."
@@ -2272,12 +2335,14 @@
 			"abilities": [
 				{
 					"name": "'For Sigmar, For Glory!'",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Counter-charge' command for this unit.",
 					"effect": "Pick a visible friendly non-HERO SIGMARITE CAVALRY unit that is wholly within 12\" of this unit, is not in combat and has not used a RUN ability this turn to be the target. After the 'Counter-charge' command for this unit has been resolved, if this unit is in combat, the target can immediately use the 'Charge' ability as if it were your charge phase. In addition, you can re-roll charge rolls for the target for the rest of the phase."
 				},
 				{
 					"name": "Run Down the Foe",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2334,6 +2399,7 @@
 			"abilities": [
 				{
 					"name": "Storm of Steel",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2393,6 +2459,7 @@
 			"abilities": [
 				{
 					"name": "The Red Work",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit is in combat and has not charged this turn, pick this unit and up to 1 friendly Freeguild Cavalier-Marshal or Freeguild Marshal on Griffon within this unit's combat range to be the targets.",
@@ -2435,6 +2502,7 @@
 			"abilities": [
 				{
 					"name": "Freeguild Adjutants",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2477,6 +2545,7 @@
 			"abilities": [
 				{
 					"name": "Seize the Souls",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2485,6 +2554,7 @@
 				},
 				{
 					"name": "Field Surgery",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2531,6 +2601,7 @@
 			"abilities": [
 				{
 					"name": "Lurking Spymaster",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit cannot use or be picked as the target of the 'Form Up!' ability.\nWhile this unit is within the combat range of a friendly SIGMARITE INFANTRY unit that has 3 or more models and there are no other friendly Whisperblades within that unit's combat range, this unit cannot be picked to be the target of shooting attacks or combat attacks."
@@ -2579,6 +2650,7 @@
 			"abilities": [
 				{
 					"name": "Blackpowder Squire",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit and this unit is in combat",
 					"frequency": "Once Per Battle",
@@ -2586,6 +2658,7 @@
 				},
 				{
 					"name": "Fortified Position",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit is under orders:\n• This unit's ranged weapons have Shoot in Combat.\n• Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit."
@@ -2626,12 +2699,14 @@
 			"abilities": [
 				{
 					"name": "Not One Step Back",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit has not charged this turn, add 1 to the Attacks characteristic and Damage characteristic of this unit's melee weapons."
 				},
 				{
 					"name": "Break Them Upon the Walls",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is under orders, the melee weapons of other visible friendly SIGMARITE units, excluding Freeguild Gallants units, have Anti-charge (+1 Rend) while they are wholly within 12\" of this unit."
@@ -2682,6 +2757,7 @@
 			"abilities": [
 				{
 					"name": "Cinders and Ashes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2744,13 +2820,16 @@
 			"abilities": [
 				{
 					"name": "Front-line Commander",
+					"type": "command",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"frequency": "Once Per Battle (Army)",
-					"effect": "If this unit is under orders, pick a friendly SIGMARITE INFANTRY or MONSTER unit that is wholly within 12\" of this unit or has this unit's Relic Envoy next to it and that has not used a FIGHT ability this turn to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, the target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn"
+					"effect": "If this unit is under orders, pick a friendly SIGMARITE INFANTRY or MONSTER unit that is wholly within 12\" of this unit or has this unit's Relic Envoy next to it and that has not used a FIGHT ability this turn to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, the target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn",
+					"command_points": 1
 				},
 				{
 					"name": "Attendant Relic Envoy",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2813,18 +2892,21 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Griffon's Razor Claws and Deadly Beak is 4."
 				},
 				{
 					"name": "Tactical Acumen",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly CITIES OF SIGMAR unit wholly within 12\" of this unit",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
 					"name": "Piercing Bloodroar",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2870,6 +2952,7 @@
 			"abilities": [
 				{
 					"name": "Steel of Helm and Heart",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2935,6 +3018,7 @@
 			"abilities": [
 				{
 					"name": "Coordinate Attacks",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3009,12 +3093,14 @@
 			"abilities": [
 				{
 					"name": "Guardian and Mentor",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit contains 2 models, it has WARD (5+)."
 				},
 				{
 					"name": "Weapons of Banishment",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly SIGMARITE unit wholly within 12\" of this unit and under orders to be the target.",
@@ -3069,6 +3155,7 @@
 			"abilities": [
 				{
 					"name": "Aggressive Defenders",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3077,6 +3164,7 @@
 				},
 				{
 					"name": "Open the Gates!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3133,6 +3221,7 @@
 			"abilities": [
 				{
 					"name": "Into Them, Greycaps!",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3141,6 +3230,7 @@
 				},
 				{
 					"name": "Greycap Squire",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: This unit used the 'Redeploy', 'All-out Attack', 'Covering Fire', or 'All-out Defence' command",
 					"frequency": "Once Per Turn (Army)",
@@ -3199,6 +3289,7 @@
 			"abilities": [
 				{
 					"name": "Grudgebuster Bombs",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3261,6 +3352,7 @@
 			"abilities": [
 				{
 					"name": "Guild Bombs",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -3306,6 +3398,7 @@
 			"abilities": [
 				{
 					"name": "Oathsworn",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly Warden Kings are wholly within this unit's combat range, both this unit and those friendly Warden Kings have WARD (5+)."
@@ -3379,6 +3472,7 @@
 			"abilities": [
 				{
 					"name": "Flamewood Stakes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -3386,6 +3480,7 @@
 				},
 				{
 					"name": "Hunt with Conviction",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Start of First Battle Round",
 					"declare": "Pick an enemy HERO or WIZARD to be hunted by the Order. You must pick a WIZARD HERO if there is one in your opponent's army.",
@@ -3452,6 +3547,7 @@
 			"abilities": [
 				{
 					"name": "Barrier of Water",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
@@ -3463,6 +3559,7 @@
 				},
 				{
 					"name": "Sacred Amphora",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Battle",
@@ -3507,6 +3604,7 @@
 			"abilities": [
 				{
 					"name": "Gromril Shieldwall",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, attacks that target this unit cannot score critical hits (treat them as regular hits instead)."
@@ -3562,6 +3660,7 @@
 			"abilities": [
 				{
 					"name": "Cinderblast Bomb",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3615,6 +3714,7 @@
 			"abilities": [
 				{
 					"name": "Relentless Bombardment",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3669,6 +3769,7 @@
 			"abilities": [
 				{
 					"name": "Verdant Growth",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an objective or visible non-FACTION TERRAIN terrain feature within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
@@ -3677,6 +3778,7 @@
 				},
 				{
 					"name": "Summon Wisper",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
 					"effect": "If there is not a friendly Wisper on the battlefield, set up a friendly Wisper wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION."
@@ -3724,12 +3826,14 @@
 			"abilities": [
 				{
 					"name": "Harrying Attacks",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit's Thexa is next to an enemy unit, that enemy unit's attacks cannot score critical hits (treat them as regular hits instead)."
 				},
 				{
 					"name": "Prowling Ash Panther",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "This unit's Thexa is a token. If this unit's Thexa is not on the battlefield, pick an enemy unit in combat with this unit to be the target.",
@@ -3737,6 +3841,7 @@
 				},
 				{
 					"name": "Fluid Combat Style",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for this unit or a non-HERO SIGMARITE INFANTRY unit wholly within 12\" of this unit.",
 					"effect": "Immediately after the FIGHT ability used by that unit has been resolved, pick a point on the battlefield within 6\" of this unit and more than 3\" from all units (friendly and enemy) and terrain features. Remove the unit that used the FIGHT ability from the battlefield and set it up again wholly within 6\" of that point and not in combat."
@@ -3781,6 +3886,7 @@
 			"abilities": [
 				{
 					"name": "Goaded and Whipped",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3788,6 +3894,7 @@
 				},
 				{
 					"name": "Abyssal Howl",
+					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -3843,6 +3950,7 @@
 			"abilities": [
 				{
 					"name": "Blessed Fire",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3885,6 +3993,7 @@
 			"abilities": [
 				{
 					"name": "'I Thought Duardin Were Made of Sterner Stuff!'",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3942,12 +4051,14 @@
 			"abilities": [
 				{
 					"name": "Searing Beam of Light",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each time this unit attacks with its Searing Beam of Light, pick a point on the battlefield within range to be the target. If the attack scores a hit, draw a straight line between that point and the closest point on this unit's base. Inflict D3 mortal damage on each visible unit (friendly and enemy) that the line passes across."
 				},
 				{
 					"name": "Aura of Protection",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3996,6 +4107,7 @@
 			"abilities": [
 				{
 					"name": "Consecrate the Land",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4053,12 +4165,14 @@
 			"abilities": [
 				{
 					"name": "The Great Wheel Turns",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time a model in a visible friendly SIGMARITE unit wholly within 12\" of this unit is slain by a combat attack and that model was in combat with the attacking unit, make a number of zealotry rolls of D6 equal to that model's Health characteristic. For each 6+, inflict 1 mortal damage on the attacking units after the FIGHT ability has been resolved."
 				},
 				{
 					"name": "Vessel of Sigmar",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Make a chanting roll of D6. If the roll is an unmodified 1, you can re-roll the dice.",
@@ -4137,6 +4251,7 @@
 			"abilities": [
 				{
 					"name": "Sigmar's Blessing",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly SIGMARITE unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -4148,6 +4263,7 @@
 				},
 				{
 					"name": "Unquenchable Faith",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit would be destroyed, before removing it from play, this unit can immediately use the 'Sigmar's Blessing' ability as if it were your hero phase. If it does so:\n• That prayer does not count towards the number of PRAYER abilities this unit can use this phase.\n• Instead of making a chanting roll for that prayer, you must use a value of 10 for the roll that cannot be modified.\n• The effect of that prayer applies for the rest of the battle instead of until the start of your next turn."
@@ -4197,6 +4313,7 @@
 			"abilities": [
 				{
 					"name": "Word of the God-King",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick a visible enemy WIZARD, PRIEST or MANIFESTATION within 18\" of this unit to be the target.",
@@ -4204,6 +4321,7 @@
 				},
 				{
 					"name": "Sigmar's Will",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Make a chanting roll of D6. If the roll is an unmodified 1, you can re-roll the dice.",
@@ -4270,6 +4388,7 @@
 			"abilities": [
 				{
 					"name": "The Raven Cult",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a PRAYER ability for this unit",
 					"frequency": "Once Per Turn (Army)",
@@ -4315,12 +4434,14 @@
 			"abilities": [
 				{
 					"name": "Runes of Spellbreaking",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use the 'Unbind' ability as if it had WIZARD (1)."
 				},
 				{
 					"name": "Forgefire",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly CITIES OF SIGMAR DUARDIN unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -4395,6 +4516,7 @@
 			"abilities": [
 				{
 					"name": "Prize Specimens",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4439,6 +4561,7 @@
 			"abilities": [
 				{
 					"name": "Cruel Sacrifice",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4447,6 +4570,7 @@
 				},
 				{
 					"name": "Word of Pain",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4532,12 +4656,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Black Dragon's Claws is 4."
 				},
 				{
 					"name": "Command Underlings",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4546,6 +4672,7 @@
 				},
 				{
 					"name": "Feed on Life Force",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -4557,6 +4684,7 @@
 				},
 				{
 					"name": "Dark Sorcery",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit for each dark sorcery token it has."
@@ -4610,6 +4738,7 @@
 			"abilities": [
 				{
 					"name": "Sustained Bombardment",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4622,6 +4751,7 @@
 				},
 				{
 					"name": "Veteran Batteries",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Sustained Bombardment' ability for another friendly Spirit of the Hands unit and this unit has not used a SHOOT, RUN, or RETREAT ability this turn",
 					"frequency": "Once Per Turn (Army)",
@@ -4684,6 +4814,7 @@
 			"abilities": [
 				{
 					"name": "More Pressure!",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4777,6 +4908,7 @@
 			"abilities": [
 				{
 					"name": "Division Commander",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle",
@@ -4785,6 +4917,7 @@
 				},
 				{
 					"name": "More Pressure!",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4867,12 +5000,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Infernadine's Leonine Jaws is 2."
 				},
 				{
 					"name": "Combat Tactician",
+					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
 					"declare": "If this unit is not in combat, pick a visible friendly SIGMARITE INFANTRY unit wholly within 18\" of it and that is not in combat to be the target.",
@@ -4880,6 +5015,7 @@
 				},
 				{
 					"name": "Lead from the Front",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -4888,6 +5024,7 @@
 				},
 				{
 					"name": "Paralysing Venom",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -4979,12 +5116,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
 					"name": "Power to Maximum!",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4992,6 +5131,7 @@
 				},
 				{
 					"name": "Overheating",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Immediately after resolving this unit's 'Power to Maximum!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
@@ -5061,12 +5201,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
 					"name": "Output to Maximum!",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5074,12 +5216,14 @@
 				},
 				{
 					"name": "Overheating",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Immediately after resolving this unit's 'Output to Maximum!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
 				},
 				{
 					"name": "Venture Forth",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Battle",
@@ -5088,6 +5232,7 @@
 				},
 				{
 					"name": "Ride to Glory",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick up to 1 friendly IRON MARCH INFANTRY HERO and up to 1 friendly non-HERO IRON MARCH INFANTRY unit that have not been deployed.",
@@ -5136,6 +5281,7 @@
 			"abilities": [
 				{
 					"name": "Hidden Agents",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"declare": "Pick this unit and a friendly Callis and Toll unit if those units have not been deployed.",
@@ -5146,6 +5292,7 @@
 				},
 				{
 					"name": "Emerge from the Shadows",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick this unit if it is in the shadows.",
@@ -5153,6 +5300,7 @@
 				},
 				{
 					"name": "Saviours of Cinderfall",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While a friendly Callis and Toll unit is wholly within this unit's combat range, both this unit and that friendly unit have WARD (5+)."
@@ -5197,12 +5345,14 @@
 			"abilities": [
 				{
 					"name": "Fearless Leader",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly CITIES OF SIGMAR DUARDIN unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
 					"name": "Ancestral Grudgebearer",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -5263,6 +5413,7 @@
 			"abilities": [
 				{
 					"name": "Impossible To Destroy",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -5270,6 +5421,7 @@
 				},
 				{
 					"name": "Six-headed Strike",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5345,6 +5497,7 @@
 			"abilities": [
 				{
 					"name": "Expert Pathfinders",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5356,6 +5509,7 @@
 				},
 				{
 					"name": "Prepared Arrival",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5401,6 +5555,7 @@
 			"abilities": [
 				{
 					"name": "Spiritual Locus",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a friendly Jacobus Vyne uses a SPELL or SHOOT ability, you can measure range and visibility from this MANIFESTATION instead of from that friendly unit."

@@ -29,6 +29,7 @@
 			"abilities": [
 				{
 					"name": "Marked for Destruction",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Add 1 to hit rolls for shooting attacks made by friendly VANGUARD CHAMBER units if the target is within 9\" of this unit."
@@ -68,6 +69,7 @@
 			"abilities": [
 				{
 					"name": "Brace for Impact",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
@@ -75,6 +77,7 @@
 				},
 				{
 					"name": "Blazing Impact",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"declare": "If this unit was set up this turn using the 'Scions of the Storm' ability, pick up to 3 enemy units within 10\" of it to be the targets.",
@@ -115,6 +118,7 @@
 			"abilities": [
 				{
 					"name": "Force of a Falling Star",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase and the unmodified charge roll was 8+, pick an enemy unit within 1\" of it to be the target.",
@@ -122,6 +126,7 @@
 				},
 				{
 					"name": "Blazing Impact",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
 					"declare": "If this unit was set up this turn using the 'Scions of the Storm' ability, pick up to 3 enemy units within 10\" of it to be the targets.",
@@ -181,6 +186,7 @@
 			"abilities": [
 				{
 					"name": "Lightning Pulse",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick up to 3 enemy units in combat with this unit to be the targets, then make a casting roll of 2D6.",
@@ -192,12 +198,14 @@
 				},
 				{
 					"name": "Thunderous Pounce",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"effect": "Add 2 to charge rolls for friendly SACROSANCT CHAMBER CAVALRY units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Soul Energy of the First Host",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick a visible friendly SACROSANCT CHAMBER unit wholly within 12\" of this unit to be the target.",
@@ -256,6 +264,7 @@
 			"abilities": [
 				{
 					"name": "Pyroelectric Blast",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
@@ -267,6 +276,7 @@
 				},
 				{
 					"name": "Comet Trail",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -278,6 +288,7 @@
 				},
 				{
 					"name": "Thunderhead Crown",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"effect": "Heal (3) this unit."
@@ -335,18 +346,21 @@
 			"abilities": [
 				{
 					"name": "Dependable Gryph-hound",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Gryph-hound is a token. If this unit's Gryph-hound has been removed, it cannot use the 'Scouting Companion' ability."
 				},
 				{
 					"name": "Castigator Aetheric Channelling",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, this unit's shooting attacks score critical hits on unmodified hit rolls of 5+ for the rest of the turn."
 				},
 				{
 					"name": "Scouting Companion",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
 					"effect": "Until the SHOOT ability is resolved, add 3\" to the Range characteristic of this unit's Thunderhead Greatbows and add 1 to hit rolls for this unit's shooting attacks. Remove this unit's Gryph-hound from the battlefield after the SHOOT ability has been resolved."
@@ -404,12 +418,14 @@
 			"abilities": [
 				{
 					"name": "Cometstrike Sceptre",
+					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
 					"effect": "Each time this unit attacks with its Cometstrike Sceptre, if the attack scores a hit, inflict D3 mortal damage on the target."
 				},
 				{
 					"name": "Retribution From on High",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -469,6 +485,7 @@
 			"abilities": [
 				{
 					"name": "Stormbolt Tempest",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -515,6 +532,7 @@
 			"abilities": [
 				{
 					"name": "Tornado of Magic",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for shooting attacks made by enemy units while they are within 12\" of this MANIFESTATION."
@@ -546,6 +564,7 @@
 			"abilities": [
 				{
 					"name": "Arcane Enhancement",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While the unit that was picked to be the target of the 'Summon Dais Arcanum' ability is on the platform of this MANIFESTATION:\n• That unit has WARD (5+) and FLY.\n• If that unit is a WIZARD, add 1 to that unit's power level.\n• That unit cannot use MOVE abilities and remains on this MANIFESTATION each time it moves.\n• If that unit is picked to make a pile-in move, move this MANIFESTATION instead.\n• Instead of measuring range or visibility to that unit, measure to this MANIFESTATION instead.\n• This MANIFESTATION cannot be picked to be the target of abilities other than BANISH abilities.\nIf this MANIFESTATION is banished, before removing it from the battlefield, set up the unit on its platform on the battlefield within 3\" of it. That unit can only be set up in combat with units it was already in combat with when this MANIFESTATION was banished. If it is not possible to set up that unit, it is destroyed.\nIf the unit on the platform is removed from the battlefield, immediately remove this MANIFESTATION from play."
@@ -601,6 +620,7 @@
 			"abilities": [
 				{
 					"name": "Decimating Blow",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Decimator Thunderaxes if the target unit has 10 or more models."
@@ -653,12 +673,14 @@
 			"abilities": [
 				{
 					"name": "Gather the Aether",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to this unit's power level while it is contesting an objective."
 				},
 				{
 					"name": "Aethershock",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible unit within 12\" of the caster to be the target, then make a casting roll of 2D6.",
@@ -734,6 +756,7 @@
 			"abilities": [
 				{
 					"name": "Thunderstruck",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -742,6 +765,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -810,6 +834,7 @@
 			"abilities": [
 				{
 					"name": "Thunderstruck",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -818,6 +843,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -885,12 +911,14 @@
 			"abilities": [
 				{
 					"name": "Cleaving Blow",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Thunderaxes if the target unit has 10 or more models."
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -959,12 +987,14 @@
 			"abilities": [
 				{
 					"name": "Cleaving Blow",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Thunderaxes if the target unit has 10 or more models."
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1032,6 +1062,7 @@
 			"abilities": [
 				{
 					"name": "Impaling Strikes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -1039,6 +1070,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1107,6 +1139,7 @@
 			"abilities": [
 				{
 					"name": "Impaling Strikes",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -1114,6 +1147,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1190,6 +1224,7 @@
 			"abilities": [
 				{
 					"name": "Overwhelming Volleystorm",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Volleystorm Crossbows to be the target.",
@@ -1197,6 +1232,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1274,6 +1310,7 @@
 			"abilities": [
 				{
 					"name": "Overwhelming Volleystorm",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Volleystorm Crossbows to be the target.",
@@ -1281,6 +1318,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1365,6 +1403,7 @@
 			"abilities": [
 				{
 					"name": "Monstrous Challenge",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1376,12 +1415,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stardrake's Cavernous Jaws is 4."
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1414,6 +1455,7 @@
 			"abilities": [
 				{
 					"name": "Burning Vengeance",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
 					"declare": "If this MANIFESTATION was summoned this phase, pick any number of enemy units within 6\" of it to be the targets.",
@@ -1421,6 +1463,7 @@
 				},
 				{
 					"name": "Arcane Disruption",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Subtract 1 from casting rolls for enemy WIZARDS while they are within 12\" of this MANIFESTATION."
@@ -1464,12 +1507,14 @@
 			"abilities": [
 				{
 					"name": "Warrior Mages",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				},
 				{
 					"name": "Empower",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit is contesting an objective you control, pick a visible friendly non-HERO STORMCAST ETERNALS INFANTRY unit within 12\" of this unit to be the target.",
@@ -1526,12 +1571,14 @@
 			"abilities": [
 				{
 					"name": "Warrior Mages",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				},
 				{
 					"name": "Dracoline Fury",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit is contesting an objective you do not control, it has STRIKE-FIRST."
@@ -1581,12 +1628,14 @@
 			"abilities": [
 				{
 					"name": "Aura of Purity",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If this unit charged this turn, for the rest of the turn, friendly STORMCAST ETERNALS units have WARD (5+) while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Saintly Assault",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Charge Phase",
 					"frequency": "Once Per Battle",
@@ -1639,6 +1688,7 @@
 			"abilities": [
 				{
 					"name": "Once More, For Sigmar, Charge!",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
 					"declare": "Pick this unit and another visible friendly WARRIOR CHAMBER unit within 3\" of it to be the targets.",
@@ -1646,6 +1696,7 @@
 				},
 				{
 					"name": "Sigmarite Thundershield",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -1689,6 +1740,7 @@
 			"abilities": [
 				{
 					"name": "Warning Cry",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"declare": "Pick an enemy unit within 12\" of this unit that was set up this turn. Then, pick up to 3 friendly STORMCAST ETERNALS units armed with ranged weapons that are within 12\" of that enemy unit to be the targets.",
@@ -1738,12 +1790,14 @@
 			"abilities": [
 				{
 					"name": "'Because I'm Hamilcar!'",
+					"type": "active",
 					"category": "",
 					"timing": "Start of Any Turn",
 					"effect": "Roll a dice. You gain a number of charmed fate points equal to the roll.\nDuring the turn, you can spend your charmed fate points. For each charmed fate point you spend, you can re-roll 1 hit roll, 1 wound roll, 1 save roll, or 1 ward roll for this unit. For every 2 charmed fate points you spend, you can re-roll 1 charge roll for this unit.\nAt the end of the turn, any unspent charmed fate points are lost."
 				},
 				{
 					"name": "'That One's Mine!'",
+					"type": "active",
 					"category": "",
 					"timing": "Any Combat Phase",
 					"declare": "This unit can only use this ability if it is in combat with an enemy MONSTER and no other friendly units are in combat with that enemy MONSTER",
@@ -1816,12 +1870,14 @@
 			"abilities": [
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Cthorak's Ancient Claws is 4."
 				},
 				{
 					"name": "Lightning Tempest",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be struck by lightning, then make a chanting roll of D6.",
@@ -1833,6 +1889,7 @@
 				},
 				{
 					"name": "Spirit-scouring Flames",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -1844,6 +1901,7 @@
 				},
 				{
 					"name": "Soulburned",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Shooting Phase",
 					"declare": "This unit can use this ability even if it has been destroyed. Pick any number of Soulburned enemy units to be the targets.",
@@ -1851,6 +1909,7 @@
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -1915,6 +1974,7 @@
 			"abilities": [
 				{
 					"name": "Prayer of the Witness",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Make a chanting roll of D6.",
@@ -1926,6 +1986,7 @@
 				},
 				{
 					"name": "Dark Flight",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -1937,6 +1998,7 @@
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -2003,6 +2065,7 @@
 			"abilities": [
 				{
 					"name": "Demands of the Witness",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly RUINATION CHAMBER unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -2014,6 +2077,7 @@
 				},
 				{
 					"name": "On Wings of Death",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2025,12 +2089,14 @@
 				},
 				{
 					"name": "The Flames of Hope",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "You can re-roll resistance rolls for friendly RUINATION CHAMBER units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Guardian of the Final Threshold",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked to be the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -2098,6 +2164,7 @@
 			"abilities": [
 				{
 					"name": "Demands of the Witness",
+					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly RUINATION CHAMBER unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
@@ -2109,6 +2176,7 @@
 				},
 				{
 					"name": "On Wings of Death",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2120,12 +2188,14 @@
 				},
 				{
 					"name": "The Flames of Hope",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "You can re-roll resistance rolls for friendly RUINATION CHAMBER units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Guardian of the Final Threshold",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn",
@@ -2196,6 +2266,7 @@
 			"abilities": [
 				{
 					"name": "Hail of Bolts",
+					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2264,6 +2335,7 @@
 			"abilities": [
 				{
 					"name": "Subduing Shots",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2335,6 +2407,7 @@
 			"abilities": [
 				{
 					"name": "Calamitous Tail Sweep",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2346,12 +2419,14 @@
 				},
 				{
 					"name": "Fires of Retribution",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "While this unit has 5-9 damage points, add 1 to the Attacks characteristic of its melee weapons.\nWhile this unit has 10 or more damage points, add 2 to the Attacks characteristic of its melee weapons instead."
 				},
 				{
 					"name": "Ancient Master of War",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit within this unit's combat range to be the target.",
@@ -2402,6 +2477,7 @@
 			"abilities": [
 				{
 					"name": "Indomitable Loreseekers",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit when it uses a SUMMON ability and add 1 to banishment rolls for this unit.\nEnemy MANIFESTATIONS cannot pass through or end any move within this unit's combat range unless they started that move within this unit's combat range.\nThis unit has WARD (4+) against mortal damage inflicted by MANIFESTATIONS."
@@ -2447,6 +2523,7 @@
 			"abilities": [
 				{
 					"name": "Light in the Dark",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -2455,12 +2532,14 @@
 				},
 				{
 					"name": "The Light of Sigmar",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\n• For the rest of the turn, subtract 1 from hit rolls for attacks made by enemy units while they are in combat with this unit.\n• Heal (D3) each friendly STORMCAST ETERNALS unit within this unit's combat range."
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -2531,12 +2610,14 @@
 			"abilities": [
 				{
 					"name": "Arcane Heritage",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
 					"effect": "If this unit or a friendly Stormdrake Guard unit wholly within 12\" of this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit or that friendly unit. This unit can use this ability more than once per phase but only once per Spell ability"
 				},
 				{
 					"name": "Wrath of the Draconith",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2548,6 +2629,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -2594,6 +2676,7 @@
 			"abilities": [
 				{
 					"name": "Thunderblast",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick a visible faction terrain feature within 18\" of this unit to be the target.",
@@ -2601,6 +2684,7 @@
 				},
 				{
 					"name": "Call to Battle",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "If a friendly WARRIOR CHAMBER unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
@@ -2646,6 +2730,7 @@
 			"abilities": [
 				{
 					"name": "Voidstorm Scroll",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a WIZARD within 30\" of this unit",
 					"frequency": "Once Per Battle",
@@ -2656,6 +2741,7 @@
 				},
 				{
 					"name": "Aetheric Destabilisation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While they are within 30\" of this unit, subtract 1 from casting rolls for enemy units when they use SUMMON abilities."
@@ -2711,12 +2797,14 @@
 			"abilities": [
 				{
 					"name": "Faithful Gryph-hounds",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Gryph-hounds are tokens. After setting up this unit on the battlefield for the first time, place both Gryph-hounds next to it."
 				},
 				{
 					"name": "Hunting Hounds",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -2768,18 +2856,21 @@
 			"abilities": [
 				{
 					"name": "His Will Be Done",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is contesting a questmarked objective:\n• Add 3 to this unit's control score.\n• This unit has WARD (5+)."
 				},
 				{
 					"name": "Heroic Retribution",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly Questor Soulsworn unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved."
 				},
 				{
 					"name": "Ordained Quest",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -2825,6 +2916,7 @@
 			"abilities": [
 				{
 					"name": "Relic Censer",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick an enemy unit within 12\" of this unit to be the target.",
@@ -2898,6 +2990,7 @@
 			"abilities": [
 				{
 					"name": "Star-fated Arrow",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -2950,6 +3043,7 @@
 			"abilities": [
 				{
 					"name": "The Banner of the Reforged",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
 					"declare": "Pick up to D3 friendly STORMCAST ETERNALS units wholly within 12\" of this unit to be the targets.",
@@ -3013,6 +3107,7 @@
 			"abilities": [
 				{
 					"name": "Tireless Hunter",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3020,6 +3115,7 @@
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
@@ -3088,6 +3184,7 @@
 			"abilities": [
 				{
 					"name": "Soul-shaking Roar",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3099,18 +3196,21 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Apex Maw is 2."
 				},
 				{
 					"name": "Regalia Fulmentarus",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 2 to casting rolls for this unit."
 				},
 				{
 					"name": "Atavistic Tempest",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy unit within 18\" of the caster to be the target, then make a casting roll of 2D6.",
@@ -3187,6 +3287,7 @@
 			"abilities": [
 				{
 					"name": "Stalwart Defenders",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to this unit's control score while it is contesting an objective wholly within friendly territory."
@@ -3232,12 +3333,14 @@
 			"abilities": [
 				{
 					"name": "Aquatic Illusions",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit."
 				},
 				{
 					"name": "Nebulous Sea-fog",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Make a casting roll of 2D6.",
@@ -3315,6 +3418,7 @@
 			"abilities": [
 				{
 					"name": "Ride the Winds Aetheric",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "If this unit is not in combat, you can pick up to 2 friendly VANGUARD-PALLADORS units that are not in combat to be the targets.",
@@ -3322,6 +3426,7 @@
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3367,6 +3472,7 @@
 			"abilities": [
 				{
 					"name": "Magical Mending",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"declare": "Pick a visible friendly MANIFESTATION wholly within 12\" of this unit to be the target.",
@@ -3374,6 +3480,7 @@
 				},
 				{
 					"name": "Aetheric Manipulation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for this unit when it uses a SUMMON ability."
@@ -3430,6 +3537,7 @@
 			"abilities": [
 				{
 					"name": "Storm Wave",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3438,6 +3546,7 @@
 				},
 				{
 					"name": "Pack Alpha",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit is in combat, pick this unit and up to 1 other visible friendly SACROSANCT CHAMBER CAVALRY unit within its combat range to be the targets.",
@@ -3495,6 +3604,7 @@
 			"abilities": [
 				{
 					"name": "Healing Light",
+					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
 					"declare": "Pick a visible friendly SACROSANCT CHAMBER unit that is not in combat and is within 12\" of this unit to be the target.",
@@ -3502,6 +3612,7 @@
 				},
 				{
 					"name": "On the Winds Aetheric",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"effect": "If this unit is not in combat, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
@@ -3558,12 +3669,14 @@
 			"abilities": [
 				{
 					"name": "Trails of Astral Light",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to casting rolls for friendly STORMCAST ETERNALS WIZARDS while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Starlight Mantle",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3575,6 +3688,7 @@
 				},
 				{
 					"name": "Aetheric Deflection",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3638,6 +3752,7 @@
 			"abilities": [
 				{
 					"name": "Loyal Companion",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -3645,12 +3760,14 @@
 				},
 				{
 					"name": "Dutiful Gryph-hound",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Gryph-hound is a token. If this unit's Gryph-hound has been removed, it can no longer attack with its Gryph-hound's Beak and it cannot use the 'Loyal Companion' ability"
 				},
 				{
 					"name": "Warding Lantern",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick an objective within 12\" of this unit to be the target.",
@@ -3700,6 +3817,7 @@
 			"abilities": [
 				{
 					"name": "Furious Retribution",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO WARRIOR CHAMBER INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn."
@@ -3773,12 +3891,14 @@
 			"abilities": [
 				{
 					"name": "Righteous Avengers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO EXTREMIS CHAMBER CAVALRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -3850,6 +3970,7 @@
 			"abilities": [
 				{
 					"name": "Cavernous Jaws",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -3861,12 +3982,14 @@
 				},
 				{
 					"name": "Battle Damaged",
+					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stardrake's Cavernous Jaws is 4."
 				},
 				{
 					"name": "Lord of the Host",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle",
@@ -3874,6 +3997,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -3932,12 +4056,14 @@
 			"abilities": [
 				{
 					"name": "Voice of Thunder",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time a friendly STORMCAST ETERNALS unit wholly within 12\" of this unit uses the 'All-out Attack' command, no command points are spent."
 				},
 				{
 					"name": "Castellan of Azyr",
+					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"declare": "Pick up to 3 friendly STORMCAST ETERNALS INFANTRY units to be the targets.",
@@ -3945,6 +4071,7 @@
 				},
 				{
 					"name": "Mantle of the First Storm",
+					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
 					"effect": "If any enemy models were slain by this unit's attacks this turn, Heal (4) this unit."
@@ -3990,6 +4117,7 @@
 			"abilities": [
 				{
 					"name": "Purifying Blast",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible enemy PRIEST within 18\" of this unit to be the target.",
@@ -3997,6 +4125,7 @@
 				},
 				{
 					"name": "Redemptor Casket",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "Models cannot be returned to enemy units within 12\" of this unit."
@@ -4046,6 +4175,7 @@
 			"abilities": [
 				{
 					"name": "Guided by Lightning",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -4054,6 +4184,7 @@
 				},
 				{
 					"name": "Loyal Gryph-hound",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "This unit's Gryph-hound is a token. This unit has WARD (5+) while its Gryph-hound is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove its Gryph-hound from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
@@ -4102,6 +4233,7 @@
 			"abilities": [
 				{
 					"name": "Arcane Engineer",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4152,6 +4284,7 @@
 			"abilities": [
 				{
 					"name": "Mortis Priest",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to chanting rolls for this unit."
@@ -4202,18 +4335,21 @@
 			"abilities": [
 				{
 					"name": "Earn an Honourable Death",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO RUINATION CHAMBER INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				},
 				{
 					"name": "Memorian",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "This unit's Memorian is a token. Add 3 to the control scores of friendly RUINATION CHAMBER units wholly within 12\" of this unit while its Memorian is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove its Memorian from the battlefield after the Attack ability has been resolved (the damage point is still inflicted)."
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -4274,18 +4410,21 @@
 			"abilities": [
 				{
 					"name": "Sense Unholy Sorcery",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Gryph-crow is a token. Subtract 1 from casting rolls and chanting rolls for enemy units within 12\" of this unit while its Gryph-crow is on the battlefield.\nIf you make an unmodified save roll of 1 for this unit, remove its Gryph-crow from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
 				},
 				{
 					"name": "Staff of Abjuration",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -4345,6 +4484,7 @@
 			"abilities": [
 				{
 					"name": "Deliver Judgement",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -4353,6 +4493,7 @@
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -4412,6 +4553,7 @@
 			"abilities": [
 				{
 					"name": "Direct the Assault",
+					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4420,6 +4562,7 @@
 				},
 				{
 					"name": "Vice-like Grip",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4428,6 +4571,7 @@
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -4489,12 +4633,14 @@
 			"abilities": [
 				{
 					"name": "Justice From Azyr",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Whirlwind Axes for attacks that target a HERO."
 				},
 				{
 					"name": "Windrider",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
 					"declare": "If this unit is in combat or charged this turn, this unit can make a pile-in move. Then, if this unit is in combat, you must pick 1 or more enemy units to be the target(s) of this unit's attacks.",
@@ -4507,6 +4653,7 @@
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -4584,6 +4731,7 @@
 			"abilities": [
 				{
 					"name": "Shield of Azyr",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly THE BLACKTALONS HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
@@ -4624,12 +4772,14 @@
 			"abilities": [
 				{
 					"name": "Soul-bonded",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"effect": "Pick a friendly STORMCAST ETERNALS HERO to be this unit's soul-bonded charge for the rest of the battle. This unit can use this ability while it is in reserve."
 				},
 				{
 					"name": "Soul-forged Guardians",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit's soul-bonded charge is within this unit's combat range, both this unit and that soul-bonded charge have WARD (5+)."
@@ -4682,18 +4832,21 @@
 			"abilities": [
 				{
 					"name": "Dispersed Formation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
 				},
 				{
 					"name": "Heralds of Righteousness",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -4748,6 +4901,7 @@
 			"abilities": [
 				{
 					"name": "Shield of the Storm",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While any friendly STORMCAST ETERNALS INFANTRY HEROES are within this unit's combat range, both this unit and those friendly units have WARD (5+)."
@@ -4789,6 +4943,7 @@
 			"abilities": [
 				{
 					"name": "Ordained Quest",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -4796,12 +4951,14 @@
 				},
 				{
 					"name": "His Will Be Done",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While this unit is contesting a questmarked objective:\n• Add 3 to this unit's control score.\n• This unit has WARD (5+)."
 				},
 				{
 					"name": "Relictor Soulguide",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"frequency": "Once Per Battle",
@@ -4849,12 +5006,14 @@
 			"abilities": [
 				{
 					"name": "Memorian Descendants",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Memorians are tokens. There are 2 Memorians for every 3 models in this unit. While any of this unit's Memorians are on the battlefield, add 1 to this unit's resistance rolls when using the 'Ruination Chamber' ability. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Memorians from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -4911,6 +5070,7 @@
 			"abilities": [
 				{
 					"name": "Crushing Counter-blow",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If this unit is damaged or if any models in this unit were slain this turn, add 1 to hit rolls for this unit's attacks for the rest of the turn."
@@ -4967,6 +5127,7 @@
 			"abilities": [
 				{
 					"name": "Sequitor Aetheric Channelling",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit is contesting an objective you control, pick 1 of the following effects to apply for the rest of the turn:\n• Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.\n• This unit's combat attacks score critical hits on unmodified hit rolls of 5+."
@@ -5012,12 +5173,14 @@
 			"abilities": [
 				{
 					"name": "Heroic Guard",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "Add 1 to save rolls for this unit while it is in combat with any enemy units that charged in the same turn."
 				},
 				{
 					"name": "Stalwart Defenders",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to this unit's control score while it is contesting an objective wholly within friendly territory."
@@ -5070,12 +5233,14 @@
 			"abilities": [
 				{
 					"name": "Gather the Aether",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to this unit's power level while it is contesting an objective."
 				},
 				{
 					"name": "Aethershock",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible unit within 12\" of the caster to be the target, then make a casting roll of 2D6.",
@@ -5159,12 +5324,14 @@
 			"abilities": [
 				{
 					"name": "Dispersed Formation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
 				},
 				{
 					"name": "Draconic Onslaught",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5175,6 +5342,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -5256,12 +5424,14 @@
 			"abilities": [
 				{
 					"name": "Dispersed Formation",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit has a coherency range of 2\"."
 				},
 				{
 					"name": "Draconic Onslaught",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5272,6 +5442,7 @@
 				},
 				{
 					"name": "Extremis Chamber",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
@@ -5303,6 +5474,7 @@
 			"abilities": [
 				{
 					"name": "Step Into the Storm",
+					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
 					"declare": "Pick a friendly non-MONSTER STORMCAST ETERNALS unit that is not in combat and is wholly within 6\" of this terrain feature to be the target.",
@@ -5347,12 +5519,14 @@
 			"abilities": [
 				{
 					"name": "Averon Stormsire",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "While this unit's Averon Stormsire is on the battlefield, it has WIZARD (1)."
 				},
 				{
 					"name": "Overwhelming Storm",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "If this unit is contesting an objective that you control, pick a friendly non-HERO STORMCAST ETERNALS INFANTRY unit within 12\" of this unit to be the target.",
@@ -5433,12 +5607,14 @@
 			"abilities": [
 				{
 					"name": "Celestial Blaze",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "When this unit uses the 'Power Through' command, inflict an additional D3 mortal damage on the target and add D6\" to the distance this unit can move as part of that ability"
 				},
 				{
 					"name": "Azyr Unleashed",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
@@ -5495,6 +5671,7 @@
 			"abilities": [
 				{
 					"name": "Ride for Vengeance",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If any friendly WARRIOR CHAMBER units have been destroyed this battle:\n• You can re-roll charge rolls for this unit.\n• This unit has STRIKE-FIRST if it charged in the same turn."
@@ -5554,12 +5731,14 @@
 			"abilities": [
 				{
 					"name": "Lightning Quick",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "No mortal damage is inflicted on this unit by RETREAT abilities."
 				},
 				{
 					"name": "Shock Cavalry",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5621,12 +5800,14 @@
 			"abilities": [
 				{
 					"name": "Merciless Sentinels",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 1 to wound rolls for this unit's attacks while it contests an objective that is wholly outside friendly territory."
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5684,6 +5865,7 @@
 			"abilities": [
 				{
 					"name": "Star Falcon",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "If this unit's Sanson Farstrider is on the battlefield, pick a visible enemy unit within 18\" of this unit to be the target.",
@@ -5691,6 +5873,7 @@
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5753,18 +5936,21 @@
 			"abilities": [
 				{
 					"name": "The Light of Sigmar",
+					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\n• For the rest of the turn, subtract 1 from hit rolls for attacks made by enemy units while they are in combat with this unit.\n• Heal (D3) each friendly STORMCAST ETERNALS unit within this unit's combat range."
 				},
 				{
 					"name": "Herald of Redemption",
+					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
 					"effect": "If a friendly RUINATION CHAMBER unit wholly within 12\" of this unit uses the 'Rally' command, you receive 3 additional rally points."
 				},
 				{
 					"name": "Ruination Chamber",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
 					"frequency": "Once Per Turn (Army)",
@@ -5841,12 +6027,14 @@
 			"abilities": [
 				{
 					"name": "Lord of the Hammerhands",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Add 3 to the control scores of friendly WARRIOR CHAMBER units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Vengeance Unleashed",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
 					"effect": "Pick a friendly non-HERO WARRIOR CHAMBER unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
@@ -5900,12 +6088,14 @@
 			"abilities": [
 				{
 					"name": "Star-marked",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Add 2\" to this unit's Move characteristic while a HUNTED enemy unit is on the battlefield. In addition, add 1 to hit rolls for this unit's attacks that target a HUNTED enemy unit."
 				},
 				{
 					"name": "Astral Compass",
+					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
@@ -5914,6 +6104,7 @@
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -5983,12 +6174,14 @@
 			"abilities": [
 				{
 					"name": "Shocking Strikes",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "If any damage points are allocated to an enemy unit by attacks made with this unit's Shock Handaxes, subtract 1 from wound rolls for that enemy unit's combat attacks for the rest of the turn."
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -6064,6 +6257,7 @@
 			"abilities": [
 				{
 					"name": "Charging Volley",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Charge Phase",
 					"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
@@ -6071,6 +6265,7 @@
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -6126,6 +6321,7 @@
 			"abilities": [
 				{
 					"name": "Coordinated Strike",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Hurricane Crossbows to be the target.",
@@ -6133,6 +6329,7 @@
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -6187,12 +6384,14 @@
 			"abilities": [
 				{
 					"name": "Headshot",
+					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
 					"effect": "If this unit has not used a Move ability this turn and was not set up this turn, for the rest of the turn, this unit can ignore the effects of the 'Guarded Hero' ability (Core Rules, 25.0) when picking targets for its shooting attacks."
 				},
 				{
 					"name": "Vanguard Chamber",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
 					"frequency": "Once Per Turn (Army)",
@@ -6236,6 +6435,7 @@
 			"abilities": [
 				{
 					"name": "Lightning Strikes",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Add 1 to the Damage characteristic of this unit's Celestial Greatswords for attacks that target an enemy unit that has 5 or more models."
@@ -6287,6 +6487,7 @@
 			"abilities": [
 				{
 					"name": "Navigators of the Storm",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "If an enemy unit had any damage points allocated to it this turn by this unit's shooting attacks, add 1 to hit rolls for attacks made by friendly STORMCAST ETERNALS units that target that unit for the rest of the turn."
@@ -6329,6 +6530,7 @@
 			"abilities": [
 				{
 					"name": "Hold the Shieldwall",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"effect": "If this unit did not charge this turn and is in combat with an enemy unit that charged this turn, roll a dice. On a 4+, this unit has STRIKE-FIRST for the rest of the turn."
@@ -6397,12 +6599,14 @@
 			"abilities": [
 				{
 					"name": "Taros",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "This unit's Taros is a token. After setting up this unit on the battlefield for the first time, place Taros next to it."
 				},
 				{
 					"name": "Harrying Aetherwing",
+					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
 					"declare": "If any attacks made with this unit's Stormcaller Bow scored a critical hit this phase, pick an enemy unit targeted by those attacks to be the target.",
@@ -6475,18 +6679,21 @@
 			"abilities": [
 				{
 					"name": "The Prime Huntress",
+					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
 					"effect": "Double the Damage characteristic of this unit's Thengavar for attacks that target MONSTERS."
 				},
 				{
 					"name": "Dazzling Radiance",
+					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
 					"effect": "Ignore negative modifiers to the control scores of friendly STORMCAST ETERNALS units while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "On Wings of Brilliance",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "Add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."

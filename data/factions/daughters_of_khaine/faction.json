@@ -5,6 +5,7 @@
 	"battle_traits": [
 		{
 			"name": "Anointed Ritualist",
+			"type": "active",
 			"category": "special",
 			"timing": "Start of First Battle Round",
 			"declare": "If there are no friendly anointed units on the battlefield, pick a friendly non-Unique DAUGHTERS OF KHAINE Hero on the battlefield to be the target.",
@@ -12,12 +13,14 @@
 		},
 		{
 			"name": "Bloody Succession",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "Each time a friendly anointed unit is destroyed, after removing it from play, you can immediately use the 'Anointed Ritualist' ability as if it were the start of the first battle round."
 		},
 		{
 			"name": "Strident War Cry",
+			"type": "active",
 			"category": "movement",
 			"timing": "Reaction: You declared a Charge ability for an anointed unit",
 			"frequency": "Once Per Turn (Army)",
@@ -25,12 +28,14 @@
 		},
 		{
 			"name": "Blood Rites",
+			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
 			"effect": "You perform a blood rite each time:\n• An enemy unit is destroyed and any damage points were allocated to that unit by a friendly anointed unit's combat attacks in the same turn.\n• A friendly anointed unit is destroyed.\n• A friendly unit contesting an objective you control is destroyed.\n• An enemy unit is destroyed by a friendly DAUGHTERS OF KHAINE unit's attacks and any models in that enemy unit were contesting an objective you do not control in the same phase.\n• A unit (friendly or enemy) is destroyed and it was within 3\" of a Place of Power at the start of the phase.\nOnly one blood rite can be performed per unit destroyed."
 		},
 		{
 			"name": "Blessings of Khaine",
+			"type": "active",
 			"category": "special",
 			"timing": "End of Any Turn",
 			"frequency": "Once Per Turn (Army)",
@@ -45,6 +50,7 @@
 			"abilities": [
 				{
 					"name": "The Breath of Khaine",
+					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
 					"effect": "While each model in a friendly DAUGHTERS OF KHAINE unit is contesting an objective you control, those models are not visible to enemy models more than 9\" away."
@@ -57,6 +63,7 @@
 			"abilities": [
 				{
 					"name": "Bloody-Handed Worshippers",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a Fight ability for an anointed unit",
 					"effect": "Pick a friendly non-HERO DAUGHTERS OF KHAINE unit that has not used a FIGHT ability this turn and is within that anointed unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by that anointed unit has been resolved. If it is picked to do so, the target's melee weapons have Crit (Auto-wound) for the rest of the turn. If its melee weapons already have Crit (Auto-wound), they have Crit (Mortal) for the rest of the turn instead."
@@ -69,6 +76,7 @@
 			"abilities": [
 				{
 					"name": "Heretic's Bane",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Enemy Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -83,6 +91,7 @@
 			"abilities": [
 				{
 					"name": "Final Frenzy",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -97,6 +106,7 @@
 			"abilities": [
 				{
 					"name": "Higher Purpose",
+					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
 					"frequency": "Once Per Turn (Army)",
@@ -110,6 +120,7 @@
 			"abilities": [
 				{
 					"name": "Graceful Elusion",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"effect": "For the rest of the phase, friendly DAUGHTERS OF KHAINE AELF INFANTRY units have WARD (5+) until they have used a FIGHT ability."
@@ -124,12 +135,14 @@
 			"entries": [
 				{
 					"name": "Shadow-Blooded",
+					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a DAUGHTERS OF KHAINE unit wholly within 12\" of this unit",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
 					"name": "Hand of Khaine",
+					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target.",
@@ -137,6 +150,7 @@
 				},
 				{
 					"name": "Murderous Duellist",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
 					"declare": "Pick an enemy unit that has no more than 1 model and is in combat with this unit to be the target.",
@@ -151,12 +165,14 @@
 			"entries": [
 				{
 					"name": "Murder Manifested",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: This unit used the 'Activate Place of Power' ability",
 					"effect": "Apply the effect below instead of the effect of that 'Activate Place of Power' ability.\nRoll a dice. On a 1, inflict D3 mortal damage on this unit. On a 2+, if there are no friendly Avatars of Khaine on the battlefield, set up an Avatar of Khaine wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION."
 				},
 				{
 					"name": "Loyal Unto Death",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Deployment Phase",
 					"declare": "Pick another friendly DAUGHTERS OF KHAINE HERO that has a Health characteristic that equals or exceeds this unit's Health characteristic to be the target.",
@@ -164,6 +180,7 @@
 				},
 				{
 					"name": "Honoured Among Sects",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "If this unit is anointed, the effect of all blessings from the 'Blessings of Khaine' ability apply to this unit as if they were active."
@@ -176,12 +193,14 @@
 			"entries": [
 				{
 					"name": "Crimson Draught",
+					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
 					"effect": "You can re-roll charge rolls for this unit."
 				},
 				{
 					"name": "Darkling Elixir",
+					"type": "active",
 					"category": "movement",
 					"timing": "End of Your Turn",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the target.",
@@ -189,6 +208,7 @@
 				},
 				{
 					"name": "Witchbrew",
+					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a visible friendly non-UNIQUE DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the target.",
@@ -202,6 +222,7 @@
 			"entries": [
 				{
 					"name": "Ulguan Reactions",
+					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
@@ -209,6 +230,7 @@
 				},
 				{
 					"name": "Talismans of Shadow",
+					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL, PRAYER or UNBIND ability for a unit within 3\" of this unit",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, add 1 to that casting roll, chanting roll or unbinding roll.",
@@ -216,6 +238,7 @@
 				},
 				{
 					"name": "Tenebrous Aura",
+					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
@@ -233,6 +256,7 @@
 			"entries": [
 				{
 					"name": "Steed of Shadows",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE WIZARD to cast this spell, pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -245,6 +269,7 @@
 				},
 				{
 					"name": "Mindrazor",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE WIZARD to cast this spell, pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -256,6 +281,7 @@
 				},
 				{
 					"name": "Black Horror of Ulgu",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE WIZARD to cast this spell, pick a point on the battlefield within 18\" of them, pick up to 3 enemy units within 3\" of that point to be the targets, then make a casting roll of 2D6.",
@@ -274,6 +300,7 @@
 			"entries": [
 				{
 					"name": "Catechism of Murder",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE PRIEST to chant this prayer, pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -286,6 +313,7 @@
 				},
 				{
 					"name": "Covenant of the Iron Heart",
+					"type": "prayer",
 					"category": "control",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE PRIEST to chant this prayer, pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -297,6 +325,7 @@
 				},
 				{
 					"name": "Dance of Doom",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE PRIEST to chant this prayer, pick a visible friendly non-UNIQUE DAUGHTERS OF KHAINE unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -316,6 +345,7 @@
 			"entries": [
 				{
 					"name": "Shadowstep",
+					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE PRIEST to chant this prayer, pick a visible friendly DAUGHTERS OF KHAINE AELF INFANTRY unit wholly within 12\" of them and that has not been picked to be the target of this prayer this turn to be the target, then make a chanting roll of D6.",
@@ -328,6 +358,7 @@
 				},
 				{
 					"name": "Scáthscale",
+					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE PRIEST to chant this prayer, pick a friendly DAUGHTERS OF KHAINE AELF INFANTRY unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -339,6 +370,7 @@
 				},
 				{
 					"name": "Exultation of Murder",
+					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE PRIEST to chant this prayer, pick a friendly DAUGHTERS OF KHAINE AELF INFANTRY unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
@@ -357,6 +389,7 @@
 			"entries": [
 				{
 					"name": "Summon Bloodwrack Viper",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Bloodwrack Viper on the battlefield, pick a friendly DAUGHTERS OF KHAINE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -369,6 +402,7 @@
 				},
 				{
 					"name": "Summon Heart of Fury",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Heart of Fury on the battlefield, pick a friendly DAUGHTERS OF KHAINE WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -381,6 +415,7 @@
 				},
 				{
 					"name": "Summon Bladewind",
+					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
 					"declare": "If there is not a friendly Bladewind on the battlefield, pick a friendly DAUGHTERS OF KHAINE WIZARD to cast this spell, then make a casting roll of 2D6.",
