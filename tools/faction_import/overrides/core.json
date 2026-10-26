@@ -9,6 +9,7 @@
 				{"name": "Decrease Time Flow", "text": "Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly WIZARDS while they are wholly within 12\" of this MANIFESTATION."}
 			]
 		},
+		"umbral_spellportal": {"save": 6},
 		"krondspine_incarnate_of_ghur > Wild Form": {
 			"effect": "Each time this MANIFESTATION is targeted by the ‘Banish Manifestation’ ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
 		}

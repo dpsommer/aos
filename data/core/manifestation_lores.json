@@ -1021,7 +1021,7 @@
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
-			"save": 5,
+			"save": 6,
 			"control": 0,
 			"ward": 6,
 			"banishment": 6,
