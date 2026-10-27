@@ -18,8 +18,9 @@ func _init(army_builder: ArmyBuilder, army_regiment: ArmyRegiment) -> void:
 	if not builder.collapsed.has(regiment.id):
 		for unit in regiment.units:
 			content.add_child(UnitRow.new(builder, unit, regiment))
-		if not renown:
-			content.add_child(_add_button())
+		var add := _add_button() if not renown else null
+		if add:
+			content.add_child(add)
 	add_child(content)
 	BuilderDragDrop.pass_mouse(self)
 
@@ -102,13 +103,11 @@ func _header() -> HBoxContainer:
 	return row
 
 
+## The button to choose the regiment's leader or add a unit, or null when the regiment is full.
 func _add_button() -> Button:
-	var editor := builder.editor
 	var key := regiment.id + ":add"
 	if regiment.units.is_empty():
 		return UIBuilder.button("Choose a leader", func() -> void: builder.pick_leader(regiment.id), key, "GhostButton")
-	var add := UIBuilder.button("Add unit", func() -> void: builder.pick_unit(regiment.id), key, "GhostButton")
-	if not editor.has_room(regiment):
-		add.disabled = true
-		add.tooltip_text = "This regiment is full"
-	return add
+	if not builder.editor.has_room(regiment):
+		return null
+	return UIBuilder.button("Add unit", func() -> void: builder.pick_unit(regiment.id), key, "GhostButton")

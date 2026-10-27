@@ -83,17 +83,17 @@ func test_add_unit_opens_the_unit_picker() -> void:
 	assert_true(parts[1].picker.is_open())
 
 
-func test_add_unit_is_disabled_when_the_regiment_is_full() -> void:
+func test_add_unit_is_hidden_when_the_regiment_is_full() -> void:
 	var army := UIKit.army_with_regiment()
 	var members := PackedStringArray()
 	members.resize(ArmyValidator.regiment_capacity(army.regiments[0], army))
 	members.fill("grunt")
 	army = UIKit.army_with_regiment(members)
 	var panel: RegimentPanel = _panel(army)[0]
-	assert_true((UIKit.keyed(panel, "r1:add") as Button).disabled)
+	assert_null(UIKit.keyed(panel, "r1:add"))
 
 
-func test_add_unit_is_enabled_when_full_but_constraints_are_overridden() -> void:
+func test_add_unit_is_shown_when_full_but_constraints_are_overridden() -> void:
 	var members := PackedStringArray()
 	members.resize(ArmyValidator.GENERAL_REGIMENT_UNITS + 1)
 	members.fill("grunt")

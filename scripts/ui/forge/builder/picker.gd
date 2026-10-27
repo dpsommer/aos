@@ -8,6 +8,8 @@ signal closed
 var builder: ArmyBuilder
 var _title: Label
 var _list: VBoxContainer
+## Unit types folded in the unit list, e.g. "Hero".
+var folded := {}
 ## Redraws the current list, e.g. after the army changes which units are still available.
 var _render := Callable()
 
@@ -47,13 +49,14 @@ func refresh() -> void:
 
 func _open(title: String, render: Callable) -> void:
 	_title.text = title
+	folded.clear()
 	_render = render
 	refresh()
 	focus_first()
 
 
-## Focuses the list's first enabled button or pressable card, or the close button when there is
-## none.
+## Focuses the list's first enabled button (not a section's banner) or pressable card, or the
+## close button when there is none.
 func focus_first() -> void:
 	var first := _first_button(_list)
 	(first if first else get_child(0).get_child(1) as Control).grab_focus()
@@ -61,7 +64,8 @@ func focus_first() -> void:
 
 func _first_button(node: Node) -> Control:
 	for child in node.get_children():
-		if (child is Button and not child.disabled) or (child is TacticCard and child.pressable):
+		if (child is Button and not child.disabled and child.theme_type_variation != &"BannerButton") \
+				or (child is TacticCard and child.pressable):
 			return child
 		var found := _first_button(child)
 		if found:
@@ -70,15 +74,40 @@ func _first_button(node: Node) -> Control:
 
 
 ## Lists [param warscrolls] (or, as a Callable returning them, a list that updates as the army
-## changes) and calls [param on_pick] with the chosen warscroll's id.
+## changes) in foldable sections by unit type, as the Roster does, and calls [param on_pick] with
+## the chosen warscroll's id.
 func open_units(title: String, warscrolls: Callable, on_pick: Callable) -> void:
 	var render := func() -> void:
 		var shown: Array[Warscroll] = warscrolls.call()
 		if shown.is_empty():
 			_list.add_child(UIBuilder.label("No units can be added here.", "MutedLabel", true))
+		var by_type := {}
 		for warscroll in shown:
-			_list.add_child(_unit_item(warscroll, on_pick))
+			var type := InfoPane.unit_type(warscroll)
+			if not by_type.has(type):
+				by_type[type] = []
+			by_type[type].append(warscroll)
+		for type: Array in InfoPane.UNIT_TYPES:
+			var units: Array = by_type.get(type[0], [])
+			if units.is_empty():
+				continue
+			var open := not folded.has(type[0])
+			var section := UIBuilder.vbox([UIBuilder.banner(type[0].to_upper(), str(units.size()), open,
+					_toggle_fold.bind(type[0]), "picker:type:" + type[0])], 6)
+			if open:
+				for warscroll: Warscroll in units:
+					section.add_child(_unit_item(warscroll, on_pick))
+			_list.add_child(section)
 	_open(title, render)
+
+
+func _toggle_fold(type: String) -> void:
+	if not folded.erase(type):
+		folded[type] = true
+	refresh()
+	var banner := ArmyBuilder.find_focus_key(_list, "picker:type:" + type) if is_inside_tree() else null
+	if banner:
+		banner.grab_focus()
 
 
 func _unit_item(warscroll: Warscroll, on_pick: Callable) -> PanelContainer:

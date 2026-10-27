@@ -30,9 +30,13 @@ var discard_dialog: ConfirmationDialog
 var collapsed := {}
 ## Id of the regiment being renamed, or empty.
 var renaming := ""
+## Whether the army's name is being edited.
+var editing_name := false
 ## Focus key of the control that opened the picker, which gets focus back when it closes.
 var _picker_opener := ""
 var _drawing := false
+## Set while the builder is being freed, when its fields lose focus but mustn't redraw.
+var _freeing := false
 var _redraw_again := false
 
 @onready var back_button: Button = %BackButton
@@ -82,7 +86,9 @@ func _ready() -> void:
 
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_DRAG_BEGIN and drag:
+	if what == NOTIFICATION_PREDELETE:
+		_freeing = true
+	elif what == NOTIFICATION_DRAG_BEGIN and drag:
 		drag.begin(get_viewport().gui_get_drag_data())
 	elif what == NOTIFICATION_DRAG_END and drag:
 		drag.end()
@@ -128,6 +134,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif not renaming.is_empty():
 			renaming = ""
 			redraw()
+		elif editing_name:
+			editing_name = false
+			redraw()
+			_focus_key("army:rename")
 		else:
 			request_back()
 
@@ -217,6 +227,34 @@ func finish_renaming(regiment_id: String, regiment_name: String) -> void:
 		redraw()
 
 
+## Shows a field to edit the army's name, with its text selected.
+func start_editing_name() -> void:
+	editing_name = true
+	redraw()
+	var edit := find_focus_key(builder_list, "army:name") as LineEdit
+	if edit and is_inside_tree():
+		edit.grab_focus()
+		edit.select_all()
+
+
+## Renames the army to [param army_name], unless it's blank, and shows the name again.
+func finish_editing_name(army_name: String) -> void:
+	if not editing_name or _freeing:
+		return
+	editing_name = false
+	if army_name.strip_edges() != editor.army.name and not army_name.strip_edges().is_empty():
+		editor.set_army_name(army_name)
+	else:
+		redraw()
+
+
+## Focuses the control tagged [param key] in the army list, if it's there.
+func _focus_key(key: String) -> void:
+	var target := find_focus_key(builder_list, key) if is_inside_tree() else null
+	if target:
+		target.grab_focus()
+
+
 ## Redraws the header, the army list and any open picker from the army, keeping keyboard focus on
 ## the same control.
 func redraw() -> void:
@@ -301,25 +339,41 @@ func _draw_header() -> void:
 	status_label.add_theme_color_override("font_color", UITheme.STATUS[kind][1])
 
 
-func _section(title: String, children: Array) -> VBoxContainer:
-	var box := UIBuilder.vbox([UIBuilder.label(title, "SectionLabel")], 10)
+## A titled section of the army list, with [param note] beside the title if not empty.
+func _section(title: String, children: Array, note := "") -> VBoxContainer:
+	var heading: Control = UIBuilder.label(title, "SectionLabel")
+	if not note.is_empty():
+		heading = UIBuilder.hbox([heading, UIBuilder.label(note, "MutedLabel")], 12)
+	var box := UIBuilder.vbox([heading], 10)
 	for child: Control in children:
 		box.add_child(child)
 	return box
 
 
+## The army's name in Cinzel, with a pencil button that swaps it for a field to edit it.
 func _name_section() -> Control:
-	var edit := LineEdit.new()
-	edit.text = editor.army.name
-	edit.tooltip_text = "Army name"
-	edit.add_theme_font_size_override("font_size", 20)
-	edit.set_meta(&"focus_key", "army:name")
-	var commit := func(_text := "") -> void:
-		if edit.text.strip_edges() != editor.army.name:
-			editor.set_army_name(edit.text)
-	edit.text_submitted.connect(commit)
-	edit.focus_exited.connect(commit)
-	return edit
+	if editing_name:
+		var edit := LineEdit.new()
+		edit.text = editor.army.name
+		edit.tooltip_text = "Army name"
+		edit.accessibility_name = "Army name"
+		edit.add_theme_font_override("font", UITheme.font(UITheme.CINZEL, 700))
+		edit.add_theme_font_size_override("font_size", 26)
+		edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		edit.set_meta(&"focus_key", "army:name")
+		edit.text_submitted.connect(func(text: String) -> void:
+			finish_editing_name(text)
+			_focus_key("army:rename"))
+		edit.focus_exited.connect(func() -> void: finish_editing_name(edit.text))
+		return edit
+	var title := UIBuilder.label(editor.army.name, "PageTitleLabel")
+	title.add_theme_font_size_override("font_size", 30)
+	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	title.tooltip_text = editor.army.name
+	title.mouse_filter = Control.MOUSE_FILTER_PASS
+	var rename := UIBuilder.icon_button("rename", "Rename army", start_editing_name, "army:rename")
+	rename.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	return UIBuilder.hbox([title, rename], 10)
 
 
 func _validation_section() -> Control:
@@ -364,10 +418,11 @@ func _army_list_section() -> Control:
 	var children: Array = []
 	for regiment in editor.army.regiments:
 		children.append(RegimentPanel.new(self, regiment))
-	var add_buttons := UIBuilder.hbox([
-		UIBuilder.button("Add regiment", pick_leader.bind(""), "army:add_regiment", "GhostButton"),
-		UIBuilder.button("Add Regiment of Renown", pick_regiment_of_renown, "army:add_ror", "GhostButton"),
-	], 12)
+	var add_buttons := UIBuilder.hbox([UIBuilder.button("Add regiment", pick_leader.bind(""), "army:add_regiment", "GhostButton")], 12)
+	# An army has at most one Regiment of Renown, unless it overrides its constraints.
+	var has_renown := editor.army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())
+	if editor.army.override_constraints or not has_renown:
+		add_buttons.add_child(UIBuilder.button("Add Regiment of Renown", pick_regiment_of_renown, "army:add_ror", "GhostButton"))
 	children.append(add_buttons)
 	var section := _section("Army List", children)
 	# A Regiment of Renown card from the info pane is dropped on the army list.
@@ -419,11 +474,43 @@ func _terrain_section() -> Control:
 	var army_roster := catalog.roster(editor.army)
 	if terrain.is_empty() or (army_roster and not army_roster.faction_terrain):
 		return null
-	var items := [["None", ""]]
+	var rows: Array = []
 	for warscroll in terrain:
-		items.append(["%s · %d pts" % [warscroll.name, warscroll.points] if warscroll.points else warscroll.name, warscroll.id])
-	return _section("Faction Terrain", [UIBuilder.select(items, editor.army.faction_terrain, editor.set_faction_terrain,
-			"army:terrain", "Faction terrain")])
+		rows.append(_terrain_row(warscroll))
+	return _section("Faction Terrain", rows, "Up to 1 terrain feature")
+
+
+## A faction terrain feature, laid out like a unit row, with a button to add it to the army or
+## remove it.
+func _terrain_row(warscroll: Warscroll) -> PanelContainer:
+	var included := editor.army.faction_terrain == warscroll.id
+	var title := UIBuilder.label(warscroll.name)
+	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var detail := UIBuilder.label(terrain_abilities(warscroll), "MutedLabel")
+	detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var names := UIBuilder.vbox([title, detail], 2)
+	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var toggle: Button
+	if included:
+		toggle = UIBuilder.button("Remove", editor.set_faction_terrain.bind(""), "terrain:" + warscroll.id, "",
+				"Remove %s from the army" % warscroll.name)
+	else:
+		toggle = UIBuilder.button("Add", editor.set_faction_terrain.bind(warscroll.id), "terrain:" + warscroll.id,
+				"GhostButton", "Add %s to the army" % warscroll.name)
+	var row := UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names, UIBuilder.label("%d pts" % warscroll.points, "MutedLabel"),
+			toggle], 10)
+	return UIBuilder.panel("PickedRowPanel" if included else "RowPanel", row)
+
+
+## The universal terrain abilities a terrain warscroll's composition lists, e.g. "Cover, Impassable",
+## or a plain description when it lists none.
+static func terrain_abilities(warscroll: Warscroll) -> String:
+	var marker := "universal terrain abilities"
+	var at := warscroll.composition.find(marker)
+	var colon := warscroll.composition.find(":", at) if at >= 0 else -1
+	if colon >= 0 and not warscroll.composition.substr(colon + 1).strip_edges().is_empty():
+		return warscroll.composition.substr(colon + 1).strip_edges()
+	return "Faction terrain feature"
 
 
 func _lores_section() -> Control:
@@ -552,6 +639,9 @@ func pick_unit(regiment_id: String) -> void:
 	var pick := func(warscroll_id: String) -> void:
 		editor.add_unit(regiment_id, warscroll_id)
 		if not editor.has_room(regiment):
+			# The full regiment hides its Add unit button, so focus goes to the regiment instead.
+			if _picker_opener == regiment_id + ":add":
+				_picker_opener = regiment_id + ":collapse"
 			picker.close()
 	picker.open_units("Add to %s" % regiment.name, available_units.bind(allowed), pick)
 

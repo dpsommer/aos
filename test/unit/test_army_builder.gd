@@ -267,7 +267,7 @@ func test_picking_a_unit_with_room_left_keeps_focus_in_the_picker() -> void:
 	assert_true(builder.picker.is_ancestor_of(focused))
 
 
-func test_picking_the_last_unit_that_fits_returns_focus_to_the_add_button() -> void:
+func test_picking_the_last_unit_that_fits_focuses_the_regiment() -> void:
 	var army := _valid_army()
 	var builder := _builder(army)
 	for i in ArmyValidator.regiment_capacity(army.regiments[0], army) - 1:
@@ -275,7 +275,7 @@ func test_picking_the_last_unit_that_fits_returns_focus_to_the_add_button() -> v
 	UIKit.keyed(builder, "r1:add").grab_focus()
 	builder.pick_unit("r1")
 	UIKit.keyed(builder.picker, "pick:grunt").pressed.emit()
-	assert_true(UIKit.keyed(builder.builder_list, "r1:add").has_focus())
+	assert_true(UIKit.keyed(builder.builder_list, "r1:collapse").has_focus())
 
 
 func test_picking_a_leader_returns_focus_to_the_add_regiment_button() -> void:
@@ -551,14 +551,14 @@ func test_submitting_the_name_field_renames_the_regiment() -> void:
 
 func test_terrain_section_shown_when_the_faction_has_terrain() -> void:
 	var builder := _builder(_valid_army())
-	assert_true(UIKit.keyed(builder.builder_list, "army:terrain") is OptionButton)
+	assert_not_null(UIKit.keyed(builder.builder_list, "terrain:terrain"))
 
 
 func test_terrain_section_hidden_when_the_faction_has_none() -> void:
 	var faction := UIKit.faction()
 	faction.warscrolls.erase(faction.get_warscroll("terrain"))
 	var builder := _builder(_valid_army(), faction)
-	assert_null(UIKit.keyed(builder.builder_list, "army:terrain"))
+	assert_false(UIKit.has_label_containing(builder.builder_list, "Faction Terrain"))
 
 
 func test_terrain_section_hidden_when_the_army_of_renown_forbids_it() -> void:
@@ -569,7 +569,7 @@ func test_terrain_section_hidden_when_the_army_of_renown_forbids_it() -> void:
 	var army := _valid_army()
 	army.army_of_renown = "No Terrain"
 	var builder := _builder(army, faction)
-	assert_null(UIKit.keyed(builder.builder_list, "army:terrain"))
+	assert_null(UIKit.keyed(builder.builder_list, "terrain:terrain"))
 
 
 func test_terrain_section_shown_when_the_army_of_renown_allows_it() -> void:
@@ -578,15 +578,130 @@ func test_terrain_section_shown_when_the_army_of_renown_allows_it() -> void:
 	var army := _valid_army()
 	army.army_of_renown = "With Terrain"
 	var builder := _builder(army, faction)
-	assert_not_null(UIKit.keyed(builder.builder_list, "army:terrain"))
+	assert_not_null(UIKit.keyed(builder.builder_list, "terrain:terrain"))
 
 
-func test_choosing_terrain_sets_it_on_the_army() -> void:
+func test_adding_terrain_sets_it_on_the_army() -> void:
 	var army := _valid_army()
 	var builder := _builder(army)
-	var select := UIKit.keyed(builder.builder_list, "army:terrain") as OptionButton
-	select.item_selected.emit(1)
+	UIKit.keyed(builder.builder_list, "terrain:terrain").pressed.emit()
 	assert_eq(army.faction_terrain, "terrain")
+
+
+func test_removing_terrain_clears_it_from_the_army() -> void:
+	var army := _valid_army()
+	army.faction_terrain = "terrain"
+	var builder := _builder(army)
+	UIKit.keyed(builder.builder_list, "terrain:terrain").pressed.emit()
+	assert_eq(army.faction_terrain, "")
+
+
+func test_included_terrain_offers_remove_instead_of_add() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	var before := (UIKit.keyed(builder.builder_list, "terrain:terrain") as Button).text
+	builder.editor.set_faction_terrain("terrain")
+	var after := (UIKit.keyed(builder.builder_list, "terrain:terrain") as Button).text
+	assert_ne(before, after)
+
+
+func test_terrain_row_shows_a_portrait() -> void:
+	var builder := _builder(_valid_army())
+	var row := UIKit.keyed(builder.builder_list, "terrain:terrain").get_parent()
+	assert_true(UIKit.find_all(row, func(n: Node) -> bool: return n is ArtPlaceholder).size() > 0)
+
+
+func test_terrain_abilities_lists_the_universal_terrain_abilities() -> void:
+	var terrain := Kit.warscroll("portal", PackedStringArray(["FACTION TERRAIN"]))
+	terrain.composition = "The following universal terrain abilities apply to this terrain feature (Terrain, 1.2): Cover, Impassable"
+	assert_eq(ArmyBuilder.terrain_abilities(terrain), "Cover, Impassable")
+
+
+func test_terrain_abilities_falls_back_when_none_are_listed() -> void:
+	var terrain := Kit.warscroll("portal", PackedStringArray(["FACTION TERRAIN"]))
+	assert_false(ArmyBuilder.terrain_abilities(terrain).is_empty())
+
+
+# --- Army name ---
+
+func test_army_name_is_shown_as_a_label_until_edited() -> void:
+	var builder := _builder(_valid_army())
+	assert_null(UIKit.keyed(builder.builder_list, "army:name"))
+	assert_true(UIKit.has_label_containing(builder.builder_list, builder.editor.army.name))
+
+
+func test_rename_button_shows_a_name_field() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder.builder_list, "army:rename").pressed.emit()
+	assert_true(UIKit.keyed(builder.builder_list, "army:name") is LineEdit)
+
+
+func test_name_field_gets_focus_when_editing_starts() -> void:
+	var builder := _builder(_valid_army())
+	builder.start_editing_name()
+	assert_true(UIKit.keyed(builder.builder_list, "army:name").has_focus())
+
+
+func test_submitting_the_name_field_renames_the_army() -> void:
+	var builder := _builder(_valid_army())
+	builder.start_editing_name()
+	(UIKit.keyed(builder.builder_list, "army:name") as LineEdit).text_submitted.emit("Hammers of Azyr")
+	assert_eq(builder.editor.army.name, "Hammers of Azyr")
+	assert_false(builder.editing_name)
+
+
+func test_submitting_the_name_field_focuses_the_rename_button() -> void:
+	var builder := _builder(_valid_army())
+	builder.start_editing_name()
+	(UIKit.keyed(builder.builder_list, "army:name") as LineEdit).text_submitted.emit("Hammers of Azyr")
+	assert_true(UIKit.keyed(builder.builder_list, "army:rename").has_focus())
+
+
+func test_blank_army_name_keeps_the_old_name() -> void:
+	var builder := _builder(_valid_army())
+	var old_name := builder.editor.army.name
+	builder.start_editing_name()
+	builder.finish_editing_name("  ")
+	assert_eq(builder.editor.army.name, old_name)
+	assert_null(UIKit.keyed(builder.builder_list, "army:name"))
+
+
+func test_cancel_stops_editing_the_army_name_before_going_back() -> void:
+	var builder := _builder(_valid_army())
+	watch_signals(builder)
+	builder.start_editing_name()
+	_press_cancel(builder)
+	assert_false(builder.editing_name)
+	assert_signal_not_emitted(builder, "back_pressed")
+
+
+# --- Add Regiment of Renown ---
+
+func _renown_faction() -> Faction:
+	var faction := UIKit.faction()
+	var band := Kit.regiment_of_renown("Band", 150, [Kit.renown_unit("Gotrek", "gotrek")] as Array[RegimentUnit],
+			[Kit.warscroll("gotrek", PackedStringArray(["HERO"]))] as Array[Warscroll])
+	faction.regiments_of_renown = [band] as Array[RegimentOfRenown]
+	return faction
+
+
+func test_add_regiment_of_renown_shown_without_one() -> void:
+	var builder := _builder(_valid_army(), _renown_faction())
+	assert_not_null(UIKit.keyed(builder.builder_list, "army:add_ror"))
+
+
+func test_add_regiment_of_renown_hidden_once_the_army_has_one() -> void:
+	var builder := _builder(_valid_army(), _renown_faction())
+	builder.editor.add_regiment_of_renown("Band")
+	assert_null(UIKit.keyed(builder.builder_list, "army:add_ror"))
+
+
+func test_add_regiment_of_renown_shown_with_one_when_constraints_are_overridden() -> void:
+	var army := _valid_army()
+	army.override_constraints = true
+	var builder := _builder(army, _renown_faction())
+	builder.editor.add_regiment_of_renown("Band")
+	assert_not_null(UIKit.keyed(builder.builder_list, "army:add_ror"))
 
 
 # --- Lore help ---
@@ -860,6 +975,7 @@ func test_pressing_the_save_button_saves() -> void:
 
 func test_save_commits_text_still_being_typed_in_the_name_field() -> void:
 	var builder := _builder(UIKit.army_with_regiment())
+	builder.start_editing_name()
 	var edit := UIKit.keyed(builder, "army:name") as LineEdit
 	edit.grab_focus()
 	edit.text = "Typed name"
