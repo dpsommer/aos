@@ -34,17 +34,51 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Auxiliary Units:** unit rows and "Add auxiliary unit".
   - **Faction Terrain:** a select, hidden when the faction has none or its Army of Renown forbids it.
   - **Lores:** a select each for spell, prayer and manifestation lores. Each has a "?" whose tooltip says which units the lore needs, and which turns amber when the army needs that lore and has none.
-- **Info pane:** on the left. It will hold the roster, rules, Regiments of Renown and settings tabs.
+- **Info pane:** on the left (`InfoPane`, `info_pane.gd`). A search box sits above tabs for Roster, Rules, Regiments of Renown and Army settings (a gear).
+  - **Search:** the placeholder names what the tab searches, and the box is hidden on Army settings. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
+    - Search unfolds everything it shows.
+    - A tab with no matches says so.
+  - **Roster:** the faction's units, grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
+    - **Unit cards:** points, plus Scourge and Legends chips.
+    - **A star** pins the unit to a Favourites list at the top. Favourites are kept per faction in `user://forge.cfg`.
+    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". The button is disabled for a Unique unit already in the army.
+  - **Rules:** the rules the army uses, from `RulesSections`, in sections that each fold:
+    - Battle Traits;
+    - Battle Formations;
+    - Enhancements, one group per table;
+    - Lores, including the universal manifestation lores;
+    - Manifestations;
+    - Faction Terrain;
+    - Battle Tactics: the battlepack's cards in full, with their FAQs.
+
+    An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
+
+    Search keeps a whole section or group whose title matches, and otherwise only the matching rules.
+  - **Regiments of Renown:** cards the army can include, or every one when constraints are overridden. Legends regiments are hidden unless shown.
+    - Each card lists its units. Each unit unfolds its warscroll, followed by the regiment's rules.
+    - "Add to army", or why the army can't take it.
+  - **Army settings:**
+    - Show Legends units;
+    - Override army constraints;
+    - the points limit, with −/+ buttons that step 250;
+    - the Army of Renown;
+    - the battle formation, when there's no Army of Renown.
+  - **Links:** each of these clears the search, switches tab, scrolls to the target, highlights it briefly and gives it keyboard focus:
+    - a unit's portrait in the army list opens its card in the Roster (and shows Legends units if it is one);
+    - a Regiment of Renown unit's portrait opens its regiment in Regiments of Renown;
+    - a short battle tactics card opens the card under Rules;
+    - picking a lore opens it under Rules.
 - **Picker:** replaces the info pane to add something, until it is closed or something is picked. It can show:
   - Heroes to lead a regiment;
   - units the leader's regiment options allow, or every unit when constraints are overridden;
   - auxiliary units;
   - the battlepack's battle tactics cards in full;
-  - Regiments of Renown, with their rules and a toggle to show their warscrolls.
+  - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
 
   It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
 - **Redrawing and focus:** the builder pane is rebuilt from the army after every change. Controls carry a `focus_key` meta, so keyboard focus returns to the same control afterwards.
-- **Esc:** closes the picker, then cancels a rename, then goes back.
+  - The info pane is only rebuilt when something its tab shows has changed, as the Rules tab is slow to lay out.
+- **Esc:** in the search box, clears the search. Otherwise it closes the picker, then cancels a rename, then goes back.
 
 ## Army model
 

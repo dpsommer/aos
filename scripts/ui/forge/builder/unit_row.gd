@@ -49,8 +49,16 @@ func _summary() -> HBoxContainer:
 	names.add_child(sub)
 	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
-	var row := BuilderUI.hbox([BuilderUI.portrait(title), names], 10)
 	var renown := regiment != null and regiment.is_regiment_of_renown()
+	var portrait: Control
+	if renown:
+		portrait = BuilderUI.portrait(title, builder.info_pane.show_regiment_of_renown.bind(regiment.regiment_of_renown),
+				"Show %s in Regiments of Renown" % regiment.regiment_of_renown)
+	elif warscroll and warscroll in builder.catalog.faction.warscrolls:
+		portrait = BuilderUI.portrait(title, builder.info_pane.show_unit.bind(warscroll), "Show %s in the Roster" % warscroll.name)
+	else:
+		portrait = BuilderUI.portrait(title)
+	var row := BuilderUI.hbox([portrait, names], 10)
 	if not renown:
 		row.add_child(BuilderUI.label("%d pts" % ArmyPoints.unit_points(unit, regiment, army, builder.catalog), "MutedLabel"))
 	var key := unit.uid + ":"

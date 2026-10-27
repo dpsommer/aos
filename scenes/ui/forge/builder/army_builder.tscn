@@ -110,16 +110,6 @@ custom_minimum_size = Vector2(460, 0)
 layout_mode = 2
 theme_type_variation = &"PanePanel"
 
-[node name="InfoPane" type="VBoxContainer" parent="Layout/Body/LeftPane"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="InfoHint" type="Label" parent="Layout/Body/LeftPane/InfoPane"]
-layout_mode = 2
-theme_type_variation = &"MutedLabel"
-text = "Add regiments, units, battle tactics and Regiments of Renown with the buttons in the army list. The roster, rules and settings tabs will appear here."
-autowrap_mode = 3
-
 [node name="BuilderScroll" type="ScrollContainer" parent="Layout/Body"]
 unique_name_in_owner = true
 layout_mode = 2

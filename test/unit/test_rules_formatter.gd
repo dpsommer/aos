@@ -542,3 +542,16 @@ func test_rules_section_contains_name_text_and_warscrolls() -> void:
 	var output := RulesFormatter.rules_section(section)
 	for value in [section.name, section.text, section.warscrolls[0].name]:
 		assert_string_contains(output, value)
+
+
+func test_warscroll_heading_can_be_left_out() -> void:
+	var unit := _warscroll()
+	assert_string_contains(RulesFormatter.warscroll(unit), RulesFormatter.heading(unit.name))
+	assert_false(RulesFormatter.warscroll(unit, false).contains(RulesFormatter.heading(unit.name)))
+
+
+func test_warscroll_without_heading_keeps_the_characteristics() -> void:
+	var unit := _warscroll({move = "11", health = 13})
+	var output := RulesFormatter.warscroll(unit, false)
+	assert_string_contains(output, "11")
+	assert_string_contains(output, "13")

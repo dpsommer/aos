@@ -70,3 +70,49 @@ func test_action_button_is_added_to_the_card() -> void:
 	action.text = "Change"
 	var node := _make(false, "", action)
 	assert_true(node.is_ancestor_of(action))
+
+
+func test_action_can_be_any_control() -> void:
+	var chip := Label.new()
+	chip.text = "Battle tactic 1"
+	var node := TacticCard.new(_card(), false, "", chip)
+	add_child_autofree(node)
+	assert_true(node.is_ancestor_of(chip))
+
+
+func _faq_card() -> BattleTacticCard:
+	var card := _card()
+	card.faqs.append({"question": "Can I [b]do it[/b]?", "answer": "Yes."})
+	return card
+
+
+func _rich_texts(node: Node) -> PackedStringArray:
+	var result := PackedStringArray()
+	for found in UIKit.find_all(node, func(n: Node) -> bool: return n is RichTextLabel):
+		result.append((found as RichTextLabel).text)
+	return result
+
+
+func test_full_card_shows_its_faqs() -> void:
+	var node := TacticCard.new(_faq_card(), true)
+	add_child_autofree(node)
+	var texts := _rich_texts(node)
+	assert_eq(texts.size(), 1)
+	assert_string_contains(texts[0], "Yes.")
+	assert_string_contains(texts[0], "Can I")
+
+
+func test_faq_text_cannot_inject_bbcode() -> void:
+	var node := TacticCard.new(_faq_card(), true)
+	add_child_autofree(node)
+	assert_false(_rich_texts(node)[0].contains("[b]do it"))
+
+
+func test_short_card_hides_faqs() -> void:
+	var node := TacticCard.new(_faq_card(), false)
+	add_child_autofree(node)
+	assert_eq(_rich_texts(node).size(), 0)
+
+
+func test_card_without_faqs_has_no_rich_text() -> void:
+	assert_eq(_rich_texts(_make(true)).size(), 0)

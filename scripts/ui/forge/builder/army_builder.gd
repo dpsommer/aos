@@ -14,6 +14,7 @@ const LORE_HELP := {
 var editor: ArmyEditor
 var catalog: ArmyCatalog
 var picker: Picker
+var info_pane: InfoPane
 ## Unit uids with their options open, and other expanded panels' keys.
 var expanded := {}
 ## Ids of collapsed regiments.
@@ -32,7 +33,6 @@ var _redraw_again := false
 @onready var status_label: Label = %StatusLabel
 @onready var save_button: Button = %SaveButton
 @onready var left_pane: PanelContainer = %LeftPane
-@onready var info_pane: Control = %InfoPane
 @onready var builder_list: VBoxContainer = %BuilderList
 
 
@@ -40,6 +40,8 @@ func _ready() -> void:
 	theme = ForgeTheme.get_theme()
 	back_button.icon = ForgeTheme.icon("back")
 	back_button.pressed.connect(back_pressed.emit)
+	info_pane = InfoPane.new(self)
+	left_pane.add_child(info_pane)
 	picker = Picker.new(self)
 	picker.hide()
 	picker.closed.connect(_on_picker_closed)
@@ -66,6 +68,7 @@ func open(army: Army, army_catalog: ArmyCatalog = null) -> void:
 	catalog = army_catalog
 	editor = ArmyEditor.new(army, catalog)
 	editor.changed.connect(redraw)
+	info_pane.open()
 	redraw()
 	back_button.grab_focus()
 
@@ -115,6 +118,8 @@ func redraw() -> void:
 			_auxiliary_section(), _terrain_section(), _lores_section()]:
 		if section:
 			builder_list.add_child(section)
+	if info_pane.visible:
+		info_pane.refresh()
 	picker.refresh()
 	_drawing = false
 	if _redraw_again:
@@ -221,6 +226,7 @@ func _tactics_section() -> Control:
 		if card:
 			var change := BuilderUI.button("Change", pick_tactic.bind(slot), "tactic:%d" % slot, "", "Change %s" % heading.to_lower())
 			slot_control = TacticCard.new(card, false, heading, change)
+			_link(slot_control, info_pane.show_tactic.bind(card.name), "Show %s in the Rules tab" % card.name, "tactic_card:%d" % slot)
 		else:
 			slot_control = BuilderUI.button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot, "GhostButton")
 			slot_control.custom_minimum_size.y = 92
@@ -288,11 +294,29 @@ func _lores_section() -> Control:
 		var title := BuilderUI.label(pick[1])
 		title.custom_minimum_size.x = 160
 		var kind: String = pick[0]
-		var select := BuilderUI.select(items, pick[2], func(value: String) -> void: editor.set_lore(kind, value),
-				"lore:" + kind, pick[1])
+		var choose := func(value: String) -> void:
+			editor.set_lore(kind, value)
+			if not value.is_empty():
+				info_pane.show_lore(value)
+		var select := BuilderUI.select(items, pick[2], choose, "lore:" + kind, pick[1])
 		select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		rows.append(BuilderUI.hbox([title, help, select]))
 	return _section("Lores", rows) if not rows.is_empty() else null
+
+
+## Makes [param control] call [param on_pressed] when clicked, or on Enter or Space with keyboard focus.
+func _link(control: Control, on_pressed: Callable, tooltip: String, key: String) -> void:
+	control.focus_mode = Control.FOCUS_ALL
+	control.tooltip_text = tooltip
+	control.accessibility_name = tooltip
+	control.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	control.set_meta(&"focus_key", key)
+	var on_input := func(event: InputEvent) -> void:
+		var click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+		if click or event.is_action_pressed("ui_accept"):
+			control.accept_event()
+			on_pressed.call()
+	control.gui_input.connect(on_input)
 
 
 ## Units the player can add: no Legends units unless shown, and no second copy of a Unique unit
@@ -324,6 +348,7 @@ func _show_picker() -> void:
 func _on_picker_closed() -> void:
 	picker.hide()
 	info_pane.show()
+	info_pane.refresh()
 
 
 ## Picks a Hero to lead [param regiment_id], or a new regiment when empty.

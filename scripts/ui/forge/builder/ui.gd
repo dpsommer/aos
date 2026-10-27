@@ -83,19 +83,56 @@ static func spacer() -> Control:
 	return node
 
 
-## A square showing a unit's initials, standing in for its portrait.
-static func portrait(unit_name: String) -> PanelContainer:
+## A square showing a unit's initials, standing in for its portrait. With [param on_pressed] it's a
+## button, e.g. to show the unit in the info pane, and [param tooltip] names what it does.
+static func portrait(unit_name: String, on_pressed := Callable(), tooltip := "", size := 40) -> Control:
 	var initials := ""
 	for word in unit_name.replace("-", " ").split(" ", false):
 		if initials.length() < 2 and word[0] != word[0].to_lower():
 			initials += word[0]
+	if on_pressed.is_valid():
+		var node := button(initials, on_pressed, "", "PortraitButton", tooltip)
+		node.accessibility_name = tooltip
+		node.custom_minimum_size = Vector2(size, size)
+		node.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		return node
 	var text := label(initials, "MutedLabel")
 	text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	var node := panel("", text)
 	node.add_theme_stylebox_override("panel", ForgeTheme.box(Color("#252930"), Color("#343A45"), 6))
-	node.custom_minimum_size = Vector2(40, 40)
+	node.custom_minimum_size = Vector2(size, size)
+	node.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	return node
+
+
+## A full-width button that folds a section: a chevron, [param text] and, if not empty,
+## [param count] on the right.
+static func banner(text: String, count: String, open: bool, on_pressed: Callable, key: String,
+		variation := "BannerButton") -> Button:
+	var node := button(text, on_pressed, key, variation, ("Fold " if open else "Unfold ") + text)
+	node.icon = ForgeTheme.icon("chevron_down" if open else "chevron_right")
+	node.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	node.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	node.accessibility_name = text
+	node.accessibility_description = "Expanded" if open else "Collapsed"
+	if not count.is_empty():
+		var tally := label(count, "MutedLabel")
+		tally.set_anchors_and_offsets_preset(Control.PRESET_CENTER_RIGHT, Control.PRESET_MODE_MINSIZE, 10)
+		tally.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		node.add_child(tally)
+	return node
+
+
+## Rules text in BBCode, sized to fit.
+static func rich(bbcode: String) -> RichTextLabel:
+	var text := RichTextLabel.new()
+	text.bbcode_enabled = true
+	text.fit_content = true
+	text.text = bbcode
+	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	return text
 
 
 ## An option list; [param items] are [text, value] pairs. Calls [param on_selected] with the value.
