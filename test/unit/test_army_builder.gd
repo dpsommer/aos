@@ -3,12 +3,18 @@ extends GutTest
 
 const Kit := preload("res://test/support/army_kit.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")
+const Sandbox := preload("res://test/support/sandbox.gd")
 
 
 ## Redrawn sections are removed with queue_free, so let a frame pass for them to be freed before
 ## GUT counts orphans.
+func before_each() -> void:
+	Sandbox.begin()
+
+
 func after_each() -> void:
 	await get_tree().process_frame
+	Sandbox.end()
 
 
 func _press_cancel(node: Node) -> void:
@@ -693,3 +699,224 @@ func test_closing_the_picker_shows_the_info_pane_up_to_date() -> void:
 	builder.picker.close()
 	assert_true(builder.info_pane.visible)
 	assert_not_null(UIKit.keyed(builder.info_pane, "info:card:legend"))
+
+
+# --- Saving and leaving ---
+
+func _edited_builder() -> ArmyBuilder:
+	var builder := _builder(UIKit.army_with_regiment())
+	builder.editor.set_points_limit(1234)
+	return builder
+
+
+func _saved_builder() -> ArmyBuilder:
+	var builder := _builder(UIKit.army_with_regiment())
+	assert_true(builder.save())
+	return builder
+
+
+func test_opened_army_is_not_dirty() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	assert_false(builder.dirty)
+
+
+func test_editing_the_army_makes_it_dirty() -> void:
+	var builder := _edited_builder()
+	assert_true(builder.dirty)
+
+
+func test_reopening_clears_dirty() -> void:
+	var builder := _edited_builder()
+	builder.open(UIKit.army_with_regiment(), Kit.catalog(UIKit.faction()))
+	assert_false(builder.dirty)
+
+
+func test_unsaved_new_army_offers_to_save() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	assert_eq(builder.save_button.text, "Save army")
+	assert_false(builder.save_button.disabled)
+
+
+func test_saved_unchanged_army_shows_saved_and_disables_the_button() -> void:
+	var builder := _saved_builder()
+	assert_eq(builder.save_button.text, "Saved")
+	assert_true(builder.save_button.disabled)
+
+
+func test_opening_an_army_that_has_an_id_shows_saved() -> void:
+	var army := UIKit.army_with_regiment()
+	ArmyStore.save(army)
+	var builder := _builder(army)
+	assert_true(builder.save_button.disabled)
+
+
+func test_editing_a_saved_army_enables_the_save_button() -> void:
+	var builder := _saved_builder()
+	builder.editor.set_points_limit(999)
+	assert_eq(builder.save_button.text, "Save army")
+	assert_false(builder.save_button.disabled)
+
+
+func test_save_writes_the_army_to_the_store() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	builder.save()
+	var saved := ArmyStore.load_army(builder.editor.army.id)
+	assert_not_null(saved)
+	assert_eq(saved.name, builder.editor.army.name)
+
+
+func test_save_assigns_the_army_an_id() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	builder.save()
+	assert_false(builder.editor.army.id.is_empty())
+
+
+func test_save_clears_dirty() -> void:
+	var builder := _edited_builder()
+	builder.save()
+	assert_false(builder.dirty)
+
+
+func test_save_stores_the_latest_edits() -> void:
+	var builder := _edited_builder()
+	builder.save()
+	assert_eq(ArmyStore.load_army(builder.editor.army.id).points_limit, 1234)
+
+
+func test_saving_twice_keeps_one_file() -> void:
+	var builder := _edited_builder()
+	builder.save()
+	builder.editor.set_points_limit(500)
+	builder.save()
+	assert_eq(ArmyStore.list().size(), 1)
+
+
+func test_pressing_the_save_button_saves() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	builder.save_button.pressed.emit()
+	assert_eq(ArmyStore.list().size(), 1)
+
+
+func test_save_commits_text_still_being_typed_in_the_name_field() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	var edit := UIKit.keyed(builder, "army:name") as LineEdit
+	edit.grab_focus()
+	edit.text = "Typed name"
+	builder.save()
+	assert_eq(ArmyStore.load_army(builder.editor.army.id).name, "Typed name")
+
+
+func test_failed_save_returns_false_and_stays_dirty() -> void:
+	var builder := _edited_builder()
+	# A file where the directory should be, so it can't be created.
+	var blocker := Sandbox.armies_directory()
+	var file := FileAccess.open(blocker, FileAccess.WRITE)
+	file.close()
+	var saved := builder.save()
+	assert_false(saved)
+	assert_true(builder.dirty)
+	assert_push_error_count(1)
+	DirAccess.remove_absolute(blocker)
+
+
+func test_failed_save_tells_the_player() -> void:
+	var builder := _edited_builder()
+	var file := FileAccess.open(Sandbox.armies_directory(), FileAccess.WRITE)
+	file.close()
+	builder.save()
+	var dialogs := UIKit.find_all(builder, func(n: Node) -> bool: return n is AcceptDialog and not n is ConfirmationDialog)
+	assert_eq(dialogs.size(), 1)
+	assert_push_error_count(1)
+	DirAccess.remove_absolute(Sandbox.armies_directory())
+
+
+func test_request_back_without_changes_goes_back() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	watch_signals(builder)
+	builder.request_back()
+	assert_signal_emitted(builder, "back_pressed")
+	assert_false(builder.discard_dialog.visible)
+
+
+func test_request_back_with_changes_asks_first() -> void:
+	var builder := _edited_builder()
+	watch_signals(builder)
+	builder.request_back()
+	assert_signal_not_emitted(builder, "back_pressed")
+	assert_true(builder.discard_dialog.visible)
+
+
+func test_request_back_after_saving_goes_back() -> void:
+	var builder := _edited_builder()
+	builder.save()
+	watch_signals(builder)
+	builder.request_back()
+	assert_signal_emitted(builder, "back_pressed")
+
+
+func test_back_button_asks_when_there_are_changes() -> void:
+	var builder := _edited_builder()
+	watch_signals(builder)
+	builder.back_button.pressed.emit()
+	assert_true(builder.discard_dialog.visible)
+	assert_signal_not_emitted(builder, "back_pressed")
+
+
+func test_cancel_key_asks_when_there_are_changes() -> void:
+	var builder := _edited_builder()
+	watch_signals(builder)
+	_press_cancel(builder)
+	assert_true(builder.discard_dialog.visible)
+	assert_signal_not_emitted(builder, "back_pressed")
+
+
+func test_cancel_key_goes_back_without_changes() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	watch_signals(builder)
+	_press_cancel(builder)
+	assert_signal_emitted(builder, "back_pressed")
+
+
+func test_dialog_cancel_button_is_focused() -> void:
+	var builder := _edited_builder()
+	builder.request_back()
+	assert_true(builder.discard_dialog.get_cancel_button().has_focus())
+
+
+func test_dialog_discard_goes_back_without_saving() -> void:
+	var builder := _edited_builder()
+	builder.request_back()
+	watch_signals(builder)
+	builder.discard_dialog.confirmed.emit()
+	assert_signal_emitted(builder, "back_pressed")
+	assert_eq(ArmyStore.list().size(), 0)
+
+
+func test_dialog_keep_editing_stays_dirty_and_does_not_go_back() -> void:
+	var builder := _edited_builder()
+	builder.request_back()
+	watch_signals(builder)
+	builder.discard_dialog.canceled.emit()
+	assert_signal_not_emitted(builder, "back_pressed")
+	assert_true(builder.dirty)
+	assert_eq(ArmyStore.list().size(), 0)
+
+
+func test_dialog_save_saves_then_goes_back() -> void:
+	var builder := _edited_builder()
+	builder.request_back()
+	watch_signals(builder)
+	builder.discard_dialog.custom_action.emit(&"save")
+	assert_signal_emitted(builder, "back_pressed")
+	assert_eq(ArmyStore.load_army(builder.editor.army.id).points_limit, 1234)
+
+
+func test_dialog_save_does_not_go_back_when_saving_fails() -> void:
+	var builder := _edited_builder()
+	var file := FileAccess.open(Sandbox.armies_directory(), FileAccess.WRITE)
+	file.close()
+	watch_signals(builder)
+	builder.discard_dialog.custom_action.emit(&"save")
+	assert_signal_not_emitted(builder, "back_pressed")
+	assert_push_error_count(1)
+	DirAccess.remove_absolute(Sandbox.armies_directory())

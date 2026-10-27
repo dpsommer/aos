@@ -28,6 +28,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ArmiesPanel" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/ArmiesPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Forge"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/ArmiesPanel"]
+layout_mode = 2
+text = "Your armies"
+horizontal_alignment = 1
+
+[node name="ArmyScroll" type="ScrollContainer" parent="CenterContainer/ArmiesPanel"]
+custom_minimum_size = Vector2(760, 480)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ArmyList" type="VBoxContainer" parent="CenterContainer/ArmiesPanel/ArmyScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="NewArmyButton" type="Button" parent="CenterContainer/ArmiesPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "New army"
+
+[node name="ArmiesBackButton" type="Button" parent="CenterContainer/ArmiesPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
 [node name="AlliancePanel" type="VBoxContainer" parent="CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -177,3 +218,8 @@ custom_minimum_size = Vector2(240, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
+
+[node name="DeleteDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Delete army"
+ok_button_text = "Delete"

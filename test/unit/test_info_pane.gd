@@ -3,14 +3,13 @@ extends GutTest
 
 const Kit := preload("res://test/support/army_kit.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")
+const Sandbox := preload("res://test/support/sandbox.gd")
 
 const TEMP_FAVOURITES := "user://test_info_pane_favourites.cfg"
 
-var _real_path := ""
-
 
 func before_each() -> void:
-	_real_path = InfoPane.favourites_path
+	Sandbox.begin()
 	InfoPane.favourites_path = TEMP_FAVOURITES
 	DirAccess.remove_absolute(TEMP_FAVOURITES)
 
@@ -19,7 +18,7 @@ func before_each() -> void:
 ## counts orphans.
 func after_each() -> void:
 	await get_tree().process_frame
-	InfoPane.favourites_path = _real_path
+	Sandbox.end()
 	DirAccess.remove_absolute(TEMP_FAVOURITES)
 
 

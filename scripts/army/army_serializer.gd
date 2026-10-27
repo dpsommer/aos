@@ -17,6 +17,7 @@ static func to_dict(army: Army) -> Dictionary:
 		regiments.append(data)
 	return {
 		"version": VERSION,
+		"id": army.id,
 		"faction": army.faction_id,
 		"name": army.name,
 		"army_of_renown": army.army_of_renown,
@@ -60,6 +61,7 @@ func from_dict(data: Dictionary) -> Army:
 		errors.append("version: unsupported saved army version %s" % str(version))
 		return null
 	var army := Army.new()
+	army.id = _string(data, "id")
 	army.faction_id = _string(data, "faction")
 	if army.faction_id.is_empty():
 		errors.append("faction: is required")

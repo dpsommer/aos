@@ -1,19 +1,28 @@
 class_name Forge
 extends Control
-## Starts an army: players pick a Grand Alliance, a faction, then an Army of Renown or the faction's
-## own rules with a battle formation.
+## Lists the player's saved armies, and starts new ones: players pick a Grand Alliance, a faction,
+## then an Army of Renown or the faction's own rules with a battle formation.
 
 signal back_pressed
 ## The player asked to read [param faction]'s rules in the faction browser.
 signal browse_requested(alliance: GrandAlliance.Type, faction: String)
 ## The player finished choosing; [param army] is a new, empty army.
 signal army_started(army: Army)
+## The player opened a saved army.
+signal army_opened(army: Army)
 
 const BUTTON_SIZE := Vector2(360, 48)
 
 var _selected_alliance: GrandAlliance.Type = GrandAlliance.Type.ORDER
 var _faction: Faction
+## Id of the saved army waiting for the delete confirmation.
+var _deleting := ""
 
+@onready var armies_panel: Control = %ArmiesPanel
+@onready var army_list: VBoxContainer = %ArmyList
+@onready var new_army_button: Button = %NewArmyButton
+@onready var armies_back_button: Button = %ArmiesBackButton
+@onready var delete_dialog: ConfirmationDialog = %DeleteDialog
 @onready var alliance_panel: Control = %AlliancePanel
 @onready var faction_panel: Control = %FactionPanel
 @onready var faction_title: Label = %FactionTitle
@@ -45,7 +54,11 @@ func _ready() -> void:
 	browse_button.pressed.connect(_on_browse_pressed)
 	renown_back_button.pressed.connect(_on_renown_back_pressed)
 	formation_back_button.pressed.connect(_on_formation_back_pressed)
-	show_alliances()
+	new_army_button.pressed.connect(show_alliances)
+	armies_back_button.pressed.connect(back_pressed.emit)
+	delete_dialog.confirmed.connect(_on_delete_confirmed)
+	delete_dialog.canceled.connect(_on_delete_canceled)
+	show_armies()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -57,13 +70,118 @@ func _unhandled_input(event: InputEvent) -> void:
 			_on_renown_back_pressed()
 		elif faction_panel.visible:
 			_on_faction_back_pressed()
-		else:
+		elif alliance_panel.visible:
 			_on_alliance_back_pressed()
+		else:
+			back_pressed.emit()
 
 
 func _show_only(panel: Control) -> void:
-	for other: Control in [alliance_panel, faction_panel, renown_panel, formation_panel]:
+	for other: Control in [armies_panel, alliance_panel, faction_panel, renown_panel, formation_panel]:
 		other.visible = other == panel
+
+
+## Shows the saved armies, most recently saved first, focusing the army with [param focus_id] if
+## given.
+func show_armies(focus_id := "") -> void:
+	_clear(army_list)
+	var focus: Control = new_army_button
+	for entry in ArmyStore.list():
+		var row := _army_row(entry)
+		army_list.add_child(row)
+		if entry.id == focus_id or (focus_id.is_empty() and focus == new_army_button):
+			focus = row.get_meta(&"first_button")
+	if army_list.get_child_count() == 0:
+		var empty := Label.new()
+		empty.text = "No saved armies yet. Start one with New army."
+		empty.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		army_list.add_child(empty)
+	_show_only(armies_panel)
+	focus.grab_focus()
+
+
+## A saved army's name and summary, with Open, Duplicate and Delete.
+func _army_row(entry: ArmyStore.Entry) -> HBoxContainer:
+	var row := HBoxContainer.new()
+	row.set_meta(&"army_id", entry.id)
+	row.add_theme_constant_override("separation", 8)
+	var title := Label.new()
+	var detail := Label.new()
+	detail.modulate = Color(1, 1, 1, 0.65)
+	var text := VBoxContainer.new()
+	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	text.add_child(title)
+	text.add_child(detail)
+	row.add_child(text)
+	var summary := army_summary(entry)
+	title.text = summary.name
+	detail.text = summary.detail
+	var open := _row_button(row, "Open", army_opened.emit.bind(entry.army) if summary.can_open else Callable())
+	open.disabled = not summary.can_open
+	var copy := _row_button(row, "Duplicate", _duplicate.bind(entry.id))
+	copy.disabled = entry.army == null
+	_row_button(row, "Delete", _confirm_delete.bind(entry.id, summary.name))
+	row.set_meta(&"first_button", open if summary.can_open else copy if not copy.disabled else row.get_child(-1))
+	return row
+
+
+func _row_button(row: HBoxContainer, text: String, on_pressed: Callable) -> Button:
+	var button := Button.new()
+	button.text = text
+	button.custom_minimum_size = Vector2(100, 40)
+	button.tooltip_text = "%s %s" % [text, (row.get_child(0).get_child(0) as Label).text]
+	if on_pressed.is_valid():
+		button.pressed.connect(on_pressed)
+	row.add_child(button)
+	return button
+
+
+## The saved army's name, a line of details (faction, points, whether it's valid) and whether it
+## can be opened: not when the file can't be read or its faction has no data.
+static func army_summary(entry: ArmyStore.Entry) -> Dictionary:
+	var army := entry.army
+	if army == null:
+		return {"name": "Unreadable army (%s)" % entry.id, "detail": " ".join(entry.errors), "can_open": false}
+	var army_name := army.name if not army.name.is_empty() else "Unnamed army"
+	var faction_name := FactionCatalog.name_for_id(army.faction_id)
+	var faction := FactionCatalog.load_faction(faction_name) if not faction_name.is_empty() else null
+	if faction == null:
+		return {"name": army_name, "detail": "No data for the faction '%s'" % army.faction_id, "can_open": false}
+	var catalog := ArmyCatalog.new(faction, CoreRulesCatalog.get_rules())
+	var parts := PackedStringArray([faction.name, "%d / %d pts" % [ArmyPoints.total(army, catalog), army.points_limit]])
+	var validation := ArmyValidator.validate(army, catalog)
+	if validation.overridden:
+		parts.append("Constraints overridden")
+	elif validation.is_valid():
+		parts.append("Valid")
+	else:
+		parts.append("%d problem%s" % [validation.problems.size(), "" if validation.problems.size() == 1 else "s"])
+	if not entry.errors.is_empty():
+		parts.append("Some saved choices couldn't be read")
+	return {"name": army_name, "detail": " · ".join(parts), "can_open": true}
+
+
+func _duplicate(id: String) -> void:
+	var copy := ArmyStore.copy(id)
+	show_armies(copy.id if copy else id)
+
+
+func _confirm_delete(id: String, army_name: String) -> void:
+	_deleting = id
+	delete_dialog.dialog_text = "Delete %s? This can't be undone." % army_name
+	delete_dialog.popup_centered()
+
+
+func _on_delete_confirmed() -> void:
+	ArmyStore.delete(_deleting)
+	_deleting = ""
+	show_armies()
+
+
+func _on_delete_canceled() -> void:
+	var id := _deleting
+	_deleting = ""
+	show_armies(id)
 
 
 func show_alliances() -> void:
@@ -159,7 +277,7 @@ func _on_browse_pressed() -> void:
 
 
 func _on_alliance_back_pressed() -> void:
-	back_pressed.emit()
+	show_armies()
 
 
 func _on_faction_back_pressed() -> void:
