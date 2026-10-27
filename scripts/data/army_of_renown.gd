@@ -7,6 +7,8 @@ extends Resource
 @export var legends: bool
 ## Description and roster restrictions.
 @export var text: String
+## The roster options in [member text], for the army builder. Null if the data has none.
+@export var roster: ArmyRoster
 @export var battle_traits: Array[Ability]
 @export var enhancement_tables: Array[EnhancementTable]
 @export var lores: Array[Lore]

@@ -91,6 +91,8 @@ def warscroll(w, with_profile=True):
     out["keywords"] = w.get("keywords", [])
     if w.get("composition"):
         out["composition"] = w["composition"]
+    if w.get("weapon_options"):
+        out["weapon_options"] = w["weapon_options"]
     return out
 
 
@@ -126,6 +128,8 @@ def army_of_renown(a):
     if a.get("legends"):
         out["legends"] = True
     out["text"] = a.get("text", "")
+    if a.get("roster"):
+        out["roster"] = a["roster"]
     out["battle_traits"] = [ability(x) for x in a["battle_traits"]]
     out["enhancement_tables"] = [table(t) for t in a["enhancement_tables"]]
     out["lores"] = [table(t) for t in a["lores"]]

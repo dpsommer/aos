@@ -21,7 +21,11 @@
 			],
 			"abilities": [{"name": "Unit Ability", "effect": "Unit effect."}],
 			"keywords": ["INFANTRY", "CHAOS"],
-			"composition": "5 models"
+			"composition": "5 models",
+			"weapon_options": [
+				{"name": "Big Gun", "replaces": "Gun", "max": 1, "per": 5, "note": "Option note."},
+				{"name": "Claw", "replaces": "Fist", "choice": true}
+			]
 		},
 		{
 			"id": "unit_two",

@@ -633,7 +633,15 @@
 				"INFANTRY",
 				"WARRIOR CHAMBER"
 			],
-			"composition": "Each model in this unit is armed with a Decimator Thunderaxe. 2/5 models can replace their Decimator Thunderaxe with a Starsoul Mace."
+			"composition": "Each model in this unit is armed with a Decimator Thunderaxe. 2/5 models can replace their Decimator Thunderaxe with a Starsoul Mace.",
+			"weapon_options": [
+				{
+					"name": "Starsoul Mace",
+					"replaces": "Decimator Thunderaxe",
+					"max": 2,
+					"per": 5
+				}
+			]
 		},
 		{
 			"id": "domitans_stormcoven",
@@ -2281,7 +2289,15 @@
 				"INFANTRY",
 				"WARRIOR CHAMBER"
 			],
-			"composition": "Each model in this unit is armed with a Boltstorm Crossbow and Storm Gladius. 1/5 models can replace their Boltstorm Crossbow with a Thunderbolt Crossbow."
+			"composition": "Each model in this unit is armed with a Boltstorm Crossbow and Storm Gladius. 1/5 models can replace their Boltstorm Crossbow with a Thunderbolt Crossbow.",
+			"weapon_options": [
+				{
+					"name": "Thunderbolt Crossbow",
+					"replaces": "Boltstorm Crossbow",
+					"max": 1,
+					"per": 5
+				}
+			]
 		},
 		{
 			"id": "judicators_with_skybolt_bows",
@@ -2350,7 +2366,15 @@
 				"INFANTRY",
 				"WARRIOR CHAMBER"
 			],
-			"composition": "Each model in this unit is armed with a Skybolt Bow and Storm Gladius. 1/5 models can replace their Skybolt Bow with a Shockbolt Bow."
+			"composition": "Each model in this unit is armed with a Skybolt Bow and Storm Gladius. 1/5 models can replace their Skybolt Bow with a Shockbolt Bow.",
+			"weapon_options": [
+				{
+					"name": "Shockbolt Bow",
+					"replaces": "Skybolt Bow",
+					"max": 1,
+					"per": 5
+				}
+			]
 		},
 		{
 			"id": "karazai_the_scarred",
@@ -3300,7 +3324,16 @@
 				"STORMCAST ETERNALS",
 				"WARRIOR CHAMBER"
 			],
-			"composition": "Each model in this unit is armed with a Warhammer. 1/5 models can replace their Warhammer with a Grandhammer. The champion cannot replace their weapon."
+			"composition": "Each model in this unit is armed with a Warhammer. 1/5 models can replace their Warhammer with a Grandhammer. The champion cannot replace their weapon.",
+			"weapon_options": [
+				{
+					"name": "Grandhammer",
+					"replaces": "Warhammer",
+					"max": 1,
+					"per": 5,
+					"note": "The champion cannot replace their weapon"
+				}
+			]
 		},
 		{
 			"id": "lorai_child_of_the_abyss",
@@ -4914,7 +4947,15 @@
 				"INFANTRY",
 				"WARRIOR CHAMBER"
 			],
-			"composition": "Each model in this unit is armed with a Protector Stormstrike Glaive. 2/5 models can replace their Protector Stormstrike Glaive with a Starsoul Mace."
+			"composition": "Each model in this unit is armed with a Protector Stormstrike Glaive. 2/5 models can replace their Protector Stormstrike Glaive with a Starsoul Mace.",
+			"weapon_options": [
+				{
+					"name": "Starsoul Mace",
+					"replaces": "Protector Stormstrike Glaive",
+					"max": 2,
+					"per": 5
+				}
+			]
 		},
 		{
 			"id": "questor_soulsworn",
@@ -5083,7 +5124,15 @@
 				"INFANTRY",
 				"WARRIOR CHAMBER"
 			],
-			"composition": "Each model in this unit is armed with a Retributor Lightning Hammer. 2/5 models can replace their Retributor Lightning Hammer with a Starsoul Mace."
+			"composition": "Each model in this unit is armed with a Retributor Lightning Hammer. 2/5 models can replace their Retributor Lightning Hammer with a Starsoul Mace.",
+			"weapon_options": [
+				{
+					"name": "Starsoul Mace",
+					"replaces": "Retributor Lightning Hammer",
+					"max": 2,
+					"per": 5
+				}
+			]
 		},
 		{
 			"id": "sequitors",
@@ -5140,7 +5189,15 @@
 				"SACROSANCT CHAMBER",
 				"INFANTRY"
 			],
-			"composition": "Each model in this unit is armed with Sacrosanct Weapons. 2/5 models can replace their Sacrosanct Weapons with a Stormsmite Greatmace."
+			"composition": "Each model in this unit is armed with Sacrosanct Weapons. 2/5 models can replace their Sacrosanct Weapons with a Stormsmite Greatmace.",
+			"weapon_options": [
+				{
+					"name": "Stormsmite Greatmace",
+					"replaces": "Sacrosanct Weapons",
+					"max": 2,
+					"per": 5
+				}
+			]
 		},
 		{
 			"id": "steelhearts_champions",

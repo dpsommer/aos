@@ -36,6 +36,8 @@ extends Resource
 @export var keywords: PackedStringArray
 ## Wargear options and model breakdown.
 @export var composition: String
+## The wargear choices in [member composition], for the army builder. Empty if the data has none.
+@export var weapon_options: Array[WeaponOption]
 
 
 func has_keyword(keyword: String) -> bool:

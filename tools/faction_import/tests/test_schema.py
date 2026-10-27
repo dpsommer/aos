@@ -107,6 +107,16 @@ def test_warscroll_drops_unknown_fields():
     assert "slug" not in schema.warscroll(ws(slug="test-riders"))
 
 
+def test_warscroll_keeps_weapon_options_after_composition():
+    options = [{"name": "Grandhammer", "replaces": "Warhammer", "max": 1, "per": 5}]
+    out = schema.warscroll(ws(weapon_options=options, composition="Armed with a Warhammer."))
+    assert out["weapon_options"] == options and list(out)[-2:] == ["composition", "weapon_options"]
+
+
+def test_warscroll_omits_empty_weapon_options():
+    assert "weapon_options" not in schema.warscroll(ws(weapon_options=[]))
+
+
 def test_table_drops_empty_group_and_source():
     out = schema.table({"name": "Heroic Traits", "group": "", "source": "", "entries": []})
     assert "group" not in out and "source" not in out
@@ -150,6 +160,16 @@ def test_army_of_renown_omits_legends_when_not_set(army):
 def test_army_of_renown_legends_comes_between_source_and_text():
     keys = list(schema.army_of_renown(aor(source="Expansion", legends=True, text="Roster.")))
     assert keys.index("source") < keys.index("legends") < keys.index("text")
+
+
+def test_army_of_renown_keeps_roster_after_text():
+    roster = {"entries": [{"unit": "Hamilcar Bear-Eater"}], "regiments_of_renown": False}
+    out = schema.army_of_renown(aor(text="Roster.", roster=roster))
+    assert out["roster"] == roster and list(out).index("roster") == list(out).index("text") + 1
+
+
+def test_army_of_renown_omits_missing_roster():
+    assert "roster" not in schema.army_of_renown(aor())
 
 
 def fac(**kw):

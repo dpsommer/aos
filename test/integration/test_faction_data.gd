@@ -277,3 +277,60 @@ func test_summon_loyal_subjects_is_a_one_point_command() -> void:
 	var ability := _find(_all_abilities(), "Flesh-eater Courts", "Summon Loyal Subjects")
 	assert_not_null(ability)
 	assert_eq([ability.type, ability.command_points], ["command", 1])
+
+
+# Weapon options and Army of Renown rosters
+
+func _weapon_names(unit: Warscroll) -> Array:
+	return (unit.melee_weapons + unit.ranged_weapons).map(func(w: Weapon) -> String: return w.name)
+
+
+func test_some_faction_has_weapon_options() -> void:
+	var count := 0
+	for faction in _factions:
+		for unit in faction.warscrolls:
+			count += unit.weapon_options.size()
+	assert_gt(count, 0)
+
+
+func test_every_weapon_option_replaces_a_weapon_on_its_warscroll() -> void:
+	for faction in _factions:
+		for unit in faction.warscrolls:
+			for option in unit.weapon_options:
+				assert_has(_weapon_names(unit), option.replaces, "%s: %s replaces %s" % [faction.name, unit.name, option.replaces])
+
+
+func test_every_weapon_option_names_a_weapon_on_its_warscroll() -> void:
+	for faction in _factions:
+		for unit in faction.warscrolls:
+			for option in unit.weapon_options:
+				assert_has(_weapon_names(unit), option.name, "%s: %s option %s" % [faction.name, unit.name, option.name])
+
+
+func test_some_army_of_renown_has_a_roster() -> void:
+	var count := 0
+	for faction in _factions:
+		for army in faction.armies_of_renown:
+			count += 1 if army.roster else 0
+	assert_gt(count, 0)
+
+
+func test_every_army_of_renown_roster_unit_has_a_warscroll() -> void:
+	for faction in _factions:
+		var names := faction.warscrolls.map(func(w: Warscroll) -> String: return w.name)
+		for army in faction.armies_of_renown:
+			if not army.roster:
+				continue
+			for entry in army.roster.entries:
+				if not entry.unit.is_empty():
+					assert_has(names, entry.unit, "%s: %s roster unit %s" % [faction.name, army.name, entry.unit])
+
+
+func test_roster_per_keyword_is_only_set_on_keyword_entries() -> void:
+	for faction in _factions:
+		for army in faction.armies_of_renown:
+			if not army.roster:
+				continue
+			for entry in army.roster.entries:
+				if not entry.per_keyword.is_empty():
+					assert_true(entry.unit.is_empty(), "%s: %s unit %s has per_keyword" % [faction.name, army.name, entry.unit])
