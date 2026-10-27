@@ -23,6 +23,7 @@
 
 ### Gameplay
 
+- [Army composition](gameplay/army-composition.md): the army rules the Forge checks, and what it doesn't check yet
 - [Faction FAQs](gameplay/faq/README.md): each faction's official FAQ rulings from the latest rules update
 
 Add new documents to this index.

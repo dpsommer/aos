@@ -11,6 +11,21 @@ Forge is the army builder, where players build and save armies to use in Quick P
 
 Esc (`ui_cancel`) does the same as the visible Back button on every screen.
 
+## Army model
+
+An army is an `Army` resource (`scripts/army/`): its regiments (`ArmyRegiment`), auxiliary units (`ArmyUnit`), general, battle tactics cards, lores, battle formation or Army of Renown, faction terrain, and settings (points limit, Legends, override).
+- **Changes:** made through `ArmyEditor`, which emits `changed` and keeps the builder's limits unless the army overrides its constraints:
+  - regiment sizes, with a Hero leader kept first;
+  - only a regiment leader as the general;
+  - one Regiment of Renown;
+  - one enhancement of each type;
+  - weapon option counts within their caps. Reinforcing moves a count at its cap to the new cap and keeps any other count.
+- **Lookups:** `ArmyCatalog` finds the rules an army refers to. An Army of Renown's enhancements and lores replace the faction's.
+- **Points:** totalled by `ArmyPoints`.
+- **Checks:** done by `ArmyValidator`; see [Army composition](../gameplay/army-composition.md).
+- **Search:** `RulesSearch` matches the info pane's search query.
+- **Saving:** `ArmySerializer` converts armies to and from JSON.
+
 ## Signals
 
 **Signal** | **When**
