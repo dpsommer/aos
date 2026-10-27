@@ -1,0 +1,590 @@
+extends GutTest
+## Unit tests for the army builder screen (scripts/ui/forge/builder/army_builder.gd).
+
+const Kit := preload("res://test/support/army_kit.gd")
+const UIKit := preload("res://test/support/ui_kit.gd")
+
+
+## Redrawn sections are removed with queue_free, so let a frame pass for them to be freed before
+## GUT counts orphans.
+func after_each() -> void:
+	await get_tree().process_frame
+
+
+func _press_cancel(node: Node) -> void:
+	var event := InputEventAction.new()
+	event.action = "ui_cancel"
+	event.pressed = true
+	node._unhandled_input(event)
+
+
+func _core() -> CoreRules:
+	return Kit.core(PackedStringArray(["Card A", "Card B"]))
+
+
+## An army that passes validation: a general-led regiment and two battle tactics cards.
+func _valid_army() -> Army:
+	var army := UIKit.army_with_regiment()
+	army.tactics = PackedStringArray(["Card A", "Card B"])
+	return army
+
+
+func _builder(army: Army, faction: Faction = null) -> ArmyBuilder:
+	return UIKit.builder(self, army, faction, _core())
+
+
+func _pick_ids(builder: ArmyBuilder) -> PackedStringArray:
+	var ids := PackedStringArray()
+	for button in UIKit.buttons(builder.picker):
+		var key: String = button.get_meta(&"focus_key", "")
+		if key.begins_with("pick:"):
+			ids.append(key.trim_prefix("pick:"))
+	return ids
+
+
+func _warscroll_names(list: Array[Warscroll]) -> PackedStringArray:
+	var names := PackedStringArray()
+	for warscroll in list:
+		names.append(warscroll.id)
+	return names
+
+
+# --- Header ---
+
+func test_points_label_shows_total_and_limit() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	var total := ArmyPoints.total(army, builder.catalog)
+	assert_string_contains(builder.points_label.text, str(total))
+	assert_string_contains(builder.points_label.text, str(army.points_limit))
+
+
+func test_points_label_is_normal_colour_when_within_limit() -> void:
+	var builder := _builder(_valid_army())
+	assert_eq(builder.points_label.get_theme_color("font_color"), ForgeTheme.TEXT)
+
+
+func test_points_label_is_danger_colour_when_over_limit() -> void:
+	var army := _valid_army()
+	army.points_limit = 1
+	var builder := _builder(army)
+	assert_eq(builder.points_label.get_theme_color("font_color"), ForgeTheme.DANGER)
+
+
+func test_points_label_updates_after_the_army_changes() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	var before := builder.points_label.text
+	builder.editor.add_unit("r1", "grunt")
+	assert_ne(builder.points_label.text, before)
+
+
+func test_status_says_army_valid_when_valid() -> void:
+	var builder := _builder(_valid_army())
+	assert_string_contains(builder.status_label.text.to_lower(), "valid")
+
+
+func test_status_counts_problems() -> void:
+	var army := Kit.army()
+	var builder := _builder(army)
+	var count := ArmyValidator.validate(army, builder.catalog).problems.size()
+	assert_gt(count, 1)
+	assert_string_starts_with(builder.status_label.text, str(count))
+
+
+func test_status_uses_singular_for_one_problem() -> void:
+	var army := _valid_army()
+	army.general_uid = ""
+	var builder := _builder(army)
+	assert_eq(ArmyValidator.validate(army, builder.catalog).problems.size(), 1)
+	assert_string_starts_with(builder.status_label.text, "1 problem")
+	assert_false(builder.status_label.text.ends_with("s"))
+
+
+func test_status_says_overridden_when_constraints_are_overridden() -> void:
+	var army := UIKit.army_with_regiment()
+	army.override_constraints = true
+	var builder := _builder(army)
+	assert_string_contains(builder.status_label.text.to_lower(), "overridden")
+
+
+func test_status_colour_differs_between_valid_and_invalid() -> void:
+	var valid := _builder(_valid_army())
+	var invalid := _builder(UIKit.army_with_regiment())
+	assert_ne(valid.status_label.get_theme_color("font_color"), invalid.status_label.get_theme_color("font_color"))
+
+
+func test_header_shows_faction_name() -> void:
+	var builder := _builder(_valid_army())
+	assert_string_contains(builder.faction_label.text, builder.catalog.faction.name)
+
+
+# --- Validation panel ---
+
+func test_validation_panel_lists_each_problem() -> void:
+	var army := UIKit.army_with_regiment()
+	var builder := _builder(army)
+	var problems := ArmyValidator.validate(army, builder.catalog).problems
+	var shown := UIKit.labels_with_variation(builder.builder_list, "ProblemLabel")
+	assert_eq(shown.size(), problems.size())
+	for problem in problems:
+		assert_true(UIKit.has_label_containing(builder.builder_list, problem), problem)
+
+
+func test_validation_panel_lists_warnings() -> void:
+	var army := _valid_army()
+	army.tactics = PackedStringArray(["Card A", ""])
+	var builder := _builder(army)
+	var warnings := ArmyValidator.validate(army, builder.catalog).warnings
+	assert_false(warnings.is_empty())
+	assert_eq(UIKit.labels_with_variation(builder.builder_list, "WarningLabel").size(), warnings.size())
+
+
+func test_validation_panel_has_no_problem_labels_for_valid_army() -> void:
+	var builder := _builder(_valid_army())
+	assert_eq(UIKit.labels_with_variation(builder.builder_list, "ProblemLabel").size(), 0)
+	assert_eq(UIKit.labels_with_variation(builder.builder_list, "WarningLabel").size(), 0)
+
+
+func test_validation_panel_says_unchecked_when_overridden() -> void:
+	var army := UIKit.army_with_regiment()
+	army.override_constraints = true
+	var builder := _builder(army)
+	assert_eq(UIKit.labels_with_variation(builder.builder_list, "ProblemLabel").size(), 0)
+	assert_true(UIKit.has_label_containing(builder.builder_list, "overridden"))
+
+
+# --- Picker and info pane ---
+
+func test_pick_leader_opens_picker_and_hides_info_pane() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_leader("")
+	assert_true(builder.picker.visible)
+	assert_true(builder.picker.is_open())
+	assert_false(builder.info_pane.visible)
+
+
+func test_pick_unit_opens_picker_and_hides_info_pane() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_unit("r1")
+	assert_true(builder.picker.visible)
+	assert_false(builder.info_pane.visible)
+
+
+func test_pick_auxiliary_opens_picker_and_hides_info_pane() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_auxiliary()
+	assert_true(builder.picker.visible)
+	assert_false(builder.info_pane.visible)
+
+
+func test_pick_tactic_opens_picker_and_hides_info_pane() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_tactic(0)
+	assert_true(builder.picker.visible)
+	assert_false(builder.info_pane.visible)
+
+
+func test_pick_regiment_of_renown_opens_picker_and_hides_info_pane() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_regiment_of_renown()
+	assert_true(builder.picker.visible)
+	assert_false(builder.info_pane.visible)
+
+
+func test_closing_the_picker_restores_the_info_pane() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_tactic(0)
+	builder.picker.close()
+	assert_false(builder.picker.visible)
+	assert_true(builder.info_pane.visible)
+
+
+func test_picker_starts_closed_with_info_pane_shown() -> void:
+	var builder := _builder(_valid_army())
+	assert_false(builder.picker.visible)
+	assert_true(builder.info_pane.visible)
+
+
+func test_add_regiment_button_opens_leader_picker() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder, "army:add_regiment").pressed.emit()
+	assert_true(builder.picker.is_open())
+
+
+func test_picking_a_leader_adds_a_regiment_and_closes_the_picker() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	builder.pick_leader("")
+	UIKit.keyed(builder.picker, "pick:lead").pressed.emit()
+	assert_eq(army.regiments.size(), 2)
+	assert_false(builder.picker.is_open())
+
+
+func test_picking_an_auxiliary_unit_adds_it_and_closes_the_picker() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	builder.pick_auxiliary()
+	UIKit.keyed(builder.picker, "pick:beast").pressed.emit()
+	assert_eq(army.auxiliary.size(), 1)
+	assert_false(builder.picker.is_open())
+
+
+func test_picking_a_unit_keeps_the_picker_open_while_the_regiment_has_room() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	builder.pick_unit("r1")
+	UIKit.keyed(builder.picker, "pick:grunt").pressed.emit()
+	assert_eq(army.regiments[0].units.size(), 2)
+	assert_true(builder.picker.is_open())
+
+
+func test_picking_the_last_unit_that_fits_closes_the_picker() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	for i in ArmyValidator.regiment_capacity(army.regiments[0], army) - 1:
+		builder.editor.add_unit("r1", "grunt")
+	builder.pick_unit("r1")
+	UIKit.keyed(builder.picker, "pick:grunt").pressed.emit()
+	assert_false(builder.picker.is_open())
+
+
+# --- available_units ---
+
+func test_available_units_hides_legends_by_default() -> void:
+	var builder := _builder(_valid_army())
+	var ids := _warscroll_names(builder.available_units(func(_w: Warscroll) -> bool: return true))
+	assert_does_not_have(ids, "legend")
+
+
+func test_available_units_shows_legends_when_enabled() -> void:
+	var army := _valid_army()
+	army.show_legends = true
+	var builder := _builder(army)
+	var ids := _warscroll_names(builder.available_units(func(_w: Warscroll) -> bool: return true))
+	assert_has(ids, "legend")
+
+
+func test_available_units_hides_unique_units_already_in_the_army() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["unique"]))
+	var builder := _builder(army)
+	var ids := _warscroll_names(builder.available_units(func(_w: Warscroll) -> bool: return true))
+	assert_does_not_have(ids, "unique")
+
+
+func test_available_units_offers_unique_units_not_yet_in_the_army() -> void:
+	var builder := _builder(_valid_army())
+	var ids := _warscroll_names(builder.available_units(func(_w: Warscroll) -> bool: return true))
+	assert_has(ids, "unique")
+
+
+func test_available_units_offers_taken_unique_units_when_overridden() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["unique"]))
+	army.override_constraints = true
+	var builder := _builder(army)
+	var ids := _warscroll_names(builder.available_units(func(_w: Warscroll) -> bool: return true))
+	assert_has(ids, "unique")
+
+
+func test_available_units_leaves_out_terrain() -> void:
+	var builder := _builder(_valid_army())
+	var ids := _warscroll_names(builder.available_units(func(_w: Warscroll) -> bool: return true))
+	assert_does_not_have(ids, "terrain")
+
+
+func test_available_units_applies_the_filter() -> void:
+	var builder := _builder(_valid_army())
+	var ids := _warscroll_names(builder.available_units(func(w: Warscroll) -> bool: return w.has_keyword("BEAST")))
+	assert_eq(ids, PackedStringArray(["beast"]))
+
+
+func test_available_units_are_sorted_by_name() -> void:
+	var builder := _builder(_valid_army())
+	var names: Array = builder.available_units(func(_w: Warscroll) -> bool: return true).map(func(w: Warscroll) -> String: return w.name)
+	var sorted := names.duplicate()
+	sorted.sort_custom(func(a: String, b: String) -> bool: return a.naturalnocasecmp_to(b) < 0)
+	assert_eq(names, sorted)
+
+
+# --- pick_unit restrictions ---
+
+func test_pick_unit_lists_only_units_the_leaders_options_allow() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_unit("r1")
+	var ids := _pick_ids(builder)
+	assert_has(ids, "grunt")
+	assert_does_not_have(ids, "beast")
+
+
+func test_pick_unit_lists_every_unit_when_overridden() -> void:
+	var army := _valid_army()
+	army.override_constraints = true
+	var builder := _builder(army)
+	builder.pick_unit("r1")
+	assert_has(_pick_ids(builder), "beast")
+
+
+func test_pick_unit_shows_empty_message_when_nothing_is_allowed() -> void:
+	var army := UIKit.army_with_regiment()
+	var faction := UIKit.faction()
+	faction.get_warscroll("lead").regiment_options = PackedStringArray()
+	var builder := _builder(army, faction)
+	builder.pick_unit("r1")
+	assert_eq(_pick_ids(builder).size(), 0)
+	assert_true(UIKit.has_label_containing(builder.picker, "No units"))
+
+
+# --- Esc ---
+
+func test_cancel_closes_an_open_picker_first() -> void:
+	var builder := _builder(_valid_army())
+	watch_signals(builder)
+	builder.pick_tactic(0)
+	_press_cancel(builder)
+	assert_false(builder.picker.is_open())
+	assert_signal_not_emitted(builder, "back_pressed")
+
+
+func test_cancel_stops_renaming_before_going_back() -> void:
+	var builder := _builder(_valid_army())
+	watch_signals(builder)
+	builder.start_renaming("r1")
+	_press_cancel(builder)
+	assert_eq(builder.renaming, "")
+	assert_signal_not_emitted(builder, "back_pressed")
+
+
+func test_cancel_closes_picker_before_cancelling_a_rename() -> void:
+	var builder := _builder(_valid_army())
+	builder.start_renaming("r1")
+	builder.pick_tactic(0)
+	_press_cancel(builder)
+	assert_eq(builder.renaming, "r1")
+
+
+func test_cancel_with_nothing_open_emits_back_pressed() -> void:
+	var builder := _builder(_valid_army())
+	watch_signals(builder)
+	_press_cancel(builder)
+	assert_signal_emitted(builder, "back_pressed")
+
+
+func test_released_cancel_does_nothing() -> void:
+	var builder := _builder(_valid_army())
+	watch_signals(builder)
+	var event := InputEventAction.new()
+	event.action = "ui_cancel"
+	event.pressed = false
+	builder._unhandled_input(event)
+	assert_signal_not_emitted(builder, "back_pressed")
+
+
+func test_back_button_emits_back_pressed() -> void:
+	var builder := _builder(_valid_army())
+	watch_signals(builder)
+	builder.back_button.pressed.emit()
+	assert_signal_emitted(builder, "back_pressed")
+
+
+# --- Focus ---
+
+func test_open_focuses_the_back_button() -> void:
+	var builder := _builder(_valid_army())
+	assert_true(builder.back_button.has_focus())
+
+
+func test_redraw_restores_focus_to_the_control_with_the_same_focus_key() -> void:
+	var builder := _builder(_valid_army())
+	var before := UIKit.keyed(builder.builder_list, "army:add_aux")
+	before.grab_focus()
+	builder.redraw()
+	var after := UIKit.keyed(builder.builder_list, "army:add_aux")
+	assert_ne(after, before)
+	assert_true(after.has_focus())
+
+
+func test_redraw_after_an_edit_keeps_focus_on_the_edited_control() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	builder.editor.add_auxiliary("grunt")
+	var key := "u2:copy"
+	UIKit.keyed(builder.builder_list, key).grab_focus()
+	UIKit.keyed(builder.builder_list, key).pressed.emit()
+	assert_true(UIKit.keyed(builder.builder_list, key).has_focus())
+
+
+func test_find_focus_key_returns_null_for_unknown_key() -> void:
+	var builder := _builder(_valid_army())
+	assert_null(ArmyBuilder.find_focus_key(builder, "no:such:key"))
+
+
+func test_find_focus_key_skips_hidden_controls() -> void:
+	var root := Control.new()
+	add_child_autofree(root)
+	var hidden := Button.new()
+	hidden.set_meta(&"focus_key", "k")
+	hidden.hide()
+	root.add_child(hidden)
+	assert_null(ArmyBuilder.find_focus_key(root, "k"))
+
+
+func test_find_focus_key_finds_nested_visible_control() -> void:
+	var root := Control.new()
+	add_child_autofree(root)
+	var inner := VBoxContainer.new()
+	var target := Button.new()
+	target.set_meta(&"focus_key", "k")
+	inner.add_child(target)
+	root.add_child(inner)
+	assert_eq(ArmyBuilder.find_focus_key(root, "k"), target)
+
+
+# --- Renaming ---
+
+func test_start_renaming_shows_a_name_field_for_the_regiment() -> void:
+	var builder := _builder(_valid_army())
+	builder.start_renaming("r1")
+	assert_eq(builder.renaming, "r1")
+	assert_true(UIKit.keyed(builder.builder_list, "r1:name") is LineEdit)
+
+
+func test_regiment_shows_no_name_field_when_not_renaming() -> void:
+	var builder := _builder(_valid_army())
+	assert_null(UIKit.keyed(builder.builder_list, "r1:name"))
+
+
+func test_finish_renaming_renames_the_regiment() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	builder.start_renaming("r1")
+	builder.finish_renaming("r1", "  The Vanguard ")
+	assert_eq(army.regiments[0].name, "The Vanguard")
+	assert_eq(builder.renaming, "")
+
+
+func test_finish_renaming_with_blank_name_keeps_the_old_name() -> void:
+	var army := _valid_army()
+	var old_name := army.regiments[0].name
+	var builder := _builder(army)
+	builder.start_renaming("r1")
+	builder.finish_renaming("r1", "   ")
+	assert_eq(army.regiments[0].name, old_name)
+	assert_eq(builder.renaming, "")
+
+
+func test_finish_renaming_a_regiment_not_being_renamed_does_nothing() -> void:
+	var army := _valid_army()
+	var old_name := army.regiments[0].name
+	var builder := _builder(army)
+	builder.finish_renaming("r1", "Other")
+	assert_eq(army.regiments[0].name, old_name)
+
+
+func test_submitting_the_name_field_renames_the_regiment() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	builder.start_renaming("r1")
+	(UIKit.keyed(builder.builder_list, "r1:name") as LineEdit).text_submitted.emit("Shield Wall")
+	assert_eq(army.regiments[0].name, "Shield Wall")
+
+
+# --- Faction terrain ---
+
+func test_terrain_section_shown_when_the_faction_has_terrain() -> void:
+	var builder := _builder(_valid_army())
+	assert_true(UIKit.keyed(builder.builder_list, "army:terrain") is OptionButton)
+
+
+func test_terrain_section_hidden_when_the_faction_has_none() -> void:
+	var faction := UIKit.faction()
+	faction.warscrolls.erase(faction.get_warscroll("terrain"))
+	var builder := _builder(_valid_army(), faction)
+	assert_null(UIKit.keyed(builder.builder_list, "army:terrain"))
+
+
+func test_terrain_section_hidden_when_the_army_of_renown_forbids_it() -> void:
+	var faction := UIKit.faction()
+	var renown := Kit.army_of_renown("No Terrain")
+	renown.roster.faction_terrain = false
+	faction.armies_of_renown.append(renown)
+	var army := _valid_army()
+	army.army_of_renown = "No Terrain"
+	var builder := _builder(army, faction)
+	assert_null(UIKit.keyed(builder.builder_list, "army:terrain"))
+
+
+func test_terrain_section_shown_when_the_army_of_renown_allows_it() -> void:
+	var faction := UIKit.faction()
+	faction.armies_of_renown.append(Kit.army_of_renown("With Terrain"))
+	var army := _valid_army()
+	army.army_of_renown = "With Terrain"
+	var builder := _builder(army, faction)
+	assert_not_null(UIKit.keyed(builder.builder_list, "army:terrain"))
+
+
+func test_choosing_terrain_sets_it_on_the_army() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	var select := UIKit.keyed(builder.builder_list, "army:terrain") as OptionButton
+	select.item_selected.emit(1)
+	assert_eq(army.faction_terrain, "terrain")
+
+
+# --- Lore help ---
+
+func _lore_faction() -> Faction:
+	var faction := UIKit.faction()
+	var lores: Array[Lore] = [Kit.lore("Fire", "spell")]
+	faction.lores = lores
+	return faction
+
+
+func _lore_help(builder: ArmyBuilder) -> Label:
+	for label in UIKit.labels_with_variation(builder.builder_list, "MutedLabel"):
+		if label.text == "?" and label.tooltip_text == ArmyBuilder.LORE_HELP["spell"]:
+			return label
+	return null
+
+
+func test_lore_help_is_warning_coloured_when_a_wizard_has_no_spell_lore() -> void:
+	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["wizard"])), _lore_faction())
+	var help := _lore_help(builder)
+	assert_not_null(help)
+	assert_eq(help.get_theme_color("font_color"), ForgeTheme.WARNING)
+
+
+func test_lore_help_is_not_warning_coloured_once_a_spell_lore_is_chosen() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["wizard"]))
+	army.spell_lore = "Fire"
+	var builder := _builder(army, _lore_faction())
+	assert_ne(_lore_help(builder).get_theme_color("font_color"), ForgeTheme.WARNING)
+
+
+func test_lore_help_is_not_warning_coloured_without_a_wizard() -> void:
+	var builder := _builder(_valid_army(), _lore_faction())
+	assert_ne(_lore_help(builder).get_theme_color("font_color"), ForgeTheme.WARNING)
+
+
+func test_lore_section_missing_when_faction_has_no_lores() -> void:
+	var builder := _builder(_valid_army())
+	assert_null(UIKit.keyed(builder.builder_list, "lore:spell"))
+
+
+func test_choosing_a_lore_sets_it_on_the_army() -> void:
+	var army := _valid_army()
+	var builder := _builder(army, _lore_faction())
+	(UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton).item_selected.emit(1)
+	assert_eq(army.spell_lore, "Fire")
+
+
+# --- Tactics ---
+
+func test_tactic_slot_without_a_card_offers_to_choose_one() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	assert_not_null(UIKit.keyed(builder.builder_list, "tactic:0"))
+	assert_string_starts_with(UIKit.keyed(builder.builder_list, "tactic:0").text, "Choose")
+
+
+func test_tactic_slot_with_a_card_offers_to_change_it() -> void:
+	var builder := _builder(_valid_army())
+	assert_eq(UIKit.keyed(builder.builder_list, "tactic:0").text, "Change")
