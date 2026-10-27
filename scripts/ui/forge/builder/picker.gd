@@ -49,6 +49,11 @@ func _open(title: String, render: Callable) -> void:
 	_title.text = title
 	_render = render
 	refresh()
+	focus_first()
+
+
+## Focuses the list's first enabled button, or the close button when there is none.
+func focus_first() -> void:
 	var first := _first_button(_list)
 	(first if first else get_child(0).get_child(1) as Control).grab_focus()
 

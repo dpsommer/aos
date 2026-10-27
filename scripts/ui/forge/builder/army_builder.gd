@@ -30,6 +30,8 @@ var discard_dialog: ConfirmationDialog
 var collapsed := {}
 ## Id of the regiment being renamed, or empty.
 var renaming := ""
+## Focus key of the control that opened the picker, which gets focus back when it closes.
+var _picker_opener := ""
 var _drawing := false
 var _redraw_again := false
 
@@ -237,10 +239,21 @@ func redraw() -> void:
 	if _redraw_again:
 		_redraw_again = false
 		redraw()
-	elif not key.is_empty():
-		var target := find_focus_key(self, key)
+	elif focused:
+		var target := find_focus_key(self, key) if not key.is_empty() else null
 		if target:
 			target.grab_focus()
+		elif not focused.is_visible_in_tree():
+			_focus_fallback()
+
+
+## Focuses something sensible after the focused control is gone, so the keyboard isn't stranded:
+## the picker's first button while it's open, else the back button.
+func _focus_fallback() -> void:
+	if picker.is_open():
+		picker.focus_first()
+	else:
+		back_button.grab_focus()
 
 
 ## The control under [param node] tagged with [param key] for focus, or null.
@@ -486,14 +499,29 @@ func available_units(allow: Callable) -> Array[Warscroll]:
 
 
 func _show_picker() -> void:
+	var focused := get_viewport().gui_get_focus_owner() if is_inside_tree() else null
+	if focused and not picker.is_ancestor_of(focused):
+		_picker_opener = focused.get_meta(&"focus_key", "")
 	info_pane.hide()
 	picker.show()
 
 
+## Hides the picker and returns focus to the control that opened it, as hiding the picker drops
+## focus from its buttons.
 func _on_picker_closed() -> void:
 	picker.hide()
 	info_pane.show()
 	info_pane.refresh()
+	if not is_inside_tree():
+		return
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused and focused.is_visible_in_tree():
+		return
+	var opener := find_focus_key(builder_list, _picker_opener) if not _picker_opener.is_empty() else null
+	if opener:
+		opener.grab_focus()
+	else:
+		_focus_fallback()
 
 
 ## Picks a Hero to lead [param regiment_id], or a new regiment when empty.

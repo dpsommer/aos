@@ -255,6 +255,59 @@ func test_picking_the_last_unit_that_fits_closes_the_picker() -> void:
 	assert_false(builder.picker.is_open())
 
 
+# --- Picker focus ---
+
+func test_picking_a_unit_with_room_left_keeps_focus_in_the_picker() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder, "r1:add").grab_focus()
+	builder.pick_unit("r1")
+	UIKit.keyed(builder.picker, "pick:grunt").pressed.emit()
+	var focused := builder.get_viewport().gui_get_focus_owner()
+	assert_not_null(focused)
+	assert_true(builder.picker.is_ancestor_of(focused))
+
+
+func test_picking_the_last_unit_that_fits_returns_focus_to_the_add_button() -> void:
+	var army := _valid_army()
+	var builder := _builder(army)
+	for i in ArmyValidator.regiment_capacity(army.regiments[0], army) - 1:
+		builder.editor.add_unit("r1", "grunt")
+	UIKit.keyed(builder, "r1:add").grab_focus()
+	builder.pick_unit("r1")
+	UIKit.keyed(builder.picker, "pick:grunt").pressed.emit()
+	assert_true(UIKit.keyed(builder.builder_list, "r1:add").has_focus())
+
+
+func test_picking_a_leader_returns_focus_to_the_add_regiment_button() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder, "army:add_regiment").grab_focus()
+	builder.pick_leader("")
+	UIKit.keyed(builder.picker, "pick:lead").pressed.emit()
+	assert_true(UIKit.keyed(builder.builder_list, "army:add_regiment").has_focus())
+
+
+func test_closing_the_picker_with_cancel_returns_focus_to_its_opener() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder, "army:add_aux").grab_focus()
+	builder.pick_auxiliary()
+	_press_cancel(builder)
+	assert_true(UIKit.keyed(builder.builder_list, "army:add_aux").has_focus())
+
+
+func test_closing_the_picker_focuses_back_when_the_opener_is_gone() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_tactic(0)
+	builder.picker.close()
+	assert_true(builder.back_button.has_focus())
+
+
+func test_redraw_focuses_back_when_the_focused_control_is_removed() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder.builder_list, "r1:delete").grab_focus()
+	builder.editor.remove_regiment("r1")
+	assert_true(builder.back_button.has_focus())
+
+
 # --- available_units ---
 
 func test_available_units_hides_legends_by_default() -> void:
