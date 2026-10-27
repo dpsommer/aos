@@ -153,3 +153,7 @@ func test_name_for_unknown_id_is_empty() -> void:
 
 func test_name_for_empty_id_is_empty() -> void:
 	assert_eq(FactionCatalog.name_for_id(""), "")
+
+
+func test_manifestation_faction_of_an_unknown_id_is_empty() -> void:
+	assert_eq(FactionCatalog.manifestation_faction("no_such_manifestation_id"), "")

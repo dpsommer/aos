@@ -391,6 +391,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"incarnate_of_the_deep"
 					]
 				}
 			]

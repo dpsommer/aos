@@ -1021,7 +1021,10 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
-					"effect": "Roll a dice. Add 1 to the roll if it is your turn.\nOn a 4+:\n• You can remove 1 friendly Abyssal Tendril from the battlefield.\n• If there are fewer than 2 friendly Abyssal Tendrils on the battlefield, you can set up an Abyssal Tendril wholly within 9\" of this MANIFESTATION."
+					"effect": "Roll a dice. Add 1 to the roll if it is your turn.\nOn a 4+:\n• You can remove 1 friendly Abyssal Tendril from the battlefield.\n• If there are fewer than 2 friendly Abyssal Tendrils on the battlefield, you can set up an Abyssal Tendril wholly within 9\" of this MANIFESTATION.",
+					"summons": [
+						"abyssal_tendril"
+					]
 				},
 				{
 					"name": "Wild Form",

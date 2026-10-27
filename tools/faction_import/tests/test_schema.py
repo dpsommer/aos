@@ -323,3 +323,11 @@ def test_ability_orders_used_by_after_declare_and_command_points_after_points():
 
 def test_tidy_converts_fraction_slash_half_to_half_sign():
     assert schema.tidy({"effect": "within 1⁄2\" of it"}) == {"effect": "within ½\" of it"}
+
+
+def test_ability_keeps_summons():
+    assert schema.ability({"name": "A", "summons": ["x"]})["summons"] == ["x"]
+
+
+def test_ability_omits_empty_summons():
+    assert "summons" not in schema.ability({"name": "A", "summons": []})

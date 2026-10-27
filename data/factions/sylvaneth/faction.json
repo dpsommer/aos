@@ -376,6 +376,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"gladewyrm"
 					]
 				},
 				{
@@ -389,6 +392,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"vengeful_skullroot"
 					]
 				},
 				{
@@ -402,6 +408,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"spiteswarm_hive"
 					]
 				}
 			]

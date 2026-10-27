@@ -393,6 +393,9 @@
 					"keywords": [
 						"PRAYER",
 						"SUMMON"
+					],
+					"summons": [
+						"runic_fyrewall"
 					]
 				},
 				{
@@ -406,6 +409,9 @@
 					"keywords": [
 						"PRAYER",
 						"SUMMON"
+					],
+					"summons": [
+						"zharrgron_flame_spitter"
 					]
 				},
 				{
@@ -419,6 +425,9 @@
 					"keywords": [
 						"PRAYER",
 						"SUMMON"
+					],
+					"summons": [
+						"molten_infernoth"
 					]
 				}
 			]

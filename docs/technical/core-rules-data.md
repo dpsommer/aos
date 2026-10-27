@@ -38,6 +38,8 @@ Wahapedia prints ability names in capitals, so names come from BSData's game sys
 
 The report also shows that BSData's summon spells say "endless spell" where the Endless Spells page doesn't; Wahapedia's wording is kept.
 
+Each summoning spell's `summons` holds its manifestation's warscroll id (see [Summons](faction-data.md#summons)).
+
 Manifestations have no battle profile, so their `points` are 0 and `unit_size` 1. The lore's points are what an army pays.
 
 ## General's Handbook battlepack

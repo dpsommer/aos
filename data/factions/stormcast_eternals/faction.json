@@ -412,6 +412,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"dais_arcanum"
 					]
 				},
 				{
@@ -425,6 +428,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"celestian_vortex"
 					]
 				},
 				{
@@ -438,6 +444,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"everblaze_comet"
 					]
 				}
 			]

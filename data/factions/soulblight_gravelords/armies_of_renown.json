@@ -264,6 +264,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"unholy_reliquary"
 							]
 						}
 					]

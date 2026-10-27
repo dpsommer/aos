@@ -80,6 +80,15 @@ func test_ability_keywords_are_carried_over() -> void:
 	assert_eq(_load("valid").battle_traits[0].keywords, PackedStringArray(expected.keywords))
 
 
+func test_ability_summons_come_from_file() -> void:
+	var expected: Array = _json("valid", "faction.json").lores[2].entries[0].summons
+	assert_eq(_load("valid").lores[2].entries[0].summons, PackedStringArray(expected))
+
+
+func test_absent_ability_summons_default_to_empty() -> void:
+	assert_eq(_load("valid").battle_traits[0].summons, PackedStringArray())
+
+
 func test_ability_options_are_carried_over() -> void:
 	var expected: Dictionary = _json("valid", "faction.json").battle_traits[0]
 	var options := _load("valid").battle_traits[0].options

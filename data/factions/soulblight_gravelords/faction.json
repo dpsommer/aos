@@ -385,6 +385,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"hand_of_nagash"
 					]
 				},
 				{
@@ -398,6 +401,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"sanguine_swarm"
 					]
 				},
 				{
@@ -411,6 +417,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"unholy_reliquary"
 					]
 				}
 			]

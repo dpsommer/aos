@@ -464,6 +464,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"darkfire_daemonrift"
 					]
 				},
 				{
@@ -477,6 +480,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"eightfold_doom_sigil"
 					]
 				},
 				{
@@ -490,6 +496,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"realmscourge_rupture"
 					]
 				}
 			]

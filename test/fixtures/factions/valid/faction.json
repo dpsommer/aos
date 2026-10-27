@@ -23,6 +23,6 @@
 	"lores": [
 		{"name": "Lore One", "kind": "spell", "points": 20, "entries": [{"name": "Spell One", "timing": "Your Hero Phase", "casting_value": 7}]},
 		{"name": "Lore Two", "kind": "prayer", "entries": [{"name": "Prayer One", "timing": "Your Hero Phase", "chanting_value": 4}]},
-		{"name": "Lore Three", "kind": "manifestation", "source": "Made-up Expansion", "entries": [{"name": "Summon One", "casting_value": 6}]}
+		{"name": "Lore Three", "kind": "manifestation", "source": "Made-up Expansion", "entries": [{"name": "Summon One", "casting_value": 6, "summons": ["thing_one", "thing_two"]}]}
 	]
 }

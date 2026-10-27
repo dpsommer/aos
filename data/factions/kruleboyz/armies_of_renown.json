@@ -99,6 +99,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"foot_of_gork"
 							]
 						}
 					]

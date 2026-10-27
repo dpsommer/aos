@@ -2150,6 +2150,11 @@
 					"keywords": [
 						"SUMMON",
 						"SPELL"
+					],
+					"summons": [
+						"hyshian_twinstones",
+						"rune_of_petrification",
+						"sanctum_of_amyntok"
 					]
 				},
 				{
@@ -2366,6 +2371,11 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"dreadful_visage",
+						"mesmerising_mirror",
+						"wheels_of_excruciation"
 					]
 				}
 			]
@@ -2471,7 +2481,12 @@
 					"timing": "Deployment Phase",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "If the Magister in the Regiment of Renown has been deployed, set up one of the following MANIFESTATIONS within 1\" of them:\n• 1 Burning Sigil of Tzeentch\n• 1 Tome of Eyes\n• 1 Daemonic Simulacrum",
-					"text": "Thryx’s spells are powered by the stolen daemonic essences of the daemons bound to him."
+					"text": "Thryx’s spells are powered by the stolen daemonic essences of the daemons bound to him.",
+					"summons": [
+						"burning_sigil_of_tzeentch",
+						"daemonic_simulacrum",
+						"tome_of_eyes"
+					]
 				},
 				{
 					"name": "Skilled Summoner",
@@ -2484,6 +2499,11 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"burning_sigil_of_tzeentch",
+						"daemonic_simulacrum",
+						"tome_of_eyes"
 					]
 				},
 				{

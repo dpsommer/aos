@@ -123,6 +123,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"foot_of_gork"
 							]
 						}
 					]
@@ -350,6 +353,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"mortalis_terminexus"
 							]
 						},
 						{
@@ -363,6 +369,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"shyish_reaper"
 							]
 						},
 						{
@@ -376,6 +385,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"vault_of_souls"
 							]
 						}
 					]
@@ -395,6 +407,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"cadaverous_barricade"
 							]
 						},
 						{
@@ -408,6 +423,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"chalice_of_ushoran"
 							]
 						},
 						{
@@ -421,6 +439,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"corpsemare_stampede"
 							]
 						}
 					]
@@ -440,6 +461,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"bone_tithe_shrieker"
 							]
 						},
 						{
@@ -453,6 +477,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"nightmare_predator"
 							]
 						},
 						{
@@ -466,6 +493,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"soulstealer_carrion"
 							]
 						}
 					]
@@ -485,6 +515,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"hand_of_nagash"
 							]
 						},
 						{
@@ -498,6 +531,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"unholy_reliquary"
 							]
 						},
 						{
@@ -511,6 +547,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"sanguine_swarm"
 							]
 						}
 					]

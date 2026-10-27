@@ -3781,7 +3781,10 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
-					"effect": "If there is not a friendly Wisper on the battlefield, set up a friendly Wisper wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION."
+					"effect": "If there is not a friendly Wisper on the battlefield, set up a friendly Wisper wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION.",
+					"summons": [
+						"wisper"
+					]
 				}
 			],
 			"keywords": [

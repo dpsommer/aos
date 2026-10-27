@@ -110,6 +110,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"everblaze_comet"
 							]
 						}
 					]
@@ -325,6 +328,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"everblaze_comet"
 							]
 						}
 					]
@@ -506,6 +512,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"everblaze_comet"
 							]
 						}
 					]

@@ -379,6 +379,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"foot_of_gork"
 					]
 				},
 				{
@@ -392,6 +395,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"morkspit_marsh"
 					]
 				},
 				{
@@ -405,6 +411,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"gork_roara"
 					]
 				}
 			]

@@ -134,6 +134,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"nightmare_predator"
 							]
 						}
 					]
@@ -338,6 +341,11 @@
 								"SPELL",
 								"SUMMON",
 								"UNLIMITED"
+							],
+							"summons": [
+								"bone_tithe_shrieker",
+								"nightmare_predator",
+								"soulstealer_carrion"
 							]
 						}
 					]

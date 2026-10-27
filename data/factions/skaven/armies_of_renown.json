@@ -110,6 +110,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"warp_lightning_vortex"
 							]
 						}
 					]
@@ -246,6 +249,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"vermintide"
 							]
 						}
 					]

@@ -182,6 +182,7 @@ func _ability(data: Variant, path: String) -> Ability:
 	ability.casting_value = _int(data, "casting_value", path)
 	ability.chanting_value = _int(data, "chanting_value", path)
 	ability.source = _string(data, "source", path)
+	ability.summons = _strings(data, "summons", path)
 	var options := _array(data, "options", path)
 	for i in options.size():
 		var option_path := "%s.options[%d]" % [path, i]
