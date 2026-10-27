@@ -342,7 +342,9 @@ static func _create() -> Theme:
 	# Rules text: Inter, with a slanted Inter for italics as the font has no italic.
 	var italic := FontVariation.new()
 	italic.base_font = INTER
-	italic.variation_transform = Transform2D(Vector2(1, 0), Vector2(0.2, 1), Vector2.ZERO)
+	# The slant goes in the x axis's y component, which FreeType reads as a horizontal shear
+	# (see FontVariation.variation_transform); the y axis's x component tilts glyphs backwards.
+	italic.variation_transform = Transform2D(Vector2(1, 0.2), Vector2(0, 1), Vector2.ZERO)
 	theme.set_font("normal_font", "RichTextLabel", INTER)
 	theme.set_font("bold_font", "RichTextLabel", font(INTER, 700))
 	theme.set_font("italics_font", "RichTextLabel", italic)

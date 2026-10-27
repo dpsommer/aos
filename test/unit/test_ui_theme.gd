@@ -145,6 +145,41 @@ func test_tags_flag_scourge_warscrolls() -> void:
 		tag.free()
 
 
+func _scourge_text(source: String) -> String:
+	var tag := UIBuilder.scourge_tag(source)
+	autofree(tag)
+	return (tag.get_child(0) as Label).text
+
+
+func test_scourge_tag_abbreviates_scourge_of_ghyran() -> void:
+	assert_eq(_scourge_text("Scourge of Ghyran"), "SOG")
+
+
+func test_scourge_tag_abbreviates_scourge_of_aqshy() -> void:
+	assert_eq(_scourge_text("Scourge of Aqshy"), "SOA")
+
+
+func test_scourge_tag_names_the_expansion_in_its_tooltip() -> void:
+	var tag := UIBuilder.scourge_tag("Scourge of Aqshy")
+	autofree(tag)
+	assert_eq(tag.tooltip_text, "Scourge of Aqshy")
+
+
+func test_no_scourge_tag_for_other_sources() -> void:
+	assert_null(UIBuilder.scourge_tag("White Dwarf"))
+	assert_null(UIBuilder.scourge_tag(""))
+
+
+# --- rules text ---
+
+func test_rules_italics_slant_forwards() -> void:
+	# FreeType reads the x axis's y component as a horizontal shear: positive leans the tops of
+	# glyphs right. The y axis's x component tilts them the wrong way.
+	var italic := UITheme.get_theme().get_font("italics_font", "RichTextLabel") as FontVariation
+	assert_gt(italic.variation_transform.x.y, 0.0)
+	assert_eq(italic.variation_transform.y.x, 0.0)
+
+
 # --- portrait, banner, rich and small_icon ---
 
 func test_portrait_with_a_callback_is_a_button_with_initials() -> void:

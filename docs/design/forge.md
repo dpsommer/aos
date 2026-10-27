@@ -95,7 +95,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (hidden when full, unless constraints are overridden), "Add regiment" and "Add Regiment of Renown" (hidden once the army has one, unless constraints are overridden).
   - **Auxiliary Units:** unit rows and "Add auxiliary unit".
   - **Faction Terrain:** "Up to 1 terrain feature". A row for each terrain warscroll, laid out like a unit row: a portrait, its name, the universal terrain abilities its composition lists (`ArmyBuilder.terrain_abilities()`), its points, and Add or Remove. The included terrain's row is outlined in gold. Hidden when the faction has none or its Army of Renown forbids it.
-  - **Lores:** a select each for spell, prayer and manifestation lores, without Legends lores (such as Scourge of Ghyran ones) unless Legends are shown. Each has a "?" whose tooltip says which units the lore needs, and which turns amber when the army needs that lore and has none.
+  - **Lores:** a select each for spell, prayer and manifestation lores, without Legends lores (such as Scourge of Ghyran ones) unless Legends are shown. Hovering a lore's name or select says which units it needs (e.g. "Your army must contain one or more Wizards to cast the spells in your Spell Lore."), and the name turns amber when the army needs that lore and has none. **View in Rules** opens the Rules tab's Lores section.
 - **Info pane:** on the left (`InfoPane`, `info_pane.gd`). A search box sits above tabs for Roster, Rules, Regiments of Renown and Army settings (a gear).
   - **Search:** the placeholder names what the tab searches, on every tab. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
     - Search unfolds everything it shows. On Army settings it shows the settings whose title or note matches.
@@ -108,12 +108,11 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - Battle Traits;
     - Battle Formations;
     - Enhancements, one group per table;
-    - Lores, including the universal manifestation lores;
-    - Manifestations;
+    - Lores, including the universal manifestation lores. Each spell or prayer that summons a manifestation shows the manifestation's warscroll on its card (`RulesSections.summoned_manifestation()` matches the manifestation the spell's name gives);
     - Faction Terrain;
     - Battle Tactics: the battlepack's cards in full, with their FAQs.
 
-    An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
+    An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. Each group folds on its own, even when several share a name (e.g. two Artefacts of Power tables). Enhancement tables and lores from Scourge of Aqshy or Scourge of Ghyran (their `source`) are tagged "SoA" or "SoG". The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
 
     Search keeps a whole section or group whose title matches, and otherwise only the matching rules.
   - **Regiments of Renown:** cards the army can include, or every one when constraints are overridden. Legends regiments are hidden unless shown.
@@ -129,7 +128,8 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - a unit's portrait in the army list opens its card in the Roster (and shows Legends units if it is one);
     - a Regiment of Renown unit's portrait opens its regiment in Regiments of Renown;
     - a short battle tactics card opens the card under Rules;
-    - picking a lore opens it under Rules.
+    - picking a lore opens it under Rules;
+    - View in Rules, in the Lores section, opens the Lores section under Rules.
 - **Picker:** replaces the info pane to add something, until it is closed or something is picked. It can show:
   - Heroes to lead a regiment;
   - units the leader's regiment options allow, or every unit when constraints are overridden;

@@ -9,7 +9,12 @@ const LORE_KINDS := {"spell": "Spell Lore", "prayer": "Prayer Lore", "manifestat
 ## A titled (or untitled) set of rules in a section: abilities, warscrolls or battle tactics cards.
 class Group:
 	var title := ""
+	## Identifies the group within its section, e.g. for folding it: its title, with "#2", "#3"…
+	## added when an earlier group in the section has the same title.
+	var key := ""
 	var note := ""
+	## Expansion the group's rules come from, e.g. "Scourge of Ghyran". Empty for the battletome.
+	var source := ""
 	## Points, or -1 to show none.
 	var points := -1
 	## Whether the army has picked this group, e.g. its battle formation or a lore.
@@ -19,13 +24,15 @@ class Group:
 	var abilities: Array[Ability] = []
 	var warscrolls: Array[Warscroll] = []
 	var cards: Array[BattleTacticCard] = []
+	## The manifestation each of [member abilities] summons, by ability.
+	var summons := {}
 
 	func size() -> int:
 		return abilities.size() + warscrolls.size() + cards.size()
 
 	func copy() -> Group:
 		var group := Group.new()
-		for property in ["title", "note", "points", "selected", "lore"]:
+		for property in ["title", "key", "note", "source", "points", "selected", "lore"]:
 			group.set(property, get(property))
 		return group
 
@@ -70,32 +77,36 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 		var group := Group.new()
 		group.title = table.name
 		group.note = table.group
+		group.source = table.source
 		group.abilities = table.entries
 		enhancements.append(group)
 	_add(sections, "Enhancements", enhancements)
 
 	var lores: Array[Group] = []
 	var core := catalog.core
+	var manifestations: Array[Warscroll] = []
+	for warscroll in faction.warscrolls:
+		if warscroll.has_keyword("MANIFESTATION"):
+			manifestations.append(warscroll)
+	if core:
+		manifestations.append_array(core.manifestations)
 	for kind: String in LORE_KINDS:
 		var picked: String = army.get("%s_lore" % kind)
 		for lore in catalog.lores(army, kind):
 			var group := Group.new()
 			group.title = lore.name
 			group.note = "Universal Manifestation Lore" if core and lore in core.manifestation_lores else LORE_KINDS[kind]
+			group.source = lore.source
 			group.points = lore.points
 			group.selected = lore.name == picked
 			group.lore = true
 			group.abilities = lore.entries
+			for ability in lore.entries:
+				var summoned := summoned_manifestation(ability, manifestations)
+				if summoned:
+					group.summons[ability] = summoned
 			lores.append(group)
 	_add(sections, "Lores", lores)
-
-	var manifestations := Group.new()
-	for warscroll in faction.warscrolls:
-		if warscroll.has_keyword("MANIFESTATION"):
-			manifestations.warscrolls.append(warscroll)
-	if core:
-		manifestations.warscrolls.append_array(core.manifestations)
-	_add(sections, "Manifestations", [manifestations])
 
 	var terrain := Group.new()
 	var army_roster := catalog.roster(army)
@@ -110,11 +121,31 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 	return sections
 
 
+## The manifestation in [param manifestations] that [param ability] summons, or null. A summoning
+## spell or prayer names it, e.g. "Summon Burning Head" summons The Burning Head. The longest name
+## wins, so "Summon Lesser Thing" summons a "Lesser Thing" rather than a "Thing".
+static func summoned_manifestation(ability: Ability, manifestations: Array[Warscroll]) -> Warscroll:
+	if not (ability.name.begins_with("Summon") or "SUMMON" in ability.keywords):
+		return null
+	var spell := ability.name.to_lower()
+	var found: Warscroll = null
+	var found_length := 0
+	for warscroll in manifestations:
+		var manifestation := warscroll.name.to_lower().trim_prefix("the ")
+		if manifestation.length() > found_length and manifestation in spell:
+			found = warscroll
+			found_length = manifestation.length()
+	return found
+
+
 static func _add(sections: Array[Section], title: String, groups: Array) -> void:
 	var section := Section.new()
 	section.title = title
+	var seen := {}
 	for group: Group in groups:
 		if group.size() > 0:
+			seen[group.title] = seen.get(group.title, 0) + 1
+			group.key = group.title if seen[group.title] == 1 else "%s#%d" % [group.title, seen[group.title]]
 			section.groups.append(group)
 	if not section.groups.is_empty():
 		sections.append(section)
@@ -134,13 +165,17 @@ static func filter(sections: Array[Section], query: String) -> Array[Section]:
 		var kept := Section.new()
 		kept.title = section.title
 		for group in section.groups:
-			if not group.title.is_empty() and RulesSearch.matches(group.title + " " + group.note, query_words):
+			if not group.title.is_empty() and RulesSearch.matches(" ".join([group.title, group.note, group.source]), query_words):
 				kept.groups.append(group)
 				continue
 			var found := group.copy()
 			for ability in group.abilities:
-				if RulesSearch.matches(RulesSearch.ability_text(ability), query_words):
+				var summoned: Warscroll = group.summons.get(ability)
+				if RulesSearch.matches(RulesSearch.ability_text(ability), query_words) \
+						or summoned and RulesSearch.matches(RulesSearch.warscroll_text(summoned), query_words):
 					found.abilities.append(ability)
+					if summoned:
+						found.summons[ability] = summoned
 			for warscroll in group.warscrolls:
 				if RulesSearch.matches(RulesSearch.warscroll_text(warscroll), query_words):
 					found.warscrolls.append(warscroll)

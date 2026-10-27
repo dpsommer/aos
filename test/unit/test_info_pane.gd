@@ -472,7 +472,7 @@ func test_sections_start_open_with_their_rules_shown() -> void:
 
 func test_folding_a_section_hides_its_rules() -> void:
 	var pane := _rules_pane()
-	for title in ["Battle Traits", "Battle Formations", "Enhancements", "Lores", "Manifestations", "Faction Terrain", "Battle Tactics"]:
+	for title in ["Battle Traits", "Battle Formations", "Enhancements", "Lores", "Faction Terrain", "Battle Tactics"]:
 		if UIKit.keyed(pane, "info:sec:" + title):
 			_press(pane, "info:sec:" + title)
 	assert_has(pane.folded, "sec:Battle Traits")
@@ -494,6 +494,71 @@ func test_formations_are_groups_that_can_be_folded() -> void:
 	_press(pane, "info:grp:Battle Formations:Vanguard")
 	assert_has(pane.folded, "grp:Battle Formations:Vanguard")
 	assert_lt(_rich_count(pane._content), before)
+
+
+func test_rules_tab_has_no_manifestations_section() -> void:
+	assert_null(UIKit.keyed(_rules_pane(), "info:sec:Manifestations"))
+
+
+## Rules text in the pane containing [param text].
+func _rules_containing(pane: InfoPane, text: String) -> Array[Node]:
+	return UIKit.find_all(pane._content, func(n: Node) -> bool:
+		return n is RichTextLabel and n.get_parsed_text().contains(text))
+
+
+## [method _faction] with a second "Artefacts" table, from Scourge of Ghyran.
+func _scourge_faction() -> Faction:
+	var faction := _faction()
+	var second := Kit.table("Artefacts", _abilities(["Shield of Dusk"]))
+	second.source = "Scourge of Ghyran"
+	faction.enhancement_tables.append(second)
+	return faction
+
+
+func test_groups_with_the_same_title_fold_independently() -> void:
+	var pane := _pane(null, _scourge_faction())
+	pane.set_tab("rules")
+	_press(pane, "info:grp:Enhancements:Artefacts#2")
+	assert_not_null(UIKit.keyed(pane, "info:grp:Enhancements:Artefacts"))
+	assert_eq(_rules_containing(pane, "Sword of Dawn").size(), 1)
+	assert_eq(_rules_containing(pane, "Shield of Dusk").size(), 0)
+
+
+func test_scourge_groups_have_a_scourge_tag() -> void:
+	var pane := _pane(null, _scourge_faction())
+	pane.set_tab("rules")
+	assert_eq(Array(UIKit.label_texts(pane)).count("SOG"), 1)
+
+
+func test_battletome_groups_have_no_scourge_tag() -> void:
+	var texts := UIKit.label_texts(_rules_pane())
+	assert_does_not_have(texts, "SOG")
+	assert_does_not_have(texts, "SOA")
+
+
+func test_a_summoning_spell_shows_its_manifestations_warscroll() -> void:
+	var faction := _faction()
+	var lore := Kit.lore("Flame Lore", "manifestation")
+	lore.entries = _abilities(["Summon Living Flame"])
+	faction.lores.append(lore)
+	faction.warscrolls.append(Kit.warscroll("living_flame", PackedStringArray(["MANIFESTATION"]), 0, "Living Flame"))
+	var pane := _pane(null, faction)
+	pane.set_tab("rules")
+	_press(pane, "info:grp:Lores:Flame Lore")
+	var cards := _rules_containing(pane, "Summon Living Flame")
+	assert_eq(cards.size(), 1)
+	var card: Node = cards[0].get_parent()
+	assert_eq(_rich_count(card), 2)
+
+
+func test_show_lores_switches_to_the_rules_tab_and_unfolds_the_section() -> void:
+	var pane := _rules_pane()
+	_press(pane, "info:sec:Lores")
+	pane.set_tab("roster")
+	pane.show_lores()
+	assert_eq(pane.tab, "rules")
+	assert_does_not_have(pane.folded, "sec:Lores")
+	assert_eq(pane.flash_key, "sec:Lores")
 
 
 func test_lores_start_folded() -> void:
