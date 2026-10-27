@@ -26,13 +26,13 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
-[physics]
-
-3d/physics_engine="Jolt Physics"
-
 [gui]
 
 theme/custom_font="res://assets/2d/fonts/inter/Inter.ttf"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 
