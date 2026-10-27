@@ -494,8 +494,8 @@ func _terrain_row(warscroll: Warscroll) -> PanelContainer:
 	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var toggle: Button
 	if included:
-		toggle = UIBuilder.button("Remove", editor.set_faction_terrain.bind(""), "terrain:" + warscroll.id, "",
-				"Remove %s from the army" % warscroll.name)
+		toggle = UIBuilder.icon_button("delete", "Remove %s from the army" % warscroll.name,
+				editor.set_faction_terrain.bind(""), "terrain:" + warscroll.id, "DangerIconButton")
 	else:
 		toggle = UIBuilder.button("Add", editor.set_faction_terrain.bind(warscroll.id), "terrain:" + warscroll.id,
 				"GhostButton", "Add %s to the army" % warscroll.name)

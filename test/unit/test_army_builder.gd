@@ -605,6 +605,16 @@ func test_included_terrain_offers_remove_instead_of_add() -> void:
 	assert_ne(before, after)
 
 
+func test_included_terrain_remove_is_a_delete_icon_button() -> void:
+	var army := _valid_army()
+	army.faction_terrain = "terrain"
+	var builder := _builder(army)
+	var remove := UIKit.keyed(builder.builder_list, "terrain:terrain") as Button
+	assert_eq(remove.text, "")
+	assert_eq(remove.icon, UITheme.icon("delete"))
+	assert_eq(remove.theme_type_variation, &"DangerIconButton")
+
+
 func test_terrain_row_shows_a_portrait() -> void:
 	var builder := _builder(_valid_army())
 	var row := UIKit.keyed(builder.builder_list, "terrain:terrain").get_parent()
