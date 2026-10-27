@@ -167,7 +167,10 @@ static func _create() -> Theme:
 	theme.set_color("font_hover_color", "PortraitButton", TEXT)
 	theme.set_font("font", "PortraitButton", heading)
 	theme.set_font_size("font_size", "PortraitButton", 12)
-	for type in ["Button", "IconButton", "DangerIconButton", "GoldButton", "GhostButton", "BannerButton", "SubheadButton",
+	theme.set_type_variation("GripButton", "IconButton")
+	theme.set_color("icon_normal_color", "GripButton", Color("#6B717C"))
+	theme.set_color("icon_focus_color", "GripButton", Color("#6B717C"))
+	for type in ["Button", "IconButton", "DangerIconButton", "GripButton", "GoldButton", "GhostButton", "BannerButton", "SubheadButton",
 			"TabButton"]:
 		theme.set_constant("icon_max_width", type, ICON_SIZE)
 	theme.set_font("font", "Button", semibold)
@@ -205,6 +208,14 @@ static func _create() -> Theme:
 	_panel(theme, "FlashGroupPanel", box(Color.TRANSPARENT, GOLD, 8, 6, 2))
 	_panel(theme, "FavouritesPanel", box(Color("#2A2418"), GOLD_DARK, 6, 8))
 	_panel(theme, "TabBarPanel", _underline(Color("#262A32")))
+	# Drop targets while dragging.
+	_panel(theme, "DropRegimentPanel", box(Color("#1D1C18"), GOLD, 10, 12))
+	_panel(theme, "DropBoxPanel", StyleBoxEmpty.new())
+	var drop_box := box(Color("#1D1C18"), GOLD, 10, 0)
+	drop_box.set_expand_margin_all(8)
+	_panel(theme, "DropBoxOnPanel", drop_box)
+	_panel(theme, "RemoveDropPanel", box(Color(0.09, 0.1, 0.12, 0.96), Color("#7A4A3E"), 12, 0, 2))
+	_panel(theme, "RemoveDropOnPanel", box(Color(0.23, 0.14, 0.13, 0.96), Color("#F2A28A"), 12, 0, 2))
 	_panel(theme, "ProblemsPanel", box(DANGER_BG, Color.TRANSPARENT, 8, 12))
 	_panel(theme, "WarningsPanel", box(WARNING_BG, Color.TRANSPARENT, 8, 12))
 

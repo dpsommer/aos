@@ -222,7 +222,7 @@ func _roster() -> void:
 		if not by_type.has(type):
 			by_type[type] = []
 		by_type[type].append(warscroll)
-	var note := "Click a unit to see its warscroll."
+	var note := "Drag a unit into a regiment, or click it to see its warscroll."
 	if hidden > 0:
 		note += " %d Legends unit%s hidden." % [hidden, "" if hidden == 1 else "s"]
 	_content.add_child(BuilderUI.label(note, "MutedLabel", true))
@@ -289,6 +289,7 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.add_child(face)
 	_ignore_mouse(face)
+	builder.drag.source(button, {"kind": "roster", "warscroll_id": warscroll.id}, warscroll.name, card)
 
 	var favourite := warscroll.id in favourites
 	var star := BuilderUI.icon_toggle("star_filled" if favourite else "star",

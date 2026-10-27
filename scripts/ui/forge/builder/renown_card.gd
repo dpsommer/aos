@@ -63,7 +63,13 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 				on_added.call()
 		content.add_child(BuilderUI.hbox([BuilderUI.button("Add to army", add, "%s:add:%s" % [context, regiment.name],
 				"GoldButton", "Add %s to the army" % regiment.name)]))
+		if context == "tab":
+			builder.drag.source(self, {"kind": "ror", "name": regiment.name}, regiment.name)
+			mouse_default_cursor_shape = Control.CURSOR_MOVE
 	add_child(content)
+	if context == "tab":
+		# Drags from the card's text start a drag of the card.
+		BuilderDragDrop.pass_mouse(self)
 
 
 func _warscroll(unit: RegimentUnit) -> Warscroll:

@@ -106,35 +106,42 @@ func move_regiment(regiment_id: String, index: int) -> void:
 	changed.emit()
 
 
-## Adds a unit of [param warscroll_id] to the end of a regiment, as its leader if it's empty.
-## Returns null if the regiment is full.
-func add_unit(regiment_id: String, warscroll_id: String) -> ArmyUnit:
+## Adds a unit of [param warscroll_id] to a regiment at [param index], or the end if it's -1, as
+## its leader if it's empty. Returns null if the regiment is full.
+func add_unit(regiment_id: String, warscroll_id: String, index := -1) -> ArmyUnit:
 	var regiment := army.find_regiment(regiment_id)
 	if regiment == null or not has_room(regiment):
 		return null
 	var unit := _new_unit(warscroll_id)
-	_insert(regiment, unit, regiment.units.size())
+	_insert(regiment, unit, regiment.units.size() if index < 0 else index)
 	changed.emit()
 	return unit
 
 
-func add_auxiliary(warscroll_id: String) -> ArmyUnit:
+## Adds an auxiliary unit at [param index], or the end if it's -1.
+func add_auxiliary(warscroll_id: String, index := -1) -> ArmyUnit:
 	var unit := _new_unit(warscroll_id)
-	army.auxiliary.append(unit)
+	army.auxiliary.insert(army.auxiliary.size() if index < 0 else clampi(index, 0, army.auxiliary.size()), unit)
 	changed.emit()
 	return unit
+
+
+## Whether the army can include the Regiment of Renown: one its faction allows, if it has none yet,
+## or any when it overrides its constraints.
+func can_add_regiment_of_renown(regiment_name: String) -> bool:
+	var renown := catalog.regiment_of_renown(regiment_name)
+	if renown == null:
+		return false
+	return army.override_constraints or (renown in catalog.regiments_of_renown(army)
+			and not army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown()))
 
 
 ## Adds the Regiment of Renown with one army unit per unit it lists. Returns null if the army can't
 ## include it, or already has one.
 func add_regiment_of_renown(regiment_name: String) -> ArmyRegiment:
-	var renown := catalog.regiment_of_renown(regiment_name)
-	if renown == null:
+	if not can_add_regiment_of_renown(regiment_name):
 		return null
-	if not army.override_constraints:
-		if not renown in catalog.regiments_of_renown(army) \
-				or army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown()):
-			return null
+	var renown := catalog.regiment_of_renown(regiment_name)
 	var regiment := ArmyRegiment.new()
 	regiment.id = _new_id("r")
 	regiment.name = renown.name
@@ -209,14 +216,20 @@ func move_unit(uid: String, regiment_id: String, index: int) -> bool:
 	return true
 
 
-## Keeps a Hero leader first: a Hero added to an empty regiment leads it, and nothing is placed
+## Where a unit placed at [param index] in [param regiment] goes: nothing goes before a Hero
+## leader.
+func insertion_index(regiment: ArmyRegiment, index: int) -> int:
+	if regiment.units.is_empty():
+		return 0
+	if _is_hero(regiment.units[0].warscroll_id):
+		index = maxi(index, 1)
+	return clampi(index, 0, regiment.units.size())
+
+
+## Keeps a Hero leader first: a unit added to an empty regiment leads it, and nothing is placed
 ## before an existing Hero leader.
 func _insert(regiment: ArmyRegiment, unit: ArmyUnit, index: int) -> void:
-	if regiment.units.is_empty():
-		index = 0
-	elif _is_hero(regiment.units[0].warscroll_id):
-		index = maxi(index, 1)
-	regiment.units.insert(clampi(index, 0, regiment.units.size()), unit)
+	regiment.units.insert(insertion_index(regiment, index), unit)
 
 
 ## Makes the unit the general, or clears the general if it already is. Only a regiment leader can

@@ -15,6 +15,11 @@ var editor: ArmyEditor
 var catalog: ArmyCatalog
 var picker: Picker
 var info_pane: InfoPane
+var drag: BuilderDragDrop
+## Covers the info pane while a unit is dragged, to remove it from the army when dropped there.
+var remove_overlay: PanelContainer
+## Holds the auxiliary units, as a drop target.
+var auxiliary_box: PanelContainer
 ## Unit uids with their options open, and other expanded panels' keys.
 var expanded := {}
 ## Ids of collapsed regiments.
@@ -34,6 +39,7 @@ var _redraw_again := false
 @onready var save_button: Button = %SaveButton
 @onready var left_pane: PanelContainer = %LeftPane
 @onready var builder_list: VBoxContainer = %BuilderList
+@onready var builder_scroll: ScrollContainer = %BuilderScroll
 
 
 func _ready() -> void:
@@ -46,6 +52,48 @@ func _ready() -> void:
 	picker.hide()
 	picker.closed.connect(_on_picker_closed)
 	left_pane.add_child(picker)
+	drag = BuilderDragDrop.new(self)
+	_add_remove_overlay()
+	set_process(false)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_BEGIN and drag:
+		drag.begin(get_viewport().gui_get_drag_data())
+	elif what == NOTIFICATION_DRAG_END and drag:
+		drag.end()
+
+
+func _process(delta: float) -> void:
+	drag.process(delta)
+
+
+func _add_remove_overlay() -> void:
+	var bin := TextureRect.new()
+	bin.texture = ForgeTheme.icon("delete")
+	bin.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	bin.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	bin.custom_minimum_size = Vector2(28, 28)
+	bin.modulate = ForgeTheme.DANGER
+	var text := BuilderUI.label("Drop to remove from army", "CardTitleLabel")
+	text.add_theme_color_override("font_color", ForgeTheme.DANGER)
+	var center := CenterContainer.new()
+	center.add_child(BuilderUI.vbox([bin, text], 10))
+	remove_overlay = BuilderUI.panel("RemoveDropPanel", center)
+	remove_overlay.hide()
+	drag.target(remove_overlay, _can_drop_remove, _drop_remove)
+	left_pane.add_child(remove_overlay)
+
+
+func _can_drop_remove(_at: Vector2, data: Dictionary) -> bool:
+	if data.get("kind") != "unit" or editor.army.find_unit(data.get("uid", "")) == null:
+		return false
+	drag.highlight(remove_overlay, "RemoveDropOnPanel")
+	return true
+
+
+func _drop_remove(_at: Vector2, data: Dictionary) -> void:
+	editor.remove_unit(data.uid)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -239,19 +287,54 @@ func _army_list_section() -> Control:
 	var children: Array = []
 	for regiment in editor.army.regiments:
 		children.append(RegimentPanel.new(self, regiment))
-	children.append(BuilderUI.hbox([
+	var add_buttons := BuilderUI.hbox([
 		BuilderUI.button("Add regiment", pick_leader.bind(""), "army:add_regiment", "GhostButton"),
 		BuilderUI.button("Add Regiment of Renown", pick_regiment_of_renown, "army:add_ror", "GhostButton"),
-	], 12))
-	return _section("Army List", children)
+	], 12)
+	children.append(add_buttons)
+	var section := _section("Army List", children)
+	# A Regiment of Renown card from the info pane is dropped on the army list.
+	var can_drop := func(at: Vector2, data: Dictionary) -> bool: return _can_drop_regiment_of_renown(at, data, section, add_buttons)
+	drag.target(section, can_drop, _drop_regiment_of_renown)
+	return section
+
+
+func _can_drop_regiment_of_renown(_at: Vector2, data: Dictionary, section: Control, add_buttons: Control) -> bool:
+	if data.get("kind") != "ror" or not editor.can_add_regiment_of_renown(data.get("name", "")):
+		return false
+	drag.show_line(section, add_buttons.get_global_rect(), false, 6)
+	return true
+
+
+func _drop_regiment_of_renown(_at: Vector2, data: Dictionary) -> void:
+	editor.add_regiment_of_renown(data.name)
 
 
 func _auxiliary_section() -> Control:
-	var children: Array = []
+	var box := BuilderUI.vbox([], 10)
 	for unit in editor.army.auxiliary:
-		children.append(UnitRow.new(self, unit, null))
-	children.append(BuilderUI.button("Add auxiliary unit", pick_auxiliary, "army:add_aux", "GhostButton"))
-	return _section("Auxiliary Units", children)
+		box.add_child(UnitRow.new(self, unit, null))
+	var add := BuilderUI.button("Add auxiliary unit", pick_auxiliary, "army:add_aux", "GhostButton")
+	box.add_child(add)
+	auxiliary_box = BuilderUI.panel("DropBoxPanel", box)
+	var can_drop := func(at: Vector2, data: Dictionary) -> bool: return _can_drop_auxiliary(at, data, box, add)
+	drag.target(auxiliary_box, can_drop, _drop_auxiliary)
+	return _section("Auxiliary Units", [auxiliary_box])
+
+
+func _can_drop_auxiliary(_at: Vector2, data: Dictionary, box: Control, add: Control) -> bool:
+	if not drag.accepts_unit(data, null):
+		return false
+	var rows := box.get_children().filter(func(n: Node) -> bool: return n is UnitRow)
+	if rows.is_empty():
+		drag.show_line(auxiliary_box, add.get_global_rect(), false)
+	else:
+		drag.show_line_in(auxiliary_box, rows, rows.size(), add)
+	return true
+
+
+func _drop_auxiliary(_at: Vector2, data: Dictionary) -> void:
+	drag.place_unit(data, null, editor.army.auxiliary.size())
 
 
 func _terrain_section() -> Control:

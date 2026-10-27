@@ -4,6 +4,7 @@ extends PanelContainer
 
 var builder: ArmyBuilder
 var regiment: ArmyRegiment
+var _header_row: HBoxContainer
 
 
 func _init(army_builder: ArmyBuilder, army_regiment: ArmyRegiment) -> void:
@@ -12,13 +13,52 @@ func _init(army_builder: ArmyBuilder, army_regiment: ArmyRegiment) -> void:
 	var renown := regiment.is_regiment_of_renown()
 	theme_type_variation = "RenownRegimentPanel" if renown else "RegimentPanel"
 	set_meta(&"regiment_id", regiment.id)
-	var content := BuilderUI.vbox([_header()], 8)
+	_header_row = _header()
+	var content := BuilderUI.vbox([_header_row], 8)
 	if not builder.collapsed.has(regiment.id):
 		for unit in regiment.units:
 			content.add_child(UnitRow.new(builder, unit, regiment))
 		if not renown:
 			content.add_child(_add_button())
 	add_child(content)
+	BuilderDragDrop.pass_mouse(self)
+
+
+## Regiments take dragged regiments before or after them, and units at their end.
+func _can_drop_data(at: Vector2, data: Variant) -> bool:
+	if not data is Dictionary:
+		return false
+	var drag := builder.drag
+	if data.get("kind") == "reg":
+		if data.get("regiment_id") == regiment.id:
+			return false
+		drag.show_line(self, get_global_rect(), at.y > size.y / 2, 6)
+		return true
+	if drag.accepts_unit(data, regiment):
+		var rows := _header_row.get_parent().get_children().filter(func(n: Node) -> bool: return n is UnitRow)
+		drag.show_line_in(self, rows, rows.size(), _header_row)
+		return true
+	return false
+
+
+func _drop_data(at: Vector2, data: Variant) -> void:
+	if data.get("kind") == "reg":
+		var index := builder.editor.army.regiments.find(regiment) + (1 if at.y > size.y / 2 else 0)
+		builder.editor.move_regiment(data.regiment_id, index)
+	else:
+		builder.drag.place_unit(data, regiment, regiment.units.size())
+
+
+## Up and Down on the grip move the regiment in the army list.
+func _on_grip_input(event: InputEvent, grip: Button) -> void:
+	var step := -1 if event.is_action_pressed("ui_up", true) else 1 if event.is_action_pressed("ui_down", true) else 0
+	if step == 0:
+		return
+	grip.accept_event()
+	var regiments := builder.editor.army.regiments
+	var to := regiments.find(regiment) + step
+	if to >= 0 and to < regiments.size():
+		builder.editor.move_regiment(regiment.id, to + (1 if step > 0 else 0))
 
 
 func _header() -> HBoxContainer:
@@ -26,6 +66,12 @@ func _header() -> HBoxContainer:
 	var key := regiment.id + ":"
 	var row := BuilderUI.hbox([], 8)
 	var open := not builder.collapsed.has(regiment.id)
+	var grip := BuilderUI.icon_button("grip", "Reorder regiment: drag, or use the arrow keys", func() -> void: pass,
+			key + "grip", "GripButton")
+	grip.mouse_default_cursor_shape = Control.CURSOR_MOVE
+	grip.gui_input.connect(_on_grip_input.bind(grip))
+	builder.drag.source(grip, {"kind": "reg", "regiment_id": regiment.id}, regiment.name, self)
+	row.add_child(grip)
 	row.add_child(BuilderUI.icon_button("chevron_down" if open else "chevron_right",
 			"Collapse regiment" if open else "Expand regiment", builder.toggle_collapsed.bind(regiment.id), key + "collapse"))
 	if builder.renaming == regiment.id:

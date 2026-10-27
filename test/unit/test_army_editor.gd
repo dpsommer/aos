@@ -887,3 +887,134 @@ func test_set_show_legends_and_override_constraints() -> void:
 	assert_true(editor.army.show_legends)
 	assert_true(editor.army.override_constraints)
 	assert_signal_emit_count(editor, "changed", 2)
+
+
+# Insert positions
+
+## An editor on an army with regiment r1 (hero_a leader, grunts u2 and u3) and auxiliary grunts u4 and u5.
+func _ordered() -> ArmyEditor:
+	var army := Kit.army()
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "hero_a"), Kit.unit("u2", "grunt"), Kit.unit("u3", "grunt")] as Array[ArmyUnit]))
+	army.auxiliary.append(Kit.unit("u4", "grunt"))
+	army.auxiliary.append(Kit.unit("u5", "grunt"))
+	return _editor(army)
+
+
+func test_add_unit_at_an_index_inserts_there() -> void:
+	var editor := _ordered()
+	var unit := editor.add_unit("r1", "grunt", 2)
+	assert_eq(editor.army.regiments[0].units[2], unit)
+
+
+func test_add_unit_without_an_index_appends() -> void:
+	var editor := _ordered()
+	var unit := editor.add_unit("r1", "grunt")
+	assert_eq(editor.army.regiments[0].units[-1], unit)
+
+
+func test_add_unit_at_an_index_past_the_end_appends() -> void:
+	var editor := _ordered()
+	var unit := editor.add_unit("r1", "grunt", 99)
+	assert_eq(editor.army.regiments[0].units[-1], unit)
+
+
+func test_add_unit_never_goes_before_a_hero_leader() -> void:
+	var editor := _ordered()
+	editor.add_unit("r1", "grunt", 0)
+	assert_eq(editor.army.regiments[0].units[0].uid, "u1")
+
+
+func test_add_unit_at_the_start_of_a_regiment_led_by_a_non_hero_goes_first() -> void:
+	var army := Kit.army()
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "grunt")] as Array[ArmyUnit]))
+	var editor := _editor(army)
+	var unit := editor.add_unit("r1", "grunt", 0)
+	assert_eq(army.regiments[0].units[0], unit)
+
+
+func test_add_unit_to_a_full_regiment_at_an_index_returns_null() -> void:
+	var editor := _ordered()
+	_fill(editor, "r1", 10)
+	assert_null(editor.add_unit("r1", "grunt", 1))
+
+
+func test_add_auxiliary_at_an_index_inserts_there() -> void:
+	var editor := _ordered()
+	var unit := editor.add_auxiliary("grunt", 1)
+	assert_eq(editor.army.auxiliary[1], unit)
+
+
+func test_add_auxiliary_without_an_index_appends() -> void:
+	var editor := _ordered()
+	var unit := editor.add_auxiliary("grunt")
+	assert_eq(editor.army.auxiliary[-1], unit)
+
+
+func test_add_auxiliary_at_an_index_past_the_end_appends() -> void:
+	var editor := _ordered()
+	var unit := editor.add_auxiliary("grunt", 99)
+	assert_eq(editor.army.auxiliary[-1], unit)
+
+
+# insertion_index
+
+func test_insertion_index_is_zero_in_an_empty_regiment() -> void:
+	var army := Kit.army()
+	army.regiments.append(Kit.regiment("r1", [] as Array[ArmyUnit]))
+	assert_eq(_editor(army).insertion_index(army.regiments[0], 5), 0)
+
+
+func test_insertion_index_keeps_a_position_after_a_hero_leader() -> void:
+	var editor := _ordered()
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 2), 2)
+
+
+func test_insertion_index_moves_a_position_before_a_hero_leader_after_it() -> void:
+	var editor := _ordered()
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 0), 1)
+
+
+func test_insertion_index_clamps_to_the_end() -> void:
+	var editor := _ordered()
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 99), 3)
+
+
+func test_insertion_index_clamps_a_negative_index_to_the_start_without_a_hero_leader() -> void:
+	var army := Kit.army()
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "grunt")] as Array[ArmyUnit]))
+	assert_eq(_editor(army).insertion_index(army.regiments[0], -3), 0)
+
+
+# can_add_regiment_of_renown
+
+func test_can_add_an_allowed_regiment_of_renown() -> void:
+	assert_true(_editor().can_add_regiment_of_renown("Band"))
+
+
+func test_cannot_add_an_unknown_regiment_of_renown() -> void:
+	assert_false(_editor().can_add_regiment_of_renown("Nope"))
+
+
+func test_cannot_add_a_regiment_of_renown_the_army_of_renown_forbids() -> void:
+	var army := Kit.army()
+	army.army_of_renown = "Lone Wolves"
+	assert_false(_editor(army).can_add_regiment_of_renown("Band"))
+
+
+func test_cannot_add_a_second_regiment_of_renown() -> void:
+	var editor := _editor()
+	editor.add_regiment_of_renown("Band")
+	assert_false(editor.can_add_regiment_of_renown("Other Band"))
+
+
+func test_can_add_a_second_regiment_of_renown_when_overriding() -> void:
+	var editor := _editor()
+	editor.add_regiment_of_renown("Band")
+	editor.set_override_constraints(true)
+	assert_true(editor.can_add_regiment_of_renown("Other Band"))
+
+
+func test_overriding_does_not_allow_an_unknown_regiment_of_renown() -> void:
+	var editor := _editor()
+	editor.set_override_constraints(true)
+	assert_false(editor.can_add_regiment_of_renown("Nope"))
