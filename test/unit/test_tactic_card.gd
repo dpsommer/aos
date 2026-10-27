@@ -80,6 +80,80 @@ func test_action_can_be_any_control() -> void:
 	assert_true(node.is_ancestor_of(chip))
 
 
+# --- Pressing and focus ---
+
+func _click() -> InputEventMouseButton:
+	var event := InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_LEFT
+	event.pressed = true
+	return event
+
+
+func _accept() -> InputEventAction:
+	var event := InputEventAction.new()
+	event.action = "ui_accept"
+	event.pressed = true
+	return event
+
+
+func _pressable() -> TacticCard:
+	var node := _make(true)
+	node.make_pressable("Choose it")
+	return node
+
+
+func test_card_is_not_pressable_by_default() -> void:
+	var node := _make(true)
+	watch_signals(node)
+	node._gui_input(_click())
+	assert_signal_not_emitted(node, "pressed")
+	assert_eq(node.focus_mode, Control.FOCUS_NONE)
+
+
+func test_pressable_card_is_focusable_with_a_tooltip() -> void:
+	var node := _pressable()
+	assert_eq(node.focus_mode, Control.FOCUS_ALL)
+	assert_eq(node.tooltip_text, "Choose it")
+	assert_eq(node.accessibility_name, "Hold the Line")
+
+
+func test_clicking_a_pressable_card_emits_pressed() -> void:
+	var node := _pressable()
+	watch_signals(node)
+	node._gui_input(_click())
+	assert_signal_emit_count(node, "pressed", 1)
+
+
+func test_accept_on_a_pressable_card_emits_pressed() -> void:
+	var node := _pressable()
+	watch_signals(node)
+	node._gui_input(_accept())
+	assert_signal_emit_count(node, "pressed", 1)
+
+
+func test_other_keys_on_a_pressable_card_do_nothing() -> void:
+	var node := _pressable()
+	watch_signals(node)
+	var event := InputEventKey.new()
+	event.keycode = KEY_A
+	event.pressed = true
+	node._gui_input(event)
+	assert_signal_not_emitted(node, "pressed")
+
+
+func test_clicks_on_a_pressable_cards_content_reach_the_card() -> void:
+	var node := _pressable()
+	for found in UIKit.find_all(node, func(n: Node) -> bool: return n is Control):
+		assert_eq((found as Control).mouse_filter, Control.MOUSE_FILTER_IGNORE, found.name)
+
+
+func test_card_shows_focus_only_while_focused() -> void:
+	var node := _pressable()
+	assert_false(node.shows_focus())
+	node.grab_focus()
+	assert_true(node.shows_focus())
+
+
 func _faq_card() -> BattleTacticCard:
 	var card := _card()
 	card.faqs.append({"question": "Can I [b]do it[/b]?", "answer": "Yes."})

@@ -844,6 +844,14 @@ func test_saving_twice_keeps_one_file() -> void:
 	assert_eq(ArmyStore.list().size(), 1)
 
 
+func test_save_tooltip_names_the_shortcut_once() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	var shortcut := builder.save_button.shortcut.get_as_text()
+	assert_string_contains(builder.save_button.tooltip_text, shortcut)
+	# Godot would otherwise add the shortcut to the tooltip a second time.
+	assert_false(builder.save_button.shortcut_in_tooltip)
+
+
 func test_pressing_the_save_button_saves() -> void:
 	var builder := _builder(UIKit.army_with_regiment())
 	builder.save_button.pressed.emit()

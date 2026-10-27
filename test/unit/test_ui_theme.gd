@@ -42,6 +42,21 @@ func test_every_battle_tactic_kind_has_its_own_chip_colour() -> void:
 		assert_ne(_chip_background(_chip("x", kind)), _chip_background(_chip("x")), kind)
 
 
+func test_chip_text_contrasts_strongly_with_its_background() -> void:
+	for kind: String in UITheme.CHIPS:
+		var colours: Array = UITheme.CHIPS[kind]
+		assert_gte(UITheme.contrast(colours[1], colours[0]), UITheme.CHIP_MIN_CONTRAST, kind)
+
+
+func test_contrast_of_black_on_white_is_the_maximum() -> void:
+	assert_almost_eq(UITheme.contrast(Color.BLACK, Color.WHITE), 21.0, 0.01)
+	assert_almost_eq(UITheme.contrast(Color.WHITE, Color.BLACK), 21.0, 0.01)
+
+
+func test_contrast_of_a_colour_with_itself_is_none() -> void:
+	assert_almost_eq(UITheme.contrast(UITheme.GOLD, UITheme.GOLD), 1.0, 0.001)
+
+
 func test_theme_is_created_once() -> void:
 	assert_same(UITheme.get_theme(), UITheme.get_theme())
 
