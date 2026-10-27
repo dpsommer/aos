@@ -110,6 +110,9 @@ static func load_faction(faction: String) -> Faction:
 		push_error("No data for faction '%s'" % faction)
 		return null
 	var loader := FactionLoader.new()
+	var core := CoreRulesCatalog.get_rules()
+	if core and core.battlepack:
+		loader.scourge = core.battlepack.scourge
 	var data := loader.load_faction(_DATA_DIRS[faction])
 	for error in loader.errors:
 		push_error(error)

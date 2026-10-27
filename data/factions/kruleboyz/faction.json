@@ -241,6 +241,11 @@
 			"name": "Monstrous Traits",
 			"group": "Monstrous Traits: Kruleboyz",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Breaka-boss on Mirebrute Troggoth",
+				"Killaboss on Corpse-rippa Vulcha",
+				"Snatchaboss on Sludgeraker Beast"
+			],
 			"entries": [
 				{
 					"name": "Mean 'Un",
@@ -270,6 +275,11 @@
 			"name": "Monstrous Traits",
 			"group": "Kunnin' Creatures",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Breaka-boss on Mirebrute Troggoth",
+				"Killaboss on Corpse-rippa Vulcha",
+				"Snatchaboss on Sludgeraker Beast"
+			],
 			"entries": [
 				{
 					"name": "Spittin' 'Un",

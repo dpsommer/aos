@@ -199,6 +199,12 @@
 			"name": "Monstrous Traits",
 			"group": "Brutal Beasts",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Maw-grunta Gougers",
+				"Maw-grunta with Hakkin' Krew",
+				"Megaboss on Maw-krusha",
+				"Tuskboss on Maw-grunta"
+			],
 			"entries": [
 				{
 					"name": "Big 'Un",
@@ -231,6 +237,12 @@
 		{
 			"name": "Monstrous Traits",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Maw-grunta Gougers",
+				"Maw-grunta with Hakkin' Krew",
+				"Megaboss on Maw-krusha",
+				"Tuskboss on Maw-grunta"
+			],
 			"entries": [
 				{
 					"name": "Mad 'Un",

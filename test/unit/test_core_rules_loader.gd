@@ -141,6 +141,10 @@ func test_battlepack_name_and_rounds_come_from_file() -> void:
 	assert_eq([_pack().name, _pack().battle_rounds], [expected.name, int(expected.battle_rounds)])
 
 
+func test_battlepack_scourge_comes_from_file() -> void:
+	assert_eq(_pack().scourge, _json("valid", "battlepack.json").scourge)
+
+
 func test_battlefield_size_comes_from_file() -> void:
 	var expected: Dictionary = _json("valid", "battlepack.json").battlefield
 	assert_eq(_pack().battlefield_size, Vector2(expected.width, expected.depth))

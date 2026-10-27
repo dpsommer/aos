@@ -104,6 +104,8 @@ def table(t, points=False):
             out[k] = t[k]
     if points or t.get("points"):
         out["points"] = t.get("points") or 0
+    if t.get("units"):
+        out["units"] = t["units"]
     out["entries"] = [ability(e) for e in t["entries"]]
     return out
 

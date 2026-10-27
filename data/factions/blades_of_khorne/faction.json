@@ -277,6 +277,20 @@
 		{
 			"name": "Brazen Mutations",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Blood Warriors",
+				"Bloodcrushers",
+				"Bloodletters",
+				"Bloodreavers",
+				"Claws of Karanak",
+				"Garrek's Reavers",
+				"Gorechosen of Dromm",
+				"Kamandora's Blades",
+				"Magore's Fiends",
+				"Mighty Skullcrushers",
+				"Skullreapers",
+				"Wrathmongers"
+			],
 			"entries": [
 				{
 					"name": "Brass Flesh",

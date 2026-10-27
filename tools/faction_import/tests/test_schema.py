@@ -117,6 +117,15 @@ def test_warscroll_omits_empty_weapon_options():
     assert "weapon_options" not in schema.warscroll(ws(weapon_options=[]))
 
 
+def test_table_keeps_units():
+    out = schema.table({"name": "Great Endrinworks", "units": ["Arkanaut Frigate"], "entries": []})
+    assert out["units"] == ["Arkanaut Frigate"]
+
+
+def test_table_without_units_has_no_units_key():
+    assert "units" not in schema.table({"name": "Heroic Traits", "units": [], "entries": []})
+
+
 def test_table_drops_empty_group_and_source():
     out = schema.table({"name": "Heroic Traits", "group": "", "source": "", "entries": []})
     assert "group" not in out and "source" not in out

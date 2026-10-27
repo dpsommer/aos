@@ -312,6 +312,14 @@
 			"enhancement_tables": [
 				{
 					"name": "Heroic Traits",
+					"units": [
+						"Changecaster, Herald of Tzeentch",
+						"Fateskimmer, Herald of Tzeentch on Burning Chariot",
+						"Fluxmaster, Herald of Tzeentch on Disc",
+						"Gaunt Summoner",
+						"Gaunt Summoner on Disc of Tzeentch",
+						"Lord of Change"
+					],
 					"entries": [
 						{
 							"name": "Nexus of Fate",
@@ -324,6 +332,14 @@
 				},
 				{
 					"name": "Artefacts of Power",
+					"units": [
+						"Changecaster, Herald of Tzeentch",
+						"Fateskimmer, Herald of Tzeentch on Burning Chariot",
+						"Fluxmaster, Herald of Tzeentch on Disc",
+						"Gaunt Summoner",
+						"Gaunt Summoner on Disc of Tzeentch",
+						"Lord of Change"
+					],
 					"entries": [
 						{
 							"name": "Corrupted Leystone",

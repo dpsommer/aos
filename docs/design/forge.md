@@ -82,11 +82,11 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Battle Tactics:** 2 slots. A filled slot shows the card's name and its battle tactics' names, with Change.
   - **Army List:** each regiment's name, unit count against its capacity, and points, with collapse, Rename and Delete.
     - **Unit rows:** a grip (not on Hero leaders), a unit's name, its enhancements, its points, and buttons: General (leaders only), Reinforce (where allowed), Options, Copy and Remove. Units in a Regiment of Renown have no buttons.
-    - **Options:** a unit's name, a select for each enhancement type it can take, and a count for each weapon option, capped by its regiment size, with the option's rules.
+    - **Options:** a unit's name, a select for each enhancement type it can take (`ArmyCatalog.enhancement_choices()`: only tables whose `units` include it, and no Legends tables unless Legends are shown, though the unit's current pick stays), and a count for each weapon option, capped by its regiment size, with the option's rules.
     - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (disabled when full), "Add regiment" and "Add Regiment of Renown".
   - **Auxiliary Units:** unit rows and "Add auxiliary unit".
   - **Faction Terrain:** a select, hidden when the faction has none or its Army of Renown forbids it.
-  - **Lores:** a select each for spell, prayer and manifestation lores. Each has a "?" whose tooltip says which units the lore needs, and which turns amber when the army needs that lore and has none.
+  - **Lores:** a select each for spell, prayer and manifestation lores, without Legends lores (such as Scourge of Ghyran ones) unless Legends are shown. Each has a "?" whose tooltip says which units the lore needs, and which turns amber when the army needs that lore and has none.
 - **Info pane:** on the left (`InfoPane`, `info_pane.gd`). A search box sits above tabs for Roster, Rules, Regiments of Renown and Army settings (a gear).
   - **Search:** the placeholder names what the tab searches, and the box is hidden on Army settings. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
     - Search unfolds everything it shows.

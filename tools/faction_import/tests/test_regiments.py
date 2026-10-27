@@ -341,6 +341,15 @@ def test_entry_without_notes_has_no_notes_key():
     assert "notes" not in entry('<li>1 <a href="/aos4/factions/x/Hero">Hero</a></li>')
 
 
+def test_entry_ending_in_a_full_stop_has_no_notes_key():
+    assert "notes" not in entry('<li>1 <a href="/aos4/factions/x/Aquilor">Lord-Aquilor</a>.</li>')
+
+
+def test_entry_notes_drop_a_closing_full_stop():
+    result = entry('<li>1 <a href="/aos4/factions/x/Knights">Chaos Knights</a> unit with 5 models.</li>')
+    assert result["notes"] == "5 models"
+
+
 def test_entry_without_a_link_has_no_faction():
     result = entry("<li>1 Mystery Unit</li>")
     assert (result["name"], result["faction"]) == ("Mystery Unit", "")

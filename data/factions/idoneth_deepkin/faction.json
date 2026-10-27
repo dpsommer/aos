@@ -286,6 +286,14 @@
 		{
 			"name": "Ethersea Companions",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Akhelian Allopex",
+				"Akhelian Ishlaen Guard",
+				"Akhelian Leviadon",
+				"Akhelian Morrsarr Guard",
+				"Namarti Reavers",
+				"Namarti Thralls"
+			],
 			"entries": [
 				{
 					"name": "Ironshell Barnacles",

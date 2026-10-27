@@ -274,6 +274,28 @@
 		{
 			"name": "Moulder Mutations",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Acolyte Globadiers",
+				"Brood Terror",
+				"Clanrats",
+				"Gutter Runners",
+				"Hell Pit Abomination",
+				"Night Runners",
+				"Plague Censer Bearers",
+				"Plague Monks",
+				"Plaguepack",
+				"Rat Ogors",
+				"Ratling Guns",
+				"Skabbik's Plaguepack",
+				"Skittershank's Clawpack",
+				"Spiteclaw's Swarm",
+				"Stormfiends",
+				"Stormvermin",
+				"Warpfire Throwers",
+				"Warplock Jezzails",
+				"Warpvolt Scourgers",
+				"Zikkit's Tunnelpack"
+			],
 			"entries": [
 				{
 					"name": "Transplanted Brains",

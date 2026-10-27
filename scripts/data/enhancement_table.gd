@@ -6,5 +6,12 @@ extends Resource
 @export var name: String
 ## Name of this particular table within the type, if any.
 @export var group: String
+## Expansion the table comes from, e.g. "Scourge of Ghyran". Empty for the battletome.
 @export var source: String
+## Whether the table is Legends, as a table from a Scourge the battlepack doesn't use is.
+@export var legends: bool
+## Names of the only warscrolls that can be given these enhancements, e.g. the Skyvessels for Great
+## Endrinworks. Empty when the table has no restriction of its own (Heroic Traits and Artefacts of
+## Power still need a Hero).
+@export var units: PackedStringArray
 @export var entries: Array[Ability]

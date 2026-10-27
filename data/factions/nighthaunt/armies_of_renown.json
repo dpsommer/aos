@@ -50,6 +50,10 @@
 			"enhancement_tables": [
 				{
 					"name": "Heroic Traits",
+					"units": [
+						"Black Coach",
+						"Knight of Shrouds on Ethereal Steed"
+					],
 					"entries": [
 						{
 							"name": "Silent Overseer",
@@ -63,6 +67,10 @@
 				},
 				{
 					"name": "Artefacts of Power",
+					"units": [
+						"Black Coach",
+						"Knight of Shrouds on Ethereal Steed"
+					],
 					"entries": [
 						{
 							"name": "Talisman of the Nadir",

@@ -217,7 +217,8 @@ static func _check_regiments_of_renown(army: Army, catalog: ArmyCatalog, result:
 
 
 ## Core Rules 4.1: 1 enhancement of each type, never the same one twice, and none on UNIQUE units
-## or units in a Regiment of Renown.
+## or units in a Regiment of Renown. Heroic Traits and Artefacts of Power need a Hero, and a table
+## for certain units (Great Endrinworks for Skyvessels) can only go on them.
 static func _check_enhancements(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:
 	var by_type := {}
 	for entry in entries:
@@ -227,12 +228,15 @@ static func _check_enhancements(army: Army, catalog: ArmyCatalog, entries: Array
 			if enhancement_name.is_empty():
 				continue
 			var unit_name := _unit_name(unit, entry.warscroll)
-			if catalog.enhancement(army, type, enhancement_name) == null:
+			var table := catalog.enhancement_table(army, type, enhancement_name)
+			if table == null:
 				result.problems.append("%s isn't one of this army's %s." % [enhancement_name, type])
 			if entry.warscroll.has_keyword("UNIQUE"):
 				result.problems.append("%s is Unique, so it can't be given %s." % [unit_name, enhancement_name])
 			elif _is_ror(entry):
 				result.problems.append("%s is in a Regiment of Renown, so it can't be given %s." % [unit_name, enhancement_name])
+			elif table and not table.units.is_empty() and not ArmyCatalog.can_take(table, entry.warscroll):
+				result.problems.append("%s can't be given %s%s." % [unit_name, enhancement_name, _only_for(table)])
 			elif type in HERO_ENHANCEMENTS and not entry.warscroll.has_keyword("HERO"):
 				result.problems.append("Only Heroes can be given %s (%s isn't a Hero)." % [type, unit_name])
 			by_type.get_or_add(type, []).append(enhancement_name)
@@ -240,6 +244,17 @@ static func _check_enhancements(army: Army, catalog: ArmyCatalog, entries: Array
 		var picked: Array = by_type[type]
 		if picked.size() > 1:
 			result.problems.append("Your army can include only 1 of the %s (%d given)." % [type, picked.size()])
+
+
+## Which units [param table] is for, when there are few enough to name: ": only for Arkanaut
+## Frigate, Arkanaut Ironclad or Grundstok Gunhauler".
+static func _only_for(table: EnhancementTable) -> String:
+	const MAX_NAMED := 4
+	if table.units.size() > MAX_NAMED:
+		return ""
+	var names := Array(table.units)
+	var last: String = names.pop_back()
+	return ": only for %s" % (last if names.is_empty() else "%s or %s" % [", ".join(PackedStringArray(names)), last])
 
 
 static func _check_lores(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:

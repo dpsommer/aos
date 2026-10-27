@@ -33,6 +33,7 @@ func _battlepack(dir_path: String) -> Battlepack:
 	var data := _read(dir_path, "battlepack.json", true)
 	if not data.is_empty():
 		pack.name = _string(data, "name", "", true)
+		pack.scourge = _string(data, "scourge", "")
 		pack.battle_rounds = _int(data, "battle_rounds", "", true)
 	if data.has("battlefield") and _is_object(data.battlefield, "battlefield"):
 		pack.battlefield_size = Vector2(_float(data.battlefield, "width", "battlefield", true),

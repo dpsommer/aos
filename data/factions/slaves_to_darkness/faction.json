@@ -284,6 +284,15 @@
 		{
 			"name": "Ensorcelled Banners",
 			"group": "Ensorcelled Banners: Slaves to Darkness",
+			"units": [
+				"Chaos Chosen",
+				"Chaos Knights",
+				"Chaos Warriors",
+				"Darkoath Fellriders",
+				"Darkoath Marauders",
+				"Iron Golem",
+				"Ogroid Theridons"
+			],
 			"entries": [
 				{
 					"name": "The Dread Banner",
@@ -340,6 +349,29 @@
 		{
 			"name": "Brands of the Dark Gods",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Chaos Chosen",
+				"Chaos Furies",
+				"Chaos Legionnaires",
+				"Chaos Warriors",
+				"Corvus Cabal",
+				"Cypher Lords",
+				"Darkoath Marauders",
+				"Darkoath Savagers",
+				"Godsworn Hunt",
+				"Horns of Hashut",
+				"Iron Golem",
+				"Khagra's Ravagers",
+				"Ogroid Theridons",
+				"Scions of the Flame",
+				"Spire Tyrants",
+				"Splintered Fang",
+				"Tarantulos Brood",
+				"The Gnarlspirit Pack",
+				"The Oathsworn Kin",
+				"The Unmade",
+				"Untamed Beasts"
+			],
 			"entries": [
 				{
 					"name": "Brand of Unbreakable Bonds",

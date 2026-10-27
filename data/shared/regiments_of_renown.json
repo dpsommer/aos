@@ -1352,14 +1352,14 @@
 					"name": "Chaos Knights",
 					"faction": "slaves_to_darkness",
 					"warscroll": "chaos_knights",
-					"notes": "5 models."
+					"notes": "5 models"
 				},
 				{
 					"count": 1,
 					"name": "Chaos Warriors",
 					"faction": "slaves_to_darkness",
 					"warscroll": "chaos_warriors",
-					"notes": "10 models."
+					"notes": "10 models"
 				}
 			],
 			"abilities": [
@@ -2625,22 +2625,20 @@
 					"count": 1,
 					"name": "Lord-Aquilor",
 					"faction": "stormcast_eternals",
-					"warscroll": "lord_aquilor",
-					"notes": "."
+					"warscroll": "lord_aquilor"
 				},
 				{
 					"count": 1,
 					"name": "Vanguard-Hunters",
 					"faction": "stormcast_eternals",
-					"warscroll": "vanguard_hunters",
-					"notes": "."
+					"warscroll": "vanguard_hunters"
 				},
 				{
 					"count": 1,
 					"name": "Vanguard-Palladors with Starstrike Javelins",
 					"faction": "stormcast_eternals",
 					"warscroll": "vanguard_palladors_with_starstrike_javelins",
-					"notes": "3 models."
+					"notes": "3 models"
 				}
 			],
 			"abilities": [

@@ -326,6 +326,34 @@ func test_every_army_of_renown_roster_unit_has_a_warscroll() -> void:
 					assert_has(names, entry.unit, "%s: %s roster unit %s" % [faction.name, army.name, entry.unit])
 
 
+func test_some_enhancement_table_is_for_certain_units() -> void:
+	var count := 0
+	for faction in _factions:
+		for table in faction.enhancement_tables:
+			count += 1 if not table.units.is_empty() else 0
+	assert_gt(count, 0)
+
+
+func test_every_enhancement_table_unit_has_a_warscroll() -> void:
+	for faction in _factions:
+		var names := faction.warscrolls.map(func(w: Warscroll) -> String: return w.name)
+		var tables: Array[EnhancementTable] = faction.enhancement_tables.duplicate()
+		for army in faction.armies_of_renown:
+			tables.append_array(army.enhancement_tables)
+		for table in tables:
+			for unit_name in table.units:
+				assert_has(names, unit_name, "%s: %s unit %s" % [faction.name, table.name, unit_name])
+
+
+func test_only_warscrolls_from_the_battlepack_scourge_are_current() -> void:
+	var scourge := CoreRulesCatalog.get_rules().battlepack.scourge
+	assert_ne(scourge, "")
+	for faction in _factions:
+		for warscroll in faction.warscrolls:
+			if warscroll.source.begins_with("Scourge of"):
+				assert_eq(warscroll.legends, warscroll.source != scourge, "%s: %s" % [faction.name, warscroll.id])
+
+
 func test_roster_per_keyword_is_only_set_on_keyword_entries() -> void:
 	for faction in _factions:
 		for army in faction.armies_of_renown:

@@ -1,0 +1,8 @@
+{
+	"warscrolls": [
+		{"id": "unit_one", "name": "Unit One", "points": 100, "unit_size": 5, "move": "5", "health": 1, "save": 4, "control": 1},
+		{"id": "scourge_of_ghyran_unit_one", "name": "Unit One", "source": "Scourge of Ghyran", "points": 100, "unit_size": 5, "move": "5", "health": 1, "save": 4, "control": 1},
+		{"id": "scourge_of_aqshy_unit_one", "name": "Unit One", "source": "Scourge of Aqshy", "points": 100, "unit_size": 5, "move": "5", "health": 1, "save": 4, "control": 1},
+		{"id": "white_dwarf_unit", "name": "White Dwarf Unit", "source": "White Dwarf", "points": 100, "unit_size": 5, "move": "5", "health": 1, "save": 4, "control": 1}
+	]
+}

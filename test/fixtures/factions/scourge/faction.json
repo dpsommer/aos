@@ -1,0 +1,16 @@
+{
+	"id": "scourge",
+	"name": "Scourge Faction",
+	"grand_alliance": "order",
+	"enhancement_tables": [
+		{"name": "Heroic Traits", "entries": [{"name": "Printed Trait"}]},
+		{"name": "Heroic Traits", "source": "Scourge of Ghyran", "entries": [{"name": "Ghyran Trait"}]},
+		{"name": "Heroic Traits", "source": "Scourge of Aqshy", "entries": [{"name": "Aqshy Trait"}]},
+		{"name": "Great Works", "units": ["Unit One", "Unit Two"], "entries": [{"name": "Great Work"}]}
+	],
+	"lores": [
+		{"name": "Printed Lore", "kind": "spell", "entries": []},
+		{"name": "Ghyran Lore", "kind": "spell", "source": "Scourge of Ghyran", "entries": []},
+		{"name": "Aqshy Lore", "kind": "spell", "source": "Scourge of Aqshy", "entries": []}
+	]
+}

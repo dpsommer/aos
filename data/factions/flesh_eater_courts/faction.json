@@ -251,6 +251,12 @@
 			"name": "Monstrous Traits",
 			"group": "Monstrous Traits: Flesh-eater Courts",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Abhorrant Ghoul King on Royal Terrorgheist",
+				"Abhorrant Ghoul King on Royal Zombie Dragon",
+				"Royal Terrorgheist",
+				"Royal Zombie Dragon"
+			],
 			"entries": [
 				{
 					"name": "Revered Monstrosity",
@@ -279,6 +285,18 @@
 		{
 			"name": "Noble Pursuits",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Crypt Flayers",
+				"Crypt Flayers (2 Models)",
+				"Crypt Ghouls",
+				"Crypt Horrors",
+				"Crypt Horrors (2 Models)",
+				"Cryptguard",
+				"Morbheg Knights",
+				"Royal Beastflayers",
+				"The Grymwatch",
+				"The Skinnerkin"
+			],
 			"entries": [
 				{
 					"name": "Homage and Fealty",

@@ -14,7 +14,7 @@ General (3.2, 3.5) | A general is picked, leads a regiment and isn't in a Regime
 Unique | No UNIQUE unit is included twice.
 Scourge warscrolls | Every unit with the same name uses the same version of its warscroll: printed, Scourge of Aqshy or Scourge of Ghyran.
 Regiments of Renown (3.5) | At most 1, and only ones the faction can include and its Army of Renown allows.
-Enhancements (4.1) | At most 1 enhancement of each type in the army. None on UNIQUE units or units in a Regiment of Renown. Heroic traits and artefacts of power only on HEROES. Each must still be in the army's tables.
+Enhancements (4.1) | At most 1 enhancement of each type in the army. None on UNIQUE units or units in a Regiment of Renown. Heroic traits and artefacts of power only on HEROES, and a table for certain units (its `units`, e.g. Great Endrinworks for Skyvessels) only on those units. Each must still be in the army's tables.
 Lores (4.2) | Each picked lore is available to the army. Manifestation lores include the universal ones.
 Battle formation | One is picked when the faction has any, unless the army is an Army of Renown.
 Faction terrain | Still in the data, and allowed by the Army of Renown.
@@ -30,6 +30,5 @@ Missing data | Every unit's warscroll is still in the faction data.
 
 ## Not checked yet
 
-- Which units each enhancement table allows, beyond the HERO rule above, as the data doesn't record it.
 - Unit notes such as "You can include 1 unit of this type for each Lord-Celestant on Dracoth in your army" and the Skryre regiment limits.
-- Legends units, which aren't legal in Matched Play.
+- Legends units, enhancements and lores, which aren't legal in Matched Play, including those from a Scourge the battlepack doesn't use (Scourge of Ghyran); see [Scourge rules](../technical/faction-data.md#scourge-rules).

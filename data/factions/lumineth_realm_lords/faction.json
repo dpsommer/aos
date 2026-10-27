@@ -224,6 +224,16 @@
 		{
 			"name": "Flawless Manoeuvres",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Alarith Stoneguard",
+				"Hurakan Windchargers",
+				"Vanari Auralan Sentinels",
+				"Vanari Auralan Wardens",
+				"Vanari Bladelords",
+				"Vanari Dawnriders",
+				"Vanari Starshard Ballista",
+				"Ydrilan Riverblades"
+			],
 			"entries": [
 				{
 					"name": "Perfect Footwork",

@@ -217,6 +217,22 @@
 		{
 			"name": "Plaguefather's Poxes",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Beast of Nurgle",
+				"Grandfather's Gardeners",
+				"Nurglings",
+				"Pestigors",
+				"Plague Drones",
+				"Plaguebearers",
+				"Pox-Wretches",
+				"Pusgoyle Blightlords",
+				"Pusgoyle Blightlords (1 Model)",
+				"Putrid Blightkings",
+				"Rotmire Creed",
+				"Rotswords",
+				"Sloven Knights",
+				"The Wurmspat"
+			],
 			"entries": [
 				{
 					"name": "Snuggling Sickness",

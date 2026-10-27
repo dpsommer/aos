@@ -219,6 +219,13 @@
 		{
 			"name": "Accursed Devices",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Daemonsmith on Infernal Taurus",
+				"Deathshrieker Rocket Battery",
+				"Dominator Engine with Bane Maces",
+				"Dominator Engine with Immolation Cannons",
+				"Tormentor Bombard"
+			],
 			"entries": [
 				{
 					"name": "Greed Pistons",
@@ -248,6 +255,13 @@
 		{
 			"name": "Accursed Devices",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Daemonsmith on Infernal Taurus",
+				"Deathshrieker Rocket Battery",
+				"Dominator Engine with Bane Maces",
+				"Dominator Engine with Immolation Cannons",
+				"Tormentor Bombard"
+			],
 			"entries": [
 				{
 					"name": "Infernal Motivators",

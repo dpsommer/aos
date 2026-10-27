@@ -154,6 +154,21 @@
 		{
 			"name": "Heroic Traits",
 			"group": "Champions of Destiny",
+			"units": [
+				"Changecaster, Herald of Tzeentch",
+				"Curseling, Eye of Tzeentch",
+				"Fatemaster",
+				"Fatemaster on Disc of Tzeentch",
+				"Fateskimmer, Herald of Tzeentch on Burning Chariot",
+				"Fluxmaster, Herald of Tzeentch on Disc",
+				"Gaunt Summoner",
+				"Gaunt Summoner on Disc of Tzeentch",
+				"Lord of Change",
+				"Magister",
+				"Magister on Disc of Tzeentch",
+				"Ogroid Thaumaturge",
+				"Tzaangor Shaman"
+			],
 			"entries": [
 				{
 					"name": "Silver Summoner",
@@ -185,6 +200,21 @@
 		{
 			"name": "Artefacts of Power",
 			"group": "Fated Artefacts",
+			"units": [
+				"Changecaster, Herald of Tzeentch",
+				"Curseling, Eye of Tzeentch",
+				"Fatemaster",
+				"Fatemaster on Disc of Tzeentch",
+				"Fateskimmer, Herald of Tzeentch on Burning Chariot",
+				"Fluxmaster, Herald of Tzeentch on Disc",
+				"Gaunt Summoner",
+				"Gaunt Summoner on Disc of Tzeentch",
+				"Lord of Change",
+				"Magister",
+				"Magister on Disc of Tzeentch",
+				"Ogroid Thaumaturge",
+				"Tzaangor Shaman"
+			],
 			"entries": [
 				{
 					"name": "Fate Slicer",
@@ -215,6 +245,21 @@
 			"name": "Artefacts of Power",
 			"group": "Esoteric Treasures",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Changecaster, Herald of Tzeentch",
+				"Curseling, Eye of Tzeentch",
+				"Fatemaster",
+				"Fatemaster on Disc of Tzeentch",
+				"Fateskimmer, Herald of Tzeentch on Burning Chariot",
+				"Fluxmaster, Herald of Tzeentch on Disc",
+				"Gaunt Summoner",
+				"Gaunt Summoner on Disc of Tzeentch",
+				"Lord of Change",
+				"Magister",
+				"Magister on Disc of Tzeentch",
+				"Ogroid Thaumaturge",
+				"Tzaangor Shaman"
+			],
 			"entries": [
 				{
 					"name": "Mutating Blade",
@@ -247,6 +292,21 @@
 			"name": "Artefacts of Power",
 			"group": "Fated Artefacts",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Changecaster, Herald of Tzeentch",
+				"Curseling, Eye of Tzeentch",
+				"Fatemaster",
+				"Fatemaster on Disc of Tzeentch",
+				"Fateskimmer, Herald of Tzeentch on Burning Chariot",
+				"Fluxmaster, Herald of Tzeentch on Disc",
+				"Gaunt Summoner",
+				"Gaunt Summoner on Disc of Tzeentch",
+				"Lord of Change",
+				"Magister",
+				"Magister on Disc of Tzeentch",
+				"Ogroid Thaumaturge",
+				"Tzaangor Shaman"
+			],
 			"entries": [
 				{
 					"name": "Tome of Scorched Insight",
@@ -275,6 +335,21 @@
 		{
 			"name": "Visions of Fate",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Blue Horrors and Brimstone Horrors",
+				"Burning Chariot of Tzeentch",
+				"Ephilim's Pandaemonium",
+				"Exalted Flamer of Tzeentch",
+				"Eyes of the Nine",
+				"Flamers of Tzeentch",
+				"Jade Obelisk",
+				"Kairic Acolytes",
+				"Pink Horrors",
+				"Tzaangor Enlightened",
+				"Tzaangor Enlightened on Foot",
+				"Tzaangor Skyfires",
+				"Tzaangors"
+			],
 			"entries": [
 				{
 					"name": "Vision of Defiant Supremacy",

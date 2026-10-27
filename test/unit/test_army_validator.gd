@@ -43,7 +43,9 @@ func _faction() -> Faction:
 		Kit.table("Heroic Traits", [Kit.ability("Brave"), Kit.ability("Bold")] as Array[Ability]),
 		Kit.table("Artefacts of Power", [Kit.ability("Sword")] as Array[Ability]),
 		Kit.table("Banners", [Kit.ability("Flag")] as Array[Ability]),
+		Kit.table("Great Works", [Kit.ability("Engine")] as Array[Ability]),
 	] as Array[EnhancementTable]
+	faction.enhancement_tables[3].units = PackedStringArray(["Grunt"])
 	faction.lores = [Kit.lore("Fire", "spell"), Kit.lore("Hymns", "prayer")] as Array[Lore]
 	faction.battle_formations = [Kit.formation("Vanguard")] as Array[BattleFormation]
 	var members: Array[Warscroll] = [_scroll("ror_hero", PackedStringArray(["HERO", "WARMASTER", "WIZARD (1)"])),
@@ -490,6 +492,24 @@ func test_hero_enhancement_on_a_non_hero_is_a_problem_naming_the_unit() -> void:
 	var army := _army()
 	army.regiments[0].units[1].enhancements = {"Heroic Traits": "Brave"}
 	_assert_problem(army, "Grunt")
+
+
+func test_enhancement_for_certain_units_on_another_unit_is_a_problem_naming_the_unit() -> void:
+	var army := _army()
+	army.regiments[0].units[0].enhancements = {"Great Works": "Engine"}
+	_assert_problem(army, "Hero A")
+
+
+func test_enhancement_for_certain_units_names_the_units_it_is_for() -> void:
+	var army := _army()
+	army.regiments[0].units[0].enhancements = {"Great Works": "Engine"}
+	_assert_problem(army, "only for Grunt")
+
+
+func test_enhancement_for_certain_units_is_allowed_on_them() -> void:
+	var army := _army()
+	army.regiments[0].units[1].enhancements = {"Great Works": "Engine"}
+	assert_eq(_problems(army).size(), 0, str(_problems(army)))
 
 
 func test_other_enhancement_types_are_allowed_on_non_heroes() -> void:
