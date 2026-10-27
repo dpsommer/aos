@@ -19,14 +19,17 @@ func show_main_menu() -> void:
 	menu.forge_pressed.connect(show_forge)
 
 
-## Opens the Forge, on [param alliance]'s faction list if one is given, or on [param faction]'s
-## Army of Renown choice if that is given too.
-func show_forge(alliance: int = -1, faction := "") -> void:
+## Opens the Forge on its saved armies, focusing [param army_id]'s if given; or on [param alliance]'s
+## faction list if one is given, or on [param faction]'s Army of Renown choice if that is given too.
+func show_forge(alliance: int = -1, faction := "", army_id := "") -> void:
 	var forge: Forge = _show_screen(FORGE_SCENE)
 	forge.back_pressed.connect(show_main_menu)
 	forge.browse_requested.connect(show_faction_browser)
 	forge.army_started.connect(show_army_builder)
-	if alliance >= 0:
+	forge.army_opened.connect(show_army_builder)
+	if not army_id.is_empty():
+		forge.show_armies(army_id)
+	elif alliance >= 0:
 		forge.show_factions(alliance)
 		if not faction.is_empty():
 			forge.show_armies_of_renown(alliance, faction)
@@ -41,8 +44,7 @@ func show_faction_browser(alliance: GrandAlliance.Type, faction_name: String) ->
 	browser.back_pressed.connect(show_forge.bind(alliance, faction_name))
 
 
-## Opens the army builder on [param army]. Back returns to the Forge's Army of Renown choice for
-## the army's faction.
+## Opens the army builder on [param army]. Back returns to the Forge's saved armies.
 func show_army_builder(army: Army) -> void:
 	var faction_name := FactionCatalog.name_for_id(army.faction_id)
 	var faction := FactionCatalog.load_faction(faction_name) if not faction_name.is_empty() else null
@@ -51,7 +53,7 @@ func show_army_builder(army: Army) -> void:
 		return
 	var builder: ArmyBuilder = _show_screen(ARMY_BUILDER_SCENE)
 	builder.open(army)
-	builder.back_pressed.connect(show_forge.bind(faction.grand_alliance, faction_name))
+	builder.back_pressed.connect(func() -> void: show_forge(-1, "", army.id))
 
 
 func _show_screen(scene: PackedScene) -> Node:

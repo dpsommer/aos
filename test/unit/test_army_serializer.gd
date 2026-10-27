@@ -53,6 +53,32 @@ func test_round_trip_keeps_the_army_settings() -> void:
 			original.show_legends, original.override_constraints, original.general_uid, original.faction_terrain])
 
 
+func test_round_trip_keeps_the_id() -> void:
+	var original := _army()
+	original.id = "abc123"
+	assert_eq(_round_trip(original).id, "abc123")
+
+
+func test_round_trip_of_an_army_without_an_id_has_none() -> void:
+	assert_eq(_round_trip(_army()).id, "")
+
+
+func test_missing_id_loads_without_error() -> void:
+	var data := _valid()
+	data.erase("id")
+	var serializer := ArmySerializer.new()
+	assert_not_null(serializer.from_dict(data))
+	assert_eq(serializer.errors.size(), 0)
+
+
+func test_id_of_the_wrong_type_is_reported() -> void:
+	var data := _valid()
+	data.id = 5
+	var serializer := ArmySerializer.new()
+	serializer.from_dict(data)
+	assert_gt(serializer.errors.size(), 0)
+
+
 func test_round_trip_keeps_tactics_and_lores() -> void:
 	var original := _army()
 	var loaded := _round_trip(original)

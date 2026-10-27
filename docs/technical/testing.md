@@ -37,6 +37,7 @@ Tests can also be run from the GUT panel in the editor.
 - Must run quickly
 - Success or failure of a test must be irrelevant for the success of another. No state should be maintained in the test suite
 - Tests must be isolated from external dependencies
+- Tests must never touch the player's files in `user://`. Any test that creates the Forge, `Main` or an army builder calls `Sandbox.begin()` in `before_each` and `Sandbox.end()` in `after_each` (`test/support/sandbox.gd`), which point saved armies and favourites at temporary paths and delete them afterwards
 - Tests should check one single, specific aspect of a function, class, or module
 - Avoid "A equals A" tests that simply check code values against identical test values
 - Avoid fragile testing patterns, such as testing for specific constant values. Most of the time, updating a constant should not cause test failures

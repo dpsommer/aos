@@ -22,6 +22,10 @@ var remove_overlay: PanelContainer
 var auxiliary_box: PanelContainer
 ## Unit uids with their options open, and other expanded panels' keys.
 var expanded := {}
+## Whether the army has changed since it was opened or last saved.
+var dirty := false
+## Asks whether to discard unsaved changes when leaving.
+var discard_dialog: ConfirmationDialog
 ## Ids of collapsed regiments.
 var collapsed := {}
 ## Id of the regiment being renamed, or empty.
@@ -45,7 +49,23 @@ var _redraw_again := false
 func _ready() -> void:
 	theme = ForgeTheme.get_theme()
 	back_button.icon = ForgeTheme.icon("back")
-	back_button.pressed.connect(back_pressed.emit)
+	back_button.pressed.connect(request_back)
+	save_button.pressed.connect(save)
+	save_button.tooltip_text = "Save army (Ctrl+S)"
+	var shortcut := InputEventKey.new()
+	shortcut.keycode = KEY_S
+	shortcut.command_or_control_autoremap = true
+	save_button.shortcut = Shortcut.new()
+	save_button.shortcut.events = [shortcut]
+	discard_dialog = ConfirmationDialog.new()
+	discard_dialog.title = "Unsaved changes"
+	discard_dialog.dialog_text = "This army has unsaved changes."
+	discard_dialog.ok_button_text = "Discard changes"
+	discard_dialog.cancel_button_text = "Keep editing"
+	discard_dialog.add_button("Save and go back", true, "save")
+	discard_dialog.confirmed.connect(back_pressed.emit)
+	discard_dialog.custom_action.connect(_on_discard_dialog_action)
+	add_child(discard_dialog)
 	info_pane = InfoPane.new(self)
 	left_pane.add_child(info_pane)
 	picker = Picker.new(self)
@@ -105,7 +125,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			renaming = ""
 			redraw()
 		else:
-			back_pressed.emit()
+			request_back()
 
 
 ## Starts editing [param army] with its faction's data, or [param army_catalog] if given.
@@ -115,10 +135,54 @@ func open(army: Army, army_catalog: ArmyCatalog = null) -> void:
 		army_catalog = ArmyCatalog.new(faction, CoreRulesCatalog.get_rules())
 	catalog = army_catalog
 	editor = ArmyEditor.new(army, catalog)
-	editor.changed.connect(redraw)
+	editor.changed.connect(_on_army_changed)
+	dirty = false
 	info_pane.open()
 	redraw()
 	back_button.grab_focus()
+
+
+func _on_army_changed() -> void:
+	dirty = true
+	redraw()
+
+
+## Saves the army with [ArmyStore]. Returns whether it saved.
+func save() -> bool:
+	# Commit a name or count still being typed, e.g. when saving with Ctrl+S.
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused is LineEdit and is_ancestor_of(focused):
+		focused.text_submitted.emit(focused.text)
+	var error := ArmyStore.save(editor.army)
+	if error != OK:
+		push_error("Couldn't save the army: %s" % error_string(error))
+		var failed := AcceptDialog.new()
+		failed.title = "Couldn't save"
+		failed.dialog_text = "The army couldn't be saved (%s)." % error_string(error)
+		failed.confirmed.connect(failed.queue_free)
+		failed.canceled.connect(failed.queue_free)
+		add_child(failed)
+		failed.popup_centered()
+		return false
+	dirty = false
+	_draw_header()
+	return true
+
+
+## Leaves the builder, first asking whether to discard unsaved changes.
+func request_back() -> void:
+	if dirty:
+		discard_dialog.popup_centered()
+		discard_dialog.get_cancel_button().grab_focus()
+	else:
+		back_pressed.emit()
+
+
+func _on_discard_dialog_action(action: StringName) -> void:
+	if action == &"save":
+		discard_dialog.hide()
+		if save():
+			back_pressed.emit()
 
 
 func toggle_expanded(key: String) -> void:
@@ -203,6 +267,9 @@ func _draw_header() -> void:
 	points_bar.max_value = maxi(army.points_limit, 1)
 	points_bar.value = mini(total, army.points_limit)
 	points_bar.add_theme_stylebox_override("fill", ForgeTheme.box(ForgeTheme.DANGER if over else ForgeTheme.GOOD, Color.TRANSPARENT, 3))
+	var saved := not dirty and not army.id.is_empty()
+	save_button.text = "Saved" if saved else "Save army"
+	save_button.disabled = saved
 	var validation := ArmyValidator.validate(army, catalog)
 	var colors: Array
 	if validation.overridden:

@@ -4,12 +4,18 @@ Forge is the army builder, where players build and save armies to use in Quick P
 
 ## Flow
 
-1. **Grand Alliance:** the player picks Order, Chaos, Death or Destruction. Back returns to the main menu.
-2. **Faction:** the factions of the chosen alliance are listed. Factions without rules data are disabled with a "Coming soon" tooltip, and factions moved to Legends (Fyreslayers) are labelled "(Legends)". Back returns to the alliance list, with the chosen alliance focused.
-3. **Army of Renown:** "None (<faction> rules)" or one of the faction's Armies of Renown, which are labelled "(Legends)" where they are. Picking one starts the army. Back returns to the faction list, with the faction focused.
+1. **Saved armies:** the Forge opens on the player's saved armies, most recently saved first. Each row shows the army's name, faction, points against its limit, and whether it's valid. Each row has three buttons:
+   - **Open** emits `army_opened`, and `Main` opens the army in the builder. It's disabled when the file can't be read or the faction has no data.
+   - **Duplicate** saves a copy named "<name> (copy)".
+   - **Delete** asks for confirmation first.
+
+   An unreadable file is listed with the reason, so it can be deleted. **New army** starts the steps below, and Back returns to the main menu.
+2. **Grand Alliance:** the player picks Order, Chaos, Death or Destruction. Back returns to the saved armies.
+3. **Faction:** the factions of the chosen alliance are listed. Factions without rules data are disabled with a "Coming soon" tooltip, and factions moved to Legends (Fyreslayers) are labelled "(Legends)". Back returns to the alliance list, with the chosen alliance focused.
+4. **Army of Renown:** "None (<faction> rules)" or one of the faction's Armies of Renown, which are labelled "(Legends)" where they are. Picking one starts the army. Back returns to the faction list, with the faction focused.
    - **Browse faction rules** emits `browse_requested`, and `Main` opens the read-only faction browser (`scenes/ui/forge/faction_browser.tscn`). It has tabs for the faction's rules (battle traits, formations, enhancements, lores), warscrolls, Armies of Renown, Regiments of Renown, Spearhead and Path to Glory, and each list tab shows the selected entry's full rules. Its title and rules tab mark a Legends faction. Back returns to this step.
-4. **Battle Formation:** for "None", the faction's battle formations, with their points if they cost any. Picking one starts the army. A faction without formations skips this step. Back returns to the Army of Renown step.
-5. **Army builder:** `Forge` emits `army_started` with a new, empty army, and `Main` opens the builder. Back returns to the Army of Renown step, discarding the army.
+5. **Battle Formation:** for "None", the faction's battle formations, with their points if they cost any. Picking one starts the army. A faction without formations skips this step. Back returns to the Army of Renown step.
+6. **Army builder:** `Forge` emits `army_started` with a new, empty army, and `Main` opens the builder. Back returns to the saved armies, with the army focused if it was saved. If the army has unsaved changes, Back first asks whether to keep editing (the default), discard the changes, or save and go back.
 
 Esc (`ui_cancel`) does the same as the visible Back button on every screen.
 
@@ -22,7 +28,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - The faction, with its alliance and its Army of Renown or battle formation.
   - The points total against the limit, with a bar that turns red when over.
   - A status pill: "Army valid", "N problems" or "Constraints overridden".
-  - Save army, disabled until saving is added.
+  - Save army (also Ctrl+S): saves with `ArmyStore`, committing any name or count still being typed. It reads "Saved" and is disabled until the army changes again.
 - **Builder pane:** the army list, top to bottom.
   - **Army name:** an editable field.
   - **Validation:** problems and warnings from `ArmyValidator`.
@@ -101,7 +107,9 @@ An army is an `Army` resource (`scripts/army/`): its regiments (`ArmyRegiment`),
 - **Points:** totalled by `ArmyPoints`.
 - **Checks:** done by `ArmyValidator`; see [Army composition](../gameplay/army-composition.md).
 - **Search:** `RulesSearch` matches the info pane's search query.
-- **Saving:** `ArmySerializer` converts armies to and from JSON.
+- **Saving:** `ArmySerializer` converts armies to and from JSON, with a format version, and `ArmyStore` saves each army to `user://armies/<id>.json`. An army gets a random id when it's first saved.
+  - Loading skips fields with the wrong type and reports them.
+  - A unit whose warscroll is no longer in the faction data stays in the army: the builder marks it, and validation reports it.
 
 ## Signals
 
@@ -110,8 +118,9 @@ An army is an `Army` resource (`scripts/army/`): its regiments (`ArmyRegiment`),
 `back_pressed` | The player leaves Forge from the alliance list. `Main` returns to the main menu.
 `browse_requested(alliance, faction)` | The player presses Browse faction rules. `alliance` is a `GrandAlliance.Type`; `faction` is the faction name. `Main` opens the faction browser.
 `army_started(army)` | The player picks an Army of Renown or a battle formation. `army` is a new `Army`. `Main` opens the army builder.
+`army_opened(army)` | The player opens a saved army. `Main` opens the army builder.
 `FactionBrowser.back_pressed` | The player leaves the faction browser. `Main` reopens the Forge on that faction's Army of Renown step.
-`ArmyBuilder.back_pressed` | The player leaves the army builder. `Main` reopens the Forge on that faction's Army of Renown step.
+`ArmyBuilder.back_pressed` | The player leaves the army builder, after confirming if there are unsaved changes. `Main` reopens the Forge on the saved armies.
 
 ## Faction data
 

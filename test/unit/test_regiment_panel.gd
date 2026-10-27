@@ -3,12 +3,18 @@ extends GutTest
 
 const Kit := preload("res://test/support/army_kit.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")
+const Sandbox := preload("res://test/support/sandbox.gd")
 
 
 ## Redrawn sections are removed with queue_free, so let a frame pass for them to be freed before
 ## GUT counts orphans.
+func before_each() -> void:
+	Sandbox.begin()
+
+
 func after_each() -> void:
 	await get_tree().process_frame
+	Sandbox.end()
 
 
 func _panel(army: Army, regiment_id := "r1") -> Array:

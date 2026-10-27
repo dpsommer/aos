@@ -5,6 +5,8 @@ extends Resource
 
 const DEFAULT_POINTS_LIMIT := 2000
 
+## Identifies the saved army, and names its file. Empty until it is first saved.
+@export var id: String
 @export var faction_id: String
 @export var name: String
 ## Name of the Army of Renown, or empty for the faction's own rules.

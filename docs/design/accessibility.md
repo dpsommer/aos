@@ -6,7 +6,7 @@ What's implemented so far, by screen. Settings for accessibility (text size, col
 
 Screens are built from standard focusable controls, so they can be used without a mouse.
 - **Focus:** Tab and the arrow keys move focus, and Enter or Space presses the focused control. A focused control has a gold outline.
-- **Esc:** goes back one step: it does the same as the visible Back button on each screen. In the army builder, Esc first clears the search box (when it's focused and has text), then closes the picker, then cancels a rename. See [Forge](forge.md).
+- **Esc:** goes back one step: it does the same as the visible Back button on each screen. In the army builder, Esc first clears the search box (when it's focused and has text), then closes the picker, then cancels a rename. In a confirmation (deleting an army, leaving with unsaved changes), Esc cancels it. See [Forge](forge.md).
 
 ### Army builder
 - **Reordering:** a unit's or regiment's grip moves it up or down with the Up and Down keys, as dragging it does. A unit stays within its regiment, and a Hero leader stays first, so it has no grip. To move a unit to another regiment without a mouse, remove it and add it there.
