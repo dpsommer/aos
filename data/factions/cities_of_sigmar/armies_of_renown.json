@@ -172,6 +172,14 @@
 				{
 					"name": "Firing Drills",
 					"source": "White Dwarf",
+					"units": [
+						"Freeguild Gallants",
+						"Freeguild Grenadiers",
+						"Freeguild Steelhelms",
+						"Gate Gargants",
+						"Greycap Fusiliers",
+						"Spirit of the Hands"
+					],
 					"entries": [
 						{
 							"name": "Close-range Salvo!",
@@ -417,6 +425,12 @@
 			"enhancement_tables": [
 				{
 					"name": "Commanders of the Iron March",
+					"units": [
+						"Cannonade Cogfort",
+						"Conqueror Cogfort",
+						"The Iron March Immolator Cogfort",
+						"The Iron March Linebreaker Cogfort"
+					],
 					"entries": [
 						{
 							"name": "Castellan-Captain Vyan Philsin",
@@ -444,6 +458,12 @@
 				},
 				{
 					"name": "Engineers of the Iron March",
+					"units": [
+						"Cannonade Cogfort",
+						"Conqueror Cogfort",
+						"The Iron March Immolator Cogfort",
+						"The Iron March Linebreaker Cogfort"
+					],
 					"entries": [
 						{
 							"name": "Engineer Kirsta Loudren",
@@ -470,6 +490,12 @@
 				},
 				{
 					"name": "Iron March Auxiliaries",
+					"units": [
+						"Cannonade Cogfort",
+						"Conqueror Cogfort",
+						"The Iron March Immolator Cogfort",
+						"The Iron March Linebreaker Cogfort"
+					],
 					"entries": [
 						{
 							"name": "Battle-Priest Solantra Whyl",

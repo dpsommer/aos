@@ -155,6 +155,20 @@
 		{
 			"name": "Heroic Traits",
 			"group": "Traits of Endless Hunger",
+			"units": [
+				"Bloodpelt Hunter",
+				"Butcher",
+				"Firebelly",
+				"Frostlord on Stonehorn",
+				"Frostlord on Thundertusk",
+				"Huskard on Stonehorn",
+				"Huskard on Thundertusk",
+				"Icebrow Hunter",
+				"Mantrapper",
+				"Slaughtermaster",
+				"Tyrant",
+				"Tyrant on Glutthorn"
+			],
 			"entries": [
 				{
 					"name": "Leave Not a Morsel",
@@ -184,6 +198,20 @@
 		{
 			"name": "Artefacts of Power",
 			"group": "Plunder of the Mawtribes",
+			"units": [
+				"Bloodpelt Hunter",
+				"Butcher",
+				"Firebelly",
+				"Frostlord on Stonehorn",
+				"Frostlord on Thundertusk",
+				"Huskard on Stonehorn",
+				"Huskard on Thundertusk",
+				"Icebrow Hunter",
+				"Mantrapper",
+				"Slaughtermaster",
+				"Tyrant",
+				"Tyrant on Glutthorn"
+			],
 			"entries": [
 				{
 					"name": "Trophy Rack",
@@ -214,6 +242,20 @@
 			"name": "Artefacts of Power",
 			"group": "Plunder of the Mawtribes",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Bloodpelt Hunter",
+				"Butcher",
+				"Firebelly",
+				"Frostlord on Stonehorn",
+				"Frostlord on Thundertusk",
+				"Huskard on Stonehorn",
+				"Huskard on Thundertusk",
+				"Icebrow Hunter",
+				"Mantrapper",
+				"Slaughtermaster",
+				"Tyrant",
+				"Tyrant on Glutthorn"
+			],
 			"entries": [
 				{
 					"name": "A Choice Cut",
@@ -242,6 +284,20 @@
 		{
 			"name": "Big Names",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Bloodpelt Hunter",
+				"Butcher",
+				"Firebelly",
+				"Frostlord on Stonehorn",
+				"Frostlord on Thundertusk",
+				"Huskard on Stonehorn",
+				"Huskard on Thundertusk",
+				"Icebrow Hunter",
+				"Mantrapper",
+				"Slaughtermaster",
+				"Tyrant",
+				"Tyrant on Glutthorn"
+			],
 			"entries": [
 				{
 					"name": "Gutslugger",
@@ -271,6 +327,15 @@
 			"name": "Monstrous Traits",
 			"group": "Well-Fed Beasts",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Frostlord on Stonehorn",
+				"Frostlord on Thundertusk",
+				"Huskard on Stonehorn",
+				"Huskard on Thundertusk",
+				"Stonehorn Beastriders",
+				"Thundertusk Beastriders",
+				"Tyrant on Glutthorn"
+			],
 			"entries": [
 				{
 					"name": "Extremely Obstinate",

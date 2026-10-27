@@ -219,6 +219,17 @@
 		{
 			"name": "Boons of Shadow",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Blood Hags",
+				"Blood Sisters",
+				"Blood Stalkers",
+				"Doomfire Warlocks",
+				"Khainite Shadowstalkers",
+				"Khinerai Heartrenders",
+				"Khinerai Lifetakers",
+				"Sisters of Slaughter",
+				"Witch Aelves"
+			],
 			"entries": [
 				{
 					"name": "Ulguan Reactions",

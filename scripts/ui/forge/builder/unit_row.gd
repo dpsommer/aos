@@ -157,15 +157,15 @@ func _options() -> VBoxContainer:
 
 	if not warscroll.has_keyword("UNIQUE"):
 		for type in builder.catalog.enhancement_types(army):
-			if type in ArmyValidator.HERO_ENHANCEMENTS and not warscroll.has_keyword("HERO"):
+			var tables := builder.catalog.enhancement_choices(army, warscroll, type, unit.enhancements.get(type, ""))
+			if tables.is_empty():
 				continue
 			var items := [["None", ""]]
-			for table in builder.catalog.enhancement_tables(army):
-				if table.name != type:
-					continue
+			for table in tables:
 				for entry in table.entries:
 					var group := " (%s)" % table.group if not table.group.is_empty() else ""
-					items.append(["%s%s%s" % [entry.name, " · %d pts" % entry.points if entry.points else "", group], entry.name])
+					var legends := " (Legends)" if table.legends else ""
+					items.append(["%s%s%s%s" % [entry.name, " · %d pts" % entry.points if entry.points else "", group, legends], entry.name])
 			var picker := UIBuilder.select(items, unit.enhancements.get(type, ""),
 					func(value: String) -> void: editor.set_enhancement(unit.uid, type, value), key + "enh:" + type, type)
 			picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL

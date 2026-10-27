@@ -487,6 +487,44 @@ def test_non_enhancement_groups_are_not_tables(faction_data, group):
     assert group not in {t["name"] for t in tables(faction_data)}
 
 
+def with_group_links(tmp_path, links):
+    """read_faction() with the enhancement group ids in `links` linked from each unit entry id."""
+    d = fixture_copy(tmp_path)
+    for unit_id, group_ids in links.items():
+        children = "".join('<entryLink id="l-%s-%s" name="x" targetId="%s" type="selectionEntryGroup"/>'
+                           % (unit_id, g, g) for g in group_ids)
+        path = next(p for p in d.iterdir() if '<selectionEntry id="%s"' % unit_id in p.read_text(encoding="utf-8"))
+        content = path.read_text(encoding="utf-8")
+        start = content.index('<selectionEntry id="%s"' % unit_id)
+        end = content.index(">", start) + 1
+        if content[end - 2] == "/":
+            content = content[:end - 2] + "><entryLinks>%s</entryLinks></selectionEntry>" % children + content[end:]
+        else:
+            content = content[:end] + "<entryLinks>%s</entryLinks>" % children + content[end:]
+        path.write_text(content, encoding="utf-8")
+    return bsdata.read_faction(bsdata.Catalogues(str(d)), FACTION)
+
+
+def test_table_linked_by_some_units_lists_them(tmp_path):
+    faction_data = with_group_links(tmp_path, {"u-riders": ["g-artefacts"], "u-gunners": ["g-artefacts"]})
+    assert table_with(faction_data, "Lens of Truth")["units"] == ["Test Gunners", "Test Riders"]
+
+
+def test_nested_tables_share_their_group_restriction(tmp_path):
+    faction_data = with_group_links(tmp_path, {"u-riders": ["g-heroic"]})
+    assert [t.get("units") for t in tables(faction_data) if t["name"] == "Heroic Traits"] == [["Test Riders"]] * 2
+
+
+def test_table_linked_by_every_non_unique_hero_has_no_units(tmp_path):
+    heroes = {u: ["g-heroic"] for u in ("u-captain", "u-warden", "u-retired", "u-host-champ")}
+    faction_data = with_group_links(tmp_path, heroes)
+    assert "units" not in table_with(faction_data, "Bold Leader")
+
+
+def test_table_no_unit_links_has_no_units(faction_data):
+    assert "units" not in table_with(faction_data, "Lens of Truth")
+
+
 # lores
 
 def test_faction_lore_is_included(faction_data):

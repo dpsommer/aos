@@ -13,6 +13,10 @@ extends RefCounted
 var errors: PackedStringArray
 ## Directory of the shared warscrolls.json, armies_of_renown.json and regiments_of_renown.json.
 var shared_dir := "res://data/shared"
+## The Scourge the battlepack uses (see [member Battlepack.scourge]). Warscrolls, enhancement tables
+## and lores from any other Scourge are loaded as Legends, keeping their [code]source[/code]. Empty
+## treats every Scourge as current.
+var scourge := ""
 
 var _file: String
 ## Shared entries read by the current [method load_faction] call, by file name, then by id
@@ -74,6 +78,11 @@ func load_faction(dir_path: String) -> Faction:
 		faction.path_to_glory.append(_rules_section(data.sections[i], "sections[%d]" % i))
 
 	return null if not errors.is_empty() else faction
+
+
+## Whether [param source] is a Scourge other than [member scourge], so its rules are Legends.
+func _is_retired(source: String) -> bool:
+	return not scourge.is_empty() and source.begins_with("Scourge of") and source != scourge
 
 
 ## [param label] names the file in errors; it defaults to [param file_name].
@@ -211,6 +220,8 @@ func _enhancement_tables(data: Dictionary, path: String) -> Array[EnhancementTab
 			table.name = _string(items[i], "name", table_path, true)
 			table.group = _string(items[i], "group", table_path)
 			table.source = _string(items[i], "source", table_path)
+			table.legends = _is_retired(table.source)
+			table.units = _strings(items[i], "units", table_path)
 			table.entries = _abilities(items[i], "entries", table_path)
 		result.append(table)
 	return result
@@ -227,6 +238,7 @@ func _lores(data: Dictionary, path: String) -> Array[Lore]:
 			lore.kind = _string(items[i], "kind", lore_path)
 			lore.points = _int(items[i], "points", lore_path)
 			lore.source = _string(items[i], "source", lore_path)
+			lore.legends = _is_retired(lore.source)
 			lore.entries = _abilities(items[i], "entries", lore_path)
 		result.append(lore)
 	return result
@@ -263,7 +275,7 @@ func _warscroll(data: Variant, path: String, with_profile: bool) -> Warscroll:
 	warscroll.id = _string(data, "id", path, true)
 	warscroll.name = _string(data, "name", path, true)
 	warscroll.source = _string(data, "source", path)
-	warscroll.legends = _bool(data, "legends", path)
+	warscroll.legends = _bool(data, "legends", path) or _is_retired(warscroll.source)
 	warscroll.points = _int(data, "points", path, with_profile)
 	warscroll.unit_size = _int(data, "unit_size", path, with_profile)
 	warscroll.base_size = _string(data, "base_size", path)

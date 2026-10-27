@@ -248,6 +248,20 @@
 		{
 			"name": "Mortisan Refinements",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Gothizzar Harvester",
+				"Immortis Guard",
+				"Kavalos Deathriders",
+				"Kavalos War Chariot",
+				"Morghast Archai",
+				"Morghast Harbingers",
+				"Mortek Crawler",
+				"Mortek Guard",
+				"Mortek Triaxes",
+				"Mortis Reapers",
+				"Necropolis Stalkers",
+				"Teratic Cohort"
+			],
 			"entries": [
 				{
 					"name": "Perpetually Empowered Weapons",

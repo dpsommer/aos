@@ -104,6 +104,58 @@ func test_enhancement_table_fields_come_from_file() -> void:
 	assert_eq([table.name, table.group, table.entries.size()], [expected.name, expected.group, expected.entries.size()])
 
 
+func test_enhancement_table_units_come_from_file() -> void:
+	var expected: Dictionary = _json("scourge", "faction.json").enhancement_tables[3]
+	assert_eq(_load("scourge").enhancement_tables[3].units, PackedStringArray(expected.units))
+
+
+func test_enhancement_table_without_units_has_none() -> void:
+	assert_eq(_load("valid").enhancement_tables[0].units.size(), 0)
+
+
+## The scourge fixture loaded with [param scourge] as the battlepack's Scourge.
+func _load_with_scourge(scourge: String) -> Faction:
+	var loader := FactionLoader.new()
+	loader.scourge = scourge
+	return loader.load_faction(_dir("scourge"))
+
+
+func _legends_ids(faction: Faction) -> PackedStringArray:
+	var ids := PackedStringArray()
+	for warscroll in faction.warscrolls:
+		if warscroll.legends:
+			ids.append(warscroll.id)
+	return ids
+
+
+func test_warscroll_from_another_scourge_is_legends() -> void:
+	assert_eq(_legends_ids(_load_with_scourge("Scourge of Aqshy")), PackedStringArray(["scourge_of_ghyran_unit_one"]))
+
+
+func test_scourge_marker_is_kept_on_a_legends_warscroll() -> void:
+	var warscroll := _load_with_scourge("Scourge of Aqshy").get_warscroll("scourge_of_ghyran_unit_one")
+	assert_eq(warscroll.source, "Scourge of Ghyran")
+
+
+func test_changing_the_scourge_changes_which_warscrolls_are_legends() -> void:
+	assert_eq(_legends_ids(_load_with_scourge("Scourge of Ghyran")), PackedStringArray(["scourge_of_aqshy_unit_one"]))
+
+
+func test_without_a_scourge_no_scourge_warscroll_is_legends() -> void:
+	assert_eq(_legends_ids(_load("scourge")).size(), 0)
+
+
+func test_enhancement_table_from_another_scourge_is_legends() -> void:
+	var legends := _load_with_scourge("Scourge of Aqshy").enhancement_tables.map(
+			func(t: EnhancementTable) -> bool: return t.legends)
+	assert_eq(legends, [false, true, false, false])
+
+
+func test_lore_from_another_scourge_is_legends() -> void:
+	var legends := _load_with_scourge("Scourge of Aqshy").lores.map(func(l: Lore) -> bool: return l.legends)
+	assert_eq(legends, [false, true, false])
+
+
 func test_enhancement_points_are_loaded() -> void:
 	var expected: Dictionary = _json("valid", "faction.json").enhancement_tables[0].entries[0]
 	assert_eq(_load("valid").enhancement_tables[0].entries[0].points, int(expected.points))

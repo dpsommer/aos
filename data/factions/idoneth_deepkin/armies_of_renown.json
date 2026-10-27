@@ -81,6 +81,12 @@
 				},
 				{
 					"name": "Bond-beast Traits",
+					"units": [
+						"Akhelian Allopex",
+						"Akhelian Ishlaen Guard",
+						"Akhelian King",
+						"Akhelian Morrsarr Guard"
+					],
 					"entries": [
 						{
 							"name": "Voidchill Darkness",

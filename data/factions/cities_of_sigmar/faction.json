@@ -186,6 +186,29 @@
 		{
 			"name": "Heroic Traits",
 			"group": "Sentinels of Order",
+			"units": [
+				"Alchemite Warforger",
+				"Amethyst Knellmage",
+				"Aqshian Pyrocaster",
+				"Assassin",
+				"Battlemage",
+				"Battlemage on Celestial Hurricanum",
+				"Battlemage on Griffon",
+				"Battlemage on Luminark of Hysh",
+				"Black Ark Fleetmaster",
+				"Cogsmith",
+				"Dreadlord on Black Dragon",
+				"Freeguild Cavalier-Marshal",
+				"Freeguild Marshal and Relic Envoy",
+				"Freeguild Marshal on Griffon",
+				"Fusil-Major on Ogor Warhulk",
+				"Mallus Forgepriest",
+				"Runelord",
+				"Sorceress",
+				"Sorceress on Black Dragon",
+				"Steam Tank Commander",
+				"Warden King"
+			],
 			"entries": [
 				{
 					"name": "Stentorian General",
@@ -214,6 +237,29 @@
 			"name": "Heroic Traits",
 			"group": "Castelite Veterans",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Alchemite Warforger",
+				"Amethyst Knellmage",
+				"Aqshian Pyrocaster",
+				"Assassin",
+				"Battlemage",
+				"Battlemage on Celestial Hurricanum",
+				"Battlemage on Griffon",
+				"Battlemage on Luminark of Hysh",
+				"Black Ark Fleetmaster",
+				"Cogsmith",
+				"Dreadlord on Black Dragon",
+				"Freeguild Cavalier-Marshal",
+				"Freeguild Marshal and Relic Envoy",
+				"Freeguild Marshal on Griffon",
+				"Fusil-Major on Ogor Warhulk",
+				"Mallus Forgepriest",
+				"Runelord",
+				"Sorceress",
+				"Sorceress on Black Dragon",
+				"Steam Tank Commander",
+				"Warden King"
+			],
 			"entries": [
 				{
 					"name": "Astute Tactician",
@@ -246,6 +292,29 @@
 			"name": "Heroic Traits",
 			"group": "Sentinels of Order",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Alchemite Warforger",
+				"Amethyst Knellmage",
+				"Aqshian Pyrocaster",
+				"Assassin",
+				"Battlemage",
+				"Battlemage on Celestial Hurricanum",
+				"Battlemage on Griffon",
+				"Battlemage on Luminark of Hysh",
+				"Black Ark Fleetmaster",
+				"Cogsmith",
+				"Dreadlord on Black Dragon",
+				"Freeguild Cavalier-Marshal",
+				"Freeguild Marshal and Relic Envoy",
+				"Freeguild Marshal on Griffon",
+				"Fusil-Major on Ogor Warhulk",
+				"Mallus Forgepriest",
+				"Runelord",
+				"Sorceress",
+				"Sorceress on Black Dragon",
+				"Steam Tank Commander",
+				"Warden King"
+			],
 			"entries": [
 				{
 					"name": "Pious Veteran",
@@ -274,6 +343,29 @@
 		{
 			"name": "Artefacts of Power",
 			"group": "Treasures of the Cities",
+			"units": [
+				"Alchemite Warforger",
+				"Amethyst Knellmage",
+				"Aqshian Pyrocaster",
+				"Assassin",
+				"Battlemage",
+				"Battlemage on Celestial Hurricanum",
+				"Battlemage on Griffon",
+				"Battlemage on Luminark of Hysh",
+				"Black Ark Fleetmaster",
+				"Cogsmith",
+				"Dreadlord on Black Dragon",
+				"Freeguild Cavalier-Marshal",
+				"Freeguild Marshal and Relic Envoy",
+				"Freeguild Marshal on Griffon",
+				"Fusil-Major on Ogor Warhulk",
+				"Mallus Forgepriest",
+				"Runelord",
+				"Sorceress",
+				"Sorceress on Black Dragon",
+				"Steam Tank Commander",
+				"Warden King"
+			],
 			"entries": [
 				{
 					"name": "The Last Blade of Embergard",
@@ -303,6 +395,10 @@
 		{
 			"name": "Ironweld Innovations",
 			"group": "Ironweld Innovations: Cities of Sigmar",
+			"units": [
+				"Cannonade Cogfort",
+				"Conqueror Cogfort"
+			],
 			"entries": [
 				{
 					"name": "Prototype Arco-Combustor Uninhibitor",
@@ -333,6 +429,27 @@
 		{
 			"name": "Decorations for Valour",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Black Ark Corsairs",
+				"Black Guard",
+				"Bleakswords",
+				"Dark Riders",
+				"Darkshards",
+				"Drakespawn Knights",
+				"Dreadspears",
+				"Executioners",
+				"Flagellants",
+				"Freeguild Cavaliers",
+				"Freeguild Fusiliers",
+				"Freeguild Gallants",
+				"Freeguild Grenadiers",
+				"Freeguild Steelhelms",
+				"Hammerers",
+				"Ironbreakers",
+				"Irondrakes",
+				"Longbeards",
+				"Wildercorps Hunters"
+			],
 			"entries": [
 				{
 					"name": "Twin-tailed Comet of Honour",

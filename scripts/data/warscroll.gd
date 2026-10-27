@@ -6,6 +6,8 @@ extends Resource
 @export var name: String
 ## Expansion the warscroll comes from, e.g. "Scourge of Ghyran". Empty for the battletome.
 @export var source: String
+## Whether the warscroll is Legends: marked so in the data, or from a Scourge the battlepack doesn't
+## use (see [member FactionLoader.scourge]).
 @export var legends: bool
 
 @export_group("Battle profile")

@@ -370,6 +370,9 @@
 		{
 			"name": "Cracked Heels",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Mancrusher Gargant"
+			],
 			"entries": [
 				{
 					"name": "That Boy's Not Right",

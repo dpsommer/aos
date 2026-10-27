@@ -52,12 +52,45 @@ func enhancement_types(army: Army) -> PackedStringArray:
 
 ## The enhancement called [param enhancement_name] in a table of [param type], or null.
 func enhancement(army: Army, type: String, enhancement_name: String) -> Ability:
+	var table := enhancement_table(army, type, enhancement_name)
+	if table:
+		for entry in table.entries:
+			if entry.name == enhancement_name:
+				return entry
+	return null
+
+
+## The table of [param type] holding the enhancement called [param enhancement_name], or null.
+func enhancement_table(army: Army, type: String, enhancement_name: String) -> EnhancementTable:
 	for table in enhancement_tables(army):
 		if table.name == type:
 			for entry in table.entries:
 				if entry.name == enhancement_name:
-					return entry
+					return table
 	return null
+
+
+## Whether a unit with [param warscroll] can be given enhancements from [param table]: one of the
+## table's [member EnhancementTable.units] if it lists any, and a Hero for Heroic Traits and
+## Artefacts of Power. Unique units and units in Regiments of Renown are checked separately.
+static func can_take(table: EnhancementTable, warscroll: Warscroll) -> bool:
+	if not table.units.is_empty():
+		return warscroll.name in table.units
+	return not table.name in ArmyValidator.HERO_ENHANCEMENTS or warscroll.has_keyword("HERO")
+
+
+## The tables of [param type] to offer a unit with [param warscroll]: those it [method can_take],
+## leaving out Legends tables unless the army shows Legends. The table holding [param selected], the
+## unit's current enhancement of the type, is always included, so it can still be seen and cleared.
+func enhancement_choices(army: Army, warscroll: Warscroll, type: String, selected := "") -> Array[EnhancementTable]:
+	var current: EnhancementTable = enhancement_table(army, type, selected) if not selected.is_empty() else null
+	var result: Array[EnhancementTable] = []
+	for table in enhancement_tables(army):
+		if table.name != type:
+			continue
+		if table == current or (can_take(table, warscroll) and (army.show_legends or not table.legends)):
+			result.append(table)
+	return result
 
 
 ## Lores of [param kind] ("spell", "prayer" or "manifestation") the army can pick. Manifestation
@@ -70,6 +103,16 @@ func lores(army: Army, kind: String) -> Array[Lore]:
 			result.append(lore)
 	if kind == "manifestation" and core:
 		result.append_array(core.manifestation_lores)
+	return result
+
+
+## The lores of [param kind] to offer: [method lores] without Legends lores unless the army shows
+## Legends, though the picked lore, [param selected], is always included.
+func lore_choices(army: Army, kind: String, selected := "") -> Array[Lore]:
+	var result: Array[Lore] = []
+	for candidate in lores(army, kind):
+		if army.show_legends or not candidate.legends or candidate.name == selected:
+			result.append(candidate)
 	return result
 
 

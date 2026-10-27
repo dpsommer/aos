@@ -69,6 +69,13 @@ def test_rename_updates_only_matching_spearhead_units():
     assert [u["name"] for u in d["spearheads"][0]["units"]] == ["Test Captain", "Test Riders"]
 
 
+def test_rename_updates_enhancement_table_units():
+    d = data()
+    d["faction"]["enhancement_tables"][0]["units"] = ["Test Riders", "Test Captian"]
+    build.apply_overrides(d, RENAME)
+    assert d["faction"]["enhancement_tables"][0]["units"] == ["Test Captain", "Test Riders"]
+
+
 def test_rename_matching_no_warscroll_exits():
     with pytest.raises(SystemExit):
         build.apply_overrides(data(), {"warscroll_names": {"Nobody": "Somebody"}})

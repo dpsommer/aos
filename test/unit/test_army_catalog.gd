@@ -74,6 +74,77 @@ func test_enhancement_under_the_wrong_type_is_null() -> void:
 	assert_null(_catalog().enhancement(Kit.army(), "Heroic Traits", "Sword"))
 
 
+func test_enhancement_table_holding_an_enhancement_is_found() -> void:
+	assert_eq(_catalog().enhancement_table(Kit.army(), "Artefacts of Power", "Sword").name, "Artefacts of Power")
+
+
+func test_enhancement_table_is_null_for_an_unknown_enhancement() -> void:
+	assert_null(_catalog().enhancement_table(Kit.army(), "Artefacts of Power", "Nope"))
+
+
+func _units_table(units: PackedStringArray) -> EnhancementTable:
+	var table := Kit.table("Great Works", [Kit.ability("Engine")] as Array[Ability])
+	table.units = units
+	return table
+
+
+func test_listed_unit_can_take_a_table_for_certain_units() -> void:
+	assert_true(ArmyCatalog.can_take(_units_table(PackedStringArray(["Unit"])), Kit.warscroll("unit")))
+
+
+func test_unlisted_unit_cannot_take_a_table_for_certain_units() -> void:
+	assert_false(ArmyCatalog.can_take(_units_table(PackedStringArray(["Unit"])), Kit.hero("hero")))
+
+
+func test_non_hero_cannot_take_heroic_traits() -> void:
+	var table := Kit.table("Heroic Traits", [] as Array[Ability])
+	assert_false(ArmyCatalog.can_take(table, Kit.warscroll("unit")))
+
+
+func test_any_unit_can_take_an_unrestricted_table_of_another_type() -> void:
+	var table := Kit.table("Monstrous Traits", [] as Array[Ability])
+	assert_true(ArmyCatalog.can_take(table, Kit.warscroll("unit")))
+
+
+func _choice_names(tables: Array[EnhancementTable]) -> Array:
+	return tables.map(func(t: EnhancementTable) -> String: return t.entries[0].name)
+
+
+func _faction_with_works() -> Faction:
+	var faction := _faction()
+	var legends := Kit.table("Great Works", [Kit.ability("Old Engine")] as Array[Ability])
+	legends.legends = true
+	faction.enhancement_tables.append_array([_units_table(PackedStringArray(["Unit"])), legends])
+	return faction
+
+
+func test_enhancement_choices_leave_out_tables_the_unit_cannot_take() -> void:
+	var choices := Kit.catalog(_faction_with_works()).enhancement_choices(Kit.army(), Kit.hero("hero"), "Great Works")
+	assert_does_not_have(_choice_names(choices), "Engine")
+
+
+func test_enhancement_choices_include_tables_the_unit_can_take() -> void:
+	var choices := Kit.catalog(_faction_with_works()).enhancement_choices(Kit.army(), Kit.warscroll("unit"), "Great Works")
+	assert_has(_choice_names(choices), "Engine")
+
+
+func test_enhancement_choices_leave_out_legends_tables() -> void:
+	var choices := Kit.catalog(_faction_with_works()).enhancement_choices(Kit.army(), Kit.warscroll("unit"), "Great Works")
+	assert_does_not_have(_choice_names(choices), "Old Engine")
+
+
+func test_enhancement_choices_include_legends_tables_when_showing_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = true
+	var choices := Kit.catalog(_faction_with_works()).enhancement_choices(army, Kit.warscroll("unit"), "Great Works")
+	assert_has(_choice_names(choices), "Old Engine")
+
+
+func test_enhancement_choices_keep_the_selected_enhancement_table() -> void:
+	var choices := Kit.catalog(_faction_with_works()).enhancement_choices(Kit.army(), Kit.hero("hero"), "Great Works", "Old Engine")
+	assert_eq(_choice_names(choices), ["Old Engine"])
+
+
 func test_faction_enhancement_is_not_available_to_an_army_of_renown() -> void:
 	assert_null(_catalog().enhancement(_horde_army(), "Heroic Traits", "Brave"))
 
@@ -101,6 +172,32 @@ func test_army_of_renown_uses_its_own_lores_but_keeps_universal_ones() -> void:
 	assert_not_null(catalog.lore(_horde_army(), "spell", "Horde Spell"))
 	assert_null(catalog.lore(_horde_army(), "spell", "Fire"))
 	assert_not_null(catalog.lore(_horde_army(), "manifestation", "Universal"))
+
+
+func _legends_lore_faction() -> Faction:
+	var faction := _faction()
+	var old := Kit.lore("Old Fire", "spell")
+	old.legends = true
+	faction.lores.append(old)
+	return faction
+
+
+func _lore_choice_names(army: Army, selected := "") -> Array:
+	return Kit.catalog(_legends_lore_faction()).lore_choices(army, "spell", selected).map(func(l: Lore) -> String: return l.name)
+
+
+func test_lore_choices_leave_out_legends_lores() -> void:
+	assert_eq(_lore_choice_names(Kit.army()), ["Fire"])
+
+
+func test_lore_choices_include_legends_lores_when_showing_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = true
+	assert_has(_lore_choice_names(army), "Old Fire")
+
+
+func test_lore_choices_keep_the_picked_legends_lore() -> void:
+	assert_has(_lore_choice_names(Kit.army(), "Old Fire"), "Old Fire")
 
 
 func test_lore_lookup_is_null_for_unknown_name() -> void:

@@ -246,6 +246,11 @@
 		},
 		{
 			"name": "Great Endrinworks",
+			"units": [
+				"Arkanaut Frigate",
+				"Arkanaut Ironclad",
+				"Grundstok Gunhauler"
+			],
 			"entries": [
 				{
 					"name": "Hegsson Solutions 'Old Reliable' Hullplates",
@@ -294,6 +299,11 @@
 		{
 			"name": "Great Endrinworks",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Arkanaut Frigate",
+				"Arkanaut Ironclad",
+				"Grundstok Gunhauler"
+			],
 			"entries": [
 				{
 					"name": "Voidstone Repulser Vents",
@@ -324,6 +334,14 @@
 		{
 			"name": "Artycle References",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Arkanaut Company",
+				"Endrinriggers",
+				"Grundstok Thunderers",
+				"Skywardens",
+				"Vongrim Harpoon Crew",
+				"Vongrim Salvagers"
+			],
 			"entries": [
 				{
 					"name": "Artycle 15, Point 4",

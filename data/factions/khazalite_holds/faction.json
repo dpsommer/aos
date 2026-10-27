@@ -216,6 +216,11 @@
 		{
 			"name": "Marks of Vulcatrix",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Auric Runefather on Magmadroth",
+				"Auric Runesmiter on Magmadroth",
+				"Auric Runeson on Magmadroth"
+			],
 			"entries": [
 				{
 					"name": "Aureate Hide",

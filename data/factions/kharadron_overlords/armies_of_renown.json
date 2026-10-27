@@ -247,6 +247,11 @@
 			"enhancement_tables": [
 				{
 					"name": "Heroic Traits",
+					"units": [
+						"Arkanaut Ironclad",
+						"Endrinmaster with Dirigible Suit",
+						"Null-Khemist"
+					],
 					"entries": [
 						{
 							"name": "Master of Discipline",
@@ -266,6 +271,11 @@
 				},
 				{
 					"name": "Artefacts of Power",
+					"units": [
+						"Arkanaut Ironclad",
+						"Endrinmaster with Dirigible Suit",
+						"Null-Khemist"
+					],
 					"entries": [
 						{
 							"name": "Aerodynamism",

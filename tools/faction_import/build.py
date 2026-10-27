@@ -131,6 +131,9 @@ def apply_overrides(data, overrides):
             w["name"] = new
             if w.get("id"):
                 w["id"] = w["id"].replace(schema.slug(old), schema.slug(new))
+        for t in data["faction"]["enhancement_tables"] + [t for a in data["armies_of_renown"] for t in a["enhancement_tables"]]:
+            if t.get("units"):
+                t["units"] = sorted(new if u == old else u for u in t["units"])
         for s in data["spearheads"]:
             s["general"] = new if s["general"] == old else s["general"]
             for u in s["units"]:

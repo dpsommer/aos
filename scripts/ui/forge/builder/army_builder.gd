@@ -438,12 +438,13 @@ func _lores_section() -> Control:
 	var rows: Array = []
 	for pick: Array in [["spell", "Spell Lore", army.spell_lore, wizard], ["prayer", "Prayer Lore", army.prayer_lore, priest],
 			["manifestation", "Manifestation Lore", army.manifestation_lore, wizard or priest]]:
-		var lores := catalog.lores(army, pick[0])
+		var lores := catalog.lore_choices(army, pick[0], pick[2])
 		if lores.is_empty():
 			continue
 		var items := [["None", ""]]
 		for lore in lores:
-			items.append(["%s · %d pts" % [lore.name, lore.points] if lore.points else lore.name, lore.name])
+			var label := "%s · %d pts" % [lore.name, lore.points] if lore.points else lore.name
+			items.append([label + (" (Legends)" if lore.legends else ""), lore.name])
 		var help := UIBuilder.label("?", "MutedLabel")
 		help.tooltip_text = LORE_HELP[pick[0]]
 		help.mouse_filter = Control.MOUSE_FILTER_STOP

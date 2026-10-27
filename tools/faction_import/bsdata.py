@@ -291,18 +291,28 @@ def link_name(link):
     return None
 
 
+def unit_name(unit, link=None):
+    """The warscroll name of a unit: its link's name, without a "(Scourge of …)" suffix."""
+    return re.sub(r"\s*\((Scourge of [^)]+)\)$", "", link_name(link) or unit.get("name"))
+
+
+def unit_keywords(unit):
+    """The unit's keyword categories as written in BSData ("Hero"), without hidden ones."""
+    return [c.get("name") for c in kids(unit, "categoryLinks", "categoryLink") if c.get("hidden") != "true"]
+
+
 def warscroll(cats, unit, link=None):
     publication = cats.publication(unit)
     source = source_of(publication)
     full_name = link_name(link) or unit.get("name")
-    name = re.sub(r"\s*\((Scourge of [^)]+)\)$", "", full_name)
+    name = unit_name(unit, link)
     m = re.search(r"\((Scourge of [^)]+)\)$", full_name)
     if m:
         source = m.group(1)
     out = {"id": slug(((source + " ") if source.startswith("Scourge of") else "") + name), "name": name}
     if source:
         out["source"] = source
-    keywords = [c.get("name") for c in kids(unit, "categoryLinks", "categoryLink") if c.get("hidden") != "true"]
+    keywords = unit_keywords(unit)
     if publication == "Warhammer Legends" or "Legends" in keywords:
         out["legends"] = True
     if link is not None:
@@ -372,15 +382,52 @@ def short_name(name, owner):
     return head.strip() if owner and tail.strip() == owner else name
 
 
-def enhancement_tables(cats, root, owner=""):
+def _without_anvil(units):
+    return [(unit, link) for unit, link in units if not unit.get("name").startswith("Anvil of Apotheosis")]
+
+
+def eligible_units(units):
+    """{enhancement group id: names of the units that can take it} for (unit entry, link) pairs.
+    BSData offers an enhancement only to units whose entry, or the catalogue's link to it, links
+    its group: Kharadron Overlords' Great Endrinworks are linked by each Skyvessel. The Path to
+    Glory Anvil of Apotheosis hero is left out, as it is from the warscrolls."""
+    out = {}
+    for unit, link in _without_anvil(units):
+        for el in [unit] + ([link] if link is not None else []):
+            for child in el.iter():
+                if tag(child) == "entryLink" and child.get("type") == "selectionEntryGroup":
+                    out.setdefault(child.get("targetId"), set()).add(unit_name(unit, link))
+    return out
+
+
+def unrestricted_units(units):
+    """Names of the units an enhancement is open to without a restriction of its own: non-Unique
+    Heroes, as Heroic Traits and Artefacts of Power are (Core Rules 4.1)."""
+    names = set()
+    for unit, link in _without_anvil(units):
+        keywords = {k.upper() for k in unit_keywords(unit)}
+        if "HERO" in keywords and "UNIQUE" not in keywords:
+            names.add(unit_name(unit, link))
+    return names
+
+
+def enhancement_tables(cats, root, owner="", units=()):
+    """Enhancement tables, one per nested group. A table only some of `units` (unit entry, link)
+    can take, other than the non-Unique Heroes, lists them as `units`: Great Endrinworks name the
+    Skyvessels, and Cities of Sigmar's Heroic Traits leave out the Cogforts. Groups no unit links
+    have no `units`."""
+    eligible = eligible_units(units)
+    unrestricted = unrestricted_units(units)
     tables = []
     for group in kids(root, "sharedSelectionEntryGroups", "selectionEntryGroup"):
         name = group.get("name")
         if name in NOT_ENHANCEMENTS or name.startswith("Battle Formations"):
             continue
+        names = eligible.get(group.get("id"), set())
+        restriction = {"units": sorted(names)} if names and names != unrestricted else {}
         direct = [enhancement(cats, e) for e in kids(group, "selectionEntries", "selectionEntry")]
         if direct:
-            tables.append({"name": name, "source": source_of(cats.publication(group)), "entries": direct})
+            tables.append({"name": name, "source": source_of(cats.publication(group)), **restriction, "entries": direct})
         for sub in kids(group, "selectionEntryGroups", "selectionEntryGroup"):
             table = {"name": name}
             group_name = short_name(sub.get("name"), owner)
@@ -388,6 +435,7 @@ def enhancement_tables(cats, root, owner=""):
                 table["group"] = group_name
             if source_of(cats.publication(sub)):
                 table["source"] = source_of(cats.publication(sub))
+            table.update(restriction)
             table["entries"] = [enhancement(cats, e) for e in kids(sub, "selectionEntries", "selectionEntry")]
             tables.append(table)
     return [t for t in tables if t["entries"]]
@@ -530,7 +578,7 @@ def read_faction(cats, name):
         "grand_alliance": alliance,
         "battle_traits": battle_traits(cats, root, name),
         "battle_formations": battle_formations(cats, root, name),
-        "enhancement_tables": enhancement_tables(cats, root),
+        "enhancement_tables": enhancement_tables(cats, root, units=units),
         "lores": lores(cats, root),
     }
     armies = []
@@ -542,7 +590,8 @@ def read_faction(cats, name):
             army["legends"] = True
         army["roster"] = [unit.get("name") for r in roots for unit, _ in unit_links(cats, r)]
         army["battle_traits"] = [a for r in roots for a in battle_traits(cats, r, aor_name)]
-        army["enhancement_tables"] = [t for r in roots for t in enhancement_tables(cats, r, aor_name)]
+        roster = [pair for r in roots for pair in unit_links(cats, r)]
+        army["enhancement_tables"] = [t for r in roots for t in enhancement_tables(cats, r, aor_name, roster)]
         army["lores"] = [l for r in roots for l in lores(cats, r, aor_name)]
         armies.append(army)
     return faction, warscrolls, armies

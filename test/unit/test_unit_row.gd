@@ -239,6 +239,14 @@ func test_non_hero_skips_hero_only_enhancement_types() -> void:
 	assert_not_null(UIKit.keyed(row, "u2:enh:Monstrous Traits"))
 
 
+func test_unit_skips_enhancement_types_only_other_units_can_take() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Great Works"]))
+	builder.catalog.faction.enhancement_tables[0].units = PackedStringArray(["Somebody Else"])
+	var row := _expanded_row(builder, "u1")
+	assert_null(UIKit.keyed(row, "u1:enh:Great Works"))
+
+
 func test_unique_unit_gets_no_enhancement_selects() -> void:
 	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["unique"])))
 	_tables(builder, PackedStringArray(["Heroic Traits", "Monstrous Traits"]))

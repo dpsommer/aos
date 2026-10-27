@@ -8,4 +8,6 @@ extends Resource
 @export var points: int
 ## Expansion the lore comes from, e.g. "Scourge of Ghyran". Empty for the battletome.
 @export var source: String
+## Whether the lore is Legends, as a lore from a Scourge the battlepack doesn't use is.
+@export var legends: bool
 @export var entries: Array[Ability]

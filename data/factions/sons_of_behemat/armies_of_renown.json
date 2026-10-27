@@ -191,6 +191,9 @@
 			"enhancement_tables": [
 				{
 					"name": "Marks of the Chooser's Chosen",
+					"units": [
+						"Mancrusher Gargant"
+					],
 					"entries": [
 						{
 							"name": "Butt of the Lash",
@@ -350,6 +353,9 @@
 				},
 				{
 					"name": "Little Toes",
+					"units": [
+						"Mancrusher Gargant"
+					],
 					"entries": [
 						{
 							"name": "Future Stomper",

@@ -1,5 +1,6 @@
 {
 	"name": "Test Battlepack",
+	"scourge": "Scourge of Aqshy",
 	"battle_rounds": 4,
 	"battlefield": {"width": 50, "depth": 30},
 	"sections": [{"name": "Test Section", "text": "Section text."}],

@@ -274,6 +274,18 @@
 		{
 			"name": "Aspects of the Deepwoods",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Dryads",
+				"Gossamid Archers",
+				"Kurnoth Hunters with Greatbows",
+				"Kurnoth Hunters with Greatscythes",
+				"Kurnoth Hunters with Greatswords",
+				"Revenant Seekers",
+				"Spite-Revenants",
+				"Spiterider Lancers",
+				"The Twistweald",
+				"Tree-Revenants"
+			],
 			"entries": [
 				{
 					"name": "Aspect of Harvestboon",

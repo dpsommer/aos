@@ -176,6 +176,11 @@
 		{
 			"name": "Marks of Vulcatrix",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Auric Runefather on Magmadroth",
+				"Auric Runesmiter on Magmadroth",
+				"Auric Runeson on Magmadroth"
+			],
 			"entries": [
 				{
 					"name": "Incandescent Blaze",
@@ -204,6 +209,11 @@
 		{
 			"name": "Marks of Vulcatrix",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Auric Runefather on Magmadroth",
+				"Auric Runesmiter on Magmadroth",
+				"Auric Runeson on Magmadroth"
+			],
 			"entries": [
 				{
 					"name": "Thickened Scales",

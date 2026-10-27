@@ -355,6 +355,19 @@
 		{
 			"name": "All-consuming Obsessions",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Blissbarb Archers",
+				"Blissbarb Seekers",
+				"Daemonettes",
+				"Hellstriders",
+				"Myrmidesh Painbringers",
+				"Seekers",
+				"Slaangor Fiendbloods",
+				"Slickblade Seekers",
+				"Symbaresh Twinsouls",
+				"The Dread Pageant",
+				"The Thricefold Discord"
+			],
 			"entries": [
 				{
 					"name": "Obsession with Control",

@@ -244,6 +244,16 @@
 			"name": "Monstrous Traits",
 			"group": "Monstrous Traits: Seraphon",
 			"source": "Scourge of Ghyran",
+			"units": [
+				"Bastiladon with Ark of Sotek",
+				"Bastiladon with Solar Engine",
+				"Engine of the Gods",
+				"Saurus Oldblood on Carnosaur",
+				"Saurus Scar-Veteran on Carnosaur",
+				"Skink Oracle on Troglodon",
+				"Stegadon",
+				"Stegadon Chief"
+			],
 			"entries": [
 				{
 					"name": "Titan of the Land",
@@ -276,6 +286,16 @@
 			"name": "Monstrous Traits",
 			"group": "Beasts of the Dark Jungle",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Bastiladon with Ark of Sotek",
+				"Bastiladon with Solar Engine",
+				"Engine of the Gods",
+				"Saurus Oldblood on Carnosaur",
+				"Saurus Scar-Veteran on Carnosaur",
+				"Skink Oracle on Troglodon",
+				"Stegadon",
+				"Stegadon Chief"
+			],
 			"entries": [
 				{
 					"name": "Armour Cruncher",

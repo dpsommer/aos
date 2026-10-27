@@ -4,6 +4,9 @@ extends Resource
 ## battle tactics cards and battleplans.
 
 @export var name: String
+## The Scourge expansion whose seasonal rules this battlepack uses, e.g. "Scourge of Aqshy". Rules
+## from any other Scourge (a [code]source[/code] such as "Scourge of Ghyran") are Legends with it.
+@export var scourge: String
 @export var battle_rounds: int
 ## Recommended battlefield size in inches: width (x) by depth (y).
 @export var battlefield_size: Vector2

@@ -260,6 +260,22 @@
 		{
 			"name": "Crimes of the Condemned",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Bladegheist Revenants",
+				"Chainghasts",
+				"Chainrasps",
+				"Craventhrone Guard",
+				"Dreadblade Harrows",
+				"Dreadscythe Harridans",
+				"Glaivewraith Stalkers",
+				"Grimghast Reapers",
+				"Hexwraiths",
+				"Myrmourn Banshees",
+				"Pyregheists",
+				"Spirit Hosts",
+				"The Headsmen's Curse",
+				"Thorns of the Briar Queen"
+			],
 			"entries": [
 				{
 					"name": "Vociferous Defamers",

@@ -212,7 +212,9 @@ def _organisation_entry(item, wahapedia):
     # A link can hold the size: "Stormdrake Guard (1 model)".
     m = re.match(r"(.+?)\s*\((.+)\)$", name)
     unit = {"count": count, "name": m.group(1) if m else name}
-    notes = m.group(2) if m else re.sub(r"^\((.*)\)$", r"\1", rest[len(name):].strip(" ,"))
+    # Some entries end in a full stop ("1 Lord-Aquilor.", "1 Chaos Knights unit with 5 models."),
+    # which isn't part of the notes.
+    notes = m.group(2) if m else re.sub(r"^\((.*)\)$", r"\1", rest[len(name):].strip(" ,."))
     notes = re.sub(r"^(?:units? )?with ", "", notes)
     notes = ", ".join(n for n in (optional, notes) if n)
     if notes:

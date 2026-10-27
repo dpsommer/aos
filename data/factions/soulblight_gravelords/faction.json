@@ -282,6 +282,20 @@
 		{
 			"name": "Origins of Terrifying Folk Tales",
 			"source": "Scourge of Aqshy",
+			"units": [
+				"Askurgan Trueblades",
+				"Barrow Guard",
+				"Deadwalker Zombies",
+				"Deathrattle Skeletons",
+				"Kosargi Nightguard",
+				"The Crimson Court",
+				"The Exiled Dead",
+				"The Sepulchral Guard",
+				"The Sons of Velmorn",
+				"Vargheists",
+				"Vyrkos Blood-born",
+				"Zondara's Gravebreakers"
+			],
 			"entries": [
 				{
 					"name": "The Empty Graveyard",
