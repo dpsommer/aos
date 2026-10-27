@@ -371,9 +371,11 @@ func _name_section() -> Control:
 	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	title.tooltip_text = editor.army.name
 	title.mouse_filter = Control.MOUSE_FILTER_PASS
-	var rename := UIBuilder.icon_button("rename", "Rename army", start_editing_name, "army:rename")
-	rename.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	return UIBuilder.hbox([title, rename], 10)
+	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	var line := UnitRow.InlineLine.new(10)
+	line.add_child(title)
+	line.add_child(UIBuilder.icon_button("rename", "Rename army", start_editing_name, "army:rename"))
+	return line
 
 
 func _validation_section() -> Control:

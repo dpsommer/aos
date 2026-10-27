@@ -630,6 +630,28 @@ func test_army_name_is_shown_as_a_label_until_edited() -> void:
 	assert_true(UIKit.has_label_containing(builder.builder_list, builder.editor.army.name))
 
 
+func _army_name_label(builder: ArmyBuilder) -> Label:
+	return UIKit.find_all(builder.builder_list, func(node: Node) -> bool:
+		return node is Label and node.text == builder.editor.army.name)[0]
+
+
+func test_army_name_label_is_wide_enough_to_show_the_name() -> void:
+	var builder := _builder(_valid_army())
+	await get_tree().process_frame
+	var title := _army_name_label(builder)
+	var text_width := title.get_theme_font("font").get_string_size(title.text, HORIZONTAL_ALIGNMENT_LEFT, -1,
+			title.get_theme_font_size("font_size")).x
+	assert_gte(title.size.x, text_width)
+
+
+func test_rename_button_is_right_of_the_army_name() -> void:
+	var builder := _builder(_valid_army())
+	await get_tree().process_frame
+	var title := _army_name_label(builder)
+	var rename := UIKit.keyed(builder.builder_list, "army:rename") as Control
+	assert_gte(rename.global_position.x, title.global_position.x + title.size.x)
+
+
 func test_rename_button_shows_a_name_field() -> void:
 	var builder := _builder(_valid_army())
 	UIKit.keyed(builder.builder_list, "army:rename").pressed.emit()
