@@ -713,11 +713,35 @@ func _lore_faction() -> Faction:
 	return faction
 
 
+## The Spell Lore's name, whose tooltip says which units the lore needs.
 func _lore_help(builder: ArmyBuilder) -> Label:
-	for label in UIKit.labels_with_variation(builder.builder_list, "MutedLabel"):
-		if label.text == "?" and label.tooltip_text == ArmyBuilder.LORE_HELP["spell"]:
+	for label in UIKit.find_all(builder.builder_list, func(n: Node) -> bool: return n is Label):
+		if label.text == "Spell Lore" and label.tooltip_text == ArmyBuilder.LORE_HELP["spell"]:
 			return label
 	return null
+
+
+func test_lores_have_no_help_button() -> void:
+	var builder := _builder(_valid_army(), _lore_faction())
+	assert_does_not_have(UIKit.label_texts(builder.builder_list), "?")
+
+
+func test_lore_select_has_the_help_as_its_tooltip() -> void:
+	var builder := _builder(_valid_army(), _lore_faction())
+	assert_eq((UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton).tooltip_text, ArmyBuilder.LORE_HELP["spell"])
+
+
+func test_view_in_rules_shows_the_lores_section() -> void:
+	var builder := _builder(_valid_army(), _lore_faction())
+	builder.info_pane.folded["sec:Lores"] = true
+	(UIKit.keyed(builder.builder_list, "army:view_lores") as Button).pressed.emit()
+	assert_eq(builder.info_pane.tab, "rules")
+	assert_does_not_have(builder.info_pane.folded, "sec:Lores")
+	assert_eq(builder.info_pane.flash_key, "sec:Lores")
+
+
+func test_no_view_in_rules_without_lores() -> void:
+	assert_null(UIKit.keyed(_builder(_valid_army()).builder_list, "army:view_lores"))
 
 
 func test_lore_help_is_warning_coloured_when_a_wizard_has_no_spell_lore() -> void:

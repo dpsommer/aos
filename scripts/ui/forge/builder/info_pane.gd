@@ -337,9 +337,10 @@ func _toggle_fold(key: String) -> void:
 	refresh()
 
 
-func _toggle_lore(lore_name: String) -> void:
-	if not open_lores.erase(lore_name):
-		open_lores[lore_name] = true
+## Folds or unfolds the lore with group key [param lore_key].
+func _toggle_lore(lore_key: String) -> void:
+	if not open_lores.erase(lore_key):
+		open_lores[lore_key] = true
 	refresh()
 
 
@@ -367,14 +368,17 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 	var box := UIBuilder.vbox([], 8)
 	var open := true
 	if not group.title.is_empty():
-		var key := "grp:%s:%s" % [section.title, group.title]
-		open = searching or (open_lores.has(group.title) if group.lore else not folded.has(key))
-		var toggle := _toggle_lore.bind(group.title) if group.lore else _toggle_fold.bind(key)
+		var key := "grp:%s:%s" % [section.title, group.key]
+		open = searching or (open_lores.has(group.key) if group.lore else not folded.has(key))
+		var toggle := _toggle_lore.bind(group.key) if group.lore else _toggle_fold.bind(key)
 		var subhead := UIBuilder.banner(group.title, "", open, toggle, "info:" + key, "SubheadButton")
 		box.add_child(subhead)
 		var chips := UIBuilder.hbox([], 6)
 		if not group.note.is_empty():
 			chips.add_child(UIBuilder.label(group.note, "MutedLabel"))
+		var scourge := UIBuilder.scourge_tag(group.source)
+		if scourge:
+			chips.add_child(scourge)
 		chips.add_child(UIBuilder.spacer())
 		if group.selected:
 			chips.add_child(UITheme.chip("Selected", "affray"))
@@ -386,7 +390,13 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 			chips.free()
 	if open:
 		for ability in group.abilities:
-			box.add_child(UIBuilder.panel("CardPanel", UIBuilder.rich(RulesFormatter.ability(ability))))
+			var card := UIBuilder.vbox([UIBuilder.rich(RulesFormatter.ability(ability))], 10)
+			# A summoning spell or prayer carries the warscroll of the manifestation it summons.
+			var summoned: Warscroll = group.summons.get(ability)
+			if summoned:
+				card.add_child(HSeparator.new())
+				card.add_child(UIBuilder.rich(RulesFormatter.warscroll(summoned)))
+			box.add_child(UIBuilder.panel("CardPanel", card))
 		for warscroll in group.warscrolls:
 			box.add_child(UIBuilder.panel("CardPanel", UIBuilder.rich(RulesFormatter.warscroll(warscroll))))
 		for card in group.cards:
@@ -524,11 +534,23 @@ func show_tactic(card_name: String) -> void:
 	_go("rules", "tactic:" + card_name)
 
 
-## Shows the lore, unfolded, in the Rules tab's Lores section.
+## Shows the lore, unfolded, in the Rules tab's Lores section. Every lore of that name unfolds, as
+## an army picks its lores by name.
 func show_lore(lore_name: String) -> void:
 	folded.erase("sec:Lores")
 	open_lores[lore_name] = true
+	for section in RulesSections.build(builder.editor.army, builder.catalog):
+		if section.title == "Lores":
+			for group in section.groups:
+				if group.title == lore_name:
+					open_lores[group.key] = true
 	_go("rules", "lore:" + lore_name)
+
+
+## Shows the Rules tab's Lores section, unfolded, and focuses its banner.
+func show_lores() -> void:
+	folded.erase("sec:Lores")
+	_go("rules", "sec:Lores")
 
 
 ## Clears the search and switches to [param to_tab], then scrolls to and highlights [param key].

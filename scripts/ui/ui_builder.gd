@@ -181,8 +181,19 @@ static func select(items: Array, selected: Variant, on_selected: Callable, key: 
 ## The warscroll's Scourge or Legends tags.
 static func tags(warscroll: Warscroll) -> Array[Control]:
 	var result: Array[Control] = []
-	if warscroll.source.begins_with("Scourge of"):
-		result.append(UITheme.chip("SoA" if warscroll.source.ends_with("Aqshy") else "SoG", warscroll.source))
+	var scourge := scourge_tag(warscroll.source)
+	if scourge:
+		result.append(scourge)
 	if warscroll.legends:
 		result.append(UITheme.chip("Legends", "legends"))
 	return result
+
+
+## A "SoA" or "SoG" tag for rules from Scourge of Aqshy or Scourge of Ghyran, with the full name as
+## its tooltip, or null for any other [param source].
+static func scourge_tag(source: String) -> Control:
+	if not source.begins_with("Scourge of"):
+		return null
+	var tag := UITheme.chip("SoA" if source.ends_with("Aqshy") else "SoG", source)
+	tag.tooltip_text = source
+	return tag

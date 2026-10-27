@@ -6,9 +6,9 @@ extends Control
 signal back_pressed
 
 const LORE_HELP := {
-	"spell": "Your army must contain one or more Wizards to cast the spells in your spell lore.",
-	"prayer": "Your army must contain one or more Priests to chant the prayers in your prayer lore.",
-	"manifestation": "Your army must contain at least one Wizard or Priest in order to summon manifestations.",
+	"spell": "Your army must contain one or more Wizards to cast the spells in your Spell Lore.",
+	"prayer": "Your army must contain one or more Priests to chant the prayers in your Prayer Lore.",
+	"manifestation": "Your army must contain at least one Wizard or Priest in order to summon Manifestations.",
 }
 
 var editor: ArmyEditor
@@ -534,22 +534,34 @@ func _lores_section() -> Control:
 		for lore in lores:
 			var label := "%s · %d pts" % [lore.name, lore.points] if lore.points else lore.name
 			items.append([label + (" (Legends)" if lore.legends else ""), lore.name])
-		var help := UIBuilder.label("?", "MutedLabel")
-		help.tooltip_text = LORE_HELP[pick[0]]
-		help.mouse_filter = Control.MOUSE_FILTER_STOP
-		if pick[3] and pick[2].is_empty():
-			help.add_theme_color_override("font_color", UITheme.WARNING)
+		# Hovering the lore shows which units it needs, and its name turns amber when the army
+		# needs it and has none.
 		var title := UIBuilder.label(pick[1])
 		title.custom_minimum_size.x = 160
+		title.tooltip_text = LORE_HELP[pick[0]]
+		title.mouse_filter = Control.MOUSE_FILTER_STOP
+		if pick[3] and pick[2].is_empty():
+			title.add_theme_color_override("font_color", UITheme.WARNING)
 		var kind: String = pick[0]
 		var choose := func(value: String) -> void:
 			editor.set_lore(kind, value)
 			if not value.is_empty():
 				info_pane.show_lore(value)
-		var select := UIBuilder.select(items, pick[2], choose, "lore:" + kind, pick[1])
+		var select := UIBuilder.select(items, pick[2], choose, "lore:" + kind, LORE_HELP[pick[0]])
+		select.accessibility_name = pick[1]
 		select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		rows.append(UIBuilder.hbox([title, help, select]))
-	return _section("Lores", rows) if not rows.is_empty() else null
+		rows.append(UIBuilder.hbox([title, select]))
+	if rows.is_empty():
+		return null
+	var heading := UIBuilder.label("Lores", "SectionLabel")
+	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var view := UIBuilder.button("View in Rules", info_pane.show_lores, "army:view_lores", "",
+			"Show the lores in the Rules tab")
+	view.icon = UITheme.icon("book")
+	var box := UIBuilder.vbox([UIBuilder.hbox([heading, view])], 10)
+	for row: Control in rows:
+		box.add_child(row)
+	return box
 
 
 ## Makes [param control] call [param on_pressed] when clicked, or on Enter or Space with keyboard focus.
