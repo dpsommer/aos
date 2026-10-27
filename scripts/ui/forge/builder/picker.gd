@@ -122,19 +122,14 @@ func _unit_item(warscroll: Warscroll, on_pick: Callable) -> PanelContainer:
 
 
 ## Lists the battlepack's battle tactics cards in full to fill tactics card [param slot]. Pressing a
-## card chooses it. The other slot's card isn't listed, and the slot's current card can't be pressed.
+## card chooses it. Cards already chosen for either slot aren't listed.
 func open_tactics(slot: int) -> void:
 	var render := func() -> void:
 		var core := builder.catalog.core
 		var cards: Array[BattleTacticCard] = core.battlepack.battle_tactic_cards if core and core.battlepack else []
 		var tactics := builder.editor.army.tactics
-		var current := tactics[slot] if slot < tactics.size() else ""
 		for card in cards:
-			# The other slot's card can't be chosen twice.
-			if card.name in tactics and card.name != current:
-				continue
-			if card.name == current:
-				_list.add_child(TacticCard.new(card, true, "", UITheme.chip("Chosen", "gold")))
+			if card.name in tactics:
 				continue
 			var item := TacticCard.new(card, true)
 			item.make_pressable("Choose %s for battle tactics card %d" % [card.name, slot + 1])

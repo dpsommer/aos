@@ -217,14 +217,12 @@ func test_open_tactics_focuses_the_first_card() -> void:
 	assert_true(UIKit.keyed(builder.picker, "pick:Card A").has_focus())
 
 
-func test_the_slots_current_card_is_marked_chosen_and_cant_be_pressed() -> void:
+func test_the_slots_current_card_is_not_listed() -> void:
 	var army := Kit.army()
 	army.tactics = PackedStringArray(["Card A", ""])
 	var builder := _builder(army)
 	builder.picker.open_tactics(0)
-	var current := _tactic(builder, "Card A")
-	assert_false(current.pressable)
-	assert_true(UIKit.has_label_containing(current, "CHOSEN"))
+	assert_null(_tactic(builder, "Card A"))
 	assert_true(_tactic(builder, "Card B").pressable)
 
 

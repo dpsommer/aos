@@ -134,7 +134,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - Heroes to lead a regiment;
   - units the leader's regiment options allow, or every unit when constraints are overridden;
   - auxiliary units;
-  - the battlepack's battle tactics cards in full. The whole card is pressed (clicked, or Enter or Space) to choose it. The slot's current card is chipped "Chosen" and can't be pressed, and the other slot's card isn't listed;
+  - the battlepack's battle tactics cards in full. The whole card is pressed (clicked, or Enter or Space) to choose it. Cards already chosen for either slot aren't listed;
   - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
 
   Units are listed in foldable sections by type (Hero, Infantry, Cavalry and so on), as in the Roster. It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
