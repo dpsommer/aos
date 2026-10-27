@@ -51,27 +51,27 @@ func _init(army_builder: ArmyBuilder) -> void:
 	add_theme_constant_override("separation", 0)
 	search = LineEdit.new()
 	search.clear_button_enabled = true
-	search.right_icon = ForgeTheme.small_icon("search")
+	search.right_icon = UITheme.small_icon("search")
 	search.set_meta(&"focus_key", "info:search")
 	search.text_changed.connect(_on_search_changed)
 	search.gui_input.connect(_on_search_input)
 	add_child(search)
 
-	var bar := BuilderUI.hbox([], 0)
+	var bar := UIBuilder.hbox([], 0)
 	var group := ButtonGroup.new()
 	for key: String in TABS:
-		var button := BuilderUI.button(TABS[key], set_tab.bind(key), "info:tab:" + key, "TabButton")
+		var button := UIBuilder.button(TABS[key], set_tab.bind(key), "info:tab:" + key, "TabButton")
 		button.toggle_mode = true
 		button.button_group = group
 		if key == "settings":
 			button.text = ""
-			button.icon = ForgeTheme.icon("settings")
+			button.icon = UITheme.icon("settings")
 			button.tooltip_text = TABS[key]
 			button.accessibility_name = TABS[key]
-			bar.add_child(BuilderUI.spacer())
+			bar.add_child(UIBuilder.spacer())
 		tab_buttons[key] = button
 		bar.add_child(button)
-	add_child(BuilderUI.panel("TabBarPanel", bar))
+	add_child(UIBuilder.panel("TabBarPanel", bar))
 
 	_scroll = ScrollContainer.new()
 	_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -80,7 +80,7 @@ func _init(army_builder: ArmyBuilder) -> void:
 	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	margin.add_theme_constant_override("margin_top", 14)
 	margin.add_theme_constant_override("margin_right", 4)
-	_content = BuilderUI.vbox([], 12)
+	_content = UIBuilder.vbox([], 12)
 	margin.add_child(_content)
 	_scroll.add_child(margin)
 	add_child(_scroll)
@@ -200,7 +200,7 @@ static func unit_type(warscroll: Warscroll) -> String:
 
 
 func _empty(text: String) -> void:
-	var label := BuilderUI.label(text, "MutedLabel", true)
+	var label := UIBuilder.label(text, "MutedLabel", true)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_content.add_child(label)
 
@@ -225,22 +225,22 @@ func _roster() -> void:
 	var note := "Drag a unit into a regiment, or click it to see its warscroll."
 	if hidden > 0:
 		note += " %d Legends unit%s hidden." % [hidden, "" if hidden == 1 else "s"]
-	_content.add_child(BuilderUI.label(note, "MutedLabel", true))
+	_content.add_child(UIBuilder.label(note, "MutedLabel", true))
 
 	var pinned: Array[Warscroll] = []
 	for id in favourites:
 		if by_id.has(id):
 			pinned.append(by_id[id])
 	if not pinned.is_empty():
-		var title := BuilderUI.label("FAVOURITES", "FavouritesLabel")
-		var heading := BuilderUI.hbox([TextureRect.new(), title], 8)
+		var title := UIBuilder.label("FAVOURITES", "FavouritesLabel")
+		var heading := UIBuilder.hbox([TextureRect.new(), title], 8)
 		var star: TextureRect = heading.get_child(0)
-		star.texture = ForgeTheme.icon("star_filled")
-		star.modulate = ForgeTheme.WARNING
+		star.texture = UITheme.icon("star_filled")
+		star.modulate = UITheme.WARNING
 		star.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		star.custom_minimum_size = Vector2(16, 16)
 		star.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var section := BuilderUI.vbox([BuilderUI.panel("FavouritesPanel", heading)], 6)
+		var section := UIBuilder.vbox([UIBuilder.panel("FavouritesPanel", heading)], 6)
 		for warscroll in pinned:
 			section.add_child(_unit_card(warscroll, true))
 		_content.add_child(section)
@@ -253,7 +253,7 @@ func _roster() -> void:
 			continue
 		var key: String = "type:" + type[0]
 		var open := not query_words.is_empty() or not folded.has(key)
-		var section := BuilderUI.vbox([BuilderUI.banner(type[0].to_upper(), str(units.size()), open, _toggle_fold.bind(key),
+		var section := UIBuilder.vbox([UIBuilder.banner(type[0].to_upper(), str(units.size()), open, _toggle_fold.bind(key),
 				"info:" + key)], 6)
 		if open:
 			for warscroll: Warscroll in units:
@@ -270,20 +270,20 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	if not pinned:
 		card.set_meta(&"info_key", "unit:" + warscroll.id)
 
-	var title := BuilderUI.label(warscroll.name, "CardTitleLabel")
+	var title := UIBuilder.label(warscroll.name, "CardTitleLabel")
 	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var details := BuilderUI.hbox([BuilderUI.label("%d pts" % warscroll.points, "MutedLabel")], 6)
-	for tag in BuilderUI.tags(warscroll):
+	var details := UIBuilder.hbox([UIBuilder.label("%d pts" % warscroll.points, "MutedLabel")], 6)
+	for tag in UIBuilder.tags(warscroll):
 		details.add_child(tag)
-	var names := BuilderUI.vbox([title, details], 3)
+	var names := UIBuilder.vbox([title, details], 3)
 	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	names.alignment = BoxContainer.ALIGNMENT_CENTER
-	var face := BuilderUI.hbox([BuilderUI.portrait(warscroll.name, Callable(), "", 48), names], 12)
+	var face := UIBuilder.hbox([UIBuilder.portrait(warscroll.name, Callable(), "", 48), names], 12)
 	face.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var toggle_card := func() -> void:
 		selected = "" if selected == key else key
 		refresh()
-	var button := BuilderUI.button("", toggle_card, "info:card:" + key, "CardButton", ("Hide " if open else "Show ") + "warscroll")
+	var button := UIBuilder.button("", toggle_card, "info:card:" + key, "CardButton", ("Hide " if open else "Show ") + "warscroll")
 	button.accessibility_name = warscroll.name
 	button.custom_minimum_size.y = 52
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -292,16 +292,16 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	builder.drag.source(button, {"kind": "roster", "warscroll_id": warscroll.id}, warscroll.name, card)
 
 	var favourite := warscroll.id in favourites
-	var star := BuilderUI.icon_toggle("star_filled" if favourite else "star",
+	var star := UIBuilder.icon_toggle("star_filled" if favourite else "star",
 			"Remove from favourites" if favourite else "Add to favourites", favourite,
 			func(_on: bool) -> void: toggle_favourite(warscroll.id), "info:star:" + key)
-	var content := BuilderUI.vbox([BuilderUI.hbox([button, star], 4)], 10)
+	var content := UIBuilder.vbox([UIBuilder.hbox([button, star], 4)], 10)
 	if open:
-		content.add_child(BuilderUI.rich(RulesFormatter.warscroll(warscroll, false)))
-		var add := BuilderUI.button("Add as auxiliary unit", func() -> void: builder.editor.add_auxiliary(warscroll.id),
+		content.add_child(UIBuilder.rich(RulesFormatter.warscroll(warscroll, false)))
+		var add := UIBuilder.button("Add as auxiliary unit", func() -> void: builder.editor.add_auxiliary(warscroll.id),
 				"info:aux:" + key, "", "Add %s to the army as an auxiliary unit" % warscroll.name)
 		add.disabled = builder.available_units(func(w: Warscroll) -> bool: return w == warscroll).is_empty()
-		content.add_child(BuilderUI.hbox([add]))
+		content.add_child(UIBuilder.hbox([add]))
 	card.add_child(content)
 	return card
 
@@ -347,7 +347,7 @@ func _rules() -> void:
 	for section in sections:
 		var key := "sec:" + section.title
 		var open := searching or not folded.has(key)
-		var box := BuilderUI.vbox([BuilderUI.banner(section.title.to_upper(), str(section.count()), open,
+		var box := UIBuilder.vbox([UIBuilder.banner(section.title.to_upper(), str(section.count()), open,
 				_toggle_fold.bind(key), "info:" + key)], 10)
 		box.set_meta(&"info_key", key)
 		_content.add_child(box)
@@ -359,34 +359,34 @@ func _rules() -> void:
 
 func _rules_group(section: RulesSections.Section, group: RulesSections.Group, searching: bool) -> Control:
 	var army := builder.editor.army
-	var box := BuilderUI.vbox([], 8)
+	var box := UIBuilder.vbox([], 8)
 	var open := true
 	if not group.title.is_empty():
 		var key := "grp:%s:%s" % [section.title, group.title]
 		open = searching or (open_lores.has(group.title) if group.lore else not folded.has(key))
 		var toggle := _toggle_lore.bind(group.title) if group.lore else _toggle_fold.bind(key)
-		var subhead := BuilderUI.banner(group.title, "", open, toggle, "info:" + key, "SubheadButton")
+		var subhead := UIBuilder.banner(group.title, "", open, toggle, "info:" + key, "SubheadButton")
 		box.add_child(subhead)
-		var chips := BuilderUI.hbox([], 6)
+		var chips := UIBuilder.hbox([], 6)
 		if not group.note.is_empty():
-			chips.add_child(BuilderUI.label(group.note, "MutedLabel"))
-		chips.add_child(BuilderUI.spacer())
+			chips.add_child(UIBuilder.label(group.note, "MutedLabel"))
+		chips.add_child(UIBuilder.spacer())
 		if group.selected:
-			chips.add_child(ForgeTheme.chip("Selected", "affray"))
+			chips.add_child(UITheme.chip("Selected", "affray"))
 		if group.points >= 0 and (group.lore or group.points > 0):
-			chips.add_child(ForgeTheme.chip("%d pts" % group.points, "gold" if group.points > 0 else ""))
+			chips.add_child(UITheme.chip("%d pts" % group.points, "gold" if group.points > 0 else ""))
 		if chips.get_child_count() > 1:
 			box.add_child(chips)
 		else:
 			chips.free()
 	if open:
 		for ability in group.abilities:
-			box.add_child(BuilderUI.panel("CardPanel", BuilderUI.rich(RulesFormatter.ability(ability))))
+			box.add_child(UIBuilder.panel("CardPanel", UIBuilder.rich(RulesFormatter.ability(ability))))
 		for warscroll in group.warscrolls:
-			box.add_child(BuilderUI.panel("CardPanel", BuilderUI.rich(RulesFormatter.warscroll(warscroll))))
+			box.add_child(UIBuilder.panel("CardPanel", UIBuilder.rich(RulesFormatter.warscroll(warscroll))))
 		for card in group.cards:
 			var slot := army.tactics.find(card.name)
-			var chip := ForgeTheme.chip("Battle tactic %d" % (slot + 1), "affray") if slot >= 0 else null
+			var chip := UITheme.chip("Battle tactic %d" % (slot + 1), "affray") if slot >= 0 else null
 			var tactic := TacticCard.new(card, true, "", chip)
 			tactic.set_meta(&"info_key", "tactic:" + card.name)
 			tactic.focus_mode = Control.FOCUS_ALL
@@ -394,7 +394,7 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 				tactic.theme_type_variation = "FlashCardPanel"
 			box.add_child(tactic)
 	if group.lore:
-		var panel := BuilderUI.panel("FlashGroupPanel" if flash_key == "lore:" + group.title else "", box)
+		var panel := UIBuilder.panel("FlashGroupPanel" if flash_key == "lore:" + group.title else "", box)
 		panel.set_meta(&"info_key", "lore:" + group.title)
 		return panel
 	return box
@@ -406,7 +406,7 @@ func _renown() -> void:
 	var available := builder.catalog.faction.regiments_of_renown if army.override_constraints \
 			else builder.catalog.regiments_of_renown(army)
 	var shown := available.filter(func(r: RegimentOfRenown) -> bool: return army.show_legends or not r.legends)
-	_content.add_child(BuilderUI.label("Showing every Regiment of Renown: army constraints are overridden."
+	_content.add_child(UIBuilder.label("Showing every Regiment of Renown: army constraints are overridden."
 			if army.override_constraints else "Regiments of Renown available to this army. An army can include 1.",
 			"MutedLabel", true))
 	var found_by_query := func(r: RegimentOfRenown) -> bool:
@@ -427,7 +427,7 @@ func _renown() -> void:
 func _settings() -> void:
 	var editor := builder.editor
 	var army := editor.army
-	_content.add_child(BuilderUI.label("Army Settings", "SectionLabel"))
+	_content.add_child(UIBuilder.label("Army Settings", "SectionLabel"))
 	_content.add_child(_switch("Show Legends units", "Legends warscrolls aren't used in matched play.",
 			army.show_legends, editor.set_show_legends, "info:legends"))
 	_content.add_child(_switch("Override army constraints", "Turns off validation. Any unit can join any regiment.",
@@ -442,21 +442,21 @@ func _settings() -> void:
 	spin.accessibility_name = "Points limit"
 	spin.set_meta(&"focus_key", "info:points")
 	spin.value_changed.connect(func(value: float) -> void: editor.set_points_limit(int(value)))
-	var down := BuilderUI.button("−", func() -> void: editor.set_points_limit(army.points_limit - POINTS_STEP),
+	var down := UIBuilder.button("−", func() -> void: editor.set_points_limit(army.points_limit - POINTS_STEP),
 			"info:points_down", "", "Decrease points limit by %d" % POINTS_STEP)
-	var up := BuilderUI.button("+", func() -> void: editor.set_points_limit(army.points_limit + POINTS_STEP),
+	var up := UIBuilder.button("+", func() -> void: editor.set_points_limit(army.points_limit + POINTS_STEP),
 			"info:points_up", "", "Increase points limit by %d" % POINTS_STEP)
 	for button: Button in [down, up]:
 		button.accessibility_name = button.tooltip_text
 		button.custom_minimum_size.x = 40
-	_content.add_child(_setting("Points limit", BuilderUI.hbox([down, spin, up])))
+	_content.add_child(_setting("Points limit", UIBuilder.hbox([down, spin, up])))
 
 	var faction := builder.catalog.faction
 	if not faction.armies_of_renown.is_empty():
 		var items := [["None (%s rules)" % faction.name, ""]]
 		for renown in faction.armies_of_renown:
 			items.append([renown.name + (" (Legends)" if renown.legends else ""), renown.name])
-		var select := BuilderUI.select(items, army.army_of_renown, editor.set_army_of_renown, "info:aor", "Army of Renown")
+		var select := UIBuilder.select(items, army.army_of_renown, editor.set_army_of_renown, "info:aor", "Army of Renown")
 		var note := "Uses the Army of Renown's battle traits, enhancements and lores instead of the faction's." \
 				if not army.army_of_renown.is_empty() else "Pick an Army of Renown to replace the faction rules."
 		_content.add_child(_setting("Army of Renown", select, note))
@@ -465,7 +465,7 @@ func _settings() -> void:
 		var items := [["None", ""]]
 		for formation in formations:
 			items.append([formation.name + (" · %d pts" % formation.points if formation.points else ""), formation.name])
-		_content.add_child(_setting("Battle Formation", BuilderUI.select(items, army.formation, editor.set_formation,
+		_content.add_child(_setting("Battle Formation", UIBuilder.select(items, army.formation, editor.set_formation,
 				"info:formation", "Battle Formation")))
 
 
@@ -475,16 +475,16 @@ func _switch(title: String, description: String, on: bool, on_toggled: Callable,
 	check.accessibility_name = title
 	check.set_meta(&"focus_key", key)
 	check.toggled.connect(on_toggled)
-	var text := BuilderUI.vbox([BuilderUI.label(title, "CardTitleLabel"), BuilderUI.label(description, "MutedLabel", true)], 4)
+	var text := UIBuilder.vbox([UIBuilder.label(title, "CardTitleLabel"), UIBuilder.label(description, "MutedLabel", true)], 4)
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	return BuilderUI.panel("RowPanel", BuilderUI.hbox([text, check], 16))
+	return UIBuilder.panel("RowPanel", UIBuilder.hbox([text, check], 16))
 
 
 func _setting(title: String, control: Control, note := "") -> PanelContainer:
-	var box := BuilderUI.vbox([BuilderUI.label(title, "CardTitleLabel"), control], 8)
+	var box := UIBuilder.vbox([UIBuilder.label(title, "CardTitleLabel"), control], 8)
 	if not note.is_empty():
-		box.add_child(BuilderUI.label(note, "MutedLabel", true))
-	return BuilderUI.panel("RowPanel", box)
+		box.add_child(UIBuilder.label(note, "MutedLabel", true))
+	return UIBuilder.panel("RowPanel", box)
 
 
 ## Shows the unit's card in the Roster with its warscroll open, highlighted and focused.

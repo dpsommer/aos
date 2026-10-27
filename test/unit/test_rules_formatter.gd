@@ -555,3 +555,30 @@ func test_warscroll_without_heading_keeps_the_characteristics() -> void:
 	var output := RulesFormatter.warscroll(unit, false)
 	assert_string_contains(output, "11")
 	assert_string_contains(output, "13")
+
+
+# ability_body
+
+func test_ability_body_omits_name_timing_and_source() -> void:
+	var rule := _ability({timing = "Some Phase", source = "Some Book", text = "Body text."})
+	var body := RulesFormatter.ability_body(rule)
+	assert_false(body.contains(rule.name))
+	assert_false(body.contains(rule.timing))
+	assert_false(body.contains(rule.source))
+
+
+func test_ability_body_includes_text_declare_and_effect() -> void:
+	var rule := _ability({text = "Plain text.", declare = "Pick a unit.", effect = "It gets stronger."})
+	var body := RulesFormatter.ability_body(rule)
+	assert_string_contains(body, rule.text)
+	assert_string_contains(body, rule.declare)
+	assert_string_contains(body, rule.effect)
+
+
+func test_ability_body_of_an_empty_ability_is_empty() -> void:
+	assert_eq(RulesFormatter.ability_body(_ability()), "")
+
+
+func test_ability_includes_the_body() -> void:
+	var rule := _ability({declare = "Pick a unit."})
+	assert_string_contains(RulesFormatter.ability(rule), RulesFormatter.ability_body(rule))

@@ -26,7 +26,7 @@ var _highlighted := {}
 func _init(army_builder: ArmyBuilder) -> void:
 	builder = army_builder
 	line = ColorRect.new()
-	line.color = ForgeTheme.GOLD
+	line.color = UITheme.GOLD
 	line.top_level = true
 	line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	line.z_index = 10
@@ -38,8 +38,8 @@ func _init(army_builder: ArmyBuilder) -> void:
 ## [param label], and [param lift] (or the control) is dimmed while dragging.
 func source(control: Control, payload: Dictionary, label: String, lift: Control = null) -> void:
 	var begin := func(_at: Vector2) -> Variant:
-		var preview := BuilderUI.panel("RowPanel", BuilderUI.label(label))
-		preview.theme = ForgeTheme.get_theme()
+		var preview := UIBuilder.panel("RowPanel", UIBuilder.label(label))
+		preview.theme = UITheme.get_theme()
 		builder.set_drag_preview(preview)
 		lifted = lift if lift else control
 		lifted.modulate.a = 0.45

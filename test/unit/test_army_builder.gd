@@ -67,14 +67,14 @@ func test_points_label_shows_total_and_limit() -> void:
 
 func test_points_label_is_normal_colour_when_within_limit() -> void:
 	var builder := _builder(_valid_army())
-	assert_eq(builder.points_label.get_theme_color("font_color"), ForgeTheme.TEXT)
+	assert_eq(builder.points_label.get_theme_color("font_color"), UITheme.TEXT)
 
 
 func test_points_label_is_danger_colour_when_over_limit() -> void:
 	var army := _valid_army()
 	army.points_limit = 1
 	var builder := _builder(army)
-	assert_eq(builder.points_label.get_theme_color("font_color"), ForgeTheme.DANGER)
+	assert_eq(builder.points_label.get_theme_color("font_color"), UITheme.DANGER)
 
 
 func test_points_label_updates_after_the_army_changes() -> void:
@@ -556,19 +556,19 @@ func test_lore_help_is_warning_coloured_when_a_wizard_has_no_spell_lore() -> voi
 	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["wizard"])), _lore_faction())
 	var help := _lore_help(builder)
 	assert_not_null(help)
-	assert_eq(help.get_theme_color("font_color"), ForgeTheme.WARNING)
+	assert_eq(help.get_theme_color("font_color"), UITheme.WARNING)
 
 
 func test_lore_help_is_not_warning_coloured_once_a_spell_lore_is_chosen() -> void:
 	var army := UIKit.army_with_regiment(PackedStringArray(["wizard"]))
 	army.spell_lore = "Fire"
 	var builder := _builder(army, _lore_faction())
-	assert_ne(_lore_help(builder).get_theme_color("font_color"), ForgeTheme.WARNING)
+	assert_ne(_lore_help(builder).get_theme_color("font_color"), UITheme.WARNING)
 
 
 func test_lore_help_is_not_warning_coloured_without_a_wizard() -> void:
 	var builder := _builder(_valid_army(), _lore_faction())
-	assert_ne(_lore_help(builder).get_theme_color("font_color"), ForgeTheme.WARNING)
+	assert_ne(_lore_help(builder).get_theme_color("font_color"), UITheme.WARNING)
 
 
 func test_lore_section_missing_when_faction_has_no_lores() -> void:

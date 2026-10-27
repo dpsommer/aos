@@ -17,6 +17,18 @@ static func ability(rule: Ability) -> String:
 	var lines := PackedStringArray(["[b]%s[/b]" % _escape(rule.name)])
 	if not header.is_empty():
 		lines.append("[i]%s[/i]" % _escape(", ".join(header)))
+	var body := ability_body(rule)
+	if not body.is_empty():
+		lines.append(body)
+	if not rule.source.is_empty():
+		lines.append("[i]Source: %s[/i]" % _escape(rule.source))
+	return "\n".join(lines)
+
+
+## The ability's rules without its name, timing or source, where those are shown separately, e.g.
+## on a battle formation's card.
+static func ability_body(rule: Ability) -> String:
+	var lines := PackedStringArray()
 	if not rule.text.is_empty():
 		lines.append(_escape(rule.text))
 	if not rule.declare.is_empty():
@@ -27,8 +39,6 @@ static func ability(rule: Ability) -> String:
 		lines.append("[indent][b]%s:[/b] %s[/indent]" % [_escape(option.name), _escape(option.text)])
 	if not rule.keywords.is_empty():
 		lines.append("[b]Keywords:[/b] %s" % _escape(", ".join(rule.keywords)))
-	if not rule.source.is_empty():
-		lines.append("[i]Source: %s[/i]" % _escape(rule.source))
 	return "\n".join(lines)
 
 

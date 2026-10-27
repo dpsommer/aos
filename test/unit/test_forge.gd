@@ -1,9 +1,10 @@
 extends GutTest
-## Unit tests for the army builder screen (scripts/ui/forge/forge.gd).
+## Unit tests for the Forge screen (scripts/ui/forge/forge.gd).
 
 const ForgeScene := preload("res://scenes/ui/forge/forge.tscn")
 const Sandbox := preload("res://test/support/sandbox.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")
+const Kit := preload("res://test/support/army_kit.gd")
 
 
 ## Screens and faction buttons are removed with queue_free, so let a frame pass for
@@ -73,106 +74,6 @@ func _press_cancel(forge: Forge) -> void:
 	forge._unhandled_input(event)
 
 
-func test_starts_showing_armies_panel() -> void:
-	var forge := _make_forge()
-	assert_true(forge.armies_panel.visible)
-
-
-func test_starts_with_alliance_panel_hidden() -> void:
-	var forge := _make_forge()
-	assert_false(forge.alliance_panel.visible)
-
-
-func test_starts_with_faction_panel_hidden() -> void:
-	var forge := _make_forge()
-	assert_false(forge.faction_panel.visible)
-
-
-func test_has_a_button_for_every_alliance() -> void:
-	var forge := _make_forge()
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		assert_true(forge.alliance_buttons.has(alliance),
-				"no button for %s" % GrandAlliance.display_name(alliance))
-
-
-func test_pressing_alliance_button_shows_faction_panel() -> void:
-	var forge := _make_forge()
-	forge.alliance_buttons[_two_alliances()[0]].pressed.emit()
-	assert_true(forge.faction_panel.visible)
-
-
-func test_pressing_alliance_button_hides_alliance_panel() -> void:
-	var forge := _make_forge()
-	forge.alliance_buttons[_two_alliances()[0]].pressed.emit()
-	assert_false(forge.alliance_panel.visible)
-
-
-func test_each_alliance_button_lists_that_alliances_factions() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.alliance_buttons[alliance].pressed.emit()
-		assert_eq(_faction_button_names(forge), FactionCatalog.factions_for(alliance))
-
-
-func test_faction_title_is_alliance_display_name() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.alliance_buttons[alliance].pressed.emit()
-		assert_eq(forge.faction_title.text, GrandAlliance.display_name(alliance))
-
-
-func test_choosing_second_alliance_leaves_no_buttons_from_first() -> void:
-	var forge := _make_forge()
-	var alliances := _two_alliances()
-	forge.show_factions(alliances[0])
-	forge.show_alliances()
-	forge.show_factions(alliances[1])
-	assert_eq(_faction_button_names(forge), FactionCatalog.factions_for(alliances[1]))
-
-
-func test_showing_same_alliance_twice_does_not_duplicate_buttons() -> void:
-	var forge := _make_forge()
-	var alliance: GrandAlliance.Type = _two_alliances()[0]
-	forge.show_factions(alliance)
-	forge.show_factions(alliance)
-	assert_eq(forge.faction_grid.get_child_count(), FactionCatalog.factions_for(alliance).size())
-
-
-func test_first_enabled_faction_button_has_focus_after_choosing_alliance() -> void:
-	var alliance := _alliance_with_available_faction()
-	var forge := _make_forge()
-	forge.show_factions(alliance)
-	assert_true(forge.faction_grid.get_child(_first_enabled_index(forge)).has_focus())
-
-
-func test_faction_back_button_has_focus_when_no_faction_is_available() -> void:
-	var alliance := _alliance_without_available_faction()
-	if alliance < 0:
-		pending("every alliance has an available faction")
-		return
-	var forge := _make_forge()
-	forge.show_factions(alliance)
-	assert_true(forge.faction_back_button.has_focus())
-
-
-func test_available_faction_buttons_are_enabled() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			if FactionCatalog.is_available(button.get_meta(&"faction")):
-				assert_false(button.disabled, "%s is disabled" % button.text)
-
-
-func test_unavailable_faction_buttons_are_disabled() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			if not FactionCatalog.is_available(button.get_meta(&"faction")):
-				assert_true(button.disabled, "%s is enabled" % button.text)
-
-
 ## Returns the alliance listing the first Legends faction, or -1 if no faction is Legends.
 func _alliance_with_legends_faction() -> int:
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
@@ -182,176 +83,89 @@ func _alliance_with_legends_faction() -> int:
 	return -1
 
 
-func test_faction_button_meta_is_plain_faction_name() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			assert_has(FactionCatalog.factions_for(alliance), button.get_meta(&"faction"),
-					"%s button meta isn't a listed faction" % button.text)
+# --- Saved armies and the shared header ---
 
 
-func test_non_legends_faction_button_text_is_faction_name() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			var faction: String = button.get_meta(&"faction")
-			if not FactionCatalog.is_legends(faction):
-				assert_eq(button.text, faction)
-
-
-func test_legends_faction_button_text_marks_legends() -> void:
-	var alliance := _alliance_with_legends_faction()
-	if alliance < 0:
-		pending("no faction is Legends")
-		return
+func test_starts_showing_armies_panel() -> void:
 	var forge := _make_forge()
-	forge.show_factions(alliance)
-	for button: Button in forge.faction_grid.get_children():
-		if FactionCatalog.is_legends(button.get_meta(&"faction")):
-			assert_string_contains(button.text, "Legends")
-
-
-func test_legends_faction_button_text_starts_with_faction_name() -> void:
-	var alliance := _alliance_with_legends_faction()
-	if alliance < 0:
-		pending("no faction is Legends")
-		return
-	var forge := _make_forge()
-	forge.show_factions(alliance)
-	for button: Button in forge.faction_grid.get_children():
-		var faction: String = button.get_meta(&"faction")
-		if FactionCatalog.is_legends(faction):
-			assert_true(button.text.begins_with(faction), button.text)
-
-
-func test_pressing_legends_faction_button_marks_the_faction_as_legends() -> void:
-	var alliance := _alliance_with_legends_faction()
-	if alliance < 0:
-		pending("no faction is Legends")
-		return
-	var forge := _make_forge()
-	forge.show_factions(alliance)
-	for button: Button in forge.faction_grid.get_children():
-		var faction: String = button.get_meta(&"faction")
-		if FactionCatalog.is_legends(faction) and not button.disabled:
-			button.pressed.emit()
-			assert_eq(forge.renown_title.text, faction + " (Legends)")
-			return
-	pending("no Legends faction has data")
-
-
-func test_unavailable_faction_buttons_explain_why_in_tooltip() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			if button.disabled:
-				assert_ne(button.tooltip_text, "", "%s has no tooltip" % button.text)
-
-
-func test_pressing_faction_button_shows_its_army_of_renown_choice() -> void:
-	var alliance := _alliance_with_available_faction()
-	var forge := _make_forge()
-	forge.show_factions(alliance)
-	var index := _first_enabled_index(forge)
-	(forge.faction_grid.get_child(index) as Button).pressed.emit()
-	assert_true(forge.renown_panel.visible)
-	assert_eq(forge.renown_title.text.trim_suffix(" (Legends)"), FactionCatalog.factions_for(alliance)[index])
-
-
-func test_unavailable_faction_button_stays_on_faction_panel() -> void:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			if button.disabled:
-				button.pressed.emit()
-		assert_true(forge.faction_panel.visible)
-
-
-func test_faction_back_button_shows_alliance_panel() -> void:
-	var forge := _make_forge()
-	forge.show_factions(_two_alliances()[0])
-	forge.faction_back_button.pressed.emit()
-	assert_true(forge.alliance_panel.visible)
-
-
-func test_faction_back_button_hides_faction_panel() -> void:
-	var forge := _make_forge()
-	forge.show_factions(_two_alliances()[0])
-	forge.faction_back_button.pressed.emit()
-	assert_false(forge.faction_panel.visible)
-
-
-func test_faction_back_button_does_not_emit_back_pressed() -> void:
-	var forge := _make_forge()
-	forge.show_factions(_two_alliances()[0])
-	forge.faction_back_button.pressed.emit()
-	assert_signal_not_emitted(forge, "back_pressed")
-
-
-func test_faction_back_button_refocuses_chosen_alliance() -> void:
-	var forge := _make_forge()
-	var alliance: GrandAlliance.Type = _two_alliances()[1]
-	forge.show_factions(alliance)
-	forge.faction_back_button.pressed.emit()
-	assert_true(forge.alliance_buttons[alliance].has_focus())
-
-
-func test_alliance_back_button_shows_armies_panel() -> void:
-	var forge := _make_forge()
-	forge.show_alliances()
-	forge.alliance_back_button.pressed.emit()
 	assert_true(forge.armies_panel.visible)
+	assert_eq(forge.step, Forge.Step.ARMIES)
 
 
-func test_alliance_back_button_does_not_emit_back_pressed() -> void:
+func test_starts_with_other_panels_hidden() -> void:
 	var forge := _make_forge()
-	forge.show_alliances()
-	forge.alliance_back_button.pressed.emit()
-	assert_signal_not_emitted(forge, "back_pressed")
+	for panel: Control in [forge.alliance_panel, forge.faction_panel, forge.renown_panel, forge.formation_panel]:
+		assert_false(panel.visible)
 
 
-func test_cancel_on_alliance_panel_shows_armies_panel() -> void:
+func test_only_the_current_steps_panel_is_shown() -> void:
+	for shown: Forge.Step in Forge.Step.values():
+		var forge := _make_forge()
+		_go_to(forge, shown)
+		for panel_step: Forge.Step in forge.panels:
+			assert_eq(forge.panels[panel_step].visible, panel_step == shown, "step %d, panel %d" % [shown, panel_step])
+
+
+## Shows [param target] with a faction that has Armies of Renown and battle formations.
+func _go_to(forge: Forge, target: Forge.Step) -> void:
+	var faction := _with_armies_of_renown()
+	match target:
+		Forge.Step.ARMIES:
+			forge.show_armies()
+		Forge.Step.ALLIANCE:
+			forge.show_alliances()
+		Forge.Step.FACTION:
+			forge.show_factions(faction.grand_alliance)
+		Forge.Step.RENOWN:
+			forge.show_armies_of_renown(faction.grand_alliance, faction.name)
+		Forge.Step.FORMATION:
+			forge.show_armies_of_renown(faction.grand_alliance, faction.name)
+			forge.continue_button.pressed.emit()
+
+
+func test_back_label_differs_on_every_step() -> void:
+	var labels := []
+	for shown: Forge.Step in Forge.Step.values():
+		var forge := _make_forge()
+		_go_to(forge, shown)
+		assert_ne(forge.back_button.text, "", "step %d has no Back label" % shown)
+		assert_does_not_have(labels, forge.back_button.text)
+		labels.append(forge.back_button.text)
+
+
+func test_back_leads_one_step_back_on_every_step() -> void:
+	for shown: Forge.Step in Forge.Step.values():
+		if shown == Forge.Step.ARMIES:
+			continue
+		var forge := _make_forge()
+		_go_to(forge, shown)
+		forge.back_button.pressed.emit()
+		assert_eq(forge.step, shown - 1)
+		assert_signal_not_emitted(forge, "back_pressed")
+
+
+func test_cancel_goes_where_back_goes_on_every_step() -> void:
+	for shown: Forge.Step in Forge.Step.values():
+		var by_button := _make_forge()
+		_go_to(by_button, shown)
+		by_button.back_button.pressed.emit()
+		var by_cancel := _make_forge()
+		_go_to(by_cancel, shown)
+		_press_cancel(by_cancel)
+		assert_eq(by_cancel.step, by_button.step, "step %d" % shown)
+		assert_eq(get_signal_emit_count(by_cancel, "back_pressed"), get_signal_emit_count(by_button, "back_pressed"))
+
+
+func test_go_back_from_armies_emits_back_pressed() -> void:
 	var forge := _make_forge()
-	forge.show_alliances()
-	_press_cancel(forge)
-	assert_true(forge.armies_panel.visible)
-
-
-func test_cancel_on_alliance_panel_does_not_emit_back_pressed() -> void:
-	var forge := _make_forge()
-	forge.show_alliances()
-	_press_cancel(forge)
-	assert_signal_not_emitted(forge, "back_pressed")
-
-
-func test_cancel_on_armies_panel_emits_back_pressed() -> void:
-	var forge := _make_forge()
-	_press_cancel(forge)
+	forge.go_back()
 	assert_signal_emitted(forge, "back_pressed")
 
 
-func test_armies_back_button_emits_back_pressed() -> void:
+func test_back_button_on_armies_emits_back_pressed() -> void:
 	var forge := _make_forge()
-	forge.armies_back_button.pressed.emit()
+	forge.back_button.pressed.emit()
 	assert_signal_emitted(forge, "back_pressed")
-
-
-func test_cancel_on_faction_panel_shows_alliance_panel() -> void:
-	var forge := _make_forge()
-	forge.show_factions(_two_alliances()[0])
-	_press_cancel(forge)
-	assert_true(forge.alliance_panel.visible)
-
-
-func test_cancel_on_faction_panel_does_not_emit_back_pressed() -> void:
-	var forge := _make_forge()
-	forge.show_factions(_two_alliances()[0])
-	_press_cancel(forge)
-	assert_signal_not_emitted(forge, "back_pressed")
 
 
 func test_released_cancel_does_nothing() -> void:
@@ -363,9 +177,259 @@ func test_released_cancel_does_nothing() -> void:
 	assert_signal_not_emitted(forge, "back_pressed")
 
 
-# --- Army of Renown and battle formation panels ---
+func test_header_title_is_only_shown_on_armies() -> void:
+	for shown: Forge.Step in Forge.Step.values():
+		var forge := _make_forge()
+		_go_to(forge, shown)
+		assert_eq(forge.header_title.visible, shown == Forge.Step.ARMIES, "step %d" % shown)
 
-const Kit := preload("res://test/support/army_kit.gd")
+
+func test_browse_button_is_only_shown_on_renown_and_formation() -> void:
+	for shown: Forge.Step in Forge.Step.values():
+		var forge := _make_forge()
+		_go_to(forge, shown)
+		var expected := shown == Forge.Step.RENOWN or shown == Forge.Step.FORMATION
+		assert_eq(forge.browse_button.visible, expected, "step %d" % shown)
+
+
+func test_footer_is_only_shown_on_renown_and_formation() -> void:
+	for shown: Forge.Step in Forge.Step.values():
+		var forge := _make_forge()
+		_go_to(forge, shown)
+		var expected := shown == Forge.Step.RENOWN or shown == Forge.Step.FORMATION
+		assert_eq(forge.footer.visible, expected, "step %d" % shown)
+
+
+func test_breadcrumb_is_empty_on_armies() -> void:
+	var forge := _make_forge()
+	assert_eq(forge.breadcrumb.get_child_count(), 0)
+
+
+func test_breadcrumb_highlights_the_current_step() -> void:
+	for shown: Forge.Step in Forge.Step.values():
+		if shown == Forge.Step.ARMIES:
+			continue
+		var forge := _make_forge()
+		_go_to(forge, shown)
+		var current := UIKit.labels_with_variation(forge.breadcrumb, "BreadcrumbCurrentLabel")
+		assert_eq(current.size(), 1, "step %d" % shown)
+		assert_eq(current[0].text, forge.breadcrumb_steps()[shown - 1])
+
+
+func test_breadcrumb_is_replaced_not_stacked_when_steps_change() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.ALLIANCE)
+	_go_to(forge, Forge.Step.FACTION)
+	await get_tree().process_frame
+	assert_eq(forge.breadcrumb.get_child_count(), 1)
+
+
+func test_breadcrumb_steps_names_every_step_before_any_choice() -> void:
+	var forge := _make_forge()
+	forge.show_alliances()
+	assert_eq(forge.breadcrumb_steps().size(), Forge.STEPS.size())
+	assert_eq(forge.breadcrumb_steps(), Forge.STEPS)
+
+
+func test_breadcrumb_steps_fill_in_choices_made_so_far() -> void:
+	var faction := _with_armies_of_renown()
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	var steps := forge.breadcrumb_steps()
+	assert_eq(steps[0], GrandAlliance.display_name(faction.grand_alliance))
+	assert_eq(steps[1], faction.name)
+	assert_eq(steps[2], forge.renown_cards()[0].accessibility_name)
+	assert_eq(steps.slice(3), Forge.STEPS.slice(3))
+
+
+func test_breadcrumb_steps_on_renown_only_fill_in_alliance_and_faction() -> void:
+	var faction := _with_armies_of_renown()
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.RENOWN)
+	var steps := forge.breadcrumb_steps()
+	assert_eq(steps[1], faction.name)
+	assert_eq(steps.slice(2), Forge.STEPS.slice(2))
+
+
+# --- Grand Alliance and faction ---
+
+
+func test_has_a_card_for_every_alliance() -> void:
+	var forge := _make_forge()
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		assert_true(forge.alliance_buttons.has(alliance),
+				"no card for %s" % GrandAlliance.display_name(alliance))
+		assert_eq(forge.alliance_buttons[alliance].get_parent(), forge.alliance_grid)
+
+
+func test_alliance_cards_are_named_for_screen_readers() -> void:
+	var forge := _make_forge()
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		assert_eq(forge.alliance_buttons[alliance].accessibility_name, GrandAlliance.display_name(alliance))
+
+
+func test_new_army_shows_the_alliances() -> void:
+	var forge := _make_forge()
+	forge.new_army_button.pressed.emit()
+	assert_true(forge.alliance_panel.visible)
+	assert_false(forge.armies_panel.visible)
+
+
+func test_pressing_alliance_card_shows_faction_panel_at_once() -> void:
+	var forge := _make_forge()
+	forge.show_alliances()
+	forge.alliance_buttons[_two_alliances()[0]].pressed.emit()
+	assert_eq(forge.step, Forge.Step.FACTION)
+	assert_true(forge.faction_panel.visible)
+	assert_false(forge.alliance_panel.visible)
+
+
+func test_each_alliance_card_lists_that_alliances_factions() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.alliance_buttons[alliance].pressed.emit()
+		assert_eq(_faction_button_names(forge), FactionCatalog.factions_for(alliance))
+
+
+func test_faction_description_names_the_alliance() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.alliance_buttons[alliance].pressed.emit()
+		assert_string_contains(forge.faction_description.text, GrandAlliance.display_name(alliance))
+
+
+func test_choosing_second_alliance_leaves_no_cards_from_first() -> void:
+	var forge := _make_forge()
+	var alliances := _two_alliances()
+	forge.show_factions(alliances[0])
+	forge.show_alliances()
+	forge.show_factions(alliances[1])
+	assert_eq(_faction_button_names(forge), FactionCatalog.factions_for(alliances[1]))
+
+
+func test_showing_same_alliance_twice_does_not_duplicate_cards() -> void:
+	var forge := _make_forge()
+	var alliance: GrandAlliance.Type = _two_alliances()[0]
+	forge.show_factions(alliance)
+	forge.show_factions(alliance)
+	await get_tree().process_frame
+	assert_eq(forge.faction_grid.get_child_count(), FactionCatalog.factions_for(alliance).size())
+
+
+func test_first_enabled_faction_card_has_focus_after_choosing_alliance() -> void:
+	var alliance := _alliance_with_available_faction()
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	assert_true(forge.faction_grid.get_child(_first_enabled_index(forge)).has_focus())
+
+
+func test_back_button_has_focus_when_no_faction_is_available() -> void:
+	var alliance := _alliance_without_available_faction()
+	if alliance < 0:
+		pending("every alliance has an available faction")
+		return
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	assert_true(forge.back_button.has_focus())
+
+
+func test_available_faction_cards_are_enabled() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if FactionCatalog.is_available(button.get_meta(&"faction")):
+				assert_false(button.disabled, "%s is disabled" % button.accessibility_name)
+
+
+func test_unavailable_faction_cards_are_disabled() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if not FactionCatalog.is_available(button.get_meta(&"faction")):
+				assert_true(button.disabled, "%s is enabled" % button.accessibility_name)
+
+
+func test_faction_card_meta_is_plain_faction_name() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			assert_has(FactionCatalog.factions_for(alliance), button.get_meta(&"faction"))
+
+
+func test_faction_card_is_named_for_screen_readers() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			var faction: String = button.get_meta(&"faction")
+			assert_string_starts_with(button.accessibility_name, faction)
+			assert_eq(button.accessibility_name.ends_with("(Legends)"), FactionCatalog.is_legends(faction), faction)
+
+
+func test_unavailable_faction_cards_explain_why_in_tooltip() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if button.disabled:
+				assert_ne(button.tooltip_text, "", "%s has no tooltip" % button.accessibility_name)
+
+
+func test_pressing_faction_card_shows_its_army_of_renown_choice() -> void:
+	var alliance := _alliance_with_available_faction()
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	var index := _first_enabled_index(forge)
+	(forge.faction_grid.get_child(index) as Button).pressed.emit()
+	assert_true(forge.renown_panel.visible)
+	assert_eq(forge.breadcrumb_steps()[1], FactionCatalog.factions_for(alliance)[index])
+
+
+func test_pressing_legends_faction_card_marks_the_faction_as_legends() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	for button: Button in forge.faction_grid.get_children():
+		if FactionCatalog.is_legends(button.get_meta(&"faction")) and not button.disabled:
+			button.pressed.emit()
+			assert_gt(forge.renown_chips.get_child_count(), 0)
+			return
+	pending("no Legends faction has data")
+
+
+func test_unavailable_faction_card_stays_on_faction_panel() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for button: Button in forge.faction_grid.get_children():
+			if button.disabled:
+				button.pressed.emit()
+		assert_true(forge.faction_panel.visible)
+
+
+func test_back_from_factions_refocuses_chosen_alliance() -> void:
+	var forge := _make_forge()
+	var alliance: GrandAlliance.Type = _two_alliances()[1]
+	forge.show_factions(alliance)
+	forge.back_button.pressed.emit()
+	assert_true(forge.alliance_buttons[alliance].has_focus())
+
+
+func test_back_from_alliances_returns_to_the_armies_list() -> void:
+	var army := _save_army("Vanguard")
+	var forge := _make_forge()
+	forge.new_army_button.pressed.emit()
+	forge.back_button.pressed.emit()
+	assert_not_null(_row(forge, army.id))
+
+
+# --- Army of Renown ---
 
 
 ## Returns the Faction of the first available faction for which [param wanted] is true, or null.
@@ -383,13 +447,6 @@ func _with_armies_of_renown() -> Faction:
 	return _faction_where(func(f: Faction) -> bool: return not f.armies_of_renown.is_empty() and not f.battle_formations.is_empty())
 
 
-func _choice_texts(list: Control) -> PackedStringArray:
-	var texts := PackedStringArray()
-	for button: Button in list.get_children():
-		texts.append(button.text)
-	return texts
-
-
 func _open_renown(forge: Forge, faction: Faction) -> void:
 	forge.show_armies_of_renown(faction.grand_alliance, faction.name)
 
@@ -401,43 +458,52 @@ func _choice_with_meta(list: Control, key: StringName, value: String) -> Button:
 	return null
 
 
+## Selects [param card], as a click does.
+func _select(card: Button) -> void:
+	card.button_pressed = true
+
+
 func test_renown_panel_is_the_only_panel_shown() -> void:
-	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
-	_open_renown(forge, faction)
+	_open_renown(forge, _with_armies_of_renown())
 	assert_true(forge.renown_panel.visible)
 	assert_false(forge.faction_panel.visible)
 	assert_false(forge.formation_panel.visible)
 	assert_false(forge.alliance_panel.visible)
 
 
-func test_renown_panel_first_choice_is_none() -> void:
+func test_renown_cards_start_with_none() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	assert_eq(forge.renown_cards()[0].get_meta(&"army_of_renown"), "")
+	assert_eq(forge.renown_cards()[0].get_parent(), forge.renown_none)
+
+
+func test_renown_cards_are_none_plus_each_army_of_renown() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_open_renown(forge, faction)
-	assert_string_starts_with((forge.renown_list.get_child(0) as Button).text, "None")
+	assert_eq(forge.renown_cards().size(), faction.armies_of_renown.size() + 1)
+	assert_eq(forge.renown_grid.get_child_count(), faction.armies_of_renown.size())
 
 
-func test_renown_panel_none_choice_names_the_faction() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	assert_string_contains((forge.renown_list.get_child(0) as Button).text, faction.name)
-
-
-func test_renown_panel_lists_none_plus_each_army_of_renown() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	assert_eq(forge.renown_list.get_child_count(), faction.armies_of_renown.size() + 1)
-
-
-func test_renown_panel_has_a_button_per_army_of_renown() -> void:
+func test_renown_panel_has_a_card_per_army_of_renown() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_open_renown(forge, faction)
 	for army in faction.armies_of_renown:
-		assert_not_null(_choice_with_meta(forge.renown_list, &"army_of_renown", army.name), army.name)
+		assert_not_null(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name), army.name)
+
+
+func test_renown_cards_are_named_for_screen_readers() -> void:
+	var faction := _with_armies_of_renown()
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	for card in forge.renown_cards():
+		assert_ne(card.accessibility_name, "")
+	for army in faction.armies_of_renown:
+		var card := _choice_with_meta(forge.renown_grid, &"army_of_renown", army.name)
+		assert_string_starts_with(card.accessibility_name, army.name)
 
 
 func test_renown_panel_marks_legends_armies() -> void:
@@ -448,15 +514,8 @@ func test_renown_panel_marks_legends_armies() -> void:
 	var forge := _make_forge()
 	_open_renown(forge, faction)
 	for army in faction.armies_of_renown:
-		var button := _choice_with_meta(forge.renown_list, &"army_of_renown", army.name)
-		assert_eq(button.text.ends_with("(Legends)"), army.legends, button.text)
-
-
-func test_renown_panel_title_is_faction_name() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	assert_eq(forge.renown_title.text.trim_suffix(" (Legends)"), faction.name)
+		var card := _choice_with_meta(forge.renown_grid, &"army_of_renown", army.name)
+		assert_eq(card.accessibility_name.ends_with("(Legends)"), army.legends, card.accessibility_name)
 
 
 func test_renown_panel_without_data_does_nothing() -> void:
@@ -467,20 +526,21 @@ func test_renown_panel_without_data_does_nothing() -> void:
 	assert_true(forge.armies_panel.visible)
 
 
-func test_renown_panel_focuses_the_first_choice() -> void:
-	var faction := _with_armies_of_renown()
+func test_renown_panel_focuses_none() -> void:
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	assert_true((forge.renown_list.get_child(0) as Button).has_focus())
+	_open_renown(forge, _with_armies_of_renown())
+	assert_true(forge.renown_cards()[0].has_focus())
 
 
-func test_renown_panel_reopened_for_another_faction_replaces_choices() -> void:
+func test_renown_panel_reopened_for_another_faction_replaces_cards() -> void:
 	var faction := _with_armies_of_renown()
 	var other := _faction_where(func(f: Faction) -> bool: return f.name != faction.name and f.armies_of_renown.size() != faction.armies_of_renown.size())
 	var forge := _make_forge()
 	_open_renown(forge, faction)
 	_open_renown(forge, other)
-	assert_eq(forge.renown_list.get_child_count() - 1, other.armies_of_renown.size())
+	await get_tree().process_frame
+	assert_eq(forge.renown_grid.get_child_count(), other.armies_of_renown.size())
+	assert_eq(forge.renown_none.get_child_count(), 1)
 
 
 func test_browse_button_emits_browse_requested_with_alliance_and_faction() -> void:
@@ -491,118 +551,122 @@ func test_browse_button_emits_browse_requested_with_alliance_and_faction() -> vo
 	assert_signal_emitted_with_parameters(forge, "browse_requested", [faction.grand_alliance, faction.name])
 
 
-func test_picking_army_of_renown_emits_army_started() -> void:
+func test_none_starts_selected() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	var cards := forge.renown_cards()
+	assert_true(cards[0].button_pressed)
+	for card in cards.slice(1):
+		assert_false(card.button_pressed)
+
+
+func test_selecting_a_card_unselects_the_others() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	var cards := forge.renown_cards()
+	_select(cards[1])
+	assert_true(cards[1].button_pressed)
+	assert_false(cards[0].button_pressed)
+
+
+func test_selecting_an_army_of_renown_does_not_start_the_army() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	_select(forge.renown_cards()[1])
+	assert_signal_not_emitted(forge, "army_started")
+	assert_true(forge.renown_panel.visible)
+
+
+func test_selected_label_follows_the_selection() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_open_renown(forge, faction)
-	(forge.renown_list.get_child(1) as Button).pressed.emit()
-	assert_signal_emitted(forge, "army_started")
+	assert_string_contains(forge.selected_label.text, forge.renown_cards()[0].accessibility_name)
+	var army := faction.armies_of_renown[0]
+	_select(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name))
+	assert_string_contains(forge.selected_label.text, army.name)
 
 
-func test_picking_army_of_renown_skips_the_formation_panel() -> void:
+func test_selection_is_kept_when_returning_to_the_same_faction() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_open_renown(forge, faction)
-	(forge.renown_list.get_child(1) as Button).pressed.emit()
-	assert_false(forge.formation_panel.visible)
+	var army := faction.armies_of_renown[0]
+	_select(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name))
+	forge.go_back()
+	_open_renown(forge, faction)
+	assert_true(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name).button_pressed)
+	assert_false(forge.renown_cards()[0].button_pressed)
 
 
-func test_army_of_renown_army_has_faction_id_and_renown_name() -> void:
+func test_selection_is_reset_for_another_faction() -> void:
+	var faction := _with_armies_of_renown()
+	var other := _faction_where(func(f: Faction) -> bool: return f.name != faction.name)
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	_select(forge.renown_cards()[1])
+	_open_renown(forge, other)
+	assert_true(forge.renown_cards()[0].button_pressed)
+
+
+func test_none_is_selected_again_on_return_from_formation() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	forge.go_back()
+	assert_eq(forge.step, Forge.Step.RENOWN)
+	assert_true(forge.renown_cards()[0].button_pressed)
+
+
+func test_continue_label_differs_between_an_army_of_renown_and_none_with_formations() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	var for_none := forge.continue_button.text
+	_select(forge.renown_cards()[1])
+	assert_ne(forge.continue_button.text, for_none)
+
+
+func test_continue_is_enabled_on_the_renown_step() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	assert_false(forge.continue_button.disabled)
+
+
+func test_continue_with_an_army_of_renown_starts_the_army() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_open_renown(forge, faction)
 	var army_of_renown := faction.armies_of_renown[0]
-	_choice_with_meta(forge.renown_list, &"army_of_renown", army_of_renown.name).pressed.emit()
+	_select(_choice_with_meta(forge.renown_grid, &"army_of_renown", army_of_renown.name))
+	forge.continue_button.pressed.emit()
 	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.faction_id, faction.id)
 	assert_eq(army.army_of_renown, army_of_renown.name)
-
-
-func test_army_of_renown_army_has_no_formation() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(1) as Button).pressed.emit()
-	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.formation, "")
-
-
-func test_army_started_has_two_empty_tactic_slots() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(1) as Button).pressed.emit()
-	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.tactics, PackedStringArray(["", ""]))
 
 
-func test_none_choice_with_formations_shows_formation_panel() -> void:
-	var faction := _with_armies_of_renown()
+func test_continue_with_an_army_of_renown_skips_the_formation_panel() -> void:
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
+	_open_renown(forge, _with_armies_of_renown())
+	_select(forge.renown_cards()[1])
+	forge.continue_button.pressed.emit()
+	assert_false(forge.formation_panel.visible)
+
+
+func test_continue_with_none_and_formations_shows_formations() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	forge.continue_button.pressed.emit()
+	assert_eq(forge.step, Forge.Step.FORMATION)
 	assert_true(forge.formation_panel.visible)
 	assert_false(forge.renown_panel.visible)
 	assert_signal_not_emitted(forge, "army_started")
 
 
-func test_formation_panel_lists_each_formation() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	assert_eq(forge.formation_list.get_child_count(), faction.battle_formations.size())
-	for formation in faction.battle_formations:
-		assert_not_null(_choice_with_meta(forge.formation_list, &"formation", formation.name), formation.name)
-
-
-func test_formation_panel_title_is_faction_name() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	assert_eq(forge.formation_title.text, faction.name)
-
-
-func test_formation_panel_focuses_the_first_choice() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	assert_true((forge.formation_list.get_child(0) as Button).has_focus())
-
-
-func test_formation_with_points_shows_them_in_its_label() -> void:
-	var faction := _faction_where(func(f: Faction) -> bool: return f.battle_formations.any(func(b: BattleFormation) -> bool: return b.points > 0))
-	if faction == null:
-		pending("no formation costs points")
-		return
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	for formation in faction.battle_formations:
-		var button := _choice_with_meta(forge.formation_list, &"formation", formation.name)
-		assert_eq(button.text.contains("%d pts" % formation.points), formation.points > 0, button.text)
-
-
-func test_picking_formation_emits_army_with_that_formation() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	var formation := faction.battle_formations[faction.battle_formations.size() - 1]
-	_choice_with_meta(forge.formation_list, &"formation", formation.name).pressed.emit()
-	var army: Army = get_signal_parameters(forge, "army_started")[0]
-	assert_eq(army.formation, formation.name)
-	assert_eq(army.faction_id, faction.id)
-	assert_eq(army.army_of_renown, "")
-	assert_eq(army.tactics, PackedStringArray(["", ""]))
-
-
-func test_none_choice_without_formations_starts_army_immediately() -> void:
+func test_continue_with_none_and_no_formations_starts_the_army() -> void:
 	var forge := _make_forge()
 	forge._faction = Kit.faction([] as Array[Warscroll], "no_formations")
-	forge._on_own_rules_pressed()
+	forge.continue_button.pressed.emit()
 	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.faction_id, "no_formations")
 	assert_eq(army.formation, "")
@@ -611,69 +675,244 @@ func test_none_choice_without_formations_starts_army_immediately() -> void:
 	assert_false(forge.formation_panel.visible)
 
 
-func test_renown_back_button_shows_faction_panel() -> void:
+func test_continue_label_for_none_without_formations_matches_an_army_of_renown() -> void:
+	var forge := _make_forge()
+	_open_renown(forge, _with_armies_of_renown())
+	_select(forge.renown_cards()[1])
+	var for_army := forge.continue_button.text
+	forge._faction = Kit.faction([] as Array[Warscroll], "no_formations")
+	forge._army_of_renown = ""
+	forge._update_footer()
+	assert_eq(forge.continue_button.text, for_army)
+
+
+func test_roster_summary_lists_the_roster_options() -> void:
+	var army := ArmyOfRenown.new()
+	army.text = "Some description.\nROSTER OPTIONS\nFirst Hero\nSecond Hero"
+	var summary := Forge.roster_summary(army)
+	assert_string_contains(summary, "First Hero")
+	assert_string_contains(summary, "Second Hero")
+	assert_does_not_have(summary.split(" "), "description.")
+
+
+func test_roster_summary_ignores_you_cannot_include_lines() -> void:
+	var army := ArmyOfRenown.new()
+	army.text = "ROSTER OPTIONS\nFirst Hero\nYou cannot include Regiments of Renown."
+	var summary := Forge.roster_summary(army)
+	assert_string_contains(summary, "First Hero")
+	assert_eq(summary.contains("cannot include"), false)
+
+
+func test_roster_summary_without_roster_options_is_the_first_sentence() -> void:
+	var army := ArmyOfRenown.new()
+	army.text = "A short intro. More detail follows.\nAnother line."
+	var summary := Forge.roster_summary(army)
+	assert_string_contains(summary, "A short intro")
+	assert_eq(summary.contains("More detail"), false)
+
+
+func test_roster_summary_of_empty_text_is_empty() -> void:
+	assert_eq(Forge.roster_summary(ArmyOfRenown.new()), "")
+
+
+func _chip_texts(army: ArmyOfRenown) -> Array:
+	return Forge.renown_chips_for(army).map(func(chip: Array) -> String: return chip[0])
+
+
+func _roster(entries: Array[RosterEntry] = []) -> ArmyRoster:
+	var roster := ArmyRoster.new()
+	roster.entries = entries
+	return roster
+
+
+func test_renown_chips_of_a_plain_army_are_empty() -> void:
+	var army := ArmyOfRenown.new()
+	army.roster = _roster()
+	assert_eq(Forge.renown_chips_for(army), [])
+
+
+func test_renown_chips_of_an_army_without_a_roster_are_empty() -> void:
+	assert_eq(Forge.renown_chips_for(ArmyOfRenown.new()), [])
+
+
+func test_renown_chips_mark_legends() -> void:
+	var army := ArmyOfRenown.new()
+	army.legends = true
+	var chips := Forge.renown_chips_for(army)
+	assert_eq(chips.size(), 1)
+	assert_eq(chips[0][1], "legends")
+
+
+func test_renown_chips_note_no_regiments_of_renown() -> void:
+	var army := ArmyOfRenown.new()
+	army.roster = _roster()
+	army.roster.regiments_of_renown = false
+	assert_eq(_chip_texts(army).size(), 1)
+	assert_eq(Forge.renown_chips_for(army)[0][1], "warn")
+
+
+func test_renown_chips_note_no_faction_terrain() -> void:
+	var army := ArmyOfRenown.new()
+	army.roster = _roster()
+	army.roster.faction_terrain = false
+	assert_eq(_chip_texts(army).size(), 1)
+	assert_eq(Forge.renown_chips_for(army)[0][1], "warn")
+
+
+func test_renown_chips_for_both_limits_differ_in_text() -> void:
+	var army := ArmyOfRenown.new()
+	army.roster = _roster()
+	army.roster.faction_terrain = false
+	army.roster.regiments_of_renown = false
+	var texts := _chip_texts(army)
+	assert_eq(texts.size(), 2)
+	assert_ne(texts[0], texts[1])
+
+
+func test_renown_chips_note_a_fixed_general() -> void:
+	var entry := RosterEntry.new()
+	entry.general = true
+	var army := ArmyOfRenown.new()
+	army.roster = _roster([entry] as Array[RosterEntry])
+	assert_eq(_chip_texts(army).size(), 1)
+
+
+func test_renown_chips_do_not_note_a_general_when_none_is_fixed() -> void:
+	var army := ArmyOfRenown.new()
+	army.roster = _roster([RosterEntry.new()] as Array[RosterEntry])
+	assert_eq(_chip_texts(army).size(), 0)
+
+
+func test_back_from_renown_focuses_the_faction_just_left() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_open_renown(forge, faction)
-	forge.renown_back_button.pressed.emit()
-	assert_true(forge.faction_panel.visible)
-	assert_false(forge.renown_panel.visible)
+	forge.back_button.pressed.emit()
+	assert_eq(forge.get_viewport().gui_get_focus_owner().get_meta(&"faction"), faction.name)
 
 
-func test_renown_back_button_focuses_the_faction_just_left() -> void:
+# --- Battle formation ---
+
+
+func test_formation_panel_lists_each_formation() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	forge.renown_back_button.pressed.emit()
-	var focused := forge.get_viewport().gui_get_focus_owner()
-	assert_eq(focused.get_meta(&"faction"), faction.name)
+	_go_to(forge, Forge.Step.FORMATION)
+	assert_eq(forge.formation_grid.get_child_count(), faction.battle_formations.size())
+	for formation in faction.battle_formations:
+		assert_not_null(_choice_with_meta(forge.formation_grid, &"formation", formation.name), formation.name)
 
 
-func test_renown_back_button_does_not_emit_back_pressed() -> void:
+func test_formation_panel_starts_with_nothing_selected() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	for card: Button in forge.formation_grid.get_children():
+		assert_false(card.button_pressed)
+
+
+func test_formation_continue_is_disabled_until_a_card_is_picked() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	assert_true(forge.continue_button.disabled)
+	(forge.formation_grid.get_child(0) as Button).button_pressed = true
+	assert_false(forge.continue_button.disabled)
+
+
+func test_formation_continue_is_disabled_again_after_unpicking() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	var card := forge.formation_grid.get_child(0) as Button
+	card.button_pressed = true
+	card.button_pressed = false
+	assert_true(forge.continue_button.disabled)
+
+
+func test_picking_another_formation_unpicks_the_first() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	var first := forge.formation_grid.get_child(0) as Button
+	var second := forge.formation_grid.get_child(1) as Button
+	first.button_pressed = true
+	second.button_pressed = true
+	assert_false(first.button_pressed)
+	assert_true(second.button_pressed)
+
+
+func test_selected_label_names_the_picked_formation() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	var card := forge.formation_grid.get_child(1) as Button
+	card.button_pressed = true
+	assert_string_contains(forge.selected_label.text, card.get_meta(&"formation"))
+
+
+func test_formation_panel_picking_does_not_start_the_army() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	(forge.formation_grid.get_child(0) as Button).button_pressed = true
+	assert_signal_not_emitted(forge, "army_started")
+
+
+func test_formation_continue_emits_army_with_that_formation() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	forge.renown_back_button.pressed.emit()
-	assert_signal_not_emitted(forge, "back_pressed")
+	_go_to(forge, Forge.Step.FORMATION)
+	var formation := faction.battle_formations[faction.battle_formations.size() - 1]
+	_choice_with_meta(forge.formation_grid, &"formation", formation.name).button_pressed = true
+	forge.continue_button.pressed.emit()
+	var army: Army = get_signal_parameters(forge, "army_started")[0]
+	assert_eq(army.formation, formation.name)
+	assert_eq(army.faction_id, faction.id)
+	assert_eq(army.army_of_renown, "")
+	assert_eq(army.tactics, PackedStringArray(["", ""]))
 
 
-func test_cancel_on_renown_panel_shows_faction_panel() -> void:
-	var faction := _with_armies_of_renown()
+func test_formation_is_kept_when_returning_from_the_renown_step() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	var picked := forge.formation_grid.get_child(1) as Button
+	picked.button_pressed = true
+	forge.go_back()
+	forge.continue_button.pressed.emit()
+	assert_true(_choice_with_meta(forge.formation_grid, &"formation", picked.get_meta(&"formation")).button_pressed)
+	assert_false(forge.continue_button.disabled)
+
+
+func test_formation_with_points_shows_them_on_its_card() -> void:
+	var faction := _faction_where(func(f: Faction) -> bool: return f.battle_formations.any(func(b: BattleFormation) -> bool: return b.points > 0))
+	if faction == null:
+		pending("no formation costs points")
+		return
 	var forge := _make_forge()
 	_open_renown(forge, faction)
-	_press_cancel(forge)
-	assert_true(forge.faction_panel.visible)
-	assert_signal_not_emitted(forge, "back_pressed")
+	forge.continue_button.pressed.emit()
+	for formation in faction.battle_formations:
+		var card := _choice_with_meta(forge.formation_grid, &"formation", formation.name)
+		var shown := Array(UIKit.label_texts(card)).any(func(t: String) -> bool: return t.contains("%d" % formation.points) and t.to_lower().contains("pts"))
+		assert_eq(shown, formation.points > 0, formation.name)
 
 
-func test_formation_back_button_shows_renown_panel_for_same_faction() -> void:
+func test_formation_panel_focuses_the_first_card() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	assert_true((forge.formation_grid.get_child(0) as Button).has_focus())
+
+
+func test_back_from_formations_shows_renown_panel_for_same_faction() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	forge.formation_back_button.pressed.emit()
+	_go_to(forge, Forge.Step.FORMATION)
+	forge.back_button.pressed.emit()
 	assert_true(forge.renown_panel.visible)
 	assert_false(forge.formation_panel.visible)
-	assert_eq(forge.renown_title.text.trim_suffix(" (Legends)"), faction.name)
+	assert_eq(forge.breadcrumb_steps()[1], faction.name)
 
 
-func test_formation_back_button_focuses_the_first_renown_choice() -> void:
-	var faction := _with_armies_of_renown()
+func test_back_from_formations_focuses_the_selected_renown_card() -> void:
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	forge.formation_back_button.pressed.emit()
-	assert_true((forge.renown_list.get_child(0) as Button).has_focus())
-
-
-func test_cancel_on_formation_panel_shows_renown_panel() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	(forge.renown_list.get_child(0) as Button).pressed.emit()
-	_press_cancel(forge)
-	assert_true(forge.renown_panel.visible)
-	assert_signal_not_emitted(forge, "back_pressed")
+	_go_to(forge, Forge.Step.FORMATION)
+	forge.back_button.pressed.emit()
+	assert_true(forge.renown_cards()[0].has_focus())
 
 
 # --- Saved armies panel ---
@@ -716,16 +955,25 @@ func _row(forge: Forge, id: String) -> Control:
 	return null
 
 
+## A row's Open button by its text; Duplicate and Delete are icon buttons found by tooltip.
 func _row_button(forge: Forge, id: String, text: String) -> Button:
-	return UIKit.button(_row(forge, id), text)
+	if text == "Open":
+		return UIKit.button(_row(forge, id), text)
+	for button in UIKit.buttons(_row(forge, id)):
+		if button.tooltip_text.begins_with(text):
+			return button
+	return null
 
 
 func _row_title(forge: Forge, id: String) -> String:
-	return (_row(forge, id).get_child(0).get_child(0) as Label).text
+	return UIKit.labels_with_variation(_row(forge, id), "CardHeadingLabel")[0].text
 
 
+## All of a row's text, apart from its name.
 func _row_detail(forge: Forge, id: String) -> String:
-	return (_row(forge, id).get_child(0).get_child(1) as Label).text
+	var texts := UIKit.label_texts(_row(forge, id))
+	texts.remove_at(texts.find(_row_title(forge, id)))
+	return " ".join(texts)
 
 
 func _row_ids(forge: Forge) -> PackedStringArray:
@@ -783,7 +1031,7 @@ func test_armies_panel_row_names_the_faction() -> void:
 func test_armies_panel_without_saved_armies_explains() -> void:
 	var forge := _make_forge()
 	assert_eq(forge.army_list.get_child_count(), 1)
-	assert_true(forge.army_list.get_child(0) is Label)
+	assert_gt(UIKit.label_texts(forge.army_list).size(), 0)
 
 
 func test_armies_panel_without_saved_armies_has_no_rows() -> void:
@@ -985,21 +1233,6 @@ func test_canceling_delete_refocuses_the_army() -> void:
 	assert_true(_row_button(forge, older.id, "Open").has_focus())
 
 
-func test_new_army_shows_the_alliances() -> void:
-	var forge := _make_forge()
-	forge.new_army_button.pressed.emit()
-	assert_true(forge.alliance_panel.visible)
-	assert_false(forge.armies_panel.visible)
-
-
-func test_alliance_back_returns_to_the_armies_list() -> void:
-	var army := _save_army("Vanguard")
-	var forge := _make_forge()
-	forge.new_army_button.pressed.emit()
-	forge.alliance_back_button.pressed.emit()
-	assert_not_null(_row(forge, army.id))
-
-
 func test_summary_of_unreadable_entry_cannot_open() -> void:
 	var entry := ArmyStore.Entry.new()
 	entry.id = "x"
@@ -1046,3 +1279,66 @@ func test_summary_mentions_choices_that_could_not_be_read() -> void:
 	var entry := ArmyStore.read(army.id)
 	entry.errors = PackedStringArray(["tactics: bad"])
 	assert_string_contains(Forge.army_summary(entry).detail, "couldn't be read")
+
+
+func test_summary_splits_out_the_faction() -> void:
+	var army := _save_army("Vanguard")
+	var summary := Forge.army_summary(ArmyStore.read(army.id))
+	assert_eq(summary.faction, FactionCatalog.name_for_id(army.faction_id))
+	assert_has(summary.details, summary.faction)
+
+
+func test_summary_details_exclude_the_status() -> void:
+	var army := _save_army("Vanguard")
+	var summary := Forge.army_summary(ArmyStore.read(army.id))
+	assert_does_not_have(summary.details, summary.status)
+	assert_string_contains(summary.detail, summary.status)
+
+
+func test_summary_status_kind_matches_overridden_constraints() -> void:
+	var entry := ArmyStore.read(_save_army("Vanguard").id)
+	entry.army.override_constraints = true
+	assert_eq(Forge.army_summary(entry).status_kind, "overridden")
+
+
+func test_summary_status_kind_is_a_theme_status() -> void:
+	var entry := ArmyStore.read(_save_army("Vanguard").id)
+	assert_has(UITheme.STATUS.keys(), Forge.army_summary(entry).status_kind)
+
+
+func test_summary_of_unreadable_entry_has_no_status_and_a_note() -> void:
+	var entry := ArmyStore.Entry.new()
+	entry.id = "x"
+	entry.errors = PackedStringArray(["bad file"])
+	var summary := Forge.army_summary(entry)
+	assert_eq(summary.status_kind, "")
+	assert_eq(summary.faction, "")
+	assert_string_contains(summary.note, "bad file")
+
+
+func test_summary_note_is_empty_for_a_clean_army() -> void:
+	var entry := ArmyStore.read(_save_army("Vanguard").id)
+	assert_eq(Forge.army_summary(entry).note, "")
+
+
+func test_summary_note_mentions_unreadable_choices() -> void:
+	var entry := ArmyStore.read(_save_army("Vanguard").id)
+	entry.errors = PackedStringArray(["tactics: bad"])
+	assert_ne(Forge.army_summary(entry).note, "")
+
+
+func test_summary_of_a_faction_without_data_notes_the_faction() -> void:
+	var army := _unknown_faction_army()
+	var entry := ArmyStore.Entry.new()
+	entry.id = "orphan"
+	entry.army = army
+	var summary := Forge.army_summary(entry)
+	assert_false(summary.can_open)
+	assert_string_contains(summary.note, "not_a_faction")
+
+
+func test_row_icon_buttons_are_named_for_screen_readers() -> void:
+	var army := _save_army("Vanguard")
+	var forge := _make_forge()
+	assert_eq(_row_button(forge, army.id, "Duplicate").accessibility_name, "Duplicate Vanguard")
+	assert_eq(_row_button(forge, army.id, "Delete").accessibility_name, "Delete Vanguard")

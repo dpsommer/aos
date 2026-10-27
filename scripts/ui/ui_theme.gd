@@ -1,6 +1,7 @@
-class_name ForgeTheme
+class_name UITheme
 extends RefCounted
-## The army builder's look, from the Forge design: dark panels, warm text and a gold accent.
+## The game's look, from the Forge design: dark panels, warm text and a gold accent. Every screen
+## sets it as its [member Control.theme].
 ## Variations are named with [code]theme_type_variation[/code], e.g. "GoldButton" or "CardPanel".
 
 const BACKGROUND := Color("#121418")
@@ -14,6 +15,7 @@ const BORDER := Color("#2B3039")
 const CONTROL_BORDER := Color("#3A404C")
 const TEXT := Color("#ECE7DC")
 const MUTED := Color("#A9ADB6")
+const DESCRIPTION := Color("#B8BBC3")
 const GOLD := Color("#D9A84A")
 const GOLD_DARK := Color("#4A3F2A")
 const GOOD := Color("#8FD4B0")
@@ -23,10 +25,18 @@ const DANGER_BG := Color("#3A2620")
 const WARNING := Color("#EEC877")
 const WARNING_BG := Color("#3A3020")
 
+## An army's status pill colours by kind: [background, text].
+const STATUS := {
+	"valid": [GOOD_BG, GOOD],
+	"problems": [DANGER_BG, DANGER],
+	"overridden": [Color("#2A2F38"), Color("#C9CCD3")],
+}
+
 ## Chip colours by kind: [background, text].
 const CHIPS := {
 	"": [Color("#2A2F38"), Color("#C3C7CF")],
 	"legends": [Color("#33283F"), Color("#D5BFF0")],
+	"warn": [Color("#3A2A20"), Color("#F2B79A")],
 	"gold": [WARNING_BG, WARNING],
 	"Scourge of Aqshy": [Color("#3A2418"), Color("#F4A571")],
 	"Scourge of Ghyran": [Color("#1E3324"), Color("#9FD8A8")],
@@ -97,6 +107,17 @@ static func chip(text: String, kind := "") -> PanelContainer:
 	return panel
 
 
+## The rounded background of an army's status pill, e.g. "Army valid"; [param kind] is a key of
+## [constant STATUS].
+static func pill(kind: String) -> StyleBoxFlat:
+	var style := box(STATUS[kind][0], Color.TRANSPARENT, 16, 0)
+	style.content_margin_left = 12
+	style.content_margin_right = 12
+	style.content_margin_top = 6
+	style.content_margin_bottom = 6
+	return style
+
+
 static func _create() -> Theme:
 	var theme := Theme.new()
 	theme.default_font = INTER
@@ -159,10 +180,12 @@ static func _create() -> Theme:
 	theme.set_color("icon_normal_color", "TabButton", MUTED)
 	theme.set_color("icon_focus_color", "TabButton", MUTED)
 	_button(theme, "CardButton", Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, TEXT)
-	_button(theme, "PortraitButton", Color("#252930"), Color("#252930"), Color("#343A45"), Color("#7E8490"))
-	theme.set_stylebox("hover", "PortraitButton", box(Color("#252930"), GOLD, 6, 0))
+	# Portraits draw their stripes behind the button (see UIBuilder.portrait), so only hover adds a
+	# border.
+	_button(theme, "PortraitButton", Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color("#7E8490"))
+	theme.set_stylebox("hover", "PortraitButton", box(Color.TRANSPARENT, GOLD, 6, 0))
 	for state in ["normal", "pressed", "disabled"]:
-		theme.set_stylebox(state, "PortraitButton", box(Color("#252930"), Color("#343A45"), 6, 0))
+		theme.set_stylebox(state, "PortraitButton", box(Color.TRANSPARENT, Color.TRANSPARENT, 6, 0))
 	theme.set_stylebox("focus", "PortraitButton", box(Color.TRANSPARENT, GOLD, 6, 0, 2))
 	theme.set_color("font_hover_color", "PortraitButton", TEXT)
 	theme.set_font("font", "PortraitButton", heading)
@@ -174,6 +197,39 @@ static func _create() -> Theme:
 			"TabButton"]:
 		theme.set_constant("icon_max_width", type, ICON_SIZE)
 	theme.set_font("font", "Button", semibold)
+
+	# The main menu's options.
+	for type in ["HeroButton", "HeroGoldButton", "HeroGhostButton"]:
+		var base: String = {"HeroButton": "Button", "HeroGoldButton": "GoldButton", "HeroGhostButton": "GhostButton"}[type]
+		theme.set_type_variation(type, base)
+		for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+			var style := theme.get_stylebox(state, base).duplicate() as StyleBoxFlat
+			style.content_margin_top = 14
+			style.content_margin_bottom = 14
+			style.content_margin_left = 24
+			style.content_margin_right = 24
+			theme.set_stylebox(state, type, style)
+		theme.set_font("font", type, font(CINZEL, 700))
+		theme.set_font_size("font_size", type, 17)
+
+	# Choices in the Forge's steps (OptionCard): selected while pressed.
+	_button(theme, "OptionCard", Color("#1A1D23"), Color("#1A1D23"), Color("#2E333D"), TEXT)
+	var card_on := box(Color("#211F19"), GOLD, 12, 0, 2)
+	for state in ["normal", "hover", "pressed", "hover_pressed", "disabled", "focus"]:
+		var style: StyleBoxFlat
+		match state:
+			"pressed", "hover_pressed":
+				style = card_on
+			"hover":
+				style = box(Color("#1A1D23"), Color("#4A515F"), 12, 0)
+			"focus":
+				style = box(Color.TRANSPARENT, GOLD, 12, 0, 2)
+				style.set_expand_margin_all(4)
+			"disabled":
+				style = box(Color("#16181C"), Color("#24282F"), 12, 0)
+			_:
+				style = box(Color("#1A1D23"), Color("#2E333D"), 12, 0)
+		theme.set_stylebox(state, "OptionCard", style)
 	theme.set_font("font", "OptionButton", semibold)
 
 	# Settings switches.
@@ -197,6 +253,13 @@ static func _create() -> Theme:
 
 	theme.set_stylebox("panel", "PanelContainer", StyleBoxEmpty.new())
 	_panel(theme, "HeaderPanel", box(HEADER, Color("#262A32"), 0, 0))
+	var footer := box(HEADER, Color("#262A32"), 0, 0)
+	footer.border_width_bottom = 0
+	footer.border_width_left = 0
+	footer.border_width_right = 0
+	_panel(theme, "FooterPanel", footer)
+	# An empty list's placeholder.
+	_panel(theme, "EmptyPanel", box(Color.TRANSPARENT, CONTROL_BORDER, 12, 24))
 	_panel(theme, "PanePanel", box(PANE, Color("#262A32"), 0, 16))
 	_panel(theme, "RegimentPanel", box(REGIMENT, Color("#2E333D"), 10, 12))
 	_panel(theme, "RenownRegimentPanel", box(REGIMENT, GOLD_DARK, 10, 12))
@@ -220,6 +283,19 @@ static func _create() -> Theme:
 	_panel(theme, "WarningsPanel", box(WARNING_BG, Color.TRANSPARENT, 8, 12))
 
 	_label(theme, "MutedLabel", MUTED, 12)
+	_label(theme, "DisplayTitleLabel", TEXT, 56)
+	theme.set_font("font", "DisplayTitleLabel", heading)
+	_label(theme, "PageTitleLabel", TEXT, 34)
+	theme.set_font("font", "PageTitleLabel", heading)
+	_label(theme, "CardHeadingLabel", TEXT, 20)
+	theme.set_font("font", "CardHeadingLabel", heading)
+	_label(theme, "DescriptionLabel", DESCRIPTION, 15)
+	_label(theme, "BreadcrumbLabel", MUTED, 13)
+	_label(theme, "BreadcrumbCurrentLabel", TEXT, 13)
+	theme.set_font("font", "BreadcrumbCurrentLabel", semibold)
+	_label(theme, "BodyLabel", Color("#C9CCD3"), 13)
+	_label(theme, "ArtLabel", Color("#7E8490"), 14)
+	theme.set_font("font", "ArtLabel", heading)
 	_label(theme, "TitleLabel", TEXT, 18)
 	theme.set_font("font", "TitleLabel", heading)
 	_label(theme, "SectionLabel", Color("#D8D2C4"), 16)
@@ -244,6 +320,46 @@ static func _create() -> Theme:
 	theme.set_color("default_color", "RichTextLabel", Color("#C9CCD3"))
 	theme.set_constant("table_h_separation", "RichTextLabel", 10)
 
+	# The faction browser's tabs, like the builder's TabButton.
+	var tab_bar := _underline(Color("#262A32"))
+	theme.set_stylebox("tabbar_background", "TabContainer", tab_bar)
+	theme.set_stylebox("panel", "TabContainer", StyleBoxEmpty.new())
+	var tab_style := box(Color.TRANSPARENT, Color.TRANSPARENT, 0, 0)
+	tab_style.content_margin_left = 14
+	tab_style.content_margin_right = 14
+	tab_style.content_margin_top = 14
+	tab_style.content_margin_bottom = 14
+	var tab_selected := tab_style.duplicate() as StyleBoxFlat
+	tab_selected.border_color = GOLD
+	tab_selected.border_width_bottom = 2
+	for type in ["TabContainer", "TabBar"]:
+		theme.set_stylebox("tab_unselected", type, tab_style)
+		theme.set_stylebox("tab_hovered", type, tab_style)
+		theme.set_stylebox("tab_disabled", type, tab_style)
+		theme.set_stylebox("tab_selected", type, tab_selected)
+		theme.set_stylebox("tab_focus", type, box(Color.TRANSPARENT, GOLD, 4, 0, 2))
+		theme.set_color("font_unselected_color", type, MUTED)
+		theme.set_color("font_hovered_color", type, TEXT)
+		theme.set_color("font_selected_color", type, TEXT)
+		theme.set_font("font", type, semibold)
+
+	# The faction browser's lists.
+	theme.set_stylebox("panel", "ItemList", box(PANE, BORDER, 8, 8))
+	theme.set_stylebox("focus", "ItemList", box(Color.TRANSPARENT, GOLD, 8, 0, 2))
+	theme.set_stylebox("hovered", "ItemList", box(CONTROL, Color.TRANSPARENT, 6, 4))
+	for state in ["selected", "selected_focus", "hovered_selected", "hovered_selected_focus"]:
+		theme.set_stylebox(state, "ItemList", box(Color("#2A2418"), GOLD_DARK, 6, 4))
+	theme.set_stylebox("cursor", "ItemList", box(Color.TRANSPARENT, GOLD, 6, 4))
+	theme.set_stylebox("cursor_unfocused", "ItemList", StyleBoxEmpty.new())
+	theme.set_color("font_color", "ItemList", Color("#C9CCD3"))
+	theme.set_color("font_hovered_color", "ItemList", TEXT)
+	theme.set_color("font_selected_color", "ItemList", WARNING)
+	theme.set_constant("v_separation", "ItemList", 6)
+	theme.set_stylebox("split_bar_background", "HSplitContainer", StyleBoxEmpty.new())
+
+	var separator := StyleBoxLine.new()
+	separator.color = BORDER
+	theme.set_stylebox("separator", "HSeparator", separator)
 	theme.set_stylebox("background", "ProgressBar", box(Color("#2A2F38"), Color.TRANSPARENT, 3))
 	theme.set_stylebox("fill", "ProgressBar", box(GOOD, Color.TRANSPARENT, 3))
 	theme.set_constant("separation", "VBoxContainer", 10)
