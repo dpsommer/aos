@@ -61,6 +61,13 @@ func test_theme_is_created_once() -> void:
 	assert_same(UITheme.get_theme(), UITheme.get_theme())
 
 
+func test_icon_button_width_matches_a_themed_grip_button() -> void:
+	var grip := UIBuilder.icon_button("grip", "Reorder", func() -> void: pass, "k", "GripButton")
+	grip.theme = UITheme.get_theme()
+	add_child_autofree(grip)
+	assert_eq(UITheme.icon_button_width("GripButton"), grip.get_combined_minimum_size().x)
+
+
 func test_box_without_a_border_has_no_border_width() -> void:
 	assert_eq(UITheme.box(Color.RED, Color.TRANSPARENT).border_width_left, 0)
 

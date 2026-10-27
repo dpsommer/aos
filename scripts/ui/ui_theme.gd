@@ -65,6 +65,16 @@ static func get_theme() -> Theme:
 	return _theme
 
 
+## The width of an icon button of type [param variation], e.g. "GripButton": its icon plus the
+## content margins of the nearest type in its variation chain that sets a normal stylebox.
+static func icon_button_width(variation := "IconButton") -> float:
+	var theme := get_theme()
+	var type := StringName(variation)
+	while type != &"" and not theme.has_stylebox("normal", type):
+		type = theme.get_type_variation_base(type)
+	return theme.get_stylebox("normal", type).get_minimum_size().x + theme.get_constant("icon_max_width", variation)
+
+
 ## [param font] at weight [param weight] (100-900), e.g. 600 for semibold Inter.
 static func font(base: FontFile, weight: int) -> FontVariation:
 	var variation := FontVariation.new()

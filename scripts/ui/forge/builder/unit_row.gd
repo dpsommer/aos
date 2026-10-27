@@ -173,6 +173,13 @@ func _summary() -> HBoxContainer:
 		builder.drag.source(grip, {"kind": "unit", "uid": unit.uid}, shown, self)
 		row.add_child(grip)
 		row.move_child(grip, 0)
+	elif renown:
+		# Regiment of Renown units can't be reordered, so a gap the width of a grip (a square icon
+		# button) lines them up with the units of other regiments.
+		var gap := Control.new()
+		gap.custom_minimum_size.x = UITheme.icon_button_width("GripButton")
+		row.add_child(gap)
+		row.move_child(gap, 0)
 	if not renown:
 		row.add_child(_points())
 	if warscroll and warscroll.can_reinforce and not renown:
