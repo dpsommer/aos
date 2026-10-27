@@ -164,6 +164,19 @@ static func rich(bbcode: String) -> RichTextLabel:
 	return text
 
 
+## The gold check a selected card shows in its corner.
+static func check_badge() -> PanelContainer:
+	var check := TextureRect.new()
+	check.texture = UITheme.icon("check")
+	check.modulate = Color("#17140C")
+	check.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	check.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	check.custom_minimum_size = Vector2(14, 14)
+	var badge := panel("", check)
+	badge.add_theme_stylebox_override("panel", UITheme.box(UITheme.GOLD, Color.TRANSPARENT, 12, 5))
+	return badge
+
+
 ## An option list; [param items] are [text, value] pairs. Calls [param on_selected] with the value.
 static func select(items: Array, selected: Variant, on_selected: Callable, key: String, tooltip := "") -> OptionButton:
 	var node := OptionButton.new()

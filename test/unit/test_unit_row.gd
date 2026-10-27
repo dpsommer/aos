@@ -430,12 +430,27 @@ func test_crown_and_grip_share_a_column() -> void:
 	assert_eq(crown.get_index(), grip.get_index())
 
 
-func test_hero_gets_a_select_for_every_enhancement_type() -> void:
+## The section with the heading and cards for enhancement [param type] on [param row], or null.
+func _enh_section(row: UnitRow, type: String) -> Control:
+	var found := UIKit.find_all(row, func(n: Node) -> bool: return n.get_meta(&"enhancement_type", "") == type)
+	return found[0] if not found.is_empty() else null
+
+
+func _enh_cards(row: UnitRow, type: String) -> Array[Node]:
+	var section := _enh_section(row, type)
+	return UIKit.find_all(section, func(n: Node) -> bool: return n is OptionCard) if section else []
+
+
+func _enh_card(row: UnitRow, uid: String, type: String, entry: String) -> OptionCard:
+	return UIKit.keyed(row, "%s:enh:%s:%s" % [uid, type, entry]) as OptionCard
+
+
+func test_hero_gets_a_section_for_every_enhancement_type() -> void:
 	var builder := _builder(UIKit.army_with_regiment())
 	_tables(builder, PackedStringArray(["Heroic Traits", "Artefacts of Power", "Monstrous Traits"]))
 	var row := _expanded_row(builder, "u1")
 	for type in builder.catalog.enhancement_types(builder.editor.army):
-		assert_true(UIKit.keyed(row, "u1:enh:" + type) is OptionButton, type)
+		assert_not_null(_enh_section(row, type), type)
 
 
 func test_non_hero_skips_hero_only_enhancement_types() -> void:
@@ -443,8 +458,8 @@ func test_non_hero_skips_hero_only_enhancement_types() -> void:
 	_tables(builder, PackedStringArray(ArmyValidator.HERO_ENHANCEMENTS) + PackedStringArray(["Monstrous Traits"]))
 	var row := _expanded_row(builder, "u2")
 	for type in ArmyValidator.HERO_ENHANCEMENTS:
-		assert_null(UIKit.keyed(row, "u2:enh:" + type), type)
-	assert_not_null(UIKit.keyed(row, "u2:enh:Monstrous Traits"))
+		assert_null(_enh_section(row, type), type)
+	assert_not_null(_enh_section(row, "Monstrous Traits"))
 
 
 func test_unit_skips_enhancement_types_only_other_units_can_take() -> void:
@@ -452,40 +467,86 @@ func test_unit_skips_enhancement_types_only_other_units_can_take() -> void:
 	_tables(builder, PackedStringArray(["Great Works"]))
 	builder.catalog.faction.enhancement_tables[0].units = PackedStringArray(["Somebody Else"])
 	var row := _expanded_row(builder, "u1")
-	assert_null(UIKit.keyed(row, "u1:enh:Great Works"))
+	assert_null(_enh_section(row, "Great Works"))
 
 
-func test_unique_unit_gets_no_enhancement_selects() -> void:
+func test_unique_unit_gets_no_enhancement_cards() -> void:
 	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["unique"])))
 	_tables(builder, PackedStringArray(["Heroic Traits", "Monstrous Traits"]))
 	var row := _expanded_row(builder, "u2")
-	assert_eq(UIKit.find_all(row, func(n: Node) -> bool: return n is OptionButton).size(), 0)
+	assert_eq(UIKit.find_all(row, func(n: Node) -> bool: return n is OptionCard).size(), 0)
 
 
-func test_enhancement_select_lists_none_and_each_enhancement() -> void:
+func test_enhancement_section_has_a_card_for_each_enhancement() -> void:
 	var builder := _builder(UIKit.army_with_regiment())
 	_tables(builder, PackedStringArray(["Heroic Traits"]))
-	var select := UIKit.keyed(_expanded_row(builder, "u1"), "u1:enh:Heroic Traits") as OptionButton
-	assert_eq(select.item_count, 3)
-	assert_eq(select.get_item_metadata(0), "")
+	var row := _expanded_row(builder, "u1")
+	assert_eq(_enh_cards(row, "Heroic Traits").size(), 2)
+	assert_not_null(_enh_card(row, "u1", "Heroic Traits", "Boon A"))
+	assert_not_null(_enh_card(row, "u1", "Heroic Traits", "Boon B"))
+
+
+func test_enhancement_heading_is_a_section_label_with_the_type() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var heading := _enh_section(_expanded_row(builder, "u1"), "Heroic Traits").get_child(0) as Label
+	assert_eq(heading.theme_type_variation, &"SectionLabel")
+	assert_eq(heading.text, "Heroic Traits")
 
 
 func test_choosing_an_enhancement_gives_it_to_the_unit() -> void:
 	var army := UIKit.army_with_regiment()
 	var builder := _builder(army)
 	_tables(builder, PackedStringArray(["Heroic Traits"]))
-	var select := UIKit.keyed(_expanded_row(builder, "u1"), "u1:enh:Heroic Traits") as OptionButton
-	select.item_selected.emit(2)
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon B")
+	card.button_pressed = true
 	assert_eq(army.find_unit("u1").enhancements["Heroic Traits"], "Boon B")
 
 
-func test_enhancement_select_shows_the_units_current_enhancement() -> void:
+func test_enhancement_card_is_pressed_for_the_units_current_enhancement() -> void:
 	var army := UIKit.army_with_regiment()
 	army.find_unit("u1").enhancements["Heroic Traits"] = "Boon A"
 	var builder := _builder(army)
 	_tables(builder, PackedStringArray(["Heroic Traits"]))
-	var select := UIKit.keyed(_expanded_row(builder, "u1"), "u1:enh:Heroic Traits") as OptionButton
-	assert_eq(select.get_selected_metadata(), "Boon A")
+	var row := _expanded_row(builder, "u1")
+	assert_true(_enh_card(row, "u1", "Heroic Traits", "Boon A").button_pressed)
+	assert_false(_enh_card(row, "u1", "Heroic Traits", "Boon B").button_pressed)
+
+
+func test_unpressing_the_picked_card_removes_the_enhancement() -> void:
+	var army := UIKit.army_with_regiment()
+	army.find_unit("u1").enhancements["Heroic Traits"] = "Boon A"
+	var builder := _builder(army)
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon A")
+	card.button_pressed = false
+	assert_false(army.find_unit("u1").enhancements.has("Heroic Traits"))
+
+
+## Chips upper-case their text, so these match against the upper-case form.
+func test_enhancement_card_shows_a_points_chip_only_when_it_costs_points() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var row := _expanded_row(builder, "u1")
+	assert_true(UIKit.has_label_containing(_enh_card(row, "u1", "Heroic Traits", "Boon B"), "20 PTS"))
+	assert_false(UIKit.has_label_containing(_enh_card(row, "u1", "Heroic Traits", "Boon A"), "PTS"))
+
+
+func test_legends_enhancement_table_shows_a_legends_chip() -> void:
+	var army := UIKit.army_with_regiment()
+	army.show_legends = true
+	var builder := _builder(army)
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	builder.catalog.faction.enhancement_tables[0].legends = true
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon A")
+	assert_true(UIKit.has_label_containing(card, "LEGENDS"))
+
+
+func test_non_legends_enhancement_card_has_no_legends_chip() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon A")
+	assert_false(UIKit.has_label_containing(card, "LEGENDS"))
 
 
 func _faction_with_option(option: WeaponOption, can_reinforce := false) -> Faction:

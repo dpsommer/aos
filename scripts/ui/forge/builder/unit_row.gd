@@ -249,16 +249,13 @@ func _options() -> VBoxContainer:
 	var box := UIBuilder.vbox([], 8)
 
 	for type in _enhancement_types():
-		var items := [["None", ""]]
-		for table in builder.catalog.enhancement_choices(army, warscroll, type, unit.enhancements.get(type, "")):
+		var section := UIBuilder.vbox([UIBuilder.label(type, "SectionLabel")], 8)
+		section.set_meta(&"enhancement_type", type)
+		var picked: String = unit.enhancements.get(type, "")
+		for table in builder.catalog.enhancement_choices(army, warscroll, type, picked):
 			for entry in table.entries:
-				var group := " (%s)" % table.group if not table.group.is_empty() else ""
-				var legends := " (Legends)" if table.legends else ""
-				items.append(["%s%s%s%s" % [entry.name, " · %d pts" % entry.points if entry.points else "", group, legends], entry.name])
-		var picker := UIBuilder.select(items, unit.enhancements.get(type, ""),
-				func(value: String) -> void: editor.set_enhancement(unit.uid, type, value), key + "enh:" + type, type)
-		picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		box.add_child(UIBuilder.hbox([UIBuilder.label(type, "MutedLabel"), picker]))
+				section.add_child(_enhancement_card(type, table, entry, entry.name == picked))
+		box.add_child(section)
 
 	for option in warscroll.weapon_options:
 		var spin := SpinBox.new()
@@ -275,6 +272,47 @@ func _options() -> VBoxContainer:
 		text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		box.add_child(UIBuilder.hbox([text, spin]))
 	return box
+
+
+## A card for [param entry] of [param table], showing its points, table group, Scourge and Legends
+## tags and rules. Pressing it gives the unit the enhancement, or takes it away if [param picked].
+func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, picked: bool) -> OptionCard:
+	var card := OptionCard.new()
+	card.toggle_mode = true
+	card.button_pressed = picked
+	card.accessibility_name = entry.name
+	card.tooltip_text = ("Remove %s" if picked else "Give the unit %s") % entry.name
+	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	card.set_meta(&"focus_key", "%s:enh:%s:%s" % [unit.uid, type, entry.name])
+	card.set_meta(&"enhancement", entry.name)
+	var top := UIBuilder.hbox([], 6)
+	if entry.points > 0:
+		top.add_child(UITheme.chip("%d pts" % entry.points, "gold"))
+	if not table.group.is_empty():
+		top.add_child(UITheme.chip(table.group))
+	var scourge := UIBuilder.scourge_tag(table.source)
+	if scourge:
+		top.add_child(scourge)
+	if table.legends:
+		top.add_child(UITheme.chip("Legends", "legends"))
+	top.add_child(UIBuilder.spacer())
+	if picked:
+		top.add_child(UIBuilder.check_badge())
+	var name_line := UIBuilder.hbox([UIBuilder.label(entry.name, "CardTitleLabel", true)])
+	var timing := ", ".join(Array([entry.frequency, entry.timing]).filter(func(part: String) -> bool: return not part.is_empty()))
+	if not timing.is_empty():
+		name_line.add_child(UIBuilder.label(timing, "MutedLabel"))
+	if top.get_child_count() > 1:
+		card.add(top)
+	else:
+		top.free()
+	card.add(name_line)
+	var body := RulesFormatter.ability_body(entry)
+	if not body.is_empty():
+		card.add(UIBuilder.rich(body))
+	card.toggled.connect(func(on: bool) -> void:
+		builder.editor.set_enhancement(unit.uid, type, entry.name if on else ""))
+	return card
 
 
 ## A unit's name with its rename button right after it. The name is cut short with an ellipsis

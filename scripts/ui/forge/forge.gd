@@ -506,14 +506,7 @@ func _formation_card(formation: BattleFormation, group: ButtonGroup) -> OptionCa
 	else:
 		chip = UITheme.chip(formation.abilities[0].type if not formation.abilities.is_empty() else "Formation")
 	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var check := TextureRect.new()
-	check.texture = UITheme.icon("check")
-	check.modulate = Color("#17140C")
-	check.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	check.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	check.custom_minimum_size = Vector2(14, 14)
-	var badge := UIBuilder.panel("", check)
-	badge.add_theme_stylebox_override("panel", UITheme.box(UITheme.GOLD, Color.TRANSPARENT, 12, 5))
+	var badge := UIBuilder.check_badge()
 	badge.visible = false
 	var top := UIBuilder.hbox([chip, UIBuilder.spacer(), badge])
 	# As tall as the badge, so showing it doesn't move the rest of the card.
