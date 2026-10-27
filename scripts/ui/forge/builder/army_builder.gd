@@ -501,7 +501,7 @@ func _terrain_row(warscroll: Warscroll) -> PanelContainer:
 				"GhostButton", "Add %s to the army" % warscroll.name)
 	var row := UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names, UIBuilder.label("%d pts" % warscroll.points, "MutedLabel"),
 			toggle], 10)
-	return UIBuilder.panel("PickedRowPanel" if included else "RowPanel", row)
+	return UIBuilder.panel("RowPanel", row)
 
 
 ## The universal terrain abilities a terrain warscroll's composition lists, e.g. "Cover, Impassable",

@@ -615,6 +615,14 @@ func test_included_terrain_remove_is_a_delete_icon_button() -> void:
 	assert_eq(remove.theme_type_variation, &"DangerIconButton")
 
 
+func test_included_terrain_row_is_not_highlighted() -> void:
+	var army := _valid_army()
+	army.faction_terrain = "terrain"
+	var builder := _builder(army)
+	var panel := UIKit.keyed(builder.builder_list, "terrain:terrain").get_parent().get_parent() as PanelContainer
+	assert_eq(panel.theme_type_variation, &"RowPanel")
+
+
 func test_terrain_row_shows_a_portrait() -> void:
 	var builder := _builder(_valid_army())
 	var row := UIKit.keyed(builder.builder_list, "terrain:terrain").get_parent()
