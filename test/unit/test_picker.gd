@@ -98,6 +98,55 @@ func test_open_units_title_is_shown() -> void:
 	assert_true(UIKit.has_label_containing(builder.picker, "Choose a thing"))
 
 
+func _typed(entries: Array) -> Callable:
+	var scrolls: Array[Warscroll] = []
+	for entry: Array in entries:
+		scrolls.append(Kit.warscroll(entry[0], PackedStringArray(entry[1])))
+	return func() -> Array[Warscroll]: return scrolls
+
+
+func test_open_units_groups_units_under_a_banner_per_type() -> void:
+	var builder := _builder()
+	builder.picker.open_units("Pick", _typed([["h", ["HERO"]], ["i", ["INFANTRY"]]]), func(_id: String) -> void: pass)
+	assert_not_null(UIKit.keyed(builder.picker, "picker:type:Hero"))
+	assert_not_null(UIKit.keyed(builder.picker, "picker:type:Infantry"))
+	assert_null(UIKit.keyed(builder.picker, "picker:type:Cavalry"))
+
+
+func test_open_units_lists_a_unit_in_its_types_section() -> void:
+	var builder := _builder()
+	builder.picker.open_units("Pick", _typed([["h", ["HERO"]], ["i", ["INFANTRY"]]]), func(_id: String) -> void: pass)
+	var section := UIKit.keyed(builder.picker, "picker:type:Infantry").get_parent()
+	assert_not_null(UIKit.keyed(section, "pick:i"))
+	assert_null(UIKit.keyed(section, "pick:h"))
+
+
+func test_open_units_sections_follow_the_roster_order() -> void:
+	var builder := _builder()
+	builder.picker.open_units("Pick", _typed([["i", ["INFANTRY"]], ["h", ["HERO"]]]), func(_id: String) -> void: pass)
+	var hero := UIKit.keyed(builder.picker, "picker:type:Hero").get_parent()
+	var infantry := UIKit.keyed(builder.picker, "picker:type:Infantry").get_parent()
+	assert_lt(hero.get_index(), infantry.get_index())
+
+
+func test_folding_a_section_hides_its_units() -> void:
+	var builder := _builder()
+	builder.picker.open_units("Pick", _typed([["h", ["HERO"]], ["i", ["INFANTRY"]]]), func(_id: String) -> void: pass)
+	UIKit.keyed(builder.picker, "picker:type:Hero").pressed.emit()
+	await get_tree().process_frame
+	assert_null(UIKit.keyed(builder.picker, "pick:h"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:i"))
+
+
+func test_reopening_the_picker_unfolds_its_sections() -> void:
+	var builder := _builder()
+	builder.picker.open_units("Pick", _typed([["h", ["HERO"]]]), func(_id: String) -> void: pass)
+	UIKit.keyed(builder.picker, "picker:type:Hero").pressed.emit()
+	builder.picker.open_units("Pick", _typed([["h", ["HERO"]]]), func(_id: String) -> void: pass)
+	await get_tree().process_frame
+	assert_not_null(UIKit.keyed(builder.picker, "pick:h"))
+
+
 func test_refresh_redraws_the_list_from_the_callable() -> void:
 	var builder := _builder()
 	var ids := PackedStringArray(["a"])

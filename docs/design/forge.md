@@ -78,7 +78,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - A status pill: "Army valid", "N problems" or "Constraints overridden".
   - Save army (also Ctrl+S, or Command+S on macOS; the tooltip names only this platform's shortcut): saves with `ArmyStore`, committing any name or count still being typed. It reads "Saved" and is disabled until the army changes again.
 - **Builder pane:** the army list, top to bottom.
-  - **Army name:** an editable field.
+  - **Army name:** in Cinzel, with a pencil button that swaps it for a field to edit it. Enter or leaving the field saves the new name (a blank name is ignored); Esc cancels.
   - **Validation:** problems and warnings from `ArmyValidator`.
   - **Battle Tactics:** 2 slots. A filled slot shows the card's name and its battle tactics' names, with Change.
   - **Army List:** each regiment's name, unit count against its capacity, and points, with collapse, Rename and Delete.
@@ -92,9 +92,9 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
 
       Units in a Regiment of Renown have no buttons and can't be renamed.
     - **Options:** a select for each enhancement type the unit can take (`ArmyCatalog.enhancement_choices()`: only tables whose `units` include it, and no Legends tables unless Legends are shown, though the unit's current pick stays), and a count for each weapon option, capped by its regiment size, with the option's rules.
-    - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (disabled when full), "Add regiment" and "Add Regiment of Renown".
+    - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (hidden when full, unless constraints are overridden), "Add regiment" and "Add Regiment of Renown" (hidden once the army has one, unless constraints are overridden).
   - **Auxiliary Units:** unit rows and "Add auxiliary unit".
-  - **Faction Terrain:** a select, hidden when the faction has none or its Army of Renown forbids it.
+  - **Faction Terrain:** "Up to 1 terrain feature". A row for each terrain warscroll, laid out like a unit row: a portrait, its name, the universal terrain abilities its composition lists (`ArmyBuilder.terrain_abilities()`), its points, and Add or Remove. The included terrain's row is outlined in gold. Hidden when the faction has none or its Army of Renown forbids it.
   - **Lores:** a select each for spell, prayer and manifestation lores, without Legends lores (such as Scourge of Ghyran ones) unless Legends are shown. Each has a "?" whose tooltip says which units the lore needs, and which turns amber when the army needs that lore and has none.
 - **Info pane:** on the left (`InfoPane`, `info_pane.gd`). A search box sits above tabs for Roster, Rules, Regiments of Renown and Army settings (a gear).
   - **Search:** the placeholder names what the tab searches, on every tab. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
@@ -137,7 +137,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - the battlepack's battle tactics cards in full. The whole card is pressed (clicked, or Enter or Space) to choose it. The slot's current card is chipped "Chosen" and can't be pressed, and the other slot's card isn't listed;
   - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
 
-  It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
+  Units are listed in foldable sections by type (Hero, Infantry, Cavalry and so on), as in the Roster. It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
 - **Drag and drop** (`BuilderDragDrop`, `drag_drop.gd`): a gold line shows where a drop will go, and the dragged row or card is dimmed.
   - **Roster card:** drop it in a regiment to add the unit there, or on Auxiliary Units.
   - **Unit:** drag its grip to move it within its regiment, to another regiment, or to Auxiliary Units. A full regiment refuses it unless constraints are overridden, and nothing goes before a Hero leader.
@@ -146,9 +146,9 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Regiments of Renown card:** drop it on the army list to add it, if the army can take it.
   - **Feedback:** regiments that can take the dragged unit are outlined in gold, and dragging near the top or bottom of the army list scrolls it.
   - **Keyboard:** the grips move units and regiments with Up and Down. Hero leaders and Regiment of Renown units have no grip.
-- **Redrawing and focus:** the builder pane is rebuilt from the army after every change. Controls carry a `focus_key` meta, so keyboard focus returns to the same control afterwards. If it's gone, focus goes to the picker's first button while the picker is open, else to Back. Closing the picker returns focus to the control that opened it.
+- **Redrawing and focus:** the builder pane is rebuilt from the army after every change. Controls carry a `focus_key` meta, so keyboard focus returns to the same control afterwards. If it's gone, focus goes to the picker's first button while the picker is open, else to Back. Closing the picker returns focus to the control that opened it. When a pick fills a regiment, which hides its "Add unit", focus goes to the regiment's collapse button.
   - The info pane is only rebuilt when something its tab shows has changed, as the Rules tab is slow to lay out.
-- **Esc:** in the search box, clears the search. Otherwise it closes the picker, then cancels a regiment or unit rename, then goes back.
+- **Esc:** in the search box, clears the search. Otherwise it closes the picker, then cancels a regiment, unit or army rename, then goes back.
 
 ## Army model
 
