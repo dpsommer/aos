@@ -340,7 +340,7 @@ static func _create() -> Theme:
 	theme.set_font("font", "ArtLabel", heading)
 	_label(theme, "TitleLabel", TEXT, 18)
 	theme.set_font("font", "TitleLabel", heading)
-	_label(theme, "SectionLabel", Color("#D8D2C4"), 16)
+	_label(theme, "SectionLabel", Color("#D8D2C4"), 20)
 	theme.set_font("font", "SectionLabel", heading)
 	_label(theme, "CardTitleLabel", TEXT, 15)
 	theme.set_font("font", "CardTitleLabel", semibold)
