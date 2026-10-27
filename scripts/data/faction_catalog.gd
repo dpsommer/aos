@@ -94,6 +94,14 @@ static func is_legends(faction: String) -> bool:
 	return faction in _LEGENDS
 
 
+## Name of the faction whose data directory is named [param faction_id], or empty if none is.
+static func name_for_id(faction_id: String) -> String:
+	for faction: String in _DATA_DIRS:
+		if _DATA_DIRS[faction].get_file() == faction_id:
+			return faction
+	return ""
+
+
 ## Loads [param faction]'s data, caching it. Returns null and reports errors if it can't be loaded.
 static func load_faction(faction: String) -> Faction:
 	if _loaded.has(faction):

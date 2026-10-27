@@ -145,3 +145,11 @@ func test_legends_faction_matches_legends_flag_in_its_data() -> void:
 func test_non_legends_faction_matches_legends_flag_in_its_data() -> void:
 	var faction := _first_available_not_legends()
 	assert_false(FactionCatalog.load_faction(faction).legends, "%s data is flagged legends" % faction)
+
+
+func test_name_for_unknown_id_is_empty() -> void:
+	assert_eq(FactionCatalog.name_for_id("not_a_real_faction"), "")
+
+
+func test_name_for_empty_id_is_empty() -> void:
+	assert_eq(FactionCatalog.name_for_id(""), "")
