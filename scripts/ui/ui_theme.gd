@@ -33,17 +33,22 @@ const STATUS := {
 }
 
 ## Chip colours by kind: [background, text].
+## Chip text is a pale tint of its colour, so the small upper-case text stays easy to read: see
+## [constant CHIP_MIN_CONTRAST].
 const CHIPS := {
-	"": [Color("#2A2F38"), Color("#C3C7CF")],
-	"legends": [Color("#33283F"), Color("#D5BFF0")],
-	"warn": [Color("#3A2A20"), Color("#F2B79A")],
-	"gold": [WARNING_BG, WARNING],
-	"Scourge of Aqshy": [Color("#3A2418"), Color("#F4A571")],
-	"Scourge of Ghyran": [Color("#1E3324"), Color("#9FD8A8")],
-	"affray": [Color("#1E2A38"), Color("#9CC3F0")],
-	"strike": [Color("#3A2420"), Color("#F2A28A")],
-	"domination": [Color("#2E2A1A"), Color("#E2C773")],
+	"": [Color("#2A2F38"), Color("#E6E8EC")],
+	"legends": [Color("#33283F"), Color("#EADCFB")],
+	"warn": [Color("#3A2A20"), Color("#FFD5C0")],
+	"gold": [WARNING_BG, Color("#F8DFA2")],
+	"Scourge of Aqshy": [Color("#3A2418"), Color("#FFC9A3")],
+	"Scourge of Ghyran": [Color("#1E3324"), Color("#C4EDCA")],
+	"affray": [Color("#1E2A38"), Color("#C7DEFA")],
+	"strike": [Color("#3A2420"), Color("#FFC8B5")],
+	"domination": [Color("#2E2A1A"), Color("#F3E0A0")],
 }
+## The least WCAG contrast ratio between a chip's text and its background: well above the 7:1 of
+## WCAG AAA, as chip text is small.
+const CHIP_MIN_CONTRAST := 9.0
 
 const INTER := preload("res://assets/2d/fonts/inter/Inter.ttf")
 const CINZEL := preload("res://assets/2d/fonts/cinzel/Cinzel.ttf")
@@ -87,6 +92,19 @@ static func box(color: Color, border := Color.TRANSPARENT, radius := 8, padding 
 	style.set_corner_radius_all(radius)
 	style.set_content_margin_all(padding)
 	return style
+
+
+## The WCAG contrast ratio between two colours, from 1 (none) to 21 (black on white).
+static func contrast(a: Color, b: Color) -> float:
+	var lighter := maxf(_luminance(a), _luminance(b))
+	var darker := minf(_luminance(a), _luminance(b))
+	return (lighter + 0.05) / (darker + 0.05)
+
+
+## WCAG relative luminance.
+static func _luminance(color: Color) -> float:
+	var linear := color.srgb_to_linear()
+	return 0.2126 * linear.r + 0.7152 * linear.g + 0.0722 * linear.b
 
 
 ## A small coloured label, e.g. a Scourge of Aqshy tag or a battle tactic's kind.
@@ -266,6 +284,9 @@ static func _create() -> Theme:
 	_panel(theme, "CardPanel", box(Color("#1A1D23"), Color("#2E333D"), 10, 14))
 	_panel(theme, "RowPanel", box(CARD, BORDER, 8, 8))
 	_panel(theme, "FlashCardPanel", box(Color("#1A1D23"), GOLD, 10, 14, 2))
+	# Outlines drawn over a card (TacticCard) with keyboard focus, or hovered when it can be pressed.
+	theme.set_stylebox("focus", "CardPanel", box(Color.TRANSPARENT, GOLD, 10, 0, 2))
+	theme.set_stylebox("hover", "CardPanel", box(Color.TRANSPARENT, Color("#4A515F"), 10, 0))
 	_panel(theme, "PickedRowPanel", box(Color("#222019"), GOLD, 8, 8))
 	_panel(theme, "FlashRowPanel", box(CARD, GOLD, 8, 8, 2))
 	_panel(theme, "FlashGroupPanel", box(Color.TRANSPARENT, GOLD, 8, 6, 2))

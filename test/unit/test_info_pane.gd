@@ -106,29 +106,21 @@ func test_only_the_current_tabs_button_is_pressed() -> void:
 		assert_eq(pane.tab_buttons[key].button_pressed, key == "rules", key)
 
 
-func test_each_searchable_tab_has_its_own_placeholder() -> void:
+func test_each_tab_has_its_own_placeholder() -> void:
 	var pane := _pane()
-	var placeholders := []
-	for key in ["roster", "rules", "renown"]:
+	var placeholders := {}
+	for key: String in InfoPane.TABS:
 		pane.set_tab(key)
 		assert_false(pane.search.placeholder_text.is_empty(), key)
-		placeholders.append(pane.search.placeholder_text)
-	assert_eq(placeholders.size(), 3)
-	assert_ne(placeholders[0], placeholders[1])
-	assert_ne(placeholders[1], placeholders[2])
+		placeholders[pane.search.placeholder_text] = true
+	assert_eq(placeholders.size(), InfoPane.TABS.size())
 
 
-func test_search_is_visible_on_searchable_tabs() -> void:
+func test_search_is_visible_on_every_tab() -> void:
 	var pane := _pane()
-	for key in ["roster", "rules", "renown"]:
+	for key: String in InfoPane.TABS:
 		pane.set_tab(key)
 		assert_true(pane.search.visible, key)
-
-
-func test_search_is_hidden_on_the_settings_tab() -> void:
-	var pane := _pane()
-	pane.set_tab("settings")
-	assert_false(pane.search.visible)
 
 
 func test_search_query_is_shared_across_tabs() -> void:
@@ -653,6 +645,28 @@ func _settings_pane(army: Army = null, faction: Faction = null) -> InfoPane:
 	var pane := _pane(army, faction)
 	pane.set_tab("settings")
 	return pane
+
+
+func test_settings_search_shows_only_matching_settings() -> void:
+	var pane := _settings_pane()
+	pane.search.text = "points"
+	pane.search.text_changed.emit("points")
+	assert_not_null(UIKit.keyed(pane, "info:points"))
+	assert_null(UIKit.keyed(pane, "info:legends"))
+	assert_null(UIKit.keyed(pane, "info:override"))
+
+
+func test_settings_search_matches_a_settings_note() -> void:
+	var pane := _settings_pane()
+	pane.search.text_changed.emit("validation")
+	assert_not_null(UIKit.keyed(pane, "info:override"))
+	assert_null(UIKit.keyed(pane, "info:points"))
+
+
+func test_settings_search_with_no_matches_says_so() -> void:
+	var pane := _settings_pane()
+	pane.search.text_changed.emit("zzz")
+	assert_true(UIKit.has_label_containing(pane, "No settings match"))
 
 
 func test_legends_switch_sets_show_legends() -> void:

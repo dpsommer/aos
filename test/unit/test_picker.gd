@@ -136,31 +136,56 @@ func test_refresh_does_nothing_when_closed() -> void:
 
 # --- Tactics ---
 
-func test_open_tactics_lists_each_card_with_a_choose_button() -> void:
+func _tactic(builder: ArmyBuilder, card_name: String) -> TacticCard:
+	for found in UIKit.find_all(builder.picker, func(n: Node) -> bool: return n is TacticCard):
+		if (found as TacticCard).card_name == card_name:
+			return found
+	return null
+
+
+func test_open_tactics_lists_each_card_as_pressable_without_buttons() -> void:
 	var builder := _builder()
 	builder.picker.open_tactics(0)
-	assert_eq((UIKit.keyed(builder.picker, "pick:Card A") as Button).text, "Choose")
-	assert_not_null(UIKit.keyed(builder.picker, "pick:Card B"))
+	for card_name in ["Card A", "Card B"]:
+		var card := UIKit.keyed(builder.picker, "pick:" + card_name) as TacticCard
+		assert_not_null(card, card_name)
+		assert_true(card.pressable, card_name)
+		assert_eq(UIKit.buttons(card).size(), 0, card_name)
 
 
-func test_choosing_a_card_fills_the_slot_and_closes() -> void:
+func test_pressing_a_card_fills_the_slot_and_closes() -> void:
 	var army := Kit.army()
 	var builder := _builder(army)
 	builder.picker.open_tactics(1)
-	UIKit.keyed(builder.picker, "pick:Card B").pressed.emit()
+	(UIKit.keyed(builder.picker, "pick:Card B") as TacticCard).pressed.emit()
 	assert_eq(army.tactics[1], "Card B")
 	assert_false(builder.picker.is_open())
 
 
-func test_the_slots_current_card_is_disabled_and_chosen() -> void:
+func test_open_tactics_focuses_the_first_card() -> void:
+	var builder := _builder()
+	builder.picker.open_tactics(0)
+	assert_true(UIKit.keyed(builder.picker, "pick:Card A").has_focus())
+
+
+func test_the_slots_current_card_is_marked_chosen_and_cant_be_pressed() -> void:
 	var army := Kit.army()
 	army.tactics = PackedStringArray(["Card A", ""])
 	var builder := _builder(army)
 	builder.picker.open_tactics(0)
-	var current := UIKit.keyed(builder.picker, "pick:Card A") as Button
-	assert_true(current.disabled)
-	assert_eq(current.text, "Chosen")
-	assert_false((UIKit.keyed(builder.picker, "pick:Card B") as Button).disabled)
+	var current := _tactic(builder, "Card A")
+	assert_false(current.pressable)
+	assert_true(UIKit.has_label_containing(current, "CHOSEN"))
+	assert_true(_tactic(builder, "Card B").pressable)
+
+
+func test_the_other_slots_card_is_not_listed() -> void:
+	var army := Kit.army()
+	army.tactics = PackedStringArray(["Card A", ""])
+	var builder := _builder(army)
+	builder.picker.open_tactics(1)
+	assert_null(_tactic(builder, "Card A"))
+	assert_not_null(_tactic(builder, "Card B"))
 
 
 func test_tactic_title_names_the_slot() -> void:

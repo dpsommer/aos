@@ -4,7 +4,8 @@ extends VBoxContainer
 ## Regiments of Renown and the army's settings. See docs/design/forge.md.
 
 const TABS := {"roster": "Roster", "rules": "Rules", "renown": "Regiments of Renown", "settings": "Army settings"}
-const PLACEHOLDERS := {"roster": "Search units", "rules": "Search rules", "renown": "Search Regiments of Renown"}
+const PLACEHOLDERS := {"roster": "Search units", "rules": "Search rules", "renown": "Search Regiments of Renown",
+		"settings": "Search settings"}
 ## Roster sections and the keyword that puts a unit in each. A unit goes in the first that matches,
 ## or in "Other".
 const UNIT_TYPES := [["Hero", "HERO"], ["Infantry", "INFANTRY"], ["Cavalry", "CAVALRY"], ["Monster", "MONSTER"],
@@ -119,7 +120,6 @@ func refresh() -> void:
 	var key: String = focused.get_meta(&"focus_key", "") if focused and is_ancestor_of(focused) else ""
 	for key_name: String in tab_buttons:
 		tab_buttons[key_name].set_pressed_no_signal(key_name == tab)
-	search.visible = tab != "settings"
 	search.placeholder_text = PLACEHOLDERS.get(tab, "Search")
 	search.accessibility_name = search.placeholder_text
 	if search.text != query:
@@ -428,10 +428,21 @@ func _settings() -> void:
 	var editor := builder.editor
 	var army := editor.army
 	_content.add_child(UIBuilder.label("Army Settings", "SectionLabel"))
-	_content.add_child(_switch("Show Legends units", "Legends warscrolls aren't used in matched play.",
-			army.show_legends, editor.set_show_legends, "info:legends"))
-	_content.add_child(_switch("Override army constraints", "Turns off validation. Any unit can join any regiment.",
-			army.override_constraints, editor.set_override_constraints, "info:override"))
+	# Each setting is shown when every word of the search is in its title or note.
+	var query_words := RulesSearch.words(query)
+	var shown := [0]
+	var add := func(control: Control, text: String) -> void:
+		if RulesSearch.matches(text, query_words):
+			_content.add_child(control)
+			shown[0] += 1
+		else:
+			control.free()
+	var legends_note := "Legends warscrolls aren't used in matched play."
+	add.call(_switch("Show Legends units", legends_note, army.show_legends, editor.set_show_legends, "info:legends"),
+			"Show Legends units " + legends_note)
+	var override_note := "Turns off validation. Any unit can join any regiment."
+	add.call(_switch("Override army constraints", override_note, army.override_constraints,
+			editor.set_override_constraints, "info:override"), "Override army constraints " + override_note)
 
 	var spin := SpinBox.new()
 	spin.max_value = 100000
@@ -449,7 +460,7 @@ func _settings() -> void:
 	for button: Button in [down, up]:
 		button.accessibility_name = button.tooltip_text
 		button.custom_minimum_size.x = 40
-	_content.add_child(_setting("Points limit", UIBuilder.hbox([down, spin, up])))
+	add.call(_setting("Points limit", UIBuilder.hbox([down, spin, up])), "Points limit")
 
 	var faction := builder.catalog.faction
 	if not faction.armies_of_renown.is_empty():
@@ -459,14 +470,16 @@ func _settings() -> void:
 		var select := UIBuilder.select(items, army.army_of_renown, editor.set_army_of_renown, "info:aor", "Army of Renown")
 		var note := "Uses the Army of Renown's battle traits, enhancements and lores instead of the faction's." \
 				if not army.army_of_renown.is_empty() else "Pick an Army of Renown to replace the faction rules."
-		_content.add_child(_setting("Army of Renown", select, note))
+		add.call(_setting("Army of Renown", select, note), "Army of Renown " + note)
 	var formations := builder.catalog.battle_formations(army)
 	if not formations.is_empty():
 		var items := [["None", ""]]
 		for formation in formations:
 			items.append([formation.name + (" · %d pts" % formation.points if formation.points else ""), formation.name])
-		_content.add_child(_setting("Battle Formation", UIBuilder.select(items, army.formation, editor.set_formation,
-				"info:formation", "Battle Formation")))
+		add.call(_setting("Battle Formation", UIBuilder.select(items, army.formation, editor.set_formation,
+				"info:formation", "Battle Formation")), "Battle Formation")
+	if shown[0] == 0:
+		_empty("No settings match “%s”." % query.strip_edges())
 
 
 func _switch(title: String, description: String, on: bool, on_toggled: Callable, key: String) -> PanelContainer:

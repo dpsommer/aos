@@ -52,15 +52,16 @@ func _open(title: String, render: Callable) -> void:
 	focus_first()
 
 
-## Focuses the list's first enabled button, or the close button when there is none.
+## Focuses the list's first enabled button or pressable card, or the close button when there is
+## none.
 func focus_first() -> void:
 	var first := _first_button(_list)
 	(first if first else get_child(0).get_child(1) as Control).grab_focus()
 
 
-func _first_button(node: Node) -> Button:
+func _first_button(node: Node) -> Control:
 	for child in node.get_children():
-		if child is Button and not child.disabled:
+		if (child is Button and not child.disabled) or (child is TacticCard and child.pressable):
 			return child
 		var found := _first_button(child)
 		if found:
@@ -91,19 +92,28 @@ func _unit_item(warscroll: Warscroll, on_pick: Callable) -> PanelContainer:
 	return UIBuilder.panel("RowPanel", UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names, add], 10))
 
 
-## Lists the battlepack's battle tactics cards in full to fill tactics card [param slot].
+## Lists the battlepack's battle tactics cards in full to fill tactics card [param slot]. Pressing a
+## card chooses it. The other slot's card isn't listed, and the slot's current card can't be pressed.
 func open_tactics(slot: int) -> void:
 	var render := func() -> void:
 		var core := builder.catalog.core
 		var cards: Array[BattleTacticCard] = core.battlepack.battle_tactic_cards if core and core.battlepack else []
+		var tactics := builder.editor.army.tactics
+		var current := tactics[slot] if slot < tactics.size() else ""
 		for card in cards:
-			var pick := func() -> void:
+			# The other slot's card can't be chosen twice.
+			if card.name in tactics and card.name != current:
+				continue
+			if card.name == current:
+				_list.add_child(TacticCard.new(card, true, "", UITheme.chip("Chosen", "gold")))
+				continue
+			var item := TacticCard.new(card, true)
+			item.make_pressable("Choose %s for battle tactics card %d" % [card.name, slot + 1])
+			item.set_meta(&"focus_key", "pick:" + card.name)
+			item.pressed.connect(func() -> void:
 				builder.editor.set_tactic(slot, card.name)
-				close()
-			var current := builder.editor.army.tactics[slot] == card.name
-			var choose := UIBuilder.button("Chosen" if current else "Choose", pick, "pick:" + card.name, "GoldButton")
-			choose.disabled = current
-			_list.add_child(TacticCard.new(card, true, "", choose))
+				close())
+			_list.add_child(item)
 	_open("Battle tactics card %d" % (slot + 1), render)
 
 

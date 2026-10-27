@@ -58,6 +58,7 @@ The steps:
 
 Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_ready()`, built from the Forge design canvas. It provides:
 - dark panels, warm text and a gold accent;
+- chips (tags such as Legends, Scourge or a battle tactic's kind) in pale tints of their colour, with a WCAG contrast of at least 9:1 against their background (`UITheme.CHIP_MIN_CONTRAST`);
 - Inter for text (also the project's default font) and Cinzel for headings, both in `assets/2d/fonts/` with their OFL licences;
 - the design's icons, in `assets/2d/icons/`;
 - type variations, e.g. `GoldButton`, `OptionCard`, `PageTitleLabel`.
@@ -75,7 +76,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - The faction, with its alliance and its Army of Renown or battle formation.
   - The points total against the limit, with a bar that turns red when over.
   - A status pill: "Army valid", "N problems" or "Constraints overridden".
-  - Save army (also Ctrl+S): saves with `ArmyStore`, committing any name or count still being typed. It reads "Saved" and is disabled until the army changes again.
+  - Save army (also Ctrl+S, or Command+S on macOS; the tooltip names only this platform's shortcut): saves with `ArmyStore`, committing any name or count still being typed. It reads "Saved" and is disabled until the army changes again.
 - **Builder pane:** the army list, top to bottom.
   - **Army name:** an editable field.
   - **Validation:** problems and warnings from `ArmyValidator`.
@@ -88,8 +89,8 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Faction Terrain:** a select, hidden when the faction has none or its Army of Renown forbids it.
   - **Lores:** a select each for spell, prayer and manifestation lores. Each has a "?" whose tooltip says which units the lore needs, and which turns amber when the army needs that lore and has none.
 - **Info pane:** on the left (`InfoPane`, `info_pane.gd`). A search box sits above tabs for Roster, Rules, Regiments of Renown and Army settings (a gear).
-  - **Search:** the placeholder names what the tab searches, and the box is hidden on Army settings. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
-    - Search unfolds everything it shows.
+  - **Search:** the placeholder names what the tab searches, on every tab. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
+    - Search unfolds everything it shows. On Army settings it shows the settings whose title or note matches.
     - A tab with no matches says so.
   - **Roster:** the faction's units, grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
     - **Unit cards:** points, plus Scourge and Legends chips.
@@ -125,7 +126,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - Heroes to lead a regiment;
   - units the leader's regiment options allow, or every unit when constraints are overridden;
   - auxiliary units;
-  - the battlepack's battle tactics cards in full;
+  - the battlepack's battle tactics cards in full. The whole card is pressed (clicked, or Enter or Space) to choose it. The slot's current card is chipped "Chosen" and can't be pressed, and the other slot's card isn't listed;
   - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
 
   It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
