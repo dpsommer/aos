@@ -442,6 +442,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"cadaverous_barricade"
 					]
 				},
 				{
@@ -455,6 +458,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"corpsemare_stampede"
 					]
 				},
 				{
@@ -468,6 +474,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"chalice_of_ushoran"
 					]
 				}
 			]

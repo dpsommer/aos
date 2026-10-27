@@ -42,10 +42,16 @@ static func ability_body(rule: Ability) -> String:
 	return "\n".join(lines)
 
 
-static func abilities(rules: Array[Ability]) -> String:
+## [param summoned], given an ability, returns the manifestations it sets up
+## ([method ArmyCatalog.summoned]); their warscrolls are shown indented under it.
+static func abilities(rules: Array[Ability], summoned := Callable()) -> String:
 	var parts := PackedStringArray()
 	for rule in rules:
-		parts.append(ability(rule))
+		var part := ability(rule)
+		if summoned.is_valid():
+			for manifestation: Warscroll in summoned.call(rule):
+				part += "\n\n[indent]%s[/indent]" % warscroll(manifestation)
+		parts.append(part)
 	return "\n\n".join(parts)
 
 
@@ -68,7 +74,8 @@ static func battle_formation(formation: BattleFormation) -> String:
 
 
 ## [param with_heading] is false where the unit's name is already shown, e.g. in a roster card.
-static func warscroll(unit: Warscroll, with_heading := true) -> String:
+## [param summoned] shows the manifestations its abilities summon, as in [method abilities].
+static func warscroll(unit: Warscroll, with_heading := true, summoned := Callable()) -> String:
 	var lines := PackedStringArray([heading(unit.name)] if with_heading else [])
 	var tags := PackedStringArray()
 	if not unit.source.is_empty():
@@ -94,7 +101,7 @@ static func warscroll(unit: Warscroll, with_heading := true) -> String:
 		lines.append(_weapon_table("Melee Weapons", unit.melee_weapons, false))
 	if not unit.abilities.is_empty():
 		lines.append("")
-		lines.append(abilities(unit.abilities))
+		lines.append(abilities(unit.abilities, summoned))
 	if not unit.composition.is_empty():
 		lines.append("")
 		lines.append("[b]Unit composition:[/b] %s" % _escape(unit.composition))

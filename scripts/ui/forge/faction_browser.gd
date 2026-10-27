@@ -49,7 +49,8 @@ func show_faction(data: Faction) -> void:
 	var labels := PackedStringArray()
 	for unit in data.warscrolls:
 		labels.append(_warscroll_label(unit))
-	warscrolls.populate(labels, func(i: int) -> String: return RulesFormatter.warscroll(data.warscrolls[i]))
+	var catalog := ArmyCatalog.new(data, CoreRulesCatalog.get_rules())
+	warscrolls.populate(labels, func(i: int) -> String: return RulesFormatter.warscroll(data.warscrolls[i], true, catalog.summoned))
 
 	labels = PackedStringArray()
 	for army in data.armies_of_renown:

@@ -179,5 +179,24 @@ func warscroll(unit: ArmyUnit, regiment: ArmyRegiment = null) -> Warscroll:
 	return faction.get_warscroll(unit.warscroll_id)
 
 
+## The manifestations [param ability] sets up, from its [member Ability.summons]: the faction's
+## own, the core rules' universal ones, or another faction's, which a shared Army of Renown such
+## as Legions of Nagash or a Regiment of Renown can summon. Ids that name no manifestation are
+## skipped.
+func summoned(ability: Ability) -> Array[Warscroll]:
+	var result: Array[Warscroll] = []
+	for warscroll_id in ability.summons:
+		var found := faction.get_warscroll(warscroll_id)
+		if (not found or not found.has_keyword("MANIFESTATION")) and core:
+			found = core.get_manifestation(warscroll_id)
+		if not found:
+			var home_id := FactionCatalog.manifestation_faction(warscroll_id)
+			var home: Faction = _load_faction.call(home_id) if not home_id.is_empty() else null
+			found = home.get_warscroll(warscroll_id) if home else null
+		if found and found.has_keyword("MANIFESTATION"):
+			result.append(found)
+	return result
+
+
 func battle_tactic_card(card_name: String) -> BattleTacticCard:
 	return core.battlepack.get_battle_tactic_card(card_name) if core and core.battlepack else null

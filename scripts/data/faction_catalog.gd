@@ -77,6 +77,8 @@ const _DATA_DIRS := {
 const _LEGENDS := ["Fyreslayers"]
 
 static var _loaded := {}
+## Faction ids by the ids of their manifestation warscrolls, read on first use.
+static var _manifestation_factions := {}
 
 
 ## Returns a copy of the faction names for [param alliance], in display order.
@@ -100,6 +102,20 @@ static func name_for_id(faction_id: String) -> String:
 		if _DATA_DIRS[faction].get_file() == faction_id:
 			return faction
 	return ""
+
+
+## The id of a faction whose warscrolls include the manifestation [param warscroll_id], or ""
+## if none does. Reads the factions' warscrolls.json without loading them.
+static func manifestation_faction(warscroll_id: String) -> String:
+	if _manifestation_factions.is_empty():
+		for faction: String in _DATA_DIRS:
+			var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(_DATA_DIRS[faction].path_join("warscrolls.json")))
+			if not data is Dictionary:
+				continue
+			for warscroll: Variant in data.get("warscrolls", []):
+				if warscroll is Dictionary and "MANIFESTATION" in warscroll.get("keywords", []):
+					_manifestation_factions[warscroll.id] = _DATA_DIRS[faction].get_file()
+	return _manifestation_factions.get(warscroll_id, "")
 
 
 ## Loads [param faction]'s data, caching it. Returns null and reports errors if it can't be loaded.

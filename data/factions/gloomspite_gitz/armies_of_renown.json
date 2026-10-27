@@ -134,6 +134,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"malevolent_moon"
 							]
 						}
 					]
@@ -252,6 +255,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"morks_mighty_mushroom"
 							]
 						}
 					]

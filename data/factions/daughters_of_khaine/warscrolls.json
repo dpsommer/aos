@@ -380,6 +380,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"avatar_of_khaine"
 					]
 				},
 				{

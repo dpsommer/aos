@@ -365,6 +365,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"shyish_reaper"
 					]
 				},
 				{
@@ -378,6 +381,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"mortalis_terminexus"
 					]
 				},
 				{
@@ -391,6 +397,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"vault_of_souls"
 					]
 				}
 			]

@@ -39,7 +39,7 @@ something, so stale ones are noticed.
 Warscrolls and Armies of Renown listed in shared.json are written once to data/shared/ (or
 --shared DIR) and referenced from the faction's files; see shared.py.
 """
-import argparse, copy, glob, json, os, sys
+import argparse, copy, glob, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bsdata, merge, schema, shared, wahapedia
@@ -164,6 +164,79 @@ def apply_overrides(data, overrides):
             section["text"] = section["text"].replace(old, new)
 
 
+def _summon_text(text):
+    return " " + re.sub(r"[^a-z0-9]+", " ", (text or "").lower().replace("’", "").replace("'", "")) + " "
+
+
+def summoned_ids(a, manifestations, owner_id=""):
+    """Ids of the [manifestations] (warscrolls) that ability [a] sets up: a SUMMON ability, or one
+    that sets up a unit, naming the manifestation in its rules. "Summon Horror of the Necropolis"
+    names all three it can pick from. Where a manifestation's name is part of a longer one's, e.g.
+    "Lesser Wall" in "Greater Lesser Wall", only the longer one counts. [owner_id] is the warscroll
+    the ability is on, which can't summon itself."""
+    # The name counts only as "Summon <manifestation>", so Skaven's 'The Lurking Vermintide'
+    # doesn't summon a Vermintide.
+    name = a["name"] if re.match(r"(?i)summon ", a["name"]) else ""
+    text = _summon_text(" ".join([name, a.get("declare", ""), a.get("effect", ""), a.get("text", "")]))
+    if "SUMMON" not in (a.get("keywords") or []) and " set up " not in text:
+        return []
+    named = [m for m in manifestations if m["id"] != owner_id
+             and _summon_text(re.sub(r"^The ", "", m["name"])) in text]
+    names = [_summon_text(m["name"]) for m in named]
+    named = [m for m in named if not any(n != _summon_text(m["name"]) and _summon_text(m["name"]) in n for n in names)]
+    # A Scourge's version of a manifestation is summoned by that Scourge's rules, the battletome's
+    # by the rest.
+    by_name = {}
+    for m in named:
+        by_name.setdefault(m["name"], []).append(m)
+    result = []
+    for versions in by_name.values():
+        same = [m for m in versions if (m.get("source") or "") == (a.get("source") or "")]
+        result.append((same or versions)[0]["id"])
+    return result
+
+
+def link_summons(data, core=(), others=()):
+    """Sets "summons" on every ability that sets up one of the faction's manifestations, or one of
+    [core], the universal ones, to their warscroll ids, unless an override already set it. Failing
+    those it looks in [others], other factions' manifestations, for shared Armies of Renown such as
+    Legions of Nagash, whose lores summon several factions' manifestations."""
+    own = [w for w in data["warscrolls"] if "MANIFESTATION" in (w.get("keywords") or []) and w.get("id")]
+    own += list(core)
+    owners = {id(a): w.get("id", "") for w in every_warscroll(data) for a in w["abilities"]}
+    for a in every_ability(data):
+        if "summons" not in a:
+            owner = owners.get(id(a), "")
+            ids = summoned_ids(a, own, owner) or summoned_ids(a, others, owner)
+            if ids:
+                a["summons"] = ids
+
+
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "data")
+
+
+def core_manifestations(data_dir=DATA_DIR):
+    """The universal manifestations' warscrolls, which faction rules can summon too."""
+    path = os.path.join(data_dir, "core", "manifestation_lores.json")
+    return json.load(open(path, encoding="utf-8"))["warscrolls"] if os.path.exists(path) else []
+
+
+def other_manifestations(faction_id, data_dir=DATA_DIR):
+    """The manifestation warscrolls of every faction in [data_dir] other than [faction_id]."""
+    shared_path = os.path.join(data_dir, "shared", "warscrolls.json")
+    shared_entries = {w["id"]: w for w in json.load(open(shared_path, encoding="utf-8"))["warscrolls"]} \
+        if os.path.exists(shared_path) else {}
+    result = []
+    for path in sorted(glob.glob(os.path.join(data_dir, "factions", "*", "warscrolls.json"))):
+        if os.path.basename(os.path.dirname(path)) == faction_id:
+            continue
+        for w in json.load(open(path, encoding="utf-8"))["warscrolls"]:
+            w = shared_entries.get(w.get("shared"), w)
+            if "MANIFESTATION" in (w.get("keywords") or []):
+                result.append(w)
+    return result
+
+
 # A Wahapedia faction page with nothing on it, for building from BSData alone.
 NO_WAHAPEDIA_PAGE = {
     "faction": {"battle_traits": [], "battle_formations": [], "enhancement_tables": [], "lores": []},
@@ -207,6 +280,7 @@ def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
         "path_to_glory": merge.path_to_glory(wh_page["path_to_glory"]),
     }
     apply_overrides(data, overrides)
+    link_summons(data, core_manifestations(), other_manifestations(faction_id))
     return data, (merge.Report() if wahapedia_dir is None else report)
 
 

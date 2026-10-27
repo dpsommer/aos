@@ -372,6 +372,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"morks_mighty_mushroom"
 					]
 				},
 				{
@@ -385,6 +388,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"scuttletide"
 					]
 				},
 				{
@@ -398,6 +404,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"scrapskuttles_arachnacauldron"
 					]
 				},
 				{
@@ -411,6 +420,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"malevolent_moon"
 					]
 				}
 			]

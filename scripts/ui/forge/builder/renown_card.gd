@@ -45,12 +45,12 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 		toggle.disabled = warscroll == null
 		content.add_child(toggle)
 		if open and warscroll:
-			content.add_child(UIBuilder.rich(RulesFormatter.warscroll(warscroll, false)))
+			content.add_child(UIBuilder.rich(RulesFormatter.warscroll(warscroll, false, builder.catalog.summoned)))
 
 	if not regiment.text.is_empty():
 		content.add_child(UIBuilder.label(regiment.text, "MutedLabel", true))
 	if not regiment.abilities.is_empty():
-		content.add_child(UIBuilder.rich(RulesFormatter.abilities(regiment.abilities)))
+		content.add_child(UIBuilder.rich(RulesFormatter.abilities(regiment.abilities, builder.catalog.summoned)))
 
 	var in_army := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.regiment_of_renown == regiment.name)
 	var has_one := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())

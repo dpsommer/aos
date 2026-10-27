@@ -75,3 +75,17 @@ def test_fields_override_leaves_other_spells_alone(tmp_path, monkeypatch):
     overrides = {"fields": {"SUMMON TWO": {"effect": "Overridden."}}}
     data, _ = build(tmp_path, monkeypatch, overrides=overrides)
     assert data["lores"][0]["entries"][0]["effect"] == "Set up one."
+
+
+def test_core_spells_are_linked_to_the_warscrolls_they_summon(tmp_path, monkeypatch):
+    page = LORES_PAGE.replace("Set up one.", "Set up a Thing One.")
+    parse = build_core.wahapedia.parse_manifestation_lores
+
+    def with_keywords(html):
+        parsed = parse(html)
+        for w in parsed["warscrolls"]:
+            w["keywords"] = ["MANIFESTATION"]
+        return parsed
+    monkeypatch.setattr(build_core.wahapedia, "parse_manifestation_lores", with_keywords)
+    data, _ = build(tmp_path, monkeypatch, bs_warscrolls=[bs_warscroll("Thing One")], page=page)
+    assert data["lores"][0]["entries"][0].get("summons") == ["thing_one"]

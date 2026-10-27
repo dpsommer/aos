@@ -1,4 +1,4 @@
-import copy, os
+import copy, json, os
 
 import pytest
 
@@ -398,10 +398,32 @@ def test_build_renames_armies_before_merging(tmp_path, monkeypatch):
     monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
     monkeypatch.setattr(build, "wahapedia_abilities", lambda page, units: [])
     monkeypatch.setattr(build.merge, "merge_faction", lambda report, bs, wh: {})
+    monkeypatch.setattr(build, "link_summons", lambda data, core, others: None)
     monkeypatch.setattr(build.merge, "merge_warscrolls", lambda report, bs, wh: [])
     monkeypatch.setattr(build.merge, "merge_armies", lambda report, bs, wh: merged.extend(a["name"] for a in bs) or bs)
     build.build("bs", str(tmp_path), "id", "Faction", {"army_names": {"New Summercourt": "The Knights"}})
     assert merged == ["The Knights", "Other Host"]
+
+
+
+def test_build_links_summons_after_the_overrides(tmp_path, monkeypatch):
+    (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
+    seen = []
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: ({}, [], []))
+    monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: {
+        "faction": {}, "armies_of_renown": [], "spearheads": [], "path_to_glory": []})
+    monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
+    monkeypatch.setattr(build, "wahapedia_abilities", lambda page, units: [])
+    monkeypatch.setattr(build.merge, "merge_faction", lambda report, bs, wh: {})
+    monkeypatch.setattr(build.merge, "merge_warscrolls", lambda report, bs, wh: [])
+    monkeypatch.setattr(build.merge, "merge_armies", lambda report, bs, wh: bs)
+    monkeypatch.setattr(build, "other_manifestations", lambda faction_id: ["others of " + faction_id])
+    monkeypatch.setattr(build, "link_summons",
+                        lambda data, core, others: seen.append((data["faction"].get("legends"), others)))
+    build.build("bs", str(tmp_path), "id", "Faction", {"faction": {"legends": True}})
+    assert seen == [(True, ["others of id"])]
 
 
 # rename_wahapedia_warscrolls()
@@ -440,6 +462,7 @@ def test_build_renames_wahapedia_warscrolls_before_merging(tmp_path, monkeypatch
     monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [{"name": "Monsta-killaz", "abilities": []}])
     monkeypatch.setattr(build, "wahapedia_abilities", lambda page, units: [])
     monkeypatch.setattr(build.merge, "merge_faction", lambda report, bs, wh: {})
+    monkeypatch.setattr(build, "link_summons", lambda data, core, others: None)
     monkeypatch.setattr(build.merge, "merge_warscrolls", lambda report, bs, wh: merged.extend(w["name"] for w in wh) or [])
     monkeypatch.setattr(build.merge, "merge_armies", lambda report, bs, wh: [])
     build.build("bs", str(tmp_path), "id", "Faction",
@@ -742,3 +765,183 @@ def test_path_to_glory_override_exit_does_not_change_text():
     with pytest.raises(SystemExit):
         build.apply_overrides(d, {"path_to_glory": {"Quests": {"Roll": "R"}}})
     assert d["path_to_glory"][0]["text"] == "Roll. Roll again."
+
+
+# --- summons ---
+
+def manifest(name, id=None, **kw):
+    m = {"id": id or name.lower().replace(" ", "_"), "name": name, "keywords": ["MANIFESTATION"], "abilities": []}
+    m.update(kw)
+    return m
+
+
+def spell(name, effect="", **kw):
+    a = {"name": name, "effect": effect, "keywords": ["SPELL", "SUMMON"]}
+    a.update(kw)
+    return a
+
+
+def ids(a, manifestations, owner_id=""):
+    return build.summoned_ids(a, manifestations, owner_id)
+
+
+def test_summon_ability_naming_a_manifestation_summons_it():
+    assert ids(spell("Summon Brass Wall"), [manifest("Iron Gate"), manifest("Brass Wall")]) == ["brass_wall"]
+
+
+def test_ability_without_summon_keyword_or_set_up_summons_nothing():
+    a = spell("Summon Brass Wall", keywords=["SPELL"])
+    assert ids(a, [manifest("Brass Wall")]) == []
+
+
+def test_set_up_in_the_rules_marks_a_summoning_ability_without_the_keyword():
+    a = {"name": "Call", "keywords": [], "effect": "Set up a Brass Wall wholly within 12\"."}
+    assert ids(a, [manifest("Brass Wall")]) == ["brass_wall"]
+
+
+def test_ability_name_counts_only_when_it_starts_with_summon():
+    a = spell("The Lurking Vermintide", "Set up one unit.")
+    assert ids(a, [manifest("Vermintide")]) == []
+
+
+def test_manifestation_named_in_the_rules_is_summoned_by_a_differently_named_ability():
+    a = spell("The Lurking Vermintide", "Set up a Vermintide.")
+    assert ids(a, [manifest("Vermintide")]) == ["vermintide"]
+
+
+def test_leading_the_in_the_manifestation_name_is_ignored():
+    assert ids(spell("Summon Burning Head"), [manifest("The Burning Head")]) == ["the_burning_head"]
+
+
+def test_case_punctuation_and_apostrophes_do_not_matter():
+    a = spell("SUMMON KHAINE'S WALL!")
+    assert ids(a, [manifest("Khaine’s Wall", id="kw")]) == ["kw"]
+
+
+def test_hyphens_and_non_breaking_hyphens_do_not_matter():
+    assert ids(spell("Summon Soul‑Eater"), [manifest("Soul-eater", id="se")]) == ["se"]
+
+
+def test_longer_manifestation_name_beats_one_contained_in_it():
+    found = ids(spell("Summon Lesser Wall"), [manifest("Wall"), manifest("Lesser Wall")])
+    assert found == ["lesser_wall"]
+
+
+def test_ability_on_a_manifestations_own_warscroll_cannot_summon_it():
+    assert ids(spell("Summon Brass Wall"), [manifest("Brass Wall")], owner_id="brass_wall") == []
+
+
+def test_scourge_version_is_chosen_when_the_abilitys_source_matches():
+    ms = [manifest("Wall"), manifest("Wall", id="scourge_wall", source="Scourge of Ghyran")]
+    assert ids(spell("Summon Wall", source="Scourge of Ghyran"), ms) == ["scourge_wall"]
+
+
+def test_battletome_version_is_chosen_when_the_abilitys_source_differs():
+    ms = [manifest("Wall", id="scourge_wall", source="Scourge of Ghyran"), manifest("Wall")]
+    assert ids(spell("Summon Wall"), ms) == ["wall"]
+
+
+def test_first_version_is_chosen_when_none_matches_the_source():
+    ms = [manifest("Wall", id="a", source="X"), manifest("Wall", id="b", source="Y")]
+    assert ids(spell("Summon Wall"), ms) == ["a"]
+
+
+def test_every_named_manifestation_is_summoned():
+    a = spell("Summon Horror", "Pick 1 of the following: Gate, Wall or Tower.")
+    found = ids(a, [manifest("Gate"), manifest("Wall"), manifest("Tower"), manifest("Pit")])
+    assert sorted(found) == ["gate", "tower", "wall"]
+
+
+def link_data(ability_, extra_warscrolls=()):
+    d = data()
+    d["warscrolls"] = [manifest("Brass Wall")] + list(extra_warscrolls)
+    d["faction"]["lores"] = [{"name": "Lore", "entries": [ability_]}]
+    return d
+
+
+def linked(d):
+    return d["faction"]["lores"][0]["entries"][0].get("summons")
+
+
+def test_link_summons_sets_summons_on_the_ability():
+    d = link_data(spell("Summon Brass Wall"))
+    build.link_summons(d)
+    assert linked(d) == ["brass_wall"]
+
+
+def test_link_summons_leaves_an_ability_with_summons_alone():
+    d = link_data(spell("Summon Brass Wall", summons=["other"]))
+    build.link_summons(d)
+    assert linked(d) == ["other"]
+
+
+def test_link_summons_leaves_an_empty_summons_override_alone():
+    d = link_data(spell("Summon Brass Wall", summons=[]))
+    build.link_summons(d)
+    assert linked(d) == []
+
+
+def test_link_summons_adds_nothing_to_abilities_that_summon_nothing():
+    d = link_data(spell("Summon Nothing"))
+    build.link_summons(d)
+    assert linked(d) is None
+
+
+def test_link_summons_uses_the_core_manifestations():
+    d = link_data(spell("Summon Core Thing"))
+    build.link_summons(d, core=[manifest("Core Thing")])
+    assert linked(d) == ["core_thing"]
+
+
+def test_link_summons_uses_others_only_when_nothing_else_matched():
+    d = link_data(spell("Summon Brass Wall"))
+    build.link_summons(d, others=[manifest("Brass Wall", id="elsewhere")])
+    assert linked(d) == ["brass_wall"]
+
+
+def test_link_summons_falls_back_to_others():
+    d = link_data(spell("Summon Far Thing"))
+    build.link_summons(d, others=[manifest("Far Thing")])
+    assert linked(d) == ["far_thing"]
+
+
+def test_link_summons_ignores_the_abilities_own_manifestation():
+    wall = manifest("Brass Wall", abilities=[spell("Summon Brass Wall")])
+    d = link_data(spell("Nothing"), [])
+    d["warscrolls"] = [wall]
+    build.link_summons(d)
+    assert "summons" not in wall["abilities"][0]
+
+
+def test_link_summons_reaches_armies_of_renown_abilities():
+    d = link_data(spell("Nothing"))
+    d["armies_of_renown"][0]["lores"] = [{"name": "L", "entries": [spell("Summon Brass Wall")]}]
+    build.link_summons(d)
+    assert d["armies_of_renown"][0]["lores"][0]["entries"][0]["summons"] == ["brass_wall"]
+
+
+def write_warscrolls(path, warscrolls):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"warscrolls": warscrolls}), encoding="utf-8")
+
+
+def test_core_manifestations_reads_the_core_warscrolls(tmp_path):
+    write_warscrolls(tmp_path / "core" / "manifestation_lores.json", [manifest("Core Thing")])
+    assert [w["id"] for w in build.core_manifestations(str(tmp_path))] == ["core_thing"]
+
+
+def test_core_manifestations_is_empty_without_the_file(tmp_path):
+    assert build.core_manifestations(str(tmp_path)) == []
+
+
+def test_other_manifestations_skip_the_own_faction_and_non_manifestations(tmp_path):
+    write_warscrolls(tmp_path / "factions" / "mine" / "warscrolls.json", [manifest("Mine")])
+    write_warscrolls(tmp_path / "factions" / "theirs" / "warscrolls.json",
+                     [manifest("Theirs"), {"id": "unit", "name": "Unit", "keywords": ["HERO"]}])
+    assert [w["id"] for w in build.other_manifestations("mine", str(tmp_path))] == ["theirs"]
+
+
+def test_other_manifestations_resolve_shared_warscrolls(tmp_path):
+    write_warscrolls(tmp_path / "shared" / "warscrolls.json", [manifest("Shared Thing")])
+    write_warscrolls(tmp_path / "factions" / "theirs" / "warscrolls.json", [{"shared": "shared_thing"}])
+    assert [w["id"] for w in build.other_manifestations("mine", str(tmp_path))] == ["shared_thing"]

@@ -312,3 +312,85 @@ func test_unknown_battle_tactic_card_is_null() -> void:
 
 func test_battle_tactic_card_is_null_without_core_rules() -> void:
 	assert_null(ArmyCatalog.new(_faction(), null).battle_tactic_card("Card A"))
+
+
+# Summoned manifestations
+
+func _summoning(ids: Array) -> Ability:
+	var spell := Kit.ability("Summon Thing")
+	spell.summons = PackedStringArray(ids)
+	return spell
+
+
+func _manifestation(id: String) -> Warscroll:
+	return Kit.warscroll(id, PackedStringArray(["MANIFESTATION"]))
+
+
+func _summoned_ids(catalog: ArmyCatalog, ids: Array) -> Array:
+	return catalog.summoned(_summoning(ids)).map(func(w: Warscroll) -> String: return w.id)
+
+
+func test_summoned_finds_the_factions_manifestation() -> void:
+	assert_eq(_summoned_ids(_catalog(), ["manifest"]), ["manifest"])
+
+
+func test_summoned_finds_a_core_manifestation() -> void:
+	var core := Kit.core()
+	core.manifestations = [_manifestation("core_thing")] as Array[Warscroll]
+	assert_eq(_summoned_ids(Kit.catalog(_faction(), core), ["core_thing"]), ["core_thing"])
+
+
+func test_summoned_prefers_the_faction_warscroll_over_the_core_one() -> void:
+	var core := Kit.core()
+	core.manifestations = [_manifestation("manifest")] as Array[Warscroll]
+	var catalog := Kit.catalog(_faction(), core)
+	assert_same(catalog.summoned(_summoning(["manifest"]))[0], catalog.faction.get_warscroll("manifest"))
+
+
+func test_summoned_skips_a_faction_warscroll_that_is_not_a_manifestation() -> void:
+	assert_eq(_summoned_ids(_catalog(), ["unit"]), [])
+
+
+func test_summoned_uses_the_core_manifestation_when_the_faction_warscroll_is_not_one() -> void:
+	var faction := Kit.faction([Kit.warscroll("shared_id")] as Array[Warscroll])
+	var core := Kit.core()
+	core.manifestations = [_manifestation("shared_id")] as Array[Warscroll]
+	assert_eq(_summoned_ids(Kit.catalog(faction, core), ["shared_id"]), ["shared_id"])
+
+
+func test_summoned_skips_unknown_ids() -> void:
+	assert_eq(_summoned_ids(_catalog(), ["nope"]), [])
+
+
+func test_summoned_keeps_the_order_of_the_ids() -> void:
+	var faction := Kit.faction([_manifestation("a"), _manifestation("b")] as Array[Warscroll])
+	assert_eq(_summoned_ids(Kit.catalog(faction), ["b", "a"]), ["b", "a"])
+
+
+func test_summoned_by_an_ability_with_no_summons_is_empty() -> void:
+	assert_eq(_summoned_ids(_catalog(), []), [])
+
+
+func test_summoned_finds_another_factions_manifestation() -> void:
+	var wisper_home := Kit.faction([_manifestation("wisper")] as Array[Warscroll], "cities_of_sigmar")
+	var asked := PackedStringArray()
+	var load_faction := func(faction_id: String) -> Faction:
+		asked.append(faction_id)
+		return wisper_home
+	var catalog := Kit.catalog(_faction(), null, load_faction)
+	assert_eq(_summoned_ids(catalog, ["wisper"]), ["wisper"])
+	assert_eq(asked.size(), 1)
+
+
+func test_summoned_does_not_load_another_faction_when_it_has_the_manifestation() -> void:
+	var loads := []
+	var load_faction := func(faction_id: String) -> Faction:
+		loads.append(faction_id)
+		return null
+	_summoned_ids(Kit.catalog(_faction(), null, load_faction), ["manifest"])
+	assert_eq(loads, [])
+
+
+func test_summoned_skips_a_manifestation_in_a_faction_that_cannot_load() -> void:
+	var catalog := Kit.catalog(_faction(), null, func(_id: String) -> Faction: return null)
+	assert_eq(_summoned_ids(catalog, ["wisper"]), [])

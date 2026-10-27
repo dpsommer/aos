@@ -337,6 +337,9 @@
 					"keywords": [
 						"PRAYER",
 						"SUMMON"
+					],
+					"summons": [
+						"hexgorger_skulls"
 					]
 				},
 				{
@@ -350,6 +353,9 @@
 					"keywords": [
 						"PRAYER",
 						"SUMMON"
+					],
+					"summons": [
+						"wrath_axe"
 					]
 				},
 				{
@@ -363,6 +369,9 @@
 					"keywords": [
 						"PRAYER",
 						"SUMMON"
+					],
+					"summons": [
+						"bleeding_icon"
 					]
 				}
 			]

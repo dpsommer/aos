@@ -79,6 +79,11 @@
 							"keywords": [
 								"PRAYER",
 								"SUMMON"
+							],
+							"summons": [
+								"bladewind",
+								"bloodwrack_viper",
+								"heart_of_fury"
 							]
 						}
 					]
@@ -327,6 +332,11 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"bladewind",
+								"bloodwrack_viper",
+								"heart_of_fury"
 							]
 						}
 					]

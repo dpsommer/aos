@@ -33,3 +33,6 @@ const TYPES: PackedStringArray = ["active", "passive", "command", "spell", "pray
 @export var chanting_value: int
 ## Expansion the ability comes from, e.g. "Scourge of Aqshy". Empty for the battletome.
 @export var source: String
+## Warscroll ids of the manifestations the ability sets up, e.g. a summoning spell's. See
+## [method ArmyCatalog.summoned].
+@export var summons: PackedStringArray

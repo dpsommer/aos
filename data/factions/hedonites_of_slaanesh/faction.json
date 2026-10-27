@@ -458,6 +458,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"dreadful_visage"
 					]
 				},
 				{
@@ -471,6 +474,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"mesmerising_mirror"
 					]
 				},
 				{
@@ -484,6 +490,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"wheels_of_excruciation"
 					]
 				}
 			]

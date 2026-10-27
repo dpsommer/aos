@@ -540,6 +540,7 @@ func test_a_summoning_spell_shows_its_manifestations_warscroll() -> void:
 	var faction := _faction()
 	var lore := Kit.lore("Flame Lore", "manifestation")
 	lore.entries = _abilities(["Summon Living Flame"])
+	lore.entries[0].summons = PackedStringArray(["living_flame"])
 	faction.lores.append(lore)
 	faction.warscrolls.append(Kit.warscroll("living_flame", PackedStringArray(["MANIFESTATION"]), 0, "Living Flame"))
 	var pane := _pane(null, faction)

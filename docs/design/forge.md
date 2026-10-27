@@ -103,12 +103,12 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Roster:** the faction's units, grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
     - **Unit cards:** points, plus Scourge and Legends chips.
     - **A star** pins the unit to a Favourites list at the top. Favourites are kept per faction in `user://forge.cfg`.
-    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
+    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". An ability that summons a manifestation (e.g. Jacobus Vyne's Summon Wisper) has the manifestation's warscroll indented under it, from `ArmyCatalog.summoned()`; so do warscrolls in Regiments of Renown cards and the faction browser. The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
   - **Rules:** the rules the army uses, from `RulesSections`, in sections that each fold:
     - Battle Traits;
     - Battle Formations;
     - Enhancements, one group per table;
-    - Lores, including the universal manifestation lores. Each spell or prayer that summons a manifestation shows the manifestation's warscroll on its card (`RulesSections.summoned_manifestation()` matches the manifestation the spell's name gives);
+    - Lores, including the universal manifestation lores. Each spell or prayer that summons manifestations shows their warscrolls on its card, from its `summons` ids (`ArmyCatalog.summoned()`);
     - Faction Terrain;
     - Battle Tactics: the battlepack's cards in full, with their FAQs.
 

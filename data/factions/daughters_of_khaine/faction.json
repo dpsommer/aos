@@ -168,7 +168,10 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: This unit used the 'Activate Place of Power' ability",
-					"effect": "Apply the effect below instead of the effect of that 'Activate Place of Power' ability.\nRoll a dice. On a 1, inflict D3 mortal damage on this unit. On a 2+, if there are no friendly Avatars of Khaine on the battlefield, set up an Avatar of Khaine wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION."
+					"effect": "Apply the effect below instead of the effect of that 'Activate Place of Power' ability.\nRoll a dice. On a 1, inflict D3 mortal damage on this unit. On a 2+, if there are no friendly Avatars of Khaine on the battlefield, set up an Avatar of Khaine wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION.",
+					"summons": [
+						"avatar_of_khaine"
+					]
 				},
 				{
 					"name": "Loyal Unto Death",
@@ -409,6 +412,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"bloodwrack_viper"
 					]
 				},
 				{
@@ -422,6 +428,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"heart_of_fury"
 					]
 				},
 				{
@@ -435,6 +444,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"bladewind"
 					]
 				}
 			]

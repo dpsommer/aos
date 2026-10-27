@@ -116,6 +116,9 @@
 							"keywords": [
 								"PRAYER",
 								"SUMMON"
+							],
+							"summons": [
+								"molten_infernoth"
 							]
 						}
 					]

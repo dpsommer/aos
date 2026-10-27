@@ -24,7 +24,8 @@ class Group:
 	var abilities: Array[Ability] = []
 	var warscrolls: Array[Warscroll] = []
 	var cards: Array[BattleTacticCard] = []
-	## The manifestation each of [member abilities] summons, by ability.
+	## The manifestations ([code]Array[Warscroll][/code]) each of [member abilities] summons, by
+	## ability, from [method ArmyCatalog.summoned].
 	var summons := {}
 
 	func size() -> int:
@@ -84,12 +85,6 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 
 	var lores: Array[Group] = []
 	var core := catalog.core
-	var manifestations: Array[Warscroll] = []
-	for warscroll in faction.warscrolls:
-		if warscroll.has_keyword("MANIFESTATION"):
-			manifestations.append(warscroll)
-	if core:
-		manifestations.append_array(core.manifestations)
 	for kind: String in LORE_KINDS:
 		var picked: String = army.get("%s_lore" % kind)
 		for lore in catalog.lores(army, kind):
@@ -102,8 +97,8 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 			group.lore = true
 			group.abilities = lore.entries
 			for ability in lore.entries:
-				var summoned := summoned_manifestation(ability, manifestations)
-				if summoned:
+				var summoned := catalog.summoned(ability)
+				if not summoned.is_empty():
 					group.summons[ability] = summoned
 			lores.append(group)
 	_add(sections, "Lores", lores)
@@ -119,23 +114,6 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 		tactics.cards = core.battlepack.battle_tactic_cards
 	_add(sections, "Battle Tactics", [tactics])
 	return sections
-
-
-## The manifestation in [param manifestations] that [param ability] summons, or null. A summoning
-## spell or prayer names it, e.g. "Summon Burning Head" summons The Burning Head. The longest name
-## wins, so "Summon Lesser Thing" summons a "Lesser Thing" rather than a "Thing".
-static func summoned_manifestation(ability: Ability, manifestations: Array[Warscroll]) -> Warscroll:
-	if not (ability.name.begins_with("Summon") or "SUMMON" in ability.keywords):
-		return null
-	var spell := ability.name.to_lower()
-	var found: Warscroll = null
-	var found_length := 0
-	for warscroll in manifestations:
-		var manifestation := warscroll.name.to_lower().trim_prefix("the ")
-		if manifestation.length() > found_length and manifestation in spell:
-			found = warscroll
-			found_length = manifestation.length()
-	return found
 
 
 static func _add(sections: Array[Section], title: String, groups: Array) -> void:
@@ -170,11 +148,11 @@ static func filter(sections: Array[Section], query: String) -> Array[Section]:
 				continue
 			var found := group.copy()
 			for ability in group.abilities:
-				var summoned: Warscroll = group.summons.get(ability)
+				var summoned: Array = group.summons.get(ability, [])
 				if RulesSearch.matches(RulesSearch.ability_text(ability), query_words) \
-						or summoned and RulesSearch.matches(RulesSearch.warscroll_text(summoned), query_words):
+						or summoned.any(func(w: Warscroll) -> bool: return RulesSearch.matches(RulesSearch.warscroll_text(w), query_words)):
 					found.abilities.append(ability)
-					if summoned:
+					if not summoned.is_empty():
 						found.summons[ability] = summoned
 			for warscroll in group.warscrolls:
 				if RulesSearch.matches(RulesSearch.warscroll_text(warscroll), query_words):

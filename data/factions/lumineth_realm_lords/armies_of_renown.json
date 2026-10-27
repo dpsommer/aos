@@ -107,6 +107,11 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"hyshian_twinstones",
+								"rune_of_petrification",
+								"sanctum_of_amyntok"
 							]
 						}
 					]

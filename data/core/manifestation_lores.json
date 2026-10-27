@@ -16,6 +16,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"chronomantic_cogs"
 					]
 				},
 				{
@@ -29,6 +32,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"aethervoid_pendulum"
 					]
 				},
 				{
@@ -42,6 +48,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"quicksilver_swords"
 					]
 				}
 			]
@@ -62,6 +71,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"soulscream_bridge"
 					]
 				},
 				{
@@ -75,6 +87,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"lauchon_the_soulseeker"
 					]
 				},
 				{
@@ -88,6 +103,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"horrorghast"
 					]
 				},
 				{
@@ -101,6 +119,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"shards_of_valagharr"
 					]
 				}
 			]
@@ -121,6 +142,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"krondspine_incarnate_of_ghur"
 					]
 				}
 			]
@@ -141,6 +165,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"soulsnare_shackles"
 					]
 				},
 				{
@@ -154,6 +181,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"malevolent_maelstrom"
 					]
 				},
 				{
@@ -167,6 +197,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"purple_sun_of_shyish"
 					]
 				},
 				{
@@ -180,6 +213,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"suffocating_gravetide"
 					]
 				}
 			]
@@ -200,6 +236,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"the_burning_head"
 					]
 				},
 				{
@@ -213,6 +252,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"emerald_lifeswarm"
 					]
 				},
 				{
@@ -226,6 +268,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"ravenaks_gnashing_jaws"
 					]
 				}
 			]
@@ -246,6 +291,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"geminids_of_uhl_gysh"
 					]
 				},
 				{
@@ -259,6 +307,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"prismatic_palisade"
 					]
 				},
 				{
@@ -272,6 +323,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"umbral_spellportal"
 					]
 				}
 			]

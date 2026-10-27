@@ -115,6 +115,9 @@
 							"keywords": [
 								"SPELL",
 								"SUMMON"
+							],
+							"summons": [
+								"eightfold_doom_sigil"
 							]
 						}
 					]

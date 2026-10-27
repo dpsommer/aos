@@ -490,6 +490,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"burning_sigil_of_tzeentch"
 					]
 				},
 				{
@@ -503,6 +506,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"daemonic_simulacrum"
 					]
 				},
 				{
@@ -516,6 +522,9 @@
 					"keywords": [
 						"SPELL",
 						"SUMMON"
+					],
+					"summons": [
+						"tome_of_eyes"
 					]
 				}
 			]

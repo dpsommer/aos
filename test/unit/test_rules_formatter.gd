@@ -145,7 +145,53 @@ func test_abilities_of_empty_list_is_empty() -> void:
 	assert_eq(RulesFormatter.abilities(rules), "")
 
 
+func _summoning(rules: Array[Ability], found: Array[Warscroll]) -> Callable:
+	return func(rule: Ability) -> Array[Warscroll]: return found if rule == rules[0] else []
+
+
+func test_abilities_show_a_summoned_manifestation_indented_after_the_ability() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"})]
+	var found: Array[Warscroll] = [_warscroll({name = "Spooky Cloud"})]
+	var output := RulesFormatter.abilities(rules, _summoning(rules, found))
+	assert_true(output.find("Alpha") < output.find("[indent]") and output.find("[indent]") < output.find("Spooky Cloud"))
+	assert_true(output.ends_with("[/indent]"))
+
+
+func test_abilities_show_every_summoned_manifestation() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"})]
+	var found: Array[Warscroll] = [_warscroll({name = "Spooky Cloud"}), _warscroll({name = "Wobbly Wall"})]
+	var output := RulesFormatter.abilities(rules, _summoning(rules, found))
+	assert_eq(output.count("[indent]"), 2)
+	assert_string_contains(output, "Wobbly Wall")
+
+
+func test_abilities_without_summoned_manifestations_are_unchanged() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"}), _ability({name = "Beta"})]
+	var none: Array[Warscroll] = []
+	assert_eq(RulesFormatter.abilities(rules, _summoning(rules, none)), RulesFormatter.abilities(rules))
+
+
+func test_abilities_only_indent_under_the_summoning_ability() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"}), _ability({name = "Beta"})]
+	var found: Array[Warscroll] = [_warscroll({name = "Spooky Cloud"})]
+	var output := RulesFormatter.abilities(rules, _summoning(rules, found))
+	assert_true(output.find("Beta") > output.find("[/indent]"))
+
+
 # warscroll
+
+func test_warscroll_shows_the_manifestations_its_abilities_summon() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"})]
+	var found: Array[Warscroll] = [_warscroll({name = "Spooky Cloud"})]
+	var unit := _warscroll({abilities = rules})
+	var output := RulesFormatter.warscroll(unit, true, _summoning(rules, found))
+	assert_string_contains(output, "[indent]")
+	assert_string_contains(output, "Spooky Cloud")
+
+
+func test_warscroll_without_a_summoned_callable_has_no_indent() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"})]
+	assert_false("[indent]" in RulesFormatter.warscroll(_warscroll({abilities = rules})))
 
 func test_warscroll_contains_name() -> void:
 	var unit := _warscroll()

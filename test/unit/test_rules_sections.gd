@@ -30,6 +30,7 @@ func _faction() -> Faction:
 	prayers.entries = _abilities(["Blessing"])
 	var flames := Kit.lore("Flame Lore", "manifestation")
 	flames.entries = _abilities(["Summon Flame"])
+	flames.entries[0].summons = PackedStringArray(["flame"])
 	faction.lores = [spells, prayers, flames] as Array[Lore]
 	var manifestation := Kit.warscroll("flame", PackedStringArray(["MANIFESTATION"]))
 	faction.warscrolls.append(manifestation)
@@ -39,6 +40,7 @@ func _faction() -> Faction:
 func _core() -> CoreRules:
 	var universal := Kit.lore("Universal Lore", "manifestation")
 	universal.entries = _abilities(["Summon Core Thing"])
+	universal.entries[0].summons = PackedStringArray(["core_thing"])
 	var core := Kit.core(PackedStringArray(["Card A", "Card B"]), [universal] as Array[Lore])
 	core.manifestations = [Kit.warscroll("core_thing", PackedStringArray(["MANIFESTATION"]))] as Array[Warscroll]
 	return core
@@ -162,12 +164,26 @@ func _lore(sections: Array[RulesSections.Section], title: String) -> RulesSectio
 
 func test_a_faction_lore_carries_the_manifestation_it_summons() -> void:
 	var group := _lore(_build(), "Flame Lore")
-	assert_eq((group.summons[group.abilities[0]] as Warscroll).id, "flame")
+	assert_eq(_ids(group.summons[group.abilities[0]]), ["flame"])
 
 
 func test_a_universal_lore_carries_the_manifestation_it_summons() -> void:
 	var group := _lore(_build(), "Universal Lore")
-	assert_eq((group.summons[group.abilities[0]] as Warscroll).id, "core_thing")
+	assert_eq(_ids(group.summons[group.abilities[0]]), ["core_thing"])
+
+
+func test_a_summoning_spell_with_several_summons_carries_them_all() -> void:
+	var faction := _faction()
+	faction.lores[2].entries[0].summons = PackedStringArray(["flame", "ember"])
+	faction.warscrolls.append(Kit.warscroll("ember", PackedStringArray(["MANIFESTATION"])))
+	var group := _lore(_build(null, faction), "Flame Lore")
+	assert_eq(_ids(group.summons[group.abilities[0]]), ["flame", "ember"])
+
+
+func test_a_spell_named_like_a_manifestation_without_summons_carries_none() -> void:
+	var faction := _faction()
+	faction.lores[2].entries[0].summons = PackedStringArray()
+	assert_true(_lore(_build(null, faction), "Flame Lore").summons.is_empty())
 
 
 func test_lores_without_summons_carry_no_manifestations() -> void:
@@ -201,47 +217,8 @@ func test_groups_with_the_same_title_get_different_keys() -> void:
 	assert_ne(groups[0].key, groups[1].key)
 
 
-# --- summoned_manifestation ---
-
-func _manifestations(names: Array) -> Array[Warscroll]:
-	var result: Array[Warscroll] = []
-	for manifestation_name: String in names:
-		result.append(Kit.warscroll(manifestation_name.to_snake_case(), PackedStringArray(["MANIFESTATION"]), 0,
-				manifestation_name))
-	return result
-
-
-func test_a_summoning_spell_summons_the_manifestation_it_names() -> void:
-	var found := RulesSections.summoned_manifestation(Kit.ability("Summon Brass Wall"),
-			_manifestations(["Iron Gate", "Brass Wall"]))
-	assert_eq(found.name, "Brass Wall")
-
-
-func test_a_leading_the_is_ignored() -> void:
-	var found := RulesSections.summoned_manifestation(Kit.ability("Summon Burning Head"),
-			_manifestations(["The Burning Head"]))
-	assert_eq(found.name, "The Burning Head")
-
-
-func test_the_longest_named_manifestation_wins() -> void:
-	var found := RulesSections.summoned_manifestation(Kit.ability("Summon Lesser Wall"),
-			_manifestations(["Wall", "Lesser Wall"]))
-	assert_eq(found.name, "Lesser Wall")
-
-
-func test_a_summon_keyword_marks_a_summoning_spell() -> void:
-	var spell := Kit.ability("Call the Brass Wall")
-	spell.keywords = PackedStringArray(["SPELL", "SUMMON"])
-	assert_not_null(RulesSections.summoned_manifestation(spell, _manifestations(["Brass Wall"])))
-
-
-func test_a_spell_that_does_not_summon_has_no_manifestation() -> void:
-	assert_null(RulesSections.summoned_manifestation(Kit.ability("Fall of the Brass Wall"),
-			_manifestations(["Brass Wall"])))
-
-
-func test_a_summoning_spell_naming_no_manifestation_has_none() -> void:
-	assert_null(RulesSections.summoned_manifestation(Kit.ability("Summon Brass Wall"), _manifestations(["Iron Gate"])))
+func _ids(warscrolls: Array) -> Array:
+	return warscrolls.map(func(w: Warscroll) -> String: return w.id)
 
 
 func test_terrain_section_lists_faction_terrain() -> void:
@@ -424,7 +401,7 @@ func test_filter_keeps_a_summoning_spell_whose_manifestation_matches() -> void:
 	var sections := RulesSections.build(Kit.army(), Kit.catalog(_faction(), core))
 	var group := _lore(RulesSections.filter(sections, "glowing"), "Universal Lore")
 	assert_eq(_names(group.abilities), ["Summon Core Thing"])
-	assert_eq((group.summons[group.abilities[0]] as Warscroll).id, "core_thing")
+	assert_eq(_ids(group.summons[group.abilities[0]]), ["core_thing"])
 
 
 func test_filter_with_no_match_is_empty() -> void:

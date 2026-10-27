@@ -63,11 +63,13 @@ def build(wahapedia_page, bsdata_dir, overrides=None):
         w["name"], w["id"] = bs["name"], bs["id"]
     for w in wh_left:
         report.only("Wahapedia", "warscroll", w["name"])
-    # In a faction's shape, so build.py applies the overrides.
-    faction_build.apply_overrides({
+    # In a faction's shape, so build.py applies the overrides and links the summoning spells.
+    core = {
         "faction": {"battle_traits": [], "battle_formations": [], "enhancement_tables": [], "lores": wh["lores"]},
         "warscrolls": warscrolls, "armies_of_renown": [], "spearheads": [], "path_to_glory": [],
-    }, overrides or {})
+    }
+    faction_build.apply_overrides(core, overrides or {})
+    faction_build.link_summons(core)
     data = {
         "lores": [schema.table(lore, points=True) for lore in wh["lores"]],
         "warscrolls": [schema.warscroll(w) for w in sorted(warscrolls, key=lambda w: merge.norm(w["name"]))],
