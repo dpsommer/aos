@@ -217,6 +217,72 @@ func test_groups_with_the_same_title_get_different_keys() -> void:
 	assert_ne(groups[0].key, groups[1].key)
 
 
+func _faction_with_legends_table() -> Faction:
+	var faction := _faction()
+	var legends := Kit.table("Old Relics", _abilities(["Ancient Blade"]))
+	legends.legends = true
+	faction.enhancement_tables.append(legends)
+	return faction
+
+
+func test_legends_enhancement_tables_are_left_out_when_the_army_hides_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = false
+	var section := _section(_build(army, _faction_with_legends_table()), "Enhancements")
+	assert_does_not_have(_group_titles(section), "Old Relics")
+	assert_has(_group_titles(section), "Artefacts")
+
+
+func test_legends_enhancement_tables_are_kept_and_flagged_when_the_army_shows_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = true
+	var section := _section(_build(army, _faction_with_legends_table()), "Enhancements")
+	var group: RulesSections.Group = section.groups.filter(
+			func(g: RulesSections.Group) -> bool: return g.title == "Old Relics")[0]
+	assert_true(group.legends)
+
+
+func test_non_legends_enhancement_groups_are_not_flagged_as_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = true
+	var section := _section(_build(army, _faction_with_legends_table()), "Enhancements")
+	assert_false(section.groups[0].legends)
+
+
+func _faction_with_legends_lore() -> Faction:
+	var faction := _faction()
+	var legends := Kit.lore("Old Spells", "spell")
+	legends.legends = true
+	legends.entries = _abilities(["Ancient Bolt"])
+	faction.lores.append(legends)
+	return faction
+
+
+func test_legends_lores_are_left_out_when_the_army_hides_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = false
+	var sections := _build(army, _faction_with_legends_lore())
+	assert_does_not_have(_group_titles(_section(sections, "Lores")), "Old Spells")
+	assert_has(_group_titles(_section(sections, "Lores")), "Fire Spells")
+
+
+func test_legends_lores_are_kept_and_flagged_when_the_army_shows_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = true
+	var sections := _build(army, _faction_with_legends_lore())
+	assert_true(_lore(sections, "Old Spells").legends)
+	assert_false(_lore(sections, "Fire Spells").legends)
+
+
+func test_a_picked_legends_lore_stays_and_is_selected_when_the_army_hides_legends() -> void:
+	var army := Kit.army()
+	army.show_legends = false
+	army.spell_lore = "Old Spells"
+	var group := _lore(_build(army, _faction_with_legends_lore()), "Old Spells")
+	assert_not_null(group)
+	assert_true(group.selected)
+
+
 func _ids(warscrolls: Array) -> Array:
 	return warscrolls.map(func(w: Warscroll) -> String: return w.id)
 
@@ -319,11 +385,12 @@ func test_group_copy_keeps_the_title_but_not_the_rules() -> void:
 	group.source = "S"
 	group.points = 5
 	group.selected = true
+	group.legends = true
 	group.lore = true
 	group.abilities = _abilities(["a"])
 	var copy := group.copy()
-	assert_eq([copy.title, copy.key, copy.note, copy.source, copy.points, copy.selected, copy.lore],
-			["T", "T#2", "N", "S", 5, true, true])
+	assert_eq([copy.title, copy.key, copy.note, copy.source, copy.legends, copy.points, copy.selected, copy.lore],
+			["T", "T#2", "N", "S", true, 5, true, true])
 	assert_eq(copy.size(), 0)
 
 

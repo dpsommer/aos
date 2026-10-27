@@ -112,7 +112,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - Faction Terrain;
     - Battle Tactics: the battlepack's cards in full, with their FAQs.
 
-    An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. Each group folds on its own, even when several share a name (e.g. two Artefacts of Power tables). Enhancement tables and lores from Scourge of Aqshy or Scourge of Ghyran (their `source`) are tagged "SoA" or "SoG". The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
+    An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. Each group folds on its own, even when several share a name (e.g. two Artefacts of Power tables). Enhancement tables and lores from Scourge of Aqshy or Scourge of Ghyran (their `source`) are tagged "SoA" or "SoG". Legends enhancement tables and lores (those from a Scourge the battlepack doesn't use, i.e. Scourge of Ghyran) are tagged Legends and hidden unless Legends are shown (though the army's picked lores stay), until the builder can switch between General's Handbook versions. The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
 
     Search keeps a whole section or group whose title matches, and otherwise only the matching rules.
   - **Regiments of Renown:** cards the army can include, or every one when constraints are overridden. Legends regiments are hidden unless shown.

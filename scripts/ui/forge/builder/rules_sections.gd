@@ -15,6 +15,8 @@ class Group:
 	var note := ""
 	## Expansion the group's rules come from, e.g. "Scourge of Ghyran". Empty for the battletome.
 	var source := ""
+	## Whether the group's rules are Legends, e.g. an enhancement table from a retired Scourge.
+	var legends := false
 	## Points, or -1 to show none.
 	var points := -1
 	## Whether the army has picked this group, e.g. its battle formation or a lore.
@@ -33,7 +35,7 @@ class Group:
 
 	func copy() -> Group:
 		var group := Group.new()
-		for property in ["title", "key", "note", "source", "points", "selected", "lore"]:
+		for property in ["title", "key", "note", "source", "legends", "points", "selected", "lore"]:
 			group.set(property, get(property))
 		return group
 
@@ -53,7 +55,8 @@ class Section:
 
 
 ## The rules [param army] uses, from [param catalog]: an Army of Renown's battle traits,
-## enhancements and lores replace the faction's, and it has no battle formations.
+## enhancements and lores replace the faction's, and it has no battle formations. Legends enhancement
+## tables and lores are left out unless the army shows Legends, though its picked lores stay.
 static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 	var faction := catalog.faction
 	var renown := catalog.army_of_renown(army.army_of_renown)
@@ -75,10 +78,13 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 
 	var enhancements: Array[Group] = []
 	for table in catalog.enhancement_tables(army):
+		if table.legends and not army.show_legends:
+			continue
 		var group := Group.new()
 		group.title = table.name
 		group.note = table.group
 		group.source = table.source
+		group.legends = table.legends
 		group.abilities = table.entries
 		enhancements.append(group)
 	_add(sections, "Enhancements", enhancements)
@@ -87,11 +93,12 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 	var core := catalog.core
 	for kind: String in LORE_KINDS:
 		var picked: String = army.get("%s_lore" % kind)
-		for lore in catalog.lores(army, kind):
+		for lore in catalog.lore_choices(army, kind, picked):
 			var group := Group.new()
 			group.title = lore.name
 			group.note = "Universal Manifestation Lore" if core and lore in core.manifestation_lores else LORE_KINDS[kind]
 			group.source = lore.source
+			group.legends = lore.legends
 			group.points = lore.points
 			group.selected = lore.name == picked
 			group.lore = true

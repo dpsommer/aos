@@ -379,6 +379,8 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 		var scourge := UIBuilder.scourge_tag(group.source)
 		if scourge:
 			chips.add_child(scourge)
+		if group.legends:
+			chips.add_child(UITheme.chip("Legends", "legends"))
 		chips.add_child(UIBuilder.spacer())
 		if group.selected:
 			chips.add_child(UITheme.chip("Selected", "affray"))
