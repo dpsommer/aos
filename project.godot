@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1440
+window/size/viewport_height=900
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -27,6 +29,10 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 [physics]
 
 3d/physics_engine="Jolt Physics"
+
+[gui]
+
+theme/custom_font="res://assets/2d/fonts/inter/Inter.ttf"
 
 [rendering]
 

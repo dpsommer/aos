@@ -5,6 +5,7 @@ extends Node
 const MAIN_MENU_SCENE := preload("res://scenes/ui/main_menu.tscn")
 const FORGE_SCENE := preload("res://scenes/ui/forge/forge.tscn")
 const FACTION_BROWSER_SCENE := preload("res://scenes/ui/forge/faction_browser.tscn")
+const ARMY_BUILDER_SCENE := preload("res://scenes/ui/forge/builder/army_builder.tscn")
 
 var current_screen: Node
 
@@ -18,13 +19,17 @@ func show_main_menu() -> void:
 	menu.forge_pressed.connect(show_forge)
 
 
-## Opens the Forge, on [param alliance]'s faction list if one is given.
-func show_forge(alliance: int = -1) -> void:
+## Opens the Forge, on [param alliance]'s faction list if one is given, or on [param faction]'s
+## Army of Renown choice if that is given too.
+func show_forge(alliance: int = -1, faction := "") -> void:
 	var forge: Forge = _show_screen(FORGE_SCENE)
 	forge.back_pressed.connect(show_main_menu)
-	forge.faction_selected.connect(show_faction_browser)
+	forge.browse_requested.connect(show_faction_browser)
+	forge.army_started.connect(show_army_builder)
 	if alliance >= 0:
 		forge.show_factions(alliance)
+		if not faction.is_empty():
+			forge.show_armies_of_renown(alliance, faction)
 
 
 func show_faction_browser(alliance: GrandAlliance.Type, faction_name: String) -> void:
@@ -33,7 +38,20 @@ func show_faction_browser(alliance: GrandAlliance.Type, faction_name: String) ->
 		return
 	var browser: FactionBrowser = _show_screen(FACTION_BROWSER_SCENE)
 	browser.show_faction(faction)
-	browser.back_pressed.connect(show_forge.bind(alliance))
+	browser.back_pressed.connect(show_forge.bind(alliance, faction_name))
+
+
+## Opens the army builder on [param army]. Back returns to the Forge's Army of Renown choice for
+## the army's faction.
+func show_army_builder(army: Army) -> void:
+	var faction_name := FactionCatalog.name_for_id(army.faction_id)
+	var faction := FactionCatalog.load_faction(faction_name) if not faction_name.is_empty() else null
+	if faction == null:
+		push_error("No data for the army's faction '%s'" % army.faction_id)
+		return
+	var builder: ArmyBuilder = _show_screen(ARMY_BUILDER_SCENE)
+	builder.open(army)
+	builder.back_pressed.connect(show_forge.bind(faction.grand_alliance, faction_name))
 
 
 func _show_screen(scene: PackedScene) -> Node:

@@ -1,0 +1,123 @@
+class_name UnitRow
+extends PanelContainer
+## One unit in the army list, with buttons for its choices and an expandable options panel.
+
+var builder: ArmyBuilder
+var unit: ArmyUnit
+var regiment: ArmyRegiment
+var warscroll: Warscroll
+
+
+func _init(army_builder: ArmyBuilder, army_unit: ArmyUnit, army_regiment: ArmyRegiment) -> void:
+	builder = army_builder
+	unit = army_unit
+	regiment = army_regiment
+	warscroll = builder.catalog.warscroll(unit, regiment)
+	theme_type_variation = "RowPanel"
+	set_meta(&"uid", unit.uid)
+	var content := BuilderUI.vbox([_summary()], 8)
+	if builder.expanded.has(unit.uid) and warscroll:
+		content.add_child(_options())
+	add_child(content)
+
+
+func _summary() -> HBoxContainer:
+	var editor := builder.editor
+	var army := editor.army
+	var title := warscroll.name if warscroll else unit.warscroll_id
+	var heading := BuilderUI.label(unit.label if not unit.label.is_empty() else title)
+	heading.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	heading.tooltip_text = heading.text
+	heading.mouse_filter = Control.MOUSE_FILTER_PASS
+	var names := BuilderUI.vbox([heading], 2)
+	var details := PackedStringArray()
+	if not unit.label.is_empty():
+		details.append(title)
+	if warscroll and warscroll.unit_size > 1:
+		details.append("%d models" % WeaponOptions.models(warscroll, unit.reinforced))
+	if warscroll == null:
+		details.append("No longer in the faction data")
+	var detail := BuilderUI.label(" · ".join(details), "MutedLabel")
+	detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var sub := HFlowContainer.new()
+	sub.add_child(detail)
+	if warscroll:
+		for tag in BuilderUI.tags(warscroll):
+			sub.add_child(tag)
+	for type: String in unit.enhancements:
+		sub.add_child(ForgeTheme.chip(unit.enhancements[type], "gold"))
+	names.add_child(sub)
+	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+	var row := BuilderUI.hbox([BuilderUI.portrait(title), names], 10)
+	var renown := regiment != null and regiment.is_regiment_of_renown()
+	if not renown:
+		row.add_child(BuilderUI.label("%d pts" % ArmyPoints.unit_points(unit, regiment, army, builder.catalog), "MutedLabel"))
+	var key := unit.uid + ":"
+	if regiment and regiment.leader() == unit:
+		var general := unit.uid == army.general_uid
+		row.add_child(BuilderUI.icon_toggle("crown", "Remove as general" if general else "Make general", general,
+				func(_on: bool) -> void: editor.set_general(unit.uid), key + "general"))
+	if warscroll and warscroll.can_reinforce and not renown:
+		row.add_child(BuilderUI.icon_toggle("reinforce", "Unreinforce unit" if unit.reinforced else "Reinforce unit",
+				unit.reinforced, func(on: bool) -> void: editor.set_reinforced(unit.uid, on), key + "reinforce"))
+	if warscroll and not renown:
+		row.add_child(BuilderUI.icon_toggle("options", "Unit options", builder.expanded.has(unit.uid),
+				func(_on: bool) -> void: builder.toggle_expanded(unit.uid), key + "options"))
+	if not renown:
+		row.add_child(BuilderUI.icon_button("copy", "Duplicate unit", func() -> void: editor.duplicate_unit(unit.uid), key + "copy"))
+		row.add_child(BuilderUI.icon_button("delete", "Remove unit", func() -> void: editor.remove_unit(unit.uid), key + "remove",
+				"DangerIconButton"))
+	return row
+
+
+func _options() -> VBoxContainer:
+	var editor := builder.editor
+	var army := editor.army
+	var key := unit.uid + ":"
+	var box := BuilderUI.vbox([], 8)
+
+	var name_edit := LineEdit.new()
+	name_edit.placeholder_text = warscroll.name
+	name_edit.text = unit.label
+	name_edit.tooltip_text = "Unit name"
+	name_edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	name_edit.set_meta(&"focus_key", key + "label")
+	var commit := func(_text := "") -> void:
+		if name_edit.text != unit.label:
+			editor.set_label(unit.uid, name_edit.text)
+	name_edit.text_submitted.connect(commit)
+	name_edit.focus_exited.connect(commit)
+	box.add_child(BuilderUI.hbox([BuilderUI.label("Name", "MutedLabel"), name_edit]))
+
+	if not warscroll.has_keyword("UNIQUE"):
+		for type in builder.catalog.enhancement_types(army):
+			if type in ArmyValidator.HERO_ENHANCEMENTS and not warscroll.has_keyword("HERO"):
+				continue
+			var items := [["None", ""]]
+			for table in builder.catalog.enhancement_tables(army):
+				if table.name != type:
+					continue
+				for entry in table.entries:
+					var group := " (%s)" % table.group if not table.group.is_empty() else ""
+					items.append(["%s%s%s" % [entry.name, " · %d pts" % entry.points if entry.points else "", group], entry.name])
+			var picker := BuilderUI.select(items, unit.enhancements.get(type, ""),
+					func(value: String) -> void: editor.set_enhancement(unit.uid, type, value), key + "enh:" + type, type)
+			picker.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			box.add_child(BuilderUI.hbox([BuilderUI.label(type, "MutedLabel"), picker]))
+
+	for option in warscroll.weapon_options:
+		var spin := SpinBox.new()
+		spin.max_value = WeaponOptions.cap(option, warscroll, unit.reinforced)
+		spin.value = WeaponOptions.value(unit, option, warscroll)
+		spin.tooltip_text = "Models with a %s" % option.name
+		spin.set_meta(&"focus_key", key + "wopt:" + option.name)
+		spin.value_changed.connect(func(value: float) -> void: editor.set_weapon_option(unit.uid, option.name, int(value)))
+		var note := "Instead of %s" % option.replaces if option.choice \
+				else "Replaces %s · %d per %d models" % [option.replaces, option.max, option.per]
+		if not option.note.is_empty():
+			note += " · " + option.note
+		var text := BuilderUI.vbox([BuilderUI.label(option.name), BuilderUI.label(note, "MutedLabel", true)], 2)
+		text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		box.add_child(BuilderUI.hbox([text, spin]))
+	return box
