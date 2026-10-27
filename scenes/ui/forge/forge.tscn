@@ -18,206 +18,296 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.08, 0.08, 0.1, 1)
+color = Color(0.0706, 0.0784, 0.0941, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Layout" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="ArmiesPanel" type="VBoxContainer" parent="CenterContainer"]
-unique_name_in_owner = true
+[node name="Header" type="PanelContainer" parent="Layout"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_type_variation = &"HeaderPanel"
+
+[node name="Margin" type="MarginContainer" parent="Layout/Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Row" type="HBoxContainer" parent="Layout/Header/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="CenterContainer/ArmiesPanel"]
+[node name="BackButton" type="Button" parent="Layout/Header/Margin/Row"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+size_flags_vertical = 4
+
+[node name="HeaderTitle" type="Label" parent="Layout/Header/Margin/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
 text = "Forge"
-horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="CenterContainer/ArmiesPanel"]
+[node name="Breadcrumb" type="HBoxContainer" parent="Layout/Header/Margin/Row"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Your armies"
-horizontal_alignment = 1
+size_flags_vertical = 4
 
-[node name="ArmyScroll" type="ScrollContainer" parent="CenterContainer/ArmiesPanel"]
-custom_minimum_size = Vector2(760, 480)
+[node name="Spacer" type="Control" parent="Layout/Header/Margin/Row"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BrowseButton" type="Button" parent="Layout/Header/Margin/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Browse faction rules"
+
+[node name="Body" type="ScrollContainer" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="ArmyList" type="VBoxContainer" parent="CenterContainer/ArmiesPanel/ArmyScroll"]
+[node name="Margin" type="MarginContainer" parent="Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 32
+
+[node name="Center" type="HBoxContainer" parent="Layout/Body/Margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="Column" type="VBoxContainer" parent="Layout/Body/Margin/Center"]
+custom_minimum_size = Vector2(1120, 0)
+layout_mode = 2
+
+[node name="ArmiesPanel" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column"]
 unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="HeadingRow" type="HBoxContainer" parent="Layout/Body/Margin/Center/Column/ArmiesPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Heading" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column/ArmiesPanel/HeadingRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="NewArmyButton" type="Button" parent="CenterContainer/ArmiesPanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
+[node name="Title" type="Label" parent="Layout/Body/Margin/Center/Column/ArmiesPanel/HeadingRow/Heading"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_type_variation = &"PageTitleLabel"
+text = "Your armies"
+
+[node name="Description" type="Label" parent="Layout/Body/Margin/Center/Column/ArmiesPanel/HeadingRow/Heading"]
+layout_mode = 2
+theme_type_variation = &"DescriptionLabel"
+text = "Open an army to keep building it, or start a new one."
+
+[node name="NewArmyButton" type="Button" parent="Layout/Body/Margin/Center/Column/ArmiesPanel/HeadingRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"GoldButton"
 text = "New army"
 
-[node name="ArmiesBackButton" type="Button" parent="CenterContainer/ArmiesPanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Back"
-
-[node name="AlliancePanel" type="VBoxContainer" parent="CenterContainer"]
+[node name="ArmyList" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column/ArmiesPanel"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
-[node name="Title" type="Label" parent="CenterContainer/AlliancePanel"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Forge"
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="CenterContainer/AlliancePanel"]
-layout_mode = 2
-text = "Choose a Grand Alliance"
-horizontal_alignment = 1
-
-[node name="OrderButton" type="Button" parent="CenterContainer/AlliancePanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Order"
-
-[node name="ChaosButton" type="Button" parent="CenterContainer/AlliancePanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Chaos"
-
-[node name="DeathButton" type="Button" parent="CenterContainer/AlliancePanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Death"
-
-[node name="DestructionButton" type="Button" parent="CenterContainer/AlliancePanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Destruction"
-
-[node name="AllianceBackButton" type="Button" parent="CenterContainer/AlliancePanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Back"
-
-[node name="FactionPanel" type="VBoxContainer" parent="CenterContainer"]
+[node name="AlliancePanel" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Heading" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column/AlliancePanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+[node name="TitleRow" type="HBoxContainer" parent="Layout/Body/Margin/Center/Column/AlliancePanel/Heading"]
+layout_mode = 2
 theme_override_constants/separation = 16
-
-[node name="FactionTitle" type="Label" parent="CenterContainer/FactionPanel"]
+[node name="AllianceTitle" type="Label" parent="Layout/Body/Margin/Center/Column/AlliancePanel/Heading/TitleRow"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="CenterContainer/FactionPanel"]
+theme_type_variation = &"PageTitleLabel"
+text = "Choose a Grand Alliance"
+[node name="AllianceDescription" type="Label" parent="Layout/Body/Margin/Center/Column/AlliancePanel/Heading"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
-text = "Choose a Faction"
-horizontal_alignment = 1
+size_flags_horizontal = 0
+theme_type_variation = &"DescriptionLabel"
+text = "Every faction fights for one of the four Grand Alliances."
+autowrap_mode = 3
 
-[node name="FactionGrid" type="GridContainer" parent="CenterContainer/FactionPanel"]
+[node name="AllianceGrid" type="GridContainer" parent="Layout/Body/Margin/Center/Column/AlliancePanel"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 16
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="FactionPanel" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Heading" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column/FactionPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+[node name="TitleRow" type="HBoxContainer" parent="Layout/Body/Margin/Center/Column/FactionPanel/Heading"]
+layout_mode = 2
+theme_override_constants/separation = 16
+[node name="FactionTitle" type="Label" parent="Layout/Body/Margin/Center/Column/FactionPanel/Heading/TitleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitleLabel"
+text = "Choose a faction"
+[node name="FactionDescription" type="Label" parent="Layout/Body/Margin/Center/Column/FactionPanel/Heading"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"DescriptionLabel"
+text = ""
+autowrap_mode = 3
+
+[node name="FactionGrid" type="GridContainer" parent="Layout/Body/Margin/Center/Column/FactionPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="RenownPanel" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Heading" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column/RenownPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+[node name="TitleRow" type="HBoxContainer" parent="Layout/Body/Margin/Center/Column/RenownPanel/Heading"]
+layout_mode = 2
+theme_override_constants/separation = 16
+[node name="RenownTitle" type="Label" parent="Layout/Body/Margin/Center/Column/RenownPanel/Heading/TitleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitleLabel"
+text = "Choose an Army of Renown"
+[node name="RenownChips" type="HBoxContainer" parent="Layout/Body/Margin/Center/Column/RenownPanel/Heading/TitleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+[node name="RenownDescription" type="Label" parent="Layout/Body/Margin/Center/Column/RenownPanel/Heading"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"DescriptionLabel"
+text = ""
+autowrap_mode = 3
+
+[node name="RenownNone" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column/RenownPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RenownGrid" type="GridContainer" parent="Layout/Body/Margin/Center/Column/RenownPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="FactionBackButton" type="Button" parent="CenterContainer/FactionPanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Back"
-
-[node name="RenownPanel" type="VBoxContainer" parent="CenterContainer"]
+[node name="FormationPanel" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 28
 
-[node name="RenownTitle" type="Label" parent="CenterContainer/RenownPanel"]
-unique_name_in_owner = true
+[node name="Heading" type="VBoxContainer" parent="Layout/Body/Margin/Center/Column/FormationPanel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="CenterContainer/RenownPanel"]
-layout_mode = 2
-text = "Choose an Army of Renown"
-horizontal_alignment = 1
-
-[node name="RenownList" type="VBoxContainer" parent="CenterContainer/RenownPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 12
-
-[node name="BrowseButton" type="Button" parent="CenterContainer/RenownPanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Browse faction rules"
-
-[node name="RenownBackButton" type="Button" parent="CenterContainer/RenownPanel"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Back"
-
-[node name="FormationPanel" type="VBoxContainer" parent="CenterContainer"]
-unique_name_in_owner = true
-visible = false
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+[node name="TitleRow" type="HBoxContainer" parent="Layout/Body/Margin/Center/Column/FormationPanel/Heading"]
 layout_mode = 2
 theme_override_constants/separation = 16
-
-[node name="FormationTitle" type="Label" parent="CenterContainer/FormationPanel"]
+[node name="FormationTitle" type="Label" parent="Layout/Body/Margin/Center/Column/FormationPanel/Heading/TitleRow"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="CenterContainer/FormationPanel"]
-layout_mode = 2
+theme_type_variation = &"PageTitleLabel"
 text = "Choose a Battle Formation"
-horizontal_alignment = 1
+[node name="FormationDescription" type="Label" parent="Layout/Body/Margin/Center/Column/FormationPanel/Heading"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"DescriptionLabel"
+text = "Your army gains the formation's abilities for the whole battle."
+autowrap_mode = 3
 
-[node name="FormationList" type="VBoxContainer" parent="CenterContainer/FormationPanel"]
+[node name="FormationGrid" type="GridContainer" parent="Layout/Body/Margin/Center/Column/FormationPanel"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 12
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
 
-[node name="FormationBackButton" type="Button" parent="CenterContainer/FormationPanel"]
+[node name="Footer" type="PanelContainer" parent="Layout"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 48)
+visible = false
+custom_minimum_size = Vector2(0, 76)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Back"
+theme_type_variation = &"FooterPanel"
+
+[node name="Margin" type="MarginContainer" parent="Layout/Footer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="Row" type="HBoxContainer" parent="Layout/Footer/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SelectedPrefix" type="Label" parent="Layout/Footer/Margin/Row"]
+layout_mode = 2
+theme_type_variation = &"DescriptionLabel"
+theme_override_font_sizes/font_size = 14
+text = "Selected:"
+
+[node name="SelectedLabel" type="Label" parent="Layout/Footer/Margin/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BreadcrumbCurrentLabel"
+theme_override_font_sizes/font_size = 14
+
+[node name="Spacer" type="Control" parent="Layout/Footer/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContinueButton" type="Button" parent="Layout/Footer/Margin/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"GoldButton"
 
 [node name="DeleteDialog" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true

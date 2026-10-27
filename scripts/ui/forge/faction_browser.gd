@@ -19,6 +19,8 @@ var faction: Faction
 
 
 func _ready() -> void:
+	theme = UITheme.get_theme()
+	back_button.icon = UITheme.icon("back")
 	var titles := {
 		rules: "Rules",
 		warscrolls: "Warscrolls",

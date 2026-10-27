@@ -14,6 +14,7 @@ signal quit_pressed
 
 
 func _ready() -> void:
+	theme = UITheme.get_theme()
 	quick_play_button.pressed.connect(_on_quick_play_pressed)
 	forge_button.pressed.connect(_on_forge_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)

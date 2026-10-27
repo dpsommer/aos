@@ -30,6 +30,8 @@ var discard_dialog: ConfirmationDialog
 var collapsed := {}
 ## Id of the regiment being renamed, or empty.
 var renaming := ""
+## Focus key of the control that opened the picker, which gets focus back when it closes.
+var _picker_opener := ""
 var _drawing := false
 var _redraw_again := false
 
@@ -47,8 +49,8 @@ var _redraw_again := false
 
 
 func _ready() -> void:
-	theme = ForgeTheme.get_theme()
-	back_button.icon = ForgeTheme.icon("back")
+	theme = UITheme.get_theme()
+	back_button.icon = UITheme.icon("back")
 	back_button.pressed.connect(request_back)
 	save_button.pressed.connect(save)
 	save_button.tooltip_text = "Save army (Ctrl+S)"
@@ -90,16 +92,16 @@ func _process(delta: float) -> void:
 
 func _add_remove_overlay() -> void:
 	var bin := TextureRect.new()
-	bin.texture = ForgeTheme.icon("delete")
+	bin.texture = UITheme.icon("delete")
 	bin.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bin.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	bin.custom_minimum_size = Vector2(28, 28)
-	bin.modulate = ForgeTheme.DANGER
-	var text := BuilderUI.label("Drop to remove from army", "CardTitleLabel")
-	text.add_theme_color_override("font_color", ForgeTheme.DANGER)
+	bin.modulate = UITheme.DANGER
+	var text := UIBuilder.label("Drop to remove from army", "CardTitleLabel")
+	text.add_theme_color_override("font_color", UITheme.DANGER)
 	var center := CenterContainer.new()
-	center.add_child(BuilderUI.vbox([bin, text], 10))
-	remove_overlay = BuilderUI.panel("RemoveDropPanel", center)
+	center.add_child(UIBuilder.vbox([bin, text], 10))
+	remove_overlay = UIBuilder.panel("RemoveDropPanel", center)
 	remove_overlay.hide()
 	drag.target(remove_overlay, _can_drop_remove, _drop_remove)
 	left_pane.add_child(remove_overlay)
@@ -237,10 +239,21 @@ func redraw() -> void:
 	if _redraw_again:
 		_redraw_again = false
 		redraw()
-	elif not key.is_empty():
-		var target := find_focus_key(self, key)
+	elif focused:
+		var target := find_focus_key(self, key) if not key.is_empty() else null
 		if target:
 			target.grab_focus()
+		elif not focused.is_visible_in_tree():
+			_focus_fallback()
+
+
+## Focuses something sensible after the focused control is gone, so the keyboard isn't stranded:
+## the picker's first button while it's open, else the back button.
+func _focus_fallback() -> void:
+	if picker.is_open():
+		picker.focus_first()
+	else:
+		back_button.grab_focus()
 
 
 ## The control under [param node] tagged with [param key] for focus, or null.
@@ -263,36 +276,31 @@ func _draw_header() -> void:
 	var total := ArmyPoints.total(army, catalog)
 	var over := total > army.points_limit
 	points_label.text = "%d / %d pts" % [total, army.points_limit]
-	points_label.add_theme_color_override("font_color", ForgeTheme.DANGER if over else ForgeTheme.TEXT)
+	points_label.add_theme_color_override("font_color", UITheme.DANGER if over else UITheme.TEXT)
 	points_bar.max_value = maxi(army.points_limit, 1)
 	points_bar.value = mini(total, army.points_limit)
-	points_bar.add_theme_stylebox_override("fill", ForgeTheme.box(ForgeTheme.DANGER if over else ForgeTheme.GOOD, Color.TRANSPARENT, 3))
+	points_bar.add_theme_stylebox_override("fill", UITheme.box(UITheme.DANGER if over else UITheme.GOOD, Color.TRANSPARENT, 3))
 	var saved := not dirty and not army.id.is_empty()
 	save_button.text = "Saved" if saved else "Save army"
 	save_button.disabled = saved
 	var validation := ArmyValidator.validate(army, catalog)
-	var colors: Array
+	var kind: String
 	if validation.overridden:
 		status_label.text = "Constraints overridden"
-		colors = [Color("#2A2F38"), Color("#C9CCD3")]
+		kind = "overridden"
 	elif validation.is_valid():
 		status_label.text = "Army valid"
-		colors = [ForgeTheme.GOOD_BG, ForgeTheme.GOOD]
+		kind = "valid"
 	else:
 		var count := validation.problems.size()
 		status_label.text = "%d problem%s" % [count, "" if count == 1 else "s"]
-		colors = [ForgeTheme.DANGER_BG, ForgeTheme.DANGER]
-	var pill := ForgeTheme.box(colors[0], Color.TRANSPARENT, 16, 0)
-	pill.content_margin_left = 12
-	pill.content_margin_right = 12
-	pill.content_margin_top = 6
-	pill.content_margin_bottom = 6
-	status_panel.add_theme_stylebox_override("panel", pill)
-	status_label.add_theme_color_override("font_color", colors[1])
+		kind = "problems"
+	status_panel.add_theme_stylebox_override("panel", UITheme.pill(kind))
+	status_label.add_theme_color_override("font_color", UITheme.STATUS[kind][1])
 
 
 func _section(title: String, children: Array) -> VBoxContainer:
-	var box := BuilderUI.vbox([BuilderUI.label(title, "SectionLabel")], 10)
+	var box := UIBuilder.vbox([UIBuilder.label(title, "SectionLabel")], 10)
 	for child: Control in children:
 		box.add_child(child)
 	return box
@@ -315,35 +323,35 @@ func _name_section() -> Control:
 func _validation_section() -> Control:
 	var validation := ArmyValidator.validate(editor.army, catalog)
 	if validation.overridden:
-		return BuilderUI.label("Army constraints are overridden, so the army isn't checked.", "MutedLabel", true)
+		return UIBuilder.label("Army constraints are overridden, so the army isn't checked.", "MutedLabel", true)
 	if validation.problems.is_empty() and validation.warnings.is_empty():
 		return null
-	var box := BuilderUI.vbox([], 8)
+	var box := UIBuilder.vbox([], 8)
 	for list: Array in [[validation.problems, "ProblemsPanel", "ProblemLabel"], [validation.warnings, "WarningsPanel", "WarningLabel"]]:
 		var messages: PackedStringArray = list[0]
 		if messages.is_empty():
 			continue
-		var lines := BuilderUI.vbox([], 4)
+		var lines := UIBuilder.vbox([], 4)
 		for message in messages:
-			lines.add_child(BuilderUI.label("• " + message, list[2], true))
-		box.add_child(BuilderUI.panel(list[1], lines))
+			lines.add_child(UIBuilder.label("• " + message, list[2], true))
+		box.add_child(UIBuilder.panel(list[1], lines))
 	return box
 
 
 func _tactics_section() -> Control:
 	var army := editor.army
-	var row := BuilderUI.hbox([], 12)
+	var row := UIBuilder.hbox([], 12)
 	for slot in ArmyValidator.MAX_TACTICS:
 		var card_name := army.tactics[slot] if slot < army.tactics.size() else ""
 		var card := catalog.battle_tactic_card(card_name)
 		var heading := "Battle tactics card %d" % (slot + 1)
 		var slot_control: Control
 		if card:
-			var change := BuilderUI.button("Change", pick_tactic.bind(slot), "tactic:%d" % slot, "", "Change %s" % heading.to_lower())
+			var change := UIBuilder.button("Change", pick_tactic.bind(slot), "tactic:%d" % slot, "", "Change %s" % heading.to_lower())
 			slot_control = TacticCard.new(card, false, heading, change)
 			_link(slot_control, info_pane.show_tactic.bind(card.name), "Show %s in the Rules tab" % card.name, "tactic_card:%d" % slot)
 		else:
-			slot_control = BuilderUI.button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot, "GhostButton")
+			slot_control = UIBuilder.button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot, "GhostButton")
 			slot_control.custom_minimum_size.y = 92
 		slot_control.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(slot_control)
@@ -354,9 +362,9 @@ func _army_list_section() -> Control:
 	var children: Array = []
 	for regiment in editor.army.regiments:
 		children.append(RegimentPanel.new(self, regiment))
-	var add_buttons := BuilderUI.hbox([
-		BuilderUI.button("Add regiment", pick_leader.bind(""), "army:add_regiment", "GhostButton"),
-		BuilderUI.button("Add Regiment of Renown", pick_regiment_of_renown, "army:add_ror", "GhostButton"),
+	var add_buttons := UIBuilder.hbox([
+		UIBuilder.button("Add regiment", pick_leader.bind(""), "army:add_regiment", "GhostButton"),
+		UIBuilder.button("Add Regiment of Renown", pick_regiment_of_renown, "army:add_ror", "GhostButton"),
 	], 12)
 	children.append(add_buttons)
 	var section := _section("Army List", children)
@@ -378,12 +386,12 @@ func _drop_regiment_of_renown(_at: Vector2, data: Dictionary) -> void:
 
 
 func _auxiliary_section() -> Control:
-	var box := BuilderUI.vbox([], 10)
+	var box := UIBuilder.vbox([], 10)
 	for unit in editor.army.auxiliary:
 		box.add_child(UnitRow.new(self, unit, null))
-	var add := BuilderUI.button("Add auxiliary unit", pick_auxiliary, "army:add_aux", "GhostButton")
+	var add := UIBuilder.button("Add auxiliary unit", pick_auxiliary, "army:add_aux", "GhostButton")
 	box.add_child(add)
-	auxiliary_box = BuilderUI.panel("DropBoxPanel", box)
+	auxiliary_box = UIBuilder.panel("DropBoxPanel", box)
 	var can_drop := func(at: Vector2, data: Dictionary) -> bool: return _can_drop_auxiliary(at, data, box, add)
 	drag.target(auxiliary_box, can_drop, _drop_auxiliary)
 	return _section("Auxiliary Units", [auxiliary_box])
@@ -412,7 +420,7 @@ func _terrain_section() -> Control:
 	var items := [["None", ""]]
 	for warscroll in terrain:
 		items.append(["%s · %d pts" % [warscroll.name, warscroll.points] if warscroll.points else warscroll.name, warscroll.id])
-	return _section("Faction Terrain", [BuilderUI.select(items, editor.army.faction_terrain, editor.set_faction_terrain,
+	return _section("Faction Terrain", [UIBuilder.select(items, editor.army.faction_terrain, editor.set_faction_terrain,
 			"army:terrain", "Faction terrain")])
 
 
@@ -436,21 +444,21 @@ func _lores_section() -> Control:
 		var items := [["None", ""]]
 		for lore in lores:
 			items.append(["%s · %d pts" % [lore.name, lore.points] if lore.points else lore.name, lore.name])
-		var help := BuilderUI.label("?", "MutedLabel")
+		var help := UIBuilder.label("?", "MutedLabel")
 		help.tooltip_text = LORE_HELP[pick[0]]
 		help.mouse_filter = Control.MOUSE_FILTER_STOP
 		if pick[3] and pick[2].is_empty():
-			help.add_theme_color_override("font_color", ForgeTheme.WARNING)
-		var title := BuilderUI.label(pick[1])
+			help.add_theme_color_override("font_color", UITheme.WARNING)
+		var title := UIBuilder.label(pick[1])
 		title.custom_minimum_size.x = 160
 		var kind: String = pick[0]
 		var choose := func(value: String) -> void:
 			editor.set_lore(kind, value)
 			if not value.is_empty():
 				info_pane.show_lore(value)
-		var select := BuilderUI.select(items, pick[2], choose, "lore:" + kind, pick[1])
+		var select := UIBuilder.select(items, pick[2], choose, "lore:" + kind, pick[1])
 		select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		rows.append(BuilderUI.hbox([title, help, select]))
+		rows.append(UIBuilder.hbox([title, help, select]))
 	return _section("Lores", rows) if not rows.is_empty() else null
 
 
@@ -491,14 +499,29 @@ func available_units(allow: Callable) -> Array[Warscroll]:
 
 
 func _show_picker() -> void:
+	var focused := get_viewport().gui_get_focus_owner() if is_inside_tree() else null
+	if focused and not picker.is_ancestor_of(focused):
+		_picker_opener = focused.get_meta(&"focus_key", "")
 	info_pane.hide()
 	picker.show()
 
 
+## Hides the picker and returns focus to the control that opened it, as hiding the picker drops
+## focus from its buttons.
 func _on_picker_closed() -> void:
 	picker.hide()
 	info_pane.show()
 	info_pane.refresh()
+	if not is_inside_tree():
+		return
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused and focused.is_visible_in_tree():
+		return
+	var opener := find_focus_key(builder_list, _picker_opener) if not _picker_opener.is_empty() else null
+	if opener:
+		opener.grab_focus()
+	else:
+		_focus_fallback()
 
 
 ## Picks a Hero to lead [param regiment_id], or a new regiment when empty.

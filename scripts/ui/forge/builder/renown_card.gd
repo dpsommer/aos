@@ -18,18 +18,18 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 	var count := 0
 	for unit in regiment.units:
 		count += unit.count
-	var title := BuilderUI.label(regiment.name, "CardTitleLabel", true)
-	var names := BuilderUI.vbox([title, BuilderUI.label("%d unit%s · fixed regiment" % [count, "" if count == 1 else "s"],
+	var title := UIBuilder.label(regiment.name, "CardTitleLabel", true)
+	var names := UIBuilder.vbox([title, UIBuilder.label("%d unit%s · fixed regiment" % [count, "" if count == 1 else "s"],
 			"MutedLabel")], 2)
 	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var content := BuilderUI.vbox([BuilderUI.hbox([names, ForgeTheme.chip("%d pts" % regiment.points, "gold")])], 8)
+	var content := UIBuilder.vbox([UIBuilder.hbox([names, UITheme.chip("%d pts" % regiment.points, "gold")])], 8)
 	var allowed := regiment in builder.catalog.regiments_of_renown(army)
 	if not allowed or regiment.legends:
 		var chips := HFlowContainer.new()
 		if not allowed:
-			chips.add_child(ForgeTheme.chip("Not normally available", "legends"))
+			chips.add_child(UITheme.chip("Not normally available", "legends"))
 		if regiment.legends:
-			chips.add_child(ForgeTheme.chip("Legends", "legends"))
+			chips.add_child(UITheme.chip("Legends", "legends"))
 		content.add_child(chips)
 
 	for i in regiment.units.size():
@@ -40,28 +40,28 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 		if not unit.notes.is_empty():
 			text += " (%s)" % unit.notes
 		var warscroll := _warscroll(unit)
-		var toggle := BuilderUI.banner(text, "", open, builder.toggle_expanded.bind(key), key, "SubheadButton")
+		var toggle := UIBuilder.banner(text, "", open, builder.toggle_expanded.bind(key), key, "SubheadButton")
 		toggle.tooltip_text = ("Hide " if open else "Show ") + unit.name + "'s warscroll"
 		toggle.disabled = warscroll == null
 		content.add_child(toggle)
 		if open and warscroll:
-			content.add_child(BuilderUI.rich(RulesFormatter.warscroll(warscroll, false)))
+			content.add_child(UIBuilder.rich(RulesFormatter.warscroll(warscroll, false)))
 
 	if not regiment.text.is_empty():
-		content.add_child(BuilderUI.label(regiment.text, "MutedLabel", true))
+		content.add_child(UIBuilder.label(regiment.text, "MutedLabel", true))
 	if not regiment.abilities.is_empty():
-		content.add_child(BuilderUI.rich(RulesFormatter.abilities(regiment.abilities)))
+		content.add_child(UIBuilder.rich(RulesFormatter.abilities(regiment.abilities)))
 
 	var in_army := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.regiment_of_renown == regiment.name)
 	var has_one := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())
 	if has_one and not army.override_constraints:
-		content.add_child(BuilderUI.label("In your army" if in_army else "Your army already has a Regiment of Renown",
+		content.add_child(UIBuilder.label("In your army" if in_army else "Your army already has a Regiment of Renown",
 				"MutedLabel", true))
 	else:
 		var add := func() -> void:
 			if builder.editor.add_regiment_of_renown(regiment.name) and on_added.is_valid():
 				on_added.call()
-		content.add_child(BuilderUI.hbox([BuilderUI.button("Add to army", add, "%s:add:%s" % [context, regiment.name],
+		content.add_child(UIBuilder.hbox([UIBuilder.button("Add to army", add, "%s:add:%s" % [context, regiment.name],
 				"GoldButton", "Add %s to the army" % regiment.name)]))
 		if context == "tab":
 			builder.drag.source(self, {"kind": "ror", "name": regiment.name}, regiment.name)

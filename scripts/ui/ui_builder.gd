@@ -1,6 +1,6 @@
-class_name BuilderUI
+class_name UIBuilder
 extends RefCounted
-## Small helpers for building the army builder's controls in code.
+## Small helpers for building the game's controls in code.
 
 
 static func label(text: String, variation := "", wrap := false) -> Label:
@@ -29,7 +29,7 @@ static func button(text: String, on_pressed: Callable, key := "", variation := "
 ## the name screen readers announce.
 static func icon_button(icon_name: String, label: String, on_pressed: Callable, key: String, variation := "IconButton") -> Button:
 	var node := button("", on_pressed, key, variation, label)
-	node.icon = ForgeTheme.icon(icon_name)
+	node.icon = UITheme.icon(icon_name)
 	node.accessibility_name = label
 	node.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	return node
@@ -86,24 +86,53 @@ static func spacer() -> Control:
 ## A square showing a unit's initials, standing in for its portrait. With [param on_pressed] it's a
 ## button, e.g. to show the unit in the info pane, and [param tooltip] names what it does.
 static func portrait(unit_name: String, on_pressed := Callable(), tooltip := "", size := 40) -> Control:
-	var initials := ""
-	for word in unit_name.replace("-", " ").split(" ", false):
-		if initials.length() < 2 and word[0] != word[0].to_lower():
-			initials += word[0]
 	if on_pressed.is_valid():
-		var node := button(initials, on_pressed, "", "PortraitButton", tooltip)
+		var node := button(initials(unit_name), on_pressed, "", "PortraitButton", tooltip)
 		node.accessibility_name = tooltip
 		node.custom_minimum_size = Vector2(size, size)
 		node.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var stripes := ArtPlaceholder.new(6)
+		stripes.show_behind_parent = true
+		stripes.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		node.add_child(stripes)
 		return node
-	var text := label(initials, "MutedLabel")
-	text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	var node := panel("", text)
-	node.add_theme_stylebox_override("panel", ForgeTheme.box(Color("#252930"), Color("#343A45"), 6))
+	var node := art(initials(unit_name), 6, 12)
 	node.custom_minimum_size = Vector2(size, size)
 	node.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	return node
+
+
+## Up to two capital initials of [param title], e.g. "LE" for "Lord-Exorcist".
+static func initials(title: String) -> String:
+	var result := ""
+	for word in title.replace("-", " ").split(" ", false):
+		if result.length() < 2 and word[0] != word[0].to_lower():
+			result += word[0]
+	return result
+
+
+## Striped placeholder art with [param text] in the middle, e.g. an army's initials.
+static func art(text: String, corner_radius := 8, font_size := 14) -> ArtPlaceholder:
+	var node := ArtPlaceholder.new(corner_radius)
+	var caption := label(text, "ArtLabel")
+	caption.add_theme_font_size_override("font_size", font_size)
+	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	caption.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	node.add_child(caption)
+	return node
+
+
+## The steps of a flow, e.g. "Order › Stormcast Eternals › Army of Renown", with the step at
+## [param current] in bold.
+static func breadcrumb(steps: PackedStringArray, current: int) -> HBoxContainer:
+	var row := hbox([], 10)
+	row.accessibility_name = "Forge steps"
+	for i in steps.size():
+		if i > 0:
+			row.add_child(label("›", "BreadcrumbLabel"))
+		row.add_child(label(steps[i], "BreadcrumbCurrentLabel" if i == current else "BreadcrumbLabel"))
+	return row
 
 
 ## A full-width button that folds a section: a chevron, [param text] and, if not empty,
@@ -111,7 +140,7 @@ static func portrait(unit_name: String, on_pressed := Callable(), tooltip := "",
 static func banner(text: String, count: String, open: bool, on_pressed: Callable, key: String,
 		variation := "BannerButton") -> Button:
 	var node := button(text, on_pressed, key, variation, ("Fold " if open else "Unfold ") + text)
-	node.icon = ForgeTheme.icon("chevron_down" if open else "chevron_right")
+	node.icon = UITheme.icon("chevron_down" if open else "chevron_right")
 	node.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	node.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -153,7 +182,7 @@ static func select(items: Array, selected: Variant, on_selected: Callable, key: 
 static func tags(warscroll: Warscroll) -> Array[Control]:
 	var result: Array[Control] = []
 	if warscroll.source.begins_with("Scourge of"):
-		result.append(ForgeTheme.chip("SoA" if warscroll.source.ends_with("Aqshy") else "SoG", warscroll.source))
+		result.append(UITheme.chip("SoA" if warscroll.source.ends_with("Aqshy") else "SoG", warscroll.source))
 	if warscroll.legends:
-		result.append(ForgeTheme.chip("Legends", "legends"))
+		result.append(UITheme.chip("Legends", "legends"))
 	return result

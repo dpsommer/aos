@@ -15,12 +15,12 @@ var _render := Callable()
 func _init(army_builder: ArmyBuilder) -> void:
 	builder = army_builder
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_title = BuilderUI.label("", "TitleLabel", true)
-	add_child(BuilderUI.hbox([_title, BuilderUI.icon_button("close", "Close without picking", close, "picker:close")]))
+	_title = UIBuilder.label("", "TitleLabel", true)
+	add_child(UIBuilder.hbox([_title, UIBuilder.icon_button("close", "Close without picking", close, "picker:close")]))
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	_list = BuilderUI.vbox([], 8)
+	_list = UIBuilder.vbox([], 8)
 	_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(_list)
 	add_child(scroll)
@@ -49,6 +49,11 @@ func _open(title: String, render: Callable) -> void:
 	_title.text = title
 	_render = render
 	refresh()
+	focus_first()
+
+
+## Focuses the list's first enabled button, or the close button when there is none.
+func focus_first() -> void:
 	var first := _first_button(_list)
 	(first if first else get_child(0).get_child(1) as Control).grab_focus()
 
@@ -69,21 +74,21 @@ func open_units(title: String, warscrolls: Callable, on_pick: Callable) -> void:
 	var render := func() -> void:
 		var shown: Array[Warscroll] = warscrolls.call()
 		if shown.is_empty():
-			_list.add_child(BuilderUI.label("No units can be added here.", "MutedLabel", true))
+			_list.add_child(UIBuilder.label("No units can be added here.", "MutedLabel", true))
 		for warscroll in shown:
 			_list.add_child(_unit_item(warscroll, on_pick))
 	_open(title, render)
 
 
 func _unit_item(warscroll: Warscroll, on_pick: Callable) -> PanelContainer:
-	var names := BuilderUI.vbox([BuilderUI.label(warscroll.name, "", true)], 2)
+	var names := UIBuilder.vbox([UIBuilder.label(warscroll.name, "", true)], 2)
 	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var details := BuilderUI.hbox([BuilderUI.label("%d pts" % warscroll.points, "MutedLabel")], 6)
-	for tag in BuilderUI.tags(warscroll):
+	var details := UIBuilder.hbox([UIBuilder.label("%d pts" % warscroll.points, "MutedLabel")], 6)
+	for tag in UIBuilder.tags(warscroll):
 		details.add_child(tag)
 	names.add_child(details)
-	var add := BuilderUI.button("Add", func() -> void: on_pick.call(warscroll.id), "pick:" + warscroll.id, "", "Add %s" % warscroll.name)
-	return BuilderUI.panel("RowPanel", BuilderUI.hbox([BuilderUI.portrait(warscroll.name), names, add], 10))
+	var add := UIBuilder.button("Add", func() -> void: on_pick.call(warscroll.id), "pick:" + warscroll.id, "", "Add %s" % warscroll.name)
+	return UIBuilder.panel("RowPanel", UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names, add], 10))
 
 
 ## Lists the battlepack's battle tactics cards in full to fill tactics card [param slot].
@@ -96,7 +101,7 @@ func open_tactics(slot: int) -> void:
 				builder.editor.set_tactic(slot, card.name)
 				close()
 			var current := builder.editor.army.tactics[slot] == card.name
-			var choose := BuilderUI.button("Chosen" if current else "Choose", pick, "pick:" + card.name, "GoldButton")
+			var choose := UIBuilder.button("Chosen" if current else "Choose", pick, "pick:" + card.name, "GoldButton")
 			choose.disabled = current
 			_list.add_child(TacticCard.new(card, true, "", choose))
 	_open("Battle tactics card %d" % (slot + 1), render)
@@ -110,7 +115,7 @@ func open_regiments_of_renown() -> void:
 				else builder.catalog.faction.regiments_of_renown
 		var shown := available.filter(func(r: RegimentOfRenown) -> bool: return army.show_legends or not r.legends)
 		if shown.is_empty():
-			_list.add_child(BuilderUI.label("This army can't include any Regiments of Renown.", "MutedLabel", true))
+			_list.add_child(UIBuilder.label("This army can't include any Regiments of Renown.", "MutedLabel", true))
 		for regiment: RegimentOfRenown in shown:
 			_list.add_child(RenownCard.new(builder, regiment, "pick", close))
 	_open("Add a Regiment of Renown", render)

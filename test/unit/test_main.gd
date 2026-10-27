@@ -149,7 +149,7 @@ func test_browser_back_pressed_shows_the_factions_army_of_renown_choice() -> voi
 	(main.current_screen as FactionBrowser).back_pressed.emit()
 	var forge := main.current_screen as Forge
 	assert_true(forge.renown_panel.visible)
-	assert_eq(forge.renown_title.text.trim_suffix(" (Legends)"), choice[1])
+	assert_eq(forge.breadcrumb_steps()[1], choice[1])
 
 
 func test_browser_back_then_renown_back_lists_selected_alliances_factions() -> void:
@@ -157,8 +157,10 @@ func test_browser_back_then_renown_back_lists_selected_alliances_factions() -> v
 	var choice := _available_faction()
 	_select_faction(main, choice)
 	(main.current_screen as FactionBrowser).back_pressed.emit()
-	(main.current_screen as Forge).renown_back_button.pressed.emit()
-	assert_eq((main.current_screen as Forge).faction_title.text, GrandAlliance.display_name(choice[0]))
+	(main.current_screen as Forge).go_back()
+	var forge := main.current_screen as Forge
+	assert_true(forge.faction_panel.visible)
+	assert_eq(forge.breadcrumb_steps()[0], GrandAlliance.display_name(choice[0]))
 
 
 func test_returned_forge_can_open_browser_again() -> void:
@@ -193,7 +195,7 @@ func test_show_forge_with_faction_opens_its_army_of_renown_panel() -> void:
 	main.show_forge(choice[0], choice[1])
 	var forge := main.current_screen as Forge
 	assert_true(forge.renown_panel.visible)
-	assert_eq(forge.renown_title.text.trim_suffix(" (Legends)"), choice[1])
+	assert_eq(forge.breadcrumb_steps()[1], choice[1])
 
 
 func test_show_forge_with_only_alliance_opens_its_faction_panel() -> void:
