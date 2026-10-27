@@ -208,18 +208,226 @@ func test_options_panel_hidden_until_expanded() -> void:
 	assert_null(UIKit.keyed(row, "u2:label"))
 
 
-func test_options_panel_has_a_name_field() -> void:
+func test_options_button_is_disabled_without_options() -> void:
+	var row := _row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"]))), "u2")
+	assert_true(_btn(row, "options").disabled)
+
+
+func test_options_button_is_enabled_with_a_weapon_option() -> void:
+	var faction := _faction_with_option(Kit.weapon_option("Axe", 1, 5))
+	var row := _row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"])), faction), "u2")
+	assert_false(_btn(row, "options").disabled)
+
+
+func test_options_button_is_enabled_with_an_enhancement() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	assert_false(_btn(_row(builder, "u1"), "options").disabled)
+
+
+func test_unit_without_options_draws_no_options_panel_when_expanded() -> void:
 	var row := _expanded_row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"]))), "u2")
-	assert_true(UIKit.keyed(row, "u2:label") is LineEdit)
+	assert_eq(row.get_child(0).get_child_count(), 1)
+
+
+# --- Renaming ---
+
+func test_unit_has_a_rename_button() -> void:
+	var row := _row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"]))), "u2")
+	assert_not_null(_btn(row, "rename"))
+
+
+func test_rename_button_follows_the_unit_name() -> void:
+	var row := _row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"]))), "u2")
+	var rename := _btn(row, "rename")
+	var siblings := rename.get_parent().get_children()
+	assert_true(siblings[0] is Label and (siblings[0] as Label).text == "Grunt")
+	assert_eq(siblings.find(rename), 1)
+
+
+func test_regiment_of_renown_units_have_no_rename_button() -> void:
+	var row := _row(_builder(_army_with_renown_regiment()), "u9")
+	assert_null(_btn(row, "rename"))
+
+
+func test_pressing_rename_shows_a_name_field() -> void:
+	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["grunt"])))
+	_btn(_drawn_row(builder, "u2"), "rename").pressed.emit()
+	assert_true(UIKit.keyed(_drawn_row(builder, "u2"), "u2:label") is LineEdit)
+
+
+func test_name_field_hidden_until_renaming() -> void:
+	var row := _row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"]))), "u2")
+	assert_null(UIKit.keyed(row, "u2:label"))
 
 
 func test_submitting_the_name_field_names_the_unit() -> void:
 	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
-	var row := _expanded_row(_builder(army), "u2")
-	var edit := UIKit.keyed(row, "u2:label") as LineEdit
-	edit.text = "Old Bill"
+	var builder := _builder(army)
+	builder.start_renaming("u2")
+	var edit := UIKit.keyed(_drawn_row(builder, "u2"), "u2:label") as LineEdit
 	edit.text_submitted.emit("Old Bill")
 	assert_eq(army.find_unit("u2").label, "Old Bill")
+	assert_eq(builder.renaming, "")
+
+
+func test_submitting_a_blank_name_goes_back_to_the_warscroll_name() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.find_unit("u2").label = "Old Bill"
+	var builder := _builder(army)
+	builder.start_renaming("u2")
+	(UIKit.keyed(_drawn_row(builder, "u2"), "u2:label") as LineEdit).text_submitted.emit("  ")
+	assert_eq(army.find_unit("u2").label, "")
+
+
+func test_submitting_the_same_name_stops_renaming() -> void:
+	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["grunt"])))
+	builder.start_renaming("u2")
+	(UIKit.keyed(_drawn_row(builder, "u2"), "u2:label") as LineEdit).text_submitted.emit("")
+	assert_eq(builder.renaming, "")
+	assert_null(UIKit.keyed(_drawn_row(builder, "u2"), "u2:label"))
+
+
+func test_finish_renaming_does_nothing_when_the_unit_is_not_being_renamed() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	var row := _row(_builder(army), "u2")
+	row.finish_renaming("Old Bill")
+	assert_eq(army.find_unit("u2").label, "")
+
+
+# --- Subtext ---
+
+func _subtext(army: Army, uid: String, faction: Faction = null) -> String:
+	var builder := _builder(army, faction)
+	var unit := army.find_unit(uid)
+	var regiment := army.regiment_of(uid)
+	return UnitRow.subtext(unit, regiment, army, builder.catalog.warscroll(unit, regiment))
+
+
+func test_subtext_names_the_general() -> void:
+	assert_true(_subtext(UIKit.army_with_regiment(), "u1").begins_with("General · "))
+
+
+func test_subtext_names_a_leader_that_is_not_the_general() -> void:
+	var army := UIKit.army_with_regiment()
+	army.general_uid = ""
+	assert_true(_subtext(army, "u1").begins_with("Leader · "))
+
+
+func test_subtext_of_a_regiment_member_has_no_role() -> void:
+	var text := _subtext(UIKit.army_with_regiment(PackedStringArray(["grunt"])), "u2")
+	assert_false(text.contains("Leader") or text.contains("General"), text)
+
+
+func test_subtext_shows_the_warscroll_name_of_a_renamed_unit_after_its_role() -> void:
+	var army := UIKit.army_with_regiment()
+	army.find_unit("u1").label = "Old Bill"
+	assert_true(_subtext(army, "u1").begins_with("General · Lead · "))
+
+
+func test_subtext_hides_the_warscroll_name_when_not_renamed() -> void:
+	assert_false(_subtext(UIKit.army_with_regiment(PackedStringArray(["grunt"])), "u2").contains("Grunt"))
+
+
+func test_subtext_counts_models() -> void:
+	assert_eq(_subtext(UIKit.army_with_regiment(PackedStringArray(["grunt"])), "u2"), "5 models")
+
+
+func test_subtext_counts_reinforced_models() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.find_unit("u2").reinforced = true
+	assert_eq(_subtext(army, "u2"), "10 models")
+
+
+func test_subtext_says_model_for_a_single_model() -> void:
+	var faction := _faction_with("lead", func(w: Warscroll) -> void: w.unit_size = 1)
+	assert_eq(_subtext(UIKit.army_with_regiment(), "u1", faction), "General · 1 model")
+
+
+func test_subtext_lists_enhancements_after_the_model_count() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.find_unit("u2").enhancements = {"Monstrous Traits": "Boon A"}
+	assert_eq(_subtext(army, "u2"), "5 models · Boon A")
+
+
+func test_subtext_lists_weapon_options_after_enhancements() -> void:
+	var faction := _faction_with_option(Kit.weapon_option("Axe", 1, 5))
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.find_unit("u2").enhancements = {"Monstrous Traits": "Boon A"}
+	assert_eq(_subtext(army, "u2", faction), "5 models · Boon A · 1 × Axe")
+
+
+func test_subtext_skips_weapon_options_no_model_takes() -> void:
+	var faction := _faction_with_option(Kit.weapon_option("Axe", 1, 5))
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.find_unit("u2").weapon_options["Axe"] = 0
+	assert_false(_subtext(army, "u2", faction).contains("Axe"))
+
+
+func test_subtext_flags_a_unit_missing_from_the_data() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["gone"]))
+	army.find_unit("u2").label = "Old Bill"
+	assert_eq(_subtext(army, "u2"), "gone · No longer in the faction data")
+
+
+func test_row_shows_the_subtext() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	var row := _row(_builder(army), "u2")
+	assert_true(UIKit.has_label_containing(row, "5 models"))
+
+
+# --- Points ---
+
+## The tag with the points from the unit's enhancements, or null.
+func _enhancement_tag(row: UnitRow) -> Control:
+	var found := UIKit.find_all(row, func(n: Node) -> bool: return n.has_meta(&"enhancement_points"))
+	return found[0] if not found.is_empty() else null
+
+
+func _enhanced_builder(army: Army) -> ArmyBuilder:
+	var builder := _builder(army)
+	builder.catalog.faction.enhancement_tables = [Kit.table("Heroic Traits",
+			[Kit.ability("Boon B", 20)] as Array[Ability])] as Array[EnhancementTable]
+	return builder
+
+
+func test_enhancement_points_show_in_a_tag_after_the_units_own_points() -> void:
+	var army := UIKit.army_with_regiment()
+	army.find_unit("u1").enhancements = {"Heroic Traits": "Boon B"}
+	var row := _row(_enhanced_builder(army), "u1")
+	var tag := _enhancement_tag(row)
+	assert_not_null(tag)
+	assert_eq(tag.get_meta(&"enhancement_points"), 20)
+	assert_true(UIKit.has_label_containing(tag, "+20"))
+
+
+func test_unit_points_leave_out_enhancement_points() -> void:
+	var army := UIKit.army_with_regiment()
+	army.find_unit("u1").enhancements = {"Heroic Traits": "Boon B"}
+	var builder := _enhanced_builder(army)
+	var row := _row(builder, "u1")
+	var warscroll_points := builder.catalog.warscroll(army.find_unit("u1"), army.regiments[0]).points
+	assert_true(UIKit.has_label_containing(row, "%d pts" % warscroll_points))
+
+
+func test_unit_without_enhancement_points_has_no_tag() -> void:
+	var row := _row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"]))), "u2")
+	assert_null(_enhancement_tag(row))
+
+
+# --- Crown and grip column ---
+
+func test_crown_comes_before_the_hero_leaders_portrait() -> void:
+	var row := _row(_builder(UIKit.army_with_regiment(PackedStringArray(["grunt"]))), "u1")
+	var crown := _btn(row, "general")
+	assert_eq(crown.get_index(), 0)
+
+
+func test_crown_and_grip_share_a_column() -> void:
+	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["grunt"])))
+	var crown := _btn(_drawn_row(builder, "u1"), "general")
+	var grip := _btn(_drawn_row(builder, "u2"), "grip")
+	assert_eq(crown.get_index(), grip.get_index())
 
 
 func test_hero_gets_a_select_for_every_enhancement_type() -> void:

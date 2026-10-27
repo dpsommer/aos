@@ -42,6 +42,26 @@ func test_enhancement_points_are_added() -> void:
 	assert_eq(ArmyPoints.unit_points(unit, null, Kit.army(), _catalog()), 120)
 
 
+func test_enhancement_points_count_only_enhancements() -> void:
+	var unit := Kit.unit("u", "hero")
+	unit.enhancements = {"Artefacts of Power": "Sword"}
+	var catalog := _catalog()
+	var army := Kit.army()
+	assert_eq(ArmyPoints.enhancement_points(unit, null, army, catalog),
+			ArmyPoints.unit_points(unit, null, army, catalog) - catalog.faction.get_warscroll("hero").points)
+
+
+func test_enhancement_points_are_zero_without_enhancements() -> void:
+	assert_eq(ArmyPoints.enhancement_points(Kit.unit("u", "hero"), null, Kit.army(), _catalog()), 0)
+
+
+func test_enhancement_points_are_zero_in_a_regiment_of_renown() -> void:
+	var unit := Kit.unit("u", "grunt")
+	unit.enhancements = {"Artefacts of Power": "Sword"}
+	var regiment := Kit.ror_regiment("r9", "Band", [unit] as Array[ArmyUnit])
+	assert_eq(ArmyPoints.enhancement_points(unit, regiment, Kit.army(), _catalog()), 0)
+
+
 func test_enhancement_points_are_not_doubled_by_reinforcing() -> void:
 	var unit := Kit.unit("u", "grunt")
 	unit.reinforced = true

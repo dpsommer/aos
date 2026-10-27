@@ -163,6 +163,13 @@ static func _create() -> Theme:
 	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
 		theme.set_stylebox(state, "DangerIconButton", _square(theme.get_stylebox(state, "DangerIconButton")))
 	theme.set_color("icon_hover_color", "DangerIconButton", Color("#F08A70"))
+	# A smaller icon button that sits inline with text, e.g. the pencil after a unit's name.
+	theme.set_type_variation("SmallIconButton", "IconButton")
+	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		var small := theme.get_stylebox(state, "IconButton").duplicate() as StyleBox
+		small.set_content_margin_all(5)
+		theme.set_stylebox(state, "SmallIconButton", small)
+	theme.set_constant("icon_max_width", "SmallIconButton", 14)
 	# The info pane's fold banners, warscroll toggles, tabs and roster cards.
 	_button(theme, "BannerButton", Color("#22262E"), Color("#292E37"), Color("#2E333D"), Color("#D8D2C4"))
 	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
@@ -198,6 +205,8 @@ static func _create() -> Theme:
 	theme.set_color("icon_normal_color", "TabButton", MUTED)
 	theme.set_color("icon_focus_color", "TabButton", MUTED)
 	_button(theme, "CardButton", Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, TEXT)
+	# A card button's focus outline is drawn by the card around it (FocusRowPanel), not the button.
+	theme.set_stylebox("focus", "CardButton", StyleBoxEmpty.new())
 	# Portraits draw their stripes behind the button (see UIBuilder.portrait), so only hover adds a
 	# border.
 	_button(theme, "PortraitButton", Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color("#7E8490"))
@@ -289,6 +298,8 @@ static func _create() -> Theme:
 	theme.set_stylebox("hover", "CardPanel", box(Color.TRANSPARENT, Color("#4A515F"), 10, 0))
 	_panel(theme, "PickedRowPanel", box(Color("#222019"), GOLD, 8, 8))
 	_panel(theme, "FlashRowPanel", box(CARD, GOLD, 8, 8, 2))
+	_panel(theme, "FocusRowPanel", box(CARD, GOLD, 8, 8, 2))
+	_panel(theme, "FocusPickedRowPanel", box(Color("#222019"), GOLD, 8, 8, 2))
 	_panel(theme, "FlashGroupPanel", box(Color.TRANSPARENT, GOLD, 8, 6, 2))
 	_panel(theme, "FavouritesPanel", box(Color("#2A2418"), GOLD_DARK, 6, 8))
 	_panel(theme, "TabBarPanel", _underline(Color("#262A32")))
