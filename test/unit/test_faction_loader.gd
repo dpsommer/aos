@@ -207,6 +207,35 @@ func test_warscroll_keywords_are_carried_over() -> void:
 	assert_eq(_load("valid").warscrolls[0].keywords, PackedStringArray(expected.keywords))
 
 
+func test_weapon_option_fields_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0].weapon_options[0]
+	var option: WeaponOption = _load("valid").warscrolls[0].weapon_options[0]
+	assert_eq([option.name, option.replaces, option.max, option.per, option.note],
+			[expected.name, expected.replaces, int(expected.max), int(expected.per), expected.note])
+
+
+func test_weapon_option_choice_loads_without_max_or_per() -> void:
+	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0].weapon_options[1]
+	assert_false(expected.has("max") or expected.has("per"), "fixture choice should omit max and per")
+	var option: WeaponOption = _load("valid").warscrolls[0].weapon_options[1]
+	assert_eq([option.name, option.replaces, option.choice], [expected.name, expected.replaces, expected.choice])
+
+
+func test_weapon_option_per_style_is_not_a_choice() -> void:
+	assert_false(_json("valid", "warscrolls.json").warscrolls[0].weapon_options[0].has("choice"))
+	assert_false(_load("valid").warscrolls[0].weapon_options[0].choice)
+
+
+func test_every_weapon_option_is_loaded() -> void:
+	var expected: Array = _json("valid", "warscrolls.json").warscrolls[0].weapon_options
+	assert_eq(_load("valid").warscrolls[0].weapon_options.size(), expected.size())
+
+
+func test_warscroll_without_weapon_options_has_none() -> void:
+	assert_false(_json("valid", "warscrolls.json").warscrolls[1].has("weapon_options"), "fixture should omit weapon_options")
+	assert_eq(_load("valid").warscrolls[1].weapon_options.size(), 0)
+
+
 func test_warscroll_source_and_legends_come_from_file() -> void:
 	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[1]
 	var unit: Warscroll = _load("valid").warscrolls[1]
@@ -288,6 +317,50 @@ func test_army_of_renown_without_legends_is_not_legends() -> void:
 	var index := _army_index(false)
 	assert_gt(index, -1, "fixture needs an army of renown without legends")
 	assert_false(_load("valid").armies_of_renown[index].legends)
+
+
+func test_army_of_renown_roster_entry_fields_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries[0]
+	var entry: RosterEntry = _load("valid").armies_of_renown[0].roster.entries[0]
+	assert_eq([entry.unit, entry.required, entry.general, entry.gains_keywords],
+			[expected.unit, expected.required, expected.general, PackedStringArray(expected.gains_keywords)])
+
+
+func test_army_of_renown_roster_keyword_entry_fields_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries[1]
+	var entry: RosterEntry = _load("valid").armies_of_renown[0].roster.entries[1]
+	assert_eq([entry.keywords, entry.not_keywords, entry.per_keyword],
+			[PackedStringArray(expected.keywords), PackedStringArray(expected.not_keywords), expected.per_keyword])
+
+
+func test_roster_entry_absent_fields_use_defaults() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries[1]
+	assert_false(expected.has("unit") or expected.has("required") or expected.has("general")
+			or expected.has("gains_keywords"), "fixture entry should omit these")
+	var entry: RosterEntry = _load("valid").armies_of_renown[0].roster.entries[1]
+	assert_eq([entry.unit, entry.required, entry.general, entry.gains_keywords.size()], ["", false, false, 0])
+
+
+func test_army_of_renown_roster_has_one_entry_per_file_entry() -> void:
+	var expected: Array = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries
+	assert_eq(_load("valid").armies_of_renown[0].roster.entries.size(), expected.size())
+
+
+func test_army_of_renown_roster_explicit_false_is_kept() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_false(expected.regiments_of_renown, "fixture should set regiments_of_renown false")
+	assert_false(_load("valid").armies_of_renown[0].roster.regiments_of_renown)
+
+
+func test_army_of_renown_roster_omitted_boolean_defaults_to_true() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_false(expected.has("faction_terrain"), "fixture roster should omit faction_terrain")
+	assert_true(_load("valid").armies_of_renown[0].roster.faction_terrain)
+
+
+func test_army_of_renown_without_roster_has_null_roster() -> void:
+	assert_false(_json("valid", "armies_of_renown.json").armies_of_renown[1].has("roster"), "fixture should omit roster")
+	assert_null(_load("valid").armies_of_renown[1].roster)
 
 
 func test_spearhead_fields_come_from_file() -> void:
@@ -497,6 +570,42 @@ func test_main_warscroll_without_points_returns_null() -> void:
 func test_main_warscroll_without_points_error_names_file_and_field_path() -> void:
 	assert_true(_has_error_naming(_errors("bad_warscroll"), "warscrolls.json", "warscrolls[0].points"),
 			str(_errors("bad_warscroll")))
+
+
+func test_weapon_option_without_replaces_returns_null() -> void:
+	assert_null(_load("weapon_option_missing_replaces"))
+
+
+func test_weapon_option_without_replaces_error_names_file_and_field_path() -> void:
+	var errors := _errors("weapon_option_missing_replaces")
+	assert_true(_has_error_naming(errors, "warscrolls.json", "warscrolls[0].weapon_options[0].replaces"), str(errors))
+
+
+func test_weapon_option_with_zero_per_returns_null() -> void:
+	assert_null(_load("weapon_option_zero_per"))
+
+
+func test_weapon_option_with_zero_per_error_names_file_and_field_path() -> void:
+	var errors := _errors("weapon_option_zero_per")
+	assert_true(_has_error_naming(errors, "warscrolls.json", "warscrolls[0].weapon_options[0].per"), str(errors))
+
+
+func test_roster_entry_without_unit_or_keywords_returns_null() -> void:
+	assert_null(_load("roster_entry_empty"))
+
+
+func test_roster_entry_without_unit_or_keywords_error_names_file_and_field_path() -> void:
+	var errors := _errors("roster_entry_empty")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "armies_of_renown[0].roster.entries[0]"), str(errors))
+
+
+func test_wrong_type_roster_faction_terrain_returns_null() -> void:
+	assert_null(_load("wrong_type_roster_faction_terrain"))
+
+
+func test_wrong_type_roster_faction_terrain_error_names_file_and_field_path() -> void:
+	var errors := _errors("wrong_type_roster_faction_terrain")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "armies_of_renown[0].roster.faction_terrain"), str(errors))
 
 
 func test_errors_reset_between_loads() -> void:

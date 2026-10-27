@@ -28,7 +28,11 @@ Fix a typo in a shared entry once, in `tools/faction_import/shared.json`, not in
 -- | --
 `Ability` | **`name`**, `type` (`active`, `passive`, `command`, `spell` or `prayer`; see [Ability types](#ability-types)), `category` (icon: offensive, movement, special…), `timing`, `frequency`, `declare`, `used_by` (reactions), `effect`, `text`, `keywords`, `options` (`[{name, text}]`), `points`, `command_points` (commands), `casting_value` (spells), `chanting_value` (prayers), `source`
 `Weapon` | **`name`**, `range` (inches, 0 for melee), **`attacks`**, **`hit`**, **`wound`**, `rend`, **`damage`**, `abilities`. Attacks and damage are strings because they can be dice, e.g. `"2D6"` A weapon that skips the attack sequence (Wahapedia prints "See below", e.g. the Spearhead Bladelords' Perfect Strike) has `hit`, `wound` and `rend` of 0 and `damage` of `"-"`
-`Warscroll` | **`id`**, **`name`**, `source`, `legends`, **`points`**, **`unit_size`** (both optional in Spearhead and Path to Glory), `base_size`, `can_reinforce`, `regiment_options`, `notes`, **`move`** (string: inches, or dice such as `"D6+3"` for units that roll their move; `"0"` if the unit can't move), **`health`**, **`save`**, `ward`, **`control`**, `banishment` (manifestations), `ranged_weapons`, `melee_weapons`, `abilities`, `keywords`, `composition`
+`Warscroll` | **`id`**, **`name`**, `source`, `legends`, **`points`**, **`unit_size`** (both optional in Spearhead and Path to Glory), `base_size`, `can_reinforce`, `regiment_options`, `notes`, **`move`** (string: inches, or dice such as `"D6+3"` for units that roll their move; `"0"` if the unit can't move), **`health`**, **`save`**, `ward`, **`control`**, `banishment` (manifestations), `ranged_weapons`, `melee_weapons`, `abilities`, `keywords`, `composition`, `weapon_options` (see [Builder rules](#builder-rules))
+`WeaponOption` | **`name`** (the weapon models can take), **`replaces`** (the weapon it replaces), **`max`** and **`per`** (`max` models per `per` models in the unit; both required unless `choice`), `choice` (every model can take it), `note` (further restrictions, e.g. "The champion cannot replace their weapon")
+`ArmyOfRenown` | **`name`**, `source`, `legends`, `text` (description and roster as written), `roster` (see [Builder rules](#builder-rules)), `battle_traits`, `enhancement_tables`, `lores`
+`ArmyRoster` | `entries` (`RosterEntry` list: every unit in the army must match one), `regiments_of_renown` and `faction_terrain` (whether the army can include them; default true)
+`RosterEntry` | `unit` (a warscroll name), or `keywords` and `not_keywords` (a unit with all of the first and none of the second), plus `per_keyword` (one such unit for each unit in the army with this keyword; otherwise any number), `required` (the army must include it), `general` (it must be the general), `gains_keywords` (e.g. `WARMASTER`)
 `BattleFormation` | **`name`**, `points`, `abilities`
 `EnhancementTable` | **`name`** (type, e.g. "Heroic Traits"), `group` (e.g. "Lords of the Sky-fleets"), `source`, `entries`
 `Lore` | **`name`**, `kind` (spell, prayer, manifestation), `points` (always written in `faction.json`, usually 0), `source`, `entries`
@@ -46,6 +50,10 @@ A command's `command_points` is its cost: BSData's "Ability (Command)" profiles 
 Characteristics such as `save`, `hit` and `wound` store the x of an x+ roll. `source` names the expansion a rule comes from (e.g. "Scourge of Aqshy"); it's empty for battletome rules. Path to Glory is stored as text because its content is too varied to model usefully yet.
 
 The loader rejects the whole faction, collecting every problem in `errors`, if a file isn't valid JSON, a required field is missing, a field has the wrong type, or a reference names no shared entry.
+
+### Builder rules
+
+The army builder needs two rules that the sources only give as prose: the wargear choices in a warscroll's `composition` ("1/5 models can replace their Warhammer with a Grandhammer"), and an Army of Renown's roster options in its `text`. These are transcribed by hand into `weapon_options` and `roster` through the faction's overrides file (`"fields": {"<warscroll id>": {"weapon_options": [...]}, "<Army of Renown name>": {"roster": {...}}}`). Only Stormcast Eternals has them so far. A warscroll without `weapon_options` has no wargear choices in the builder, and an Army of Renown without a `roster` doesn't have its roster checked.
 
 ## Sources
 

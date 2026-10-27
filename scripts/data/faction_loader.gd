@@ -281,7 +281,25 @@ func _warscroll(data: Variant, path: String, with_profile: bool) -> Warscroll:
 	warscroll.abilities = _abilities(data, "abilities", path)
 	warscroll.keywords = _strings(data, "keywords", path)
 	warscroll.composition = _string(data, "composition", path)
+	var options := _array(data, "weapon_options", path)
+	for i in options.size():
+		warscroll.weapon_options.append(_weapon_option(options[i], "%s.weapon_options[%d]" % [path, i]))
 	return warscroll
+
+
+func _weapon_option(data: Variant, path: String) -> WeaponOption:
+	var option := WeaponOption.new()
+	if not _is_object(data, path):
+		return option
+	option.name = _string(data, "name", path, true)
+	option.replaces = _string(data, "replaces", path, true)
+	option.choice = _bool(data, "choice", path)
+	option.max = _int(data, "max", path, not option.choice)
+	option.per = _int(data, "per", path, not option.choice)
+	if not option.choice and option.per <= 0:
+		_error(_join(path, "per"), "must be more than 0")
+	option.note = _string(data, "note", path)
+	return option
 
 
 func _army_of_renown(data: Variant, path: String) -> ArmyOfRenown:
@@ -291,10 +309,36 @@ func _army_of_renown(data: Variant, path: String) -> ArmyOfRenown:
 		army.source = _string(data, "source", path)
 		army.legends = _bool(data, "legends", path)
 		army.text = _string(data, "text", path)
+		if data.has("roster"):
+			army.roster = _roster(data.roster, _join(path, "roster"))
 		army.battle_traits = _abilities(data, "battle_traits", path)
 		army.enhancement_tables = _enhancement_tables(data, path)
 		army.lores = _lores(data, path)
 	return army
+
+
+func _roster(data: Variant, path: String) -> ArmyRoster:
+	var roster := ArmyRoster.new()
+	if not _is_object(data, path):
+		return roster
+	var entries := _array(data, "entries", path)
+	for i in entries.size():
+		var entry_path := _join(path, "entries[%d]" % i)
+		var entry := RosterEntry.new()
+		if _is_object(entries[i], entry_path):
+			entry.unit = _string(entries[i], "unit", entry_path)
+			entry.keywords = _strings(entries[i], "keywords", entry_path)
+			entry.not_keywords = _strings(entries[i], "not_keywords", entry_path)
+			if entry.unit.is_empty() and entry.keywords.is_empty():
+				_error(entry_path, "needs a unit or keywords")
+			entry.per_keyword = _string(entries[i], "per_keyword", entry_path)
+			entry.required = _bool(entries[i], "required", entry_path)
+			entry.general = _bool(entries[i], "general", entry_path)
+			entry.gains_keywords = _strings(entries[i], "gains_keywords", entry_path)
+		roster.entries.append(entry)
+	roster.regiments_of_renown = _bool(data, "regiments_of_renown", path, true)
+	roster.faction_terrain = _bool(data, "faction_terrain", path, true)
+	return roster
 
 
 func _regiment_of_renown(data: Variant, path: String) -> RegimentOfRenown:
@@ -388,12 +432,12 @@ func _int(data: Dictionary, key: String, path: String, required := false) -> int
 	return int(value)
 
 
-func _bool(data: Dictionary, key: String, path: String) -> bool:
+func _bool(data: Dictionary, key: String, path: String, default := false) -> bool:
 	if not data.has(key):
-		return false
+		return default
 	if not data[key] is bool:
 		_error(_join(path, key), "must be true or false")
-		return false
+		return default
 	return data[key]
 
 
