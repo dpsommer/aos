@@ -112,45 +112,5 @@ func open_regiments_of_renown() -> void:
 		if shown.is_empty():
 			_list.add_child(BuilderUI.label("This army can't include any Regiments of Renown.", "MutedLabel", true))
 		for regiment: RegimentOfRenown in shown:
-			_list.add_child(_regiment_card(regiment))
+			_list.add_child(RenownCard.new(builder, regiment, "pick", close))
 	_open("Add a Regiment of Renown", render)
-
-
-func _regiment_card(regiment: RegimentOfRenown) -> PanelContainer:
-	var pick := func() -> void:
-		if builder.editor.add_regiment_of_renown(regiment.name):
-			close()
-	var add := BuilderUI.button("Add", pick, "pick:" + regiment.name, "GoldButton", "Add %s" % regiment.name)
-	var title := BuilderUI.label(regiment.name + (" (Legends)" if regiment.legends else ""), "TitleLabel", true)
-	var content := BuilderUI.vbox([BuilderUI.hbox([title, BuilderUI.label("%d pts" % regiment.points, "MutedLabel"), add])], 8)
-	content.add_child(_rich(RulesFormatter.regiment_of_renown(regiment)))
-	var key := "scrolls:" + regiment.name
-	var showing := builder.expanded.has(key)
-	var show_scrolls := func(_on: bool) -> void:
-		builder.toggle_expanded(key)
-		refresh()
-	content.add_child(BuilderUI.toggle("Hide warscrolls" if showing else "Show warscrolls", showing, show_scrolls, key))
-	if showing:
-		var seen := {}
-		for unit in regiment.units:
-			if seen.has(unit.warscroll_id):
-				continue
-			seen[unit.warscroll_id] = true
-			var army_unit := ArmyUnit.new()
-			army_unit.warscroll_id = unit.warscroll_id
-			army_unit.faction_id = unit.faction_id
-			var as_regiment := ArmyRegiment.new()
-			as_regiment.regiment_of_renown = regiment.name
-			var warscroll := builder.catalog.warscroll(army_unit, as_regiment)
-			if warscroll:
-				content.add_child(_rich(RulesFormatter.warscroll(warscroll)))
-	return BuilderUI.panel("CardPanel", content)
-
-
-func _rich(bbcode: String) -> RichTextLabel:
-	var text := RichTextLabel.new()
-	text.bbcode_enabled = true
-	text.fit_content = true
-	text.text = bbcode
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	return text

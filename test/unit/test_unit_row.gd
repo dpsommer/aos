@@ -138,7 +138,32 @@ func _army_with_renown_regiment() -> Army:
 
 func test_regiment_of_renown_units_have_no_editing_buttons() -> void:
 	var row := _row(_builder(_army_with_renown_regiment()), "u9")
-	assert_eq(UIKit.buttons(row).size(), 0, str(UIKit.button_texts(row)))
+	var editing := UIKit.buttons(row).filter(func(b: Button) -> bool: return b.theme_type_variation != "PortraitButton")
+	assert_eq(editing.size(), 0, str(UIKit.button_texts(row)))
+
+
+func test_regiment_of_renown_unit_portrait_links_to_the_regiments_of_renown_tab() -> void:
+	var builder := _builder(_army_with_renown_regiment())
+	var row := _row(builder, "u9")
+	var portrait: Button = UIKit.buttons(row).filter(func(b: Button) -> bool: return b.theme_type_variation == "PortraitButton")[0]
+	portrait.pressed.emit()
+	assert_eq(builder.info_pane.tab, "renown")
+	assert_eq(builder.info_pane.flash_key, "ror:Band")
+
+
+func test_faction_unit_portrait_links_to_the_roster() -> void:
+	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["grunt"])))
+	var row := _row(builder, "u2")
+	var portrait: Button = UIKit.buttons(row).filter(func(b: Button) -> bool: return b.theme_type_variation == "PortraitButton")[0]
+	portrait.pressed.emit()
+	assert_eq(builder.info_pane.tab, "roster")
+	assert_eq(builder.info_pane.selected, "grunt")
+
+
+func test_unit_missing_from_the_faction_has_a_plain_portrait() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["gone"]))
+	var row := _row(_builder(army), "u2")
+	assert_eq(UIKit.buttons(row).filter(func(b: Button) -> bool: return b.theme_type_variation == "PortraitButton").size(), 0)
 
 
 func test_regiment_of_renown_units_do_not_show_points() -> void:

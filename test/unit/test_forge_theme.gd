@@ -2,6 +2,7 @@ extends GutTest
 ## Unit tests for the builder's theme and control helpers (forge_theme.gd and ui.gd).
 
 const Kit := preload("res://test/support/army_kit.gd")
+const UIKit := preload("res://test/support/ui_kit.gd")
 
 
 func after_each() -> void:
@@ -127,3 +128,87 @@ func test_tags_flag_scourge_warscrolls() -> void:
 	assert_eq(tags.size(), 1)
 	for tag in tags:
 		tag.free()
+
+
+# --- portrait, banner, rich and small_icon ---
+
+func test_portrait_with_a_callback_is_a_button_with_initials() -> void:
+	var node := BuilderUI.portrait("Lord Imperatant", func() -> void: pass, "Show it")
+	autofree(node)
+	assert_true(node is Button)
+	assert_eq((node as Button).text, "LI")
+	assert_eq(node.theme_type_variation, "PortraitButton")
+	assert_eq(node.tooltip_text, "Show it")
+
+
+func test_portrait_button_calls_back_when_pressed() -> void:
+	var calls := []
+	var node := BuilderUI.portrait("Lord", func() -> void: calls.append(1), "x") as Button
+	autofree(node)
+	node.pressed.emit()
+	assert_eq(calls.size(), 1)
+
+
+func test_portrait_button_has_the_given_size() -> void:
+	var node := BuilderUI.portrait("Lord", func() -> void: pass, "x", 64)
+	autofree(node)
+	assert_eq(node.custom_minimum_size, Vector2(64, 64))
+
+
+func test_portrait_without_a_callback_is_not_a_button() -> void:
+	var node := BuilderUI.portrait("Lord")
+	autofree(node)
+	assert_false(node is Button)
+
+
+func _banner(open := true, count := "3", on_pressed := Callable()) -> Button:
+	var node := BuilderUI.banner("Heroes", count, open, on_pressed if on_pressed.is_valid() else func() -> void: pass, "key:1")
+	autofree(node)
+	return node
+
+
+func test_banner_shows_its_text_and_key() -> void:
+	var node := _banner()
+	assert_eq(node.text, "Heroes")
+	assert_eq(node.get_meta(&"focus_key"), "key:1")
+
+
+func test_banner_shows_the_count() -> void:
+	assert_true(UIKit.has_label_containing(_banner(true, "3"), "3"))
+
+
+func test_banner_without_a_count_has_no_tally() -> void:
+	assert_eq(_banner(true, "").get_child_count(), 0)
+
+
+func test_banner_icon_differs_when_open_and_closed() -> void:
+	assert_ne(_banner(true).icon, _banner(false).icon)
+
+
+func test_banner_describes_its_state_for_screen_readers() -> void:
+	assert_ne(_banner(true).accessibility_description, _banner(false).accessibility_description)
+
+
+func test_banner_tooltip_says_what_pressing_does() -> void:
+	assert_string_starts_with(_banner(true).tooltip_text, "Fold")
+	assert_string_starts_with(_banner(false).tooltip_text, "Unfold")
+
+
+func test_banner_calls_back_when_pressed() -> void:
+	var calls := []
+	var node := _banner(true, "", func() -> void: calls.append(1))
+	node.pressed.emit()
+	assert_eq(calls.size(), 1)
+
+
+func test_rich_shows_bbcode_and_fits_its_content() -> void:
+	var node := BuilderUI.rich("[b]Bold[/b] text")
+	autofree(node)
+	assert_true(node.bbcode_enabled)
+	assert_true(node.fit_content)
+	assert_eq(node.get_parsed_text(), "Bold text")
+
+
+func test_small_icon_is_drawn_at_the_icon_size() -> void:
+	var texture := ForgeTheme.small_icon("search")
+	assert_eq(texture.get_size(), Vector2(ForgeTheme.ICON_SIZE, ForgeTheme.ICON_SIZE))

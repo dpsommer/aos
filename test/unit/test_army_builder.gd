@@ -588,3 +588,108 @@ func test_tactic_slot_without_a_card_offers_to_choose_one() -> void:
 func test_tactic_slot_with_a_card_offers_to_change_it() -> void:
 	var builder := _builder(_valid_army())
 	assert_eq(UIKit.keyed(builder.builder_list, "tactic:0").text, "Change")
+
+
+# --- Info pane integration ---
+
+func _click() -> InputEventMouseButton:
+	var event := InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_LEFT
+	event.pressed = true
+	return event
+
+
+func _accept() -> InputEventAction:
+	var event := InputEventAction.new()
+	event.action = "ui_accept"
+	event.pressed = true
+	return event
+
+
+func test_builder_creates_an_info_pane_in_the_left_pane() -> void:
+	var builder := _builder(_valid_army())
+	assert_not_null(builder.info_pane)
+	assert_true(builder.left_pane.is_ancestor_of(builder.info_pane))
+
+
+func test_info_pane_shows_the_factions_roster_after_opening() -> void:
+	var builder := _builder(_valid_army())
+	assert_not_null(UIKit.keyed(builder.info_pane, "info:card:grunt"))
+
+
+func test_clicking_a_short_tactic_card_shows_it_in_the_rules_tab() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder.builder_list, "tactic_card:1").gui_input.emit(_click())
+	assert_eq(builder.info_pane.tab, "rules")
+	assert_eq(builder.info_pane.flash_key, "tactic:Card B")
+
+
+func test_enter_on_a_short_tactic_card_shows_it_in_the_rules_tab() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder.builder_list, "tactic_card:0").gui_input.emit(_accept())
+	assert_eq(builder.info_pane.tab, "rules")
+	assert_eq(builder.info_pane.flash_key, "tactic:Card A")
+
+
+func test_other_keys_on_a_tactic_card_do_nothing() -> void:
+	var builder := _builder(_valid_army())
+	var event := InputEventAction.new()
+	event.action = "ui_down"
+	event.pressed = true
+	UIKit.keyed(builder.builder_list, "tactic_card:0").gui_input.emit(event)
+	assert_eq(builder.info_pane.tab, "roster")
+
+
+func test_tactic_card_is_focusable_and_has_a_tooltip() -> void:
+	var card := UIKit.keyed(_builder(_valid_army()).builder_list, "tactic_card:0")
+	assert_eq(card.focus_mode, Control.FOCUS_ALL)
+	assert_string_contains(card.tooltip_text, "Card A")
+
+
+func test_the_change_button_still_opens_the_picker_rather_than_the_link() -> void:
+	var builder := _builder(_valid_army())
+	UIKit.keyed(builder.builder_list, "tactic:0").pressed.emit()
+	assert_true(builder.picker.is_open())
+	assert_eq(builder.info_pane.tab, "roster")
+
+
+func test_picking_a_lore_shows_it_in_the_rules_tab() -> void:
+	var builder := _builder(UIKit.army_with_regiment(), _lore_faction())
+	var select := UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton
+	select.select(1)
+	select.item_selected.emit(1)
+	assert_eq(builder.info_pane.tab, "rules")
+	assert_has(builder.info_pane.open_lores, "Fire")
+	assert_eq(builder.info_pane.flash_key, "lore:Fire")
+
+
+func test_clearing_a_lore_does_not_switch_tab() -> void:
+	var army := UIKit.army_with_regiment()
+	army.spell_lore = "Fire"
+	var builder := _builder(army, _lore_faction())
+	var select := UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton
+	select.select(0)
+	select.item_selected.emit(0)
+	assert_eq(builder.info_pane.tab, "roster")
+
+
+func test_army_changes_refresh_the_visible_info_pane() -> void:
+	var builder := _builder(_valid_army())
+	builder.info_pane.set_tab("rules")
+	builder.editor.set_lore("spell", "Fire")
+	assert_eq(builder.info_pane.tab, "rules")
+
+
+func test_the_info_pane_is_hidden_while_the_picker_is_open() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_auxiliary()
+	assert_false(builder.info_pane.visible)
+
+
+func test_closing_the_picker_shows_the_info_pane_up_to_date() -> void:
+	var builder := _builder(_valid_army())
+	builder.pick_auxiliary()
+	builder.editor.set_show_legends(true)
+	builder.picker.close()
+	assert_true(builder.info_pane.visible)
+	assert_not_null(UIKit.keyed(builder.info_pane, "info:card:legend"))

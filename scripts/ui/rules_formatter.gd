@@ -57,8 +57,9 @@ static func battle_formation(formation: BattleFormation) -> String:
 	return "%s\n\n%s" % [heading("%s (%d pts)" % [formation.name, formation.points]), abilities(formation.abilities)]
 
 
-static func warscroll(unit: Warscroll) -> String:
-	var lines := PackedStringArray([heading(unit.name)])
+## [param with_heading] is false where the unit's name is already shown, e.g. in a roster card.
+static func warscroll(unit: Warscroll, with_heading := true) -> String:
+	var lines := PackedStringArray([heading(unit.name)] if with_heading else [])
 	var tags := PackedStringArray()
 	if not unit.source.is_empty():
 		tags.append(unit.source)

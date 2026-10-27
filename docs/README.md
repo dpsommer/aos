@@ -19,7 +19,7 @@
 ### Design
 
 - [Main menu](design/main-menu.md): menu options, their destinations, and the signals the menu emits
-- [Forge](design/forge.md): army builder flow, faction browser, signals, and faction data
+- [Forge](design/forge.md): army builder flow and screen, faction browser, signals, and faction data
 
 ### Gameplay
 

@@ -169,15 +169,15 @@ func test_open_regiments_of_renown_lists_available_regiments() -> void:
 	var faction := _faction_with_renown([_band("Band"), _band("Other")] as Array[RegimentOfRenown])
 	var builder := _builder(null, faction)
 	builder.picker.open_regiments_of_renown()
-	assert_not_null(UIKit.keyed(builder.picker, "pick:Band"))
-	assert_not_null(UIKit.keyed(builder.picker, "pick:Other"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:add:Band"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:add:Other"))
 
 
 func test_regiments_of_renown_hides_legends_unless_shown() -> void:
 	var faction := _faction_with_renown([_band("Old Band", true)] as Array[RegimentOfRenown])
 	var builder := _builder(null, faction)
 	builder.picker.open_regiments_of_renown()
-	assert_null(UIKit.keyed(builder.picker, "pick:Old Band"))
+	assert_null(UIKit.keyed(builder.picker, "pick:add:Old Band"))
 
 
 func test_regiments_of_renown_shows_legends_when_enabled() -> void:
@@ -186,7 +186,7 @@ func test_regiments_of_renown_shows_legends_when_enabled() -> void:
 	army.show_legends = true
 	var builder := _builder(army, faction)
 	builder.picker.open_regiments_of_renown()
-	assert_not_null(UIKit.keyed(builder.picker, "pick:Old Band"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:add:Old Band"))
 
 
 func test_regiments_of_renown_shows_a_message_when_there_are_none() -> void:
@@ -204,7 +204,7 @@ func test_regiments_of_renown_empty_when_the_army_of_renown_forbids_them() -> vo
 	army.army_of_renown = "Solo"
 	var builder := _builder(army, faction)
 	builder.picker.open_regiments_of_renown()
-	assert_null(UIKit.keyed(builder.picker, "pick:Band"))
+	assert_null(UIKit.keyed(builder.picker, "pick:add:Band"))
 
 
 func test_adding_a_regiment_of_renown_adds_it_and_closes() -> void:
@@ -212,53 +212,48 @@ func test_adding_a_regiment_of_renown_adds_it_and_closes() -> void:
 	var army := UIKit.army_with_regiment()
 	var builder := _builder(army, faction)
 	builder.picker.open_regiments_of_renown()
-	UIKit.keyed(builder.picker, "pick:Band").pressed.emit()
+	UIKit.keyed(builder.picker, "pick:add:Band").pressed.emit()
 	assert_true(army.regiments.any(func(r: ArmyRegiment) -> bool: return r.regiment_of_renown == "Band"))
 	assert_false(builder.picker.is_open())
-
-
-func test_adding_a_second_regiment_of_renown_keeps_the_picker_open() -> void:
-	var faction := _faction_with_renown([_band("Band"), _band("Other")] as Array[RegimentOfRenown])
-	var army := UIKit.army_with_regiment()
-	var builder := _builder(army, faction)
-	builder.editor.add_regiment_of_renown("Band")
-	builder.picker.open_regiments_of_renown()
-	UIKit.keyed(builder.picker, "pick:Other").pressed.emit()
-	assert_true(builder.picker.is_open())
 
 
 func _rich_count(builder: ArmyBuilder) -> int:
 	return UIKit.find_all(builder.picker, func(n: Node) -> bool: return n is RichTextLabel).size()
 
 
-func test_warscrolls_toggle_starts_as_show() -> void:
+func test_unit_subhead_starts_collapsed() -> void:
 	var faction := _faction_with_renown([_band()] as Array[RegimentOfRenown])
 	var builder := _builder(null, faction)
 	builder.picker.open_regiments_of_renown()
-	var toggle := UIKit.keyed(builder.picker, "scrolls:Band") as Button
-	assert_string_starts_with(toggle.text, "Show")
-	assert_false(toggle.button_pressed)
+	assert_false(builder.expanded.has("pick:Band:0"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:Band:0"))
 
 
-func test_showing_warscrolls_adds_the_warscroll_text_and_flips_the_toggle() -> void:
+func test_pressing_a_unit_subhead_shows_its_warscroll() -> void:
 	var faction := _faction_with_renown([_band()] as Array[RegimentOfRenown])
 	var builder := _builder(null, faction)
 	builder.picker.open_regiments_of_renown()
 	var before := _rich_count(builder)
-	(UIKit.keyed(builder.picker, "scrolls:Band") as Button).button_pressed = true
+	UIKit.keyed(builder.picker, "pick:Band:0").pressed.emit()
 	await get_tree().process_frame
 	assert_gt(_rich_count(builder), before)
-	assert_string_starts_with((UIKit.keyed(builder.picker, "scrolls:Band") as Button).text, "Hide")
 
 
-func test_hiding_warscrolls_removes_the_warscroll_text() -> void:
+func test_pressing_a_unit_subhead_again_hides_its_warscroll() -> void:
 	var faction := _faction_with_renown([_band()] as Array[RegimentOfRenown])
 	var builder := _builder(null, faction)
 	builder.picker.open_regiments_of_renown()
 	var before := _rich_count(builder)
-	(UIKit.keyed(builder.picker, "scrolls:Band") as Button).button_pressed = true
+	UIKit.keyed(builder.picker, "pick:Band:0").pressed.emit()
 	await get_tree().process_frame
-	(UIKit.keyed(builder.picker, "scrolls:Band") as Button).button_pressed = false
+	UIKit.keyed(builder.picker, "pick:Band:0").pressed.emit()
 	await get_tree().process_frame
 	assert_eq(_rich_count(builder), before)
-	assert_string_starts_with((UIKit.keyed(builder.picker, "scrolls:Band") as Button).text, "Show")
+
+
+func test_a_second_regiment_of_renown_has_no_add_button_without_override() -> void:
+	var faction := _faction_with_renown([_band("Band"), _band("Other")] as Array[RegimentOfRenown])
+	var builder := _builder(UIKit.army_with_regiment(), faction)
+	builder.editor.add_regiment_of_renown("Band")
+	builder.picker.open_regiments_of_renown()
+	assert_null(UIKit.keyed(builder.picker, "pick:add:Other"))

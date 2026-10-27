@@ -6,8 +6,9 @@ extends PanelContainer
 const KIND_NAMES := {"affray": "Affray", "strike": "Strike", "domination": "Domination"}
 
 
-## [param action] is a button shown on the card, e.g. "Choose" or "Change", or null for none.
-func _init(card: BattleTacticCard, full: bool, heading := "", action: Button = null) -> void:
+## [param action] is shown beside the card's name, e.g. a "Choose" or "Change" button or a chip, or
+## null for none.
+func _init(card: BattleTacticCard, full: bool, heading := "", action: Control = null) -> void:
 	theme_type_variation = "CardPanel"
 	var content := BuilderUI.vbox([], 8)
 	if not heading.is_empty():
@@ -21,6 +22,9 @@ func _init(card: BattleTacticCard, full: bool, heading := "", action: Button = n
 			var name_row := BuilderUI.hbox([ForgeTheme.chip(KIND_NAMES.get(tactic.kind, tactic.kind), tactic.kind),
 					BuilderUI.label(tactic.name), BuilderUI.spacer(), BuilderUI.label("%d VP" % tactic.victory_points, "MutedLabel")])
 			content.add_child(BuilderUI.vbox([name_row, BuilderUI.label(tactic.condition, "MutedLabel", true)], 4))
+		for faq in card.faqs:
+			content.add_child(BuilderUI.rich("[b]FAQ:[/b] %s\n[b]Answer:[/b] %s" % [
+					str(faq.get("question", "")).replace("[", "[lb]"), str(faq.get("answer", "")).replace("[", "[lb]")]))
 	else:
 		var chips := HFlowContainer.new()
 		for tactic in card.tactics:
