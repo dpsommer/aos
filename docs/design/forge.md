@@ -28,7 +28,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Validation:** problems and warnings from `ArmyValidator`.
   - **Battle Tactics:** 2 slots. A filled slot shows the card's name and its battle tactics' names, with Change.
   - **Army List:** each regiment's name, unit count against its capacity, and points, with collapse, Rename and Delete.
-    - **Unit rows:** a unit's name, its enhancements, its points, and buttons: General (leaders only), Reinforce (where allowed), Options, Copy and Remove. Units in a Regiment of Renown have no buttons.
+    - **Unit rows:** a grip (not on Hero leaders), a unit's name, its enhancements, its points, and buttons: General (leaders only), Reinforce (where allowed), Options, Copy and Remove. Units in a Regiment of Renown have no buttons.
     - **Options:** a unit's name, a select for each enhancement type it can take, and a count for each weapon option, capped by its regiment size, with the option's rules.
     - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (disabled when full), "Add regiment" and "Add Regiment of Renown".
   - **Auxiliary Units:** unit rows and "Add auxiliary unit".
@@ -76,6 +76,14 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
 
   It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
+- **Drag and drop** (`BuilderDragDrop`, `drag_drop.gd`): a gold line shows where a drop will go, and the dragged row or card is dimmed.
+  - **Roster card:** drop it in a regiment to add the unit there, or on Auxiliary Units.
+  - **Unit:** drag its grip to move it within its regiment, to another regiment, or to Auxiliary Units. A full regiment refuses it unless constraints are overridden, and nothing goes before a Hero leader.
+    - While a unit is dragged, the info pane shows "Drop to remove from army", which removes it.
+  - **Regiment:** drag its grip to reorder the army list.
+  - **Regiments of Renown card:** drop it on the army list to add it, if the army can take it.
+  - **Feedback:** regiments that can take the dragged unit are outlined in gold, and dragging near the top or bottom of the army list scrolls it.
+  - **Keyboard:** the grips move units and regiments with Up and Down. Hero leaders and Regiment of Renown units have no grip.
 - **Redrawing and focus:** the builder pane is rebuilt from the army after every change. Controls carry a `focus_key` meta, so keyboard focus returns to the same control afterwards.
   - The info pane is only rebuilt when something its tab shows has changed, as the Rules tab is slow to lay out.
 - **Esc:** in the search box, clears the search. Otherwise it closes the picker, then cancels a rename, then goes back.

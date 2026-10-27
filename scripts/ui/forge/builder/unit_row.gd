@@ -19,6 +19,55 @@ func _init(army_builder: ArmyBuilder, army_unit: ArmyUnit, army_regiment: ArmyRe
 	if builder.expanded.has(unit.uid) and warscroll:
 		content.add_child(_options())
 	add_child(content)
+	if not _in_renown():
+		BuilderDragDrop.pass_mouse(self)
+
+
+func _in_renown() -> bool:
+	return regiment != null and regiment.is_regiment_of_renown()
+
+
+## The units this row is listed with: its regiment's, or the auxiliary units.
+func _list() -> Array[ArmyUnit]:
+	return regiment.units if regiment else builder.editor.army.auxiliary
+
+
+## Whether the unit can be dragged and reordered: not a Hero leader, which stays first.
+func movable() -> bool:
+	if _in_renown():
+		return false
+	return regiment == null or regiment.units[0] != unit or builder.editor.insertion_index(regiment, 0) == 0
+
+
+## Where a unit dropped at [param at] goes in this row's list.
+func drop_index(at: Vector2) -> int:
+	var index := _list().find(unit) + (1 if at.y > size.y / 2 else 0)
+	return builder.editor.insertion_index(regiment, index) if regiment else index
+
+
+func _can_drop_data(at: Vector2, data: Variant) -> bool:
+	if not data is Dictionary or _in_renown() or not builder.drag.accepts_unit(data, regiment):
+		return false
+	var rows := get_parent().get_children().filter(func(n: Node) -> bool: return n is UnitRow)
+	builder.drag.show_line_in(self, rows, drop_index(at), self)
+	return true
+
+
+func _drop_data(at: Vector2, data: Variant) -> void:
+	builder.drag.place_unit(data, regiment, drop_index(at))
+
+
+## Up and Down on the grip move the unit within its list.
+func _on_grip_input(event: InputEvent, grip: Button) -> void:
+	var step := -1 if event.is_action_pressed("ui_up", true) else 1 if event.is_action_pressed("ui_down", true) else 0
+	if step == 0:
+		return
+	grip.accept_event()
+	var list := _list()
+	var to := list.find(unit) + step
+	var first := builder.editor.insertion_index(regiment, 0) if regiment else 0
+	if to >= first and to < list.size():
+		builder.editor.move_unit(unit.uid, regiment.id if regiment else "", to + (1 if step > 0 else 0))
 
 
 func _summary() -> HBoxContainer:
@@ -59,6 +108,14 @@ func _summary() -> HBoxContainer:
 	else:
 		portrait = BuilderUI.portrait(title)
 	var row := BuilderUI.hbox([portrait, names], 10)
+	if movable():
+		var grip := BuilderUI.icon_button("grip", "Reorder unit: drag, or use the arrow keys", func() -> void: pass,
+				unit.uid + ":grip", "GripButton")
+		grip.mouse_default_cursor_shape = Control.CURSOR_MOVE
+		grip.gui_input.connect(_on_grip_input.bind(grip))
+		builder.drag.source(grip, {"kind": "unit", "uid": unit.uid}, heading.text, self)
+		row.add_child(grip)
+		row.move_child(grip, 0)
 	if not renown:
 		row.add_child(BuilderUI.label("%d pts" % ArmyPoints.unit_points(unit, regiment, army, builder.catalog), "MutedLabel"))
 	var key := unit.uid + ":"

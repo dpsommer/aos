@@ -141,3 +141,167 @@ func test_regiment_of_renown_panel_uses_the_renown_style() -> void:
 	var renown: RegimentPanel = _panel(_renown_army(), "r9")[0]
 	var plain: RegimentPanel = _panel(UIKit.army_with_regiment())[0]
 	assert_ne(renown.theme_type_variation, plain.theme_type_variation)
+
+
+# --- Reordering: grips, drops and keyboard ---
+
+## Regiments r1 (lead u1, grunt u2), r2 (wizard u3) and r3 (wizard u4).
+func _three_regiments() -> Army:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.regiments.append(Kit.regiment("r2", [Kit.unit("u3", "wizard")] as Array[ArmyUnit]))
+	army.regiments.append(Kit.regiment("r3", [Kit.unit("u4", "wizard")] as Array[ArmyUnit]))
+	return army
+
+
+## The panel the builder drew for the regiment, with a size.
+func _drawn_panel(builder: ArmyBuilder, id: String) -> RegimentPanel:
+	var found := UIKit.find_all(builder.builder_list, func(n: Node) -> bool: return n is RegimentPanel and n.regiment.id == id)
+	var panel: RegimentPanel = found[0]
+	panel.size = Vector2(300, 100)
+	return panel
+
+
+func _ids(builder: ArmyBuilder) -> Array:
+	return builder.editor.army.regiments.map(func(r: ArmyRegiment) -> String: return r.id)
+
+
+func _reg(id: String) -> Dictionary:
+	return {"kind": "reg", "regiment_id": id}
+
+
+func _key(action: String) -> InputEventAction:
+	var event := InputEventAction.new()
+	event.action = action
+	event.pressed = true
+	return event
+
+
+func test_regiment_has_a_grip() -> void:
+	var panel: RegimentPanel = _panel(UIKit.army_with_regiment())[0]
+	assert_eq((UIKit.keyed(panel, "r1:grip") as Button).theme_type_variation, &"GripButton")
+
+
+func test_regiment_of_renown_has_a_grip() -> void:
+	var panel: RegimentPanel = _panel(_renown_army(), "r9")[0]
+	assert_not_null(UIKit.keyed(panel, "r9:grip"))
+
+
+func test_dropping_a_regiment_on_the_top_half_moves_it_before() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	var panel := _drawn_panel(builder, "r1")
+	assert_true(panel._can_drop_data(Vector2(0, 0), _reg("r3")))
+	panel._drop_data(Vector2(0, 0), _reg("r3"))
+	assert_eq(_ids(builder), ["r3", "r1", "r2"])
+
+
+func test_dropping_a_regiment_on_the_bottom_half_moves_it_after() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	var panel := _drawn_panel(builder, "r3")
+	panel._drop_data(Vector2(0, panel.size.y), _reg("r1"))
+	assert_eq(_ids(builder), ["r2", "r3", "r1"])
+
+
+func test_dropping_a_regiment_just_after_the_one_before_it_keeps_the_order() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	var panel := _drawn_panel(builder, "r1")
+	panel._drop_data(Vector2(0, panel.size.y), _reg("r2"))
+	assert_eq(_ids(builder), ["r1", "r2", "r3"])
+
+
+func test_regiment_drag_shows_the_line() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	_drawn_panel(builder, "r2")._can_drop_data(Vector2.ZERO, _reg("r1"))
+	assert_true(builder.drag.line.visible)
+
+
+func test_regiment_refuses_to_be_dropped_on_itself() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	assert_false(_drawn_panel(builder, "r1")._can_drop_data(Vector2.ZERO, _reg("r1")))
+
+
+func test_regiment_refuses_data_that_is_not_a_dictionary() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	assert_false(_drawn_panel(builder, "r1")._can_drop_data(Vector2.ZERO, "text"))
+
+
+func test_regiment_takes_a_roster_unit_at_its_end() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	var data := {"kind": "roster", "warscroll_id": "grunt"}
+	var panel := _drawn_panel(builder, "r2")
+	assert_true(panel._can_drop_data(Vector2.ZERO, data))
+	panel._drop_data(Vector2.ZERO, data)
+	var units := builder.editor.army.find_regiment("r2").units
+	assert_eq([units.size(), units[-1].warscroll_id], [2, "grunt"])
+
+
+func test_regiment_takes_a_unit_from_another_regiment_at_its_end() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	_drawn_panel(builder, "r2")._drop_data(Vector2.ZERO, {"kind": "unit", "uid": "u2"})
+	var uids := builder.editor.army.find_regiment("r2").units.map(func(u: ArmyUnit) -> String: return u.uid)
+	assert_eq(uids, ["u3", "u2"])
+
+
+func test_full_regiment_refuses_a_roster_unit() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	while builder.editor.add_unit("r2", "grunt"):
+		pass
+	assert_false(_drawn_panel(builder, "r2")._can_drop_data(Vector2.ZERO, {"kind": "roster", "warscroll_id": "grunt"}))
+
+
+func test_regiment_of_renown_refuses_units() -> void:
+	var builder := UIKit.builder(self, _renown_army())
+	var panel := _drawn_panel(builder, "r9")
+	assert_false(panel._can_drop_data(Vector2.ZERO, {"kind": "roster", "warscroll_id": "grunt"}))
+	assert_false(panel._can_drop_data(Vector2.ZERO, {"kind": "unit", "uid": "u1"}))
+
+
+func test_regiment_of_renown_takes_a_regiment() -> void:
+	var army := UIKit.army_with_regiment()
+	army.regiments.append(Kit.ror_regiment("r9", "Band", [Kit.unit("u9", "grunt")] as Array[ArmyUnit]))
+	var builder := UIKit.builder(self, army)
+	var panel := _drawn_panel(builder, "r9")
+	assert_true(panel._can_drop_data(Vector2.ZERO, _reg("r1")))
+	panel._drop_data(Vector2.ZERO, _reg("r1"))
+	assert_eq(_ids(builder), ["r1", "r9"])
+	_drawn_panel(builder, "r1")._drop_data(Vector2.ZERO, _reg("r9"))
+	assert_eq(_ids(builder), ["r9", "r1"])
+
+
+func test_down_moves_a_regiment_after_the_next_one() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	(UIKit.keyed(_drawn_panel(builder, "r1"), "r1:grip") as Button).gui_input.emit(_key("ui_down"))
+	assert_eq(_ids(builder), ["r2", "r1", "r3"])
+
+
+func test_up_moves_a_regiment_before_the_previous_one() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	(UIKit.keyed(_drawn_panel(builder, "r3"), "r3:grip") as Button).gui_input.emit(_key("ui_up"))
+	assert_eq(_ids(builder), ["r1", "r3", "r2"])
+
+
+func test_up_on_the_first_regiment_does_nothing() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	(UIKit.keyed(_drawn_panel(builder, "r1"), "r1:grip") as Button).gui_input.emit(_key("ui_up"))
+	assert_eq(_ids(builder), ["r1", "r2", "r3"])
+
+
+func test_down_on_the_last_regiment_does_nothing() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	(UIKit.keyed(_drawn_panel(builder, "r3"), "r3:grip") as Button).gui_input.emit(_key("ui_down"))
+	assert_eq(_ids(builder), ["r1", "r2", "r3"])
+
+
+func test_other_keys_on_a_regiment_grip_do_nothing() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	(UIKit.keyed(_drawn_panel(builder, "r1"), "r1:grip") as Button).gui_input.emit(_key("ui_accept"))
+	assert_eq(_ids(builder), ["r1", "r2", "r3"])
+
+
+func test_the_regiment_grip_keeps_focus_after_the_regiment_moves() -> void:
+	var builder := UIKit.builder(self, _three_regiments())
+	var grip := UIKit.keyed(_drawn_panel(builder, "r1"), "r1:grip") as Button
+	grip.grab_focus()
+	grip.gui_input.emit(_key("ui_down"))
+	var focused := builder.get_viewport().gui_get_focus_owner()
+	assert_not_null(focused)
+	assert_eq(focused.get_meta(&"focus_key", ""), "r1:grip")
