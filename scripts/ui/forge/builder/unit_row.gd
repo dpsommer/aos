@@ -131,7 +131,7 @@ func _summary() -> HBoxContainer:
 		heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		heading.tooltip_text = shown
 		heading.mouse_filter = Control.MOUSE_FILTER_PASS
-		name_line = NameLine.new()
+		name_line = InlineLine.new()
 		name_line.add_child(heading)
 		if not renown:
 			name_line.add_child(UIBuilder.icon_button("rename", "Rename unit", builder.start_renaming.bind(unit.uid),
@@ -140,8 +140,8 @@ func _summary() -> HBoxContainer:
 	detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	detail.tooltip_text = detail.text
 	detail.mouse_filter = Control.MOUSE_FILTER_PASS
-	detail.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var sub := UIBuilder.hbox([detail], 6)
+	var sub := InlineLine.new(6)
+	sub.add_child(detail)
 	if warscroll:
 		for tag in UIBuilder.tags(warscroll):
 			sub.add_child(tag)
@@ -315,33 +315,42 @@ func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, pi
 	return card
 
 
-## A unit's name with its rename button right after it. The name is cut short with an ellipsis
-## when there isn't room for both.
-class NameLine extends Container:
-	const SEPARATION := 4
+## A label with controls right after its text, such as a unit's name and its rename button, or
+## its details and their tags. The label is cut short with an ellipsis when there isn't room for
+## all of them.
+class InlineLine extends Container:
+	var separation: int
+
+	func _init(gap := 4) -> void:
+		separation = gap
 
 	func _get_minimum_size() -> Vector2:
 		var result := Vector2.ZERO
 		for child: Control in get_children():
 			result.y = maxf(result.y, child.get_combined_minimum_size().y)
-		var button := _button()
-		if button:
-			result.x = button.get_combined_minimum_size().x + SEPARATION
+		for child in _trailing():
+			result.x += child.get_combined_minimum_size().x + separation
 		return result
 
 	func _notification(what: int) -> void:
 		if what != NOTIFICATION_SORT_CHILDREN:
 			return
 		var heading := get_child(0) as Label
-		var button := _button()
-		var button_size := button.get_combined_minimum_size() if button else Vector2.ZERO
-		var room := size.x - (button_size.x + SEPARATION if button else 0.0)
+		var room := size.x
+		for child in _trailing():
+			room -= child.get_combined_minimum_size().x + separation
 		var text_width := heading.get_theme_font("font").get_string_size(heading.text, HORIZONTAL_ALIGNMENT_LEFT, -1,
 				heading.get_theme_font_size("font_size")).x + 1
-		var width := clampf(text_width, 0, maxf(room, 0))
-		fit_child_in_rect(heading, Rect2(0, 0, width, size.y))
-		if button:
-			fit_child_in_rect(button, Rect2(width + SEPARATION, (size.y - button_size.y) / 2, button_size.x, button_size.y))
+		var x := clampf(text_width, 0, maxf(room, 0))
+		fit_child_in_rect(heading, Rect2(0, 0, x, size.y))
+		for child in _trailing():
+			var child_size := child.get_combined_minimum_size()
+			x += separation
+			fit_child_in_rect(child, Rect2(x, (size.y - child_size.y) / 2, child_size.x, child_size.y))
+			x += child_size.x
 
-	func _button() -> Control:
-		return get_child(1) as Control if get_child_count() > 1 else null
+	func _trailing() -> Array[Control]:
+		var result: Array[Control] = []
+		for child in get_children().slice(1):
+			result.append(child as Control)
+		return result
