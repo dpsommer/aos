@@ -137,7 +137,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Regiments of Renown card:** drop it on the army list to add it, if the army can take it.
   - **Feedback:** regiments that can take the dragged unit are outlined in gold, and dragging near the top or bottom of the army list scrolls it.
   - **Keyboard:** the grips move units and regiments with Up and Down. Hero leaders and Regiment of Renown units have no grip.
-- **Redrawing and focus:** the builder pane is rebuilt from the army after every change. Controls carry a `focus_key` meta, so keyboard focus returns to the same control afterwards.
+- **Redrawing and focus:** the builder pane is rebuilt from the army after every change. Controls carry a `focus_key` meta, so keyboard focus returns to the same control afterwards. If it's gone, focus goes to the picker's first button while the picker is open, else to Back. Closing the picker returns focus to the control that opened it.
   - The info pane is only rebuilt when something its tab shows has changed, as the Rules tab is slow to lay out.
 - **Esc:** in the search box, clears the search. Otherwise it closes the picker, then cancels a rename, then goes back.
 

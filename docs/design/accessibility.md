@@ -19,7 +19,7 @@ Screens are built from standard focusable controls, so they can be used without 
 
 ### Army builder
 - **Reordering:** a unit's or regiment's grip moves it up or down with the Up and Down keys, as dragging it does. A unit stays within its regiment, and a Hero leader stays first, so it has no grip. To move a unit to another regiment without a mouse, remove it and add it there.
-- **Focus after changes:** the army list is rebuilt after every change, and focus returns to the same control. A grip keeps focus while its unit or regiment moves.
+- **Focus after changes:** the army list is rebuilt after every change, and focus returns to the same control. A grip keeps focus while its unit or regiment moves. If that control is gone (a deleted unit, say), focus moves to the picker's first button while it's open, else to Back. Closing the picker, by picking or with Esc, returns focus to the button that opened it.
 - **Links:** a unit's portrait and a short battle tactics card can be focused and pressed with Enter or Space. They open the unit or card in the info pane, which scrolls to it, highlights it and gives it focus.
 
 ## Screen readers
