@@ -289,6 +289,11 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.add_child(face)
 	_ignore_mouse(face)
+	# The focus outline goes around the whole card, star included, not just the button.
+	var unfocused := card.theme_type_variation
+	button.focus_entered.connect(func() -> void:
+		card.theme_type_variation = "FocusPickedRowPanel" if open else "FocusRowPanel")
+	button.focus_exited.connect(func() -> void: card.theme_type_variation = unfocused)
 	builder.drag.source(button, {"kind": "roster", "warscroll_id": warscroll.id}, warscroll.name, card)
 
 	var favourite := warscroll.id in favourites

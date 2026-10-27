@@ -282,6 +282,35 @@ func test_pressing_a_card_shows_its_warscroll_and_the_add_auxiliary_button() -> 
 	assert_eq((UIKit.keyed(pane, "info:aux:grunt") as Button).text, "Add as auxiliary unit")
 
 
+## The roster card holding the button with [param key].
+func _card_of(pane: InfoPane, key: String) -> PanelContainer:
+	var node := UIKit.keyed(pane, key).get_parent()
+	while not node is PanelContainer:
+		node = node.get_parent()
+	return node
+
+
+func test_focusing_a_card_outlines_the_whole_card() -> void:
+	var pane := _pane()
+	(UIKit.keyed(pane, "info:card:grunt") as Button).grab_focus()
+	assert_eq(_card_of(pane, "info:card:grunt").theme_type_variation, &"FocusRowPanel")
+
+
+func test_card_loses_its_outline_with_focus() -> void:
+	var pane := _pane()
+	var button := UIKit.keyed(pane, "info:card:grunt") as Button
+	button.grab_focus()
+	button.release_focus()
+	assert_eq(_card_of(pane, "info:card:grunt").theme_type_variation, &"RowPanel")
+
+
+func test_focused_open_card_keeps_its_picked_look() -> void:
+	var pane := _pane()
+	_press(pane, "info:card:grunt")
+	(UIKit.keyed(pane, "info:card:grunt") as Button).grab_focus()
+	assert_eq(_card_of(pane, "info:card:grunt").theme_type_variation, &"FocusPickedRowPanel")
+
+
 func test_pressing_the_selected_card_again_hides_its_warscroll() -> void:
 	var pane := _pane()
 	_press(pane, "info:card:grunt")

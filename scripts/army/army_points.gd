@@ -10,6 +10,14 @@ static func unit_points(unit: ArmyUnit, regiment: ArmyRegiment, army: Army, cata
 		return 0
 	var warscroll := catalog.warscroll(unit, regiment)
 	var points := warscroll.points * (2 if unit.reinforced else 1) if warscroll else 0
+	return points + enhancement_points(unit, regiment, army, catalog)
+
+
+## The part of [method unit_points] that comes from the unit's enhancements.
+static func enhancement_points(unit: ArmyUnit, regiment: ArmyRegiment, army: Army, catalog: ArmyCatalog) -> int:
+	if regiment and regiment.is_regiment_of_renown():
+		return 0
+	var points := 0
 	for type: String in unit.enhancements:
 		var entry := catalog.enhancement(army, type, unit.enhancements[type])
 		points += entry.points if entry else 0

@@ -82,8 +82,16 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Validation:** problems and warnings from `ArmyValidator`.
   - **Battle Tactics:** 2 slots. A filled slot shows the card's name and its battle tactics' names, with Change.
   - **Army List:** each regiment's name, unit count against its capacity, and points, with collapse, Rename and Delete.
-    - **Unit rows:** a grip (not on Hero leaders), a unit's name, its enhancements, its points, and buttons: General (leaders only), Reinforce (where allowed), Options, Copy and Remove. Units in a Regiment of Renown have no buttons.
-    - **Options:** a unit's name, a select for each enhancement type it can take (`ArmyCatalog.enhancement_choices()`: only tables whose `units` include it, and no Legends tables unless Legends are shown, though the unit's current pick stays), and a count for each weapon option, capped by its regiment size, with the option's rules.
+    - **Unit rows:** from left to right:
+      - a grip, or for a regiment's leader the General crown in the same column, so a Hero leader lines up with the grips below it;
+      - the unit's portrait;
+      - its name, with a pencil that swaps the name for a field (Enter or leaving the field renames it, a blank name goes back to the warscroll's, Esc cancels);
+      - under the name, `UnitRow.subtext()`: "Leader" or "General", the warscroll's name if the unit is renamed, its model count, its enhancements and its weapon options, e.g. "General · Lord-Celestant · 1 model · Sword of Judgement", followed by Scourge and Legends chips;
+      - its points, with any points from enhancements in a gold tag after them with an enhancement icon, e.g. "150 pts [+20 ✦]" (`ArmyPoints.enhancement_points()`);
+      - buttons: Reinforce (where allowed), Options (disabled when the unit has nothing to choose), Copy and Remove.
+
+      Units in a Regiment of Renown have no buttons and can't be renamed.
+    - **Options:** a select for each enhancement type the unit can take (`ArmyCatalog.enhancement_choices()`: only tables whose `units` include it, and no Legends tables unless Legends are shown, though the unit's current pick stays), and a count for each weapon option, capped by its regiment size, with the option's rules.
     - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (disabled when full), "Add regiment" and "Add Regiment of Renown".
   - **Auxiliary Units:** unit rows and "Add auxiliary unit".
   - **Faction Terrain:** a select, hidden when the faction has none or its Army of Renown forbids it.
@@ -95,7 +103,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Roster:** the faction's units, grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
     - **Unit cards:** points, plus Scourge and Legends chips.
     - **A star** pins the unit to a Favourites list at the top. Favourites are kept per faction in `user://forge.cfg`.
-    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". The button is disabled for a Unique unit already in the army.
+    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
   - **Rules:** the rules the army uses, from `RulesSections`, in sections that each fold:
     - Battle Traits;
     - Battle Formations;
@@ -140,7 +148,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Keyboard:** the grips move units and regiments with Up and Down. Hero leaders and Regiment of Renown units have no grip.
 - **Redrawing and focus:** the builder pane is rebuilt from the army after every change. Controls carry a `focus_key` meta, so keyboard focus returns to the same control afterwards. If it's gone, focus goes to the picker's first button while the picker is open, else to Back. Closing the picker returns focus to the control that opened it.
   - The info pane is only rebuilt when something its tab shows has changed, as the Rules tab is slow to lay out.
-- **Esc:** in the search box, clears the search. Otherwise it closes the picker, then cancels a rename, then goes back.
+- **Esc:** in the search box, clears the search. Otherwise it closes the picker, then cancels a regiment or unit rename, then goes back.
 
 ## Army model
 
