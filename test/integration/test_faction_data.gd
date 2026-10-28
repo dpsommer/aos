@@ -5,6 +5,7 @@ extends GutTest
 ## Any errors are pushed by FactionCatalog and would also fail the suite.
 
 ## Warscrolls whose Health and Save are "-": the Dais Arcanum is a platform for another unit.
+const Kit := preload("res://test/support/army_kit.gd")
 const _NO_HEALTH_OR_SAVE := ["Dais Arcanum"]
 
 var _factions: Array[Faction] = []
@@ -411,3 +412,124 @@ func test_every_army_of_renown_roster_per_item_matches_a_warscroll() -> void:
 					continue
 				var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator._per_matches(entry, w))
 				assert_true(found, "%s: %s roster per %s matches no warscroll" % [faction.name, army.name, entry.per])
+
+## Each leader an Army of Renown gives extra regiment options is the name or keyword of a warscroll
+## in the faction (or one it includes).
+func test_every_army_of_renown_regiment_options_leader_matches_a_warscroll() -> void:
+	for faction in _factions:
+		for army in faction.armies_of_renown:
+			if not army.roster:
+				continue
+			var army_data := Army.new()
+			army_data.army_of_renown = army.name
+			army_data.override_constraints = true
+			var scrolls := faction.warscrolls + ArmyCatalog.new(faction, null).unit_warscrolls(army_data)
+			for added in army.roster.regiment_options:
+				for leader in added.leaders:
+					var found := scrolls.any(func(w: Warscroll) -> bool: return ArmyValidator.names_or_keywords(w, PackedStringArray([leader])))
+					assert_true(found, "%s: %s regiment options leader %s matches no warscroll" % [faction.name, army.name, leader])
+
+
+func test_every_army_of_renown_regiment_options_entry_has_options() -> void:
+	for faction in _factions:
+		for army in faction.armies_of_renown:
+			if army.roster:
+				for added in army.roster.regiment_options:
+					assert_gt(added.options.size(), 0, "%s: %s has regiment options without options" % [faction.name, army.name])
+
+
+# Armies of Renown that add regiment options
+
+## The regiment option problems (units outside the options, or over an option's limit) of an army
+## of one regiment of [param leader] and [param others] in [param faction_name], in the Army of
+## Renown [param renown] (none if empty).
+func _regiment_problems(faction_name: String, renown: String, leader: String, others: Array[String]) -> PackedStringArray:
+	var faction := FactionCatalog.load_faction(faction_name)
+	var catalog := ArmyCatalog.new(faction, CoreRulesCatalog.get_rules())
+	var army := Army.new()
+	army.faction_id = faction.id
+	army.army_of_renown = renown
+	var units: Array[ArmyUnit] = []
+	for warscroll_id in [leader] + others:
+		var unit := ArmyUnit.new()
+		unit.uid = "%s_%d" % [warscroll_id, units.size()]
+		unit.warscroll_id = warscroll_id
+		units.append(unit)
+	var regiment := ArmyRegiment.new()
+	regiment.id = "r"
+	regiment.name = "r"
+	regiment.units = units
+	army.regiments.append(regiment)
+	var found := PackedStringArray()
+	for problem in ArmyValidator.validate(army, catalog).problems:
+		if "regiment options" in problem or "can't include another" in problem:
+			found.append(problem)
+	return found
+
+
+func test_gorechosen_champions_let_a_bloodstoker_join_a_skullgrinder_regiment() -> void:
+	assert_eq(_regiment_problems("Blades of Khorne", "Gorechosen Champions", "skullgrinder", ["bloodstoker"] as Array[String]), PackedStringArray())
+
+
+func test_a_bloodstoker_cannot_join_a_skullgrinder_regiment_without_gorechosen_champions() -> void:
+	assert_gt(_regiment_problems("Blades of Khorne", "", "skullgrinder", ["bloodstoker"] as Array[String]).size(), 0)
+
+
+func test_pyrofane_cult_lets_a_fusil_major_join_a_magister_regiment() -> void:
+	assert_eq(_regiment_problems("Disciples of Tzeentch", "Pyrofane Cult", "magister", ["pyrofane_fusil_major_on_ogor_warhulk"] as Array[String]), PackedStringArray())
+
+
+func test_a_fusil_major_cannot_join_a_magister_regiment_without_the_pyrofane_cult() -> void:
+	assert_gt(_regiment_problems("Disciples of Tzeentch", "", "magister", ["pyrofane_fusil_major_on_ogor_warhulk"] as Array[String]).size(), 0)
+
+
+func test_scions_of_nulahmia_let_a_vampire_lord_join_sekhars_regiment() -> void:
+	assert_eq(_regiment_problems("Soulblight Gravelords", "Scions of Nulahmia", "sekhar_fang_of_nulahmia", ["vampire_lord"] as Array[String]), PackedStringArray())
+
+
+func test_a_vampire_lord_cannot_join_sekhars_regiment_without_the_scions_of_nulahmia() -> void:
+	assert_gt(_regiment_problems("Soulblight Gravelords", "", "sekhar_fang_of_nulahmia", ["vampire_lord"] as Array[String]).size(), 0)
+
+
+func test_lofnir_drothkeepers_keep_a_runefather_on_magmadroth_to_one_grimnirs_chosen() -> void:
+	var others: Array[String] = ["auric_runeson", "auric_runesmiter"]
+	assert_gt(_regiment_problems("Fyreslayers", "Lofnir Drothkeepers", "auric_runefather_on_magmadroth", others).size(), 0)
+
+
+
+# The Magnate's Crew's non-Hero general
+
+## The problems of a Magnate's Crew army whose general, an Arkanaut Ironclad, leads a regiment of
+## [param others], plus a second regiment led by [param extra_leader] if given.
+func _magnate_problems(others: Array[String], extra_leader := "") -> PackedStringArray:
+	var faction := FactionCatalog.load_faction("Kharadron Overlords")
+	var catalog := ArmyCatalog.new(faction, CoreRulesCatalog.get_rules())
+	var army := Army.new()
+	army.faction_id = faction.id
+	army.army_of_renown = "The Magnate's Crew"
+	var units: Array[ArmyUnit] = []
+	for warscroll_id in ["arkanaut_ironclad"] + others:
+		var unit := ArmyUnit.new()
+		unit.uid = "u%d" % units.size()
+		unit.warscroll_id = warscroll_id
+		units.append(unit)
+	army.general_uid = "u0"
+	army.regiments.append(Kit.regiment("r1", units, "Fleet"))
+	if not extra_leader.is_empty():
+		army.regiments.append(Kit.regiment("r2", [Kit.unit("x", extra_leader)] as Array[ArmyUnit], "Second"))
+	var found := PackedStringArray()
+	for problem in ArmyValidator.validate(army, catalog).problems:
+		if "Hero leader" in problem or "regiment options" in problem or "can't include another" in problem:
+			found.append(problem)
+	return found
+
+
+func test_the_magnates_crew_ironclad_general_leads_skywardens_and_a_frigate() -> void:
+	var others: Array[String] = ["skywardens", "arkanaut_frigate"]
+	assert_eq(_magnate_problems(others), PackedStringArray())
+
+
+func test_the_magnates_crew_ironclad_cannot_lead_while_brokk_is_included() -> void:
+	var others: Array[String] = ["skywardens"]
+	var problems := _magnate_problems(others, "brokk_grungsson_lord_magnate_of_barak_nar")
+	assert_true(problems.size() > 0 and "can't be your general while your army includes Brokk Grungsson" in problems[0], str(problems))

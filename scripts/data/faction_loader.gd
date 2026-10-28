@@ -370,6 +370,21 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 			inclusion.faction = _string(included[i], "faction", inclusion_path, true)
 			inclusion.units = _strings(included[i], "units", inclusion_path)
 			roster.included_units.append(inclusion)
+	if data.has("non_hero_general"):
+		var general_path := _join(path, "non_hero_general")
+		if _is_object(data.non_hero_general, general_path):
+			roster.non_hero_general = _string(data.non_hero_general, "unit", general_path, true)
+			roster.non_hero_general_unless = _strings(data.non_hero_general, "unless", general_path)
+	var added := _array(data, "regiment_options", path)
+	for i in added.size():
+		var added_path := _join(path, "regiment_options[%d]" % i)
+		if _is_object(added[i], added_path):
+			var regiment_options := RosterRegimentOptions.new()
+			regiment_options.leaders = _strings(added[i], "leaders", added_path)
+			regiment_options.options = _strings(added[i], "options", added_path)
+			if regiment_options.options.is_empty():
+				_error(_join(added_path, "options"), "needs at least 1 option")
+			roster.regiment_options.append(regiment_options)
 	return roster
 
 

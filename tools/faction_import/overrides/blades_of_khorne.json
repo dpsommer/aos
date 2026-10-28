@@ -14,7 +14,7 @@
 		"claws_of_karanak": {"base_size": "Packlord: 40mm, Hound of Wrath: 60 × 35mm, 2 x Brutalisers: 32mm, 4 x Blood Whelps: 28.5mm"},
 		"gorechosen_of_dromm": {"base_size": "Dromm and Gorehulk: 40mm, Skullgrinder Herax: 40mm"},
 		"skull_altar": {"base_size": ""},
-		"Gorechosen Champions": {"roster": {"entries": [{"unit": "Mighty Lord of Khorne", "max": 1, "general": true}, {"unit": "Slaughterpriest"}, {"unit": "Bloodsecrator"}, {"unit": "Bloodstoker"}, {"unit": "Realmgore Ritualist"}, {"unit": "Skullgrinder"}, {"unit": "Deathbringer"}], "regiments_of_renown": false}},
+		"Gorechosen Champions": {"roster": {"entries": [{"unit": "Mighty Lord of Khorne", "max": 1, "general": true}, {"unit": "Slaughterpriest"}, {"unit": "Bloodsecrator"}, {"unit": "Bloodstoker"}, {"unit": "Realmgore Ritualist"}, {"unit": "Skullgrinder"}, {"unit": "Deathbringer"}], "regiments_of_renown": false, "regiment_options": [{"options": ["Any Bloodbound Warmonger"]}]}},
 		"The Baleful Lords": {"roster": {"entries": [{"keywords": ["MONSTER", "HERO", "DAEMON"]}], "regiments_of_renown": false}}
 	}
 }

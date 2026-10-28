@@ -1294,3 +1294,199 @@ func test_dual_leader_with_units_of_one_side_is_not_a_mixing_problem() -> void:
 func test_single_keyword_leader_cannot_include_the_other_sides_units() -> void:
 	var army := _paired_army([_paired_regiment("a", "ij_hero", ["kb_grunt"])] as Array[ArmyRegiment])
 	_assert_problem(army, "regiment options", _paired_catalog())
+
+
+# names_or_keywords
+
+func _wizard() -> Warscroll:
+	return Kit.warscroll("Sorcerer Lord", PackedStringArray(["HERO", "WIZARD (2)", "CHAOS"]), 100, "Sorcerer Lord")
+
+
+func test_names_or_keywords_matches_the_unit_name() -> void:
+	assert_true(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["Other", "Sorcerer Lord"])))
+
+
+func test_names_or_keywords_matches_a_name_ignoring_case() -> void:
+	assert_true(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["sorcerer lord"])))
+
+
+func test_names_or_keywords_matches_a_keyword() -> void:
+	assert_true(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["CHAOS"])))
+
+
+func test_names_or_keywords_matches_a_keyword_with_a_value() -> void:
+	assert_true(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["WIZARD"])))
+
+
+func test_names_or_keywords_matches_when_all_space_separated_keywords_are_held() -> void:
+	assert_true(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["HERO CHAOS"])))
+
+
+func test_names_or_keywords_rejects_when_one_space_separated_keyword_is_missing() -> void:
+	assert_false(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["HERO ORDER"])))
+
+
+func test_names_or_keywords_rejects_an_unrelated_item() -> void:
+	assert_false(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["Gryph-hound", "ORDER"])))
+
+
+func test_names_or_keywords_rejects_no_items() -> void:
+	assert_false(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray()))
+
+
+# Army of Renown regiment options
+
+## An Army of Renown "Horde" giving the leaders named [param leaders] (every leader if empty) the
+## regiment options [param options].
+func _options_catalog(leaders: PackedStringArray, options: PackedStringArray) -> ArmyCatalog:
+	var faction := _faction()
+	faction.armies_of_renown = [Kit.army_of_renown("Horde", _horde_roster())] as Array[ArmyOfRenown]
+	var added := RosterRegimentOptions.new()
+	added.leaders = leaders
+	added.options = options
+	faction.armies_of_renown[0].roster.regiment_options = [added] as Array[RosterRegimentOptions]
+	return _catalog(faction)
+
+
+func _horde_roster() -> Array[RosterEntry]:
+	var entries: Array[RosterEntry] = []
+	for unit_name in ["Hero A", "Hero B", "Unique Hero", "Monster", "Exemplar"]:
+		entries.append(Kit.roster_entry(unit_name))
+	return entries
+
+
+func _monster_army(leader := "hero_b") -> Army:
+	var army := _horde_army()
+	army.regiments[0] = _regiment("Side", leader, ["monster"])
+	army.general_uid = "Side_lead"
+	return army
+
+
+func test_added_regiment_option_allows_a_unit_the_leader_alone_does_not() -> void:
+	var catalog := _options_catalog(PackedStringArray(["Hero B"]), PackedStringArray(["Any MONSTER"]))
+	_assert_no_problem(_monster_army(), "regiment options", catalog)
+
+
+func test_added_regiment_option_for_every_leader_allows_the_unit() -> void:
+	var catalog := _options_catalog(PackedStringArray(), PackedStringArray(["Any MONSTER"]))
+	_assert_no_problem(_monster_army(), "regiment options", catalog)
+
+
+func test_added_regiment_option_for_a_leader_keyword_allows_the_unit() -> void:
+	var catalog := _options_catalog(PackedStringArray(["UNIQUE"]), PackedStringArray(["Any MONSTER"]))
+	_assert_no_problem(_monster_army("unique_hero"), "regiment options", catalog)
+
+
+func test_unit_is_still_rejected_without_the_army_of_renown() -> void:
+	var army := _monster_army()
+	army.army_of_renown = ""
+	_assert_problem(army, "regiment options", _options_catalog(PackedStringArray(["Hero B"]), PackedStringArray(["Any MONSTER"])))
+
+
+func test_unit_is_still_rejected_in_an_army_of_renown_without_added_options() -> void:
+	var faction := _faction()
+	faction.armies_of_renown = [Kit.army_of_renown("Horde", _horde_roster())] as Array[ArmyOfRenown]
+	_assert_problem(_monster_army(), "regiment options", _catalog(faction))
+
+
+func test_added_regiment_option_is_not_given_to_a_non_matching_leader() -> void:
+	var catalog := _options_catalog(PackedStringArray(["Hero B"]), PackedStringArray(["Any MONSTER"]))
+	var army := _monster_army("hero_a")
+	_assert_problem(army, "regiment options", catalog)
+
+
+func test_hero_joins_a_regiment_through_an_added_option() -> void:
+	var catalog := _options_catalog(PackedStringArray(["Hero B"]), PackedStringArray(["Any TEST EXEMPLAR"]))
+	var army := _horde_army()
+	army.regiments[0] = _regiment("Side", "hero_b", ["exemplar"])
+	army.general_uid = "Side_lead"
+	_assert_no_problem(army, "regiment options", catalog)
+
+
+func test_hero_cannot_join_by_role_without_the_added_option() -> void:
+	var army := _horde_army()
+	army.regiments[0] = _regiment("Side", "hero_b", ["exemplar"])
+	army.general_uid = "Side_lead"
+	_assert_problem(army, "regiment options", _catalog())
+
+
+# Non-Hero general
+
+## An Army of Renown "Crew" whose Ironclad can be the general instead of a Hero, unless Brokk is
+## included, and whose Ironclad regiments can include any Grunt.
+func _crew_catalog() -> ArmyCatalog:
+	var faction := _faction()
+	faction.warscrolls.append(Kit.warscroll("ironclad", PackedStringArray(["WAR MACHINE"]), 100, "Ironclad"))
+	faction.warscrolls.append(Kit.hero("brokk"))
+	var crew := Kit.army_of_renown("Crew")
+	crew.roster.non_hero_general = "Ironclad"
+	crew.roster.non_hero_general_unless = PackedStringArray(["Brokk"])
+	crew.roster.regiment_options = [_grunt_options()] as Array[RosterRegimentOptions]
+	crew.enhancement_tables = faction.enhancement_tables
+	faction.armies_of_renown = [crew] as Array[ArmyOfRenown]
+	return _catalog(faction)
+
+
+func _grunt_options() -> RosterRegimentOptions:
+	var added := RosterRegimentOptions.new()
+	added.leaders = PackedStringArray(["Ironclad"])
+	added.options = PackedStringArray(["Any Grunt"])
+	return added
+
+
+## A Crew army with the Ironclad leading regiment "Fleet" with a grunt, and as the general.
+func _crew_army() -> Army:
+	var army := Kit.army()
+	army.army_of_renown = "Crew"
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "ironclad"), Kit.unit("u2", "grunt")] as Array[ArmyUnit], "Fleet"))
+	army.general_uid = "u1"
+	army.tactics = PackedStringArray(["Card A", "Card B"])
+	return army
+
+
+func test_non_hero_general_can_lead_a_regiment() -> void:
+	_assert_no_problem(_crew_army(), "needs a Hero", _crew_catalog())
+
+
+func test_non_hero_general_leads_a_regiment_with_the_regiment_options_it_gains() -> void:
+	_assert_no_problem(_crew_army(), "regiment options", _crew_catalog())
+
+
+func test_non_hero_general_regiment_still_rejects_units_outside_its_options() -> void:
+	var army := _crew_army()
+	army.regiments[0].units.append(Kit.unit("u3", "monster"))
+	_assert_problem(army, "Monster", _crew_catalog())
+
+
+func test_non_hero_that_is_not_the_general_cannot_lead_and_the_message_says_so() -> void:
+	var army := _crew_army()
+	army.regiments.append(Kit.regiment("r2", [Kit.unit("u3", "hero_a"), Kit.unit("u4", "ironclad")] as Array[ArmyUnit], "Second"))
+	army.regiments[1].units.reverse()
+	_assert_problem(army, "Second needs a Hero leader: Ironclad can only lead it as your general", _crew_catalog())
+
+
+func test_non_hero_general_blocked_by_another_unit_names_the_blocker() -> void:
+	var army := _crew_army()
+	army.regiments.append(Kit.regiment("r2", [Kit.unit("u3", "brokk")] as Array[ArmyUnit], "Second"))
+	_assert_problem(army, "Fleet needs a Hero leader: Ironclad can't be your general while your army includes Brokk", _crew_catalog())
+
+
+func test_unit_the_roster_does_not_name_gets_the_plain_hero_leader_problem() -> void:
+	var army := _crew_army()
+	army.regiments.append(_regiment("Plain", "grunt"))
+	var problems := _problems(army, _crew_catalog())
+	assert_true("Plain needs a Hero leader." in problems, str(problems))
+
+
+func test_non_hero_general_can_be_given_a_heroic_trait() -> void:
+	var army := _crew_army()
+	army.regiments[0].units[0].enhancements = {"Heroic Traits": "Brave"}
+	_assert_no_problem(army, "Heroic Traits", _crew_catalog())
+	_assert_no_problem(army, "isn't a Hero", _crew_catalog())
+
+
+func test_non_hero_that_is_not_the_general_cannot_be_given_a_heroic_trait() -> void:
+	var army := _crew_army()
+	army.regiments.append(Kit.regiment("r2", [Kit.unit("u3", "hero_a"), Kit.unit("u4", "ironclad")] as Array[ArmyUnit], "Second"))
+	army.regiments[1].units[1].enhancements = {"Heroic Traits": "Brave"}
+	_assert_problem(army, "Ironclad isn't a Hero", _crew_catalog())

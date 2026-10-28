@@ -29,7 +29,14 @@
 						"unit": "Deathbringer"
 					}
 				],
-				"regiments_of_renown": false
+				"regiments_of_renown": false,
+				"regiment_options": [
+					{
+						"options": [
+							"Any Bloodbound Warmonger"
+						]
+					}
+				]
 			},
 			"battle_traits": [
 				{

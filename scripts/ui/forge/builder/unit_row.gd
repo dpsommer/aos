@@ -79,7 +79,7 @@ func _enhancement_types() -> PackedStringArray:
 		return result
 	var army := builder.editor.army
 	for type in builder.catalog.enhancement_types(army):
-		if not builder.catalog.enhancement_choices(army, warscroll, type, unit.enhancements.get(type, "")).is_empty():
+		if not builder.catalog.enhancement_choices(army, warscroll, type, unit.enhancements.get(type, ""), unit).is_empty():
 			result.append(type)
 	return result
 
@@ -259,7 +259,7 @@ func _options() -> VBoxContainer:
 		var section := UIBuilder.vbox([UIBuilder.label(type, "SectionLabel")], 8)
 		section.set_meta(&"enhancement_type", type)
 		var picked: String = unit.enhancements.get(type, "")
-		for table in builder.catalog.enhancement_choices(army, warscroll, type, picked):
+		for table in builder.catalog.enhancement_choices(army, warscroll, type, picked, unit):
 			for entry in table.entries:
 				section.add_child(_enhancement_card(type, table, entry, entry.name == picked))
 		box.add_child(section)

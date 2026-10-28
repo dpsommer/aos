@@ -77,22 +77,25 @@ func enhancement_table(army: Army, type: String, enhancement_name: String) -> En
 ## Whether a unit with [param warscroll] can be given enhancements from [param table]: one of the
 ## table's [member EnhancementTable.units] if it lists any, and a Hero for Heroic Traits and
 ## Artefacts of Power. Unique units and units in Regiments of Renown are checked separately.
-static func can_take(table: EnhancementTable, warscroll: Warscroll) -> bool:
+## [param hero] counts the unit as a Hero without the keyword, as a non-Hero general can be.
+static func can_take(table: EnhancementTable, warscroll: Warscroll, hero := false) -> bool:
 	if not table.units.is_empty():
 		return warscroll.name in table.units
-	return not table.name in ArmyValidator.HERO_ENHANCEMENTS or warscroll.has_keyword("HERO")
+	return not table.name in ArmyValidator.HERO_ENHANCEMENTS or hero or warscroll.has_keyword("HERO")
 
 
 ## The tables of [param type] to offer a unit with [param warscroll]: those it [method can_take],
 ## leaving out Legends tables unless the army shows Legends. The table holding [param selected], the
 ## unit's current enhancement of the type, is always included, so it can still be seen and cleared.
-func enhancement_choices(army: Army, warscroll: Warscroll, type: String, selected := "") -> Array[EnhancementTable]:
+## With [param unit], a non-Hero general that [method is_hero] can take Hero enhancements.
+func enhancement_choices(army: Army, warscroll: Warscroll, type: String, selected := "", unit: ArmyUnit = null) -> Array[EnhancementTable]:
+	var hero := unit != null and is_hero(army, unit, warscroll)
 	var current: EnhancementTable = enhancement_table(army, type, selected) if not selected.is_empty() else null
 	var result: Array[EnhancementTable] = []
 	for table in enhancement_tables(army):
 		if table.name != type:
 			continue
-		if table == current or (can_take(table, warscroll) and (army.show_legends or not table.legends)):
+		if table == current or (can_take(table, warscroll, hero) and (army.show_legends or not table.legends)):
 			result.append(table)
 	return result
 
@@ -232,6 +235,56 @@ func leader_versions(army: Army, leader: Warscroll) -> Array[Warscroll]:
 	return result
 
 
+## Whether [param warscroll] can lead a regiment as the army's general without being a Hero: it's
+## the Army of Renown's [member ArmyRoster.non_hero_general] (The Magnate's Crew's Arkanaut
+## Ironclad), and the army includes none of the units that stop it.
+func can_be_non_hero_general(army: Army, warscroll: Warscroll) -> bool:
+	var army_roster := roster(army)
+	if army_roster == null or army_roster.non_hero_general.is_empty() or warscroll.has_keyword("HERO"):
+		return false
+	return RegimentOption._names(warscroll, army_roster.non_hero_general) and non_hero_general_blocker(army).is_empty()
+
+
+## The name of a unit in the army that stops the roster's [member ArmyRoster.non_hero_general] being
+## the general, e.g. "Brokk Grungsson, Lord-Magnate of Barak-Nar". Empty if there's none.
+func non_hero_general_blocker(army: Army) -> String:
+	var army_roster := roster(army)
+	if army_roster == null:
+		return ""
+	var check := func(unit: ArmyUnit, regiment: ArmyRegiment) -> String:
+		var unit_scroll := warscroll(unit, regiment)
+		if unit_scroll and Array(army_roster.non_hero_general_unless).any(func(n: String) -> bool: return RegimentOption._names(unit_scroll, n)):
+			return unit_scroll.name
+		return ""
+	for regiment in army.regiments:
+		for unit in regiment.units:
+			var found: String = check.call(unit, regiment)
+			if not found.is_empty():
+				return found
+	for unit in army.auxiliary:
+		var found: String = check.call(unit, null)
+		if not found.is_empty():
+			return found
+	return ""
+
+
+## Whether [param unit] is a Hero: its warscroll has the keyword, or it's the general and the
+## roster's [member ArmyRoster.non_hero_general], which gains it.
+func is_hero(army: Army, unit: ArmyUnit, unit_warscroll: Warscroll) -> bool:
+	return unit_warscroll.has_keyword("HERO") or (unit.uid == army.general_uid and can_be_non_hero_general(army, unit_warscroll))
+
+
+## [param leader]'s regiment options, plus those the army's Army of Renown gives it.
+func leader_options(army: Army, leader: Warscroll) -> Array[RegimentOption]:
+	var options := leader.regiment_options.duplicate()
+	var army_roster := roster(army)
+	if army_roster:
+		for added in army_roster.regiment_options:
+			if added.leaders.is_empty() or ArmyValidator.names_or_keywords(leader, added.leaders):
+				options.append_array(added.options)
+	return RegimentOption.parse_all(options)
+
+
 ## The regiment options a unit can be added to [param regiment] with: its leader's, or for a leader
 ## with several [method leader_versions], those of each version its units so far fit.
 func regiment_options(army: Army, regiment: ArmyRegiment) -> Array[RegimentOption]:
@@ -242,7 +295,7 @@ func regiment_options(army: Army, regiment: ArmyRegiment) -> Array[RegimentOptio
 		return result
 	var versions := leader_versions(army, leader_scroll)
 	for version in versions:
-		var options := RegimentOption.parse_all(version.regiment_options)
+		var options := leader_options(army, version)
 		var fits := versions.size() == 1 or regiment.units.slice(1).all(func(u: ArmyUnit) -> bool:
 			var unit_scroll := warscroll(u, regiment)
 			return unit_scroll == null or options.any(func(o: RegimentOption) -> bool: return o.matches(unit_scroll)))

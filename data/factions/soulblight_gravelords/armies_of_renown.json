@@ -360,7 +360,14 @@
 						"unit": "Vampire Lord on Nightmare Steed"
 					}
 				],
-				"regiments_of_renown": false
+				"regiments_of_renown": false,
+				"regiment_options": [
+					{
+						"options": [
+							"Any Vampire Lord"
+						]
+					}
+				]
 			},
 			"battle_traits": [
 				{

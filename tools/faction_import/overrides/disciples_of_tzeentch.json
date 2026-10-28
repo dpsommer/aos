@@ -3,7 +3,7 @@
 		"Pyrofane Conduit": "Pyroflux Conduit"
 	},
 	"fields": {
-		"Pyrofane Cult": {"roster": {"entries": [{"keywords": ["ARCANITE"], "not_keywords": ["WARFLOCK"]}, {"one_of": ["Gaunt Summoner", "Gaunt Summoner on Disc of Tzeentch"], "max": 1}], "regiments_of_renown": false}, "legends": true},
+		"Pyrofane Cult": {"roster": {"entries": [{"keywords": ["ARCANITE"], "not_keywords": ["WARFLOCK"]}, {"one_of": ["Gaunt Summoner", "Gaunt Summoner on Disc of Tzeentch"], "max": 1}], "regiments_of_renown": false, "regiment_options": [{"leaders": ["Gaunt Summoner", "Gaunt Summoner on Disc of Tzeentch", "Pyrofane Fusil-Major on Ogor Warhulk", "Magister", "Magister on Disc of Tzeentch"], "options": ["Any Pyrozealot"]}]}, "legends": true},
 		"All Part of the Plan": {"effect": "You start the battle with 0 fate points. Gain 1 fate point each time:\n• You lose the priority roll.\n• A spell cast by a friendly DISCIPLES OF TZEENTCH unit is unbound.\n• A friendly DISCIPLES OF TZEENTCH unit miscasts a spell.\n• Your opponent gains control of an objective that you controlled at the start of the turn.\n• A friendly Argent Shard is demolished.\nYou can have a maximum of 9 fate points."},
 		"Kairic Tome": {"effect": "Add 1 to or subtract 1 from the casting roll for that spell. This unit can use this ability more than once per phase but only once per SPELL ability."},
 		"Fold Reality": {"declare": "Pick a DISCIPLES OF TZEENTCH WIZARD to cast this spell, then you can pick a friendly non-MONSTER DISCIPLES OF TZEENTCH unit wholly within 12\" of the caster to be the target. Then, make a casting roll of 2D6."},

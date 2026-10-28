@@ -138,8 +138,8 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - a lore's short card opens it under Rules;
     - View in Rules, in the Lores section, opens the Lores section under Rules.
 - **Picker:** replaces the info pane to add something, until it is closed or something is picked. Its units are those the Roster tab shows. It can show:
-  - Heroes to lead a regiment;
-  - units the leader's regiment options allow, or every unit when constraints are overridden. Kragnos in a Big Waaagh! offers both his Ironjawz and Kruleboyz options until his regiment has a unit from one faction;
+  - Heroes to lead a regiment, and The Magnate's Crew's Arkanaut Ironclad while the army has no Brokk Grungsson (it leads only as the general);
+  - units the leader's regiment options allow (with those its Army of Renown adds), or every unit when constraints are overridden. Kragnos in a Big Waaagh! offers both his Ironjawz and Kruleboyz options until his regiment has a unit from one faction;
   - auxiliary units;
   - the battlepack's battle tactics cards, each in brief: its name and each battle tactic's kind, name and victory points. An eye icon toggle beside the name shows the card in full (its setup, each battle tactic's condition and its FAQs, divided by rules) and back; the card is swapped in place, so the list keeps its scroll and focus stays on the eye. The whole card is pressed (clicked, or Enter or Space) to choose it. Cards already chosen for either slot aren't listed;
   - the lores of one kind (`LoreCard`), each in short: its name, tags and its spells' or prayers' names as chips, with the universal manifestation lores marked as such. As with battle tactics cards, an eye icon toggle shows the lore in full, with each spell or prayer's rules and the warscrolls of the manifestations it summons, and the whole card is pressed to choose it. The army's current lore isn't listed, nor Legends lores unless Legends are shown;

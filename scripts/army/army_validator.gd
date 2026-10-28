@@ -56,7 +56,7 @@ static func _unique(messages: PackedStringArray) -> PackedStringArray:
 
 
 ## Each unit with its warscroll and regiment, as {unit, warscroll, regiment, keywords}. keywords
-## includes those gained from the Army of Renown roster. Units whose warscroll is missing from the
+## includes those gained from the Army of Renown roster, and HERO for a non-Hero general. Units whose warscroll is missing from the
 ## data are reported and left out.
 static func _entries(army: Army, catalog: ArmyCatalog, result: ArmyValidation) -> Array[Dictionary]:
 	var army_roster := catalog.roster(army)
@@ -71,6 +71,8 @@ static func _entries(army: Army, catalog: ArmyCatalog, result: ArmyValidation) -
 			for entry in army_roster.entries:
 				if _roster_matches(entry, warscroll):
 					keywords.append_array(entry.gains_keywords)
+		if not "HERO" in keywords and catalog.is_hero(army, unit, warscroll):
+			keywords.append("HERO")
 		entries.append({"unit": unit, "warscroll": warscroll, "regiment": regiment, "keywords": keywords})
 	for regiment in army.regiments:
 		for unit in regiment.units:
@@ -122,8 +124,8 @@ static func _check_regiments(army: Army, catalog: ArmyCatalog, result: ArmyValid
 	for regiment: ArmyRegiment in built:
 		var leader := regiment.leader()
 		var leader_scroll := catalog.warscroll(leader, regiment) if leader else null
-		if leader_scroll == null or not leader_scroll.has_keyword("HERO"):
-			result.problems.append("%s needs a Hero leader." % regiment.name)
+		if leader_scroll == null or not catalog.is_hero(army, leader, leader_scroll):
+			result.problems.append(_leader_problem(army, catalog, regiment, leader_scroll))
 			continue
 		var others := regiment.units.slice(1)
 		var capacity := regiment_capacity(regiment, army)
@@ -134,6 +136,18 @@ static func _check_regiments(army: Army, catalog: ArmyCatalog, result: ArmyValid
 	_check_paired_leaders(army, catalog, built, result)
 
 
+## Why [param regiment]'s leader can't lead it. The roster's [member ArmyRoster.non_hero_general]
+## can, but only as the general, and not while the army includes a unit that stops it.
+static func _leader_problem(army: Army, catalog: ArmyCatalog, regiment: ArmyRegiment, leader: Warscroll) -> String:
+	var army_roster := catalog.roster(army)
+	if leader and army_roster and not army_roster.non_hero_general.is_empty() and RegimentOption._names(leader, army_roster.non_hero_general):
+		var blocker := catalog.non_hero_general_blocker(army)
+		if not blocker.is_empty():
+			return "%s needs a Hero leader: %s can't be your general while your army includes %s." % [regiment.name, leader.name, blocker]
+		return "%s needs a Hero leader: %s can only lead it as your general." % [regiment.name, leader.name]
+	return "%s needs a Hero leader." % regiment.name
+
+
 ## Checks [param units] against the leader's regiment options. A leader with several
 ## [method ArmyCatalog.leader_versions] (Kragnos in a Big Waaagh!) uses whichever fits best, and
 ## can't include units of both [member ArmyRoster.paired_leaders] keywords.
@@ -141,7 +155,7 @@ static func _check_leader_options(army: Army, regiment: ArmyRegiment, leader: Wa
 		catalog: ArmyCatalog, result: ArmyValidation) -> void:
 	var versions := catalog.leader_versions(army, leader)
 	if versions.size() == 1:
-		_check_regiment_options(regiment, leader, units, catalog, result)
+		_check_regiment_options(regiment, leader, catalog.leader_options(army, leader), units, catalog, result)
 		return
 	var paired := catalog.roster(army).paired_leaders
 	if _sides(units, regiment, catalog, paired).size() > 1:
@@ -149,7 +163,7 @@ static func _check_leader_options(army: Army, regiment: ArmyRegiment, leader: Wa
 	var best: ArmyValidation = null
 	for version in versions:
 		var checked := ArmyValidation.new()
-		_check_regiment_options(regiment, version, units, catalog, checked)
+		_check_regiment_options(regiment, version, catalog.leader_options(army, version), units, catalog, checked)
 		if best == null or checked.problems.size() < best.problems.size():
 			best = checked
 	result.problems.append_array(best.problems)
@@ -198,9 +212,8 @@ static func _check_paired_leaders(army: Army, catalog: ArmyCatalog, built: Array
 
 ## Fills each option with the units it allows: required options first, then unlimited ones, so a
 ## limited option (such as "0-1 Gryph-hounds") is only used by a unit nothing else allows.
-static func _check_regiment_options(regiment: ArmyRegiment, leader: Warscroll, units: Array,
-		catalog: ArmyCatalog, result: ArmyValidation) -> void:
-	var options := RegimentOption.parse_all(leader.regiment_options)
+static func _check_regiment_options(regiment: ArmyRegiment, leader: Warscroll, options: Array[RegimentOption],
+		units: Array, catalog: ArmyCatalog, result: ArmyValidation) -> void:
 	var used := {}
 	for unit: ArmyUnit in units:
 		var warscroll := catalog.warscroll(unit, regiment)
@@ -320,9 +333,9 @@ static func _check_enhancements(army: Army, catalog: ArmyCatalog, entries: Array
 				result.problems.append("%s is Unique, so it can't be given %s." % [unit_name, enhancement_name])
 			elif _is_ror(entry):
 				result.problems.append("%s is in a Regiment of Renown, so it can't be given %s." % [unit_name, enhancement_name])
-			elif table and not table.units.is_empty() and not ArmyCatalog.can_take(table, entry.warscroll):
+			elif table and not table.units.is_empty() and not ArmyCatalog.can_take(table, entry.warscroll, _has(entry, "HERO")):
 				result.problems.append("%s can't be given %s%s." % [unit_name, enhancement_name, _only_for(table)])
-			elif type in HERO_ENHANCEMENTS and not entry.warscroll.has_keyword("HERO"):
+			elif type in HERO_ENHANCEMENTS and not _has(entry, "HERO"):
 				result.problems.append("Only Heroes can be given %s (%s isn't a Hero)." % [type, unit_name])
 			by_type.get_or_add(type, []).append(enhancement_name)
 	for type: String in by_type:
@@ -424,7 +437,12 @@ static func _has_keyword(warscroll: Warscroll, keyword: String) -> bool:
 ## Whether [param warscroll] matches one of [member RosterEntry.per]: a unit name, or keywords
 ## ("HERO MONSTER").
 static func _per_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
-	for item in entry.per:
+	return names_or_keywords(warscroll, entry.per)
+
+
+## Whether [param warscroll] matches one of [param items]: a unit name, or keywords ("HERO MONSTER").
+static func names_or_keywords(warscroll: Warscroll, items: PackedStringArray) -> bool:
+	for item in items:
 		if RegimentOption._names(warscroll, item) or _has_keyword(warscroll, item):
 			return true
 		if Array(item.split(" ")).all(func(keyword: String) -> bool: return _has_keyword(warscroll, keyword)):

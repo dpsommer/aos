@@ -1024,6 +1024,30 @@ func test_insertion_index_clamps_a_negative_index_to_the_start_without_a_hero_le
 	assert_eq(_editor(army).insertion_index(army.regiments[0], -3), 0)
 
 
+# insertion_index with a non-Hero general
+
+func _crew_editor(general_in_regiment := "ironclad") -> ArmyEditor:
+	var faction := _faction()
+	faction.warscrolls.append(Kit.warscroll("ironclad", PackedStringArray(), 100, "Ironclad"))
+	var crew := Kit.army_of_renown("Crew")
+	crew.roster.non_hero_general = "Ironclad"
+	faction.armies_of_renown.append(crew)
+	var army := Kit.army()
+	army.army_of_renown = "Crew"
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", general_in_regiment), Kit.unit("u2", "grunt")] as Array[ArmyUnit]))
+	return ArmyEditor.new(army, Kit.catalog(faction))
+
+
+func test_insertion_index_moves_a_position_before_a_non_hero_general_leader_after_it() -> void:
+	var editor := _crew_editor()
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 0), 1)
+
+
+func test_insertion_index_allows_the_start_before_a_leader_that_cannot_lead() -> void:
+	var editor := _crew_editor("grunt")
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 0), 0)
+
+
 # can_add_regiment_of_renown
 
 func test_can_add_an_allowed_regiment_of_renown() -> void:

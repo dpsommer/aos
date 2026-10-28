@@ -1258,3 +1258,71 @@ func test_army_of_renown_roster_omitted_manifestations_defaults_to_true() -> voi
 	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster
 	assert_false(expected.has("manifestations"), "fixture roster should omit manifestations")
 	assert_true(_load("valid").armies_of_renown[0].roster.manifestations)
+
+
+func test_army_of_renown_roster_regiment_option_leaders_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.regiment_options[0]
+	assert_eq(_load("valid").armies_of_renown[0].roster.regiment_options[0].leaders, PackedStringArray(expected.leaders))
+
+
+func test_army_of_renown_roster_regiment_options_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.regiment_options[0]
+	assert_eq(_load("valid").armies_of_renown[0].roster.regiment_options[0].options, PackedStringArray(expected.options))
+
+
+func test_army_of_renown_roster_regiment_options_without_leaders_have_none_listed() -> void:
+	var data: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.regiment_options[1]
+	assert_false(data.has("leaders"), "fixture entry should omit leaders")
+	assert_eq(_load("valid").armies_of_renown[0].roster.regiment_options[1].leaders.size(), 0)
+
+
+func test_army_of_renown_roster_regiment_options_are_all_read() -> void:
+	var expected: Array = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.regiment_options
+	assert_eq(_load("valid").armies_of_renown[0].roster.regiment_options.size(), expected.size())
+
+
+func test_army_of_renown_roster_without_regiment_options_has_none() -> void:
+	var data: Dictionary = _json("roster_without_excluded_units", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_false(data.has("regiment_options"), "fixture roster should omit regiment_options")
+	assert_eq(_load("roster_without_excluded_units").armies_of_renown[0].roster.regiment_options.size(), 0)
+
+
+func test_roster_regiment_options_without_options_returns_null() -> void:
+	assert_null(_load("roster_regiment_options_empty"))
+
+
+func test_roster_regiment_options_without_options_error_names_file_and_field_path() -> void:
+	var errors := _errors("roster_regiment_options_empty")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "roster.regiment_options[0].options"), str(errors))
+
+
+# Non-Hero general
+
+func test_army_of_renown_roster_non_hero_general_unit_is_read() -> void:
+	var expected: String = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.non_hero_general.unit
+	assert_eq(_load("valid").armies_of_renown[0].roster.non_hero_general, expected)
+
+
+func test_army_of_renown_roster_non_hero_general_unless_is_read() -> void:
+	var expected: Array = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.non_hero_general.unless
+	assert_eq(_load("valid").armies_of_renown[0].roster.non_hero_general_unless, PackedStringArray(expected))
+
+
+func test_army_of_renown_roster_without_non_hero_general_has_none() -> void:
+	var data: Dictionary = _json("roster_without_excluded_units", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_false(data.has("non_hero_general"), "fixture roster should omit non_hero_general")
+	assert_true(_load("roster_without_excluded_units").armies_of_renown[0].roster.non_hero_general.is_empty())
+
+
+func test_army_of_renown_roster_without_non_hero_general_has_no_blocking_units() -> void:
+	assert_eq(_load("roster_without_excluded_units").armies_of_renown[0].roster.non_hero_general_unless.size(), 0)
+
+
+func test_roster_non_hero_general_without_unit_returns_null() -> void:
+	assert_null(_load("roster_non_hero_general_no_unit"))
+
+
+func test_roster_non_hero_general_without_unit_error_names_file_and_field_path() -> void:
+	var errors := _errors("roster_non_hero_general_no_unit")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "roster.non_hero_general.unit"), str(errors))
+	assert_true("is required" in " ".join(errors), str(errors))

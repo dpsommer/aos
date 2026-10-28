@@ -6,6 +6,8 @@ extends Resource
 @export var entries: Array[RosterEntry]
 ## Other factions' units the army can draw from as well as its own.
 @export var included_units: Array[RosterInclusion]
+## Regiment options the army's leaders gain as well as their own.
+@export var regiment_options: Array[RosterRegimentOptions]
 @export var regiments_of_renown := true
 @export var faction_terrain := true
 ## Whether the army can pick a manifestation lore.
@@ -18,3 +20,8 @@ extends Resource
 ## (Kragnos) leads for one of them, using that faction's version of its warscroll, and can't include
 ## units of both in its regiment.
 @export var paired_leaders: PackedStringArray
+## A unit that isn't a Hero but can be the general instead of one, gaining the HERO keyword, e.g.
+## The Magnate's Crew's Arkanaut Ironclad. Empty for none.
+@export var non_hero_general: String
+## Units whose inclusion stops [member non_hero_general] being the general, e.g. Brokk Grungsson.
+@export var non_hero_general_unless: PackedStringArray

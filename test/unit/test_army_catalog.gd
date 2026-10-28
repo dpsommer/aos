@@ -793,3 +793,239 @@ func test_regiment_options_narrow_to_the_version_the_units_fit() -> void:
 func test_regiment_options_offer_neither_version_when_the_units_mix_both() -> void:
 	var catalog := _paired_units_catalog()
 	assert_eq(catalog.regiment_options(_horde_army(), _regiment_of("kragnos", ["gobbo", "orruk"])).size(), 0)
+
+
+# Army of Renown regiment options
+
+func _scroll_ids(options: Array[RegimentOption], scrolls: Array[Warscroll]) -> Array:
+	return scrolls.filter(func(w: Warscroll) -> bool:
+		return options.any(func(o: RegimentOption) -> bool: return o.matches(w))).map(func(w: Warscroll) -> String: return w.id)
+
+
+## A catalog with the Army of Renown "Horde" adding "Any MONSTER" for [param leaders] (empty for all).
+## Hero "boss" has "Any INFANTRY" and the keyword WARMASTER; "plain" has no options.
+func _added_catalog(leaders: PackedStringArray) -> ArmyCatalog:
+	var scrolls: Array[Warscroll] = [
+		Kit.hero("boss", PackedStringArray(["Any INFANTRY"]), PackedStringArray(["WARMASTER"])),
+		Kit.hero("plain"),
+		Kit.warscroll("grunt", PackedStringArray(["INFANTRY"])),
+		Kit.warscroll("beast", PackedStringArray(["MONSTER"])),
+	]
+	var faction := Kit.faction(scrolls)
+	faction.armies_of_renown = [Kit.army_of_renown("Horde")] as Array[ArmyOfRenown]
+	var added := RosterRegimentOptions.new()
+	added.leaders = leaders
+	added.options = PackedStringArray(["Any MONSTER"])
+	faction.armies_of_renown[0].roster.regiment_options = [added] as Array[RosterRegimentOptions]
+	return Kit.catalog(faction)
+
+
+func _allowed(catalog: ArmyCatalog, army: Army, leader: String) -> Array:
+	var options := catalog.leader_options(army, catalog.faction.get_warscroll(leader))
+	return _scroll_ids(options, [catalog.faction.get_warscroll("grunt"), catalog.faction.get_warscroll("beast")] as Array[Warscroll])
+
+
+func test_leader_options_without_an_army_of_renown_are_the_leaders_own() -> void:
+	var catalog := _added_catalog(PackedStringArray())
+	assert_eq(_allowed(catalog, Kit.army(), "boss"), ["grunt"])
+
+
+func test_leader_options_with_empty_leaders_apply_to_every_leader() -> void:
+	var catalog := _added_catalog(PackedStringArray())
+	assert_eq(_allowed(catalog, _horde_army(), "plain"), ["beast"])
+
+
+func test_leader_options_add_to_the_leaders_own() -> void:
+	var catalog := _added_catalog(PackedStringArray())
+	assert_eq(_allowed(catalog, _horde_army(), "boss"), ["grunt", "beast"])
+
+
+func test_leader_options_apply_to_a_leader_matched_by_name() -> void:
+	var catalog := _added_catalog(PackedStringArray(["Boss"]))
+	assert_eq(_allowed(catalog, _horde_army(), "boss"), ["grunt", "beast"])
+
+
+func test_leader_options_apply_to_a_leader_matched_by_keyword() -> void:
+	var catalog := _added_catalog(PackedStringArray(["WARMASTER"]))
+	assert_eq(_allowed(catalog, _horde_army(), "boss"), ["grunt", "beast"])
+
+
+func test_leader_options_skip_a_non_matching_leader() -> void:
+	var catalog := _added_catalog(PackedStringArray(["Boss"]))
+	assert_eq(_allowed(catalog, _horde_army(), "plain"), [])
+
+
+func test_leader_options_do_not_change_the_warscroll() -> void:
+	var catalog := _added_catalog(PackedStringArray())
+	catalog.leader_options(_horde_army(), catalog.faction.get_warscroll("boss"))
+	assert_eq(catalog.faction.get_warscroll("boss").regiment_options.size(), 1)
+
+
+func test_regiment_options_include_the_army_of_renown_additions() -> void:
+	var catalog := _added_catalog(PackedStringArray(["Boss"]))
+	var options := catalog.regiment_options(_horde_army(), _regiment_of("boss"))
+	assert_eq(_scroll_ids(options, [catalog.faction.get_warscroll("beast")] as Array[Warscroll]), ["beast"])
+
+
+func test_regiment_options_leave_out_additions_for_a_non_matching_leader() -> void:
+	var catalog := _added_catalog(PackedStringArray(["Boss"]))
+	assert_eq(catalog.regiment_options(_horde_army(), _regiment_of("plain")).size(), 0)
+
+
+func test_regiment_options_of_each_paired_version_include_the_additions() -> void:
+	var catalog := _paired_units_catalog()
+	var added := RosterRegimentOptions.new()
+	added.options = PackedStringArray(["Any ORDER"])
+	catalog.faction.armies_of_renown[0].roster.regiment_options = [added] as Array[RosterRegimentOptions]
+	catalog.faction.warscrolls.append(Kit.warscroll("knight", PackedStringArray(["ORDER"])))
+	var options := catalog.regiment_options(_horde_army(), _regiment_of("kragnos"))
+	assert_true(options.any(func(o: RegimentOption) -> bool: return o.matches(catalog.faction.get_warscroll("knight"))))
+
+
+# Non-Hero general
+
+## A faction whose Army of Renown "Crew" lets the Ironclad be the general, unless Brokk is included.
+func _crew_catalog(roster_general := "Ironclad") -> ArmyCatalog:
+	var ironclad := Kit.warscroll("ironclad", PackedStringArray(["WAR MACHINE"]), 100, "Ironclad")
+	var brokk := Kit.hero("brokk")
+	brokk.name = "Brokk, Lord-Magnate"
+	var faction := Kit.faction([ironclad, brokk, Kit.warscroll("grunt"), Kit.hero("hero")] as Array[Warscroll])
+	faction.enhancement_tables = [Kit.table("Heroic Traits", [Kit.ability("Brave")] as Array[Ability]),
+			Kit.table("Artefacts of Power", [Kit.ability("Sword")] as Array[Ability]),
+			Kit.table("Banners", [Kit.ability("Flag")] as Array[Ability])] as Array[EnhancementTable]
+	var crew := Kit.army_of_renown("Crew")
+	crew.roster.non_hero_general = roster_general
+	crew.roster.non_hero_general_unless = PackedStringArray(["Brokk"])
+	crew.enhancement_tables = faction.enhancement_tables
+	faction.armies_of_renown = [crew] as Array[ArmyOfRenown]
+	return Kit.catalog(faction)
+
+
+func _crew_army(regiment_units: Array[ArmyUnit] = [], auxiliary: Array[ArmyUnit] = []) -> Army:
+	var army := Kit.army()
+	army.army_of_renown = "Crew"
+	army.regiments.append(Kit.regiment("r1", regiment_units))
+	army.auxiliary = auxiliary
+	return army
+
+
+func _scroll(catalog: ArmyCatalog, id: String) -> Warscroll:
+	return catalog.faction.get_warscroll(id)
+
+
+func test_named_unit_can_be_the_non_hero_general() -> void:
+	var catalog := _crew_catalog()
+	assert_true(catalog.can_be_non_hero_general(_crew_army(), _scroll(catalog, "ironclad")))
+
+
+func test_unit_the_roster_does_not_name_cannot_be_the_non_hero_general() -> void:
+	var catalog := _crew_catalog()
+	assert_false(catalog.can_be_non_hero_general(_crew_army(), _scroll(catalog, "grunt")))
+
+
+func test_hero_cannot_be_a_non_hero_general() -> void:
+	var catalog := _crew_catalog("Hero")
+	assert_false(catalog.can_be_non_hero_general(_crew_army(), _scroll(catalog, "hero")))
+
+
+func test_no_unit_can_be_the_non_hero_general_without_a_roster() -> void:
+	var catalog := _crew_catalog()
+	assert_false(catalog.can_be_non_hero_general(Kit.army(), _scroll(catalog, "ironclad")))
+
+
+func test_roster_without_a_non_hero_general_names_none() -> void:
+	var catalog := _crew_catalog("")
+	assert_false(catalog.can_be_non_hero_general(_crew_army(), _scroll(catalog, "ironclad")))
+
+
+func test_blocker_in_a_regiment_stops_the_non_hero_general() -> void:
+	var catalog := _crew_catalog()
+	var army := _crew_army([Kit.unit("u1", "brokk")] as Array[ArmyUnit])
+	assert_false(catalog.can_be_non_hero_general(army, _scroll(catalog, "ironclad")))
+
+
+func test_blocker_in_a_regiment_is_named() -> void:
+	var army := _crew_army([Kit.unit("u1", "grunt"), Kit.unit("u2", "brokk")] as Array[ArmyUnit])
+	assert_eq(_crew_catalog().non_hero_general_blocker(army), "Brokk, Lord-Magnate")
+
+
+func test_blocker_in_the_auxiliary_is_named() -> void:
+	var army := _crew_army([Kit.unit("u1", "grunt")] as Array[ArmyUnit], [Kit.unit("u2", "brokk")] as Array[ArmyUnit])
+	assert_eq(_crew_catalog().non_hero_general_blocker(army), "Brokk, Lord-Magnate")
+
+
+func test_no_blocker_when_the_army_lacks_the_unit() -> void:
+	var army := _crew_army([Kit.unit("u1", "grunt")] as Array[ArmyUnit])
+	assert_eq(_crew_catalog().non_hero_general_blocker(army), "")
+
+
+func test_no_blocker_without_a_roster() -> void:
+	assert_eq(_crew_catalog().non_hero_general_blocker(Kit.army()), "")
+
+
+func test_general_that_can_be_a_non_hero_general_is_a_hero() -> void:
+	var catalog := _crew_catalog()
+	var unit := Kit.unit("u1", "ironclad")
+	var army := _crew_army([unit] as Array[ArmyUnit])
+	army.general_uid = "u1"
+	assert_true(catalog.is_hero(army, unit, _scroll(catalog, "ironclad")))
+
+
+func test_non_general_that_can_be_a_non_hero_general_is_not_a_hero() -> void:
+	var catalog := _crew_catalog()
+	var unit := Kit.unit("u1", "ironclad")
+	var army := _crew_army([unit] as Array[ArmyUnit])
+	army.general_uid = "other"
+	assert_false(catalog.is_hero(army, unit, _scroll(catalog, "ironclad")))
+
+
+func test_blocked_non_hero_general_is_not_a_hero() -> void:
+	var catalog := _crew_catalog()
+	var unit := Kit.unit("u1", "ironclad")
+	var army := _crew_army([unit, Kit.unit("u2", "brokk")] as Array[ArmyUnit])
+	army.general_uid = "u1"
+	assert_false(catalog.is_hero(army, unit, _scroll(catalog, "ironclad")))
+
+
+func test_unit_with_the_hero_keyword_is_a_hero() -> void:
+	var catalog := _crew_catalog()
+	assert_true(catalog.is_hero(_crew_army(), Kit.unit("u1", "hero"), _scroll(catalog, "hero")))
+
+
+func test_can_take_a_hero_table_when_counted_as_a_hero() -> void:
+	var table := Kit.table("Heroic Traits", [] as Array[Ability])
+	assert_true(ArmyCatalog.can_take(table, Kit.warscroll("grunt"), true))
+
+
+func test_cannot_take_a_hero_table_as_a_non_hero_by_default() -> void:
+	var table := Kit.table("Heroic Traits", [] as Array[Ability])
+	assert_false(ArmyCatalog.can_take(table, Kit.warscroll("grunt")))
+
+
+func test_non_hero_general_is_offered_hero_enhancements_with_its_unit() -> void:
+	var catalog := _crew_catalog()
+	var unit := Kit.unit("u1", "ironclad")
+	var army := _crew_army([unit] as Array[ArmyUnit])
+	army.general_uid = "u1"
+	assert_eq(catalog.enhancement_choices(army, _scroll(catalog, "ironclad"), "Heroic Traits", "", unit).size(), 1)
+
+
+func test_non_hero_general_is_offered_no_hero_enhancements_without_its_unit() -> void:
+	var catalog := _crew_catalog()
+	var army := _crew_army([Kit.unit("u1", "ironclad")] as Array[ArmyUnit])
+	army.general_uid = "u1"
+	assert_eq(catalog.enhancement_choices(army, _scroll(catalog, "ironclad"), "Heroic Traits").size(), 0)
+
+
+func test_non_general_non_hero_is_offered_no_hero_enhancements_with_its_unit() -> void:
+	var catalog := _crew_catalog()
+	var unit := Kit.unit("u1", "ironclad")
+	var army := _crew_army([unit] as Array[ArmyUnit])
+	army.general_uid = "other"
+	assert_eq(catalog.enhancement_choices(army, _scroll(catalog, "ironclad"), "Artefacts of Power", "", unit).size(), 0)
+
+
+func test_non_hero_general_is_still_offered_other_enhancement_types() -> void:
+	var catalog := _crew_catalog()
+	var army := _crew_army([Kit.unit("u1", "ironclad")] as Array[ArmyUnit])
+	assert_eq(catalog.enhancement_choices(army, _scroll(catalog, "ironclad"), "Banners").size(), 1)

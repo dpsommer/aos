@@ -74,9 +74,11 @@ func has_room(regiment: ArmyRegiment) -> bool:
 	return regiment.units.size() - 1 < ArmyValidator.regiment_capacity(regiment, army)
 
 
-func _is_hero(warscroll_id: String) -> bool:
+## Whether a unit of [param warscroll_id] leads a regiment it's first in: a Hero, or a unit the
+## Army of Renown lets be the general instead of one.
+func _leads(warscroll_id: String) -> bool:
 	var warscroll := catalog.find_warscroll(army, warscroll_id)
-	return warscroll != null and warscroll.has_keyword("HERO")
+	return warscroll != null and (warscroll.has_keyword("HERO") or catalog.can_be_non_hero_general(army, warscroll))
 
 
 ## Adds a regiment, led by [param leader_id]'s warscroll if given.
@@ -230,11 +232,11 @@ func move_unit(uid: String, regiment_id: String, index: int) -> bool:
 
 
 ## Where a unit placed at [param index] in [param regiment] goes: nothing goes before a Hero
-## leader.
+## leader, or a unit the Army of Renown lets be the general instead of one.
 func insertion_index(regiment: ArmyRegiment, index: int) -> int:
 	if regiment.units.is_empty():
 		return 0
-	if _is_hero(regiment.units[0].warscroll_id):
+	if _leads(regiment.units[0].warscroll_id):
 		index = maxi(index, 1)
 	return clampi(index, 0, regiment.units.size())
 
