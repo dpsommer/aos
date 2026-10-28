@@ -184,3 +184,30 @@ func test_points_and_legends_tags_can_appear_together() -> void:
 	assert_eq(tags.size(), 2)
 	for tag in tags:
 		tag.free()
+
+
+# --- Action placement ---
+
+func _title_row(node: Node) -> Node:
+	return UIKit.labels_with_variation(node, "TitleLabel")[0].get_parent()
+
+
+func test_without_a_heading_the_action_ends_the_names_row() -> void:
+	var action := Button.new()
+	var node := _make(_lore(30), false, "", action)
+	var row := _title_row(node)
+	assert_eq(action.get_parent(), row)
+	assert_eq(action.get_index(), row.get_child_count() - 1)
+
+
+func test_without_a_heading_the_action_is_vertically_centred() -> void:
+	var action := Button.new()
+	_make(_lore(), false, "", action)
+	assert_eq(action.size_flags_vertical, Control.SIZE_SHRINK_CENTER)
+
+
+func test_with_a_heading_the_action_is_not_in_the_names_row() -> void:
+	var action := Button.new()
+	var node := _make(_lore(), false, "Spell Lore", action)
+	assert_ne(action.get_parent(), _title_row(node))
+	assert_eq(action.get_parent(), node.heading_label.get_parent())

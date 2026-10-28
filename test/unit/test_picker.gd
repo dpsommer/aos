@@ -192,14 +192,15 @@ func _tactic(builder: ArmyBuilder, card_name: String) -> TacticCard:
 	return null
 
 
-func test_open_tactics_lists_each_card_as_pressable_without_buttons() -> void:
+func test_open_tactics_lists_each_card_as_pressable_with_only_an_eye() -> void:
 	var builder := _builder()
 	builder.picker.open_tactics(0)
 	for card_name in ["Card A", "Card B"]:
 		var card := UIKit.keyed(builder.picker, "pick:" + card_name) as TacticCard
 		assert_not_null(card, card_name)
 		assert_true(card.pressable, card_name)
-		assert_eq(UIKit.buttons(card).size(), 0, card_name)
+		assert_eq(UIKit.buttons(card).size(), 1, card_name)
+		assert_not_null(UIKit.keyed(card, "picker:eye:" + card_name), card_name)
 
 
 func test_pressing_a_card_fills_the_slot_and_closes() -> void:
@@ -265,12 +266,13 @@ func test_open_lores_lists_each_lore_of_the_kind_as_pressable() -> void:
 	assert_null(UIKit.keyed(builder.picker, "pick:lore:Hymns"))
 
 
-func test_open_lores_cards_are_full() -> void:
+func test_open_lores_cards_are_full_once_their_eye_is_toggled() -> void:
 	var faction := _lore_faction()
 	var fire: Lore = faction.lores[0]
 	fire.entries = [Kit.ability("Scorch")] as Array[Ability]
 	var builder := UIKit.builder(self, UIKit.army_with_regiment(), faction, _core())
 	builder.picker.open_lores("spell", "Spell Lore")
+	(UIKit.keyed(builder.picker, "picker:eye:Fire") as Button).button_pressed = true
 	var card := UIKit.keyed(builder.picker, "pick:lore:Fire")
 	assert_gt(UIKit.find_all(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
 
@@ -455,3 +457,182 @@ func test_a_second_regiment_of_renown_has_no_add_button_without_override() -> vo
 	builder.editor.add_regiment_of_renown("Band")
 	builder.picker.open_regiments_of_renown()
 	assert_null(UIKit.keyed(builder.picker, "pick:add:Other"))
+
+
+# --- Expanding cards ---
+
+func _detailed_core() -> CoreRules:
+	var core := _core()
+	for card in core.battlepack.battle_tactic_cards:
+		var tactic := BattleTactic.new()
+		tactic.name = "Do it"
+		tactic.kind = "strike"
+		tactic.condition = "Achieve the goal."
+		tactic.victory_points = 3
+		card.tactics.append(tactic)
+	return core
+
+
+func _eye(builder: ArmyBuilder, card_name: String) -> Button:
+	return UIKit.keyed(builder.picker, "picker:eye:" + card_name) as Button
+
+
+func _tactics_builder() -> ArmyBuilder:
+	var builder := UIKit.builder(self, UIKit.army_with_regiment(), null, _detailed_core())
+	builder.picker.open_tactics(0)
+	return builder
+
+
+func test_tactic_cards_start_brief() -> void:
+	var builder := _tactics_builder()
+	assert_true(UIKit.has_label_containing(builder.picker, "Do it"))
+	assert_false(UIKit.has_label_containing(builder.picker, "Achieve the goal."))
+	assert_false(_eye(builder, "Card A").button_pressed)
+
+
+func test_toggling_the_eye_shows_the_tactic_card_in_full() -> void:
+	var builder := _tactics_builder()
+	_eye(builder, "Card A").button_pressed = true
+	assert_true(UIKit.has_label_containing(UIKit.keyed(builder.picker, "pick:Card A"), "Achieve the goal."))
+
+
+func test_expanding_one_card_leaves_the_others_brief() -> void:
+	var builder := _tactics_builder()
+	_eye(builder, "Card A").button_pressed = true
+	assert_false(UIKit.has_label_containing(UIKit.keyed(builder.picker, "pick:Card B"), "Achieve the goal."))
+
+
+func test_toggling_the_eye_off_reverts_to_brief() -> void:
+	var builder := _tactics_builder()
+	_eye(builder, "Card A").button_pressed = true
+	_eye(builder, "Card A").button_pressed = false
+	assert_false(UIKit.has_label_containing(builder.picker, "Achieve the goal."))
+	assert_false(builder.picker.expanded.has("Card A"))
+
+
+func test_expanding_records_the_name() -> void:
+	var builder := _tactics_builder()
+	_eye(builder, "Card B").button_pressed = true
+	assert_true(builder.picker.expanded.has("Card B"))
+	assert_false(builder.picker.expanded.has("Card A"))
+
+
+func test_expanding_replaces_the_card_at_the_same_position() -> void:
+	var builder := _tactics_builder()
+	var list := UIKit.keyed(builder.picker, "pick:Card B").get_parent()
+	var old := UIKit.keyed(builder.picker, "pick:Card A")
+	var index := old.get_index()
+	_eye(builder, "Card A").button_pressed = true
+	var replacement := UIKit.keyed(builder.picker, "pick:Card A")
+	assert_ne(replacement, old)
+	assert_eq(replacement.get_index(), index)
+	assert_eq(replacement.get_parent(), list)
+	assert_eq(list.get_child_count(), 2)
+
+
+func test_expanded_replacement_stays_in_the_same_slot_when_not_first() -> void:
+	var builder := _tactics_builder()
+	var index := UIKit.keyed(builder.picker, "pick:Card B").get_index()
+	_eye(builder, "Card B").button_pressed = true
+	assert_eq(UIKit.keyed(builder.picker, "pick:Card B").get_index(), index)
+
+
+func test_expanding_moves_focus_to_the_new_eye() -> void:
+	var builder := _tactics_builder()
+	builder.picker.show()
+	_eye(builder, "Card A").button_pressed = true
+	assert_true(_eye(builder, "Card A").has_focus())
+
+
+func test_collapsing_moves_focus_to_the_new_eye() -> void:
+	var builder := _tactics_builder()
+	builder.picker.show()
+	_eye(builder, "Card A").button_pressed = true
+	_eye(builder, "Card A").button_pressed = false
+	assert_true(_eye(builder, "Card A").has_focus())
+
+
+func test_expanded_replacement_is_still_pressable_and_picks() -> void:
+	var army := Kit.army()
+	var builder := UIKit.builder(self, army, null, _detailed_core())
+	builder.picker.open_tactics(0)
+	_eye(builder, "Card B").button_pressed = true
+	var card := UIKit.keyed(builder.picker, "pick:Card B") as TacticCard
+	assert_true(card.pressable)
+	card.pressed.emit()
+	assert_eq(army.tactics[0], "Card B")
+	assert_false(builder.picker.is_open())
+
+
+func test_the_eye_keeps_its_own_clicks_on_a_pressable_card() -> void:
+	var builder := _tactics_builder()
+	assert_ne(_eye(builder, "Card A").mouse_filter, Control.MOUSE_FILTER_IGNORE)
+
+
+func test_reopening_the_picker_clears_expanded_cards() -> void:
+	var builder := _tactics_builder()
+	_eye(builder, "Card A").button_pressed = true
+	builder.picker.open_tactics(0)
+	assert_true(builder.picker.expanded.is_empty())
+	assert_false(UIKit.has_label_containing(builder.picker, "Achieve the goal."))
+
+
+func _rules_lore_builder() -> ArmyBuilder:
+	var faction := _lore_faction()
+	(faction.lores[0] as Lore).entries = [Kit.ability("Scorch")] as Array[Ability]
+	(faction.lores[1] as Lore).entries = [Kit.ability("Freeze")] as Array[Ability]
+	var builder := UIKit.builder(self, UIKit.army_with_regiment(), faction, _core())
+	builder.picker.open_lores("spell", "Spell Lore")
+	return builder
+
+
+func _rich_count(node: Node) -> int:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is RichTextLabel).size()
+
+
+func test_lore_cards_start_short_with_an_eye() -> void:
+	var builder := _rules_lore_builder()
+	assert_eq(_rich_count(UIKit.keyed(builder.picker, "pick:lore:Fire")), 0)
+	assert_not_null(_eye(builder, "Fire"))
+	assert_not_null(_eye(builder, "Ice"))
+
+
+func test_toggling_a_lores_eye_off_reverts_it_to_short() -> void:
+	var builder := _rules_lore_builder()
+	_eye(builder, "Fire").button_pressed = true
+	_eye(builder, "Fire").button_pressed = false
+	assert_eq(_rich_count(UIKit.keyed(builder.picker, "pick:lore:Fire")), 0)
+	assert_false(builder.picker.expanded.has("Fire"))
+
+
+func test_expanding_a_lore_replaces_it_in_place_and_records_it() -> void:
+	var builder := _rules_lore_builder()
+	var index := UIKit.keyed(builder.picker, "pick:lore:Ice").get_index()
+	_eye(builder, "Ice").button_pressed = true
+	assert_eq(UIKit.keyed(builder.picker, "pick:lore:Ice").get_index(), index)
+	assert_true(builder.picker.expanded.has("Ice"))
+	assert_eq(_rich_count(UIKit.keyed(builder.picker, "pick:lore:Fire")), 0)
+
+
+func test_expanding_a_lore_moves_focus_to_its_new_eye() -> void:
+	var builder := _rules_lore_builder()
+	builder.picker.show()
+	_eye(builder, "Fire").button_pressed = true
+	assert_true(_eye(builder, "Fire").has_focus())
+
+
+func test_expanded_lore_is_still_pressable_and_picks() -> void:
+	var builder := _rules_lore_builder()
+	_eye(builder, "Ice").button_pressed = true
+	var card := UIKit.keyed(builder.picker, "pick:lore:Ice") as LoreCard
+	assert_true(card.pressable)
+	card.pressed.emit()
+	assert_eq(builder.editor.army.spell_lore, "Ice")
+
+
+func test_reopening_lores_clears_expanded() -> void:
+	var builder := _rules_lore_builder()
+	_eye(builder, "Fire").button_pressed = true
+	builder.picker.open_lores("spell", "Spell Lore")
+	assert_true(builder.picker.expanded.is_empty())
+	assert_eq(_rich_count(UIKit.keyed(builder.picker, "pick:lore:Fire")), 0)

@@ -23,7 +23,7 @@ func _card() -> BattleTacticCard:
 
 
 func _make(full: bool, heading := "", action: Button = null) -> TacticCard:
-	var node := TacticCard.new(_card(), full, heading, action)
+	var node := TacticCard.new(_card(), TacticCard.Form.FULL if full else TacticCard.Form.SUMMARY, heading, action)
 	add_child_autofree(node)
 	return node
 
@@ -75,7 +75,7 @@ func test_action_button_is_added_to_the_card() -> void:
 func test_action_can_be_any_control() -> void:
 	var chip := Label.new()
 	chip.text = "Battle tactic 1"
-	var node := TacticCard.new(_card(), false, "", chip)
+	var node := TacticCard.new(_card(), TacticCard.Form.SUMMARY, "", chip)
 	add_child_autofree(node)
 	assert_true(node.is_ancestor_of(chip))
 
@@ -168,7 +168,7 @@ func _rich_texts(node: Node) -> PackedStringArray:
 
 
 func test_full_card_shows_its_faqs() -> void:
-	var node := TacticCard.new(_faq_card(), true)
+	var node := TacticCard.new(_faq_card(), TacticCard.Form.FULL)
 	add_child_autofree(node)
 	var texts := _rich_texts(node)
 	assert_eq(texts.size(), 1)
@@ -177,16 +177,110 @@ func test_full_card_shows_its_faqs() -> void:
 
 
 func test_faq_text_cannot_inject_bbcode() -> void:
-	var node := TacticCard.new(_faq_card(), true)
+	var node := TacticCard.new(_faq_card(), TacticCard.Form.FULL)
 	add_child_autofree(node)
 	assert_false(_rich_texts(node)[0].contains("[b]do it"))
 
 
 func test_short_card_hides_faqs() -> void:
-	var node := TacticCard.new(_faq_card(), false)
+	var node := TacticCard.new(_faq_card(), TacticCard.Form.SUMMARY)
 	add_child_autofree(node)
 	assert_eq(_rich_texts(node).size(), 0)
 
 
 func test_card_without_faqs_has_no_rich_text() -> void:
 	assert_eq(_rich_texts(_make(true)).size(), 0)
+
+
+# --- Brief form ---
+
+func _brief(action: Button = null) -> TacticCard:
+	var node := TacticCard.new(_card(), TacticCard.Form.BRIEF, "", action)
+	add_child_autofree(node)
+	return node
+
+
+func _separators(node: Node) -> Array[Node]:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is HSeparator)
+
+
+func test_brief_card_shows_each_tactics_name_kind_and_victory_points() -> void:
+	var node := _brief()
+	for tactic in _card().tactics:
+		assert_true(UIKit.has_label_containing(node, tactic.name), tactic.name)
+		assert_true(UIKit.has_label_containing(node, TacticCard.KIND_NAMES[tactic.kind].to_upper()), tactic.kind)
+	assert_eq(Array(UIKit.label_texts(node)).filter(func(t: String) -> bool: return t.contains("VP")).size(), _card().tactics.size())
+
+
+func test_brief_card_hides_conditions_text_and_faqs() -> void:
+	var node := TacticCard.new(_faq_card(), TacticCard.Form.BRIEF)
+	add_child_autofree(node)
+	assert_false(UIKit.has_label_containing(node, "Complete the"))
+	assert_false(UIKit.has_label_containing(node, "Pick a hideout."))
+	assert_eq(_rich_texts(node).size(), 0)
+
+
+func test_brief_card_shows_the_card_name_and_action() -> void:
+	var action := Button.new()
+	var node := _brief(action)
+	assert_true(UIKit.has_label_containing(node, "Hold the Line"))
+	assert_true(node.is_ancestor_of(action))
+
+
+func test_brief_and_short_cards_have_no_separators() -> void:
+	assert_eq(_separators(_brief()).size(), 0)
+	assert_eq(_separators(_make(false)).size(), 0)
+
+
+# --- Separators in the full form ---
+
+func test_full_card_has_a_separator_before_the_text_and_each_tactic() -> void:
+	var node := _make(true)
+	assert_eq(_separators(node).size(), 1 + _card().tactics.size())
+
+
+func test_full_card_without_text_has_a_separator_per_tactic_only() -> void:
+	var card := _card()
+	card.text = ""
+	var node := TacticCard.new(card, TacticCard.Form.FULL)
+	add_child_autofree(node)
+	assert_eq(_separators(node).size(), card.tactics.size())
+
+
+func test_full_card_with_faqs_has_one_more_separator_not_one_per_faq() -> void:
+	var card := _faq_card()
+	card.faqs.append({"question": "Second?", "answer": "No."})
+	var node := TacticCard.new(card, TacticCard.Form.FULL)
+	add_child_autofree(node)
+	assert_eq(_separators(node).size(), 2 + card.tactics.size())
+
+
+func test_full_cards_first_separator_comes_before_the_text() -> void:
+	var node := _make(true)
+	var text_label := UIKit.find_all(node, func(n: Node) -> bool: return n is Label and n.text == "Pick a hideout.")[0]
+	assert_true(text_label.get_parent().get_child(text_label.get_index() - 1) is HSeparator)
+
+
+func test_full_cards_faq_follows_a_separator() -> void:
+	var node := TacticCard.new(_faq_card(), TacticCard.Form.FULL)
+	add_child_autofree(node)
+	var rich := UIKit.find_all(node, func(n: Node) -> bool: return n is RichTextLabel)[0]
+	assert_true(rich.get_parent().get_child(rich.get_index() - 1) is HSeparator)
+
+
+# --- Buttons on pressable cards ---
+
+func test_a_button_on_a_pressable_card_keeps_its_own_clicks() -> void:
+	var action := Button.new()
+	var node := TacticCard.new(_card(), TacticCard.Form.BRIEF, "", action)
+	add_child_autofree(node)
+	node.make_pressable("Choose it")
+	assert_ne(action.mouse_filter, Control.MOUSE_FILTER_IGNORE)
+
+
+func test_a_pressable_card_still_ignores_mouse_on_non_button_content_beside_a_button() -> void:
+	var node := TacticCard.new(_card(), TacticCard.Form.BRIEF, "", Button.new())
+	add_child_autofree(node)
+	node.make_pressable("Choose it")
+	for label in UIKit.find_all(node, func(n: Node) -> bool: return n is Label):
+		assert_eq((label as Label).mouse_filter, Control.MOUSE_FILTER_IGNORE)

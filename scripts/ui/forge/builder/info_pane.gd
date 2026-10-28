@@ -402,7 +402,7 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 		for card in group.cards:
 			var slot := army.tactics.find(card.name)
 			var chip := UITheme.chip("Battle tactic %d" % (slot + 1), "affray") if slot >= 0 else null
-			var tactic := TacticCard.new(card, true, "", chip)
+			var tactic := TacticCard.new(card, TacticCard.Form.FULL, "", chip)
 			tactic.set_meta(&"info_key", "tactic:" + card.name)
 			tactic.focus_mode = Control.FOCUS_ALL
 			if flash_key == "tactic:" + card.name:

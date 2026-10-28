@@ -9,19 +9,18 @@ var heading_label: Label
 
 
 ## [param heading] is shown over the lore's name, e.g. "Spell Lore". [param action] is shown in the top
-## right corner, e.g. a "Change" button, or null for none. [param summoned], given an ability, returns the
+## right corner (at the end of the name's row without a heading), e.g. a "Change" button, or null
+## for none. [param summoned], given an ability, returns the
 ## manifestations it summons ([method ArmyCatalog.summoned]), shown in full cards.
 func _init(lore: Lore, full: bool, heading := "", action: Control = null, summoned := Callable()) -> void:
 	super()
 	card_name = lore.name
 	var content := UIBuilder.vbox([], 8)
-	# The heading and the action share the top row, so the name has the card's full width.
-	if not heading.is_empty() or action:
-		var top := UIBuilder.hbox([], 6)
-		if not heading.is_empty():
-			heading_label = UIBuilder.label(heading, "MutedLabel")
-			top.add_child(heading_label)
-		top.add_child(UIBuilder.spacer())
+	# The heading and the action share the top row, so the name has the card's full width. Without a
+	# heading, the action sits at the end of the name's row.
+	if not heading.is_empty():
+		heading_label = UIBuilder.label(heading, "MutedLabel")
+		var top := UIBuilder.hbox([heading_label, UIBuilder.spacer()], 6)
 		if action:
 			top.add_child(action)
 		content.add_child(top)
@@ -30,6 +29,9 @@ func _init(lore: Lore, full: bool, heading := "", action: Control = null, summon
 	for tag in tags(lore):
 		tag.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		title_row.add_child(tag)
+	if action and heading.is_empty():
+		action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		title_row.add_child(action)
 	content.add_child(title_row)
 	if full:
 		for i in lore.entries.size():

@@ -409,7 +409,7 @@ func _tactics_section() -> Control:
 		var slot_control: Control
 		if card:
 			var change := UIBuilder.button("Change", pick_tactic.bind(slot), "tactic:%d" % slot, "", "Change %s" % heading.to_lower())
-			slot_control = TacticCard.new(card, false, heading, change)
+			slot_control = TacticCard.new(card, TacticCard.Form.SUMMARY, heading, change)
 			_link(slot_control, info_pane.show_tactic.bind(card.name), "Show %s in the Rules tab" % card.name, "tactic_card:%d" % slot)
 		else:
 			slot_control = UIBuilder.button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot, "DashedButton")

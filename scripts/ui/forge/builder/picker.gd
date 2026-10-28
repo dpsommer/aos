@@ -10,6 +10,8 @@ var _title: Label
 var _list: VBoxContainer
 ## Unit types folded in the unit list, e.g. "Hero".
 var folded := {}
+## Names of the battle tactics cards or lores shown in full.
+var expanded := {}
 ## Redraws the current list, e.g. after the army changes which units are still available.
 var _render := Callable()
 
@@ -50,6 +52,7 @@ func refresh() -> void:
 func _open(title: String, render: Callable) -> void:
 	_title.text = title
 	folded.clear()
+	expanded.clear()
 	_render = render
 	refresh()
 	focus_first()
@@ -121,8 +124,9 @@ func _unit_item(warscroll: Warscroll, on_pick: Callable) -> PanelContainer:
 	return UIBuilder.panel("RowPanel", UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names, add], 10))
 
 
-## Lists the battlepack's battle tactics cards in full to fill tactics card [param slot]. Pressing a
-## card chooses it. Cards already chosen for either slot aren't listed.
+## Lists the battlepack's battle tactics cards to fill tactics card [param slot], each with its
+## battle tactics' kinds, names and victory points, and an eye to show it in full. Pressing a card
+## chooses it. Cards already chosen for either slot aren't listed.
 func open_tactics(slot: int) -> void:
 	var render := func() -> void:
 		var core := builder.catalog.core
@@ -131,19 +135,21 @@ func open_tactics(slot: int) -> void:
 		for card in cards:
 			if card.name in tactics:
 				continue
-			var item := TacticCard.new(card, true)
-			item.make_pressable("Choose %s for battle tactics card %d" % [card.name, slot + 1])
-			item.set_meta(&"focus_key", "pick:" + card.name)
-			item.pressed.connect(func() -> void:
-				builder.editor.set_tactic(slot, card.name)
-				close())
-			_list.add_child(item)
+			var make := func(full: bool, eye: Button) -> PressableCard:
+				var item := TacticCard.new(card, TacticCard.Form.FULL if full else TacticCard.Form.BRIEF, "", eye)
+				item.make_pressable("Choose %s for battle tactics card %d" % [card.name, slot + 1])
+				item.set_meta(&"focus_key", "pick:" + card.name)
+				item.pressed.connect(func() -> void:
+					builder.editor.set_tactic(slot, card.name)
+					close())
+				return item
+			_list.add_child(_expandable(card.name, make))
 	_open("Battle tactics card %d" % (slot + 1), render)
 
 
-## Lists the lores of [param kind] ("spell", "prayer" or "manifestation") the army can take, in
-## full, under [param title], e.g. "Spell Lore". Pressing a lore picks it. The army's current lore
-## isn't listed.
+## Lists the lores of [param kind] ("spell", "prayer" or "manifestation") the army can take under
+## [param title], e.g. "Spell Lore", each with its spells' or prayers' names and an eye to show it
+## in full. Pressing a lore picks it. The army's current lore isn't listed.
 func open_lores(kind: String, title: String) -> void:
 	var render := func() -> void:
 		var army := builder.editor.army
@@ -153,17 +159,43 @@ func open_lores(kind: String, title: String) -> void:
 			if lore.name == picked:
 				continue
 			var universal := core != null and lore in core.manifestation_lores
-			var item := LoreCard.new(lore, true, "Universal Manifestation Lore" if universal else "", null,
-					builder.catalog.summoned)
-			item.make_pressable("Choose %s as the army's %s" % [lore.name, title.to_lower()])
-			item.set_meta(&"focus_key", "pick:lore:" + lore.name)
-			item.pressed.connect(func() -> void:
-				builder.editor.set_lore(kind, lore.name)
-				close())
-			_list.add_child(item)
+			var make := func(full: bool, eye: Button) -> PressableCard:
+				var item := LoreCard.new(lore, full, "Universal Manifestation Lore" if universal else "", eye,
+						builder.catalog.summoned)
+				item.make_pressable("Choose %s as the army's %s" % [lore.name, title.to_lower()])
+				item.set_meta(&"focus_key", "pick:lore:" + lore.name)
+				item.pressed.connect(func() -> void:
+					builder.editor.set_lore(kind, lore.name)
+					close())
+				return item
+			_list.add_child(_expandable(lore.name, make))
 		if _list.get_child_count() == 0:
 			_list.add_child(UIBuilder.label("There are no other lores to choose.", "MutedLabel", true))
 	_open(title, render)
+
+
+## A card named [param card_name], made by [param make] from whether it's in full and the eye
+## button that toggles that. Toggling the eye swaps the card in place, so the list keeps its scroll,
+## and focuses the new card's eye.
+func _expandable(card_name: String, make: Callable) -> PressableCard:
+	var full := expanded.has(card_name)
+	var eye := UIBuilder.icon_toggle("eye", ("Hide %s's details" if full else "Show %s in full") % card_name, full,
+			func(_on: bool) -> void: pass, "picker:eye:" + card_name)
+	var card: PressableCard = make.call(full, eye)
+	eye.toggled.connect(func(on: bool) -> void:
+		if on:
+			expanded[card_name] = true
+		else:
+			expanded.erase(card_name)
+		var replacement := _expandable(card_name, make)
+		_list.add_child(replacement)
+		_list.move_child(replacement, card.get_index())
+		_list.remove_child(card)
+		card.queue_free()
+		var new_eye := ArmyBuilder.find_focus_key(replacement, "picker:eye:" + card_name) if is_inside_tree() else null
+		if new_eye:
+			new_eye.grab_focus())
+	return card
 
 
 ## Lists the Regiments of Renown the army can include, with their rules and warscrolls.

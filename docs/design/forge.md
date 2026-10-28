@@ -66,7 +66,7 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 
 `UIBuilder` (`scripts/ui/ui_builder.gd`) builds controls in code. Shared pieces:
 - **`OptionCard`** (`scripts/ui/option_card.gd`): a large button holding any controls, which fits its height to them. In toggle mode it shows as selected (gold border) while pressed.
-- **`PressableCard`** (`scripts/ui/forge/builder/pressable_card.gd`): the base of `TacticCard` and `LoreCard`. A card that can be made pressable as a whole, with a gold outline on keyboard focus and a grey one on hover.
+- **`PressableCard`** (`scripts/ui/forge/builder/pressable_card.gd`): the base of `TacticCard` and `LoreCard`. A card that can be made pressable as a whole, with a gold outline on keyboard focus and a grey one on hover. Buttons on a pressable card (e.g. the picker's eye) still take their own clicks.
 - **`DashedStyleBox`** (`scripts/ui/dashed_style_box.gd`): a rounded box with a dashed border, used by the `DashedButton` variation for empty slots.
 - **`ArtPlaceholder`** (`scripts/ui/art_placeholder.gd`, shader `assets/shaders/ui/art_placeholder.gdshader`): diagonal stripes in a rounded box. It stands in for army, faction and unit art, including the builder's portraits.
 
@@ -116,7 +116,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - Enhancements, one group per table;
     - Lores, including the universal manifestation lores. Each spell or prayer that summons manifestations shows their warscrolls on its card, from its `summons` ids (`ArmyCatalog.summoned()`);
     - Faction Terrain;
-    - Battle Tactics: the battlepack's cards in full, with their FAQs.
+    - Battle Tactics: the battlepack's cards in full, with their FAQs. Rules divide a full card's setup, each battle tactic and its FAQs.
 
     An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. Each group folds on its own, even when several share a name (e.g. two Artefacts of Power tables). Enhancement tables and lores from Scourge of Aqshy or Scourge of Ghyran (their `source`) are tagged "SoA" or "SoG". Legends enhancement tables and lores (those from a Scourge the battlepack doesn't use, i.e. Scourge of Ghyran) are tagged Legends and hidden unless Legends are shown (though the army's picked lores stay), until the builder can switch between General's Handbook versions. The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
 
@@ -140,8 +140,8 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - Heroes to lead a regiment;
   - units the leader's regiment options allow, or every unit when constraints are overridden;
   - auxiliary units;
-  - the battlepack's battle tactics cards in full. The whole card is pressed (clicked, or Enter or Space) to choose it. Cards already chosen for either slot aren't listed;
-  - the lores of one kind in full (`LoreCard`), with each spell or prayer's rules and the warscrolls of the manifestations it summons, and the universal manifestation lores marked as such. As with battle tactics cards, the whole card is pressed to choose it. The army's current lore isn't listed, nor Legends lores unless Legends are shown;
+  - the battlepack's battle tactics cards, each in brief: its name and each battle tactic's kind, name and victory points. An eye icon toggle beside the name shows the card in full (its setup, each battle tactic's condition and its FAQs, divided by rules) and back; the card is swapped in place, so the list keeps its scroll and focus stays on the eye. The whole card is pressed (clicked, or Enter or Space) to choose it. Cards already chosen for either slot aren't listed;
+  - the lores of one kind (`LoreCard`), each in short: its name, tags and its spells' or prayers' names as chips, with the universal manifestation lores marked as such. As with battle tactics cards, an eye icon toggle shows the lore in full, with each spell or prayer's rules and the warscrolls of the manifestations it summons, and the whole card is pressed to choose it. The army's current lore isn't listed, nor Legends lores unless Legends are shown;
   - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
 
   Units are listed in foldable sections by type (Hero, Infantry, Cavalry and so on), as in the Roster. It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.

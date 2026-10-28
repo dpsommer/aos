@@ -22,6 +22,7 @@ func _init() -> void:
 
 ## Makes the whole card a button: focusable, and emitting [signal pressed] when clicked or when
 ## Enter or Space is pressed. [param description] is its tooltip and accessibility description.
+## Buttons on the card, e.g. an eye to show it in full, still take their own clicks.
 func make_pressable(description: String) -> void:
 	pressable = true
 	focus_mode = Control.FOCUS_ALL
@@ -33,6 +34,8 @@ func make_pressable(description: String) -> void:
 
 
 func _ignore_mouse(node: Node) -> void:
+	if node is BaseButton:
+		return
 	if node is Control:
 		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	for child in node.get_children():
