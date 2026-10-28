@@ -3642,7 +3642,7 @@
 				{
 					"name": "Barrier of Water",
 					"type": "spell",
-					"category": "",
+					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
@@ -3869,7 +3869,7 @@
 				{
 					"name": "Verdant Growth",
 					"type": "spell",
-					"category": "",
+					"category": "defensive",
 					"timing": "Your Hero Phase",
 					"colour": "yellow",
 					"declare": "Pick an objective or visible non-FACTION TERRAIN terrain feature within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",

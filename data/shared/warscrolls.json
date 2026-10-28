@@ -123,29 +123,33 @@
 				{
 					"name": "Armour of Glimril Scales",
 					"type": "passive",
-					"category": "",
+					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate D3 damage points to it (ward rolls cannot be made for those damage points)."
 				},
 				{
 					"name": "Rune Axe of Grimnir",
 					"type": "passive",
-					"category": "",
+					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "The Attacks characteristic of this unit's Rune Axe of Grimnir is 7 if this unit charged this turn."
 				},
 				{
 					"name": "As Stern As Stone",
 					"type": "passive",
-					"category": "",
+					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly DUARDIN INFANTRY units have WARD (5+) while they are wholly within 12\" of this unit."
 				},
 				{
 					"name": "Living Legend",
 					"type": "passive",
-					"category": "",
+					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 2 to the control scores of friendly DUARDIN INFANTRY units while they are wholly within 12\" of this unit."
 				}
 			],

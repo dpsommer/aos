@@ -97,7 +97,7 @@
 						{
 							"name": "These Realms Are Ours",
 							"type": "spell",
-							"category": "",
+							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"colour": "yellow",
 							"declare": "Pick a friendly ALLIES OF THE FREE CITIES WIZARD to cast this spell, pick an objective within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -603,7 +603,7 @@
 						{
 							"name": "Hand of Demise",
 							"type": "spell",
-							"category": "",
+							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -616,7 +616,7 @@
 						{
 							"name": "Amethyst Haze",
 							"type": "spell",
-							"category": "",
+							"category": "offensive",
 							"timing": "Your Hero Phase",
 							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
@@ -629,7 +629,7 @@
 						{
 							"name": "Bind in Death",
 							"type": "spell",
-							"category": "",
+							"category": "special",
 							"timing": "Your Hero Phase",
 							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",

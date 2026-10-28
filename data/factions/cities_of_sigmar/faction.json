@@ -518,7 +518,7 @@
 				{
 					"name": "Speed of the Twin-tailed Comet",
 					"type": "spell",
-					"category": "",
+					"category": "movement",
 					"timing": "Your Hero Phase",
 					"colour": "yellow",
 					"declare": "Pick a friendly CITIES OF SIGMAR WIZARD to cast this spell, then make a casting roll of 2D6.",
@@ -532,7 +532,7 @@
 				{
 					"name": "Curse of Scorched Metal",
 					"type": "spell",
-					"category": "",
+					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"colour": "yellow",
 					"declare": "Pick a friendly CITIES OF SIGMAR WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
@@ -545,7 +545,7 @@
 				{
 					"name": "High Star's Light",
 					"type": "spell",
-					"category": "",
+					"category": "offensive",
 					"timing": "Your Hero Phase",
 					"colour": "yellow",
 					"declare": "Pick a friendly CITIES OF SIGMAR WIZARD to cast this spell, pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
