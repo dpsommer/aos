@@ -48,6 +48,20 @@ func test_chip_text_contrasts_strongly_with_its_background() -> void:
 		assert_gte(UITheme.contrast(colours[1], colours[0]), UITheme.CHIP_MIN_CONTRAST, kind)
 
 
+func test_ability_card_text_contrasts_with_every_ability_colour() -> void:
+	for colour: String in UITheme.ABILITY_COLOURS:
+		var colours: Array = UITheme.ABILITY_COLOURS[colour]
+		assert_gte(UITheme.contrast(UITheme.TEXT, colours[0]), UITheme.ABILITY_COLOUR_MIN_CONTRAST, colour)
+
+
+func test_ability_colours_are_the_ones_abilities_can_have() -> void:
+	var names := PackedStringArray(UITheme.ABILITY_COLOURS.keys())
+	names.sort()
+	var allowed := Ability.COLOURS.duplicate()
+	allowed.sort()
+	assert_eq(names, allowed)
+
+
 func test_contrast_of_black_on_white_is_the_maximum() -> void:
 	assert_almost_eq(UITheme.contrast(Color.BLACK, Color.WHITE), 21.0, 0.01)
 	assert_almost_eq(UITheme.contrast(Color.WHITE, Color.BLACK), 21.0, 0.01)

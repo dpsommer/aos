@@ -8,6 +8,7 @@
 			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
+			"colour": "green",
 			"effect": "Subtract 1 from hit rolls for attacks that target friendly KHARADRON OVERLORDS INFANTRY units that have not charged in the same turn while they are wholly within 6\" of a friendly Arkanaut Ironclad or Arkanaut Frigate that has not charged in the same turn."
 		},
 		{
@@ -15,6 +16,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
+			"colour": "black",
 			"frequency": "Once Per Battle (Army)",
 			"declare": "Pick a friendly SKYVESSEL that is in a regiment from which no units have been deployed, then pick a number of units up to its Transport Capacity (see its warscroll) that are in its regiment.",
 			"effect": "Set up all of those units in reserve in the clouds. They have now been deployed.",
@@ -27,6 +29,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
+			"colour": "black",
 			"frequency": "Once Per Battle (Army)",
 			"declare": "Pick a friendly SKYVESSEL to be the target. The target can be in reserve.",
 			"effect": "The target has the FLAGSHIP keyword for the rest of the battle. If the target does not have a Great Endrinwork, give the target 1 Great Endrinwork.",
@@ -42,6 +45,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase",
+			"colour": "grey",
 			"declare": "Pick a friendly SKYVESSEL in the clouds to use this ability.",
 			"effect": "Set up that SKYVESSEL anywhere on the battlefield more than 9\" from all enemy units. Then, set up all other units that were set up in the clouds with that SKYVESSEL wholly within 6\" of it and more than 9\" from all enemy units."
 		},
@@ -50,6 +54,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Your Movement Phase, Reaction: You declared a non-CHARGE MOVE ability for a friendly SKYVESSEL",
+			"colour": "grey",
 			"declare": "The SKYVESSEL using that MOVE ability",
 			"effect": "Pick a number of units up to that SKYVESSEL's Transport Capacity (see its warscroll) that are wholly within 6\" of it and not in combat to be the targets. Units that have been transported this turn cannot be targets.\nRemove the targets from the battlefield. After the SKYVESSEL ends its move, you must set up each target unit on the battlefield, wholly within 6\" of that SKYVESSEL and not in combat. Those units have been transported. A unit cannot use CHARGE abilities if it was transported in the same turn."
 		}
@@ -64,6 +69,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly Vongrim Harpoon Crew and Vongrim Salvagers units have WARD (6+) while they are contesting an objective."
 				}
 			]
@@ -77,6 +83,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 friendly Arkanaut Company units to be the targets.",
 					"effect": "For the rest of the battle round, if the target has not been set up this battle round and while it has not moved this turn, subtract 1 from the Rend characteristic of attacks that target that unit."
@@ -92,6 +99,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Friendly Grundstok Gunhaulers can transport up to 2 friendly KHARADRON OVERLORDS INFANTRY units instead of 1 and with a combined model count of up to 6 instead of 5 (see Battle Traits)."
 				}
 			]
@@ -105,6 +113,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly non-UNIQUE KHARADRON OVERLORDS HERO that does not have an artefact of power.",
 					"effect": "Give that HERO 1 artefact of power from the 'Inventions of the Sky-ports' or the 'Ingenious Innovations'."
@@ -122,6 +131,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit and up to 2 other friendly KHARADRON OVERLORDS non-HERO INFANTRY units to be the targets.",
 					"effect": "Each target can immediately use the 'Normal Move' ability as if it were your movement phase.",
 					"points": 10
@@ -131,6 +141,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 5 to this unit's control score."
 				},
 				{
@@ -138,6 +149,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "This unit can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the phase."
 				}
@@ -152,6 +164,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a WIZARD within 30\" of this unit",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "That spell is unbound."
 				},
@@ -160,6 +173,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Ward rolls cannot be made for the target for the rest of the turn.",
@@ -170,6 +184,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a CHARGE ability for a unit within 12\" of this unit.",
+					"colour": "orange",
 					"frequency": "Once Per Turn",
 					"effect": "Pick 1 dice in that charge roll. Then, make a bamboozling flak roll of D6. If the roll equals or exceeds the value on the dice, remove that dice from the charge roll.",
 					"points": 10
@@ -186,6 +201,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "This unit can use a SUMMON ability from the manifestation lore you picked during army composition as if it had WIZARD (1). Instead of making a casting roll for that SUMMON ability, the casting roll is 7 and cannot be modified. That SUMMON ability cannot be unbound."
 				},
@@ -194,6 +210,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "This unit has WARD (5+). In addition, add 1 to the Attacks characteristic of this unit's melee weapons."
 				},
 				{
@@ -201,6 +218,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly KHARADRON OVERLORDS unit that has FLY and is not in combat to be the target.",
 					"effect": "Remove the target from the battlefield and set it up again wholly within 9\" of this unit and more than 9\" from all enemy units."
@@ -217,6 +235,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• If the target unit's starting size was 1, subtract 1 from hit rolls for the target's attacks until the start of your next turn."
 				},
@@ -225,6 +244,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "Remove this unit from the battlefield and set it up again wholly within 3\" of a friendly SKYVESSEL or Zontari Endrin Dock and more than 9\" from all enemy units."
 				},
@@ -233,6 +253,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Until the start of your next turn, subtract your opponent's fury level from the target's control score.",
 					"options": [
@@ -257,6 +278,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "This unit has WARD (5+) against damage inflicted by shoot abilities."
 				},
 				{
@@ -264,6 +286,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Add 2\" to this unit's Move characteristic."
 				},
 				{
@@ -271,6 +294,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Add 1 to each dice roll when using this unit's 'Heavy Bomb Racks', 'Medium Bomb Racks' or 'Light Bomb Racks' ability."
 				},
 				{
@@ -278,6 +302,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase, Reaction: You declared a SHOOT ability for this unit.",
+					"colour": "blue",
 					"effect": "If all of the attacks target the same enemy unit, ignore negative modifiers to hit rolls for those attacks."
 				},
 				{
@@ -285,6 +310,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 5 to this unit's Control characteristic."
 				},
 				{
@@ -292,6 +318,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Inflict D6 mortal damage on each enemy MANIFESTATION within this unit's combat range."
 				}
 			]
@@ -310,6 +337,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: A friendly unit within 12\" of this unit was picked to be the target of an enemy SPELL ability.",
+					"colour": "yellow",
 					"effect": "Roll a dice. On a 4+:\n• Ignore the effect of that spell on that friendly unit.\n• Inflict D3 mortal damage on the caster.\nThis unit can use this ability more than once per phase but you can only roll once for each friendly unit per spell cast."
 				},
 				{
@@ -317,6 +345,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit is in combat, pick a visible friendly KHARADRON OVERLORDS HERO wholly within 6\" of this unit to be the target.",
 					"effect": "Remove the target from the battlefield, then set it up again wholly within 18\" of this unit and more than 9\" from all enemy units."
@@ -326,6 +355,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target."
 				}
@@ -348,6 +378,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "• Add 1 to hit rolls for this unit's combat attacks that target an enemy unit that has FLY.\n• Add 1 to wound rolls for this unit's combat attacks that target an enemy unit that does not have FLY.",
 					"points": 10
 				},
@@ -356,6 +387,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit has not charged this turn, pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "The target's attacks cannot score critical hits for the rest of the turn (treat them as regular hits instead).",
@@ -366,6 +398,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly KHARADRON OVERLORDS HEROES have WARD (5+) while they are within this unit's combat range.",
 					"points": 10
 				}

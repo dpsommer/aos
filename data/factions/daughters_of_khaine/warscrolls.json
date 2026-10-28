@@ -31,6 +31,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This MANIFESTATION is affected by the 'Blessings of Khaine' ability as if it were a unit."
 				},
 				{
@@ -38,6 +39,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add X to the Attacks characteristic of this MANIFESTATION's melee weapons, where X is the number of times you have used the 'Blessings of Khaine' ability this battle, to a maximum of 3."
 				}
 			],
@@ -80,6 +82,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "If this MANIFESTATION charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "If any damage points are allocated to the target this phase by this MANIFESTATION's combat attacks, ward rolls cannot be made for the target for the rest of the battle."
 				}
@@ -133,6 +136,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit is wholly within 12\" of a friendly Hag Queen on Cauldron of Blood, Slaughter Queen on Cauldron of Blood or Shrine of Dark Tribute, this unit's melee weapons have ANTI-CHARGE (+1 REND)."
 				},
 				{
@@ -140,6 +144,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Blessings of Khaine' ability",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If an enemy unit was destroyed by this unit's combat attacks this turn, when resolving that ability, you can pick 2 blessings instead of 1."
 				}
@@ -187,6 +192,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy INFANTRY or CAVALRY unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. If the roll is equal to or less than the target's Health characteristic, the target has STRIKE-LAST for the rest of the turn."
@@ -243,6 +249,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "After that SHOOT ability has been resolved, if all of this unit’s attacks targeted the same enemy unit, roll a dice. Add 1 to the roll if any other friendly Blood Stalkers units picked that enemy unit to be the target of all of their shooting attacks this turn. On a 3+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
 				}
@@ -291,6 +298,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is in combat, pick an enemy unit in combat with it to be the target. If this unit is not in combat, pick a visible enemy unit within 12\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, if any enemy models were slain by that mortal damage, inflict an amount of mortal damage on the target equal to its Health characteristic."
@@ -300,6 +308,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls for this unit when it uses a SUMMON ability and add 1 to banishment rolls for this unit.",
 					"keywords": [
 						"EXALTED"
@@ -363,6 +372,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Until the start of your next turn:\n• Enemy MANIFESTATIONS cannot be set up within 12\" of this unit.\n• This unit has WARD (4+) against mortal damage inflicted by SPELL abilities, PRAYER abilities and abilities used by MANIFESTATIONS.",
 					"keywords": [
@@ -374,6 +384,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there are fewer friendly Avatars of Khaine on the battlefield than there are friendly Bloodwrack Shrines on the battlefield, make a casting roll of 2D6.",
 					"effect": "Set up an Avatar of Khaine wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 6,
@@ -390,6 +401,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
+					"colour": "blue",
 					"effect": "After that SHOOT ability has been resolved, if all of this unit's attacks made as part of that SHOOT ability targeted the same enemy unit and any enemy models were slain by those attacks, roll a dice. On a 3+, that enemy unit has a maximum control score of 1 for the rest of the turn."
 				}
 			],
@@ -452,6 +464,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 15\" of this unit to be the target.",
 					"effect": "Roll a dice. If the roll is equal to or less than that enemy unit's Health characteristic, for the rest of the phase, you can re-roll failed hit rolls for attacks made by this unit that target that enemy unit."
@@ -461,6 +474,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, enemy units and enemy MANIFESTATIONS cannot be set up within 12\" of this unit.",
 					"casting_value": 5
@@ -511,6 +525,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this MANIFESTATION to be the target.",
 					"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."
 				},
@@ -519,6 +534,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "This unit's combat attacks score critical hits on unmodified hit rolls of 4+ if the target of those attacks has STRIKE-LAST."
 				}
 			],
@@ -583,6 +599,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "When this unit uses the 'Redeploy' command, if you roll a 1-3 when determining the distance this unit can move, you can use a value of 4 instead."
 				}
 			],
@@ -631,6 +648,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "For the rest of the turn, while this unit is in combat with the target, its combat attacks must target that enemy unit. In addition, if any of this unit's attacks score a critical hit on the target this phase, the target has STRIKE-LAST for the rest of the turn."
 				}
@@ -681,6 +699,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, each time a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit uses a Fight ability, after that ability has been resolved, you can pick a visible friendly DAUGHTERS OF KHAINE PRIEST wholly within 12\" of this unit. That PRIEST gains 1 ritual point.",
 					"keywords": [
@@ -744,6 +763,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE unit that is wholly within 12\" of this unit and is in combat with an enemy unit that charged this turn to be the target. If there are any friendly Slaughter Queens on Cauldrons of Blood on the battlefield, you can pick another eligible unit to be a second target.",
 					"effect": "The targets have WARD (5+) for the rest of the turn.",
@@ -756,6 +776,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE MANIFESTATION wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot be picked to be the target of BANISH abilities used by enemy units until the start of your next turn."
@@ -792,6 +813,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from wound rolls for attacks that target friendly DAUGHTERS OF KHAINE INFANTRY units while they are wholly within 12\" of this MANIFESTATION."
 				}
 			],
@@ -837,6 +859,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE INFANTRY unit wholly within 12\" of this unit to be the target.",
 					"effect": "If this unit is in combat, add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn. If this unit is not in combat, roll a dice. On a 3+, add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn.",
@@ -894,6 +917,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
 				}
@@ -949,6 +973,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat, pick a visible enemy INFANTRY or CAVALRY HERO that has no more than 1 model and is within 12\" of this unit to be the target.",
 					"effect": "If the target is more than 3\" from all other enemy units, apply the effect below. Otherwise, roll a dice. On a 3+, apply the effect below.\nYour opponent must remove the target from the battlefield and set it up again in combat with this unit."
@@ -1003,6 +1028,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "After that SHOOT ability has been resolved, this unit can move 2D6\". It cannot move into combat during any part of that move."
 				}
@@ -1046,6 +1072,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat, it can move 12\". It can pass through the combat ranges of enemy units but cannot end that move in combat. Then, roll a D3 for each enemy unit that this unit passed across during that move. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.",
 					"keywords": [
@@ -1109,6 +1136,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Roll 6 dice:\n• For each 1, add 1 to the Attacks characteristic of this unit's melee weapons until the start of your next turn.\n• For each 3, add 1\" to this unit's Move characteristic until the start of your next turn.\n• If any of the rolls are a 6, add 1 to save rolls for this unit until the start of your next turn."
 				}
 			],
@@ -1156,6 +1184,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time you perform a blood rite, immediately after the ability that destroyed a unit has been resolved, give this unit 1 prophecy token.\n• While this unit has 2 or more prophecy tokens, this unit cannot be picked to be the target of shooting attacks or SPELL abilities used by enemy units.\n• While this unit has 3 or more prophecy tokens, you can re-roll unmodified chanting rolls of 1 for this unit.\n• While this unit has 4 or more prophecy tokens, if the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 				},
 				{
@@ -1163,6 +1192,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a chanting roll of D6.",
 					"effect": "Pick 1 of the following effects. If the chanting roll was 10+, pick up to 2 different effects instead.",
 					"chanting_value": 4,
@@ -1236,6 +1266,7 @@
 					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly non-UNIQUE DAUGHTERS OF KHAINE AELF INFANTRY or CAVALRY unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 9\" of a battlefield edge and more than 9\" from all enemy units.",
@@ -1246,6 +1277,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE AELF INFANTRY or CAVALRY unit wholly within 12\" of this unit to be the target. Then, make a chanting roll of D6.",
 					"effect": "Pick 1 of the following effects to apply until the start of your next turn:",
 					"chanting_value": 3,
@@ -1272,6 +1304,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"effect": "Give this unit D3 ritual points."
 				}
 			],
@@ -1338,6 +1371,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "If this unit has not been deployed, set up this unit in reserve in hiding. It has now been deployed.",
 					"keywords": [
 						"DEPLOY"
@@ -1348,6 +1382,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick this unit if it is in hiding. Then, pick a friendly INFANTRY unit that has 5 or more models to be the target.",
 					"effect": "Roll a dice. On a 3+, set up this unit anywhere on the battlefield wholly within 6\" of the target. If you do so, this unit must be set up in combat and has STRIKE-FIRST for the rest of the turn. On a failed roll, this unit remains in hiding but you automatically pass the roll the next time you use this ability."
 				},
@@ -1356,6 +1391,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 				}
 			],
@@ -1406,6 +1442,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick each friendly DAUGHTERS OF KHAINE unit within this unit's combat range to be the targets.",
 					"effect": "For the rest of the phase, each time a model in a target unit is slain by a combat attack, roll a dice. If that unit is a Blood Sisters or Blood Stalkers unit, roll 2 dice instead. For each 5+, inflict 1 mortal damage on the attacking unit.",
@@ -1460,6 +1497,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. If this unit is in combat, you can re-roll the dice. If the roll is lower than your fury level, add 1 to the Attacks characteristic of weapons used by this unit and the target until the start of your next turn.",
@@ -1511,6 +1549,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick either a friendly Shadow Queen wholly within 12\" of this unit and in combat or a visible friendly non-HERO DAUGHTERS OF KHAINE unit wholly within 12\" of this unit and in combat to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target is a friendly Shadow Queen, it can immediately use a FIGHT ability as if it were your combat phase. Otherwise, inflict D3 mortal damage on each enemy unit in combat with the target.",
 					"casting_value": 7,
@@ -1523,6 +1562,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you perform a blood rite, immediately after the ability that destroyed a unit has been resolved, pick 1 of the following effects:\n• Until the start of your next turn, this unit is only visible to enemy units while those units are within its combat range.\n• Heal (D6) this unit or a friendly Shadow Queen.\n• A friendly Shadow Queen can immediately use the 'Normal Move' or 'Retreat' ability as if it was your movement phase even if it has already used that ability or another CORE ability this phase.\n• Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.\n• For the rest of the turn, set this unit's Control characteristic to 5 and a friendly Shadow Queen's Control characteristic to 15.",
 					"options": [
 						{
@@ -1536,6 +1576,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE PRIEST or WIZARD wholly within 12\" of this unit to be the target.",
 					"effect": "Add 1 to casting rolls and chanting rolls for the target until the start of your next turn."
 				}
@@ -1600,6 +1641,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit's Morgwaeth the Bloodied is on the battlefield, it has PRIEST (1)."
 				},
 				{
@@ -1607,6 +1649,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target has WARD (5+) for the rest of the turn."
@@ -1643,6 +1686,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly DAUGHTERS OF KHAINE WIZARD or PRIEST within 3\" of this terrain feature to be the target.",
 					"effect": "The target is in dark communion until this terrain feature uses this ability again or until this terrain feature is removed from the battlefield, whichever comes first. While the target is in dark communion, you can re-roll 1 casting roll or 1 chanting roll for the target each turn."
 				},
@@ -1651,6 +1695,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Pick a blessing from the 'Blessings of Khaine' ability that is active. That blessing is no longer active. Then, pick a blessing that is not active. That blessing is now active.",
 					"options": [
 						{
@@ -1698,6 +1743,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Subtract 1 from hit rolls and wound rolls for the target's combat attacks for the rest of the turn."
@@ -1749,6 +1795,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, pick a blessing from the 'Blessings of Khaine' ability that is not active. The effect of that blessing applies to the target until the start of your next turn as if it were active. If you have used the 'Blessings of Khaine' ability 3 or more times this battle, you can pick 2 blessings instead of 1.",
@@ -1813,6 +1860,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Add 1 to save rolls for visible friendly DAUGHTERS OF KHAINE INFANTRY units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -1820,6 +1868,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time a friendly DAUGHTERS OF KHAINE unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. In addition, if there are any friendly Hag Queens on Cauldrons of Blood on the battlefield when that command is used, you receive D3 additional rally points.",
 					"keywords": [
 						"EXALTED"
@@ -1878,6 +1927,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn."
 				},
@@ -1886,6 +1936,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
 				}
 			],
@@ -1946,6 +1997,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If any enemy units are constricted, they are no longer constricted. Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, the target is constricted while it is in combat with this unit.\nThis unit's combat attacks that target a constricted enemy unit score critical hits on unmodified hit rolls of 5+.",
@@ -1958,6 +2010,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Heartrender is 5."
 				},
 				{
@@ -1965,6 +2018,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll 5 dice. Add 2 to each roll if the target is constricted. For each 5+, pick 1 of the following effects. You cannot pick the same effect more than once per turn.\n• Subtract 1 from hit rolls for the target's combat attacks for the rest of the turn.\n• Subtract 1 from wound rolls for the target's combat attacks for the rest of the turn.\n• Random characteristic rolls for the Damage characteristic of the target's melee weapons are treated as unmodified rolls of 1 for the rest of the turn.\n• Inflict D3 mortal damage on the target.\n• The target cannot be healed or have slain models returned to it for the rest of the turn."
 				},
@@ -1973,6 +2027,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "This unit can use this ability even if it has been destroyed. If you have used the 'Blessings of Khaine' ability 3 or more times this battle, pick a friendly Morathi-Khaine or Shadow Queen that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit identical to the target within 3\" of a friendly Morathi-Khaine or Shadow Queen."
@@ -2018,6 +2073,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of this unit's melee weapons if it charged in the same turn."
 				}
 			],

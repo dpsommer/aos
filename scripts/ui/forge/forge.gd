@@ -505,15 +505,9 @@ func _formation_card(formation: BattleFormation) -> OptionCard:
 	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	card.add(UIBuilder.hbox([chip]))
 	card.add(UIBuilder.label(formation.name, "CardHeadingLabel", true))
-	var rules := UIBuilder.vbox([HSeparator.new()], 12)
+	var rules := UIBuilder.vbox([], 10)
 	for ability in formation.abilities:
-		var ability_name := UIBuilder.label(ability.name, "CardTitleLabel", true)
-		ability_name.add_theme_font_size_override("font_size", 14)
-		# Under the name and wrapped, as long reaction timings would otherwise widen the card.
-		var timing_text := ", ".join(Array([ability.frequency, ability.timing]).filter(
-				func(part: String) -> bool: return not part.is_empty()))
-		var timing := UIBuilder.label(timing_text, "MutedLabel", true)
-		rules.add_child(UIBuilder.vbox([UIBuilder.vbox([ability_name, timing], 2), UIBuilder.rich(RulesFormatter.ability_body(ability))], 6))
+		rules.add_child(AbilityCard.new(ability))
 	card.add(rules)
 	return card
 

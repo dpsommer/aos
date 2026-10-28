@@ -274,7 +274,7 @@ func test_open_lores_cards_are_full_once_their_eye_is_toggled() -> void:
 	builder.picker.open_lores("spell", "Spell Lore")
 	(UIKit.keyed(builder.picker, "picker:eye:Fire") as Button).button_pressed = true
 	var card := UIKit.keyed(builder.picker, "pick:lore:Fire")
-	assert_gt(UIKit.find_all(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
+	assert_gt(UIKit.find_all(card, func(n: Node) -> bool: return n is AbilityCard).size(), 0)
 
 
 func test_open_lores_shows_the_title() -> void:

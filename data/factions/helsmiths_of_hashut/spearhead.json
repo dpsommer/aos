@@ -29,6 +29,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "You must use this ability at the start of each of your hero phases. Remove all daemonic power points from each friendly unit. Then, gain a number of daemonic power points equal to the current battle round number plus 1.\nThen, allocate your daemonic power points to friendly units. Each unit can have a maximum of 3 daemonic power points. Then, all unallocated daemonic power points are lost.",
 					"options": [
@@ -54,6 +55,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn",
 					"declare": "Pick an enemy INFANTRY unit that had any damage points allocated to it this turn as a result of shooting attacks made by a friendly Tormentor Bombard to be the target.",
 					"effect": "Until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
@@ -65,6 +67,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "For the rest of the turn, your general has WARD (2+) but cannot use abilities or be picked to be the target of friendly abilities."
 				},
@@ -73,6 +76,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Ignore the first damage point allocated to your general in each phase."
 				},
 				{
@@ -122,6 +126,7 @@
 							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "While this unit has any daemonic power points, friendly units with 0 daemonic power points count as having 1 daemonic power point while they are wholly within 6\" of and visible to this unit. For each daemonic power point this unit has, add 3\" to the range of this ability."
 						}
 					],
@@ -166,6 +171,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Apply the effect below that corresponds with the number of daemonic power points (DPP) this unit has:\nDPP Effect 1 This unit has WARD (6+). 2 This unit has WARD (5+). 3 This unit has WARD (5+) and you ignore the first damage point allocated to this unit in each phase."
 						}
 					],
@@ -212,6 +218,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "For each daemonic power point this unit has:\nAdd 1\" to its Move characteristic. Add 1 to the Attacks characteristic of its weapons."
 						}
 					],
@@ -259,6 +266,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "Add 1 to hit rolls for this unit’s shooting attacks that target an enemy unit with 5 or more models that is more than 12\" from this unit."
 						},
 						{
@@ -266,6 +274,7 @@
 							"type": "active",
 							"category": "control",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "If this unit used a SHOOT ability this turn and all of its attacks targeted the same enemy unit, that enemy unit is the target. Then, you can pick a number of enemy units within 6\" of the target equal to the number of daemonic power points this unit has to be additional targets.",
 							"effect": "Roll a dice for each target. On a 3+, subtract 3 from the target’s control score for the rest of the turn."

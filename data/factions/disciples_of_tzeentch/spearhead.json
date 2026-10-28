@@ -72,6 +72,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of your general to be the target, then make a casting roll of 2D6.",
 					"effect": "On a 5+, roll either 3 dice or a number of dice equal to the number of battle tactic cards you have discarded this battle. For each 4+, inflict 1 mortal damage on the target."
 				},
@@ -80,6 +81,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target, then make a casting roll of 2D6.",
 					"effect": "On a 6+, remove the target from the battlefield and set it up again wholly within 12\" of your general and more than 6\" from all enemy units."
 				},
@@ -233,6 +235,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"declare": "Pick an enemy unit that had any damage points allocated to it by this unit’s attacks this phase to be the target.",
 							"effect": "Add 1 to hit rolls for combat attacks made by friendly WARFLOCK units that target that enemy unit for the rest of the turn."
 						}
@@ -267,6 +270,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to wound rolls for this unit’s attacks while it is wholly within enemy territory."
 						}
 					],
@@ -308,6 +312,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of the First Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"effect": "Roll 9 dice and put them to one side. These are your destiny dice. During the battle, instead of rolling the dice for 1 of the rolls from the list below, you can pick one of your destiny dice and use it as the roll. Once a destiny dice has been used, it is discarded.\nIf you want to replace a roll that uses more than one D6, you must use the same number of destiny dice (e.g. you would need to use 2 destiny dice in place of a 2D6 casting roll). Rolls that are replaced count as unmodified rolls and cannot be re-rolled or modified unless noted.\nThe following rolls can be replaced with destiny dice:\nCasting rolls Run rolls Charge rolls Hit rolls Wound rolls Save rolls – you must still modify the roll by the Rend characteristic of the attacking weapon."
 				}
@@ -334,6 +339,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly unit wholly within 18\" of your general, then make a casting roll of 2D6.",
 					"effect": "On a 6+, until the start of your next turn, that unit has WARD (6+). If that unit already has a ward save, add 1 to ward rolls for that unit until the start of your next turn instead."
 				},
@@ -342,6 +348,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "black",
 					"declare": "If you have fewer than 6 destiny dice, make a casting roll of 2D6.",
 					"effect": "On a 7+, you can roll a dice and add it to your destiny dice."
 				},
@@ -449,6 +456,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Movement Phase",
+							"colour": "grey",
 							"declare": "Pick an enemy unit that any models in this unit passed across this phase to be the target, then roll a dice for each model in this unit that did so.",
 							"effect": "For each 4+, inflict 1 mortal damage on the target."
 						}
@@ -495,6 +503,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "Add 1 to hit rolls for attacks made by this unit if the target unit has 5 or more models."
 						}
 					],

@@ -13,9 +13,13 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 
-[node name="Detail" type="RichTextLabel" parent="."]
+[node name="Scroll" type="ScrollContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-bbcode_enabled = true
-selection_enabled = true
+horizontal_scroll_mode = 0
+
+[node name="Detail" type="VBoxContainer" parent="Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

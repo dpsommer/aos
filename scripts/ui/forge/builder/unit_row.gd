@@ -292,9 +292,8 @@ func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, pi
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.set_meta(&"focus_key", "%s:enh:%s:%s" % [unit.uid, type, entry.name])
 	card.set_meta(&"enhancement", entry.name)
+	# The points are in the ability card's header.
 	var top := UIBuilder.hbox([], 6)
-	if entry.points > 0:
-		top.add_child(UITheme.chip("%d pts" % entry.points, "gold"))
 	if not table.group.is_empty():
 		top.add_child(UITheme.chip(table.group))
 	var scourge := UIBuilder.scourge_tag(table.source)
@@ -305,18 +304,11 @@ func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, pi
 	top.add_child(UIBuilder.spacer())
 	if picked:
 		top.add_child(UIBuilder.check_badge())
-	var name_line := UIBuilder.hbox([UIBuilder.label(entry.name, "CardTitleLabel", true)])
-	var timing := ", ".join(Array([entry.frequency, entry.timing]).filter(func(part: String) -> bool: return not part.is_empty()))
-	if not timing.is_empty():
-		name_line.add_child(UIBuilder.label(timing, "MutedLabel"))
 	if top.get_child_count() > 1:
 		card.add(top)
 	else:
 		top.free()
-	card.add(name_line)
-	var body := RulesFormatter.ability_body(entry)
-	if not body.is_empty():
-		card.add(UIBuilder.rich(body))
+	card.add(AbilityCard.new(entry))
 	card.toggled.connect(func(on: bool) -> void:
 		builder.editor.set_enhancement(unit.uid, type, entry.name if on else ""))
 	return card

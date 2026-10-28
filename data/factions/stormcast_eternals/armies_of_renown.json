@@ -104,6 +104,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up an Everblaze Comet wholly within 18\" of the caster.",
 							"casting_value": 6,
@@ -127,6 +128,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly ASTRAL TEMPLARS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Roll a dice for each model in the target unit. For each 6, inflict 1 mortal damage on the target.",
 							"casting_value": 6,
@@ -201,6 +203,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly Stormdrake Guard units are within a friendly Ionus Cryptborn's combat range:\n• That friendly Ionus Cryptborn has WARD (4+).\n• Each time you make a successful ward roll for that friendly Ionus Cryptborn, allocate 1 damage point to a friendly Stormdrake Guard unit within its combat range after the damage sequence for that friendly Ionus Cryptborn has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
@@ -208,6 +211,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DRACONITH SKYWING MONSTER that has not used any RAMPAGE abilities this turn to use this ability. Then, pick up to 3 enemy units in combat with it to be the targets.",
 					"effect": "Roll a dice for each target. On a 3+, subtract 5 from that target's control score for the rest of the turn.",
@@ -220,6 +224,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic of Companion weapons used by friendly DRACONITH SKYWING HEROES while they are within 6\" of 2 or more friendly Stormdrake Guard units."
 				},
 				{
@@ -227,6 +232,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DRACONITH SKYWING MONSTER that has not used any Rampage abilities this turn to use this ability. Then, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract 1 from wound rolls for the target's attacks for the rest of the turn.",
@@ -244,6 +250,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"effect": "If this unit is not in combat, it can immediately make a D6\" move and can end that move in combat"
 						}
 					]
@@ -256,6 +263,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"frequency": "Once Per Battle (Army)",
 							"effect": "Heal (3) each friendly DRACONITH SKYWING unit wholly within 12\" of this unit"
 						}
@@ -272,6 +280,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly DRACONITH SKYWING WIZARD to cast this spell, pick a visible friendly DRACONITH SKYWING unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Add 5 to the target's control score for the rest of the turn.",
 							"casting_value": 7,
@@ -291,6 +300,7 @@
 							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly DRACONITH SKYWING PRIEST to chant this prayer, pick a friendly DRACONITH SKYWING unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "Heal (D3) the target. If the chanting roll was 8+, Heal (2D3) the target instead.",
 							"chanting_value": 4,
@@ -304,6 +314,7 @@
 							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly DRACONITH SKYWING PRIEST to chant this prayer, then make a chanting roll of D6.",
 							"effect": "Until the start of your next turn, subtract 1 from casting rolls for enemy WIZARDS while they are within 30\" of the chanter. If the chanting roll was 12+, subtract 1 from casting rolls for enemy WIZARDS for the rest of the battle and friendly PRIESTS cannot use this ability again for the rest of the battle.",
 							"chanting_value": 4,
@@ -322,6 +333,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly DRACONITH SKYWING WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up an Everblaze Comet wholly within 18\" of the caster.",
 							"casting_value": 8,
@@ -386,6 +398,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "If there are more friendly STORMCAST ETERNALS units on the battlefield than there are set up in reserve, pick a friendly STORMCAST ETERNALS unit that has not been deployed.",
 					"effect": "Set up that unit in reserve in the Celestial Realm. It has now been deployed.",
 					"keywords": [
@@ -397,6 +410,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly STORMCAST ETERNALS unit that is in the Celestial Realm.",
 					"effect": "Set up that unit anywhere on the battlefield more than 9\" from all enemy units."
 				},
@@ -405,6 +419,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly INFANTRY unit in combat that has not charged this turn to use this ability.",
 					"effect": "That unit can immediately use the 'Charge' ability and can move through enemy models when it does so."
@@ -414,6 +429,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If a friendly Bastian Carthalos is on the battlefield and was not set up this turn, you can pick a friendly STORMCAST ETERNALS unit that is in the Celestial Realm.",
 					"effect": "Set up that unit wholly within 6\" of a friendly Bastian Carthalos and more than 3\" from all enemy units. If the target is a unit of Annihilators or Annihilators with Meteoric Grandhammers, for the rest of the turn, the target counts as having used the 'Scions of the Storm' ability for the purposes of the 'Blazing Impact' ability"
@@ -428,6 +444,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons while it is wholly within 6\" of a friendly Bastian Carthalos."
 						}
 					]
@@ -440,6 +457,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",
 							"effect": "Roll a dice. On a 4+, ward rolls cannot be made for the target for the rest of the battle."
 						}
@@ -456,6 +474,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly FIRST‑FORGED WIZARD to cast this spell, pick a visible friendly Stormcast Eternals unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "For the rest of the turn, each time you make an unmodified save roll of 6 for a combat attack that targets the target unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
 							"casting_value": 7,
@@ -469,6 +488,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly FIRST‑FORGED WIZARD to cast this spell, pick up to 3 visible enemy units within 9\" of them to be the targets, then make a casting roll of 2D6.",
 							"effect": "Inflict D3 mortal damage on each target.",
 							"casting_value": 6,
@@ -487,6 +507,7 @@
 							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly FIRST‑FORGED PRIEST to chant this prayer, pick a visible friendly STORMCAST ETERNALS unit wholly within 12\" of them to be a target, then make a chanting roll of D6.",
 							"effect": "Add 2\" to the Move characteristic of the target for the rest of the turn. If the chanting roll was 6+, you can pick another eligible unit to be a second target.",
 							"chanting_value": 4,
@@ -506,6 +527,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Everblaze Comet on the battlefield, pick a friendly FIRST-FORGED WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up an Everblaze Comet wholly within 18\" of the caster.",
 							"casting_value": 8,
@@ -562,6 +584,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly RUINATION CHAMBER unit.",
 					"effect": "That unit has WARD (5+) for the rest of the turn."
@@ -571,6 +594,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You must use this ability at the end of each turn. Each friendly non-HERO RUINATION CHAMBER unit that used a FIGHT ability this turn is a target.",
 					"effect": "For each target, pick 1 of the following effects:\n• Guided: If the target is wholly within 12\" of any friendly RUINATION CHAMBER HEROES, return 1 slain model to it.\n• Tormented: If the target is not wholly within 12\" of any friendly RUINATION CHAMBER HEROES, it becomes tormented until the end of the next turn. While a unit is tormented, add 1 to the Attacks characteristic of its melee weapons but it cannot contest objectives or use commands."
@@ -580,6 +604,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While friendly WARRIOR CHAMBER units are wholly within 12\" of any friendly RUINATION CHAMBER units, those friendly WARRIOR CHAMBER units have WARD (6+)."
 				},
 				{
@@ -587,6 +612,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly RUINATION CHAMBER MONSTER that has not used any RAMPAGE abilities this turn to use this ability. Then, pick up to 3 enemy units in combat with it to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. The unit using this ability cannot use any more RAMPAGE abilities for the rest of the turn.",
@@ -604,6 +630,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "If this unit has the 'Ruination Chamber', ability, it can use that ability once per turn regardless of whether another friendly unit has used it during the same turn."
 						}
 					]
@@ -616,6 +643,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "If this unit is Infantry, it has WARD (5+). Otherwise, it has WARD (6+)."
 						}
 					]
@@ -631,6 +659,7 @@
 							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "Roll a dice. If the roll exceeds the target's Health characteristic, 1 model in the target unit is slain. If the chanting roll was 10+, roll 2D6 instead.",
 							"chanting_value": 5,
@@ -644,6 +673,7 @@
 							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target unit. If the chanting roll was 10+, inflict 1 mortal damage on the target unit for each 4+ instead.",
 							"chanting_value": 4,
@@ -656,6 +686,7 @@
 							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly RUINATION BROTHERHOOD PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "Add 2\" to the target's Move characteristic for the rest of the turn. If the chanting roll was 8+, in addition, for the rest of the turn, the target can use CHARGE abilities even if they have used a RUN ability in the same turn.",
 							"chanting_value": 4,

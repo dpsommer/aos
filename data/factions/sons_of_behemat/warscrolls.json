@@ -34,6 +34,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "This unit has a maximum control score of 1."
 				},
 				{
@@ -41,6 +42,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Heal (3) this unit."
 				}
 			],
@@ -106,6 +108,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Menhir Club is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
@@ -113,6 +116,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a Fight ability for this unit",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick another visible friendly SONS OF BEHEMAT unit wholly within 12\" of this unit to be the target and make a rampage roll of D6. Add 1 to the roll if the target is LITTLE. On a 3+, the target's melee weapons have Crit (2 Hits) for the rest of the turn.",
 					"keywords": [
@@ -124,6 +128,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a rampage roll of D6. Add 1 to the roll for each other friendly BIG or LITTLE unit that is in combat and within this unit's combat range. On a 3+, subtract 1 from ward rolls for damage points inflicted by abilities used by this unit for the rest of the turn.",
 					"keywords": [
@@ -135,6 +140,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Menhir Club."
 				}
 			],
@@ -185,6 +191,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a Fight ability for this unit in the enemy combat phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick a visible friendly BIG unit that has not used a FIGHT ability this turn and is wholly within 12\" of this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved.",
 					"keywords": [
@@ -265,6 +272,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Fortcrusha Flail is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
@@ -272,6 +280,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Fortcrusha Flail."
 				},
 				{
@@ -279,6 +288,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a terrain feature within 3\" of this unit that is not uprooted, then pick a friendly SONS OF BEHEMAT unit within 3\" of that terrain feature to be the target.",
 					"effect": "Make a rampage roll of D6. On a 3+:\n• If the target is another BIG unit, excluding Gatebreaker Mega-Gargants, it is armed with a Hurled Boulder for the rest of the turn (see the weapon profile on this unit's warscroll. Modifiers to this unit's ranged weapons or shooting attacks do not apply to the target).\n• If the target is a Gatebreaker Mega-Gargant or a LITTLE unit, add 1 to the Attacks characteristic of its ranged weapons for the rest of the turn.\n• That terrain feature is uprooted for the rest of the battle. If it is FACTION TERRAIN, inflict an amount of mortal damage on it equal to the rampage roll.",
@@ -291,6 +301,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of this unit's Fortcrusha Flail: Crushing Blow for each friendly SONS OF BEHEMAT unit that has been destroyed this battle, to a maximum of 10."
 				}
@@ -369,6 +380,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Fortcrusha Flail is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
@@ -376,6 +388,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Fortcrusha Flail."
 				},
 				{
@@ -383,6 +396,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "Until the start of your next turn:\n• This unit has a Move characteristic of 4D6\".\n• While this unit is within 1\" of a terrain feature, the Attacks characteristic of its Hurled Boulder is D6 instead of 1."
 				},
@@ -391,6 +405,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "You and your opponent must roll off. Each player adds their fury level to their roll. Then, this unit can move a distance up to its Move characteristic. It can move through the combat ranges of enemy units, but it cannot end that move in combat unless you won the roll-off.",
 					"keywords": [
@@ -461,6 +476,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of this unit's Obelisk of Tor Crania is 13 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
@@ -468,6 +484,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Obelisk of Tor Crania."
 				},
 				{
@@ -475,6 +492,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
 					"effect": "If the chanting roll was 7+, you can pick another eligible unit to be a second target. Add 1 to the Rend characteristic of each target's melee weapons for the rest of the turn.",
 					"chanting_value": 4,
@@ -487,6 +505,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if this unit charged this turn. On a 3+:\n• Add 1 to hit rolls for this unit's combat attacks that target that enemy unit for the rest of the turn.\n• The target cannot use RAMPAGE abilities for the rest of the turn.\n• The target no longer has any artefacts of power."
 				},
@@ -495,6 +514,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "If there are 3 or more friendly BIG or LITTLE models in combat with the target, apply the effect below. Otherwise, make a rampage roll of D6. On a 3+, apply the effect below.\n\nFor the rest of the turn, subtract 1 from hit rolls for the target's combat attacks while it is in combat with 2 or more friendly BIG or LITTLE models.",
@@ -578,6 +598,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Shipwrecka Warclub is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
@@ -585,6 +606,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Shipwrecka Warclub."
 				},
 				{
@@ -592,6 +614,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an objective or terrain feature on the battlefield to be the target.",
 					"effect": "For the rest of the battle, the target is this unit's loot hoard.\n\nWhile the unit that used this ability is contesting its loot hoard, add 10 to its control score.\n\nWhile the unit that used this ability is not contesting its loot hoard, add 2 to the Attacks characteristic of its Almighty Stomp."
@@ -601,6 +624,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick another visible friendly BIG or LITTLE unit wholly within 12\" of this unit to be the target.",
 					"effect": "If this unit is contesting its loot hoard, apply the effect below. Otherwise, make a rampage roll of D6. On a 3+, apply the effect below.\n\nAdd 1 to charge rolls for the target for the rest of the turn.",
@@ -686,6 +710,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Shipwrecka Warclub is 3 and this unit has a Control characteristic of 10."
 				},
 				{
@@ -693,6 +718,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick this unit if it has not been deployed.",
 					"effect": "Set up this unit in reserve beneath the waves. It has now been deployed."
@@ -702,6 +728,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is beneath the waves.",
 					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units and wholly within 9\" of a battlefield edge."
 				},
@@ -710,6 +737,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If this unit would be automatically destroyed, it is not automatically destroyed. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points)."
 				},
 				{
@@ -717,6 +745,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can pass through models in non-MONSTER units and parts of terrain features that are less than 4\" tall."
 				}
 			],
@@ -762,6 +791,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Spear of Krum Kalda is 3."
 				},
 				{
@@ -769,6 +799,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly Ancient Ghyrochs unit wholly within 12\" of this unit to be the target.",
 					"effect": "If the target is within this unit's combat range, pick 1 of the effects below. Otherwise, make a rampage roll of D6. On a 3+, pick 1 of the effects below.",
@@ -795,6 +826,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly SONS OF BEHEMAT MONSTER unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, add 1 to rampage rolls for the target and add 1 to hit rolls for the target's combat attacks.",
 					"casting_value": 6,
@@ -807,6 +839,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is wholly within 12\" of another friendly SONS OF BEHEMAT MONSTER unit, this unit is not visible to enemy units more than 12\" away from it."
 				},
 				{
@@ -814,6 +847,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick another visible friendly LITTLE unit wholly within 12\" of this unit to be mighty.",
 					"effect": "Pick 1 of the following effects:\n\n• For the rest of the turn, each time you make an unmodified wound roll of 6 for a combat attack made by the mighty unit, inflict 1 mortal damage on the target of the attack after the FIGHT ability has been resolved.\n\n• Pick a point on the battlefield within 1\" of the mighty unit, then pick a friendly non-UNIQUE BIG unit that has been destroyed to be the target. Set up a replacement unit identical to the target within 1\" of that point, then allocate 10 damage points to it (ward rolls cannot be made for those damage points). The replacement unit can only be set up in combat with units that the mighty unit was in combat with when it was picked to be mighty. Then, 1 model in the mighty unit is slain."
@@ -877,6 +911,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick each friendly Mancrusher Gargant on the battlefield to be the targets.",
 					"effect": "Pick 1 of the following effects:",
@@ -900,6 +935,7 @@
 					"type": "command",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "While this unit is wholly within 12\" of a visible friendly SONS OF BEHEMAT HERO, this unit can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the turn.",
 					"keywords": [
 						"RAMPAGE"
@@ -973,6 +1009,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, the Damage characteristic of this unit's Throwin' Rocks is 3 instead of D3.\nThen, you can spend up to 3 rage dice. If you do:\n• For each rage dice spent, add 2 to the Attacks characteristic of this unit's Throwin' Rocks for the rest of the turn.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7."
 				}
@@ -1033,6 +1070,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 of the following effects to apply for the rest of the turn:",
 					"keywords": [
@@ -1117,6 +1155,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 15 or more damage points, the Attacks characteristic of its Titanic Boulderclub is 11 for Calamitous Sweep and 4 for Crushing Blow."
 				},
 				{
@@ -1124,6 +1163,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick another visible friendly BIG or LITTLE unit wholly within 12\" of this unit and that has not been set up this turn to be the target.",
 					"effect": "The target can move 2D6\". It can pass through and end that move within the combat ranges of enemy units that it was in combat with at the start of the move, but not those of other enemy units. It does not have to end the move in combat."
@@ -1133,6 +1173,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Make a rampage roll of D3. For the rest of the turn, add the roll to the Attacks characteristic of this unit's Almighty Stomp, but all of this unit's attacks made with that weapon must target the target unit.\n\nIf any models are slain by those attacks, for the rest of the turn, enemy units have a maximum control score of 1 while they are in combat with this unit.",
@@ -1145,6 +1186,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit uses a FIGHT ability, pick either the Calamitous Sweep or Crushing Blow weapon characteristics for all the attacks it makes with its Titanic Boulderclub."
 				}
 			],

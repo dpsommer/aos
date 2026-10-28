@@ -9,6 +9,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "If there is a friendly Argent Shard on the battlefield, you can set up 1 additional Argent Shard on the battlefield. It must be set up wholly within friendly territory and more than 3\" from all objectives and other terrain features.",
 					"options": [
@@ -23,6 +24,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick up to 3 friendly non-reinforced CHANGE-CULT Kairic Acolytes units to be the targets.",
 					"effect": "Remove the targets from the battlefield and set them up again wholly within 3\" of a terrain feature and not in combat."
@@ -32,6 +34,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy HERO within 24\" of and visible to a friendly CHANGE-CULT HERO to be the target.",
 					"effect": "For the rest of the turn, each time the target uses a CORE ability, gain 1 fate point.",
@@ -47,6 +50,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Spend 1 fate point. Then, pick an enemy unit within 24\" of and visible to a friendly CHANGE-CULT HERO to be the target.",
 					"effect": "The target cannot use commands for the rest of the turn."
@@ -56,6 +60,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Spend 1 fate point. Then, pick an enemy unit within 24\" of and visible to a friendly CHANGE-CULT HERO to be the target, then pick another enemy unit within the target's combat range to be the victim.",
 					"effect": "Pick 1 of the target's melee weapons. Immediately resolve combat attacks for the target made with that weapon against the victim."
@@ -70,6 +75,7 @@
 							"type": "command",
 							"category": "special",
 							"timing": "Your Movement Phase",
+							"colour": "grey",
 							"declare": "Pick a terrain feature within 18\" of this unit, then pick a friendly non-HERO CHANGE-CULT unit that is masked by illusion or that has been destroyed to be the target.",
 							"effect": "If you picked a unit that is masked by illusion, set it up wholly within 3\" of that terrain feature and more than 6\" from all enemy units.\nIf you picked a unit that has been destroyed, set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 3\" of that terrain feature and more than 6\" from all enemy units.",
 							"options": [
@@ -90,6 +96,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "yellow",
 							"effect": "Each time this unit unbinds a spell or banishes an enemy MANIFESTATION, gain 1 fate point."
 						}
 					]
@@ -105,6 +112,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly CHANGE-CULT WIZARD to cast this spell, pick a visible friendly CHANGE-CULT unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Add 1 to wound rolls for the target's attacks until the start of your next turn.",
 							"casting_value": 6,
@@ -124,6 +132,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly CHANGE-CULT WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Burning Sigil of Tzeentch\n• Daemonic Simulacrum\n• Tome of Eyes",
 							"effect": "If there is already a friendly MANIFESTATION from the list above on the battlefield, it is immediately banished and removed from play. Then, set up the MANIFESTATION you picked within 1\" of the caster and visible to them.",
 							"casting_value": 6,
@@ -152,6 +161,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "When picking targets for shooting attacks made by friendly units with weapons that have the Wyrdflame weapon ability, you can also pick terrain features that are visible to and within range of the attacking model to be targets. Non-FACTION TERRAIN terrain features are considered to have a Save characteristic of 5+ and infinite Health for the purposes of this ability.\nIf any damage points were allocated to a terrain feature by those attacks, after the SHOOT ability has been resolved, roll a dice. If the result is less than or equal to the number of damage points allocated to that terrain feature in this phase, it has the WYRDPYRE keyword for the rest of the battle.",
 					"options": [
 						{
@@ -165,6 +175,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a friendly WIZARD to use this ability if it has not been deployed.",
 					"effect": "Set up that unit in reserve hidden among cultists. It has now been deployed. Friendly units that are hidden among cultists are not automatically destroyed at the start of the fourth battle round"
 				},
@@ -173,6 +184,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly WIZARD that is hidden among cultists to use this ability, then pick a friendly INFANTRY unit with 3 or more models to be the target.",
 					"effect": "Set up that WIZARD within the combat range of the target. It can be set up in combat. In addition, if that WIZARD uses the 'Magical Intervention' command this phase, no command points are spent to do so."
 				},
@@ -181,6 +193,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle Round (Army)",
 					"declare": "You must use this ability at the start of the battle round if there are WYRDPYRES on the battlefield.",
 					"effect": "Resolve the effect below that corresponds to the number of WYRDPYRES on the battlefield.\n1-2: Inflict 1 mortal damage on each unit within 3\" of any WYRDPYRES. Add 2\" to the Move characteristic of friendly units that were allocated any of that damage for the rest of the battle round.\n3-4: Inflict D3 mortal damage on each unit within 3\" of any WYRDPYRES. Add 1 to wound rolls for combat attacks made by friendly units that were allocated any of that damage for the rest of the battle round.\n5-6: Inflict D3 mortal damage on each unit within 6\" of any WYRDPYRES. Add 1 to the Attacks characteristic of melee weapons used by friendly units that were allocated any of that damage for the rest of the battle round.\n7-8: Inflict D3 mortal damage on each unit within 6\" of any WYRDPYRES. For friendly units that were allocated any of that damage, for the rest of the battle round:\n• Add 1 to wound rolls for their combat attacks.\n• Add 2\" to their Move characteristic.\n• Add 1 to the Attacks characteristic of their melee weapons.\n9+: Inflict D3+3 mortal damage on each unit within 6\" of any WYRDPYRES. Then, pick a non-FACTION TERRAIN terrain feature with the WYRDPYRE keyword to reduce to ash. Each player must remove all models that are on that terrain feature and set them up again within 3\" of it, but not on it, starting with the active player. Those models can be set up in combat. Models that cannot be set up in this manner are slain. Then, remove that terrain feature from the battlefield."
@@ -190,6 +203,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an objective being contested by any friendly Kairic Acolyte units to be the target.",
 					"effect": "The target objective has the WYRDPYRE keyword for the rest of the battle."
@@ -205,6 +219,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "You can ignore mortal damage inflicted on this unit by the 'Immolation of the Realms' ability, and if damage would have been inflicted upon it by that ability, the persisting effects from that ability apply to it as though it had been allocated damage by the ability."
 						}
 					]
@@ -236,6 +251,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a visible friendly HERO wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Add 1 to the Damage characteristic of the target's melee weapons until the start of your next turn.",
 							"casting_value": 4,
@@ -249,6 +265,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a friendly WIZARD that has been destroyed to be the target, then make a casting roll of 2D6.",
 							"effect": "Set up a replacement unit identical to the target in reserve hidden among cultists.",
 							"casting_value": 8,
@@ -261,6 +278,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, pick a visible enemy unit within 18\" of them and which had any damage points allocated to it this battle round by the 'Immolation of the Realms' ability to be the target, then make a casting roll of 2D6.",
 							"effect": "The target cannot use commands for the rest of the battle round.",
 							"casting_value": 7,
@@ -281,6 +299,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly PYROFANE WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up a BURNING SIGIL OF TZEENTCH wholly within 12\" of the caster and visible to them.",
 							"casting_value": 7,
@@ -305,6 +324,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Roll 9 dice and place them to one side. These are your destiny dice. Destiny dice can be spent during the battle to change certain dice rolls. You can never have more than 9 destiny dice at once.\nDuring the battle, instead of making a roll from the list below for a friendly ORACLES OF FATE unit, you can spend your destiny dice. The roll you would have made is replaced with the roll on the destiny dice you spend. If you want to replace a 2D6 roll, 3D6 roll, etc. you must spend a number of destiny dice equal to the number before 'D6'. Any rolls that have been replaced count as unmodified rolls, and they cannot be re-rolled or modified by other friendly abilities except for those that apply negative modifiers (but they can be modified by enemy abilities). You cannot spend destiny dice to replace re-rolls.\nDestiny dice can be spent in place of the following dice rolls:\n• Casting rolls\n• Unbinding rolls\n• Banishment rolls\n• Run rolls\n• Charge rolls in your turn\n• Hit rolls\n• Wound rolls\n• Save rolls"
 				},
 				{
@@ -312,6 +332,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Your Turn",
+					"colour": "black",
 					"frequency": "Once Per Battle Round",
 					"declare": "You can only use this ability if the total value of your unspent destiny dice is exactly 9.",
 					"effect": "Re-roll all of your unspent destiny dice. Then, until the start of your next turn:\n• Friendly ORACLES OF FATE units have WARD (5+).\n• Subtract 1 from save rolls for enemy units."
@@ -334,6 +355,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"effect": "Roll a dice. If you have 9 unspent destiny dice, you must replace 1 of your destiny dice with that roll. Otherwise, place that dice to one side as a destiny dice."
 						}
 					]
@@ -354,6 +376,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
+							"colour": "grey",
 							"effect": "If this unit is contesting an objective, remove it from the battlefield and set it up again contesting an objective and more than 7\" from all enemy units."
 						}
 					]
@@ -369,6 +392,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly ORACLES OF FATE WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Pick 1 of the following effects:",
 							"casting_value": 7,
@@ -402,6 +426,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly ORACLES OF FATE WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Burning Sigil of Tzeentch\n• Daemonic Simulacrum\n• Tome of Eyes",
 							"effect": "If there is already a friendly MANIFESTATION from the list above on the battlefield, it is immediately banished and removed from play. Then, set up the MANIFESTATION you picked within 1\" of the caster and visible to them.",
 							"casting_value": 6,

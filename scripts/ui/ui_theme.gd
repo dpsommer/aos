@@ -50,6 +50,25 @@ const CHIPS := {
 ## WCAG AAA, as chip text is small.
 const CHIP_MIN_CONTRAST := 9.0
 
+## Ability card colours by [member Ability.colour]: [header background, border]. As on the official
+## warscrolls, mostly by phase: black for deployment, the start of a turn or round and Battle Damaged,
+## yellow (gold) for the hero phase, grey for movement, blue for shooting, orange for charge, red for
+## combat, purple for the end of a turn and green for passive abilities.
+const ABILITY_COLOURS := {
+	"black": [Color("#0E0F12"), Color("#4A4F5A")],
+	"yellow": [Color("#7A5A1E"), Color("#B8892F")],
+	"grey": [Color("#4A505A"), Color("#6E7582")],
+	"blue": [Color("#24527E"), Color("#3D74A8")],
+	"orange": [Color("#9A4A16"), Color("#C66A2C")],
+	"red": [Color("#8C2A24"), Color("#B8443B")],
+	"purple": [Color("#5B3A7E"), Color("#8158AA")],
+	"green": [Color("#2F6A3E"), Color("#48925C")],
+}
+## The least WCAG contrast ratio between an ability card's header text and its colour.
+const ABILITY_COLOUR_MIN_CONTRAST := 4.5
+## The background of an ability card's inner box, holding its name and rules.
+const ABILITY_INNER := Color("#1A1D23")
+
 const INTER := preload("res://assets/2d/fonts/inter/Inter.ttf")
 const CINZEL := preload("res://assets/2d/fonts/cinzel/Cinzel.ttf")
 ## Icons are imported at twice their size so they stay sharp on high-density screens, and shown at
@@ -400,6 +419,11 @@ static func _create() -> Theme:
 	theme.set_font("font", "WeaponValueLabel", font(INTER, 700))
 	_label(theme, "KeywordsLabel", MUTED, 11)
 	theme.set_font("font", "KeywordsLabel", caps)
+	# Ability cards (AbilityCard): the timing in the coloured header, the name in the inner box.
+	_label(theme, "AbilityTimingLabel", TEXT, 11)
+	theme.set_font("font", "AbilityTimingLabel", caps)
+	_label(theme, "AbilityNameLabel", TEXT, 15)
+	theme.set_font("font", "AbilityNameLabel", heading)
 	_label(theme, "ProblemLabel", DANGER, 13)
 	_label(theme, "WarningLabel", WARNING, 13)
 

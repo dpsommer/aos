@@ -15,7 +15,7 @@ Every step shares a header and the scrolling page below it, styled by `UITheme` 
   - Spearhead;
   - Path to Glory.
 
-  Each list tab shows the selected entry's full rules. Its title and rules tab mark a Legends faction. Back returns to the Army of Renown step.
+  Each list tab shows the selected entry's full rules in a scrolling pane. The tabs are built from controls by `RulesView` (`scripts/ui/forge/rules_view.gd`): abilities as [ability cards](abilities.md), warscrolls as `WarscrollCard`s and lores as `LoreCard`s, as in the army builder. Its title and rules tab mark a Legends faction. Back returns to the Army of Renown step.
 - **Cards:** on every step, pressing a card makes that step's choice and moves straight on. Going back to a step focuses the card chosen there before.
 
 The steps:
@@ -45,7 +45,7 @@ The steps:
 5. **Battle Formation:** the faction's battle formations, three to a row. Each card shows:
    - its points, or the type of its first ability;
    - its name;
-   - each ability's name, timing and rules.
+   - each ability as an [ability card](abilities.md).
 
    The first card is focused, or the one chosen before. Pressing a card starts the army with that formation (`Forge.choose_formation()`). A faction without formations skips this step.
 6. **Army builder:** `Forge` emits `army_started` with a new, empty army, and `Main` opens the builder.
@@ -58,7 +58,8 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 - dark panels, warm text and a gold accent;
 - chips (tags such as Legends, Scourge or a battle tactic's kind) in pale tints of their colour, with a WCAG contrast of at least 9:1 against their background (`UITheme.CHIP_MIN_CONTRAST`);
 - Inter for text (also the project's default font) and Cinzel for headings, both in `assets/2d/fonts/` with their OFL licences;
-- rules text (`RulesFormatter`, shown in a `RichTextLabel`) with ability names in bold Cinzel, a thin horizontal rule between the abilities in a list, and extra space between paragraphs so an ability's timing, Declare, Effect and Keywords read as separate sections;
+- abilities as [ability cards](abilities.md), boxes in each ability's warscroll colour (`UITheme.ABILITY_COLOURS`);
+- rules text (`RulesFormatter.ability_body()`, shown in a `RichTextLabel`) with extra space between paragraphs so an ability's Declare and Effect read as separate sections;
 - the design's icons, in `assets/2d/icons/`;
 - type variations, e.g. `GoldButton`, `OptionCard`, `PageTitleLabel`.
 - dialogs in a pane-coloured window with a border. `UITheme.style_dialog()`, called on every dialog, sets its title and buttons in Cinzel (`DialogButton`; `DialogGoldButton` for the main action, e.g. Quit or Save and go back; `DialogDangerButton`, in red, for a destructive one, e.g. Delete or Discard changes). It overrides the title font on the dialog itself, because a window's title takes the theme's default font and size over its `Window` theme items. The project's default clear colour is the pane colour too: when the UI is scaled, a dialog's window can be a pixel wider and taller than its panel, and that pixel would otherwise show as a grey line along its right and bottom edges.
@@ -93,7 +94,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
       - buttons: Reinforce (where allowed), Options (disabled when the unit has nothing to choose), Copy and Remove.
 
       Units in a Regiment of Renown have no buttons and can't be renamed.
-    - **Options:** for each enhancement type the unit can take, the type's name as a heading in Cinzel over a card for each enhancement (`ArmyCatalog.enhancement_choices()`: only tables whose `units` include it, and no Legends tables unless Legends are shown, though the unit's current pick stays). Each card shows the enhancement's points, its table's group, Scourge and Legends tags, its timing and its rules; pressing a card gives the unit that enhancement (taking it from any other unit, as only one of each type is allowed) and pressing the picked card, which is outlined in gold with a check, takes it away. Then a count for each weapon option, capped by its regiment size, with the option's rules.
+    - **Options:** for each enhancement type the unit can take, the type's name as a heading in Cinzel over a card for each enhancement (`ArmyCatalog.enhancement_choices()`: only tables whose `units` include it, and no Legends tables unless Legends are shown, though the unit's current pick stays). Each card shows its table's group, Scourge and Legends tags over the enhancement's [ability card](abilities.md), which shows its points; pressing a card gives the unit that enhancement (taking it from any other unit, as only one of each type is allowed) and pressing the picked card, which is outlined in gold with a check, takes it away. Then a count for each weapon option, capped by its regiment size, with the option's rules.
     - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (hidden when full, unless constraints are overridden), "Add regiment" and "Add Regiment of Renown" (hidden once the army has one, unless constraints are overridden).
   - **Auxiliary Units:** a box like a regiment's, with unit rows and "Add auxiliary unit" beside "or drag one here". While a unit that can go there is dragged, it's highlighted like a regiment.
   - **Faction Terrain:** "Up to 1 terrain feature". A row for each terrain warscroll, laid out like a unit row: a portrait, its name, the universal terrain abilities its composition lists (`ArmyBuilder.terrain_abilities()`), its points, and an Add button or, once included, a red bin icon button to remove it. Hidden when the faction has none or its Army of Renown forbids it.
@@ -108,7 +109,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Roster:** the faction's units, grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
     - **Unit cards:** points, plus Scourge and Legends chips.
     - **A star** pins the unit to a Favourites list at the top. Favourites are kept per faction in `user://forge.cfg`.
-    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". Warscrolls in the builder are `WarscrollCard`s, each in its own box: the name in Cinzel with points, model count and base size under it, characteristics in boxes (Move, Health, Control, Save, then Ward and Banish), a bordered table for ranged and one for melee weapons, each with its icon (`ranged.svg`, `melee.svg`), its values bold and centred in fixed-width columns so Attacks to Damage line up between the tables, each weapon's abilities under it, then the abilities and keywords. An ability that summons a manifestation (e.g. Jacobus Vyne's Summon Wisper) has the manifestation's warscroll indented under it, from `ArmyCatalog.summoned()`; so do warscrolls in Regiments of Renown cards and the faction browser. The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
+    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". Warscrolls in the builder are `WarscrollCard`s, each in its own box: the name in Cinzel with points, model count and base size under it, characteristics in boxes (Move, Health, Control, Save, then Ward and Banish), a bordered table for ranged and one for melee weapons, each with its icon (`ranged.svg`, `melee.svg`), its values bold and centred in fixed-width columns so Attacks to Damage line up between the tables, each weapon's abilities under it (and a skull before a weapon changed by Battle Damaged, see [ability cards](abilities.md)), then the abilities as [ability cards](abilities.md) and the keywords. An ability that summons a manifestation (e.g. Jacobus Vyne's Summon Wisper) has the manifestation's warscroll indented under it, from `ArmyCatalog.summoned()`; so do warscrolls in Regiments of Renown cards and the faction browser. The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
   - **Rules:** the rules the army uses, from `RulesSections`, in sections that each fold:
     - Battle Traits;
     - Battle Formations;

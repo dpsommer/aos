@@ -5,6 +5,7 @@ extends GutTest
 
 const FactionBrowserScene := preload("res://scenes/ui/forge/faction_browser.tscn")
 const FIXTURE := "res://test/fixtures/factions/valid"
+const UIKit := preload("res://test/support/ui_kit.gd")
 
 
 func _make_browser() -> FactionBrowser:
@@ -19,6 +20,24 @@ func _fixture() -> Faction:
 	var faction := loader.load_faction(FIXTURE)
 	assert_eq(loader.errors.size(), 0, "fixture failed to load: %s" % str(loader.errors))
 	return faction
+
+
+## All the text shown under [param node], from its labels and rich text labels.
+func _text(node: Node) -> String:
+	var parts := PackedStringArray()
+	for found in UIKit.find_all(node, func(n: Node) -> bool: return n is Label or n is RichTextLabel):
+		parts.append(found.text)
+	return "\n".join(parts)
+
+
+func _ability_names(node: Node) -> Array:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is AbilityCard).map(
+			func(c: AbilityCard) -> String: return c.ability.name)
+
+
+## The warscroll shown in a list view's detail panel.
+func _shown_warscroll(view: RulesListView) -> Warscroll:
+	return (view.detail.get_child(0) as WarscrollCard).warscroll
 
 
 func _press_cancel(browser: FactionBrowser, pressed := true) -> void:
@@ -64,7 +83,7 @@ func test_legends_faction_rules_tab_shows_faction_rules() -> void:
 	var faction := _fixture()
 	faction.legends = true
 	browser.show_faction(faction)
-	assert_eq(browser.rules.text, RulesFormatter.faction_rules(faction))
+	assert_string_contains(_text(browser.rules), "Legends")
 
 
 func test_keeps_shown_faction() -> void:
@@ -77,8 +96,23 @@ func test_keeps_shown_faction() -> void:
 func test_rules_tab_shows_faction_rules() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()
+	assert_gt(faction.battle_traits.size(), 0, "fixture needs battle traits")
 	browser.show_faction(faction)
-	assert_eq(browser.rules.text, RulesFormatter.faction_rules(faction))
+	var shown := _ability_names(browser.rules)
+	for rule in faction.battle_traits:
+		assert_has(shown, rule.name)
+
+
+func test_showing_another_faction_replaces_the_rules() -> void:
+	var browser := _make_browser()
+	browser.show_faction(_fixture())
+	var other := Faction.new()
+	other.name = "Other"
+	var trait_rule := Ability.new()
+	trait_rule.name = "Only Trait"
+	other.battle_traits = [trait_rule]
+	browser.show_faction(other)
+	assert_eq(_ability_names(browser.rules), ["Only Trait"])
 
 
 func test_warscrolls_list_has_item_per_warscroll() -> void:
@@ -113,7 +147,7 @@ func test_first_warscroll_is_rendered() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()
 	browser.show_faction(faction)
-	assert_eq(browser.warscrolls.detail.text, RulesFormatter.warscroll(faction.warscrolls[0]))
+	assert_same(_shown_warscroll(browser.warscrolls), faction.warscrolls[0])
 
 
 func test_selecting_warscroll_renders_it() -> void:
@@ -122,7 +156,7 @@ func test_selecting_warscroll_renders_it() -> void:
 	browser.show_faction(faction)
 	var last := faction.warscrolls.size() - 1
 	browser.warscrolls.select(last)
-	assert_eq(browser.warscrolls.detail.text, RulesFormatter.warscroll(faction.warscrolls[last]))
+	assert_same(_shown_warscroll(browser.warscrolls), faction.warscrolls[last])
 
 
 func test_armies_of_renown_list_has_item_per_army() -> void:
@@ -167,14 +201,14 @@ func test_selecting_legends_army_of_renown_renders_it() -> void:
 	assert_gt(index, -1, "fixture needs a legends army of renown")
 	browser.show_faction(faction)
 	browser.armies_of_renown.select(index)
-	assert_eq(browser.armies_of_renown.detail.text, RulesFormatter.army_of_renown(faction.armies_of_renown[index]))
+	assert_string_contains(_text(browser.armies_of_renown.detail), faction.armies_of_renown[index].name)
 
 
 func test_first_army_of_renown_is_rendered() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()
 	browser.show_faction(faction)
-	assert_eq(browser.armies_of_renown.detail.text, RulesFormatter.army_of_renown(faction.armies_of_renown[0]))
+	assert_string_contains(_text(browser.armies_of_renown.detail), faction.armies_of_renown[0].name)
 
 
 func test_regiments_of_renown_list_has_item_per_regiment() -> void:
@@ -223,14 +257,14 @@ func test_selecting_regiment_of_renown_renders_it() -> void:
 	assert_gt(last, 0, "fixture needs several regiments of renown")
 	browser.show_faction(faction)
 	browser.regiments_of_renown.select(last)
-	assert_eq(browser.regiments_of_renown.detail.text, RulesFormatter.regiment_of_renown(faction.regiments_of_renown[last]))
+	assert_string_contains(_text(browser.regiments_of_renown.detail), faction.regiments_of_renown[last].name)
 
 
 func test_first_regiment_of_renown_is_rendered() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()
 	browser.show_faction(faction)
-	assert_eq(browser.regiments_of_renown.detail.text, RulesFormatter.regiment_of_renown(faction.regiments_of_renown[0]))
+	assert_string_contains(_text(browser.regiments_of_renown.detail), faction.regiments_of_renown[0].name)
 
 
 func test_regiments_of_renown_tab_is_titled() -> void:
@@ -250,7 +284,7 @@ func test_first_spearhead_is_rendered() -> void:
 	var browser := _make_browser()
 	var faction := _fixture()
 	browser.show_faction(faction)
-	assert_eq(browser.spearheads.detail.text, RulesFormatter.spearhead(faction.spearheads[0]))
+	assert_string_contains(_text(browser.spearheads.detail), faction.spearheads[0].name)
 
 
 func test_path_to_glory_list_has_item_per_section() -> void:
@@ -266,7 +300,7 @@ func test_selecting_path_to_glory_section_renders_it() -> void:
 	browser.show_faction(faction)
 	var last := faction.path_to_glory.size() - 1
 	browser.path_to_glory.select(last)
-	assert_eq(browser.path_to_glory.detail.text, RulesFormatter.rules_section(faction.path_to_glory[last]))
+	assert_string_contains(_text(browser.path_to_glory.detail), faction.path_to_glory[last].name)
 
 
 func test_empty_faction_leaves_lists_empty() -> void:

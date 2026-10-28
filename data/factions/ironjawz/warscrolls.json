@@ -33,6 +33,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "If a friendly Ardboyz unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
@@ -40,6 +41,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to shield bash rolls for friendly Ardboyz units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -82,6 +84,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit within 1\" of this unit to be the target.",
 					"effect": "Make a shield bash roll of D6 for each model in this unit that is within 3\" of the target. For each 6+, inflict 1 mortal damage on the target."
 				}
@@ -113,6 +116,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this terrain feature has a Shouty Boss:\n• The Shouty Boss cannot use MOVE abilities.\n• Instead of measuring range or visibility to and from the Shouty Boss, measure to and from this terrain feature instead.\n• All attacks that would target the Shouty Boss target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain."
 				},
 				{
@@ -120,6 +124,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If this terrain feature does not have a Shouty Boss , pick a friendly IRONJAWZ INFANTRY HERO that is not in combat and is within 3\" of it to be the target.",
 					"effect": "Place the target on this terrain feature. The target is now a Shouty Boss (see 'Man da Tower!')."
 				},
@@ -128,6 +133,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn",
 					"declare": "Pick a visible enemy unit within 18\" of this terrain feature to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if this terrain feature has a Shouty Boss. On a 4+, pick 1 of the following effects to apply to the target until the start of your next turn:",
@@ -151,6 +157,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "If this terrain feature has a Shouty Boss that was not placed on it this turn, set up the Shouty Boss on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shouty Boss."
 				}
 			],
@@ -193,6 +200,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn."
 				},
 				{
@@ -200,6 +208,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
 				}
 			],
@@ -251,6 +260,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Enemy units with a Health characteristic of 1 or 2 cannot contest objectives while they are in combat with this unit."
 				}
 			],
@@ -306,6 +316,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: Opponent declared an Attack ability that targeted this unit",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, add 1 to hit rolls and wound rolls for this unit's combat attacks that target that enemy unit."
 				}
@@ -385,6 +396,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy HERO or MONSTER in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, this unit has STRIKE-FIRST for the rest of the turn, but it can only pick that enemy unit to be the target of its combat attacks this turn."
 				},
@@ -393,6 +405,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bossbiter's Fists and Tail is 4."
 				},
 				{
@@ -400,6 +413,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a friendly Brutes, Brute Ragerz or Weirdbrute Wrekkaz unit within this unit's combat range to be the cronies.",
 					"effect": "While the cronies are within this unit's combat range:\n• This unit has WARD (5+)\n• Add 1 to hit rolls for the cronies' attacks."
 				},
@@ -408,6 +422,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
 					"effect": "Roll 6 dice. For each roll that is higher than the target's Health characteristic, inflict 1 mortal damage on the target."
@@ -491,6 +506,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bigteef's Fists and Tail is 6."
 				},
 				{
@@ -498,6 +514,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, pick 1 of the target's weapons. You must pick a Companion weapon if it has any. Halve the Attacks characteristic of that weapon (rounding up) for the rest of the turn.",
@@ -510,6 +527,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a WAAAGH! ability",
+					"colour": "orange",
 					"frequency": "Once Per Battle",
 					"effect": "Until the start of your next turn, add 1 to hit rolls for combat attacks made by friendly IRONJAWZ units while they are wholly within 18\" of this unit."
 				},
@@ -518,6 +536,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
 				}
 			],
@@ -577,6 +596,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Add 1 to the mortal damage inflicted (if any) if the target is CAVALRY."
 				}
@@ -635,6 +655,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "When this unit moves, it can pass through models in enemy INFANTRY units and can pass through the combat ranges of enemy Infantry units, but it cannot end the move in combat unless specified in the ability used."
 				}
 			],
@@ -682,6 +703,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from wound rolls for attacks that target this unit."
 				}
 			],
@@ -759,6 +781,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a dice and add the number of momentum points this unit has to the roll. On a 5+, the target has STRIKE-LAST for the rest of the turn.",
@@ -771,6 +794,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
 				}
 			],
@@ -843,6 +867,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat, it can move a distance up to its Move characteristic. It can pass through models and the combat ranges of enemy units, but it cannot end that move in combat.\nThen, pick each enemy unit that this unit passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this unit gains 2 momentum points.",
 					"keywords": [
@@ -856,6 +881,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
 				}
 			],
@@ -900,6 +926,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly BRUTE unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn."
 				},
 				{
@@ -907,6 +934,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
 				}
 			],
@@ -952,6 +980,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle Round (Army)",
 					"declare": "Pick a friendly Ironjawz unit wholly within 12\" of this unit and that was not set up this turn to be the target.",
 					"effect": "For the rest of the turn, when you use the 'Mighty Destroyers' ability, you can pick that friendly unit to be a second target."
@@ -961,6 +990,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit used a Fight ability this turn, spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, add 1 to the Damage characteristic of this unit's Boss-choppa for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
 				}
@@ -1036,6 +1066,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Maw-krusha's Fists and Tail is 5."
 				},
 				{
@@ -1043,6 +1074,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, roll a D3. On a 2+, this unit can move 2D6\". It can move through the combat range of enemy units and can end that move in combat. Then, pick an enemy unit that this unit passed across during that move. Inflict an amount of mortal damage on the target equal to the D3 roll. If the target is INFANTRY, double the mortal damage inflicted.",
 					"keywords": [
@@ -1054,6 +1086,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3.\nUntil the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has."
 				}
 			],
@@ -1100,6 +1133,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "The first time an enemy MONSTER is destroyed by this unit, add 1 to wound rolls for this unit's attacks for the rest of the battle."
 				}
 			],
@@ -1183,6 +1217,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Maw-grunta's Tusks is 3."
 				},
 				{
@@ -1190,6 +1225,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this phase, pick up to 3 friendly MAW‑GRUNTA units wholly within 12\" of this unit that charged this turn to be the targets.",
 					"effect": "Add 1 momentum point to each target.",
@@ -1202,6 +1238,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit has charged as a result of using a CHARGE ability, it gains 1 momentum point. Each time it uses a RUN ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once.\nAdd the number of momentum points this unit has to the Damage characteristic of its MAW-GRUNTA'S TUSKS. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0."
 				}
 			],
@@ -1246,6 +1283,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If any enemy models were slain this turn by this unit's combat attacks, give this unit D3 ritual points."
 				}
 			],
@@ -1290,6 +1328,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn."
 				}
 			],
@@ -1336,6 +1375,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is in combat, pick a friendly IRONJAWZ unit wholly within 12\" of this unit to be the target.",
 					"effect": "Add 1 to hit rolls for the target's combat attacks for the rest of the turn."
@@ -1395,6 +1435,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to this unit's power level while there are any friendly IRONJAWZ units that have 10 or more models wholly within 12\" of it."
 				}
 			],
@@ -1457,6 +1498,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Klonk is a token. You can re-roll forgin' rolls for this unit while this unit's Klonk is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove this unit's Klonk from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
 				},
 				{
@@ -1464,6 +1506,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly IRONJAWZ INFANTRY unit wholly within 12\" of this unit to be the target.",
 					"effect": "Make a forgin' roll of D6. Add 1 to the roll if this unit is armed with Grunta-tongs. On a 4+, the target's melee weapons have Crit (Mortal) until the start of your next turn."
 				},
@@ -1472,6 +1515,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If an attack made with this unit's WARD-SMASHING CHOPPA scores a hit, the target has the WARD‑SMASHED keyword for the rest of the battle. Ward rolls cannot be made for a WARD‑SMASHED unit even if this unit has been destroyed."
 				}
 			],

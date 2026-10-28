@@ -8,6 +8,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Start of Your Turn",
+			"colour": "black",
 			"frequency": "Once Per Turn (Army)",
 			"effect": "You must use this ability at the start of each of your turns. Remove all daemonic power points from each friendly unit. Then, gain 1 daemonic power point for each friendly desolation token on the battlefield.\nThen, allocate your daemonic power points to friendly non-HOBGROT HELSMITHS OF HASHUT units. Each unit can have a maximum of 3 daemonic power points. Then, all unallocated daemonic power points are lost.",
 			"options": [
@@ -22,6 +23,7 @@
 			"type": "command",
 			"category": "special",
 			"timing": "Any Hero Phase",
+			"colour": "yellow",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly non-HOBGROT HELSMITHS OF HASHUT unit that has no daemonic power points to be the target.",
 			"effect": "Give 2 daemonic power points to the target.",
@@ -32,6 +34,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Start of Any Turn",
+			"colour": "black",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a terrain feature or objective that does not have a friendly desolation token and is contested by a friendly HELSMITHS OF HASHUT unit that is not in combat to be the target.",
 			"effect": "Give the target a desolation token."
@@ -47,6 +50,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time a friendly HELSMITHS OF HASHUT unit within the combat range of a friendly HELSMITHS OF HASHUT INFANTRY unit with 1 or more daemonic power points uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				}
 			]
@@ -60,6 +64,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Add 1\" to the Move characteristic of friendly HELSMITHS OF HASHUT units for each daemonic power point that unit has."
 				}
 			]
@@ -73,6 +78,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Ranged weapons used by friendly HELSMITHS OF HASHUT units have Crit (2 Hits) while they have 2 or more daemonic power points."
 				}
 			]
@@ -86,6 +92,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls, chanting rolls, unbinding rolls, and banishment rolls for friendly HELSMITHS OF HASHUT WIZARDS and PRIESTS while they are wholly within 12\" of another friendly HELSMITHS OF HASHUT WIZARD or PRIEST with 1 or more daemonic power points."
 				}
 			]
@@ -99,6 +106,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Double the Health characteristic of friendly non-HOBGROT HELSMITHS OF HASHUT units for the purposes of the 'Power Through' command.",
 					"options": [
 						{
@@ -118,6 +126,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for shooting attacks that target friendly HELSMITHS OF HASHUT INFANTRY or CAVALRY units while they are wholly within 9\" of a friendly HELSMITHS OF HASHUT WAR MACHINE."
 				}
 			]
@@ -133,6 +142,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT AUTOMATON unit within this unit's combat range to be the target.",
 					"effect": "For the rest of the battle, the target is this unit's bodyguard and the following effects apply:\n• While this unit is in combat and its bodyguard is within its combat range, its bodyguard has STRIKE-FIRST.\n• If this unit is INFANTRY, it has WARD (5+) while its bodyguard is within its combat range."
 				},
@@ -141,6 +151,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Until the start of your next turn, add 1 to wound rolls for combat attacks made by friendly HELSMITHS OF HASHUT units that target that enemy unit."
 				},
@@ -149,6 +160,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Enemy Charge Phase",
+					"colour": "orange",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT INFANTRY unit that is not in combat and is wholly within 12\" of this unit to be the target.",
 					"effect": "The target can immediately use the 'Shoot' ability as if it were your shooting phase. All attacks must target the same enemy unit, and the enemy unit picked to be the target of the attacks must have charged this phase. If the unmodified hit roll for any of those attacks is 1-5, the attack fails and the attack sequence ends."
 				}
@@ -163,6 +175,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT unit wholly within 12\" of this unit to be the target.",
 					"effect": "For the rest of the turn:\n• The target has WARD (2+).\n• The target cannot use non-passive abilities or be picked to be the target of friendly abilities.\n• Enemy units can ignore the target's combat range for the purposes of movement and charging.\n• Enemy units can ignore the target for the purposes of setting up on the battlefield but cannot be set up on the target."
@@ -172,6 +185,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "Give up to 3 daemonic power points to this unit. However, you cannot allocate or give any more daemonic power points to this unit for the rest of the battle."
 				},
@@ -180,6 +194,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -195,6 +210,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "If this unit is not a WIZARD, it has WIZARD (2) until the start of your next turn.\n\nIf this unit is a WIZARD, until the start of your next turn:\n• Add 1 to this unit's power level.\n• Add D3 to casting rolls for this unit."
 				},
@@ -203,6 +219,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a number of dice equal to your fury level. If this unit charged this turn, add 1 to each roll. For each 3+, inflict 1 mortal damage on the target."
 				},
@@ -211,6 +228,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a visible friendly HELSMITHS OF HASHUT unit to be the target. Then, you can pick a visible friendly HOBGROT VANDALZ unit to be a second target.",
 					"effect": "Remove each target from the battlefield and set them up again wholly within 7\" of the battlefield edge and more than 9\" from all enemy units."
 				}
@@ -232,6 +250,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "When making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll."
 				},
 				{
@@ -239,6 +258,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared an ATTACK ability for this unit",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the phase:\n• Add 1 to hit rolls for this unit's attacks, including those made with Companion weapons, that target an enemy unit within 9\" of it.\n• Each time an unmodified hit roll for an attack made by this unit is 1, allocate 1 damage point to this unit after the Attack ability has been resolved (ward rolls cannot be made for those damage points)."
 				},
@@ -247,6 +267,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -268,6 +289,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Add 2\" to this unit's Move characteristic.",
 					"points": 20
 				},
@@ -276,6 +298,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of this unit's melee weapons if it has not charged in the same turn.",
 					"points": 10
 				},
@@ -284,6 +307,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"effect": "You can spend 1 rage dice. If you do:\n• Apply the effect below.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nOtherwise, roll a dice. On a 3+, apply the effect below.\n\nThis unit's ranged weapons have CRIT (2 HITS) until the start of your next turn. If each of this unit's ranged weapons already have CRIT (2 HITS), this unit's shooting attacks score critical hits on unmodified hit rolls of 5+ until the start of your next turn instead.",
 					"points": 10
 				}
@@ -301,6 +325,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Halve the target's Move characteristic until the start of your next turn.",
 					"casting_value": 6,
@@ -314,6 +339,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible terrain feature within 18\" of them that has a friendly desolation token to be the target, then make a casting roll of 2D6.",
 					"effect": "That terrain feature has the 'Obscuring' ability until the start of your next turn. Then, roll a D3 for each enemy unit contesting the target terrain feature. On a 2+, inflict an amount of damage equal to the roll on that unit.",
 					"casting_value": 7,
@@ -326,6 +352,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Roll a number of dice equal to the unmodified casting roll. Inflict 1 mortal damage on the target for each roll that equals or exceeds the target's Save characteristic.",
 					"casting_value": 8,
@@ -345,6 +372,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "Roll a number of dice equal to the number of models in the target unit. For each 5+, inflict 1 mortal damage on the target. If the chanting roll was 8+, inflict 1 mortal damage on the target for each 4+ instead.",
 					"chanting_value": 4,
@@ -358,6 +386,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT PRIEST to chant this prayer, pick a visible friendly HELSMITHS OF HASHUT unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "Add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn. If the chanting roll was 8+, that unit's melee weapons also have Crit (Mortal) for the rest of the turn.",
 					"chanting_value": 4,
@@ -370,6 +399,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HELSMITHS OF HASHUT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "Inflict D3 mortal damage on the target and subtract 3 from the target's control score for the rest of the turn. If the chanting roll was 10+, you can pick another eligible unit to be a second target.",
 					"chanting_value": 5,

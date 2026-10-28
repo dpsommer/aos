@@ -8,6 +8,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Deployment Phase",
+			"colour": "black",
 			"frequency": "Once Per Battle (Army)",
 			"declare": "Pick up to 3 friendly non-MONSTER DISCIPLES OF TZEENTCH units to be the targets.",
 			"effect": "Remove the targets from the battlefield and set them up in reserve masked by illusion.\nFriendly units that are masked by illusion are destroyed at the end of the fifth battle round and not at the start of the fourth battle round."
@@ -17,6 +18,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Any Hero Phase",
+			"colour": "yellow",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly non-MONSTER DISCIPLES OF TZEENTCH unit that was not set up on the battlefield this turn and was not set up on the battlefield using this ability in the previous turn to be the target, then pick a friendly unit that is masked by illusion to be the substitute.",
 			"effect": "Set up the substitute wholly within 6\" of the target and not in combat. Then, remove the target from the battlefield and set up in reserve masked by illusion."
@@ -26,6 +28,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
+			"colour": "black",
 			"frequency": "Once Per Battle (Army)",
 			"effect": "If there is a friendly Argent Shard on the battlefield, you can set up 1 additional Argent Shard on the battlefield. It must be set up wholly within friendly territory and more than 3\" from all objectives and other terrain features.",
 			"options": [
@@ -40,6 +43,7 @@
 			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
+			"colour": "black",
 			"effect": "You start the battle with 0 fate points. Gain 1 fate point each time:\n• You lose the priority roll.\n• A spell cast by a friendly DISCIPLES OF TZEENTCH unit is unbound.\n• A friendly DISCIPLES OF TZEENTCH unit miscasts a spell.\n• Your opponent gains control of an objective that you controlled at the start of the turn.\n• A friendly Argent Shard is demolished.\nYou can have a maximum of 9 fate points."
 		},
 		{
@@ -47,6 +51,7 @@
 			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
+			"colour": "green",
 			"effect": "Before allocating damage points to a friendly Disciples of Tzeentch unit, you can spend any number of fate points. For each fate point you spend, remove 1 damage point in that unit's damage pool."
 		},
 		{
@@ -54,6 +59,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Reaction: You declared a SPELL ability for a DISCIPLES OF TZEENTCH unit",
+			"colour": "yellow",
 			"effect": "Spend any number of fate points. For each fate point you spend, add 1 to the casting roll for that spell."
 		},
 		{
@@ -61,6 +67,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Reaction: You declared a CHARGE ability for a DISCIPLES OF TZEENTCH unit in your turn",
+			"colour": "orange",
 			"effect": "Spend any number of fate points. For each fate point you spend, add 1 to the charge roll for that CHARGE ability."
 		}
 	],
@@ -74,6 +81,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "If you make a charge roll of 9+ for a friendly DISCIPLES OF TZEENTCH unit, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn."
 				}
 			]
@@ -87,6 +95,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a unit (friendly or enemy) to be the target.",
 					"effect": "If the target is destroyed this turn, gain 1 fate point."
@@ -102,6 +111,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit that is masked by illusion to be the target.",
 					"effect": "Set up the target wholly within 6\" of a battlefield edge and more than 9\" from all enemy units."
@@ -117,6 +127,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Friendly ARCANITE units' melee weapons have Crit (2 Hits) while they are wholly within 12\" of a friendly DISCIPLES OF TZEENTCH DAEMON unit."
 				}
 			]
@@ -130,6 +141,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD that is in combat to be the target.",
 					"effect": "The target can use a non-SUMMON SPELL ability as if it were your hero phase, but only the caster or enemy units in combat with the caster can be picked to be the targets of that SPELL ability."
@@ -145,6 +157,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time a friendly DISCIPLES OF TZEENTCH unit uses an ability that requires you to spend 1 or more fate points, after that ability has been resoled, roll a dice. On a 4+, gain 1 fate point.\nIf you remove 1 or more damage points from the damage pool of a friendly DISCIPLES OF TZEENTCH unit as a result of the 'Destined to Serve' ability, after the damage sequence for that unit has been resolved, roll a dice. On a 4+, gain 1 fate point."
 				}
 			]
@@ -185,6 +198,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"effect": "If this unit was set up this turn, it can move D3\". That move cannot pass through or end within the combat range of an enemy unit."
 				},
 				{
@@ -192,6 +206,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if any damage points were allocated to the target this phase. On a 3+, the target has a maximum control score of 1 until the start of your next turn."
 				}
@@ -221,6 +236,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Gain 1 fate point if any models were slain by this unit this turn.",
 					"points": 10
 				},
@@ -229,6 +245,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from wound rolls for attacks that target this unit."
 				},
 				{
@@ -236,6 +253,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a DISCIPLES OF TZEENTCH unit wholly within 6\" of this unit",
+					"colour": "yellow",
 					"effect": "Add 1 to or subtract 1 from the casting roll for that spell. This unit can use this ability more than once per phase but only once per SPELL ability.",
 					"points": 20
 				}
@@ -266,6 +284,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Pick 1 of this unit's melee weapons. That weapon's Attacks characteristic is 2D6 for the rest of the battle."
 				},
 				{
@@ -273,6 +292,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible MANIFESTATION (friendly or enemy) that was not set up this turn and is within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• The target is banished.\n• Heal (X) this unit, where X is the target's Health characteristic."
@@ -282,6 +302,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "This unit can use this ability if any enemy MANIFESTATIONS were banished this phase.",
 					"effect": "This unit can use a SUMMON ability from the manifestation lore you picked during army composition. That SUMMON ability does not count towards the total number of SPELL or BANISH abilities this unit can use this phase."
@@ -313,6 +334,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a non-SUMMON SPELL ability for this unit",
+					"colour": "yellow",
 					"effect": "Change the casting roll for that spell to a value of 12 that cannot be modified. That spell cannot be unbound and this unit cannot use that SPELL ability again for the rest of the battle.",
 					"points": 20
 				},
@@ -321,6 +343,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit has a Move characteristic of 14\" and has FLY."
 				},
 				{
@@ -328,6 +351,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit",
+					"colour": "yellow",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, roll a dice. If the roll is the same as any of the dice in the casting roll, that spell is miscast. Otherwise, add the roll to the casting roll."
 				}
 			]
@@ -356,6 +380,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "If you won the priority roll this battle round and chose for your opponent to take the first turn or if your opponent seized the initiative this battle round, this unit has STRIKE-FIRST for the rest of the turn.",
 					"points": 10
@@ -365,6 +390,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Your Turn",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"effect": "If this unit is contesting an objective that you control that is wholly outside friendly territory:\n• If you are the underdog, gain 1 fate point for each command point you have.\n• If you are not the underdog, roll a dice for each command point you have. For each 3+, gain 1 fate point.",
 					"points": 30
@@ -374,6 +400,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While units (friendly or enemy) are within 6\" of this unit:\n• Add 1 to unbinding rolls for those units.\n• Spells cast by those units are miscast on an unmodified casting roll of 4 or less.\nThe first time this unit is destroyed, gain D6 fate points.",
 					"points": 20
 				}
@@ -391,6 +418,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
 					"effect": "Roll either 5 dice or a number of dice equal to the number of fate points you have. For each 4+, inflict 1 mortal damage on the target.",
 					"casting_value": 6,
@@ -403,6 +431,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, friendly DISCIPLES OF TZEENTCH units are not visible to enemy units more than 12\" from them while those friendly units are wholly within 12\" of a friendly DISCIPLES OF TZEENTCH unit that was set up in the same turn.",
 					"casting_value": 6,
@@ -415,6 +444,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn:\n• The target has WARD (5+).\n• Subtract 1 from hit rolls for attacks that target that unit.",
 					"casting_value": 7,
@@ -434,6 +464,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6",
 					"effect": "Inflict D3 mortal damage on the target. Subtract 1 from wound rolls for the target's attacks until the start of your next turn.",
 					"casting_value": 7,
@@ -447,6 +478,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a DISCIPLES OF TZEENTCH WIZARD to cast this spell, then you can pick a friendly non-MONSTER DISCIPLES OF TZEENTCH unit wholly within 12\" of the caster to be the target. Then, make a casting roll of 2D6.",
 					"effect": "Set the target up in reserve masked by illusion. Then, you can pick a friendly unit that is masked by illusion and set it up wholly within 12\" of the caster or a friendly Argent Shard and more than 9\" from all enemy units.",
 					"casting_value": 6,
@@ -465,6 +497,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Inflict D3 mortal damage on the target. If any models are slain by this ability, you can pick a friendly Chaos Spawn of Tzeentch unit that is masked by illusion and set it up on the battlefield in combat with the target and not in combat with any other enemy units.",
 					"casting_value": 6,
@@ -484,6 +517,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly BURNING SIGIL OF TZEENTCH on the battlefield, pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a BURNING SIGIL OF TZEENTCH wholly within 18\" of the caster and visible to them.",
 					"casting_value": 6,
@@ -500,6 +534,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Daemonic Simulacrum on the battlefield, pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Daemonic Simulacrum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 7,
@@ -516,6 +551,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Tome of Eyes on the battlefield, pick a friendly DISCIPLES OF TZEENTCH WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Tome of Eyes wholly within 18\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 5,

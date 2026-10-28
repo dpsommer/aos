@@ -45,6 +45,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit that is not in combat to use this ability.",
 					"effect": "Add 1 to charge rolls for that unit for the rest of the turn."
@@ -54,6 +55,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit in combat to use this ability.",
 					"effect": "For the rest of the turn, each time that unit uses a RETREAT ability, no mortal damage is inflicted on it."
@@ -88,6 +90,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If your general is in combat, Heal (D3) your general."
 				}
 			],
@@ -137,6 +140,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 							"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 						}
@@ -185,6 +189,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "This unit can use SHOOT abilities even if it used a RUN or RETREAT ability in the same turn."
 						}
 					],
@@ -233,6 +238,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"frequency": "Once Per Battle",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 							"effect": "Roll a number of dice equal to the number of models in this unit. Add 1 to each roll if there are more models in the target unit than this unit. For each 3+, inflict 1 mortal damage on the target."
@@ -280,6 +286,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Battle",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",
 							"effect": "Roll a dice. On a 3+, subtract 1 from the Attacks characteristic of the target unit’s weapons for the rest of the turn."
@@ -463,6 +470,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Attacks characteristic of this unit’s Allopex’s Ferocious Bite if it is within 6\" of any damaged enemy units or if it is within 6\" of any enemy units that have had any models slain in the same turn."
 						}
 					],
@@ -500,6 +508,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Damage characteristic of this unit’s Lanmari for attacks that target an enemy MONSTER."
 						}
 					],
@@ -548,6 +557,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"frequency": "Once Per Battle",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a number of dice equal to the number of models in this unit.",
 							"effect": "For each 4-5, inflict 1 mortal damage on the target. For each 6+, inflict D3 mortal damage on the target. Add 1 to each roll if there are more models in the target unit than this unit."

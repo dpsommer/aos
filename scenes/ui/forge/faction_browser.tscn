@@ -70,12 +70,16 @@ layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Rules" type="RichTextLabel" parent="Layout/Body/Tabs"]
+[node name="RulesTab" type="ScrollContainer" parent="Layout/Body/Tabs"]
 unique_name_in_owner = true
 layout_mode = 2
-bbcode_enabled = true
-selection_enabled = true
+horizontal_scroll_mode = 0
 metadata/_tab_index = 0
+
+[node name="Rules" type="VBoxContainer" parent="Layout/Body/Tabs/RulesTab"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Warscrolls" parent="Layout/Body/Tabs" instance=ExtResource("2_list")]
 unique_name_in_owner = true

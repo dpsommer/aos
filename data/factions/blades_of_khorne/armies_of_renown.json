@@ -9,6 +9,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly GORECHOSEN CHAMPIONS HERO to be the target.",
 					"effect": "Give the target 1 artefact of power from the 'Gorechosen Champions' Army of Renown rules.",
@@ -24,6 +25,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Each time a friendly Bloodstoker uses the 'Whipped to Fury' ability, another friendly GORECHOSEN CHAMPIONS HERO within its combat range can be picked to be the target of that ability instead of a non-HERO BLOODBOUND unit."
 				},
 				{
@@ -31,6 +33,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Blood-hungry weapons used by friendly GORECHOSEN CHAMPIONS units have Crit (Mortal)."
 				},
 				{
@@ -38,6 +41,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly GORECHOSEN CHAMPIONS units have WARD (6+)"
 				},
 				{
@@ -45,6 +49,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "The first time each friendly GORECHOSEN CHAMPIONS unit would be destroyed, before removing it from play, roll a dice. On a 5+, that unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (1) that unit."
 				}
 			],
@@ -57,6 +62,7 @@
 							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "Add 20 to this unit's control score while it is in combat."
 						}
 					]
@@ -69,6 +75,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Battle",
 							"declare": "Pick this unit and up to D3 friendly GORECHOSEN CHAMPIONS units within this unit's combat range to be the targets.",
 							"effect": "The targets have STRIKE-FIRST for the rest of the turn."
@@ -78,6 +85,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "Allocate D3 damage points to this unit (ward rolls cannot be made for those damage points). For the rest of the turn, add X to the Attacks characteristic of melee weapons used by friendly GORECHOSEN CHAMPIONS units, where X is equal to the number of damage points allocated to this unit this turn by this ability.\nFor the rest of the battle, this unit cannot use the 'Hate-fuelled Killers' ability and cannot be healed."
 						},
 						{
@@ -85,6 +93,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "This unit has WARD (3+) against damage inflicted by shooting attacks."
 						}
 					]
@@ -100,6 +109,7 @@
 							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Wrath-axe on the battlefield, pick a friendly BLADES OF KHORNE PRIEST to chant this prayer, then make a chanting roll of D6.",
 							"effect": "Set up a Wrath-axe wholly within 12\" of the chanter, visible to them and more than 9\" from all enemy units.",
 							"chanting_value": 4,
@@ -122,6 +132,7 @@
 							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly GORECHOSEN CHAMPIONS PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "Until the start of your next turn, subtract 1 from the Rend characteristic of weapons used for attacks that target that friendly unit. If the chanting roll was 8+, you can pick another eligible unit to be a second target.",
 							"chanting_value": 4,
@@ -135,6 +146,7 @@
 							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly GORECHOSEN CHAMPIONS PRIEST to chant this prayer, pick a visibleenemy unit within 12\" of them that is in combat with a friendly unit to be the target, then make a chanting roll of D6.",
 							"effect": "Roll 8 dice. If the chanting roll was 8+, add 1 to each roll. For each 4+, inflict 1 mortal damage on the target.",
 							"chanting_value": 4,
@@ -147,6 +159,7 @@
 							"type": "prayer",
 							"category": "shooting",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly GORECHOSEN CHAMPIONS PRIEST to chant this prayer, pick a visible enemy unit within 12\" of them that is in combat with a friendly unit to be the target, then make a chanting roll of D6.",
 							"effect": "Inflict D6 mortal damage on the target. If the target is destroyed, before removing the last model in that unit from play, inflict D3 mortal damage on every unit (friendly and enemy) within 6\" of that model, or D6 mortal damage instead of the chanting roll was 8+.",
 							"chanting_value": 4,
@@ -167,6 +180,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn",
 					"declare": "Pick a friendly non-UNIQUE BALEFUL LORDS unit that has been destroyed to be the target.",
 					"effect": "Roll a number of dice equal to the current battle round number plus the number of units (friendly and enemy) that have been destroyed this battle. If the roll contains 8 or more results of 3+, set up a replacement unit identical to the target on the battlefield, wholly within 7\" of the battlefield edge and more than 9\" from all enemy units."
@@ -176,6 +190,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Baleful Lords unit that has not used a RAMPAGE ability this turn to be the target.",
 					"effect": "For the rest of the turn, enemy units cannot use commands while they are in combat with the target. The target cannot use RAMPAGE abilities for the rest of the turn.",
@@ -188,6 +203,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a magic-eater roll of D6. On a 3+, the spell is unbound. If the spell was unbound and the magic-eater roll was 5+, inflict D3 mortal damage on the caster."
 				},
@@ -196,6 +212,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Enemy Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Heal (D3) each friendly BALEFUL LORDS HERO that is in combat."
 				},
@@ -204,6 +221,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Your Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly BALEFUL LORDS unit that has not used a RAMPAGE ability this turn to use this ability.",
 					"effect": "That unit can move D6\". It can end that move in combat but only with units it was in combat with at the start of the phase.\nIf that unit destroyed any enemy units this turn, then instead:\nThat unit can move 2D6\". It can end that move in combat with any units that had any damage points allocated to them this turn.",
@@ -216,6 +234,7 @@
 					"type": "active",
 					"category": "damage",
 					"timing": "End of Your Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You must use this ability. Pick each friendly BALEFUL LORDS unit that did not charge or use a FIGHT ability this turn to be a target.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict 1 mortal damage on the target."
@@ -225,6 +244,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick each enemy MANIFESTATION within 3\" of a friendly BALEFUL LORDS unit to be a target.",
 					"effect": "Roll 2D6 for each target. If the roll equals or exceeds the banishment value of the target:\n• That target is banished and removed from play.\n• Inflict D3 mortal damage on the enemy unit that summoned the target."
@@ -239,6 +259,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Battle (Army)",
 							"effect": "For the rest of the turn, add 1 to the Attacks characteristic of friendly BALEFUL LORDS units while they are wholly within 12\" of this unit."
 						}
@@ -252,6 +273,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Enemy units within 12\" of this unit cannot be healed and cannot have slain models returned to them."
 						}
 					]

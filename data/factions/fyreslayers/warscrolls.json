@@ -34,6 +34,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If any friendly units have been destroyed during the battle, pick a friendly FYRESLAYERS INFANTRY unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. If the roll is equal to or less than the number of FYRESLAYERS units that have been destroyed during the battle, pick 1 of the following effects to apply until the start of your next turn:",
@@ -105,6 +106,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Each time a shooting attack made by this unit scores a critical hit, subtract 1\" from the target unit's Move characteristic until the start of your next turn. This ability cannot reduce the target unit's unmodified Move characteristic below half"
 				}
 			],
@@ -151,6 +153,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly non-HERO FYRESLAYERS INFANTRY unit within this unit's combat range to be the royal retinue.",
 					"effect": "For the rest of the battle, while the royal retinue is wholly within 6\" of this unit, add 1 to hit rolls for attacks made by the royal retinue and this unit has WARD (4+)."
@@ -160,6 +163,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Add the current battle round number to the control scores of friendly FYRESLAYERS INFANTRY units wholly within 12\" of this unit for the rest of the turn."
 				}
 			],
@@ -247,6 +251,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -254,6 +259,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly FYRESLAYERS units while they are wholly within 12\" of this unit."
 				},
@@ -262,6 +268,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract 1 from save rolls for the target for the rest of the turn.",
@@ -274,6 +281,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				}
 			],
@@ -323,6 +331,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time a PRAYER chanted by this unit is answered, this unit gains a magmic power token."
 				},
 				{
@@ -330,6 +339,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared an UR-GOLD RUNE ability",
+					"colour": "black",
 					"effect": "Remove 3 of this unit's magmic power tokens. If you do so, apply the effect below that corresponds to the UR-GOLD RUNE ability that was used:",
 					"options": [
 						{
@@ -399,6 +409,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick this unit if it is underground.",
 					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units. Then, set up the other units that were set up underground with it (if any) wholly within 6\" of this unit and more than 9\" from all enemy units."
 				},
@@ -407,6 +418,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit and any number of other units in its regiment if none of those units have been deployed.",
 					"effect": "Set up those units in reserve underground. They have now been deployed.",
 					"keywords": [
@@ -496,6 +508,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -503,6 +516,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly FYRESLAYERS unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target's attacks for the rest of the turn."
 				},
@@ -511,6 +525,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll 2D6. If the roll is equal to or less than the number of models in the target unit, inflict D3+3 mortal damage on the target.",
@@ -523,6 +538,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				}
 			],
@@ -575,6 +591,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly FYRESLAYERS INFANTRY units while they are wholly within 18\" of this unit."
 				},
 				{
@@ -582,6 +599,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO FYRESLAYERS INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				}
 			],
@@ -670,6 +688,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -677,6 +696,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				},
 				{
@@ -684,6 +704,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
 					"effect": "If this unit has fewer damage points than the target, subtract 10 from the target's control score for the rest of the turn.",
@@ -696,6 +717,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time this unit destroys a MONSTER, add 1 to the Attacks characteristic of this unit's Ancestral Weapons for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative."
 				}
 			],
@@ -786,6 +808,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -793,6 +816,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				},
 				{
@@ -800,6 +824,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons, including Companion weapons, while the target is in combat, damaged or destroyed."
 				},
@@ -808,6 +833,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, pick 1 of the following effects:",
 					"keywords": [
@@ -916,6 +942,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -923,6 +950,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4."
 				},
 				{
@@ -930,6 +958,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons, including Companion weapons, while the target is in combat, damaged, or destroyed."
@@ -939,6 +968,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
@@ -991,6 +1021,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Ignore negative modifiers to the control scores of friendly FYRESLAYERS units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -998,6 +1029,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "If a friendly unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				}
 			],
@@ -1044,6 +1076,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit has 1 damage point. Add 2 to the Damage characteristic of this unit's melee weapons instead while this unit has 2 or more damage points."
 				},
 				{
@@ -1051,6 +1084,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick an enemy unit to be this unit's quarry. You can pick a unit that has been deployed in reserve.",
 					"effect": "Add 1 to hit rolls and wound rolls for attacks made by this unit that target its quarry.\nIf this unit is destroyed while it is in combat with its quarry, inflict 3 mortal damage on this unit's quarry immediately after the ability that destroyed this unit has been resolved."
 				}
@@ -1098,6 +1132,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"declare": "Pick up to 3 friendly FYRESLAYERS INFANTRY units wholly within 12\" of this unit to be the targets.",
 					"effect": "You can re-roll charge rolls for the targets for the rest of the turn."
@@ -1107,6 +1142,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a number of dice equal to the target's Health characteristic. For each 4+, inflict 1 mortal damage on the target.",
@@ -1160,6 +1196,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Pick 1 of the following oaths for this unit to swear:",
 					"options": [
 						{
@@ -1177,6 +1214,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "If this unit is in combat, it can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE-LAST for the rest of the phase."
 				}
@@ -1226,6 +1264,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly FYRESLAYERS INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				},
 				{
@@ -1233,6 +1272,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit is within the combat ranges of any damaged friendly FYRESLAYERS HEROES, add 1 to the Attacks characteristic of this unit's melee weapons."
 				}
 			],
@@ -1278,6 +1318,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly FYRESLAYERS INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				},
 				{
@@ -1285,6 +1326,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -1318,6 +1360,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to expend the power of the forge.",
 					"effect": "Heal (D3) each friendly FYRESLAYERS unit on the battlefield. Once this ability has been used, this terrain feature cannot use the 'Molten Blessing' ability for the rest of the battle."
@@ -1327,6 +1370,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST within this terrain feature's combat range to be the target.",
 					"effect": "Add 1 to chanting rolls for the target for the rest of the turn. In addition, the target can use the 'Unbind' ability this turn as if it had WIZARD (1)."
 				}
@@ -1386,6 +1430,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this MANIFESTATION's attacks to be the target.",
 					"effect": "Subtract 1 from wound rolls for the target's combat attacks until the end of your next turn."
 				}
@@ -1420,6 +1465,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Movement Phase",
+					"colour": "grey",
 					"declare": "Pick up to 3 enemy units within 6\" of this MANIFESTATION to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Subtract 3 from the target's control score for the rest of the turn."
 				}
@@ -1473,6 +1519,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -1480,6 +1527,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit's Fjul-Grimnir is on the battlefield, ignore the first damage point that would be allocated to this unit each phase."
 				}
 			],
@@ -1524,6 +1572,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1567,6 +1616,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons if this unit charged this turn."
 				}
 			],
@@ -1626,6 +1676,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract D3 from the Damage characteristic of the target's Companion melee weapons for the rest of the turn."
 				}
@@ -1688,6 +1739,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, pick 1 of the following effects to apply until the start of your next turn, where X is equal to your fury level.",
 					"options": [
@@ -1750,6 +1802,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Add 1 to hit rolls for this MANIFESTATION's shooting attacks if the target unit has 10 or more models. Add 1 to hit rolls and wound rolls instead if the target unit has 15 or more models."
 				}
 			],

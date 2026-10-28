@@ -224,6 +224,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "Shooting attacks made by this unit score critical hits on unmodified hit rolls of 5+ if this unit did not use a MOVE ability in the same turn."
 						}
 					],
@@ -261,6 +262,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Rend characteristic of this unit’s melee weapons if it charged in the same turn."
 						}
 					],
@@ -388,6 +390,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "green",
 							"declare": "Pick a visible friendly INFANTRY unit wholly within 12\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 3+, add 1 to save rolls for the target until the start of your next turn."
 						}
@@ -472,6 +475,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
+							"colour": "grey",
 							"frequency": "Once Per Battle",
 							"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units."
 						}
@@ -507,6 +511,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Enemy Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Turn (Army)",
 							"effect": "If this unit is in combat, it can move 2D6\". It can move through the combat ranges of enemy units but must end that move in combat."
 						}
@@ -543,6 +548,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"declare": "If this unit is in combat, pick an enemy unit in combat with it to be the target. Otherwise, pick a visible enemy unit within 12\" of it to be the target.",
 							"effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target. Then, if any enemy models were slain by that mortal damage, inflict an additional 1 mortal damage on the target."
 						}

@@ -31,6 +31,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic of melee weapons used by friendly units while they are wholly within 12\" of any friendly HEROES that have 6 noble deeds points."
 				},
 				{
@@ -38,6 +39,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly HERO with any noble deeds points to use this ability.",
 					"effect": "Spend any number of that HERO’s noble deeds points as follows:\nPick a friendly Cryptguard unit within 9\" of this unit and spend 1 noble deeds point to return 1 model to that unit.\nPick a friendly Morbheg Knights unit within 9\" of this unit and spend 2 noble deeds points to return 1 model to that unit."
 				}
@@ -117,6 +119,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible friendly unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, until the start of your next turn, add 2\" to the target’s Move characteristic and add 1 to wound rolls for its attacks."
 						}
@@ -153,6 +156,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Add 1 to ward rolls for friendly HEROES that are wholly within this unit’s combat range."
 						}
 					],
@@ -247,6 +251,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"effect": "If any models were slain by this unit this turn, Heal (D6) this unit, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it."
 						}
 					],
@@ -431,6 +436,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target.",
 							"effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target unit."
 						}

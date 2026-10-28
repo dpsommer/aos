@@ -9,6 +9,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"declare": "Pick a friendly ALLIES OF THE FREE CITIES unit to use this ability, then pick 2 other visible friendly ALLIES OF THE FREE CITIES units wholly within 12\" of it to be the targets.\nThe unit using this ability and the targets:\n• cannot be under orders\n• must each be a different unit type.",
 					"effect": "For the rest of the battle round, the unit using this ability and the targets are under orders.",
 					"options": [
@@ -23,6 +24,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While 3 friendly ALLIES OF THE FREE CITIES units are wholly within 12\" of each other and 1 of those units has the AELF keyword, 1 of those units has the DUARDIN keyword, and 1 of those units has the SIGMARITE keyword:\n• Those units have WARD (5+) against shooting attacks.\n• Add 3 to those units' control scores.\n• Add 1 to wound rolls for those units' combat attacks."
 				}
 			],
@@ -35,6 +37,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Reaction: You declared the 'Redeploy' command for a visible ALLIES OF THE FREE CITIES unit wholly within 18\" of this unit",
+							"colour": "grey",
 							"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 						}
 					]
@@ -47,6 +50,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Any Hero Phase",
+							"colour": "yellow",
 							"frequency": "Once Per Battle (Army)",
 							"declare": "Pick this unit and each visible friendly ALLIES OF THE FREE CITIES unit wholly within 18\" of this unit to be the targets.",
 							"effect": "For the rest of the turn:\n• The targets are under orders.\n• The targets have WARD (6+).\n• The targets have a maximum control score of 1."
@@ -64,6 +68,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly ALLIES OF THE FREE CITIES WIZARD to cast this spell, pick an objective within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "For the rest of the turn, melee weapons used by friendly ALLIES OF THE FREE CITIES units have Charge (+1 Damage) for attacks that target enemy units that are contesting the target objective.",
 							"casting_value": 7,
@@ -83,6 +88,7 @@
 							"type": "prayer",
 							"category": "control",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly ALLIES OF THE FREE CITIES PRIEST to chant this prayer, pick a visible friendly ALLIES OF THE FREE CITIES unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "If the chanting roll was 10+, you can pick another eligible unit to be a second target. Until the start of your next turn, enemy units have a maximum control score of 1 while they are in combat with any of the targets.",
 							"chanting_value": 5,
@@ -105,6 +111,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle Round (Army)",
 					"declare": "Pick up to 3 friendly GREYWATER FASTNESS units to be the targets.",
 					"effect": "Until the start of the next battle round, the targets are under orders."
@@ -114,6 +121,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by shooting attacks made by a friendly GREYWATER FASTNESS unit that is under orders to be the target.",
 					"effect": "Until the start of your next turn, the target is pinned.",
@@ -129,6 +137,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick up to 2 friendly non-HERO GREYWATER FASTNESS units that do not have a firing drill to be the targets.",
 					"effect": "Give each target a different Firing Drill.",
@@ -150,6 +159,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Melee weapons used for combat attacks made by this unit that target a pinned enemy unit have Crit (2 Hits)."
 						}
 					]
@@ -163,6 +173,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"frequency": "Once Per Battle",
 							"declare": "Pick a visible friendly GREYWATER FASTNESS unit that is wholly within 12\" of this unit, that is under orders and that has a Firing Drill to be the target.",
 							"effect": "The target can use its Firing Drill ability this turn even if it has already used it this battle."
@@ -186,6 +197,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"frequency": "Once Per Battle",
 							"effect": "If this unit is under orders, for the rest of the phase, this unit's ranged weapons have Shoot in Combat."
 						},
@@ -194,6 +206,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"frequency": "Once Per Battle",
 							"declare": "If this unit is under orders, pick a pinned enemy unit that was the target of all this unit's shooting attacks this turn to be the target.",
 							"effect": "Until the start of your next turn, each time your opponent declares a command for the target, unless they spend 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost."
@@ -203,6 +216,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"frequency": "Once Per Battle",
 							"declare": "Pick a pinned enemy unit to be the target.",
 							"effect": "Until the start of your next turn, your opponent must subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
@@ -212,6 +226,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Battle",
 							"effect": "For the rest of the turn, add 1 to wound rolls for combat attacks made by this unit that target a pinned enemy unit."
 						},
@@ -220,6 +235,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Enemy Movement Phase",
+							"colour": "grey",
 							"frequency": "Once Per Battle",
 							"effect": "Until the start of your next turn:\n• Subtract 1 from the Rend characteristic of weapons used for attacks made by mpinned enemy units that target this unit.\n• This unit cannot use CHARGE abilities unless it is under orders."
 						},
@@ -228,6 +244,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"frequency": "Once Per Battle",
 							"effect": "Until the start of your next turn, this unit is not visible to enemy units while they are more than 3\" away from it."
 						}
@@ -246,6 +263,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle Round (Army)",
 					"declare": "Pick up to 3 friendly LETHIS units to be the targets.",
 					"effect": "Until the start of the next battle round, the targets are under orders."
@@ -255,6 +273,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-WAR MACHINE LETHIS unit that has not already used this ability this battle to use this ability.",
 					"effect": "Until the start of your next turn:\n• Ignore negative modifiers to hit rolls and wound rolls for attacks made for this unit.\n• Ignore negative modifiers to the Damage characteristic of this unit's weapons."
@@ -264,6 +283,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Pick a friendly LETHIS unit that has had models slain this battle to be the target.",
+					"colour": "black",
 					"effect": "Pick 1 of the following effects. You cannot pick the same effect you picked in the previous battle round.",
 					"options": [
 						{
@@ -291,6 +311,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Enemy units cannot be set up within 12\" of this unit."
 						}
 					]
@@ -304,6 +325,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "yellow",
 							"effect": "If this unit is not a PRIEST or WIZARD, it has PRIEST (1).\nIf this unit already has PRIEST (1), add 1 to chanting rolls for it.\nIf this unit is already a WIZARD, add 1 to casting rolls for it."
 						}
 					]
@@ -320,6 +342,7 @@
 							"type": "prayer",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS PRIEST to chant this prayer, pick a visible friendly non-WAR MACHINE LETHIS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "If the chanting roll was 10+, you can pick another eligible unit to be a second target. Until the start of your next turn, each target has WARD (5+).",
 							"chanting_value": 5,
@@ -333,6 +356,7 @@
 							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS PRIEST to chant this prayer, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "Roll a D3. On a chanting roll of 10+, use a value of 3 instead of rolling.\n• If the target is damaged, Heal (X) the target, where X is equal to the roll.\n• If the target is not damaged, return a number of slain models to it with a combined Health characteristic of up to X, where X is equal to the roll.",
 							"chanting_value": 4,
@@ -345,6 +369,7 @@
 							"type": "prayer",
 							"category": "movement",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS PRIEST to chant this prayer, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "If the chanting roll was 8+, you can pick another eligible unit to be a second target. Allocate D3 damage points to each target (ward rolls cannot be made for those damage points), then until the start of your next turn, add 2 to charge rolls for each target.",
 							"chanting_value": 4,
@@ -364,6 +389,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Add 1 to the Attacks characteristic of the target's melee weapons until the start of your next turn.",
 							"casting_value": 7,
@@ -376,6 +402,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible friendly LETHIS unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn, subtract 1 from save rolls for units (friendly and enemy) while they are within the target's combat range.",
 							"casting_value": 7,
@@ -388,6 +415,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LETHIS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn, if an ability would heal or return slain models to the target, that ability does not heal or return any slain models to it.",
 							"casting_value": 6,
@@ -412,6 +440,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"declare": "Pick a friendly IRON MARCH unit to use this ability, then pick either 1 or 2 other visible friendly IRON MARCH units wholly within 12\" of it to be the targets.\nThe unit using this ability and the targets:\n• cannot be under orders\n• must each be a different unit type.",
 					"effect": "For the rest of the battle round, the unit using this ability and the targets are under orders.",
 					"options": [
@@ -437,6 +466,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to wound rolls for combat attacks made by friendly IRON MARCH INFANTRY while they are wholly within 12\" of this unit and under orders."
 						},
 						{
@@ -444,6 +474,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Deployment Phase",
+							"colour": "black",
 							"effect": "This unit and up to 1 other friendly IRON MARCH WAR MACHINE within this unit's combat range can use the 'Normal Move' ability as if it were your movement phase."
 						},
 						{
@@ -451,6 +482,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
 							"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• The target has a maximum control score of 1 for the rest of the turn."
 						}
@@ -470,6 +502,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "If this unit is destroyed, before removing it from play, roll a dice for each visible unit (friendly and enemy) within its combat range. On a 3+, inflict an amount of mortal damage on that unit equal to the roll."
 						},
 						{
@@ -477,6 +510,7 @@
 							"type": "passive",
 							"category": "rallying",
 							"timing": "Passive",
+							"colour": "yellow",
 							"effect": "Each time this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 						},
 						{
@@ -484,6 +518,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "This unit has WARD (6+) and STRIKE-LAST."
 						}
 					]
@@ -502,6 +537,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "yellow",
 							"effect": "This unit has PRIEST (1)"
 						},
 						{
@@ -509,6 +545,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "Add 2 to the Attacks characteristic of this unit's Crew's Leadshotters. In addition, if this unit is destroyed, before removing it from play, roll a dice. On a 3+, you can set up a Freeguild Marshal and Relic Envoy wholly within 6\" of this unit and not in combat. That unit has the IRON MARCH keyword."
 						},
 						{
@@ -516,6 +553,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "This unit's ranged weapons have Anti-FACTION TERRAIN (+1 Rend) and Anti-WAR MACHINE (+1 Rend)."
 						}
 					]
@@ -531,6 +569,7 @@
 							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly IRON MARCH PRIEST to chant this prayer, pick either a visible enemy unit within 18\" of them or a visible friendly IRON MARCH unit that is wholly within 12\" of them and that has not been picked to be the target of this ability this turn to be the target, then make a chanting roll of D6.",
 							"effect": "If you picked an enemy unit:\n• If the chanting roll was 8+, you can pick another eligible enemy unit to be a second target.\n• Subtract 2\" from each target's Move characteristic until the start of your next turn.\nIf you picked a friendly target, Heal (D3) the target and the chanter. If the chanting roll was 8+, Heal (D3) each visible friendly IRON MARCH unit that is wholly within 12\" of the chanter and that has not been healed by this ability this turn instead.",
 							"chanting_value": 4,

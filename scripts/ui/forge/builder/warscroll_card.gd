@@ -17,13 +17,13 @@ func _init(unit: Warscroll, summoned := Callable()) -> void:
 	warscroll = unit
 	theme_type_variation = "WarscrollPanel"
 	var content := UIBuilder.vbox([_header(), _characteristics()], 10)
+	var damaged := battle_damaged_weapons(unit)
 	if not unit.ranged_weapons.is_empty():
-		content.add_child(weapon_table(unit.ranged_weapons, true))
+		content.add_child(weapon_table(unit.ranged_weapons, true, damaged))
 	if not unit.melee_weapons.is_empty():
-		content.add_child(weapon_table(unit.melee_weapons, false))
+		content.add_child(weapon_table(unit.melee_weapons, false, damaged))
 	for rule in unit.abilities:
-		content.add_child(HSeparator.new())
-		content.add_child(UIBuilder.rich(RulesFormatter.ability(rule)))
+		content.add_child(AbilityCard.new(rule))
 		if summoned.is_valid():
 			for manifestation: Warscroll in summoned.call(rule):
 				content.add_child(WarscrollCard.new(manifestation))
@@ -66,28 +66,58 @@ static func weapon_values(weapon: Weapon, ranged: bool) -> PackedStringArray:
 	return values
 
 
+## The names of [param unit]'s weapons that its Battle Damaged ability changes: those its rules
+## name, either in full or, for a weapon with several profiles such as "Menhir Club: Crushing Blow",
+## by the part before the colon.
+static func battle_damaged_weapons(unit: Warscroll) -> PackedStringArray:
+	var result := PackedStringArray()
+	for rule in unit.abilities:
+		if not AbilityCard.is_battle_damaged(rule):
+			continue
+		var text := " ".join([rule.text, rule.declare, rule.effect]).to_lower()
+		for weapon in unit.ranged_weapons + unit.melee_weapons:
+			if weapon.name.to_lower() in text or weapon.name.get_slice(":", 0).strip_edges().to_lower() in text:
+				result.append(weapon.name)
+	return result
+
+
 ## The profiles of [param weapons] in a box, under a header naming the kind of weapon and each column.
-static func weapon_table(weapons: Array[Weapon], ranged: bool) -> PanelContainer:
+## Weapons named in [param damaged] have a skull before their name, linking them to the unit's
+## Battle Damaged ability ([method battle_damaged_weapons]).
+static func weapon_table(weapons: Array[Weapon], ranged: bool, damaged := PackedStringArray()) -> PanelContainer:
 	var columns := PackedStringArray(["ATK", "HIT", "WND", "RND", "DMG"])
 	if ranged:
 		columns.insert(0, "RNG")
-	var icon := TextureRect.new()
-	icon.texture = UITheme.icon("ranged" if ranged else "melee")
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	icon.custom_minimum_size = Vector2(15, 15)
-	icon.modulate = Color("#D8D2C4")
+	var icon := _icon("ranged" if ranged else "melee", 15)
 	var title := UIBuilder.label("RANGED WEAPONS" if ranged else "MELEE WEAPONS", "WeaponTitleLabel")
 	var heading := UIBuilder.hbox([icon, title], 6)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var table := UIBuilder.vbox([UIBuilder.panel("WeaponHeaderPanel", _row(heading, columns, "WeaponColumnLabel"))], 0)
 	for weapon in weapons:
-		var weapon_name := UIBuilder.label(weapon.name, "WeaponNameLabel", true)
+		var weapon_name: Control = UIBuilder.label(weapon.name, "WeaponNameLabel", true)
+		if weapon.name in damaged:
+			var skull := _icon("skull", 13)
+			skull.tooltip_text = "Changed by Battle Damaged"
+			skull.mouse_filter = Control.MOUSE_FILTER_PASS
+			skull.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			weapon_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			weapon_name = UIBuilder.hbox([skull, weapon_name], 5)
 		var line := UIBuilder.vbox([_row(weapon_name, weapon_values(weapon, ranged), "WeaponValueLabel")], 2)
 		if not weapon.abilities.is_empty():
 			line.add_child(UIBuilder.label(", ".join(weapon.abilities), "MutedLabel", true))
 		table.add_child(UIBuilder.panel("WeaponRowPanel", line))
 	return UIBuilder.panel("WeaponTablePanel", table)
+
+
+## [param icon_name] from assets/2d/icons at [param size] pixels, in the weapon tables' pale text colour.
+static func _icon(icon_name: String, size: int) -> TextureRect:
+	var icon := TextureRect.new()
+	icon.texture = UITheme.icon(icon_name)
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.custom_minimum_size = Vector2(size, size)
+	icon.modulate = Color("#D8D2C4")
+	return icon
 
 
 ## [param first] followed by [param cells], each centred in a column of [constant COLUMN_WIDTH].

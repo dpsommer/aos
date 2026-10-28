@@ -35,6 +35,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SERFS or KNIGHTS unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• If the target is a SERFS unit, return up to 3 slain models to it.\n• If the target is a KNIGHTS unit, return 1 slain model to it.",
@@ -47,6 +48,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While you believe this DELUSION, subtract 1 from hit rolls for shooting attacks that target friendly FLESH-EATER COURTS units while they are wholly within 12\" of a friendly FLESH-EATER COURTS HERO.",
 					"keywords": [
 						"DELUSION"
@@ -100,6 +102,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit is more than 6\" from all enemy units, add 1 to chanting rolls for this unit."
 				},
 				{
@@ -107,6 +110,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While you believe this DELUSION:\n• Add 2 to banishment rolls for friendly FLESH-EATER COURTS units.\n• Friendly FLESH-EATER COURTS units have WARD (4+) against damage points inflicted by SPELL abilities, PRAYER abilities, and abilities used by MANIFESTATIONS.",
 					"keywords": [
 						"DELUSION"
@@ -161,6 +165,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick a friendly SERFS unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn."
 				},
@@ -169,6 +174,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While you believe this DELUSION, add 1 to the Damage characteristic of melee weapons used by friendly non-UNIQUE FLESH-EATER COURTS HEROES for attacks that target an enemy HERO.",
 					"keywords": [
 						"DELUSION"
@@ -224,6 +230,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit would be destroyed, before removing it from play, friendly non-UNIQUE FLESH-EATER COURTS units wholly within 12\" of this unit become enraged until the start of your next turn. Melee weapons used by friendly enraged units have Crit (Auto-wound) and score critical hits on unmodified hit rolls of 5+, even if this unit has been destroyed."
 				},
 				{
@@ -231,6 +238,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic of melee weapons used by other friendly non-MONSTER FLESH-EATER COURTS HEROES while they are wholly within 12\" of this unit. In addition, add 1 to the Attacks characteristic of this unit's melee weapons for each other friendly non-MONSTER FLESH-EATER COURTS HERO wholly within 12\" of this unit, to a maximum of +3."
 				}
 			],
@@ -318,6 +326,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Terrorgheist's Skeletal Talons have a maximum Attacks characteristic of 10.\nWhile this unit has 10 or more damage points, the Attacks characteristic of its Terrorgheist's Skeletal Talons is 4."
 				},
 				{
@@ -325,6 +334,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "For each champion, standard bearer, and musician in the target unit, add 1 to the Attacks characteristic of this unit's Terrorgheist's Skeletal Talons, to a maximum of 10, for the rest of the phase. Those additional attacks must target that enemy unit."
@@ -334,6 +344,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll a dice. On a 3+, add 1 to hit rolls for attacks made with this unit's Companion melee weapons for the rest of the turn.",
 					"keywords": [
@@ -345,6 +356,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While you believe this DELUSION, add 1 to the Attacks characteristic of Companion melee weapons used by friendly FLESH-EATER COURTS units while they are wholly within 12\" of any friendly FLESH-EATER COURTS HEROES.",
 					"keywords": [
 						"DELUSION"
@@ -436,6 +448,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Draconic Claws have a maximum Attacks characteristic of 10.\nWhile this unit has 10 or more damage points, the Attacks characteristic of its Draconic Claws is 5."
 				},
 				{
@@ -443,6 +456,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "While they are wholly within 12\" of this unit, friendly non-HERO FLESH-EATER COURTS MONSTERS can use CHARGE abilities even if they used a Run ability in the same turn."
 				},
 				{
@@ -450,6 +464,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. If the roll exceeds the target's Control characteristic, the target cannot use commands for the rest of the turn.",
@@ -462,6 +477,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "While you believe this DELUSION, add 1 to charge rolls for friendly KNIGHTS units and friendly FLESH-EATER COURTS MONSTERS while they are wholly within 12\" of any friendly FLESH-EATER COURTS HEROES.\nAdd 2 to charge rolls for friendly KNIGHTS units and friendly FLESH-EATER COURTS MONSTERS instead while they are wholly within 12\" of any friendly Abhorrant Ghoul Kings on Royal Zombie Dragons.",
 					"keywords": [
 						"DELUSION"
@@ -516,6 +532,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit and up to 2 friendly FLESH-EATER COURTS units in this unit's regiment that have not been deployed to be the targets.",
 					"effect": "Set up the target units in reserve patrolling the borders. They have now been deployed.",
 					"keywords": [
@@ -527,6 +544,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is patrolling the borders, then pick an enemy unit to be the target.",
 					"effect": "Set up this unit more than 6\" from the target and more than 9\" from all other enemy units. Then, set up the units that were patrolling the borders with this unit wholly within 12\" of this unit and more than 9\" from all enemy units.",
 					"keywords": [
@@ -538,6 +556,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "While you believe this DELUSION and this unit is on the battlefield, add 1 to charge rolls for friendly FLESH-EATER COURTS units while they are wholly within 12\" of a friendly FLESH-EATER COURTS HERO. Add 2 to charge rolls instead if they were set up in the same turn.\nWhen using the 'A Kingdom Deluded' ability, you can pick this DELUSION even if this unit is patrolling the borders.",
 					"keywords": [
 						"DELUSION"
@@ -593,6 +612,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Enemy Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Remove this unit from the battlefield, then set it up again more than 9\" from all enemy units and either:\n• Wholly within 6\" of the edge of the battlefield, or\n• Within 3\" of an objective you do not control."
 				},
@@ -601,6 +621,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit is within the combat range of a friendly KNIGHTS unit and has charged this turn, this unit has WARD (5+) and its Gory Talons and Fangs have Charge (+1 Damage)."
 				}
 			],
@@ -636,6 +657,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Enemy units cannot use RUN or RETREAT abilities while they are within this MANIFESTATION's combat range. In addition, if an enemy unit is picked to use a MOVE ability while it is within this MANIFESTATION's combat range, halve that unit's Move characteristic (rounding up) for the rest of the turn."
 				}
 			],
@@ -668,6 +690,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit within 6\" of this MANIFESTATION to be the target.",
 					"effect": "Roll a dice. On a 3+, your opponent must pick 1 of the following effects to apply for the rest of the turn:",
 					"options": [
@@ -710,6 +733,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this terrain feature has a Steward:\n• The Steward cannot use MOVE abilities.\n• Instead of measuring range or visibility to the Steward, measure to this terrain feature instead.\n• All attacks that would target the Steward target this terrain feature instead.\n• If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Steward. Then, set up the Steward on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Steward. If it is not possible to set up the Steward, it is slain."
 				},
 				{
@@ -717,6 +741,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If this terrain feature does not have a Steward, pick a friendly FLESH-EATER COURTS INFANTRY HERO within 3\" of it and not in combat to be the target.",
 					"effect": "Place the target on this terrain feature. The target is now the Steward (see 'Steward of the Realm')."
 				},
@@ -725,6 +750,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "If this terrain feature has a Steward, pick a visible friendly non-HERO FLESH-EATER COURTS unit that is not in combat to be the target.",
 					"effect": "The target can move D3\". If the target was set up this turn, it can move D6\" instead. It cannot move into combat during that move."
 				},
@@ -733,6 +759,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "If this terrain feature has a Steward that was not placed on it this turn, set up the Steward on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer the Steward."
 				}
 			],
@@ -777,6 +804,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "This MANIFESTATION can use this ability even if it is in combat.\nPick a point on a battlefield edge to be the target. Then, make a stampede roll of 2D6. Add 1D6 to the roll for each battle round that this MANIFESTATION has been on the battlefield and has not been banished. For example, the stampede roll would be 2D6 in the turn it which it was summoned, 3D6 in your next turn, and so on.",
 					"effect": "This MANIFESTATION can move a distance up to the value of the stampede roll in a straight line directly towards the target. It can move through the combat ranges of enemy units. It cannot end that move in combat unless it ends that move within 1/2\" of a visible enemy unit. If it does so, this MANIFESTATION has charged.\nRoll a D3 for each enemy unit that this MANIFESTATION passed across during that move. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.\nIn addition, if this MANIFESTATION charged this turn, add the value of the stampede roll to the Attacks characteristic of this MANIFESTATION's Corpsemare Trample for the rest of the turn.",
 					"keywords": [
@@ -838,6 +866,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is not in combat, remove it from the battlefield and set it up again wholly within 12\" of a friendly FLESH-EATER COURTS HERO and more than 9\" from all enemy units."
 				}
@@ -896,6 +925,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is not in combat, remove it from the battlefield and set it up again wholly within 12\" of a friendly FLESH-EATER COURTS HERO and more than 9\" from all enemy units."
 				}
@@ -945,6 +975,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly Crypt Ghouls unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				}
 			],
@@ -990,6 +1021,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of this unit's melee weapons while it is wholly within 12\" of any friendly NOBLES or ABHORRANTS."
 				}
 			],
@@ -1036,6 +1068,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly non-MONSTER FLESH-EATER COURTS HEROES are wholly within this unit's combat range, both this unit and those HEROES have WARD (5+)."
 				},
 				{
@@ -1043,6 +1076,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat with any enemy units that charged this turn, roll a dice. On a 3+, for the rest of the turn, this unit has STRIKE-FIRST but ward rolls cannot be made for it."
 				}
@@ -1094,6 +1128,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly Crypt Horrors unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				},
 				{
@@ -1101,6 +1136,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Heal (D3) this unit."
 				}
 			],
@@ -1147,6 +1183,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll 2 dice for each model in this unit. Add 2 to each roll if the target is CAVALRY. For each 5+, inflict 1 mortal damage on the target."
@@ -1196,6 +1233,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll 2 dice for each model in this unit. Add 2 to each roll if the target is CAVALRY. For each 5+, inflict 1 mortal damage on the target."
@@ -1259,6 +1297,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Piercing Death Screech to be the target.",
 					"effect": "For the rest of the turn, add 1 to the Damage characteristic of ranged weapons used by friendly Crypt Flayers units for attacks that target that enemy unit."
@@ -1268,6 +1307,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Crypt Flayers unit that used the 'To Our Liege!' ability this turn and is wholly within 9\" of this unit to be the target.",
 					"effect": "The target can immediately move D3\" but cannot end that move in combat."
@@ -1319,6 +1359,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, the target has STRIKE-LAST while it is in combat with any friendly FLESH-EATER COURTS HEROES and any friendly SERFS or KNIGHTS units."
 				},
@@ -1327,6 +1368,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While you believe this DELUSION, add 1 to the Damage characteristic of melee weapons used by friendly SERFS and KNIGHTS units while they are wholly within 12\" of any friendly FLESH-EATER COURTS HEROES that had any damage points allocated to them in the same turn.",
 					"keywords": [
 						"DELUSION"
@@ -1393,6 +1435,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This unit's Grype is a token. If this unit's Grype is not next to an enemy unit, pick an enemy unit within 18\" of this unit and not in combat to be the target.",
 					"effect": "Place this unit's Grype next to the target. If the target is destroyed while this unit's Grype is next to it, remove this unit's Grype from the battlefield."
 				},
@@ -1401,6 +1444,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit's Grype is next to an enemy unit, ward rolls cannot be made for damage points inflicted on that enemy unit by combat attacks made by this unit and friendly SERFS units."
 				},
 				{
@@ -1408,6 +1452,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "While you believe this DELUSION, subtract 10 from the control scores of enemy units while they are in combat with any friendly SERFS units or any friendly non-HERO FLESH-EATER COURTS MONSTER or BEAST units.",
 					"keywords": [
 						"DELUSION"
@@ -1459,6 +1504,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a command, SPELL ability or PRAYER ability for an INFECTED unit",
+					"colour": "black",
 					"effect": "Roll a dice. On a 5+:\n• If they declared a command, that command has no effect, it still counts as having been used and the command points spent to use the command are still lost.\n• If they declared a SPELL or PRAYER ability, that spell or prayer fails.\nThis reaction can be used more than once per phase but only once per command, SPELL ability or PRAYER ability."
 				},
 				{
@@ -1466,6 +1512,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Enemy Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 6\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, your opponent must decide whether the target will accept or reject the entreaty offered by this unit.",
@@ -1535,6 +1582,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Enemy Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Inflict D3 mortal damage on the target. Then, this unit can use a RETREAT ability as if it were your movement phase. No mortal damage is inflicted on this unit by that RETREAT ability."
@@ -1567,6 +1615,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This unit can cast this spell more than once per phase. Pick a visible unit wholly within 18\" of this unit that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target is an enemy unit, inflict D3 mortal damage on it. If the target is a friendly DEATH unit, pick 1 of the following effects:\n• Return a number of slain models to the target unit with a combined Health characteristic of up to 3.\n• The target has WARD (5+) until the start of your next turn.",
 					"casting_value": 7,
@@ -1620,6 +1669,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Enemy MONSTERS cannot use RAMPAGE abilities while they are in combat with this unit. In addition, subtract 1 from the Damage characteristic of melee weapons used by enemy MONSTERS and BEAST units while they are in combat with this unit."
 				}
 			],
@@ -1667,6 +1717,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly SERFS unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, the target's melee weapons have Crit (2 Hits) for the rest of the turn."
 				},
 				{
@@ -1674,6 +1725,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Immediately after that FIGHT ability has been resolved, pick an enemy INFANTRY HERO in combat with this unit to be the target. Roll 2D6. If the roll exceeds the target's Health characteristic, it is automatically destroyed."
 				}
 			],
@@ -1722,6 +1774,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick another friendly FLESH-EATER COURTS INFANTRY unit within this unit's combat range to be the target.",
 					"effect": "1 model in the target unit is automatically slain. Then, until the start of your next turn, ignore the first damage point that would be allocated to each visible friendly FLESH-EATER COURTS unit in each phase while it is wholly within 12\" of this unit."
@@ -1731,6 +1784,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If any damage points were allocated to an enemy HERO by this unit's combat attacks this turn and that enemy HERO has been destroyed, pick an objective or terrain feature within 6\" of this unit to be the target.",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, for the rest of the turn, subtract 5 from the control scores of enemy units while they are contesting the target objective or terrain feature."
@@ -1806,6 +1860,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
 					"effect": "Roll a dice for each model in the target unit. For each 6, inflict 1 mortal damage on the target. If 3 or more damage points are allocated to the target by this ability, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
@@ -1818,6 +1873,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Skeletal Talons have a maximum Attacks characteristic of 10.\nWhile this unit has 10 or more damage points, the Attacks characteristic of its Skeletal Talons is 4."
 				},
 				{
@@ -1825,6 +1881,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "For each champion, standard bearer, and musician in the target unit, add 1 to the Attacks characteristic of this unit's Skeletal Talons, to a maximum of 10, for the rest of the phase. Those additional attacks must target that enemy unit."
@@ -1899,6 +1956,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, roll a dice. On a 3+, this unit can move 2D6\". It can pass through the combat ranges of enemy units but must end that move in combat. Then, pick an enemy unit that this unit passed across during that move. Inflict D3 mortal damage on that enemy unit.",
 					"keywords": [
@@ -1910,6 +1968,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
 				},
@@ -1918,6 +1977,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Draconic Claws have a maximum Attacks characteristic of 10.\nWhile this unit has 10 or more damage points, the Attacks characteristic of its Draconic Claws is 5."
 				}
 			],
@@ -1978,6 +2038,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "For the rest of the turn, while this unit is in combat with any enemy MONSTER or BEAST units, it has STRIKE-FIRST. However, for the rest of the turn, while it is in combat with any enemy MONSTER or BEAST units, all of this unit's combat attacks must target an enemy MONSTER or BEAST unit."
 				}
 			],
@@ -2027,6 +2088,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a combat attack made by this unit scores a critical hit, give 1 prime cut point to this unit, to a maximum of 6."
 				},
 				{
@@ -2034,6 +2096,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick a friendly FLESH-EATER COURTS HERO wholly within 12\" of this unit to be the target.",
 					"effect": "Heal (X) the target, where X is the number of prime cut points this unit has. Then, reset this unit's prime cut points to 0."
 				}
@@ -2092,6 +2155,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Monstrous Talons is 4."
 				},
 				{
@@ -2099,6 +2163,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
 					"effect": "Roll a dice for each target. If the roll exceeds the target's Control characteristic, the target has STRIKE-LAST for the rest of the turn.",
@@ -2111,6 +2176,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time you make a delusion roll, you can add 1 or subtract 1 from the roll."
 				},
 				{
@@ -2118,6 +2184,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy model within 18\" of this unit to be the target, pick an enemy unit that is visible to the target and within the target's combat range to be the victim, then make a casting roll of 2D6. You can only pick the target's unit to be the victim if that unit has 2 or more models.",
 					"effect": "Pick 1 of the target's melee weapons. Immediately resolve combat attacks made with that weapon against the victim.",
 					"casting_value": 7,
@@ -2130,6 +2197,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While you believe this DELUSION:\n• Add 1 to run rolls and charge rolls for friendly FLESH-EATER COURTS units.\n• Subtract 1 from run rolls and charge rolls for enemy units.\n• The melee weapons used by friendly SERFS units have Anti-charge (+1 Rend) while they are wholly within friendly territory and did not charge in the same turn.",
 					"keywords": [
 						"DELUSION"
@@ -2193,6 +2261,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If any models were slain by this unit this turn:\n• Heal (D6) this unit.\n• If this unit is in combat, this unit can immediately move 10\". It can move through the combat ranges of enemy units but must end that move in combat with the units it was already in combat with at the start of the move.\n• If that unit is not in combat, this unit can immediately move 10\" but cannot end that move in combat."
 				}
 			],
@@ -2250,6 +2319,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly FLESH-EATER COURTS PRIEST wholly within 18\" of this unit to be the target.",
 					"effect": "The next time the target uses a PRAYER ability this phase:\n• When picking targets for that prayer, you can measure range and visibility from this unit instead of from the chanter.\n• Add 1 to the chanting roll for that prayer."
@@ -2259,6 +2329,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "This unit has a maximum control score of 1."
 				}
 			],

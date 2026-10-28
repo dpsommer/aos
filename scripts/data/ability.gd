@@ -4,12 +4,17 @@ extends Resource
 
 ## Values of [member type].
 const TYPES: PackedStringArray = ["active", "passive", "command", "spell", "prayer"]
+## Values of [member colour].
+const COLOURS: PackedStringArray = ["black", "yellow", "grey", "blue", "orange", "red", "purple", "green"]
 
 ## Icon category, e.g. "offensive", "movement", "special".
 @export var category: String
 @export var name: String
 ## How the ability is used: "active", "passive", "command", "spell" or "prayer".
 @export var type: String
+## The colour of the ability's box on its warscroll, one of [constant COLOURS], from BSData. Empty if
+## the data has none; [method AbilityCard.colour] then picks one from its timing.
+@export var colour: String
 ## When the ability is used, e.g. "Passive" or "Your Hero Phase".
 @export var timing: String
 ## Usage limit, e.g. "Once Per Battle". Empty if unlimited.

@@ -79,6 +79,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "On a 6+, make a cacophony roll of D6. Inflict D3 mortal damage on each enemy unit (roll for each) within 6\" of your general that has a Control characteristic less than the cacophony roll."
 				},
@@ -175,6 +176,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "orange",
 							"effect": "You can re-roll charge rolls for this unit."
 						}
 					],
@@ -217,6 +219,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Enemy Shooting Phase",
+							"colour": "black",
 							"declare": "This unit can use this ability if any damage points were allocated to it this turn.",
 							"effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase."
 						}
@@ -262,6 +265,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "This unit can use SHOOT abilities even if it used a RUN ability in the same turn."
 						}
 					],
@@ -405,6 +409,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "Each model in this unit is treated as an individual unit when determining the effect of the ‘Favour Most Fickle’ battle trait."
 						},
 						{
@@ -449,6 +454,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Charge Phase",
+							"colour": "red",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "If this unit is not in combat, pick a visible enemy unit within 9\" of it to be the target.\nIf this unit is in combat, pick an enemy unit in combat with it to be the target.",
 							"effect": "Roll a dice. On a 4+, the target has STRIKE-LAST for the rest of the turn."
@@ -485,6 +491,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Attacks characteristic of this unit’s Piercing Claws if it charged in the same turn."
 						}
 					],
@@ -535,6 +542,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "When making run rolls for this unit, if you roll a 1-3, you can use a value of 4 instead."
 						}
 					],

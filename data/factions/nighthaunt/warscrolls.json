@@ -37,6 +37,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Roll a dice. On a 3+, this unit can immediately use the 'Normal Move' or the 'Retreat' ability as if it were your movement phase."
 				},
 				{
@@ -44,6 +45,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit is not in combat, pick a friendly non-HERO NIGHTHAUNT unit that is not in combat and is wholly within 12\" of this unit to be the target.",
 					"effect": "Remove this unit and the target from the battlefield, then set them up again on the battlefield wholly within 6\" of each other and more than 7\" from all enemy units."
@@ -120,6 +122,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage equal on the target equal to the roll."
 				},
@@ -128,6 +131,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is not in combat, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
 					"keywords": [
@@ -139,6 +143,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit was destroyed this turn, pick a friendly non-UNIQUE NIGHTHAUNT HERO that has been destroyed.",
 					"effect": "Set up a replacement unit wholly within 12\" of this unit. The replacement unit can only be set up in combat with enemy units that are in combat with this unit."
 				}
@@ -200,6 +205,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 of the following to apply for the rest of the turn:",
 					"options": [
@@ -222,6 +228,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an objective you do not control to be the target.",
 					"effect": "For the rest of the turn, while enemy units are contesting the target objective, attacks made by those units cannot score critical hits while this unit is also contesting it (treat them as regular hits instead)."
@@ -231,6 +238,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"effect": "For the rest of the phase, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
 				}
 			],
@@ -291,6 +299,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"effect": "For the rest of the phase, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
 				},
 				{
@@ -298,6 +307,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an objective you do not control to be the target.",
 					"effect": "For the rest of the turn, while enemy units are contesting the target objective, they cannot score critical hits while this unit is also contesting it (hit rolls that would be critical hits score hits instead)."
@@ -307,6 +317,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 of the following to apply for the rest of the turn:",
 					"options": [
@@ -366,6 +377,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit contests an objective you control, enemy units cannot finish a charge move within 1/2\" of a model in this unit unless the unmodified charge roll was 7 or more."
 				}
 			],
@@ -416,6 +428,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a visible friendly Grimghast Reapers unit wholly within 12\" of this unit to be the target.",
 					"effect": "Add 1 to wound rolls for the target's combat attacks for the rest of the turn."
@@ -477,6 +490,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "Roll a dice. Add 1 to the roll if this unit is wholly within 12\" of any friendly Spirit Torments. On a 3+, for the rest of the turn, add 1 to hit rolls for combat attacks made by friendly NIGHTHAUNT units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -521,6 +535,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick up to 3 friendly Chainrasp units to be the targets,",
 					"effect": "Each target can move 6\" but cannot end that move in combat."
@@ -581,6 +596,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, this unit immediately uses the 'Retreat' ability without any mortal damage being inflicted on it. Then, inflict an amount of mortal damage on the target equal to the roll."
@@ -642,6 +658,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "If this unit charged this turn, add 3 to the control scores of friendly NIGHTHAUNT units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -649,6 +666,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
 					"keywords": [
@@ -697,6 +715,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Enemy units cannot be healed or have slain models returned to them while they are in combat with this unit."
 				}
 			],
@@ -744,6 +763,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, each time this unit makes a pile-in move, add 3\" to the distance it can move."
 				}
@@ -791,6 +811,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit that is within the combat ranges of 5 or more models in this unit to be the target.",
 					"effect": "Roll a number of dice equal to the number of models in the target unit. For each 6, inflict 1 mortal damage on the target. If the target unit has 20 or more models, inflict 1 mortal damage on the target for each 5+ instead."
 				}
@@ -842,6 +863,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly NIGHTHAUNT unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target's attacks for the rest of the turn."
@@ -904,6 +926,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -954,6 +977,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time this unit uses a FIGHT ability, after that FIGHT ability has been resolved, Heal (X) this unit, where X is the number of damage points allocated to enemy units by combat attacks made as part of that FIGHT ability."
 				},
 				{
@@ -961,6 +985,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO NIGHTHAUNT INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				}
 			],
@@ -1023,6 +1048,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time this unit uses a FIGHT ability, after that FIGHT ability has been resolved, Heal (X) this unit, where X is the number of damage points allocated to enemy units by combat attacks made as part of that FIGHT ability."
 				},
 				{
@@ -1030,6 +1056,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO NIGHTHAUNT CAVALRY or WAR MACHINE unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				}
 			],
@@ -1094,6 +1121,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Ignore the first damage point that would be allocated to each friendly NIGHTHAUNT unit wholly within 12\" of this unit in each phase."
 				}
 			],
@@ -1143,6 +1171,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick a friendly Craventhrone Guard unit that is not in combat to be the target.",
 					"effect": "The target can immediately use a SHOOT ability as if it were your shooting phase, but all of its attacks must target an enemy unit in combat with this unit. The target cannot use CHARGE abilities for the rest of the turn."
 				},
@@ -1151,6 +1180,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a command for a unit within 12\" of this unit",
+					"colour": "black",
 					"frequency": "Once Per Turn",
 					"effect": "Roll a dice. On a 3+, unless your opponent spends 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost."
 				}
@@ -1204,6 +1234,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "If this unit is in combat, pick a visible friendly NIGHTHAUNT unit wholly within 12\" of this unit to be the target.",
 					"effect": "Pick 1 of the following to apply for the rest of the turn:",
 					"options": [
@@ -1226,6 +1257,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to hit rolls and wound rolls for this unit's combat attacks that target an enemy unit that has a lower Control characteristic than this unit."
 				}
 			],
@@ -1290,6 +1322,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"declare": "Pick any number of friendly NIGHTHAUNT units on the battlefield to be the targets.",
 					"effect": "For each target, you can return a number of slain models to that unit with a combined Health characteristic of up to D3+3."
@@ -1299,6 +1332,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If the unmodified hit roll or unmodified wound roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 				},
 				{
@@ -1306,6 +1340,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Ignore positive modifiers to the target's control score and to hit rolls, wound rolls and save rolls for the target for the rest of the turn.",
 					"casting_value": 6,
@@ -1365,6 +1400,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy INFANTRY or CAVALRY HERO that had any damage points allocated to it this turn by this unit's attacks to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if the target is a SENTENCED unit. On a 5+, the target is automatically destroyed."
 				},
@@ -1373,6 +1409,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, subtract 1 from the Attacks characteristic of the target's melee weapons for the rest of the turn. In addition, if the target is a HERO, subtract 5 from the target's control score for the rest of the turn."
@@ -1438,6 +1475,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit within 10\" of this unit to be the target.",
 					"effect": "If this unit's shooting attacks inflicted damage on the target this turn, apply 1 of the following effects. Otherwise, roll a dice. On a 3+, apply 1 of the following effects:",
@@ -1499,6 +1537,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly NIGHTHAUNT unit within 3\" of this MANIFESTATION to be the target.",
 					"effect": "Roll a dice. On a 2+, pick 1 of the following effects:\n• Add 1 to run rolls and charge rolls for the target for the rest of the turn.\n• Heal (3) the target."
 				}
@@ -1545,6 +1584,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
 					"effect": "If a friendly NIGHTHAUNT unit wholly within 12\" of this unit was picked to be the target of that spell, this unit can use the 'Unbind' ability as if it had WIZARD (1). Add 1 to the unbinding roll for that ability. If the spell is unbound, inflict D3 mortal damage on the caster."
 				}
 			],
@@ -1589,6 +1629,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Nexus of Grief, then pick up to 3 friendly NIGHTHAUNT units wholly within 12\" of it to be the targets. You cannot pick the same unit to be a target of this ability more than once per phase.",
 					"effect": "For each target:\n• If the target is damaged, Heal (D3) the target.\n• If the target is not damaged, return a number of slain models to it with a combined Health characteristic of up to D3."
@@ -1598,6 +1639,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Enemy units cannot use commands while they are within 3\" of this terrain feature."
 				},
 				{
@@ -1605,6 +1647,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Remove this terrain feature from the battlefield and set it up again on the battlefield within 3\" of a friendly NIGHTHAUNT unit, more than 3\" from all objectives and enemy units, more than 1\" from all terrain features and more than 12\" from all other friendly Nexuses of Grief."
 				}
@@ -1664,6 +1707,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is contesting an\nobjective, pick a visible enemy unit within\n6\" of this unit to be the target.",
 					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Add a number equal to the roll to this unit's control score for the rest of the turn."
@@ -1729,6 +1773,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick either this unit or a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "If you picked this unit, allocate 1 damage point to this unit and add 1 to casting rolls for this unit for the rest of the turn (ward rolls cannot be made for that damage point).\nIf you picked an enemy unit, roll a dice. On a 3+, inflict 1 mortal damage on that enemy unit and for the rest of the turn:\n• Add 1 to casting rolls for this unit.\n• Add 1 to this unit's power level."
 				},
@@ -1737,6 +1782,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to hit rolls and wound rolls for attacks made with this unit's Fellreaper if the target is a PRIEST or a WIZARD."
 				},
 				{
@@ -1744,6 +1790,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Inflict D3 mortal damage on the target. If any models are slain as a result of this ability, inflict a further D3 mortal damage on the target.",
 					"casting_value": 7,
@@ -1801,6 +1848,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target and the target has the SENTENCED keyword for the rest of the battle."
@@ -1810,6 +1858,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a friendly NIGHTHAUNT INFANTRY unit uses a FIGHT ability, if all of its attacks target the same SENTENCED enemy unit, that friendly unit's melee weapons have Crit (Mortal) for that FIGHT ability."
 				}
 			],
@@ -1856,6 +1905,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Add 2 to the Attacks characteristic of this MANIFESTATION's Almighty Reap if it charged in the same turn."
 				}
 			],
@@ -1901,6 +1951,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly NIGHTHAUNT INFANTRY HEROES have WARD (4+) while they are wholly within this unit's combat range."
 				}
 			],
@@ -1947,6 +1998,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the enemy target. Then, you can pick a friendly NIGHTHAUNT HERO in combat with the enemy target to be the friendly target.",
 					"effect": "You can spend 1 rage dice. If you do:\n• Apply the effect below.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nOtherwise, roll a dice. On a 3+, apply the effect below.\nFor the rest of the turn:\n• Subtract 1 from hit rolls for attacks made by the enemy target that do not target this unit.\n• Ignore positive modifiers to hit rolls for the enemy target's attacks.\n• If you picked a friendly target, add 1 to the Damage characteristic of its melee weapons for attacks that target the enemy target."
@@ -1998,6 +2050,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time a friendly NIGHTHAUNT unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				}
 			],
@@ -2054,6 +2107,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an enemy unit within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target is condemned until the start of your next turn.\nWhile a unit is condemned:\n• Halve that unit's Move characteristic.\n• That unit cannot use RETREAT abilities.\n• Subtract 1 from the number of dice rolled when making charge rolls for that unit, to a minimum of 1."
 				}
@@ -2128,6 +2182,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Piercing Scream to be the target.",
 					"effect": "Roll a dice. On a 2+, the target cannot use commands until the start of your next turn."
@@ -2137,6 +2192,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit's Briar Queen is on the battlefield, it has WIZARD (1)."
 				}
 			],
@@ -2202,6 +2258,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "While there are any visible friendly Myrmourn Banshees units within this unit's combat range, ignore positive modifiers to the control scores of enemy units within 12\" of this unit."
 				},
 				{
@@ -2209,6 +2266,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Inflict D3 mortal damage on the target. If any models in the target unit are slain by this ability, the target cannot use commands for the rest of the turn."
@@ -2244,6 +2302,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time a model from a friendly or enemy unit is slain within 12\" of this MANIFESTATION, give this MANIFESTATION a soul point, to a maximum of 6."
 				},
 				{
@@ -2251,6 +2310,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "If this MANIFESTATION has 6 soul points, pick any number of enemy units within 6\" of this unit to be the targets.",
 					"effect": "Roll 6 dice for each target. For each 4+, inflict 1 mortal damage on the target. Then, reset this MANIFESTATION's soul points to 0."
 				}

@@ -210,11 +210,11 @@ func test_weapon_without_abilities_shows_no_ability_line() -> void:
 	assert_eq(_labels(_card(scroll), "MutedLabel").size(), 1)
 
 
-func test_each_ability_gets_a_rich_text_label() -> void:
+func test_each_ability_gets_an_ability_card() -> void:
 	var scroll := _scroll()
 	scroll.abilities = [Kit.ability("One"), Kit.ability("Two")] as Array[Ability]
-	var rich := UIKit.find_all(_card(scroll), func(n: Node) -> bool: return n is RichTextLabel)
-	assert_gte(rich.size(), 2)
+	var cards := UIKit.find_all(_card(scroll), func(n: Node) -> bool: return n is AbilityCard)
+	assert_eq(cards.map(func(c: AbilityCard) -> String: return c.ability.name), ["One", "Two"])
 
 
 func test_no_nested_cards_without_a_summoned_callable() -> void:
@@ -240,3 +240,107 @@ func test_keywords_are_shown() -> void:
 	var card := _card(_scroll())
 	assert_true(UIKit.has_label_containing(card, "INFANTRY"))
 	assert_true(UIKit.has_label_containing(card, "CHAMPION"))
+
+
+# Battle Damaged
+
+func _damaged_scroll(text: String, melee: Array, ranged := []) -> Warscroll:
+	var scroll := _scroll()
+	var rule := Kit.ability("Battle Damaged")
+	rule.text = text
+	scroll.abilities = [rule] as Array[Ability]
+	scroll.melee_weapons.assign(melee)
+	scroll.ranged_weapons.assign(ranged)
+	return scroll
+
+
+## Skulls in weapon tables only; the Battle Damaged ability card has one of its own.
+func _skulls(node: Node) -> Array[Node]:
+	var tables := UIKit.find_all(node, func(n: Node) -> bool: return n is PanelContainer and n.theme_type_variation == "WeaponTablePanel")
+	if node is PanelContainer and node.theme_type_variation == "WeaponTablePanel":
+		tables.append(node)
+	var result: Array[Node] = []
+	for table in tables:
+		result.append_array(_skulls_in(table))
+	return result
+
+
+func _skulls_in(node: Node) -> Array[Node]:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is TextureRect and n.texture == UITheme.icon("skull"))
+
+
+func test_weapon_named_in_full_is_battle_damaged() -> void:
+	var scroll := _damaged_scroll("The Rock Sling has an Attacks of 1.", [_weapon("Fist"), _weapon("Rock Sling")])
+	assert_eq(WarscrollCard.battle_damaged_weapons(scroll), PackedStringArray(["Rock Sling"]))
+
+
+func test_weapon_match_ignores_case() -> void:
+	var scroll := _damaged_scroll("the ROCK SLING is weaker", [_weapon("Rock Sling")])
+	assert_eq(WarscrollCard.battle_damaged_weapons(scroll), PackedStringArray(["Rock Sling"]))
+
+
+func test_name_before_the_colon_marks_every_profile() -> void:
+	var scroll := _damaged_scroll("The Menhir Club has a Damage of 2.", [
+		_weapon("Menhir Club: Calamitous Sweep"), _weapon("Menhir Club: Crushing Blow"), _weapon("Fist")])
+	var result := WarscrollCard.battle_damaged_weapons(scroll)
+	assert_has(result, "Menhir Club: Calamitous Sweep")
+	assert_has(result, "Menhir Club: Crushing Blow")
+	assert_does_not_have(result, "Fist")
+
+
+func test_weapons_the_ability_does_not_mention_are_excluded() -> void:
+	var scroll := _damaged_scroll("Nothing about weapons here.", [_weapon("Fist")])
+	assert_eq(WarscrollCard.battle_damaged_weapons(scroll).size(), 0)
+
+
+func test_weapon_named_in_declare_or_effect_counts() -> void:
+	var scroll := _damaged_scroll("", [_weapon("Fist"), _weapon("Kick")])
+	scroll.abilities[0].declare = "Pick the Fist."
+	scroll.abilities[0].effect = "The Kick is worse."
+	assert_eq(WarscrollCard.battle_damaged_weapons(scroll).size(), 2)
+
+
+func test_ranged_weapons_can_be_battle_damaged() -> void:
+	var scroll := _damaged_scroll("The Rock Sling is weaker.", [_weapon("Fist")], [_weapon("Rock Sling", 12)])
+	assert_eq(WarscrollCard.battle_damaged_weapons(scroll), PackedStringArray(["Rock Sling"]))
+
+
+func test_unit_without_battle_damaged_has_no_damaged_weapons() -> void:
+	var scroll := _scroll()
+	scroll.melee_weapons = [_weapon("Fist")] as Array[Weapon]
+	assert_eq(WarscrollCard.battle_damaged_weapons(scroll).size(), 0)
+
+
+func test_other_abilities_naming_a_weapon_do_not_count() -> void:
+	var scroll := _damaged_scroll("Nothing.", [_weapon("Fist")])
+	var other := Kit.ability("Mighty Swing")
+	other.text = "Pick the Fist."
+	scroll.abilities.append(other)
+	assert_eq(WarscrollCard.battle_damaged_weapons(scroll).size(), 0)
+
+
+func test_card_shows_a_skull_only_on_affected_weapons() -> void:
+	var scroll := _damaged_scroll("The Rock Sling is weaker.", [_weapon("Fist")], [_weapon("Rock Sling", 12)])
+	var card := _card(scroll)
+	var skulls := _skulls(card)
+	assert_eq(skulls.size(), 1)
+	var row: Node = skulls[0].get_parent()
+	assert_eq(row.get_child(1).text, "Rock Sling")
+
+
+func test_skull_explains_itself_in_a_tooltip() -> void:
+	var scroll := _damaged_scroll("The Fist is weaker.", [_weapon("Fist")])
+	assert_string_contains(_skulls(_card(scroll))[0].tooltip_text, "Battle Damaged")
+
+
+func test_weapon_table_shows_no_skull_without_damaged_weapons() -> void:
+	var table := WarscrollCard.weapon_table([_weapon("Fist")] as Array[Weapon], false)
+	add_child_autofree(table)
+	assert_eq(_skulls(table).size(), 0)
+
+
+func test_weapon_table_puts_skulls_on_the_named_weapons() -> void:
+	var table := WarscrollCard.weapon_table([_weapon("Fist"), _weapon("Kick")] as Array[Weapon], false,
+			PackedStringArray(["Kick"]))
+	add_child_autofree(table)
+	assert_eq(_skulls(table).size(), 1)

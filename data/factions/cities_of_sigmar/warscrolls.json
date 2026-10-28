@@ -34,6 +34,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly SIGMARITE unit wholly within 12\" of this unit to be the target.",
 					"effect": "Make an arcane manipulation roll of D6. On a 3+, the target's melee weapons have Crit (Mortal) until the start of your next turn."
@@ -83,6 +84,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "You can spend 1 rage dice. If you do:\n• Apply the effect below.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nOtherwise, roll a dice. On a 3+, apply the effect below.\nUntil the start of your next turn, add 1 to casting rolls for friendly CITIES OF SIGMAR units while they are wholly within 6\" of this unit."
 				}
@@ -144,6 +146,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "While this unit is under orders, each time a shooting attack made by this unit scores a critical hit, subtract 1\" from the target unit's Move characteristic until the start of your next turn (this effect is cumulative). This ability cannot reduce the target unit's unmodified Move characteristic below half its starting value."
 				}
 			],
@@ -201,6 +204,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"effect": "If this unit is under orders, for the rest of the turn:\n• Add 6\" to the Range characteristic of this unit's Auralan Bows.\n• Subtract 1 from hit rolls for this unit's shooting attacks."
 				}
 			],
@@ -247,6 +251,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If this unit is under orders and has not charged this turn, ignore the effect of the Charge (+1 Damage) ability for combat attacks made by enemy units that target this unit."
 				}
 			],
@@ -306,6 +311,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
 					"effect": "If this unit is under orders, apply the effect below. Otherwise, roll a dice. On a 3+, apply the effect below.\nSubtract 2 from the Damage characteristic of the target's Companion melee weapons for the rest of the turn."
 				}
@@ -355,6 +361,7 @@
 					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "The target cannot use commands for the rest of the turn.",
 					"casting_value": 7,
@@ -367,6 +374,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make an arcane manipulation roll of D6. On a 3+, for the rest of the turn, when picking a target for the 'Deathly Candlelight' ability, you can pick a visible enemy unit within 18\" of this unit instead of within 12\"."
 				}
@@ -414,6 +422,7 @@
 					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target was not incandescent when they were picked to be the target of this spell:\n• Inflict D3 mortal damage on the target.\n• The target is incandescent for the rest of the battle.\nIf the target was incandescent when they were picked to be the target of this spell:\n• Allocate 3 damage points to the target (ward rolls cannot be made for those damage points).\n• The target is no longer incandescent.",
 					"casting_value": 6
@@ -423,6 +432,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make an arcane manipulation roll of D6. On a 3+, for the rest of the turn, when picking a target for the 'Incandescent Incineration' ability, you can pick a visible enemy unit within 18\" of this unit instead of within 12\"."
 				}
@@ -473,6 +483,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is within the combat range of a friendly INFANTRY unit that has 5 or more models and there are no enemy units within this unit's combat range, this unit is not visible to enemy units."
 				},
 				{
@@ -480,6 +491,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "This unit has STRIKE-FIRST if it charged in the same turn."
 				}
@@ -525,6 +537,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "Pick a SPELL ability that this unit can use. For the rest of the battle, no mortal damage is inflicted on this unit if it miscasts that spell."
 				}
@@ -584,6 +597,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Make a number of D3 rolls equal to the current battle round number. For each 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -593,6 +607,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to hit rolls for the target's combat attacks until the start of your next turn."
@@ -666,6 +681,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll a dice. On a 2+, add 1 to the Damage characteristic of this unit's Griffon's Razor Claws and Twin Beaks for attacks that target enemy MONSTERS for the rest of the turn.",
 					"keywords": [
@@ -677,6 +693,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Griffon's Razor Claws and Twin Beaks is 4."
 				}
 			],
@@ -746,6 +763,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Each time this unit attacks with its Searing Beam of Light, pick a point on the battlefield within range to be the target. If the attack scores a hit, draw a straight line between that point and the closest point on this unit's base. Inflict D3 mortal damage on each visible unit (friendly and enemy) that the line passes across."
 				},
 				{
@@ -753,6 +771,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, the target has WARD (6+) while it is wholly within 12\" of and visible to this unit."
@@ -810,6 +829,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat, it can immediately use the 'Shoot' ability as if it were your shooting phase. All attacks must target the same enemy unit, and the enemy unit picked to be the target of the attacks must be in combat with this unit and have charged this phase."
 				}
@@ -860,6 +880,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly Black Ark Corsairs unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn."
 				}
 			],
@@ -901,6 +922,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly CITIES OF SIGMAR AELF INFANTRY HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				}
 			],
@@ -947,6 +969,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of this unit's melee weapons while it is contesting an objective you do not control."
 				}
@@ -991,6 +1014,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 3\" from all enemy units."
 				},
@@ -999,6 +1023,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "The first time this unit would be destroyed, before removing it from the battlefield, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (5) this unit."
 				}
 			],
@@ -1045,6 +1070,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit's Pater Filius is on the battlefield, it has PRIEST (1)."
 				},
 				{
@@ -1052,6 +1078,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a combat attack made by this unit scores a critical hit, you can pick an enemy unit within 6\" of this unit that was not the target of that combat attack. Inflict 1 mortal damage on that enemy unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -1059,6 +1086,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "You can pick a visible enemy unit within 12\" of this unit to be the target. Then, make a chanting roll of D6.",
 					"effect": "This unit has WARD (5+) for the rest of the turn. If a target was picked, inflict D3 mortal damage on the target. If the chanting roll was 10+, inflict 3 mortal damage on the target instead.",
 					"chanting_value": 5,
@@ -1127,6 +1155,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"declare": "This unit can use this ability even if it is in the shadows. If there is no enemy mark, pick an enemy HERO on the battlefield to be the target. If there are no enemy HEROES on the battlefield, pick an enemy non-HERO unit on the battlefield to be the target instead.",
 					"effect": "The target is the mark for the rest of the battle."
 				},
@@ -1135,6 +1164,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Double the Damage characteristic of this unit's melee weapons for attacks that target the enemy mark."
 				}
 			],
@@ -1219,6 +1249,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
@@ -1226,6 +1257,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 or more of the following effects. For each effect you pick, give this unit a number of heat tokens equal to the number beside it.\n1 Launch Countermeasures!: Until the start of your next turn, subtract 1 from hit rolls for shooting attacks that target other friendly SIGMARITE units while they are wholly within 12\" of this unit and are under orders.\n2 Full Throttle: For the rest of the turn, this unit's Move characteristic is 10\".\n3 Calculate Firing Solution!: For the rest of the turn, each time this unit uses a SHOOT ability, you can re-roll 1 hit roll and 1 wound roll for shooting attacks made with this unit's Godbreaker Cannon.\n6 Get Us Out of Here!: For the rest of the turn, this unit can use SHOOT abilities even if it used a RETREAT ability in the same turn."
 				},
@@ -1234,6 +1266,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Immediately after resolving this unit's 'Full Power!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
 				},
 				{
@@ -1241,6 +1274,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit.",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is under orders, roll a dice. On a 3+, pick 1 of the following effects.",
 					"options": [
@@ -1300,6 +1334,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Make a number of D3 rolls equal to the current battle round number. For each 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -1309,6 +1344,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to hit rolls for the target's combat attacks until the start of your next turn."
@@ -1364,6 +1400,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 visible friendly Gyrocopter or Gyrobomber units wholly within 18\" of this unit to be the targets.",
 					"effect": "Roll a dice for each target. On a 3+, until the start of your\nnext turn:\n• Add 1 to hit rolls for the target's attacks.\n• Add 2\" to the target's Move characteristic."
@@ -1440,6 +1477,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
@@ -1447,6 +1485,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 or more of the following effects. For each effect you pick, give this unit a number of heat tokens equal to the number beside it.\n1 Breaching Assist!: If this unit uses the 'Sally Forth' ability this turn, melee weapons used by the targets of that ability have Charge (+1 Damage) for the rest of the turn.\n2 Full Throttle: For the rest of the turn, this unit's Move characteristic is 10\".\n3 Repel Boarders!: For the rest of the turn, add 2 to the Attacks characteristic of this unit's Leadshotters and Crushing Iron Feet.\n4 Disengage Safeties!: For the rest of the turn, the Attacks characteristic of this unit's Realmscorcher Flame Cannon is 22.\n6 Get Us Out of Here!: For the rest of the turn, this unit can use SHOOT abilities even if it used a RETREAT ability in the same turn."
 				},
@@ -1455,6 +1494,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Immediately after resolving this unit's 'Full Charge!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
 				},
 				{
@@ -1462,6 +1502,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick up to 1 friendly SIGMARITE INFANTRY HERO and up to 1 friendly non-HERO SIGMARITE INFANTRY unit that have not been deployed.",
 					"effect": "Set up those units in reserve as this unit's passengers. They have now been deployed.",
 					"keywords": [
@@ -1473,6 +1514,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit has not used a RUN ability this turn, pick this unit's passengers to be the targets.",
 					"effect": "Set up each target wholly within 6\" of this unit and either not in combat or within 1/2\" of an enemy unit. If a target is set up in combat, it has charged. Then, if this unit is not under orders, this unit and the targets are under orders for the rest of the battle round."
@@ -1544,6 +1586,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• Inflict D3 mortal damage on the target.\n• This unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
@@ -1602,6 +1645,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, add 1 to the Attacks characteristic of this unit's Master‑crafted Repeater Crossbows for the rest of the turn."
 				}
@@ -1636,6 +1680,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Normal Move' ability for a CITIES OF SIGMAR INFANTRY unit within 3\" of this terrain feature",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "After the 'Normal Move' ability has been resolved, pick a point on the battlefield within 1\" of the unit that used that ability and within 6\" of this terrain feature. Remove this terrain feature from the battlefield and set it up again within 1\" of that point and more than 3\" from all enemy units."
 				},
@@ -1644,6 +1689,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick a visible enemy unit within 6\" of this terrain feature to be the target.",
 					"effect": "If this terrain feature is in combat, apply the effect below. Otherwise, roll a dice. On a 3+, apply the effect below.\nFor the rest of the turn, melee weapons used by friendly CITIES OF SIGMAR INFANTRY and CAVALRY units have Crit (Auto-wound) for attacks that target that enemy unit."
 				}
@@ -1701,6 +1747,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -1758,6 +1805,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of this unit's Drakespawn's Ferocious Jaws while it is in combat with any enemy units that had any damage points allocated to them this phase or that had any models slain this phase."
 				}
@@ -1806,6 +1854,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "You must use this ability.",
 					"effect": "If any enemy models have been slain by this unit's combat attacks this turn, until the end of the next turn:\n• This unit cannot use RETREAT abilities.\n• Add 1 to hit rolls for this unit's combat attacks."
 				},
@@ -1814,6 +1863,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"effect": "Allocate D3 damage points to this unit (ward rolls cannot be made for those damage points). Then, add the number of damage points allocated to this unit by this ability this turn to the Attacks characteristic of this unit's melee weapons for the rest of the turn."
 				}
 			],
@@ -1902,6 +1952,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Black Dragon's Claws is 4."
 				},
 				{
@@ -1909,6 +1960,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick each other unit (friendly and enemy) within this unit's combat range to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
@@ -1921,6 +1973,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Add 1 to charge rolls for friendly CITIES OF SIGMAR AELF CAVALRY units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -1966,6 +2019,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit did not charge this turn, add 1 to wound rolls for this unit's attacks for the rest of the turn."
 				}
@@ -2020,6 +2074,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "If this unit is not in combat, pick a non-FACTION TERRAIN terrain feature within 3\" of this unit to be the target.",
 					"effect": "Remove this unit from the battlefield and set it up again within 3\" of the target and not in combat."
 				},
@@ -2028,6 +2083,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit is in combat with 2 or more enemy units, this unit's Runic Axes have Crit (2 Hits)."
 				}
 			],
@@ -2070,6 +2126,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly INFANTRY HEROES while those friendly units are within 3\" of this unit."
 				},
 				{
@@ -2077,6 +2134,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after that FIGHT ability has been resolved."
 				}
 			],
@@ -2137,6 +2195,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "If this unit is wholly within 9\" of a corner of the battlefield, pick 1 of the following effects to apply until the start of your next turn:",
 					"options": [
 						{
@@ -2162,6 +2221,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy MANIFESTATION within 12\" of this unit and that was not set up this turn to be the target.",
 					"effect": "Make an arcane manipulation roll of 2D6. If the roll equals or exceeds the target's banishment value, set up an ENDLESS SPELL that can be summoned using a SUMMON spell that this unit can cast within 1\" of the target and more than 3\" from all enemy units and other enemy MANIFESTATIONS. If that ENDLESS SPELL has multiple parts, both parts must be set up within 1\" of the target. This unit has summoned that ENDLESS SPELL. If there is already a friendly ENDLESS SPELL of the same type on the battlefield, it is immediately banished and removed from play before being set up as described above. Then, the target is banished and removed from play."
 				},
@@ -2170,6 +2230,7 @@
 					"type": "spell",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "Remove this unit from the battlefield and set it up again wholly within 9\" of a corner of the battlefield and more than 3\" from all enemy units.",
 					"casting_value": 6,
@@ -2219,6 +2280,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, this unit's melee weapons have Crit (Mortal)."
 				}
@@ -2263,6 +2325,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While a friendly SIGMARITE PRIEST is wholly within this unit's combat range, add 1 to wound rolls for this unit's combat attacks."
 				}
 			],
@@ -2338,6 +2401,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Counter-charge' command for this unit.",
+					"colour": "orange",
 					"effect": "Pick a visible friendly non-HERO SIGMARITE CAVALRY unit that is wholly within 12\" of this unit, is not in combat and has not used a RUN ability this turn to be the target. After the 'Counter-charge' command for this unit has been resolved, if this unit is in combat, the target can immediately use the 'Charge' ability as if it were your charge phase. In addition, you can re-roll charge rolls for the target for the rest of the phase."
 				},
 				{
@@ -2345,6 +2409,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick this unit and up to 2 non-HERO SIGMARITE CAVALRY units that charged this turn and are wholly within 12\" of this unit to be the targets.",
 					"effect": "For each target:\n• Make a pile-in move.\n• Then, pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll."
@@ -2402,6 +2467,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is in combat and has not charged this turn, pick an enemy unit that it is in combat with and up to 1 friendly Freeguild Cavalier-Marshal within this unit's combat range to be the targets.",
 					"effect": "If this unit is under orders, apply the effect below. Otherwise, roll a dice. On a 3+, apply the effect below.\nThis unit and the friendly target can use the 'Charge' ability even if it is not your charge phase and even if those units are in combat. Both friendly units must end that move in combat with the enemy target."
@@ -2462,6 +2528,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit is in combat and has not charged this turn, pick this unit and up to 1 friendly Freeguild Cavalier-Marshal or Freeguild Marshal on Griffon within this unit's combat range to be the targets.",
 					"effect": "Roll a dice. Add 1 to the roll if there are fewer models in this unit than the total number of enemy models in units that are in combat with this unit. On a 4+, for the rest of the turn, the targets count as having charged."
 				}
@@ -2505,6 +2572,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SIGMARITE unit wholly within 12\" of this unit and under orders to be the target.",
 					"effect": "If this unit is in combat, apply the effect below. Otherwise, roll a dice. On a 3+, apply the effect below.\nAdd 5 to the target's control score until the start of your next turn."
@@ -2548,6 +2616,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit contains a Soul Shepherd, pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot be healed or have slain models returned to it until the start of your next turn."
@@ -2557,6 +2626,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat and contains a War Surgeon, pick a visible friendly non-WAR MACHINE SIGMARITE unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+,\nIf the target is a non-HERO INFANTRY unit, return D3 slain models to it.\nIf the target is a non-HERO CAVALRY unit, return 1 slain model to it.\nIf the target is a HERO or MONSTER, Heal (D3) the target."
@@ -2604,6 +2674,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "This unit cannot use or be picked as the target of the 'Form Up!' ability.\nWhile this unit is within the combat range of a friendly SIGMARITE INFANTRY unit that has 3 or more models and there are no other friendly Whisperblades within that unit's combat range, this unit cannot be picked to be the target of shooting attacks or combat attacks."
 				}
 			],
@@ -2653,6 +2724,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit and this unit is in combat",
+					"colour": "blue",
 					"frequency": "Once Per Battle",
 					"effect": "This unit's Blackpowder Squire is a token. Remove this unit's Blackpowder Squire from the battlefield, then add 1 to the Rend characteristic of this unit's ranged weapons for the rest of the turn."
 				},
@@ -2661,6 +2733,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is under orders:\n• This unit's ranged weapons have Shoot in Combat.\n• Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit."
 				}
 			],
@@ -2702,6 +2775,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit has not charged this turn, add 1 to the Attacks characteristic and Damage characteristic of this unit's melee weapons."
 				},
 				{
@@ -2709,6 +2783,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "While this unit is under orders, the melee weapons of other visible friendly SIGMARITE units, excluding Freeguild Gallants units, have Anti-charge (+1 Rend) while they are wholly within 12\" of this unit."
 				}
 			],
@@ -2760,6 +2835,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit contains a Cindergout, pick a terrain feature or objective contested by this unit, then pick any enemy units contesting that terrain feature or objective to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -2823,6 +2899,7 @@
 					"type": "command",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "If this unit is under orders, pick a friendly SIGMARITE INFANTRY or MONSTER unit that is wholly within 12\" of this unit or has this unit's Relic Envoy next to it and that has not used a FIGHT ability this turn to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, the target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn",
 					"command_points": 1
@@ -2832,6 +2909,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "This unit's Relic Envoy is a token. Pick a visible friendly SIGMARITE unit wholly within 18\" of this unit and not under orders to be the target.",
 					"effect": "Place this unit's Relic Envoy next to the target. While this unit is under orders and on the battlefield and this unit's Relic Envoy is next to the target, the target is under orders."
@@ -2895,6 +2973,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Griffon's Razor Claws and Deadly Beak is 4."
 				},
 				{
@@ -2902,6 +2981,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly CITIES OF SIGMAR unit wholly within 12\" of this unit",
+					"colour": "grey",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
@@ -2909,6 +2989,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
 					"effect": "Roll a dice for each target. On a 4+, the target cannot use commands for the rest of the turn.",
@@ -2955,6 +3036,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit has 5 or more models, pick an enemy unit in combat with this unit to be the target.",
 					"effect": "If this unit is under orders, apply the effect below. Otherwise, roll a dice. Subtract 1 from the roll if the target is a MONSTER. On a 4+, apply the effect below.\nFor the rest of the turn, if this unit is in combat with the target when the target is picked to use a FIGHT ability:\n• This unit must be picked to be the target of pile-in move made by the target.\n• All attacks made by models in the target unit within this unit's combat range must target this unit."
@@ -3021,6 +3103,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 24\" of this unit to be the target.",
 					"effect": "For the rest of the turn, add 1 to hit rolls for attacks made by friendly SIGMARITE units that are under orders that target that enemy unit."
@@ -3096,6 +3179,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit contains 2 models, it has WARD (5+)."
 				},
 				{
@@ -3103,6 +3187,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly SIGMARITE unit wholly within 12\" of this unit and under orders to be the target.",
 					"effect": "Until the start of your next turn, while the target is wholly within 12\" of this unit and under orders, add 1 to the Damage characteristic of the target's weapons for combat attacks that target enemy WIZARDS, PRIESTS, and MANIFESTATIONS."
 				}
@@ -3158,6 +3243,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 other visible friendly SIGMARITE units in combat with any enemy units that are in combat with this unit to be the targets.",
 					"effect": "Each target can use SHOOT and/or CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on the targets by RETREAT abilities for the rest of the turn."
@@ -3167,6 +3253,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly non-WAR MACHINE CITIES OF SIGMAR unit wholly within 12\" of this unit to be the target.",
 					"effect": "Add 2 to charge rolls for the target for the rest of the turn."
@@ -3224,6 +3311,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is under orders, pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
 					"effect": "Until the start of your next turn:\n• Add 2 to charge rolls for this unit.\n• Each time this unit uses a CHARGE ability, it must end the charge move in combat with the target."
@@ -3233,6 +3321,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: This unit used the 'Redeploy', 'All-out Attack', 'Covering Fire', or 'All-out Defence' command",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "This unit's Greycap Squire is a token. Remove this unit's Greycap Squire from the battlefield. Pick another visible friendly Greycap Fusiliers unit wholly within 12\" of this unit and that has not used a command this phase to use the same command immediately after the first has been resolved (this is an exception to Commands, 1.2). You must still spend command points as normal to use the command a second time."
 				}
@@ -3292,6 +3381,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit used a MOVE ability this phase, pick an enemy unit that does not have FLY and that this unit passed across this turn to be the target.",
 					"effect": "Pick 1 of the following effects:",
@@ -3355,6 +3445,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit used a MOVE ability this phase, pick an enemy unit that does not have FLY and that this unit passed across this turn to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -3401,6 +3492,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly Warden Kings are wholly within this unit's combat range, both this unit and those friendly Warden Kings have WARD (5+)."
 				}
 			],
@@ -3475,6 +3567,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Add 1 to the damage inflicted (if any) on the target if it has the DEATH, DAEMON or WIZARD keyword."
 				},
@@ -3483,6 +3576,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of First Battle Round",
+					"colour": "black",
 					"declare": "Pick an enemy HERO or WIZARD to be hunted by the Order. You must pick a WIZARD HERO if there is one in your opponent's army.",
 					"effect": "Add 1 to the damage inflicted by this unit's attacks that target the unit picked to be hunted by the Order.",
 					"options": [
@@ -3550,6 +3644,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, each time the target is picked to use a MOVE ability, roll a dice as a reaction. On a 3+, the target cannot end that move closer to this unit.",
 					"casting_value": 7,
@@ -3562,6 +3657,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a visible friendly unit within 3\" of this unit to be the target.",
 					"effect": "Heal (2D3) the target."
@@ -3607,6 +3703,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, attacks that target this unit cannot score critical hits (treat them as regular hits instead)."
 				}
 			],
@@ -3663,6 +3760,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat, pick a visible enemy unit within 6\" of it to be the target.",
 					"effect": "Roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll."
@@ -3717,6 +3815,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that was targeted by this unit's shooting attacks this phase to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if this unit is under orders. On a 3+, subtract 2 from charge rolls and run rolls for the target unit until the start of your next turn."
@@ -3772,6 +3871,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an objective or visible non-FACTION TERRAIN terrain feature within 12\" of this unit to be the target. Then, make a casting roll of 2D6.",
 					"effect": "For the rest of the battle, subtract 1 from hit rolls for shooting attacks that target friendly INFANTRY or CAVALRY units while they are wholly within 3\" of the target.",
 					"casting_value": 6
@@ -3781,6 +3881,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "If there is not a friendly Wisper on the battlefield, set up a friendly Wisper wholly within 12\" of this unit, visible to it and more than 9\" from all enemy units. This unit has summoned that MANIFESTATION.",
 					"summons": [
 						"wisper"
@@ -3832,6 +3933,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit's Thexa is next to an enemy unit, that enemy unit's attacks cannot score critical hits (treat them as regular hits instead)."
 				},
 				{
@@ -3839,6 +3941,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "This unit's Thexa is a token. If this unit's Thexa is not on the battlefield, pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Place this unit's Thexa next to the target, then roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If the target is destroyed while this unit's Thexa is next to it, remove this unit's Thexa from the battlefield."
 				},
@@ -3847,6 +3950,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for this unit or a non-HERO SIGMARITE INFANTRY unit wholly within 12\" of this unit.",
+					"colour": "red",
 					"effect": "Immediately after the FIGHT ability used by that unit has been resolved, pick a point on the battlefield within 6\" of this unit and more than 3\" from all units (friendly and enemy) and terrain features. Remove the unit that used the FIGHT ability from the battlefield and set it up again wholly within 6\" of that point and not in combat."
 				}
 			],
@@ -3892,6 +3996,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Double the Attacks characteristic of this unit's Companion melee weapons for the rest of the turn."
 				},
@@ -3900,6 +4005,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target has a maximum control score of\n1 for the rest of the turn.",
@@ -3956,6 +4062,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit has a Devout Flamebringer, pick a visible enemy unit within 10\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, for the rest of the turn, the target cannot end charge moves within 1/2\" of this unit unless the unmodified charge roll was 5 or more."
@@ -3999,6 +4106,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick another friendly CITIES OF SIGMAR DUARDIN unit wholly within 12\" of this unit to be the target. You cannot pick a Longbeards unit.",
 					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target's combat attacks for the rest of the turn."
@@ -4057,6 +4165,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Each time this unit attacks with its Searing Beam of Light, pick a point on the battlefield within range to be the target. If the attack scores a hit, draw a straight line between that point and the closest point on this unit's base. Inflict D3 mortal damage on each visible unit (friendly and enemy) that the line passes across."
 				},
 				{
@@ -4064,6 +4173,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly CITIES OF SIGMAR unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, the target has WARD (6+) while it is wholly within 12\" of and visible to this unit."
@@ -4113,6 +4223,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an objective you control that this unit is contesting to be the target.",
 					"effect": "If there are no enemy units contesting the target objective, it is considered by you to be consecrated. Otherwise, roll a dice. On a 3+, the target objective is considered by you to be consecrated.\nWhile they are wholly within 6\" of a consecrated objective and under orders:\n• Friendly non-WAR MACHINE SIGMARITE units have WARD (5+).\n• Friendly SIGMARITE WAR MACHINES have WARD (6+).\nIf your opponent gains control of a consecrated objective, it is no longer consecrated."
@@ -4171,6 +4282,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a model in a visible friendly SIGMARITE unit wholly within 12\" of this unit is slain by a combat attack and that model was in combat with the attacking unit, make a number of zealotry rolls of D6 equal to that model's Health characteristic. For each 6+, inflict 1 mortal damage on the attacking units after the FIGHT ability has been resolved."
 				},
 				{
@@ -4178,6 +4290,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a chanting roll of D6. If the roll is an unmodified 1, you can re-roll the dice.",
 					"effect": "Pick 1 of the following effects. Pick up to 2 different effects instead if the chanting roll was 10+.",
 					"chanting_value": 5,
@@ -4257,6 +4370,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly SIGMARITE unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
 					"effect": "Until the start of your next turn:\n• The target's melee weapons have Charge (+1 Damage).\n• If the chanting roll was 10+, the target has WARD (5+) if it charged in the same turn.",
 					"chanting_value": 5,
@@ -4269,6 +4383,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "If this unit would be destroyed, before removing it from play, this unit can immediately use the 'Sigmar's Blessing' ability as if it were your hero phase. If it does so:\n• That prayer does not count towards the number of PRAYER abilities this unit can use this phase.\n• Instead of making a chanting roll for that prayer, you must use a value of 10 for the roll that cannot be modified.\n• The effect of that prayer applies for the rest of the battle instead of until the start of your next turn."
 				}
 			],
@@ -4319,6 +4434,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy WIZARD, PRIEST or MANIFESTATION within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• If the target is a MANIFESTATION, it is banished and removed from the battlefield..\n• If the target is a WIZARD or PRIEST, inflict an amount of mortal damage on the target equal to the roll."
 				},
@@ -4327,6 +4443,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a chanting roll of D6. If the roll is an unmodified 1, you can re-roll the dice.",
 					"effect": "Pick 1 of the following effects. Pick up to 2 different effects instead if the chanting roll was 10+.",
 					"chanting_value": 4,
@@ -4394,6 +4511,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a PRAYER ability for this unit",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If that prayer was answered, the following cumulative effects apply until the start of your next turn.\n• If the chanting roll for that prayer was 5+, this unit has WARD (5+).\n• If the chanting roll for that prayer was 10+, add 2\" to the Move characteristic of friendly LETHIS INFANTRY units while the are wholly within 12\" of this unit."
 				}
@@ -4440,6 +4558,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit can use the 'Unbind' ability as if it had WIZARD (1)."
 				},
 				{
@@ -4447,6 +4566,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly CITIES OF SIGMAR DUARDIN unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
 					"effect": "If the chanting roll was 10+, you can pick another eligible unit to be a second target. Until the start of your next turn, add 1 to the Rend characteristic of each target's melee weapons.",
 					"chanting_value": 5,
@@ -4522,6 +4642,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, add 1 to hit rolls and wound rolls for this unit's shooting attacks that target enemy MONSTERS."
 				}
@@ -4567,6 +4688,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly CITIES OF SIGMAR AELF unit wholly within 6\" of this unit to be the target.",
 					"effect": "Add 1 to casting rolls for this unit for the rest of the turn. Then, roll a dice. On a 4+, 1 model in the target unit is slain."
@@ -4576,6 +4698,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract 1 from hit rolls and wound rolls for the target's attacks until the start of your next turn."
@@ -4662,6 +4785,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Black Dragon's Claws is 4."
 				},
 				{
@@ -4669,6 +4793,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 friendly CITIES OF SIGMAR AELF INFANTRY units wholly within 12\" of this unit to be targets.",
 					"effect": "Add 3\" to the Move characteristic of each target for the rest of the turn."
@@ -4678,6 +4803,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If any enemy models are slain by this ability, place a dark sorcery token next to this unit for the rest of the battle, to a maximum of 3 tokens.",
@@ -4690,6 +4816,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls for this unit for each dark sorcery token it has."
 				}
 			],
@@ -4744,6 +4871,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat and has not used a RUN or RETREAT ability this turn, pick a visible terrain feature within 25\" of this unit to be bombarded, then pick each enemy unit within 6\" of that terrain feature to be the targets.",
 					"effect": "Make a bombard roll of D6 for each target. On a 4+, pick 1 of the following effects to apply to that target.\n• If the target is not pinned, it is pinned until the start of your next turn. Then, inflict D3 mortal damage on it.\n• If the target is pinned, it cannot use RUN abilities while it is pinned. Then, inflict D3 mortal damage on it.\n• If the target is FACTION TERRAIN, inflict D3+2 mortal damage on it and abilities on its warscroll have no effect until the start of your next turn.",
@@ -4757,6 +4885,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'Sustained Bombardment' ability for another friendly Spirit of the Hands unit and this unit has not used a SHOOT, RUN, or RETREAT ability this turn",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Add 1 to that unit's bombard rolls."
 				}
@@ -4820,6 +4949,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll 2D6. If the roll is less than the number of damage points this unit has, inflict D3 mortal damage on this unit. Otherwise, pick 1 of the following effects to apply to this unit until the start of your next turn:",
 					"options": [
@@ -4914,6 +5044,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Battle",
 					"declare": "Pick up to 2 friendly Steam Tank units to be the targets.",
 					"effect": "For the rest of the turn, add 1 to hit rolls for shooting attacks made by this unit and by each target."
@@ -4923,6 +5054,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll 2D6. If the roll is less than the number of damage points this unit has, inflict D3 mortal damage on this unit. Otherwise, pick 1 of the following effects to apply to this unit until the start of your next turn:",
 					"options": [
@@ -5006,6 +5138,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Infernadine's Leonine Jaws is 2."
 				},
 				{
@@ -5013,6 +5146,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"declare": "If this unit is not in combat, pick a visible friendly SIGMARITE INFANTRY unit wholly within 18\" of it and that is not in combat to be the target.",
 					"effect": "The target can immediately use the 'Normal Move' ability as if it were your movement phase. In addition, the target is under orders for the rest of the battle round."
 				},
@@ -5021,6 +5155,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit is in combat, pick each visible friendly SIGMARITE unit wholly within 12\" of this unit to be the targets.",
 					"effect": "Add 1 to hit rolls and wound rolls for the targets' combat attacks for the rest of the turn."
@@ -5030,6 +5165,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. If the roll is equal to or less than the target's Health characteristic, subtract 1 from wound rolls for the target's attacks for the rest of the turn.",
 					"keywords": [
@@ -5122,6 +5258,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
@@ -5129,6 +5266,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 or more of the following effects to apply for the rest of the turn. For each effect you pick, give this unit a number of heat tokens equal to the number beside it.\n1 Load Triple Shot!: This unit's Breacher Cannon has Crit (2 Hits).\n1 Go, Go, Go!: When making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll.\n3 Get Us In There!: This unit's Crushing Iron Feet have Charge (+1 Damage)\n3 Load Chain Shot!: Each time this unit uses a SHOOT ability, after that ability has been resolved, if any enemy models were slain by attacks made with this unit's Breacher Cannon, for each model slain by those attacks, inflict 1 mortal damage on that model's unit.\n4 Disengage Safeties!:The Attacks characteristic of this unit's Realmscorcher Flame Cannon is 22."
 				},
@@ -5137,6 +5275,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Immediately after resolving this unit's 'Power to Maximum!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
 				}
 			],
@@ -5207,6 +5346,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 				},
 				{
@@ -5214,6 +5354,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 or more of the following effects to apply for the rest of the turn. For each effect you pick, give this unit a number of heat tokens equal to the number beside it.\n1 Trample Them to Dust!: This unit's Crushing Iron Feet have Anti-MONSTER (+1 Rend).\n1 Go, Go, Go!: When making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll.\n2 Get Us In There!: This unit's Crushing Iron Feet have Charge (+1 Damage)\n2 Load Heavy Shot!: Add 1 to the Rend characteristic of this unit's Godbreaker Cannon, but all of this unit's attacks made with that weapon this turn must target the same enemy unit.\n2 Full Throttle!: This unit's Move characteristic is 10\"."
 				},
@@ -5222,6 +5363,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Immediately after resolving this unit's 'Output to Maximum!' ability, you must roll a number of dice equal to the number of heat tokens this unit has. For each 5+, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points), then remove 1 of this unit's heat tokens."
 				},
 				{
@@ -5229,6 +5371,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Battle",
 					"declare": "If this unit has not used a RUN ability this turn, pick this unit's passengers to be the targets.",
 					"effect": "Set up each target wholly within 6\" of this unit and either not in combat or within 1/2\" of an enemy unit. If a target is set up in combat, it has charged. Then, ,if this unit is not under orders, this unit and the targets are under orders for the rest of the battle round."
@@ -5238,6 +5381,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick up to 1 friendly IRON MARCH INFANTRY HERO and up to 1 friendly non-HERO IRON MARCH INFANTRY unit that have not been deployed.",
 					"effect": "Set up those units in reserve as this unit's passengers. They have now been deployed.",
 					"keywords": [
@@ -5287,6 +5431,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit and a friendly Callis and Toll unit if those units have not been deployed.",
 					"effect": "Set up those units in reserve in the shadows. They have now been deployed.",
 					"keywords": [
@@ -5298,6 +5443,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is in the shadows.",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from the enemy mark and more than 9\" from all other enemy units. Then, set up the Callis and Toll unit in the shadows wholly within 6\" of this unit, more than 6\" from the enemy mark and more than 9\" from all other enemy units."
 				},
@@ -5306,6 +5452,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While a friendly Callis and Toll unit is wholly within this unit's combat range, both this unit and that friendly unit have WARD (5+)."
 				}
 			],
@@ -5351,6 +5498,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly CITIES OF SIGMAR DUARDIN unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
@@ -5358,6 +5506,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy unit in your opponent's army to bear a grudge against. You can pick an enemy unit that is in reserve.",
 					"effect": "For the rest of the battle, add 1 to wound rolls for combat attacks made by friendly CITIES OF SIGMAR DUARDIN units that target that unit."
@@ -5419,6 +5568,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Heal (6) this unit."
 				},
@@ -5427,6 +5577,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll 6 dice. For each 3+, inflict 1 mortal damage on the target.",
@@ -5503,6 +5654,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick this unit and up to two friendly non-MONSTER non-WAR MACHINE SIGMARITE units if none of them have been deployed.",
 					"effect": "Set up those units in reserve scouting ahead. They have now been deployed.",
@@ -5515,6 +5667,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick this unit if it is scouting ahead.",
 					"effect": "Set up this unit on the battlefield wholly within 9\" of a battlefield edge and more than 9\" from all enemy units. Then, set up each other friendly unit scouting ahead wholly within 12\" of this unit and more than 9\" from all enemy units."

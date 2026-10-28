@@ -9,6 +9,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "The friendly Synessa and Dexcessa have the TWIN keyword."
 				},
 				{
@@ -16,6 +17,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"frequency": "Once Per Turn",
 					"declare": "If a friendly TWIN destroyed an enemy unit in the previous turn and the other did not, pick the one that did not to use this ability.",
 					"effect": "For the rest of the turn, add 1 to hit rolls for combat attacks made by units in the regiment of the unit using this ability."
@@ -25,6 +27,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If a friendly TWIN is contesting an objective you control and the other is not, pick the one that is not to use this ability.",
 					"effect": "Until the start of your next turn, while the unit using this ability is contesting an objective you control, add 5 to the control scores of units in its regiment."
 				},
@@ -33,6 +36,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If either friendly TWIN is damaged, pick the one with fewer or no damage points to use this ability.",
 					"effect": "For the rest of the turn, the unit using this ability has WARD (4+)."
@@ -42,6 +46,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If a friendly TWIN charged in the previous turn and the other did not, pick the one that did not to use this ability.",
 					"effect": "For the rest of the phase, when making charge rolls for units in the regiment of the unit using this ability, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll."
@@ -51,6 +56,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If both friendly TWINS are within 12\" of and visible to each other, pick 1 of them to use this ability.",
 					"effect": "Remove the unit using this ability from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
@@ -65,6 +71,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"frequency": "Once Per Battle",
 							"declare": "Pick a friendly TWIN that has been destroyed to be the target.",
 							"effect": "Set up a replacement unit identical to the target within 12\" of this unit and more than 9\" from all enemy units."
@@ -79,6 +86,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "While a friendly TWIN is within 3\" of and visible to this unit, subtract 1 from hit rolls for attacks that target that TWIN and this unit.\nWhile 2 friendly TWINS are within 3\" of and visible to this unit, subtract 1 from hit rolls and wound rolls for attacks that target those TWINS and this unit instead."
 						}
 					]
@@ -94,6 +102,7 @@
 							"type": "spell",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, pick a visible friendly Twin to be the donor, pick another visible friendly TWIN to be the target, then make a casting roll of 2D6.",
 							"effect": "Allocate any number of damage points to the donor (ward rolls cannot be made for those damage points). Then, Heal (X) the target, where X is double the number of damage points allocated to the donor by the use of this ability.",
 							"casting_value": 6,
@@ -107,6 +116,7 @@
 							"type": "spell",
 							"category": "movement",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn, while a friendly TWIN is visible to the target, halve the target’s Move characteristic. In addition, while 2 friendly TWINS are visible to the target, your opponent must roll 1 fewer dice, to a minimum of 1, when making charge rolls for it.",
 							"casting_value": 7,
@@ -137,6 +147,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly COURT OF THE GODLINGS WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Pick a friendly HEDONITES OF SLAANESH MANIFESTATION that is not on the battlefield and that was not removed from play earlier in the same turn.\nIf you picked a Dreadful Visage or Wheels of Excruciation, set it up wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. If you picked a Mesmerising Mirror, set it up wholly within 12\" of the caster and visible to them.",
 							"casting_value": 6,
@@ -163,6 +174,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick the friendly Sigvald to use this ability then pick a visible unit (friendly or enemy) within 3\" of him to be the target.",
 					"effect": "Inflict D3 mortal damage on the target. For each model slain by this ability this turn, add 2 to the Attacks characteristic of the friendly Sigvald's melee weapons for the rest of the turn."
@@ -172,6 +184,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "If the friendly Sigvald has been destroyed, pick him to be the target. He can be replaced even if he is a replacement unit.",
 					"effect": "Set up a replacement unit identical to the target wholly within 6\" of a friendly Contorted Epitome and not in combat."
 				},
@@ -180,6 +193,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While the friendly Sigvald is within 3\" of and visible to any friendly DECADENT HOST DAEMON units, add 1 to wound rolls for combat attacks made by those DAEMON units."
 				},
 				{
@@ -187,6 +201,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While the friendly Sigvald is within the combat range of another friendly DECADENT HOST SYBARITE unit:\n• He has WARD (2+).\n• Each time you make a successful ward roll for him, allocate 1 damage point to another friendly DECADENT HOST unit within his combat range after the damage sequence has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
@@ -194,6 +209,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If the friendly Sigvald is not contesting an objective, he can move 2D6\" but must end that move contesting an objective. He can move through the combat ranges of enemy units but cannot end that move in combat."
 				},
@@ -202,6 +218,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If the friendly Sigvald is not in combat and did not charge this turn, pick him to use this ability, then pick another friendly DECADENT HOST unit within 1\" of him to be the target.",
 					"effect": "Inflict D6 mortal damage on the target. Before removing any slain models from play, remove the friendly Sigvald from the battlefield then set him up again within 1\" of the target."
@@ -216,6 +233,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Reaction: You declared the 'The Prince in the Mirror' ability.",
+							"colour": "grey",
 							"frequency": "Once Per Battle (Army)",
 							"effect": "You can set up a replacement Sigvald within 1\" of this unit instead of within 6\" of a friendly Contorted Epitome. If you do so, after setting up that replacement unit, this unit is automatically destroyed."
 						}
@@ -229,6 +247,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "Weapons used by this unit have a maximum Attacks characteristic of 1.\nWhile this unit is within 3\" of and visible to the friendly Sigvald, add 20 to the friendly Sigvald's control score."
 						}
 					]
@@ -244,6 +263,7 @@
 							"type": "spell",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly DECADENT HOST WIZARD to cast this spell, pick a visible friendly Sigvald wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Heal (D3) the target.",
 							"casting_value": 6,
@@ -257,6 +277,7 @@
 							"type": "spell",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly DECADENT HOST WIZARD to cast this spell, pick a visible friendly Sigvald wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn, the target scores critical hits on unmodified hit rolls of 5+.",
 							"casting_value": 6,
@@ -275,6 +296,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly DECADENT HOST WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Pick a friendly HEDONITES OF SLAANESH MANIFESTATION that is not on the battlefield and that was not removed from play earlier in the same turn.\nIf you picked a Dreadful Visage or Wheels of Excruciation, set it up wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. If you picked a Mesmerising Mirror, set it up wholly within 12\" of the caster and visible to them.",
 							"casting_value": 6,

@@ -20,6 +20,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "The next time a friendly DISCIPLES OF TZEENTCH unit uses a SPELL ability this phase, when picking targets for that spell, you can measure range and visibility from this terrain feature instead of from the caster, and your opponent can measure range and visibility to this terrain feature instead of to the caster for the purposes of the 'Unbind' ability."
 				},
@@ -28,6 +29,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 of the following effects:\n• If there is only 1 friendly Argent Shard on the battlefield, set up another Argent Shard wholly within 12\" of this terrain feature, more than 1\" from all other terrain features, more than 3\" from all objectives and more than 9\" from all enemy units.\n• Remove this terrain feature from the battlefield and set it up again on the battlefield more than 1\" from all other terrain features, more than 3\" from all objectives and more than 9\" from all enemy units."
 				}
@@ -83,6 +85,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Roll a dice for each Blue Horror model in this unit that is slain. For each 3+, if there are fewer Brimstone Horrors models in this unit than its starting size, you can add 1 Brimstone Horrors model to this unit.",
 					"options": [
 						{
@@ -96,6 +99,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Slain Brimstone Horrors cannot be returned to this unit. When setting up a replacement unit for this unit, Brimstone Horror models are ignored when determining the number of models in this unit, and you cannot pick them to be set up."
 				}
 			],
@@ -165,6 +169,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 1, gain 1 fate point. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• This unit can immediately use a RETREAT ability as if it were your movement phase. No mortal damage is inflicted on this unit by that RETREAT ability."
@@ -200,6 +205,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "This MANIFESTATION must use this ability in each hero phase. Pick each unit (friendly and enemy) within 9\" of this MANIFESTATION to be the targets.",
 					"effect": "Roll 2 dice, pick either result, then apply the corresponding effect for the rest of the turn:\n1 No effect.\n2-3 Heal (D3) each friendly DISCIPLES OF TZEENTCH target. Inflict D3 mortal damage on each enemy target.\n4 Friendly DISCIPLES OF TZEENTCH targets can use CHARGE abilities even if they used a RUN ability in the same turn. Enemy targets cannot use RUN abilities.\n5 Add 1 to hit rolls for attacks made by friendly DISCIPLES OF TZEENTCH targets. Subtract 1 from hit rolls for attacks made by enemy targets.\n6 Add 1 to wound rolls for attacks made by friendly DISCIPLES OF TZEENTCH targets. Subtract 1 from wound rolls for attacks made by enemy targets."
 				}
@@ -246,6 +252,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time a friendly DISCIPLES OF TZEENTCH DAEMON unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
@@ -253,6 +260,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly DISCIPLES OF TZEENTCH DAEMON unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if the target was set up this turn. On a 3+, until the start of your next turn, other than the Companion weapon ability, weapon abilities for attacks that target that unit have no effect."
@@ -301,6 +309,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "This unit must be deployed using this ability.",
 					"effect": "Set up this unit in reserve masked by illusion. It has now been deployed.",
 					"keywords": [
@@ -312,6 +321,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time this unit or the replacement of this unit is destroyed, set up a replacement unit in reserve masked by illusion. Each friendly Chaos Spawn of Tzeentch unit can be replaced any number of times."
 				}
 			],
@@ -365,6 +375,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target then make a casting roll of 2D6.",
 					"effect": "Subtract 1 from save rolls for combat attacks that target that unit until the start of your next turn.",
 					"casting_value": 6,
@@ -377,6 +388,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat, it can use a non-SUMMON SPELL ability as if it were your hero phase, as if that ability had the UNLIMITED keyword and as if this unit had not cast any spells this turn."
 				}
@@ -425,6 +437,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 2 to the Attacks characteristic of this unit's Snapping Jaws for each fate point you have."
 				}
 			],
@@ -482,6 +495,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn",
 					"effect": "Roll a D3. Allocate a number of damage points to this unit equal to the roll (ward rolls cannot be made for those damage points). Then, add 2 to the Attacks characteristic of this unit's ranged weapons for the rest of the turn."
 				},
@@ -490,6 +504,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "You can return D3 slain models to this unit."
 				}
 			],
@@ -549,6 +564,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that was targeted by this unit's shooting attacks this phase to be the target.",
 					"effect": "Roll a dice. Add the number of damage points allocated to the target this phase by this unit's shooting attacks to the roll. On a 5+,subtract 1 from save rolls for the target for the rest of the turn."
@@ -558,6 +574,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 2 visible Flamers of Tzeentch units wholly within 12\" of this unit to be the targets.",
 					"effect": "Add 1 to wound rolls for the targets' shooting attacks for the rest of the turn."
@@ -613,6 +630,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Brimstone Horror is a token. When this unit's Blue Horror is slain, place this unit's Brimstone Horror on the battlefield. Add 1 to the Damage characteristic of this unit's Mighty Sorcerous Bolt while its Brimstone Horror is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove this unit's Brimstone Horror from the battlefield."
 				}
 			],
@@ -660,6 +678,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "This unit can only use this ability if it is masked by illusion. Pick up to 1 other friendly unit that is masked by illusion to be the target.",
 					"effect": "Set up this unit on the battlefield more than 9\" from all enemy units. Then, set up the target wholly within 6\" of this unit and more than 9\" from all enemy units."
@@ -669,6 +688,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Spend 2 fate points. Then, pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
 					"effect": "For the rest of the turn, the first time an enemy unit ends a charge move within 3\" of the target, you can remove the target from the battlefield and set it up in reserve masked by illusion."
@@ -730,6 +750,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
 					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per SPELL ability."
 				},
 				{
@@ -737,6 +758,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to wound rolls for attacks made by friendly ARCANITE units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -797,6 +819,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit to be the target.",
 					"effect": "If the target is destroyed this turn, before removing it from play, gain 1 fate point."
@@ -806,6 +829,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Companion weapons used by friendly DISCIPLES OF TZEENTCH units have Crit (2 Hits) while they are wholly within 12\" of this unit."
 				}
 			],
@@ -864,6 +888,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
 					"effect": "The target has the BURNING keyword for the rest of the battle"
@@ -873,6 +898,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "This unit can use this ability even if it has been destroyed or is in reserve. Pick any number of BURNING enemy units to be the targets.",
 					"effect": "Roll a D3 for each target. On a 1, the target no longer has the BURNING keyword. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -944,6 +970,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for this unit",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Re-roll 1 of the dice in the casting roll."
 				}
@@ -1007,6 +1034,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn:\n• Halve the target's Move characteristic.\n• The effects of the 'Fly' ability do not apply to the target.",
 					"casting_value": 7
@@ -1016,6 +1044,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Enemy units cannot end a charge move within 1/2\" of a friendly Argent Shard that is wholly within 12\" of this unit and was set up on the battlefield in the same turn."
 				},
 				{
@@ -1023,6 +1052,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an objective you do not control and that you controlled earlier in the battle to be the target.",
 					"effect": "You control the target objective."
@@ -1097,6 +1127,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Enemy units cannot end a charge move within 1/2\" of a friendly Argent Shard that is wholly within 12\" of this unit and was set up on the battlefield in the same turn."
 				},
 				{
@@ -1104,6 +1135,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "If the unmodified casting roll exceeds the target's Health characteristic, it is automatically destroyed and cannot be replaced for the rest of the battle.",
 					"casting_value": 7,
@@ -1116,6 +1148,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an objective you do not control and that you controlled earlier in the battle to be the target.",
 					"effect": "You control the target objective."
@@ -1164,6 +1197,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit while it is wholly within 12\" of a friendly Argent Shard."
 				},
 				{
@@ -1171,6 +1205,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Idolarc is a token. After setting up this unit on the battlefield for the first time, place its Idolarc next to it."
 				},
 				{
@@ -1178,6 +1213,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit has any models carrying an Antithete Bow, pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, place the Idolarcs of all other friendly Jade Obelisk units next to their respective units. Then, place this unit's Idolarc next to the target.\nWhile a friendly Idolarc is next to an enemy unit, subtract 1\" from that enemy unit's Move characteristic for each fate point you have. This ability cannot reduce an enemy unit's Move characteristic below half its unmodified value."
@@ -1221,6 +1257,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is more than 6\" from all enemy units, it can move X\", where X is the number of fate points you have. It cannot move into combat during any part of that move.",
 					"keywords": [
@@ -1267,6 +1304,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit is wholly within 12\" of any MANIFESTATIONS (friendly or enemy)."
 				},
 				{
@@ -1274,6 +1312,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "For the rest of the turn, add 1 to the Rend characteristic of melee weapons used by friendly Kairic Acolytes units for attacks that target that enemy unit."
@@ -1331,6 +1370,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, subtract 1 from its power level."
 				},
 				{
@@ -1338,6 +1378,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "If this unit has not already engineered the outcome this battle round, instead of making a casting roll, unbinding roll, banishment roll, hit roll, wound roll or save roll for a visible friendly DISCIPLES OF TZEENTCH unit wholly within 12\" of this unit, this unit can engineer the outcome.\nIf the roll would have been a D6 roll, you can use a value of 6 for it that cannot be modified. If the roll would have been a 2D6 roll, you can use a value of 9 for it that cannot be modified."
 				},
 				{
@@ -1345,6 +1386,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "When you make a casting roll for this unit, you can change the lowest D6 to match the highest D6."
 				},
 				{
@@ -1352,6 +1394,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn:\n• If the target charged in the same turn, friendly DISCIPLES OF TZEENTCH units in combat with the target have STRIKE-FIRST.\n• The target's weapons cannot be affected by the Charge (+1 Damage) weapon ability.",
 					"casting_value": 8,
@@ -1364,6 +1407,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls and unbinding rolls for friendly DISCIPLES OF TZEENTCH WIZARDS while they are wholly within 12\" of this unit.\nIn addition, if a friendly DISCIPLES OF TZEENTCH WIZARD wholly within 12\" of this unit unbinds a spell, no command points are spent for that WIZARD to use the 'Magical Intervention' command in that phase."
 				}
 			],
@@ -1428,6 +1472,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, subtract 1 from its power level."
 				},
 				{
@@ -1435,6 +1480,7 @@
 					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO DISCIPLES OF TZEENTCH DAEMON unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
@@ -1445,6 +1491,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick another visible friendly DISCIPLES OF TZEENTCH unit that was not set up this turn and that is wholly within 18\" of this unit to be the target. Then, make a casting roll of 2D6.",
 					"effect": "The target can use the 'Normal Move' ability as if it were your movement phase, but it must end that move closer to this unit.",
 					"casting_value": 6,
@@ -1458,6 +1505,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to casting rolls for this unit. In addition, subtract 1 from hit rolls for attacks that target friendly DISCIPLES OF TZEENTCH DAEMON units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -1515,6 +1563,7 @@
 					"type": "command",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
 					"effect": "The target's melee weapons have Crit (Mortal) until the start of your next turn.",
@@ -1525,6 +1574,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a WIZARD within 30\" of this unit and the casting roll equalled or exceeded the spell's casting value and that spell has not been unbound",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll for the spell, the spell is unbound and its effect is not resolved.\nIf the spell is unbound, add 1 to casting rolls for this unit for the rest of the phase.",
 					"keywords": [
@@ -1596,6 +1646,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While you have 6 or more fate points, add 1 to the Attacks characteristic of melee weapons used by friendly ARCANITE units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -1603,6 +1654,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability for a WIZARD within 30\" of this unit and the casting roll equalled or exceeded the spell's casting value and that spell has not been unbound",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll for the spell, the spell is unbound and its effect is not resolved.\nIf the spell is unbound, add 1 to casting rolls for this unit for the rest of the phase.",
 					"keywords": [
@@ -1670,6 +1722,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If any damage points were allocated to an enemy WIZARD or PRIEST by this unit's attacks this turn and that enemy unit has been destroyed:\n• Heal (7) this unit.\n• Add 1 to this unit's power level for the rest of the battle.\nThis unit can be affected by this ability multiple times and the effects are cumulative."
 				},
 				{
@@ -1677,6 +1730,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: Opponent declared a SPELL ability for a unit within 30\" of this unit.",
+					"colour": "yellow",
 					"effect": "This unit can move 6\". It can move into combat and must end that move closer to the caster. If this unit was in combat at the start of the move, it must end that move in combat.",
 					"keywords": [
 						"MOVE"
@@ -1744,6 +1798,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is within a friendly non-HERO ARCANITE unit's combat range:\n• This unit has Ward (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO ARCANITE unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
@@ -1751,6 +1806,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat, pick a friendly ARCANITE unit in combat to be the target.",
 					"effect": "Remove this unit from the battlefield and set it up again within 1\" of the target and in combat. This unit has charged.",
@@ -1818,6 +1874,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat, pick a friendly ARCANITE unit in combat to be the target.",
 					"effect": "Remove this unit from the battlefield and set it up again within 1\" of the target and in combat. This unit has charged.",
@@ -1831,6 +1888,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is within a friendly non-HERO ARCANITE unit's combat range:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-HERO ARCANITE unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
 				}
 			],
@@ -1887,6 +1945,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time a model in this unit is slain, before removing the model from play, pick 1 of the following effects:",
 					"options": [
 						{
@@ -1968,6 +2027,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Each time this unit uses a SHOOT ability, if it is in a fortified position, it can pick either of the ranged weapon profiles for all the attacks it makes with its Fusil-cannons. If it is not in a fortified position, use the Mobile weapon characteristics."
 				},
 				{
@@ -1975,6 +2035,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "This unit has a Blackpowder Squire token. Each time this unit uses a SHOOT ability, if this unit's Blackpowder Squire is on the battlefield, you can re-roll 1 hit roll. If a hit roll re-rolled in this manner is 1, remove this unit's Blackpowder Squire from the battlefield."
 				},
 				{
@@ -1982,6 +2043,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
 					"keywords": [
 						"CORE"
@@ -2049,6 +2111,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit that was targeted by this unit's shooting attacks this turn to be the target.",
 					"effect": "Add 1 to hit rolls for attacks made by friendly PYROFANE units that target that unit for the rest of the turn."
 				},
@@ -2057,6 +2120,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
 					"keywords": [
 						"CORE"
@@ -2129,6 +2193,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Each time this unit uses a SHOOT ability, if it is in a fortified position, pick either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. If it is not in a fortified position, use the Grapeshot weapon characteristics."
 				},
 				{
@@ -2136,6 +2201,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "This unit establishes a fortified position and remains in a fortified position until it either uses a MOVE ability or is removed from the battlefield. While this unit is in a fortified position, subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
 					"keywords": [
 						"CORE"
@@ -2182,6 +2248,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "This unit has WARD (5+) while it is wholly within 6\" of a WYRDPYRE."
 				}
 			],
@@ -2231,6 +2298,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat, pick an enemy MANIFESTATION to be the target. Then, make a charge roll of 3D6.",
 					"effect": "This unit can move a distance up to the value of the charge roll. It can move through the combat ranges of enemy units and must end that move within 1/2\" of the target. If it does so, this unit has charged.\nThen, if this unit charged this turn, inflict D3 mortal damage on each enemy MANIFESTATION in combat with this unit.",
@@ -2286,6 +2354,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Subtract 1 from save rolls for the target for the rest of the turn."
@@ -2347,6 +2416,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly unit within this unit's combat range to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn:\n• This unit has WARD (4+).\n• Each time you make an unmodified ward roll of 1-3 for this unit, allocate 1 damage point to the target.",
 					"casting_value": 5,
@@ -2359,6 +2429,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "The next time this unit uses a non-SUMMON SPELL ability this phase, do not make a casting roll as part of that ability. Instead, roll a dice. On a 2+, the spell is successfully cast and cannot be unbound."
 				}
 			],
@@ -2409,6 +2480,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This unit can only use this ability if it is masked by illusion. Pick a model in a friendly DISCIPLES OF TZEENTCH unit to be the target.",
 					"effect": "This unit can immediately use a SPELL ability. When it does so, measure the range and visibility of that SPELL ability from the target. The target is treated as the caster for the purposes of other abilities such as 'Unbind'."
 				},
@@ -2417,6 +2489,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "While they are wholly within 12\" of this unit, friendly DISCIPLES OF TZEENTCH units can use the 'Redeploy' command even if they were set up in the same turn."
 				},
 				{
@@ -2424,6 +2497,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
 					"casting_value": 7,
@@ -2474,6 +2548,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly DISCIPLES OF TZEENTCH WIZARD within 3\" of this MANIFESTATION to be the target.",
 					"effect": "The target can immediately use a SPELL ability from the Lore of Change or the Lore of Fate.",
 					"options": [
@@ -2537,6 +2612,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit charged this turn, pick 1 of the following effects to apply for the rest of the turn:\n• This unit's Tzeentchian Spear and Vicious Beak has Crit (2 Hits)\n• Add 1 to the Rend characteristic of this unit's Tzeentchian Spear and Vicious Beak."
 				}
 			],
@@ -2580,6 +2656,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While there is a visible friendly ARCANITE HERO within this unit's combat range:\n• Subtract 1 from hit rolls for combat attacks that target that friendly ARCANITE HERO.\n• Add 1 to hit rolls for this unit's combat attacks."
 				}
 			],
@@ -2624,6 +2701,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to wound rolls for this unit's attacks while it is wholly within enemy territory."
 				}
 			],
@@ -2684,6 +2762,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly ARCANITE unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, the target can use CHARGE abilities even if it used a RUN ability in the same turn."
 				},
@@ -2692,6 +2771,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy MONSTER or CAVALRY unit within 6\" of this unit to be the target.",
 					"effect": "The target's melee weapons have the Companion weapon ability for the rest of the turn."
@@ -2759,6 +2839,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's shooting attacks."
 				},
 				{
@@ -2766,6 +2847,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit that had any damage points allocated to it by this unit's attacks this phase to be the target.",
 					"effect": "Add 1 to hit rolls for combat attacks made by friendly WARFLOCK units that target that enemy unit for the rest of the turn."
 				}

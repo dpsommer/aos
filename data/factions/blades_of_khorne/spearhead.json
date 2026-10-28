@@ -31,6 +31,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "yellow",
 					"frequency": "Once Per Turn",
 					"declare": "Pick a friendly unit that slew any enemy models using a FIGHT ability this turn to be the target.",
 					"effect": "For the rest of the battle, the target’s melee weapons have Crit (Mortal)."
@@ -42,6 +43,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to hit rolls and add 1 to wound rolls for combat attacks that target an enemy unit that had any damage points allocated to it this turn."
 				},
 				{
@@ -115,6 +117,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Any Hero Phase",
+							"colour": "grey",
 							"effect": "This unit can move D6\". It cannot end that move in combat unless it was in combat at the start of that move and, if there is an enemy quarry on the battlefield, it must end that move closer to the quarry."
 						}
 					],
@@ -187,6 +190,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"declare": "Pick an enemy unit in combat with both this unit and a friendly Flesh Hounds unit to be the target.",
 							"effect": "For the rest of the turn, this unit’s combat attacks that target that enemy unit score critical hits on unmodified hit rolls of 5+."
 						}
@@ -242,6 +246,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn",
 					"declare": "Spend 1 blood tithe point and pick up to D3 friendly units.",
 					"effect": "Each of those units can move D6\" (roll for each)."
@@ -323,6 +328,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible enemy unit within 16\" of this unit to be the target, then make a chanting roll of D6.",
 							"effect": "On a 4+, inflict D3 mortal damage on the target."
 						},
@@ -331,6 +337,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit within this unit’s combat range to be the target.",
 							"effect": "Roll a dice. On a 2+, inflict D3 mortal damage on the target and you gain 1 blood tithe point."
 						}
@@ -445,6 +452,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Charge Phase",
+							"colour": "orange",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a dice.",
 							"effect": "On a 2+, inflict 1 mortal damage on the target."
 						}

@@ -100,6 +100,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "Until the end of the phase, add 1 to the Attacks characteristic of melee weapons used by friendly units while they are wholly within 7\" of your general."
 				}
@@ -144,6 +145,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly Plaguebearers unit wholly within 14\" of this unit to be the target.",
 							"effect": "Pick 1 of the following. The effect lasts until the start of your next turn.",
 							"options": [
@@ -193,6 +195,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
 						}
 					],
@@ -227,6 +230,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
+							"colour": "red",
 							"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target and roll a dice for each model in this unit that is within the target unit’s combat range.",
 							"effect": "For each roll that exceeds the target’s Health characteristic, inflict 1 mortal damage on it."
 						}
@@ -324,6 +328,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Subtract 1 from charge rolls for enemy units.",
 					"keywords": [
 						"CYCLE"
@@ -334,6 +339,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While enemy units are within 6\" of any friendly units, they cannot use abilities that heal or return slain models to a unit.",
 					"keywords": [
 						"CYCLE"
@@ -344,6 +350,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Subtract 3 from the control scores of enemy units while they are in combat with any friendly units.",
 					"keywords": [
 						"CYCLE"
@@ -375,6 +382,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Your general has WARD (4+)."
 				},
 				{
@@ -398,6 +406,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "If your general is not in combat, pick a visible enemy unit within 7\" of them to be the target.",
 					"effect": "Roll a dice. On a 4+, inflict 1 mortal damage on the target."
 				}
@@ -429,6 +438,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, subtract 1 from wound rolls for attacks that target that friendly unit until the start of your next turn"
 						}
@@ -469,6 +479,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"effect": "Heal (D3) this unit."
 						}
 					],
@@ -506,6 +517,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
 							"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 						}

@@ -17,6 +17,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with the unit in this Regiment of Renown to be the target.",
 					"effect": "Roll a dice for each model in the target unit. For each 6, inflict 1 mortal damage on the target. If any enemy models are slain by this ability, the target has a maximum control score of 1 for the rest of the turn."
@@ -26,6 +27,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared the 'Rip It Up and Chuck It' ability for the unit in this Regiment of Renown",
+					"colour": "blue",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "After picking the target for that ability, roll a number of dice equal to the current battle round number. For each 4+, add 1 to the Attacks characteristic of the unit in this Regiment of Renown's Hurled Boulder for the rest of the turn."
 				}
@@ -56,6 +58,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy MONSTER that had any damage points allocated to it this phase by a shooting attack made by the Beast-skewer Killbow in this Regiment of Renown. Then, pick any number of Man-skewer Boltboyz units in this Regiment of Renown to focus fire.",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of the ranged weapons used by the units you picked to focus fire but all of their attacks must target the enemy MONSTER you picked.",
@@ -80,6 +83,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit used a FIGHT ability this turn, Heal (D3) this unit. Heal (2D3) this unit instead if it destroyed an enemy unit this turn using a FIGHT ability."
 				}
@@ -102,6 +106,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "If both units in this Regiment of Renown are within each other's combat range, pick 1 of the following effects to apply until the start of your next turn:",
 					"options": [
 						{
@@ -153,6 +158,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Gobbapalooza in this Regiment of Renown to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, subtract 1 from hit rolls for attacks made by enemy units while they are wholly within 12\" of the caster.",
 					"casting_value": 7,
@@ -166,6 +172,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a unit in this Regiment of Renown that has not been deployed.",
 					"effect": "Set up that unit in reserve in a super-secret tunnel. It has now been deployed.",
 					"keywords": [
@@ -177,6 +184,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If the Rabble-Rowza in this Regiment of Renown is in a super-secret tunnel, pick it to be the target.",
 					"effect": "Set up the target anywhere on the battlefield more than 9\" from all enemy units. Then, set up all other friendly units that are in a super-secret tunnel within 3\" of the target and more than 9\" from all enemy units."
@@ -212,6 +220,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If any enemy HEROES were slain this turn by the Gunnar Brand in this Regiment of Renown:\n• Heal (5) each unit in this Regiment of Renown.\n• Add 1 to the Attacks characteristic of melee weapons used by units in this Regiment of Renown for the rest of the battle.",
 					"text": "Whether it pleases him or not, Gunnar Brand has attracted the notice of the Chaos Gods. With each worthy kill he makes, he draws down their blessings."
@@ -235,6 +244,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "For the rest of the turn, the unit in this Regiment of Renown has STRIKE-LAST and WARD (5+). Pick 1 of the following effects to apply for the rest of the turn:",
 					"options": [
@@ -271,6 +281,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit was destroyed this turn, pick a friendly non-UNIQUE DEATH INFANTRY HERO that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit identical to the target wholly within 12\" of this unit. The replacement unit can only be set up in combat with enemy units that are in combat with this unit."
@@ -280,6 +291,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Ignore negative modifiers to save rolls for units in this Regiment of Renown."
 				}
 			]
@@ -353,6 +365,7 @@
 							"type": "passive",
 							"category": "damage",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 						},
 						{
@@ -360,6 +373,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Deployment Phase",
+							"colour": "black",
 							"declare": "Pick up to 1 friendly INFANTRY HERO and up to 1 friendly non-reinforced, non-HERO INFANTRY unit that have not been deployed.",
 							"effect": "Set up those units in reserve as this unit's passengers. They have now been deployed.",
 							"keywords": [
@@ -371,6 +385,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"frequency": "Once Per Battle",
 							"declare": "Pick this unit's passengers to be the targets.",
 							"effect": "Set up each target wholly within 6\" of this unit and more than 9\" from all enemy units. In addition, the targets' melee weapons have Charge (+1 Damage) for the rest of the turn."
@@ -407,6 +422,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to hit rolls and wound rolls for units in this Regiment of Renown that target a SENTENCED unit."
 				},
 				{
@@ -414,6 +430,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Ignore negative modifiers to save rolls for units in this Regiment of Renown."
 				}
 			]
@@ -441,6 +458,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Battle",
 					"declare": "You can use this ability if this Regiment of Renown's Tuskboss on Maw-grunta is on the battlefield,",
 					"effect": "For the rest of the phase, each time a friendly unit in this Regiment of Renown finishes a charge move, roll a D3 for each enemy unit within 1\" of that unit. On a 2+, inflict an amount of mortal damage on that unit equal to the roll. If that enemy unit is INFANTRY, add 1 to the mortal damage inflicted (if any)."
@@ -450,6 +468,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit in this Regiment of Renown that charged this turn and has not used any RAMPAGE abilities this turn to be the target.",
 					"effect": "The target can move D6\". It must end that move in combat. Then, add 1 to the target’s momentum points. After this ability has been resolved, the target cannot use any other RAMPAGE abilities for the rest of the turn.",
@@ -484,6 +503,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Friendly units in this Regiment of Renown can use RUN abilities and still use SHOOT abilities later in the turn while they are wholly within 12\" of this Regiment of Renown's Swampboss Skumdrekk."
 				},
 				{
@@ -491,6 +511,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this Regiment of Renown's Swampboss Skumdrekk to be the target.",
 					"effect": "Roll a dice. If the roll is at least double the target's Health characteristic, 1 model in the target unit is slain."
@@ -520,6 +541,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a unit in this Regiment of Renown that charged this turn. Then, pick an enemy INFANTRY unit within 1\" of that unit to be the target.",
 					"effect": "For the rest of the turn, ignore positive modifiers to save rolls for the target."
@@ -529,6 +551,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Ignore negative modifiers to run rolls and charge rolls for units in this Regiment of Renown and to their Move characteristic."
 				}
 			]
@@ -556,6 +579,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "While a Beast of Nurgle in this Regiment of Renown is within 3\" of this Regiment of Renown's Sloppity Bilepiper, it can use the 'Attention Seekers' ability even if the other Beast of Nurgle in this Regiment of Renown has already used it this turn."
 				}
 			]
@@ -591,6 +615,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick all units in this Regiment of Renown that have not been deployed.",
 					"effect": "Set up all of those units in reserve plying the winds. They have now been deployed.",
 					"keywords": [
@@ -602,6 +627,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Add 1 to hit rolls and wound rolls for shooting attacks made by units in this Regiment of Renown that target an enemy unit that is within 6\" of an enemy unit that has an enhancement."
 				},
 				{
@@ -609,6 +635,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick the Arkanaut Frigate in this Regiment of Renown to use this ability if it is plying the winds.",
 					"effect": "Set up the Arkanaut Frigate anywhere on the battlefield more than 9\" from all enemy units. Then, set up all other units in this Regiment of Renown wholly within 6\" of the Arkanaut Frigate and more than 9\" from all enemy units."
 				},
@@ -617,6 +644,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "The AELSLING has a Health characteristic of 17 instead of 14."
 				}
 			]
@@ -645,6 +673,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "If they do not otherwise have one, terrain features have a friendly overgrown token while they are contested by a Spite-Revenants unit in this Regiment of Renown."
 				},
 				{
@@ -652,6 +681,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While they are wholly within 3\" of a terrain feature, the Spite-Revenants units in this Regiment of Renown are not visible to enemy units more than 12\" away from them."
 				}
 			]
@@ -680,6 +710,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick the Arch-Revenant in this Regiment of Renown to use this ability, the pick a visible enemy unit within 12\" of them to be the target.",
 					"effect": "Until the start of your next turn, subtract X from charge rolls for the target, where X is the number of damage points allocated to the target this phase by shooting attacks made by the Gossamid Archers unit in the Regiment of Renown, to a maximum of 6."
 				},
@@ -688,6 +719,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If both units in this Regiment of Renown are within each other's combat range and neither unit is in combat, roll a dice. On a 3+, remove both units from the battlefield, then set them up again within each other's combat range, wholly within 3\" of a terrain feature and more than 9\" from all enemy units."
 				}
@@ -722,6 +754,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick the Gothizzar Harvester in this Regiment of Renown to use this ability, then pick a non-HERO Infantry unit (friendly or enemy) within its combat range to be the target.",
 					"effect": "Roll a dice. If the roll equals or exceeds the target's Health characteristic, 1 model in the target unit is slain, then give the unit using this ability 1 bone-tithe point."
@@ -731,6 +764,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Mortisan Ossifector in this Regiment of Renown to cast this spell, then:\n• Pick a friendly unit, excluding units in this Regiment of Renown, to be the target.\n• Pick a unit in this Regiment of Renown to be the recipient. The target and the recipient must be wholly within 12\" of and visible to the caster. Then, make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn:\n• The target has a maximum control score of 1.\n• Add 1 to hit rolls and wound rolls for the recipient's combat attacks.",
 					"casting_value": 7,
@@ -743,6 +777,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick the Gothizzar Harvester in this Regiment of Renown to use this ability if it has 6 bone-tithe points. Then, pick another unit in this Regiment of Renown that has been destroyed to be the target.",
 					"effect": "Reset the Gothizzar Harvester's bone-tithe points to 0. Then, set up a replacement of the target unit with half the number of models (rounding up) wholly within 9\" of the Gothizzar Harvester and more than 9\" from all enemy units."
 				}
@@ -777,6 +812,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "This ability must be used to deploy this Regiment of Renown.",
 					"effect": "Set up the units in this Regiment of Renown in reserve studying the battlefield. They have now been deployed.",
 					"keywords": [
@@ -788,6 +824,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick the Grundstok Gunhauler in this Regiment of Renown to use this ability if it is studying the battlefield.",
 					"effect": "Set up the Grundstok Gunhauler on the battlefield more than 6\" from all enemy units that have an artefact of power and more than 9\" from all other enemy units. Then, set up all other units in this Regiment of Renown wholly within 3\" of the Grundstok Gunhauler and more than 6\" from all enemy units."
 				},
@@ -796,6 +833,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with a unit in this Regiment of Renown to be the target. Then, pick an artefact of power the target has.",
 					"effect": "Roll a dice. Add 1 to the roll for each unit in this Regiment of Renown that is in combat with the target. On a 6+, the target no longer has that artefact of power."
@@ -840,6 +878,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Subtract 10 from the control scores of enemy MONSTERS while they are in combat with any units in this Regiment of Renown.",
 					"keywords": [
 						"RAMPAGE"
@@ -850,6 +889,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Units in this Regiment of Renown cannot be picked to be the target of RAMPAGE abilities used by enemy units."
 				}
 			]
@@ -871,6 +911,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "The unit in this Regiment of Renown gains the 'Gifts of Chaos' ability and one of the following faction keywords that matches your army's faction.\n• BLADES OF KHORNE\n• DISCIPLES OF TZEENTCH\n• MAGGOTKIN OF NURGLE\n• HEDONITES OF SLAANESH"
 				},
 				{
@@ -878,6 +919,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "• If this unit has the BLADES OF KHORNE keyword, add 1 to the Attacks characteristic of its Hellforged Weapons and its Hellforged Weapons have the Blood-Hungry weapon ability.\n• If this unit has the DISCIPLES OF TZEENTCH keyword, it has WIZARD (1).\n• If this unit has the MAGGOTKIN OF NURGLE keyword, it has WARD (5+).\n• If this unit has the HEDONITES OF SLAANESH keyword, add 1 run rolls and charge rolls for it.",
 					"text": "This daemon takes to the field redolent with god-given gifts."
 				}
@@ -912,6 +954,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DESTRUCTION HERO that is within the combat range of a HERO in this Regiment of Renown to be the target.",
 					"effect": "On a 3+, add 1 to the Rend characteristic of the target's melee weapons until the start of your next turn."
@@ -921,6 +964,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Ogroid Thaumaturge in this Regiment of Renown to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "The target has STRIKE-LAST until the start of your next turn. In addition, while the target has the BURNING keyword, subtract 1 from hit rolls for the target until the start of your next turn.",
 					"casting_value": 7,
@@ -975,6 +1019,7 @@
 							"type": "command",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "This unit can use 2 FIGHT abilities this phase. After the first is used, however, this unit has STRIKE‑LAST for the rest of the turn.",
 							"command_points": 1
 						},
@@ -983,6 +1028,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "This unit cannot be set up in reserve and cannot be targeted by abilities that would remove it from the battlefield."
 						}
 					],
@@ -1026,6 +1072,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a Fight ability for a unit in this Regiment of Renown",
+					"colour": "red",
 					"used_by": "The unit using that FIGHT ability.",
 					"effect": "Pick a unit in this Regiment of Renown that has not used a FIGHT ability this turn to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				}
@@ -1060,6 +1107,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the friendly Vokmortian in this Regiment of Renown to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "For the rest of the turn, each time your opponent declares a FIGHT ability for the target, unless they spend 1 command point as a reaction, that FIGHT ability has no effect.",
 					"casting_value": 7,
@@ -1137,6 +1185,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While each unit in this Regiment of Renown is wholly within 6\" of each other unit in this Regiment of Renown, add 1 to the Attacks characteristic of melee weapons used by units in this Regiment of Renown."
 				},
 				{
@@ -1144,6 +1193,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Heal (1) each unit in this Regiment of Renown."
 				}
@@ -1187,6 +1237,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Units in this Regiment of Renown can use CHARGE abilities even if they used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on units in this Regiment of Renown by RETREAT abilities."
 				}
 			]
@@ -1214,6 +1265,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If the Mortek Crawler in this Regiment of Renown is wholly within 12\" of and visible to the friendly Mortisan Ossifector in this Regiment of Renown, pick that Mortisan Ossifector to cast this spell, pick that Mortek Crawler to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, the target has WARD (5+).",
 					"casting_value": 5,
@@ -1248,6 +1300,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time a unit in this Regiment of Renown uses an ability and any enemy models were slain by that ability, after that ability has been resolved, the unit that used that ability is pre-eminent and the other unit in this Regiment of Renown is overlooked.\nWeapons used by an overlooked unit in this Regiment of Renown have Crit (Auto-wound)."
 				}
 			]
@@ -1284,6 +1337,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to the Attacks characteristic of melee weapons used by friendly KRITTOK'S CLAWPACK units while you have more victory points than your opponent.\nSubtract 3 from the control scores of friendly KRITTOK'S CLAWPACK units while you have fewer victory points than your opponent."
 				},
 				{
@@ -1291,6 +1345,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly KRITTOK'S CLAWPACK unit that is not in combat to use this ability.",
 					"effect": "That unit can use the 'Normal Move' ability as if it were your movement phase."
@@ -1300,6 +1355,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly KRITTOK'S CLAWPACK Doom-Flayers units have WARD (5+) while they are within the combat range of a friendly KRITTOK'S CLAWPACK Stormvermin unit."
 				}
 			]
@@ -1321,6 +1377,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "When the unit in this Regiment of Renown is destroyed, before removing it from play, you and your opponent must roll off. If you roll higher, inflict 3 mortal damage on each unit (friendly and enemy) within its combat range."
 				},
 				{
@@ -1328,6 +1385,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If the unit in this Regiment of Renown charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a dice for each model in the target unit. Add 1 to each roll if the target is contesting an objective you do not control. For each 6+, inflict 1 mortal damage on the target. Then, if any of the rolls were an unmodified 1, resolve the effect of the 'Devastating Collapse' ability as if the unit in this Regiment of Renown had been destroyed (it is neither destroyed nor removed from play).",
@@ -1368,6 +1426,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to save rolls for units in this Regiment of Renown while they are contesting an objective you control.\nAdd 1 to wound rolls for units in this Regiment of Renown while they are contesting an objective you do not control."
 				}
 			]
@@ -1414,6 +1473,7 @@
 							"type": "spell",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn:\n• The target cannot use MOVE abilities.\n• The target’s melee weapons have Anti-charge (+1 Rend).",
 							"text": "The Changeling imbues its orders with compelling enchantments so that none can disobey.",
@@ -1427,6 +1487,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Deployment Phase",
+							"colour": "black",
 							"declare": "This unit must be deployed using this ability.",
 							"effect": "Set up this unit in reserve incognito. It has now been deployed.\nFriendly incognito units are destroyed at the end of the fifth battle round and not at the start of the fourth battle round.",
 							"keywords": [
@@ -1438,6 +1499,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Any Hero Phase",
+							"colour": "yellow",
 							"declare": "This unit can use this ability if it is incognito. Pick this unit and a friendly INFANTRY HERO to be the targets. One target must be incognito and the other must be on the battlefield.",
 							"effect": "Set up the incognito target wholly within 6\" of the other target and not in combat. Then, remove the other target\nfrom the battlefield and set it up in reserve incognito.\nIf this unit is destroyed, before removing it from play, set up the friendly incognito unit wholly within 6\" of a battlefield edge and not in combat."
 						}
@@ -1479,6 +1541,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick each unit in this Regiment of Renown if none of those units have been deployed.",
 					"effect": "Set up those units in reserve lurking in the mists. They have now been deployed.",
 					"keywords": [
@@ -1490,6 +1553,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick each unit in this Regiment of Renown if they are lurking in the mists.",
 					"effect": "Set up the Shardspeaker of Slaanesh in this Regiment of Renown on the battlefield wholly within 9\" of a battlefield edge and more than 9\" from all enemy units. Then, set up the Blissbarb Archers unit in this Regiment of Renown on the battlefield wholly within 6\" of that Shardspeaker of Slaanesh, wholly within 9\" of a battlefield edge and more than 9\" from all enemy units."
 				}
@@ -1526,6 +1590,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "This ability must be used to deploy this Regiment of Renown instead of the 'Deploy Unit' ability or the 'Deploy Regiment' ability.",
 					"effect": "Set up the units in this Regiment of Renown in reserve in the ethersea. They have now been deployed.",
 					"keywords": [
@@ -1537,6 +1602,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick each unit in this Regiment of Renown that is in the ethersea.",
 					"effect": "Set up each unit on the battlefield wholly within 7\" of a battlefield edge, more than 9\" from all enemy units and within the combat range of another unit in this Regiment of Renown. Then, each unit can immediately move D3\". The units cannot move into combat during any part of that move.",
 					"text": "There is a sudden blur of movement as these Namarti warriors burst forth from an unseen quarter."
@@ -1574,6 +1640,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Neferata in this Regiment of Renown to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6",
 					"effect": "Until the start of your next turn, each time the target uses a CHARGE ability, immediately after that ability has been resolved, roll a number of dice equal to the unmodified charge roll for that ability. For each 4+, inflict 1 mortal damage on the target.",
 					"casting_value": 7,
@@ -1587,6 +1654,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit within 12\" of the Neferata in this Regiment of Renown to be the target.",
 					"effect": "Until the start of your next turn, ward rolls cannot be made for damage points inflicted on the target by attacks made by units in this Regiment of Renown"
@@ -1596,6 +1664,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy unit contesting an objective that the Neferata in this Regiment of Renown is contesting to be the target.",
 					"effect": "Roll a dice. On a 2-5, subtract 10 from the control score of the target for the rest of the turn. On a 6, the target has a maximum control score of 1 for the rest of the turn."
@@ -1631,6 +1700,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Runelord in this Regiment of Renown to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6",
 					"effect": "Roll 6 dice. If the chanting roll was 8+, roll 9 dice instead. For each 5+, inflict 1 mortal damage on the target. If 3 or more damage points are allocated to the target as a result of those dice rolls, ignore positive modifiers to save rolls for the target until the start of your next turn.",
 					"chanting_value": 4
@@ -1640,6 +1710,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "If the Runelord in the Regiment of Renown is contesting an objective, for the rest of the battle, units in this Regiment of Renown have WARD (5+) while they are contesting that objective."
 				}
@@ -1663,6 +1734,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "This ability must be used to deploy this Regiment of Renown.",
 					"effect": "Set up the units in this Regiment of Renown in reserve festering within. They have now been deployed.",
 					"keywords": [
@@ -1674,6 +1746,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "If a friendly non-NURGLE'S GIFT unit would be destroyed, before the last model is removed from play, roll a dice. Add 1 to the roll for each other friendly non-NURGLE'S GIFT unit that has been destroyed this battle. On a 5+, pick a friendly unit that is festering within and set it up wholly within 6\" of that model. It can be set up in combat."
 				}
 			]
@@ -1695,6 +1768,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy MONSTER in combat with the unit in this Regiment of Renown to be the target.",
 					"effect": "For the rest of the turn, the unit in this Regiment of Renown's Menhir Club has Crit (2 Hits) but all attacks made with that weapon this turn must target that enemy MONSTER."
@@ -1704,6 +1778,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "The unit in this Regiment of Renown has WARD (6+)."
 				}
 			]
@@ -1731,6 +1806,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Huskard on Stonehorn in this Regiment of Renown to chant this prayer, pick up to 3 visible friendly units wholly within 12\" of them to be the targets, then make a chanting roll of D6. Add 1 to the roll if the friendly Thundertusk Beastriders unit in this Regiment of Renown is wholly within 12\" of this unit.",
 					"effect": "Until the start of your next turn:\n• Add 3 to run rolls for each target.\n• Each target can use CHARGE abilities even if it used a RETREAT ability in the same turn.\n• Each time a target uses a RETREAT ability, no mortal damage is inflicted on it.",
 					"chanting_value": 4,
@@ -1743,6 +1819,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Each time the Thundertusk Beastriders unit in this Regiment of Renown uses the 'Plough the Icepath' ability, you can pick a friendly INFANTRY unit that has not been reinforced, is wholly within 6\" of that Thundertusk Beastriders unit and has not been set up this turn to be the target instead of a friendly OGOR MAWTRIBES INFANTRY unit."
 				}
 			]
@@ -1764,6 +1841,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "The unit in this Regiment of Renown can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on the unit in this Regiment of Renown by RETREAT abilities."
 				},
 				{
@@ -1771,6 +1849,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for combat attacks made by enemy INFANTRY and CAVALRY units while they are in combat with the unit in this Regiment of Renown."
 				}
 			]
@@ -1806,6 +1885,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for attacks that target units in this Regiment of Renown while they are wholly within 9\" of the Harbinger of Decay in this Regiment of Renown."
 				},
 				{
@@ -1813,6 +1893,7 @@
 					"type": "active",
 					"category": "",
 					"timing": "Any Hero Phase",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Heal (1) each unit in this Regiment of Renown."
 				}
@@ -1847,6 +1928,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Add 1 to hit rolls for shooting attacks made by non-HERO units in this Regiment of Renown if any enemy models were slain by shooting attacks made by non-HERO units in this Regiment of Renown in the same turn."
 				},
 				{
@@ -1854,6 +1936,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While a non-HERO unit in this Regiment of Renown is within the combat range of and visible to this Regiment of Renown's HERO, those units are under orders."
 				}
 			]
@@ -1936,6 +2019,7 @@
 							"type": "passive",
 							"category": "damage",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "While this unit has 10 or more damage points:\n• The Attacks characteristic of its Crushing Iron Feet is 3.\n• It has a Control characteristic of 5."
 						},
 						{
@@ -1943,6 +2027,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick another friendly non-UNIQUE unit wholly within 12\" of this unit to be the target.",
 							"effect": "Pick 1 of the following effects to apply until the start of your next turn and while the target is wholly within 12\" of this unit:\n• You can re-roll run rolls for the target.\n• Add 1 to charge rolls for the target.\n• The target cannot be targeted by shooting attacks.\n• Add 1 to wound rolls for the target's combat attacks.\n• Add 10 to the target's control score."
 						}
@@ -1978,6 +2063,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy unit to be marked for justice. You can pick a unit that is in reserve.",
 					"effect": "For the rest of the battle, add 1 to wound rolls for combat attacks made by units in this Regiment of Renown that target a unit that is marked for justice."
@@ -1987,6 +2073,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While every model in the same unit in the Regiment of Renown is contesting the same objective, add 1 to save rolls and ward rolls for that unit."
 				}
 			]
@@ -2015,6 +2102,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy unit in combat with a unit in this Regiment of Renown to be the target.",
 					"effect": "Subtract 2D6 from the target's control score for the rest of the turn."
 				}
@@ -2043,6 +2131,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Ashen Elder in this Regiment of Renown to chant this prayer, pick a terrain feature on the battlefield to be the target, then make a chanting roll of D6.",
 					"effect": "Roll a D3 for each enemy unit contesting the target. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll. If the chanting roll was 12+, you can pick another terrain feature to be a second target.",
 					"chanting_value": 6,
@@ -2055,6 +2144,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick the Ashen Elder in this Regiment of Renown to use this ability. Then, pick an objective or Place of Power that they are contesting and that has not been picked to be the target of this ability this battle to be the target.",
 					"effect": "Roll 6 dice. For each 5+, give this unit 1 ritual point."
 				}
@@ -2089,6 +2179,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly WIZARD in this Regiment of Renown to cast this spell, pick a visible terrain feature within 12\" of them that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target does not have the 'Place of Power' terrain ability, it gains that ability for the rest of the battle. If the target has the 'Place of Power' terrain ability, pick an enemy unit within 12\" of it and roll 9 dice. For each 5+, inflict 1 mortal damage on that enemy unit.",
 					"casting_value": 6,
@@ -2102,6 +2193,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a terrain feature with the 'Place of\nPower' terrain ability to be the target.",
 					"effect": "The next time a friendly WIZARD in this Regiment of Renown uses a SUMMON SPELL ability this phase, you can measure the range and visibility of that SPELL ability from the target instead of from the caster."
@@ -2144,6 +2236,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Scinari Calligrave in this Regiment of Renown to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Sanctum of Amyntok\n• Hyshian Twinstones\n• Rune of Petrification",
 					"effect": "If there is already a friendly MANIFESTATION from the list above on the battlefield, it is immediately banished and removed from play. Then, set up the MANIFESTATION you picked within 1\" of the caster and visible to them. If that MANIFESTATION is a Sanctum of Amyntok, it must instead be set up wholly within 12\" of the caster, more than 3\" from all enemy units, and with its 3 parts touching each other so that they form a ring.",
 					"casting_value": 6,
@@ -2162,6 +2255,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
 					"effect": "Roll a dice for each friendly unit that was picked to be a target of that SPELL ability and that is wholly within 12\" of the Scinari Calligrave in this Regiment of Renown. On a 4+, that SPELL ability has no effect on that unit."
 				},
 				{
@@ -2169,6 +2263,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn",
 					"effect": "Remove the Scinari Calligrave in this Regiment of Renown from the battlefield and set it up again on the battlefield wholly within 3\" of a friendly MANIFESTATION and more than 7\" from all enemy units."
 				}
@@ -2233,6 +2328,7 @@
 					"type": "command",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible terrain feature within 18\" of the Codewright in this Regiment of Renown. Each friendly unit wholly within 3\" of that terrain feature is a target.",
 					"effect": "Roll a D3 for each target. On a 2+, Heal (X) the target, where X is an amount equal to the roll.",
 					"command_points": 1
@@ -2242,6 +2338,7 @@
 					"type": "command",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly INFANTRY unit with up to 10 models that is wholly within 9\" of the Codewright in this Regiment of Renown and not in combat to be the target.",
 					"effect": "Remove the target from the battlefield, then set it up again on the battlefield more than 9\" from all enemy units.",
 					"command_points": 1
@@ -2251,6 +2348,7 @@
 					"type": "command",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an objective within 15\" of the Codewright in this Regiment of Renown and that no friendly units are contesting. Each unit contesting that objective is a target.",
 					"effect": "Roll a dice for each target. If the roll exceeds the target's Health characteristic, inflict an amount of mortal damage on the target equal to the roll.",
 					"command_points": 1
@@ -2280,6 +2378,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "Pick the Dankhold Troggoth in this Regiment of Renown to be the target if it is within 12\" of the Loonboss in this Regiment of Renown.",
 					"effect": "For the rest of the turn, the target can still use CHARGE abilities even if it used a RETREAT ability in the same turn."
 				},
@@ -2288,6 +2387,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While the Loonboss in this Regiment of Renown is within the combat range of the Dankhold Troggoth in this Regiment of Renown:\n• That Loonboss has WARD (4+).\n• Each time you make a successful ward roll for that Loonboss, allocate 1 damage point to that Dankhold Troggoth after the damage sequence for that Loonboss has been resolved (ward rolls cannot be made for those damage points)."
 				}
 			]
@@ -2315,6 +2415,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy unit to be the target.",
 					"effect": "The target has the ENEMY OF THE EVERCHOSEN keyword."
@@ -2324,6 +2425,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "If the enemy ENEMY OF THE EVERCHOSEN unit is destroyed by a unit in this Regiment of Renown, add 10 to the control score of each unit in this Regiment of Renown for the rest of the battle."
 				}
@@ -2364,6 +2466,7 @@
 					"type": "spell",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Contorted Epitome in this Regiment of Renown to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Pick a friendly HEDONITES OF SLAANESH MANIFESTATION that is not on the battlefield and that was not removed from play earlier in the same turn.\nIf you picked a Dreadful Visage or Wheels of Excruciation, set it up wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. If you picked a Mesmerising Mirror, set it up wholly within 12\" of the caster and visible to them.",
 					"text": "The Accursed Reflection is bathed in seductive sorceries and readily spits forth manifestations of excess.",
@@ -2397,6 +2500,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Heal (3) this unit."
 				}
@@ -2431,6 +2535,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick the Neave Blacktalon in this Regiment of Renown to be the target if it is in combat with an enemy HERO.",
 					"effect": "The target can use 2 FIGHT abilities this phase. Each time it does so, if it is in combat with an enemy HERO, all of its attacks must target an enemy HERO. In addition, after the first FIGHT ability is used, the target has STRIKE-LAST for the rest of the turn."
@@ -2479,6 +2584,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "If the Magister in the Regiment of Renown has been deployed, set up one of the following MANIFESTATIONS within 1\" of them:\n• 1 Burning Sigil of Tzeentch\n• 1 Tome of Eyes\n• 1 Daemonic Simulacrum",
 					"text": "Thryx’s spells are powered by the stolen daemonic essences of the daemons bound to him.",
@@ -2493,6 +2599,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Magister in this Regiment of Renown to cast this spell, pick 1 of the MANIFESTATIONS from the list below that is not on the battlefield, then make a casting roll of 2D6:\n• 1 Burning Sigil of Tzeentch\n• 1 Tome of Eyes\n• 1 Daemonic Simulacrum",
 					"effect": "If there is already a friendly MANIFESTATION from the list above on the battlefield, it is immediately banished. Then, set up the MANIFESTATION you picked within 1\" of the caster and visible to them. If that MANIFESTATION is a Daemonic Simulacrum, it must also be set up more than 9\" away from all enemy units.",
 					"casting_value": 6,
@@ -2511,6 +2618,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points inflicted on it this turn by WYRDFLAME SPELL abilities or attacks made with weapons that have the WYRDFLAME weapon ability to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -2520,6 +2628,7 @@
 					"type": "spell",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Magister in this Regiment of Renown to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Inflict D3 mortal damage on the target.",
 					"casting_value": 6,
@@ -2555,6 +2664,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "Pick an objective wholly outside friendly territory. That objective is considered by you to be the amphitheatre."
 				},
@@ -2563,6 +2673,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While each model in a unit in this Regiment of Renown is contesting the amphitheatre:\n• That unit's melee weapons have Crit (Mortal).\n• If you control the amphitheatre, if the unmodified hit roll or wound roll for an attack that targets that unit is a 1-4, the attack fails and the attack sequence ends."
 				}
 			]
@@ -2596,6 +2707,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Daemonsmith in this Regiment of Renown to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, ignore the first damage point allocated to each friendly HELSMITHS OF HASHUT unit in each phase while they are wholly within 12\" of the caster.",
 					"casting_value": 7,
@@ -2608,6 +2720,7 @@
 					"type": "command",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If neither WAR MACHINE unit in this Regiment of Renown used any SHOOT abilities this turn, pick an enemy unit to be the target.",
 					"effect": "For the rest of the turn:\n• While that enemy unit is on the battlefield, the WAR MACHINE units in this REGIMENT OF RENOWN can only pick that enemy unit to be the target of their shooting attacks.\n• Each of those WAR MACHINE units counts as if it has 3 daemonic power points.\nThe first time you use this ability, you can use it without any command points being spent.",
@@ -2632,6 +2745,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "You must use this ability if this unit is not in combat and there are any other visible friendly units within this unit's combat range. You must pick 1 of those friendly units to be the target.",
 					"effect": "Resolve combat attacks for this unit against the target."
 				}
@@ -2667,6 +2781,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time this Regiment of Renown's Lord- Aquilor uses its 'Ride the Winds Aetheric' ability, you can pick all units in this Regiment of Renown that are not in combat to be the targets.\nIn addition, add 1 to hit rolls for attacks made by this Regiment of Renown's Lord-Aquilor and Vanguard-Palladors units that target a HUNTED enemy unit"
 				}
 			]
@@ -2688,6 +2803,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "In your charge phase, if this unit is not in combat and has not used a RUN or RETREAT ability in the same turn, it must use the 'Charge' ability, and if the charge roll would allow it to end the move within 1/2\" of a visible enemy unit, it must do so."
 				},
 				{
@@ -2695,6 +2811,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Each time an enemy unit is destroyed by this unit's shooting attacks, add 1 to the Attacks characteristic of this unit's Death Shriek for the rest of the battle (this effect is cumulative)."
 				}
 			]
@@ -2730,6 +2847,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This spell can be cast by the same WIZARD more than once per phase. Pick the Arkhan the Black in this Regiment of Renown to cast this spell, pick a visible enemy unit within 18\" of them that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
 					"effect": "Roll a number of dice equal to the number of models in the target unit. For each 5+, inflict 1 mortal damage on that unit.",
 					"casting_value": 8,
@@ -2743,6 +2861,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to the number of dice rolled when making banishment rolls for the Arkhan the Black in this Regiment of Renown, to a maximum of 3."
 				}
 			]
@@ -2770,6 +2889,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a unit in this Regiment of Renown that is not in combat to use this ability.",
 					"effect": "That unit can use the 'Normal Move' ability as if it were your movement phase."
@@ -2779,6 +2899,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Units in this Regiment of Renown are not visible to enemy units more than 12\" from them while they are wholly within 9\" of the Treelord in this Regiment of Renown."
 				}
 			]
@@ -2813,6 +2934,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Set up this Regiment of Renown's Feculent Gnarlmaw wholly within friendly territory and more than 3\" from all objectives and other terrain features. After you have done so, it has been deployed.",
 					"keywords": [
 						"DEPLOY"
@@ -2823,6 +2945,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this Regiment of Renown's Plaguebearers unit is wholly within 12\" of this unit's Feculent Gnarlmaw, pick that Plaguebearers unit to be the target.",
 					"effect": "Heal (1) the target. If the target is contesting an objective, you can also return 1 slain model to the target unit."
@@ -2858,6 +2981,7 @@
 					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Slaughterpriest in this Regiment of Renown to chant this prayer, pick a visible unit in this Regiment of Renown wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "Until the start of your next turn, the target unit has WARD (5+) while every model in that unit is wholly within the combat range of an enemy unit. If the chanting roll was 10+, you can pick another eligible unit to be a second target.",
 					"chanting_value": 4
@@ -2867,6 +2991,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick each unit in this Regiment of Renown that used a FIGHT ability this turn to be a target.",
 					"effect": "If any damage points were allocated to an enemy unit by the target's combat attacks this turn, that enemy unit was destroyed this turn, and no damage points were allocated to that enemy unit this turn by combat attacks made by a friendly unit that is not in this Regiment of Renown, for the rest of the battle, add 2 to the Attacks characteristic of the target's Blood-hungry weapons."
@@ -2902,6 +3027,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "You believe the 'Accusations of Regicide' DELUSION (see Grand Justice Gormayne's warscroll)."
 				}
 			]
@@ -2944,6 +3070,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick all units in this Regiment of Renown if none of them have been deployed.",
 					"effect": "Set up those units in reserve prowlin' around. They have now been deployed.",
 					"keywords": [
@@ -2955,6 +3082,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick all units in this Regiment of Renown if they are prowlin' around.",
 					"effect": "Set up those units anywhere on the battlefield more than 9\" from all enemy units."
@@ -2992,6 +3120,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This spell can be cast by the same WIZARD more than once per phase. Pick the Lady Olynder in this Regiment of Renown to cast this spell, pick a visible friendly unit in this Regiment of Renown that is wholly within 12\" of them, that is not in combat and that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
 					"effect": "Remove the target from the battlefield and set it up again more than 9\" from all enemy units.",
 					"casting_value": 7,
@@ -3005,6 +3134,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Ignore negative modifiers to save rolls for units in this Regiment of Renown."
 				},
 				{
@@ -3050,6 +3180,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Mannfred von Carstein in this Regiment of Renown to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Inflict 1 mortal damage on the target for each other enemy unit within 3\" of the target.",
 					"casting_value": 7,
@@ -3063,6 +3194,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a unit in this Regiment of Renown is set up, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn"
 				},
 				{
@@ -3070,6 +3202,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick 1 friendly unit in this Regiment of Renown that is not in combat to be the target.",
 					"effect": "Remove that unit from the battlefield and set it up again more than 6\" from all enemy units."
@@ -3107,6 +3240,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Ushoran in this Regiment of Renown to cast this spell, pick another visible unit in this Regiment of Renown wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn:\n• Add 2\" to the target's Move characteristic.\n• Add 1 to wound rolls for the target's combat attacks",
 					"casting_value": 7,
@@ -3120,6 +3254,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic of melee weapons used by units in this Regiment of Renown while they are wholly within 12\" of the Ushoran in this Regiment of Renown."
 				},
 				{
@@ -3127,6 +3262,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick the Ushoran in this Regiment of Renown to use this ability, then pick another unit in this Regiment of Renown that has been destroyed to be the target",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of a battlefield edge and more than 9\" from all enemy units. The replacement unit is part of this Regiment of Renown."
@@ -3157,6 +3293,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Remove each unit in this Regiment of Renown from the battlefield and set them up again wholly within 6\" of a terrain feature and more than 9\" from all enemy units."
 				},
 				{
@@ -3164,6 +3301,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick the Branchwych in this Regiment of Renown to cast this spell, pick a visible friendly unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Heal (3) the target",
 					"casting_value": 7,
@@ -3196,6 +3334,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick each unit in this Regiment of Renown to be the targets if none of them have been deployed.",
 					"effect": "Set up the targets in reserve preparing a flank attack. They have now been deployed.",
@@ -3208,6 +3347,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick each friendly unit that is preparing a flank attack to be the targets.",
 					"effect": "Set up the targets on the battlefield, wholly within 6\" of each other, wholly within 9\" of a battlefield edge and more than 9\" from all enemy units."
@@ -3238,6 +3378,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "For the rest of the turn:\n• Add 1 to wound rolls for attacks made by units in this Regiment of Renown.\n• Add 1 to save rolls for units in this Regiment of Renown."
 				}
@@ -3266,6 +3407,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While both units in this Regiment of Renown are within each other's combat range, enemy MANIFESTATIONS cannot be set up within 12\" of either of those units."
 				}
 			]
@@ -3294,6 +3436,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Subtract 1 from ward rolls for enemy units while they are within 12\" of the Corpse Cart in this Regiment of Renown."
 				},
 				{
@@ -3301,6 +3444,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick the Corpse Cart in this Regiment of Renown to use this ability if it is within 3\" of the Deadwalker Zombies unit in this Regiment of Renown. Then, pick each enemy INFANTRY, CAVALRY and BEAST unit within 12\" of the Corpse Cart to be the targets.",
 					"effect": "For each target that had any models slain this turn, you can return D3 slain models to the Deadwalker Zombies unit in this Regiment of Renown."
 				}
@@ -3337,6 +3481,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick all friendly VOLT-KLAW'S ENGINECOVEN units to be the targets.",
 					"effect": "Until the start of your next turn:\n• Add 1 to hit rolls for the targets' shooting attacks.\n• Add 3\" to the Range characteristic of the targets' ranged weapons."
@@ -3346,6 +3491,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While a friendly VOLT-KLAW'S ENGINECOVEN INFANTRY unit is within the combat range of a friendly VOLT-KLAW'S ENGINECOVEN Ratling Warpblaster, it is not visible to enemy units more than 13\" away."
 				}
 			]

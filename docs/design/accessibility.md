@@ -27,6 +27,8 @@ Screens are built from standard focusable controls, so they can be used without 
 
 Chips (tags such as Legends, Scourge of Aqshy or a battle tactic's kind) have pale text with a WCAG contrast of at least 9:1 against their background, above the 7:1 of WCAG AAA, as their text is small. A unit test checks every chip colour.
 
+[Ability cards](abilities.md) are coloured as on the warscrolls, but the colour is never the only cue: the header always spells out the timing. Its text has a contrast of at least 4.5:1 against every ability colour (`UITheme.ABILITY_COLOUR_MIN_CONTRAST`).
+
 ## Screen readers
 
-Icon-only buttons (grips, General, Reinforce, Options, Copy, Remove, the settings tab, the saved armies' Duplicate and Delete, and others) have an accessibility name, which is also their tooltip. Fold buttons describe whether they're expanded or collapsed.
+Icon-only buttons (grips, General, Reinforce, Options, Copy, Remove, the settings tab, the saved armies' Duplicate and Delete, and others) have an accessibility name, which is also their tooltip. Fold buttons describe whether they're expanded or collapsed. An ability card's accessibility name is the ability's name and its description is its frequency and timing.

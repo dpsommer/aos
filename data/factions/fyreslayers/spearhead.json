@@ -84,6 +84,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 3 to your general’s control score."
 				}
 			],
@@ -114,6 +115,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "Add 1 to save rolls for friendly units while they are wholly within 12\" of this unit."
 						},
 						{
@@ -160,6 +162,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "While your general is wholly within this unit’s combat range, both this unit and your general have WARD (5+)."
 						}
 					],
@@ -197,6 +200,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Attacks characteristic of this unit’s melee weapons if it charged in the same turn."
 						}
 					],

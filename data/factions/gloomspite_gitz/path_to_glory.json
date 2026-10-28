@@ -80,6 +80,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Start of Any Turn",
+							"colour": "black",
 							"effect": "Heal (D6) this unit."
 						}
 					],

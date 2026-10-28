@@ -36,6 +36,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units."
 				},
 				{
@@ -43,6 +44,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick each enemy unit in combat with a friendly SAURUS unit to be the targets.",
 					"effect": "Roll a dice for each target. On a 4+, inflict 1 mortal damage on the target."
@@ -80,6 +82,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with your general to be the target.",
 					"effect": "If your general’s Venomites token is on the battlefield, roll a D3. On a 1, remove that token from the battlefield. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				},
@@ -126,6 +129,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "While this unit includes a Sunblood, ignore the first damage point that would be allocated to this unit each phase and add 1 to this unit’s control score."
 						},
 						{
@@ -184,6 +188,7 @@
 							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "This unit has a crew of 3 Sun Acolytes that are tokens. Add 1 to this unit’s control score for each Sun Acolyte it has. If this unit has no Sun Acolytes, it has a maximum control score of 1. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Sun Acolytes from the battlefield after the Attack ability has been resolved (the damage point is still inflicted)."
 						}
 					],
@@ -216,6 +221,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Add 1 to save rolls for this unit while it is contesting an objective you control."
 						}
 					],
@@ -251,6 +257,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "blue",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",
 							"effect": "Roll a dice. On a 4+, subtract 1 from hit rolls for the target’s combat attacks for the rest of the turn."
 						}
@@ -296,6 +303,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Any Shooting Phase",
+							"colour": "blue",
 							"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit’s Dartpipe to be the target.",
 							"effect": "Roll a dice. On a 2+, subtract 1 from wound rolls for the target’s combat attacks for the rest of the turn."
 						}
@@ -382,6 +390,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
 					"effect": "That unit can use the ‘Normal Move’ ability as if it were your movement phase."
@@ -445,6 +454,7 @@
 							"type": "passive",
 							"category": "damage",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur’s Massive Jaws is 1."
 						},
 						{
@@ -486,6 +496,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Add 1 to save rolls for this unit while it is contesting an objective you control."
 						}
 					],
@@ -518,6 +529,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "This unit’s melee weapons have Crit (2 Hits) if the target unit has 5 or more models."
 						}
 					],

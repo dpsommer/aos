@@ -43,6 +43,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit's Curseblood to be the target.",
 					"effect": "Roll a dice. On a 4+, the target has STRIKE-LAST for the rest of the turn."
 				},
@@ -51,6 +52,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Subtract 1 from hit rolls for combat attacks made by enemy MONSTERS that target this unit.\nAdd 1 to hit rolls for combat attacks made by this unit that target enemy MONSTERS."
 				}
 			],
@@ -97,6 +99,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly SOULBLIGHT GRAVELORDS INFANTRY HEROES are within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				}
 			],
@@ -158,6 +161,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "You can return 1 slain model to this unit."
 				},
@@ -166,6 +170,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly DEATHRATTLE CAVALRY HEROES are within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				}
 			],
@@ -227,6 +232,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick up to 3 visible friendly Dire Wolves units wholly within 18\" of this unit to be the targets, then make a casting roll of 2D6.",
 					"effect": "For the rest of the turn:\n• Add 1 to the Rend characteristic of the targets' melee weapons (including Companion weapons).\n• The targets can ignore the effect of the 'Beast' ability.",
 					"casting_value": 7,
@@ -239,6 +245,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 3 to the control scores of friendly Radukar the Wolf, Radukar the Beast, Ivya Volga, Lady Annika and Kritza units while they are wholly within 18\" of this unit."
 				},
 				{
@@ -246,6 +253,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is within the combat range of a friendly Dire Wolves unit:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly Dire Wolves unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
 				}
 			],
@@ -321,6 +329,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "This unit can use this ability while its Cado Ezechiar is on the battlefield.",
 					"effect": "Pick 1 of the following to apply for the rest of the turn:\n• This unit has WARD (5+)\n• This unit's Ezechiarian Greatsword has Crit (Mortal)"
 				},
@@ -329,6 +338,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This unit can use this ability while its Aurelias is on the battlefield.",
 					"effect": "Pick 1 of the following to apply for the rest of the turn:\n• Add 1 to this unit's power level.\n• Each time a casting roll is made for this unit, you can re-roll 1 of the dice."
 				},
@@ -337,6 +347,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This unit can cast this spell while its Cado Ezechiar is on the battlefield. Pick a visible unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target is an enemy unit, inflict D3 mortal damage on it. If the target is a friendly Deathrattle or Deadwalkers unit, subtract 1 from wound rolls for combat attacks that target that unit for the rest of the turn.",
 					"casting_value": 7,
@@ -403,6 +414,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "When this unit moves, it can pass through models in enemy INFANTRY units and can pass through the combat ranges of enemy INFANTRY units, but it cannot end a move in combat unless specified in the ability used."
 				},
 				{
@@ -410,6 +422,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "Pick an enemy unit that this unit passed across this turn to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -473,6 +486,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Subtract 3 from the control scores of enemy units while they are within 12\" of this unit."
 				},
 				{
@@ -480,6 +494,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick up to 3 visible friendly VAMPIRE units wholly within 12\" of this unit to be the targets.",
 					"effect": "Add 1 to the Attacks characteristic of the targets' melee weapons for the rest of the turn."
@@ -534,6 +549,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target is an enemy unit, inflict D3 mortal damage on it. If the target is a friendly Deathrattle or Deadwalkers unit, subtract 1 from wound rolls for combat attacks that target that unit for the rest of the turn.",
 					"casting_value": 7,
@@ -546,6 +562,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Roll a dice. On a 2+, pick 1 of the following effects to apply until the start of your next turn.\n• This unit has a Move characteristic of 12\".\n• Add 1 to casting rolls, unbinding rolls and banishment rolls for this unit.\n• This unit's melee weapons have Crit (Mortal)."
 				}
 			],
@@ -602,6 +619,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Melee weapons used by other friendly DEADWALKERS units have Crit (Auto-wound) while they are wholly within 12\" of this unit."
 				}
 			],
@@ -648,6 +666,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly Deadwalker Zombies unit within this unit's combat range to be the target.",
 					"effect": "Until the start of your next turn, while the target is wholly within 12\" of this unit, its 'Mindless Ferocity' ability inflicts mortal damage on rolls of 5+ instead of 6+."
 				},
@@ -656,6 +675,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Deadwalker Zombies unit that is wholly within 12\" of this unit and not in combat to be the target.",
 					"effect": "The target can move up to 3\". It can move into combat."
@@ -726,6 +746,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "If a friendly SOULBLIGHT GRAVELORDS unit wholly within 12\" of this unit uses the 'Redeploy' command, you can pick another friendly SOULBLIGHT GRAVELORDS unit wholly within 12\" of this unit that has not used a command this phase to use the 'Redeploy' command immediately after the first has been resolved (this is an exception to Commands, 1.2). No command point is spent the second time that command is used."
 				},
 				{
@@ -733,6 +754,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick up to 3 friendly VAMPIRE units wholly within 12\" of this unit to be the targets.",
 					"effect": "Add 1 to the Attacks characteristic of the targets' melee weapons for the rest of the turn."
@@ -742,6 +764,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly DEATHRATTLE and DEADWALKERS units have WARD (5+) while they are wholly within 6\" of this unit."
 				}
 			],
@@ -776,6 +799,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time a friendly SOULBLIGHT GRAVELORDS WIZARD casts a SUMMON SPELL from the 'Manifestations of the Grave' lore, you can measure the range and visibility from this terrain feature instead."
 				},
 				{
@@ -783,6 +807,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time a model (friendly or enemy) is slain while it is within 9\" of this terrain feature, Heal (1) this terrain feature."
 				}
 			],
@@ -824,6 +849,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 6+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -865,6 +891,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "You can return D3 slain models to this unit."
 				}
 			],
@@ -911,6 +938,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "This unit can use a RUN ability and still use CHARGE abilities later in the turn."
 				}
 			],
@@ -956,6 +984,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit by RETREAT abilities."
 				}
 			],
@@ -1003,6 +1032,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Reaction: You declared the 'Endless Legions' ability and picked a friendly DEADWALKERS unit to be the target",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"effect": "When resolving the effect of the 'Endless Legions' ability, set up the replacement unit wholly within 3\" of this unit instead of wholly within 12\" and more than 3\" from all enemy units instead of more than 9\", even if it is not your movement phase. The replacement unit can still use CHARGE abilities this turn."
 				},
@@ -1011,6 +1041,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is within the combat range of a friendly Deadwalker Zombies unit:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, inflict 1 mortal damage on a friendly Deadwalker Zombies unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
 				}
 			],
@@ -1058,6 +1089,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this MANIFESTATION to be the target.",
 					"effect": "Roll a dice. On a 4+, the following effects apply until the start of your next turn:\n• While the target is within 3\" of this MANIFESTATION, the target has a maximum control score of 1 that cannot be modified.\n• While the target is within 3\" of this MANIFESTATION, the target cannot use MOVE abilities."
 				},
@@ -1066,6 +1098,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "This MANIFESTATION can only use this ability if it has not been set up this turn.",
 					"effect": "Remove this MANIFESTATION from the battlefield and set it up anywhere on the battlefield more than 9\" from all enemy units. Then, roll a D3. On a 2+, this MANIFESTATION can move a number of inches equal to the roll."
 				}
@@ -1130,6 +1163,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "For the rest of the turn, subtract 5 from the control scores of enemy MONSTERS while they are within 12\" of this unit.",
 					"casting_value": 6,
@@ -1142,6 +1176,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit."
 				},
 				{
@@ -1149,6 +1184,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 2 from the Attacks characteristic of enemy MONSTERS' melee weapons while they are in combat with this unit."
 				}
 			],
@@ -1195,6 +1231,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While a friendly Radukar the Wolf or Radukar the Beast is within this unit's combat range, both that unit and this unit have WARD (5+)."
 				}
 			],
@@ -1243,6 +1280,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
 				},
 				{
@@ -1250,6 +1288,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target, then pick an artefact of power that the target has.",
 					"effect": "Roll a dice. On a 3+, the target no longer has that artefact of power."
 				}
@@ -1298,6 +1337,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is lying in wait.",
 					"effect": "Set up this unit wholly within enemy territory and more than 9\" from all enemy units."
 				},
@@ -1306,6 +1346,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy unit that was allocated any damage points inflicted by this unit's combat attacks this turn to be the target.",
 					"effect": "Roll a dice. On a 2+, subtract 1 from save rolls for the target for the rest of the battle."
 				},
@@ -1314,6 +1355,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit if it has not been deployed.",
 					"effect": "Set up this unit in reserve lying in wait. It has now been deployed.",
 					"keywords": [
@@ -1374,6 +1416,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly non-UNIQUE SOULBLIGHT GRAVELORDS MONSTER wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Pick 1 of the target's melee weapons. If the target has any Companion melee weapons, you must pick 1 of those. Add D3 to the Attacks characteristic of that weapon for the rest of the turn.",
 					"casting_value": 6,
@@ -1386,6 +1429,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from the Rend characteristic of melee weapons used by enemy units while they are in combat with this unit."
 				},
 				{
@@ -1393,6 +1437,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a dice. If the roll is equal to or less than the target's Health characteristic, inflict an amount of mortal damage on the target equal to the roll.",
@@ -1460,6 +1505,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Ashigaroth's Claws is 3."
 				},
 				{
@@ -1467,6 +1513,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, roll a dice. On a 3+, this unit has STRIKE-FIRST for the rest of the turn.",
 					"keywords": [
@@ -1478,6 +1525,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit has slain any enemy models this turn, for the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly DEATHRATTLE and DEADWALKERS units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -1485,6 +1533,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a point on the battlefield within 18\" of the caster, pick up to 3 enemy units within 6\" of that point and visible to the caster to be the targets, then make a casting roll of 2D6.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
 					"casting_value": 7,
@@ -1497,6 +1546,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a SOULBLIGHT GRAVELORDS unit wholly within 12\" of this unit",
+					"colour": "grey",
 					"effect": "The unit using the 'Redeploy' command can move into combat when using that ability"
 				}
 			],
@@ -1558,6 +1608,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "When a friendly DEATHRATTLE or DEADWALKERS unit wholly within 12\" of this unit is picked to be the target of the 'Deathly Invocation' ability, add D3 to the number of damage points that can be healed or the combined Health characteristic of models that can be returned."
 				},
 				{
@@ -1565,6 +1616,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 enemy units within 10\" of this unit to be the targets.",
 					"effect": "Roll a dice for each target. On a 3+, inflict an amount of mortal damage on the target equal to the value of this unit's stored energy dice. Then, change the value of the stored energy dice back to 1."
@@ -1574,6 +1626,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "When this unit is set up for the first time, place a stored energy dice beside it with the '1' facing up. Each time a friendly SOULBLIGHT GRAVELORDS WIZARD successfully casts a spell while it is within 12\" of this unit, increase the value of the stored energy dice beside this unit by 1 (to a maximum of 6)."
 				}
 			],
@@ -1603,6 +1656,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "This unit can cast this spell more than once per phase. Pick a visible unit wholly within 18\" of this unit that has not been picked to be the target of this spell this turn to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target is an enemy unit, inflict D3 mortal damage on it. If the target is a friendly DEATH unit, pick 1 of the following effects:\n• Return a number of slain models to the target unit with a combined Health characteristic of up to 3.\n• The target has WARD (5+) until the start of your next turn.",
 					"casting_value": 7,
@@ -1650,6 +1704,7 @@
 					"type": "command",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DEATHRATTLE or DEADWALKERS unit wholly within 12\" of this unit to be the target.",
 					"effect": "The target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn.",
@@ -1660,6 +1715,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is within the combat range of a friendly DEATHRATTLE or DEADWALKERS unit:\n• This unit has WARD (4+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly DEATHRATTLE or DEADWALKERS unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
 				}
 			],
@@ -1731,6 +1787,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Nagadron's Claws is 3."
 				},
 				{
@@ -1738,6 +1795,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy HERO that was allocated any damage points inflicted by this unit's Akmet-har this turn to be the target.",
 					"effect": "Roll a dice. On a 5+, the target is automatically destroyed.",
@@ -1750,6 +1808,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for combat attacks that target friendly SOULBLIGHT GRAVELORDS units while they are wholly within 6\" of this unit."
 				},
 				{
@@ -1757,6 +1816,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly non-MONSTER SOULBLIGHT GRAVELORDS unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Ignore modifiers to save rolls for the target (positive and negative) until the start of your next turn.",
 					"casting_value": 7,
@@ -1769,6 +1829,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick up to 3 friendly DEATHRATTLE INFANTRY or DEADWALKERS INFANTRY units to be the targets.",
 					"effect": "Each target can use the 'Normal Move' ability as if it were your movement phase."
 				}
@@ -1861,6 +1922,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Shordemaire's Claws is 5."
 				},
 				{
@@ -1868,6 +1930,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "This unit can make a pile-in move (even if it is not in combat). Then, if this unit is in combat, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a dice. On a 4+, inflict an amount of mortal damage on the target equal to the roll.",
@@ -1880,6 +1943,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "This unit has STRIKE-FIRST until the start of your next turn.",
 					"casting_value": 7,
@@ -1892,6 +1956,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick a friendly non-MONSTER VAMPIRE unit that destroyed a unit this turn using a FIGHT ability and is wholly within 12\" of this unit to be the target.",
 					"effect": "Pick 1 of the following effects to apply for the rest of the battle:\n• Add 2\" to the target's Move characteristic.\n• Add 1 to the Attacks characteristic of the target's melee weapons.\n• Add 1 to the Damage characteristic of the target's melee weapons.\nMore than 1 effect can apply to a unit at the same time; however, each effect can only be applied to a unit once."
 				}
@@ -1955,6 +2020,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "Subtract 1 from hit rolls and wound rolls for attacks that target this unit for the rest of the turn.",
 					"casting_value": 6,
@@ -1967,6 +2033,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is not in combat, it can move D6\". It can move into combat.",
 					"keywords": [
@@ -1978,6 +2045,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to wound rolls for combat attacks made by friendly DEATHRATTLE and DEADWALKERS units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -2030,6 +2098,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, you can re-roll charge rolls for friendly SOULBLIGHT GRAVELORDS INFANTRY units while they are wholly within 12\" of this unit.",
 					"casting_value": 6,
@@ -2042,6 +2111,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to wound rolls for combat attacks made by friendly DEATHRATTLE and DEADWALKERS units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -2115,6 +2185,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Draconic Claws is 5."
 				},
 				{
@@ -2122,6 +2193,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit if it has not been deployed.",
 					"effect": "Set up this unit in reserve high above the battlefield. It has now been deployed.",
 					"keywords": [
@@ -2133,6 +2205,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is high above the battlefield.",
 					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units."
 				},
@@ -2141,6 +2214,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, resolve the following effects:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Heal (X) this unit where X is an amount equal to the roll.\n• This unit can be removed from the battlefield and set up in reserve high above the battlefield.",
@@ -2219,6 +2293,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Draconic Claws is 5."
 				},
 				{
@@ -2226,6 +2301,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy unit to be the target.",
 					"effect": "For the rest of the turn, the target cannot end moves made as part of a non-CHARGE MOVE ability within X\" of this unit, where X is equal to your current fury level.",
@@ -2238,6 +2314,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, pick 1 of the following effects:",
 					"options": [
@@ -2295,6 +2372,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time an attack made by this MANIFESTATION scores a critical hit, Heal (1) this MANIFESTATION."
 				},
 				{
@@ -2302,6 +2380,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "When a number of damage points equal to this MANIFESTATION's Health characteristic are allocated to it, this MANIFESTATION is destroyed and both its parts are removed from play.\nEach time this MANIFESTATION moves, both its parts must end within 9\" of each other.\nEach part of this MANIFESTATION is armed with Leeching Bites."
 				}
 			],
@@ -2362,6 +2441,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, while they are wholly within 6\" of this unit, friendly SOULBLIGHT GRAVELORDS units cannot be picked to be the target of abilities used by the target other than FIGHT abilities.",
 					"casting_value": 7,
@@ -2374,6 +2454,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 				},
 				{
@@ -2381,6 +2462,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick each enemy unit in combat with this unit to be the targets.",
 					"effect": "This unit cannot use the 'Serpentine Agility' ability for the rest of the battle. Roll 2D6 for each target. If the roll exceeds the target's Move characteristic, inflict an amount of mortal damage on the target equal to the difference between the roll and its Move characteristic."
@@ -2447,6 +2529,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy HERO within 18\" of this unit to be the target. Then, make a casting roll of 2D6.",
 					"effect": "Inflict D3 mortal damage on each other enemy unit within 3\" of the target.",
 					"casting_value": 6,
@@ -2459,6 +2542,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a command for a visible enemy unit within 18\" of this unit",
+					"colour": "black",
 					"frequency": "Once Per Turn",
 					"effect": "Roll a dice. On a 5+, that command has no effect, it still counts as having been used and the command points spent to use it are still lost."
 				},
@@ -2467,6 +2551,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL or CHARGE ability for a visible enemy unit within 18\" of this unit",
+					"colour": "black",
 					"frequency": "Once Per Battle Round",
 					"effect": "Pick 1 dice from the charge roll or casting roll for that ability. Your opponent must re-roll that dice."
 				}
@@ -2542,6 +2627,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Skeletal Talons is 4."
 				},
 				{
@@ -2549,6 +2635,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time an attack made with this unit's Fanged Maw scores a critical hit, that attack inflicts 6 mortal damage on the target unit and the attack sequence ends."
 				},
 				{
@@ -2556,6 +2643,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a dice for each model in the target unit.\nIf 3 or more of the dice have the same value, for the rest of the turn, this unit has STRIKE-FIRST.\nIf 6 or more of the dice have the same value, for the rest of the turn, this unit has STRIKE-FIRST and the target cannot use commands.",
@@ -2607,6 +2695,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit is in combat with any enemy HEROES, roll a D3 and then pick a number of effects from the list below equal to the roll:\n• Add 1 to save rolls for this unit for the rest of the turn.\n• Add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the turn.\n• Add 1 to the Rend characteristic of this unit's melee weapons for the rest of the turn."
 				}
 			],
@@ -2657,6 +2746,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Roll a dice. On a 3+, this unit has WARD (5+) until the start of your next turn."
 				},
 				{
@@ -2664,6 +2754,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit's Deintalos the Exile is on the battlefield, it has WIZARD (1). While this unit's Prentice Marcov is on the battlefield, add 1 to casting rolls for this unit."
 				}
 			],
@@ -2713,6 +2804,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "You can return D3 slain models to this unit."
 				}
 			],
@@ -2762,6 +2854,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit's King Morlak Velmorn is on the battlefield, roll a dice for each slain model from this unit. On a 4+, you can return 1 slain model to this unit."
 				}
 			],
@@ -2827,6 +2920,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, subtract 1 from wound rolls for the target's attacks.",
 					"casting_value": 6,
@@ -2839,6 +2933,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit can use the 'Deathly Invocation' ability even if a different friendly unit has already used it this turn, but units that have already been picked to be targets of that ability this turn cannot be picked to be targets."
 				}
 			],
@@ -2873,6 +2968,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick a friendly SOULBLIGHT GRAVELORDS HERO wholly within 12\" of this MANIFESTATION to be the target.",
 					"effect": "Pick 1 of the following:\n• Heal (D3) the target.\n• Add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn. Then, this MANIFESTATION is banished and removed from play."
 				}
@@ -2922,6 +3018,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll a dice. On a 3+, remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy non-HERO units and more than 3\" from all enemy HEROES."
 				}
@@ -2984,6 +3081,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick a friendly Blood Knights unit that charged this turn and is wholly within 12\" of this unit to be the target.",
 					"effect": "Add 1 to the Rend characteristic of that unit's Templar Weapons for the rest of the turn."
 				},
@@ -2992,6 +3090,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a CHARGE ability for this unit",
+					"colour": "orange",
 					"effect": "You can re-roll the charge roll for that CHARGE ability. Then, before the charge move is made, you can pick a friendly Blood Knights unit that is not in combat, is wholly within 12\" of this unit and has not used a CHARGE ability this turn to be the target. If this unit charges, then, immediately after the CHARGE ability used by this unit has been resolved, the target can immediately use the 'Charge' ability even if it is not your charge phase. In addition, you can re-roll charge rolls for the target this phase."
 				}
 			],
@@ -3080,6 +3179,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Draconic Claws is 5."
 				},
 				{
@@ -3087,6 +3187,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a number of dice equal to the target's Health characteristic. For each 6, inflict 1 mortal damage on the target.",
@@ -3099,6 +3200,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "If this unit charged this turn, for the rest of the turn, subtract 5 from the control scores of enemy units while they are in combat with this unit."
 				}
 			],
@@ -3146,6 +3248,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is not in combat, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
 					"keywords": [
@@ -3209,6 +3312,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "This unit has a maximum control score of 1."
 				},
 				{
@@ -3216,6 +3320,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3. In addition, when this unit uses a CHARGE ability, it can pass through terrain features and enemy models as if it had FLY."
 				}
 			],
@@ -3270,6 +3375,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If any damage points were allocated to enemy units by this unit's attacks this turn, Heal (D3) this unit and each other friendly SOULBLIGHT GRAVELORDS MONSTER wholly within 12\" of this unit."
 				},
@@ -3278,6 +3384,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a dice. On a 3+, roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
@@ -3290,6 +3397,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from the Rend characteristic of melee weapons used by enemy units while they are in combat with this unit."
 				}
 			],
@@ -3349,6 +3457,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat, gain 1 rage dice."
 				},
@@ -3357,6 +3466,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can pick another visible friendly non-HERO SOULBLIGHT GRAVELORDS INFANTRY or MONSTER unit wholly within 12\" of this unit to be the target.",
 					"effect": "This unit can move up to X\", where X is your fury level. It must end that move in combat.\nThen, the target can move up to X\", where X is your fury level. It can move through enemy models and the combat ranges of enemy units during that move but must end that move in combat with an enemy unit that this unit is in combat with."
@@ -3366,6 +3476,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from the Rend characteristic of melee weapons used by enemy units while they are in combat with this unit."
 				}
 			],
@@ -3415,6 +3526,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Enemy Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "This unit can use a MOVE ability as if it were your movement phase."
 				},
@@ -3423,6 +3535,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While each model in this unit is within 1\" of any terrain features, this unit cannot be targeted by shooting attacks unless the attacking model is within 9\" of it."
 				}
 			],
@@ -3472,6 +3585,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "yellow",
 					"effect": "Pick a friendly Deathrattle Skeletons unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
@@ -3479,6 +3593,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Each time you make a run roll for a friendly Deathrattle Skeletons unit wholly within 12\" of this unit, you can change that roll to a 4."
 				}
 			],
@@ -3529,6 +3644,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO DEATHRATTLE INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				},
 				{
@@ -3536,6 +3652,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DEATHRATTLE unit within this unit's combat range to be the target.",
 					"effect": "Roll a dice. On a 3+, the target's melee weapons have Crit (2 Hits) for the rest of the turn."
@@ -3601,6 +3718,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an objective or terrain feature within enemy territory.",
 					"effect": "For the rest of the turn, add 1 to hit rolls for attacks made by friendly DEATHRATTLE units while they are wholly within 6\" of that objective or terrain feature."
 				},
@@ -3609,6 +3727,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If an attack made with this unit's King's Relic Weapon scores a critical hit, the target unit becomes cursed for the rest of the battle. Subtract 1 from save rolls for cursed units even if this unit has been destroyed.",
 					"options": [
 						{
@@ -3677,6 +3796,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO DEATHRATTLE CAVALRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
@@ -3684,6 +3804,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Add 1 to charge rolls for friendly DEATHRATTLE CAVALRY units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -3737,6 +3858,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit's Zondara Rivenheart is on the battlefield, it has WIZARD (1)."
 				},
 				{
@@ -3744,6 +3866,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "If this unit is in a Soulblight Gravelords army, pick a terrain feature within 3\" of this unit, then roll a dice and apply the corresponding effect. You cannot pick the same terrain feature more than once per battle.\n1 Cruel Hope: No effect.\n2-4 Cursed Flesh: You can return D3 slain models to this unit.\n5-6 Borrowed Power: Pick a friendly SOULBLIGHT GRAVELORDS HERO wholly within 12\" of this unit that does not have an artefact of power. You can pick an artefact of power from the Soulblight Gravelords faction rules that no other friendly HERO has and give it to that HERO."
 				}
 			],

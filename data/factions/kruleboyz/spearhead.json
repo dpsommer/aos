@@ -51,6 +51,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Subtract 1 from wound rolls for attacks made by enemy units in the first battle round."
 				}
 			],
@@ -60,6 +61,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If any other friendly units are within your general’s combat range, before you allocate a damage point to your general, roll a dice. On a 4+, you must allocate that damage point to one of those units instead."
 				},
 				{
@@ -76,6 +78,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Enemy Movement Phase",
+					"colour": "green",
 					"frequency": "Once Per Battle",
 					"effect": "In the next shooting phase, friendly units have WARD (5+) while they are wholly within 12\" of your general."
 				},
@@ -84,6 +87,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy unit in combat with your general and roll a dice.",
 					"effect": "On a 1-4, subtract 1 from hit rolls for attacks made by that unit for the rest of the phase. On a 5+, subtract 1 from hit rolls for attacks made by that unit for the rest of the battle."
@@ -130,6 +134,7 @@
 							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 9\" of this unit to be the target. You cannot pick this unit.",
 							"effect": "Add 3 to the target’s control score until the start of your next turn."
 						}
@@ -167,6 +172,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"declare": "Roll a dice for each enemy unit in combat with this unit.",
 							"effect": "On a 1, nothing happens. On a 2-5, inflict 1 mortal damage on that enemy unit. On a 6, inflict D3 mortal damage on that unit."
 						}
@@ -217,6 +223,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "Add 1 to hit rolls for this unit’s shooting attacks if has not used a MOVE ability this turn."
 						}
 					],
@@ -252,6 +259,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for attacks that target this unit this phase. This ability has no effect on attacks made by HEROES."
 						}
 					],

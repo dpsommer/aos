@@ -9,6 +9,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Enemy MONSTERS have STRIKE-LAST while they are in combat with 2 or more friendly DROTHKEEPERS Vulkyn Flameseekers units."
 				},
 				{
@@ -16,6 +17,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a non-Charge Move\nability for a friendly Magmadroth",
+					"colour": "grey",
 					"effect": "Pick a friendly Vulkyn Flameseekers unit and/or a friendly DROTHKEEPERS INFANTRY HERO that are not in combat and are wholly within 6\" of the MAGMADROTH to be the targets. Units that have hitched a lift this turn (see below) cannot be targets.\nRemove the targets from the battlefield. After the MAGMADROTH ends its move, you must set up each target on the battlefield, wholly within 6\" of the Magmadroth and not in combat. The targets have hitched a lift. Units that hitched a lift cannot use CHARGE abilities in the same turn."
 				},
 				{
@@ -23,6 +25,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DROTHKEEPERS MONSTER that has not used a RAMPAGE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target",
 					"effect": "Roll a dice. On a 3+, ward rolls cannot be made for the target for the rest of the turn.",
@@ -35,6 +38,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DROTHKEEPERS MONSTER that has not used a RAMPAGE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll 2 dice. Add 2 to each roll if the target is a MONSTER. For each 5+, inflict D3 mortal damage on the target.",
@@ -47,6 +51,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly DROTHKEEPERS MONSTER that has not used a RAMPAGE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target",
 					"effect": "Roll a dice. On a 3+, for the rest of the turn, add 1 to the Rend characteristic of melee weapons used for attacks that target that enemy unit.",
@@ -64,6 +69,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "The melee weapons of friendly non-MONSTER units have Anti-MONSTER (+1 Rend) while they are wholly within 9\" of this unit."
 						}
 					]
@@ -76,6 +82,7 @@
 							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "While this unit is contesting an objective, enemy MONSTERS contesting that objective each have a maximum control score of 2."
 						}
 					]
@@ -91,6 +98,7 @@
 							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly DROTHKEEPERS PRIEST to chant this prayer, pick a visible friendly DROTHKEEPERS MAGMADROTH wholly within 12\" of them to be a target, then make a chanting roll of D6.",
 							"effect": "Until the start of your next turn, the Damage characteristic of the target's Roaring Fyrestream is 3 instead of D3.",
 							"chanting_value": 4,
@@ -110,6 +118,7 @@
 							"type": "prayer",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Molten Infernoth on the battlefield, pick a friendly DROTHKEEPERS PRIEST to chant this prayer, then make a chanting roll of D6.",
 							"effect": "Set up a Molten Infernoth wholly within 12\" of the chanter, visible to them and more than 9\" from all enemy units.",
 							"chanting_value": 6,

@@ -34,6 +34,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit in combat to be the target.",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic and the Rend characteristic of the target’s melee weapons.",
@@ -115,6 +116,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "orange",
 							"declare": "Pick a friendly unit wholly within 12\" of your general to be the target.",
 							"effect": "Until the start of your next turn, add 1 to hit rolls for attacks made by the target."
 						}
@@ -165,6 +167,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Subtract 1 from hit rolls for shooting attacks that target this unit."
 						}
 					],
@@ -234,6 +237,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking model, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 						}
 					],
@@ -280,6 +284,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "black",
 					"frequency": "Once Per Turn",
 					"declare": "Pick one of the following friendly units to use this ability:\nA unit that is contesting an objective not controlled by your opponent and is not in combat. A unit that destroyed an enemy unit this turn.",
 					"effect": "Roll once on the Eye of the Gods table for that unit. That unit gains the Eye of the Gods passive ability that corresponds to the roll (the unit keeps all Eye of the Gods abilities gained in previous turns). If the same unit gains the same ability more than once in the battle, the effects are not cumulative.\nD6 ABILITY 1 Snubbed by the Gods: No effect. 2 WARD OF TZEENTCH: This unit has WARD (6+). 3 GRACE OF SLAANESH: Add 1 to run rolls for this unit. 4 BLESSING OF NURGLE: Subtract 1 from wound rolls for attacks that target this unit. 5 FURY OF KHORNE: Add 1 to the Rend characteristic of this unit’s melee weapons. 6 Champion of Chaos: Pick any ability from the table."
@@ -298,6 +303,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of the First Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly Chaos Warriors unit.",
 					"effect": "You can immediately roll on the Eye of the Gods table for that unit."
@@ -364,6 +370,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "black",
 							"effect": "Roll a dice. On a 4+, you can roll on the Eye of the Gods table for this unit."
 						},
 						{
@@ -426,6 +433,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Charge Phase",
+							"colour": "orange",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
 							"effect": "On a 2+, inflict D3 mortal damage on the target."
 						}
@@ -459,6 +467,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to wound rolls for combat attacks made by this unit that target an enemy unit that is contesting an objective you do not control."
 						}
 					],
@@ -506,6 +515,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Rend characteristic of this unit’s Cursed Lances if it charged in the same turn."
 						}
 					],

@@ -9,6 +9,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While a friendly Be'lakor is within the combat range of any friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON units:\n• That friendly Be'lakor has WARD (4+).\n• In addition, each time you make a successful ward roll for that friendly Be'lakor, allocate 1 damage point to a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON unit within Be'lakor's combat range after the damage sequence for Be'lakor has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
@@ -16,6 +17,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly Eternus that is in combat and up to 2 friendly non-HERO non-DAEMON LEGION OF THE FIRST PRINCE units wholly within 12\" of that Eternus to be the targets.",
 					"effect": "Add 1 to the Attacks characteristic of the targets' melee weapons for the rest of the turn."
@@ -25,6 +27,7 @@
 					"type": "command",
 					"category": "rallying",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON INFANTRY or CAVALRY unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of a friendly Be'lakor and more than 9\" from all enemy units.",
@@ -35,6 +38,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If a friendly Be'lakor is on the battlefield, pick a non-HERO LEGION OF THE FIRST PRINCE unit to be the target.",
 					"effect": "Until the start of your next turn:\n• Add 5 to the target's control score.\n• If the target is a DAEMON unit, add 1 to save rolls for the target.\n• If the target is a non-DAEMON unit, it has WARD (6+)."
@@ -49,6 +53,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"declare": "Pick up to 3 friendly units wholly within 12\" of this unit to be the targets.",
 							"effect": "Add 1 to charge rolls for the targets for the rest of the turn."
 						}
@@ -62,6 +67,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Reaction: You declared a SPELL ability for a friendly unit wholly within 12\" of this unit.",
+							"colour": "yellow",
 							"frequency": "Once Per Turn",
 							"effect": "Allocate 1 damage point to this unit. Then, you can re-roll the casting roll."
 						}
@@ -78,6 +84,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, pick up to 3 visible enemy units within 18\" of them to be the targets, then make a casting roll of 2D6.",
 							"effect": "Inflict 1 mortal damage on each target.",
 							"casting_value": 6,
@@ -91,6 +98,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, pick a visible friendly LEGION OF THE FIRST PRINCE unit that is not in combat and is wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "The target can move D6\". It cannot end that move in combat. In addition, until the start of your next turn, the target is not visible to enemy units while they are more than 12\" away.",
 							"casting_value": 7,
@@ -109,6 +117,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Eightfold Doom-sigil on the battlefield, pick a friendly LEGION OF THE FIRST PRINCE WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up an Eightfold Doom-sigil wholly within 12\" of the caster and visible to them",
 							"casting_value": 7,
@@ -133,6 +142,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 of the following effects:",
 					"options": [
@@ -159,6 +169,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "If there are more friendly SWORDS OF CHAOS units on the battlefield than there are set up in reserve, pick a friendly SWORDS OF CHAOS unit that has not been deployed.",
 					"effect": "Set up that unit in reserve in the Ruinous Skies. It has now been deployed.",
 					"keywords": [
@@ -170,6 +181,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly SWORDS OF CHAOS unit that is in the Ruinous Skies.",
 					"effect": "Set up that unit anywhere on the battlefield more than 9\" from all enemy units"
 				}
@@ -186,6 +198,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Add 1 to this unit's Health characteristic."
 						},
 						{
@@ -193,6 +206,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to the Damage characteristic of this unit's Companion weapons."
 						},
 						{
@@ -200,6 +214,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "While this unit is wholly within enemy territory, add 1 to the Attacks characteristic of this unit's melee weapons."
 						},
 						{
@@ -207,6 +222,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "grey",
 							"effect": "Add 3\" to this unit's Move characteristic."
 						},
 						{
@@ -214,6 +230,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "This unit has WARD (6+)."
 						}
 					]
@@ -230,6 +247,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time a friendly SNOW PEAKS unit uses 1 of the following abilities and the effect of that ability is resolved, gain 1 oath point.\n• 'Oath of Bloodshed'\n• 'Oath of Murder'\n• 'Oath of Supremacy'\n• 'Oath of the Marauder'\n• 'Oath of the Raider'\n• 'Oath of Conquest'\n• 'Oath of Dark Sacrifice'",
 					"options": [
 						{
@@ -243,6 +261,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Phase (Army)",
 					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
 					"effect": "Spend 1 oath point. For the rest of the turn, add 1 to the Rend characteristic of the target's melee weapons.",
@@ -255,6 +274,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Phase (Army)",
 					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
 					"effect": "Spend 1 oath point. For the rest of the turn, the target can use CHARGE abilities even if it used a RUN ability in the same turn.",
@@ -267,6 +287,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Phase (Army)",
 					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
 					"effect": "Spend 1 oath point. For the rest of the turn, add 1 to the Attacks characteristic of the target's melee weapons",
@@ -279,6 +300,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Phase (Army)",
 					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS Darkoath Marauders or Fellriders unit that has been destroyed and has not used an OATH ability this turn to be the target",
 					"effect": "Spend 2 oath points. Set up a replacement unit with half the number of models from the target unit (rounding up) on the battlefield, wholly within 6\" of a battlefield edge and more than 3\" from all enemy units.",
@@ -291,6 +313,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Phase (Army)",
 					"declare": "If you have 1 or more oath points, pick a friendly SNOW PEAKS unit that has not used an OATH ability this turn to be the target.",
 					"effect": "Spend 2 oath points. The target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn.",
@@ -303,6 +326,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared an ATTACK ability",
+					"colour": "green",
 					"frequency": "Once Per Phase (Army)",
 					"declare": "A friendly SNOW PEAKS unit targeted by that ATTACK ability, if you have 1 or more oath points.",
 					"effect": "If that friendly SNOW PEAKS unit has not used an OATH ability this turn, spend 1 oath point. For the rest of the turn, that friendly unit has WARD (4+).",
@@ -320,6 +344,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "While this unit is within the combat range of another friendly SNOW PEAKS unit, add 1 to hit rolls for this unit's attacks."
 						}
 					]
@@ -332,6 +357,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Any Movement Phase",
+							"colour": "grey",
 							"frequency": "Once Per Battle (Army)",
 							"declare": "Pick a friendly SNOW PEAKS Wilderfiend within 9\" of this unit to be the target",
 							"effect": "Give the target D6 sacrifice points."

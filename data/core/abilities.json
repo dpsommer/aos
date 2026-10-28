@@ -115,6 +115,7 @@
 			"type": "passive",
 			"category": "movement",
 			"timing": "Passive",
+			"colour": "grey",
 			"effect": "As this unit moves, it ignores other models, terrain features and the combat ranges of enemy units. It cannot end its move in combat unless specified in the ability that allowed it to move. Ignore any vertical distance moved for this unit."
 		},
 		{
@@ -122,6 +123,7 @@
 			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
+			"colour": "black",
 			"effect": "In step 1 of the damage sequence (see 18.0), make a ward roll of D6 for each damage point in this unit’s damage pool. If the roll equals or exceeds this unit’s ward value, remove that damage point from the damage pool."
 		},
 		{
@@ -129,6 +131,7 @@
 			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
+			"colour": "black",
 			"effect": "If this HERO is within the combat range of a friendly unit that is not a HERO:\n• Subtract 1 from hit rolls for shooting attacks that target this HERO.\n• If this HERO is INFANTRY, they cannot be picked as the target of shooting attacks made by models more than 12\" from them."
 		},
 		{
@@ -237,6 +240,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Start of Any Turn",
+			"colour": "black",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly HERO within 3\" of any Places of Power to use this ability.",
 			"effect": "Roll a dice. On a 1, inflict D3 mortal damage on that HERO. On a 2+, pick 1 of the following effects:",
@@ -298,6 +302,7 @@
 			"type": "passive",
 			"category": "offensive",
 			"timing": "Passive",
+			"colour": "red",
 			"effect": "Add 1 to the Attacks characteristic of weapons used by champions in this unit."
 		},
 		{
@@ -305,6 +310,7 @@
 			"type": "passive",
 			"category": "rallying",
 			"timing": "Passive",
+			"colour": "yellow",
 			"effect": "While this unit contains any musicians, if it uses the ‘Rally’ command, you can make one additional rally roll of D6."
 		},
 		{
@@ -312,6 +318,7 @@
 			"type": "passive",
 			"category": "control",
 			"timing": "Passive",
+			"colour": "purple",
 			"effect": "While this unit contains any standard bearers, add 1 to this unit’s control score."
 		}
 	],

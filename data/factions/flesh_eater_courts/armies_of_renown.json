@@ -12,6 +12,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly NEW SUMMERCOURT unit that contains any standard bearers to be the target.",
 					"effect": "For the rest of the battle:\n• While the target unit contains any standard bearers, add 10 to the control scores of friendly NEW SUMMERCOURT units while they are wholly within 24\" of the target.\n• Once all of the standard bearers in the target unit have been slain, subtract 5 from the control scores of friendly NEW SUMMERCOURT units."
@@ -21,6 +22,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You must use this ability if the friendly Ushoran is in combat with the enemy general. Pick the enemy general to be the target.",
 					"effect": "Your opponent must decide whether the target will accept or refuse Ushoran's challenge.",
@@ -40,6 +42,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "If the friendly Ushoran is not in combat and has not used any RUN or RETREAT abilities this turn, pick him to use this ability. Then, pick up to 2 friendly NEW SUMMERCOURT KNIGHTS units within his combat range that are not in combat and have not used a RUN or RETREAT ability this turn to be his royal retinue. Then, make a charge roll of 2D6.",
 					"effect": "The friendly Ushoran can move a distance up to the value of the charge roll. He can move through the combat ranges of enemy units and must end that move within 1/2\" of a visible enemy unit. If he does so, he has charged. If he charged, then after this ability has been resolved, each unit in his royal retinue can immediately use the 'Charge' ability even if it is not your charge phase and you can use the charge roll from this ability instead of making a charge roll when it does so, but it must end the charge move within 3\" of the friendly Ushoran.",
@@ -54,6 +57,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick each friendly NEW SUMMERCOURT unit that did not charge this turn to be the targets.",
 					"effect": "Start rolling dice, one at a time and one for each target, and stop when you roll a 6. The target you rolled a 6 for can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn. If you rolled for each target and did not roll a 6, this ability has no effect."
@@ -63,6 +67,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for combat attacks that target friendly NEW SUMMERCOURT units that charged in the same turn."
 				},
 				{
@@ -70,6 +75,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly KNIGHTS unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within friendly territory, wholly within 6\" of a battlefield edge and more than 9\" from all enemy units."
@@ -84,6 +90,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "If this unit charged this turn, it can move 2D6\". It can pass through models in enemy units, but it must end that move in combat."
 						}
 					]
@@ -96,6 +103,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "This unit has WARD (4+) until a friendly NEW SUMMERCOURT unit is destroyed."
 						}
 					]
@@ -111,6 +119,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, pick a visible friendly NEW SUMMERCOURT INFANTRY or CAVALRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn:\n• Add 2\" to the target's Move characteristic.\n• Add 1 to wound rolls for the target's combat attacks.",
 							"casting_value": 6,
@@ -124,6 +133,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn, for each unmodified hit roll of 1 for a combat attack made by the target, inflict 1 mortal damage on the target after the FIGHT ability has been resolved.",
 							"casting_value": 7,
@@ -142,6 +152,7 @@
 							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly NEW SUMMERCOURT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
 							"effect": "Until the start of your next turn, ignore positive modifiers to save rolls for the target. In addition, if the chanting roll was 10+, ward rolls cannot be made for the target until the start of your next turn.",
 							"chanting_value": 4,
@@ -161,6 +172,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Corpsemare Stampede on the battlefield, pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up a Corpsemare Stampede wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 							"casting_value": 6,
@@ -185,6 +197,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "In the first battle round:\n• Add 1 to run rolls for friendly EQUINOX FEAST units for each other friendly EQUINOX FEAST unit that has used a RUN ability this phase.\n• Add D6\" to the distance friendly EQUINOX FEAST units can move when they use a RETREAT ability."
 				},
 				{
@@ -192,6 +205,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability in the second battle round. Pick each enemy unit that used a CHARGE ability this phase to be the targets.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -201,6 +215,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "In the third battle round, while a friendly EQUINOX FEAST unit is in combat with an enemy unit that contains any champions, musicians or standard bearers, it can move 6\" instead of 3\" when it makes a pile-in move."
 				},
 				{
@@ -208,6 +223,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "In the fourth battle round, each time a friendly EQUINOX FEAST unit uses a FIGHT ability, after that ability has been resolved:\n• If that unit is damaged, Heal (D3) that unit.\n• If that unit is not damaged, return up to 3 slain models to it."
 				},
 				{
@@ -227,6 +243,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Ignore the first damage point that would be allocated to this unit in each phase."
 						}
 					]
@@ -239,6 +256,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Your Movement Phase",
+							"colour": "grey",
 							"frequency": "Once Per Battle",
 							"declare": "Pick a friendly EQUINOX FEAST unit that has been destroyed to be the target. This unit can use this ability if it has been destroyed, but if it does, this unit must be the target.",
 							"effect": "Set up a replacement unit identical to the target wholly within 6\" of a friendly EQUINOX FEAST unit and more than 9\" from all enemy units."
@@ -256,6 +274,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly EQUINOX FEAST WIZARD to cast this spell, pick a point on the battlefield that is visible to them, then pick each unit (friendly and enemy) within 3\" of that point to be the targets. Then, make a casting roll of 2D6.",
 							"effect": "Roll a dice for each target. On a 3+, subtract 1 from hit rolls for the target's attacks until the start of your next turn.",
 							"casting_value": 6,
@@ -275,6 +294,7 @@
 							"type": "prayer",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly EQUINOX FEAST PRIEST to chant this prayer, pick a visible friendly unit wholly within 12\" of them that has not been picked to be the target of this prayer this turn to be the target, then make a chanting roll of D6.",
 							"effect": "Return D3 slain models to the target unit. If the chanting roll was 8+, return D3+3 slain models to the target unit instead.",
 							"chanting_value": 4,
@@ -294,6 +314,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Chalice of Ushoran on the battlefield, pick a friendly EQUINOX FEAST WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up a Chalice of Ushoran wholly within 12\" of the caster and visible to them.",
 							"casting_value": 6,

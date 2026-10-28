@@ -58,6 +58,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "When this unit is destroyed, before removing it from play, the players must roll off. The winner picks a point on the battlefield within 3\" of this unit. Inflict D3 mortal damage on each unit (friendly and enemy) within 3\" of that point that has a lower Health characteristic than this unit."
 				},
 				{
@@ -65,6 +66,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. If the roll is at least double the target's Health characteristic, 1 model in the target unit is slain."
@@ -152,6 +154,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
@@ -159,6 +162,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "If any attacks made with this unit's Flinger score a hit, after the SHOOT ability has been resolved, roll a dice. On a 2+, halve the Move characteristic of the target unit until the start of your next turn."
 				},
 				{
@@ -166,6 +170,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract 1 from the Attacks characteristic of the target's Companion weapons for the rest of the turn.",
@@ -178,6 +183,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can pass across terrain features as if it had FLY."
 				}
 			],
@@ -253,6 +259,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
@@ -260,6 +267,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 enemy units within 1\" of this unit to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
@@ -272,6 +280,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can pass across terrain features as if it had FLY."
 				}
 			],
@@ -302,6 +311,7 @@
 					"type": "command",
 					"category": "rallying",
 					"timing": "End of Your Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO non-MONSTER non-WAR MACHINE GLOOMSPITE GITZ unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this terrain feature and more than 3\" from all enemy units.",
@@ -359,6 +369,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a dice for each model in this unit. For each 4+, inflict 1 mortal damage on the target."
 				}
@@ -434,6 +445,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "This unit can only use this ability if any models in this unit have been slain.",
 					"effect": "For the rest of the turn:\n• This unit has STRIKE-FIRST\n• Double the Attacks characteristic of this unit's melee weapons.\n• This unit's attacks must target an enemy MONSTER or BEAST."
@@ -443,6 +455,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit includes Uglug, ignore the first damage point allocated to it each phase."
 				}
 			],
@@ -489,6 +502,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll a dice. On a 4+, for the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly TROGGOTH units while they are wholly within 12\" of this unit.",
 					"keywords": [
@@ -500,6 +514,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
 					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit."
 				},
 				{
@@ -507,6 +522,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D6) this unit."
 				}
 			],
@@ -547,6 +563,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "This unit can move 6\" but must end that move in combat. Then, roll a D3 for each enemy unit within 1\" of this unit. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
 					"keywords": [
@@ -558,6 +575,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
 					"effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit."
 				},
 				{
@@ -565,6 +583,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D3) this unit."
 				}
 			],
@@ -626,6 +645,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "You can re-roll hit rolls for this unit's shooting attacks this turn, but for each hit roll that is re-rolled, subtract 1 from the Rend characteristic of this unit's Doom Diver for the rest of the turn."
 				}
@@ -685,6 +705,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While an enemy unit is within 6\" of this unit:\n• Subtract 1 from hit rolls for that enemy unit's attacks.\n• That enemy unit cannot use the 'All-out Attack' command."
 				},
 				{
@@ -692,6 +713,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick a friendly GITMOB unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
@@ -700,6 +722,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for a unit wholly within 9\" of this unit",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll a dice. On a 4+, the unit using that FIGHT ability can move 2D6\" after that FIGHT ability has been resolved. It can move through the combat ranges of any enemy units but cannot end that move in combat."
 				}
@@ -755,6 +778,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "If any damage points are allocated to an enemy unit by attacks made with this unit's Noxious Vomit, that unit is drenched in vomit until the start of your next turn.\nWhile a unit is drenched in vomit:\n• Subtract 1 from save rolls for that unit.\n• Ignore positive modifiers to save rolls for that unit."
 				},
 				{
@@ -762,6 +786,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D3) this unit."
 				}
 			],
@@ -816,6 +841,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. You can spend up to 3 rage dice. If you do:\n• Add X to the roll, where X is the number of rage dice spent.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, on a 5+, the target has STRIKE-LAST for the rest of the turn."
@@ -825,6 +851,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D3) this unit."
 				}
 			],
@@ -879,6 +906,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly GITMOB units that are not Frazzlegit Shamans on War-Wheelas cannot be targeted by shooting attacks while they are wholly within 6\" of this unit."
 				},
 				{
@@ -886,6 +914,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 visible enemy units within 9\" of this unit to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -945,6 +974,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "Add 1 to this unit's power level for the rest of the turn."
 				}
@@ -988,6 +1018,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "In the first battle round, this unit has WARD (4+). In the second battle round, this unit has WARD (5+). In the third and subsequent battle rounds, this unit has WARD (6+)."
 				},
 				{
@@ -995,6 +1026,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:",
 					"options": [
@@ -1074,6 +1106,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"declare": "This unit can only use this ability if you control the object of this unit's quest and this unit is contesting it.",
 					"effect": "For the rest of the battle, this unit has STRIKE-FIRST and WARD (4+)."
 				},
@@ -1082,6 +1115,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Pick an objective or terrain feature within enemy territory to be the object of this unit's quest."
 				}
 			],
@@ -1141,6 +1175,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly Moonclan Stabbas unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, pick 1 of the following effects:",
 					"options": [
@@ -1159,6 +1194,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO MOONCLAN INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				}
 			],
@@ -1220,6 +1256,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO MOONCLAN CAVALRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target\ncan be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				}
 			],
@@ -1290,6 +1327,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6."
 				},
 				{
@@ -1297,6 +1335,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick this unit and all friendly SQUIG units wholly within 12\" of this unit to be the targets.",
 					"effect": "Add 1 to hit rolls for the targets' Fang-filled Gobs, Massive Fang-filled Gobs and Huge Fang-filled Gobs for the rest of the turn."
@@ -1306,6 +1345,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit."
 				},
 				{
@@ -1313,6 +1353,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a dice for each model in the target unit, to a maximum of 10. For each 4+, inflict 1 mortal damage on the target.",
@@ -1378,6 +1419,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy unit within 1\" of this unit to be the target.",
 					"effect": "Roll a dice. If the roll equals or exceeds the target's Health characteristic, 1 model in the target unit is slain."
 				},
@@ -1386,6 +1428,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "If a friendly MOONCLAN INFANTRY unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. However, friendly MOONCLAN INFANTRY units cannot use RETREAT abilities while they are within 12\" of this unit."
 				}
 			],
@@ -1427,6 +1470,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "This unit has STRIKE-FIRST."
 				},
 				{
@@ -1434,6 +1478,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit if it has not been deployed.",
 					"effect": "Set up this unit in reserve hidden among the mobs. It has now been deployed.",
 					"keywords": [
@@ -1445,6 +1490,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is hidden among the mobs. Then, pick a friendly Moonclan Shootas or Moonclan Stabbas unit that has 10 or more models to be the target.",
 					"effect": "Set up this unit anywhere on the battlefield wholly within 6\" of the target and more than 9\" from all enemy units."
 				}
@@ -1487,6 +1533,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit if it has not been deployed.",
 					"effect": "Set up this unit in reserve lost in the horde. This unit has now been deployed.",
 					"keywords": [
@@ -1498,6 +1545,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick this unit if it is lost in the horde.",
 					"effect": "Set up this unit anywhere on the battlefield wholly within 3\" of a friendly Moonclan Stabbas or Moonclan Shootas unit. Then, this unit can move 2D6\". It can pass through enemy models and their combat ranges and can end that move in combat. Then, roll a dice for each enemy unit in combat with this unit or that this unit passed across as part of that move. Inflict an amount of mortal damage on that unit equal to the roll. If this unit ended that move in combat, it has charged.",
@@ -1548,6 +1596,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "purple",
 					"frequency": "Once Per Battle",
 					"effect": "For the rest of the turn:\n• Add 1 to this unit's power level.\n• If 2 or more dice in a casting roll for this unit have the same value, inflict D3 mortal damage on this unit after the SPELL ability has been resolved."
 				}
@@ -1592,6 +1641,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While friendly GLOOMSPITE GITZ units are wholly within 12\" of this MANIFESTATION they are affected by all four faces of the Bad Moon (Grinnin', Scowlin', Sulkin', and Cacklin')."
 				}
 			],
@@ -1657,6 +1707,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6."
 				},
 				{
@@ -1664,6 +1715,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit."
 				},
 				{
@@ -1671,6 +1723,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, roll a dice. On a 3+, this unit can move 3D6\" but must end that move in combat.",
 					"keywords": [
@@ -1734,6 +1787,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D3) this unit."
 				},
 				{
@@ -1741,6 +1795,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Bat Squig, Spiteshroom and Stalagsquig are tokens. After setting up this unit on the battlefield for the first time, place its tokens next to it."
 				},
 				{
@@ -1748,6 +1803,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "Pick 1 of the following effects:\nSpore Cloud: Remove this unit's Spiteshroom. For the rest of the turn, subtract 1 from hit rolls for attacks made by enemy units while they\nare in combat with this unit.\nBat Squig Attack!: Remove this unit's Bat Squig. Pick an enemy unit in combat with this unit to be the target and roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.\nRock-hard Skin: Remove this unit's Stalagsquig. Ignore all modifiers to save rolls for this unit (positive and negative) for the rest of the turn."
 				},
 				{
@@ -1755,6 +1811,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "This unit has WARD (5+) while any of its tokens are on the battlefield."
 				}
 			],
@@ -1806,6 +1863,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn."
 				}
@@ -1849,6 +1907,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn."
 				}
@@ -1884,6 +1943,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick up to 3 enemy units within 6\" of this MANIFESTATION to be the targets.",
 					"effect": "For each target, roll a number of dice equal to the number of models in that unit that are within 6\" of this MANIFESTATION. For each 5+, inflict 1 mortal damage on the target."
 				}
@@ -1943,6 +2003,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit if it has not been deployed.",
 					"effect": "Set up this unit in reserve in a secret tunnel. It has now been deployed.",
 					"keywords": [
@@ -1963,6 +2024,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is in a secret tunnel.",
 					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units."
 				}
@@ -2021,6 +2083,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit's Mean-eye is on the battlefield and not in combat, pick a visible enemy unit within 15\" of this unit to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if the target is damaged. On a 5+, inflict 1 mortal damage on the target."
@@ -2030,6 +2093,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of this unit's Wolfgit Weapons while it contests an objective you control that is not contested by any other friendly units."
 				}
 			],
@@ -2083,6 +2147,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D3) this unit."
 				}
 			],
@@ -2125,6 +2190,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD within 1\" of this MANIFESTATION to be the target.",
 					"effect": "Add 1 to the target's power level until the start of your next turn."
 				}
@@ -2183,6 +2249,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is in combat, pick this unit and up to 1 friendly Spider Riders unit that is in combat and wholly within 12\" of this unit to be the targets.",
 					"effect": "The targets can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on them."
@@ -2192,6 +2259,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can pass across terrain features as if it had FLY."
 				}
 			],
@@ -2237,6 +2305,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "This unit has WARD (4+) while it is wholly within 12\" of any friendly ARACHNAROK units."
 				},
 				{
@@ -2244,6 +2313,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This MANIFESTATION can pass across terrain features as if it had FLY."
 				}
 			],
@@ -2300,6 +2370,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
@@ -2307,6 +2378,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick this unit if it has not been deployed.",
 					"effect": "Set up this unit in reserve skittering through tunnels in reality. It has now been deployed.",
 					"keywords": [
@@ -2318,6 +2390,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, roll a dice. On a 3+, this unit can move 2D6\". It can pass through the combat ranges of enemy units and can pass through models in enemy INFANTRY units, but it must end that move in combat.\nThen, pick an enemy INFANTRY unit that this unit passed across during that move. Inflict D3 mortal damage on that enemy unit.",
 					"keywords": [
@@ -2329,6 +2402,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"declare": "Pick this unit if it is skittering through tunnels in reality.",
 					"effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units."
 				},
@@ -2337,6 +2411,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can pass across terrain features as if it had FLY."
 				}
 			],
@@ -2383,6 +2458,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Roll a number of dice equal to the unmodified casting roll. For each 3+, inflict 1 mortal damage on the target.",
 					"casting_value": 7,
@@ -2395,6 +2471,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the 'The Faces of the Bad Moon' ability",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "The face of the Bad Moon stays in its current position this battle round instead of moving to the next face in the sequence."
 				},
@@ -2403,6 +2480,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Each time a friendly MOONCLAN unit wholly within 12\" of this unit uses the 'Redeploy' command, no command points are spent."
 				}
 			],
@@ -2463,6 +2541,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick this unit and up to 2 friendly GITMOB CAVALRY units within this unit's combat range to be the targets.",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of the targets' Companion melee weapons."
@@ -2472,6 +2551,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Add 2 to charge rolls for friendly GITMOB CAVALRY units while they are wholly within 12\" of this unit."
 				}
 			],
@@ -2540,6 +2620,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY unit that this unit passed across during that move to be the target. Inflict D6 mortal damage on the target.",
 					"keywords": [
 						"CORE",
@@ -2557,6 +2638,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly Sunsteala Wheelas unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
@@ -2564,6 +2646,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "For the rest of the turn:\n• Subtract 1 from hit rolls for attacks made by enemy units while they are in combat with any friendly Sunsteala Wheelas.\n• Add 6\" to the Move characteristic of this unit and friendly Sunsteala Wheelas."
 				}
@@ -2627,6 +2710,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is not in combat, this unit can move D6\". It cannot end that move in combat."
 				}
@@ -2685,6 +2769,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "If this unit charged this turn, add 5 to its control score for the rest of the turn."
 				},
 				{
@@ -2692,6 +2777,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, it has STRIKE-FIRST for the rest of the turn."
 				}
@@ -2746,6 +2832,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat, pick a friendly MOONCLAN unit wholly within 12\" of it to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if the face of the Bad Moon is Cacklin' this turn. On a 3+, the target has WARD (5+) until the start of your next turn. On a 6+, also add 1 to the Attacks characteristic of the target's melee weapons until the start of your next turn."
@@ -2811,6 +2898,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can pass across terrain features as if it had FLY."
 				}
 			],
@@ -2853,6 +2941,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to the Attacks characteristic of melee weapons used by other friendly MOONCLAN units while they are wholly within 12\" of this unit. Subtract 1 from the Attacks characteristic of melee weapons used by enemy units while they are in combat with this unit."
 				},
 				{
@@ -2860,6 +2949,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "This unit can use the 'Normal Move' ability as if it were your movement phase."
 				}
 			],
@@ -2901,6 +2991,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from the Attacks characteristic of weapons used by enemy units while they are in combat with this unit."
 				},
 				{
@@ -2908,6 +2999,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit was not set up this phase, this unit can move 2D6\". It can move through the combat ranges of enemy units and can finish that move in combat."
 				}
@@ -2965,6 +3057,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Squig unit\nwithin this unit's combat range to be\nthe target.",
 					"effect": "Roll a dice. On a 2+, pick 1 of the following effects to apply for the rest of the turn:",
@@ -3030,6 +3123,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				},
 				{
@@ -3037,6 +3131,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Roll a dice for each Squig Herder in this unit. For each 2+, you can return D3 slain Cave Squigs to this unit. For each 1, 1 Squig Herder in this unit is slain."
 				}
 			],
@@ -3090,6 +3185,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
 					"effect": "Roll a dice for each model in this unit that passed across the target. For each 4+, inflict 1 mortal damage on the target."
 				}
@@ -3155,6 +3251,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat, it can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY or CAVALRY unit that this unit passed across during that move to be the target. Inflict D3 mortal damage on the target. Add 1 to the amount of mortal damage inflicted for each model in this unit.",
 					"keywords": [
@@ -3230,6 +3327,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "This unit can only use this ability if it charged this turn. Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice for each model in the target unit. If there are 2 models in this unit, add 1 to each roll. If there are 3 or more models in this unit, add 2 to each roll. For each 6+, inflict 1 mortal damage on the target.\nThen, you can spend 1 rage dice. If you do:\n• Roll 2D6. This unit can move a distance in inches up to the value of the roll. It can move through the combat ranges of enemy units but cannot end that move in combat.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.",
@@ -3290,6 +3388,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, when it uses the 'Malfunctioning Leystone' ability, roll 1 dice instead of 3."
 				},
 				{
@@ -3297,6 +3396,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit within 1\" of this unit to be the target.",
 					"effect": "Roll a dice. If the roll equals or exceeds the target's Health characteristic, 1 model in the target unit is slain.",
@@ -3309,6 +3409,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Roll 3 dice. You must pick 1 of those dice and apply the effect that corresponds to its value. Effects 2-6 persist until the start of your next turn.\n1 Glyph of Shyish: Inflict D3 mortal damage on this unit.\n2 Glyph of Ghur: Add 1 to the Attacks characteristic of melee weapons used by friendly TROGGOTH units while they are wholly within 12\" of this unit.\n3 Glyph of Aqshy: Add 1 to the Rend characteristic of melee weapons used by friendly TROGGOTH units while they are wholly within 12\" of this unit.\n4 Glyph of Hysh: This unit can use Unbind abilities as if it had WIZARD (1).\n5 Glyph of Ulgu: Subtract 1 from hit rolls for shooting attacks that target friendly TROGGOTH units while they are wholly within 12\" of this unit.\n6 Glyph of Chamon: This unit has WARD (5+)."
 				},
 				{
@@ -3316,6 +3417,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D6) this unit."
 				}
 			],
@@ -3366,6 +3468,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly SPIDERFANG unit or terrain feature within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, remove this unit from the battlefield and set it up again wholly within 3\" of the target and more than 9\" from all enemy units."
 				},
@@ -3374,6 +3477,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly SPIDERFANG unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "The target can use a RUN ability this turn and still use SHOOT and/or CHARGE abilities later in the turn.",
 					"casting_value": 6,
@@ -3472,6 +3576,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6."
 				},
 				{
@@ -3479,6 +3584,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls for friendly SPIDERFANG WIZARDS while they are wholly within 12\" of this unit."
 				},
 				{
@@ -3486,6 +3592,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy INFANTRY HERO within 1\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn.",
@@ -3498,6 +3605,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "This unit can pass across terrain features as if it had FLY."
 				}
 			],
@@ -3563,6 +3671,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While a friendly Snarlboss is within this unit's combat range, both this unit and that Snarlboss have WARD (5+)."
 				}
 			],
@@ -3624,6 +3733,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "If this unit's Zarbag is on the battlefield and within 3\" of a terrain feature, roll a dice. On a 4+, add 1 to this unit's power level for the rest of the turn."
 				},
 				{
@@ -3631,6 +3741,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit's Zarbag is on the battlefield, it has WIZARD (1)."
 				}
 			],

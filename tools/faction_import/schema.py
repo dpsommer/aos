@@ -47,7 +47,7 @@ def ability_type(a):
 
 def ability(a):
     out = {"name": a["name"], "type": ability_type(a), "category": a.get("category", ""), "timing": a.get("timing", "")}
-    for k in ("frequency", "declare", "used_by", "effect", "text", "casting_value", "chanting_value",
+    for k in ("colour", "frequency", "declare", "used_by", "effect", "text", "casting_value", "chanting_value",
               "keywords", "options", "points", "command_points", "source", "summons"):
         if a.get(k):
             out[k] = a[k]

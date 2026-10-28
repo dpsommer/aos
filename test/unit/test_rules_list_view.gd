@@ -14,9 +14,18 @@ func _labels() -> PackedStringArray:
 	return PackedStringArray(["First entry", "Second entry", "Third entry"])
 
 
-## Renders an entry as text that identifies its index.
-func _render(index: int) -> String:
+## Renders an entry as a label that identifies its index.
+func _render(index: int) -> Control:
+	return UIBuilder.label(_text(index))
+
+
+func _text(index: int) -> String:
 	return "Detail for entry %d" % index
+
+
+## The text of the entry shown in the detail panel, or "" if nothing is.
+func _shown(view: RulesListView) -> String:
+	return (view.detail.get_child(0) as Label).text if view.detail.get_child_count() > 0 else ""
 
 
 func test_populate_adds_one_item_per_label() -> void:
@@ -42,7 +51,7 @@ func test_populate_selects_first_item() -> void:
 func test_populate_renders_first_item() -> void:
 	var view := _make_view()
 	view.populate(_labels(), _render)
-	assert_eq(view.detail.text, _render(0))
+	assert_eq(_shown(view), _text(0))
 
 
 func test_populate_twice_replaces_items() -> void:
@@ -57,15 +66,15 @@ func test_populate_with_no_labels_clears_detail() -> void:
 	var view := _make_view()
 	view.populate(_labels(), _render)
 	view.populate(PackedStringArray(), _render)
-	assert_eq(view.detail.text, "")
+	assert_eq(_shown(view), "")
 
 
 func test_populate_with_no_labels_does_not_render() -> void:
 	var view := _make_view()
 	var calls := []
-	view.populate(PackedStringArray(), func(i: int) -> String:
+	view.populate(PackedStringArray(), func(i: int) -> Control:
 		calls.append(i)
-		return "")
+		return Control.new())
 	assert_eq(calls.size(), 0)
 
 
@@ -74,7 +83,7 @@ func test_select_renders_that_entry() -> void:
 	view.populate(_labels(), _render)
 	var last := _labels().size() - 1
 	view.select(last)
-	assert_eq(view.detail.text, _render(last))
+	assert_eq(_shown(view), _text(last))
 
 
 func test_select_highlights_that_item() -> void:
@@ -89,4 +98,20 @@ func test_clicking_list_item_renders_that_entry() -> void:
 	var view := _make_view()
 	view.populate(_labels(), _render)
 	view.list.item_selected.emit(1)
-	assert_eq(view.detail.text, _render(1))
+	assert_eq(_shown(view), _text(1))
+
+
+func test_detail_shows_only_the_selected_entry() -> void:
+	var view := _make_view()
+	view.populate(_labels(), _render)
+	view.select(2)
+	assert_eq(view.detail.get_child_count(), 1)
+
+
+func test_selecting_another_entry_frees_the_previous_one() -> void:
+	var view := _make_view()
+	view.populate(_labels(), _render)
+	var first := view.detail.get_child(0)
+	view.select(1)
+	await get_tree().process_frame
+	assert_false(is_instance_valid(first))

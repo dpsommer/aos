@@ -32,6 +32,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Add 1 to hit rolls for shooting attacks made by friendly VANGUARD CHAMBER units if the target is within 9\" of this unit."
 				}
 			],
@@ -72,6 +73,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a dice for each model in this unit. If any of the rolls are a 6, the target has STRIKE-LAST for the rest of the turn."
 				},
@@ -80,6 +82,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "If this unit was set up this turn using the 'Scions of the Storm' ability, pick up to 3 enemy units within 10\" of it to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -121,6 +124,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase and the unmodified charge roll was 8+, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "The target has STRIKE-LAST for the rest of the turn."
 				},
@@ -129,6 +133,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "If this unit was set up this turn using the 'Scions of the Storm' ability, pick up to 3 enemy units within 10\" of it to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -189,6 +194,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick up to 3 enemy units in combat with this unit to be the targets, then make a casting roll of 2D6.",
 					"effect": "If you picked 1 unit, inflict 3 mortal damage on the target. If you picked 2 units, inflict 2 mortal damage on each target. If you picked 3 units, inflict 1 mortal damage on each target.",
 					"casting_value": 5,
@@ -201,6 +207,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"effect": "Add 2 to charge rolls for friendly SACROSANCT CHAMBER CAVALRY units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -208,6 +215,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick a visible friendly SACROSANCT CHAMBER unit wholly within 12\" of this unit to be the target.",
 					"effect": "Add 1 to wound rolls for the target's attacks for the rest of the turn."
 				}
@@ -267,6 +275,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Inflict 3 mortal damage on the target, then inflict 1 mortal damage on each other enemy unit within 3\" of the target.",
 					"casting_value": 6,
@@ -279,6 +288,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "For the rest of the phase, add 1 to hit rolls for combat attacks that target that enemy unit.",
@@ -291,6 +301,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Heal (3) this unit."
 				}
 			],
@@ -349,6 +360,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Gryph-hound is a token. If this unit's Gryph-hound has been removed, it cannot use the 'Scouting Companion' ability."
 				},
 				{
@@ -356,6 +368,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"effect": "If this unit has not used a MOVE ability this turn and was not set up this turn, this unit's shooting attacks score critical hits on unmodified hit rolls of 5+ for the rest of the turn."
 				},
 				{
@@ -363,6 +376,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Reaction: You declared a SHOOT ability for this unit",
+					"colour": "blue",
 					"effect": "Until the SHOOT ability is resolved, add 3\" to the Range characteristic of this unit's Thunderhead Greatbows and add 1 to hit rolls for this unit's shooting attacks. Remove this unit's Gryph-hound from the battlefield after the SHOOT ability has been resolved."
 				}
 			],
@@ -421,6 +435,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Each time this unit attacks with its Cometstrike Sceptre, if the attack scores a hit, inflict D3 mortal damage on the target."
 				},
 				{
@@ -428,6 +443,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick this unit if it is in the Celestial Realm.",
 					"effect": "Subtract the current battle round number from 10 to determine this unit's strike zone. Set up this unit on the battlefield more than a number of inches equal to its strike zone from all enemy units."
@@ -488,6 +504,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target.",
 					"effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -535,6 +552,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for shooting attacks made by enemy units while they are within 12\" of this MANIFESTATION."
 				}
 			],
@@ -567,6 +585,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While the unit that was picked to be the target of the 'Summon Dais Arcanum' ability is on the platform of this MANIFESTATION:\n• That unit has WARD (5+) and FLY.\n• If that unit is a WIZARD, add 1 to that unit's power level.\n• That unit cannot use MOVE abilities and remains on this MANIFESTATION each time it moves.\n• If that unit is picked to make a pile-in move, move this MANIFESTATION instead.\n• Instead of measuring range or visibility to that unit, measure to this MANIFESTATION instead.\n• This MANIFESTATION cannot be picked to be the target of abilities other than BANISH abilities.\nIf this MANIFESTATION is banished, before removing it from the battlefield, set up the unit on its platform on the battlefield within 3\" of it. That unit can only be set up in combat with units it was already in combat with when this MANIFESTATION was banished. If it is not possible to set up that unit, it is destroyed.\nIf the unit on the platform is removed from the battlefield, immediately remove this MANIFESTATION from play."
 				}
 			],
@@ -623,6 +642,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Damage characteristic of this unit's Decimator Thunderaxes if the target unit has 10 or more models."
 				}
 			],
@@ -684,6 +704,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to this unit's power level while it is contesting an objective."
 				},
 				{
@@ -691,6 +712,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible unit within 12\" of the caster to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target is a friendly unit, it has STRIKE-FIRST for the rest of the turn. If the target is an enemy unit, it has STRIKE-LAST for the rest of the turn.",
 					"casting_value": 7,
@@ -767,6 +789,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn."
@@ -776,6 +799,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -845,6 +869,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn."
@@ -854,6 +879,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -922,6 +948,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Damage characteristic of this unit's Thunderaxes if the target unit has 10 or more models."
 				},
 				{
@@ -929,6 +956,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -998,6 +1026,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Damage characteristic of this unit's Thunderaxes if the target unit has 10 or more models."
 				},
 				{
@@ -1005,6 +1034,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1073,6 +1103,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				},
@@ -1081,6 +1112,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1150,6 +1182,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				},
@@ -1158,6 +1191,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1235,6 +1269,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Volleystorm Crossbows to be the target.",
 					"effect": "Roll a dice. On a 2+, the target cannot use the 'All-out Defence' command in the following combat phase."
 				},
@@ -1243,6 +1278,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1321,6 +1357,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Volleystorm Crossbows to be the target.",
 					"effect": "Roll a dice. On a 2+, the target cannot use the 'All-out Defence' command in the following combat phase."
 				},
@@ -1329,6 +1366,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1414,6 +1452,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, for the rest of the turn:\n• Add 1 to the Damage characteristic of this unit's Stardrake's Cavernous Jaws for attacks that target that enemy MONSTER.\n• If that enemy MONSTER is also a HERO, add 1 to the Damage characteristic of this unit's Templar Weapons for attacks that target that unit.",
@@ -1426,6 +1465,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stardrake's Cavernous Jaws is 4."
 				},
 				{
@@ -1433,6 +1473,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1466,6 +1507,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "If this MANIFESTATION was summoned this phase, pick any number of enemy units within 6\" of it to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				},
@@ -1474,6 +1516,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Subtract 1 from casting rolls for enemy WIZARDS while they are within 12\" of this MANIFESTATION."
 				}
 			],
@@ -1518,6 +1561,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				},
 				{
@@ -1525,6 +1569,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "If this unit is contesting an objective you control, pick a visible friendly non-HERO STORMCAST ETERNALS INFANTRY unit within 12\" of this unit to be the target.",
 					"effect": "Add 1 to wound rolls for the target's combat attacks for the rest of the turn."
 				}
@@ -1582,6 +1627,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				},
 				{
@@ -1589,6 +1635,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit is contesting an objective you do not control, it has STRIKE-FIRST."
 				}
 			],
@@ -1639,6 +1686,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "If this unit charged this turn, for the rest of the turn, friendly STORMCAST ETERNALS units have WARD (5+) while they are wholly within 12\" of this unit."
 				},
 				{
@@ -1646,6 +1694,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Battle",
 					"declare": "Pick up to 3 visible friendly STORMCAST ETERNALS INFANTRY units wholly within 6\" of this unit to be the targets.",
 					"effect": "For the rest of the turn:\n• Add 1 to charge rolls for the targets.\n• Add 1 to the Attacks characteristic of the targets' melee weapons."
@@ -1699,6 +1748,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "Pick this unit and another visible friendly WARRIOR CHAMBER unit within 3\" of it to be the targets.",
 					"effect": "For the rest of the phase, when making charge rolls for the targets, add 1 to the number of dice rolled, then remove 1 dice of your choice and use the remaining dice as the charge roll."
 				},
@@ -1707,6 +1757,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -1751,6 +1802,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit within 12\" of this unit that was set up this turn. Then, pick up to 3 friendly STORMCAST ETERNALS units armed with ranged weapons that are within 12\" of that enemy unit to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll."
 				}
@@ -1881,6 +1933,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of Cthorak's Ancient Claws is 4."
 				},
 				{
@@ -1888,6 +1941,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be struck by lightning, then make a chanting roll of D6.",
 					"effect": "Inflict D3 mortal damage on that unit, then roll a dice. On a 1-2, the sequence ends. On a 3+, pick another enemy unit within 3\" of that unit to be struck by lightning and inflict D3 mortal damage on it. If the chanting roll was 10+, you can pick another enemy unit within 6\" of that unit instead of 3\". Keep rolling dice in this way until the sequence ends or there are no other enemy units eligible to be struck by lightning. A unit cannot be struck by lightning more than once per turn.",
 					"chanting_value": 5,
@@ -1900,6 +1954,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Spirit-scouring Flames to be the target.",
 					"effect": "The target has the SOULBURNED keyword for the rest of the battle.",
@@ -1912,6 +1967,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"declare": "This unit can use this ability even if it has been destroyed. Pick any number of Soulburned enemy units to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				},
@@ -1920,6 +1976,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -1985,6 +2042,7 @@
 					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a chanting roll of D6.",
 					"effect": "For the rest of the turn, each time a friendly RUINATION CHAMBER unit uses a FIGHT ability while it is wholly within 18\" of this unit, after that ability has been resolved:\n• Heal (D3) that unit. If the chanting roll was 8+, Heal (3) that unit instead.\n• That unit has WARD (6+) for the rest of the turn.",
 					"chanting_value": 4,
@@ -1997,6 +2055,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. If the roll exceeds the target's Health characteristic:\n• 1 model in the target unit is slain.\n• This unit can immediately use the 'Retreat' ability without any mortal damage being inflicted upon it.",
@@ -2009,6 +2068,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -2076,6 +2136,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly RUINATION CHAMBER unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
 					"effect": "Until the start of your next turn, add 1 to the Rend characteristic of each target's melee weapons. If the chanting roll was 7+, you can pick another eligible unit to be a second target.",
 					"chanting_value": 3,
@@ -2088,6 +2149,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "If the target charged this turn, apply the effects below. Otherwise, roll a dice. On a 3+, apply the effects below:\n\n• You can remove this unit from the battlefield and set it up again within 1\" of the target.\n• Subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
@@ -2100,6 +2162,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "You can re-roll resistance rolls for friendly RUINATION CHAMBER units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -2107,6 +2170,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked to be the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 3+, that ability has no effect on this unit."
 				}
@@ -2175,6 +2239,7 @@
 					"type": "prayer",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly RUINATION CHAMBER unit wholly within 12\" of this unit to be the target, then make a chanting roll of D6.",
 					"effect": "Until the start of your next turn, add 1 to the Rend characteristic of the target's melee weapons. If the chanting roll was 7+, you can pick another eligible unit to be a second target.",
 					"chanting_value": 3,
@@ -2187,6 +2252,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• You can remove this unit from the battlefield and set it up again on the battlefield within 1\" of the target.\n• If the target charged this turn, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
@@ -2199,6 +2265,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "You can re-roll resistance rolls for friendly RUINATION CHAMBER units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -2206,6 +2273,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn",
 					"effect": "Make a resistance roll of D6. On a 3+, that ability has no effect on this unit."
 				}
@@ -2277,6 +2345,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy INFANTRY unit that does not have FLY and that had any models slain this phase by this unit’s shooting attacks to be the target.",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
@@ -2354,6 +2423,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy MONSTER that had any damage points allocated to it this phase by this unit's shooting attacks to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot use RAMPAGE abilities until the start of your next turn."
@@ -2434,6 +2504,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
@@ -2446,6 +2517,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit has 5-9 damage points, add 1 to the Attacks characteristic of its melee weapons.\nWhile this unit has 10 or more damage points, add 2 to the Attacks characteristic of its melee weapons instead."
 				},
 				{
@@ -2453,6 +2525,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit within this unit's combat range to be the target.",
 					"effect": "Subtract 1 from the Attacks characteristic of the target's melee weapons for the rest of the turn."
 				}
@@ -2504,6 +2577,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to casting rolls for this unit when it uses a SUMMON ability and add 1 to banishment rolls for this unit.\nEnemy MANIFESTATIONS cannot pass through or end any move within this unit's combat range unless they started that move within this unit's combat range.\nThis unit has WARD (4+) against mortal damage inflicted by MANIFESTATIONS."
 				}
 			],
@@ -2550,6 +2624,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Prosecutors unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\n• If the target is in combat, the target can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it.\n• If the target is not in combat, the target can immediately use the 'Normal Move' ability as if it were your movement phase."
@@ -2559,6 +2634,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\n• For the rest of the turn, subtract 1 from hit rolls for attacks made by enemy units while they are in combat with this unit.\n• Heal (D3) each friendly STORMCAST ETERNALS unit within this unit's combat range."
 				},
 				{
@@ -2566,6 +2642,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -2637,6 +2714,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
 					"effect": "If this unit or a friendly Stormdrake Guard unit wholly within 12\" of this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit or that friendly unit. This unit can use this ability more than once per phase but only once per Spell ability"
 				},
 				{
@@ -2644,6 +2722,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Stormdrake Guard unit within this unit's combat range to be the target.",
 					"effect": "Roll a dice. On a 2+, add 1 to the Attacks characteristic of both this unit's and the target's Draconith's Fangs and Talons for the rest of the turn.",
@@ -2656,6 +2735,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -2703,6 +2783,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick a visible faction terrain feature within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				},
@@ -2711,6 +2792,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "If a friendly WARRIOR CHAMBER unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				}
 			],
@@ -2757,6 +2839,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL ability for a WIZARD within 30\" of this unit",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "The spell is unbound and its effect is not resolved.",
 					"keywords": [
@@ -2768,6 +2851,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While they are within 30\" of this unit, subtract 1 from casting rolls for enemy units when they use SUMMON abilities."
 				}
 			],
@@ -2824,6 +2908,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Gryph-hounds are tokens. After setting up this unit on the battlefield for the first time, place both Gryph-hounds next to it."
 				},
 				{
@@ -2831,6 +2916,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit was not set up this turn and any of this unit's Gryph-hounds are on the battlefield, pick an enemy unit within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 1, remove 1 of this unit's Gryph-hounds from the battlefield. On a 2+, pick 1 of this unit's Gryph-hounds that is next to this unit or next to an enemy unit and place it next to the target instead.\nWhile any of this unit's Gryph-hounds are next to an enemy unit, add 1 to hit rolls and wound rolls for this unit's shooting attacks that target that unit.\nIf an enemy unit is destroyed or removed from the battlefield while any of this unit's Gryph-hounds are next to it, place those Gryph-hounds next to this unit."
@@ -2883,6 +2969,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is contesting a questmarked objective:\n• Add 3 to this unit's control score.\n• This unit has WARD (5+)."
 				},
 				{
@@ -2890,6 +2977,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly Questor Soulsworn unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved."
 				},
 				{
@@ -2897,6 +2985,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "Pick an objective wholly outside friendly territory. That objective is considered by you to be questmarked."
 				}
@@ -2943,6 +3032,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, subtract 1 from ward rolls made by the target for the rest of the turn."
 				}
@@ -3017,6 +3107,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a visible enemy unit within 24\" of this unit to be the target.",
 					"effect": "If the target is a non-MONSTER unit, inflict D6 mortal damage on it. If the target is a MONSTER, inflict D6+3 mortal damage on it.",
@@ -3070,6 +3161,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick up to D3 friendly STORMCAST ETERNALS units wholly within 12\" of this unit to be the targets.",
 					"effect": "Add 3 to each target's control score for the rest of the turn. In addition, Heal (D3) each target."
 				}
@@ -3134,6 +3226,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
 				},
@@ -3142,6 +3235,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
 			],
@@ -3211,6 +3305,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn.",
@@ -3223,6 +3318,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Apex Maw is 2."
 				},
 				{
@@ -3230,6 +3326,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 2 to casting rolls for this unit."
 				},
 				{
@@ -3237,6 +3334,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 18\" of the caster to be the target, then make a casting roll of 2D6.",
 					"effect": "Pick 1 of the following effects to apply to the target until the start of your next turn:",
 					"casting_value": 8,
@@ -3314,6 +3412,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 3 to this unit's control score while it is contesting an objective wholly within friendly territory."
 				}
 			],
@@ -3369,6 +3468,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit."
 				},
 				{
@@ -3376,6 +3476,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, while a friendly THE BLACKTALONS unit is wholly within 6\" of this unit, if the unmodified hit roll for a shooting attack that targets that unit is 1-5, the attack fails and the attack sequence ends.",
 					"casting_value": 6,
@@ -3454,6 +3555,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "If this unit is not in combat, you can pick up to 2 friendly VANGUARD-PALLADORS units that are not in combat to be the targets.",
 					"effect": "Remove this unit and the targets (if any) from the battlefield. Set this unit up again on the battlefield more than 9\" from all enemy units. Then, set up each target wholly within 12\" of this unit and more than 9\" from all enemy units."
 				},
@@ -3462,6 +3564,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -3508,6 +3611,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick a visible friendly MANIFESTATION wholly within 12\" of this unit to be the target.",
 					"effect": "Heal (D6) the target."
 				},
@@ -3516,6 +3620,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls for this unit when it uses a SUMMON ability."
 				}
 			],
@@ -3573,6 +3678,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly SACROSANCT CHAMBER CAVALRY unit that charged this phase and is wholly within 12\" of this unit to be the target.",
 					"effect": "Inflict D3 mortal damage on each enemy unit in combat with the target."
@@ -3582,6 +3688,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "If this unit is in combat, pick this unit and up to 1 other visible friendly SACROSANCT CHAMBER CAVALRY unit within its combat range to be the targets.",
 					"effect": "Add 1 to the Attacks characteristic of the targets' Companion melee weapons for the rest of the turn."
 				}
@@ -3640,6 +3747,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick a visible friendly SACROSANCT CHAMBER unit that is not in combat and is within 12\" of this unit to be the target.",
 					"effect": "If the target is damaged, Heal (D6) the target. If the target is not damaged, return a slain model to it."
 				},
@@ -3648,6 +3756,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "If this unit is not in combat, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
 				}
 			],
@@ -3705,6 +3814,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls for friendly STORMCAST ETERNALS WIZARDS while they are wholly within 12\" of this unit."
 				},
 				{
@@ -3712,6 +3822,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is in combat, pick each visible friendly STORMCAST ETERNALS unit within its combat range to be the targets.",
 					"effect": "For the rest of the turn, the targets have WARD (5+) and this unit has STRIKE-LAST.",
@@ -3724,6 +3835,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible enemy WIZARD that used a SPELL ability this phase and is within 30\" of this unit to be the target.",
 					"effect": "Roll X+1 dice, where X is an amount equal to the target's power level. For each 2+, inflict 1 mortal damage on the target."
@@ -3788,6 +3900,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "For the rest of the turn, this unit has WARD (4+). Remove this unit's Gryph-hound from the battlefield at the end of the turn."
 				},
@@ -3796,6 +3909,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Gryph-hound is a token. If this unit's Gryph-hound has been removed, it can no longer attack with its Gryph-hound's Beak and it cannot use the 'Loyal Companion' ability"
 				},
 				{
@@ -3803,6 +3917,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an objective within 12\" of this unit to be the target.",
 					"effect": "For the rest of the turn:\n• Friendly STORMCAST ETERNALS units have WARD (6+) while they are contesting the target.\n• Ward rolls cannot be made for enemy units while they are contesting the target."
 				}
@@ -3853,6 +3968,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO WARRIOR CHAMBER INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn."
 				}
 			],
@@ -3927,6 +4043,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO EXTREMIS CHAMBER CAVALRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 				},
 				{
@@ -3934,6 +4051,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -4006,6 +4124,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll 3 dice. For each roll that equals or exceeds the target's Health characteristic, 1 model in the target unit is slain.",
@@ -4018,6 +4137,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stardrake's Cavernous Jaws is 4."
 				},
 				{
@@ -4025,6 +4145,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "Add 1 to the Attacks characteristic of other friendly EXTREMIS CHAMBER units wholly within 12\" of this unit for the rest of the turn."
 				},
@@ -4033,6 +4154,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -4092,6 +4214,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each time a friendly STORMCAST ETERNALS unit wholly within 12\" of this unit uses the 'All-out Attack' command, no command points are spent."
 				},
 				{
@@ -4099,6 +4222,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick up to 3 friendly STORMCAST ETERNALS INFANTRY units to be the targets.",
 					"effect": "Each target can use the 'Normal Move' ability as if it were your movement phase."
 				},
@@ -4107,6 +4231,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "If any enemy models were slain by this unit's attacks this turn, Heal (4) this unit."
 				}
 			],
@@ -4153,6 +4278,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy PRIEST within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 2+:\n• If the target has any ritual points, remove a number of ritual points from it equal to the roll.\n• If the target has no ritual points, inflict D3 mortal damage on it."
 				},
@@ -4161,6 +4287,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Models cannot be returned to enemy units within 12\" of this unit."
 				}
 			],
@@ -4211,6 +4338,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick up to 3 friendly STORMCAST ETERNALS units wholly within 12\" of this unit that were set up this turn using the 'Scions of the Storm' ability to be the targets.",
 					"effect": "Each target can immediately move D3\". The targets cannot move into combat during any part of that move."
@@ -4220,6 +4348,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "This unit's Gryph-hound is a token. This unit has WARD (5+) while its Gryph-hound is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove its Gryph-hound from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
 				}
 			],
@@ -4269,6 +4398,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly SACROSANCT CHAMBER WAR MACHINE wholly within 12\" of this unit to be the target.",
 					"effect": "The target's attacks score critical hits on unmodified hit rolls of 4+ for the rest of the phase."
@@ -4320,6 +4450,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to chanting rolls for this unit."
 				}
 			],
@@ -4371,6 +4502,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO RUINATION CHAMBER INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				},
 				{
@@ -4378,6 +4510,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "This unit's Memorian is a token. Add 3 to the control scores of friendly RUINATION CHAMBER units wholly within 12\" of this unit while its Memorian is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove its Memorian from the battlefield after the Attack ability has been resolved (the damage point is still inflicted)."
 				},
 				{
@@ -4385,6 +4518,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -4446,6 +4580,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit's Gryph-crow is a token. Subtract 1 from casting rolls and chanting rolls for enemy units within 12\" of this unit while its Gryph-crow is on the battlefield.\nIf you make an unmodified save roll of 1 for this unit, remove its Gryph-crow from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
 				},
 				{
@@ -4453,6 +4588,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				},
 				{
@@ -4460,6 +4596,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -4520,6 +4657,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly non-HERO RUINATION CHAMBER unit wholly within 12\" of this unit to be the target.",
 					"effect": "The target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the turn."
@@ -4529,6 +4667,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -4589,6 +4728,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO RUINATION CHAMBER unit wholly within 12\" of this unit to be the target.",
 					"effect": "For the rest of the turn, while the target is wholly within 12\" of this unit, add 5 to the target's control score."
@@ -4598,6 +4738,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy non-MONSTER HERO in combat with this unit to be the target.",
 					"effect": "Roll 2D6. If the result exceeds the target's Health characteristic, for the rest of the turn:\n• The target has STRIKE-LAST.\n• The target cannot use commands."
@@ -4607,6 +4748,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -4669,6 +4811,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Damage characteristic of this unit's Whirlwind Axes for attacks that target a HERO."
 				},
 				{
@@ -4676,6 +4819,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"declare": "If this unit is in combat or charged this turn, this unit can make a pile-in move. Then, if this unit is in combat, you must pick 1 or more enemy units to be the target(s) of this unit's attacks.",
 					"effect": "Resolve combat attacks against the target unit(s). Then, roll a dice. On a 3+, remove this unit from the battlefield and set it up again on the battlefield more than 3\" from all enemy units and wholly within the combat range of a friendly THE BLACKTALONS unit that is not in combat.",
 					"keywords": [
@@ -4689,6 +4833,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -4767,6 +4912,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly THE BLACKTALONS HEROES are wholly within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				}
 			],
@@ -4808,6 +4954,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Pick a friendly STORMCAST ETERNALS HERO to be this unit's soul-bonded charge for the rest of the battle. This unit can use this ability while it is in reserve."
 				},
 				{
@@ -4815,6 +4962,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit's soul-bonded charge is within this unit's combat range, both this unit and that soul-bonded charge have WARD (5+)."
 				}
 			],
@@ -4868,6 +5016,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit has a coherency range of 2\"."
 				},
 				{
@@ -4875,6 +5024,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
 				},
 				{
@@ -4882,6 +5032,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -4937,6 +5088,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly STORMCAST ETERNALS INFANTRY HEROES are within this unit's combat range, both this unit and those friendly units have WARD (5+)."
 				}
 			],
@@ -4987,6 +5139,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "Pick an objective wholly outside friendly territory. That objective is considered by you to be questmarked."
 				},
@@ -4995,6 +5148,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit is contesting a questmarked objective:\n• Add 3 to this unit's control score.\n• This unit has WARD (5+)."
 				},
 				{
@@ -5002,6 +5156,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "You can pick a friendly Knight-Questor within this unit's combat range to be the target.",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units. Then, if you picked a target, remove it from the battlefield and set it up again within this unit's combat range and more than 9\" from all enemy units.",
@@ -5050,6 +5205,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Memorians are tokens. There are 2 Memorians for every 3 models in this unit. While any of this unit's Memorians are on the battlefield, add 1 to this unit's resistance rolls when using the 'Ruination Chamber' ability. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Memorians from the battlefield after the ATTACK ability has been resolved (the damage point is still inflicted)."
 				},
 				{
@@ -5057,6 +5213,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -5114,6 +5271,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If this unit is damaged or if any models in this unit were slain this turn, add 1 to hit rolls for this unit's attacks for the rest of the turn."
 				}
 			],
@@ -5179,6 +5337,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit is contesting an objective you control, pick 1 of the following effects to apply for the rest of the turn:\n• Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.\n• This unit's combat attacks score critical hits on unmodified hit rolls of 5+."
 				}
 			],
@@ -5233,6 +5392,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Add 1 to save rolls for this unit while it is in combat with any enemy units that charged in the same turn."
 				},
 				{
@@ -5240,6 +5400,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 3 to this unit's control score while it is contesting an objective wholly within friendly territory."
 				}
 			],
@@ -5293,6 +5454,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to this unit's power level while it is contesting an objective."
 				},
 				{
@@ -5300,6 +5462,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible unit within 12\" of the caster to be the target, then make a casting roll of 2D6.",
 					"effect": "If the target is a friendly unit, it has STRIKE-FIRST for the rest of the turn. If the target is an enemy unit, it has STRIKE-LAST for the rest of the turn.",
 					"casting_value": 7,
@@ -5384,6 +5547,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit has a coherency range of 2\"."
 				},
 				{
@@ -5391,6 +5555,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, roll a dice. On a 3+, this unit can move 2D6\". It can pass through the combat ranges of enemy units and can end that move in combat. Then, pick an enemy unit that this unit passed across during that move. Inflict D3 mortal damage on that enemy unit.",
 					"keywords": [
@@ -5402,6 +5567,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -5484,6 +5650,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit has a coherency range of 2\"."
 				},
 				{
@@ -5491,6 +5658,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit charged this turn, roll a dice. On a 3+, this unit can move 2D6\". It can pass through the combat ranges of enemy units and can end that move in combat. Then, pick an enemy unit that this unit passed across during that move. Inflict D3 mortal damage on that enemy unit.",
 					"keywords": [
@@ -5502,6 +5670,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time you make an unmodified save roll of 6 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -5534,6 +5703,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly non-MONSTER STORMCAST ETERNALS unit that is not in combat and is wholly within 6\" of this terrain feature to be the target.",
 					"effect": "Remove the target from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
 				}
@@ -5579,6 +5749,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit's Averon Stormsire is on the battlefield, it has WIZARD (1)."
 				},
 				{
@@ -5586,6 +5757,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "If this unit is contesting an objective that you control, pick a friendly non-HERO STORMCAST ETERNALS INFANTRY unit within 12\" of this unit to be the target.",
 					"effect": "For the rest of the phase, add 1 to wound rolls for the target's combat attacks."
 				}
@@ -5667,6 +5839,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "When this unit uses the 'Power Through' command, inflict an additional D3 mortal damage on the target and add D6\" to the distance this unit can move as part of that ability"
 				},
 				{
@@ -5674,6 +5847,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -5731,6 +5905,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "If any friendly WARRIOR CHAMBER units have been destroyed this battle:\n• You can re-roll charge rolls for this unit.\n• This unit has STRIKE-FIRST if it charged in the same turn."
 				}
 			],
@@ -5791,6 +5966,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "No mortal damage is inflicted on this unit by RETREAT abilities."
 				},
 				{
@@ -5798,6 +5974,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with both of the following units to be the target:\n• This unit.\n• A friendly unit that did not charge this turn.",
 					"effect": "Add 1 to the Damage characteristic of this unit's melee\nweapons for attacks that target that enemy unit for the rest of the turn."
@@ -5860,6 +6037,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to wound rolls for this unit's attacks while it contests an objective that is wholly outside friendly territory."
 				},
 				{
@@ -5867,6 +6045,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -5925,6 +6104,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "If this unit's Sanson Farstrider is on the battlefield, pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target."
 				},
@@ -5933,6 +6113,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -5996,6 +6177,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\n• For the rest of the turn, subtract 1 from hit rolls for attacks made by enemy units while they are in combat with this unit.\n• Heal (D3) each friendly STORMCAST ETERNALS unit within this unit's combat range."
 				},
 				{
@@ -6003,6 +6185,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "If a friendly RUINATION CHAMBER unit wholly within 12\" of this unit uses the 'Rally' command, you receive 3 additional rally points."
 				},
 				{
@@ -6010,6 +6193,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: This unit was picked as the target of a non-CORE ability",
+					"colour": "green",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Make a resistance roll of D6. On a 4+, that ability has no effect on this unit."
 				}
@@ -6087,6 +6271,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 3 to the control scores of friendly WARRIOR CHAMBER units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -6094,6 +6279,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "Pick a friendly non-HERO WARRIOR CHAMBER unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn."
 				}
 			],
@@ -6148,6 +6334,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 2\" to this unit's Move characteristic while a HUNTED enemy unit is on the battlefield. In addition, add 1 to hit rolls for this unit's attacks that target a HUNTED enemy unit."
 				},
 				{
@@ -6155,6 +6342,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy unit to be the target.",
 					"effect": "The target has the HUNTED keyword for the rest of the battle."
@@ -6164,6 +6352,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -6234,6 +6423,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "If any damage points are allocated to an enemy unit by attacks made with this unit's Shock Handaxes, subtract 1 from wound rolls for that enemy unit's combat attacks for the rest of the turn."
 				},
 				{
@@ -6241,6 +6431,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -6317,6 +6508,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
 					"effect": "This unit can immediately use a SHOOT ability as if it were your shooting phase, but all of its attacks must target that enemy unit. In addition, unit's Starstrike Javelins have Shoot in Combat this phase."
 				},
@@ -6325,6 +6517,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -6381,6 +6574,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Hurricane Crossbows to be the target.",
 					"effect": "Add 1 to wound rolls for combat attacks made by friendly VANGUARD CHAMBER units that target that enemy unit for the rest of the turn."
 				},
@@ -6389,6 +6583,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -6444,6 +6639,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"effect": "If this unit has not used a Move ability this turn and was not set up this turn, for the rest of the turn, this unit can ignore the effects of the 'Guarded Hero' ability (Core Rules, 25.0) when picking targets for its shooting attacks."
 				},
 				{
@@ -6451,6 +6647,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "For the rest of the turn, this unit can use SHOOT and/or CHARGE abilities even if it used a RUN or RETREAT ability in the same turn."
 				}
@@ -6495,6 +6692,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Damage characteristic of this unit's Celestial Greatswords for attacks that target an enemy unit that has 5 or more models."
 				}
 			],
@@ -6547,6 +6745,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "If an enemy unit had any damage points allocated to it this turn by this unit's shooting attacks, add 1 to hit rolls for attacks made by friendly STORMCAST ETERNALS units that target that unit for the rest of the turn."
 				}
 			],
@@ -6590,6 +6789,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit did not charge this turn and is in combat with an enemy unit that charged this turn, roll a dice. On a 4+, this unit has STRIKE-FIRST for the rest of the turn."
 				}
 			],
@@ -6659,6 +6859,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit's Taros is a token. After setting up this unit on the battlefield for the first time, place Taros next to it."
 				},
 				{
@@ -6666,6 +6867,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "If any attacks made with this unit's Stormcaller Bow scored a critical hit this phase, pick an enemy unit targeted by those attacks to be the target.",
 					"effect": "Until the start of your next turn, place Taros next to the target. While Taros is placed next to an enemy unit, that enemy unit cannot use commands."
 				}
@@ -6739,6 +6941,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Double the Damage characteristic of this unit's Thengavar for attacks that target MONSTERS."
 				},
 				{
@@ -6746,6 +6949,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Ignore negative modifiers to the control scores of friendly STORMCAST ETERNALS units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -6753,6 +6957,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3."
 				}
 			],

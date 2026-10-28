@@ -972,6 +972,39 @@ func test_wrong_type_ability_type_error_names_file_and_field_path() -> void:
 			str(_errors("wrong_type_ability_type")))
 
 
+# Ability colour
+
+func test_ability_colour_comes_from_file() -> void:
+	var expected: Dictionary = _json("ability_colour", "faction.json").battle_traits[0]
+	assert_eq(_load("ability_colour").battle_traits[0].colour, expected.colour)
+
+
+func test_ability_colour_from_file_is_a_known_colour() -> void:
+	var expected: Dictionary = _json("ability_colour", "faction.json").battle_traits[0]
+	assert_has(Ability.COLOURS, expected.colour)
+	assert_eq(_errors("ability_colour").size(), 0, "\n".join(_errors("ability_colour")))
+
+
+func test_absent_ability_colour_defaults_to_empty() -> void:
+	assert_false(_json("valid", "faction.json").battle_traits[0].has("colour"), "fixture trait should omit colour")
+	assert_eq(_load("valid").battle_traits[0].colour, "")
+
+
+func test_invalid_ability_colour_returns_null() -> void:
+	assert_null(_load("ability_invalid_colour"))
+
+
+func test_invalid_ability_colour_error_names_file_and_field_path() -> void:
+	assert_true(_has_error_naming(_errors("ability_invalid_colour"), "faction.json", "battle_traits[0].colour"),
+			str(_errors("ability_invalid_colour")))
+
+
+func test_invalid_ability_colour_error_lists_the_allowed_colours() -> void:
+	var errors := "\n".join(_errors("ability_invalid_colour"))
+	for allowed in Ability.COLOURS:
+		assert_string_contains(errors, allowed)
+
+
 # Regiments of Renown
 
 func _regiments(fixture := "valid") -> Array:

@@ -176,6 +176,7 @@
 							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "Ignore negative modifiers to this unit’s control score."
 						}
 					],
@@ -233,6 +234,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"declare": "Pick an enemy unit that had any models slain this turn by this unit’s shooting attacks to be the target.",
 							"effect": "Subtract 1 from hit rolls for the target’s attacks for the rest of the turn."
 						}
@@ -557,6 +559,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "Add 1 to hit rolls for this unit’s shooting attacks if it has not used a MOVE ability this turn."
 						}
 					],
@@ -601,6 +604,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Subtract 1 from wound rolls for shooting attacks that target this unit."
 						}
 					],
@@ -763,6 +767,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Add 1 to save rolls for this unit if it has not charged in the same turn."
 						}
 					],
@@ -839,6 +844,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 							"effect": "Roll a dice. On a 3+, for the rest of the turn, subtract 1 from wound rolls for the target’s attacks."
@@ -874,6 +880,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Start of Battle Round",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"effect": "Set up this unit within 1\" of a battlefield edge and more than 6\" from all enemy units."
 				},
@@ -1013,6 +1020,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "This unit’s melee weapons have Crit (2 Hits) while it is in combat with an enemy WIZARD or PRIEST."
 						}
 					],
@@ -1047,6 +1055,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Any Hero Phase",
+							"colour": "yellow",
 							"frequency": "Once Per Turn (Army)",
 							"effect": "The next time the ‘Rust-maw’ ability is used by your general, measure the range and visibility of that ability from this unit instead of your general."
 						}

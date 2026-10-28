@@ -74,8 +74,8 @@ func _card_ids(pane: InfoPane) -> Array:
 	return ids
 
 
-func _rich_count(node: Node) -> int:
-	return UIKit.find_all(node, func(n: Node) -> bool: return n is RichTextLabel).size()
+func _ability_count(node: Node) -> int:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is AbilityCard).size()
 
 
 func _warscroll_count(node: Node) -> int:
@@ -471,7 +471,7 @@ func test_rules_tab_has_a_section_per_kind_of_rules() -> void:
 
 
 func test_sections_start_open_with_their_rules_shown() -> void:
-	assert_gt(_rich_count(_rules_pane()._content), 0)
+	assert_gt(_ability_count(_rules_pane()._content), 0)
 
 
 func test_folding_a_section_hides_its_rules() -> void:
@@ -480,34 +480,34 @@ func test_folding_a_section_hides_its_rules() -> void:
 		if UIKit.keyed(pane, "info:sec:" + title):
 			_press(pane, "info:sec:" + title)
 	assert_has(pane.folded, "sec:Battle Traits")
-	assert_eq(_rich_count(pane._content), 0)
+	assert_eq(_ability_count(pane._content), 0)
 	assert_eq(UIKit.find_all(pane, func(n: Node) -> bool: return n is TacticCard).size(), 0)
 
 
 func test_unfolding_a_section_shows_its_rules_again() -> void:
 	var pane := _rules_pane()
 	_press(pane, "info:sec:Battle Traits")
-	var folded := _rich_count(pane._content)
+	var folded := _ability_count(pane._content)
 	_press(pane, "info:sec:Battle Traits")
-	assert_gt(_rich_count(pane._content), folded)
+	assert_gt(_ability_count(pane._content), folded)
 
 
 func test_formations_are_groups_that_can_be_folded() -> void:
 	var pane := _rules_pane()
-	var before := _rich_count(pane._content)
+	var before := _ability_count(pane._content)
 	_press(pane, "info:grp:Battle Formations:Vanguard")
 	assert_has(pane.folded, "grp:Battle Formations:Vanguard")
-	assert_lt(_rich_count(pane._content), before)
+	assert_lt(_ability_count(pane._content), before)
 
 
 func test_rules_tab_has_no_manifestations_section() -> void:
 	assert_null(UIKit.keyed(_rules_pane(), "info:sec:Manifestations"))
 
 
-## Rules text in the pane containing [param text].
+## Ability cards in the pane whose ability's name contains [param text].
 func _rules_containing(pane: InfoPane, text: String) -> Array[Node]:
 	return UIKit.find_all(pane._content, func(n: Node) -> bool:
-		return n is RichTextLabel and n.get_parsed_text().contains(text))
+		return n is AbilityCard and n.ability.name.contains(text))
 
 
 ## [method _faction] with a second "Artefacts" table, from Scourge of Ghyran.
@@ -552,8 +552,8 @@ func test_a_summoning_spell_shows_its_manifestations_warscroll() -> void:
 	_press(pane, "info:grp:Lores:Flame Lore")
 	var cards := _rules_containing(pane, "Summon Living Flame")
 	assert_eq(cards.size(), 1)
-	var card: Node = cards[0].get_parent()
-	var manifestations := UIKit.find_all(card, func(n: Node) -> bool: return n is WarscrollCard)
+	var group: Node = cards[0].get_parent()
+	var manifestations := UIKit.find_all(group, func(n: Node) -> bool: return n is WarscrollCard)
 	assert_eq(manifestations.map(func(w: WarscrollCard) -> String: return w.warscroll.id), ["living_flame"])
 
 
@@ -574,10 +574,10 @@ func test_lores_start_folded() -> void:
 
 
 func test_a_folded_lore_shows_no_rules() -> void:
-	var folded := _rich_count(_rules_pane()._content)
+	var folded := _ability_count(_rules_pane()._content)
 	var pane := _rules_pane()
 	_press(pane, "info:grp:Lores:Fire Spells")
-	assert_gt(_rich_count(pane._content), folded)
+	assert_gt(_ability_count(pane._content), folded)
 
 
 func test_pressing_a_lore_unfolds_it_and_again_folds_it() -> void:
@@ -621,7 +621,7 @@ func test_rules_search_filters_the_sections() -> void:
 func test_rules_search_unfolds_matching_lores() -> void:
 	var pane := _rules_pane()
 	_search(pane, "fireball")
-	assert_gt(_rich_count(pane._content), 0)
+	assert_gt(_ability_count(pane._content), 0)
 
 
 func test_rules_search_with_no_match_shows_a_message() -> void:

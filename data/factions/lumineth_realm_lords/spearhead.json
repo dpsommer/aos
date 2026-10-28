@@ -147,6 +147,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
+							"colour": "grey",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, for the rest of the turn:\nThe target can use RETREAT abilities and still use SHOOT and/or CHARGE abilities later in the turn. No mortal damage is inflicted on the target by RETREAT abilities."
 						}
@@ -201,6 +202,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Shooting Phase",
+							"colour": "blue",
 							"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit’s shooting attacks to be the target.",
 							"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."
 						}
@@ -240,6 +242,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "If this unit did not charge this turn and is in combat with an enemy unit that charged this turn, roll a dice. Add 1 to the roll if that enemy unit is CAVALRY. On a 3+, this unit has STRIKE-FIRST for the rest of the turn."
 						}
 					],
@@ -390,6 +393,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "Remove your general from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units.",
 					"keywords": [
 						"CORE"
@@ -416,6 +420,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 24\" of your general, then make a casting roll of 2D6.",
 					"effect": "On a 7+, halve the Move characteristic of that unit until the start of your next turn and roll a dice. If the roll equals or exceeds that unit’s Save characteristic, inflict D3 mortal damage on it."
 				}
@@ -446,6 +451,7 @@
 							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick an enemy unit within 12\" of this unit to be the target, then roll a dice.",
 							"effect": "On a 3+, subtract D6 from the control score of the target unit this turn."
 						}
@@ -585,6 +591,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"effect": "Until the end of the phase, add 6\" to the Range characteristic of this unit’s Auralan Bows but subtract 1 from hit rolls for this unit’s shooting attacks."
 						}
 					],

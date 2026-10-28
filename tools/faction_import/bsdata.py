@@ -26,6 +26,11 @@ def is_ability(profile):
 LORE_GROUPS = {"Spell Lores": "spell", "Prayer Lores": "prayer", "Manifestation Lores": "manifestation"}
 # Shared entry groups that aren't enhancements: campaign content and lores.
 NOT_ENHANCEMENTS = {"Paths", "Battle Wounds + Scars", *LORE_GROUPS}
+# Ability colours, as printed on warscrolls. BSData's misspellings and its mixed Gray and Grey map
+# to them; anything else in its Color attribute (a category such as "Movement", or blank) is dropped.
+COLOURS = {"black", "yellow", "grey", "blue", "orange", "red", "purple", "green"}
+COLOUR_SPELLINGS = {"gray": "grey", "yelllow": "yellow", "orance": "orange"}
+
 # Categories on units that aren't keywords.
 NOT_KEYWORDS = {"Legends", "General"}
 
@@ -157,6 +162,13 @@ def characteristics(profile):
     return {c.get("name"): c.text or "" for c in kids(profile, "characteristics", "characteristic")}
 
 
+def colour(value):
+    """BSData's Color attribute as one of COLOURS, or "" if it isn't a colour."""
+    value = (value or "").strip().lower()
+    value = COLOUR_SPELLINGS.get(value, value)
+    return value if value in COLOURS else ""
+
+
 def ability(profile, name=None):
     chars = characteristics(profile)
     attrs = {a.get("name"): a.text or "" for a in kids(profile, "attributes", "attribute")}
@@ -165,6 +177,8 @@ def ability(profile, name=None):
     frequency, timing = schema.split_frequency(timing)
     effect, options = split_options(chars.get("Effect", ""))
     out = {"name": name or profile.get("name"), "category": attrs.get("Type", "").lower(), "timing": timing}
+    if colour(attrs.get("Color")):
+        out["colour"] = colour(attrs.get("Color"))
     if frequency:
         out["frequency"] = frequency
     if markup(chars.get("Declare")):

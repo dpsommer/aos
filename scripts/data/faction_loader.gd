@@ -170,6 +170,9 @@ func _ability(data: Variant, path: String) -> Ability:
 	if not ability.type.is_empty() and not ability.type in Ability.TYPES:
 		_error(_join(path, "type"), "must be one of %s" % ", ".join(Ability.TYPES))
 	ability.category = _string(data, "category", path)
+	ability.colour = _string(data, "colour", path)
+	if not ability.colour.is_empty() and not ability.colour in Ability.COLOURS:
+		_error(_join(path, "colour"), "must be one of %s" % ", ".join(Ability.COLOURS))
 	ability.timing = _string(data, "timing", path)
 	ability.frequency = _string(data, "frequency", path)
 	ability.declare = _string(data, "declare", path)

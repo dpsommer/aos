@@ -97,6 +97,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly PETRIFEX ELITE WIZARD to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn:\n• Halve the target's Move characteristic\n• Subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1.",
 							"casting_value": 8,
@@ -128,6 +129,7 @@
 							"type": "spell",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Nightmare Predator on the battlefield, pick a friendly OSSIARCH BONEREAPERS WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up a Nightmare Predator wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 							"casting_value": 6,
@@ -152,6 +154,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "grey",
 					"frequency": "Once Per Battle Round (Army)",
 					"declare": "You must use this ability if there are any friendly LANCE OF OSSIA HEROES on the battlefield. Pick a friendly LANCE OF OSSIA HERO to be the target.",
 					"effect": "You gain a number of relentless discipline points equal to a number of shown after the target's RELENTLESS DISCIPLINE keyword. At the end of the battle round, any unspent relentless discipline points are lost."
@@ -161,6 +164,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly LANCE OF OSSIA unit that has not used a RELENTLESS DISCIPLINE ability this phase to be the target.",
 					"effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. Add 2\" to the target's Move characteristic for the rest of the phase.",
 					"keywords": [
@@ -172,6 +176,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "When a friendly LANCE OF OSSIA unit uses the 'Power Through' command, the target does not have to have a lower Health characteristic than that friendly unit."
 				},
 				{
@@ -179,6 +184,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly LANCE OF OSSIA unit that has not used a RELENTLESS DISCIPLINE ability this phase to use this ability, then pick a visible enemy unit within 12\" of it to be the target.",
 					"effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. The target cannot use the 'Redeploy' command for the rest of the turn.",
 					"keywords": [
@@ -190,6 +196,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "Pick a friendly LANCE OF OSSIA unit that charged this turn and that has not used a RELENTLESS DISCIPLINE ability this phase to be the target.",
 					"effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. The target's melee weapons, including Companion weapons, have Crit (2 Hits) for the rest of the turn.",
 					"keywords": [
@@ -201,6 +208,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick a friendly LANCE OF OSSIA unit that charged this turn and has not used a RELENTLESS DISCIPLINE ability this phase to be the target.",
 					"effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. Add 1 to the Rend characteristic of the target's weapons, including Companion weapons, for the rest of the turn.",
 					"keywords": [
@@ -217,6 +225,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"effect": "If a friendly Arch-Kavalos Zandtos is not wholly within 12\" of this unit, you gain 2 relentless discipline points."
 						}
 					]
@@ -229,6 +238,7 @@
 							"type": "passive",
 							"category": "control",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "Subtract 3 from the control scores of enemy units while they are within 12\" of this unit."
 						}
 					]
@@ -245,6 +255,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly NULL MYRIAD units have WARD (4+) against damage points inflicted by SPELL abilities, PRAYER abilities and abilities used by MANIFESTATIONS."
 				},
 				{
@@ -252,6 +263,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time you make a casting roll for a friendly Arkhan the Black, if all of the following are true, that spell cannot be unbound:\n• The unmodified casting roll contains 2 or more results of the same value.\n• The casting roll equals or exceeds the spell's casting value.\n• The spell is not miscast."
 				},
 				{
@@ -259,6 +271,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy MANIFESTATION within a friendly NULL MYRIAD unit's combat range to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• The target is banished and removed from play.\n• If that friendly unit is damaged, Heal (X) that friendly unit, where X is the target's Health characteristic.\n• If that friendly unit is not damaged, return a number of slain models to it with a combined Health characteristic of up to X, where X is the target's Health characteristic."
@@ -273,6 +286,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Subtract 1 from wound rolls for shooting attacks that target friendly NULL MYRIAD units while they are wholly within 12\" of this unit."
 						}
 					]
@@ -286,6 +300,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Combat Phase",
+							"colour": "red",
 							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 3+, add 1 to hit rolls for combat attacks made by friendly NULL MYRIAD units that target that unit for the rest of the turn."
 						}
@@ -302,6 +317,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly NULL MYRIAD WIZARD to cast this spell, pick a visible friendly NULL MYRIAD unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Add 1 to wound rolls for the target's combat attacks until the start of your next turn.",
 							"casting_value": 5,
@@ -315,6 +331,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly NULL MYRIAD WIZARD to cast this spell, pick a visible friendly NULL MYRIAD unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "The target has WARD (5+) until the start of your next turn.",
 							"casting_value": 6,
@@ -334,6 +351,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly NULL MYRIAD WIZARD to cast this spell, pick 1 of the friendly MANIFESTATIONS below that is not on the battlefield, then make a casting roll of 2D6.\n• Soulstealer Carrion\n• Bone-tithe Shrieker\n• Nightmare Predator",
 							"effect": "Set up the MANIFESTATION you picked wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 							"casting_value": 6,

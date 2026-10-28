@@ -8,6 +8,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Start of Battle Round",
+			"colour": "black",
 			"frequency": "Once Per Battle Round (Army)",
 			"declare": "You must use this ability at the start of the battle round. If multiple players are commanding a Gloomspite Gitz army, then instead, at the start of the battle round, those players roll off and only the winner declares and uses this ability this battle round.",
 			"effect": "If it is the first battle round, pick the starting face of the Bad Moon (Grinnin', Scowlin', Sulkin' or Cacklin'). If it is not the first battle round, the face of the Bad Moon moves to the next face in the sequence."
@@ -17,6 +18,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Your Hero Phase",
+			"colour": "yellow",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a terrain feature to be the target.",
 			"effect": "Until the start of your next turn, while friendly non-MONSTER non-WAR MACHINE GLOOMSPITE GITZ units are wholly within 3\" of that terrain feature, they are not visible to enemy units more than 9\" away."
@@ -26,6 +28,7 @@
 			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
+			"colour": "black",
 			"effect": "During the battle, the effects below apply to friendly GLOOMSPITE GITZ units based on the current face of the Bad Moon:",
 			"options": [
 				{
@@ -61,6 +64,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Your Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 friendly non-SQUIG MOONCLAN or SPIDERFANG units in combat to be the targets.",
 					"effect": "For each target:\n• Make a pile-in move with the target.\n• Then, pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll."
@@ -76,6 +80,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time a friendly TROGGOTH unit uses a FIGHT ability, after that ability has been resolved, Heal (D3) that unit."
 				}
 			]
@@ -89,6 +94,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a friendly SQUIG unit charges, add 1 to the Attacks characteristic of its Fang-filled Gobs, Massive Fang-filled Gobs or Huge Fang-filled Gobs for the rest of the turn."
 				}
 			]
@@ -121,6 +127,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 friendly GITMOB units that charged this turn to be the targets.",
 					"effect": "Add 1 to the Rend characteristic of Companion weapons used by the targets for the rest of turn."
@@ -136,6 +143,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-SQUIG MOONCLAN unit that is contesting an objective to be the target.",
 					"effect": "For the rest of the turn, add 1 to the control score of the target unit for each model in that unit that is not contesting any objectives."
@@ -153,6 +161,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Each time a friendly GLOOMSPITE GITZ unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6."
 				},
 				{
@@ -160,6 +169,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "If this unit is not a WIZARD, it has WIZARD (1). Otherwise, add 1 to casting rolls for this unit.",
 					"points": 20
 				},
@@ -168,6 +178,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
 				}
 			]
@@ -181,6 +192,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit.",
 					"points": 20
 				},
@@ -189,6 +201,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -198,6 +211,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time an unmodified hit roll for an attack that targets this unit is 1, inflict 1 mortal damage on the attacking unit after the ATTACK ability has been resolved."
 				}
 			]
@@ -240,6 +254,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "This unit can use a SUMMON SPELL ability from the manifestation lore you picked during army composition as if it had WIZARD (1). Instead of making a casting roll for that spell, the casting roll is 12 and cannot be modified. That spell cannot be unbound. Then, if this unit is not MOONCLAN, roll a dice. On a 1-4, 1 model in this unit is automatically slain.",
 					"points": 10
@@ -249,6 +264,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Roll a dice. If this unit is GITMOB, roll D3+3 instead. This unit can move a distance in inches up to the roll. It can move through the combat ranges of enemy units but cannot end that move in combat.",
 					"keywords": [
 						"MOVE"
@@ -260,6 +276,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\n\nIf this unit is a non-TROGGOTH unit, add 1 to wound rolls for its attacks for the rest of the turn.\n\nIf this unit is a TROGGOTH, pick 1 of the following effects to apply for the rest of the turn:\n• Set the Damage characteristic of this unit's Colossal Boulder Club to 6.\n• Set the Damage characteristic of this unit's Throwin' Boulders to 3.\n• Set the Attacks characteristic of this unit's Noxious Vomit to 3.",
 					"points": 10
 				}
@@ -277,6 +294,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Roll a dice. On a 1-2, nothing happens. On a 3-5, the face of the Bad Moon moves to the next face. On a 6, pick a new face of the Bad Moon for this battle round.",
 					"casting_value": 6,
@@ -290,6 +308,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick up to 3 visible enemy units within 12\" of them to be the targets, then make a casting roll of 2D6.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
 					"casting_value": 7,
@@ -302,6 +321,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick a visible friendly GLOOMSPITE GITZ unit wholly within 12\" of them and not in combat to be the target, then make a casting roll of 2D6.",
 					"effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 24\" of the caster and more than 9\" from all enemy units.",
 					"casting_value": 7,
@@ -322,6 +342,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick up to 3 friendly visible GLOOMSPITE GITZ units wholly within 12\" of them to be the targets, then make a casting roll of 2D6.",
 					"effect": "Each target can immediately use a RETREAT ability as if it was your movement phase. No mortal damage is inflicted on the targets by those RETREAT abilities.",
 					"casting_value": 6,
@@ -335,6 +356,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, add 2\" to the Move characteristic of friendly non-TROGGOTH GLOOMSPITE GITZ units while they are wholly within 12\" of this unit.",
 					"casting_value": 6,
@@ -347,6 +369,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ Wizard to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn:\n• The target cannot use RUN abilities.\n• Halve the Range characteristic of the target's ranged weapons.",
 					"casting_value": 6,
@@ -366,6 +389,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Mork's Mighty Mushroom on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Mork's Mighty Mushroom wholly within 12\" of the caster and visible to them.",
 					"casting_value": 6,
@@ -382,6 +406,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Scuttletide on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Scuttletide wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 6,
@@ -398,6 +423,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Scrapskuttle's Arachnacauldron on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Scrapskuttle's Arachnacauldron wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 7,
@@ -414,6 +440,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Malevolent Moon on the battlefield, pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Malevolent Moon wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 7,
@@ -438,6 +465,7 @@
 					"type": "spell",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick an objective within 18\" of this unit to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, subtract 1 from wound rolls for attacks made by enemy units while they are contesting the target objective.",
 					"casting_value": 6,
@@ -451,6 +479,7 @@
 					"type": "spell",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "For the rest of the turn, if a friendly Bad Moon Loonshrine uses the 'Moonclan Lairs' ability, you can set up the replacement unit wholly within 6\" of this unit and more than 3\" from all enemy units instead of wholly within 12\" of that Bad Moon Loonshrine.",
 					"casting_value": 7,
@@ -463,6 +492,7 @@
 					"type": "spell",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly GLOOMSPITE GITZ WIZARD to cast this spell, pick a visible friendly GLOOMSPITE GITZ unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, each time an ability inflicts damage points on the target, after the ability has been resolved, the target can move up to 3\". It can move through the combat ranges of enemy units but can only end that move in combat with units it was in combat with at the start of that move. It does not have to end the move in combat.",
 					"casting_value": 6,

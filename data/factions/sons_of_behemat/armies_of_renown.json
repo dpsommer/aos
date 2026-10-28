@@ -9,6 +9,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a friendly BIG or LITTLE model is slain, before removing it from play, the players must roll off. The winner picks a point on the battlefield within 3\" of that model. Inflict D3 mortal damage on each unit (friendly and enemy) within 3\" of that point that has a lower Health characteristic than that model."
 				},
 				{
@@ -16,6 +17,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any other friendly BRODD'S STOMP units are within a friendly King Brodd's combat range:\n• That friendly King Brodd has WARD (5+).\n• Each time you make a successful ward roll for that friendly King Brodd, allocate 1 damage point to another friendly BRODD'S STOMP unit within its combat range after the damage sequence for that friendly King Brodd has been resolved (ward rolls cannot be made for those damage points)."
 				},
 				{
@@ -23,6 +25,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly BIG unit that has not used a DESTRUCTIVE IMPULSE ability this turn to use this ability.",
 					"effect": "If the unit using this ability charged this turn, roll a dice. On a 3+, that unit can move 3D6\" but must end that move in combat. When it does so, it can pass through terrain features and enemy models as if it had FLY.",
@@ -36,6 +39,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly BIG unit that has not used a DESTRUCTIVE IMPULSE ability this turn to use this ability.",
 					"effect": "Roll a D6. On a 3+, for the rest of the turn, add the result to the Attacks characteristic of the Almighty Stomp of the unit using this ability.",
@@ -49,6 +53,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly BIG unit that has not used a DESTRUCTIVE IMPULSE ability this turn to use this ability. Then, pick an enemy HERO that has an artefact of power and is in combat with that BIG unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target no longer has that artefact of power.",
@@ -62,6 +67,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly BIG unit that has not used a DESTRUCTIVE IMPULSE ability this turn to use this ability, then pick a terrain feature within its combat range. Then, pick a visible enemy unit within 18\" of that BIG unit to be the target.",
 					"effect": "Roll a D3 for each friendly and enemy unit on the terrain feature that was picked. On a 2+, inflict an amount of mortal damage on that unit equal to the roll. After rolling for all those units, roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll.",
@@ -75,6 +81,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly BIG unit that has not used a DESTRUCTIVE IMPULSE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target.",
 					"effect": "If the target is a HERO, BEAST, MONSTER or WAR MACHINE, roll 6 dice. Otherwise, roll a dice for each model in the target unit. For each roll that is equal to or greater than the target's Save characteristic, inflict 1 mortal damage on the target.\n\nThe BIG unit using this DESTRUCTIVE IMPULSE ability has STRIKE-LAST for the rest of the turn.",
@@ -93,6 +100,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Reaction: You declared the 'Wrath of Brodd' ability for a friendly unit",
+							"colour": "red",
 							"frequency": "Once Per Battle (Army)",
 							"effect": "This unit can use the 'Wrath of Brodd' ability immediately after the 'Wrath of Brodd' ability used by the other friendly unit has been resolved. This unit can do so even if it has used another DESTRUCTIVE IMPULSE ability this turn."
 						}
@@ -106,6 +114,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "This unit has WARD (4+) against damage points inflicted by SPELL and PRAYER abilities and by abilities used by MANIFESTATIONS."
 						}
 					]
@@ -121,6 +130,7 @@
 							"type": "prayer",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly BRODD'S STOMP PRIEST to chant this prayer, then make a chanting roll of D6.",
 							"effect": "Until the start of your next turn, add 1 to the Attacks characteristic of melee weapons used by friendly BRODD'S STOMP units while they are wholly within 12\" of the chanter. If the chanting roll was 9+, add 2 to the Attacks characteristic instead.",
 							"chanting_value": 4,
@@ -141,6 +151,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 of the following effects:",
 					"options": [
@@ -167,6 +178,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "If the friendly Ma Maegran is in combat and damaged, pick up to 3 friendly Mancrusher Gargants on the battlefield that are visible to her to be the targets.",
 					"effect": "Each target has STRIKE-FIRST for the rest of the turn."
@@ -176,6 +188,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "If the friendly Ma Maegran is on the battlefield, pick each enemy non-FLY non-MONSTER unit that is visible to her to be the targets.",
 					"effect": "Roll a number of dice for each target equal to the current battle round number. For each 4+, allocate 1 mortal damage to the target (ward rolls cannot be made for those damage points)."
@@ -185,6 +198,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While the friendly Ma Maegran is within the combat range of another friendly LITTLE unit:\n• She has WARD (5+).\n• Each time you make a successful ward roll for her, allocate 1 mortal damage to another friendly LITTLE unit within her combat range after the damage sequence for her has been resolved (ward rolls cannot be made for those damage points).\n• Ignore negative modifiers to hit rolls and wound rolls for that other friendly LITTLE unit's combat attacks."
 				}
 			],
@@ -200,6 +214,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "If this unit is wholly within 12\" of a friendly Ma Maegran, remove this unit from the battlefield and set it up again within her combat range. This unit can only be set up in combat with enemy units that are in combat with the friendly Ma Maegran."
 						},
 						{
@@ -207,6 +222,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"declare": "Pick a visible friendly MATRIARCH'S MOB unit wholly within 12\" of this unit to be the target.",
 							"effect": "Heal (D3) the target."
 						}
@@ -223,6 +239,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick the friendly Ma Maegran to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Until the start of your next turn, friendly MATRIARCH'S MOB units have WARD (6+) while they are wholly within 12\" of and visible to the caster.",
 							"casting_value": 6,
@@ -235,6 +252,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick the friendly Ma Maegran to cast this spell, pick a visible friendly MATRIARCH'S MOB unit wholly within 12\" of her to be the target, then make a casting roll of 2D6.",
 							"effect": "Add 1 to the Damage characteristic of the target's melee weapons, including Companion weapons, for the rest of the turn.",
 							"casting_value": 8,
@@ -247,6 +265,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick the friendly Ma Maegran to cast this spell, pick a visible friendly MATRIARCH'S MOB unit wholly within 18\" of her to be the target, then make a casting roll of 2D6.",
 							"effect": "If the target is in combat, it can use the 'Retreat' ability as if it were your movement phase. If the target is not in combat, it can use the 'Normal Move' ability as if it were your movement phase. In both cases, the target must end that move no further from the caster than it was at the start of the move.",
 							"casting_value": 7,
@@ -267,6 +286,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with a friendly STOMPER TRIBE unit to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll for each friendly STOMPER TRIBE model in combat with the target. On a 5+:\n• The target has STRIKE-LAST for the rest of the turn.\n• Inflict 3 mortal damage on the target."
@@ -276,6 +296,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly LITTLE unit that is within a friendly BIG unit's combat range, visible to it and not in combat to be the target.",
 					"effect": "You can re-roll charge rolls for the target for the rest of the turn, and the target has FLY for the rest of the phase."
@@ -285,6 +306,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick each friendly LITTLE unit wholly within 18\" of and visible to a friendly BIG unit and not in combat to be the targets.",
 					"effect": "Add 1 to the Attacks characteristic of each target's ranged weapons for the rest of the turn."
@@ -294,6 +316,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly STOMPER TRIBE unit in combat to be the target.",
 					"effect": "If the target is LITTLE, pick a model in the target unit. Add 1 to the Damage characteristic of that model's melee weapons for the rest of the turn.\n\nIf the target is BIG, add 1 to the Rend characteristic of its melee weapons for the rest of the turn."
@@ -303,6 +326,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly LITTLE unit wholly within 12\" of and visible to a friendly BIG unit to use this ability.",
 					"effect": "That LITTLE unit can move D6+3\". It can pass through the combat ranges of enemy units but cannot end that move in combat. Then, you can inflict D3 mortal damage on each enemy unit that has a lower Health characteristic than that LITTLE unit and that it passed across during that move.",
@@ -321,6 +345,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 2 to the Attacks characteristic of this unit's Almighty Stomp if it did not use a FIGHT ability in the previous turn."
 						},
 						{
@@ -328,6 +353,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "orange",
 							"effect": "When making charge rolls for this unit, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll."
 						}
 					]
@@ -340,6 +366,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "While they are wholly within 12\" of and visible to this unit, friendly STOMPER TRIBE units have WARD (6+) against damage inflicted by shooting attacks."
 						},
 						{
@@ -347,6 +374,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "End of Your Turn",
+							"colour": "purple",
 							"effect": "Heal (D3) this unit."
 						}
 					]
@@ -362,6 +390,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "purple",
 							"effect": "This unit can use the 'Power Through' command even if it has not charged this turn."
 						},
 						{
@@ -369,6 +398,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Reaction: You declared a Fight ability for this unit",
+							"colour": "red",
 							"effect": "Pick a friendly BIG unit that has not used a FIGHT ability this turn and is wholly within 12\" of this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. Add 1 to hit rolls for attacks made by this unit and the target for the rest of the turn."
 						},
 						{
@@ -376,6 +406,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "grey",
 							"effect": "This unit can be picked to use the 'Stompin' About' ability even if it is not wholly within 12\" of and visible to a friendly BIG unit."
 						},
 						{
@@ -383,6 +414,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "orange",
 							"effect": "While this unit is wholly within 12\" of and visible to a friendly BIG unit, it can use CHARGE abilities even if it used a RUN ability in the same turn."
 						}
 					]

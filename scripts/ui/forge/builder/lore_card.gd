@@ -34,11 +34,8 @@ func _init(lore: Lore, full: bool, heading := "", action: Control = null, summon
 		title_row.add_child(action)
 	content.add_child(title_row)
 	if full:
-		for i in lore.entries.size():
-			var ability := lore.entries[i]
-			if i > 0:
-				content.add_child(HSeparator.new())
-			content.add_child(UIBuilder.rich(RulesFormatter.ability(ability)))
+		for ability in lore.entries:
+			content.add_child(AbilityCard.new(ability))
 			if summoned.is_valid():
 				for manifestation: Warscroll in summoned.call(ability):
 					content.add_child(WarscrollCard.new(manifestation))

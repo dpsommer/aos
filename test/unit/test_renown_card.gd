@@ -37,8 +37,8 @@ func _card(builder: ArmyBuilder, band: RegimentOfRenown, context := "tab", on_ad
 	return card
 
 
-func _rich_count(node: Node) -> int:
-	return UIKit.find_all(node, func(n: Node) -> bool: return n is RichTextLabel).size()
+func _ability_count(node: Node) -> int:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is AbilityCard).size()
 
 
 func _warscroll_count(node: Node) -> int:
@@ -205,4 +205,4 @@ func test_regiment_text_and_abilities_are_shown() -> void:
 	band.abilities = [Kit.ability("Doomed")] as Array[Ability]
 	var card := _card(_builder([band] as Array[RegimentOfRenown]), band)
 	assert_true(UIKit.has_label_containing(card, "A band of heroes."))
-	assert_gt(_rich_count(card), 0)
+	assert_gt(_ability_count(card), 0)

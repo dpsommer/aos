@@ -227,6 +227,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "After that FIGHT ability has been resolved, if any enemy models were slain by that FIGHT ability, you can pick a visible friendly FYRESLAYERS PRIEST wholly within 12\" of this unit. Give that PRIEST D3 ritual points.",
 					"points": 10
 				},
@@ -235,6 +236,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, for the rest of the turn:\n• Add X\" to the Range characteristic and X to the Attacks characteristic of this unit's Companion ranged weapons, where X is equal to your fury level.\n• This unit's Companion ranged weapons have Shoot in Combat.",
 					"points": 10
 				},
@@ -243,6 +245,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
 					"points": 20
 				}
@@ -393,6 +396,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST to chant this prayer, pick a visible friendly FYRESLAYERS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "Add 1 to hit rolls for the target's combat attacks, including those made with Companion weapons, until the start of your next turn.\nIn addition, if the chanting roll was 8+, add 1 to the Attacks characteristic of the target's melee weapons, including Companion weapons, until the start of your next turn.",
 					"chanting_value": 4,
@@ -405,6 +409,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST to chant this prayer, pick a visible friendly FYRESLAYERS unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "If the chanting roll was 6+, you can pick another eligible unit to be a second target. Until the start of your next turn:\n• If the target is a MAGMADROTH, each time its 'Volcanic Blood' ability would inflict 1 mortal damage on an enemy unit, inflict D3 mortal damage instead.\n• If the target is a non‑MAGMADROTH unit, each time you make an unmodified save roll of 1 for a combat attack that targets that unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
 					"chanting_value": 3,
@@ -418,6 +423,7 @@
 					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly FYRESLAYERS PRIEST to chant this prayer, pick a visible friendly FYRESLAYERS unit that was not set up this turn and that is wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "If the chanting roll was 10+, you can pick another eligible unit to be a second target. Each target can use the 'Normal Move' or 'Retreat' ability as if it were your movement phase.",
 					"chanting_value": 5,

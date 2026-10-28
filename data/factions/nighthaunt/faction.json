@@ -8,6 +8,7 @@
 			"type": "passive",
 			"category": "defensive",
 			"timing": "Passive",
+			"colour": "green",
 			"effect": "Ignore negative modifiers to save rolls for friendly NIGHTHAUNT units, excluding Nagash."
 		},
 		{
@@ -15,6 +16,7 @@
 			"type": "command",
 			"category": "movement",
 			"timing": "Your Movement Phase",
+			"colour": "grey",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly NIGHTHAUNT unit that is not in combat to use this ability.",
 			"effect": "Remove that unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
@@ -25,6 +27,7 @@
 			"type": "passive",
 			"category": "control",
 			"timing": "Passive",
+			"colour": "purple",
 			"effect": "Subtract the current battle round number from the control scores of enemy units while they are in combat with any friendly NIGHTHAUNT units."
 		},
 		{
@@ -32,6 +35,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Deployment Phase",
+			"colour": "black",
 			"frequency": "Once Per Battle (Army)",
 			"effect": "If there is a friendly Nexus of Grief on the battlefield, you can set up up to 2 additional Nexuses of Grief on the battlefield. Each must be set up wholly outside enemy territory, more than 3\" from all objectives and other terrain features, and more than 12\" from all other friendly Nexuses of Grief.",
 			"options": [
@@ -52,6 +56,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly NIGHTHAUNT unit that is in combat to use this ability.",
 					"effect": "Roll a dice. The unit using this ability can move a distance up to its Move characteristic added to the roll. It can pass through other models and the combat ranges of enemy units, and it can end that move in combat.",
@@ -71,6 +76,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly NIGHTHAUNT HERO to be the target.",
 					"effect": "For the rest of the turn, enemy units cannot use RETREAT abilities while they are in combat with the target."
@@ -86,6 +92,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If there is not a condemned enemy unit on the battlefield, pick an enemy unit to be condemned.",
 					"effect": "For the rest of the battle, add 1 to the Rend characteristic of melee weapons used for attacks made by friendly NIGHTHAUNT units that target the condemned enemy unit."
@@ -101,6 +108,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 2 friendly NIGHTHAUNT units to be the targets.",
 					"effect": "The targets' melee weapons have Anti-charge (+1 Rend) for the rest of the turn."
@@ -116,6 +124,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Enemy Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Nexus of Grief to be the target.",
 					"effect": "For the rest of the turn, the target has a Move characteristic of 3\". It can immediately move up to 3\" and can move into combat but cannot end that move on a terrain feature or within 3\" of an objective."
@@ -131,6 +140,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that is in combat with any friendly NIGHTHAUNT units to be the target.",
 					"effect": "Subtract 1 from save rolls for the target for the rest of the turn."
@@ -148,6 +158,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 friendly non-HERO NIGHTHAUNT units wholly within 12\" of this unit to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+:\n• If the target is damaged, Heal (X) the target, where X is an amount equal to the roll.\n• If the target is not damaged, return a number of slain models to it with a combined Health characteristic of up to X, where X is an amount equal to the roll."
@@ -157,6 +168,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy HERO in combat with this unit to be the target, then pick another enemy unit within the target's combat range to be the victim.",
 					"effect": "Roll a dice. On a 3+, pick 1 of the target's melee weapons. Immediately resolve combat attacks for the target with that weapon against the victim."
 				},
@@ -165,6 +177,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While they are wholly within 6\" of this unit, friendly NIGHTHAUNT INFANTRY and CAVALRY units are not visible to enemy units more than 9\" from them."
 				}
 			]
@@ -178,6 +191,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly NIGHTHAUNT INFANTRY unit wholly within 12\" of this unit.",
+					"colour": "grey",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
@@ -185,6 +199,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "If this unit is in combat, add 1 to the Attacks characteristic of melee weapons used by friendly NIGHTHAUNT units while they are wholly within 12\" of this unit for the rest of the turn."
 				},
@@ -193,6 +208,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: Opponent declared a SPELL or PRAYER ability for a WIZARD or PRIEST within 12\" of this unit.",
+					"colour": "yellow",
 					"declare": "Pick each enemy WIZARD and PRIEST within 12\" of this unit to be the targets.",
 					"effect": "Roll a D3. On a 2+, for the rest of the phase:\n• Subtract 1 from casting rolls and chanting rolls for the targets.\n• Each time any of the targets fails to cast a spell or chant a prayer, inflict 1 mortal damage on the target."
 				}
@@ -208,6 +224,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "While this unit is within 12\" of any damaged enemy units or enemy units that have had any models slain, add 1 to casting rolls for friendly NIGHTHAUNT units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -215,6 +232,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons for each non-FACTION TERRAIN terrain feature that is being contested by friendly units, to a maximum of 8."
 				},
 				{
@@ -222,6 +240,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an enemy HERO within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, for the rest of the turn, the target cannot be affected by the 'Guarded Hero' ability or the 'Obscuring' terrain ability."
 				}
@@ -237,6 +256,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"effect": "If there are fewer than 3 friendly Nexuses of Grief on the battlefield, set up a Nexus of Grief within 3\" of a friendly NIGHTHAUNT unit, more than 3\" from all objectives and enemy units, more than 1\" from all other terrain features, and more than 12\" from all other friendly Nexuses of Grief."
 				},
@@ -245,6 +265,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "For the rest of the turn, if possible, this unit must be picked to be the target of pile-in moves made by the target."
 				},
@@ -253,6 +274,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "Spend up to 3 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nThen, roll XD6, where X is the number of rage dice spent. This unit can move a distance in inches up to the roll but must end that move in combat with a damaged enemy unit and/or an enemy unit that has fewer models than its starting size."
 				}
 			]
@@ -282,6 +304,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls for friendly NIGHTHAUNT WIZARDS while they are wholly within 12\" of and visible to this unit. Add 2 to casting rolls instead if this unit is also in combat with an enemy WIZARD or PRIEST.",
 					"points": 10
 				},
@@ -290,6 +313,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons while it is more than 12\" from all other friendly NIGHTHAUNT units.",
 					"points": 10
 				},
@@ -298,6 +322,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
 					"effect": "After that FIGHT ability has been resolved, roll a dice. You can spend 1 rage dice. If you do:\n• Add 1 to the roll.\n• If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7.\nOn a 3+, this unit can move a distance up to its Move characteristic. It can move through the combat ranges of enemy units but cannot end that move in combat.",
 					"points": 10
 				}
@@ -315,6 +340,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly NIGHTHAUNT WIZARD to cast this spell, pick a visible friendly NIGHTHAUNT unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, each time the target uses a FIGHT ability, if all of its attacks targeted the same enemy unit, after that ability has been resolved, subtract 1 from save rolls for that enemy unit for the rest of the turn.",
 					"casting_value": 6,
@@ -328,6 +354,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly NIGHTHAUNT WIZARD to cast this spell, pick a visible friendly non-HERO NIGHTHAUNT INFANTRY unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "The target can immediately use the 'Normal Move' or 'Retreat' ability as if it were your movement phase.",
 					"casting_value": 6,
@@ -340,6 +367,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly NIGHTHAUNT WIZARD to cast this spell, pick a visible enemy HERO unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "The target has STRIKE-LAST for the rest of the turn.",
 					"casting_value": 7,
@@ -359,6 +387,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Shyish Reaper on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Shyish Reaper wholly within 12\" of and visible to the caster and more than 9\" from all enemy units.",
 					"casting_value": 6,
@@ -375,6 +404,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Mortalis Terminexus on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Mortalis Terminexus wholly within 18\" of the caster and visible to them.",
 					"casting_value": 6,
@@ -391,6 +421,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Vault of Souls on the battlefield, pick a friendly NIGHTHAUNT WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Vault of Souls wholly within 18\" of the caster and visible to them.",
 					"casting_value": 6,

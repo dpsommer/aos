@@ -8,6 +8,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Any Hero Phase",
+			"colour": "yellow",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly IRONJAWZ unit that was not set up this turn to be the target.",
 			"effect": "The target can move up to 3\". It can move into combat. If it was in combat at the start of the move, it must end that move in combat."
@@ -17,6 +18,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Your Charge Phase",
+			"colour": "orange",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly IRONJAWZ HERO to be the target. You cannot pick the same HERO to be the target of this ability more than once per battle.",
 			"effect": "For the rest of the turn, the following effects apply to friendly IRONJAWZ units while they are wholly within 18\" of the target:\n• Add 1 to charge rolls for those units.\n• Add 1 to the Attacks characteristic of those units' melee weapons.",
@@ -35,6 +37,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "If you make an unmodified charge roll of 8+ for a friendly non-HERO IRONJAWZ unit, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn."
 				}
 			]
@@ -48,6 +51,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly IRONJAWZ INFANTRY units have WARD (6+) while they are wholly within 12\" of any friendly IRONJAWZ WIZARDS or PRIESTS."
 				}
 			]
@@ -61,6 +65,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "The first time each turn that an enemy unit is destroyed by a FIGHT ability used by a friendly IRONJAWZ unit, add 1 to hit rolls for combat attacks made by the next friendly IRONJAWZ unit that is picked to use a FIGHT ability for the rest of the turn."
 				}
 			]
@@ -74,6 +79,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Add the number of enemy units that have been destroyed this battle to the Move characteristic of friendly Gore-gruntas and MAW-GRUNTA units, to a maximum of +4."
 				}
 			]
@@ -87,6 +93,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle Round (Army)",
 					"effect": "If there are any friendly Megabosses on the battlefield, for the rest of the turn, you can pick another eligible unit to be a second target when using the 'Mighty Destroyers' ability.\nIf there are no friendly Megabosses on the battlefield, roll a dice. On a 3+, for the rest of the turn, you can pick another eligible unit to be a second target when using the 'Mighty Destroyers' ability."
 				}
@@ -101,6 +108,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly IRONJAWZ unit to be the target.",
 					"effect": "For the rest of the turn, add 1 to wound rolls for the target's combat attacks that target an enemy unit that has a Health characteristic greater than its own."
@@ -118,6 +126,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the 'Redeploy' command for a friendly IRONJAWZ unit wholly within 12\" of this unit",
+					"colour": "grey",
 					"effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead."
 				},
 				{
@@ -125,6 +134,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly IRONJAWZ units while they are wholly within 18\" of this unit."
 				},
 				{
@@ -132,6 +142,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If this unit's unmodified charge roll this turn was 8+, roll a D6 instead of a D3."
 				}
@@ -146,6 +157,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 10 to this unit's control score."
 				},
 				{
@@ -153,6 +165,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "This unit has WARD (6+)."
 				},
 				{
@@ -160,6 +173,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Pick 1 of this unit's weapons. Add 1 to the Rend characteristic of that weapon for the rest of the battle."
 				}
 			]
@@ -174,6 +188,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "For the rest of the turn, subtract D3 from the Attacks characteristic of the target's Companion weapons while it is in combat with this unit."
 				},
@@ -182,6 +197,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared the 'Ironjawz Waaagh!' ability and picked this unit to be the target",
+					"colour": "orange",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of Companion weapons used by friendly IRONJAWZ units while they are wholly within 18\" of this unit.",
 					"points": 20
 				},
@@ -190,6 +206,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "Roll a dice. If the target is within 12\" of this unit, add 1 to the roll. On a 4+:\n• Inflict 1 mortal damage on the target.\n• Subtract 1 from the target's power level until the start of your next turn."
 				}
@@ -219,6 +236,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "If this unit was not set up this turn, it can use the 'Normal Move' ability as if it were your movement phase.",
 					"points": 10
@@ -228,6 +246,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a number of dice equal to your fury level. For each 3+, inflict 1 mortal damage on the target.",
 					"points": 10
@@ -249,6 +268,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If any models are slain by this ability, after those models are removed from the battlefield, if this unit is still in combat, this unit can immediately use this ability again.",
@@ -268,6 +288,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "If this unit was not set up this turn, it can use the 'Normal Move' ability as if it were your movement phase"
 				}
@@ -285,6 +306,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly IRONJAWZ WIZARD to cast this spell, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "The target's melee weapons have Crit (2 Hits) until the start of your next turn",
 					"casting_value": 6,
@@ -298,6 +320,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly IRONJAWZ WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Inflict D3 mortal damage on the target. If the target is a WIZARD, inflict 3 mortal damage on the target instead.",
 					"casting_value": 6,
@@ -310,6 +333,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly IRONJAWZ WIZARD to cast this spell, pick a visible friendly unit wholly within 12\" of them and not in combat to be the target, then make a casting roll of 2D6.",
 					"effect": "Remove the target from the battlefield and set it up again wholly within 24\" of the caster and more than 9\" from all enemy units.",
 					"casting_value": 7,
@@ -329,6 +353,7 @@
 					"type": "prayer",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly IRONJAWZ PRIEST to chant this prayer, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "For the rest of the turn, add 1 to charge rolls for the target. In addition, if the chanting roll was 8+, add 1 to the number of dice rolled when making charge rolls for the target, to a maximum of 3.",
 					"chanting_value": 4,
@@ -342,6 +367,7 @@
 					"type": "prayer",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly IRONJAWZ PRIEST to chant this prayer, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "Heal (D6) the target. If the chanting roll was 8+, Heal (D3+3) the target instead.",
 					"chanting_value": 4,
@@ -354,6 +380,7 @@
 					"type": "prayer",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly IRONJAWZ PRIEST to chant this prayer, pick a visible friendly IRONJAWZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
 					"effect": "Add 1 to the Damage characteristic of the target's melee weapons until the start of your next turn. If the chanting roll was 10+, you can pick up to 2 eligible units to be the targets instead of 1.",
 					"chanting_value": 5,
@@ -373,6 +400,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly IRONJAWZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Foot of Gork wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Foot of Gork has 2 parts that must be set up within 9\" of each other.",
 					"casting_value": 7,
@@ -389,6 +417,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Morkspit Marsh on the battlefield, pick a friendly IRONJAWZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Morkspit Marsh wholly within 18\" of the caster and visible to them.",
 					"casting_value": 5,
@@ -405,6 +434,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Gork-Roara on the battlefield, pick a friendly IRONJAWZ WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Gork-Roara wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 5,

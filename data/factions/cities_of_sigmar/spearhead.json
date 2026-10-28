@@ -29,6 +29,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly CASTELITE units if they did not use a MOVE ability in the same turn."
 				}
 			],
@@ -73,6 +74,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn",
 					"declare": "Pick an enemy INFANTRY, WAR MACHINE or CAVALRY unit in combat with your general to be the target.",
 					"effect": "Roll a dice. On a 3+, the target must immediately use the ' Retreat ' ability as if it were the enemy movement phase."
@@ -177,6 +179,7 @@
 							"type": "active",
 							"category": "control",
 							"timing": "Deployment Phase",
+							"colour": "black",
 							"effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase."
 						}
 					],
@@ -255,6 +258,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "While this unit has a Blackpowder Squire token, this unit’s ranged weapons have Shoot in Combat."
 						},
 						{
@@ -478,6 +482,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "Each time this unit uses a SHOOT ability, choose either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. The Cannonball can only be chosen if this unit has not used a MOVE ability that turn."
 						}
 					],
@@ -560,6 +565,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Your Movement Phase",
+							"colour": "grey",
 							"declare": "If this unit is contesting an objective you control that is not contested by any enemy models, roll a dice.",
 							"effect": "On a 3+, that objective is considered by you to be consecrated. Friendly units have WARD (6+) while they are contesting a consecrated objective. If your opponent gains control of a consecrated objective, it is no longer consecrated."
 						}
@@ -631,6 +637,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick a visible enemy unit within 10\" of your general to be the target.",
 					"effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target."
 				},
@@ -693,6 +700,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
+							"colour": "red",
 							"effect": "If this unit has the Thexa token, give that token to an enemy unit within 6\" of this unit.\nIf an enemy unit has the Thexa token, inflict D3 mortal damage on that enemy unit. Then, give this unit the Thexa token."
 						}
 					],
@@ -726,6 +734,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
+							"colour": "grey",
 							"declare": "Pick an objective within 12\" of this unit, then make a chanting roll of D6.",
 							"effect": "On a 3+, for the rest of the turn, friendly units have WARD (5+) while they are contesting that objective."
 						}
@@ -907,6 +916,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick a visible friendly non-HERO unit wholly within 12\" of your general to be the target.",
 					"effect": "Add 1 to hit rolls for the target’s combat attacks for the rest of the turn."
 				}
@@ -992,6 +1002,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick up to 3 visible friendly or enemy units to be the targets.",
 							"effect": "Roll a D3 for each target. On a 2+:\nIf it is a friendly target, it has WARD (5+) until the start of your next turn. If it is an enemy target, inflict an amount of mortal damage on it equal to the roll."
 						}

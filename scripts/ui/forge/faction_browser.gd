@@ -10,7 +10,9 @@ var faction: Faction
 @onready var title: Label = %Title
 @onready var back_button: Button = %BackButton
 @onready var tabs: TabContainer = %Tabs
-@onready var rules: RichTextLabel = %Rules
+@onready var rules_tab: ScrollContainer = %RulesTab
+## Holds the Rules tab's battle traits, battle formations, enhancements and lores.
+@onready var rules: VBoxContainer = %Rules
 @onready var warscrolls: RulesListView = %Warscrolls
 @onready var armies_of_renown: RulesListView = %ArmiesOfRenown
 @onready var regiments_of_renown: RulesListView = %RegimentsOfRenown
@@ -22,7 +24,7 @@ func _ready() -> void:
 	theme = UITheme.get_theme()
 	back_button.icon = UITheme.icon("back")
 	var titles := {
-		rules: "Rules",
+		rules_tab: "Rules",
 		warscrolls: "Warscrolls",
 		armies_of_renown: "Armies of Renown",
 		regiments_of_renown: "Regiments of Renown",
@@ -44,35 +46,38 @@ func _unhandled_input(event: InputEvent) -> void:
 func show_faction(data: Faction) -> void:
 	faction = data
 	title.text = data.name + (" (Legends)" if data.legends else "")
-	rules.text = RulesFormatter.faction_rules(data)
+	var catalog := ArmyCatalog.new(data, CoreRulesCatalog.get_rules())
+	for child in rules.get_children():
+		rules.remove_child(child)
+		child.queue_free()
+	rules.add_child(RulesView.faction_rules(data, catalog.summoned))
 
 	var labels := PackedStringArray()
 	for unit in data.warscrolls:
 		labels.append(_warscroll_label(unit))
-	var catalog := ArmyCatalog.new(data, CoreRulesCatalog.get_rules())
-	warscrolls.populate(labels, func(i: int) -> String: return RulesFormatter.warscroll(data.warscrolls[i], true, catalog.summoned))
+	warscrolls.populate(labels, func(i: int) -> Control: return RulesView.warscroll(data.warscrolls[i], catalog.summoned))
 
 	labels = PackedStringArray()
 	for army in data.armies_of_renown:
 		labels.append(army.name + (" (Legends)" if army.legends else ""))
-	armies_of_renown.populate(labels, func(i: int) -> String: return RulesFormatter.army_of_renown(data.armies_of_renown[i]))
+	armies_of_renown.populate(labels,
+			func(i: int) -> Control: return RulesView.army_of_renown(data.armies_of_renown[i], catalog.summoned))
 
 	labels = PackedStringArray()
 	for regiment in data.regiments_of_renown:
 		labels.append("%s%s - %d pts" % [regiment.name, " (Legends)" if regiment.legends else "", regiment.points])
 	regiments_of_renown.populate(labels,
-			func(i: int) -> String: return RulesFormatter.regiment_of_renown(data.regiments_of_renown[i]))
+			func(i: int) -> Control: return RulesView.regiment_of_renown(data.regiments_of_renown[i], catalog.summoned))
 
 	labels = PackedStringArray()
 	for army in data.spearheads:
 		labels.append(army.name)
-	spearheads.populate(labels, func(i: int) -> String: return RulesFormatter.spearhead(data.spearheads[i]))
+	spearheads.populate(labels, func(i: int) -> Control: return RulesView.spearhead(data.spearheads[i], catalog.summoned))
 
 	labels = PackedStringArray()
 	for section in data.path_to_glory:
 		labels.append(section.name)
-	path_to_glory.populate(labels, func(i: int) -> String: return RulesFormatter.rules_section(data.path_to_glory[i]))
-
+	path_to_glory.populate(labels, func(i: int) -> Control: return RulesView.rules_section(data.path_to_glory[i]))
 
 func _warscroll_label(unit: Warscroll) -> String:
 	var label := unit.name

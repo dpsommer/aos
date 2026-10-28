@@ -38,6 +38,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Each time a friendly VAMPIRE unit uses a FIGHT ability, after all of its attacks have been resolved, Heal (X) that VAMPIRE unit where X is the number of damage points allocated by those attacks."
 				}
 			],
@@ -47,6 +48,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly Deathrattle Skeletons unit that has been destroyed.",
 					"effect": "You can set up a replacement unit with D6 models in friendly territory more than 6\" from enemy units.",
@@ -126,6 +128,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible enemy unit within 6\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, roll a number of dice equal to the target’s Health characteristic. For each 5+, inflict 1 mortal damage on the target and Heal (1) this unit."
 						}
@@ -203,6 +206,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Your Combat Phase",
+							"colour": "purple",
 							"effect": "For each slain model from this unit, make a legion roll of D6. For each 6, return 1 slain model to this unit."
 						}
 					],
@@ -252,6 +256,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
+							"colour": "grey",
 							"effect": "Models in this unit can pass across enemy INFANTRY models as if this unit had FLY."
 						}
 					],
@@ -291,6 +296,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "Set up this unit anywhere on the battlefield wholly within 3\" of a battlefield edge and more than 6\" from all enemy units."
 				},
@@ -310,6 +316,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to wound rolls for combat attacks made by friendly non-HERO units that target a unit that has fewer models than the attacking unit."
 				},
 				{
@@ -385,6 +392,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 2+, add 1 to hit rolls for combat attacks made by the target for the rest of the turn."
 						}
@@ -437,6 +445,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "End of Your Turn",
+							"colour": "purple",
 							"effect": "You can return 1 slain model to this unit."
 						}
 					],
@@ -471,6 +480,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"effect": "You can return D3 slain models to this unit."
 						}
 					],
@@ -508,6 +518,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "While your general is within this unit’s combat range, both this unit and your general have WARD (5+)."
 						}
 					],

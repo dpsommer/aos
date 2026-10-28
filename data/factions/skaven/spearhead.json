@@ -32,6 +32,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly unit that has not been deployed to be the target.",
 					"effect": "The target unit is set up in reserve in the tunnels below. Units in the tunnels below that have not used the ‘Gnawhole Ambush’ ability by the end of the third battle round are destroyed.",
@@ -44,6 +45,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly unit that is in the tunnels below to use this ability.",
 					"effect": "Set up that unit wholly within 6\" of a corner of the battlefield and more than 9\" from all enemy units.",
 					"keywords": [
@@ -66,6 +68,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "No mortal damage is inflicted on friendly units when they use RETREAT abilities."
 				}
 			],
@@ -82,6 +85,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Subtract 1 from save rolls for enemy units in combat with your general."
 				},
 				{
@@ -152,6 +156,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "While this unit is damaged, add 3 to the Attacks characteristic of its Warpforged Halberd."
 						}
 					],
@@ -186,6 +191,7 @@
 							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
+							"colour": "red",
 							"declare": "Pick a friendly unit wholly within 13\" of this unit to be the target, then roll a dice.",
 							"effect": "On a 3+, add the roll to the target’s control score until the start of your next turn."
 						},
@@ -194,6 +200,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible enemy unit within 13\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, inflict D3 mortal damage on the target."
 						}
@@ -242,6 +249,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Reaction: You declared a SHOOT ability for this unit and it has not used a MOVE ability this turn",
+							"colour": "blue",
 							"effect": "Roll a dice. On a 2+, set the Damage characteristic of its Warplock Musket to 3 this phase. On a 1, inflict D3 mortal damage on this unit."
 						}
 					],
@@ -275,6 +283,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"effect": "You can return D3 slain models to this unit."
 						}
 					],
@@ -321,6 +330,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase, Once Per Battle",
+							"colour": "red",
 							"effect": "Inflict D3 mortal damage on this unit. Then, add 1 to the Attacks characteristic of its melee weapons this phase."
 						}
 					],
@@ -487,6 +497,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends."
 						}
 					],
@@ -525,6 +536,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Charge Phase",
+							"colour": "red",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "You can only use this ability if this unit has a Bomb Rat token. Pick an enemy unit within 9\" of this unit to be the target. Then, roll a dice.",
 							"effect": "On a 3+, inflict 1 mortal damage on the target. On a 1-2, remove this unit’s Bomb Rat token from the battlefield."
@@ -579,6 +591,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "This unit can only use this ability if it is in combat. Roll a dice.",
 							"effect": "On a 4+, this unit can immediately use the ‘Retreat’ ability as if it were your movement phase."
@@ -620,6 +633,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Phase",
 					"declare": "Pick a friendly unit that is not in combat.",
 					"effect": "That unit can use the ‘Normal Move’ ability as if it were your movement phase."
@@ -654,6 +668,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Your general has WARD (4+) while they are within 1\" of any friendly Clanrats units."
 				},
 				{
@@ -670,6 +685,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "On a 6+, remove your general from the battlefield and set them up again on the battlefield more than 6\" from all enemy units. They cannot use MOVE abilities in the following movement phase."
 				},
@@ -678,6 +694,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "Roll a dice. On a 3+, this unit can immediately use the ‘Retreat’ ability as if it were your movement phase. If it does so, no mortal damage is inflicted on it."
 				}
 			],
@@ -707,6 +724,7 @@
 							"type": "active",
 							"category": "control",
 							"timing": "Your Hero Phase",
+							"colour": "red",
 							"declare": "Pick a friendly unit wholly within 13\" of this unit to be the target, then roll a dice.",
 							"effect": "On a 3+, add the roll to the target’s control score until the start of your next turn."
 						},
@@ -715,6 +733,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible enemy unit within 13\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, inflict D3 mortal damage on the target."
 						}
@@ -750,6 +769,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"effect": "You can return D3 slain models to this unit."
 						}
 					],
@@ -811,6 +831,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Each time an attack made with this unit’s Shock Gauntlets scores a critical hit, that attack scores D6 hits instead of 1 (make a wound roll for each hit)."
 						}
 					],
@@ -854,6 +875,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "Each attack made with this weapon in a single phase must target the same enemy unit. Each hit inflicts 1 mortal damage on the target and the attack sequence ends."
 						}
 					],

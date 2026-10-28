@@ -200,6 +200,47 @@ def test_ability_name_can_be_overridden():
     assert bsdata.ability(p, "Entry Name")["name"] == "Entry Name"
 
 
+# colour()
+
+@pytest.mark.parametrize("value, expected", [
+    ("Red", "red"), ("  blue ", "blue"), ("PURPLE", "purple"), ("green", "green"),
+    ("Gray", "grey"), ("Yelllow", "yellow"), ("Orance", "orange"),
+])
+def test_colour_is_normalised(value, expected):
+    assert bsdata.colour(value) == expected
+
+
+@pytest.mark.parametrize("value", ["Movement", "", "   ", None, "Chartreuse"])
+def test_non_colour_values_are_dropped(value):
+    assert bsdata.colour(value) == ""
+
+
+def test_every_colour_maps_to_itself():
+    for name in bsdata.COLOURS:
+        assert bsdata.colour(name) == name
+
+
+def test_every_spelling_fix_maps_to_a_colour():
+    for fixed in bsdata.COLOUR_SPELLINGS.values():
+        assert fixed in bsdata.COLOURS
+
+
+def colour_profile(value):
+    return profile('typeName="Ability (Passive)"><attributes><attribute name="Color">%s</attribute></attributes>' % value)
+
+
+def test_ability_takes_its_colour_from_the_color_attribute():
+    assert bsdata.ability(colour_profile("Gray"))["colour"] == "grey"
+
+
+def test_ability_with_a_non_colour_color_attribute_has_no_colour_key():
+    assert "colour" not in bsdata.ability(colour_profile("Movement"))
+
+
+def test_ability_without_a_color_attribute_has_no_colour_key():
+    assert "colour" not in bsdata.ability(profile('typeName="Ability (Passive)">'))
+
+
 # is_ability()
 
 @pytest.mark.parametrize("type_name", ["Ability (Passive)", "Ability (Spell)", "Ability (Blood Tithe)"])

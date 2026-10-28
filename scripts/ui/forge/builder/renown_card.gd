@@ -50,7 +50,10 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 	if not regiment.text.is_empty():
 		content.add_child(UIBuilder.label(regiment.text, "MutedLabel", true))
 	if not regiment.abilities.is_empty():
-		content.add_child(UIBuilder.rich(RulesFormatter.abilities(regiment.abilities, builder.catalog.summoned)))
+		for ability in regiment.abilities:
+			content.add_child(AbilityCard.new(ability))
+			for manifestation: Warscroll in builder.catalog.summoned(ability):
+				content.add_child(WarscrollCard.new(manifestation))
 
 	var in_army := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.regiment_of_renown == regiment.name)
 	var has_one := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())

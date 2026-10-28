@@ -47,6 +47,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SKYVESSEL or AUTO-ENDRIN within this unit's combat range and that is not in combat to be the target.",
 					"effect": "Remove the target from the battlefield and set it up again on the battlefield more than 9\" from all enemy units. Then, if the target is a SKYVESSEL, you can remove this unit from the battlefield and set it up again on the battlefield wholly within 6\" of the target and more than 9\" from all enemy units."
@@ -56,6 +57,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1)."
 				}
 			],
@@ -115,6 +117,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to the Rend characteristic of the target's ranged weapons for the rest of the turn."
@@ -124,6 +127,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Subtract 1 from charge rolls for enemy units within 9\" of this unit."
 				}
 			],
@@ -182,6 +186,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly FLAGSHIP wholly within 12\" of this unit to be the target.",
 					"effect": "For the rest of the phase, each time the target uses a SHOOT ability, you can re-roll 1 of the hit rolls made for that ability."
@@ -191,6 +196,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly Skyvessel wholly within 24\" of this unit to be the target.",
 					"effect": "For the rest of the turn, add 1 to the Attacks characteristic of the target's ranged weapons."
@@ -268,6 +274,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Charge Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• This unit can immediately use a SHOOT ability as if it were your shooting phase but all of its attacks must target the target enemy unit.\n• For the rest of the phase, this unit's Privateer Heavy Weapons have Shoot in Combat."
@@ -322,6 +329,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "This unit cannot use this ability if it is in combat or has used a RUN or RETREAT ability this turn. Pick a number of units up to its Transport Capacity that are wholly within 6\" of it, are not in combat and that have not charged this turn to be the targets. Then, make a charge roll of 2D6.",
 					"effect": "This unit can move a distance up to the value of the charge roll and must end the move within 1/2\" of a visible enemy unit. If it does so:\n• Remove the targets from the battlefield and set them up again wholly within this unit's combat range. The targets can be set up in combat.\n• This unit and the targets have charged, and the targets cannot use another CORE ability this phase.\n• Pick up to 1 of the targets to have STRIKE-FIRST for the rest of the turn.",
 					"keywords": [
@@ -335,6 +343,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Heavy Sky Ordnance is 3."
 				},
 				{
@@ -342,6 +351,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick an enemy unit that does not have FLY and that this unit passed across this phase to be the target.",
 					"effect": "Roll 6 dice. For each 4+, inflict 1 mortal damage on the target."
 				},
@@ -350,6 +360,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit can transport up to 2 friendly KHARADRON OVERLORDS INFANTRY units with a combined model count of up to 12 (see Battle Traits)."
 				},
 				{
@@ -357,6 +368,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -419,6 +431,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -428,6 +441,7 @@
 					"type": "passive",
 					"category": "damage",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Great Sky Ordnance is 4."
 				},
 				{
@@ -435,6 +449,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick an enemy unit that does not have FLY and that this unit passed across this phase to be the target.",
 					"effect": "Roll 10 dice. For each 4+, inflict 1 mortal damage on the target."
 				},
@@ -443,6 +458,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit can transport up to 3 friendly KHARADRON OVERLORDS INFANTRY units with a combined model count of up to 22 (see Battle Traits)."
 				}
 			],
@@ -474,6 +490,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is a Nullifier Auto-Endrin and is in combat with any enemy MANIFESTATIONS, pick each enemy MANIFESTATION in combat with it to be the targets.",
 					"effect": "Make a banishment roll of 3D6 for each target. If the banishment roll equals or exceeds the banishment value on the MANIFESTATION's warscroll, it is banished and removed from play. Then, remove this unit from the battlefield."
@@ -483,6 +500,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "The following apply to this unit:\n• This unit has a maximum control score of '-'.\n• When this unit is destroyed or removed from the battlefield, it does not count as being destroyed for the purposes of other rules (such as scoring battle tactics).\n• This unit cannot be picked to be the target of or be affected by any non-CORE abilities used by other friendly units unless the ability specifies AUTO-ENDRIN\n• Ignore this unit for the purposes of friendly and enemy battle tactics."
 				},
 				{
@@ -490,6 +508,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is a Stuncloud Auto-Endrin and is in combat, pick each enemy unit in combat with it to be the targets.",
 					"effect": "Roll a dice for each target. If the roll is equal to or lower than that target's Health characteristic, subtract 10 from the control score of that target for the rest of the turn. Then, remove this unit from the battlefield."
@@ -499,6 +518,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is a Grudgeblast Auto-Endrin and is in combat, pick each enemy unit in combat with it to be the targets.",
 					"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, remove this unit from the battlefield."
@@ -571,6 +591,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick up to 3 visible friendly SKYVESSELS wholly within 24\" of this unit that are not in combat to be the targets.",
 					"effect": "Each target can use a RUN ability and still use SHOOT and/or CHARGE abilities later in the turn."
@@ -580,6 +601,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick up to 2 other friendly SKYFARER units within this unit's combat range to be the targets.",
 					"effect": "Add 1 to the Attacks characteristic of the targets' melee weapons for the rest of the turn."
 				},
@@ -588,6 +610,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -651,6 +674,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 visible friendly SKYFARERS units to be the targets.",
 					"effect": "Roll a dice for each target. On a 3+, pick 1 of the following effects to apply to that target for the rest of the turn:",
@@ -727,6 +751,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"effect": "Give this unit D3 vexed points."
 				},
 				{
@@ -734,6 +759,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is wholly within 12\" of a friendly non-HERO KHARADRON OVERLORDS unit, pick a visible enemy unit wholly within 18\" of this unit to be the target. Then, choose to spend either 3 or 6 vexed points.",
 					"effect": "Pick 1 of the following effects to apply to the target for the rest of the turn:\n• Do you see how fast they are going?!: If you spent 3 vexed points, subtract D3 from the target's Move characteristic. If you spent 6 vexed points, halve the target's Move characteristic.\n• Those weapons are against regulation!: If you spent 3 vexed points, subtract 1 from wound rolls for the target's combat attacks. If you spent 6 vexed points, subtract 1 from the Rend characteristic of the target's melee weapons and subtract 1 from wound rolls for the target's combat attacks."
@@ -798,6 +824,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick an Arkanaut Frigate in this unit's regiment to be the target. This unit can use this ability while in reserve, and the target can also be in reserve.",
 					"effect": "The target has the AELSLING keyword. Add 1 to the Damage characteristic of the target's Boarding Weapons for the rest of the battle."
 				},
@@ -806,6 +833,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy MONSTER in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• Subtract 1 from wound rolls made for the target's attacks for the rest of the turn."
 				},
@@ -814,6 +842,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "You can re-roll run rolls and charge rolls for the AELSLING while it is wholly within 12\" of this unit."
 				}
 			],
@@ -883,6 +912,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick this unit and up to 1 friendly Endrinriggers unit wholly within 12\" of this unit to be the targets.",
 					"effect": "For the rest of the turn, combat attacks made by the targets against enemy units that charged this turn have Crit (2 Hits)."
@@ -892,6 +922,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit's combat range to be the target.",
 					"effect": "Roll a dice. On a 2+, Heal (3) the target."
 				}
@@ -940,6 +971,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SKYVESSEL within this unit's combat range to be the target.",
 					"effect": "For the rest of the turn:\n• The target can use a RETREAT or RUN ability and still use SHOOT abilities later in the turn.\n• No mortal damage is inflicted on the target by RETREAT abilities."
@@ -949,6 +981,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit's combat range to be the target.",
 					"effect": "Roll a dice. On a 2+, Heal (3) the target."
 				}
@@ -1040,6 +1073,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick a friendly SKYVESSEL or Zontari Endrin Dock within this unit's combat range to be the target.",
 					"effect": "Make a field repairs roll of D6 for each model in this unit. For each 4-5, Heal (1) the target. For each 6, Heal (2) the target."
 				}
@@ -1135,6 +1169,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Until the start of your next turn, if this unit has not charged in the same turn, the following cumulative effects apply depending on your fury level.\n1+ Irked: This unit's Aethermatic Saws have Crit (Auto-wound).\n4+ Exasperated: This unit has Ward (5+).\n7 Incensed: Add 1 to the Damage characteristic of this unit's melee weapons."
 				}
@@ -1195,6 +1230,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "When you use the 'Transport Skyfarers' ability for this unit, you can pick units in combat to be targets."
 				},
 				{
@@ -1202,6 +1238,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick an enemy unit that does not have FLY and that this unit passed across this phase to be the target.",
 					"effect": "Roll 4 dice. For each 4+, inflict 1 mortal damage on the target."
 				},
@@ -1210,6 +1247,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit can transport 1 friendly KHARADRON OVERLORDS INFANTRY units with a model count of up to 5 (see Battle Traits)."
 				},
 				{
@@ -1217,6 +1255,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -1272,6 +1311,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "While this unit is wholly within 12\" of any other friendly Grundstok Gunhaulers, it can use SHOOT abilities even if it used the 'Run' ability in the same turn."
 				},
 				{
@@ -1279,6 +1319,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"effect": "If this unit used a SHOOT ability this phase, this unit can move D6\". It cannot end that move in combat."
 				},
 				{
@@ -1286,6 +1327,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit cannot transport any friendly units."
 				}
 			],
@@ -1358,6 +1400,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase, Reaction: You declared a SHOOT ability for this unit",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick Shieldbreaker ammunition or Thunderdrakk ammunition.",
 					"effect": "If all of the attacks made for that SHOOT ability target the same enemy unit, after that SHOOT ability has been resolved, roll a dice and add the number of damage points allocated to the target by that SHOOT ability. If the roll is higher than the target's Control characteristic, apply the following effect to the target based on the ammunition type picked:",
@@ -1432,6 +1475,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While they are wholly within 12\" of this unit, friendly SKYFARER units have WARD (5+) against mortal damage inflicted by SPELL abilities, PRAYER abilities and abilities used by MANIFESTATIONS."
 				},
 				{
@@ -1439,6 +1483,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Double the Damage characteristic of this unit's weapons for attacks that target PRIESTS, WIZARDS, or MANIFESTATIONS."
 				}
 			],
@@ -1501,6 +1546,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Each time your opponent spends any rage dice as part of the 'Eruption of Fury' ability, after that ability has been resolved, if this unit is not in combat, it can move up to XD6\", where X is the number of rage dice spent. It cannot end that move in combat."
 				},
 				{
@@ -1508,6 +1554,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "• This unit can use UNBIND and BANISH abilities as if it had WIZARD (1).\n• Add 1 to the number of dice rolled when making unbinding rolls and banishment rolls for this unit, to a maximum of 3."
 				}
 			],
@@ -1599,6 +1646,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Roll a D3. On a 2+:\n• Inflict an amount of mortal damage on the target equal to the roll.\n• This unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
@@ -1680,6 +1728,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "If this unit's Bjorgen Thundrik is on the battlefield, pick an objective within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+:\n• If the target is controlled by either player, that player loses control of that objective.\n• The target cannot be contested until the start of your next turn."
 				}
@@ -1736,6 +1785,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit is in combat, it can move 2D6\" but must end that move in combat."
 				}
@@ -1795,6 +1845,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an objective within 9\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, apply the following effects for the rest of the turn:\n• Add 1 to hit rolls for combat attacks made by friendly SKYFARER units that target a unit that is contesting the target objective.\n• Add 1 to the Rend characteristic of melee weapons used by friendly Vongrim Salvagers and Vongrim Harpoon Crew units for attacks that target a unit that is contesting the target objective"
@@ -1829,6 +1880,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly SKYVESSEL within 3\" of this terrain feature to be the target.",
 					"effect": "Make a repair roll of D6. Add 1 to the roll if there is a friendly Endrinmaster with Dirigible Suit or Endrinmaster with Endrinharness within 3\" of this terrain feature. On a 4+, Heal (3) the target."
 				},
@@ -1837,6 +1889,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"effect": "Set up a friendly Nullifier Auto-Endrin, Stuncloud Auto-Endrin and Grudgeblast Auto-Endrin (see the Auto-Endrin warscroll) on the battlefield within friendly territory, wholly within 6\" of this terrain feature and more than 9\" from all enemy units."
 				},
 				{
@@ -1844,6 +1897,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly AUTO-ENDRIN or replacement AUTO-ENDRIN that has been removed from the battlefield to be the target.",
 					"effect": "Make a manufacturing roll of D6. Add 1 to the roll if there is a friendly Endrinmaster with Dirigible Suit or Endrinmaster with Endrinharness within 3\" of this terrain feature. On a 4+, set up a replacement AUTO-ENDRIN on the battlefield, wholly within 6\" of this terrain feature and more than 3\" from all enemy units."
 				}

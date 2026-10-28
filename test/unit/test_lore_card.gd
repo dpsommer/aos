@@ -50,11 +50,12 @@ func test_card_is_not_pressable_until_made_so() -> void:
 
 
 func test_full_card_shows_each_abilitys_rules() -> void:
-	var text := _rules_text(_make(_lore(), true))
-	assert_string_contains(text, "Scorch")
+	var card := _make(_lore(), true)
+	var text := _rules_text(card)
 	assert_string_contains(text, "Deal scorching damage.")
-	assert_string_contains(text, "Blaze")
 	assert_string_contains(text, "Set things alight.")
+	var cards := UIKit.find_all(card, func(n: Node) -> bool: return n is AbilityCard)
+	assert_eq(cards.map(func(c: AbilityCard) -> String: return c.ability.name), ["Scorch", "Blaze"])
 
 
 func test_short_card_hides_the_rules() -> void:

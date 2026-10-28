@@ -28,6 +28,17 @@ def test_ability_drops_unknown_fields():
     assert "destiny_points" not in schema.ability({"name": "A", "destiny_points": 1})
 
 
+def test_ability_keeps_colour_right_after_timing():
+    out = schema.ability({"name": "A", "timing": "Passive", "colour": "red", "effect": "X"})
+    keys = list(out)
+    assert out["colour"] == "red"
+    assert keys.index("colour") == keys.index("timing") + 1
+
+
+def test_ability_drops_empty_colour():
+    assert "colour" not in schema.ability({"name": "A", "colour": ""})
+
+
 def test_ability_type_is_second_key():
     assert list(schema.ability({"name": "A", "timing": "Passive"}))[:2] == ["name", "type"]
 

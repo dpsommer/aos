@@ -8,6 +8,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Start of Your Turn",
+			"colour": "black",
 			"declare": "If there are fewer than 3 friendly PARAGONS on the battlefield, pick a friendly HEDONITES OF SLAANESH unit that does not have the PARAGON keyword and has not had the PARAGON keyword this battle to be the target.",
 			"effect": "The target gains the PARAGON keyword.",
 			"options": [
@@ -22,6 +23,7 @@
 			"type": "passive",
 			"category": "special",
 			"timing": "Passive",
+			"colour": "black",
 			"effect": "A friendly non-UNIQUE PARAGON immediately loses the PARAGON keyword when any of the following happen:\n\n• That PARAGON has 3 or more damage points allocated to it by the same use of a non-ATTACK ability.\n• That PARAGON uses a CHARGE ability and the unmodified charge roll is 5 or less (after any re-rolls).\n• A spell cast by that PARAGON is miscast (after any re-rolls)."
 		},
 		{
@@ -29,6 +31,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Your Hero Phase",
+			"colour": "yellow",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly non-UNIQUE PARAGON that has successfully cast a spell this turn and has not used a TEMPTATION ability this turn to use this ability.",
 			"effect": "Until the start of your next turn, while the unit using this ability is a PARAGON, add 1 to casting rolls for visible friendly HEDONITES OF SLAANESH units while they are wholly within 12\" of the unit using this ability.",
@@ -41,6 +44,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Any Movement Phase",
+			"colour": "black",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly HEDONITES OF SLAANESH HERO that has not used a TEMPTATION ability this turn to use this ability. Then, pick an enemy unit in combat with that HERO to be the target.",
 			"effect": "If the unit using this ability is a PARAGON, pick 1 of the effects below. Otherwise, your opponent must pick 1 of the effects below.",
@@ -63,6 +67,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Any Shooting Phase",
+			"colour": "blue",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly HEDONITES OF SLAANESH HERO unit that has not used a TEMPTATION ability this turn to use this ability. Then, pick a visible enemy unit within 12\" of that HERO to be the target.",
 			"effect": "If the unit using this ability is a PARAGON, pick 1 of the effects below. Otherwise, your opponent must pick 1 of the effects below.",
@@ -85,6 +90,7 @@
 			"type": "active",
 			"category": "movement",
 			"timing": "Your Charge Phase",
+			"colour": "orange",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly non-UNIQUE PARAGON that charged this turn and has not used a TEMPTATION ability this turn to use this ability.",
 			"effect": "Until the start of your next turn, while the unit using this ability is a PARAGON, add 2 to charge rolls for friendly HEDONITES OF SLAANESH units while they are wholly within 12\" of the unit using this ability.",
@@ -97,6 +103,7 @@
 			"type": "active",
 			"category": "special",
 			"timing": "Any Combat Phase",
+			"colour": "red",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly HEDONITES OF SLAANESH HERO unit that has not used a TEMPTATION ability this turn to use this ability. Then, pick a visible enemy unit within 12\" of that HERO to be the target.",
 			"effect": "If the unit using this ability is a PARAGON pick 1 of the effects below. Otherwise your opponent must pick 1 of the effects below.",
@@ -119,6 +126,7 @@
 			"type": "active",
 			"category": "defensive",
 			"timing": "Any Combat Phase",
+			"colour": "red",
 			"frequency": "Once Per Turn (Army)",
 			"declare": "Pick a friendly non-UNIQUE PARAGON that has not used a TEMPTATION ability this turn to use this ability.",
 			"effect": "For the rest of the turn, while the unit using this ability is a PARAGON and is in combat, subtract 1 from hit rolls for attacks that target visible friendly HEDONITES OF SLAANESH units while they are wholly within 12\" of the unit using this ability.",
@@ -137,6 +145,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick up to 3 friendly HEDONITES OF SLAANESH INFANTRY units to be the targets.",
 					"effect": "Each target can move D6\". It can only end that move in combat with units it was in combat with at the start of the move."
@@ -152,6 +161,7 @@
 					"type": "command",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH unit to use this ability, then pick an enemy unit in combat with that unit and that had any damage points allocated to it this turn to be the target.",
 					"effect": "For the rest of the turn:\n• All of the combat attacks made by that friendly unit must target that enemy unit.\n• Add 1 to the Attacks characteristic of that friendly unit's melee weapons.",
 					"command_points": 1
@@ -167,6 +177,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "grey",
 					"effect": "While they are wholly within 9\" of a battlefield edge, friendly HEDONITES OF SLAANESH units can use CHARGE abilities even if they used a RUN ability in the same turn."
 				}
 			]
@@ -180,6 +191,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH unit that had any damage points allocated to it this turn by an enemy ability to be the target.",
 					"effect": "Remove the target from the battlefield, then set it up again on the battlefield more than 9\" from all enemy units."
@@ -195,6 +207,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH HERO that has an artefact of power to be the target.",
 					"effect": "Give the target a heroic trait from the 'Figureheads of the Dark Prince' or 'Hedonistic Obsessions' tables.",
@@ -216,6 +229,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly SYBARITE INFANTRY units while they are wholly outside friendly territory"
 				}
 			]
@@ -231,6 +245,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, for the rest of the turn, while this unit is wholly within 12\" of the centre of the battlefield and visible to the target:\n\n\n• Subtract 1 from hit rolls for attacks made by that enemy unit that target other friendly HEDONITES OF SLAANESH units.\n• Add 1 to hit rolls for combat attacks made by other friendly HEDONITES OF SLAANESH units that target that enemy unit."
 				},
@@ -239,6 +254,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units."
 				},
@@ -247,6 +263,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Heal (D3) this unit."
 				}
 			]
@@ -261,6 +278,7 @@
 					"type": "command",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly non-HERO SYBARITE unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
@@ -271,6 +289,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"declare": "You can only use this ability if your opponent has any temptation dice. Pick a visible enemy unit within 18\" of this unit to be the target.",
 					"effect": "For the rest of the turn, while your opponent has not used any of their temptation dice to replace a roll for the target this turn, the target can only use CORE abilities."
 				},
@@ -279,6 +298,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "The first time each turn that an unmodified charge roll, casting roll, unbinding roll or banishment roll for a friendly non-EUPHORIC unit wholly within 12\" of this unit is 5 or less, that unit has the EUPHORIC keyword for the rest of the turn."
 				}
 			]
@@ -293,6 +313,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "If it is your turn, apply the effect below. If it is your opponent's turn, roll a dice. On a 3+, apply the effect below:\nInflict D3 mortal damage on the target. Then, this unit must move a distance up to its Move characteristic. It can move through the combat ranges of enemy units but cannot end that move in combat.",
 					"keywords": [
@@ -305,6 +326,7 @@
 					"type": "command",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an objective within 6\" of this unit to be the target.",
 					"effect": "Until the start of your next turn, friendly HEDONITES OF SLAANESH units are not visible to enemy units more than 9\" from them while all models in those friendly units are contesting the target objective.",
 					"points": 10,
@@ -315,6 +337,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit has 3 or more damage points, it can use a SPELL ability as if it were your hero phase, as if that ability had the UNLIMITED keyword and as if this unit had WIZARD (1)."
 				}
 			]
@@ -328,6 +351,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While they are wholly within 6\" of this unit, friendly non-MONSTER non-WAR MACHINE HEDONITES OF SLAANESH units are not visible to enemy units more than 12\" from them."
 				},
 				{
@@ -335,6 +359,7 @@
 					"type": "command",
 					"category": "rally",
 					"timing": "Your Movement Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly non-HERO INFANTRY HEDONITES OF SLAANESH unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
@@ -346,6 +371,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick another visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of this unit to be the target.",
 					"effect": "For the rest of the turn, when the target uses the 'Power Through' command, you can pick an enemy target for that command that does not have a lower Health characteristic than the unit using that command.",
 					"points": 10
@@ -374,6 +400,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick an objective to be the target.",
 					"effect": "For the rest of the battle, while this unit is contesting the target objective:\n• This unit has WARD (5+).\n• Add 5 to this unit's control score.",
 					"points": 20
@@ -383,6 +410,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Reaction: You declared the 'Run' ability for this unit",
+					"colour": "grey",
 					"effect": "Subtract 1 from hit rolls for attacks that target this unit for the rest of the turn.",
 					"points": 10
 				},
@@ -391,6 +419,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"effect": "If this unit is damaged, spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, add 1 to the Rend characteristic of this unit's non-COMPANION melee weapons for the rest of the turn.",
 					"points": 10
 				}
@@ -408,6 +437,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, pick a visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Add 1 to wound rolls for the target's combat attacks until the start of your next turn.",
 					"casting_value": 6,
@@ -421,6 +451,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, pick a visible friendly HEDONITES OF SLAANESH unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, each time a model in the target unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. If the target unit is a MONSTER, roll 10 dice instead. For each 4+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
 					"casting_value": 6,
@@ -433,6 +464,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 					"effect": "Until the start of your next turn, weapons used by friendly HEDONITES OF SLAANESH units for attacks that target that enemy unit, including Companion weapons, have Crit (2 Hits).",
 					"casting_value": 7,
@@ -452,6 +484,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Dreadful Visage on the battlefield, pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Dreadful Visage wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 6,
@@ -468,6 +501,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Mesmerising Mirror on the battlefield, pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Mesmerising Mirror wholly within 12\" of the caster and visible to them.",
 					"casting_value": 6,
@@ -484,6 +518,7 @@
 					"type": "spell",
 					"category": "",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "If there is not a friendly Wheels of Excruciation endless spell on the battlefield, pick a friendly HEDONITES OF SLAANESH WIZARD to cast this spell, then make a casting roll of 2D6.",
 					"effect": "Set up a Wheels of Excruciation endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
 					"casting_value": 6,

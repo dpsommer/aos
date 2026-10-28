@@ -392,11 +392,10 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 			chips.free()
 	if open:
 		for ability in group.abilities:
-			var card := UIBuilder.vbox([UIBuilder.rich(RulesFormatter.ability(ability))], 10)
+			box.add_child(AbilityCard.new(ability))
 			# A summoning spell or prayer carries the warscrolls of the manifestations it summons.
 			for summoned: Warscroll in group.summons.get(ability, []):
-				card.add_child(WarscrollCard.new(summoned))
-			box.add_child(UIBuilder.panel("CardPanel", card))
+				box.add_child(WarscrollCard.new(summoned))
 		for warscroll in group.warscrolls:
 			box.add_child(WarscrollCard.new(warscroll))
 		for card in group.cards:

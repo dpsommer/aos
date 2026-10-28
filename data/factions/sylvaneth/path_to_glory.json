@@ -84,6 +84,7 @@
 							"type": "passive",
 							"category": "damage",
 							"timing": "Passive",
+							"colour": "black",
 							"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Sweeping Branches is 3."
 						}
 					],

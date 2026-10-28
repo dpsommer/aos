@@ -791,7 +791,7 @@ func test_formation_with_points_shows_them_on_its_card() -> void:
 
 ## A long reaction timing, such as the Khazalite Holds' Wayfarer Nomads, must wrap rather than widen
 ## the card and squeeze the ability's name.
-func test_formation_ability_timing_wraps_and_names_its_frequency() -> void:
+func test_formation_ability_cards_wrap_their_timing_and_name_its_frequency() -> void:
 	var has_frequency := func(b: BattleFormation) -> bool:
 		return b.abilities.any(func(a: Ability) -> bool: return not a.frequency.is_empty())
 	var faction := _faction_where(func(f: Faction) -> bool: return f.battle_formations.any(has_frequency))
@@ -803,14 +803,14 @@ func test_formation_ability_timing_wraps_and_names_its_frequency() -> void:
 	forge.renown_cards()[0].pressed.emit()
 	for formation in faction.battle_formations.filter(has_frequency):
 		var card := _choice_with_meta(forge.formation_grid, &"formation", formation.name)
-		for ability in formation.abilities:
-			var timing: Label = null
-			for label: Label in card.find_children("*", "Label", true, false):
-				if label.text.contains(ability.timing):
-					timing = label
-			assert_not_null(timing, ability.name)
+		var ability_cards := UIKit.find_all(card, func(n: Node) -> bool: return n is AbilityCard)
+		assert_eq(ability_cards.size(), formation.abilities.size(), formation.name)
+		for ability_card: AbilityCard in ability_cards:
+			var ability := ability_card.ability
+			var timing: Label = ability_card.find_children("*", "Label", true, false).filter(
+					func(l: Label) -> bool: return l.theme_type_variation == "AbilityTimingLabel")[0]
 			assert_ne(timing.autowrap_mode, TextServer.AUTOWRAP_OFF, ability.name)
-			assert_string_contains(timing.text, ability.frequency)
+			assert_string_contains(timing.text, ability.frequency.to_upper())
 
 
 func test_back_from_formations_shows_renown_panel_for_same_faction() -> void:

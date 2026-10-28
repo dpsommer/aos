@@ -9,6 +9,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "This ability must be used instead of the 'Deploy Faction Terrain Feature' ability.",
 					"effect": "Set up 3 Cursed Sepulchres wholly within friendly territory, each within 1/2\" of any of the others and more than 3\" from all objectives and other terrain features. After you have done so, they have been deployed and they are considered to be a single Cursed Sepulchre terrain feature that has a Health characteristic of 24 instead of 8.",
@@ -21,6 +22,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "The melee weapons used by friendly BARROW LEGION units have Anti-charge (+1 Rend) while they are wholly within 9\" of a friendly Cursed Sepulchre."
 				},
 				{
@@ -28,6 +30,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "In the third and subsequent battle rounds, while a friendly Cursed Sepulchre is on the battlefield, subtract 1 from save rolls for enemy units."
 				},
 				{
@@ -35,6 +38,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick up to 2 friendly non-UNIQUE BARROW LEGION HEROES that do not have an artefact of power to be the targets (you can pick units in reserve).",
 					"effect": "Give each target 1 artefact of power from the 'Barrow Legion' Army of Renown rules.",
@@ -50,6 +54,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle Round (Army)",
 					"declare": "Pick a friendly non-UNIQUE BARROW LEGION unit that has been destroyed to be the target.",
 					"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of a friendly BARROW LEGION HERO or wholly within 6\" of a friendly Cursed Sepulchre. It must be set up more than 9\" from all enemy units.\nIf it is your movement phase, you can set up the replacement unit more than 3\" from all enemy units instead of more than 9\", but if you set it up within 9\" of any enemy units, it cannot use CHARGE abilities this turn."
@@ -64,6 +69,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Movement Phase",
+							"colour": "grey",
 							"declare": "Pick a friendly BARROW LEGION unit wholly within 12\" of this unit to be the target.",
 							"effect": "Add 2\" to the target's Move characteristic for the rest of the turn."
 						},
@@ -72,6 +78,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"effect": "If any models were slain by your general this turn, Heal (D6) your general."
 						},
 						{
@@ -79,6 +86,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Deployment Phase",
+							"colour": "black",
 							"effect": "Pick 1 of the following keywords:\n• INFANTRY\n• CAVALRY\n• MONSTER\n• BEAST\nFor the rest of the battle, each time an attack targets this unit, if the attacking unit has the keyword you picked, an unmodified save roll of 4+ for that attack is always successful."
 						}
 					]
@@ -91,6 +99,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "This unit has WARD (5+)"
 						},
 						{
@@ -98,6 +107,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Any Hero Phase",
+							"colour": "yellow",
 							"frequency": "Once Per Turn",
 							"declare": "Pick a friendly BARROW LEGION unit wholly within 12\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 3+:\n• If the target is damaged, Heal (3) the target.\n• If the target is not damaged, return a number of slain models to it with a combined Health characteristic of up to 3."
@@ -107,6 +117,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"frequency": "Once Per Battle",
 							"declare": "Pick an enemy HERO in combat with this unit to be the target.",
 							"effect": "Inflict D6 mortal damage on the target."
@@ -116,6 +127,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "If this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (1) this unit. This unit cannot use this ability again for the rest of the battle."
 						},
 						{
@@ -123,6 +135,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Battle",
 							"declare": "Pick an enemy unit within 9\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 2+, the target has STRIKE-LAST this phase."
@@ -141,6 +154,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a friendly CRIMSON KEEP unit that has not been deployed.",
 					"effect": "Set up that unit in reserve in the Crimson Keep. It has now been deployed. You cannot set up more friendly units in the Crimson Keep than there are on the battlefield.",
 					"keywords": [
@@ -152,6 +166,7 @@
 					"type": "command",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "Pick a friendly Blood Knights unit that is in combat to use this ability.",
 					"effect": "That unit can use a CHARGE ability even though it is in combat and even if it has already used a CHARGE ability this turn.",
 					"command_points": 1
@@ -161,6 +176,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "You cannot use this ability in the first battle round. Pick each friendly unit that is in the Crimson Keep to be the targets.",
 					"effect": "Set up each target wholly within 9\" of the battlefield edge and more than 9\" from all enemy units. If you set up any units using this ability in the third or a subsequent battle round, do not spend any command points when using the 'Carve a Bloody Path' command this turn."
@@ -170,6 +186,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly CRIMSON KEEP MONSTER that is in combat and has not used any RAMPAGE abilities this turn to use this ability, then pick an enemy unit in combat with it to be the target.",
 					"effect": "This unit can make a move of 2D6\". It must end that move in combat with the target unit. Then, roll a dice. If the roll exceeds the target unit's Health characteristic, 1 model in the target unit is slain.\nAfter this ability has been resolved, this unit cannot use RAMPAGE abilities for the rest of the turn.",
@@ -187,6 +204,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "This unit receives D3 martial prowess tokens. Each martial prowess token can be spent to do 1 of the following:\n• Re-roll a hit roll for this unit.\n• Re-roll a wound roll for this unit.\n• Re-roll a save roll for this unit.\nAt the start of the next turn, remove all this unit's martial prowess tokens."
 						}
 					]
@@ -199,6 +217,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"frequency": "Once Per Battle",
 							"effect": "Heal (3D3) this unit."
 						}
@@ -215,6 +234,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly CRIMSON KEEP WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Inflict D3 mortal damage on the target. For the rest of the turn, add 1 to hit rolls for attacks made by the caster.",
 							"casting_value": 7,
@@ -228,6 +248,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly CRIMSON KEEP WIZARD to cast this spell, pick a visible friendly CRIMSON KEEP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for the target, to a maximum of 3.",
 							"casting_value": 7,
@@ -240,6 +261,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly CRIMSON KEEP WIZARD to cast this spell, pick a visible friendly CRIMSON KEEP unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "Add 1 to the Damage characteristic of the target's Companion melee weapons until the start of your next turn.",
 							"casting_value": 7,
@@ -258,6 +280,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "If there is not a friendly Unholy Reliquary on the battlefield, pick a friendly CRIMSON KEEP WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "Set up an Unholy Reliquary endless spell wholly within 18\" of the caster, visible to them, and more than 3\" from all enemy units.",
 							"casting_value": 6,
@@ -285,6 +308,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any EXQUISITE PLOT abilities this turn. Pick a friendly WIZARD to be the target.",
 					"effect": "For the rest of the turn, add 1 to casting rolls for the target. In addition, at the end of this turn, if the target successfully cast any spells this turn, add 1 to its power level for the rest of the battle.",
@@ -297,6 +321,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any EXQUISITE PLOT abilities this turn. Pick a friendly unit to be the hunter and an enemy unit with 5 or more models to be the target.",
 					"effect": "For the rest of the turn, add 1 to hit rolls for the hunter's combat attacks that target that enemy unit. In addition, if the target is destroyed this turn by the hunter, add 1 to the Attacks characteristic of the hunter's melee weapons for the rest of the battle.",
@@ -309,6 +334,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any EXQUISITE PLOT abilities this turn. Pick a friendly unit to be the target.",
 					"effect": "For the rest of the turn, the target's weapons have Anti-HERO (+1 Rend). In addition, if the target destroys any enemy HEROES this turn, the target's weapons have Anti-HERO (+1 Rend) for the rest of the battle.",
@@ -321,6 +347,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "You can only use this ability if you have not used any EXQUISITE PLOT abilities this turn. Pick a friendly unit to be the target.",
 					"effect": "For the rest of the turn, add 5 to the target's control score.\nIn addition, at the end of this turn, after determining control of objectives, if the target is contesting an objective that you control and that was controlled by your opponent at the start of this turn, add 5 to the target's control score for the rest of the battle.",
@@ -338,6 +365,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly Dire Wolves or Fell Bats unit that has been destroyed to be the target.",
 							"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units."
 						}
@@ -351,6 +379,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "While this unit is within the combat range of a friendly Dire Wolves or Fell Bats unit:\n• This unit has WARD (5+).\n• Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly Dire Wolves or Fell Bats unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points)."
 						}
 					]
@@ -366,6 +395,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, pick a visible friendly Dire Wolves or Fell Bats unit wholly within 18\" of them to be the target, then make a casting roll of 2D6.",
 							"effect": "You can return 1 slain model to that unit.",
 							"casting_value": 6,
@@ -379,6 +409,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, pick a friendly unit wholly within 12\" of them to be the target, then make a casting roll of 2D6",
 							"effect": "D3 models in the target are slain. Then, remove all damage points from the caster",
 							"casting_value": 7,
@@ -391,6 +422,7 @@
 							"type": "spell",
 							"category": "",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly SCIONS OF NULAHMIA WIZARD to cast this spell, then make a casting roll of 2D6.",
 							"effect": "For the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly SCIONS OF NULAHMIA VAMPIRE units while they are wholly within 12\" of the caster.",
 							"casting_value": 7,
