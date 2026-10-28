@@ -2,8 +2,8 @@
 	"armies_of_renown_from": ["Fyreslayers - Lofnir Drothkeepers", "Fyreslayers - The Duardin Ascendant [LEGENDS]"],
 	"fields": {
 		"Battle Damaged": {"colour": "black"},
-		"gholems_of_gazul > Runes of Gazul": {"colour": "red"},
-		"gotrek_gurnisson > Too Stubborn to Die": {"colour": "green"},
+		"gholems_of_gazul > Runes of Gazul": {"colour": "red", "category": "offensive"},
+		"gotrek_gurnisson > Too Stubborn to Die": {"colour": "green", "category": "defensive"},
 		"grombrindal_the_white_dwarf": {"notes": "Legends Warscroll", "regiment_options": ["Any ORDER DUARDIN units"]},
 		"grombrindal_the_white_dwarf > Armour of Glimril Scales": {"category": "defensive", "colour": "green"},
 		"grombrindal_the_white_dwarf > Rune Axe of Grimnir": {"category": "offensive", "colour": "red"},
