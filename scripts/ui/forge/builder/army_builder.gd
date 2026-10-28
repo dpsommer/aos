@@ -255,9 +255,9 @@ func finish_editing_name(army_name: String) -> void:
 		redraw()
 
 
-## Focuses the control tagged [param key] in the army list, if it's there.
+## Focuses the control tagged [param key] in the army list or info pane, if it's there.
 func _focus_key(key: String) -> void:
-	var target := find_focus_key(builder_list, key) if is_inside_tree() else null
+	var target := find_focus_key(self, key) if is_inside_tree() else null
 	if target:
 		target.grab_focus()
 
@@ -631,7 +631,7 @@ func _on_picker_closed() -> void:
 	var focused := get_viewport().gui_get_focus_owner()
 	if focused and focused.is_visible_in_tree():
 		return
-	var opener := find_focus_key(builder_list, _picker_opener) if not _picker_opener.is_empty() else null
+	var opener := find_focus_key(self, _picker_opener) if not _picker_opener.is_empty() else null
 	if opener:
 		opener.grab_focus()
 	else:
@@ -697,6 +697,28 @@ func pick_lore(kind: String) -> void:
 func remove_lore(kind: String) -> void:
 	editor.set_lore(kind, "")
 	_focus_key("lore:" + kind)
+
+
+func pick_army_of_renown() -> void:
+	_show_picker()
+	picker.open_armies_of_renown()
+
+
+## Goes back to the faction's own rules, and focuses the empty slot to choose an Army of Renown.
+func remove_army_of_renown() -> void:
+	editor.set_army_of_renown("")
+	_focus_key("info:aor")
+
+
+func pick_formation() -> void:
+	_show_picker()
+	picker.open_formations()
+
+
+## Removes the army's battle formation, and focuses the empty slot to choose another.
+func remove_formation() -> void:
+	editor.set_formation("")
+	_focus_key("info:formation")
 
 
 func pick_regiment_of_renown() -> void:

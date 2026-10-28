@@ -67,7 +67,7 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 
 `UIBuilder` (`scripts/ui/ui_builder.gd`) builds controls in code. Shared pieces:
 - **`OptionCard`** (`scripts/ui/option_card.gd`): a large button holding any controls, which fits its height to them. In toggle mode it shows as selected (gold border) while pressed.
-- **`PressableCard`** (`scripts/ui/forge/builder/pressable_card.gd`): the base of `TacticCard` and `LoreCard`. A card that can be made pressable as a whole, with a gold outline on keyboard focus and a grey one on hover. Buttons on a pressable card (e.g. the picker's eye) still take their own clicks.
+- **`PressableCard`** (`scripts/ui/forge/builder/pressable_card.gd`): the base of `TacticCard`, `LoreCard`, `RenownArmyCard` and `FormationCard`. A card that can be made pressable as a whole, with a gold outline on keyboard focus and a grey one on hover. Buttons on a pressable card (e.g. the picker's eye) still take their own clicks.
 - **`DashedStyleBox`** (`scripts/ui/dashed_style_box.gd`): a rounded box with a dashed border, used by the `DashedButton` variation for empty slots.
 - **`ArtPlaceholder`** (`scripts/ui/art_placeholder.gd`, shader `assets/shaders/ui/art_placeholder.gdshader`): diagonal stripes in a rounded box. It stands in for army, faction and unit art, including the builder's portraits.
 
@@ -129,8 +129,8 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - Show Legends units;
     - Override army constraints;
     - the points limit, with −/+ buttons that step 250;
-    - the Army of Renown, without Legends ones unless the Show Legends armies setting is on (the army's current one stays). Choosing a Legends one turns on Show Legends units;
-    - the battle formation, when there's no Army of Renown.
+    - the Army of Renown, when the faction has any. With none, a dashed box, "Choose Army of Renown", opens the picker. Otherwise a short `RenownArmyCard` shows its name, source, roster options and chips (`Forge.roster_summary()`, `Forge.renown_chips_for()`), with Change (opens the picker) and a red bin icon button that goes back to the faction's rules and focuses the empty slot. Choosing a Legends one turns on Show Legends units;
+    - the battle formation, when there's no Army of Renown, laid out the same way: a dashed "Choose Battle Formation" box, or a short `FormationCard` (its name, points and abilities' names as chips) with Change and a red bin.
   - **Links:** each of these clears the search, switches tab, scrolls to the target, highlights it briefly and gives it keyboard focus:
     - a unit's portrait in the army list opens its card in the Roster (and shows Legends units if it is one);
     - a Regiment of Renown unit's portrait opens its regiment in Regiments of Renown;
@@ -143,7 +143,11 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - auxiliary units;
   - the battlepack's battle tactics cards, each in brief: its name and each battle tactic's kind, name and victory points. An eye icon toggle beside the name shows the card in full (its setup, each battle tactic's condition and its FAQs, divided by rules) and back; the card is swapped in place, so the list keeps its scroll and focus stays on the eye. The whole card is pressed (clicked, or Enter or Space) to choose it. Cards already chosen for either slot aren't listed;
   - the lores of one kind (`LoreCard`), each in short: its name, tags and its spells' or prayers' names as chips, with the universal manifestation lores marked as such. As with battle tactics cards, an eye icon toggle shows the lore in full, with each spell or prayer's rules and the warscrolls of the manifestations it summons, and the whole card is pressed to choose it. The army's current lore isn't listed, nor Legends lores unless Legends are shown;
-  - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
+  - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`);
+  - Armies of Renown (`RenownArmyCard`), from Army settings: each with its source, roster options and chips, and an eye to show its battle traits in full. The army's current one isn't listed, nor Legends ones unless the Show Legends armies setting is on;
+  - battle formations (`FormationCard`), from Army settings: each with its points and abilities' names, and an eye to show the abilities in full. The army's current formation isn't listed.
+
+  Armies of Renown and battle formations are pressed as a whole to choose them, as battle tactics cards and lores are.
 
   Units are listed in foldable sections by type (Hero, Infantry, Cavalry and so on), as in the Roster. It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
 - **Drag and drop** (`BuilderDragDrop`, `drag_drop.gd`): a gold line shows where a drop will go, and the dragged row or card is dimmed.

@@ -1271,3 +1271,50 @@ func test_picking_a_leader_for_a_leaderless_regiment_puts_it_first() -> void:
 	assert_false(regiment.leaderless)
 	assert_eq(regiment.units.size(), 2)
 	assert_eq(regiment.leader().warscroll_id, "lead")
+
+
+# --- Army of Renown and battle formation slots ---
+
+func _choice_faction() -> Faction:
+	var faction := UIKit.faction()
+	faction.armies_of_renown.append(Kit.army_of_renown("Wanderers"))
+	faction.battle_formations = [Kit.formation("Vanguard"), Kit.formation("Siege")] as Array[BattleFormation]
+	return faction
+
+
+func test_removing_the_army_of_renown_focuses_the_empty_slot() -> void:
+	var army := _valid_army()
+	army.army_of_renown = "Wanderers"
+	var builder := _builder(army, _choice_faction())
+	builder.info_pane.set_tab("settings")
+	UIKit.keyed(builder.info_pane, "info:aor_remove").grab_focus()
+	builder.remove_army_of_renown()
+	assert_true(UIKit.keyed(builder.info_pane, "info:aor").has_focus())
+
+
+func test_removing_the_formation_focuses_the_empty_slot() -> void:
+	var army := _valid_army()
+	army.formation = "Siege"
+	var builder := _builder(army, _choice_faction())
+	builder.info_pane.set_tab("settings")
+	UIKit.keyed(builder.info_pane, "info:formation_remove").grab_focus()
+	builder.remove_formation()
+	assert_true(UIKit.keyed(builder.info_pane, "info:formation").has_focus())
+
+
+func test_closing_the_picker_after_picking_an_army_of_renown_focuses_its_slot() -> void:
+	var builder := _builder(_valid_army(), _choice_faction())
+	builder.info_pane.set_tab("settings")
+	UIKit.keyed(builder.info_pane, "info:aor").grab_focus()
+	builder.pick_army_of_renown()
+	UIKit.keyed(builder.picker, "pick:aor:Wanderers").pressed.emit()
+	assert_true(UIKit.keyed(builder.info_pane, "info:aor").has_focus())
+
+
+func test_closing_the_picker_after_picking_a_formation_focuses_its_slot() -> void:
+	var builder := _builder(_valid_army(), _choice_faction())
+	builder.info_pane.set_tab("settings")
+	UIKit.keyed(builder.info_pane, "info:formation").grab_focus()
+	builder.pick_formation()
+	UIKit.keyed(builder.picker, "pick:formation:Siege").pressed.emit()
+	assert_true(UIKit.keyed(builder.info_pane, "info:formation").has_focus())

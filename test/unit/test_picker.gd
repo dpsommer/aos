@@ -636,3 +636,169 @@ func test_reopening_lores_clears_expanded() -> void:
 	builder.picker.open_lores("spell", "Spell Lore")
 	assert_true(builder.picker.expanded.is_empty())
 	assert_eq(_rich_count(UIKit.keyed(builder.picker, "pick:lore:Fire")), 0)
+
+
+# --- Armies of Renown ---
+
+func _renown_faction(legends := false) -> Faction:
+	var faction := UIKit.faction()
+	faction.armies_of_renown.append(Kit.army_of_renown("Wanderers"))
+	var other := Kit.army_of_renown("Drifters")
+	faction.armies_of_renown.append(other)
+	if legends:
+		var legend := Kit.army_of_renown("Old Legend")
+		legend.legends = true
+		faction.armies_of_renown.append(legend)
+	return faction
+
+
+func _renown_builder(army: Army = null, faction: Faction = null) -> ArmyBuilder:
+	return UIKit.builder(self, army if army else UIKit.army_with_regiment(), faction if faction else _renown_faction(), _core())
+
+
+func test_open_armies_of_renown_lists_each_as_a_pressable_card() -> void:
+	var builder := _renown_builder()
+	builder.picker.open_armies_of_renown()
+	for name in ["Wanderers", "Drifters"]:
+		var card := UIKit.keyed(builder.picker, "pick:aor:" + name) as RenownArmyCard
+		assert_not_null(card, name)
+		assert_true(card.pressable, name)
+
+
+func test_open_armies_of_renown_marks_the_picker_open() -> void:
+	var builder := _renown_builder()
+	builder.picker.open_armies_of_renown()
+	assert_true(builder.picker.is_open())
+
+
+func test_the_armys_current_army_of_renown_is_not_listed() -> void:
+	var army := UIKit.army_with_regiment()
+	army.army_of_renown = "Wanderers"
+	var builder := _renown_builder(army)
+	builder.picker.open_armies_of_renown()
+	assert_null(UIKit.keyed(builder.picker, "pick:aor:Wanderers"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:aor:Drifters"))
+
+
+func test_pressing_an_army_of_renown_sets_it_and_closes() -> void:
+	var army := UIKit.army_with_regiment()
+	var builder := _renown_builder(army)
+	builder.picker.open_armies_of_renown()
+	(UIKit.keyed(builder.picker, "pick:aor:Drifters") as RenownArmyCard).pressed.emit()
+	assert_eq(army.army_of_renown, "Drifters")
+	assert_false(builder.picker.is_open())
+
+
+func test_army_of_renown_cards_are_full_once_their_eye_is_toggled() -> void:
+	var faction := _renown_faction()
+	faction.armies_of_renown[0].battle_traits = [Kit.ability("Wander")] as Array[Ability]
+	var builder := _renown_builder(null, faction)
+	builder.picker.open_armies_of_renown()
+	(UIKit.keyed(builder.picker, "picker:eye:Wanderers") as Button).button_pressed = true
+	var card := UIKit.keyed(builder.picker, "pick:aor:Wanderers")
+	assert_gt(UIKit.find_all(card, func(n: Node) -> bool: return n is AbilityCard).size(), 0)
+
+
+func test_army_of_renown_cards_are_short_before_their_eye_is_toggled() -> void:
+	var faction := _renown_faction()
+	faction.armies_of_renown[0].battle_traits = [Kit.ability("Wander")] as Array[Ability]
+	var builder := _renown_builder(null, faction)
+	builder.picker.open_armies_of_renown()
+	var card := UIKit.keyed(builder.picker, "pick:aor:Wanderers")
+	assert_eq(UIKit.find_all(card, func(n: Node) -> bool: return n is AbilityCard).size(), 0)
+
+
+func test_open_armies_of_renown_says_so_when_there_are_none_to_choose() -> void:
+	var army := UIKit.army_with_regiment()
+	army.army_of_renown = "Wanderers"
+	var faction := UIKit.faction()
+	faction.armies_of_renown.append(Kit.army_of_renown("Wanderers"))
+	var builder := _renown_builder(army, faction)
+	builder.picker.open_armies_of_renown()
+	assert_true(UIKit.has_label_containing(builder.picker, "no other Armies of Renown"))
+
+
+func test_legends_army_of_renown_is_hidden_when_settings_hide_legends() -> void:
+	GameSettings.current().show_legends = false
+	var builder := _renown_builder(null, _renown_faction(true))
+	builder.picker.open_armies_of_renown()
+	assert_null(UIKit.keyed(builder.picker, "pick:aor:Old Legend"))
+
+
+func test_regular_army_of_renown_stays_when_settings_hide_legends() -> void:
+	GameSettings.current().show_legends = false
+	var builder := _renown_builder(null, _renown_faction(true))
+	builder.picker.open_armies_of_renown()
+	assert_not_null(UIKit.keyed(builder.picker, "pick:aor:Wanderers"))
+
+
+func test_legends_army_of_renown_is_listed_when_settings_show_legends() -> void:
+	GameSettings.current().show_legends = true
+	var builder := _renown_builder(null, _renown_faction(true))
+	builder.picker.open_armies_of_renown()
+	assert_not_null(UIKit.keyed(builder.picker, "pick:aor:Old Legend"))
+
+
+# --- Battle formations ---
+
+func _formation_faction() -> Faction:
+	var faction := UIKit.faction()
+	faction.battle_formations = [Kit.formation("Vanguard"), Kit.formation("Siege", 50)] as Array[BattleFormation]
+	return faction
+
+
+func _formation_builder(army: Army = null) -> ArmyBuilder:
+	return UIKit.builder(self, army if army else UIKit.army_with_regiment(), _formation_faction(), _core())
+
+
+func test_open_formations_lists_each_as_a_pressable_card() -> void:
+	var builder := _formation_builder()
+	builder.picker.open_formations()
+	for name in ["Vanguard", "Siege"]:
+		var card := UIKit.keyed(builder.picker, "pick:formation:" + name) as FormationCard
+		assert_not_null(card, name)
+		assert_true(card.pressable, name)
+
+
+func test_open_formations_marks_the_picker_open() -> void:
+	var builder := _formation_builder()
+	builder.picker.open_formations()
+	assert_true(builder.picker.is_open())
+
+
+func test_the_armys_current_formation_is_not_listed() -> void:
+	var army := UIKit.army_with_regiment()
+	army.formation = "Siege"
+	var builder := _formation_builder(army)
+	builder.picker.open_formations()
+	assert_null(UIKit.keyed(builder.picker, "pick:formation:Siege"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:formation:Vanguard"))
+
+
+func test_pressing_a_formation_sets_it_and_closes() -> void:
+	var army := UIKit.army_with_regiment()
+	var builder := _formation_builder(army)
+	builder.picker.open_formations()
+	(UIKit.keyed(builder.picker, "pick:formation:Siege") as FormationCard).pressed.emit()
+	assert_eq(army.formation, "Siege")
+	assert_false(builder.picker.is_open())
+
+
+func test_formation_cards_are_full_once_their_eye_is_toggled() -> void:
+	var faction := _formation_faction()
+	faction.battle_formations[0].abilities = [Kit.ability("Charge Plan")] as Array[Ability]
+	var builder := UIKit.builder(self, UIKit.army_with_regiment(), faction, _core())
+	builder.picker.open_formations()
+	(UIKit.keyed(builder.picker, "picker:eye:Vanguard") as Button).button_pressed = true
+	var card := UIKit.keyed(builder.picker, "pick:formation:Vanguard")
+	assert_gt(UIKit.find_all(card, func(n: Node) -> bool: return n is AbilityCard).size(), 0)
+
+
+func test_open_formations_says_so_when_there_are_none_to_choose() -> void:
+	var army := UIKit.army_with_regiment()
+	army.formation = "Vanguard"
+	var faction := UIKit.faction()
+	faction.battle_formations = [Kit.formation("Vanguard")] as Array[BattleFormation]
+	var builder := UIKit.builder(self, army, faction, _core())
+	builder.picker.open_formations()
+	assert_true(UIKit.has_label_containing(builder.picker, "no other battle formations"))

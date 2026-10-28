@@ -840,88 +840,101 @@ func _faction_with_armies_of_renown() -> Faction:
 	return faction
 
 
-func test_army_of_renown_select_is_missing_when_the_faction_has_none() -> void:
+func _army_with_renown() -> Army:
+	var army := UIKit.army_with_regiment()
+	army.army_of_renown = "Wanderers"
+	return army
+
+
+func test_army_of_renown_slot_is_missing_when_the_faction_has_none() -> void:
 	assert_null(UIKit.keyed(_settings_pane(), "info:aor"))
 
 
-func _aor_names(pane: InfoPane) -> Array[String]:
-	var select := UIKit.keyed(pane, "info:aor") as OptionButton
-	var names: Array[String] = []
-	for i in select.item_count:
-		names.append(select.get_item_text(i))
-	return names
+func test_army_of_renown_slot_is_a_dashed_button_without_one() -> void:
+	var slot := UIKit.keyed(_settings_pane(null, _faction_with_armies_of_renown()), "info:aor") as Button
+	assert_not_null(slot)
+	assert_eq(slot.theme_type_variation, &"DashedButton")
 
 
-func _faction_with_legends_renown() -> Faction:
-	var faction := _faction_with_armies_of_renown()
-	var legend := Kit.army_of_renown("Old Legend")
-	legend.legends = true
-	faction.armies_of_renown.append(legend)
-	return faction
+func test_army_of_renown_slot_is_a_card_with_one() -> void:
+	var pane := _settings_pane(_army_with_renown(), _faction_with_armies_of_renown())
+	var cards := UIKit.find_all(pane, func(n: Node) -> bool: return n is RenownArmyCard)
+	assert_eq(cards.size(), 1)
+	assert_eq((cards[0] as RenownArmyCard).card_name, "Wanderers")
 
 
-func test_legends_army_of_renown_is_hidden_when_settings_hide_legends() -> void:
-	GameSettings.current().show_legends = false
-	var pane := _settings_pane(UIKit.army_with_regiment(), _faction_with_legends_renown())
-	assert_eq(_aor_names(pane).filter(func(n: String) -> bool: return "Old Legend" in n), [])
+func test_army_of_renown_card_replaces_the_dashed_button() -> void:
+	var pane := _settings_pane(_army_with_renown(), _faction_with_armies_of_renown())
+	assert_ne((UIKit.keyed(pane, "info:aor") as Button).theme_type_variation, &"DashedButton")
 
 
-func test_regular_army_of_renown_stays_when_settings_hide_legends() -> void:
-	GameSettings.current().show_legends = false
-	var pane := _settings_pane(UIKit.army_with_regiment(), _faction_with_legends_renown())
-	assert_true(_aor_names(pane).has("Wanderers"))
+func test_army_of_renown_dashed_button_opens_the_picker() -> void:
+	var pane := _settings_pane(null, _faction_with_armies_of_renown())
+	_press(pane, "info:aor")
+	assert_true(pane.builder.picker.is_open())
 
 
-func test_legends_army_of_renown_is_listed_when_settings_show_legends() -> void:
-	GameSettings.current().show_legends = true
-	var pane := _settings_pane(UIKit.army_with_regiment(), _faction_with_legends_renown())
-	assert_eq(_aor_names(pane).filter(func(n: String) -> bool: return "Old Legend" in n).size(), 1)
+func test_army_of_renown_change_button_opens_the_picker() -> void:
+	var pane := _settings_pane(_army_with_renown(), _faction_with_armies_of_renown())
+	_press(pane, "info:aor")
+	assert_true(pane.builder.picker.is_open())
 
 
-func test_legends_army_of_renown_in_use_is_listed_even_when_settings_hide_legends() -> void:
-	GameSettings.current().show_legends = false
-	var army := UIKit.army_with_regiment()
-	army.army_of_renown = "Old Legend"
-	var pane := _settings_pane(army, _faction_with_legends_renown())
-	assert_eq(_aor_names(pane).filter(func(n: String) -> bool: return "Old Legend" in n).size(), 1)
-
-
-func test_army_of_renown_select_sets_the_army_of_renown() -> void:
-	var army := UIKit.army_with_regiment()
+func test_army_of_renown_bin_goes_back_to_the_faction_rules() -> void:
+	var army := _army_with_renown()
 	var pane := _settings_pane(army, _faction_with_armies_of_renown())
-	var select := UIKit.keyed(pane, "info:aor") as OptionButton
-	select.select(1)
-	select.item_selected.emit(1)
-	assert_eq(army.army_of_renown, "Wanderers")
-
-
-func test_army_of_renown_select_can_go_back_to_the_faction_rules() -> void:
-	var army := UIKit.army_with_regiment()
-	army.army_of_renown = "Wanderers"
-	var pane := _settings_pane(army, _faction_with_armies_of_renown())
-	var select := UIKit.keyed(pane, "info:aor") as OptionButton
-	select.select(0)
-	select.item_selected.emit(0)
+	_press(pane, "info:aor_remove")
 	assert_eq(army.army_of_renown, "")
 
 
-func test_formation_select_sets_the_formation() -> void:
+func test_army_of_renown_bin_is_missing_without_one() -> void:
+	var pane := _settings_pane(null, _faction_with_armies_of_renown())
+	assert_null(UIKit.keyed(pane, "info:aor_remove"))
+
+
+func test_formation_slot_is_a_dashed_button_without_one() -> void:
+	var slot := UIKit.keyed(_settings_pane(), "info:formation") as Button
+	assert_not_null(slot)
+	assert_eq(slot.theme_type_variation, &"DashedButton")
+
+
+func test_formation_slot_is_a_card_with_one() -> void:
 	var army := UIKit.army_with_regiment()
+	army.formation = "Siege"
 	var pane := _settings_pane(army)
-	var select := UIKit.keyed(pane, "info:formation") as OptionButton
-	select.select(2)
-	select.item_selected.emit(2)
-	assert_eq(army.formation, "Siege")
+	var cards := UIKit.find_all(pane, func(n: Node) -> bool: return n is FormationCard)
+	assert_eq(cards.size(), 1)
+	assert_eq((cards[0] as FormationCard).card_name, "Siege")
 
 
-func test_formation_select_is_hidden_with_an_army_of_renown() -> void:
+func test_formation_dashed_button_opens_the_picker() -> void:
+	var pane := _settings_pane()
+	_press(pane, "info:formation")
+	assert_true(pane.builder.picker.is_open())
+
+
+func test_formation_change_button_opens_the_picker() -> void:
 	var army := UIKit.army_with_regiment()
-	army.army_of_renown = "Wanderers"
-	var pane := _settings_pane(army, _faction_with_armies_of_renown())
+	army.formation = "Siege"
+	var pane := _settings_pane(army)
+	_press(pane, "info:formation")
+	assert_true(pane.builder.picker.is_open())
+
+
+func test_formation_bin_removes_the_formation() -> void:
+	var army := UIKit.army_with_regiment()
+	army.formation = "Siege"
+	var pane := _settings_pane(army)
+	_press(pane, "info:formation_remove")
+	assert_eq(army.formation, "")
+
+
+func test_formation_slot_is_hidden_with_an_army_of_renown() -> void:
+	var pane := _settings_pane(_army_with_renown(), _faction_with_armies_of_renown())
 	assert_null(UIKit.keyed(pane, "info:formation"))
 
 
-func test_formation_select_is_missing_when_the_faction_has_no_formations() -> void:
+func test_formation_slot_is_missing_when_the_faction_has_no_formations() -> void:
 	var faction := _faction()
 	faction.battle_formations = [] as Array[BattleFormation]
 	assert_null(UIKit.keyed(_settings_pane(null, faction), "info:formation"))

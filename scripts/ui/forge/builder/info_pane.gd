@@ -478,25 +478,36 @@ func _settings() -> void:
 
 	var faction := builder.catalog.faction
 	if not faction.armies_of_renown.is_empty():
-		var items := [["None (%s rules)" % faction.name, ""]]
-		for renown in faction.armies_of_renown:
-			# Legends Armies of Renown only if Settings shows them, or the army already uses one.
-			if renown.legends and not GameSettings.current().show_legends and renown.name != army.army_of_renown:
-				continue
-			items.append([renown.name + (" (Legends)" if renown.legends else ""), renown.name])
-		var select := UIBuilder.select(items, army.army_of_renown, editor.set_army_of_renown, "info:aor", "Army of Renown")
+		var renown := builder.catalog.army_of_renown(army.army_of_renown) if not army.army_of_renown.is_empty() else null
+		var slot := _choice_slot(renown, "Army of Renown", "info:aor", builder.pick_army_of_renown,
+				"Use the %s rules" % faction.name, builder.remove_army_of_renown)
 		var note := "Uses the Army of Renown's battle traits, enhancements and lores instead of the faction's." \
-				if not army.army_of_renown.is_empty() else "Pick an Army of Renown to replace the faction rules."
-		add.call(UIBuilder.setting_row("Army of Renown", select, note), "Army of Renown " + note)
-	var formations := builder.catalog.battle_formations(army)
-	if not formations.is_empty():
-		var items := [["None", ""]]
-		for formation in formations:
-			items.append([formation.name + (" · %d pts" % formation.points if formation.points else ""), formation.name])
-		add.call(UIBuilder.setting_row("Battle Formation", UIBuilder.select(items, army.formation, editor.set_formation,
-				"info:formation", "Battle Formation")), "Battle Formation")
+				if renown else "Choose an Army of Renown to replace the faction rules."
+		add.call(UIBuilder.setting_row("Army of Renown", slot, note), "Army of Renown " + note)
+	if not builder.catalog.battle_formations(army).is_empty():
+		var slot := _choice_slot(builder.catalog.battle_formation(army, army.formation), "Battle Formation", "info:formation", builder.pick_formation,
+				"Remove the battle formation", builder.remove_formation)
+		add.call(UIBuilder.setting_row("Battle Formation", slot), "Battle Formation")
 	if shown[0] == 0:
 		_empty("No settings match “%s”." % query.strip_edges())
+
+
+## The army's choice of [param title] ("Army of Renown" or "Battle Formation"): a dashed box that
+## calls [param pick] while [param choice] is null, else its short card with Change, which also
+## calls [param pick], and a red bin icon button labelled [param remove_label] that calls
+## [param remove].
+func _choice_slot(choice: Resource, title: String, key: String, pick: Callable, remove_label: String,
+		remove: Callable) -> Control:
+	if choice == null:
+		var slot := UIBuilder.button("Choose " + title, pick, key, "DashedButton")
+		slot.custom_minimum_size.y = ArmyBuilder.SLOT_HEIGHT
+		return slot
+	var change := UIBuilder.button("Change", pick, key, "", "Change %s" % title)
+	var bin := UIBuilder.icon_button("delete", remove_label, remove, key + "_remove", "DangerIconButton")
+	var actions := UIBuilder.hbox([change, bin], 4)
+	if choice is ArmyOfRenown:
+		return RenownArmyCard.new(choice, false, actions)
+	return FormationCard.new(choice, false, actions)
 
 
 ## Shows the unit's card in the Roster with its warscroll open, highlighted and focused.

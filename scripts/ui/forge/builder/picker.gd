@@ -1,6 +1,7 @@
 class_name Picker
 extends VBoxContainer
-## Takes over the info pane to pick a unit, battle tactics card, lore or Regiment of Renown to add.
+## Takes over the info pane to pick a unit, battle tactics card, lore or Regiment of Renown to add,
+## or the army's Army of Renown or battle formation.
 
 ## Emitted when the player closes the picker without picking, or after a pick.
 signal closed
@@ -172,6 +173,51 @@ func open_lores(kind: String, title: String) -> void:
 		if _list.get_child_count() == 0:
 			_list.add_child(UIBuilder.label("There are no other lores to choose.", "MutedLabel", true))
 	_open(title, render)
+
+
+## Lists the Armies of Renown the army can switch to, each with its roster options and limits and an
+## eye to show its battle traits in full. Pressing one switches to it. The army's current Army of
+## Renown isn't listed, nor Legends ones unless Settings shows Legends armies.
+func open_armies_of_renown() -> void:
+	var render := func() -> void:
+		var army := builder.editor.army
+		for renown in builder.catalog.faction.armies_of_renown:
+			if renown.name == army.army_of_renown or (renown.legends and not GameSettings.current().show_legends):
+				continue
+			var make := func(full: bool, eye: Button) -> PressableCard:
+				var item := RenownArmyCard.new(renown, full, eye)
+				item.make_pressable("Use the %s Army of Renown" % renown.name)
+				item.set_meta(&"focus_key", "pick:aor:" + renown.name)
+				item.pressed.connect(func() -> void:
+					builder.editor.set_army_of_renown(renown.name)
+					close())
+				return item
+			_list.add_child(_expandable(renown.name, make))
+		if _list.get_child_count() == 0:
+			_list.add_child(UIBuilder.label("There are no other Armies of Renown to choose.", "MutedLabel", true))
+	_open("Army of Renown", render)
+
+
+## Lists the battle formations the army can take, each with its points and abilities' names and an
+## eye to show their rules in full. Pressing one picks it. The army's current formation isn't listed.
+func open_formations() -> void:
+	var render := func() -> void:
+		var army := builder.editor.army
+		for formation in builder.catalog.battle_formations(army):
+			if formation.name == army.formation:
+				continue
+			var make := func(full: bool, eye: Button) -> PressableCard:
+				var item := FormationCard.new(formation, full, eye)
+				item.make_pressable("Choose %s as the army's battle formation" % formation.name)
+				item.set_meta(&"focus_key", "pick:formation:" + formation.name)
+				item.pressed.connect(func() -> void:
+					builder.editor.set_formation(formation.name)
+					close())
+				return item
+			_list.add_child(_expandable(formation.name, make))
+		if _list.get_child_count() == 0:
+			_list.add_child(UIBuilder.label("There are no other battle formations to choose.", "MutedLabel", true))
+	_open("Battle Formation", render)
 
 
 ## A card named [param card_name], made by [param make] from whether it's in full and the eye
