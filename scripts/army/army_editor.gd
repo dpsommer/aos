@@ -54,6 +54,16 @@ func _new_unit(warscroll_id: String, faction_id := "") -> ArmyUnit:
 	return unit
 
 
+## A unit of the army's faction, or of another faction its Army of Renown includes.
+func _army_unit(warscroll_id: String) -> ArmyUnit:
+	var faction_id := catalog.included_faction_id(army, warscroll_id)
+	if faction_id.is_empty():
+		return _new_unit(warscroll_id)
+	var unit := _new_unit(warscroll_id, faction_id)
+	unit.weapon_options = WeaponOptions.defaults(catalog.find_warscroll(army, warscroll_id))
+	return unit
+
+
 ## Whether another unit fits in [param regiment]: its leader's slot while it has none, then up to
 ## its capacity.
 func has_room(regiment: ArmyRegiment) -> bool:
@@ -65,7 +75,7 @@ func has_room(regiment: ArmyRegiment) -> bool:
 
 
 func _is_hero(warscroll_id: String) -> bool:
-	var warscroll := catalog.faction.get_warscroll(warscroll_id)
+	var warscroll := catalog.find_warscroll(army, warscroll_id)
 	return warscroll != null and warscroll.has_keyword("HERO")
 
 
@@ -75,7 +85,7 @@ func add_regiment(leader_id := "") -> ArmyRegiment:
 	regiment.id = _new_id("r")
 	regiment.name = "Regiment %d" % (army.regiments.size() + 1)
 	if not leader_id.is_empty():
-		regiment.units.append(_new_unit(leader_id))
+		regiment.units.append(_army_unit(leader_id))
 	army.regiments.append(regiment)
 	changed.emit()
 	return regiment
@@ -115,7 +125,7 @@ func add_unit(regiment_id: String, warscroll_id: String, index := -1) -> ArmyUni
 	var regiment := army.find_regiment(regiment_id)
 	if regiment == null or not has_room(regiment):
 		return null
-	var unit := _new_unit(warscroll_id)
+	var unit := _army_unit(warscroll_id)
 	_insert(regiment, unit, regiment.units.size() if index < 0 else index)
 	changed.emit()
 	return unit
@@ -123,7 +133,7 @@ func add_unit(regiment_id: String, warscroll_id: String, index := -1) -> ArmyUni
 
 ## Adds an auxiliary unit at [param index], or the end if it's -1.
 func add_auxiliary(warscroll_id: String, index := -1) -> ArmyUnit:
-	var unit := _new_unit(warscroll_id)
+	var unit := _army_unit(warscroll_id)
 	army.auxiliary.insert(army.auxiliary.size() if index < 0 else clampi(index, 0, army.auxiliary.size()), unit)
 	changed.emit()
 	return unit

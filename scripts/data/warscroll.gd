@@ -9,6 +9,9 @@ extends Resource
 ## Whether the warscroll is Legends: marked so in the data, or from a Scourge the battlepack doesn't
 ## use (see [member FactionLoader.scourge]).
 @export var legends: bool
+## The only Army of Renown that can include this unit, e.g. "The Iron March" for its Immolator
+## Cogfort. Empty for a unit any army of its faction can include.
+@export var army_of_renown: String
 
 @export_group("Battle profile")
 @export var points: int

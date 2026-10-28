@@ -601,7 +601,7 @@ func available_units(allow: Callable) -> Array[Warscroll]:
 		if warscroll and warscroll.has_keyword("UNIQUE"):
 			taken[warscroll.name] = true
 	var result: Array[Warscroll] = []
-	for warscroll in catalog.unit_warscrolls():
+	for warscroll in catalog.unit_warscrolls(army):
 		if warscroll.legends and not army.show_legends:
 			continue
 		if taken.has(warscroll.name) and not army.override_constraints:

@@ -16,6 +16,14 @@
 						]
 					}
 				],
+				"included_units": [
+					{
+						"faction": "ironjawz"
+					},
+					{
+						"faction": "kruleboyz"
+					}
+				],
 				"regiments_of_renown": false,
 				"faction_terrain": false
 			},
@@ -214,6 +222,20 @@
 						"not_keywords": [
 							"UNIQUE"
 						]
+					}
+				],
+				"included_units": [
+					{
+						"faction": "soulblight_gravelords"
+					},
+					{
+						"faction": "ossiarch_bonereapers"
+					},
+					{
+						"faction": "flesh_eater_courts"
+					},
+					{
+						"faction": "nighthaunt"
 					}
 				],
 				"regiments_of_renown": false
@@ -642,6 +664,17 @@
 							"ORDER",
 							"DUARDIN"
 						]
+					}
+				],
+				"included_units": [
+					{
+						"faction": "fyreslayers"
+					},
+					{
+						"faction": "kharadron_overlords"
+					},
+					{
+						"faction": "cities_of_sigmar"
 					}
 				],
 				"regiments_of_renown": false,

@@ -27,6 +27,7 @@ static func validate(army: Army, catalog: ArmyCatalog) -> ArmyValidation:
 		result.overridden = true
 		return result
 	var entries := _entries(army, catalog, result)
+	_check_included(army, catalog, entries, result)
 	_check_regiments(army, catalog, result)
 	_check_general(army, catalog, entries, result)
 	_check_unique(entries, result)
@@ -91,6 +92,25 @@ static func _is_ror(entry: Dictionary) -> bool:
 
 static func _has(entry: Dictionary, keyword: String) -> bool:
 	return keyword in entry.keywords
+
+
+## A unit from another faction (outside a Regiment of Renown) must be one the army's Army of Renown
+## includes, and a unit only one Army of Renown can include must be in such an army; switching Army
+## of Renown can leave some behind.
+static func _check_included(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:
+	for entry in entries:
+		var unit: ArmyUnit = entry.unit
+		var only_in: String = entry.warscroll.army_of_renown
+		if not _is_ror(entry) and not only_in.is_empty() and only_in != army.army_of_renown:
+			result.problems.append("%s can only be included in %s armies." % [_unit_name(unit, entry.warscroll), only_in])
+		if not _is_ror(entry) and not unit.faction_id.is_empty() and catalog.included_faction_id(army, unit.warscroll_id) != unit.faction_id:
+			result.problems.append("%s is from %s, and this army can't include its units." % [_unit_name(unit, entry.warscroll),
+					_faction_name(unit.faction_id)])
+
+
+static func _faction_name(faction_id: String) -> String:
+	var faction_name := FactionCatalog.name_for_id(faction_id)
+	return faction_name if not faction_name.is_empty() else faction_id
 
 
 static func _check_regiments(army: Army, catalog: ArmyCatalog, result: ArmyValidation) -> void:
@@ -349,6 +369,17 @@ static func _per_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
 	return false
 
 
+static func _is_excluded(army_roster: ArmyRoster, warscroll: Warscroll) -> bool:
+	return Array(army_roster.excluded_units).any(func(unit_name: String) -> bool: return RegimentOption._names(warscroll, unit_name))
+
+
+## Whether an Army of Renown's roster can include [param warscroll]: it matches an entry and isn't
+## excluded. Limits such as "0-1" aren't considered.
+static func roster_allows(army_roster: ArmyRoster, warscroll: Warscroll) -> bool:
+	return not _is_excluded(army_roster, warscroll) \
+			and army_roster.entries.any(func(e: RosterEntry) -> bool: return _roster_matches(e, warscroll))
+
+
 static func _is_limited(entry: RosterEntry) -> bool:
 	return not entry.per.is_empty() or entry.max > 0
 
@@ -380,7 +411,7 @@ static func _check_roster(army: Army, catalog: ArmyCatalog, entries: Array[Dicti
 	var built := entries.filter(func(e: Dictionary) -> bool: return not _is_ror(e))
 	var limited := {}
 	for entry in built:
-		if Array(army_roster.excluded_units).any(func(unit_name: String) -> bool: return RegimentOption._names(entry.warscroll, unit_name)):
+		if _is_excluded(army_roster, entry.warscroll):
 			result.problems.append("%s armies can't include %s." % [army.army_of_renown, entry.warscroll.name])
 			continue
 		var matching := army_roster.entries.filter(func(e: RosterEntry) -> bool: return _roster_matches(e, entry.warscroll))

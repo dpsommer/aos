@@ -101,6 +101,7 @@
 		{
 			"id": "allies_of_the_free_cities_auric_hearthguard",
 			"name": "Allies of the Free Cities Auric Hearthguard",
+			"army_of_renown": "Allies of the Free Cities",
 			"points": 130,
 			"unit_size": 5,
 			"base_size": "32mm",
@@ -164,6 +165,7 @@
 		{
 			"id": "allies_of_the_free_cities_vanari_auralan_sentinels",
 			"name": "Allies of the Free Cities Vanari Auralan Sentinels",
+			"army_of_renown": "Allies of the Free Cities",
 			"points": 140,
 			"unit_size": 10,
 			"base_size": "32mm",
@@ -220,6 +222,7 @@
 		{
 			"id": "allies_of_the_free_cities_vanari_auralan_wardens",
 			"name": "Allies of the Free Cities Vanari Auralan Wardens",
+			"army_of_renown": "Allies of the Free Cities",
 			"points": 120,
 			"unit_size": 10,
 			"base_size": "32mm",
@@ -267,6 +270,7 @@
 		{
 			"id": "allies_of_the_free_cities_vulkyn_flameseekers",
 			"name": "Allies of the Free Cities Vulkyn Flameseekers",
+			"army_of_renown": "Allies of the Free Cities",
 			"points": 160,
 			"unit_size": 9,
 			"base_size": "Kyndledroth, Drothmaster, Drothblood Thane and Vulkyn Runefather: 32mm, 5 x Scalebreakers: 28.5mm",
@@ -5188,6 +5192,7 @@
 		{
 			"id": "the_iron_march_immolator_cogfort",
 			"name": "The Iron March Immolator Cogfort",
+			"army_of_renown": "The Iron March",
 			"points": 510,
 			"unit_size": 1,
 			"base_size": "160mm",
@@ -5291,6 +5296,7 @@
 		{
 			"id": "the_iron_march_linebreaker_cogfort",
 			"name": "The Iron March Linebreaker Cogfort",
+			"army_of_renown": "The Iron March",
 			"points": 450,
 			"unit_size": 1,
 			"base_size": "160mm",

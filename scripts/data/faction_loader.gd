@@ -280,6 +280,7 @@ func _warscroll(data: Variant, path: String, with_profile: bool) -> Warscroll:
 	warscroll.name = _string(data, "name", path, true)
 	warscroll.source = _string(data, "source", path)
 	warscroll.legends = _bool(data, "legends", path) or _is_retired(warscroll.source)
+	warscroll.army_of_renown = _string(data, "army_of_renown", path)
 	warscroll.points = _int(data, "points", path, with_profile)
 	warscroll.unit_size = _int(data, "unit_size", path, with_profile)
 	warscroll.base_size = _string(data, "base_size", path)
@@ -358,6 +359,14 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 	roster.faction_terrain = _bool(data, "faction_terrain", path, true)
 	roster.manifestations = _bool(data, "manifestations", path, true)
 	roster.excluded_units = _strings(data, "excluded_units", path)
+	var included := _array(data, "included_units", path)
+	for i in included.size():
+		var inclusion_path := _join(path, "included_units[%d]" % i)
+		if _is_object(included[i], inclusion_path):
+			var inclusion := RosterInclusion.new()
+			inclusion.faction = _string(included[i], "faction", inclusion_path, true)
+			inclusion.units = _strings(included[i], "units", inclusion_path)
+			roster.included_units.append(inclusion)
 	return roster
 
 

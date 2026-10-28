@@ -6,8 +6,12 @@ extends RefCounted
 
 var faction: Faction
 var core: CoreRules
-## Takes a faction id and returns that [Faction], for units in Regiments of Renown.
+## Takes a faction id and returns that [Faction], for units in Regiments of Renown and units an
+## Army of Renown includes from other factions.
 var _load_faction: Callable
+## Army of Renown name -> {warscroll id: [faction id, Warscroll]} of the units it includes from
+## other factions.
+var _included := {}
 
 
 ## [param load_faction] defaults to loading from [FactionCatalog].
@@ -138,12 +142,73 @@ func battle_formation(army: Army, formation_name: String) -> BattleFormation:
 	return null
 
 
-## Warscrolls that can be units in the army: not manifestations or faction terrain.
-func unit_warscrolls() -> Array[Warscroll]:
+## Warscrolls that can be units in the army: not manifestations or faction terrain. With
+## [param army], they include the units its Army of Renown draws from other factions and, unless the
+## army overrides its constraints, leave out those its roster doesn't allow and those only another
+## Army of Renown can include.
+func unit_warscrolls(army: Army = null) -> Array[Warscroll]:
 	var result: Array[Warscroll] = []
 	for warscroll in faction.warscrolls:
-		if not warscroll.has_keyword("MANIFESTATION") and not warscroll.has_keyword("FACTION TERRAIN"):
+		if _is_unit(warscroll):
 			result.append(warscroll)
+	if army == null:
+		return result
+	for pair: Array in _included_units(army).values():
+		result.append(pair[1])
+	if army.override_constraints:
+		return result
+	result = result.filter(func(w: Warscroll) -> bool: return w.army_of_renown.is_empty() or w.army_of_renown == army.army_of_renown)
+	var army_roster := roster(army)
+	if army_roster:
+		result = result.filter(func(w: Warscroll) -> bool: return ArmyValidator.roster_allows(army_roster, w))
+	return result
+
+
+static func _is_unit(warscroll: Warscroll) -> bool:
+	return not warscroll.has_keyword("MANIFESTATION") and not warscroll.has_keyword("FACTION TERRAIN")
+
+
+## The warscroll called [param warscroll_id] in the army's faction, or among the units its Army of
+## Renown includes from other factions. Null if neither has it.
+func find_warscroll(army: Army, warscroll_id: String) -> Warscroll:
+	var own := faction.get_warscroll(warscroll_id)
+	if own:
+		return own
+	var pair: Array = _included_units(army).get(warscroll_id, [])
+	return pair[1] if not pair.is_empty() else null
+
+
+## Id of the other faction [param warscroll_id] comes from, when the army's Army of Renown includes
+## it from one. Empty for the army's own faction's warscrolls and ones it can't include.
+func included_faction_id(army: Army, warscroll_id: String) -> String:
+	if faction.get_warscroll(warscroll_id):
+		return ""
+	var pair: Array = _included_units(army).get(warscroll_id, [])
+	return pair[0] if not pair.is_empty() else ""
+
+
+## {warscroll id: [faction id, Warscroll]} for the units [param army]'s Army of Renown includes from
+## other factions, leaving out the army's own faction and warscrolls it already has (a shared
+## warscroll such as Grombrindal).
+func _included_units(army: Army) -> Dictionary:
+	if _included.has(army.army_of_renown):
+		return _included[army.army_of_renown]
+	var result := {}
+	_included[army.army_of_renown] = result
+	var army_roster := roster(army)
+	if army_roster == null:
+		return result
+	for inclusion in army_roster.included_units:
+		if inclusion.faction == faction.id:
+			continue
+		var home: Faction = _load_faction.call(inclusion.faction)
+		if home == null:
+			continue
+		for warscroll in home.warscrolls:
+			if not _is_unit(warscroll) or faction.get_warscroll(warscroll.id) or result.has(warscroll.id):
+				continue
+			if inclusion.units.is_empty() or Array(inclusion.units).any(func(n: String) -> bool: return RegimentOption._names(warscroll, n)):
+				result[warscroll.id] = [inclusion.faction, warscroll]
 	return result
 
 
@@ -170,12 +235,13 @@ func regiments_of_renown(army: Army) -> Array[RegimentOfRenown]:
 
 
 ## The warscroll of [param unit] in [param regiment] (null for an auxiliary unit), or null if the
-## data no longer has it.
+## data no longer has it. A unit with a [member ArmyUnit.faction_id] is in a Regiment of Renown or
+## was included from another faction by an Army of Renown, and takes its warscroll from there.
 func warscroll(unit: ArmyUnit, regiment: ArmyRegiment = null) -> Warscroll:
+	if not unit.faction_id.is_empty():
+		var home: Faction = _load_faction.call(unit.faction_id)
+		return home.get_warscroll(unit.warscroll_id) if home else null
 	if regiment and regiment.is_regiment_of_renown():
-		if not unit.faction_id.is_empty():
-			var home: Faction = _load_faction.call(unit.faction_id)
-			return home.get_warscroll(unit.warscroll_id) if home else null
 		var renown := regiment_of_renown(regiment.regiment_of_renown)
 		return renown.get_warscroll(unit.warscroll_id) if renown else null
 	return faction.get_warscroll(unit.warscroll_id)

@@ -11,7 +11,11 @@
 					{"one_of": ["Unit One", "Unit Two"], "max": 1}
 				],
 				"regiments_of_renown": false,
-				"excluded_units": ["Unit One", "Unit Three"]
+				"excluded_units": ["Unit One", "Unit Three"],
+				"included_units": [
+					{"faction": "other_faction", "units": ["Unit Four"]},
+					{"faction": "third_faction"}
+				]
 			},
 			"battle_traits": [{"name": "Renown Trait", "effect": "Renown effect."}],
 			"enhancement_tables": [{"name": "Artefacts", "entries": [{"name": "Artefact One", "points": 10}]}],

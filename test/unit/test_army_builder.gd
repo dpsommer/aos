@@ -324,6 +324,17 @@ func test_available_units_shows_legends_when_enabled() -> void:
 	assert_has(ids, "legend")
 
 
+func test_available_units_leaves_out_units_the_army_of_renown_roster_does_not_allow() -> void:
+	var faction := UIKit.faction()
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Lead")]
+	faction.armies_of_renown = [Kit.army_of_renown("Horde", entries)] as Array[ArmyOfRenown]
+	var army := _valid_army()
+	army.army_of_renown = "Horde"
+	var builder := _builder(army, faction)
+	var ids := _warscroll_names(builder.available_units(func(_w: Warscroll) -> bool: return true))
+	assert_true("lead" in ids and not "grunt" in ids, str(ids))
+
+
 func test_available_units_hides_unique_units_already_in_the_army() -> void:
 	var army := UIKit.army_with_regiment(PackedStringArray(["unique"]))
 	var builder := _builder(army)

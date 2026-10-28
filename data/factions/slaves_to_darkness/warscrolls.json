@@ -3008,6 +3008,7 @@
 		{
 			"id": "legion_of_the_first_prince_beasts_of_nurgle",
 			"name": "Legion of the First Prince Beasts of Nurgle",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 120,
 			"unit_size": 1,
 			"base_size": "60mm",
@@ -3063,6 +3064,7 @@
 		{
 			"id": "legion_of_the_first_prince_bloodcrushers",
 			"name": "Legion of the First Prince Bloodcrushers",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 150,
 			"unit_size": 3,
 			"base_size": "90 × 52mm",
@@ -3128,6 +3130,7 @@
 		{
 			"id": "legion_of_the_first_prince_bloodletters",
 			"name": "Legion of the First Prince Bloodletters",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 170,
 			"unit_size": 10,
 			"base_size": "32mm",
@@ -3179,6 +3182,7 @@
 		{
 			"id": "legion_of_the_first_prince_fiends",
 			"name": "Legion of the First Prince Fiends",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 140,
 			"unit_size": 3,
 			"base_size": "75 × 42mm",
@@ -3239,6 +3243,7 @@
 		{
 			"id": "legion_of_the_first_prince_flamers_of_tzeentch",
 			"name": "Legion of the First Prince Flamers of Tzeentch",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 120,
 			"unit_size": 3,
 			"base_size": "32mm",
@@ -3302,6 +3307,7 @@
 		{
 			"id": "legion_of_the_first_prince_hellflayer",
 			"name": "Legion of the First Prince Hellflayer",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 130,
 			"unit_size": 1,
 			"base_size": "120 × 92mm",
@@ -3381,6 +3387,7 @@
 		{
 			"id": "legion_of_the_first_prince_plaguebearers",
 			"name": "Legion of the First Prince Plaguebearers",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 140,
 			"unit_size": 10,
 			"base_size": "32mm",
@@ -3432,6 +3439,7 @@
 		{
 			"id": "legion_of_the_first_prince_screamers_of_tzeentch",
 			"name": "Legion of the First Prince Screamers of Tzeentch",
+			"army_of_renown": "Legion of the First Prince",
 			"points": 70,
 			"unit_size": 3,
 			"base_size": "32mm",

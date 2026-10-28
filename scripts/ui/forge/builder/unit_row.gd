@@ -152,7 +152,7 @@ func _summary() -> HBoxContainer:
 	if renown:
 		portrait = UIBuilder.portrait(title, builder.info_pane.show_regiment_of_renown.bind(regiment.regiment_of_renown),
 				"Show %s in Regiments of Renown" % regiment.regiment_of_renown)
-	elif warscroll and warscroll in builder.catalog.faction.warscrolls:
+	elif warscroll and builder.catalog.find_warscroll(army, warscroll.id) == warscroll:
 		portrait = UIBuilder.portrait(title, builder.info_pane.show_unit.bind(warscroll), "Show %s in the Roster" % warscroll.name)
 	else:
 		portrait = UIBuilder.portrait(title)

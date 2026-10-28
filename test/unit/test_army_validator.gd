@@ -1018,3 +1018,136 @@ func test_raising_the_limit_clears_the_points_problem() -> void:
 	army.regiments[0].units.append(Kit.unit("u3", "pricey"))
 	army.points_limit = 5000
 	_assert_no_problem(army, "over")
+
+
+# Units included from other factions
+
+## A catalog whose Army of Renown "Horde" includes the faction "home"'s unit "Away" when [param includes].
+func _including_catalog(includes := true) -> ArmyCatalog:
+	var faction := _faction()
+	var away_entry: Array[RosterEntry] = [Kit.roster_entry("Awayunit")]
+	var renown := Kit.army_of_renown("Horde", away_entry)
+	renown.roster.included_units = [] as Array[RosterInclusion]
+	if includes:
+		var inclusion := RosterInclusion.new()
+		inclusion.faction = "home"
+		renown.roster.included_units.append(inclusion)
+	faction.armies_of_renown = [renown, Kit.army_of_renown("Plain", away_entry)] as Array[ArmyOfRenown]
+	var home := Kit.faction([Kit.warscroll("away", PackedStringArray(), 100, "Awayunit")] as Array[Warscroll], "home")
+	var loader := func(faction_id: String) -> Faction: return home if faction_id == "home" else null
+	return ArmyCatalog.new(faction, Kit.core(), loader)
+
+
+func _included_army(army_of_renown := "Horde") -> Army:
+	var army := _horde_army()
+	army.army_of_renown = army_of_renown
+	var unit := Kit.unit("away_u", "away")
+	unit.faction_id = "home"
+	army.auxiliary.append(unit)
+	return army
+
+
+func test_included_unit_of_an_army_of_renown_that_includes_it_is_not_a_problem() -> void:
+	_assert_no_problem(_included_army(), "Awayunit", _including_catalog())
+
+
+func test_included_unit_after_leaving_the_army_of_renown_is_a_problem_naming_it() -> void:
+	_assert_problem(_included_army(""), "Awayunit", _including_catalog())
+
+
+func test_included_unit_in_an_army_of_renown_without_the_inclusion_is_a_problem_naming_it() -> void:
+	_assert_problem(_included_army("Plain"), "Awayunit", _including_catalog())
+
+
+func test_included_unit_in_a_regiment_is_a_problem_when_no_longer_included() -> void:
+	var army := _included_army("")
+	army.regiments[0].units.append(army.auxiliary.pop_back())
+	_assert_problem(army, "Awayunit", _including_catalog())
+
+
+func test_regiment_of_renown_units_with_a_faction_are_not_reported() -> void:
+	var army := _army()
+	var regiment := _ror()
+	for unit in regiment.units:
+		unit.faction_id = "home"
+	army.regiments.append(regiment)
+	_assert_no_problem(army, "can't include")
+
+
+# Roster filtering
+
+func _scroll_of(catalog: ArmyCatalog, id: String) -> Warscroll:
+	return catalog.faction.get_warscroll(id)
+
+
+func test_roster_allows_a_unit_matching_an_entry() -> void:
+	var catalog := _horde_catalog([Kit.roster_entry("Grunt")] as Array[RosterEntry])
+	var roster := catalog.faction.armies_of_renown[0].roster
+	assert_true(ArmyValidator.roster_allows(roster, _scroll_of(catalog, "grunt")))
+
+
+func test_roster_does_not_allow_a_unit_matching_no_entry() -> void:
+	var catalog := _horde_catalog([Kit.roster_entry("Grunt")] as Array[RosterEntry])
+	var roster := catalog.faction.armies_of_renown[0].roster
+	assert_false(ArmyValidator.roster_allows(roster, _scroll_of(catalog, "hounds")))
+
+
+func test_roster_does_not_allow_an_excluded_unit_matching_an_entry() -> void:
+	var catalog := _excluding_catalog(["Hero A"])
+	var roster := catalog.faction.armies_of_renown[0].roster
+	assert_false(ArmyValidator.roster_allows(roster, _scroll_of(catalog, "hero_a")))
+
+
+func test_roster_allows_a_unit_only_a_limited_entry_matches() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.max = 1
+	var catalog := _horde_catalog([limited] as Array[RosterEntry])
+	var roster := catalog.faction.armies_of_renown[0].roster
+	assert_true(ArmyValidator.roster_allows(roster, _scroll_of(catalog, "grunt")))
+
+
+# Units only one Army of Renown can include
+
+## A catalog with Armies of Renown "Horde" and "March", both with rosters allowing everything, where
+## the unit "Grunt" can only be included in "March".
+func _march_catalog() -> ArmyCatalog:
+	var faction := _faction()
+	var entries: Array[RosterEntry] = [Kit.roster_entry("", PackedStringArray(["HERO"])), Kit.roster_entry("", PackedStringArray(["INFANTRY"]))]
+	var more: Array[RosterEntry] = entries.duplicate()
+	faction.armies_of_renown = [Kit.army_of_renown("Horde", entries), Kit.army_of_renown("March", more)] as Array[ArmyOfRenown]
+	for scroll in faction.warscrolls:
+		if scroll.id == "grunt":
+			scroll.army_of_renown = "March"
+	return _catalog(faction)
+
+
+func _march_army(aor_name := "March") -> Army:
+	var army := _horde_army()
+	army.army_of_renown = aor_name
+	return army
+
+
+func test_army_of_renown_unit_in_its_own_army_of_renown_is_allowed() -> void:
+	_assert_no_problem(_march_army(), "Grunt", _march_catalog())
+
+
+func test_army_of_renown_unit_in_a_faction_army_is_a_problem_naming_it() -> void:
+	_assert_problem(_army(), "Grunt", _march_catalog())
+
+
+func test_army_of_renown_unit_in_another_army_of_renown_is_a_problem_naming_it() -> void:
+	_assert_problem(_march_army("Horde"), "Grunt", _march_catalog())
+
+
+func test_army_of_renown_unit_in_another_army_of_renown_is_a_problem_naming_its_army_of_renown() -> void:
+	_assert_problem(_march_army("Horde"), "March", _march_catalog())
+
+
+func test_army_of_renown_unit_in_a_regiment_of_renown_is_not_reported() -> void:
+	var catalog := _march_catalog()
+	catalog.faction.get_warscroll("grunt").army_of_renown = ""
+	for scroll in catalog.faction.regiments_of_renown[0].warscrolls:
+		scroll.army_of_renown = "March"
+	var army := _horde_army()
+	army.regiments.append(_ror())
+	_assert_no_problem(army, "March", catalog)

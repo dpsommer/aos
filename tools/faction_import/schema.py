@@ -68,6 +68,8 @@ def warscroll(w, with_profile=True):
         out["source"] = w["source"]
     if w.get("legends"):
         out["legends"] = True
+    if w.get("army_of_renown"):
+        out["army_of_renown"] = w["army_of_renown"]
     if with_profile:
         out["points"] = w.get("points") or 0
         out["unit_size"] = w.get("unit_size") or 1

@@ -315,17 +315,50 @@ func test_some_army_of_renown_has_a_roster() -> void:
 	assert_gt(count, 0)
 
 
+## The names of the units [param army] can draw from: its faction's and those it includes from others,
+## before its roster filters them.
+func _roster_names(faction: Faction, army: ArmyOfRenown) -> Array:
+	var army_data := Army.new()
+	army_data.army_of_renown = army.name
+	army_data.override_constraints = true
+	var catalog := ArmyCatalog.new(faction, null)
+	return (faction.warscrolls + catalog.unit_warscrolls(army_data)).map(func(w: Warscroll) -> String: return w.name)
+
+
 func test_every_army_of_renown_roster_unit_has_a_warscroll() -> void:
 	for faction in _factions:
-		var names := faction.warscrolls.map(func(w: Warscroll) -> String: return w.name)
 		for army in faction.armies_of_renown:
 			if not army.roster:
 				continue
+			var names := _roster_names(faction, army)
 			for entry in army.roster.entries:
 				for unit_name in ([entry.unit] if not entry.unit.is_empty() else []) + Array(entry.one_of):
 					assert_has(names, unit_name, "%s: %s roster unit %s" % [faction.name, army.name, unit_name])
 			for unit_name in army.roster.excluded_units:
 				assert_has(names, unit_name, "%s: %s excluded unit %s" % [faction.name, army.name, unit_name])
+
+
+func test_some_army_of_renown_includes_units_from_another_faction() -> void:
+	var count := 0
+	for faction in _factions:
+		for army in faction.armies_of_renown:
+			count += army.roster.included_units.size() if army.roster else 0
+	assert_gt(count, 0)
+
+
+func test_every_army_of_renown_included_unit_has_a_warscroll_in_its_faction() -> void:
+	for faction in _factions:
+		for army in faction.armies_of_renown:
+			if not army.roster:
+				continue
+			for inclusion in army.roster.included_units:
+				var home := FactionCatalog.load_faction(FactionCatalog.name_for_id(inclusion.faction))
+				assert_not_null(home, "%s: %s includes unknown faction %s" % [faction.name, army.name, inclusion.faction])
+				if home == null:
+					continue
+				var names := home.warscrolls.map(func(w: Warscroll) -> String: return w.name)
+				for unit_name in inclusion.units:
+					assert_has(names, unit_name, "%s: %s included unit %s" % [faction.name, army.name, unit_name])
 
 
 func test_some_enhancement_table_is_for_certain_units() -> void:

@@ -224,6 +224,17 @@ func test_every_warscroll_is_loaded() -> void:
 	assert_eq(_load("valid").warscrolls.size(), _json("valid", "warscrolls.json").warscrolls.size())
 
 
+func test_warscroll_army_of_renown_comes_from_file() -> void:
+	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0]
+	assert_false(str(expected.get("army_of_renown", "")).is_empty(), "fixture warscroll should name an Army of Renown")
+	assert_eq(_load("valid").warscrolls[0].army_of_renown, expected.army_of_renown)
+
+
+func test_absent_warscroll_army_of_renown_defaults_to_empty() -> void:
+	assert_false(_json("valid", "warscrolls.json").warscrolls[1].has("army_of_renown"), "fixture warscroll should omit army_of_renown")
+	assert_eq(_load("valid").warscrolls[1].army_of_renown, "")
+
+
 func test_warscroll_characteristics_are_ints_from_file() -> void:
 	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0]
 	var unit: Warscroll = _load("valid").warscrolls[0]
@@ -440,6 +451,38 @@ func test_army_of_renown_roster_omitted_excluded_units_is_empty() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
 	assert_false(data.armies_of_renown[0].roster.has("excluded_units"), "fixture roster should omit excluded_units")
 	assert_eq(_load("roster_without_excluded_units").armies_of_renown[0].roster.excluded_units.size(), 0)
+
+
+func test_army_of_renown_roster_included_unit_factions_come_from_file() -> void:
+	var expected: Array = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.included_units
+	var actual := _load("valid").armies_of_renown[0].roster.included_units.map(func(i: RosterInclusion) -> String: return i.faction)
+	assert_eq(actual, expected.map(func(i: Dictionary) -> String: return i.faction))
+
+
+func test_army_of_renown_roster_included_units_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.included_units[0]
+	assert_eq(_load("valid").armies_of_renown[0].roster.included_units[0].units, PackedStringArray(expected.units))
+
+
+func test_army_of_renown_roster_inclusion_without_units_has_none_listed() -> void:
+	var data: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.included_units[1]
+	assert_false(data.has("units"), "fixture inclusion should omit units")
+	assert_eq(_load("valid").armies_of_renown[0].roster.included_units[1].units.size(), 0)
+
+
+func test_army_of_renown_roster_without_included_units_has_none() -> void:
+	var data: Dictionary = _json("roster_without_excluded_units", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_false(data.has("included_units"), "fixture roster should omit included_units")
+	assert_eq(_load("roster_without_excluded_units").armies_of_renown[0].roster.included_units.size(), 0)
+
+
+func test_roster_inclusion_without_faction_returns_null() -> void:
+	assert_null(_load("roster_inclusion_missing_faction"))
+
+
+func test_roster_inclusion_without_faction_error_names_file_and_field_path() -> void:
+	var errors := _errors("roster_inclusion_missing_faction")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "roster.included_units[0]"), str(errors))
 
 
 func test_army_of_renown_without_roster_has_null_roster() -> void:

@@ -483,6 +483,68 @@
 					},
 					{
 						"unit": "Vulkite Berzerkers with Fyresteel Weapons"
+					},
+					{
+						"unit": "Aether-Khemist"
+					},
+					{
+						"unit": "Aetheric Navigator"
+					},
+					{
+						"unit": "Arkanaut Admiral"
+					},
+					{
+						"unit": "Brokk Grungsson, Lord-Magnate of Barak-Nar"
+					},
+					{
+						"unit": "Codewright"
+					},
+					{
+						"unit": "Drekki Flynt"
+					},
+					{
+						"unit": "Endrinmaster with Dirigible Suit"
+					},
+					{
+						"unit": "Endrinmaster with Endrinharness"
+					},
+					{
+						"unit": "Arkanaut Company"
+					},
+					{
+						"unit": "Arkanaut Frigate"
+					},
+					{
+						"unit": "Arkanaut Ironclad"
+					},
+					{
+						"unit": "Endrinriggers"
+					},
+					{
+						"unit": "Grundstok Gunhauler"
+					},
+					{
+						"unit": "Grundstok Thunderers"
+					},
+					{
+						"unit": "Skywardens"
+					},
+					{
+						"unit": "Thundrik's Profiteers"
+					},
+					{
+						"unit": "Null-Khemist"
+					},
+					{
+						"unit": "Vongrim Salvagers"
+					},
+					{
+						"unit": "Vongrim Harpoon Crew"
+					}
+				],
+				"included_units": [
+					{
+						"faction": "kharadron_overlords"
 					}
 				]
 			},

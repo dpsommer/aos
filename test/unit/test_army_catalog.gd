@@ -406,3 +406,268 @@ func test_summoned_does_not_load_another_faction_when_it_has_the_manifestation()
 func test_summoned_skips_a_manifestation_in_a_faction_that_cannot_load() -> void:
 	var catalog := Kit.catalog(_faction(), null, func(_id: String) -> Faction: return null)
 	assert_eq(_summoned_ids(catalog, ["wisper"]), [])
+
+
+# Units included from other factions
+
+func _home() -> Faction:
+	var scrolls: Array[Warscroll] = [
+		Kit.warscroll("sailor"), Kit.hero("captain"),
+		Kit.warscroll("home_manifest", PackedStringArray(["MANIFESTATION"])),
+		Kit.warscroll("home_terrain", PackedStringArray(["FACTION TERRAIN"])),
+		Kit.warscroll("unit"),
+	]
+	return Kit.faction(scrolls, "home")
+
+
+## A catalog whose Army of Renown "Horde" includes the given units of the faction "home". Its roster
+## allows every unit of both factions, so only the inclusions decide which are offered.
+func _including_catalog(inclusions: Array[RosterInclusion]) -> ArmyCatalog:
+	var faction := _faction()
+	var home := _home()
+	faction.armies_of_renown[0].roster = ArmyRoster.new()
+	faction.armies_of_renown[0].roster.included_units = inclusions
+	for warscroll in faction.warscrolls + home.warscrolls:
+		faction.armies_of_renown[0].roster.entries.append(Kit.roster_entry(warscroll.name))
+	var loader := func(faction_id: String) -> Faction: return home if faction_id == "home" else null
+	return Kit.catalog(faction, null, loader)
+
+
+func _inclusion(faction_id: String, units := PackedStringArray()) -> RosterInclusion:
+	var inclusion := RosterInclusion.new()
+	inclusion.faction = faction_id
+	inclusion.units = units
+	return inclusion
+
+
+func _unit_ids(catalog: ArmyCatalog, army: Army = null) -> Array:
+	return catalog.unit_warscrolls(army).map(func(w: Warscroll) -> String: return w.id)
+
+
+func test_unit_warscrolls_without_an_army_are_the_factions_own() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(_unit_ids(catalog), ["unit", "hero"])
+
+
+func test_unit_warscrolls_include_a_whole_faction() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	var ids := _unit_ids(catalog, _horde_army())
+	assert_true("sailor" in ids and "captain" in ids, str(ids))
+
+
+func test_unit_warscrolls_include_only_the_named_units() -> void:
+	var catalog := _including_catalog([_inclusion("home", PackedStringArray(["Captain"]))] as Array[RosterInclusion])
+	var ids := _unit_ids(catalog, _horde_army())
+	assert_true("captain" in ids and not "sailor" in ids, str(ids))
+
+
+func test_unit_warscrolls_leave_out_included_manifestations_and_terrain() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	var ids := _unit_ids(catalog, _horde_army())
+	assert_false("home_manifest" in ids or "home_terrain" in ids, str(ids))
+
+
+func test_unit_warscrolls_ignore_an_inclusion_of_the_own_faction() -> void:
+	var catalog := _including_catalog([_inclusion("test_faction")] as Array[RosterInclusion])
+	assert_eq(_unit_ids(catalog, _horde_army()), ["unit", "hero"])
+
+
+func test_unit_warscrolls_do_not_duplicate_a_warscroll_the_faction_has() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(_unit_ids(catalog, _horde_army()).count("unit"), 1)
+
+
+func test_unit_warscrolls_do_not_duplicate_across_inclusions() -> void:
+	var inclusions: Array[RosterInclusion] = [_inclusion("home"), _inclusion("home", PackedStringArray(["Sailor"]))]
+	var catalog := _including_catalog(inclusions)
+	assert_eq(_unit_ids(catalog, _horde_army()).count("sailor"), 1)
+
+
+func test_unit_warscrolls_skip_an_inclusion_of_a_faction_that_cannot_load() -> void:
+	var catalog := _including_catalog([_inclusion("nowhere")] as Array[RosterInclusion])
+	assert_eq(_unit_ids(catalog, _horde_army()), ["unit", "hero"])
+
+
+func test_unit_warscrolls_include_nothing_for_an_army_without_an_army_of_renown() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(_unit_ids(catalog, Kit.army()), ["unit", "hero"])
+
+
+func test_find_warscroll_finds_an_own_unit() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.find_warscroll(_horde_army(), "hero").id, "hero")
+
+
+func test_find_warscroll_prefers_the_own_faction_for_a_shared_id() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_same(catalog.find_warscroll(_horde_army(), "unit"), catalog.faction.get_warscroll("unit"))
+
+
+func test_find_warscroll_finds_an_included_unit() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.find_warscroll(_horde_army(), "sailor").id, "sailor")
+
+
+func test_find_warscroll_is_null_for_an_unknown_id() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_null(catalog.find_warscroll(_horde_army(), "gone"))
+
+
+func test_find_warscroll_is_null_for_a_unit_the_army_of_renown_does_not_include() -> void:
+	var catalog := _including_catalog([_inclusion("home", PackedStringArray(["Captain"]))] as Array[RosterInclusion])
+	assert_null(catalog.find_warscroll(_horde_army(), "sailor"))
+
+
+func test_included_faction_id_is_empty_for_an_own_unit() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.included_faction_id(_horde_army(), "hero"), "")
+
+
+func test_included_faction_id_is_empty_for_a_shared_id() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.included_faction_id(_horde_army(), "unit"), "")
+
+
+func test_included_faction_id_is_the_home_faction_for_an_included_unit() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.included_faction_id(_horde_army(), "sailor"), "home")
+
+
+func test_included_faction_id_is_empty_for_an_unknown_id() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.included_faction_id(_horde_army(), "gone"), "")
+
+
+func test_included_faction_id_is_empty_without_an_army_of_renown() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.included_faction_id(Kit.army(), "sailor"), "")
+
+
+func test_warscroll_of_an_included_auxiliary_unit_comes_from_its_faction() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	var unit := Kit.unit("u1", "sailor")
+	unit.faction_id = "home"
+	assert_eq(catalog.warscroll(unit).id, "sailor")
+
+
+func test_warscroll_of_an_included_unit_in_a_built_regiment_comes_from_its_faction() -> void:
+	var catalog := _including_catalog([_inclusion("home")] as Array[RosterInclusion])
+	var unit := Kit.unit("u1", "sailor")
+	unit.faction_id = "home"
+	var regiment := Kit.regiment("r1", [unit] as Array[ArmyUnit])
+	assert_eq(catalog.warscroll(unit, regiment).id, "sailor")
+
+
+# Units filtered by an Army of Renown roster
+
+## A catalog whose Army of Renown "Horde" has the given roster entries and excluded unit names, and
+## includes all of the faction "home".
+func _filtering_catalog(entries: Array[RosterEntry], excluded := PackedStringArray()) -> ArmyCatalog:
+	var faction := _faction()
+	var home := _home()
+	var renown := faction.armies_of_renown[0]
+	renown.roster = ArmyRoster.new()
+	renown.roster.entries = entries
+	renown.roster.excluded_units = excluded
+	renown.roster.included_units = [_inclusion("home")] as Array[RosterInclusion]
+	var loader := func(faction_id: String) -> Faction: return home if faction_id == "home" else null
+	return Kit.catalog(faction, null, loader)
+
+
+func test_unit_warscrolls_leave_out_own_units_matching_no_roster_entry() -> void:
+	var catalog := _filtering_catalog([Kit.roster_entry("Hero")] as Array[RosterEntry])
+	var ids := _unit_ids(catalog, _horde_army())
+	assert_true("hero" in ids and not "unit" in ids, str(ids))
+
+
+func test_unit_warscrolls_leave_out_excluded_units() -> void:
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero"), Kit.roster_entry("Unit")]
+	var catalog := _filtering_catalog(entries, PackedStringArray(["Hero"]))
+	var ids := _unit_ids(catalog, _horde_army())
+	assert_true("unit" in ids and not "hero" in ids, str(ids))
+
+
+func test_unit_warscrolls_leave_out_included_units_matching_no_roster_entry() -> void:
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero"), Kit.roster_entry("Captain")]
+	var catalog := _filtering_catalog(entries)
+	var ids := _unit_ids(catalog, _horde_army())
+	assert_true("captain" in ids and not "sailor" in ids, str(ids))
+
+
+func test_unit_warscrolls_keep_included_units_matching_a_roster_entry() -> void:
+	var catalog := _filtering_catalog([Kit.roster_entry("Sailor")] as Array[RosterEntry])
+	assert_eq(_unit_ids(catalog, _horde_army()), ["sailor"])
+
+
+func test_unit_warscrolls_are_not_filtered_when_the_army_overrides_constraints() -> void:
+	var catalog := _filtering_catalog([Kit.roster_entry("Hero")] as Array[RosterEntry], PackedStringArray(["Hero"]))
+	var army := _horde_army()
+	army.override_constraints = true
+	var ids := _unit_ids(catalog, army)
+	assert_true("hero" in ids and "unit" in ids and "sailor" in ids and "captain" in ids, str(ids))
+
+
+func test_unit_warscrolls_are_not_filtered_for_an_army_without_an_army_of_renown() -> void:
+	var catalog := _filtering_catalog([Kit.roster_entry("Captain")] as Array[RosterEntry])
+	assert_eq(_unit_ids(catalog, Kit.army()), ["unit", "hero"])
+
+
+func test_unit_warscrolls_without_an_army_are_not_filtered_by_a_roster() -> void:
+	var catalog := _filtering_catalog([Kit.roster_entry("Captain")] as Array[RosterEntry])
+	assert_eq(_unit_ids(catalog), ["unit", "hero"])
+
+
+# Units only one Army of Renown can include
+
+## A catalog whose Army of Renown "Horde" has a roster allowing every unit of the faction, whose unit
+## "march_unit" can only be included in the Army of Renown "March" (which has no roster).
+func _march_catalog() -> ArmyCatalog:
+	var faction := _faction()
+	faction.warscrolls.append(Kit.warscroll("march_unit"))
+	faction.warscrolls[-1].army_of_renown = "March"
+	var renown := faction.armies_of_renown[0]
+	renown.roster = ArmyRoster.new()
+	for warscroll in faction.warscrolls:
+		renown.roster.entries.append(Kit.roster_entry(warscroll.name))
+	faction.armies_of_renown.append(Kit.army_of_renown("March"))
+	faction.armies_of_renown[1].roster = null
+	return Kit.catalog(faction)
+
+
+func _march_army() -> Army:
+	var army := Kit.army()
+	army.army_of_renown = "March"
+	return army
+
+
+func test_unit_warscrolls_leave_out_an_army_of_renown_unit_for_an_army_without_one() -> void:
+	assert_false("march_unit" in _unit_ids(_march_catalog(), Kit.army()))
+
+
+func test_unit_warscrolls_leave_out_an_army_of_renown_unit_for_another_army_of_renown() -> void:
+	assert_false("march_unit" in _unit_ids(_march_catalog(), _horde_army()))
+
+
+func test_unit_warscrolls_keep_an_army_of_renown_unit_for_its_own_army_of_renown() -> void:
+	assert_true("march_unit" in _unit_ids(_march_catalog(), _march_army()))
+
+
+func test_unit_warscrolls_keep_an_army_of_renown_unit_when_the_army_overrides_constraints() -> void:
+	var army := Kit.army()
+	army.override_constraints = true
+	assert_true("march_unit" in _unit_ids(_march_catalog(), army))
+
+
+func test_unit_warscrolls_without_an_army_keep_an_army_of_renown_unit() -> void:
+	assert_true("march_unit" in _unit_ids(_march_catalog()))
+
+
+func test_unit_warscrolls_keep_unrestricted_units_for_an_army_without_an_army_of_renown() -> void:
+	assert_true("unit" in _unit_ids(_march_catalog(), Kit.army()))
+
+
+func test_unit_warscrolls_leave_out_an_included_army_of_renown_unit_for_another_army_of_renown() -> void:
+	var catalog := _filtering_catalog([Kit.roster_entry("Sailor")] as Array[RosterEntry])
+	var home := catalog._load_faction.call("home") as Faction
+	home.get_warscroll("sailor").army_of_renown = "March"
+	assert_false("sailor" in _unit_ids(catalog, _horde_army()))

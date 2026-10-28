@@ -114,6 +114,14 @@ def test_warscroll_omits_zero_banishment():
     assert "banishment" not in schema.warscroll(ws(banishment=0))
 
 
+def test_warscroll_keeps_its_army_of_renown():
+    assert schema.warscroll(ws(army_of_renown="The Iron March"))["army_of_renown"] == "The Iron March"
+
+
+def test_warscroll_omits_empty_army_of_renown():
+    assert "army_of_renown" not in schema.warscroll(ws(army_of_renown=""))
+
+
 def test_warscroll_drops_unknown_fields():
     assert "slug" not in schema.warscroll(ws(slug="test-riders"))
 

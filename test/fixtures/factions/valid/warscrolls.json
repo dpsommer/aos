@@ -3,6 +3,7 @@
 		{
 			"id": "unit_one",
 			"name": "Unit One",
+			"army_of_renown": "Test March",
 			"points": 120,
 			"unit_size": 5,
 			"base_size": "32mm",

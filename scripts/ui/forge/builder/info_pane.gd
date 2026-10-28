@@ -211,7 +211,7 @@ func _roster() -> void:
 	var hidden := 0
 	var by_type := {}
 	var by_id := {}
-	for warscroll in builder.catalog.unit_warscrolls():
+	for warscroll in builder.catalog.unit_warscrolls(army):
 		if warscroll.legends and not army.show_legends:
 			hidden += 1
 			continue

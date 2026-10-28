@@ -107,7 +107,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Search:** the placeholder names what the tab searches, on every tab. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
     - Search unfolds everything it shows. On Army settings it shows the settings whose title or note matches.
     - A tab with no matches says so.
-  - **Roster:** the faction's units, grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
+  - **Roster:** the faction's units, plus any its Army of Renown includes from other factions (the Throngankor Alliance's Kharadron Overlords). An Army of Renown shows only the units its roster allows, and units that belong to one Army of Renown (the Iron March's Cogforts) show only in it, unless the army overrides its constraints. Units are grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
     - **Unit cards:** points, plus Scourge and Legends chips.
     - **A star** pins the unit to a Favourites list at the top. Favourites are kept per faction in `user://forge.cfg`.
     - **Clicking a card** shows its warscroll and "Add as auxiliary unit". Warscrolls in the builder are `WarscrollCard`s, each in its own box: the name in Cinzel with points, model count and base size under it, characteristics in boxes (Move, Health, Control, Save, then Ward and Banish), a bordered table for ranged and one for melee weapons, each with its icon (`ranged.svg`, `melee.svg`), its values bold and centred in fixed-width columns so Attacks to Damage line up between the tables, each weapon's abilities under it (and a skull before a weapon changed by Battle Damaged, see [ability cards](abilities.md)), then the abilities as [ability cards](abilities.md) and the keywords. An ability that summons a manifestation (e.g. Jacobus Vyne's Summon Wisper) has the manifestation's warscroll indented under it, from `ArmyCatalog.summoned()`; so do warscrolls in Regiments of Renown cards and the faction browser. The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
@@ -137,7 +137,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - a short battle tactics card opens the card under Rules;
     - a lore's short card opens it under Rules;
     - View in Rules, in the Lores section, opens the Lores section under Rules.
-- **Picker:** replaces the info pane to add something, until it is closed or something is picked. It can show:
+- **Picker:** replaces the info pane to add something, until it is closed or something is picked. Its units are those the Roster tab shows. It can show:
   - Heroes to lead a regiment;
   - units the leader's regiment options allow, or every unit when constraints are overridden;
   - auxiliary units;

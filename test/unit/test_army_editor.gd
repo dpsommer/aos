@@ -1057,3 +1057,58 @@ func test_overriding_does_not_allow_an_unknown_regiment_of_renown() -> void:
 	var editor := _editor()
 	editor.set_override_constraints(true)
 	assert_false(editor.can_add_regiment_of_renown("Nope"))
+
+
+# Units included from other factions
+
+## An editor whose Army of Renown "Horde" includes the faction "home"'s hero, grunt and plain unit.
+func _including_editor() -> ArmyEditor:
+	var faction := _faction()
+	var inclusion := RosterInclusion.new()
+	inclusion.faction = "home"
+	faction.armies_of_renown[0].roster.included_units = [inclusion] as Array[RosterInclusion]
+	var scrolls: Array[Warscroll] = [Kit.hero("away_hero"), Kit.warscroll("away_grunt")]
+	scrolls[1].weapon_options.append(Kit.weapon_option("Axe", 1, 5))
+	var home := Kit.faction(scrolls, "home")
+	var loader := func(faction_id: String) -> Faction: return home if faction_id == "home" else null
+	var army := Kit.army()
+	army.army_of_renown = "Horde"
+	return ArmyEditor.new(army, Kit.catalog(faction, null, loader))
+
+
+func test_added_included_unit_records_its_faction() -> void:
+	var editor := _including_editor()
+	var regiment := editor.add_regiment("hero_a")
+	assert_eq(editor.add_unit(regiment.id, "away_grunt").faction_id, "home")
+
+
+func test_added_included_unit_gets_default_weapon_options() -> void:
+	var editor := _including_editor()
+	var regiment := editor.add_regiment("hero_a")
+	assert_false(editor.add_unit(regiment.id, "away_grunt").weapon_options.is_empty())
+
+
+func test_added_own_unit_has_no_faction() -> void:
+	var editor := _including_editor()
+	var regiment := editor.add_regiment("hero_a")
+	assert_eq(editor.add_unit(regiment.id, "grunt").faction_id, "")
+
+
+func test_included_hero_can_lead_a_new_regiment() -> void:
+	var editor := _including_editor()
+	var regiment := editor.add_regiment("away_hero")
+	assert_eq([regiment.units.size(), regiment.units[0].faction_id], [1, "home"])
+
+
+func test_included_hero_leader_leaves_room_for_more_units() -> void:
+	var editor := _including_editor()
+	var regiment := editor.add_regiment("away_hero")
+	assert_not_null(editor.add_unit(regiment.id, "grunt"))
+
+
+func test_added_included_auxiliary_unit_records_its_faction() -> void:
+	assert_eq(_including_editor().add_auxiliary("away_grunt").faction_id, "home")
+
+
+func test_added_own_auxiliary_unit_has_no_faction() -> void:
+	assert_eq(_including_editor().add_auxiliary("grunt").faction_id, "")

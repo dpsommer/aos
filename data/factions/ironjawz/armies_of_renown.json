@@ -33,6 +33,14 @@
 						"unit": "Weirdbrute Wrekkaz"
 					},
 					{
+						"unit": "Tyrant",
+						"max": 1
+					},
+					{
+						"unit": "Gluttons",
+						"max": 1
+					},
+					{
 						"unit": "Ardboy Big Boss",
 						"per": [
 							"Brutes",
@@ -70,6 +78,15 @@
 							"Brutes",
 							"Brute Ragerz",
 							"Weirdbrute Wrekkaz"
+						]
+					}
+				],
+				"included_units": [
+					{
+						"faction": "ogor_mawtribes",
+						"units": [
+							"Tyrant",
+							"Gluttons"
 						]
 					}
 				],
