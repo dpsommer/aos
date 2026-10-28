@@ -9,7 +9,6 @@ Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoad
 `faction.json` | Yes | `id`, `name`, `grand_alliance` (`order`, `chaos`, `death`, `destruction`), `legends` (the whole faction has moved to Legends), `battle_traits`, `battle_formations`, `enhancement_tables`, `lores`
 `warscrolls.json` | No | `{"warscrolls": [...]}`: matched play warscrolls with battle profiles
 `armies_of_renown.json` | No | `{"armies_of_renown": [...]}`: name, source, `legends`, text (description and roster), battle traits, enhancement tables, lores
-`regiments_of_renown.json` | No | `{"regiments_of_renown": [{"shared": "<name>"}, ...]}`: the Regiments of Renown the faction's armies can include, which live in `data/shared/regiments_of_renown.json`; see [Regiments of Renown](#regiments-of-renown)
 `spearhead.json` | No | `{"spearheads": [...]}`: army list (`general`, `units`), battle traits, regiment abilities, enhancements, and the Spearhead versions of warscrolls
 `path_to_glory.json` | No | `{"sections": [...]}`: titled text sections, plus any warscrolls (e.g. the Anvil of Apotheosis hero)
 
@@ -38,7 +37,7 @@ Fix a typo in a shared entry once, in `tools/faction_import/shared.json`, not in
 `BattleFormation` | **`name`**, `points`, `abilities`
 `EnhancementTable` | **`name`** (type, e.g. "Heroic Traits"), `group` (e.g. "Lords of the Sky-fleets"), `source`, `units` (names of the only warscrolls that can be given its enhancements, e.g. the Skyvessels for Great Endrinworks; absent when the table has no restriction of its own, though Heroic Traits and Artefacts of Power still need a HERO), `entries`
 `Lore` | **`name`**, `kind` (spell, prayer, manifestation), `points` (always written in `faction.json`, usually 0), `source`, `entries`
-`RegimentOfRenown` | **`name`**, `source`, `legends`, **`points`**, `text` (rules and notes for the whole regiment, e.g. a keyword its units gain), `units` (`[{count, name, faction, warscroll, notes}]`, see below), `abilities`, `warscrolls` (units the regiment defines itself)
+`RegimentOfRenown` | **`name`**, `source`, `legends`, **`points`**, `factions` (ids of the factions whose armies can include it), `text` (rules and notes for the whole regiment, e.g. a keyword its units gain), `units` (`[{count, name, faction, warscroll, notes}]`, see below), `abilities`, `warscrolls` (units the regiment defines itself)
 `RegimentUnit` | **`count`**, **`name`**, `faction` (the home faction's id; empty for a unit in the regiment's own `warscrolls`), **`warscroll`** (the warscroll's id there), `notes` (which size or model, e.g. "10 models", "the Aelsling")
 `Spearhead` | **`name`**, `text`, **`general`**, `units` (`[{count, name, notes}]`, names match the Spearhead's own warscrolls), `battle_traits`, `regiment_abilities`, `enhancements`, `warscrolls`
 `RulesSection` | **`name`**, `text`, `warscrolls`
@@ -132,7 +131,7 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
    `build.py` stops if an override matches nothing, so stale overrides get noticed.
    If the faction has a warscroll or Army of Renown another faction also has (e.g. a Death faction's Nagash), list it in `tools/faction_import/shared.json` and rebuild; see [Shared entries](#shared-entries).
 4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`. If the faction is Legends, also add it to `_LEGENDS`, which the Forge uses to label it without loading its data; `test_faction_data.gd` checks it agrees with `faction.json`.
-5. Rerun `build_regiments.py` so the faction gets the Regiments of Renown it can include and any regiment with its units can find their warscrolls; see [Regiments of Renown](#regiments-of-renown).
+5. Rerun `build_regiments.py` so the Regiments of Renown the faction can include list its id and any regiment with its units can find their warscrolls; see [Regiments of Renown](#regiments-of-renown).
 6. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
    ```sh
    PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/faction_import/tests
@@ -171,7 +170,7 @@ The Wahapedia parsers rely on Wahapedia's page structure. A unit page whose shee
 
 ## Regiments of Renown
 
-A Regiment of Renown is a pre-built group of units with abilities of its own that armies of other factions can include (core rules 3.5). Each is stored once in `data/shared/regiments_of_renown.json` (`{"regiments_of_renown": [...]}`, in the `RegimentOfRenown` shape), and every faction that can include it lists `{"shared": "<name>"}` in its `regiments_of_renown.json`. A regiment's units point at the warscrolls of their home faction by faction and warscroll id (Arkhan the Black is `ossiarch_bonereapers` / `arkhan_the_black_mortarch_of_sacrament`), so the loader doesn't load other factions; `test_faction_data.gd` checks every unit resolves. A unit the regiments catalogue defines itself (Gotrek Gurnisson, Mask of the Deceiver, the Outlaw Cogforts) has no faction and is in the regiment's `warscrolls`.
+A Regiment of Renown is a pre-built group of units with abilities of its own that armies of other factions can include (core rules 3.5). Each is stored once in `data/shared/regiments_of_renown.json` (`{"regiments_of_renown": [...]}`, in the `RegimentOfRenown` shape), with the ids of the factions that can include it in `factions`; the loader gives each faction the regiments that list its id. Unlike shared warscrolls and Armies of Renown, factions don't reference regiments, as a reference would carry nothing of the faction's own, and listing the factions on the regiment matches the Battle Profiles, which say per regiment which factions can include it. `test_faction_data.gd` checks every listed id is a faction. A regiment's units point at the warscrolls of their home faction by faction and warscroll id (Arkhan the Black is `ossiarch_bonereapers` / `arkhan_the_black_mortarch_of_sacrament`), so the loader doesn't load other factions; `test_faction_data.gd` checks every unit resolves. A unit the regiments catalogue defines itself (Gotrek Gurnisson, Mask of the Deceiver, the Outlaw Cogforts) has no faction and is in the regiment's `warscrolls`.
 
 `tools/faction_import/build_regiments.py` builds them all, after the factions they draw units from:
 
@@ -180,7 +179,7 @@ python -I tools/faction_import/fetch.py --regiments <download dir>
 python -I tools/faction_import/build_regiments.py <download dir> > report.txt
 ```
 
-It writes the shared file and the `regiments_of_renown.json` of every faction in `data/factions/`, so rerun it after adding a faction. A unit that resolves to no warscroll stops the build.
+It writes the shared file, listing for each regiment the factions in `data/factions/` that can include it, so rerun it after adding a faction. A unit that resolves to no warscroll stops the build.
 
 - **BSData** (`Regiments of Renown.cat` and the game system) is the primary source. Each regiment's force entry in the game system has its points and the faction catalogues it is allowed for, the catalogue's "Regiment of Renown: <name>" upgrade entry has its abilities, and its unit links shown for that force are its units, with the count each link's minimum is set to. Regiments only for Path to Glory campaigns (the Ravaged Coast's Realmstone Innovator, Sinister Nullifier, Warped Saboteur and Weird-Crafta, and the Regiment of Ghyran) are left out. Factions that aren't built (Beasts of Chaos and Bonesplitterz) get no references; the report lists them.
 - **Wahapedia** has a page for each regiment under every faction that can include it, which faction pages don't link, so `fetch.py --regiments` tries each allowed faction and spellings of the name; names it can't derive go in the overrides' `wahapedia_names`. The page supplies unit size notes, units BSData misses (the Sigil Convocation's three manifestations), notes such as Krittok's Clawpack's keyword, each unit's home faction (from its link), and the order of units and abilities. Its unit counts sometimes count models ("5 Vanari Dawnriders" is one unit), so counts come from BSData. Its background description is left out.

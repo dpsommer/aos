@@ -1,10 +1,12 @@
 extends GutTest
 ## Unit tests for the faction rules browser (scripts/ui/forge/faction_browser.gd).
 ##
-## Uses the fixture faction in test/fixtures/factions/valid rather than real faction data.
+## Uses the fixture faction in test/fixtures/factions/valid, with the regiments in
+## test/fixtures/regiments/valid, rather than real faction data.
 
 const FactionBrowserScene := preload("res://scenes/ui/forge/faction_browser.tscn")
 const FIXTURE := "res://test/fixtures/factions/valid"
+const REGIMENTS_FIXTURE := "res://test/fixtures/regiments/valid"
 const UIKit := preload("res://test/support/ui_kit.gd")
 
 
@@ -17,6 +19,7 @@ func _make_browser() -> FactionBrowser:
 
 func _fixture() -> Faction:
 	var loader := FactionLoader.new()
+	loader.shared_dir = REGIMENTS_FIXTURE
 	var faction := loader.load_faction(FIXTURE)
 	assert_eq(loader.errors.size(), 0, "fixture failed to load: %s" % str(loader.errors))
 	return faction

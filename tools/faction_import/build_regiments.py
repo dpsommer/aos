@@ -4,10 +4,9 @@ Usage: python -I build_regiments.py <wahapedia dir> [--overrides FILE] [--data D
                                     [--bsdata DIR] [--update-bsdata]
 
 <wahapedia dir> is the directory `fetch.py --regiments` wrote, or "-" to build from BSData alone.
-Writes data/shared/regiments_of_renown.json, every regiment once, and each built faction's
-data/factions/<id>/regiments_of_renown.json, which references the regiments that faction can
-include. Each regiment unit names its home faction and warscroll, so the factions must be built
-first; a unit that resolves to no warscroll stops the build. Regiments only for Path to Glory
+Writes data/shared/regiments_of_renown.json, every regiment once with the ids of the built factions
+that can include it. Each regiment unit names its home faction and warscroll, so the factions must
+be built first; a unit that resolves to no warscroll stops the build. Regiments only for Path to Glory
 campaigns (BSData's "Path to Glory: Ravaged Coast" ones, and the Regiment of Ghyran, which no
 faction can include) are left out.
 
@@ -216,14 +215,13 @@ def build(bsdata_dir, wahapedia_dir, overrides, data_dir=DEFAULT_DATA):
 
 
 def write(merged, data_dir=DEFAULT_DATA):
-    """Writes the shared regiments and every built faction's references to them."""
+    """Writes the shared regiments, each listing the ids of the built factions that can include it."""
+    ids = {merge.norm(name): fid for name, (fid, _) in built_factions(data_dir).items()}
+    for r in merged:
+        r["faction_ids"] = sorted({ids[merge.norm(f)] for f in r["factions"] if merge.norm(f) in ids})
     shared = {"regiments_of_renown": [regiments.regiment(r) for r in sorted(merged, key=lambda r: r["name"])]}
     os.makedirs(os.path.join(data_dir, "shared"), exist_ok=True)
     dump(schema.tidy(shared), os.path.join(data_dir, "shared", FILE))
-    for name, (fid, _) in built_factions(data_dir).items():
-        refs = [{"shared": r["name"]} for r in sorted(merged, key=lambda r: r["name"])
-                if merge.norm(name) in {merge.norm(f) for f in r["factions"]}]
-        dump({"regiments_of_renown": refs}, os.path.join(data_dir, "factions", fid, FILE))
 
 
 def unbuilt_factions(merged, data_dir=DEFAULT_DATA):

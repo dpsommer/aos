@@ -1102,156 +1102,172 @@ func test_invalid_ability_colour_error_lists_the_allowed_colours() -> void:
 
 # Regiments of Renown
 
+const REGIMENT_FIXTURES := "res://test/fixtures/regiments"
+
+
+## The regiments in the shared regiments file of [param fixture] under [constant REGIMENT_FIXTURES].
 func _regiments(fixture := "valid") -> Array:
-	return _json(fixture, "regiments_of_renown.json").regiments_of_renown
+	return JSON.parse_string(FileAccess.get_file_as_string(
+			REGIMENT_FIXTURES.path_join(fixture).path_join("regiments_of_renown.json"))).regiments_of_renown
+
+
+func _regiment_loader(fixture: String) -> FactionLoader:
+	return _shared_loader(REGIMENT_FIXTURES.path_join(fixture))
+
+
+## The valid fixture faction, with [param fixture]'s regiments as the shared ones.
+func _load_regiments(fixture := "valid") -> Faction:
+	return _regiment_loader(fixture).load_faction(_dir("valid"))
+
+
+func _regiment_errors(fixture: String) -> PackedStringArray:
+	var loader := _regiment_loader(fixture)
+	loader.load_faction(_dir("valid"))
+	return loader.errors
+
+
+## The regiments in [param fixture] that the valid fixture faction can include.
+func _own_regiments(fixture := "valid") -> Array:
+	var faction_id: String = _json("valid", "faction.json").id
+	return _regiments(fixture).filter(func(r: Dictionary) -> bool: return faction_id in r.factions)
 
 
 func test_regiment_of_renown_fields_come_from_file() -> void:
-	var expected: Dictionary = _regiments()[0]
-	var regiment: RegimentOfRenown = _load("valid").regiments_of_renown[0]
+	var expected: Dictionary = _own_regiments()[0]
+	var regiment: RegimentOfRenown = _load_regiments().regiments_of_renown[0]
 	assert_eq([regiment.name, regiment.source, regiment.text, regiment.points],
 			[expected.name, expected.source, expected.text, int(expected.points)])
 
 
 func test_regiment_of_renown_has_one_entry_per_file_entry() -> void:
-	assert_eq(_load("valid").regiments_of_renown.size(), _regiments().size())
+	assert_eq(_load_regiments().regiments_of_renown.size(), _own_regiments().size())
 
 
 func test_regiment_of_renown_legends_comes_from_file() -> void:
-	var index := _regiments().find_custom(func(r: Dictionary) -> bool: return r.has("legends"))
+	var index := _own_regiments().find_custom(func(r: Dictionary) -> bool: return r.has("legends"))
 	assert_gt(index, -1, "fixture needs a regiment with legends")
-	assert_eq(_load("valid").regiments_of_renown[index].legends, _regiments()[index].legends)
+	assert_eq(_load_regiments().regiments_of_renown[index].legends, _own_regiments()[index].legends)
 
 
 func test_regiment_of_renown_without_legends_is_not_legends() -> void:
-	var index := _regiments().find_custom(func(r: Dictionary) -> bool: return not r.has("legends"))
+	var index := _own_regiments().find_custom(func(r: Dictionary) -> bool: return not r.has("legends"))
 	assert_gt(index, -1, "fixture needs a regiment without legends")
-	assert_false(_load("valid").regiments_of_renown[index].legends)
+	assert_false(_load_regiments().regiments_of_renown[index].legends)
 
 
 func test_regiment_unit_fields_come_from_file() -> void:
-	var expected: Dictionary = _regiments()[0].units[0]
-	var unit: RegimentUnit = _load("valid").regiments_of_renown[0].units[0]
+	var expected: Dictionary = _own_regiments()[0].units[0]
+	var unit: RegimentUnit = _load_regiments().regiments_of_renown[0].units[0]
 	assert_eq([unit.count, unit.name, unit.faction_id, unit.warscroll_id, unit.notes],
 			[int(expected.count), expected.name, expected.faction, expected.warscroll, expected.notes])
 
 
 func test_regiment_unit_absent_faction_and_notes_default_to_empty() -> void:
-	var expected: Dictionary = _regiments()[0].units[1]
+	var expected: Dictionary = _own_regiments()[0].units[1]
 	assert_false(expected.has("faction") or expected.has("notes"), "fixture unit should omit both")
-	var unit: RegimentUnit = _load("valid").regiments_of_renown[0].units[1]
+	var unit: RegimentUnit = _load_regiments().regiments_of_renown[0].units[1]
 	assert_eq([unit.faction_id, unit.notes], ["", ""])
 
 
 func test_regiment_has_one_unit_per_file_entry() -> void:
-	assert_eq(_load("valid").regiments_of_renown[0].units.size(), _regiments()[0].units.size())
+	assert_eq(_load_regiments().regiments_of_renown[0].units.size(), _own_regiments()[0].units.size())
 
 
 func test_regiment_abilities_are_loaded() -> void:
-	var expected: Dictionary = _regiments()[0].abilities[0]
-	var abilities := _load("valid").regiments_of_renown[0].abilities
+	var expected: Dictionary = _own_regiments()[0].abilities[0]
+	var abilities := _load_regiments().regiments_of_renown[0].abilities
 	assert_eq([abilities[0].name, abilities[0].effect], [expected.name, expected.effect])
 
 
 func test_regiment_own_warscrolls_are_loaded() -> void:
-	var expected: Dictionary = _regiments()[0].warscrolls[0]
-	var warscroll: Warscroll = _load("valid").regiments_of_renown[0].warscrolls[0]
+	var expected: Dictionary = _own_regiments()[0].warscrolls[0]
+	var warscroll: Warscroll = _load_regiments().regiments_of_renown[0].warscrolls[0]
 	assert_eq([warscroll.id, warscroll.name, warscroll.health], [expected.id, expected.name, int(expected.health)])
 
 
 func test_valid_fixture_with_regiments_has_no_errors() -> void:
-	assert_eq(_errors("valid").size(), 0, "\n".join(_errors("valid")))
+	assert_eq(_regiment_errors("valid").size(), 0, "\n".join(_regiment_errors("valid")))
 
 
 func test_regiment_get_warscroll_finds_by_id() -> void:
-	var regiment: RegimentOfRenown = _load("valid").regiments_of_renown[0]
-	var id: String = _regiments()[0].warscrolls[0].id
+	var regiment: RegimentOfRenown = _load_regiments().regiments_of_renown[0]
+	var id: String = _own_regiments()[0].warscrolls[0].id
 	assert_eq(regiment.get_warscroll(id).id, id)
 
 
 func test_regiment_get_warscroll_returns_null_for_unknown_id() -> void:
-	assert_null(_load("valid").regiments_of_renown[0].get_warscroll("not_a_real_warscroll"))
+	assert_null(_load_regiments().regiments_of_renown[0].get_warscroll("not_a_real_warscroll"))
 
 
 func test_regiment_without_warscrolls_has_none() -> void:
-	assert_eq(_load("valid").regiments_of_renown[1].warscrolls.size(), 0)
+	assert_eq(_load_regiments().regiments_of_renown[1].warscrolls.size(), 0)
 
-
-func test_faction_without_regiments_file_has_no_regiments() -> void:
-	assert_eq(_load("minimal").regiments_of_renown.size(), 0)
-
-
-func test_shared_regiment_of_renown_reference_resolves() -> void:
-	var expected: Dictionary = _shared_json("regiments_of_renown.json").regiments_of_renown[0]
-	var regiment: RegimentOfRenown = _load_shared("shared_refs").regiments_of_renown[0]
-	assert_eq([regiment.name, regiment.source, regiment.legends, regiment.points, regiment.text],
-			[expected.name, expected.source, expected.legends, int(expected.points), expected.text])
-
-
-func test_shared_regiment_of_renown_reference_has_shared_units_and_abilities() -> void:
-	var expected: Dictionary = _shared_json("regiments_of_renown.json").regiments_of_renown[0]
-	var regiment: RegimentOfRenown = _load_shared("shared_refs").regiments_of_renown[0]
-	assert_eq([regiment.units[0].warscroll_id, _ability_names(regiment.abilities)],
-			[expected.units[0].warscroll, expected.abilities.map(func(a: Dictionary) -> String: return a.name)])
-
-
-func test_inline_regiment_of_renown_loads_next_to_shared_one() -> void:
-	var expected: Dictionary = _regiments("shared_refs")[1]
-	var regiment: RegimentOfRenown = _load_shared("shared_refs").regiments_of_renown[1]
-	assert_eq([regiment.name, regiment.points], [expected.name, int(expected.points)])
-
-
-func test_unknown_shared_regiment_returns_null() -> void:
-	assert_null(_load_shared("shared_unknown_regiment"))
-
-
-func test_unknown_shared_regiment_error_names_file_and_shared_field() -> void:
-	var errors := _shared_errors("shared_unknown_regiment")
-	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].shared"), str(errors))
 
 
 func test_regiment_without_points_returns_null() -> void:
-	assert_null(_load("regiment_missing_points"))
+	assert_null(_load_regiments("missing_points"))
 
 
 func test_regiment_without_points_error_names_file_and_field_path() -> void:
-	var errors := _errors("regiment_missing_points")
-	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].points"), str(errors))
+	var errors := _regiment_errors("missing_points")
+	assert_true(_has_error_naming(errors, "shared/regiments_of_renown.json", "regiments_of_renown[0].points"), str(errors))
 
 
 func test_wrong_type_regiment_points_returns_null() -> void:
-	assert_null(_load("wrong_type_regiment_points"))
+	assert_null(_load_regiments("wrong_type_points"))
 
 
 func test_wrong_type_regiment_points_error_names_file_and_field_path() -> void:
-	var errors := _errors("wrong_type_regiment_points")
-	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].points"), str(errors))
+	var errors := _regiment_errors("wrong_type_points")
+	assert_true(_has_error_naming(errors, "shared/regiments_of_renown.json", "regiments_of_renown[0].points"), str(errors))
 
 
 func test_wrong_type_regiment_legends_error_names_file_and_field_path() -> void:
-	var errors := _errors("wrong_type_regiment_legends")
-	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].legends"), str(errors))
+	var errors := _regiment_errors("wrong_type_legends")
+	assert_true(_has_error_naming(errors, "shared/regiments_of_renown.json", "regiments_of_renown[0].legends"), str(errors))
 
 
 func test_wrong_type_regiment_units_error_names_file_and_field_path() -> void:
-	var errors := _errors("wrong_type_regiment_units")
-	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].units"), str(errors))
+	var errors := _regiment_errors("wrong_type_units")
+	assert_true(_has_error_naming(errors, "shared/regiments_of_renown.json", "regiments_of_renown[0].units"), str(errors))
 
 
 func test_regiment_unit_without_warscroll_returns_null() -> void:
-	assert_null(_load("regiment_unit_missing_warscroll"))
+	assert_null(_load_regiments("unit_missing_warscroll"))
 
 
 func test_regiment_unit_without_warscroll_error_names_file_and_field_path() -> void:
-	var errors := _errors("regiment_unit_missing_warscroll")
-	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].units[0].warscroll"),
+	var errors := _regiment_errors("unit_missing_warscroll")
+	assert_true(_has_error_naming(errors, "shared/regiments_of_renown.json", "regiments_of_renown[0].units[0].warscroll"),
 			str(errors))
 
 
 func test_wrong_type_regiment_unit_count_error_names_file_and_field_path() -> void:
-	var errors := _errors("wrong_type_regiment_unit_count")
-	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].units[0].count"),
+	var errors := _regiment_errors("wrong_type_unit_count")
+	assert_true(_has_error_naming(errors, "shared/regiments_of_renown.json", "regiments_of_renown[0].units[0].count"),
 			str(errors))
+
+func test_regiment_of_renown_is_loaded_only_for_the_factions_it_lists() -> void:
+	var expected := _own_regiments().map(func(r: Dictionary) -> String: return r.name)
+	assert_lt(expected.size(), _regiments().size(), "fixture needs a regiment for another faction")
+	var names := _load_regiments().regiments_of_renown.map(func(r: RegimentOfRenown) -> String: return r.name)
+	assert_eq(names, expected)
+
+
+func test_regiment_of_renown_factions_come_from_file() -> void:
+	assert_eq(_load_regiments().regiments_of_renown[0].factions, PackedStringArray(_own_regiments()[0].factions))
+
+
+func test_missing_shared_regiments_file_gives_no_regiments() -> void:
+	var faction := _shared_loader(_dir("no_such_shared_dir")).load_faction(_dir("valid"))
+	assert_eq(faction.regiments_of_renown.size(), 0)
+
+
+func test_wrong_type_regiment_factions_error_names_file_and_field_path() -> void:
+	var errors := _regiment_errors("wrong_type_factions")
+	assert_true(_has_error_naming(errors, "shared/regiments_of_renown.json", "regiments_of_renown[0].factions"),
+			str(errors))
+
 
 
 func test_army_of_renown_roster_omitted_manifestations_defaults_to_true() -> void:

@@ -6,6 +6,8 @@ extends Resource
 @export var source: String
 @export var legends: bool
 @export var points: int
+## Ids of the factions whose armies can include it.
+@export var factions: PackedStringArray
 @export var text: String
 @export var units: Array[RegimentUnit]
 @export var abilities: Array[Ability]

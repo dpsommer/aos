@@ -617,6 +617,14 @@ def test_regiment_has_name_points_and_units():
     assert (out["name"], out["points"], len(out["units"])) == ("Krew", 280, 2)
 
 
+def test_regiment_lists_its_faction_ids():
+    assert regiments.regiment(resolved(faction_ids=["ironjawz", "skaven"]))["factions"] == ["ironjawz", "skaven"]
+
+
+def test_regiment_without_faction_ids_lists_no_factions():
+    assert regiments.regiment(resolved())["factions"] == []
+
+
 def test_regiment_unit_names_its_faction_and_warscroll():
     unit = regiments.regiment(resolved())["units"][0]
     assert (unit["count"], unit["faction"], unit["warscroll"]) == (3, "skaven", "gutter_runners")

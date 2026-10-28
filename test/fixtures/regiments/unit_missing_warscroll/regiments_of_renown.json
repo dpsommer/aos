@@ -3,6 +3,9 @@
 		{
 			"name": "Regiment",
 			"points": 10,
+			"factions": [
+				"test_faction"
+			],
 			"units": [
 				{
 					"count": 1,

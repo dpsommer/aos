@@ -2,6 +2,9 @@
 	"regiments_of_renown": [
 		{
 			"name": "Regiment",
+			"factions": [
+				"test_faction"
+			],
 			"units": []
 		}
 	]

@@ -4,6 +4,9 @@
 			"name": "Renowned Regiment",
 			"source": "Expansion",
 			"points": 300,
+			"factions": [
+				"test_faction"
+			],
 			"text": "Regiment restrictions.",
 			"units": [
 				{
@@ -45,6 +48,9 @@
 			"name": "Legendary Regiment",
 			"legends": true,
 			"points": 150,
+			"factions": [
+				"test_faction"
+			],
 			"units": [
 				{
 					"count": 1,
@@ -52,6 +58,15 @@
 					"warscroll": "old_hero"
 				}
 			],
+			"abilities": []
+		},
+		{
+			"name": "Other Faction's Regiment",
+			"points": 200,
+			"factions": [
+				"other_faction"
+			],
+			"units": [],
 			"abilities": []
 		}
 	]

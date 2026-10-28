@@ -120,6 +120,13 @@ func test_some_faction_has_a_regiment_of_renown() -> void:
 	assert_gt(count, 0)
 
 
+func test_every_regiment_of_renown_faction_is_a_loaded_faction() -> void:
+	for faction in _factions:
+		for regiment in faction.regiments_of_renown:
+			for faction_id in regiment.factions:
+				assert_not_null(_faction_with_id(faction_id), "%s: no faction %s" % [regiment.name, faction_id])
+
+
 func test_every_regiment_of_renown_unit_has_a_warscroll() -> void:
 	for faction in _factions:
 		for regiment in faction.regiments_of_renown:

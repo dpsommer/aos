@@ -393,11 +393,11 @@ def test_override_add_factions_for_an_unknown_regiment_stops_the_build():
         br.apply_overrides(with_factions("Skaven"), {"add_factions": {"Nope": ["Ironjawz"]}}, [])
 
 
-def test_override_add_factions_makes_write_reference_the_regiment_from_that_factions_file(data_dir):
+def test_override_add_factions_makes_write_list_that_factions_id(data_dir):
     r = [resolved("Alpha", ["Skaven"])]
     br.apply_overrides(r, {"add_factions": {"Alpha": ["Ironjawz"]}}, [])
     br.write(r, str(data_dir))
-    assert read(str(data_dir / "factions" / "ironjawz" / br.FILE)) == {"regiments_of_renown": [{"shared": "Alpha"}]}
+    assert shared_factions(data_dir) == [["ironjawz", "skaven"]]
 
 
 def test_no_overrides_change_nothing():
@@ -422,6 +422,11 @@ def resolved(name, factions, **fields):
          "units": [{"count": 1, "name": "Unit", "faction_id": "skaven", "warscroll": "unit"}]}
     r.update(fields)
     return r
+
+
+def shared_factions(data_dir):
+    """Each written regiment's factions."""
+    return [r["factions"] for r in read(str(data_dir / "shared" / br.FILE))["regiments_of_renown"]]
 
 
 @pytest.fixture
@@ -449,26 +454,29 @@ def test_write_creates_the_shared_directory(data_dir):
     assert (data_dir / "shared" / br.FILE).exists()
 
 
-def test_write_references_regiments_from_each_factions_file(data_dir):
+def test_write_lists_the_ids_of_the_factions_each_regiment_allows_sorted(data_dir):
     br.write([resolved("Alpha", ["Skaven"]), resolved("Beta", ["Skaven", "Ironjawz"])], str(data_dir))
-    refs = lambda fid: read(str(data_dir / "factions" / fid / br.FILE))["regiments_of_renown"]
-    assert refs("skaven") == [{"shared": "Alpha"}, {"shared": "Beta"}]
-    assert refs("ironjawz") == [{"shared": "Beta"}]
+    assert shared_factions(data_dir) == [["skaven"], ["ironjawz", "skaven"]]
 
 
 def test_write_matches_faction_names_loosely(data_dir):
     br.write([resolved("Alpha", ["SKAVEN"])], str(data_dir))
-    assert read(str(data_dir / "factions" / "skaven" / br.FILE)) == {"regiments_of_renown": [{"shared": "Alpha"}]}
+    assert shared_factions(data_dir) == [["skaven"]]
 
 
-def test_write_gives_a_faction_no_regiments_an_empty_list(data_dir):
-    br.write([resolved("Alpha", ["Skaven"])], str(data_dir))
-    assert read(str(data_dir / "factions" / "ironjawz" / br.FILE)) == {"regiments_of_renown": []}
+def test_write_leaves_out_unbuilt_factions(data_dir):
+    br.write([resolved("Alpha", ["Skaven", "Beasts of Chaos"])], str(data_dir))
+    assert shared_factions(data_dir) == [["skaven"]]
 
 
-def test_write_makes_no_files_for_unbuilt_factions(data_dir):
+def test_write_gives_a_regiment_no_built_faction_allows_an_empty_list(data_dir):
     br.write([resolved("Alpha", ["Beasts of Chaos"])], str(data_dir))
-    assert sorted(os.listdir(str(data_dir / "factions"))) == ["ironjawz", "skaven"]
+    assert shared_factions(data_dir) == [[]]
+
+
+def test_write_makes_no_faction_files(data_dir):
+    br.write([resolved("Alpha", ["Skaven"])], str(data_dir))
+    assert not (data_dir / "factions" / "skaven" / br.FILE).exists()
 
 
 def test_unbuilt_factions_lists_factions_regiments_use_that_are_not_built(data_dir):

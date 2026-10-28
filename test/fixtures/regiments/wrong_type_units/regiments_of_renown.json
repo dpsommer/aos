@@ -3,8 +3,10 @@
 		{
 			"name": "Regiment",
 			"points": 10,
-			"legends": "yes",
-			"units": []
+			"factions": [
+				"test_faction"
+			],
+			"units": "none"
 		}
 	]
 }

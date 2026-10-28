@@ -300,7 +300,8 @@ def merge_regiments(report, bs_list, wh_list):
 
 
 def regiment(r):
-    """A regiment in the schema's shape. Each unit names its home faction's id and its
+    """A regiment in the schema's shape, with the ids of the factions that can include it
+    (faction_ids, set by build_regiments.write()). Each unit names its home faction's id and its
     warscroll's id; a unit the regiment defines itself has no faction and is in its warscrolls."""
     out = {"name": r["name"]}
     if r.get("source"):
@@ -308,6 +309,7 @@ def regiment(r):
     if r.get("legends"):
         out["legends"] = True
     out["points"] = r["points"]
+    out["factions"] = r.get("faction_ids", [])
     if r.get("text"):
         out["text"] = r["text"]
     out["units"] = []
