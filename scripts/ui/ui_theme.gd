@@ -157,6 +157,15 @@ static func _create() -> Theme:
 	_button(theme, "Button", CONTROL, CONTROL_HOVER, CONTROL_BORDER, TEXT)
 	_button(theme, "GoldButton", GOLD, Color("#E8BB5E"), GOLD, Color("#17140C"))
 	_button(theme, "GhostButton", Color.TRANSPARENT, Color.TRANSPARENT, CONTROL_BORDER, Color("#C9CCD3"))
+	# An empty slot to fill, e.g. a battle tactics card or a lore: a ghost button with a dashed border.
+	theme.set_type_variation("DashedButton", "GhostButton")
+	var dashed_borders := {"normal": CONTROL_BORDER, "hover": Color("#5A6170"), "pressed": Color("#5A6170"),
+			"disabled": CONTROL_BORDER.darkened(0.3)}
+	for state: String in dashed_borders:
+		var dashed := DashedStyleBox.new(dashed_borders[state], 10, 10)
+		if state == "hover" or state == "pressed":
+			dashed.bg_color = Color(1, 1, 1, 0.03)
+		theme.set_stylebox(state, "DashedButton", dashed)
 	_button(theme, "IconButton", Color.TRANSPARENT, Color("#2A2F38"), Color.TRANSPARENT, MUTED)
 	theme.set_stylebox("pressed", "IconButton", box(Color("#2A2418"), GOLD_DARK, 6, 6))
 	theme.set_color("font_pressed_color", "IconButton", Color("#E2B24F"))

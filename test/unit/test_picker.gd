@@ -241,6 +241,126 @@ func test_tactic_title_names_the_slot() -> void:
 	assert_true(UIKit.has_label_containing(builder.picker, "2"))
 
 
+# --- Lores ---
+
+func _lore_faction() -> Faction:
+	var faction := UIKit.faction()
+	var lores: Array[Lore] = [Kit.lore("Fire", "spell"), Kit.lore("Ice", "spell"), Kit.lore("Hymns", "prayer")]
+	faction.lores = lores
+	return faction
+
+
+func _lore_builder(army: Army = null, universal: Array[Lore] = []) -> ArmyBuilder:
+	var core := Kit.core(PackedStringArray(["Card A", "Card B"]), universal)
+	return UIKit.builder(self, army if army else UIKit.army_with_regiment(), _lore_faction(), core)
+
+
+func test_open_lores_lists_each_lore_of_the_kind_as_pressable() -> void:
+	var builder := _lore_builder()
+	builder.picker.open_lores("spell", "Spell Lore")
+	for lore_name in ["Fire", "Ice"]:
+		var card := UIKit.keyed(builder.picker, "pick:lore:" + lore_name) as LoreCard
+		assert_not_null(card, lore_name)
+		assert_true(card.pressable, lore_name)
+	assert_null(UIKit.keyed(builder.picker, "pick:lore:Hymns"))
+
+
+func test_open_lores_cards_are_full() -> void:
+	var faction := _lore_faction()
+	var fire: Lore = faction.lores[0]
+	fire.entries = [Kit.ability("Scorch")] as Array[Ability]
+	var builder := UIKit.builder(self, UIKit.army_with_regiment(), faction, _core())
+	builder.picker.open_lores("spell", "Spell Lore")
+	var card := UIKit.keyed(builder.picker, "pick:lore:Fire")
+	assert_gt(UIKit.find_all(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
+
+
+func test_open_lores_shows_the_title() -> void:
+	var builder := _lore_builder()
+	builder.picker.open_lores("spell", "Spell Lore")
+	assert_has(UIKit.label_texts(builder.picker), "Spell Lore")
+
+
+func test_open_lores_marks_the_picker_open() -> void:
+	var builder := _lore_builder()
+	builder.picker.open_lores("spell", "Spell Lore")
+	assert_true(builder.picker.is_open())
+
+
+func test_open_lores_focuses_the_first_lore() -> void:
+	var builder := _lore_builder()
+	builder.picker.open_lores("spell", "Spell Lore")
+	assert_true(UIKit.keyed(builder.picker, "pick:lore:Fire").has_focus())
+
+
+func test_the_armys_current_lore_is_not_listed() -> void:
+	var army := UIKit.army_with_regiment()
+	army.spell_lore = "Fire"
+	var builder := _lore_builder(army)
+	builder.picker.open_lores("spell", "Spell Lore")
+	assert_null(UIKit.keyed(builder.picker, "pick:lore:Fire"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:lore:Ice"))
+
+
+func test_the_other_kinds_current_lore_does_not_hide_a_lore() -> void:
+	var army := UIKit.army_with_regiment()
+	army.prayer_lore = "Fire"
+	var builder := _lore_builder(army)
+	builder.picker.open_lores("spell", "Spell Lore")
+	assert_not_null(UIKit.keyed(builder.picker, "pick:lore:Fire"))
+
+
+func test_pressing_a_lore_sets_it_and_closes() -> void:
+	var army := UIKit.army_with_regiment()
+	var builder := _lore_builder(army)
+	builder.picker.open_lores("spell", "Spell Lore")
+	(UIKit.keyed(builder.picker, "pick:lore:Ice") as LoreCard).pressed.emit()
+	assert_eq(army.spell_lore, "Ice")
+	assert_false(builder.picker.is_open())
+
+
+func test_universal_manifestation_lores_are_marked_with_a_heading() -> void:
+	var universal: Array[Lore] = [Kit.lore("Universal", "manifestation")]
+	var builder := _lore_builder(null, universal)
+	builder.picker.open_lores("manifestation", "Manifestation Lore")
+	var card := UIKit.keyed(builder.picker, "pick:lore:Universal") as LoreCard
+	assert_not_null(card)
+	assert_not_null(card.heading_label)
+
+
+func test_faction_lores_have_no_universal_heading() -> void:
+	var builder := _lore_builder()
+	builder.picker.open_lores("spell", "Spell Lore")
+	assert_null((UIKit.keyed(builder.picker, "pick:lore:Fire") as LoreCard).heading_label)
+
+
+func test_a_faction_manifestation_lore_has_no_universal_heading() -> void:
+	var faction := _lore_faction()
+	faction.lores.append(Kit.lore("Own", "manifestation"))
+	var universal: Array[Lore] = [Kit.lore("Universal", "manifestation")]
+	var builder := UIKit.builder(self, UIKit.army_with_regiment(), faction, Kit.core(PackedStringArray(), universal))
+	builder.picker.open_lores("manifestation", "Manifestation Lore")
+	assert_null((UIKit.keyed(builder.picker, "pick:lore:Own") as LoreCard).heading_label)
+	assert_not_null((UIKit.keyed(builder.picker, "pick:lore:Universal") as LoreCard).heading_label)
+
+
+func test_open_lores_shows_a_message_when_there_is_nothing_else_to_pick() -> void:
+	var army := UIKit.army_with_regiment()
+	army.prayer_lore = "Hymns"
+	var builder := _lore_builder(army)
+	builder.picker.open_lores("prayer", "Prayer Lore")
+	assert_eq(UIKit.find_all(builder.picker, func(n: Node) -> bool: return n is LoreCard).size(), 0)
+	assert_true(UIKit.has_label_containing(builder.picker, "no other"))
+
+
+func test_open_lores_with_nothing_to_pick_focuses_the_close_button() -> void:
+	var army := UIKit.army_with_regiment()
+	army.prayer_lore = "Hymns"
+	var builder := _lore_builder(army)
+	builder.picker.open_lores("prayer", "Prayer Lore")
+	assert_true(UIKit.keyed(builder.picker, "picker:close").has_focus())
+
+
 # --- Regiments of Renown ---
 
 func test_open_regiments_of_renown_lists_available_regiments() -> void:

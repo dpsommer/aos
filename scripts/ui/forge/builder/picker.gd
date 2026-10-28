@@ -1,6 +1,6 @@
 class_name Picker
 extends VBoxContainer
-## Takes over the info pane to pick a unit, battle tactics card or Regiment of Renown to add.
+## Takes over the info pane to pick a unit, battle tactics card, lore or Regiment of Renown to add.
 
 ## Emitted when the player closes the picker without picking, or after a pick.
 signal closed
@@ -65,7 +65,7 @@ func focus_first() -> void:
 func _first_button(node: Node) -> Control:
 	for child in node.get_children():
 		if (child is Button and not child.disabled and child.theme_type_variation != &"BannerButton") \
-				or (child is TacticCard and child.pressable):
+				or (child is PressableCard and child.pressable):
 			return child
 		var found := _first_button(child)
 		if found:
@@ -139,6 +139,31 @@ func open_tactics(slot: int) -> void:
 				close())
 			_list.add_child(item)
 	_open("Battle tactics card %d" % (slot + 1), render)
+
+
+## Lists the lores of [param kind] ("spell", "prayer" or "manifestation") the army can take, in
+## full, under [param title], e.g. "Spell Lore". Pressing a lore picks it. The army's current lore
+## isn't listed.
+func open_lores(kind: String, title: String) -> void:
+	var render := func() -> void:
+		var army := builder.editor.army
+		var picked: String = army.get("%s_lore" % kind)
+		var core := builder.catalog.core
+		for lore in builder.catalog.lore_choices(army, kind):
+			if lore.name == picked:
+				continue
+			var universal := core != null and lore in core.manifestation_lores
+			var item := LoreCard.new(lore, true, "Universal Manifestation Lore" if universal else "", null,
+					builder.catalog.summoned)
+			item.make_pressable("Choose %s as the army's %s" % [lore.name, title.to_lower()])
+			item.set_meta(&"focus_key", "pick:lore:" + lore.name)
+			item.pressed.connect(func() -> void:
+				builder.editor.set_lore(kind, lore.name)
+				close())
+			_list.add_child(item)
+		if _list.get_child_count() == 0:
+			_list.add_child(UIBuilder.label("There are no other lores to choose.", "MutedLabel", true))
+	_open(title, render)
 
 
 ## Lists the Regiments of Renown the army can include, with their rules and warscrolls.

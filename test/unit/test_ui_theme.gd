@@ -406,3 +406,13 @@ func test_option_card_add_places_the_control_in_the_content() -> void:
 	var label := Label.new()
 	card.add(label)
 	assert_eq(label.get_parent(), card.content)
+
+
+func test_dashed_button_draws_a_dashed_border_in_every_state() -> void:
+	var theme := UITheme.get_theme()
+	for state in ["normal", "hover", "pressed", "disabled"]:
+		assert_true(theme.get_stylebox(state, "DashedButton") is DashedStyleBox, state)
+
+
+func test_dashed_button_is_a_ghost_button_variation() -> void:
+	assert_eq(UITheme.get_theme().get_type_variation_base("DashedButton"), &"GhostButton")

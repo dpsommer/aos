@@ -66,6 +66,8 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 
 `UIBuilder` (`scripts/ui/ui_builder.gd`) builds controls in code. Shared pieces:
 - **`OptionCard`** (`scripts/ui/option_card.gd`): a large button holding any controls, which fits its height to them. In toggle mode it shows as selected (gold border) while pressed.
+- **`PressableCard`** (`scripts/ui/forge/builder/pressable_card.gd`): the base of `TacticCard` and `LoreCard`. A card that can be made pressable as a whole, with a gold outline on keyboard focus and a grey one on hover.
+- **`DashedStyleBox`** (`scripts/ui/dashed_style_box.gd`): a rounded box with a dashed border, used by the `DashedButton` variation for empty slots.
 - **`ArtPlaceholder`** (`scripts/ui/art_placeholder.gd`, shader `assets/shaders/ui/art_placeholder.gdshader`): diagonal stripes in a rounded box. It stands in for army, faction and unit art, including the builder's portraits.
 
 ## Army builder
@@ -81,7 +83,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
 - **Builder pane:** the army list, top to bottom.
   - **Army name:** in Cinzel, with a pencil button that swaps it for a field to edit it. Enter or leaving the field saves the new name (a blank name is ignored); Esc cancels.
   - **Validation:** problems and warnings from `ArmyValidator`.
-  - **Battle Tactics:** 2 slots. A filled slot shows the card's name and its battle tactics' names, with Change.
+  - **Battle Tactics:** 2 slots. An empty slot is a dashed box (`DashedButton`) that opens the picker. A filled slot shows the card's name and its battle tactics' names, with Change.
   - **Army List:** each regiment's name, unit count against its capacity, and points, with collapse, Rename and Delete.
     - **Unit rows:** from left to right:
       - a grip, or for a regiment's leader the General crown in the same column, so a Hero leader lines up with the grips below it;
@@ -96,7 +98,10 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (hidden when full, unless constraints are overridden), "Add regiment" and "Add Regiment of Renown" (hidden once the army has one, unless constraints are overridden).
   - **Auxiliary Units:** unit rows and "Add auxiliary unit".
   - **Faction Terrain:** "Up to 1 terrain feature". A row for each terrain warscroll, laid out like a unit row: a portrait, its name, the universal terrain abilities its composition lists (`ArmyBuilder.terrain_abilities()`), its points, and an Add button or, once included, a red bin icon button to remove it. Hidden when the faction has none or its Army of Renown forbids it.
-  - **Lores:** a select each for spell, prayer and manifestation lores, without Legends lores (such as Scourge of Ghyran ones) unless Legends are shown. Hovering a lore's name or select says which units it needs (e.g. "Your army must contain one or more Wizards to cast the spells in your Spell Lore."), and the name turns amber when the army needs that lore and has none. **View in Rules** opens the Rules tab's Lores section.
+  - **Lores:** a slot each for spell, prayer and manifestation lores, side by side, for the kinds the army has lores to choose from.
+    - **Empty slot:** a dashed box, "Choose spell lore", that opens the picker. Its tooltip says which units the lore needs (e.g. "Your army must contain one or more Wizards to cast the spells in your Spell Lore."), and its text turns amber when the army needs that lore and has none.
+    - **Filled slot:** a short `LoreCard`: the kind (with the same tooltip), the lore's name with its points, Scourge and Legends tags, and its spells' or prayers' names as chips. Change and a red bin icon button (which removes the lore and focuses the empty slot) sit in its upper right.
+    - **View in Rules** opens the Rules tab's Lores section.
 - **Info pane:** on the left (`InfoPane`, `info_pane.gd`). A search box sits above tabs for Roster, Rules, Regiments of Renown and Army settings (a gear).
   - **Search:** the placeholder names what the tab searches, on every tab. The query is shared by the tabs. Every word must appear somewhere in an entry (`RulesSearch`), and Esc or the clear button empties it.
     - Search unfolds everything it shows. On Army settings it shows the settings whose title or note matches.
@@ -129,13 +134,14 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - a unit's portrait in the army list opens its card in the Roster (and shows Legends units if it is one);
     - a Regiment of Renown unit's portrait opens its regiment in Regiments of Renown;
     - a short battle tactics card opens the card under Rules;
-    - picking a lore opens it under Rules;
+    - a lore's short card opens it under Rules;
     - View in Rules, in the Lores section, opens the Lores section under Rules.
 - **Picker:** replaces the info pane to add something, until it is closed or something is picked. It can show:
   - Heroes to lead a regiment;
   - units the leader's regiment options allow, or every unit when constraints are overridden;
   - auxiliary units;
   - the battlepack's battle tactics cards in full. The whole card is pressed (clicked, or Enter or Space) to choose it. Cards already chosen for either slot aren't listed;
+  - the lores of one kind in full (`LoreCard`), with each spell or prayer's rules and the warscrolls of the manifestations it summons, and the universal manifestation lores marked as such. As with battle tactics cards, the whole card is pressed to choose it. The army's current lore isn't listed, nor Legends lores unless Legends are shown;
   - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`).
 
   Units are listed in foldable sections by type (Hero, Infantry, Cavalry and so on), as in the Roster. It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.

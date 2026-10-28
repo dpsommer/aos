@@ -11,6 +11,9 @@ const LORE_HELP := {
 	"manifestation": "Your army must contain at least one Wizard or Priest in order to summon Manifestations.",
 }
 
+## The height of an empty battle tactics card or lore slot.
+const SLOT_HEIGHT := 92
+
 var editor: ArmyEditor
 var catalog: ArmyCatalog
 var picker: Picker
@@ -409,8 +412,8 @@ func _tactics_section() -> Control:
 			slot_control = TacticCard.new(card, false, heading, change)
 			_link(slot_control, info_pane.show_tactic.bind(card.name), "Show %s in the Rules tab" % card.name, "tactic_card:%d" % slot)
 		else:
-			slot_control = UIBuilder.button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot, "GhostButton")
-			slot_control.custom_minimum_size.y = 92
+			slot_control = UIBuilder.button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot, "DashedButton")
+			slot_control.custom_minimum_size.y = SLOT_HEIGHT
 		slot_control.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(slot_control)
 	return _section("Battle Tactics", [row])
@@ -515,6 +518,8 @@ static func terrain_abilities(warscroll: Warscroll) -> String:
 	return "Faction terrain feature"
 
 
+## A slot for each kind of lore the army can take: a dashed box to choose one while empty, else
+## the lore's short card, which shows it in the Rules tab, with Change and Remove.
 func _lores_section() -> Control:
 	var army := editor.army
 	var wizard := false
@@ -526,44 +531,43 @@ func _lores_section() -> Control:
 			for keyword in warscroll.keywords:
 				wizard = wizard or keyword.begins_with("WIZARD")
 				priest = priest or keyword.begins_with("PRIEST")
-	var rows: Array = []
-	for pick: Array in [["spell", "Spell Lore", army.spell_lore, wizard], ["prayer", "Prayer Lore", army.prayer_lore, priest],
-			["manifestation", "Manifestation Lore", army.manifestation_lore, wizard or priest]]:
-		var lores := catalog.lore_choices(army, pick[0], pick[2])
-		if lores.is_empty():
-			continue
-		var items := [["None", ""]]
-		for lore in lores:
-			var label := "%s · %d pts" % [lore.name, lore.points] if lore.points else lore.name
-			items.append([label + (" (Legends)" if lore.legends else ""), lore.name])
-		# Hovering the lore shows which units it needs, and its name turns amber when the army
-		# needs it and has none.
-		var title := UIBuilder.label(pick[1])
-		title.custom_minimum_size.x = 160
-		title.tooltip_text = LORE_HELP[pick[0]]
-		title.mouse_filter = Control.MOUSE_FILTER_STOP
-		if pick[3] and pick[2].is_empty():
-			title.add_theme_color_override("font_color", UITheme.WARNING)
+	var row := UIBuilder.hbox([], 12)
+	for pick: Array in [["spell", army.spell_lore, wizard], ["prayer", army.prayer_lore, priest],
+			["manifestation", army.manifestation_lore, wizard or priest]]:
 		var kind: String = pick[0]
-		var choose := func(value: String) -> void:
-			editor.set_lore(kind, value)
-			if not value.is_empty():
-				info_pane.show_lore(value)
-		var select := UIBuilder.select(items, pick[2], choose, "lore:" + kind, LORE_HELP[pick[0]])
-		select.accessibility_name = pick[1]
-		select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		rows.append(UIBuilder.hbox([title, select]))
-	if rows.is_empty():
+		if catalog.lore_choices(army, kind, pick[1]).is_empty():
+			continue
+		var title: String = RulesSections.LORE_KINDS[kind]
+		var lore := catalog.lore(army, kind, pick[1]) if not pick[1].is_empty() else null
+		var slot: Control
+		if lore:
+			var change := UIBuilder.button("Change", pick_lore.bind(kind), "lore:" + kind, "", "Change %s" % title.to_lower())
+			var remove := UIBuilder.icon_button("delete", "Remove %s from the army" % lore.name, remove_lore.bind(kind),
+					"lore_remove:" + kind, "DangerIconButton")
+			var card := LoreCard.new(lore, false, title, UIBuilder.hbox([change, remove], 4))
+			card.heading_label.tooltip_text = LORE_HELP[kind]
+			card.heading_label.mouse_filter = Control.MOUSE_FILTER_PASS
+			_link(card, info_pane.show_lore.bind(lore.name), "Show %s in the Rules tab" % lore.name, "lore_card:" + kind)
+			slot = card
+		else:
+			slot = UIBuilder.button("Choose " + title.to_lower(), pick_lore.bind(kind), "lore:" + kind, "DashedButton",
+					LORE_HELP[kind])
+			slot.custom_minimum_size.y = SLOT_HEIGHT
+			# The slot turns amber when the army needs this lore and has none.
+			if pick[2]:
+				for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
+					slot.add_theme_color_override(state, UITheme.WARNING)
+		slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(slot)
+	if row.get_child_count() == 0:
+		row.free()
 		return null
 	var heading := UIBuilder.label("Lores", "SectionLabel")
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var view := UIBuilder.button("View in Rules", info_pane.show_lores, "army:view_lores", "",
 			"Show the lores in the Rules tab")
 	view.icon = UITheme.icon("book")
-	var box := UIBuilder.vbox([UIBuilder.hbox([heading, view])], 10)
-	for row: Control in rows:
-		box.add_child(row)
-	return box
+	return UIBuilder.vbox([UIBuilder.hbox([heading, view]), row], 10)
 
 
 ## Makes [param control] call [param on_pressed] when clicked, or on Enter or Space with keyboard focus.
@@ -671,6 +675,18 @@ func pick_auxiliary() -> void:
 func pick_tactic(slot: int) -> void:
 	_show_picker()
 	picker.open_tactics(slot)
+
+
+## Picks the army's lore of [param kind] ("spell", "prayer" or "manifestation").
+func pick_lore(kind: String) -> void:
+	_show_picker()
+	picker.open_lores(kind, RulesSections.LORE_KINDS[kind])
+
+
+## Removes the army's lore of [param kind], and focuses the empty slot to choose another.
+func remove_lore(kind: String) -> void:
+	editor.set_lore(kind, "")
+	_focus_key("lore:" + kind)
 
 
 func pick_regiment_of_renown() -> void:

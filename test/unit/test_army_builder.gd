@@ -753,22 +753,14 @@ func _lore_faction() -> Faction:
 	return faction
 
 
-## The Spell Lore's name, whose tooltip says which units the lore needs.
-func _lore_help(builder: ArmyBuilder) -> Label:
-	for label in UIKit.find_all(builder.builder_list, func(n: Node) -> bool: return n is Label):
-		if label.text == "Spell Lore" and label.tooltip_text == ArmyBuilder.LORE_HELP["spell"]:
-			return label
-	return null
-
-
 func test_lores_have_no_help_button() -> void:
 	var builder := _builder(_valid_army(), _lore_faction())
 	assert_does_not_have(UIKit.label_texts(builder.builder_list), "?")
 
 
-func test_lore_select_has_the_help_as_its_tooltip() -> void:
+func test_empty_lore_slot_has_the_help_as_its_tooltip() -> void:
 	var builder := _builder(_valid_army(), _lore_faction())
-	assert_eq((UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton).tooltip_text, ArmyBuilder.LORE_HELP["spell"])
+	assert_eq((UIKit.keyed(builder.builder_list, "lore:spell") as Button).tooltip_text, ArmyBuilder.LORE_HELP["spell"])
 
 
 func test_view_in_rules_shows_the_lores_section() -> void:
@@ -784,23 +776,16 @@ func test_no_view_in_rules_without_lores() -> void:
 	assert_null(UIKit.keyed(_builder(_valid_army()).builder_list, "army:view_lores"))
 
 
-func test_lore_help_is_warning_coloured_when_a_wizard_has_no_spell_lore() -> void:
+func test_empty_lore_slot_is_warning_coloured_when_a_wizard_has_no_spell_lore() -> void:
 	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["wizard"])), _lore_faction())
-	var help := _lore_help(builder)
-	assert_not_null(help)
-	assert_eq(help.get_theme_color("font_color"), UITheme.WARNING)
+	var slot := UIKit.keyed(builder.builder_list, "lore:spell") as Button
+	assert_eq(slot.get_theme_color("font_color"), UITheme.WARNING)
 
 
-func test_lore_help_is_not_warning_coloured_once_a_spell_lore_is_chosen() -> void:
-	var army := UIKit.army_with_regiment(PackedStringArray(["wizard"]))
-	army.spell_lore = "Fire"
-	var builder := _builder(army, _lore_faction())
-	assert_ne(_lore_help(builder).get_theme_color("font_color"), UITheme.WARNING)
-
-
-func test_lore_help_is_not_warning_coloured_without_a_wizard() -> void:
+func test_empty_lore_slot_is_not_warning_coloured_without_a_wizard() -> void:
 	var builder := _builder(_valid_army(), _lore_faction())
-	assert_ne(_lore_help(builder).get_theme_color("font_color"), UITheme.WARNING)
+	var slot := UIKit.keyed(builder.builder_list, "lore:spell") as Button
+	assert_ne(slot.get_theme_color("font_color"), UITheme.WARNING)
 
 
 func test_lore_section_missing_when_faction_has_no_lores() -> void:
@@ -808,11 +793,13 @@ func test_lore_section_missing_when_faction_has_no_lores() -> void:
 	assert_null(UIKit.keyed(builder.builder_list, "lore:spell"))
 
 
-func test_choosing_a_lore_sets_it_on_the_army() -> void:
+func test_choosing_a_lore_in_the_picker_sets_it_on_the_army() -> void:
 	var army := _valid_army()
 	var builder := _builder(army, _lore_faction())
-	(UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton).item_selected.emit(1)
+	(UIKit.keyed(builder.builder_list, "lore:spell") as Button).pressed.emit()
+	(UIKit.keyed(builder.picker, "pick:lore:Fire") as LoreCard).pressed.emit()
 	assert_eq(army.spell_lore, "Fire")
+	assert_false(builder.picker.is_open())
 
 
 # --- Tactics ---
@@ -891,23 +878,22 @@ func test_the_change_button_still_opens_the_picker_rather_than_the_link() -> voi
 	assert_eq(builder.info_pane.tab, "roster")
 
 
-func test_picking_a_lore_shows_it_in_the_rules_tab() -> void:
-	var builder := _builder(UIKit.army_with_regiment(), _lore_faction())
-	var select := UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton
-	select.select(1)
-	select.item_selected.emit(1)
+func test_clicking_a_chosen_lore_shows_it_in_the_rules_tab() -> void:
+	var army := UIKit.army_with_regiment()
+	army.spell_lore = "Fire"
+	var builder := _builder(army, _lore_faction())
+	UIKit.keyed(builder.builder_list, "lore_card:spell").gui_input.emit(_click())
 	assert_eq(builder.info_pane.tab, "rules")
 	assert_has(builder.info_pane.open_lores, "Fire")
 	assert_eq(builder.info_pane.flash_key, "lore:Fire")
 
 
-func test_clearing_a_lore_does_not_switch_tab() -> void:
+func test_removing_a_lore_does_not_switch_tab() -> void:
 	var army := UIKit.army_with_regiment()
 	army.spell_lore = "Fire"
 	var builder := _builder(army, _lore_faction())
-	var select := UIKit.keyed(builder.builder_list, "lore:spell") as OptionButton
-	select.select(0)
-	select.item_selected.emit(0)
+	(UIKit.keyed(builder.builder_list, "lore_remove:spell") as Button).pressed.emit()
+	assert_eq(army.spell_lore, "")
 	assert_eq(builder.info_pane.tab, "roster")
 
 
@@ -1161,3 +1147,94 @@ func test_dialog_save_does_not_go_back_when_saving_fails() -> void:
 	assert_signal_not_emitted(builder, "back_pressed")
 	assert_push_error_count(1)
 	DirAccess.remove_absolute(Sandbox.armies_directory())
+
+
+# --- Lore slots ---
+
+func _two_spell_faction() -> Faction:
+	var faction := UIKit.faction()
+	var lores: Array[Lore] = [Kit.lore("Fire", "spell"), Kit.lore("Ice", "spell"), Kit.lore("Hymns", "prayer")]
+	faction.lores = lores
+	return faction
+
+
+func test_empty_lore_slot_is_a_dashed_button() -> void:
+	var slot := UIKit.keyed(_builder(_valid_army(), _lore_faction()).builder_list, "lore:spell") as Button
+	assert_eq(slot.theme_type_variation, &"DashedButton")
+
+
+func test_empty_tactic_slot_is_a_dashed_button() -> void:
+	var slot := UIKit.keyed(_builder(UIKit.army_with_regiment()).builder_list, "tactic:0") as Button
+	assert_eq(slot.theme_type_variation, &"DashedButton")
+
+
+func test_empty_lore_slot_opens_the_picker_with_the_kinds_title() -> void:
+	var builder := _builder(_valid_army(), _lore_faction())
+	(UIKit.keyed(builder.builder_list, "lore:spell") as Button).pressed.emit()
+	assert_true(builder.picker.is_open())
+	assert_has(UIKit.label_texts(builder.picker), RulesSections.LORE_KINDS["spell"])
+
+
+func test_a_kind_without_lores_has_no_slot() -> void:
+	var builder := _builder(_valid_army(), _lore_faction())
+	assert_not_null(UIKit.keyed(builder.builder_list, "lore:spell"))
+	assert_null(UIKit.keyed(builder.builder_list, "lore:prayer"))
+
+
+func test_a_chosen_lore_is_a_card_with_a_change_button_instead_of_the_dashed_slot() -> void:
+	var army := _valid_army()
+	army.spell_lore = "Fire"
+	var builder := _builder(army, _lore_faction())
+	assert_true(UIKit.keyed(builder.builder_list, "lore_card:spell") is LoreCard)
+	assert_eq(UIKit.keyed(builder.builder_list, "lore:spell").text, "Change")
+
+
+func test_a_chosen_lore_card_is_short() -> void:
+	var army := _valid_army()
+	army.spell_lore = "Fire"
+	var faction := _lore_faction()
+	faction.lores[0].entries = [Kit.ability("Scorch")] as Array[Ability]
+	var card := UIKit.keyed(_builder(army, faction).builder_list, "lore_card:spell")
+	assert_has(UIKit.label_texts(card), "SCORCH")
+	assert_eq(UIKit.find_all(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
+
+
+func test_change_opens_the_picker_without_the_chosen_lore() -> void:
+	var army := _valid_army()
+	army.spell_lore = "Fire"
+	var builder := _builder(army, _two_spell_faction())
+	(UIKit.keyed(builder.builder_list, "lore:spell") as Button).pressed.emit()
+	assert_true(builder.picker.is_open())
+	assert_null(UIKit.keyed(builder.picker, "pick:lore:Fire"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:lore:Ice"))
+
+
+func test_choosing_another_lore_in_the_picker_replaces_the_chosen_one() -> void:
+	var army := _valid_army()
+	army.spell_lore = "Fire"
+	var builder := _builder(army, _two_spell_faction())
+	builder.pick_lore("spell")
+	(UIKit.keyed(builder.picker, "pick:lore:Ice") as LoreCard).pressed.emit()
+	assert_eq(army.spell_lore, "Ice")
+	assert_true(UIKit.keyed(builder.builder_list, "lore_card:spell") is LoreCard)
+
+
+func test_removing_a_lore_shows_the_empty_slot_and_focuses_it() -> void:
+	var army := _valid_army()
+	army.spell_lore = "Fire"
+	var builder := _builder(army, _two_spell_faction())
+	(UIKit.keyed(builder.builder_list, "lore_remove:spell") as Button).pressed.emit()
+	await get_tree().process_frame
+	var slot := UIKit.keyed(builder.builder_list, "lore:spell") as Button
+	assert_eq(slot.theme_type_variation, &"DashedButton")
+	assert_true(slot.has_focus())
+
+
+func test_remove_lore_clears_only_that_kind() -> void:
+	var army := _valid_army()
+	army.spell_lore = "Fire"
+	army.prayer_lore = "Hymns"
+	var builder := _builder(army, _two_spell_faction())
+	builder.remove_lore("spell")
+	assert_eq(army.spell_lore, "")
+	assert_eq(army.prayer_lore, "Hymns")
