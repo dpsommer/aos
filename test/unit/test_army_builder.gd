@@ -462,6 +462,15 @@ func test_redraw_restores_focus_to_the_control_with_the_same_focus_key() -> void
 	assert_true(after.has_focus())
 
 
+func test_auxiliary_box_is_styled_like_a_regiment_with_a_drag_hint() -> void:
+	var builder := _builder(_valid_army())
+	assert_eq(builder.auxiliary_box.theme_type_variation, &"RegimentPanel")
+	var add := UIKit.keyed(builder.auxiliary_box, "army:add_aux")
+	var hints := add.get_parent().get_children().filter(func(n: Node) -> bool: return n is Label)
+	assert_eq(hints.size(), 1)
+	assert_eq(hints[0].text, "or drag one here")
+
+
 func test_redraw_after_an_edit_keeps_focus_on_the_edited_control() -> void:
 	var army := _valid_army()
 	var builder := _builder(army)

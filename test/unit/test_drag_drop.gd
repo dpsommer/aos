@@ -349,14 +349,14 @@ func test_begin_highlights_regiments_that_accept_the_drag() -> void:
 func test_begin_highlights_the_auxiliary_box() -> void:
 	var builder := _builder()
 	_drag(builder).begin(_roster())
-	assert_eq(builder.auxiliary_box.theme_type_variation, &"DropBoxOnPanel")
+	assert_eq(builder.auxiliary_box.theme_type_variation, &"DropRegimentPanel")
 
 
 func test_begin_does_not_highlight_for_a_regiment_drag() -> void:
 	var builder := _builder()
 	_drag(builder).begin({"kind": "reg", "regiment_id": "r1"})
 	assert_ne(_panel(builder, "r1").theme_type_variation, &"DropRegimentPanel")
-	assert_ne(builder.auxiliary_box.theme_type_variation, &"DropBoxOnPanel")
+	assert_ne(builder.auxiliary_box.theme_type_variation, &"DropRegimentPanel")
 
 
 func test_begin_shows_the_remove_overlay_for_a_unit_drag() -> void:

@@ -324,10 +324,6 @@ static func _create() -> Theme:
 	_panel(theme, "TabBarPanel", _underline(Color("#262A32")))
 	# Drop targets while dragging.
 	_panel(theme, "DropRegimentPanel", box(Color("#1D1C18"), GOLD, 10, 12))
-	_panel(theme, "DropBoxPanel", StyleBoxEmpty.new())
-	var drop_box := box(Color("#1D1C18"), GOLD, 10, 0)
-	drop_box.set_expand_margin_all(8)
-	_panel(theme, "DropBoxOnPanel", drop_box)
 	_panel(theme, "RemoveDropPanel", box(Color(0.09, 0.1, 0.12, 0.96), Color("#7A4A3E"), 12, 0, 2))
 	_panel(theme, "RemoveDropOnPanel", box(Color(0.23, 0.14, 0.13, 0.96), Color("#F2A28A"), 12, 0, 2))
 	# Warscrolls (WarscrollCard): characteristics in boxes and each kind of weapon in a table.

@@ -144,7 +144,7 @@ func begin(data: Variant) -> void:
 		if accepts_unit(data, panel.regiment):
 			highlight(panel, "DropRegimentPanel")
 	if accepts_unit(data, null) and builder.auxiliary_box:
-		highlight(builder.auxiliary_box, "DropBoxOnPanel")
+		highlight(builder.auxiliary_box, "DropRegimentPanel")
 	builder.remove_overlay.visible = data.get("kind") == "unit"
 	builder.set_process(true)
 

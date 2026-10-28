@@ -448,12 +448,14 @@ func _drop_regiment_of_renown(_at: Vector2, data: Dictionary) -> void:
 
 
 func _auxiliary_section() -> Control:
-	var box := UIBuilder.vbox([], 10)
+	var box := UIBuilder.vbox([], 8)
 	for unit in editor.army.auxiliary:
 		box.add_child(UnitRow.new(self, unit, null))
-	var add := UIBuilder.button("Add auxiliary unit", pick_auxiliary, "army:add_aux", "GhostButton")
+	var add := UIBuilder.hbox([UIBuilder.button("Add auxiliary unit", pick_auxiliary, "army:add_aux", "GhostButton"),
+			UIBuilder.label("or drag one here", "MutedLabel")], 12)
 	box.add_child(add)
-	auxiliary_box = UIBuilder.panel("DropBoxPanel", box)
+	# A box like a regiment's, highlighted like one while a unit is dragged.
+	auxiliary_box = UIBuilder.panel("RegimentPanel", box)
 	var can_drop := func(at: Vector2, data: Dictionary) -> bool: return _can_drop_auxiliary(at, data, box, add)
 	drag.target(auxiliary_box, can_drop, _drop_auxiliary)
 	return _section("Auxiliary Units", [auxiliary_box])
