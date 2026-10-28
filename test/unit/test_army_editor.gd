@@ -29,7 +29,9 @@ func _faction() -> Faction:
 	horde.roster.faction_terrain = false
 	var no_renown := Kit.army_of_renown("Lone Wolves")
 	no_renown.roster.regiments_of_renown = false
-	faction.armies_of_renown = [horde, no_renown] as Array[ArmyOfRenown]
+	var legend := Kit.army_of_renown("Old Legend")
+	legend.legends = true
+	faction.armies_of_renown = [horde, no_renown, legend] as Array[ArmyOfRenown]
 	return faction
 
 
@@ -77,6 +79,43 @@ func test_create_army_keeps_the_formation() -> void:
 func test_create_army_of_renown_has_no_formation() -> void:
 	var army := ArmyEditor.create_army(_catalog(), "Horde", "Vanguard")
 	assert_eq([army.army_of_renown, army.formation], ["Horde", ""])
+
+
+func test_create_army_of_legends_renown_shows_legends() -> void:
+	assert_true(ArmyEditor.create_army(_catalog(), "Old Legend").show_legends)
+
+
+func test_create_army_of_regular_renown_hides_legends() -> void:
+	assert_false(ArmyEditor.create_army(_catalog(), "Horde").show_legends)
+
+
+func test_create_army_without_renown_hides_legends() -> void:
+	assert_false(ArmyEditor.create_army(_catalog()).show_legends)
+
+
+func test_set_legends_renown_turns_on_show_legends() -> void:
+	var editor := _editor()
+	editor.army.show_legends = false
+	editor.set_army_of_renown("Old Legend")
+	assert_true(editor.army.show_legends)
+
+
+func test_set_regular_renown_leaves_show_legends_alone() -> void:
+	var off := _editor()
+	off.army.show_legends = false
+	off.set_army_of_renown("Horde")
+	var on := _editor()
+	on.army.show_legends = true
+	on.set_army_of_renown("Horde")
+	assert_eq([off.army.show_legends, on.army.show_legends], [false, true])
+
+
+func test_clearing_renown_leaves_show_legends_on() -> void:
+	var editor := _editor()
+	editor.army.show_legends = true
+	editor.set_army_of_renown("Old Legend")
+	editor.set_army_of_renown("")
+	assert_true(editor.army.show_legends)
 
 
 func test_create_army_names_the_army_after_its_rules() -> void:

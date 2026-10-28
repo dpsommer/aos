@@ -480,6 +480,9 @@ func _settings() -> void:
 	if not faction.armies_of_renown.is_empty():
 		var items := [["None (%s rules)" % faction.name, ""]]
 		for renown in faction.armies_of_renown:
+			# Legends Armies of Renown only if Settings shows them, or the army already uses one.
+			if renown.legends and not GameSettings.current().show_legends and renown.name != army.army_of_renown:
+				continue
 			items.append([renown.name + (" (Legends)" if renown.legends else ""), renown.name])
 		var select := UIBuilder.select(items, army.army_of_renown, editor.set_army_of_renown, "info:aor", "Army of Renown")
 		var note := "Uses the Army of Renown's battle traits, enhancements and lores instead of the faction's." \

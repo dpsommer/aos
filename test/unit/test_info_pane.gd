@@ -844,6 +844,48 @@ func test_army_of_renown_select_is_missing_when_the_faction_has_none() -> void:
 	assert_null(UIKit.keyed(_settings_pane(), "info:aor"))
 
 
+func _aor_names(pane: InfoPane) -> Array[String]:
+	var select := UIKit.keyed(pane, "info:aor") as OptionButton
+	var names: Array[String] = []
+	for i in select.item_count:
+		names.append(select.get_item_text(i))
+	return names
+
+
+func _faction_with_legends_renown() -> Faction:
+	var faction := _faction_with_armies_of_renown()
+	var legend := Kit.army_of_renown("Old Legend")
+	legend.legends = true
+	faction.armies_of_renown.append(legend)
+	return faction
+
+
+func test_legends_army_of_renown_is_hidden_when_settings_hide_legends() -> void:
+	GameSettings.current().show_legends = false
+	var pane := _settings_pane(UIKit.army_with_regiment(), _faction_with_legends_renown())
+	assert_eq(_aor_names(pane).filter(func(n: String) -> bool: return "Old Legend" in n), [])
+
+
+func test_regular_army_of_renown_stays_when_settings_hide_legends() -> void:
+	GameSettings.current().show_legends = false
+	var pane := _settings_pane(UIKit.army_with_regiment(), _faction_with_legends_renown())
+	assert_true(_aor_names(pane).has("Wanderers"))
+
+
+func test_legends_army_of_renown_is_listed_when_settings_show_legends() -> void:
+	GameSettings.current().show_legends = true
+	var pane := _settings_pane(UIKit.army_with_regiment(), _faction_with_legends_renown())
+	assert_eq(_aor_names(pane).filter(func(n: String) -> bool: return "Old Legend" in n).size(), 1)
+
+
+func test_legends_army_of_renown_in_use_is_listed_even_when_settings_hide_legends() -> void:
+	GameSettings.current().show_legends = false
+	var army := UIKit.army_with_regiment()
+	army.army_of_renown = "Old Legend"
+	var pane := _settings_pane(army, _faction_with_legends_renown())
+	assert_eq(_aor_names(pane).filter(func(n: String) -> bool: return "Old Legend" in n).size(), 1)
+
+
 func test_army_of_renown_select_sets_the_army_of_renown() -> void:
 	var army := UIKit.army_with_regiment()
 	var pane := _settings_pane(army, _faction_with_armies_of_renown())

@@ -20,11 +20,14 @@ func _init(army_data: Army, army_catalog: ArmyCatalog) -> void:
 		_next_id = maxi(_next_id, _id_number(unit.uid))
 
 
-## A new army of [param catalog]'s faction, with 2 empty battle tactics slots.
+## A new army of [param catalog]'s faction, with 2 empty battle tactics slots. A Legends Army of
+## Renown shows Legends units.
 static func create_army(army_catalog: ArmyCatalog, army_of_renown := "", formation := "") -> Army:
 	var army_data := Army.new()
 	army_data.faction_id = army_catalog.faction.id
 	army_data.army_of_renown = army_of_renown
+	var renown := army_catalog.army_of_renown(army_of_renown)
+	army_data.show_legends = renown != null and renown.legends
 	army_data.formation = "" if not army_of_renown.is_empty() else formation
 	army_data.name = "New %s Army" % (army_of_renown if not army_of_renown.is_empty() else army_catalog.faction.name)
 	army_data.tactics = PackedStringArray(["", ""])
@@ -327,9 +330,12 @@ func set_faction_terrain(warscroll_id: String) -> void:
 
 ## Switches to an Army of Renown, or back to the faction's rules when empty. Choices the new rules
 ## don't offer are cleared: the battle formation, lores, enhancements and, if the Army of Renown
-## forbids it, the faction terrain.
+## forbids it, the faction terrain. A Legends Army of Renown turns on showing Legends units.
 func set_army_of_renown(army_name: String) -> void:
 	army.army_of_renown = army_name
+	var renown := catalog.army_of_renown(army_name)
+	if renown and renown.legends:
+		army.show_legends = true
 	if not army_name.is_empty():
 		army.formation = ""
 	for kind: String in ["spell", "prayer", "manifestation"]:

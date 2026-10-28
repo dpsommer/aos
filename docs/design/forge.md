@@ -42,7 +42,7 @@ The steps:
      - its roster options (`Forge.roster_summary()`);
      - chips for Legends, "No Regiments of Renown", "No faction terrain" and "Fixed General" (`Forge.renown_chips_for()`).
    - **Legends Armies of Renown** are hidden when the Show Legends armies setting is off.
-   - **Pressing a card:** "No Army of Renown" goes to the Battle Formation step, or starts the army if the faction has no formations. An Army of Renown starts the army (`Forge.choose_army_of_renown()`).
+   - **Pressing a card:** "No Army of Renown" goes to the Battle Formation step, or starts the army if the faction has no formations. An Army of Renown starts the army (`Forge.choose_army_of_renown()`), with Show Legends units on if it's a Legends one.
 5. **Battle Formation:** the faction's battle formations, three to a row. Each card shows:
    - its points, or the type of its first ability;
    - its name;
@@ -129,7 +129,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - Show Legends units;
     - Override army constraints;
     - the points limit, with −/+ buttons that step 250;
-    - the Army of Renown;
+    - the Army of Renown, without Legends ones unless the Show Legends armies setting is on (the army's current one stays). Choosing a Legends one turns on Show Legends units;
     - the battle formation, when there's no Army of Renown.
   - **Links:** each of these clears the search, switches tab, scrolls to the target, highlights it briefly and gives it keyboard focus:
     - a unit's portrait in the army list opens its card in the Roster (and shows Legends units if it is one);
