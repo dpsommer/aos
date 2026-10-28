@@ -78,6 +78,7 @@ func _ready() -> void:
 		alliance_buttons[alliance] = _alliance_card(alliance)
 		alliance_grid.add_child(alliance_buttons[alliance])
 	new_army_button.pressed.connect(show_alliances)
+	UITheme.style_dialog(delete_dialog, "DialogDangerButton")
 	delete_dialog.confirmed.connect(_on_delete_confirmed)
 	delete_dialog.canceled.connect(_on_delete_canceled)
 	show_armies()
@@ -256,6 +257,7 @@ func _confirm_delete(id: String, army_name: String) -> void:
 	_deleting = id
 	delete_dialog.dialog_text = "Delete %s? This can't be undone." % army_name
 	delete_dialog.popup_centered()
+	delete_dialog.get_cancel_button().grab_focus()
 
 
 func _on_delete_confirmed() -> void:

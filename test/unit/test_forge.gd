@@ -1092,6 +1092,13 @@ func test_delete_asks_before_deleting() -> void:
 	var forge := _make_forge()
 	_row_button(forge, army.id, "Delete").pressed.emit()
 	assert_true(forge.delete_dialog.visible)
+
+
+func test_delete_dialog_focuses_cancel() -> void:
+	var army := _save_army("Vanguard")
+	var forge := _make_forge()
+	_row_button(forge, army.id, "Delete").pressed.emit()
+	assert_true(forge.delete_dialog.get_cancel_button().has_focus())
 	assert_true(FileAccess.file_exists(ArmyStore.path(army.id)))
 
 

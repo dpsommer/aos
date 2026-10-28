@@ -28,7 +28,7 @@ The steps:
    - **Buttons:**
      - **Open** emits `army_opened`, and `Main` opens the army in the builder. It's disabled when the file can't be read or the faction has no data.
      - **Duplicate** (icon) saves a copy named "<name> (copy)".
-     - **Delete** (icon) asks for confirmation first.
+     - **Delete** (icon) asks for confirmation first, with Cancel focused so a stray Enter doesn't delete the army.
    - **Unreadable files** are listed with the reason, so they can be deleted.
    - **No armies:** a placeholder says so.
 2. **Grand Alliance:** a card for each of Order, Chaos, Death and Destruction, with its number of factions. Pressing one goes straight to its factions.
@@ -61,7 +61,7 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 - rules text (`RulesFormatter`, shown in a `RichTextLabel`) with ability names in bold Cinzel, a thin horizontal rule between the abilities in a list, and extra space between paragraphs so an ability's timing, Declare, Effect and Keywords read as separate sections;
 - the design's icons, in `assets/2d/icons/`;
 - type variations, e.g. `GoldButton`, `OptionCard`, `PageTitleLabel`.
-- dialogs in a pane-coloured window with a border. `UITheme.style_dialog()` sets a dialog's title and buttons in Cinzel (`DialogButton`, or `DialogGoldButton` for the main action). It overrides the title font on the dialog itself, because a window's title takes the theme's default font and size over its `Window` theme items.
+- dialogs in a pane-coloured window with a border. `UITheme.style_dialog()`, called on every dialog, sets its title and buttons in Cinzel (`DialogButton`; `DialogGoldButton` for the main action, e.g. Quit or Save and go back; `DialogDangerButton`, in red, for a destructive one, e.g. Delete or Discard changes). It overrides the title font on the dialog itself, because a window's title takes the theme's default font and size over its `Window` theme items. The project's default clear colour is the pane colour too: when the UI is scaled, a dialog's window can be a pixel wider and taller than its panel, and that pixel would otherwise show as a grey line along its right and bottom edges.
 
 `UIBuilder` (`scripts/ui/ui_builder.gd`) builds controls in code. Shared pieces:
 - **`OptionCard`** (`scripts/ui/option_card.gd`): a large button holding any controls, which fits its height to them. In toggle mode it shows as selected (gold border) while pressed.

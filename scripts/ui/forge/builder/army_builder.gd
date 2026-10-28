@@ -73,10 +73,12 @@ func _ready() -> void:
 	discard_dialog.dialog_text = "This army has unsaved changes."
 	discard_dialog.ok_button_text = "Discard changes"
 	discard_dialog.cancel_button_text = "Keep editing"
-	discard_dialog.add_button("Save and go back", true, "save")
+	var save_and_back := discard_dialog.add_button("Save and go back", true, "save")
 	discard_dialog.confirmed.connect(back_pressed.emit)
 	discard_dialog.custom_action.connect(_on_discard_dialog_action)
 	add_child(discard_dialog)
+	UITheme.style_dialog(discard_dialog, "DialogDangerButton")
+	save_and_back.theme_type_variation = &"DialogGoldButton"
 	info_pane = InfoPane.new(self)
 	left_pane.add_child(info_pane)
 	picker = Picker.new(self)
@@ -179,6 +181,7 @@ func save() -> bool:
 		failed.confirmed.connect(failed.queue_free)
 		failed.canceled.connect(failed.queue_free)
 		add_child(failed)
+		UITheme.style_dialog(failed)
 		failed.popup_centered()
 		return false
 	dirty = false

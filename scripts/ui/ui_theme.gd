@@ -66,7 +66,8 @@ static func get_theme() -> Theme:
 
 
 ## Sets [param dialog]'s title in Cinzel and styles its buttons as Cinzel DialogButtons, its OK button
-## as [param ok_variation] (e.g. "DialogGoldButton" for the main action).
+## as [param ok_variation] (e.g. "DialogGoldButton" for the main action, "DialogDangerButton" for a
+## destructive one).
 static func style_dialog(dialog: AcceptDialog, ok_variation := "DialogButton") -> void:
 	# Overrides, as a window's title takes the theme's default font and size over its Window items.
 	dialog.add_theme_font_override("title_font", font(CINZEL, 700))
@@ -168,6 +169,8 @@ static func _create() -> Theme:
 
 	_button(theme, "Button", CONTROL, CONTROL_HOVER, CONTROL_BORDER, TEXT)
 	_button(theme, "GoldButton", GOLD, Color("#E8BB5E"), GOLD, Color("#17140C"))
+	# A destructive action, e.g. deleting an army.
+	_button(theme, "DangerButton", Color("#A8402C"), Color("#BC4F39"), Color("#A8402C"), TEXT)
 	_button(theme, "GhostButton", Color.TRANSPARENT, Color.TRANSPARENT, CONTROL_BORDER, Color("#C9CCD3"))
 	# An empty slot to fill, e.g. a battle tactics card or a lore: a ghost button with a dashed border.
 	theme.set_type_variation("DashedButton", "GhostButton")
@@ -251,7 +254,7 @@ static func _create() -> Theme:
 	theme.set_type_variation("GripButton", "IconButton")
 	theme.set_color("icon_normal_color", "GripButton", Color("#6B717C"))
 	theme.set_color("icon_focus_color", "GripButton", Color("#6B717C"))
-	for type in ["Button", "IconButton", "DangerIconButton", "GripButton", "GoldButton", "GhostButton", "BannerButton", "SubheadButton",
+	for type in ["Button", "IconButton", "DangerIconButton", "GripButton", "GoldButton", "DangerButton", "GhostButton", "BannerButton", "SubheadButton",
 			"TabButton"]:
 		theme.set_constant("icon_max_width", type, ICON_SIZE)
 	theme.set_font("font", "Button", semibold)
@@ -459,10 +462,13 @@ static func _create() -> Theme:
 	theme.set_stylebox("embedded_unfocused_border", "Window", window)
 	theme.set_constant("title_height", "Window", 40)
 	theme.set_color("title_color", "Window", TEXT)
+	# When the UI is scaled, a dialog's window can be a pixel wider and taller than its panel, showing
+	# the clear colour, so project.godot sets that to PANE too.
 	theme.set_stylebox("panel", "AcceptDialog", box(PANE, Color.TRANSPARENT, 0, 12))
 	theme.set_constant("buttons_separation", "AcceptDialog", 12)
-	for type in ["DialogButton", "DialogGoldButton"]:
-		var base: String = {"DialogButton": "Button", "DialogGoldButton": "GoldButton"}[type]
+	for type in ["DialogButton", "DialogGoldButton", "DialogDangerButton"]:
+		var base: String = {"DialogButton": "Button", "DialogGoldButton": "GoldButton",
+				"DialogDangerButton": "DangerButton"}[type]
 		theme.set_type_variation(type, base)
 		for state in ["normal", "hover", "pressed", "disabled", "focus"]:
 			var style := theme.get_stylebox(state, base).duplicate() as StyleBoxFlat

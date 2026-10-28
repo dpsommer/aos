@@ -36,4 +36,5 @@ theme/custom_font="res://assets/2d/fonts/inter/Inter.ttf"
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0.0901961, 0.101961, 0.121569, 1)
 rendering_device/driver.windows="d3d12"
