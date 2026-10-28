@@ -1132,7 +1132,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
-					"colour": "green",
+					"colour": "red",
 					"effect": "Subtract 1 from ward rolls for damage points inflicted by this unit's combat attacks."
 				},
 				{
@@ -1245,7 +1245,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
-					"colour": "yellow",
+					"colour": "green",
 					"effect": "The first time this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (D3) this unit."
 				},
 				{
