@@ -52,7 +52,7 @@
 		"butcher": {"regiment_options": ["0-1 Maw Nomad", "Any INFANTRY"]},
 		"firebelly": {"regiment_options": ["Any Gnoblars", "Any GUTBUSTERS", "0-1 Gnoblar Scraplauncher"]},
 		"Beastclaw Alfrostun": {"roster": {"entries": [{"keywords": ["BEASTCLAW"]}], "regiments_of_renown": false}},
-		"Mawseeker Gollop": {"roster": {"entries": [{"keywords": ["MAWSEEKERS"]}, {"unit": "Redd the Maw, High Slaughtermaster"}], "regiments_of_renown": false}},
+		"Mawseeker Gollop": {"roster": {"entries": [{"keywords": ["MAWSEEKERS"]}], "regiments_of_renown": false}},
 		"Meatfist Mawtribe": {"roster": {"entries": [{"keywords": ["GUTBUSTERS"]}], "regiments_of_renown": false}},
 		"The Roving Maw": {"roster": {"entries": [{"keywords": ["MAWSEEKERS"], "not_keywords": ["UNIQUE"]}, {"keywords": ["GUTBUSTERS"], "not_keywords": ["UNIQUE"]}, {"unit": "Gorger Mawpack"}], "regiments_of_renown": false, "faction_terrain": false}}
 	}
