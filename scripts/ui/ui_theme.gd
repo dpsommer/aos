@@ -260,8 +260,8 @@ static func _create() -> Theme:
 			"hover":
 				style = box(Color("#1A1D23"), Color("#4A515F"), 12, 0)
 			"focus":
+				# Drawn over the selected border, so a focused selected card shows one outline.
 				style = box(Color.TRANSPARENT, GOLD, 12, 0, 2)
-				style.set_expand_margin_all(4)
 			"disabled":
 				style = box(Color("#16181C"), Color("#24282F"), 12, 0)
 			_:
