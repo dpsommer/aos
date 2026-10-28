@@ -57,6 +57,10 @@ func test_contrast_of_a_colour_with_itself_is_none() -> void:
 	assert_almost_eq(UITheme.contrast(UITheme.GOLD, UITheme.GOLD), 1.0, 0.001)
 
 
+func test_rich_text_label_separates_paragraphs() -> void:
+	assert_gt(UITheme.get_theme().get_constant("paragraph_separation", "RichTextLabel"), 0)
+
+
 func test_theme_is_created_once() -> void:
 	assert_same(UITheme.get_theme(), UITheme.get_theme())
 

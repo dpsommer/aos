@@ -60,6 +60,7 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 - dark panels, warm text and a gold accent;
 - chips (tags such as Legends, Scourge or a battle tactic's kind) in pale tints of their colour, with a WCAG contrast of at least 9:1 against their background (`UITheme.CHIP_MIN_CONTRAST`);
 - Inter for text (also the project's default font) and Cinzel for headings, both in `assets/2d/fonts/` with their OFL licences;
+- rules text (`RulesFormatter`, shown in a `RichTextLabel`) with ability names in bold Cinzel, a thin horizontal rule between the abilities in a list, and extra space between paragraphs so an ability's timing, Declare, Effect and Keywords read as separate sections;
 - the design's icons, in `assets/2d/icons/`;
 - type variations, e.g. `GoldButton`, `OptionCard`, `PageTitleLabel`.
 

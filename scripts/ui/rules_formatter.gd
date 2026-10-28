@@ -2,6 +2,11 @@ class_name RulesFormatter
 extends RefCounted
 ## Turns faction data into BBCode for display in a [RichTextLabel].
 
+## Ability names are set in bold Cinzel, like headings, so they stand out from the rules text.
+const ABILITY_NAME := "[font n=res://assets/2d/fonts/cinzel/Cinzel.ttf s=15 otv=wght=700]%s[/font]"
+## Drawn between the abilities in a list.
+const ABILITY_RULE := "[hr height=1 width=100% color=#3A404C]"
+
 
 static func ability(rule: Ability) -> String:
 	var header := PackedStringArray()
@@ -14,7 +19,7 @@ static func ability(rule: Ability) -> String:
 		header.append("Chanting value %d" % rule.chanting_value)
 	if rule.points > 0:
 		header.append("%d pts" % rule.points)
-	var lines := PackedStringArray(["[b]%s[/b]" % _escape(rule.name)])
+	var lines := PackedStringArray([ABILITY_NAME % _escape(rule.name)])
 	if not header.is_empty():
 		lines.append("[i]%s[/i]" % _escape(", ".join(header)))
 	var body := ability_body(rule)
@@ -52,7 +57,7 @@ static func abilities(rules: Array[Ability], summoned := Callable()) -> String:
 			for manifestation: Warscroll in summoned.call(rule):
 				part += "\n\n[indent]%s[/indent]" % warscroll(manifestation)
 		parts.append(part)
-	return "\n\n".join(parts)
+	return ("\n%s\n" % ABILITY_RULE).join(parts)
 
 
 static func enhancement_table(table: EnhancementTable) -> String:

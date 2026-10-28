@@ -140,6 +140,30 @@ func test_abilities_contains_every_ability() -> void:
 		assert_string_contains(output, rule.name)
 
 
+func test_ability_name_is_set_in_the_cinzel_font() -> void:
+	var output := RulesFormatter.ability(_ability({name = "Made-up Name"}))
+	assert_string_contains(output, "Cinzel")
+	assert_true(output.begins_with(RulesFormatter.ABILITY_NAME.split("%s")[0]))
+
+
+func test_abilities_are_separated_by_a_horizontal_rule() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"}), _ability({name = "Beta"})]
+	var output := RulesFormatter.abilities(rules)
+	assert_eq(output.count(RulesFormatter.ABILITY_RULE), 1)
+	assert_true(output.find("Alpha") < output.find(RulesFormatter.ABILITY_RULE))
+	assert_true(output.find(RulesFormatter.ABILITY_RULE) < output.find("Beta"))
+
+
+func test_abilities_put_the_rule_on_its_own_line() -> void:
+	var rules: Array[Ability] = [_ability({name = "Alpha"}), _ability({name = "Beta"})]
+	assert_string_contains(RulesFormatter.abilities(rules), "\n%s\n" % RulesFormatter.ABILITY_RULE)
+
+
+func test_a_single_ability_has_no_horizontal_rule() -> void:
+	var rules: Array[Ability] = [_ability()]
+	assert_false(RulesFormatter.ABILITY_RULE in RulesFormatter.abilities(rules))
+
+
 func test_abilities_of_empty_list_is_empty() -> void:
 	var rules: Array[Ability] = []
 	assert_eq(RulesFormatter.abilities(rules), "")

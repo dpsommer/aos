@@ -363,6 +363,8 @@ static func _create() -> Theme:
 		theme.set_font_size(size, "RichTextLabel", 13)
 	theme.set_color("default_color", "RichTextLabel", Color("#C9CCD3"))
 	theme.set_constant("table_h_separation", "RichTextLabel", 10)
+	# Space between paragraphs, so a rule's timing, Declare, Effect and keywords read as separate sections.
+	theme.set_constant("paragraph_separation", "RichTextLabel", 6)
 
 	# The faction browser's tabs, like the builder's TabButton.
 	var tab_bar := _underline(Color("#262A32"))
