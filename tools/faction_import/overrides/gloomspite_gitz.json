@@ -33,7 +33,10 @@
 		"arachnarok_spider_with_flinger > Crooked Spears": {"hit": 5, "wound": 4},
 		"webspinner_shaman_on_arachnarok_spider > Crooked Spears": {"attacks": "8"},
 		"loonboss_on_giant_cave_squig": {"keywords": ["HERO", "DESTRUCTION", "GLOOMSPITE GITZ", "MOONCLAN", "SQUIG", "CAVALRY", "FLY"]},
-		"grinkraks_looncourt":{"base_size": "Grinkrak the Great, Skolko and Pronk, Grib, da Wonky Lance: 32mm, Pokin' Snark, Snorbo da Spore, Pointy Burk, Moonface Nagz: 25mm"}
+		"grinkraks_looncourt":{"base_size": "Grinkrak the Great, Skolko and Pronk, Grib, da Wonky Lance: 32mm, Pokin' Snark, Snorbo da Spore, Pointy Burk, Moonface Nagz: 25mm"},
+		"Da King's Gitz": {"roster": {"entries": [{"unit": "Skragrott, the Loonking", "required": true, "general": true}, {"keywords": ["MOONCLAN"]}, {"keywords": ["TROGGOTH"], "not_keywords": ["HERO"], "max": 2}], "regiments_of_renown": false}},
+		"Droggz's Gitmob": {"roster": {"entries": [{"unit": "Droggz da Sunchompa", "required": true, "general": true}, {"keywords": ["GITMOB"]}], "regiments_of_renown": false}},
+		"Trugg's Troggherd": {"roster": {"entries": [{"unit": "Trugg, the Troggoth King", "required": true, "general": true}, {"unit": "Dankhold Troggboss"}, {"unit": "Dankhold Troggoth"}, {"unit": "Fellwater Troggoths"}, {"unit": "Rockgut Troggoths"}], "regiments_of_renown": false, "faction_terrain": false}}
 	},
 	"path_to_glory": {
 		"Flaws": {

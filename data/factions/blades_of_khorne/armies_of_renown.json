@@ -3,6 +3,34 @@
 		{
 			"name": "Gorechosen Champions",
 			"text": "When you pick the Blades of Khorne faction for your army, you can choose for it to be a Gorechosen Champions Army of Renown. If you do so, use the faction rules in this section instead of the Blades of Khorne faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the GORECHOSEN CHAMPIONS keyword.\nROSTER OPTIONS\n0-1 Mighty Lord of Khorne (if included, must be general)\nAny Slaughterpriests\nAny Bloodsecrators\nAny Bloodstokers\nAny Realmgore Ritualists\nAny Skullgrinders\nAny Deathbringers\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nAny Bloodbound Warmongers can be added to a regiment led by a GORECHOSEN CHAMPIONS unit",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Mighty Lord of Khorne",
+						"max": 1,
+						"general": true
+					},
+					{
+						"unit": "Slaughterpriest"
+					},
+					{
+						"unit": "Bloodsecrator"
+					},
+					{
+						"unit": "Bloodstoker"
+					},
+					{
+						"unit": "Realmgore Ritualist"
+					},
+					{
+						"unit": "Skullgrinder"
+					},
+					{
+						"unit": "Deathbringer"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Murder-won Trophies",
@@ -174,6 +202,18 @@
 		{
 			"name": "The Baleful Lords",
 			"text": "When you pick the Blades of Khorne faction for your army, you can choose for it to be a Baleful Lords Army of Renown. If you do so, use the faction rules in this section instead of the Blades of Khorne faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the BALEFUL LORDS keyword.\nROSTER OPTIONS\nAny BLADES OF KHORNE MONSTER HERO DAEMON units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"MONSTER",
+							"HERO",
+							"DAEMON"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Born of Butchery",

@@ -19,7 +19,7 @@ Lores (4.2) | Each picked lore is available to the army. Manifestation lores inc
 Battle formation | One is picked when the faction has any, unless the army is an Army of Renown.
 Faction terrain | Still in the data, and allowed by the Army of Renown.
 Battle tactics | At least 1 and at most 2 battle tactics cards from the battlepack, with no card picked twice.
-Army of Renown roster | Every unit matches a roster entry. Units only a "1 for each" entry allows are limited by that count. Required units are included, and the general is the one the roster names. Units gain the roster's keywords, e.g. WARMASTER.
+Army of Renown roster | Every unit matches a roster entry. Units only a limited entry allows are limited to its maximum ("0-1") or to 1 for each unit it counts ("for each Conqueror Cogfort"). Required units are included, and the general is the one the roster names, which overrides the WARMASTER rule (Grombrindal leads a Duardin Ascendant army that includes an Auric Runefather). Units gain the roster's keywords, e.g. WARMASTER. No manifestation lore if the roster forbids manifestations.
 Points | The total is within the points limit.
 Missing data | Every unit's warscroll is still in the faction data.
 
@@ -30,5 +30,7 @@ Missing data | Every unit's warscroll is still in the faction data.
 
 ## Not checked yet
 
+- Army of Renown regiment options, which let units join regiments their leader's options don't name ("Any Bloodbound Warmongers can be added to a regiment led by a GORECHOSEN CHAMPIONS unit"): such units are reported as outside the leader's options. Big Waaagh!'s rule that IRONJAWZ and KRULEBOYZ heroes lead only their own units, and Court of the Godlings' rule that Dexcessa and Synessa can't share a regiment, aren't checked either.
+- Pyrofane Cult's "0-1 Gaunt Summoner or Gaunt Summoner on Disc of Tzeentch" allows 1 of each.
 - Unit notes such as "You can include 1 unit of this type for each Lord-Celestant on Dracoth in your army" and the Skryre regiment limits.
 - Legends units, enhancements and lores, which aren't legal in Matched Play, including those from a Scourge the battlepack doesn't use (Scourge of Ghyran); see [Scourge rules](../technical/faction-data.md#scourge-rules).

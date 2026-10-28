@@ -36,6 +36,9 @@
 		"legion_of_the_first_prince_flamers_of_tzeentch": {"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown."},
 		"legion_of_the_first_prince_hellflayer": {"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown."},
 		"legion_of_the_first_prince_plaguebearers": {"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown."},
-		"legion_of_the_first_prince_screamers_of_tzeentch": {"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown."}
+		"legion_of_the_first_prince_screamers_of_tzeentch": {"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown."},
+		"Legion of the First Prince": {"roster": {"entries": [{"unit": "Be'lakor, the Dark Master"}, {"unit": "Daemon Prince"}, {"unit": "Eternus, Blade of the First Prince"}, {"unit": "Varanguard"}, {"unit": "Chaos Sorcerer Lord"}, {"unit": "Chaos Legionnaires"}, {"unit": "Chaos Furies"}, {"unit": "Centaurion Marshal"}, {"keywords": ["LEGION OF THE FIRST PRINCE", "DAEMON"]}]}},
+		"The Swords of Chaos": {"roster": {"entries": [{"unit": "Varanguard"}, {"unit": "Abraxia, Spear of the Everchosen"}, {"unit": "Archaon, the Everchosen"}], "regiments_of_renown": false}},
+		"Tribes of the Snow Peaks": {"roster": {"entries": [{"keywords": ["DARKOATH"]}], "regiments_of_renown": false}}
 	}
 }

@@ -30,6 +30,7 @@
 			"declare": "Pick a visible friendly LEGIONS OF NAGASH unit within this unit's combat range to be the target."
 		},
 		"Legions of Nagash": {
+			"roster": {"entries": [{"unit": "Nagash, Supreme Lord of the Underworlds"}, {"keywords": ["DEATH"], "not_keywords": ["UNIQUE"]}], "regiments_of_renown": false},
 			"text": "When you pick the SOULBLIGHT GRAVELORDS, OSSIARCH BONEREAPERS, FLESH-EATER COURTS or NIGHTHAUNT faction for your army, you can choose for it to be a LEGIONS OF NAGASH Army of Renown instead. If you do so, use the faction rules on these pages instead of any other faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the LEGIONS OF NAGASH keyword. In addition, when you pick a manifestation lore for your army, you can pick 1 of the following lores: ‘Manifestations of the Grave’, ‘Horrors of the Necropolis’, ‘Infernal Sorceries’ or ‘Manifested Insanity’.\nLegends Rules: The rules in this article are Legends rules. This means that these rules cannot be used in competitive Matched Play events.\nROSTER OPTIONS\nLEGIONS OF NAGASH Nagash, Supreme Lord of the Underworlds\nAny non-UNIQUE DEATH units\nYou cannot include Regiments of Renown"
 		},
 		"Legions of Nagash > Delusion and Discipline": {
@@ -55,6 +56,7 @@
 			"effect": "Pick normal gaze or empowered gaze.\nIf you picked normal gaze, inflict D3 mortal damage on each target.\nIf you picked empowered gaze, make an empowerment roll of 2D6. On a 6+, the roll succeeds; otherwise, the roll fails. You can keep making empowerment rolls until a roll fails. If an empowerment roll fails, the spell fails and its effect is not resolved. Otherwise, inflict D3+X mortal damage on each target, where X is the number of empowerment rolls that succeeded."
 		},
 		"The Duardin Ascendant": {
+			"roster": {"entries": [{"unit": "Grombrindal, the White Dwarf", "required": true, "general": true}, {"keywords": ["ORDER", "DUARDIN"]}], "regiments_of_renown": false, "faction_terrain": false, "manifestations": false},
 			"text": "When you pick the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose for it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be included and must be your general)\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain"
 		},
 		"The Duardin Ascendant > Oath of Restoration": {
@@ -79,6 +81,7 @@
 		},
 		"Big Waaagh! > Summon Foot of Gork": {
 			"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly BIG WAAAGH! WIZARD to cast this spell, then make a casting roll of 2D6."
-		}
+		},
+		"Big Waaagh!": {"roster": {"entries": [{"keywords": ["IRONJAWZ"]}, {"keywords": ["KRULEBOYZ"]}], "regiments_of_renown": false, "faction_terrain": false}}
 	}
 }

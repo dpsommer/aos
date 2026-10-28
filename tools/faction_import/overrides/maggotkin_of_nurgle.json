@@ -97,6 +97,8 @@
 		},
 		"belga_the_cystwitch > Ruptured Cysts": {
 			"effect": "Inflict D3 mortal damage on the target. Then, inflict 1 mortal damage on each other DISEASED enemy unit within 3\" of the target. If the chanting roll was 9+, you can also pick a friendly Plaguebearers unit within 12\" of the target. For each enemy INFANTRY model slain by this ability this turn, you can return 1 slain model to that friendly unit."
-		}
+		},
+		"Cycle of Corruption": {"roster": {"entries": [{"keywords": ["ROTBRINGERS"]}], "regiments_of_renown": false}},
+		"The Gardeners of Nurgle": {"roster": {"entries": [{"unit": "Horticulous Slimux", "required": true}, {"keywords": ["MAGGOTKIN OF NURGLE", "DAEMON"]}], "regiments_of_renown": false}}
 	}
 }

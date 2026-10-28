@@ -3,6 +3,40 @@
 		{
 			"name": "Legion of the First Prince",
 			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a Legion of the First Prince Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the LEGION OF THE FIRST PRINCE keyword except for those in a Regiment of Renown.\nROSTER OPTIONS\nBe’lakor, the Dark Master\nDaemon Prince\nEternus\nVaranguard\nChaos Sorcerer Lord\nChaos Legionnaires\nChaos Furies\nCentaurion Marshal\nLEGION OF THE FIRST PRINCE DAEMON units",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Be'lakor, the Dark Master"
+					},
+					{
+						"unit": "Daemon Prince"
+					},
+					{
+						"unit": "Eternus, Blade of the First Prince"
+					},
+					{
+						"unit": "Varanguard"
+					},
+					{
+						"unit": "Chaos Sorcerer Lord"
+					},
+					{
+						"unit": "Chaos Legionnaires"
+					},
+					{
+						"unit": "Chaos Furies"
+					},
+					{
+						"unit": "Centaurion Marshal"
+					},
+					{
+						"keywords": [
+							"LEGION OF THE FIRST PRINCE",
+							"DAEMON"
+						]
+					}
+				]
+			},
 			"battle_traits": [
 				{
 					"name": "First-damned Prince",
@@ -136,6 +170,20 @@
 		{
 			"name": "The Swords of Chaos",
 			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a The Swords of Chaos Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SWORDS OF CHAOS keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nVaranguard\nAbraxia, Spear of the Everchosen\nArchaon the Everchosen",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Varanguard"
+					},
+					{
+						"unit": "Abraxia, Spear of the Everchosen"
+					},
+					{
+						"unit": "Archaon, the Everchosen"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Demands of the Dark Gods",
@@ -241,6 +289,16 @@
 		{
 			"name": "Tribes of the Snow Peaks",
 			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a Tribes of the Snow Peaks Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SNOW PEAKS keyword.\nROSTER OPTIONS\nDARKOATH units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"DARKOATH"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Pledges to the Dark Gods",

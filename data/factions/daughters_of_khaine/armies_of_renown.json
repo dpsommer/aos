@@ -3,6 +3,29 @@
 		{
 			"name": "Champions of the Arena",
 			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a Champions of the Arena Army of Renown. If you do so, use the faction rules on these pages instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the CHAMPIONS OF THE ARENA keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nHigh Gladiatrix\nHag Queen\nSlaughter Queen\nBlood Hags\nSisters of Slaughter\nWitch Aelves",
+			"roster": {
+				"entries": [
+					{
+						"unit": "High Gladiatrix"
+					},
+					{
+						"unit": "Hag Queen"
+					},
+					{
+						"unit": "Slaughter Queen"
+					},
+					{
+						"unit": "Blood Hags"
+					},
+					{
+						"unit": "Sisters of Slaughter"
+					},
+					{
+						"unit": "Witch Aelves"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Arena of Slaughter",
@@ -146,6 +169,25 @@
 		{
 			"name": "The Croneseer's Pariahs",
 			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a The Croneseer’s Pariahs Army of Renown. If you do so, use these faction rules instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the CRONESEER’S PARIAHS keyword.\nROSTER OPTIONS\nKrethusa the Croneseer (must be included and must be your general)\nDAUGHTERS OF KHAINE AELF units\nYou cannot include Regiments of Renown, Morathi-Khaine or the Shadow Queen",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Krethusa the Croneseer",
+						"required": true,
+						"general": true
+					},
+					{
+						"keywords": [
+							"DAUGHTERS OF KHAINE",
+							"AELF"
+						],
+						"not_keywords": [
+							"WARMASTER"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Plumes of Auspicious Smoke",
@@ -275,6 +317,40 @@
 		{
 			"name": "Zainthar Kai",
 			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a Zainthar Kai Army of Renown. If you do so, use the faction rules on these pages instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ZAINTHAR KAI keyword.\nROSTER OPTIONS\nMorathi-Khaine (must be included)\nThe Shadow Queen (must be included)\nMelusai Ironscale\nBlood Sisters\nBlood Stalkers\nKhinerai Heartrenders\nKhinerai Lifetakers\nBloodwrack Medusa\nBloodwrack Shrine\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Morathi-Khaine",
+						"required": true
+					},
+					{
+						"unit": "The Shadow Queen",
+						"required": true
+					},
+					{
+						"unit": "Melusai Ironscale"
+					},
+					{
+						"unit": "Blood Sisters"
+					},
+					{
+						"unit": "Blood Stalkers"
+					},
+					{
+						"unit": "Khinerai Heartrenders"
+					},
+					{
+						"unit": "Khinerai Lifetakers"
+					},
+					{
+						"unit": "Bloodwrack Medusa"
+					},
+					{
+						"unit": "Bloodwrack Shrine"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Dark Majesty",

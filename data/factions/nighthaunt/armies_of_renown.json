@@ -6,6 +6,27 @@
 		{
 			"name": "The Clattering Procession",
 			"text": "When you pick the Nighthaunt faction for your army, you can choose for it to be a Clattering Procession Army of Renown. If you do so, use the faction rules in this section instead of the Nighthaunt faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CLATTERING PROCESSION keyword. You can give 1 Black Coach in your army the HERO keyword; if you do so, any NON-HERO NIGHTHAUNT CAVALRY units can be added to its regiment.\nROSTER OPTIONS\nReikenor the Grimhailer\nKnight of Shrouds on Ethereal Steed\nDreadblade Harrows\nHexwraiths\nBlack Coach\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Reikenor the Grimhailer"
+					},
+					{
+						"unit": "Knight of Shrouds on Ethereal Steed"
+					},
+					{
+						"unit": "Dreadblade Harrows"
+					},
+					{
+						"unit": "Hexwraiths"
+					},
+					{
+						"unit": "Black Coach"
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Ethereal",
@@ -150,6 +171,25 @@
 		{
 			"name": "The Eternal Nightmare",
 			"text": "When you pick the Nighthaunt faction for your army, you can choose for it to be a The Eternal Nightmare Army of Renown. If you do so, use the faction rules in this section instead of the Nighthaunt faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the ETERNAL NIGHTMARE keyword.\nROSTER OPTIONS\nNagash, Supreme Lord of the Undead (must be included and must be your general)\nAny non-UNIQUE NIGHTHAUNT INFANTRY units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Nagash, Supreme Lord of the Undead",
+						"required": true,
+						"general": true
+					},
+					{
+						"keywords": [
+							"NIGHTHAUNT",
+							"INFANTRY"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Ethereal",

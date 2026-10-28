@@ -3,6 +3,34 @@
 		{
 			"name": "Taar's Grand Forgehost",
 			"text": "When you pick the Helsmiths of Hashut faction for your army, you can choose for it to be a Taar’s Grand Forgehost Army of Renown. If you do so, use the faction rules in this section instead of the Helsmiths of Hashut faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the GRAND FORGEHOST keyword.\nROSTER OPTIONS\nUrak Taar, the First Daemonsmith (must be included and must be your general)\nAny non-HOBGROT HELSMITHS OF HASHUT INFANTRY units\nAny non-HERO HELSMITHS OF HASHUT WAR MACHINE units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Urak Taar, the First Daemonsmith",
+						"required": true,
+						"general": true
+					},
+					{
+						"keywords": [
+							"HELSMITHS OF HASHUT",
+							"INFANTRY"
+						],
+						"not_keywords": [
+							"HOBGROT"
+						]
+					},
+					{
+						"keywords": [
+							"HELSMITHS OF HASHUT",
+							"WAR MACHINE"
+						],
+						"not_keywords": [
+							"HERO"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Rising Fire",
@@ -150,6 +178,26 @@
 		{
 			"name": "Ziggurat Stampede",
 			"text": "When you pick the Helsmiths of Hashut faction for your army, you can choose for it to be a Ziggurat Stampede Army of Renown. If you do so, use the faction rules in this section instead of the Helsmiths of Hashut faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ZIGGURAT STAMPEDE keyword.\nROSTER OPTIONS\nDaemonsmith on Infernal Taurus\nAny HELSMITHS OF HASHUT CAVALRY units\nAny HELSMITHS OF HASHUT AUTOMATON units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Daemonsmith on Infernal Taurus"
+					},
+					{
+						"keywords": [
+							"HELSMITHS OF HASHUT",
+							"CAVALRY"
+						]
+					},
+					{
+						"keywords": [
+							"HELSMITHS OF HASHUT",
+							"AUTOMATON"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Let the Realms Tremble",

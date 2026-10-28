@@ -106,6 +106,8 @@
 		"scriptor_mortis": {"regiment_options": ["Any INFANTRY", "0-1 Black Coach"]},
 		"cairn_wraith": {"regiment_options": ["0-1 Black Coach", "Any INFANTRY"], "notes": "This HERO can join an eligible regiment as a Cursed Soul."},
 		"tomb_banshee": {"regiment_options": ["0-1 Black Coach", "Any INFANTRY"], "notes": "This HERO can join an eligible regiment as a Cursed Soul."},
-		"glaivewraith_stalkers": {"notes": ""}
+		"glaivewraith_stalkers": {"notes": ""},
+		"The Clattering Procession": {"roster": {"entries": [{"unit": "Reikenor the Grimhailer"}, {"unit": "Knight of Shrouds on Ethereal Steed"}, {"unit": "Dreadblade Harrows"}, {"unit": "Hexwraiths"}, {"unit": "Black Coach"}], "regiments_of_renown": false, "faction_terrain": false}},
+		"The Eternal Nightmare": {"roster": {"entries": [{"unit": "Nagash, Supreme Lord of the Undead", "required": true, "general": true}, {"keywords": ["NIGHTHAUNT", "INFANTRY"], "not_keywords": ["UNIQUE"]}], "regiments_of_renown": false}}
 	}
 }

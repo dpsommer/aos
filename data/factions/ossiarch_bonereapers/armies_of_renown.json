@@ -8,6 +8,38 @@
 			"source": "White Dwarf",
 			"legends": true,
 			"text": "When you pick the Ossiarch Bonereapers faction for your army, you can choose for it to be a Petrifex Elite Army of Renown. If you do so, use the faction rules on these pages instead of the Ossiarch Bonereapers faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the PETRIFEX ELITE keyword.\nROSTER OPTIONS\n0-1 The Grand Necromystic (must be your general if included)\nMortisan Ossifector\nMortisan Soulmason\nGothizzar Harvester\nImmortis Guard\nNecropolis Stalkers\nMorghast Harbingers\nMortek Crawler\nYou cannot include Regiments of Renown or faction terrain.",
+			"roster": {
+				"entries": [
+					{
+						"unit": "The Grand Necromystic",
+						"max": 1,
+						"general": true
+					},
+					{
+						"unit": "Mortisan Ossifector"
+					},
+					{
+						"unit": "Mortisan Soulmason"
+					},
+					{
+						"unit": "Gothizzar Harvester"
+					},
+					{
+						"unit": "Immortis Guard"
+					},
+					{
+						"unit": "Necropolis Stalkers"
+					},
+					{
+						"unit": "Morghast Harbingers"
+					},
+					{
+						"unit": "Mortek Crawler"
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Constructs of Petrified Bone",
@@ -148,6 +180,29 @@
 		{
 			"name": "The Lance of Ossia",
 			"text": "When you pick the Ossiarch Bonereapers faction for your army, you can choose for it to be the Lance of Ossia Army of Renown. If you do so, use the faction rules on these pages instead of the Ossiarch Bonereapers faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the LANCE OF OSSIA keyword.\nROSTER OPTIONS\nArch-Kavalos Zandtos (must be included and must be your general)\nLiege-Kavalos on War Chariot\nKavalos War Chariot\nAny OSSIARCH BONEREAPERS CAVALRY units\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Arch-Kavalos Zandtos",
+						"required": true,
+						"general": true
+					},
+					{
+						"unit": "Liege-Kavalos on War Chariot"
+					},
+					{
+						"unit": "Kavalos War Chariot"
+					},
+					{
+						"keywords": [
+							"OSSIARCH BONEREAPERS",
+							"CAVALRY"
+						]
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Praetorian Elite",
@@ -249,6 +304,35 @@
 		{
 			"name": "The Null Myriad",
 			"text": "When you pick the Ossiarch Bonereapers faction for your army, you can choose for it to be the Null Myriad Army of Renown. If you do so, use the faction rules on these pages instead of the Ossiarch Bonereapers faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the NULL MYRIAD keyword.\nROSTER OPTIONS\nArkhan the Black, Mortarch of Sacrament (must be included and must be your general)\nAny non-UNIQUE OSSIARCH BONEREAPERS WIZARD HEROES\nAny non-HERO OSSIARCH BONEREAPERS INFANTRY units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Arkhan the Black, Mortarch of Sacrament",
+						"required": true,
+						"general": true
+					},
+					{
+						"keywords": [
+							"OSSIARCH BONEREAPERS",
+							"WIZARD",
+							"HERO"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					},
+					{
+						"keywords": [
+							"OSSIARCH BONEREAPERS",
+							"INFANTRY"
+						],
+						"not_keywords": [
+							"HERO"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Arcane Immunity",

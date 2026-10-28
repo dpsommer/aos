@@ -28,7 +28,7 @@ static func validate(army: Army, catalog: ArmyCatalog) -> ArmyValidation:
 		return result
 	var entries := _entries(army, catalog, result)
 	_check_regiments(army, catalog, result)
-	_check_general(army, entries, result)
+	_check_general(army, catalog, entries, result)
 	_check_unique(entries, result)
 	_check_scourge(entries, result)
 	_check_regiments_of_renown(army, catalog, result)
@@ -157,7 +157,9 @@ static func _matching_option(options: Array[RegimentOption], warscroll: Warscrol
 	return null
 
 
-static func _check_general(army: Army, entries: Array[Dictionary], result: ArmyValidation) -> void:
+## An Army of Renown's roster can name the general, overriding the Warmaster rule (Grombrindal leads
+## a Duardin Ascendant army even with an Auric Runefather in it).
+static func _check_general(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:
 	var general: Dictionary = {}
 	for entry in entries:
 		if entry.unit.uid == army.general_uid:
@@ -169,7 +171,7 @@ static func _check_general(army: Army, entries: Array[Dictionary], result: ArmyV
 		result.problems.append("A unit in a Regiment of Renown can't be your general.")
 	elif general.regiment == null or general.regiment.leader() != general.unit:
 		result.problems.append("Your general must lead a regiment.")
-	if not _has(general, "WARMASTER"):
+	if not _has(general, "WARMASTER") and not _is_roster_general(general.warscroll, catalog.roster(army)):
 		for entry in entries:
 			if _has(entry, "WARMASTER") and not _is_ror(entry):
 				result.problems.append("%s is a Warmaster, so a Warmaster must be your general." % entry.warscroll.name)
@@ -274,7 +276,7 @@ static func _check_lores(army: Army, catalog: ArmyCatalog, entries: Array[Dictio
 		result.warnings.append("Your army has a Wizard but no spell lore.")
 	if priest and army.prayer_lore.is_empty() and not catalog.lores(army, "prayer").is_empty():
 		result.warnings.append("Your army has a Priest but no prayer lore.")
-	if (wizard or priest) and army.manifestation_lore.is_empty():
+	if (wizard or priest) and army.manifestation_lore.is_empty() and not catalog.lores(army, "manifestation").is_empty():
 		result.warnings.append("Your army has a Wizard or Priest but no manifestation lore.")
 
 
@@ -316,40 +318,85 @@ static func _roster_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
 	if not entry.unit.is_empty():
 		return RegimentOption._names(warscroll, entry.unit)
 	for keyword in entry.not_keywords:
-		if warscroll.has_keyword(keyword):
+		if _has_keyword(warscroll, keyword):
 			return false
 	for keyword in entry.keywords:
-		if not warscroll.has_keyword(keyword):
+		if not _has_keyword(warscroll, keyword):
 			return false
 	return true
 
 
-## Every unit must match a roster entry. Units only a per-keyword entry allows are limited to 1 for
-## each unit with that keyword. Required units must be included, and some must be the general.
+## Rosters name keywords without their value: "WIZARD" matches "WIZARD (2)".
+static func _has_keyword(warscroll: Warscroll, keyword: String) -> bool:
+	if warscroll.has_keyword(keyword):
+		return true
+	for held in warscroll.keywords:
+		if held.begins_with(keyword + " ("):
+			return true
+	return false
+
+
+## Whether [param warscroll] matches one of [member RosterEntry.per]: a unit name, or keywords
+## ("HERO MONSTER").
+static func _per_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
+	for item in entry.per:
+		if RegimentOption._names(warscroll, item) or _has_keyword(warscroll, item):
+			return true
+		if Array(item.split(" ")).all(func(keyword: String) -> bool: return _has_keyword(warscroll, keyword)):
+			return true
+	return false
+
+
+static func _is_limited(entry: RosterEntry) -> bool:
+	return not entry.per.is_empty() or entry.max > 0
+
+
+static func _is_roster_general(warscroll: Warscroll, army_roster: ArmyRoster) -> bool:
+	return army_roster != null and army_roster.entries.any(func(e: RosterEntry) -> bool: return e.general and _roster_matches(e, warscroll))
+
+
+## "Grombrindal", or "a GORECHOSEN CHAMPIONS unit" for an entry matching by keywords.
+static func _describe(entry: RosterEntry) -> String:
+	if not entry.unit.is_empty():
+		return entry.unit
+	var words := PackedStringArray()
+	for keyword in entry.not_keywords:
+		words.append("non-" + keyword)
+	words.append_array(entry.keywords)
+	return "a %s unit" % " ".join(words)
+
+
+## Every unit must match a roster entry. Units only limited entries allow are limited to the entry's
+## [member RosterEntry.max], or to 1 for each unit matching its [member RosterEntry.per]. Required
+## units must be included, and some must be the general.
 static func _check_roster(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:
 	var army_roster := catalog.roster(army)
 	if army_roster == null:
 		return
+	var built := entries.filter(func(e: Dictionary) -> bool: return not _is_ror(e))
 	var limited := {}
-	for entry in entries:
-		if _is_ror(entry):
-			continue
+	for entry in built:
 		var matching := army_roster.entries.filter(func(e: RosterEntry) -> bool: return _roster_matches(e, entry.warscroll))
 		if matching.is_empty():
 			result.problems.append("%s isn't in the %s roster." % [entry.warscroll.name, army.army_of_renown])
-		elif matching.all(func(e: RosterEntry) -> bool: return not e.per_keyword.is_empty()):
+		elif matching.all(func(e: RosterEntry) -> bool: return _is_limited(e)):
 			var roster_entry: RosterEntry = matching[0]
 			limited[roster_entry] = limited.get(roster_entry, 0) + 1
 	for roster_entry: RosterEntry in limited:
-		var allowed := entries.filter(func(e: Dictionary) -> bool: return not _is_ror(e) and e.warscroll.has_keyword(roster_entry.per_keyword)).size()
+		if roster_entry.per.is_empty():
+			if limited[roster_entry] > roster_entry.max:
+				result.problems.append("%s armies can include at most %d of %s (%d included)."
+						% [army.army_of_renown, roster_entry.max, _describe(roster_entry), limited[roster_entry]])
+			continue
+		var allowed := built.filter(func(e: Dictionary) -> bool: return _per_matches(roster_entry, e.warscroll)).size()
 		if limited[roster_entry] > allowed:
-			result.problems.append("%s armies can include only 1 such unit for each %s unit (%d included, %d allowed)."
-					% [army.army_of_renown, roster_entry.per_keyword, limited[roster_entry], allowed])
+			result.problems.append("%s armies can include only 1 of %s for each %s unit (%d included, %d allowed)."
+					% [army.army_of_renown, _describe(roster_entry), " or ".join(roster_entry.per), limited[roster_entry], allowed])
 	for roster_entry in army_roster.entries:
 		if not roster_entry.required and not roster_entry.general:
 			continue
-		var found := entries.filter(func(e: Dictionary) -> bool: return not _is_ror(e) and _roster_matches(roster_entry, e.warscroll))
+		var found := built.filter(func(e: Dictionary) -> bool: return _roster_matches(roster_entry, e.warscroll))
 		if roster_entry.required and found.is_empty():
-			result.problems.append("%s armies must include %s." % [army.army_of_renown, roster_entry.unit])
+			result.problems.append("%s armies must include %s." % [army.army_of_renown, _describe(roster_entry)])
 		if roster_entry.general and not found.is_empty() and not found.any(func(e: Dictionary) -> bool: return e.unit.uid == army.general_uid):
-			result.problems.append("%s must be your general." % roster_entry.unit)
+			result.problems.append("%s must be your general." % _describe(roster_entry))

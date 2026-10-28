@@ -471,6 +471,8 @@ static func renown_chips_for(army: ArmyOfRenown) -> Array:
 			chips.append(["No Regiments of Renown", "warn"])
 		if not army.roster.faction_terrain:
 			chips.append(["No faction terrain", "warn"])
+		if not army.roster.manifestations:
+			chips.append(["No manifestations", "warn"])
 		if army.roster.entries.any(func(entry: RosterEntry) -> bool: return entry.general):
 			chips.append(["Fixed General", ""])
 	return chips

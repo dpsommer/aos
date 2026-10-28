@@ -390,8 +390,8 @@ func test_army_of_renown_roster_entry_fields_come_from_file() -> void:
 func test_army_of_renown_roster_keyword_entry_fields_come_from_file() -> void:
 	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries[1]
 	var entry: RosterEntry = _load("valid").armies_of_renown[0].roster.entries[1]
-	assert_eq([entry.keywords, entry.not_keywords, entry.per_keyword],
-			[PackedStringArray(expected.keywords), PackedStringArray(expected.not_keywords), expected.per_keyword])
+	assert_eq([entry.keywords, entry.not_keywords, entry.per, entry.max],
+			[PackedStringArray(expected.keywords), PackedStringArray(expected.not_keywords), PackedStringArray(expected.per), int(expected.max)])
 
 
 func test_roster_entry_absent_fields_use_defaults() -> void:
@@ -1157,3 +1157,9 @@ func test_wrong_type_regiment_unit_count_error_names_file_and_field_path() -> vo
 	var errors := _errors("wrong_type_regiment_unit_count")
 	assert_true(_has_error_naming(errors, "regiments_of_renown.json", "regiments_of_renown[0].units[0].count"),
 			str(errors))
+
+
+func test_army_of_renown_roster_omitted_manifestations_defaults_to_true() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_false(expected.has("manifestations"), "fixture roster should omit manifestations")
+	assert_true(_load("valid").armies_of_renown[0].roster.manifestations)

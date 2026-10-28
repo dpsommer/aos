@@ -3,6 +3,19 @@
 		{
 			"name": "Change-cult Uprising",
 			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Change-cult Uprising Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CHANGE-CULT keyword.\nROSTER OPTIONS\nAny non-WARFLOCK ARCANITE units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"ARCANITE"
+						],
+						"not_keywords": [
+							"WARFLOCK"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Silver Simulacrum",
@@ -155,6 +168,27 @@
 			"source": "White Dwarf",
 			"legends": true,
 			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be a Pyrofane Cult Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the PYROFANE keyword.\nROSTER OPTIONS\nAny non-WARFLOCK ARCANITE\n0-1 Gaunt Summoner or Gaunt Summoner on Disc of Tzeentch\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nAny Pyrozealot can join to a regiment led by Gaunt Summoner, Gaunt Summoner on Disc of Tzeentch, Pyrofane Fusil-Major on Ogor Warhulk, Magister, Magister on Disc of Tzeentch",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"ARCANITE"
+						],
+						"not_keywords": [
+							"WARFLOCK"
+						]
+					},
+					{
+						"unit": "Gaunt Summoner",
+						"max": 1
+					},
+					{
+						"unit": "Gaunt Summoner on Disc of Tzeentch",
+						"max": 1
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Wyrdflame Barrage",
@@ -318,6 +352,21 @@
 		{
 			"name": "The Oracles of Fate",
 			"text": "When you pick the Disciples of Tzeentch faction for your army, you can choose for it to be the Oracles of Fate Army of Renown. If you do so, use the faction rules on these pages instead of the Disciples of Tzeentch faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the ORACLES OF FATE keyword.\nROSTER OPTIONS\nKairos Fateweaver\nAny DISCIPLES OF TZEENTCH DAEMON units\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Kairos Fateweaver"
+					},
+					{
+						"keywords": [
+							"DISCIPLES OF TZEENTCH",
+							"DAEMON"
+						]
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Masters of Destiny",

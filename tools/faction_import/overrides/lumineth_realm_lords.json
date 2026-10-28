@@ -1,6 +1,7 @@
 {
 	"fields": {
 		"Vanari Paragons": {
+			"roster": {"entries": [{"keywords": ["VANARI"], "not_keywords": ["UNIQUE"]}, {"unit": "The Light of Eltharion"}], "regiments_of_renown": false},
 			"battle_traits": [
 				{
 					"name": "Rewards of Valour",
@@ -99,6 +100,7 @@
 			"declare": "Pick a friendly LUMINETH REALM-LORDS unit wholly within 12\" of this unit to be the target."
 		},
 		"scourge_of_aqshy_scinari_loreseeker": {"notes": "This HERO can join an eligible regiment as a Lumineth Paragon. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack."},
-		"vanari_lord_regent_on_lightcourser": {"notes": "This HERO can join an eligible regiment as a Lumineth Paragon"}
+		"vanari_lord_regent_on_lightcourser": {"notes": "This HERO can join an eligible regiment as a Lumineth Paragon"},
+		"Aelementiri Conclave": {"roster": {"entries": [{"keywords": ["ALARITH"]}, {"keywords": ["HURAKAN"]}, {"keywords": ["YDRILAN"]}], "regiments_of_renown": false}}
 	}
 }

@@ -8,6 +8,73 @@
 			"source": "White Dwarf",
 			"legends": true,
 			"text": "When you pick the Ironjawz faction for your army, you can choose for it to be an Ironsunz Army of Renown. If you do so, use the faction rules on these pages instead of the Ironjawz faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the IRONSUNZ keyword.\nROSTER OPTIONS\n0-1 Dakkbad Grotkicker\nMegaboss\nWarchanter\nWeirdnob Shaman\nBrutes\nBrute Ragerz\nWeirdbrute Wrekkaz\n0-1 Tyrant (Kagruk the Kin-eater)\n0-1 Ogor Gluttons (Tarkan Ogors)\nYou cannot include Regiments of Renown\nIn addition to the above, for each unit of Brutes, Brute Ragerz or Weirdbrute Wrekkaz on your army roster, you can pick 1 of each of the following units:\nArdboy Big Boss\nArdboyz\nMaw-grunta Gougers\nMaw-grunta with Hakkin’ Krew\nGore-gruntas",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Dakkbad Grotkicker",
+						"max": 1
+					},
+					{
+						"unit": "Megaboss"
+					},
+					{
+						"unit": "Warchanter"
+					},
+					{
+						"unit": "Weirdnob Shaman"
+					},
+					{
+						"unit": "Brutes"
+					},
+					{
+						"unit": "Brute Ragerz"
+					},
+					{
+						"unit": "Weirdbrute Wrekkaz"
+					},
+					{
+						"unit": "Ardboy Big Boss",
+						"per": [
+							"Brutes",
+							"Brute Ragerz",
+							"Weirdbrute Wrekkaz"
+						]
+					},
+					{
+						"unit": "Ardboyz",
+						"per": [
+							"Brutes",
+							"Brute Ragerz",
+							"Weirdbrute Wrekkaz"
+						]
+					},
+					{
+						"unit": "Maw-grunta Gougers",
+						"per": [
+							"Brutes",
+							"Brute Ragerz",
+							"Weirdbrute Wrekkaz"
+						]
+					},
+					{
+						"unit": "Maw-grunta with Hakkin' Krew",
+						"per": [
+							"Brutes",
+							"Brute Ragerz",
+							"Weirdbrute Wrekkaz"
+						]
+					},
+					{
+						"unit": "Gore-gruntas",
+						"per": [
+							"Brutes",
+							"Brute Ragerz",
+							"Weirdbrute Wrekkaz"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "'Up and At 'Em!'",
@@ -206,6 +273,23 @@
 		{
 			"name": "Krazogg's Grunta Stampede",
 			"text": "When you pick the Ironjawz faction for your army, you can choose for it to be a Krazogg’s Grunta Stampede Army of Renown. If you do so, use the faction rules on this page instead of the Ironjawz faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the GRUNTA STAMPEDE keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nMaw-grunta Gougers\nGore-gruntas\nMaw-grunta with Hakkin’ Krew\nTuskboss on Maw-grunta",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Maw-grunta Gougers"
+					},
+					{
+						"unit": "Gore-gruntas"
+					},
+					{
+						"unit": "Maw-grunta with Hakkin' Krew"
+					},
+					{
+						"unit": "Tuskboss on Maw-grunta"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Incessant Drive",
@@ -300,6 +384,22 @@
 		{
 			"name": "Zoggrok's Ironmongerz",
 			"text": "When you pick the Ironjawz faction for your army, you can choose for it to be a Zoggrok’s Ironmongerz Army of Renown. If you do so, use the faction rules on these pages instead of the Ironjawz faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the ZOGGROK’S IRONMONGERZ keyword.\nROSTER OPTIONS\nZoggrok Anvilsmasha (must be included and must be your general)\nIRONJAWZ INFANTRY HEROES\nNon-HERO IRONJAWZ INFANTRY units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Zoggrok Anvilsmasha",
+						"required": true,
+						"general": true
+					},
+					{
+						"keywords": [
+							"IRONJAWZ",
+							"INFANTRY"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Legendary Vandals",

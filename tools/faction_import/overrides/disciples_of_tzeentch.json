@@ -3,7 +3,7 @@
 		"Pyrofane Conduit": "Pyroflux Conduit"
 	},
 	"fields": {
-		"Pyrofane Cult": {"legends": true},
+		"Pyrofane Cult": {"roster": {"entries": [{"keywords": ["ARCANITE"], "not_keywords": ["WARFLOCK"]}, {"unit": "Gaunt Summoner", "max": 1}, {"unit": "Gaunt Summoner on Disc of Tzeentch", "max": 1}], "regiments_of_renown": false}, "legends": true},
 		"All Part of the Plan": {"effect": "You start the battle with 0 fate points. Gain 1 fate point each time:\n• You lose the priority roll.\n• A spell cast by a friendly DISCIPLES OF TZEENTCH unit is unbound.\n• A friendly DISCIPLES OF TZEENTCH unit miscasts a spell.\n• Your opponent gains control of an objective that you controlled at the start of the turn.\n• A friendly Argent Shard is demolished.\nYou can have a maximum of 9 fate points."},
 		"Kairic Tome": {"effect": "Add 1 to or subtract 1 from the casting roll for that spell. This unit can use this ability more than once per phase but only once per SPELL ability."},
 		"Fold Reality": {"declare": "Pick a DISCIPLES OF TZEENTCH WIZARD to cast this spell, then you can pick a friendly non-MONSTER DISCIPLES OF TZEENTCH unit wholly within 12\" of the caster to be the target. Then, make a casting roll of 2D6."},
@@ -38,6 +38,8 @@
 		"tzaangor_skyfires": {"keywords": ["CHAOS", "DISCIPLES OF TZEENTCH", "FLY", "CAVALRY", "CHAMPION", "ARCANITE", "WARFLOCK"]},
 		"kairic_acolytes > Cursed Blade": {"name": "Kairic Blades"},
 		"tzaangor_enlightened_on_foot > Tzaangor Spear and Vicious Beak": {"name": "Tzeentchian Spear and Vicious Beak"},
-		"tome_of_eyes > Compendium of Darkness": {"name": "Compendium of Dark Knowledge"}
+		"tome_of_eyes > Compendium of Darkness": {"name": "Compendium of Dark Knowledge"},
+		"Change-cult Uprising": {"roster": {"entries": [{"keywords": ["ARCANITE"], "not_keywords": ["WARFLOCK"]}], "regiments_of_renown": false}},
+		"The Oracles of Fate": {"roster": {"entries": [{"unit": "Kairos Fateweaver"}, {"keywords": ["DISCIPLES OF TZEENTCH", "DAEMON"]}], "regiments_of_renown": false, "faction_terrain": false}}
 	}
 }

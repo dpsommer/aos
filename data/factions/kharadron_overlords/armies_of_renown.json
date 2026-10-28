@@ -3,6 +3,35 @@
 		{
 			"name": "Grundstok Expeditionary Force",
 			"text": "When you pick the Kharadron Overlords faction for your army, you can choose for it to be a Grundstok Expeditionary Force Army of Renown. If you do so, use the faction rules on these pages instead of the Kharadron Overlords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the EXPEDITIONARY FORCE keyword.\nROSTER OPTIONS\nArkanaut Admiral\nGrundstok Thunderers\nGrundstok Gunhauler\nEndrinmaster with Dirigible Suit\nAether-Khemist\nCodewright\nAetheric Navigator\nEndrinmaster with Endrinharness\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Arkanaut Admiral"
+					},
+					{
+						"unit": "Grundstok Thunderers"
+					},
+					{
+						"unit": "Grundstok Gunhauler"
+					},
+					{
+						"unit": "Endrinmaster with Dirigible Suit"
+					},
+					{
+						"unit": "Aether-Khemist"
+					},
+					{
+						"unit": "Codewright"
+					},
+					{
+						"unit": "Aetheric Navigator"
+					},
+					{
+						"unit": "Endrinmaster with Endrinharness"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Transport Skyfarers",
@@ -73,6 +102,32 @@
 		{
 			"name": "Pioneer Outpost",
 			"text": "When you pick the Kharadron Overlords faction for your army, you can choose for it to be a Pioneer Outpost Army of Renown. If you do so, use the faction rules in this section instead of the Kharadron Overlords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the PIONEER keyword.\nDesigner’s Note: This Army of Renown has rules designed to work with the Zontari Endrin Dock, so it makes sense to include one on your army roster!\nROSTER OPTIONS\nArkanaut Admiral\nAetheric Navigator\nEndrinmaster with Endrinharness\nAny non-HERO KHARADRON OVERLORDS INFANTRY units\nGrundstok Gunhauler\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Arkanaut Admiral"
+					},
+					{
+						"unit": "Aetheric Navigator"
+					},
+					{
+						"unit": "Endrinmaster with Endrinharness"
+					},
+					{
+						"keywords": [
+							"KHARADRON OVERLORDS",
+							"INFANTRY"
+						],
+						"not_keywords": [
+							"HERO"
+						]
+					},
+					{
+						"unit": "Grundstok Gunhauler"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Initial Investment",
@@ -203,6 +258,42 @@
 		{
 			"name": "The Magnate's Crew",
 			"text": "When you pick the Kharadron Overlords faction for your army, you can choose for it to be a The Magnate’s Crew Army of Renown. If you do so, use the faction rules in this section instead of the Kharadron Overlords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the MAGNATE’S CREW keyword.\nIf your army does not include Brokk Grungsson, you can pick an Arkanaut Ironclad in your army to be your general instead of a HERO. If you do, that Arkanaut Ironclad gains the HERO keyword. It cannot be included in another HERO’s regiment but gains the following Regiment Options: Any MAGNATE’S CREW units\nROSTER OPTIONS\nBrokk Grungsson, Lord-Magnate of Barak-Nar\nEndrinmaster with Dirigible Suit\nNull-Khemist\nArkanaut Ironclad\nArkanaut Frigate\nGrundstok Gunhauler\nVongrim Salvagers\nVongrim Harpoon Crew\nSkywardens\nEndrinriggers\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Brokk Grungsson, Lord-Magnate of Barak-Nar"
+					},
+					{
+						"unit": "Endrinmaster with Dirigible Suit"
+					},
+					{
+						"unit": "Null-Khemist"
+					},
+					{
+						"unit": "Arkanaut Ironclad"
+					},
+					{
+						"unit": "Arkanaut Frigate"
+					},
+					{
+						"unit": "Grundstok Gunhauler"
+					},
+					{
+						"unit": "Vongrim Salvagers"
+					},
+					{
+						"unit": "Vongrim Harpoon Crew"
+					},
+					{
+						"unit": "Skywardens"
+					},
+					{
+						"unit": "Endrinriggers"
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Loyalty to the Magnate",

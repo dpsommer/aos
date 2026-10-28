@@ -710,20 +710,159 @@ func test_roster_entry_excluding_a_keyword_rejects_units_with_it() -> void:
 	_assert_problem(_horde_army(), "Grunt", _horde_catalog(entries))
 
 
-func test_per_keyword_entry_allows_one_unit_for_each_keyword_holder() -> void:
+func test_per_entry_allows_one_unit_for_each_keyword_holder() -> void:
 	var limited := Kit.roster_entry("Grunt")
-	limited.per_keyword = "HERO"
+	limited.per = PackedStringArray(["HERO"])
 	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
 	_assert_no_problem(_horde_army(), "for each", _horde_catalog(entries))
 
 
-func test_per_keyword_entry_over_its_allowance_is_a_problem() -> void:
+func test_per_entry_over_its_allowance_is_a_problem() -> void:
 	var limited := Kit.roster_entry("Grunt")
-	limited.per_keyword = "HERO"
+	limited.per = PackedStringArray(["HERO"])
 	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
 	var army := _horde_army()
 	army.regiments[0].units.append(Kit.unit("u3", "grunt"))
 	_assert_problem(army, "for each HERO", _horde_catalog(entries))
+
+
+func test_per_entry_can_match_by_unit_name() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.per = PackedStringArray(["Hero A"])
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
+	_assert_no_problem(_horde_army(), "for each", _horde_catalog(entries))
+
+
+func test_per_entry_naming_a_unit_not_in_the_army_allows_none() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.per = PackedStringArray(["Hero B"])
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
+	_assert_problem(_horde_army(), "for each", _horde_catalog(entries))
+
+
+func test_per_item_with_two_keywords_needs_a_unit_with_both() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.per = PackedStringArray(["HERO WARMASTER"])
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
+	_assert_problem(_horde_army(), "for each", _horde_catalog(entries))
+
+
+func test_per_item_with_two_keywords_counts_a_unit_with_both() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.per = PackedStringArray(["HERO WARMASTER"])
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Warmaster"), limited]
+	var army := _horde_army()
+	army.regiments.append(_regiment("Side", "warmaster"))
+	_assert_no_problem(army, "for each", _horde_catalog(entries))
+
+
+func test_per_entry_counts_a_unit_matching_any_of_its_items() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.per = PackedStringArray(["Hero B", "HERO"])
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
+	_assert_no_problem(_horde_army(), "for each", _horde_catalog(entries))
+
+
+func test_max_entry_allows_units_up_to_its_max() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.max = 2
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
+	var army := _horde_army()
+	army.regiments[0].units.append(Kit.unit("u3", "grunt"))
+	_assert_no_problem(army, "at most", _horde_catalog(entries))
+
+
+func test_max_entry_over_its_max_is_a_problem() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.max = 1
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
+	var army := _horde_army()
+	army.regiments[0].units.append(Kit.unit("u3", "grunt"))
+	_assert_problem(army, "at most", _horde_catalog(entries))
+
+
+func test_unit_also_matched_by_an_unlimited_entry_is_not_limited() -> void:
+	var limited := Kit.roster_entry("Grunt")
+	limited.max = 1
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited, Kit.roster_entry("", PackedStringArray(["INFANTRY"]))]
+	var army := _horde_army()
+	army.regiments[0].units.append(Kit.unit("u3", "grunt"))
+	_assert_no_problem(army, "at most", _horde_catalog(entries))
+
+
+func test_regiment_of_renown_units_do_not_count_against_a_max() -> void:
+	var limited := Kit.roster_entry("Ror Grunt")
+	limited.max = 1
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), limited]
+	var army := _horde_army()
+	army.regiments.append(_ror())
+	_assert_no_problem(army, "at most", _horde_catalog(entries))
+
+
+func test_roster_keyword_matches_a_keyword_with_a_value() -> void:
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), Kit.roster_entry("", PackedStringArray(["WIZARD"]))]
+	var army := _horde_army()
+	army.regiments.append(_regiment("Side", "wizard"))
+	_assert_no_problem(army, "Wizard", _horde_catalog(entries))
+
+
+func test_required_keyword_entry_that_is_missing_is_a_problem_naming_the_keyword() -> void:
+	var required := Kit.roster_entry("", PackedStringArray(["EIDOLON"]))
+	required.required = true
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), required]
+	_assert_problem(_horde_army(), "EIDOLON", _horde_catalog(entries))
+
+
+func test_required_keyword_entry_that_is_included_is_allowed() -> void:
+	var required := Kit.roster_entry("", PackedStringArray(["HERO"]))
+	required.required = true
+	var entries: Array[RosterEntry] = [required, Kit.roster_entry("Grunt")]
+	_assert_no_problem(_horde_army(), "must include", _horde_catalog(entries))
+
+
+func test_roster_general_overrides_the_warmaster_rule() -> void:
+	var must_lead := Kit.roster_entry("Hero A")
+	must_lead.general = true
+	var entries: Array[RosterEntry] = [must_lead, Kit.roster_entry("Grunt"), Kit.roster_entry("Warmaster")]
+	var army := _horde_army()
+	army.regiments.append(_regiment("Side", "warmaster"))
+	_assert_no_problem(army, "Warmaster", _horde_catalog(entries))
+
+
+func test_warmaster_still_forces_the_general_when_the_general_is_not_a_roster_general() -> void:
+	var other := Kit.roster_entry("Hero B")
+	other.general = true
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), other, Kit.roster_entry("Grunt"), Kit.roster_entry("Warmaster")]
+	var army := _horde_army()
+	army.regiments.append(_regiment("Side", "warmaster"))
+	_assert_problem(army, "Warmaster", _horde_catalog(entries))
+
+
+## A Horde catalog whose roster allows the base army and whose manifestations are forbidden.
+func _no_manifestations_catalog() -> ArmyCatalog:
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), Kit.roster_entry("Wizard")]
+	var catalog := _horde_catalog(entries)
+	catalog.army_of_renown("Horde").roster.manifestations = false
+	return catalog
+
+
+func test_manifestation_lore_in_an_army_forbidding_manifestations_is_a_problem() -> void:
+	var army := _horde_army()
+	army.manifestation_lore = "Universal"
+	_assert_problem(army, "Universal", _no_manifestations_catalog())
+
+
+func test_manifestation_lore_in_an_army_allowing_manifestations_is_allowed() -> void:
+	var army := _horde_army()
+	army.manifestation_lore = "Universal"
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt")]
+	_assert_no_problem(army, "Universal", _horde_catalog(entries))
+
+
+func test_caster_has_no_manifestation_warning_when_manifestations_are_forbidden() -> void:
+	var army := _horde_army()
+	army.regiments.append(_regiment("Side", "wizard"))
+	assert_false(_mentions(_warnings(army, _no_manifestations_catalog()), "manifestation lore"))
 
 
 func test_required_roster_unit_that_is_missing_is_a_problem_naming_it() -> void:

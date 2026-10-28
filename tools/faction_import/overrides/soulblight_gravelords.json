@@ -44,6 +44,9 @@
 		"torgillius_the_chamberlain": {"notes": "This HERO can join an eligible regiment as a Vyrkos Retainer."},
 		"vampire_lord_on_zombie_dragon": {"notes": ""},
 		"vargskyr": {"notes": ""},
-		"vyrkos_blood_born": {"notes": "This unit cannot be reinforced."}
+		"vyrkos_blood_born": {"notes": "This unit cannot be reinforced."},
+		"Barrow Legion": {"roster": {"entries": [{"keywords": ["DEATHRATTLE"]}], "regiments_of_renown": false}},
+		"Knights of the Crimson Keep": {"roster": {"entries": [{"unit": "Prince Vhordrai", "general": true}, {"unit": "Vampire Lord on Nightmare Steed"}, {"unit": "Blood Knights"}, {"unit": "Revenant Draconith"}, {"unit": "Fell Bats"}], "regiments_of_renown": false, "faction_terrain": false}},
+		"Scions of Nulahmia": {"roster": {"entries": [{"unit": "Sekhar, Fang of Nulahmia", "required": true, "general": true}, {"unit": "Vampire Lord"}, {"unit": "Coven Throne"}, {"unit": "Bloodseeker Palanquin"}, {"unit": "Dire Wolves"}, {"unit": "Fell Bats"}, {"unit": "Vampire Lord on Nightmare Steed"}], "regiments_of_renown": false}}
 	}
 }

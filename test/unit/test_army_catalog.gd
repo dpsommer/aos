@@ -174,6 +174,18 @@ func test_army_of_renown_uses_its_own_lores_but_keeps_universal_ones() -> void:
 	assert_not_null(catalog.lore(_horde_army(), "manifestation", "Universal"))
 
 
+func test_army_of_renown_forbidding_manifestations_has_no_manifestation_lores() -> void:
+	var catalog := _catalog()
+	catalog.army_of_renown("Horde").roster.manifestations = false
+	assert_eq(catalog.lores(_horde_army(), "manifestation"), [])
+
+
+func test_army_of_renown_forbidding_manifestations_still_has_its_spell_lores() -> void:
+	var catalog := _catalog()
+	catalog.army_of_renown("Horde").roster.manifestations = false
+	assert_not_null(catalog.lore(_horde_army(), "spell", "Horde Spell"))
+
+
 func _legends_lore_faction() -> Faction:
 	var faction := _faction()
 	var old := Kit.lore("Old Fire", "spell")

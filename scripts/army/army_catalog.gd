@@ -94,10 +94,12 @@ func enhancement_choices(army: Army, warscroll: Warscroll, type: String, selecte
 
 
 ## Lores of [param kind] ("spell", "prayer" or "manifestation") the army can pick. Manifestation
-## lores include the universal ones.
+## lores include the universal ones, unless the Army of Renown forbids manifestations.
 func lores(army: Army, kind: String) -> Array[Lore]:
 	var renown := army_of_renown(army.army_of_renown)
 	var result: Array[Lore] = []
+	if kind == "manifestation" and renown and renown.roster and not renown.roster.manifestations:
+		return result
 	for lore in (renown.lores if renown else faction.lores):
 		if lore.kind == kind:
 			result.append(lore)

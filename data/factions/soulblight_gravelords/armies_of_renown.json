@@ -3,6 +3,16 @@
 		{
 			"name": "Barrow Legion",
 			"text": "When you pick the Soulblight Gravelords faction for your army, you can choose it to be a Barrow Legion Army of Renown. If you do so, use the faction rules in this section instead of the Soulblight Gravelords faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the BARROW LEGION keyword. Wight King and Wight King on Skeletal Steed units in your army gain WARMASTER.\nROSTER OPTIONS\nAny DEATHRATTLE units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"DEATHRATTLE"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "The Royal Crypt",
@@ -148,6 +158,28 @@
 		{
 			"name": "Knights of the Crimson Keep",
 			"text": "When you pick the Soulblight Gravelords faction for your army, you can choose it to be a Knights of the Crimson Keep Army of Renown. If you do so, use the faction rules in this section instead of the Soulblight Gravelords faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CRIMSON KEEP keyword.\nROSTER OPTIONS\nPrince Vhordrai (if included, must be general)\nVampire Lord on Nightmare Steed\nBlood Knights\nRevenant Draconith\nFell Bats\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Prince Vhordrai",
+						"general": true
+					},
+					{
+						"unit": "Vampire Lord on Nightmare Steed"
+					},
+					{
+						"unit": "Blood Knights"
+					},
+					{
+						"unit": "Revenant Draconith"
+					},
+					{
+						"unit": "Fell Bats"
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "The Crimson Keep",
@@ -302,6 +334,34 @@
 		{
 			"name": "Scions of Nulahmia",
 			"text": "When you pick the Soulblight Gravelords faction for your army, you can choose for it to be a Scions of Nulahmia Army of Renown. If you do so, use the faction rules on these pages instead of the Soulblight Gravelords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SCIONS OF NULAHMIA keyword.\nROSTER OPTIONS\nSekhar, Fang of Nulahmia (must be included and must be your general)\nVampire Lord\nCoven Throne\nBloodseeker Palanquin\nDire Wolves\nFell Bats\nVampire Lord on Nightmare Steed\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nSCIONS OF NULAHMIA Vampire Lord units can be added to regiments led by a SCIONS OF NULAHMIA HERO.",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Sekhar, Fang of Nulahmia",
+						"required": true,
+						"general": true
+					},
+					{
+						"unit": "Vampire Lord"
+					},
+					{
+						"unit": "Coven Throne"
+					},
+					{
+						"unit": "Bloodseeker Palanquin"
+					},
+					{
+						"unit": "Dire Wolves"
+					},
+					{
+						"unit": "Fell Bats"
+					},
+					{
+						"unit": "Vampire Lord on Nightmare Steed"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Thaumic Realignment",

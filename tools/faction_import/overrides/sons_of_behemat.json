@@ -3,6 +3,9 @@
 		"Lofty Louts": {
 			"timing": "Deployment Phase",
 			"frequency": "Once Per Battle"
-		}
+		},
+		"King Brodd's Stomp": {"roster": {"entries": [{"unit": "King Brodd", "required": true, "general": true}, {"keywords": ["BIG"]}, {"keywords": ["LITTLE"], "not_keywords": ["UNIQUE"]}], "regiments_of_renown": false}},
+		"Matriarch's Mob": {"roster": {"entries": [{"unit": "Ma Maegran, Chooser of the Mighty", "required": true, "general": true}, {"unit": "Ancient Ghyrochs"}, {"keywords": ["LITTLE"]}], "regiments_of_renown": false}},
+		"Stomper Tribe": {"roster": {"entries": [{"unit": "Warstomper Mega-Gargant", "max": 1, "required": true, "general": true}, {"keywords": ["LITTLE"], "not_keywords": ["UNIQUE"]}], "regiments_of_renown": false}}
 	}
 }

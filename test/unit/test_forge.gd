@@ -769,6 +769,14 @@ func test_renown_chips_note_no_faction_terrain() -> void:
 	assert_eq(Forge.renown_chips_for(army)[0][1], "warn")
 
 
+func test_renown_chips_note_no_manifestations() -> void:
+	var army := ArmyOfRenown.new()
+	army.roster = _roster()
+	army.roster.manifestations = false
+	assert_eq(_chip_texts(army).size(), 1)
+	assert_eq(Forge.renown_chips_for(army)[0][1], "warn")
+
+
 func test_renown_chips_for_both_limits_differ_in_text() -> void:
 	var army := ArmyOfRenown.new()
 	army.roster = _roster()

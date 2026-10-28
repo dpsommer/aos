@@ -6,6 +6,36 @@
 		{
 			"name": "The Knights of New Summercourt",
 			"text": "When you pick the Flesh-eater Courts faction for your army, you can choose for it to be the Knights of New Summercourt Army of Renown. If you do so, use the faction rules in this section instead of the Flesh-eater Courts faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the NEW SUMMERCOURT keyword.\nROSTER OPTIONS\nUshoran, Mortarch of Delusion (must be included)\nAny NON-UNIQUE ABHORRANTS\nAny NOBLES\nVarghulf Courtiers\nAny KNIGHTS units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Ushoran, Mortarch of Delusion",
+						"required": true
+					},
+					{
+						"keywords": [
+							"ABHORRANT"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					},
+					{
+						"keywords": [
+							"NOBLE"
+						]
+					},
+					{
+						"unit": "Varghulf Courtier"
+					},
+					{
+						"keywords": [
+							"KNIGHTS"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "The Summerking's Colours",
@@ -191,6 +221,29 @@
 		{
 			"name": "The Equinox Feast",
 			"text": "When you pick the Flesh-eater Courts faction for your army, you can choose for it to be the Equinox Feast Army of Renown. If you do so, use the faction rules in this section instead of the Flesh-eater Courts faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the EQUINOX FEAST keyword.\nROSTER OPTIONS\nHigh Falconer Felgryn (must be included)\nAny NON-UNIQUE NON-MONSTER HEROES\nAny SERFS units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "High Falconer Felgryn",
+						"required": true
+					},
+					{
+						"keywords": [
+							"HERO"
+						],
+						"not_keywords": [
+							"UNIQUE",
+							"MONSTER"
+						]
+					},
+					{
+						"keywords": [
+							"SERFS"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "The Equinox Parade",

@@ -6,3 +6,5 @@ extends Resource
 @export var entries: Array[RosterEntry]
 @export var regiments_of_renown := true
 @export var faction_terrain := true
+## Whether the army can pick a manifestation lore.
+@export var manifestations := true

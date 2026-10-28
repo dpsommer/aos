@@ -29,6 +29,9 @@
 				{"name": "3-5 chords – Melodic", "text": "Add 1 to the Attacks characteristic of melee weapons used by friendly units while they are in combat with the quarry."},
 				{"name": "6+ chords – Mellifluous", "text": "While a friendly unit is in combat with the quarry, the quarry has STRIKE-LAST."}
 			]
-		}
+		},
+		"Lords of the Clan": {"roster": {"entries": [{"unit": "The Lady of Vines"}, {"keywords": ["FOREST ELDER"], "not_keywords": ["UNIQUE"]}, {"keywords": ["KURNOTHI", "INFANTRY"]}], "regiments_of_renown": false}},
+		"Soulpod Guardians": {"roster": {"entries": [{"unit": "Grove Guardian"}, {"unit": "Branchwych"}, {"keywords": ["REVENANT"]}], "regiments_of_renown": false}},
+		"The Evergreen Hunt": {"roster": {"entries": [{"unit": "Belthanos, First Thorn of Kurnoth", "required": true, "general": true}, {"unit": "Kurnoth Hunters with Greatbows"}, {"unit": "Arch-Revenant"}, {"unit": "Revenant Seekers"}, {"unit": "Kurnoth Hunters with Greatscythes"}, {"unit": "Spiterider Lancers"}, {"unit": "Kurnoth Hunters with Greatswords"}], "regiments_of_renown": false}}
 	}
 }

@@ -347,13 +347,15 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 			entry.not_keywords = _strings(entries[i], "not_keywords", entry_path)
 			if entry.unit.is_empty() and entry.keywords.is_empty():
 				_error(entry_path, "needs a unit or keywords")
-			entry.per_keyword = _string(entries[i], "per_keyword", entry_path)
+			entry.per = _strings(entries[i], "per", entry_path)
+			entry.max = _int(entries[i], "max", entry_path)
 			entry.required = _bool(entries[i], "required", entry_path)
 			entry.general = _bool(entries[i], "general", entry_path)
 			entry.gains_keywords = _strings(entries[i], "gains_keywords", entry_path)
 		roster.entries.append(entry)
 	roster.regiments_of_renown = _bool(data, "regiments_of_renown", path, true)
 	roster.faction_terrain = _bool(data, "faction_terrain", path, true)
+	roster.manifestations = _bool(data, "manifestations", path, true)
 	return roster
 
 

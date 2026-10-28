@@ -3,6 +3,37 @@
 		{
 			"name": "Allies of the Free Cities",
 			"text": "When you pick the Cities of Sigmar faction for your army, you can choose for it to be an Allies of the Free Cities Army of Renown. If you do so, use the faction rules on these pages instead of the Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the ALLIES OF THE FREE CITIES keyword.\nROSTER OPTIONS\nAny non-UNIQUE SIGMARITE units\nFor each Sigmarite unit you include, you can include:\nUp to 1 ALLIES OF THE FREE CITIES DUARDIN unit\nUp to 1 ALLIES OF THE FREE CITIES AELF unit\nYou cannot include Regiments of Renown\nYou must include 1 SIGMARITE unit for each AELF unit and each DUARDIN unit you include.",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"SIGMARITE"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					},
+					{
+						"keywords": [
+							"ALLIES OF THE FREE CITIES",
+							"DUARDIN"
+						],
+						"per": [
+							"SIGMARITE"
+						]
+					},
+					{
+						"keywords": [
+							"ALLIES OF THE FREE CITIES",
+							"AELF"
+						],
+						"per": [
+							"SIGMARITE"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Form Up, Allies!",
@@ -105,6 +136,43 @@
 			"name": "Greywater Fastness",
 			"legends": true,
 			"text": "Roster options:\nFreeguild Marshal and Relic Envoy\nFusil-Major on Ogor Warhulk\nFreeguild Gallants\nFreeguild Steelhelms\nCannonade Cogfort\nConqueror Cogfort\nFreeguild Grenadiers\nGate Gargants\nDawner's Triumph\nSpirit of the Hands\nGreycap Fusiliers",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Freeguild Marshal and Relic Envoy"
+					},
+					{
+						"unit": "Fusil-Major on Ogor Warhulk"
+					},
+					{
+						"unit": "Freeguild Gallants"
+					},
+					{
+						"unit": "Freeguild Steelhelms"
+					},
+					{
+						"unit": "Cannonade Cogfort"
+					},
+					{
+						"unit": "Conqueror Cogfort"
+					},
+					{
+						"unit": "Freeguild Grenadiers"
+					},
+					{
+						"unit": "Gate Gargants"
+					},
+					{
+						"unit": "Dawner's Triumph"
+					},
+					{
+						"unit": "Spirit of the Hands"
+					},
+					{
+						"unit": "Greycap Fusiliers"
+					}
+				]
+			},
 			"battle_traits": [
 				{
 					"name": "Soldiers of the Fastness",
@@ -257,6 +325,154 @@
 			"name": "Lethis",
 			"legends": true,
 			"text": "Roster options:\nAssassin\nBlack Ark Fleetmaster\nCogsmith\nDreadlord on Black Dragon\nFreeguild Cavalier-Marshal\nFreeguild Marshal and Relic Envoy\nFreeguild Marshal on Griffon\nFusil-Major on Ogor Warhulk\nSteam Tank Commander\nBlack Ark Corsairs\nBlack Guard\nGyrobomber\nBleakswords\nFreeguild Steelhelms\nGyrocopter\nCelestial Hurricanum\nExecutioners\nDarkshards\nDark Riders\nFreeguild Command Corps Adjutants\nDreadspears\nDrakespawn Chariot\nDrakespawn Knights\nFlagellants\nFreeguild Cavaliers\nFreeguild Fusiliers\nHammerers\nIronbreakers\nScourgerunner Chariot\nLuminark of Hysh\nKharibdyss\nIrondrakes\nIronweld Great Cannon\nLongbeards\nSteam Tank\nWildercorps Hunters\nWar Hydra\nFreeguild Cavaliers (Scourge of Ghyran)\nAmethyst Knellmage\nCannonade Cogfort\nConqueror Cogfort\nFreeguild Command Corps Auxiliaries\nFreeguild Command Corps Whisperblade\nFreeguild Gallants\nFreeguild Grenadiers\nGate Gargants\nDawner's Triumph\nLethisian Consecrators\nRaven Priest of Morrda",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Assassin"
+					},
+					{
+						"unit": "Black Ark Fleetmaster"
+					},
+					{
+						"unit": "Cogsmith"
+					},
+					{
+						"unit": "Dreadlord on Black Dragon"
+					},
+					{
+						"unit": "Freeguild Cavalier-Marshal"
+					},
+					{
+						"unit": "Freeguild Marshal and Relic Envoy"
+					},
+					{
+						"unit": "Freeguild Marshal on Griffon"
+					},
+					{
+						"unit": "Fusil-Major on Ogor Warhulk"
+					},
+					{
+						"unit": "Steam Tank Commander"
+					},
+					{
+						"unit": "Black Ark Corsairs"
+					},
+					{
+						"unit": "Black Guard"
+					},
+					{
+						"unit": "Gyrobomber"
+					},
+					{
+						"unit": "Bleakswords"
+					},
+					{
+						"unit": "Freeguild Steelhelms"
+					},
+					{
+						"unit": "Gyrocopter"
+					},
+					{
+						"unit": "Celestial Hurricanum"
+					},
+					{
+						"unit": "Executioners"
+					},
+					{
+						"unit": "Darkshards"
+					},
+					{
+						"unit": "Dark Riders"
+					},
+					{
+						"unit": "Freeguild Command Corps Adjutants"
+					},
+					{
+						"unit": "Dreadspears"
+					},
+					{
+						"unit": "Drakespawn Chariot"
+					},
+					{
+						"unit": "Drakespawn Knights"
+					},
+					{
+						"unit": "Flagellants"
+					},
+					{
+						"unit": "Freeguild Cavaliers"
+					},
+					{
+						"unit": "Freeguild Fusiliers"
+					},
+					{
+						"unit": "Hammerers"
+					},
+					{
+						"unit": "Ironbreakers"
+					},
+					{
+						"unit": "Scourgerunner Chariot"
+					},
+					{
+						"unit": "Luminark of Hysh"
+					},
+					{
+						"unit": "Kharibdyss"
+					},
+					{
+						"unit": "Irondrakes"
+					},
+					{
+						"unit": "Ironweld Great Cannon"
+					},
+					{
+						"unit": "Longbeards"
+					},
+					{
+						"unit": "Steam Tank"
+					},
+					{
+						"unit": "Wildercorps Hunters"
+					},
+					{
+						"unit": "War Hydra"
+					},
+					{
+						"unit": "Amethyst Knellmage"
+					},
+					{
+						"unit": "Cannonade Cogfort"
+					},
+					{
+						"unit": "Conqueror Cogfort"
+					},
+					{
+						"unit": "Freeguild Command Corps Auxiliaries"
+					},
+					{
+						"unit": "Freeguild Command Corps Whisperblade"
+					},
+					{
+						"unit": "Freeguild Gallants"
+					},
+					{
+						"unit": "Freeguild Grenadiers"
+					},
+					{
+						"unit": "Gate Gargants"
+					},
+					{
+						"unit": "Dawner's Triumph"
+					},
+					{
+						"unit": "Lethisian Consecrators"
+					},
+					{
+						"unit": "Raven Priest of Morrda"
+					}
+				]
+			},
 			"battle_traits": [
 				{
 					"name": "Blackshore Discipline",
@@ -434,6 +650,38 @@
 		{
 			"name": "The Iron March",
 			"text": "When you pick the Cities of Sigmar faction for your army, you can choose for it to be the Iron March Army of Renown. If you do so, use the faction rules on these pages instead of the Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the IRON MARCH keyword.\nCommanders of the Iron March, Engineers of the Iron March and Iron March Auxiliaries are unique enhancements that can be given to IRON MARCH WAR MACHINES. A unit can only have 1 of each unique enhancement.\nROSTER OPTIONS\nCannonade Cogfort\nImmolator Cogfort\nConqueror Cogfort\nLinebreaker Cogfort\nFor each Conqueror Cogfort and Linebreaker Cogfort you include, you can include:\nup to 1 Mallus Forgepriest\nup to 1 unit of Freeguild Gallants\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Cannonade Cogfort"
+					},
+					{
+						"unit": "The Iron March Immolator Cogfort"
+					},
+					{
+						"unit": "Conqueror Cogfort"
+					},
+					{
+						"unit": "The Iron March Linebreaker Cogfort"
+					},
+					{
+						"unit": "Mallus Forgepriest",
+						"per": [
+							"Conqueror Cogfort",
+							"The Iron March Linebreaker Cogfort"
+						]
+					},
+					{
+						"unit": "Freeguild Gallants",
+						"per": [
+							"Conqueror Cogfort",
+							"The Iron March Linebreaker Cogfort"
+						]
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Form Up, Iron March",

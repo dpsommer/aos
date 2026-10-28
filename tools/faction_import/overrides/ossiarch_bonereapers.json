@@ -27,6 +27,9 @@
 			"name": "Supernatural Absorption",
 			"declare": "Pick an enemy MANIFESTATION within a friendly NULL MYRIAD unit's combat range to be the target."
 		},
-		"Gothizzar Cartouche": {"declare": "Pick a visible enemy unit within 12\" of this unit to be the target."}
+		"Gothizzar Cartouche": {"declare": "Pick a visible enemy unit within 12\" of this unit to be the target."},
+		"Petrifex Elite": {"roster": {"entries": [{"unit": "The Grand Necromystic", "max": 1, "general": true}, {"unit": "Mortisan Ossifector"}, {"unit": "Mortisan Soulmason"}, {"unit": "Gothizzar Harvester"}, {"unit": "Immortis Guard"}, {"unit": "Necropolis Stalkers"}, {"unit": "Morghast Harbingers"}, {"unit": "Mortek Crawler"}], "regiments_of_renown": false, "faction_terrain": false}},
+		"The Lance of Ossia": {"roster": {"entries": [{"unit": "Arch-Kavalos Zandtos", "required": true, "general": true}, {"unit": "Liege-Kavalos on War Chariot"}, {"unit": "Kavalos War Chariot"}, {"keywords": ["OSSIARCH BONEREAPERS", "CAVALRY"]}], "regiments_of_renown": false, "faction_terrain": false}},
+		"The Null Myriad": {"roster": {"entries": [{"unit": "Arkhan the Black, Mortarch of Sacrament", "required": true, "general": true}, {"keywords": ["OSSIARCH BONEREAPERS", "WIZARD", "HERO"], "not_keywords": ["UNIQUE"]}, {"keywords": ["OSSIARCH BONEREAPERS", "INFANTRY"], "not_keywords": ["HERO"]}], "regiments_of_renown": false}}
 	}
 }

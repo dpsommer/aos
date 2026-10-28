@@ -3,6 +3,26 @@
 		{
 			"name": "Aelementiri Conclave",
 			"text": "When you pick the Lumineth Realm-lords faction for your army, you can choose for it to be an Aelementiri Conclave Army of Renown. If you do so, use the faction rules on these pages instead of the Lumineth Realm-lords faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the AELEMENTIRI CONCLAVE keyword\nROSTER OPTIONS\nAny ALARITH units\nAny HURAKAN units\nAny YDRILAN units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"ALARITH"
+						]
+					},
+					{
+						"keywords": [
+							"HURAKAN"
+						]
+					},
+					{
+						"keywords": [
+							"YDRILAN"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "World Runes",
@@ -129,6 +149,22 @@
 		{
 			"name": "Vanari Paragons",
 			"text": "When you pick the Lumineth Realm-lords faction for your army, you can choose for it to be a Vanari Paragons Army of Renown. If you do so, use the faction rules on these pages instead of the Lumineth Realm-lords faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the VANARI PARAGONS keyword.\nROSTER OPTIONS\nAny non-UNIQUE VANARI units\nThe Light of Eltharion\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"VANARI"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					},
+					{
+						"unit": "The Light of Eltharion"
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Rewards of Valour",

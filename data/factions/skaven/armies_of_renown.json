@@ -3,6 +3,30 @@
 		{
 			"name": "Thanquol's Mutated Menagerie",
 			"text": "When you pick the Skaven faction for your army, you can choose for it to be a Thanquol’s Mutated Menagerie Army of Renown. If you do so, use the faction rules on these pages instead of the Skaven faction rules. Every unit in your army must be drawn from the units listed in the roster options opposite. All units in your army gain the MUTATED MENAGERIE keyword.\nROSTER OPTIONS\nThanquol on Boneripper\nMaster Moulder\nHell Pit Abomination\nBrood Terror\nRat Ogors\nStormfiends\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Thanquol on Boneripper"
+					},
+					{
+						"unit": "Master Moulder"
+					},
+					{
+						"unit": "Hell Pit Abomination"
+					},
+					{
+						"unit": "Brood Terror"
+					},
+					{
+						"unit": "Rat Ogors"
+					},
+					{
+						"unit": "Stormfiends"
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Monstrous Entourage",
@@ -130,6 +154,47 @@
 		{
 			"name": "The Great-grand Gnawhorde",
 			"text": "When you pick the Skaven faction for your army, you can choose for it to be a Great-grand Gnawhorde Army of Renown. If you do so, use the faction rules on these pages instead of the Skaven faction rules. Every unit in your army must be drawn from the units listed in the roster options opposite. All units in your army gain the GNAWHORDE keyword.\nROSTER OPTIONS\nVizzik Skour, Prophet of the Horned Rat\nNon-UNIQUE MASTERCLAN Units\nNon-UNIQUE VERMINUS units\nNon-UNIQUE SKRYRE units\nNon-UNIQUE MOULDER units\nYou cannot include Regiments of Renown or faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Vizzik Skour, Prophet of the Horned Rat"
+					},
+					{
+						"keywords": [
+							"MASTERCLAN"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					},
+					{
+						"keywords": [
+							"VERMINUS"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					},
+					{
+						"keywords": [
+							"SKRYRE"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					},
+					{
+						"keywords": [
+							"MOULDER"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Disciples of Vizzik",

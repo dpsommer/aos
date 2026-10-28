@@ -9,6 +9,8 @@
 		"Reverberating Ritual": {"declare": "Pick a friendly GNAWHORDE PRIEST to chant this prayer, pick a visible friendly GNAWHORDE INFANTRY unit wholly within 13\" of them to be the target, then make a chanting roll of D6."},
 		"Frenzied Momentum": {"timing": "Your Movement Phase", "frequency": "Once Per Turn (Army)"},
 		"Icon of Great-total Supremacy": {"effect": "You can return up to D3 slain models to each friendly GNAWHORDE INFANTRY unit with a Health characteristic of up to 3."},
-		"Untapped Mutation": {"declare": "Pick a friendly MUTATED MENAGERIE WIZARD to cast this spell, pick up to 3 visible friendly MUTATED MENAGERIE units wholly within 13\" of them that are affected by the 'More-more Mutation!' ability to be the targets, then make a casting roll of 2D6."}
+		"Untapped Mutation": {"declare": "Pick a friendly MUTATED MENAGERIE WIZARD to cast this spell, pick up to 3 visible friendly MUTATED MENAGERIE units wholly within 13\" of them that are affected by the 'More-more Mutation!' ability to be the targets, then make a casting roll of 2D6."},
+		"Thanquol's Mutated Menagerie": {"roster": {"entries": [{"unit": "Thanquol on Boneripper"}, {"unit": "Master Moulder"}, {"unit": "Hell Pit Abomination"}, {"unit": "Brood Terror"}, {"unit": "Rat Ogors"}, {"unit": "Stormfiends"}], "regiments_of_renown": false, "faction_terrain": false}},
+		"The Great-grand Gnawhorde": {"roster": {"entries": [{"unit": "Vizzik Skour, Prophet of the Horned Rat"}, {"keywords": ["MASTERCLAN"], "not_keywords": ["UNIQUE"]}, {"keywords": ["VERMINUS"], "not_keywords": ["UNIQUE"]}, {"keywords": ["SKRYRE"], "not_keywords": ["UNIQUE"]}, {"keywords": ["MOULDER"], "not_keywords": ["UNIQUE"]}], "regiments_of_renown": false, "faction_terrain": false}}
 	}
 }

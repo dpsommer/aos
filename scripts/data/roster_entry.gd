@@ -7,9 +7,11 @@ extends Resource
 @export var unit: String
 @export var keywords: PackedStringArray
 @export var not_keywords: PackedStringArray
-## If set, the army can include one unit matching this entry for each unit with this keyword.
-## Otherwise any number.
-@export var per_keyword: String
+## If set, the army can include one unit matching this entry for each unit matching any of these
+## unit names or keywords ("HERO MONSTER" needs both). Otherwise any number, up to [member max].
+@export var per: PackedStringArray
+## The most units matching this entry the army can include ("0-1"). 0 for no limit.
+@export var max: int
 ## Whether the army must include this unit.
 @export var required: bool
 ## Whether this unit must be the army's general.

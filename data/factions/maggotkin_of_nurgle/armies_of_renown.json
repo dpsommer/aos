@@ -3,6 +3,16 @@
 		{
 			"name": "Cycle of Corruption",
 			"text": "When you pick the Maggotkin of Nurgle faction for your army, you can choose for it to be a Cycle of Corruption Army of Renown. If you do so, use the faction rules on these pages instead of the Maggotkin of Nurgle faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CYCLE OF CORRUPTION keyword\nROSTER OPTIONS\nAny ROTBRINGERS units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"keywords": [
+							"ROTBRINGERS"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Revolution and Revulsion",
@@ -220,6 +230,21 @@
 		{
 			"name": "The Gardeners of Nurgle",
 			"text": "When you pick the Maggotkin of Nurgle faction for your army, you can choose for it to be the Gardeners of Nurgle Army of Renown. If you do so, use the faction rules on these pages instead of the Maggotkin of Nurgle faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the GARDENERS OF NURGLE keyword.\nROSTER OPTIONS\nHorticulous Slimux (must be included)\nAny MAGGOTKIN OF NURGLE DAEMON units\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Horticulous Slimux",
+						"required": true
+					},
+					{
+						"keywords": [
+							"MAGGOTKIN OF NURGLE",
+							"DAEMON"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "The Garden Grows",

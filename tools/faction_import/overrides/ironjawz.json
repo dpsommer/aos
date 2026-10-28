@@ -42,6 +42,9 @@
 		},
 		"Zoggrok's Ironmongerz > Summon Gork-Roara": {
 			"declare": "If there is not a friendly Gork-Roara on the battlefield, pick a friendly ZOGGROK'S IRONMONGERZ WIZARD to cast this spell, then make a casting roll of 2D6."
-		}
+		},
+		"Ironsunz": {"roster": {"entries": [{"unit": "Dakkbad Grotkicker", "max": 1}, {"unit": "Megaboss"}, {"unit": "Warchanter"}, {"unit": "Weirdnob Shaman"}, {"unit": "Brutes"}, {"unit": "Brute Ragerz"}, {"unit": "Weirdbrute Wrekkaz"}, {"unit": "Ardboy Big Boss", "per": ["Brutes", "Brute Ragerz", "Weirdbrute Wrekkaz"]}, {"unit": "Ardboyz", "per": ["Brutes", "Brute Ragerz", "Weirdbrute Wrekkaz"]}, {"unit": "Maw-grunta Gougers", "per": ["Brutes", "Brute Ragerz", "Weirdbrute Wrekkaz"]}, {"unit": "Maw-grunta with Hakkin' Krew", "per": ["Brutes", "Brute Ragerz", "Weirdbrute Wrekkaz"]}, {"unit": "Gore-gruntas", "per": ["Brutes", "Brute Ragerz", "Weirdbrute Wrekkaz"]}], "regiments_of_renown": false}},
+		"Krazogg's Grunta Stampede": {"roster": {"entries": [{"unit": "Maw-grunta Gougers"}, {"unit": "Gore-gruntas"}, {"unit": "Maw-grunta with Hakkin' Krew"}, {"unit": "Tuskboss on Maw-grunta"}], "regiments_of_renown": false}},
+		"Zoggrok's Ironmongerz": {"roster": {"entries": [{"unit": "Zoggrok Anvilsmasha", "required": true, "general": true}, {"keywords": ["IRONJAWZ", "INFANTRY"]}], "regiments_of_renown": false}}
 	}
 }

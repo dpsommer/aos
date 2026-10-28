@@ -32,6 +32,7 @@
 		},
 		"kruleboyz_monsta_killaz": {
 			"base_size": "Beastnob: 40mm, 6 x Monsta-killaz: 32mm, Klutcha-grot: 28.5mm"
-		}
+		},
+		"Murkvast Menagerie": {"roster": {"entries": [{"unit": "Swampboss Skumdrekk", "required": true, "general": true}, {"unit": "Snatchaboss on Sludgeraker Beast"}, {"unit": "Killaboss on Corpse-rippa Vulcha"}, {"unit": "Breaka-boss on Mirebrute Troggoth"}, {"unit": "Marshcrawla Sloggoth"}, {"unit": "Swampcalla Shaman with Pot-grot", "per": ["KRULEBOYZ HERO MONSTER"]}, {"keywords": ["KRULEBOYZ", "INFANTRY"], "not_keywords": ["HERO"], "per": ["KRULEBOYZ HERO MONSTER"]}], "regiments_of_renown": false, "faction_terrain": false}}
 	}
 }

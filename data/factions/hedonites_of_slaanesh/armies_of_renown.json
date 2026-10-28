@@ -3,6 +3,28 @@
 		{
 			"name": "Court of the Godlings",
 			"text": "When you pick the Hedonites of Slaanesh faction for your army, you can choose for it to be a Court of the Godlings Army of Renown. If you do so, use the faction rules on these pages instead of the Hedonites of Slaanesh faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the COURT OF THE GODLINGS keyword.\nROSTER OPTIONS\nDexcessa, the Talon of Slaanesh (must be included)\nSynessa, the Voice of Slaanesh (must be included)\nAny non-UNIQUE HEDONITES OF SLAANESH DAEMON units\nDexcessa and Synessa cannot be included in the same regiment\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Dexcessa, the Talon of Slaanesh",
+						"required": true
+					},
+					{
+						"unit": "Synessa, the Voice of Slaanesh",
+						"required": true
+					},
+					{
+						"keywords": [
+							"HEDONITES OF SLAANESH",
+							"DAEMON"
+						],
+						"not_keywords": [
+							"UNIQUE"
+						]
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "The Voice and the Talon",
@@ -168,6 +190,30 @@
 		{
 			"name": "The Decadent Host",
 			"text": "When you pick the Hedonites of Slaanesh faction for your army, you can choose for it to be the Decadent Host Army of Renown. If you do so, use the faction rules on these pages instead of the Hedonites of Slaanesh faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the DECADENT HOST keyword.\nROSTER OPTIONS\nSigvald, Prince of Slaanesh\nAny non-WAR MACHINE SYBARITE units\nUp to 1 Daemonettes unit\nUp to 1 Contorted Epitome\nYou cannot include Regiments of Renown",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Sigvald, Prince of Slaanesh"
+					},
+					{
+						"keywords": [
+							"SYBARITE"
+						],
+						"not_keywords": [
+							"WAR MACHINE"
+						]
+					},
+					{
+						"unit": "Daemonettes",
+						"max": 1
+					},
+					{
+						"unit": "Contorted Epitome",
+						"max": 1
+					}
+				],
+				"regiments_of_renown": false
+			},
 			"battle_traits": [
 				{
 					"name": "Perfection Made Manifest",

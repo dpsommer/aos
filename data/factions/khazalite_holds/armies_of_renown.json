@@ -3,6 +3,64 @@
 		{
 			"name": "Fyrd of Fyrepeak",
 			"text": "Roster options:\nGrimhold Exile\nVulkyn Flameseekers\nHearthguard Berzerkers\nAuric Hearthguard\nAuric Runesmiter\nAuric Flamekeeper\nAuric Runeson\nAuric Runefather\nAuric Runeson on Magmadroth\nAuric Runesmiter on Magmadroth\nAuric Runefather on Magmadroth\nOrmyr and Ashtongue\nAuric Runemaster\nBattlesmith\nDoomseeker\nGrimwrath Berzerker\nVulkite Berzerkers with Bladed Slingshields\nVulkite Berzerkers with Fyresteel Weapons\nAuric Runeson on Magmadroth (Scourge of Aqshy)\nVulkyn Flameseekers (Scourge of Aqshy)",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Grimhold Exile"
+					},
+					{
+						"unit": "Vulkyn Flameseekers"
+					},
+					{
+						"unit": "Hearthguard Berzerkers"
+					},
+					{
+						"unit": "Auric Hearthguard"
+					},
+					{
+						"unit": "Auric Runesmiter"
+					},
+					{
+						"unit": "Auric Flamekeeper"
+					},
+					{
+						"unit": "Auric Runeson"
+					},
+					{
+						"unit": "Auric Runefather"
+					},
+					{
+						"unit": "Auric Runeson on Magmadroth"
+					},
+					{
+						"unit": "Auric Runesmiter on Magmadroth"
+					},
+					{
+						"unit": "Auric Runefather on Magmadroth"
+					},
+					{
+						"unit": "Ormyr and Ashtongue"
+					},
+					{
+						"unit": "Auric Runemaster"
+					},
+					{
+						"unit": "Battlesmith"
+					},
+					{
+						"unit": "Doomseeker"
+					},
+					{
+						"unit": "Grimwrath Berzerker"
+					},
+					{
+						"unit": "Vulkite Berzerkers with Bladed Slingshields"
+					},
+					{
+						"unit": "Vulkite Berzerkers with Fyresteel Weapons"
+					}
+				]
+			},
 			"battle_traits": [
 				{
 					"name": "Grimmdron Grudges",
@@ -143,6 +201,52 @@
 		{
 			"name": "Throng of Valankrom",
 			"text": "Roster options:\nValayan Guardians with Runic Halberds\nValayan Guardians with Rune Axes and Shields\nClanshields\nGholems of Gazul\nGholems of Valaya\nStonebreaker Mortar\nOathkeeper Cannon\nClangunners with Thrundok Rifles\nClangunners with Thrundrin Shotcannons\nThrynn\nRunewright\nHjulda Drakkblud\nThrynn on War Throne\nHigh Kyng Valankrom",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Valayan Guardians with Runic Halberds"
+					},
+					{
+						"unit": "Valayan Guardians with Rune Axes and Shields"
+					},
+					{
+						"unit": "Clanshields"
+					},
+					{
+						"unit": "Gholems of Gazul"
+					},
+					{
+						"unit": "Gholems of Valaya"
+					},
+					{
+						"unit": "Stonebreaker Mortar"
+					},
+					{
+						"unit": "Oathkeeper Cannon"
+					},
+					{
+						"unit": "Clangunners with Thrundok Rifles"
+					},
+					{
+						"unit": "Clangunners with Thrundrin Shotcannons"
+					},
+					{
+						"unit": "Thrynn"
+					},
+					{
+						"unit": "Runewright"
+					},
+					{
+						"unit": "Hjulda Drakkblud"
+					},
+					{
+						"unit": "Thrynn on War Throne"
+					},
+					{
+						"unit": "High Kyng Valankrom"
+					}
+				]
+			},
 			"battle_traits": [
 				{
 					"name": "Venerated Sentinels",
@@ -279,6 +383,109 @@
 		{
 			"name": "Throngankor Alliance",
 			"text": "Roster options:\nValayan Guardians with Runic Halberds\nValayan Guardians with Rune Axes and Shields\nClanshields\nGrimhold Exile\nVulkyn Flameseekers\nHearthguard Berzerkers\nAuric Hearthguard\nAuric Runesmiter\nAuric Flamekeeper\nAuric Runeson\nAuric Runefather\nAuric Runeson on Magmadroth\nAuric Runesmiter on Magmadroth\nAuric Runefather on Magmadroth\nGotrek Gurnisson\nOrmyr and Ashtongue\nGholems of Gazul\nGholems of Valaya\nStonebreaker Mortar\nOathkeeper Cannon\nClangunners with Thrundok Rifles\nClangunners with Thrundrin Shotcannons\nThrynn\nRunewright\nHjulda Drakkblud\nThrynn on War Throne\nHigh Kyng Valankrom\nAuric Runemaster\nBattlesmith\nDoomseeker\nGrimwrath Berzerker\nVulkite Berzerkers with Bladed Slingshields\nVulkite Berzerkers with Fyresteel Weapons\nAuric Runeson on Magmadroth (Scourge of Aqshy)\nVulkyn Flameseekers (Scourge of Aqshy)\nAether-Khemist\nAetheric Navigator\nArkanaut Admiral\nBrokk Grungsson, Lord-Magnate of Barak-Nar\nCodewright\nDrekki Flynt\nEndrinmaster with Dirigible Suit\nEndrinmaster with Endrinharness\nArkanaut Company\nArkanaut Frigate\nArkanaut Ironclad\nEndrinriggers\nGrundstok Gunhauler\nGrundstok Thunderers\nSkywardens\nThundrik's Profiteers\nGrundstok Gunhauler (Scourge of Ghyran)\nCodewright (Scourge of Ghyran)\nNull-Khemist\nVongrim Salvagers\nVongrim Harpoon Crew\nNull-Khemist (Scourge of Aqshy)\nEndrinriggers (Scourge of Aqshy)",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Valayan Guardians with Runic Halberds"
+					},
+					{
+						"unit": "Valayan Guardians with Rune Axes and Shields"
+					},
+					{
+						"unit": "Clanshields"
+					},
+					{
+						"unit": "Grimhold Exile"
+					},
+					{
+						"unit": "Vulkyn Flameseekers"
+					},
+					{
+						"unit": "Hearthguard Berzerkers"
+					},
+					{
+						"unit": "Auric Hearthguard"
+					},
+					{
+						"unit": "Auric Runesmiter"
+					},
+					{
+						"unit": "Auric Flamekeeper"
+					},
+					{
+						"unit": "Auric Runeson"
+					},
+					{
+						"unit": "Auric Runefather"
+					},
+					{
+						"unit": "Auric Runeson on Magmadroth"
+					},
+					{
+						"unit": "Auric Runesmiter on Magmadroth"
+					},
+					{
+						"unit": "Auric Runefather on Magmadroth"
+					},
+					{
+						"unit": "Gotrek Gurnisson"
+					},
+					{
+						"unit": "Ormyr and Ashtongue"
+					},
+					{
+						"unit": "Gholems of Gazul"
+					},
+					{
+						"unit": "Gholems of Valaya"
+					},
+					{
+						"unit": "Stonebreaker Mortar"
+					},
+					{
+						"unit": "Oathkeeper Cannon"
+					},
+					{
+						"unit": "Clangunners with Thrundok Rifles"
+					},
+					{
+						"unit": "Clangunners with Thrundrin Shotcannons"
+					},
+					{
+						"unit": "Thrynn"
+					},
+					{
+						"unit": "Runewright"
+					},
+					{
+						"unit": "Hjulda Drakkblud"
+					},
+					{
+						"unit": "Thrynn on War Throne"
+					},
+					{
+						"unit": "High Kyng Valankrom"
+					},
+					{
+						"unit": "Auric Runemaster"
+					},
+					{
+						"unit": "Battlesmith"
+					},
+					{
+						"unit": "Doomseeker"
+					},
+					{
+						"unit": "Grimwrath Berzerker"
+					},
+					{
+						"unit": "Vulkite Berzerkers with Bladed Slingshields"
+					},
+					{
+						"unit": "Vulkite Berzerkers with Fyresteel Weapons"
+					}
+				]
+			},
 			"battle_traits": [
 				{
 					"name": "Stone and Sky",

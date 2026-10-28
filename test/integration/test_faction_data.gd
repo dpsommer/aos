@@ -354,11 +354,25 @@ func test_only_warscrolls_from_the_battlepack_scourge_are_current() -> void:
 				assert_eq(warscroll.legends, warscroll.source != scourge, "%s: %s" % [faction.name, warscroll.id])
 
 
-func test_roster_per_keyword_is_only_set_on_keyword_entries() -> void:
+## Each roster entry matching by keywords allows at least one of the faction's units.
+func test_every_army_of_renown_roster_keyword_entry_matches_a_warscroll() -> void:
 	for faction in _factions:
 		for army in faction.armies_of_renown:
 			if not army.roster:
 				continue
 			for entry in army.roster.entries:
-				if not entry.per_keyword.is_empty():
-					assert_true(entry.unit.is_empty(), "%s: %s unit %s has per_keyword" % [faction.name, army.name, entry.unit])
+				if entry.unit.is_empty():
+					var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator._roster_matches(entry, w))
+					assert_true(found, "%s: %s roster entry %s matches no warscroll" % [faction.name, army.name, entry.keywords])
+
+
+func test_every_army_of_renown_roster_per_item_matches_a_warscroll() -> void:
+	for faction in _factions:
+		for army in faction.armies_of_renown:
+			if not army.roster:
+				continue
+			for entry in army.roster.entries:
+				if entry.per.is_empty():
+					continue
+				var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator._per_matches(entry, w))
+				assert_true(found, "%s: %s roster per %s matches no warscroll" % [faction.name, army.name, entry.per])

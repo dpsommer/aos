@@ -5,6 +5,8 @@
 	"fields": {
 		"Hateful Fractures": {"casting_value": 6},
 		"Ashen Smog": {"casting_value": 7},
-		"Shackling Curse": {"casting_value": 6}
+		"Shackling Curse": {"casting_value": 6},
+		"Taar's Grand Forgehost": {"roster": {"entries": [{"unit": "Urak Taar, the First Daemonsmith", "required": true, "general": true}, {"keywords": ["HELSMITHS OF HASHUT", "INFANTRY"], "not_keywords": ["HOBGROT"]}, {"keywords": ["HELSMITHS OF HASHUT", "WAR MACHINE"], "not_keywords": ["HERO"]}], "regiments_of_renown": false}},
+		"Ziggurat Stampede": {"roster": {"entries": [{"unit": "Daemonsmith on Infernal Taurus"}, {"keywords": ["HELSMITHS OF HASHUT", "CAVALRY"]}, {"keywords": ["HELSMITHS OF HASHUT", "AUTOMATON"]}], "regiments_of_renown": false}}
 	}
 }

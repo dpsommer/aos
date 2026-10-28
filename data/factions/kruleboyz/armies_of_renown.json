@@ -6,6 +6,47 @@
 		{
 			"name": "Murkvast Menagerie",
 			"text": "When you pick the Kruleboyz faction for your army, you can choose for it to be a Murkvast Menagerie Army of Renown. If you do so, use the faction rules on these pages instead of the Kruleboyz faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the MURKVAST MENAGERIE keyword.\nROSTER OPTIONS\nSwampboss Skumdrekk (must be included and must be your general)\nSnatchaboss on Sludgeraker Beast\nKillaboss on Corpse-rippa Vulcha\nBreaka-boss on Mirebrute Troggoth\nMarshcrawla Sloggoth\nFor every KRULEBOYZ HERO MONSTER you include, you can include a Swampcalla Shaman and Pot-grot\nFor every KRULEBOYZ HERO MONSTER you include, you can include a non-HERO KRULEBOYZ INFANTRY unit.\nYou cannot include Regiments of Renown\nYou cannot include faction terrain",
+			"roster": {
+				"entries": [
+					{
+						"unit": "Swampboss Skumdrekk",
+						"required": true,
+						"general": true
+					},
+					{
+						"unit": "Snatchaboss on Sludgeraker Beast"
+					},
+					{
+						"unit": "Killaboss on Corpse-rippa Vulcha"
+					},
+					{
+						"unit": "Breaka-boss on Mirebrute Troggoth"
+					},
+					{
+						"unit": "Marshcrawla Sloggoth"
+					},
+					{
+						"unit": "Swampcalla Shaman with Pot-grot",
+						"per": [
+							"KRULEBOYZ HERO MONSTER"
+						]
+					},
+					{
+						"keywords": [
+							"KRULEBOYZ",
+							"INFANTRY"
+						],
+						"not_keywords": [
+							"HERO"
+						],
+						"per": [
+							"KRULEBOYZ HERO MONSTER"
+						]
+					}
+				],
+				"regiments_of_renown": false,
+				"faction_terrain": false
+			},
 			"battle_traits": [
 				{
 					"name": "Crawly Swarm",

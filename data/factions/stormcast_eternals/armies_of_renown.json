@@ -25,7 +25,7 @@
 							"UNIQUE",
 							"VANGUARD CHAMBER"
 						],
-						"per_keyword": "VANGUARD CHAMBER"
+						"per": ["VANGUARD CHAMBER"]
 					}
 				],
 				"regiments_of_renown": false,

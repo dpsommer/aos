@@ -29,7 +29,9 @@
 		"high_falconer_felgryn": {"base_size": "High Falconer Felgryn: 32mm, Grype: 28.5mm"},
 		"crypt_haunter_courtier": {"regiment_options": ["0-1 SERFS", "Any Crypt Horrors", "0-1 BEAST"]},
 		"crypt_infernal_courtier": {"regiment_options": ["0-1 SERFS", "Any Crypt Flayers", "0-1 BEAST"]},
-		"crypt_ghast_courtier": {"notes": "This HERO can join an eligible regiment as a Royal Attendant."}
+		"crypt_ghast_courtier": {"notes": "This HERO can join an eligible regiment as a Royal Attendant."},
+		"The Knights of New Summercourt": {"roster": {"entries": [{"unit": "Ushoran, Mortarch of Delusion", "required": true}, {"keywords": ["ABHORRANT"], "not_keywords": ["UNIQUE"]}, {"keywords": ["NOBLE"]}, {"unit": "Varghulf Courtier"}, {"keywords": ["KNIGHTS"]}], "regiments_of_renown": false}},
+		"The Equinox Feast": {"roster": {"entries": [{"unit": "High Falconer Felgryn", "required": true}, {"keywords": ["HERO"], "not_keywords": ["UNIQUE", "MONSTER"]}, {"keywords": ["SERFS"]}], "regiments_of_renown": false}}
 	},
 	"path_to_glory": {
 		"Step 6 - Pick any Battle Mount Upgrades": {
