@@ -65,6 +65,18 @@ static func get_theme() -> Theme:
 	return _theme
 
 
+## Sets [param dialog]'s title in Cinzel and styles its buttons as Cinzel DialogButtons, its OK button
+## as [param ok_variation] (e.g. "DialogGoldButton" for the main action).
+static func style_dialog(dialog: AcceptDialog, ok_variation := "DialogButton") -> void:
+	# Overrides, as a window's title takes the theme's default font and size over its Window items.
+	dialog.add_theme_font_override("title_font", font(CINZEL, 700))
+	dialog.add_theme_font_size_override("title_font_size", 17)
+	for button in dialog.get_ok_button().get_parent().get_children():
+		if button is Button:
+			button.theme_type_variation = &"DialogButton"
+	dialog.get_ok_button().theme_type_variation = StringName(ok_variation)
+
+
 ## The width of an icon button of type [param variation], e.g. "GripButton": its icon plus the
 ## content margins of the nearest type in its variation chain that sets a normal stylebox.
 static func icon_button_width(variation := "IconButton") -> float:
@@ -437,6 +449,29 @@ static func _create() -> Theme:
 	theme.set_stylebox("cursor", "ItemList", box(Color.TRANSPARENT, GOLD, 6, 4))
 	theme.set_stylebox("cursor_unfocused", "ItemList", StyleBoxEmpty.new())
 	theme.set_color("font_color", "ItemList", Color("#C9CCD3"))
+	# Dialogs: a pane-coloured window. style_dialog() sets its title and buttons in Cinzel.
+	var window := box(PANE, CONTROL_BORDER, 10)
+	window.expand_margin_left = 8
+	window.expand_margin_right = 8
+	window.expand_margin_bottom = 8
+	window.expand_margin_top = 44
+	theme.set_stylebox("embedded_border", "Window", window)
+	theme.set_stylebox("embedded_unfocused_border", "Window", window)
+	theme.set_constant("title_height", "Window", 40)
+	theme.set_color("title_color", "Window", TEXT)
+	theme.set_stylebox("panel", "AcceptDialog", box(PANE, Color.TRANSPARENT, 0, 12))
+	theme.set_constant("buttons_separation", "AcceptDialog", 12)
+	for type in ["DialogButton", "DialogGoldButton"]:
+		var base: String = {"DialogButton": "Button", "DialogGoldButton": "GoldButton"}[type]
+		theme.set_type_variation(type, base)
+		for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+			var style := theme.get_stylebox(state, base).duplicate() as StyleBoxFlat
+			style.content_margin_left = 18
+			style.content_margin_right = 18
+			theme.set_stylebox(state, type, style)
+		theme.set_font("font", type, heading)
+		theme.set_font_size("font_size", type, 15)
+
 	theme.set_color("font_hovered_color", "ItemList", TEXT)
 	theme.set_color("font_selected_color", "ItemList", WARNING)
 	theme.set_constant("v_separation", "ItemList", 6)

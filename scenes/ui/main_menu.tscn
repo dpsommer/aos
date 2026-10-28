@@ -87,3 +87,9 @@ size_flags_horizontal = 0
 theme_type_variation = &"HeroGhostButton"
 text = "Quit"
 alignment = 0
+
+[node name="QuitDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Quit"
+ok_button_text = "Quit"
+dialog_text = "Are you sure you want to quit?"

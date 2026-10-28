@@ -6,7 +6,7 @@ What's implemented so far, by screen. Settings for accessibility (text size, col
 
 Screens are built from standard focusable controls, so they can be used without a mouse.
 - **Focus:** Tab and the arrow keys move focus, and Enter or Space presses the focused control. A focused control has a gold outline.
-- **Esc:** goes back one step: it does the same as the visible Back button on each screen. In the army builder, Esc first clears the search box (when it's focused and has text), then closes the picker, then cancels a rename. In a confirmation (deleting an army, leaving with unsaved changes), Esc cancels it. See [Forge](forge.md).
+- **Esc:** goes back one step: it does the same as the visible Back button on each screen. On the main menu, it asks to quit, as Quit does. In the army builder, Esc first clears the search box (when it's focused and has text), then closes the picker, then cancels a rename. In a confirmation (quitting, deleting an army, leaving with unsaved changes), Esc cancels it. See [Forge](forge.md).
 
 ### Forge
 

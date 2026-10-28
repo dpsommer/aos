@@ -416,3 +416,64 @@ func test_dashed_button_draws_a_dashed_border_in_every_state() -> void:
 
 func test_dashed_button_is_a_ghost_button_variation() -> void:
 	assert_eq(UITheme.get_theme().get_type_variation_base("DashedButton"), &"GhostButton")
+
+
+func _dialog() -> ConfirmationDialog:
+	var dialog := ConfirmationDialog.new()
+	add_child_autofree(dialog)
+	return dialog
+
+
+func test_style_dialog_sets_a_cinzel_title_font() -> void:
+	var dialog := _dialog()
+	UITheme.style_dialog(dialog)
+	assert_true(dialog.has_theme_font_override("title_font"))
+	var title_font := dialog.get_theme_font("title_font") as FontVariation
+	assert_not_null(title_font)
+	assert_eq(title_font.base_font, UITheme.CINZEL)
+
+
+func test_style_dialog_sets_a_title_font_size() -> void:
+	var dialog := _dialog()
+	UITheme.style_dialog(dialog)
+	assert_true(dialog.has_theme_font_size_override("title_font_size"))
+
+
+func test_style_dialog_gives_cancel_the_plain_dialog_variation() -> void:
+	var dialog := _dialog()
+	UITheme.style_dialog(dialog, "DialogGoldButton")
+	assert_eq(dialog.get_cancel_button().theme_type_variation, &"DialogButton")
+
+
+func test_style_dialog_gives_custom_buttons_the_plain_dialog_variation() -> void:
+	var dialog := _dialog()
+	var custom := dialog.add_button("Extra")
+	UITheme.style_dialog(dialog, "DialogGoldButton")
+	assert_eq(custom.theme_type_variation, &"DialogButton")
+
+
+func test_style_dialog_gives_ok_the_requested_variation() -> void:
+	var dialog := _dialog()
+	UITheme.style_dialog(dialog, "DialogGoldButton")
+	assert_eq(dialog.get_ok_button().theme_type_variation, &"DialogGoldButton")
+
+
+func test_style_dialog_ok_matches_other_buttons_by_default() -> void:
+	var dialog := _dialog()
+	UITheme.style_dialog(dialog)
+	assert_eq(dialog.get_ok_button().theme_type_variation, dialog.get_cancel_button().theme_type_variation)
+
+
+func test_dialog_gold_button_is_a_gold_button_variation() -> void:
+	assert_eq(UITheme.get_theme().get_type_variation_base("DialogGoldButton"), &"GoldButton")
+
+
+func test_dialog_button_is_a_button_variation() -> void:
+	assert_eq(UITheme.get_theme().get_type_variation_base("DialogButton"), &"Button")
+
+
+func test_dialog_buttons_use_a_cinzel_font() -> void:
+	var theme := UITheme.get_theme()
+	for type in ["DialogButton", "DialogGoldButton"]:
+		var button_font := theme.get_font("font", type) as FontVariation
+		assert_eq(button_font.base_font, UITheme.CINZEL, type)

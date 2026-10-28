@@ -61,6 +61,7 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 - rules text (`RulesFormatter`, shown in a `RichTextLabel`) with ability names in bold Cinzel, a thin horizontal rule between the abilities in a list, and extra space between paragraphs so an ability's timing, Declare, Effect and Keywords read as separate sections;
 - the design's icons, in `assets/2d/icons/`;
 - type variations, e.g. `GoldButton`, `OptionCard`, `PageTitleLabel`.
+- dialogs in a pane-coloured window with a border. `UITheme.style_dialog()` sets a dialog's title and buttons in Cinzel (`DialogButton`, or `DialogGoldButton` for the main action). It overrides the title font on the dialog itself, because a window's title takes the theme's default font and size over its `Window` theme items.
 
 `UIBuilder` (`scripts/ui/ui_builder.gd`) builds controls in code. Shared pieces:
 - **`OptionCard`** (`scripts/ui/option_card.gd`): a large button holding any controls, which fits its height to them. In toggle mode it shows as selected (gold border) while pressed.
