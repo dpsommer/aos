@@ -4,6 +4,7 @@
 		"blood_stalkers > Heartseekers": "Barbed Arrows"
 	},
 	"fields": {
+		"BLESSING OF KHAINE": {"frequency": "Once Per Turn (Army)"},
 		"Heretic's Bane": {"effect": "Roll a dice for each objective you control. For each 3+, subtract 1 from casting rolls and chanting rolls for the target for the rest of the turn."},
 		"Bloody-Handed Worshippers": {"effect": "Pick a friendly non-HERO DAUGHTERS OF KHAINE unit that has not used a FIGHT ability this turn and is within that anointed unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by that anointed unit has been resolved. If it is picked to do so, the target's melee weapons have Crit (Auto-wound) for the rest of the turn. If its melee weapons already have Crit (Auto-wound), they have Crit (Mortal) for the rest of the turn instead."},
 		"Summon Bloodwrack Viper": {"effect": "Set up a Bloodwrack Viper wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units."},

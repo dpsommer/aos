@@ -387,12 +387,87 @@ def test_rename_armies_matching_nothing_exits():
         build.rename_armies(armies(), {"Nowhere": "Somewhere"})
 
 
+# remove_armies()
+
+def test_remove_armies_removes_named_army():
+    a = armies()
+    build.remove_armies(a, ["Other Host"])
+    assert [x["name"] for x in a] == ["New Summercourt"]
+
+
+def test_remove_armies_removes_in_place():
+    a = armies()
+    same = a
+    build.remove_armies(a, ["Other Host"])
+    assert same is a and len(same) == 1
+
+
+def test_remove_armies_removes_every_named_army():
+    a = armies()
+    build.remove_armies(a, ["Other Host", "New Summercourt"])
+    assert a == []
+
+
+def test_remove_armies_without_names_changes_nothing():
+    a = armies()
+    build.remove_armies(a, [])
+    assert a == armies()
+
+
+def test_remove_armies_matching_nothing_exits():
+    with pytest.raises(SystemExit):
+        build.remove_armies(armies(), ["Nowhere"])
+
+
+def stub_build(monkeypatch, tmp_path, bs_armies, seen):
+    (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n, extra=(): seen.append(("files", list(extra))) or [])
+    monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n, extra=(): (
+        seen.append(("read", list(extra))) or ({}, [], bs_armies)))
+    monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: {
+        "faction": {}, "armies_of_renown": [], "spearheads": [], "path_to_glory": []})
+    monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
+    monkeypatch.setattr(build, "wahapedia_abilities", lambda page, units: [])
+    monkeypatch.setattr(build.merge, "merge_faction", lambda report, bs, wh: {})
+    monkeypatch.setattr(build, "link_summons", lambda data, core, others: None)
+    monkeypatch.setattr(build.merge, "merge_warscrolls", lambda report, bs, wh: [])
+    monkeypatch.setattr(build.merge, "merge_armies", lambda report, bs, wh: seen.append(("armies", [a["name"] for a in bs])) or bs)
+
+
+def test_build_passes_armies_of_renown_from_to_bsdata(tmp_path, monkeypatch):
+    seen = []
+    stub_build(monkeypatch, tmp_path, armies(), seen)
+    build.build("bs", str(tmp_path), "id", "Faction", {"armies_of_renown_from": ["Other - Host"]})
+    assert ("files", ["Other - Host"]) in seen and ("read", ["Other - Host"]) in seen
+
+
+def test_build_without_armies_of_renown_from_passes_no_extra_armies(tmp_path, monkeypatch):
+    seen = []
+    stub_build(monkeypatch, tmp_path, armies(), seen)
+    build.build("bs", str(tmp_path), "id", "Faction", {})
+    assert ("files", []) in seen and ("read", []) in seen
+
+
+def test_build_removes_armies_of_renown_before_merging(tmp_path, monkeypatch):
+    seen = []
+    stub_build(monkeypatch, tmp_path, armies(), seen)
+    build.build("bs", str(tmp_path), "id", "Faction", {"remove_armies_of_renown": ["Other Host"]})
+    assert ("armies", ["New Summercourt"]) in seen
+
+
+def test_build_removing_unknown_army_of_renown_exits(tmp_path, monkeypatch):
+    stub_build(monkeypatch, tmp_path, armies(), [])
+    with pytest.raises(SystemExit):
+        build.build("bs", str(tmp_path), "id", "Faction", {"remove_armies_of_renown": ["Nowhere"]})
+
+
 def test_build_renames_armies_before_merging(tmp_path, monkeypatch):
     (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
     merged = []
-    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n, extra=(): [])
     monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
-    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: ({}, [], armies()))
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n, extra=(): ({}, [], armies()))
     monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: {
         "faction": {}, "armies_of_renown": [], "spearheads": [], "path_to_glory": []})
     monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
@@ -409,9 +484,9 @@ def test_build_renames_armies_before_merging(tmp_path, monkeypatch):
 def test_build_links_summons_after_the_overrides(tmp_path, monkeypatch):
     (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
     seen = []
-    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n, extra=(): [])
     monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
-    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: ({}, [], []))
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n, extra=(): ({}, [], []))
     monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: {
         "faction": {}, "armies_of_renown": [], "spearheads": [], "path_to_glory": []})
     monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [])
@@ -454,9 +529,9 @@ def test_rename_wahapedia_warscrolls_matching_nothing_exits():
 def test_build_renames_wahapedia_warscrolls_before_merging(tmp_path, monkeypatch):
     (tmp_path / "faction.html").write_text("<html></html>", encoding="utf-8")
     merged = []
-    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n, extra=(): [])
     monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
-    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: ({}, [], []))
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n, extra=(): ({}, [], []))
     monkeypatch.setattr(build.wahapedia, "parse_faction_page", lambda p: {
         "faction": {}, "armies_of_renown": [], "spearheads": [], "path_to_glory": []})
     monkeypatch.setattr(build.wahapedia, "parse_unit_pages", lambda paths: [{"name": "Monsta-killaz", "abilities": []}])
@@ -603,9 +678,9 @@ def bsdata_only(monkeypatch):
     """Stubs BSData with a small faction, and makes reading any Wahapedia page fail the test."""
     def no_wahapedia(*args):
         raise AssertionError("Wahapedia was read")
-    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n: [])
+    monkeypatch.setattr(build.bsdata, "faction_files", lambda d, n, extra=(): [])
     monkeypatch.setattr(build.bsdata, "Catalogues", lambda d, files: None)
-    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n: (
+    monkeypatch.setattr(build.bsdata, "read_faction", lambda cats, n, extra=(): (
         bs_faction(),
         [{"id": "test_captain", "name": "Test Captain", "abilities": [ability("Rally Cry")], "keywords": []}],
         [bs_army("Throng", ["Test Captain", "Test Riders"])]))

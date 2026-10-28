@@ -169,7 +169,7 @@
 		{
 			"name": "Matriarch's Mob",
 			"keyword": "MATRIARCH’S MOB",
-			"text": "When you pick the Sons of Behemat faction for your army, you can choose for it to be a Matriarch’s Mob Army of Renown. If you do so, use the faction rules on these pages instead of the Sons of Behemat faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the MATRIARCH’S MOB keyword.\nROSTER OPTIONS\nMa Maegran, Chooser of the Mighty (must be included and must be your general)\nAncient Ghyrochs\nAny LITTLE units\nYou cannot include Regiments of Renown",
+			"text": "When you pick the Sons of Behemat faction for your army, you can choose for it to be a Matriarch’s Mob Army of Renown. If you do so, use the faction rules on these pages instead of the Sons of Behemat faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the MATRIARCH’S MOB keyword.\nROSTER OPTIONS\nMa Maegran, Chooser of the Mighty (must be included and must be your general)\nAncient Ghyrochs\nAny LITTLE units\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nMancrusher Gargants can lead regiments as if they were HEROES. Any LITTLE units can be added to a Mancrusher Gargant’s regiment.",
 			"roster": {
 				"entries": [
 					{
@@ -186,7 +186,20 @@
 						]
 					}
 				],
-				"regiments_of_renown": false
+				"regiments_of_renown": false,
+				"non_hero_leaders": [
+					"Mancrusher Gargant"
+				],
+				"regiment_options": [
+					{
+						"leaders": [
+							"Mancrusher Gargant"
+						],
+						"options": [
+							"Any LITTLE"
+						]
+					}
+				]
 			},
 			"battle_traits": [
 				{
@@ -323,7 +336,7 @@
 		{
 			"name": "Stomper Tribe",
 			"keyword": "STOMPER TRIBE",
-			"text": "When you pick the Sons of Behemat faction for your army, you can choose for it to be a Stomper Tribe Army of Renown. If you do so, use the faction rules on these pages instead of the Sons of Behemat faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the STOMPER TRIBE keyword.\nROSTER OPTIONS\n1 Warstomper Mega-Gargant (must be included and must be your general)\nAny non-UNIQUE LITTLE units\nYou cannot include Regiments of Renown",
+			"text": "When you pick the Sons of Behemat faction for your army, you can choose for it to be a Stomper Tribe Army of Renown. If you do so, use the faction rules on these pages instead of the Sons of Behemat faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the STOMPER TRIBE keyword.\nROSTER OPTIONS\n1 Warstomper Mega-Gargant (must be included and must be your general)\nAny non-UNIQUE LITTLE units\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nMancrusher Gargants can lead regiments as if they were HEROES. Any LITTLE units can be added to a Mancrusher Gargant’s regiment.",
 			"roster": {
 				"entries": [
 					{
@@ -341,7 +354,20 @@
 						]
 					}
 				],
-				"regiments_of_renown": false
+				"regiments_of_renown": false,
+				"non_hero_leaders": [
+					"Mancrusher Gargant"
+				],
+				"regiment_options": [
+					{
+						"leaders": [
+							"Mancrusher Gargant"
+						],
+						"options": [
+							"Any LITTLE"
+						]
+					}
+				]
 			},
 			"battle_traits": [
 				{

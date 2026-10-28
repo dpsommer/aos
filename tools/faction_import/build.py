@@ -14,6 +14,8 @@ two are printed as a report and never stop the build; fix a wrong value with an 
     {
         "warscroll_names": {"<name in the data>": "<name to use>"},
         "army_names": {"<BSData Army of Renown name>": "<name to use>"},
+        "armies_of_renown_from": ["<BSData catalogue name>"],
+        "remove_armies_of_renown": ["<Army of Renown name>"],
         "wahapedia_warscroll_names": {"<Wahapedia unit name>": "<BSData name>"},
         "replace_with_wahapedia": {"<BSData ability name>": "<Wahapedia ability name>"},
         "faction": {"<field>": <value>},
@@ -27,6 +29,10 @@ A fields <target> is a warscroll name or id, an Army of Renown name, an ability 
 "<owner> > <weapon or ability name>" where a name alone is ambiguous. An owner is a warscroll id, an
 Army of Renown name, or a faction enhancement table or lore name, as "<name> (<source>)" when several
 share a name.
+armies_of_renown_from reads other factions' Army of Renown catalogues as the faction's own, and
+remove_armies_of_renown drops the faction's own, for an Army of Renown a rules update has moved to
+another faction before BSData has (Lofnir Drothkeepers, "Fyreslayers - Lofnir Drothkeepers", moved
+to Khazalite Holds).
 path_to_glory replaces text in a Path to Glory section, which is stored as text rather than as
 abilities; each text must appear in the section exactly once.
 
@@ -115,6 +121,16 @@ def rename(items, names, what):
 
 def rename_armies(armies, names):
     rename(armies, names, "Army of Renown")
+
+
+def remove_armies(armies, names):
+    """Drops the Armies of Renown named in [names] from [armies], in place."""
+    for name in names:
+        matched = [a for a in armies if a["name"] == name]
+        if not matched:
+            sys.exit("remove_armies_of_renown: no Army of Renown named %r" % name)
+        for a in matched:
+            armies.remove(a)
 
 
 def rename_wahapedia_warscrolls(units, names):
@@ -247,8 +263,10 @@ NO_WAHAPEDIA_PAGE = {
 def build(bsdata_dir, wahapedia_dir, faction_id, faction_name, overrides):
     """Builds the faction. A [wahapedia_dir] of None builds from BSData alone, and the report then
     leaves out the comparison, as every item would be BSData-only."""
-    cats = bsdata.Catalogues(bsdata_dir, bsdata.faction_files(bsdata_dir, faction_name))
-    bs_faction, bs_warscrolls, bs_armies = bsdata.read_faction(cats, faction_name)
+    extra_armies = overrides.get("armies_of_renown_from", [])
+    cats = bsdata.Catalogues(bsdata_dir, bsdata.faction_files(bsdata_dir, faction_name, extra_armies))
+    bs_faction, bs_warscrolls, bs_armies = bsdata.read_faction(cats, faction_name, extra_armies)
+    remove_armies(bs_armies, overrides.get("remove_armies_of_renown", []))
     if wahapedia_dir is None:
         wh_page, wh_units = copy.deepcopy(NO_WAHAPEDIA_PAGE), []
     else:

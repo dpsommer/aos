@@ -670,8 +670,16 @@ def test_short_name_without_owner_keeps_name():
 
 
 def test_aor_file_name_strips_faction_and_extension():
-    assert bsdata.aor_file_name("Kharadron Overlords", "Kharadron Overlords - The Duardin Ascendant [LEGENDS].cat") \
+    assert bsdata.aor_file_name("Kharadron Overlords - The Duardin Ascendant [LEGENDS].cat") \
         == "The Duardin Ascendant [LEGENDS]"
+
+
+def test_aor_file_name_takes_name_after_first_separator_only():
+    assert bsdata.aor_file_name("Fyreslayers - Lofnir Drothkeepers.cat") == "Lofnir Drothkeepers"
+
+
+def test_aor_file_name_keeps_later_separators():
+    assert bsdata.aor_file_name("Fyreslayers - Lofnir - Drothkeepers.cat") == "Lofnir - Drothkeepers"
 
 
 def test_split_legends_tag_strips_tag():
@@ -887,6 +895,105 @@ def test_faction_files_ignore_link_to_missing_catalogue(tmp_path):
     d = small_faction(tmp_path, army_links=["nowhere"])
     assert sorted(bsdata.faction_files(d, FACTION)) == sorted(
         [FACTION + ".cat", FACTION + " - Library.cat", FACTION + " - Alliance.cat"])
+
+
+# faction_files() and read_faction() with extra_armies
+
+EXTRA = "Others - Foreign Host"
+
+
+def with_extra_army(tmp_path, link_shared=True):
+    """The fixture directory plus another faction's Army of Renown, "Others - Foreign Host", that
+    links its own shared catalogue "þ Foreign Host" (id "other-shared") and the fixture library."""
+    d = fixture_copy(tmp_path)
+    links = '<catalogueLink id="cl-x-lib" name="Testers - Library" targetId="cat-lib" type="catalogue"/>'
+    if link_shared:
+        links += '<catalogueLink id="cl-x-shared" name="þ Foreign Host" targetId="other-shared" type="catalogue"/>'
+    (d / (EXTRA + ".cat")).write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="other-aor" name="%s" gameSystemId="sys" '
+        'xmlns="%s"><catalogueLinks>%s</catalogueLinks><entryLinks>'
+        '<entryLink id="el-x-captain" name="Test Captain" targetId="u-captain" type="selectionEntry"/>'
+        '</entryLinks></catalogue>' % (EXTRA, NS, links), encoding="utf-8")
+    (d / "Foreign Host.cat").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<catalogue id="other-shared" name="þ Foreign Host" '
+        'gameSystemId="sys" xmlns="%s"><sharedSelectionEntries>'
+        '<selectionEntry id="se-foreign" name="Battle Traits: Foreign Host" type="upgrade"><profiles>'
+        '<profile id="p-foreign" name="Foreign Rule" typeId="ab" typeName="Ability (Passive)">'
+        '<characteristics><characteristic name="Effect" typeId="eff">Does things.</characteristic></characteristics>'
+        '<attributes><attribute name="Type" typeId="t">Defensive</attribute></attributes>'
+        '</profile></profiles></selectionEntry></sharedSelectionEntries></catalogue>' % NS, encoding="utf-8")
+    return d
+
+
+def test_faction_files_include_extra_army(tmp_path):
+    d = with_extra_army(tmp_path)
+    assert EXTRA + ".cat" in bsdata.faction_files(str(d), FACTION, [EXTRA])
+
+
+def test_faction_files_include_shared_catalogue_linked_from_extra_army(tmp_path):
+    d = with_extra_army(tmp_path)
+    assert "Foreign Host.cat" in bsdata.faction_files(str(d), FACTION, [EXTRA])
+
+
+def test_faction_files_exclude_extra_army_by_default(tmp_path):
+    d = with_extra_army(tmp_path)
+    assert EXTRA + ".cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def test_faction_files_with_extra_army_have_no_duplicates(tmp_path):
+    d = with_extra_army(tmp_path)
+    files = bsdata.faction_files(str(d), FACTION, [EXTRA])
+    assert len(files) == len(set(files))
+
+
+def test_faction_files_with_missing_extra_army_exits(tmp_path):
+    d = fixture_copy(tmp_path)
+    with pytest.raises(SystemExit):
+        bsdata.faction_files(str(d), FACTION, ["Others - Nowhere"])
+
+
+def test_read_faction_reads_extra_army_as_own_army_of_renown(tmp_path):
+    d = with_extra_army(tmp_path)
+    cats = bsdata.Catalogues(str(d), bsdata.faction_files(str(d), FACTION, [EXTRA]))
+    armies = bsdata.read_faction(cats, FACTION, [EXTRA])[2]
+    assert "Foreign Host" in [a["name"] for a in armies]
+
+
+def test_read_faction_puts_extra_armies_after_own(tmp_path):
+    d = with_extra_army(tmp_path)
+    cats = bsdata.Catalogues(str(d), bsdata.faction_files(str(d), FACTION, [EXTRA]))
+    armies = bsdata.read_faction(cats, FACTION, [EXTRA])[2]
+    assert armies[-1]["name"] == "Foreign Host"
+
+
+def test_read_faction_keeps_own_armies_with_extra_army(tmp_path):
+    d = with_extra_army(tmp_path)
+    cats = bsdata.Catalogues(str(d), bsdata.faction_files(str(d), FACTION, [EXTRA]))
+    own = bsdata.read_faction(bsdata.Catalogues(str(d)), FACTION)[2]
+    armies = bsdata.read_faction(cats, FACTION, [EXTRA])[2]
+    assert armies[:len(own)] == own
+
+
+def test_read_faction_reads_battle_traits_of_extra_armys_shared_catalogue(tmp_path):
+    d = with_extra_army(tmp_path)
+    cats = bsdata.Catalogues(str(d), bsdata.faction_files(str(d), FACTION, [EXTRA]))
+    army = named(bsdata.read_faction(cats, FACTION, [EXTRA])[2], "Foreign Host")
+    assert "Foreign Rule" in [a["name"] for a in army["battle_traits"]]
+
+
+def test_read_faction_handles_legends_tag_of_extra_army(tmp_path):
+    d = with_extra_army(tmp_path)
+    (d / (EXTRA + ".cat")).rename(d / (EXTRA + " [LEGENDS].cat"))
+    name = EXTRA + " [LEGENDS]"
+    cats = bsdata.Catalogues(str(d), bsdata.faction_files(str(d), FACTION, [name]))
+    army = named(bsdata.read_faction(cats, FACTION, [name])[2], "Foreign Host")
+    assert army.get("legends") is True
+
+
+def test_read_faction_without_extra_armies_has_no_foreign_army(tmp_path):
+    d = with_extra_army(tmp_path)
+    cats = bsdata.Catalogues(str(d))
+    assert "Foreign Host" not in [a["name"] for a in bsdata.read_faction(cats, FACTION)[2]]
 
 
 # libraries()

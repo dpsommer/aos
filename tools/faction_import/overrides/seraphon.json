@@ -1,5 +1,7 @@
 {
 	"fields": {
+		"SCALED AEGIS": {"frequency": "Once Per Turn (Army)"},
+		"FOLLOWERS OF HUANCHI": {"frequency": "Once Per Turn (Army)"},
 		"ripperdactyl_riders_2_models": {"unit_size": 2},
 		"terradon_riders_2_models": {"unit_size": 2},
 		"spawn_of_chotec": {"base_size": "Spawn of Chotec: 90 × 52mm, 3 × Sun Acolytes: 25mm"},

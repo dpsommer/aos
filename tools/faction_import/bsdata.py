@@ -83,9 +83,10 @@ def checkout_version(path):
     return result.stdout.strip() or "unknown"
 
 
-def faction_files(directory, faction):
+def faction_files(directory, faction, extra_armies=()):
     """The catalogue files a faction needs: the game system, Lores.cat, <Faction>.cat, every
-    "<Faction> - *.cat" (library and Armies of Renown) and the shared catalogues those link
+    "<Faction> - *.cat" (library and Armies of Renown), the other factions' Army of Renown
+    catalogues named in [extra_armies] (see read_faction) and the shared catalogues those link
     to, one level deep. Links are matched by catalogue id, as link names don't always match file
     names ("þ Legions of Nagash" is "Legions of Nagash [LEGENDS].cat"). Path to Glory campaigns
     and other factions' libraries aren't needed, except a library the faction's own library links
@@ -103,6 +104,10 @@ def faction_files(directory, faction):
             if m:
                 by_id[m.group(1)] = name
     own = [n for n in names if n == faction + ".cat" or n.startswith(faction + " - ")]
+    for extra in extra_armies:
+        if extra + ".cat" not in names:
+            raise SystemExit("no BSData catalogue named %r in %s" % (extra + ".cat", directory))
+        own.append(extra + ".cat")
     wanted = set(own) | {n for n in names if n.endswith(".gst") or n == "Lores.cat"}
     for name in own:
         with open(os.path.join(directory, name), encoding="utf-8") as fh:
@@ -563,9 +568,9 @@ def units_of(cats, name, aor_roots):
     return units
 
 
-def aor_file_name(faction, file_name):
+def aor_file_name(file_name):
     """'Kharadron Overlords - The Duardin Ascendant [LEGENDS].cat' -> 'The Duardin Ascendant [LEGENDS]'"""
-    return file_name[len(faction + " - "):-len(".cat")]
+    return file_name.split(" - ", 1)[1][:-len(".cat")]
 
 
 def split_legends_tag(aor_name):
@@ -578,11 +583,15 @@ def points_of_link(link):
     return any(c.get("name") == "pts" and float(c.get("value")) for c in kids(link, "costs", "cost"))
 
 
-def read_faction(cats, name):
-    """faction, warscrolls and armies_of_renown for the BSData faction `name`."""
+def read_faction(cats, name, extra_armies=()):
+    """faction, warscrolls and armies_of_renown for the BSData faction `name`. [extra_armies] names
+    other factions' Army of Renown catalogues (without ".cat") that are read as the faction's own,
+    for an Army of Renown a rules update has moved to it before BSData has (Khazalite Holds' Lofnir
+    Drothkeepers is still "Fyreslayers - Lofnir Drothkeepers")."""
     root = cats.catalogue(name)
     aor_files = [f for f in sorted(cats.docs) if f.startswith(name + " - ") and not f.endswith("Library.cat")]
-    aor_roots = [r for f in aor_files for r in linked_roots(cats, cats.docs[f], aor_file_name(name, f))]
+    aor_files += [extra + ".cat" for extra in extra_armies]
+    aor_roots = [r for f in aor_files for r in linked_roots(cats, cats.docs[f], aor_file_name(f))]
     units = units_of(cats, name, aor_roots)
     warscrolls = [warscroll(cats, unit, link) for unit, link in units]
     alliance = next((k.lower() for unit, _ in units for k in
@@ -597,8 +606,8 @@ def read_faction(cats, name):
     }
     armies = []
     for file_name in aor_files:
-        roots = linked_roots(cats, cats.docs[file_name], aor_file_name(name, file_name))
-        aor_name, legends = split_legends_tag(aor_file_name(name, file_name))
+        roots = linked_roots(cats, cats.docs[file_name], aor_file_name(file_name))
+        aor_name, legends = split_legends_tag(aor_file_name(file_name))
         army = {"name": aor_name}
         if legends:
             army["legends"] = True

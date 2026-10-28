@@ -1,6 +1,8 @@
 {
 	"fields": {
 		"verminlord_corruptor": {"points": 260},
+		"gutter_runners": {"keywords": ["SKAVEN", "CHAOS", "INFANTRY", "ESHIN", "WARD (6+)", "CHAMPION (1/10)"]},
+		"gutter_runners > Bomb Rats": {"declare": "This unit's Bomb Rats are tokens. There is 1 Bomb Rat for every 10 models in this unit. If there are fewer than 2 friendly Bomb Rats next to enemy units, pick an enemy unit in combat with this unit that does not have a friendly Bomb Rat next to it to be the target.", "effect": "Place 1 of this unit's Bomb Rats next to the target."},
 		"warp_lightning_cannon > Warp Lightning Blast": {"damage": "-"},
 		"skabbiks_plaguepack > Plague Censer": {"wound": 3},
 		"skabbiks_plaguepack": {"base_size": "Skabbik Plagueseeker: 32mm, Rabidius Skench: 28.5mm, Poxlix, Itchitt, Rikkit and Skritter: 25mm"},

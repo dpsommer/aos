@@ -56,6 +56,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SAURUS unit to be the target",
 					"effect": "Roll a dice. On a 3+, that unit has WARD (6+) until the start of your next turn."
 				},
@@ -64,6 +65,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SKINK unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target’s ranged weapons have Crit (Auto-wound) for the rest of the turn, including Companion weapons."
 				}

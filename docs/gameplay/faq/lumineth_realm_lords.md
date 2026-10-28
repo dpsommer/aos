@@ -1,8 +1,8 @@
 # Lumineth Realm-lords FAQ
 
-Official rulings that concern Lumineth Realm-lords, from the [Rules Updates, September 2026](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
+Official rulings that concern Lumineth Realm-lords, from the [Rules Updates, October 2026](https://assets.warhammer-community.com/eng_28-10_aos_core_rules_and_key_downloads_rules_updates-aghvsvstmk-u8wyh173fe.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
 
-## Battletome (p. 55)
+## Battletome (p. 56)
 
 **Q:** With Varinor, Rune of Strength depicted twice on the battle scripture and 4 targets picked, does each target get +4 to run and charge rolls?
 

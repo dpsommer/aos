@@ -1716,7 +1716,7 @@
 			"keywords": [
 				"INFANTRY",
 				"DEATH",
-				"CHAMPION",
+				"CHAMPION (1/8)",
 				"FLY",
 				"NIGHTHAUNT",
 				"WARD (5+)"
@@ -2098,7 +2098,10 @@
 					"hit": 4,
 					"wound": 4,
 					"rend": 0,
-					"damage": "1"
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
 				}
 			],
 			"abilities": [
@@ -2146,6 +2149,7 @@
 					"rend": 2,
 					"damage": "D3",
 					"abilities": [
+						"Crit (Auto-wound)",
 						"Shoot in Combat"
 					]
 				}
@@ -2234,6 +2238,7 @@
 					"rend": 2,
 					"damage": "D3",
 					"abilities": [
+						"Crit (Auto-wound)",
 						"Shoot in Combat"
 					]
 				}

@@ -19,7 +19,7 @@
 		"kelthannor_the_forest_prince": {"points": 150},
 		"kelthannor_the_forest_prince > Hooves and Knuckles": {"abilities": ["Charge (+1 Damage)"]},
 		"skaeths_wild_hunt": {"save": 6},
-		"the_twistweald": {"base_size": "Swarmsage: 40mm, Twistroot Wardens and Twistroot Revenant: 32mm, Twistroot Dryads: 28.5mm, Twistroot Spite-Revenant: 40mm"},
+		"the_twistweald": {"base_size": "Swarmsage: 40mm, Twistroot Wardens and Twistroot Revenant: 32mm, Twistroot Dryads: 28.5mm, Twistroot Spite-Revenant: 40mm", "keywords": ["INFANTRY", "CHAMPION (1/8)", "ORDER", "SYLVANETH", "REVENANT"]},
 		"Our Reach is Long": {"effect": "The creeping overgrowth (referenced by other abilities) extends 6\" from each terrain feature that has a friendly overgrown token.\nIncrease this range by 1\" for each friendly LORDS OF THE CLAN unit that is wholly outside friendly territory."},
 		"Song of the Hunt": {
 			"effect": "The following cumulative effects apply to friendly EVERGREEN HUNT units depending on the number of chords you have:",

@@ -376,6 +376,7 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 		if _is_object(data.non_hero_general, general_path):
 			roster.non_hero_general = _string(data.non_hero_general, "unit", general_path, true)
 			roster.non_hero_general_unless = _strings(data.non_hero_general, "unless", general_path)
+	roster.non_hero_leaders = _strings(data, "non_hero_leaders", path)
 	var added := _array(data, "regiment_options", path)
 	for i in added.size():
 		var added_path := _join(path, "regiment_options[%d]" % i)

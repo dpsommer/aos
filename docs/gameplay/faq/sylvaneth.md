@@ -1,8 +1,8 @@
 # Sylvaneth FAQ
 
-Official rulings that concern Sylvaneth, from the [Rules Updates, September 2026](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
+Official rulings that concern Sylvaneth, from the [Rules Updates, October 2026](https://assets.warhammer-community.com/eng_28-10_aos_core_rules_and_key_downloads_rules_updates-aghvsvstmk-u8wyh173fe.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
 
-## Battletome (p. 74)
+## Battletome (p. 76)
 
 **Q:** Which units can Alarielle's 'The Goddess of Life' replace?
 
@@ -38,6 +38,6 @@ Official rulings that concern Sylvaneth, from the [Rules Updates, September 2026
 
 **A:** No.
 
-**Q:** In Path to Glory, can 'Treesong' set up an Awakened Wyldwood that isn't on the roster? (Path to Glory: Ravaged Coast, p. 76)
+**Q:** In Path to Glory, can 'Treesong' set up an Awakened Wyldwood that isn't on the roster? (Path to Glory: Ravaged Coast, p. 78)
 
 **A:** Yes. A battle trait or warscroll ability can set up faction terrain that isn't on the roster.

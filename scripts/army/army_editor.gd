@@ -76,10 +76,10 @@ func has_room(regiment: ArmyRegiment) -> bool:
 
 
 ## Whether a unit of [param warscroll_id] leads a regiment it's first in: a Hero, or a unit the
-## Army of Renown lets be the general instead of one.
+## Army of Renown lets lead instead of one.
 func _leads(warscroll_id: String) -> bool:
 	var warscroll := catalog.find_warscroll(army, warscroll_id)
-	return warscroll != null and (warscroll.has_keyword("HERO") or catalog.can_be_non_hero_general(army, warscroll))
+	return warscroll != null and catalog.can_lead(army, warscroll)
 
 
 ## Adds a regiment, led by [param leader_id]'s warscroll if given.

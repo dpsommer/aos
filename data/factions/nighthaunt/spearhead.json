@@ -384,6 +384,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of the First Battle Round",
+					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit on the battlefield.",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used for attacks that target that unit."
 				},

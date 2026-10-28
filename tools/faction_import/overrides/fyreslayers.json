@@ -1,5 +1,6 @@
 {
 	"faction": {"legends": true},
+	"remove_armies_of_renown": ["The Duardin Ascendant"],
 	"fields": {
 		"auric_hearthguard": {"keywords": ["CHAMPION", "DUARDIN", "FYRESLAYERS", "INFANTRY", "ORDER", "WARD (6+)"]},
 		"vulkyn_flameseekers": {"base_size": "4/9 32mm\n5/9 28.5mm"},

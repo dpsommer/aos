@@ -1,8 +1,8 @@
 # Maggotkin of Nurgle FAQ
 
-Official rulings that concern Maggotkin of Nurgle, from the [Rules Updates, September 2026](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
+Official rulings that concern Maggotkin of Nurgle, from the [Rules Updates, October 2026](https://assets.warhammer-community.com/eng_28-10_aos_core_rules_and_key_downloads_rules_updates-aghvsvstmk-u8wyh173fe.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
 
-## Battletome (p. 57)
+## Battletome (p. 58)
 
 **Q:** If a unit within 3" of a plague progenitor picked as the target of the 'Spread' effect of 'Blessed by the Plaguefather' already has the Disease keyword, does the 'Plague Progenitor' effect still inflict D3 mortal damage on it?
 

@@ -1,8 +1,8 @@
 # Ossiarch Bonereapers FAQ
 
-Official rulings that concern Ossiarch Bonereapers, from the [Rules Updates, September 2026](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
+Official rulings that concern Ossiarch Bonereapers, from the [Rules Updates, October 2026](https://assets.warhammer-community.com/eng_28-10_aos_core_rules_and_key_downloads_rules_updates-aghvsvstmk-u8wyh173fe.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
 
-## Battletome (p. 64)
+## Battletome (p. 65)
 
 **Q:** Can the target of Vokmortian's 'Voice of Nagash' be affected by passive non-Core abilities?
 
@@ -29,6 +29,10 @@ Official rulings that concern Ossiarch Bonereapers, from the [Rules Updates, Sep
 **A:** No. Manifestations and faction terrain are affected by enemy abilities as if they were units.
 
 ## Other rulings
+
+**Q:** Is mortal damage from a miscast 'mortal damage inflicted by a Spell ability' for a Morghast Archai unit's 'Ebon-wrought Armour'? (Advanced Rules, Magic 2.0, p. 11)
+
+**A:** No.
 
 **Q:** In the 'Banner of Old Ossia' artefact of power, does 'the Health characteristic of that unit' mean the unit using 'Rally' or the unit having slain models returned to it? (Other Digital Downloads, Scourge of Aqshy, p. 34)
 

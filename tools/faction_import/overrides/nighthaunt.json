@@ -4,7 +4,17 @@
 	},
 	"fields": {
 		"tomb_banshee > Piercing Scream": {
-			"range": 10
+			"range": 10,
+			"abilities": ["Crit (Auto-wound)", "Shoot in Combat"]
+		},
+		"thorns_of_the_briar_queen > Piercing Scream": {
+			"abilities": ["Crit (Auto-wound)", "Shoot in Combat"]
+		},
+		"the_headsmens_curse > Tool of Judgement": {
+			"abilities": ["Crit (Auto-wound)"]
+		},
+		"DEATH STALKERS": {
+			"frequency": "Once Per Turn (Army)"
 		},
 		"tomb_banshee > Cacophony of Sorrow": {
 			"effect": "While there are any visible friendly Myrmourn Banshees units within this unit's combat range, ignore positive modifiers to the control scores of enemy units within 12\" of this unit."
@@ -31,7 +41,8 @@
 			"health": 5
 		},
 		"pyregheists": {
-			"base_size": "Deacon of Flames: 40mm, 2 x Balefire Guard: 32mm, 2 x Flamewraiths: 32mm, 3 x Torchwraiths: 28.5mm"
+			"base_size": "Deacon of Flames: 40mm, 2 x Balefire Guard: 32mm, 2 x Flamewraiths: 32mm, 3 x Torchwraiths: 28.5mm",
+			"keywords": ["INFANTRY", "DEATH", "CHAMPION (1/8)", "FLY", "NIGHTHAUNT", "WARD (5+)"]
 		},
 		"pyregheists > Light a Pyre": {
 			"timing": "End of Any Turn"

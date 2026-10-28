@@ -37,6 +37,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
 					"effect": "Add 1 to ward rolls for that unit this phase."
 				}

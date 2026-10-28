@@ -803,8 +803,7 @@
 				"WARD (6+)",
 				"KHAZALITE HOLDS",
 				"GRIMMDRON",
-				"DUARDIN",
-				"MAGMADROTH"
+				"DUARDIN"
 			]
 		},
 		{
@@ -1383,6 +1382,12 @@
 			]
 		},
 		{
+			"shared": "grombrindal_the_white_dwarf",
+			"regiment_options": [
+				"Any ORDER DUARDIN units"
+			]
+		},
+		{
 			"id": "hearthguard_berzerkers",
 			"name": "Hearthguard Berzerkers",
 			"points": 110,
@@ -1816,7 +1821,7 @@
 					"name": "Rhythmic Hammering",
 					"type": "active",
 					"category": "special",
-					"timing": "You declared a SPELL ability from the 'Reverberations of the Runes' or the 'Resonance of the Runes' for this unit",
+					"timing": "Reaction: You declared a SPELL ability from the 'Reverberations of the Runes' or the 'Resonance of the Runes' for this unit",
 					"effect": "If the casting roll for that spell equals or exceeds its casting value, make a rhythmic hammering roll of 2D6.\nIf a rhythmic hammering roll is lower than that spell's casting value, the spell fails and its effect is not resolved.\nIf a rhythmic hammering roll equals or exceeds that spell's casting value, increase the range of that spell by 3\". You can keep making rhythmic hammering rolls for that spell until you roll lower than its casting value. The effects of this ability are cumulative."
 				}
 			],

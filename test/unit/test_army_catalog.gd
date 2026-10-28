@@ -1150,3 +1150,88 @@ func test_regiment_options_fit_a_unit_through_its_gained_keyword() -> void:
 	var beast := catalog.faction.get_warscroll("beast")
 	var options := catalog.regiment_options(army, _regiment_of("boss"))
 	assert_true(options.any(func(o: RegimentOption) -> bool: return o.matches(beast, catalog.gained_keywords(army, beast))))
+
+
+# Non-Hero leaders
+
+## A faction whose Army of Renown "Mob" lets the given names or keywords lead regiments without being Heroes.
+func _mob_catalog(leaders: PackedStringArray, keyword := "") -> ArmyCatalog:
+	var scrolls: Array[Warscroll] = [Kit.warscroll("gargant", PackedStringArray(["MONSTER"]), 100, "Gargant"),
+			Kit.warscroll("grunt"), Kit.hero("hero")]
+	var faction := Kit.faction(scrolls)
+	var mob := Kit.army_of_renown("Mob")
+	mob.keyword = keyword
+	mob.roster.non_hero_leaders = leaders
+	mob.roster.entries = [Kit.roster_entry("Grunt"), Kit.roster_entry("Gargant"), Kit.roster_entry("Hero")] as Array[RosterEntry]
+	faction.armies_of_renown = [mob] as Array[ArmyOfRenown]
+	return Kit.catalog(faction)
+
+
+func _mob_army() -> Army:
+	var army := Kit.army()
+	army.army_of_renown = "Mob"
+	return army
+
+
+func test_unit_named_in_non_hero_leaders_is_a_non_hero_leader() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["Gargant"]))
+	assert_true(catalog.is_non_hero_leader(_mob_army(), _scroll(catalog, "gargant")))
+
+
+func test_unit_with_a_keyword_in_non_hero_leaders_is_a_non_hero_leader() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["MONSTER"]))
+	assert_true(catalog.is_non_hero_leader(_mob_army(), _scroll(catalog, "gargant")))
+
+
+func test_unit_gaining_a_keyword_from_the_army_of_renown_can_be_a_non_hero_leader() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["MOB"]), "MOB")
+	assert_true(catalog.is_non_hero_leader(_mob_army(), _scroll(catalog, "grunt")))
+
+
+func test_unit_not_in_non_hero_leaders_is_not_a_non_hero_leader() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["Gargant"]))
+	assert_false(catalog.is_non_hero_leader(_mob_army(), _scroll(catalog, "grunt")))
+
+
+func test_hero_is_not_a_non_hero_leader() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["Hero"]))
+	assert_false(catalog.is_non_hero_leader(_mob_army(), _scroll(catalog, "hero")))
+
+
+func test_no_unit_is_a_non_hero_leader_without_an_army_of_renown() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["Gargant"]))
+	assert_false(catalog.is_non_hero_leader(Kit.army(), _scroll(catalog, "gargant")))
+
+
+func test_no_unit_is_a_non_hero_leader_with_an_empty_list() -> void:
+	var catalog := _mob_catalog(PackedStringArray())
+	assert_false(catalog.is_non_hero_leader(_mob_army(), _scroll(catalog, "gargant")))
+
+
+func test_hero_can_lead() -> void:
+	var catalog := _mob_catalog(PackedStringArray())
+	assert_true(catalog.can_lead(_mob_army(), _scroll(catalog, "hero")))
+
+
+func test_non_hero_leader_can_lead() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["Gargant"]))
+	assert_true(catalog.can_lead(_mob_army(), _scroll(catalog, "gargant")))
+
+
+func test_non_hero_general_can_lead() -> void:
+	var catalog := _crew_catalog()
+	assert_true(catalog.can_lead(_crew_army(), _scroll(catalog, "ironclad")))
+
+
+func test_ordinary_unit_cannot_lead() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["Gargant"]))
+	assert_false(catalog.can_lead(_mob_army(), _scroll(catalog, "grunt")))
+
+
+func test_non_hero_leader_is_not_a_hero() -> void:
+	var catalog := _mob_catalog(PackedStringArray(["Gargant"]))
+	var unit := Kit.unit("u1", "gargant")
+	var army := _mob_army()
+	army.regiments.append(Kit.regiment("r1", [unit] as Array[ArmyUnit]))
+	army.general_uid = "u1"
+	assert_false(catalog.is_hero(army, unit, _scroll(catalog, "gargant")))

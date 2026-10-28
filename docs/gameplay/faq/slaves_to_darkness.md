@@ -1,8 +1,8 @@
 # Slaves to Darkness FAQ
 
-Official rulings that concern Slaves to Darkness, from the [Rules Updates, September 2026](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
+Official rulings that concern Slaves to Darkness, from the [Rules Updates, October 2026](https://assets.warhammer-community.com/eng_28-10_aos_core_rules_and_key_downloads_rules_updates-aghvsvstmk-u8wyh173fe.pdf). They're paraphrased; the PDF (page numbers below) has the exact wording.
 
-## Battletome (p. 69)
+## Battletome (p. 70)
 
 **Q:** When 'Dark Apotheosis' sets up a Daemon Prince, must it be on the roster, and does it cost points?
 
@@ -41,7 +41,3 @@ Official rulings that concern Slaves to Darkness, from the [Rules Updates, Septe
 **Q:** In 'Pick a friendly non-Hero Legion of the First Prince Daemon Infantry or Cavalry unit' (and similar wordings), does 'Cavalry unit' mean any Cavalry unit? (Core Rules 5.1, p. 4)
 
 **A:** No. It means a friendly non-Hero Legion of the First Prince Daemon Cavalry unit.
-
-**Q:** Is mortal damage from a miscast 'mortal damage inflicted by a Spell ability' for the Tzeentch effect of 'Marks of Chaos'? (Advanced Rules, Magic 2.0, p. 11)
-
-**A:** No.

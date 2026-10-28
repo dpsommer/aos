@@ -25,3 +25,6 @@ extends Resource
 @export var non_hero_general: String
 ## Units whose inclusion stops [member non_hero_general] being the general, e.g. Brokk Grungsson.
 @export var non_hero_general_unless: PackedStringArray
+## Unit names or keywords of units that aren't Heroes but can lead regiments as if they were,
+## without gaining the HERO keyword, e.g. a Stomper Tribe's Mancrusher Gargants.
+@export var non_hero_leaders: PackedStringArray

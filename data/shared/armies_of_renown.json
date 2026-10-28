@@ -658,7 +658,7 @@
 			"source": "White Dwarf",
 			"legends": true,
 			"keyword": "DUARDIN ASCENDANT",
-			"text": "When you pick the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose for it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be included and must be your general)\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain",
+			"text": "When you pick the Khazalite Holds, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose for it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Khazalite Holds, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be included and must be your general)\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain",
 			"roster": {
 				"entries": [
 					{
@@ -675,7 +675,7 @@
 				],
 				"included_units": [
 					{
-						"faction": "fyreslayers"
+						"faction": "khazalite_holds"
 					},
 					{
 						"faction": "kharadron_overlords"
@@ -694,7 +694,7 @@
 					"type": "passive",
 					"category": "",
 					"timing": "Passive",
-					"effect": "Friendly DUARDIN ASCENDANT units are unified while they are wholly within 12\" of at least 1 FYRESLAYERS, 1 KHARADRON OVERLORDS, and 1 CITIES OF SIGMAR DUARDIN unit."
+					"effect": "Friendly DUARDIN ASCENDANT units are unified while they are wholly within 12\" of at least 1 KHAZALITE HOLDS, 1 KHARADRON OVERLORDS, and 1 CITIES OF SIGMAR DUARDIN unit."
 				},
 				{
 					"name": "'As the Ancestors Intended!'",

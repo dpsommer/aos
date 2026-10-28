@@ -1207,7 +1207,7 @@
 				"DESTRUCTION",
 				"OGOR",
 				"OGOR MAWTRIBES",
-				"BEASTCLAW RAIDERS"
+				"BEASTCLAW"
 			]
 		},
 		{
@@ -2330,7 +2330,7 @@
 					"timing": "Your Hero Phase",
 					"colour": "yellow",
 					"declare": "If this terrain feature does not have a Head Butcher, pick a friendly Butcher within 3\" of it and not in combat to be the target.",
-					"effect": "Place the target on this terrain feature. The target is now a Head Butcher (see 'Hungry Sinkhole').\n\nIf this terrain feature is demolished, before removing it from the battlefield, inflict D3 mortal damage on the Head Butcher. Then, set up the Head Butcher on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer a Head Butcher. If it is not possible to set up the Head Butcher, it is slain."
+					"effect": "Place the target on this terrain feature. The target is now a Head Butcher (see 'Hungry Sinkhole').\n\nIf this terrain feature is demolished, before removing it from the battlefield, inflict D3 mortal damage on the Head Butcher. Then, set up the Head Butcher on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer a Head Butcher. If it is not possible to set up the Head Butcher, it is slain.\nAll attacks that would target the Head Butcher target this terrain feature instead."
 				},
 				{
 					"name": "Step Away from the Maw",

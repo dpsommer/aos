@@ -3,6 +3,7 @@
 		"Monsta-killaz": "Kruleboyz Monsta-killaz"
 	},
 	"fields": {
+		"COVERED IN MUD": {"frequency": "Once Per Turn (Army)"},
 		"Far-killa Bolts": {
 			"declare": "Pick up to 3 friendly Man-skewer Boltboyz or Beast-skewer Killbow units to be the targets."
 		},

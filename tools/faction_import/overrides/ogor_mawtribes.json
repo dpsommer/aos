@@ -24,8 +24,14 @@
 				"DESTRUCTION",
 				"OGOR",
 				"OGOR MAWTRIBES",
-				"BEASTCLAW RAIDERS"
+				"BEASTCLAW"
 			]
+		},
+		"Eat 'Em Alive": {
+			"declare": "Pick a friendly OGOR unit that used a FIGHT ability that targeted a unit (excluding FACTION TERRAIN and MANIFESTATIONS) this turn to use this ability. Then, you can pick an enemy unit in combat with it to be the target. The same enemy unit cannot be picked to be the target of this ability more than once per turn."
+		},
+		"mawpit > Feed the Maw": {
+			"effect": "Place the target on this terrain feature. The target is now a Head Butcher (see 'Hungry Sinkhole').\n\nIf this terrain feature is demolished, before removing it from the battlefield, inflict D3 mortal damage on the Head Butcher. Then, set up the Head Butcher on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer a Head Butcher. If it is not possible to set up the Head Butcher, it is slain.\nAll attacks that would target the Head Butcher target this terrain feature instead."
 		},
 		"scourge_of_aqshy_frostlord_on_thundertusk": {
 			"keywords": [

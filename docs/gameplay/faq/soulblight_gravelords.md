@@ -1,6 +1,6 @@
 # Soulblight Gravelords FAQ
 
-Official rulings that concern Soulblight Gravelords, from the [Rules Updates, September 2026](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf). The battletome section has no FAQs; this comes from another section. It's paraphrased; the PDF (page number below) has the exact wording.
+Official rulings that concern Soulblight Gravelords, from the [Rules Updates, October 2026](https://assets.warhammer-community.com/eng_28-10_aos_core_rules_and_key_downloads_rules_updates-aghvsvstmk-u8wyh173fe.pdf). The battletome section has no FAQs; this comes from another section. It's paraphrased; the PDF (page number below) has the exact wording.
 
 ## Other rulings
 

@@ -1048,6 +1048,30 @@ func test_insertion_index_allows_the_start_before_a_leader_that_cannot_lead() ->
 	assert_eq(editor.insertion_index(editor.army.regiments[0], 0), 0)
 
 
+# insertion_index with a non-Hero leader
+
+func _mob_editor(leader_in_regiment := "gargant") -> ArmyEditor:
+	var faction := _faction()
+	faction.warscrolls.append(Kit.warscroll("gargant", PackedStringArray(["MONSTER"]), 100, "Gargant"))
+	var mob := Kit.army_of_renown("Mob")
+	mob.roster.non_hero_leaders = PackedStringArray(["Gargant"])
+	faction.armies_of_renown.append(mob)
+	var army := Kit.army()
+	army.army_of_renown = "Mob"
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", leader_in_regiment), Kit.unit("u2", "grunt")] as Array[ArmyUnit]))
+	return ArmyEditor.new(army, Kit.catalog(faction))
+
+
+func test_insertion_index_moves_a_position_before_a_non_hero_leader_after_it() -> void:
+	var editor := _mob_editor()
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 0), 1)
+
+
+func test_insertion_index_allows_the_start_before_a_unit_not_in_non_hero_leaders() -> void:
+	var editor := _mob_editor("grunt")
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 0), 0)
+
+
 # can_add_regiment_of_renown
 
 func test_can_add_an_allowed_regiment_of_renown() -> void:

@@ -120,7 +120,7 @@ static func _check_regiments(army: Army, catalog: ArmyCatalog, result: ArmyValid
 	for regiment: ArmyRegiment in built:
 		var leader := regiment.leader()
 		var leader_scroll := catalog.warscroll(leader, regiment) if leader else null
-		if leader_scroll == null or not catalog.is_hero(army, leader, leader_scroll):
+		if leader_scroll == null or not (catalog.is_hero(army, leader, leader_scroll) or catalog.is_non_hero_leader(army, leader_scroll)):
 			result.problems.append(_leader_problem(army, catalog, regiment, leader_scroll))
 			continue
 		var others := regiment.followers()

@@ -43,6 +43,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of the First Battle Round",
+					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit to use this ability.",
 					"effect": "In this battle, that unit is not visible to enemy models that are more than 12\" away from it."
 				},

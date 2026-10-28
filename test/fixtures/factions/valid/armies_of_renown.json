@@ -15,6 +15,7 @@
 				"excluded_units": ["Unit One", "Unit Three"],
 				"paired_leaders": ["CHAOS", "ORDER"],
 				"non_hero_general": {"unit": "Unit Three", "unless": ["Unit One", "Unit Four"]},
+				"non_hero_leaders": ["Unit Two", "MONSTER"],
 				"included_units": [
 					{"faction": "other_faction", "units": ["Unit Four"]},
 					{"faction": "third_faction"}

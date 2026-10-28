@@ -1492,6 +1492,58 @@ func test_non_hero_that_is_not_the_general_cannot_be_given_a_heroic_trait() -> v
 	_assert_problem(army, "Ironclad isn't a Hero", _crew_catalog())
 
 
+# Non-Hero leaders
+
+## An Army of Renown "Mob" whose Ironclads lead regiments without being Heroes, with any Grunt.
+func _mob_catalog() -> ArmyCatalog:
+	var faction := _faction()
+	faction.warscrolls.append(Kit.warscroll("ironclad", PackedStringArray(["WAR MACHINE"]), 100, "Ironclad"))
+	var mob := Kit.army_of_renown("Mob")
+	mob.roster.non_hero_leaders = PackedStringArray(["Ironclad"])
+	mob.roster.regiment_options = [_grunt_options()] as Array[RosterRegimentOptions]
+	mob.enhancement_tables = faction.enhancement_tables
+	faction.armies_of_renown = [mob] as Array[ArmyOfRenown]
+	return _catalog(faction)
+
+
+## A Mob army with an Ironclad leading regiment "Fleet" with a grunt, while a Hero is the general.
+func _mob_army() -> Army:
+	var army := Kit.army()
+	army.army_of_renown = "Mob"
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "hero_a")] as Array[ArmyUnit]))
+	army.regiments.append(Kit.regiment("r2", [Kit.unit("u2", "ironclad"), Kit.unit("u3", "grunt")] as Array[ArmyUnit], "Fleet"))
+	army.general_uid = "u1"
+	army.tactics = PackedStringArray(["Card A", "Card B"])
+	return army
+
+
+func test_non_hero_leader_can_lead_a_regiment_without_being_the_general() -> void:
+	_assert_no_problem(_mob_army(), "needs a Hero", _mob_catalog())
+
+
+func test_non_hero_leader_leads_a_regiment_with_the_regiment_options_it_gains() -> void:
+	_assert_no_problem(_mob_army(), "regiment options", _mob_catalog())
+
+
+func test_non_hero_leader_regiment_rejects_units_outside_its_options() -> void:
+	var army := _mob_army()
+	army.regiments[1].units.append(Kit.unit("u4", "monster"))
+	_assert_problem(army, "Monster", _mob_catalog())
+
+
+func test_unit_not_in_non_hero_leaders_still_needs_a_hero_leader() -> void:
+	var army := _mob_army()
+	army.regiments.append(_regiment("Plain", "grunt"))
+	var problems := _problems(army, _mob_catalog())
+	assert_true("Plain needs a Hero leader." in problems, str(problems))
+
+
+func test_non_hero_leader_cannot_be_given_a_heroic_trait() -> void:
+	var army := _mob_army()
+	army.regiments[1].units[0].enhancements = {"Heroic Traits": "Brave"}
+	_assert_problem(army, "Ironclad isn't a Hero", _mob_catalog())
+
+
 func test_names_or_keywords_matches_a_gained_keyword() -> void:
 	assert_true(ArmyValidator.names_or_keywords(_wizard(), PackedStringArray(["CREW"]), PackedStringArray(["CREW"])))
 

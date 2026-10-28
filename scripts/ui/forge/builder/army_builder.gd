@@ -639,11 +639,11 @@ func _on_picker_closed() -> void:
 
 
 ## Picks a Hero to lead [param regiment_id] in its empty leader's slot, or a new regiment when
-## empty. A unit the Army of Renown lets be the general instead of a Hero can lead too.
+## empty. A unit the Army of Renown lets lead instead of a Hero can lead too.
 func pick_leader(regiment_id: String) -> void:
 	_show_picker()
 	var heroes := available_units.bind(func(w: Warscroll) -> bool:
-		return w.has_keyword("HERO") or catalog.can_be_non_hero_general(editor.army, w))
+		return catalog.can_lead(editor.army, w))
 	var pick := func(warscroll_id: String) -> void:
 		picker.close()
 		if regiment_id.is_empty():

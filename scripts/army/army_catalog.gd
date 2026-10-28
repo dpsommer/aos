@@ -245,6 +245,21 @@ func can_be_non_hero_general(army: Army, warscroll: Warscroll) -> bool:
 	return RegimentOption._names(warscroll, army_roster.non_hero_general) and non_hero_general_blocker(army).is_empty()
 
 
+## Whether [param warscroll] can lead a regiment without being a Hero: it's one of the Army of
+## Renown's [member ArmyRoster.non_hero_leaders] (a Stomper Tribe's Mancrusher Gargants).
+func is_non_hero_leader(army: Army, warscroll: Warscroll) -> bool:
+	var army_roster := roster(army)
+	if army_roster == null or army_roster.non_hero_leaders.is_empty() or warscroll.has_keyword("HERO"):
+		return false
+	return ArmyValidator.names_or_keywords(warscroll, army_roster.non_hero_leaders, gained_keywords(army, warscroll))
+
+
+## Whether a unit of [param warscroll] can lead a regiment: a Hero, the Army of Renown's
+## [method can_be_non_hero_general] or one of its [method is_non_hero_leader] units.
+func can_lead(army: Army, warscroll: Warscroll) -> bool:
+	return warscroll.has_keyword("HERO") or can_be_non_hero_general(army, warscroll) or is_non_hero_leader(army, warscroll)
+
+
 ## The name of a unit in the army that stops the roster's [member ArmyRoster.non_hero_general] being
 ## the general, e.g. "Brokk Grungsson, Lord-Magnate of Barak-Nar". Empty if there's none.
 func non_hero_general_blocker(army: Army) -> String:
