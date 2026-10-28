@@ -16,6 +16,6 @@
 		"The Shield of Ulchiss": {"effect": "For the rest of the turn:\n• That unit can use a RETREAT ability and still use SHOOT and/or CHARGE abilities later in the turn.\n• No mortal damage is inflicted on that unit by RETREAT abilities."},
 		"Spirits of the Chorrileum": {"effect": "Each turn, you can gain up to 1 chorrileum spirit point. You gain 1 chorrileum spirit point the first time 1 of the following occurs in a turn:\n• You make an unmodified casting roll of 8 or more for a friendly ISHARANN WIZARD.\n• An enemy unit is destroyed while it is within 12\" of any friendly ISHARANN units.\n• A friendly unit is destroyed while it is wholly within 12\" of any friendly ISHARANN units or while it is contesting an objective you control."},
 		"The First Phalanx of Ionrach": {"roster": {"entries": [{"unit": "Volturnos, High King of the Deep", "required": true, "general": true}, {"keywords": ["AKHELIAN"]}], "regiments_of_renown": false}},
-		"Wardens of the Chorrileum": {"roster": {"entries": [{"keywords": ["EIDOLON"], "required": true, "max": 1}, {"keywords": ["ISHARANN"]}, {"keywords": ["NAMARTI"]}, {"keywords": ["AKHELIAN", "INFANTRY"]}], "regiments_of_renown": false}}
+		"Wardens of the Chorrileum": {"roster": {"entries": [{"one_of": ["Eidolon of Mathlann, Aspect of the Sea", "Eidolon of Mathlann, Aspect of the Storm"], "required": true, "max": 1}, {"keywords": ["ISHARANN"]}, {"keywords": ["NAMARTI"]}, {"keywords": ["AKHELIAN", "INFANTRY"]}], "regiments_of_renown": false}}
 	}
 }

@@ -799,6 +799,46 @@ func test_regiment_of_renown_units_do_not_count_against_a_max() -> void:
 	_assert_no_problem(army, "at most", _horde_catalog(entries))
 
 
+func _excluding_catalog(excluded: Array[String]) -> ArmyCatalog:
+	var entries: Array[RosterEntry] = [Kit.roster_entry("", PackedStringArray(["HERO"])), Kit.roster_entry("", PackedStringArray(["INFANTRY"]))]
+	var catalog := _horde_catalog(entries)
+	catalog.faction.armies_of_renown[0].roster.excluded_units = PackedStringArray(excluded)
+	return catalog
+
+
+func test_excluded_unit_matching_a_roster_entry_is_a_problem_naming_it() -> void:
+	_assert_problem(_horde_army(), "Hero A", _excluding_catalog(["Hero A"]))
+
+
+func test_excluded_unit_is_reported_once() -> void:
+	var problems := _problems(_horde_army(), _excluding_catalog(["Hero A"]))
+	var mentioning := Array(problems).filter(func(p: String) -> bool: return "hero a" in p.to_lower())
+	assert_eq(mentioning.size(), 1, str(problems))
+
+
+func test_excluded_unit_is_not_reported_as_outside_the_roster() -> void:
+	var problems := _problems(_horde_army(), _excluding_catalog(["Hero A"]))
+	assert_false(Array(problems).any(func(p: String) -> bool: return "roster" in p.to_lower()), str(problems))
+
+
+func test_unit_not_excluded_is_still_allowed() -> void:
+	_assert_no_problem(_horde_army(), "Grunt", _excluding_catalog(["Hero A"]))
+
+
+func test_excluded_unit_is_matched_by_name_ignoring_an_epithet() -> void:
+	var catalog := _excluding_catalog(["Hero A"])
+	for scroll in catalog.faction.warscrolls:
+		if scroll.name == "Hero A":
+			scroll.name = "Hero A, the Bold"
+	_assert_problem(_horde_army(), "Hero A, the Bold", catalog)
+
+
+func test_excluded_unit_in_a_regiment_of_renown_is_not_reported() -> void:
+	var army := _horde_army()
+	army.regiments.append(_ror())
+	_assert_no_problem(army, "Ror Grunt", _excluding_catalog(["Ror Grunt"]))
+
+
 func test_roster_keyword_matches_a_keyword_with_a_value() -> void:
 	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), Kit.roster_entry("", PackedStringArray(["WIZARD"]))]
 	var army := _horde_army()
@@ -818,6 +858,54 @@ func test_required_keyword_entry_that_is_included_is_allowed() -> void:
 	required.required = true
 	var entries: Array[RosterEntry] = [required, Kit.roster_entry("Grunt")]
 	_assert_no_problem(_horde_army(), "must include", _horde_catalog(entries))
+
+
+func _one_of(names: Array[String]) -> RosterEntry:
+	var entry := Kit.roster_entry()
+	entry.one_of = PackedStringArray(names)
+	return entry
+
+
+func test_one_of_entry_allows_a_unit_named_in_it() -> void:
+	var entries: Array[RosterEntry] = [_one_of(["Hero A", "Hero B"]), Kit.roster_entry("Grunt")]
+	assert_eq(_problems(_horde_army(), _horde_catalog(entries)).size(), 0, str(_problems(_horde_army(), _horde_catalog(entries))))
+
+
+func test_unit_named_in_no_one_of_entry_is_a_problem_naming_it() -> void:
+	var entries: Array[RosterEntry] = [_one_of(["Hero A", "Hero B"])]
+	_assert_problem(_horde_army(), "Grunt", _horde_catalog(entries))
+
+
+func test_one_of_entry_with_a_max_allows_one_listed_unit() -> void:
+	var limited := _one_of(["Hero A", "Hero B"])
+	limited.max = 1
+	var entries: Array[RosterEntry] = [limited, Kit.roster_entry("Grunt")]
+	_assert_no_problem(_horde_army(), "at most", _horde_catalog(entries))
+
+
+func test_one_of_entry_with_a_max_rejects_two_different_listed_units() -> void:
+	var limited := _one_of(["Hero A", "Hero B"])
+	limited.max = 1
+	var entries: Array[RosterEntry] = [limited, Kit.roster_entry("Grunt")]
+	var army := _horde_army()
+	army.regiments.append(_regiment("Side", "hero_b"))
+	_assert_problem(army, "Hero A", _horde_catalog(entries))
+	_assert_problem(army, "Hero B", _horde_catalog(entries))
+
+
+func test_required_one_of_entry_is_satisfied_by_either_unit() -> void:
+	var required := _one_of(["Hero B", "Hero A"])
+	required.required = true
+	var entries: Array[RosterEntry] = [required, Kit.roster_entry("Grunt")]
+	_assert_no_problem(_horde_army(), "must include", _horde_catalog(entries))
+
+
+func test_required_one_of_entry_with_none_included_is_a_problem_naming_the_alternatives() -> void:
+	var required := _one_of(["Hero B", "Wizard"])
+	required.required = true
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), required]
+	_assert_problem(_horde_army(), "Hero B", _horde_catalog(entries))
+	_assert_problem(_horde_army(), "Wizard", _horde_catalog(entries))
 
 
 func test_roster_general_overrides_the_warmaster_rule() -> void:

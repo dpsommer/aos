@@ -402,6 +402,17 @@ func test_roster_entry_absent_fields_use_defaults() -> void:
 	assert_eq([entry.unit, entry.required, entry.general, entry.gains_keywords.size()], ["", false, false, 0])
 
 
+func test_army_of_renown_roster_one_of_entry_fields_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries[2]
+	var entry: RosterEntry = _load("valid").armies_of_renown[0].roster.entries[2]
+	assert_eq([entry.one_of, entry.unit], [PackedStringArray(expected.one_of), ""])
+
+
+func test_roster_entry_absent_one_of_is_empty() -> void:
+	var entry: RosterEntry = _load("valid").armies_of_renown[0].roster.entries[0]
+	assert_eq(entry.one_of.size(), 0)
+
+
 func test_army_of_renown_roster_has_one_entry_per_file_entry() -> void:
 	var expected: Array = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries
 	assert_eq(_load("valid").armies_of_renown[0].roster.entries.size(), expected.size())
@@ -417,6 +428,18 @@ func test_army_of_renown_roster_omitted_boolean_defaults_to_true() -> void:
 	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster
 	assert_false(expected.has("faction_terrain"), "fixture roster should omit faction_terrain")
 	assert_true(_load("valid").armies_of_renown[0].roster.faction_terrain)
+
+
+func test_army_of_renown_roster_excluded_units_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_eq(_load("valid").armies_of_renown[0].roster.excluded_units, PackedStringArray(expected.excluded_units))
+
+
+func test_army_of_renown_roster_omitted_excluded_units_is_empty() -> void:
+	var path := "res://test/fixtures/factions/roster_without_excluded_units/armies_of_renown.json"
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+	assert_false(data.armies_of_renown[0].roster.has("excluded_units"), "fixture roster should omit excluded_units")
+	assert_eq(_load("roster_without_excluded_units").armies_of_renown[0].roster.excluded_units.size(), 0)
 
 
 func test_army_of_renown_without_roster_has_null_roster() -> void:
@@ -657,6 +680,15 @@ func test_roster_entry_without_unit_or_keywords_returns_null() -> void:
 
 func test_roster_entry_without_unit_or_keywords_error_names_file_and_field_path() -> void:
 	var errors := _errors("roster_entry_empty")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "armies_of_renown[0].roster.entries[0]"), str(errors))
+
+
+func test_roster_entry_with_unit_and_one_of_returns_null() -> void:
+	assert_null(_load("roster_entry_unit_and_one_of"))
+
+
+func test_roster_entry_with_unit_and_one_of_error_names_file_and_field_path() -> void:
+	var errors := _errors("roster_entry_unit_and_one_of")
 	assert_true(_has_error_naming(errors, "armies_of_renown.json", "armies_of_renown[0].roster.entries[0]"), str(errors))
 
 

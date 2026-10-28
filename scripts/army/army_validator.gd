@@ -317,6 +317,8 @@ static func _check_tactics(army: Army, catalog: ArmyCatalog, result: ArmyValidat
 static func _roster_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
 	if not entry.unit.is_empty():
 		return RegimentOption._names(warscroll, entry.unit)
+	if not entry.one_of.is_empty():
+		return Array(entry.one_of).any(func(unit_name: String) -> bool: return RegimentOption._names(warscroll, unit_name))
 	for keyword in entry.not_keywords:
 		if _has_keyword(warscroll, keyword):
 			return false
@@ -359,6 +361,8 @@ static func _is_roster_general(warscroll: Warscroll, army_roster: ArmyRoster) ->
 static func _describe(entry: RosterEntry) -> String:
 	if not entry.unit.is_empty():
 		return entry.unit
+	if not entry.one_of.is_empty():
+		return " or ".join(entry.one_of)
 	var words := PackedStringArray()
 	for keyword in entry.not_keywords:
 		words.append("non-" + keyword)
@@ -366,7 +370,7 @@ static func _describe(entry: RosterEntry) -> String:
 	return "a %s unit" % " ".join(words)
 
 
-## Every unit must match a roster entry. Units only limited entries allow are limited to the entry's
+## Every unit must match a roster entry and not be one of its excluded units. Units only limited entries allow are limited to the entry's
 ## [member RosterEntry.max], or to 1 for each unit matching its [member RosterEntry.per]. Required
 ## units must be included, and some must be the general.
 static func _check_roster(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:
@@ -376,6 +380,9 @@ static func _check_roster(army: Army, catalog: ArmyCatalog, entries: Array[Dicti
 	var built := entries.filter(func(e: Dictionary) -> bool: return not _is_ror(e))
 	var limited := {}
 	for entry in built:
+		if Array(army_roster.excluded_units).any(func(unit_name: String) -> bool: return RegimentOption._names(entry.warscroll, unit_name)):
+			result.problems.append("%s armies can't include %s." % [army.army_of_renown, entry.warscroll.name])
+			continue
 		var matching := army_roster.entries.filter(func(e: RosterEntry) -> bool: return _roster_matches(e, entry.warscroll))
 		if matching.is_empty():
 			result.problems.append("%s isn't in the %s roster." % [entry.warscroll.name, army.army_of_renown])

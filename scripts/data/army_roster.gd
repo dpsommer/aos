@@ -8,3 +8,6 @@ extends Resource
 @export var faction_terrain := true
 ## Whether the army can pick a manifestation lore.
 @export var manifestations := true
+## Names of warscrolls the army can't include even if an entry matches them ("You cannot include
+## Morathi-Khaine or the Shadow Queen").
+@export var excluded_units: PackedStringArray

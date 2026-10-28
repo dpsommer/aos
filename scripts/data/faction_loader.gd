@@ -343,10 +343,11 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 		var entry := RosterEntry.new()
 		if _is_object(entries[i], entry_path):
 			entry.unit = _string(entries[i], "unit", entry_path)
+			entry.one_of = _strings(entries[i], "one_of", entry_path)
 			entry.keywords = _strings(entries[i], "keywords", entry_path)
 			entry.not_keywords = _strings(entries[i], "not_keywords", entry_path)
-			if entry.unit.is_empty() and entry.keywords.is_empty():
-				_error(entry_path, "needs a unit or keywords")
+			if [entry.unit.is_empty(), entry.one_of.is_empty(), entry.keywords.is_empty()].count(false) != 1:
+				_error(entry_path, "needs exactly one of unit, one_of or keywords")
 			entry.per = _strings(entries[i], "per", entry_path)
 			entry.max = _int(entries[i], "max", entry_path)
 			entry.required = _bool(entries[i], "required", entry_path)
@@ -356,6 +357,7 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 	roster.regiments_of_renown = _bool(data, "regiments_of_renown", path, true)
 	roster.faction_terrain = _bool(data, "faction_terrain", path, true)
 	roster.manifestations = _bool(data, "manifestations", path, true)
+	roster.excluded_units = _strings(data, "excluded_units", path)
 	return roster
 
 

@@ -179,11 +179,10 @@
 						]
 					},
 					{
-						"unit": "Gaunt Summoner",
-						"max": 1
-					},
-					{
-						"unit": "Gaunt Summoner on Disc of Tzeentch",
+						"one_of": [
+							"Gaunt Summoner",
+							"Gaunt Summoner on Disc of Tzeentch"
+						],
 						"max": 1
 					}
 				],

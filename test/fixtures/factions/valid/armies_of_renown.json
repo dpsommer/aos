@@ -7,9 +7,11 @@
 			"roster": {
 				"entries": [
 					{"unit": "Unit Two", "required": true, "general": true, "gains_keywords": ["WARMASTER"]},
-					{"keywords": ["CHAOS"], "not_keywords": ["HERO"], "per": ["INFANTRY", "Unit Two"], "max": 2}
+					{"keywords": ["CHAOS"], "not_keywords": ["HERO"], "per": ["INFANTRY", "Unit Two"], "max": 2},
+					{"one_of": ["Unit One", "Unit Two"], "max": 1}
 				],
-				"regiments_of_renown": false
+				"regiments_of_renown": false,
+				"excluded_units": ["Unit One", "Unit Three"]
 			},
 			"battle_traits": [{"name": "Renown Trait", "effect": "Renown effect."}],
 			"enhancement_tables": [{"name": "Artefacts", "entries": [{"name": "Artefact One", "points": 10}]}],

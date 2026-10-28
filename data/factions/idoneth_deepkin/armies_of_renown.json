@@ -145,8 +145,9 @@
 			"roster": {
 				"entries": [
 					{
-						"keywords": [
-							"EIDOLON"
+						"one_of": [
+							"Eidolon of Mathlann, Aspect of the Sea",
+							"Eidolon of Mathlann, Aspect of the Storm"
 						],
 						"required": true,
 						"max": 1

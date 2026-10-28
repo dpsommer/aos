@@ -180,13 +180,14 @@
 						"keywords": [
 							"DAUGHTERS OF KHAINE",
 							"AELF"
-						],
-						"not_keywords": [
-							"WARMASTER"
 						]
 					}
 				],
-				"regiments_of_renown": false
+				"regiments_of_renown": false,
+				"excluded_units": [
+					"Morathi-Khaine",
+					"The Shadow Queen"
+				]
 			},
 			"battle_traits": [
 				{

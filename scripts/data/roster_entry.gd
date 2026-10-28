@@ -1,10 +1,13 @@
 class_name RosterEntry
 extends Resource
-## One line of an Army of Renown's roster options. A unit matches by [member unit] name, or by having
-## all of [member keywords] and none of [member not_keywords].
+## One line of an Army of Renown's roster options. A unit matches by [member unit] name, by being one
+## of the [member one_of] names, or by having all of [member keywords] and none of [member not_keywords].
 
-## Name of the warscroll this entry allows. Empty for an entry matching by keywords.
+## Name of the warscroll this entry allows. Empty for an entry matching by keywords or [member one_of].
 @export var unit: String
+## Names of warscrolls this entry allows as alternatives ("0-1 Gaunt Summoner or Gaunt Summoner on
+## Disc of Tzeentch"). [member max], [member required] and [member general] count them together.
+@export var one_of: PackedStringArray
 @export var keywords: PackedStringArray
 @export var not_keywords: PackedStringArray
 ## If set, the army can include one unit matching this entry for each unit matching any of these

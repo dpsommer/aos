@@ -322,8 +322,10 @@ func test_every_army_of_renown_roster_unit_has_a_warscroll() -> void:
 			if not army.roster:
 				continue
 			for entry in army.roster.entries:
-				if not entry.unit.is_empty():
-					assert_has(names, entry.unit, "%s: %s roster unit %s" % [faction.name, army.name, entry.unit])
+				for unit_name in ([entry.unit] if not entry.unit.is_empty() else []) + Array(entry.one_of):
+					assert_has(names, unit_name, "%s: %s roster unit %s" % [faction.name, army.name, unit_name])
+			for unit_name in army.roster.excluded_units:
+				assert_has(names, unit_name, "%s: %s excluded unit %s" % [faction.name, army.name, unit_name])
 
 
 func test_some_enhancement_table_is_for_certain_units() -> void:
@@ -361,7 +363,7 @@ func test_every_army_of_renown_roster_keyword_entry_matches_a_warscroll() -> voi
 			if not army.roster:
 				continue
 			for entry in army.roster.entries:
-				if entry.unit.is_empty():
+				if entry.unit.is_empty() and entry.one_of.is_empty():
 					var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator._roster_matches(entry, w))
 					assert_true(found, "%s: %s roster entry %s matches no warscroll" % [faction.name, army.name, entry.keywords])
 
