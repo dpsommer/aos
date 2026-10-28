@@ -45,7 +45,7 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 		toggle.disabled = warscroll == null
 		content.add_child(toggle)
 		if open and warscroll:
-			content.add_child(UIBuilder.rich(RulesFormatter.warscroll(warscroll, false, builder.catalog.summoned)))
+			content.add_child(WarscrollCard.new(warscroll, builder.catalog.summoned))
 
 	if not regiment.text.is_empty():
 		content.add_child(UIBuilder.label(regiment.text, "MutedLabel", true))

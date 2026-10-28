@@ -41,6 +41,10 @@ func _rich_count(node: Node) -> int:
 	return UIKit.find_all(node, func(n: Node) -> bool: return n is RichTextLabel).size()
 
 
+func _warscroll_count(node: Node) -> int:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is WarscrollCard).size()
+
+
 func test_card_shows_the_regiments_name_and_unit_names() -> void:
 	var band := _band()
 	var card := _card(_builder([band] as Array[RegimentOfRenown]), band)
@@ -78,9 +82,9 @@ func test_card_carries_an_info_key_for_links() -> void:
 func test_warscroll_is_hidden_until_the_subhead_is_expanded() -> void:
 	var band := _band()
 	var builder := _builder([band] as Array[RegimentOfRenown])
-	assert_eq(_rich_count(_card(builder, band)), 0)
+	assert_eq(_warscroll_count(_card(builder, band)), 0)
 	builder.expanded["tab:Band:0"] = true
-	assert_gt(_rich_count(_card(builder, band)), 0)
+	assert_gt(_warscroll_count(_card(builder, band)), 0)
 
 
 func test_pressing_a_subhead_toggles_the_builders_expanded_state() -> void:
@@ -95,7 +99,7 @@ func test_expanded_state_is_kept_apart_by_context() -> void:
 	var band := _band()
 	var builder := _builder([band] as Array[RegimentOfRenown])
 	builder.expanded["tab:Band:0"] = true
-	assert_eq(_rich_count(_card(builder, band, "pick")), 0)
+	assert_eq(_warscroll_count(_card(builder, band, "pick")), 0)
 
 
 func test_subhead_is_disabled_when_the_warscroll_is_missing() -> void:

@@ -78,6 +78,10 @@ func _rich_count(node: Node) -> int:
 	return UIKit.find_all(node, func(n: Node) -> bool: return n is RichTextLabel).size()
 
 
+func _warscroll_count(node: Node) -> int:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is WarscrollCard).size()
+
+
 func _press(pane: InfoPane, key: String) -> void:
 	(UIKit.keyed(pane, key) as Button).pressed.emit()
 
@@ -270,7 +274,7 @@ func test_searching_shows_matches_in_folded_types() -> void:
 
 func test_a_cards_warscroll_is_hidden_until_selected() -> void:
 	var pane := _pane()
-	assert_eq(_rich_count(pane._content), 0)
+	assert_eq(_warscroll_count(pane._content), 0)
 	assert_null(UIKit.keyed(pane, "info:aux:grunt"))
 
 
@@ -278,7 +282,7 @@ func test_pressing_a_card_shows_its_warscroll_and_the_add_auxiliary_button() -> 
 	var pane := _pane()
 	_press(pane, "info:card:grunt")
 	assert_eq(pane.selected, "grunt")
-	assert_gt(_rich_count(pane._content), 0)
+	assert_gt(_warscroll_count(pane._content), 0)
 	assert_eq((UIKit.keyed(pane, "info:aux:grunt") as Button).text, "Add as auxiliary unit")
 
 
@@ -316,7 +320,7 @@ func test_pressing_the_selected_card_again_hides_its_warscroll() -> void:
 	_press(pane, "info:card:grunt")
 	_press(pane, "info:card:grunt")
 	assert_eq(pane.selected, "")
-	assert_eq(_rich_count(pane._content), 0)
+	assert_eq(_warscroll_count(pane._content), 0)
 
 
 func test_only_one_card_is_selected_at_a_time() -> void:
@@ -549,7 +553,8 @@ func test_a_summoning_spell_shows_its_manifestations_warscroll() -> void:
 	var cards := _rules_containing(pane, "Summon Living Flame")
 	assert_eq(cards.size(), 1)
 	var card: Node = cards[0].get_parent()
-	assert_eq(_rich_count(card), 2)
+	var manifestations := UIKit.find_all(card, func(n: Node) -> bool: return n is WarscrollCard)
+	assert_eq(manifestations.map(func(w: WarscrollCard) -> String: return w.warscroll.id), ["living_flame"])
 
 
 func test_show_lores_switches_to_the_rules_tab_and_unfolds_the_section() -> void:
@@ -729,9 +734,9 @@ func test_adding_a_regiment_from_the_tab_updates_the_army() -> void:
 
 func test_opening_a_unit_in_the_tab_redraws_the_tab() -> void:
 	var pane := _renown_pane()
-	var before := _rich_count(pane._content)
+	var before := _warscroll_count(pane._content)
 	_press(pane, "tab:Band:0")
-	assert_gt(_rich_count(pane._content), before)
+	assert_gt(_warscroll_count(pane._content), before)
 
 
 # --- Settings ---

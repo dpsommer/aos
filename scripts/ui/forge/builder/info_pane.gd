@@ -302,7 +302,7 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 			func(_on: bool) -> void: toggle_favourite(warscroll.id), "info:star:" + key)
 	var content := UIBuilder.vbox([UIBuilder.hbox([button, star], 4)], 10)
 	if open:
-		content.add_child(UIBuilder.rich(RulesFormatter.warscroll(warscroll, false, builder.catalog.summoned)))
+		content.add_child(WarscrollCard.new(warscroll, builder.catalog.summoned))
 		var add := UIBuilder.button("Add as auxiliary unit", func() -> void: builder.editor.add_auxiliary(warscroll.id),
 				"info:aux:" + key, "", "Add %s to the army as an auxiliary unit" % warscroll.name)
 		add.disabled = builder.available_units(func(w: Warscroll) -> bool: return w == warscroll).is_empty()
@@ -395,11 +395,10 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 			var card := UIBuilder.vbox([UIBuilder.rich(RulesFormatter.ability(ability))], 10)
 			# A summoning spell or prayer carries the warscrolls of the manifestations it summons.
 			for summoned: Warscroll in group.summons.get(ability, []):
-				card.add_child(HSeparator.new())
-				card.add_child(UIBuilder.rich(RulesFormatter.warscroll(summoned)))
+				card.add_child(WarscrollCard.new(summoned))
 			box.add_child(UIBuilder.panel("CardPanel", card))
 		for warscroll in group.warscrolls:
-			box.add_child(UIBuilder.panel("CardPanel", UIBuilder.rich(RulesFormatter.warscroll(warscroll))))
+			box.add_child(WarscrollCard.new(warscroll))
 		for card in group.cards:
 			var slot := army.tactics.find(card.name)
 			var chip := UITheme.chip("Battle tactic %d" % (slot + 1), "affray") if slot >= 0 else null

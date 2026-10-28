@@ -295,8 +295,8 @@ func test_adding_a_regiment_of_renown_adds_it_and_closes() -> void:
 	assert_false(builder.picker.is_open())
 
 
-func _rich_count(builder: ArmyBuilder) -> int:
-	return UIKit.find_all(builder.picker, func(n: Node) -> bool: return n is RichTextLabel).size()
+func _warscroll_count(builder: ArmyBuilder) -> int:
+	return UIKit.find_all(builder.picker, func(n: Node) -> bool: return n is WarscrollCard).size()
 
 
 func test_unit_subhead_starts_collapsed() -> void:
@@ -311,22 +311,22 @@ func test_pressing_a_unit_subhead_shows_its_warscroll() -> void:
 	var faction := _faction_with_renown([_band()] as Array[RegimentOfRenown])
 	var builder := _builder(null, faction)
 	builder.picker.open_regiments_of_renown()
-	var before := _rich_count(builder)
+	var before := _warscroll_count(builder)
 	UIKit.keyed(builder.picker, "pick:Band:0").pressed.emit()
 	await get_tree().process_frame
-	assert_gt(_rich_count(builder), before)
+	assert_gt(_warscroll_count(builder), before)
 
 
 func test_pressing_a_unit_subhead_again_hides_its_warscroll() -> void:
 	var faction := _faction_with_renown([_band()] as Array[RegimentOfRenown])
 	var builder := _builder(null, faction)
 	builder.picker.open_regiments_of_renown()
-	var before := _rich_count(builder)
+	var before := _warscroll_count(builder)
 	UIKit.keyed(builder.picker, "pick:Band:0").pressed.emit()
 	await get_tree().process_frame
 	UIKit.keyed(builder.picker, "pick:Band:0").pressed.emit()
 	await get_tree().process_frame
-	assert_eq(_rich_count(builder), before)
+	assert_eq(_warscroll_count(builder), before)
 
 
 func test_a_second_regiment_of_renown_has_no_add_button_without_override() -> void:

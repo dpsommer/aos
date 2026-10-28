@@ -321,6 +321,27 @@ static func _create() -> Theme:
 	_panel(theme, "DropBoxOnPanel", drop_box)
 	_panel(theme, "RemoveDropPanel", box(Color(0.09, 0.1, 0.12, 0.96), Color("#7A4A3E"), 12, 0, 2))
 	_panel(theme, "RemoveDropOnPanel", box(Color(0.23, 0.14, 0.13, 0.96), Color("#F2A28A"), 12, 0, 2))
+	# Warscrolls (WarscrollCard): characteristics in boxes and each kind of weapon in a table.
+	_panel(theme, "WarscrollPanel", box(Color("#16191E"), Color("#343A45"), 8, 12))
+	var stat := box(CONTROL, Color.TRANSPARENT, 6, 6)
+	stat.content_margin_left = 2
+	stat.content_margin_right = 2
+	_panel(theme, "StatPanel", stat)
+	_panel(theme, "WeaponTablePanel", box(Color.TRANSPARENT, BORDER, 6, 1))
+	var weapon_header := box(CONTROL, Color.TRANSPARENT, 0, 0)
+	weapon_header.corner_radius_top_left = 5
+	weapon_header.corner_radius_top_right = 5
+	_panel(theme, "WeaponHeaderPanel", weapon_header)
+	var weapon_row := box(Color.TRANSPARENT, BORDER, 0, 0)
+	weapon_row.border_width_left = 0
+	weapon_row.border_width_right = 0
+	weapon_row.border_width_bottom = 0
+	_panel(theme, "WeaponRowPanel", weapon_row)
+	for style: StyleBoxFlat in [weapon_header, weapon_row]:
+		style.content_margin_left = 10
+		style.content_margin_right = 10
+		style.content_margin_top = 6
+		style.content_margin_bottom = 7
 	_panel(theme, "ProblemsPanel", box(DANGER_BG, Color.TRANSPARENT, 8, 12))
 	_panel(theme, "WarningsPanel", box(WARNING_BG, Color.TRANSPARENT, 8, 12))
 
@@ -346,6 +367,24 @@ static func _create() -> Theme:
 	theme.set_font("font", "CardTitleLabel", semibold)
 	_label(theme, "FavouritesLabel", WARNING, 13)
 	theme.set_font("font", "FavouritesLabel", heading)
+	var caps := font(INTER, 600)
+	caps.spacing_glyph = 1
+	_label(theme, "WarscrollNameLabel", TEXT, 15)
+	theme.set_font("font", "WarscrollNameLabel", heading)
+	_label(theme, "StatValueLabel", TEXT, 16)
+	theme.set_font("font", "StatValueLabel", heading)
+	_label(theme, "StatNameLabel", MUTED, 10)
+	theme.set_font("font", "StatNameLabel", caps)
+	_label(theme, "WeaponTitleLabel", Color("#D8D2C4"), 10)
+	theme.set_font("font", "WeaponTitleLabel", caps)
+	_label(theme, "WeaponColumnLabel", MUTED, 10)
+	theme.set_font("font", "WeaponColumnLabel", caps)
+	_label(theme, "WeaponNameLabel", TEXT, 13)
+	theme.set_font("font", "WeaponNameLabel", semibold)
+	_label(theme, "WeaponValueLabel", TEXT, 13)
+	theme.set_font("font", "WeaponValueLabel", font(INTER, 700))
+	_label(theme, "KeywordsLabel", MUTED, 11)
+	theme.set_font("font", "KeywordsLabel", caps)
 	_label(theme, "ProblemLabel", DANGER, 13)
 	_label(theme, "WarningLabel", WARNING, 13)
 
