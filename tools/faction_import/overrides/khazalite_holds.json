@@ -1,6 +1,7 @@
 {
 	"armies_of_renown_from": ["Fyreslayers - Lofnir Drothkeepers", "Fyreslayers - The Duardin Ascendant [LEGENDS]"],
 	"fields": {
+		"Battle Damaged": {"colour": "black"},
 		"grombrindal_the_white_dwarf": {"notes": "Legends Warscroll", "regiment_options": ["Any ORDER DUARDIN units"]},
 		"grombrindal_the_white_dwarf > Armour of Glimril Scales": {"category": "defensive", "colour": "green"},
 		"grombrindal_the_white_dwarf > Rune Axe of Grimnir": {"category": "offensive", "colour": "red"},

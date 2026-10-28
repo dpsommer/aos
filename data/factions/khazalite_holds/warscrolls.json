@@ -30,6 +30,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Subtract 2 from Masterflame rune rolls for this unit while it has any grudge marks."
 				},
 				{
@@ -37,6 +38,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "If this unit is destroyed, before removing it from play, give each visible friendly GRIMMDRON unit within 6\" of it 1 grudge mark."
 				},
 				{
@@ -107,6 +109,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Add 1 to hit rolls for this unit's shooting attacks while it has any grudge marks."
 				},
 				{
@@ -170,7 +173,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
-					"colour": "purple",
+					"colour": "green",
 					"effect": "While this unit has any grudge marks, the royal retinue has WARD (4+) while it is wholly within 6\" of this unit."
 				}
 			],
@@ -389,6 +392,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to chanting rolls for this unit while it has any grudge marks."
 				},
 				{
@@ -396,6 +400,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a visible friendly GRIMMDRON INFANTRY unit wholly within 12\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 2\" to the target's Move characteristic until the start of your next turn."
@@ -650,6 +655,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a MOVE ability for this unit in your movement phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick a visible friendly GRIMMDRON INFANTRY unit that is wholly within 6\" of this unit, is not in combat and has not been set up this turn to be the target. Remove the target from the battlefield. After this unit ends its move, you must set up the target wholly within 6\" of this unit and not in combat. Unless this unit has any grudge marks, the target cannot use CHARGE abilities for the rest of the turn."
 				},
@@ -897,6 +903,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if the target is CAVALRY or has FLY. Add 2 to the roll instead if the target is a MONSTER. On a 4+, halve the target's Move characteristic until the start of your next turn."
@@ -906,6 +913,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Add 1 to wound rolls for this unit's shooting attacks while it has any grudge marks."
 				}
 			],
@@ -962,6 +970,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Any Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
 					"effect": "Roll a dice. Add 1 to the roll if the target does not have FLY. On a 4+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
@@ -971,6 +980,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Add 1 to the Attacks characteristic of this unit's ranged weapons while it has any grudge marks."
 				}
 			],
@@ -1017,6 +1027,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for combat attacks that target this unit while every model in this unit is within 3\" of an objective you control."
 				},
 				{
@@ -1024,6 +1035,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to wound rolls for this unit's attacks while it has any grudge marks."
 				}
 			],
@@ -1120,7 +1132,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
-					"colour": "red",
+					"colour": "green",
 					"effect": "Subtract 1 from ward rolls for damage points inflicted by this unit's combat attacks."
 				},
 				{
@@ -1128,6 +1140,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with this unit to be the target.",
 					"effect": "Your opponent can pick whether the target will attempt to sidestep or not. If they do, subtract 1 from hit rolls for the target's attacks for the rest of the turn.\nThen, roll a dice. Subtract 1 from the roll if the target attempted to sidestep. If the roll equals or exceeds the target's Save characteristic, subtract 1 from save rolls for the target for the rest of the turn."
@@ -1169,6 +1182,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "If this unit is destroyed, before removing it from play, give each visible friendly non-GHOLEM VALAYAN unit 1 grudge mark."
 				},
 				{
@@ -1176,6 +1190,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."
@@ -1222,6 +1237,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit cannot have grudge marks and cannot be affected by ANCESTRAL VOW abilities."
 				},
 				{
@@ -1229,7 +1245,7 @@
 					"type": "passive",
 					"category": "rallying",
 					"timing": "Passive",
-					"colour": "green",
+					"colour": "yellow",
 					"effect": "The first time this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (D3) this unit."
 				},
 				{
@@ -1237,6 +1253,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit is in combat with any enemy HEROES or MONSTERS:\n• It can only pick those enemy units to be the targets of its combat attacks.\n• Add 2 to the Attacks characteristic of this unit's melee weapons for each enemy HERO or MONSTER unit in combat with it.",
 					"options": [
 						{
@@ -1289,6 +1306,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"effect": "Remove this unit from the battlefield, then set it up again on the battlefield wholly within 6\" of a battlefield edge and more than 9\" from all enemy units."
 				},
@@ -1297,6 +1315,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "This unit has STRIKE-FIRST while there are no other friendly units within 6\" of it."
 				},
 				{
@@ -1304,6 +1323,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit has any grudge marks and is not in combat, it can move D6\". It can move through the combat ranges of enemy units but cannot end that move in combat and cannot end that move any further from the closest enemy unit."
 				}
@@ -1425,6 +1445,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If this unit has any grudge marks and is not in combat, it can move D6\". It can move through the combat ranges of enemy units but cannot end that move in combat and cannot end that move any further from the closest enemy unit."
 				}
@@ -1506,6 +1527,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"declare": "Pick another visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be the target. For each grudge mark this unit has, you can pick another eligible unit to be an additional target.",
 					"effect": "For the rest of the turn, the following effects apply to the targets while they are wholly within 6\" of this unit. Add 3\" to this range for each grudge mark this unit has.\n• The target's melee weapons have Anti-charge (+1 Rend).\n• If the target has no grudge marks, it counts as having 1 grudge mark."
 				},
@@ -1514,6 +1536,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Pick 1 of the following effects to apply until the start of your next turn:\nStonesmith's Disruption: The stonesmith causes the ground under a group of enemies to tremble violently, disrupting their cohesion. Pick a visible enemy unit within 12\" of this unit to be the target. The target has a maximum control score of 1.\nGrudgebearer's Denunciation: The exhortations of the grudgebearer instil in the duardin a relentless drive to enact vengeance on the foe. While they are wholly within 12\" of this unit, visible friendly KHAZALITE HOLDS units can use CHARGE abilities even if they used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on those friendly units by RETREAT abilities.\nHoldseeker's Guidance: The holdseeker reveals magically resonant areas of the battlefield to aid the efforts of those working the runes. Add 1 to casting rolls, chanting rolls and banishment rolls for friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -1521,6 +1544,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"declare": "Pick a visible enemy HERO within 18\" of this unit that has not been picked to be the target of this ability this battle to be the target.",
 					"effect": "Your opponent must decide whether the target will accept the accusation or reject the accusation.\nIf they accept the accusation, until the start of your next turn, add 1 to hit rolls for combat attacks made by friendly KHAZALITE HOLDS units that target that enemy unit.\nIf they reject the accusation, the target cannot use commands until the start of your next turn."
 				},
@@ -1529,6 +1553,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "This unit can move D6\" or, if it is your movement phase, it can move 2D6\". It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat.\nThen, pick an enemy unit that this unit passed across during that move to be the target and roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll.",
 					"keywords": [
@@ -1580,6 +1605,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Start of First Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "You must use this ability. Pick an enemy unit to be grudged. You can pick an enemy unit in reserve.",
 					"effect": "For the rest of the battle:\n• While the grudged enemy unit is within 12\" of and visible to this unit, you can re-roll charge rolls for friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit.\n• While there is no grudged enemy unit on the battlefield, add 3 to the control scores of friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
@@ -1589,6 +1615,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit is in combat, add 1 to hit rolls for combat attacks made by friendly non-HERO KHAZALITE HOLDS INFANTRY units while they are within 3\" of and visible to this unit."
 				},
 				{
@@ -1596,6 +1623,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick this unit and up to 2 other visible friendly non-HERO KHAZALITE HOLDS units wholly within 12\" of this unit to be the targets.",
 					"effect": "If this unit has any grudge marks, apply this effect automatically. Otherwise, roll a dice for each target. On a 3+, until the start of your next turn, ignore the first damage point that would be allocated to that target in each phase."
 				}
@@ -1691,6 +1719,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "This unit's ranged weapons have Crit (2 Hits) while it has any grudge marks."
 				},
 				{
@@ -1698,6 +1727,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\nRune of Sundering: Until the start of your next turn, subtract 1 from the Rend characteristic of the target's melee weapons.\nRune of Burning: For the rest of the turn, combat attacks that target that enemy unit score critical hits on unmodified hit rolls of 5+.\nRune of Shock: The target has STRIKE-LAST until the start of your next turn."
@@ -1756,6 +1786,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit has any grudge marks, add 1 to the Attacks characteristic of Companion weapons used by visible friendly KHAZALITE HOLDS units while they are wholly within 12\" of this unit."
 				},
 				{
@@ -1763,6 +1794,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly Vulkyn Flameseekers or GRIMMDRON MONSTER unit wholly within 12\" of this unit to be the target.",
 					"effect": "Pick 1 of the following effects:\n• If you picked a friendly Vulkyn Flameseekers unit to be the target, until the start of your next turn, ignore negative modifiers to hit rolls and wound rolls for the target's combat attacks and ignore negative modifiers to the target's control score.\n• If you picked a friendly GRIMMDRON MONSTER unit to be the target, add 1 to hit rolls for attacks made with the target's Companion weapons until the start of your next turn."
 				},
@@ -1771,6 +1803,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "If this unit contains Ashtongue, pick a visible enemy unit within 9\" of this unit to be the target.",
 					"effect": "Roll a dice. On a 3+, until the start of your next turn, units (friendly and enemy), terrain features and MANIFESTATIONS are not visible to the target while they are more than 6\" from it."
 				}
@@ -1815,6 +1848,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Add 1 to unbinding rolls, banishment rolls and rhythmic hammering rolls for this unit while it has any grudge marks."
 				},
 				{
@@ -1822,6 +1856,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared a SPELL ability from the 'Reverberations of the Runes' or the 'Resonance of the Runes' for this unit",
+					"colour": "black",
 					"effect": "If the casting roll for that spell equals or exceeds its casting value, make a rhythmic hammering roll of 2D6.\nIf a rhythmic hammering roll is lower than that spell's casting value, the spell fails and its effect is not resolved.\nIf a rhythmic hammering roll equals or exceeds that spell's casting value, increase the range of that spell by 3\". You can keep making rhythmic hammering rolls for that spell until you roll lower than its casting value. The effects of this ability are cumulative."
 				}
 			],
@@ -1877,6 +1912,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "This unit's ranged weapons have Crit (2 Hits) while it has any grudge marks."
 				},
 				{
@@ -1884,6 +1920,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit's shooting attacks to be the target.",
 					"effect": "Roll a dice. On a 3+, pick 1 of the following effects:\nRune of Detonation: Roll a D3 for each enemy unit within 3\" of the target. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.\nRune of Thunder: Until the start of your next turn, the target has a maximum control score of 1.\nRune of Earthshaking: The target cannot use RUN abilities until the start of your next turn."
@@ -1928,6 +1965,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Add 1 to the Attacks characteristic of this unit's melee weapons, to a maximum of +3, for each other visible friendly unit wholly within 6\" of this unit that has any grudge marks."
 				},
@@ -1936,6 +1974,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared a FIGHT ability for this unit or a non-HERO KROMDRON INFANTRY unit within 3\" of and visible to this unit",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "If you declared a FIGHT ability for this unit, pick a friendly non-HERO KROMDRON INFANTRY unit that has not used a FIGHT ability this turn, is within this unit's combat range and is visible to this unit to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn.\nIf you declared a FIGHT ability for a friendly non-HERO KROMDRON INFANTRY unit, if this unit has not used a FIGHT ability this turn, it can be picked to use a FIGHT ability immediately after the FIGHT ability used by the friendly non-HERO KROMDRON INFANTRY unit has been resolved. If it is picked to do so, add 1 to hit rolls for this unit's attacks for the rest of the turn.",
 					"options": [
@@ -2018,6 +2057,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick another visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be a target. For each grudge mark this unit has, you can pick another eligible unit to be an additional target.",
 					"effect": "For the rest of the turn, the targets' melee weapons have Anti-charge (+1 Rend) while they are wholly within 6\" of this unit. Add 3\" to this range for each grudge mark this unit has."
@@ -2027,6 +2067,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick 1 of the following effects to apply until the start of your next turn:\nStonesmith's Passage: The Stonesmith shifts rock and earth to aid the manoeuvres of nearby duardin. Add 2\" to the Move characteristic of visible friendly KHAZALITE HOLDS INFANTRY units while they are wholly within 12\" of this unit. In addition, no mortal damage is inflicted on those friendly units by RETREAT abilities.\nGrudgebearer's Accusation: The grudgebearer singles out an enemy champion to be the target of the duardin's vengeance. Pick a visible enemy HERO within 18\" of this unit to be the target. Friendly KHAZALITE HOLDS INFANTRY units can ignore the effects of the 'Guarded Hero' ability on the target when picking targets for their shooting attacks.\nHoldseeker's Protection: Awakening the runes on their staff, the holdseeker imbues nearby duardin with an aura that repels the attacks of the foe. Pick a visible friendly KHAZALITE HOLDS unit wholly within 12\" of this unit to be the target. Roll a dice. On a 3+, other than the Companion weapon ability, weapon abilities for attacks that target that friendly unit have no effect."
 				},
@@ -2035,6 +2076,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a MOVE ability for this unit in your movement phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Pick a visible friendly KROMDRON INFANTRY unit that is wholly within 6\" of this unit, is not in combat and has not been set up this turn to be the target. Remove the target from the battlefield. After this unit ends its move, you must set up the target wholly within 6\" of this unit and more than 9\" from all enemy units."
 				},
@@ -2043,6 +2085,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
 					"effect": "Roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll."
@@ -2087,6 +2130,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
 					"effect": "Roll a dice for each enemy model in combat with this unit. For each 4+, inflict 1 mortal damage on the target."
@@ -2096,6 +2140,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While this unit has any grudge marks, visible friendly KHAZALITE HOLDS INFANTRY and non-GHOLEM WAR MACHINE units have WARD (5+) while they are wholly within 6\" of this unit."
 				}
 			],
@@ -2143,6 +2188,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "If this unit is not in combat and has not used a RUN or RETREAT ability this turn, make a charge roll of 2D6. While this unit has any grudge marks, you can re-roll that charge roll.",
 					"effect": "This unit can move a distance up to the value of the charge roll. It can move through the combat ranges of enemy units, pass across enemy models and must end that move within ½\" of a visible enemy unit. If it does so, it has charged.\nThen, if this unit charged this turn, pick an enemy unit it passed across this turn. Inflict D3 mortal damage on that enemy unit.",
@@ -2300,6 +2346,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "While this unit has any grudge marks:\n• Subtract 2 from the Attacks characteristic of Companion melee weapons used by enemy MONSTERS while they are in combat with this unit.\n• Enemy MONSTERS cannot use RAMPAGE abilities while they are in combat with this unit."
 				},
 				{
