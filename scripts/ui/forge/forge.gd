@@ -520,8 +520,11 @@ func _formation_card(formation: BattleFormation, group: ButtonGroup) -> OptionCa
 	for ability in formation.abilities:
 		var ability_name := UIBuilder.label(ability.name, "CardTitleLabel", true)
 		ability_name.add_theme_font_size_override("font_size", 14)
-		var timing := UIBuilder.label(ability.timing, "MutedLabel")
-		rules.add_child(UIBuilder.vbox([UIBuilder.hbox([ability_name, timing]), UIBuilder.rich(RulesFormatter.ability_body(ability))], 6))
+		# Under the name and wrapped, as long reaction timings would otherwise widen the card.
+		var timing_text := ", ".join(Array([ability.frequency, ability.timing]).filter(
+				func(part: String) -> bool: return not part.is_empty()))
+		var timing := UIBuilder.label(timing_text, "MutedLabel", true)
+		rules.add_child(UIBuilder.vbox([UIBuilder.vbox([ability_name, timing], 2), UIBuilder.rich(RulesFormatter.ability_body(ability))], 6))
 	card.add(rules)
 	return card
 

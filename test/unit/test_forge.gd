@@ -892,6 +892,30 @@ func test_formation_with_points_shows_them_on_its_card() -> void:
 		assert_eq(shown, formation.points > 0, formation.name)
 
 
+## A long reaction timing, such as the Khazalite Holds' Wayfarer Nomads, must wrap rather than widen
+## the card and squeeze the ability's name.
+func test_formation_ability_timing_wraps_and_names_its_frequency() -> void:
+	var has_frequency := func(b: BattleFormation) -> bool:
+		return b.abilities.any(func(a: Ability) -> bool: return not a.frequency.is_empty())
+	var faction := _faction_where(func(f: Faction) -> bool: return f.battle_formations.any(has_frequency))
+	if faction == null:
+		pending("no formation ability has a frequency")
+		return
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	forge.continue_button.pressed.emit()
+	for formation in faction.battle_formations.filter(has_frequency):
+		var card := _choice_with_meta(forge.formation_grid, &"formation", formation.name)
+		for ability in formation.abilities:
+			var timing: Label = null
+			for label: Label in card.find_children("*", "Label", true, false):
+				if label.text.contains(ability.timing):
+					timing = label
+			assert_not_null(timing, ability.name)
+			assert_ne(timing.autowrap_mode, TextServer.AUTOWRAP_OFF, ability.name)
+			assert_string_contains(timing.text, ability.frequency)
+
+
 func test_formation_panel_focuses_the_first_card() -> void:
 	var forge := _make_forge()
 	_go_to(forge, Forge.Step.FORMATION)
