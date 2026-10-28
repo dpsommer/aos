@@ -1,22 +1,48 @@
 class_name Main
 extends Node
-## Root of the game. Owns screen flow, keeping exactly one screen as a child.
+## Root of the game. Owns screen flow, keeping exactly one screen as a child, and applies the
+## player's settings.
 
 const MAIN_MENU_SCENE := preload("res://scenes/ui/main_menu.tscn")
 const FORGE_SCENE := preload("res://scenes/ui/forge/forge.tscn")
 const FACTION_BROWSER_SCENE := preload("res://scenes/ui/forge/faction_browser.tscn")
 const ARMY_BUILDER_SCENE := preload("res://scenes/ui/forge/builder/army_builder.tscn")
+const SETTINGS_SCENE := preload("res://scenes/ui/settings_screen.tscn")
 
 var current_screen: Node
 
 
 func _ready() -> void:
+	if _is_game():
+		GameSettings.current().apply(get_window())
+		GameSettings.current().read_window(get_window())
 	show_main_menu()
+
+
+func _notification(what: int) -> void:
+	if not _is_game():
+		return
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		GameSettings.current().apply_focus(false)
+	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
+		GameSettings.current().apply_focus(true)
+
+
+## Whether this is the running game's Main, rather than one a test made: only that one applies
+## settings, so tests leave the test runner's window alone.
+func _is_game() -> bool:
+	return is_inside_tree() and get_tree().current_scene == self
 
 
 func show_main_menu() -> void:
 	var menu: MainMenu = _show_screen(MAIN_MENU_SCENE)
 	menu.forge_pressed.connect(show_forge)
+	menu.settings_pressed.connect(show_settings)
+
+
+func show_settings() -> void:
+	var settings: SettingsScreen = _show_screen(SETTINGS_SCENE)
+	settings.back_pressed.connect(show_main_menu)
 
 
 ## Opens the Forge on its saved armies, focusing [param army_id]'s if given; or on [param alliance]'s

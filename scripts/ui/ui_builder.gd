@@ -191,6 +191,27 @@ static func select(items: Array, selected: Variant, on_selected: Callable, key: 
 	return node
 
 
+## A setting that's on or off: [param title] and [param description] beside a switch, which calls
+## [param on_toggled] with whether it's on.
+static func switch_row(title: String, description: String, on: bool, on_toggled: Callable, key: String) -> PanelContainer:
+	var check := CheckButton.new()
+	check.button_pressed = on
+	check.accessibility_name = title
+	check.set_meta(&"focus_key", key)
+	check.toggled.connect(on_toggled)
+	var text := vbox([label(title, "CardTitleLabel"), label(description, "MutedLabel", true)], 4)
+	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	return panel("RowPanel", hbox([text, check], 16))
+
+
+## A setting: [param title] above [param control], with [param note] below if it isn't empty.
+static func setting_row(title: String, control: Control, note := "") -> PanelContainer:
+	var box := vbox([label(title, "CardTitleLabel"), control], 8)
+	if not note.is_empty():
+		box.add_child(label(note, "MutedLabel", true))
+	return panel("RowPanel", box)
+
+
 ## The warscroll's Scourge or Legends tags.
 static func tags(warscroll: Warscroll) -> Array[Control]:
 	var result: Array[Control] = []

@@ -79,6 +79,49 @@ func test_returned_main_menu_can_open_forge_again() -> void:
 	assert_is(main.current_screen, Forge)
 
 
+# --- Settings ---
+
+
+func test_menu_settings_pressed_shows_settings() -> void:
+	var main := _make_main()
+	(main.current_screen as MainMenu).settings_pressed.emit()
+	assert_is(main.current_screen, SettingsScreen)
+
+
+func test_menu_settings_pressed_leaves_one_child() -> void:
+	var main := _make_main()
+	(main.current_screen as MainMenu).settings_pressed.emit()
+	assert_eq(main.get_child_count(), 1)
+
+
+func test_show_settings_shows_settings() -> void:
+	var main := _make_main()
+	main.show_settings()
+	assert_is(main.current_screen, SettingsScreen)
+
+
+func test_settings_back_pressed_shows_main_menu() -> void:
+	var main := _make_main()
+	main.show_settings()
+	(main.current_screen as SettingsScreen).back_pressed.emit()
+	assert_is(main.current_screen, MainMenu)
+
+
+func test_settings_back_pressed_leaves_one_child() -> void:
+	var main := _make_main()
+	main.show_settings()
+	(main.current_screen as SettingsScreen).back_pressed.emit()
+	assert_eq(main.get_child_count(), 1)
+
+
+func test_returned_main_menu_can_open_settings_again() -> void:
+	var main := _make_main()
+	main.show_settings()
+	(main.current_screen as SettingsScreen).back_pressed.emit()
+	(main.current_screen as MainMenu).settings_pressed.emit()
+	assert_is(main.current_screen, SettingsScreen)
+
+
 ## Returns [alliance, faction name] for the first faction with data.
 func _available_faction() -> Array:
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():

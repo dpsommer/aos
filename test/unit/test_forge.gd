@@ -395,6 +395,81 @@ func test_pressing_legends_faction_card_marks_the_faction_as_legends() -> void:
 	pending("no Legends faction has data")
 
 
+func test_shown_factions_include_legends_when_settings_show_them() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	GameSettings.current().show_legends = true
+	assert_eq(Forge.shown_factions(alliance), FactionCatalog.factions_for(alliance))
+
+
+func test_shown_factions_hide_legends_when_settings_hide_them() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	GameSettings.current().show_legends = false
+	for faction in Forge.shown_factions(alliance):
+		assert_false(FactionCatalog.is_legends(faction), faction)
+
+
+func test_shown_factions_hiding_legends_keeps_the_other_factions() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	GameSettings.current().show_legends = false
+	var expected := Array(FactionCatalog.factions_for(alliance)).filter(
+			func(f: String) -> bool: return not FactionCatalog.is_legends(f))
+	assert_eq(Array(Forge.shown_factions(alliance)), expected)
+
+
+func test_faction_grid_hides_legends_factions_when_settings_hide_them() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	GameSettings.current().show_legends = false
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	for faction in _faction_button_names(forge):
+		assert_false(FactionCatalog.is_legends(faction), faction)
+
+
+func test_faction_grid_lists_legends_factions_when_settings_show_them() -> void:
+	var alliance := _alliance_with_legends_faction()
+	if alliance < 0:
+		pending("no faction is Legends")
+		return
+	var forge := _make_forge()
+	forge.show_factions(alliance)
+	assert_eq(_faction_button_names(forge), FactionCatalog.factions_for(alliance))
+
+
+func test_renown_grid_hides_legends_armies_when_settings_hide_them() -> void:
+	var faction := _faction_where(func(f: Faction) -> bool: return f.armies_of_renown.any(func(a: ArmyOfRenown) -> bool: return a.legends))
+	if faction == null:
+		pending("no Army of Renown is Legends")
+		return
+	GameSettings.current().show_legends = false
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	for army in faction.armies_of_renown:
+		var card := _choice_with_meta(forge.renown_grid, &"army_of_renown", army.name)
+		assert_eq(card == null, army.legends, army.name)
+
+
+func test_renown_grid_lists_legends_armies_when_settings_show_them() -> void:
+	var faction := _faction_where(func(f: Faction) -> bool: return f.armies_of_renown.any(func(a: ArmyOfRenown) -> bool: return a.legends))
+	if faction == null:
+		pending("no Army of Renown is Legends")
+		return
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	assert_eq(forge.renown_grid.get_child_count(), faction.armies_of_renown.size())
+
+
 func test_unavailable_faction_card_stays_on_faction_panel() -> void:
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
 		var forge := _make_forge()

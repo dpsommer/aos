@@ -21,6 +21,7 @@
 - [Main menu](design/main-menu.md): menu options, their destinations, and the signals the menu emits
 - [Forge](design/forge.md): army builder flow and screen, faction browser, signals, and faction data
 - [Ability cards](design/abilities.md): how abilities are shown everywhere: the phase-coloured box, its icon, timing and colours
+- [Settings](design/settings.md): the General, Graphics, Sound and Input tabs, key remapping, and how settings are saved and applied
 - [Accessibility](design/accessibility.md): keyboard use, including reordering the army list, and screen reader names
 
 ### Gameplay

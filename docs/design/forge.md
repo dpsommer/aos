@@ -34,13 +34,14 @@ The steps:
 2. **Grand Alliance:** a card for each of Order, Chaos, Death and Destruction, with its number of factions. Pressing one goes straight to its factions.
 3. **Faction:** a card for each faction of the chosen alliance. Pressing one goes straight to its Army of Renown step.
    - Factions without rules data are disabled, with a "Coming soon" chip and tooltip.
-   - Factions moved to Legends (Fyreslayers) have a Legends chip.
+   - Factions moved to Legends (Fyreslayers) have a Legends chip. They're hidden when the Show Legends armies setting is off (see [Settings](settings.md)), and the Grand Alliance cards' faction counts leave them out.
 4. **Army of Renown:**
    - **"No Army of Renown" card:** the faction's own rules. It's focused when the step opens, unless an Army of Renown was chosen earlier for the same faction.
    - **Army of Renown cards:** below it, two to a row. Each has:
      - its name and source;
      - its roster options (`Forge.roster_summary()`);
      - chips for Legends, "No Regiments of Renown", "No faction terrain" and "Fixed General" (`Forge.renown_chips_for()`).
+   - **Legends Armies of Renown** are hidden when the Show Legends armies setting is off.
    - **Pressing a card:** "No Army of Renown" goes to the Battle Formation step, or starts the army if the faction has no formations. An Army of Renown starts the army (`Forge.choose_army_of_renown()`).
 5. **Battle Formation:** the faction's battle formations, three to a row. Each card shows:
    - its points, or the type of its first ability;

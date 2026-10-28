@@ -452,10 +452,10 @@ func _settings() -> void:
 		else:
 			control.free()
 	var legends_note := "Legends warscrolls aren't used in matched play."
-	add.call(_switch("Show Legends units", legends_note, army.show_legends, editor.set_show_legends, "info:legends"),
+	add.call(UIBuilder.switch_row("Show Legends units", legends_note, army.show_legends, editor.set_show_legends, "info:legends"),
 			"Show Legends units " + legends_note)
 	var override_note := "Turns off validation. Any unit can join any regiment."
-	add.call(_switch("Override army constraints", override_note, army.override_constraints,
+	add.call(UIBuilder.switch_row("Override army constraints", override_note, army.override_constraints,
 			editor.set_override_constraints, "info:override"), "Override army constraints " + override_note)
 
 	var spin := SpinBox.new()
@@ -474,7 +474,7 @@ func _settings() -> void:
 	for button: Button in [down, up]:
 		button.accessibility_name = button.tooltip_text
 		button.custom_minimum_size.x = 40
-	add.call(_setting("Points limit", UIBuilder.hbox([down, spin, up])), "Points limit")
+	add.call(UIBuilder.setting_row("Points limit", UIBuilder.hbox([down, spin, up])), "Points limit")
 
 	var faction := builder.catalog.faction
 	if not faction.armies_of_renown.is_empty():
@@ -484,34 +484,16 @@ func _settings() -> void:
 		var select := UIBuilder.select(items, army.army_of_renown, editor.set_army_of_renown, "info:aor", "Army of Renown")
 		var note := "Uses the Army of Renown's battle traits, enhancements and lores instead of the faction's." \
 				if not army.army_of_renown.is_empty() else "Pick an Army of Renown to replace the faction rules."
-		add.call(_setting("Army of Renown", select, note), "Army of Renown " + note)
+		add.call(UIBuilder.setting_row("Army of Renown", select, note), "Army of Renown " + note)
 	var formations := builder.catalog.battle_formations(army)
 	if not formations.is_empty():
 		var items := [["None", ""]]
 		for formation in formations:
 			items.append([formation.name + (" · %d pts" % formation.points if formation.points else ""), formation.name])
-		add.call(_setting("Battle Formation", UIBuilder.select(items, army.formation, editor.set_formation,
+		add.call(UIBuilder.setting_row("Battle Formation", UIBuilder.select(items, army.formation, editor.set_formation,
 				"info:formation", "Battle Formation")), "Battle Formation")
 	if shown[0] == 0:
 		_empty("No settings match “%s”." % query.strip_edges())
-
-
-func _switch(title: String, description: String, on: bool, on_toggled: Callable, key: String) -> PanelContainer:
-	var check := CheckButton.new()
-	check.button_pressed = on
-	check.accessibility_name = title
-	check.set_meta(&"focus_key", key)
-	check.toggled.connect(on_toggled)
-	var text := UIBuilder.vbox([UIBuilder.label(title, "CardTitleLabel"), UIBuilder.label(description, "MutedLabel", true)], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	return UIBuilder.panel("RowPanel", UIBuilder.hbox([text, check], 16))
-
-
-func _setting(title: String, control: Control, note := "") -> PanelContainer:
-	var box := UIBuilder.vbox([UIBuilder.label(title, "CardTitleLabel"), control], 8)
-	if not note.is_empty():
-		box.add_child(UIBuilder.label(note, "MutedLabel", true))
-	return UIBuilder.panel("RowPanel", box)
 
 
 ## Shows the unit's card in the Roster with its warscroll open, highlighted and focused.

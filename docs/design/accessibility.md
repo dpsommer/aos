@@ -1,6 +1,6 @@
 # Accessibility
 
-What's implemented so far, by screen. Settings for accessibility (text size, colour, input remapping) don't exist yet.
+What's implemented so far, by screen. Keys can be remapped in Settings (see [Settings](settings.md#input)); settings for text size and colour don't exist yet.
 
 ## Keyboard
 
@@ -21,7 +21,13 @@ Screens are built from standard focusable controls, so they can be used without 
 - **Focus after changes:** the army list is rebuilt after every change, and focus returns to the same control. A grip keeps focus while its unit or regiment moves. If that control is gone (a deleted unit, say), focus moves to the picker's first button while it's open, else to Back. Closing the picker, by picking or with Esc, returns focus to the button that opened it.
 - **Links:** a unit's portrait and a short battle tactics card can be focused and pressed with Enter or Space. They open the unit or card in the info pane, which scrolls to it, highlights it and gives it focus.
 - **Battle tactics cards:** every battle tactics card that can be focused (in the army list, the Rules tab and the picker) has a gold outline while it has keyboard focus. In the picker, the whole card is a button: Enter or Space chooses it, and the first card is focused when the picker opens.
-- **Save:** Save army's tooltip names the shortcut for the platform: Command+S on macOS, else Ctrl+S.
+- **Save:** Save army's tooltip names the `save_army` action's first key: by default Command+S on macOS, else Ctrl+S.
+
+### Settings
+
+- **Esc:** goes back to the main menu, unless a key is being remapped: then it cancels the remap.
+- **Rows:** switches, sliders and option lists are named for screen readers by their setting, and a slider's description is its shown value, e.g. "75% · 1440 × 810".
+- **Key bindings:** every key, remove button, Add key and Reset is a button named for its action, e.g. "Change Confirm: Enter" or "Remove Space from Confirm". After a change, focus goes to the changed key; after removing a key or resetting, to the action's Add key. After a tab's Reset all, which is then disabled, focus goes to the tab's first setting.
 
 ## Colour
 

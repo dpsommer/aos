@@ -1,7 +1,8 @@
 class_name Forge
 extends Control
 ## Lists the player's saved armies, and starts new ones: players pick a Grand Alliance, a faction,
-## then an Army of Renown or the faction's own rules with a battle formation. Each step shares a
+## then an Army of Renown or the faction's own rules with a battle formation. Legends factions and
+## Armies of Renown are offered only if Settings shows them. Each step shares a
 ## header, with Back and the steps so far. Pressing a card makes that step's choice and moves on.
 
 signal back_pressed
@@ -289,7 +290,7 @@ func _alliance_card(alliance: GrandAlliance.Type) -> OptionCard:
 	art.custom_minimum_size.y = 200
 	card.add(art)
 	card.add(UIBuilder.label(alliance_name, "CardHeadingLabel"))
-	var count := FactionCatalog.factions_for(alliance).size()
+	var count := shown_factions(alliance).size()
 	card.add(UIBuilder.label("%d faction%s" % [count, "" if count == 1 else "s"], "MutedLabel"))
 	card.pressed.connect(show_factions.bind(alliance))
 	return card
@@ -308,9 +309,18 @@ func show_factions(alliance: GrandAlliance.Type) -> void:
 	back_button.grab_focus()
 
 
+## [param alliance]'s factions, without Legends factions unless Settings shows them.
+static func shown_factions(alliance: GrandAlliance.Type) -> PackedStringArray:
+	var result := PackedStringArray()
+	for faction in FactionCatalog.factions_for(alliance):
+		if GameSettings.current().show_legends or not FactionCatalog.is_legends(faction):
+			result.append(faction)
+	return result
+
+
 func _populate_factions(alliance: GrandAlliance.Type) -> void:
 	_clear(faction_grid)
-	for faction in FactionCatalog.factions_for(alliance):
+	for faction in shown_factions(alliance):
 		var card := OptionCard.new()
 		card.set_meta(&"faction", faction)
 		card.accessibility_name = faction + (" (Legends)" if FactionCatalog.is_legends(faction) else "")
@@ -362,6 +372,8 @@ func show_armies_of_renown(alliance: GrandAlliance.Type, faction_name: String) -
 	renown_none.add_child(own)
 	var focus: Button = own
 	for army in faction.armies_of_renown:
+		if army.legends and not GameSettings.current().show_legends:
+			continue
 		var card := _renown_card(army)
 		renown_grid.add_child(card)
 		if army.name == _army_of_renown:

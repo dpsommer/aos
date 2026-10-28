@@ -257,6 +257,14 @@ static func _create() -> Theme:
 		theme.set_color(state, "TabButton", TEXT)
 	theme.set_color("icon_normal_color", "TabButton", MUTED)
 	theme.set_color("icon_focus_color", "TabButton", MUTED)
+	# The key's button inside a KeyChipPanel, which draws its border.
+	_button(theme, "KeyButton", Color.TRANSPARENT, CONTROL_HOVER, Color.TRANSPARENT, TEXT)
+	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		var key_style := theme.get_stylebox(state, "KeyButton").duplicate() as StyleBoxFlat
+		key_style.set_corner_radius_all(6)
+		key_style.content_margin_top = 6
+		key_style.content_margin_bottom = 6
+		theme.set_stylebox(state, "KeyButton", key_style)
 	_button(theme, "CardButton", Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, TEXT)
 	# A card button's focus outline is drawn by the card around it (FocusRowPanel), not the button.
 	theme.set_stylebox("focus", "CardButton", StyleBoxEmpty.new())
@@ -322,6 +330,18 @@ static func _create() -> Theme:
 	theme.set_icon("checked_disabled", "CheckButton", icon("switch_on"))
 	theme.set_constant("icon_max_width", "CheckButton", 0)
 
+	# Settings sliders: a thin track, filled gold up to a round grabber.
+	var track := box(CONTROL, Color.TRANSPARENT, 3, 0)
+	track.content_margin_top = 3
+	track.content_margin_bottom = 3
+	theme.set_stylebox("slider", "HSlider", track)
+	theme.set_stylebox("grabber_area", "HSlider", box(GOLD, Color.TRANSPARENT, 3, 0))
+	theme.set_stylebox("grabber_area_highlight", "HSlider", box(Color("#E8BB5E"), Color.TRANSPARENT, 3, 0))
+	theme.set_stylebox("focus", "HSlider", box(Color.TRANSPARENT, GOLD, 6, 0, 2))
+	theme.set_icon("grabber", "HSlider", icon("slider_grabber"))
+	theme.set_icon("grabber_highlight", "HSlider", icon("slider_grabber_highlight"))
+	theme.set_icon("grabber_disabled", "HSlider", icon("slider_grabber"))
+
 	var field := box(Color("#14161A"), CONTROL_BORDER, 6, 8)
 	for type in ["LineEdit", "SpinBox"]:
 		theme.set_stylebox("normal", type, field)
@@ -340,6 +360,15 @@ static func _create() -> Theme:
 	_panel(theme, "RenownRegimentPanel", box(REGIMENT, GOLD_DARK, 10, 12))
 	_panel(theme, "CardPanel", box(Color("#1A1D23"), Color("#2E333D"), 10, 14))
 	_panel(theme, "RowPanel", box(CARD, BORDER, 8, 8))
+	# A bound key in the Settings screen's Input tab: the key's button and its remove button, in one
+	# outline, which turns gold while waiting for a new key.
+	var key_chip := box(CONTROL, CONTROL_BORDER, 8, 2)
+	key_chip.content_margin_right = 4
+	_panel(theme, "KeyChipPanel", key_chip)
+	var key_chip_on := key_chip.duplicate() as StyleBoxFlat
+	key_chip_on.bg_color = Color("#2A2418")
+	key_chip_on.border_color = GOLD
+	_panel(theme, "KeyChipListeningPanel", key_chip_on)
 	_panel(theme, "FlashCardPanel", box(Color("#1A1D23"), GOLD, 10, 14, 2))
 	# Outlines drawn over a card (TacticCard) with keyboard focus, or hovered when it can be pressed.
 	theme.set_stylebox("focus", "CardPanel", box(Color.TRANSPARENT, GOLD, 10, 0, 2))

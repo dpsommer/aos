@@ -60,14 +60,15 @@ func _ready() -> void:
 	back_button.icon = UITheme.icon("back")
 	back_button.pressed.connect(request_back)
 	save_button.pressed.connect(save)
-	var shortcut := InputEventKey.new()
-	shortcut.keycode = KEY_S
-	shortcut.command_or_control_autoremap = true
+	# The save_army action: Command+S on macOS, else Ctrl+S, unless remapped in Settings.
+	var shortcut := InputEventAction.new()
+	shortcut.action = &"save_army"
 	save_button.shortcut = Shortcut.new()
 	save_button.shortcut.events = [shortcut]
-	# Named once, for this platform: Command+S on macOS, else Ctrl+S.
+	# Named once, by its first key, if it has one.
 	save_button.shortcut_in_tooltip = false
-	save_button.tooltip_text = "Save army (%s)" % save_button.shortcut.get_as_text()
+	var keys := InputBindings.keys("save_army")
+	save_button.tooltip_text = "Save army (%s)" % InputBindings.key_name(keys[0]) if not keys.is_empty() else "Save army"
 	discard_dialog = ConfirmationDialog.new()
 	discard_dialog.title = "Unsaved changes"
 	discard_dialog.dialog_text = "This army has unsaved changes."
