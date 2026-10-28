@@ -12,6 +12,7 @@
 				],
 				"regiments_of_renown": false,
 				"excluded_units": ["Unit One", "Unit Three"],
+				"paired_leaders": ["CHAOS", "ORDER"],
 				"included_units": [
 					{"faction": "other_faction", "units": ["Unit Four"]},
 					{"faction": "third_faction"}

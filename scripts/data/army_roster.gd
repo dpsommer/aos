@@ -13,3 +13,8 @@ extends Resource
 ## Names of warscrolls the army can't include even if an entry matches them ("You cannot include
 ## Morathi-Khaine or the Shadow Queen").
 @export var excluded_units: PackedStringArray
+## Two keywords, e.g. ["IRONJAWZ", "KRULEBOYZ"] for Big Waaagh!: for each regiment led by a Hero
+## with one, the army must include a regiment led by a Hero with the other. A Hero with both
+## (Kragnos) leads for one of them, using that faction's version of its warscroll, and can't include
+## units of both in its regiment.
+@export var paired_leaders: PackedStringArray

@@ -130,7 +130,70 @@ static func _check_regiments(army: Army, catalog: ArmyCatalog, result: ArmyValid
 		if others.size() > capacity:
 			result.problems.append("%s has %d units besides its leader; the limit is %d%s." % [regiment.name, others.size(),
 					capacity, "" if capacity == GENERAL_REGIMENT_UNITS else " (%d for the general's regiment)" % GENERAL_REGIMENT_UNITS])
-		_check_regiment_options(regiment, leader_scroll, others, catalog, result)
+		_check_leader_options(army, regiment, leader_scroll, others, catalog, result)
+	_check_paired_leaders(army, catalog, built, result)
+
+
+## Checks [param units] against the leader's regiment options. A leader with several
+## [method ArmyCatalog.leader_versions] (Kragnos in a Big Waaagh!) uses whichever fits best, and
+## can't include units of both [member ArmyRoster.paired_leaders] keywords.
+static func _check_leader_options(army: Army, regiment: ArmyRegiment, leader: Warscroll, units: Array,
+		catalog: ArmyCatalog, result: ArmyValidation) -> void:
+	var versions := catalog.leader_versions(army, leader)
+	if versions.size() == 1:
+		_check_regiment_options(regiment, leader, units, catalog, result)
+		return
+	var paired := catalog.roster(army).paired_leaders
+	if _sides(units, regiment, catalog, paired).size() > 1:
+		result.problems.append("%s can include either %s or %s units in its regiment, not both." % [leader.name, paired[0], paired[1]])
+	var best: ArmyValidation = null
+	for version in versions:
+		var checked := ArmyValidation.new()
+		_check_regiment_options(regiment, version, units, catalog, checked)
+		if best == null or checked.problems.size() < best.problems.size():
+			best = checked
+	result.problems.append_array(best.problems)
+
+
+## Which of [param paired] the non-leader [param units] have.
+static func _sides(units: Array, regiment: ArmyRegiment, catalog: ArmyCatalog, paired: PackedStringArray) -> PackedStringArray:
+	var sides := PackedStringArray()
+	for unit: ArmyUnit in units:
+		var warscroll := catalog.warscroll(unit, regiment)
+		for keyword in paired:
+			if warscroll and warscroll.has_keyword(keyword) and not keyword in sides:
+				sides.append(keyword)
+	return sides
+
+
+## For each regiment led by a Hero with one of the roster's [member ArmyRoster.paired_leaders], the
+## army must include one led by a Hero with the other. A leader with both counts for the faction of
+## its regiment's units, or for either when they don't settle it.
+static func _check_paired_leaders(army: Army, catalog: ArmyCatalog, built: Array, result: ArmyValidation) -> void:
+	var army_roster := catalog.roster(army)
+	if army_roster == null or army_roster.paired_leaders.is_empty():
+		return
+	var paired := army_roster.paired_leaders
+	var counts := [0, 0]
+	var either := 0
+	for regiment: ArmyRegiment in built:
+		var leader := regiment.leader()
+		var leader_scroll := catalog.warscroll(leader, regiment) if leader else null
+		if leader_scroll == null or not leader_scroll.has_keyword("HERO"):
+			continue
+		var held := [leader_scroll.has_keyword(paired[0]), leader_scroll.has_keyword(paired[1])]
+		if held[0] and held[1]:
+			var sides := _sides(regiment.units.slice(1), regiment, catalog, paired)
+			held = [paired[0] in sides, paired[1] in sides] if sides.size() == 1 else held
+		if held[0] and held[1]:
+			either += 1
+		elif held[0] or held[1]:
+			counts[0 if held[0] else 1] += 1
+	# The flexible leaders must make up the difference, with an even number left to split.
+	var gap: int = absi(counts[0] - counts[1])
+	if gap > either or (either - gap) % 2 != 0:
+		result.problems.append("%s armies need as many regiments led by %s Heroes as by %s Heroes (%d and %d)."
+				% [army.army_of_renown, paired[0], paired[1], counts[0], counts[1]])
 
 
 ## Fills each option with the units it allows: required options first, then unlimited ones, so a

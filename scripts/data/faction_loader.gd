@@ -359,6 +359,9 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 	roster.faction_terrain = _bool(data, "faction_terrain", path, true)
 	roster.manifestations = _bool(data, "manifestations", path, true)
 	roster.excluded_units = _strings(data, "excluded_units", path)
+	roster.paired_leaders = _strings(data, "paired_leaders", path)
+	if roster.paired_leaders.size() not in [0, 2]:
+		_error(_join(path, "paired_leaders"), "needs exactly 2 keywords")
 	var included := _array(data, "included_units", path)
 	for i in included.size():
 		var inclusion_path := _join(path, "included_units[%d]" % i)

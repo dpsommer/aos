@@ -1151,3 +1151,146 @@ func test_army_of_renown_unit_in_a_regiment_of_renown_is_not_reported() -> void:
 	var army := _horde_army()
 	army.regiments.append(_ror())
 	_assert_no_problem(army, "March", catalog)
+
+
+# Paired leaders (Big Waaagh!)
+
+func _dual(options: PackedStringArray) -> Warscroll:
+	return Kit.hero("kragnos", options, PackedStringArray(["IRONJAWZ", "KRULEBOYZ"]))
+
+
+## A catalog for the Army of Renown "Horde", paired IRONJAWZ/KRULEBOYZ, including the whole of the
+## faction "home". The own faction is Ironjawz (ij_hero, ij_grunt, kragnos); "home" is Kruleboyz
+## (kb_hero, kb_grunt, and its own version of kragnos).
+func _paired_catalog(paired := PackedStringArray(["IRONJAWZ", "KRULEBOYZ"])) -> ArmyCatalog:
+	var own: Array[Warscroll] = [
+		Kit.hero("ij_hero", PackedStringArray(["Any IRONJAWZ"]), PackedStringArray(["IRONJAWZ"])),
+		_scroll("ij_grunt", PackedStringArray(["IRONJAWZ"])),
+		_dual(PackedStringArray(["Any IRONJAWZ"])),
+	]
+	var home_scrolls: Array[Warscroll] = [
+		Kit.hero("kb_hero", PackedStringArray(["Any KRULEBOYZ"]), PackedStringArray(["KRULEBOYZ"])),
+		_scroll("kb_grunt", PackedStringArray(["KRULEBOYZ"])),
+		_dual(PackedStringArray(["Any KRULEBOYZ"])),
+	]
+	var home := Kit.faction(home_scrolls, "home")
+	var faction := Kit.faction(own)
+	faction.armies_of_renown = [Kit.army_of_renown("Horde")] as Array[ArmyOfRenown]
+	var roster := faction.armies_of_renown[0].roster
+	roster.paired_leaders = paired
+	var inclusion := RosterInclusion.new()
+	inclusion.faction = "home"
+	roster.included_units = [inclusion] as Array[RosterInclusion]
+	for scroll in own + home_scrolls:
+		roster.entries.append(Kit.roster_entry(scroll.name))
+	return Kit.catalog(faction, null, func(faction_id: String) -> Faction: return home if faction_id == "home" else null)
+
+
+## A regiment led by [param leader] (of the own faction unless "kb_hero") with the given units,
+## where ids starting with "kb_" come from "home".
+func _paired_regiment(id: String, leader: String, others: Array[String] = []) -> ArmyRegiment:
+	var regiment := _regiment(id, leader, others)
+	for unit in regiment.units:
+		if unit.warscroll_id.begins_with("kb_"):
+			unit.faction_id = "home"
+	return regiment
+
+
+func _paired_army(regiments: Array[ArmyRegiment]) -> Army:
+	var army := _horde_army()
+	army.regiments.clear()
+	for regiment in regiments:
+		army.regiments.append(regiment)
+	return army
+
+
+const PAIRED_PROBLEM := "as many regiments led by"
+
+
+func test_paired_leaders_balanced_regiments_are_allowed() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "kb_hero")] as Array[ArmyRegiment])
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_paired_leaders_unbalanced_regiments_are_a_problem_naming_the_counts() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "ij_hero")] as Array[ArmyRegiment])
+	_assert_problem(army, "IRONJAWZ Heroes as by KRULEBOYZ Heroes (2 and 0)", _paired_catalog())
+
+
+func test_paired_leaders_problem_names_the_army_of_renown() -> void:
+	var army := _paired_army([_paired_regiment("a", "kb_hero")] as Array[ArmyRegiment])
+	_assert_problem(army, "Horde armies need", _paired_catalog())
+
+
+func test_paired_leaders_empty_dual_leader_balances_a_lone_side() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "kragnos")] as Array[ArmyRegiment])
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_paired_leaders_empty_dual_leader_cannot_fix_an_even_split() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "kb_hero"),
+			_paired_regiment("c", "kragnos")] as Array[ArmyRegiment])
+	_assert_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_paired_leaders_two_empty_dual_leaders_balance_each_other() -> void:
+	var army := _paired_army([_paired_regiment("a", "kragnos"), _paired_regiment("b", "kragnos")] as Array[ArmyRegiment])
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_paired_leaders_dual_leader_counts_for_the_keyword_of_its_units() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "kragnos", ["kb_grunt"])] as Array[ArmyRegiment])
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_paired_leaders_dual_leader_with_units_of_the_same_side_does_not_balance_it() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "kragnos", ["ij_grunt"])] as Array[ArmyRegiment])
+	_assert_problem(army, "(2 and 0)", _paired_catalog())
+
+
+func test_paired_leaders_dual_leader_with_mixed_units_counts_as_either() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "kragnos", ["ij_grunt", "kb_grunt"])] as Array[ArmyRegiment])
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_paired_leaders_non_heroes_do_not_count() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "kb_hero")] as Array[ArmyRegiment])
+	army.regiments[0].units[0].warscroll_id = "ij_grunt"
+	army.regiments[1].units[0].warscroll_id = "ij_grunt"
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_no_paired_leaders_check_without_paired_leaders() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero"), _paired_regiment("b", "ij_hero")] as Array[ArmyRegiment])
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog(PackedStringArray()))
+
+
+func test_no_paired_leaders_check_for_a_faction_army() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero")] as Array[ArmyRegiment])
+	army.army_of_renown = ""
+	_assert_no_problem(army, PAIRED_PROBLEM, _paired_catalog())
+
+
+func test_dual_leader_can_include_the_other_factions_units() -> void:
+	var army := _paired_army([_paired_regiment("a", "kragnos", ["kb_grunt"])] as Array[ArmyRegiment])
+	_assert_no_problem(army, "regiment options", _paired_catalog())
+
+
+func test_dual_leader_can_include_its_own_factions_units() -> void:
+	var army := _paired_army([_paired_regiment("a", "kragnos", ["ij_grunt"])] as Array[ArmyRegiment])
+	_assert_no_problem(army, "regiment options", _paired_catalog())
+
+
+func test_dual_leader_with_units_of_both_sides_is_a_problem_naming_both() -> void:
+	var army := _paired_army([_paired_regiment("a", "kragnos", ["ij_grunt", "kb_grunt"])] as Array[ArmyRegiment])
+	_assert_problem(army, "either IRONJAWZ or KRULEBOYZ units in its regiment, not both", _paired_catalog())
+
+
+func test_dual_leader_with_units_of_one_side_is_not_a_mixing_problem() -> void:
+	var army := _paired_army([_paired_regiment("a", "kragnos", ["kb_grunt", "kb_grunt"])] as Array[ArmyRegiment])
+	_assert_no_problem(army, "not both", _paired_catalog())
+
+
+func test_single_keyword_leader_cannot_include_the_other_sides_units() -> void:
+	var army := _paired_army([_paired_regiment("a", "ij_hero", ["kb_grunt"])] as Array[ArmyRegiment])
+	_assert_problem(army, "regiment options", _paired_catalog())

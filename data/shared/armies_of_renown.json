@@ -24,6 +24,10 @@
 						"faction": "kruleboyz"
 					}
 				],
+				"paired_leaders": [
+					"IRONJAWZ",
+					"KRULEBOYZ"
+				],
 				"regiments_of_renown": false,
 				"faction_terrain": false
 			},

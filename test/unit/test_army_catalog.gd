@@ -671,3 +671,125 @@ func test_unit_warscrolls_leave_out_an_included_army_of_renown_unit_for_another_
 	var home := catalog._load_faction.call("home") as Faction
 	home.get_warscroll("sailor").army_of_renown = "March"
 	assert_false("sailor" in _unit_ids(catalog, _horde_army()))
+
+
+# Paired leaders (Big Waaagh!)
+
+func _kragnos(options := PackedStringArray(), id := "kragnos") -> Warscroll:
+	return Kit.hero(id, options, PackedStringArray(["IRONJAWZ", "KRULEBOYZ"]))
+
+
+## A catalog for the Army of Renown "Horde" paired IRONJAWZ/KRULEBOYZ in the faction "test_faction",
+## which includes the given factions' units. The own faction has an Ironjawz Kragnos; the faction
+## "home" has a Kruleboyz one allowing "Any KRULEBOYZ" and "other" an Ironjawz one.
+func _paired_catalog(inclusions: Array[RosterInclusion], paired := PackedStringArray(["IRONJAWZ", "KRULEBOYZ"])) -> ArmyCatalog:
+	var own: Array[Warscroll] = [_kragnos(PackedStringArray(["Any IRONJAWZ"])), Kit.hero("boss", PackedStringArray(), PackedStringArray(["IRONJAWZ"]))]
+	var faction := Kit.faction(own)
+	var home_scrolls: Array[Warscroll] = [_kragnos(PackedStringArray(["Any KRULEBOYZ"]))]
+	var other_scrolls: Array[Warscroll] = [_kragnos(PackedStringArray(["Any ORDER"]))]
+	var factions := {"home": Kit.faction(home_scrolls, "home"), "other": Kit.faction(other_scrolls, "other")}
+	faction.armies_of_renown = [Kit.army_of_renown("Horde")] as Array[ArmyOfRenown]
+	faction.armies_of_renown[0].roster.included_units = inclusions
+	faction.armies_of_renown[0].roster.paired_leaders = paired
+	return Kit.catalog(faction, null, func(faction_id: String) -> Faction: return factions.get(faction_id))
+
+
+func _version_factions(versions: Array[Warscroll]) -> Array:
+	return versions.map(func(w: Warscroll) -> String: return w.regiment_options[0])
+
+
+func test_leader_versions_of_a_dual_keyword_leader_include_each_included_faction() -> void:
+	var catalog := _paired_catalog([_inclusion("home")] as Array[RosterInclusion])
+	var versions := catalog.leader_versions(_horde_army(), catalog.faction.get_warscroll("kragnos"))
+	assert_eq(_version_factions(versions), ["Any IRONJAWZ", "Any KRULEBOYZ"])
+
+
+func test_leader_versions_start_with_the_leader_itself() -> void:
+	var catalog := _paired_catalog([_inclusion("home")] as Array[RosterInclusion])
+	var leader := catalog.faction.get_warscroll("kragnos")
+	assert_same(catalog.leader_versions(_horde_army(), leader)[0], leader)
+
+
+func test_leader_versions_include_every_included_faction() -> void:
+	var catalog := _paired_catalog([_inclusion("home"), _inclusion("other")] as Array[RosterInclusion])
+	assert_eq(catalog.leader_versions(_horde_army(), catalog.faction.get_warscroll("kragnos")).size(), 3)
+
+
+func test_leader_versions_of_a_single_keyword_leader_is_just_the_leader() -> void:
+	var catalog := _paired_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.leader_versions(_horde_army(), catalog.faction.get_warscroll("boss")).size(), 1)
+
+
+func test_leader_versions_without_paired_leaders_is_just_the_leader() -> void:
+	var catalog := _paired_catalog([_inclusion("home")] as Array[RosterInclusion], PackedStringArray())
+	assert_eq(catalog.leader_versions(_horde_army(), catalog.faction.get_warscroll("kragnos")).size(), 1)
+
+
+func test_leader_versions_for_a_faction_army_is_just_the_leader() -> void:
+	var catalog := _paired_catalog([_inclusion("home")] as Array[RosterInclusion])
+	assert_eq(catalog.leader_versions(Kit.army(), catalog.faction.get_warscroll("kragnos")).size(), 1)
+
+
+func test_leader_versions_skip_an_inclusion_of_only_some_units() -> void:
+	var catalog := _paired_catalog([_inclusion("home", PackedStringArray(["Kragnos"]))] as Array[RosterInclusion])
+	assert_eq(catalog.leader_versions(_horde_army(), catalog.faction.get_warscroll("kragnos")).size(), 1)
+
+
+func test_leader_versions_skip_an_inclusion_of_the_own_faction() -> void:
+	var catalog := _paired_catalog([_inclusion("test_faction")] as Array[RosterInclusion])
+	assert_eq(catalog.leader_versions(_horde_army(), catalog.faction.get_warscroll("kragnos")).size(), 1)
+
+
+func test_leader_versions_skip_a_faction_that_cannot_load() -> void:
+	var catalog := _paired_catalog([_inclusion("nowhere")] as Array[RosterInclusion])
+	assert_eq(catalog.leader_versions(_horde_army(), catalog.faction.get_warscroll("kragnos")).size(), 1)
+
+
+func test_leader_versions_skip_a_faction_without_the_warscroll() -> void:
+	var catalog := _paired_catalog([_inclusion("home")] as Array[RosterInclusion])
+	var stranger := _kragnos(PackedStringArray(), "stranger")
+	assert_eq(catalog.leader_versions(_horde_army(), stranger).size(), 1)
+
+
+func _regiment_of(leader: String, others: Array[String] = []) -> ArmyRegiment:
+	var units: Array[ArmyUnit] = [Kit.unit("lead", leader)]
+	for i in others.size():
+		units.append(Kit.unit("u%d" % i, others[i]))
+	return Kit.regiment("r", units)
+
+
+## A catalog where the units are one Ironjawz and one Kruleboyz warscroll, to be fit against the options.
+func _paired_units_catalog() -> ArmyCatalog:
+	var catalog := _paired_catalog([_inclusion("home")] as Array[RosterInclusion])
+	catalog.faction.warscrolls.append(Kit.warscroll("orruk", PackedStringArray(["IRONJAWZ"])))
+	catalog.faction.warscrolls.append(Kit.warscroll("gobbo", PackedStringArray(["KRULEBOYZ"])))
+	return catalog
+
+
+func test_regiment_options_of_a_single_version_leader_are_its_own() -> void:
+	var catalog := _paired_units_catalog()
+	assert_eq(catalog.regiment_options(_horde_army(), _regiment_of("boss")).size(), 0)
+
+
+func test_regiment_options_of_an_unknown_leader_are_empty() -> void:
+	var catalog := _paired_units_catalog()
+	assert_eq(catalog.regiment_options(_horde_army(), _regiment_of("gone")).size(), 0)
+
+
+func test_regiment_options_of_an_empty_multi_version_regiment_are_the_union() -> void:
+	var catalog := _paired_units_catalog()
+	var options := catalog.regiment_options(_horde_army(), _regiment_of("kragnos"))
+	assert_true(options.any(func(o: RegimentOption) -> bool: return o.matches(catalog.faction.get_warscroll("orruk"))))
+	assert_true(options.any(func(o: RegimentOption) -> bool: return o.matches(catalog.faction.get_warscroll("gobbo"))))
+
+
+func test_regiment_options_narrow_to_the_version_the_units_fit() -> void:
+	var catalog := _paired_units_catalog()
+	var options := catalog.regiment_options(_horde_army(), _regiment_of("kragnos", ["gobbo"]))
+	assert_true(options.any(func(o: RegimentOption) -> bool: return o.matches(catalog.faction.get_warscroll("gobbo"))))
+	assert_false(options.any(func(o: RegimentOption) -> bool: return o.matches(catalog.faction.get_warscroll("orruk"))))
+
+
+func test_regiment_options_offer_neither_version_when_the_units_mix_both() -> void:
+	var catalog := _paired_units_catalog()
+	assert_eq(catalog.regiment_options(_horde_army(), _regiment_of("kragnos", ["gobbo", "orruk"])).size(), 0)

@@ -212,6 +212,45 @@ func _included_units(army: Army) -> Dictionary:
 	return result
 
 
+## The versions of [param leader]'s warscroll whose regiment options it can use: just [param leader],
+## or for a Hero with both of the roster's [member ArmyRoster.paired_leaders] (Kragnos in a Big
+## Waaagh!), also the version in each faction the army includes all units from, as it can lead for
+## either faction.
+func leader_versions(army: Army, leader: Warscroll) -> Array[Warscroll]:
+	var result: Array[Warscroll] = [leader]
+	var army_roster := roster(army)
+	if army_roster == null or army_roster.paired_leaders.is_empty() \
+			or not Array(army_roster.paired_leaders).all(func(k: String) -> bool: return leader.has_keyword(k)):
+		return result
+	for inclusion in army_roster.included_units:
+		if inclusion.faction == faction.id or not inclusion.units.is_empty():
+			continue
+		var home: Faction = _load_faction.call(inclusion.faction)
+		var version := home.get_warscroll(leader.id) if home else null
+		if version and not version in result:
+			result.append(version)
+	return result
+
+
+## The regiment options a unit can be added to [param regiment] with: its leader's, or for a leader
+## with several [method leader_versions], those of each version its units so far fit.
+func regiment_options(army: Army, regiment: ArmyRegiment) -> Array[RegimentOption]:
+	var result: Array[RegimentOption] = []
+	var leader := regiment.leader()
+	var leader_scroll := warscroll(leader, regiment) if leader else null
+	if leader_scroll == null:
+		return result
+	var versions := leader_versions(army, leader_scroll)
+	for version in versions:
+		var options := RegimentOption.parse_all(version.regiment_options)
+		var fits := versions.size() == 1 or regiment.units.slice(1).all(func(u: ArmyUnit) -> bool:
+			var unit_scroll := warscroll(u, regiment)
+			return unit_scroll == null or options.any(func(o: RegimentOption) -> bool: return o.matches(unit_scroll)))
+		if fits:
+			result.append_array(options)
+	return result
+
+
 func terrain_warscrolls() -> Array[Warscroll]:
 	var result: Array[Warscroll] = []
 	for warscroll in faction.warscrolls:

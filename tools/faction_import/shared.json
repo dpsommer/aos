@@ -82,6 +82,6 @@
 		"Big Waaagh! > Summon Foot of Gork": {
 			"declare": "If there is not a friendly Foot of Gork on the battlefield, pick a friendly BIG WAAAGH! WIZARD to cast this spell, then make a casting roll of 2D6."
 		},
-		"Big Waaagh!": {"roster": {"entries": [{"keywords": ["IRONJAWZ"]}, {"keywords": ["KRULEBOYZ"]}], "included_units": [{"faction": "ironjawz"}, {"faction": "kruleboyz"}], "regiments_of_renown": false, "faction_terrain": false}}
+		"Big Waaagh!": {"roster": {"entries": [{"keywords": ["IRONJAWZ"]}, {"keywords": ["KRULEBOYZ"]}], "included_units": [{"faction": "ironjawz"}, {"faction": "kruleboyz"}], "paired_leaders": ["IRONJAWZ", "KRULEBOYZ"], "regiments_of_renown": false, "faction_terrain": false}}
 	}
 }

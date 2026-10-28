@@ -485,6 +485,26 @@ func test_roster_inclusion_without_faction_error_names_file_and_field_path() -> 
 	assert_true(_has_error_naming(errors, "armies_of_renown.json", "roster.included_units[0]"), str(errors))
 
 
+func test_army_of_renown_roster_paired_leaders_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_eq(_load("valid").armies_of_renown[0].roster.paired_leaders, PackedStringArray(expected.paired_leaders))
+
+
+func test_army_of_renown_roster_omitted_paired_leaders_is_empty() -> void:
+	var data: Dictionary = _json("roster_without_excluded_units", "armies_of_renown.json").armies_of_renown[0].roster
+	assert_false(data.has("paired_leaders"), "fixture roster should omit paired_leaders")
+	assert_eq(_load("roster_without_excluded_units").armies_of_renown[0].roster.paired_leaders.size(), 0)
+
+
+func test_roster_with_one_paired_leader_keyword_is_an_error_naming_the_field() -> void:
+	var errors := _errors("roster_paired_leaders_one_keyword")
+	assert_true(_has_error_naming(errors, "armies_of_renown.json", "roster.paired_leaders"), str(errors))
+
+
+func test_roster_with_one_paired_leader_keyword_returns_null() -> void:
+	assert_null(_load("roster_paired_leaders_one_keyword"))
+
+
 func test_army_of_renown_without_roster_has_null_roster() -> void:
 	assert_false(_json("valid", "armies_of_renown.json").armies_of_renown[1].has("roster"), "fixture should omit roster")
 	assert_null(_load("valid").armies_of_renown[1].roster)

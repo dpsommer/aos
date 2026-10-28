@@ -655,8 +655,7 @@ func pick_leader(regiment_id: String) -> void:
 ## constraints are overridden.
 func pick_unit(regiment_id: String) -> void:
 	var regiment := editor.army.find_regiment(regiment_id)
-	var leader := catalog.warscroll(regiment.leader(), regiment) if regiment and regiment.leader() else null
-	var options := RegimentOption.parse_all(leader.regiment_options) if leader else [] as Array[RegimentOption]
+	var options := catalog.regiment_options(editor.army, regiment)
 	var allowed := func(w: Warscroll) -> bool:
 		return editor.army.override_constraints or options.any(func(o: RegimentOption) -> bool: return o.matches(w))
 	_show_picker()
