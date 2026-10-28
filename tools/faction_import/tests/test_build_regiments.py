@@ -358,6 +358,48 @@ def test_add_from_wahapedia_without_a_page_stops_the_build():
         br.apply_overrides(regs(), {"add_from_wahapedia": ["Krew > Page Rule"]}, [])
 
 
+def with_factions(*factions):
+    r = regs()
+    r[0]["factions"] = list(factions)
+    return r
+
+
+def test_override_add_factions_adds_a_faction():
+    r = with_factions("Skaven")
+    br.apply_overrides(r, {"add_factions": {"Krew": ["Ironjawz"]}}, [])
+    assert "Ironjawz" in r[0]["factions"]
+
+
+def test_override_add_factions_does_not_duplicate_a_faction_already_present():
+    r = with_factions("Skaven")
+    br.apply_overrides(r, {"add_factions": {"Krew": ["Skaven"]}}, [])
+    assert r[0]["factions"] == ["Skaven"]
+
+
+def test_override_add_factions_does_not_duplicate_a_faction_listed_twice():
+    r = with_factions("Skaven")
+    br.apply_overrides(r, {"add_factions": {"Krew": ["Ironjawz", "Ironjawz"]}}, [])
+    assert r[0]["factions"] == ["Skaven", "Ironjawz"]
+
+
+def test_override_add_factions_keeps_the_existing_factions_and_their_order():
+    r = with_factions("Skaven", "Bonesplitterz")
+    br.apply_overrides(r, {"add_factions": {"Krew": ["Ironjawz"]}}, [])
+    assert r[0]["factions"] == ["Skaven", "Bonesplitterz", "Ironjawz"]
+
+
+def test_override_add_factions_for_an_unknown_regiment_stops_the_build():
+    with pytest.raises(SystemExit):
+        br.apply_overrides(with_factions("Skaven"), {"add_factions": {"Nope": ["Ironjawz"]}}, [])
+
+
+def test_override_add_factions_makes_write_reference_the_regiment_from_that_factions_file(data_dir):
+    r = [resolved("Alpha", ["Skaven"])]
+    br.apply_overrides(r, {"add_factions": {"Alpha": ["Ironjawz"]}}, [])
+    br.write(r, str(data_dir))
+    assert read(str(data_dir / "factions" / "ironjawz" / br.FILE)) == {"regiments_of_renown": [{"shared": "Alpha"}]}
+
+
 def test_no_overrides_change_nothing():
     r = regs()
     br.apply_overrides(r, {}, [])

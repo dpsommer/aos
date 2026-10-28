@@ -1,5 +1,6 @@
 {
 	"fields": {
+		"scourge_of_aqshy_alarith_stonemage": {"notes": "This HERO can join the regiment of Avalenor, the Stoneheart King. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack."},
 		"Vanari Paragons": {
 			"roster": {"entries": [{"keywords": ["VANARI"], "not_keywords": ["UNIQUE"]}, {"unit": "The Light of Eltharion"}], "regiments_of_renown": false},
 			"battle_traits": [

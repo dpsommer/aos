@@ -64,5 +64,79 @@
 		"Heroes of the Jade Abbey > Drasher Vorn, the Rampaging Beast": {
 			"notes": "0-1, +150 pts"
 		}
+	},
+	"add_factions": {
+		"Bloodthirsty Shiver": [
+			"Khazalite Holds"
+		],
+		"Bundo Whalebiter": [
+			"Khazalite Holds"
+		],
+		"Cogfort Raiders": [
+			"Khazalite Holds"
+		],
+		"Dawnrider Lance": [
+			"Khazalite Holds"
+		],
+		"Drekki's Privateers": [
+			"Khazalite Holds"
+		],
+		"Elthwin's Thorns": [
+			"Khazalite Holds"
+		],
+		"Enforcers of the Tithe": [
+			"Khazalite Holds"
+		],
+		"Exile Scavengers": [
+			"Khazalite Holds"
+		],
+		"Khinerai Death Flight": [
+			"Khazalite Holds"
+		],
+		"Krong the Club": [
+			"Khazalite Holds"
+		],
+		"Mask of the Deceiver": [
+			"Khazalite Holds"
+		],
+		"Namarti Shore Raid": [
+			"Khazalite Holds"
+		],
+		"Norgrimm's Rune Throng": [
+			"Khazalite Holds"
+		],
+		"Nurgle's Gift": [
+			"Khazalite Holds"
+		],
+		"Reinholt's Sharpshooters": [
+			"Khazalite Holds"
+		],
+		"Rogue Engine": [
+			"Khazalite Holds"
+		],
+		"Saviours of Cinderfall": [
+			"Khazalite Holds"
+		],
+		"Sigil Convocation": [
+			"Khazalite Holds"
+		],
+		"Sky-Port Profiteers": [
+			"Khazalite Holds"
+		],
+		"The Blacktalons": [
+			"Khazalite Holds"
+		],
+		"The Crimson Lash": [
+			"Khazalite Holds"
+		],
+		"The Horizon Seekers": [
+			"Khazalite Holds"
+		],
+		"Valnir's Stormwing": [
+			"Khazalite Holds"
+		],
+		"Ven Denst's Hounds": [
+			"Khazalite Holds"
+		]
 	}
 }

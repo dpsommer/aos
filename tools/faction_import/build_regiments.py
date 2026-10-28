@@ -20,13 +20,15 @@ Differences are printed as a report. Fix a wrong value with an overrides file
         "replace_with_wahapedia": {"<regiment> > <ability>": "<Wahapedia ability name>"},
         "add_from_wahapedia": ["<regiment> > <Wahapedia ability name>"],
         "remove": ["<regiment> > <ability>"],
-        "fields": {"<regiment>[ > <ability or unit name>]": {"<field>": <value>}}
+        "fields": {"<regiment>[ > <ability or unit name>]": {"<field>": <value>}},
+        "add_factions": {"<regiment>": ["<faction name>"]}
     }
 
 An ability is the regiment's or one of its own warscrolls'. add_from_wahapedia adds an ability
 only Wahapedia prints (the Godmarked Ascendant's 'Gifts of Chaos'), and remove drops one BSData
 wrongly gives a regiment (its Heralds of the Bone-tithe has the Dawnrider Lance's 'Masters of All
-Terrain').
+Terrain'). add_factions lets more factions include a regiment than BSData allows (the Battle
+Profiles let Khazalite Holds include the regiments Fyreslayers could).
 
 wahapedia_names is for a name Wahapedia spells or capitalises differently ("Big Drogg Fort-kicker"
 is "Big Drogg Fort-Kicka"); fetch.py uses it to find the page and the build to pair it.
@@ -175,6 +177,9 @@ def apply_overrides(regs, overrides, wh_regiments):
             # "faction" on a unit override is the faction id.
             if x is not r and "faction" in fields:
                 x["faction_id"] = fields["faction"]
+    for name, factions in overrides.get("add_factions", {}).items():
+        r, _ = target(name)
+        r["factions"] = list(dict.fromkeys(r["factions"] + factions))
 
 
 def build(bsdata_dir, wahapedia_dir, overrides, data_dir=DEFAULT_DATA):

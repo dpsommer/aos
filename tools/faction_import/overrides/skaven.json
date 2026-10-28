@@ -1,5 +1,6 @@
 {
 	"fields": {
+		"verminlord_corruptor": {"points": 260},
 		"warp_lightning_cannon > Warp Lightning Blast": {"damage": "-"},
 		"skabbiks_plaguepack > Plague Censer": {"wound": 3},
 		"skabbiks_plaguepack": {"base_size": "Skabbik Plagueseeker: 32mm, Rabidius Skench: 28.5mm, Poxlix, Itchitt, Rikkit and Skritter: 25mm"},

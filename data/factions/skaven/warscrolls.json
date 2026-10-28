@@ -2692,7 +2692,7 @@
 		{
 			"id": "verminlord_corruptor",
 			"name": "Verminlord Corruptor",
-			"points": 310,
+			"points": 260,
 			"unit_size": 1,
 			"base_size": "120 × 92mm",
 			"can_reinforce": false,
