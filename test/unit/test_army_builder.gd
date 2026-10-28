@@ -1258,3 +1258,16 @@ func test_remove_lore_clears_only_that_kind() -> void:
 	builder.remove_lore("spell")
 	assert_eq(army.spell_lore, "")
 	assert_eq(army.prayer_lore, "Hymns")
+
+
+func test_picking_a_leader_for_a_leaderless_regiment_puts_it_first() -> void:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.regiments[0].units.remove_at(0)
+	army.regiments[0].leaderless = true
+	var builder := _builder(army)
+	builder.pick_leader("r1")
+	UIKit.keyed(builder.picker, "pick:lead").pressed.emit()
+	var regiment := army.regiments[0]
+	assert_false(regiment.leaderless)
+	assert_eq(regiment.units.size(), 2)
+	assert_eq(regiment.leader().warscroll_id, "lead")

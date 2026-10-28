@@ -16,6 +16,8 @@ func _init(army_builder: ArmyBuilder, army_regiment: ArmyRegiment) -> void:
 	_header_row = _header()
 	var content := UIBuilder.vbox([_header_row], 8)
 	if not builder.collapsed.has(regiment.id):
+		if regiment.leaderless:
+			content.add_child(_leader_button())
 		for unit in regiment.units:
 			content.add_child(UnitRow.new(builder, unit, regiment))
 		var add := _add_button() if not renown else null
@@ -95,7 +97,7 @@ func _header() -> HBoxContainer:
 		row.add_child(UIBuilder.label("%d pts" % points, "MutedLabel"))
 	else:
 		var capacity := ArmyValidator.regiment_capacity(regiment, editor.army)
-		row.add_child(UIBuilder.label("%d/%d units · %d pts" % [regiment.units.size() - 1, capacity, points], "MutedLabel"))
+		row.add_child(UIBuilder.label("%d/%d units · %d pts" % [regiment.followers().size(), capacity, points], "MutedLabel"))
 	if not regiment.is_regiment_of_renown():
 		row.add_child(UIBuilder.icon_button("rename", "Rename regiment", builder.start_renaming.bind(regiment.id), key + "rename"))
 	row.add_child(UIBuilder.icon_button("delete", "Delete regiment", editor.remove_regiment.bind(regiment.id), key + "delete",
@@ -103,11 +105,18 @@ func _header() -> HBoxContainer:
 	return row
 
 
-## The button to choose the regiment's leader or add a unit, or null when the regiment is full.
+## The button that fills the regiment's empty leader's slot.
+func _leader_button() -> Button:
+	return UIBuilder.button("Choose a leader", func() -> void: builder.pick_leader(regiment.id), regiment.id + ":leader",
+			"GhostButton")
+
+
+## The button to choose the regiment's leader or add a unit, or null when the regiment is full or
+## its leader's slot is empty, as its units come from the leader's regiment options.
 func _add_button() -> Button:
 	var key := regiment.id + ":add"
 	if regiment.units.is_empty():
 		return UIBuilder.button("Choose a leader", func() -> void: builder.pick_leader(regiment.id), key, "GhostButton")
-	if not builder.editor.has_room(regiment):
+	if not builder.editor.has_room(regiment) or (regiment.leaderless and not builder.editor.army.override_constraints):
 		return null
 	return UIBuilder.button("Add unit", func() -> void: builder.pick_unit(regiment.id), key, "GhostButton")

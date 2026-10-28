@@ -315,7 +315,7 @@ func regiment_options(army: Army, regiment: ArmyRegiment) -> Array[RegimentOptio
 	var versions := leader_versions(army, leader_scroll)
 	for version in versions:
 		var options := leader_options(army, version)
-		var fits := versions.size() == 1 or regiment.units.slice(1).all(func(u: ArmyUnit) -> bool:
+		var fits := versions.size() == 1 or regiment.followers().all(func(u: ArmyUnit) -> bool:
 			var unit_scroll := warscroll(u, regiment)
 			return unit_scroll == null or options.any(func(o: RegimentOption) -> bool: return o.matches(unit_scroll, gained_keywords(army, unit_scroll))))
 		if fits:

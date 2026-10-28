@@ -308,3 +308,22 @@ func test_errors_reset_on_each_load() -> void:
 	serializer.from_dict(bad)
 	serializer.from_dict(_valid())
 	assert_eq(serializer.errors.size(), 0)
+
+
+# Leaderless regiments
+
+func test_round_trip_keeps_a_leaderless_regiment() -> void:
+	var original := _army()
+	original.regiments[0].leaderless = true
+	assert_true(_round_trip(original).regiments[0].leaderless)
+
+
+func test_leaderless_is_not_written_for_a_regiment_with_a_leader() -> void:
+	assert_false(ArmySerializer.to_dict(_army()).regiments[0].has("leaderless"))
+
+
+func test_leaderless_is_ignored_for_a_regiment_without_units() -> void:
+	var data := _valid()
+	data.regiments[0].units = []
+	data.regiments[0].leaderless = true
+	assert_false(ArmySerializer.new().from_dict(data).regiments[0].leaderless)

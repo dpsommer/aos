@@ -64,14 +64,15 @@ func _army_unit(warscroll_id: String) -> ArmyUnit:
 	return unit
 
 
-## Whether another unit fits in [param regiment]: its leader's slot while it has none, then up to
-## its capacity.
+## Whether another unit fits in [param regiment]: its leader's slot while it's empty, then up to
+## its capacity besides its leader. A regiment whose leader was removed keeps the slot for
+## [method add_leader].
 func has_room(regiment: ArmyRegiment) -> bool:
 	if regiment.is_regiment_of_renown():
 		return false
 	if army.override_constraints or regiment.units.is_empty():
 		return true
-	return regiment.units.size() - 1 < ArmyValidator.regiment_capacity(regiment, army)
+	return regiment.followers().size() < ArmyValidator.regiment_capacity(regiment, army)
 
 
 ## Whether a unit of [param warscroll_id] leads a regiment it's first in: a Hero, or a unit the
@@ -133,6 +134,19 @@ func add_unit(regiment_id: String, warscroll_id: String, index := -1) -> ArmyUni
 	return unit
 
 
+## Fills the empty leader's slot of a regiment with a unit of [param warscroll_id], or adds its
+## first unit. Returns null if it already has a leader.
+func add_leader(regiment_id: String, warscroll_id: String) -> ArmyUnit:
+	var regiment := army.find_regiment(regiment_id)
+	if regiment == null or not (regiment.leaderless or regiment.units.is_empty()):
+		return null
+	var unit := _army_unit(warscroll_id)
+	regiment.units.insert(0, unit)
+	regiment.leaderless = false
+	changed.emit()
+	return unit
+
+
 ## Adds an auxiliary unit at [param index], or the end if it's -1.
 func add_auxiliary(warscroll_id: String, index := -1) -> ArmyUnit:
 	var unit := _army_unit(warscroll_id)
@@ -177,7 +191,7 @@ func remove_unit(uid: String) -> void:
 		return
 	var regiment := army.regiment_of(uid)
 	if regiment:
-		regiment.units.erase(unit)
+		_take_out(regiment, unit)
 	else:
 		army.auxiliary.erase(unit)
 	if army.general_uid == uid:
@@ -218,7 +232,10 @@ func move_unit(uid: String, regiment_id: String, index: int) -> bool:
 		return false
 	var source: Array[ArmyUnit] = from.units if from else army.auxiliary
 	var at := source.find(unit)
-	source.remove_at(at)
+	if from and from != to:
+		_take_out(from, unit)
+	else:
+		source.remove_at(at)
 	if from == to and at < index:
 		index -= 1
 	if to:
@@ -236,9 +253,20 @@ func move_unit(uid: String, regiment_id: String, index: int) -> bool:
 func insertion_index(regiment: ArmyRegiment, index: int) -> int:
 	if regiment.units.is_empty():
 		return 0
-	if _leads(regiment.units[0].warscroll_id):
+	var leader := regiment.leader()
+	if leader and _leads(leader.warscroll_id):
 		index = maxi(index, 1)
 	return clampi(index, 0, regiment.units.size())
+
+
+## Takes [param unit] out of [param regiment]. Taking out its leader leaves the leader's slot
+## empty rather than the next unit leading it.
+func _take_out(regiment: ArmyRegiment, unit: ArmyUnit) -> void:
+	if regiment.leader() == unit:
+		regiment.leaderless = true
+	regiment.units.erase(unit)
+	if regiment.units.is_empty():
+		regiment.leaderless = false
 
 
 ## Keeps a Hero leader first: a unit added to an empty regiment leads it, and nothing is placed

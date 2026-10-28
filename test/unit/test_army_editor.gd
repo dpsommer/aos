@@ -1136,3 +1136,105 @@ func test_added_included_auxiliary_unit_records_its_faction() -> void:
 
 func test_added_own_auxiliary_unit_has_no_faction() -> void:
 	assert_eq(_including_editor().add_auxiliary("grunt").faction_id, "")
+
+
+# Leaderless regiments
+
+func test_removing_the_leader_leaves_the_regiment_leaderless() -> void:
+	var editor := _populated()
+	editor.remove_unit("u1")
+	var regiment := editor.army.regiments[0]
+	assert_true(regiment.leaderless)
+	assert_null(regiment.leader())
+	assert_eq(_uids(regiment.units), ["u2"])
+
+
+func test_removing_a_follower_keeps_the_leader() -> void:
+	var editor := _populated()
+	editor.remove_unit("u2")
+	assert_false(editor.army.regiments[0].leaderless)
+
+
+func test_removing_the_last_unit_clears_leaderless() -> void:
+	var editor := _populated()
+	editor.remove_unit("u1")
+	editor.remove_unit("u2")
+	assert_false(editor.army.regiments[0].leaderless)
+
+
+func test_moving_the_leader_to_auxiliary_leaves_the_regiment_leaderless() -> void:
+	var editor := _populated()
+	assert_true(editor.move_unit("u1", "", 0))
+	assert_true(editor.army.regiments[0].leaderless)
+
+
+func test_moving_the_leader_to_another_regiment_leaves_the_source_leaderless() -> void:
+	var editor := _populated()
+	editor.add_regiment("hero_b")
+	var other := editor.army.regiments[1]
+	assert_true(editor.move_unit("u1", other.id, 1))
+	assert_true(editor.army.regiments[0].leaderless)
+
+
+func test_moving_the_only_unit_out_does_not_leave_the_regiment_leaderless() -> void:
+	var army := Kit.army()
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "hero_a")] as Array[ArmyUnit]))
+	var editor := _editor(army)
+	editor.move_unit("u1", "", 0)
+	assert_false(army.regiments[0].leaderless)
+
+
+func test_reordering_within_a_regiment_keeps_the_leader() -> void:
+	var editor := _populated()
+	editor.move_unit("u2", "r1", 1)
+	assert_false(editor.army.regiments[0].leaderless)
+
+
+func test_add_leader_puts_the_unit_first_and_clears_leaderless() -> void:
+	var editor := _populated()
+	editor.remove_unit("u1")
+	var leader := editor.add_leader("r1", "hero_b")
+	var regiment := editor.army.regiments[0]
+	assert_eq(regiment.leader(), leader)
+	assert_false(regiment.leaderless)
+	assert_eq(regiment.units[1].uid, "u2")
+
+
+func test_add_leader_is_refused_when_the_regiment_has_a_leader() -> void:
+	var editor := _populated()
+	assert_null(editor.add_leader("r1", "hero_b"))
+	assert_eq(editor.army.regiments[0].units.size(), 2)
+
+
+func test_add_leader_works_on_an_empty_regiment() -> void:
+	var army := Kit.army()
+	army.regiments.append(Kit.regiment("r1", [] as Array[ArmyUnit]))
+	var editor := _editor(army)
+	assert_not_null(editor.add_leader("r1", "hero_a"))
+	assert_eq(army.regiments[0].units.size(), 1)
+
+
+func test_add_leader_is_null_for_an_unknown_regiment() -> void:
+	assert_null(_populated().add_leader("nope", "hero_a"))
+
+
+func test_add_leader_emits_changed() -> void:
+	var editor := _populated()
+	editor.remove_unit("u1")
+	editor.add_leader("r1", "hero_b")
+	assert_signal_emitted(editor, "changed")
+
+
+func test_has_room_counts_followers_of_a_leaderless_regiment() -> void:
+	var editor := _populated()
+	editor.remove_unit("u1")
+	var regiment := editor.army.regiments[0]
+	var capacity := ArmyValidator.regiment_capacity(regiment, editor.army)
+	_fill(editor, "r1", capacity - 1)
+	assert_false(editor.has_room(regiment))
+
+
+func test_insertion_index_allows_the_start_of_a_leaderless_regiment() -> void:
+	var editor := _populated()
+	editor.remove_unit("u1")
+	assert_eq(editor.insertion_index(editor.army.regiments[0], 0), 0)

@@ -1562,3 +1562,23 @@ func test_roster_warmaster_gain_still_applies_beside_an_army_of_renown_keyword()
 	var army := _horde_army()
 	army.regiments.append(_regiment("Side", "hero_b"))
 	_assert_problem(army, "Warmaster", catalog)
+
+
+# Leaderless regiments
+
+func test_leaderless_regiment_needs_a_hero_leader() -> void:
+	var army := _army()
+	var regiment := _regiment("Headless", "hero_a", ["grunt"])
+	regiment.units.remove_at(0)
+	regiment.leaderless = true
+	army.regiments.append(regiment)
+	_assert_problem(army, "Headless needs a Hero")
+
+
+func test_leaderless_regiment_counts_every_unit_as_a_follower() -> void:
+	var army := _army()
+	var regiment := _regiment("Headless", "hero_a", _grunts(ArmyValidator.GENERAL_REGIMENT_UNITS))
+	regiment.leaderless = true
+	army.regiments.append(regiment)
+	_assert_problem(army, "Headless needs a Hero")
+	assert_false(_mentions(_problems(army), "besides its leader"))

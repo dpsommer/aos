@@ -96,7 +96,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
 
       Units in a Regiment of Renown have no buttons and can't be renamed.
     - **Options:** for each enhancement type the unit can take, the type's name as a heading in Cinzel over a card for each enhancement (`ArmyCatalog.enhancement_choices()`: only tables whose `units` include it, and no Legends tables unless Legends are shown, though the unit's current pick stays). Each card shows its table's group, Scourge and Legends tags over the enhancement's [ability card](abilities.md), which shows its points; pressing a card gives the unit that enhancement (taking it from any other unit, as only one of each type is allowed) and pressing the picked card, which is outlined in gold with a check, takes it away. Then a count for each weapon option, capped by its regiment size, with the option's rules.
-    - **Add buttons:** "Choose a leader" in an empty regiment, "Add unit" (hidden when full, unless constraints are overridden), "Add regiment" and "Add Regiment of Renown" (hidden once the army has one, unless constraints are overridden).
+    - **Add buttons:** "Choose a leader" in an empty regiment, and in the leader's place at the top of a regiment whose leader was removed (the next unit doesn't take over), "Add unit" (hidden when full or while the leader's slot is empty, unless constraints are overridden), "Add regiment" and "Add Regiment of Renown" (hidden once the army has one, unless constraints are overridden).
   - **Auxiliary Units:** a box like a regiment's, with unit rows and "Add auxiliary unit" beside "or drag one here". While a unit that can go there is dragged, it's highlighted like a regiment.
   - **Faction Terrain:** "Up to 1 terrain feature". A row for each terrain warscroll, laid out like a unit row: a portrait, its name, the universal terrain abilities its composition lists (`ArmyBuilder.terrain_abilities()`), its points, and an Add button or, once included, a red bin icon button to remove it. Hidden when the faction has none or its Army of Renown forbids it.
   - **Lores:** a slot each for spell, prayer and manifestation lores, side by side, for the kinds the army has lores to choose from.
@@ -162,7 +162,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
 
 An army is an `Army` resource (`scripts/army/`): its regiments (`ArmyRegiment`), auxiliary units (`ArmyUnit`), general, battle tactics cards, lores, battle formation or Army of Renown, faction terrain, and settings (points limit, Legends, override).
 - **Changes:** made through `ArmyEditor`, which emits `changed` and keeps the builder's limits unless the army overrides its constraints:
-  - regiment sizes, with a Hero leader kept first;
+  - regiment sizes, with a Hero leader kept first. Removing a regiment's leader, or dragging it out, leaves its slot empty (`ArmyRegiment.leaderless`, saved with the army) until `add_leader()` fills it;
   - only a regiment leader as the general;
   - one Regiment of Renown;
   - one enhancement of each type;

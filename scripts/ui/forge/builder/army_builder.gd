@@ -638,8 +638,8 @@ func _on_picker_closed() -> void:
 		_focus_fallback()
 
 
-## Picks a Hero to lead [param regiment_id], or a new regiment when empty. A unit the Army of
-## Renown lets be the general instead of a Hero can lead too.
+## Picks a Hero to lead [param regiment_id] in its empty leader's slot, or a new regiment when
+## empty. A unit the Army of Renown lets be the general instead of a Hero can lead too.
 func pick_leader(regiment_id: String) -> void:
 	_show_picker()
 	var heroes := available_units.bind(func(w: Warscroll) -> bool:
@@ -649,7 +649,10 @@ func pick_leader(regiment_id: String) -> void:
 		if regiment_id.is_empty():
 			editor.add_regiment(warscroll_id)
 		else:
-			editor.add_unit(regiment_id, warscroll_id)
+			var leader := editor.add_leader(regiment_id, warscroll_id)
+			# The filled slot's button goes, so focus goes to the new leader's General crown.
+			if leader and _picker_opener == regiment_id + ":leader":
+				_picker_opener = leader.uid + ":general"
 	picker.open_units("Choose a leader", heroes, pick)
 
 

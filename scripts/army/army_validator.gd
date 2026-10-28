@@ -123,7 +123,7 @@ static func _check_regiments(army: Army, catalog: ArmyCatalog, result: ArmyValid
 		if leader_scroll == null or not catalog.is_hero(army, leader, leader_scroll):
 			result.problems.append(_leader_problem(army, catalog, regiment, leader_scroll))
 			continue
-		var others := regiment.units.slice(1)
+		var others := regiment.followers()
 		var capacity := regiment_capacity(regiment, army)
 		if others.size() > capacity:
 			result.problems.append("%s has %d units besides its leader; the limit is %d%s." % [regiment.name, others.size(),
@@ -193,7 +193,7 @@ static func _check_paired_leaders(army: Army, catalog: ArmyCatalog, built: Array
 			continue
 		var held := [leader_scroll.has_keyword(paired[0]), leader_scroll.has_keyword(paired[1])]
 		if held[0] and held[1]:
-			var sides := _sides(regiment.units.slice(1), regiment, catalog, paired)
+			var sides := _sides(regiment.followers(), regiment, catalog, paired)
 			held = [paired[0] in sides, paired[1] in sides] if sides.size() == 1 else held
 		if held[0] and held[1]:
 			either += 1

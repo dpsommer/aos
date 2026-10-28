@@ -311,3 +311,50 @@ func test_the_regiment_grip_keeps_focus_after_the_regiment_moves() -> void:
 	var focused := builder.get_viewport().gui_get_focus_owner()
 	assert_not_null(focused)
 	assert_eq(focused.get_meta(&"focus_key", ""), "r1:grip")
+
+
+# Leaderless regiments
+
+func _leaderless_army() -> Army:
+	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
+	army.regiments[0].units.remove_at(0)
+	army.regiments[0].leaderless = true
+	return army
+
+
+func test_leaderless_regiment_offers_choose_a_leader() -> void:
+	var panel: RegimentPanel = _panel(_leaderless_army())[0]
+	assert_eq((UIKit.keyed(panel, "r1:leader") as Button).text, "Choose a leader")
+
+
+func test_regiment_with_a_leader_has_no_leader_button() -> void:
+	var panel: RegimentPanel = _panel(UIKit.army_with_regiment())[0]
+	assert_null(UIKit.keyed(panel, "r1:leader"))
+
+
+func test_leaderless_regiment_hides_add_unit() -> void:
+	var panel: RegimentPanel = _panel(_leaderless_army())[0]
+	assert_null(UIKit.keyed(panel, "r1:add"))
+
+
+func test_leaderless_regiment_shows_add_unit_when_constraints_are_overridden() -> void:
+	var army := _leaderless_army()
+	army.override_constraints = true
+	var panel: RegimentPanel = _panel(army)[0]
+	assert_not_null(UIKit.keyed(panel, "r1:add"))
+
+
+func test_leaderless_regiment_still_shows_its_units() -> void:
+	var panel: RegimentPanel = _panel(_leaderless_army())[0]
+	assert_eq(_unit_rows(panel).size(), 1)
+
+
+func test_choose_a_leader_button_opens_the_picker() -> void:
+	var parts := _panel(_leaderless_army())
+	UIKit.keyed(parts[0], "r1:leader").pressed.emit()
+	assert_true(parts[1].picker.is_open())
+
+
+func test_header_counts_followers_of_a_leaderless_regiment() -> void:
+	var panel: RegimentPanel = _panel(_leaderless_army())[0]
+	assert_true(UIKit.has_label_containing(panel, "1/"))

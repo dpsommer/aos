@@ -68,3 +68,23 @@ func test_regiment_of_renown_has_no_leader() -> void:
 func test_regiment_is_of_renown_only_when_it_names_one() -> void:
 	assert_false(Kit.regiment("r", []).is_regiment_of_renown())
 	assert_true(Kit.ror_regiment("r", "Some Renown", []).is_regiment_of_renown())
+
+
+func test_leaderless_regiment_has_no_leader() -> void:
+	var regiment := _army().find_regiment("r1")
+	regiment.leaderless = true
+	assert_null(regiment.leader())
+
+
+func test_followers_exclude_the_leader() -> void:
+	assert_eq(_army().find_regiment("r1").followers().map(func(u: ArmyUnit) -> String: return u.uid), ["u2"])
+
+
+func test_followers_of_a_leaderless_regiment_are_all_its_units() -> void:
+	var regiment := _army().find_regiment("r1")
+	regiment.leaderless = true
+	assert_eq(regiment.followers().size(), 2)
+
+
+func test_followers_of_an_empty_regiment_are_empty() -> void:
+	assert_eq(Kit.regiment("r", []).followers().size(), 0)

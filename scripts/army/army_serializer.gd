@@ -14,6 +14,8 @@ static func to_dict(army: Army) -> Dictionary:
 		var data := {"id": regiment.id, "name": regiment.name, "units": _units(regiment.units)}
 		if regiment.is_regiment_of_renown():
 			data.regiment_of_renown = regiment.regiment_of_renown
+		if regiment.leaderless:
+			data.leaderless = true
 		regiments.append(data)
 	return {
 		"version": VERSION,
@@ -82,6 +84,7 @@ func from_dict(data: Dictionary) -> Army:
 		regiment.name = _string(entry, "name", "regiments[%d]" % i)
 		regiment.regiment_of_renown = _string(entry, "regiment_of_renown", "regiments[%d]" % i)
 		regiment.units = _read_units(entry, "units", "regiments[%d]." % i)
+		regiment.leaderless = _bool(entry, "leaderless", "regiments[%d]" % i) and not regiment.units.is_empty()
 		army.regiments.append(regiment)
 	army.auxiliary = _read_units(data, "auxiliary", "")
 	army.general_uid = _string(data, "general")
