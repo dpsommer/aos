@@ -2,7 +2,7 @@ class_name Forge
 extends Control
 ## Lists the player's saved armies, and starts new ones: players pick a Grand Alliance, a faction,
 ## then an Army of Renown or the faction's own rules with a battle formation. Each step shares a
-## header, with Back and the steps so far, and the last two share a footer to confirm the choice.
+## header, with Back and the steps so far. Pressing a card makes that step's choice and moves on.
 
 signal back_pressed
 ## The player asked to read [param faction]'s rules in the faction browser.
@@ -31,7 +31,7 @@ var _selected_alliance: GrandAlliance.Type = GrandAlliance.Type.ORDER
 var _faction: Faction
 ## The chosen Army of Renown's name, or empty for the faction's own rules.
 var _army_of_renown := ""
-## The chosen battle formation's name, or empty if none is chosen yet.
+## The chosen battle formation's name, or empty if none was chosen.
 var _formation := ""
 ## Id of the saved army waiting for the delete confirmation.
 var _deleting := ""
@@ -43,9 +43,6 @@ var alliance_buttons := {}
 @onready var breadcrumb: HBoxContainer = %Breadcrumb
 @onready var browse_button: Button = %BrowseButton
 @onready var body: ScrollContainer = %Body
-@onready var footer: PanelContainer = %Footer
-@onready var selected_label: Label = %SelectedLabel
-@onready var continue_button: Button = %ContinueButton
 @onready var armies_panel: Control = %ArmiesPanel
 @onready var army_list: VBoxContainer = %ArmyList
 @onready var new_army_button: Button = %NewArmyButton
@@ -76,9 +73,7 @@ func _ready() -> void:
 	back_button.icon = UITheme.icon("back")
 	back_button.pressed.connect(go_back)
 	browse_button.pressed.connect(_on_browse_pressed)
-	continue_button.pressed.connect(_on_continue_pressed)
-	for button: Button in [new_army_button, continue_button]:
-		button.custom_minimum_size.y = 44
+	new_army_button.custom_minimum_size.y = 44
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
 		alliance_buttons[alliance] = _alliance_card(alliance)
 		alliance_grid.add_child(alliance_buttons[alliance])
@@ -122,10 +117,7 @@ func _show_step(shown: Step) -> void:
 	_clear(breadcrumb)
 	if shown != Step.ARMIES:
 		breadcrumb.add_child(UIBuilder.breadcrumb(breadcrumb_steps(), shown - 1))
-	var choosing := shown == Step.RENOWN or shown == Step.FORMATION
-	browse_button.visible = choosing
-	footer.visible = choosing
-	_update_footer()
+	browse_button.visible = shown == Step.RENOWN or shown == Step.FORMATION
 	body.scroll_vertical = 0
 
 
@@ -364,16 +356,14 @@ func show_armies_of_renown(alliance: GrandAlliance.Type, faction_name: String) -
 		renown_chips.add_child(UITheme.chip("Legends", "legends"))
 	_clear(renown_none)
 	_clear(renown_grid)
-	var group := ButtonGroup.new()
-	var own := _own_rules_card(group)
+	var own := _own_rules_card()
 	renown_none.add_child(own)
 	var focus: Button = own
 	for army in faction.armies_of_renown:
-		var card := _renown_card(army, group)
+		var card := _renown_card(army)
 		renown_grid.add_child(card)
 		if army.name == _army_of_renown:
 			focus = card
-	focus.button_pressed = true
 	_show_step(Step.RENOWN)
 	focus.grab_focus()
 
@@ -387,8 +377,8 @@ func renown_cards() -> Array[OptionCard]:
 	return cards
 
 
-func _own_rules_card(group: ButtonGroup) -> OptionCard:
-	var card := _choice_card(group, NO_ARMY_OF_RENOWN, _select_army_of_renown.bind(""))
+func _own_rules_card() -> OptionCard:
+	var card := _choice_card(NO_ARMY_OF_RENOWN, choose_army_of_renown.bind(""))
 	card.set_meta(&"army_of_renown", "")
 	var icon := TextureRect.new()
 	icon.texture = UITheme.icon("shield")
@@ -411,8 +401,8 @@ func _own_rules_card(group: ButtonGroup) -> OptionCard:
 	return card
 
 
-func _renown_card(army: ArmyOfRenown, group: ButtonGroup) -> OptionCard:
-	var card := _choice_card(group, army.name + (" (Legends)" if army.legends else ""), _select_army_of_renown.bind(army.name))
+func _renown_card(army: ArmyOfRenown) -> OptionCard:
+	var card := _choice_card(army.name + (" (Legends)" if army.legends else ""), choose_army_of_renown.bind(army.name))
 	card.set_meta(&"army_of_renown", army.name)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var art := UIBuilder.art(UIBuilder.initials(army.name))
@@ -472,9 +462,17 @@ static func renown_chips_for(army: ArmyOfRenown) -> Array:
 	return chips
 
 
-func _select_army_of_renown(army_name: String) -> void:
+## Chooses the Army of Renown named [param army_name], or the faction's own rules if it's empty,
+## and moves on: to the battle formations for the faction's own rules, if it has any, else to the
+## builder.
+func choose_army_of_renown(army_name: String) -> void:
 	_army_of_renown = army_name
-	_update_footer()
+	if not army_name.is_empty():
+		_start(army_name, "")
+	elif _faction.battle_formations.is_empty():
+		_start("", "")
+	else:
+		_show_formations()
 
 
 # --- Battle formation ---
@@ -482,21 +480,18 @@ func _select_army_of_renown(army_name: String) -> void:
 
 func _show_formations() -> void:
 	_clear(formation_grid)
-	var group := ButtonGroup.new()
-	group.allow_unpress = true
 	var focus: Button = null
 	for formation in _faction.battle_formations:
-		var card := _formation_card(formation, group)
+		var card := _formation_card(formation)
 		formation_grid.add_child(card)
 		if formation.name == _formation:
-			card.button_pressed = true
 			focus = card
 	_show_step(Step.FORMATION)
 	(focus if focus else formation_grid.get_child(0) as Button).grab_focus()
 
 
-func _formation_card(formation: BattleFormation, group: ButtonGroup) -> OptionCard:
-	var card := _choice_card(group, formation.name, func() -> void: pass)
+func _formation_card(formation: BattleFormation) -> OptionCard:
+	var card := _choice_card(formation.name, choose_formation.bind(formation.name))
 	card.set_meta(&"formation", formation.name)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.min_height = 260
@@ -506,15 +501,7 @@ func _formation_card(formation: BattleFormation, group: ButtonGroup) -> OptionCa
 	else:
 		chip = UITheme.chip(formation.abilities[0].type if not formation.abilities.is_empty() else "Formation")
 	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var badge := UIBuilder.check_badge()
-	badge.visible = false
-	var top := UIBuilder.hbox([chip, UIBuilder.spacer(), badge])
-	# As tall as the badge, so showing it doesn't move the rest of the card.
-	top.custom_minimum_size.y = 24
-	card.add(top)
-	card.toggled.connect(func(on: bool) -> void:
-		badge.visible = on
-		_select_formation())
+	card.add(UIBuilder.hbox([chip]))
 	card.add(UIBuilder.label(formation.name, "CardHeadingLabel", true))
 	var rules := UIBuilder.vbox([HSeparator.new()], 12)
 	for ability in formation.abilities:
@@ -529,55 +516,21 @@ func _formation_card(formation: BattleFormation, group: ButtonGroup) -> OptionCa
 	return card
 
 
-## Picking a card unpresses the one picked before, and pressing the picked card unpicks it.
-func _select_formation() -> void:
-	_formation = ""
-	for card: Button in formation_grid.get_children():
-		if card.button_pressed:
-			_formation = card.get_meta(&"formation")
-	_update_footer()
+## Chooses the battle formation named [param formation_name] and starts the army.
+func choose_formation(formation_name: String) -> void:
+	_formation = formation_name
+	_start("", formation_name)
 
 
 # --- Shared ---
 
 
-## A selectable card in [param group], named [param title] for screen readers, calling
-## [param on_selected] when it's selected.
-func _choice_card(group: ButtonGroup, title: String, on_selected: Callable) -> OptionCard:
+## A card named [param title] for screen readers, calling [param on_pressed] when it's pressed.
+func _choice_card(title: String, on_pressed: Callable) -> OptionCard:
 	var card := OptionCard.new()
-	card.toggle_mode = true
-	card.button_group = group
 	card.accessibility_name = title
-	card.toggled.connect(func(on: bool) -> void:
-		if on:
-			on_selected.call())
+	card.pressed.connect(on_pressed)
 	return card
-
-
-func _update_footer() -> void:
-	match step:
-		Step.RENOWN:
-			selected_label.text = _army_of_renown if not _army_of_renown.is_empty() else NO_ARMY_OF_RENOWN
-			continue_button.disabled = false
-			continue_button.text = "Continue to Battle Formation" if _army_of_renown.is_empty() \
-					and not _faction.battle_formations.is_empty() else "Continue to Builder"
-		Step.FORMATION:
-			selected_label.text = _formation if not _formation.is_empty() else "None"
-			continue_button.disabled = _formation.is_empty()
-			continue_button.text = "Continue to Builder" if not _formation.is_empty() \
-					else "Choose a Battle Formation to continue"
-
-
-func _on_continue_pressed() -> void:
-	if step == Step.FORMATION:
-		_start("", _formation)
-	elif not _army_of_renown.is_empty():
-		_start(_army_of_renown, "")
-	elif _faction.battle_formations.is_empty():
-		# Without battle formations to pick from, the army starts straight away.
-		_start("", "")
-	else:
-		_show_formations()
 
 
 func _start(army_of_renown: String, formation: String) -> void:

@@ -120,7 +120,7 @@ func _go_to(forge: Forge, target: Forge.Step) -> void:
 			forge.show_armies_of_renown(faction.grand_alliance, faction.name)
 		Forge.Step.FORMATION:
 			forge.show_armies_of_renown(faction.grand_alliance, faction.name)
-			forge.continue_button.pressed.emit()
+			forge.renown_cards()[0].pressed.emit()
 
 
 func test_back_label_differs_on_every_step() -> void:
@@ -190,14 +190,6 @@ func test_browse_button_is_only_shown_on_renown_and_formation() -> void:
 		_go_to(forge, shown)
 		var expected := shown == Forge.Step.RENOWN or shown == Forge.Step.FORMATION
 		assert_eq(forge.browse_button.visible, expected, "step %d" % shown)
-
-
-func test_footer_is_only_shown_on_renown_and_formation() -> void:
-	for shown: Forge.Step in Forge.Step.values():
-		var forge := _make_forge()
-		_go_to(forge, shown)
-		var expected := shown == Forge.Step.RENOWN or shown == Forge.Step.FORMATION
-		assert_eq(forge.footer.visible, expected, "step %d" % shown)
 
 
 func test_breadcrumb_is_empty_on_armies() -> void:
@@ -458,9 +450,9 @@ func _choice_with_meta(list: Control, key: StringName, value: String) -> Button:
 	return null
 
 
-## Selects [param card], as a click does.
-func _select(card: Button) -> void:
-	card.button_pressed = true
+## Presses [param card], as a click does.
+func _press(card: Button) -> void:
+	card.pressed.emit()
 
 
 func test_renown_panel_is_the_only_panel_shown() -> void:
@@ -551,93 +543,19 @@ func test_browse_button_emits_browse_requested_with_alliance_and_faction() -> vo
 	assert_signal_emitted_with_parameters(forge, "browse_requested", [faction.grand_alliance, faction.name])
 
 
-func test_none_starts_selected() -> void:
+func test_renown_cards_are_not_toggles() -> void:
 	var forge := _make_forge()
 	_open_renown(forge, _with_armies_of_renown())
-	var cards := forge.renown_cards()
-	assert_true(cards[0].button_pressed)
-	for card in cards.slice(1):
-		assert_false(card.button_pressed)
+	for card in forge.renown_cards():
+		assert_false(card.toggle_mode, card.accessibility_name)
 
 
-func test_selecting_a_card_unselects_the_others() -> void:
-	var forge := _make_forge()
-	_open_renown(forge, _with_armies_of_renown())
-	var cards := forge.renown_cards()
-	_select(cards[1])
-	assert_true(cards[1].button_pressed)
-	assert_false(cards[0].button_pressed)
-
-
-func test_selecting_an_army_of_renown_does_not_start_the_army() -> void:
-	var forge := _make_forge()
-	_open_renown(forge, _with_armies_of_renown())
-	_select(forge.renown_cards()[1])
-	assert_signal_not_emitted(forge, "army_started")
-	assert_true(forge.renown_panel.visible)
-
-
-func test_selected_label_follows_the_selection() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	assert_string_contains(forge.selected_label.text, forge.renown_cards()[0].accessibility_name)
-	var army := faction.armies_of_renown[0]
-	_select(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name))
-	assert_string_contains(forge.selected_label.text, army.name)
-
-
-func test_selection_is_kept_when_returning_to_the_same_faction() -> void:
-	var faction := _with_armies_of_renown()
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	var army := faction.armies_of_renown[0]
-	_select(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name))
-	forge.go_back()
-	_open_renown(forge, faction)
-	assert_true(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name).button_pressed)
-	assert_false(forge.renown_cards()[0].button_pressed)
-
-
-func test_selection_is_reset_for_another_faction() -> void:
-	var faction := _with_armies_of_renown()
-	var other := _faction_where(func(f: Faction) -> bool: return f.name != faction.name)
-	var forge := _make_forge()
-	_open_renown(forge, faction)
-	_select(forge.renown_cards()[1])
-	_open_renown(forge, other)
-	assert_true(forge.renown_cards()[0].button_pressed)
-
-
-func test_none_is_selected_again_on_return_from_formation() -> void:
-	var forge := _make_forge()
-	_go_to(forge, Forge.Step.FORMATION)
-	forge.go_back()
-	assert_eq(forge.step, Forge.Step.RENOWN)
-	assert_true(forge.renown_cards()[0].button_pressed)
-
-
-func test_continue_label_differs_between_an_army_of_renown_and_none_with_formations() -> void:
-	var forge := _make_forge()
-	_open_renown(forge, _with_armies_of_renown())
-	var for_none := forge.continue_button.text
-	_select(forge.renown_cards()[1])
-	assert_ne(forge.continue_button.text, for_none)
-
-
-func test_continue_is_enabled_on_the_renown_step() -> void:
-	var forge := _make_forge()
-	_open_renown(forge, _with_armies_of_renown())
-	assert_false(forge.continue_button.disabled)
-
-
-func test_continue_with_an_army_of_renown_starts_the_army() -> void:
+func test_pressing_an_army_of_renown_starts_the_army_at_once() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_open_renown(forge, faction)
 	var army_of_renown := faction.armies_of_renown[0]
-	_select(_choice_with_meta(forge.renown_grid, &"army_of_renown", army_of_renown.name))
-	forge.continue_button.pressed.emit()
+	_press(_choice_with_meta(forge.renown_grid, &"army_of_renown", army_of_renown.name))
 	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.faction_id, faction.id)
 	assert_eq(army.army_of_renown, army_of_renown.name)
@@ -645,28 +563,27 @@ func test_continue_with_an_army_of_renown_starts_the_army() -> void:
 	assert_eq(army.tactics, PackedStringArray(["", ""]))
 
 
-func test_continue_with_an_army_of_renown_skips_the_formation_panel() -> void:
+func test_pressing_an_army_of_renown_skips_the_formation_panel() -> void:
 	var forge := _make_forge()
 	_open_renown(forge, _with_armies_of_renown())
-	_select(forge.renown_cards()[1])
-	forge.continue_button.pressed.emit()
+	_press(forge.renown_cards()[1])
 	assert_false(forge.formation_panel.visible)
 
 
-func test_continue_with_none_and_formations_shows_formations() -> void:
+func test_pressing_none_with_formations_shows_formations_at_once() -> void:
 	var forge := _make_forge()
 	_open_renown(forge, _with_armies_of_renown())
-	forge.continue_button.pressed.emit()
+	_press(forge.renown_cards()[0])
 	assert_eq(forge.step, Forge.Step.FORMATION)
 	assert_true(forge.formation_panel.visible)
 	assert_false(forge.renown_panel.visible)
 	assert_signal_not_emitted(forge, "army_started")
 
 
-func test_continue_with_none_and_no_formations_starts_the_army() -> void:
+func test_choosing_none_without_formations_starts_the_army() -> void:
 	var forge := _make_forge()
 	forge._faction = Kit.faction([] as Array[Warscroll], "no_formations")
-	forge.continue_button.pressed.emit()
+	forge.choose_army_of_renown("")
 	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.faction_id, "no_formations")
 	assert_eq(army.formation, "")
@@ -675,15 +592,33 @@ func test_continue_with_none_and_no_formations_starts_the_army() -> void:
 	assert_false(forge.formation_panel.visible)
 
 
-func test_continue_label_for_none_without_formations_matches_an_army_of_renown() -> void:
+func test_chosen_army_of_renown_is_focused_when_returning_to_the_same_faction() -> void:
+	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
-	_open_renown(forge, _with_armies_of_renown())
-	_select(forge.renown_cards()[1])
-	var for_army := forge.continue_button.text
-	forge._faction = Kit.faction([] as Array[Warscroll], "no_formations")
-	forge._army_of_renown = ""
-	forge._update_footer()
-	assert_eq(forge.continue_button.text, for_army)
+	_open_renown(forge, faction)
+	var army := faction.armies_of_renown[0]
+	_press(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name))
+	forge.show_factions(faction.grand_alliance)
+	_open_renown(forge, faction)
+	assert_true(_choice_with_meta(forge.renown_grid, &"army_of_renown", army.name).has_focus())
+
+
+func test_choice_is_reset_for_another_faction() -> void:
+	var faction := _with_armies_of_renown()
+	var other := _faction_where(func(f: Faction) -> bool: return f.name != faction.name)
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	forge._army_of_renown = faction.armies_of_renown[0].name
+	_open_renown(forge, other)
+	assert_true(forge.renown_cards()[0].has_focus())
+
+
+func test_none_is_focused_on_return_from_formation() -> void:
+	var forge := _make_forge()
+	_go_to(forge, Forge.Step.FORMATION)
+	forge.go_back()
+	assert_eq(forge.step, Forge.Step.RENOWN)
+	assert_true(forge.renown_cards()[0].has_focus())
 
 
 func test_roster_summary_lists_the_roster_options() -> void:
@@ -803,63 +738,25 @@ func test_formation_panel_lists_each_formation() -> void:
 		assert_not_null(_choice_with_meta(forge.formation_grid, &"formation", formation.name), formation.name)
 
 
-func test_formation_panel_starts_with_nothing_selected() -> void:
+func test_formation_cards_are_not_toggles() -> void:
 	var forge := _make_forge()
 	_go_to(forge, Forge.Step.FORMATION)
 	for card: Button in forge.formation_grid.get_children():
-		assert_false(card.button_pressed)
+		assert_false(card.toggle_mode, card.accessibility_name)
 
 
-func test_formation_continue_is_disabled_until_a_card_is_picked() -> void:
+func test_formation_panel_focuses_the_first_card() -> void:
 	var forge := _make_forge()
 	_go_to(forge, Forge.Step.FORMATION)
-	assert_true(forge.continue_button.disabled)
-	(forge.formation_grid.get_child(0) as Button).button_pressed = true
-	assert_false(forge.continue_button.disabled)
+	assert_true((forge.formation_grid.get_child(0) as Button).has_focus())
 
 
-func test_formation_continue_is_disabled_again_after_unpicking() -> void:
-	var forge := _make_forge()
-	_go_to(forge, Forge.Step.FORMATION)
-	var card := forge.formation_grid.get_child(0) as Button
-	card.button_pressed = true
-	card.button_pressed = false
-	assert_true(forge.continue_button.disabled)
-
-
-func test_picking_another_formation_unpicks_the_first() -> void:
-	var forge := _make_forge()
-	_go_to(forge, Forge.Step.FORMATION)
-	var first := forge.formation_grid.get_child(0) as Button
-	var second := forge.formation_grid.get_child(1) as Button
-	first.button_pressed = true
-	second.button_pressed = true
-	assert_false(first.button_pressed)
-	assert_true(second.button_pressed)
-
-
-func test_selected_label_names_the_picked_formation() -> void:
-	var forge := _make_forge()
-	_go_to(forge, Forge.Step.FORMATION)
-	var card := forge.formation_grid.get_child(1) as Button
-	card.button_pressed = true
-	assert_string_contains(forge.selected_label.text, card.get_meta(&"formation"))
-
-
-func test_formation_panel_picking_does_not_start_the_army() -> void:
-	var forge := _make_forge()
-	_go_to(forge, Forge.Step.FORMATION)
-	(forge.formation_grid.get_child(0) as Button).button_pressed = true
-	assert_signal_not_emitted(forge, "army_started")
-
-
-func test_formation_continue_emits_army_with_that_formation() -> void:
+func test_pressing_a_formation_starts_the_army_with_it() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_go_to(forge, Forge.Step.FORMATION)
 	var formation := faction.battle_formations[faction.battle_formations.size() - 1]
-	_choice_with_meta(forge.formation_grid, &"formation", formation.name).button_pressed = true
-	forge.continue_button.pressed.emit()
+	_press(_choice_with_meta(forge.formation_grid, &"formation", formation.name))
 	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.formation, formation.name)
 	assert_eq(army.faction_id, faction.id)
@@ -867,15 +764,15 @@ func test_formation_continue_emits_army_with_that_formation() -> void:
 	assert_eq(army.tactics, PackedStringArray(["", ""]))
 
 
-func test_formation_is_kept_when_returning_from_the_renown_step() -> void:
+func test_chosen_formation_is_focused_when_returning_to_the_step() -> void:
 	var forge := _make_forge()
 	_go_to(forge, Forge.Step.FORMATION)
 	var picked := forge.formation_grid.get_child(1) as Button
-	picked.button_pressed = true
-	forge.go_back()
-	forge.continue_button.pressed.emit()
-	assert_true(_choice_with_meta(forge.formation_grid, &"formation", picked.get_meta(&"formation")).button_pressed)
-	assert_false(forge.continue_button.disabled)
+	_press(picked)
+	forge.show_armies_of_renown(forge._selected_alliance, forge._faction.name)
+	_press(forge.renown_cards()[0])
+	assert_true(_choice_with_meta(forge.formation_grid, &"formation", picked.get_meta(&"formation")).has_focus())
+
 
 
 func test_formation_with_points_shows_them_on_its_card() -> void:
@@ -885,7 +782,7 @@ func test_formation_with_points_shows_them_on_its_card() -> void:
 		return
 	var forge := _make_forge()
 	_open_renown(forge, faction)
-	forge.continue_button.pressed.emit()
+	forge.renown_cards()[0].pressed.emit()
 	for formation in faction.battle_formations:
 		var card := _choice_with_meta(forge.formation_grid, &"formation", formation.name)
 		var shown := Array(UIKit.label_texts(card)).any(func(t: String) -> bool: return t.contains("%d" % formation.points) and t.to_lower().contains("pts"))
@@ -903,7 +800,7 @@ func test_formation_ability_timing_wraps_and_names_its_frequency() -> void:
 		return
 	var forge := _make_forge()
 	_open_renown(forge, faction)
-	forge.continue_button.pressed.emit()
+	forge.renown_cards()[0].pressed.emit()
 	for formation in faction.battle_formations.filter(has_frequency):
 		var card := _choice_with_meta(forge.formation_grid, &"formation", formation.name)
 		for ability in formation.abilities:
@@ -914,12 +811,6 @@ func test_formation_ability_timing_wraps_and_names_its_frequency() -> void:
 			assert_not_null(timing, ability.name)
 			assert_ne(timing.autowrap_mode, TextServer.AUTOWRAP_OFF, ability.name)
 			assert_string_contains(timing.text, ability.frequency)
-
-
-func test_formation_panel_focuses_the_first_card() -> void:
-	var forge := _make_forge()
-	_go_to(forge, Forge.Step.FORMATION)
-	assert_true((forge.formation_grid.get_child(0) as Button).has_focus())
 
 
 func test_back_from_formations_shows_renown_panel_for_same_faction() -> void:

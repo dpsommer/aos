@@ -12,9 +12,8 @@ Screens are built from standard focusable controls, so they can be used without 
 
 - **Header:** Back is on every step. Its text names where it goes, and it does the same as Esc.
 - **Cards:** the Grand Alliance, faction, Army of Renown and battle formation cards are buttons, and each has an accessibility name: the alliance, faction, army or formation, with "(Legends)" where it applies.
-  - Army of Renown and formation cards are toggle buttons, so they report whether they're chosen.
   - Unavailable factions are disabled, with the description "Coming soon".
-  - After choosing, Tab reaches the footer's Continue button.
+  - Enter or Space on a card chooses it and moves to the next step. Going back to a step focuses the card chosen there.
 - **Saved armies:** Duplicate and Delete are icon buttons named with the army, e.g. "Delete Vanguard strike force".
 
 ### Army builder

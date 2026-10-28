@@ -299,11 +299,6 @@ static func _create() -> Theme:
 
 	theme.set_stylebox("panel", "PanelContainer", StyleBoxEmpty.new())
 	_panel(theme, "HeaderPanel", box(HEADER, Color("#262A32"), 0, 0))
-	var footer := box(HEADER, Color("#262A32"), 0, 0)
-	footer.border_width_bottom = 0
-	footer.border_width_left = 0
-	footer.border_width_right = 0
-	_panel(theme, "FooterPanel", footer)
 	# An empty list's placeholder.
 	_panel(theme, "EmptyPanel", box(Color.TRANSPARENT, CONTROL_BORDER, 12, 24))
 	_panel(theme, "PanePanel", box(PANE, Color("#262A32"), 0, 16))

@@ -16,7 +16,7 @@ Every step shares a header and the scrolling page below it, styled by `UITheme` 
   - Path to Glory.
 
   Each list tab shows the selected entry's full rules. Its title and rules tab mark a Legends faction. Back returns to the Army of Renown step.
-- **Footer:** on the Army of Renown and Battle Formation steps, "Selected: <choice>" and a gold Continue button. On those two steps, pressing a card only selects it, and Continue moves on.
+- **Cards:** on every step, pressing a card makes that step's choice and moves straight on. Going back to a step focuses the card chosen there before.
 
 The steps:
 1. **Saved armies:** "Your armies", most recently saved first, with **New army** at the top right.
@@ -36,20 +36,18 @@ The steps:
    - Factions without rules data are disabled, with a "Coming soon" chip and tooltip.
    - Factions moved to Legends (Fyreslayers) have a Legends chip.
 4. **Army of Renown:**
-   - **"No Army of Renown" card:** the faction's own rules. It's selected when the step opens, unless an Army of Renown was chosen earlier for the same faction.
+   - **"No Army of Renown" card:** the faction's own rules. It's focused when the step opens, unless an Army of Renown was chosen earlier for the same faction.
    - **Army of Renown cards:** below it, two to a row. Each has:
      - its name and source;
      - its roster options (`Forge.roster_summary()`);
      - chips for Legends, "No Regiments of Renown", "No faction terrain" and "Fixed General" (`Forge.renown_chips_for()`).
-   - **Continue:**
-     - "Continue to Battle Formation" when no Army of Renown is chosen and the faction has formations;
-     - otherwise "Continue to Builder", which starts the army.
+   - **Pressing a card:** "No Army of Renown" goes to the Battle Formation step, or starts the army if the faction has no formations. An Army of Renown starts the army (`Forge.choose_army_of_renown()`).
 5. **Battle Formation:** the faction's battle formations, three to a row. Each card shows:
    - its points, or the type of its first ability;
    - its name;
    - each ability's name, timing and rules.
 
-   The chosen card has a gold check. Nothing is chosen at first, and Continue is disabled ("Choose a Battle Formation to continue") until a card is. Pressing the chosen card again unchooses it. "Continue to Builder" starts the army. A faction without formations skips this step.
+   The first card is focused, or the one chosen before. Pressing a card starts the army with that formation (`Forge.choose_formation()`). A faction without formations skips this step.
 6. **Army builder:** `Forge` emits `army_started` with a new, empty army, and `Main` opens the builder.
    - **Back** returns to the saved armies, with the army focused if it was saved.
    - **Unsaved changes:** if the army has any, Back first asks whether to keep editing (the default), discard the changes, or save and go back.
