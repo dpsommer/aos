@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Grundstok Expeditionary Force",
+			"keyword": "EXPEDITIONARY FORCE",
 			"text": "When you pick the Kharadron Overlords faction for your army, you can choose for it to be a Grundstok Expeditionary Force Army of Renown. If you do so, use the faction rules on these pages instead of the Kharadron Overlords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the EXPEDITIONARY FORCE keyword.\nROSTER OPTIONS\nArkanaut Admiral\nGrundstok Thunderers\nGrundstok Gunhauler\nEndrinmaster with Dirigible Suit\nAether-Khemist\nCodewright\nAetheric Navigator\nEndrinmaster with Endrinharness\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -101,6 +102,7 @@
 		},
 		{
 			"name": "Pioneer Outpost",
+			"keyword": "PIONEER",
 			"text": "When you pick the Kharadron Overlords faction for your army, you can choose for it to be a Pioneer Outpost Army of Renown. If you do so, use the faction rules in this section instead of the Kharadron Overlords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the PIONEER keyword.\nDesigner’s Note: This Army of Renown has rules designed to work with the Zontari Endrin Dock, so it makes sense to include one on your army roster!\nROSTER OPTIONS\nArkanaut Admiral\nAetheric Navigator\nEndrinmaster with Endrinharness\nAny non-HERO KHARADRON OVERLORDS INFANTRY units\nGrundstok Gunhauler\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -257,6 +259,7 @@
 		},
 		{
 			"name": "The Magnate's Crew",
+			"keyword": "MAGNATE’S CREW",
 			"text": "When you pick the Kharadron Overlords faction for your army, you can choose for it to be a The Magnate’s Crew Army of Renown. If you do so, use the faction rules in this section instead of the Kharadron Overlords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the MAGNATE’S CREW keyword.\nIf your army does not include Brokk Grungsson, you can pick an Arkanaut Ironclad in your army to be your general instead of a HERO. If you do, that Arkanaut Ironclad gains the HERO keyword. It cannot be included in another HERO’s regiment but gains the following Regiment Options: Any MAGNATE’S CREW units\nROSTER OPTIONS\nBrokk Grungsson, Lord-Magnate of Barak-Nar\nEndrinmaster with Dirigible Suit\nNull-Khemist\nArkanaut Ironclad\nArkanaut Frigate\nGrundstok Gunhauler\nVongrim Salvagers\nVongrim Harpoon Crew\nSkywardens\nEndrinriggers\nYou cannot include Regiments of Renown or faction terrain",
 			"roster": {
 				"entries": [
@@ -305,8 +308,9 @@
 							"Arkanaut Ironclad"
 						],
 						"options": [
-							"Any KHARADRON OVERLORDS"
-						]
+							"Any MAGNATE’S CREW"
+						],
+						"heroes": true
 					}
 				]
 			},

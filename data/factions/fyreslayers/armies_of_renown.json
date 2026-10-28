@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Lofnir Drothkeepers",
+			"keyword": "DROTHKEEPERS",
 			"text": "When you pick the Fyreslayers faction for your army, you can choose for it to be a Lofnir Drothkeepers Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the DROTHKEEPERS keyword.\nROSTER OPTIONS\nAuric Runefather on Magmadroth\nAuric Runesmiter on Magmadroth\nAuric Runeson on Magmadroth\nAuric Runemaster\nAuric Runesmiter\nAuric Runeson\nVulkyn Flameseekers\nYou cannot include Regiments of Renown or faction terrain\nREGIMENT OPTIONS\nDROTHKEEPERS AURIC RUNESON and AURIC RUNESMITER units can be added to regiments led by a DROTHKEEPERS AURIC RUNEFATHER ON MAGMADROTH.",
 			"roster": {
 				"entries": [

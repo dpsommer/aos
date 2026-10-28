@@ -659,7 +659,7 @@ func pick_unit(regiment_id: String) -> void:
 	var regiment := editor.army.find_regiment(regiment_id)
 	var options := catalog.regiment_options(editor.army, regiment)
 	var allowed := func(w: Warscroll) -> bool:
-		return editor.army.override_constraints or options.any(func(o: RegimentOption) -> bool: return o.matches(w))
+		return editor.army.override_constraints or options.any(func(o: RegimentOption) -> bool: return o.matches(w, catalog.gained_keywords(editor.army, w)))
 	_show_picker()
 	var pick := func(warscroll_id: String) -> void:
 		editor.add_unit(regiment_id, warscroll_id)

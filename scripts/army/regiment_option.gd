@@ -22,6 +22,9 @@ var subject: String
 ## Runs of keywords a unit must have, e.g. ["WARRIOR CHAMBER"].
 var keywords: PackedStringArray
 var not_keywords: PackedStringArray
+## Whether a Hero with [member keywords] can fill the option, not only one it names (see
+## [member RosterRegimentOptions.heroes]).
+var heroes: bool
 
 
 ## Parses every option in [param options]. Text listing several required units, such as
@@ -88,20 +91,27 @@ static func role_of(warscroll: Warscroll) -> String:
 	return found.get_string(1).strip_edges() if found else ""
 
 
-## Whether [param warscroll] can fill this option. A Hero only fills an option naming it or its
-## role, as Heroes join regiments in place of a non-Hero unit only where their profile says so.
-func matches(warscroll: Warscroll) -> bool:
-	if warscroll.has_keyword("HERO"):
-		return _names(warscroll, subject) or role_of(warscroll).nocasecmp_to(subject) == 0
+## Whether [param warscroll] can fill this option, with the keywords it [param gained] from the
+## Army of Renown. A Hero only fills an option naming it or its role, as Heroes join regiments in
+## place of a non-Hero unit only where their profile says so, unless the option allows [member heroes].
+func matches(warscroll: Warscroll, gained := PackedStringArray()) -> bool:
+	if warscroll.has_keyword("HERO") and (_names(warscroll, subject) or role_of(warscroll).nocasecmp_to(subject) == 0):
+		return true
+	if warscroll.has_keyword("HERO") and not (heroes and unit.is_empty()):
+		return false
 	for keyword in not_keywords:
-		if warscroll.has_keyword(keyword):
+		if _has(warscroll, keyword, gained):
 			return false
 	if not unit.is_empty():
-		return _names(warscroll, unit) or warscroll.has_keyword(unit.to_upper())
+		return _names(warscroll, unit) or _has(warscroll, unit.to_upper(), gained)
 	for run in keywords:
-		if not _has_run(warscroll, run):
+		if not _has_run(warscroll, run, gained):
 			return false
 	return true
+
+
+static func _has(warscroll: Warscroll, keyword: String, gained: PackedStringArray) -> bool:
+	return warscroll.has_keyword(keyword) or keyword in gained
 
 
 ## Scourge of Aqshy and Ghyran warscrolls share their printed version's name, units with a size
@@ -119,10 +129,16 @@ static func _plain(text: String) -> String:
 
 
 ## A run such as "WARRIOR CHAMBER" is one keyword, but "SYLVANETH MONSTER" would be two.
-static func _has_run(warscroll: Warscroll, run: String) -> bool:
-	if warscroll.has_keyword(run):
+static func _has_run(warscroll: Warscroll, run: String, gained := PackedStringArray()) -> bool:
+	return splits_into_keywords(run.split(" "), func(keyword: String) -> bool: return _has(warscroll, keyword, gained))
+
+
+## Whether [param words] split into keywords that [param has] each one, e.g. "SCIONS OF NULAHMIA
+## HERO" into "SCIONS OF NULAHMIA" and "HERO", trying the longest runs first.
+static func splits_into_keywords(words: PackedStringArray, has: Callable) -> bool:
+	if words.is_empty():
 		return true
-	for word in run.split(" "):
-		if not warscroll.has_keyword(word):
-			return false
-	return true
+	for end in range(words.size(), 0, -1):
+		if has.call(" ".join(words.slice(0, end))) and splits_into_keywords(words.slice(end), has):
+			return true
+	return false

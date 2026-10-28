@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Lords of the Clan",
+			"keyword": "LORDS OF THE CLAN",
 			"text": "When you pick the Sylvaneth faction for your army, you can choose for it to be a Lords of the Clan Army of Renown. If you do so, use the faction rules on these pages instead of the Sylvaneth faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the LORDS OF THE CLAN keyword.\nROSTER OPTIONS\nThe Lady of Vines\nAny non-UNIQUE FOREST ELDERS\nAny KURNOTHI INFANTRY units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -171,6 +172,7 @@
 		},
 		{
 			"name": "Soulpod Guardians",
+			"keyword": "SOULPOD GUARDIANS",
 			"text": "When you pick the Sylvaneth faction for your army, you can choose for it to be a Soulpod Guardians Army of Renown. If you do so, use the faction rules on these pages instead of the Sylvaneth faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the SOULPOD GUARDIANS keyword.\nROSTER OPTIONS\nGrove Guardian\nBranchwych\nAny REVENANT units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -327,6 +329,7 @@
 		},
 		{
 			"name": "The Evergreen Hunt",
+			"keyword": "EVERGREEN HUNT",
 			"text": "When you pick the Sylvaneth faction for your army, you can choose for it to be a The Evergreen Hunt Army of Renown. If you do so, use the faction rules on these pages instead of the Sylvaneth faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the EVERGREEN HUNT keyword.\nROSTER OPTIONS\nBelthanos, First Thorn of Kurnoth (must be included and must be your general)\nKurnoth Hunters with Greatbows\nArch-Revenant\nRevenant Seekers\nKurnoth Hunters with Greatscythes\nSpiterider Lancers\nKurnoth Hunters with Greatswords\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

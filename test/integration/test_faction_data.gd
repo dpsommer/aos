@@ -415,6 +415,8 @@ func test_every_army_of_renown_roster_per_item_matches_a_warscroll() -> void:
 
 ## Each leader an Army of Renown gives extra regiment options is the name or keyword of a warscroll
 ## in the faction (or one it includes).
+## Leaders can be named by the keywords units gain from the Army of Renown, such as GORECHOSEN
+## CHAMPIONS.
 func test_every_army_of_renown_regiment_options_leader_matches_a_warscroll() -> void:
 	for faction in _factions:
 		for army in faction.armies_of_renown:
@@ -423,10 +425,12 @@ func test_every_army_of_renown_regiment_options_leader_matches_a_warscroll() -> 
 			var army_data := Army.new()
 			army_data.army_of_renown = army.name
 			army_data.override_constraints = true
-			var scrolls := faction.warscrolls + ArmyCatalog.new(faction, null).unit_warscrolls(army_data)
+			var catalog := ArmyCatalog.new(faction, null)
+			var scrolls := faction.warscrolls + catalog.unit_warscrolls(army_data)
 			for added in army.roster.regiment_options:
 				for leader in added.leaders:
-					var found := scrolls.any(func(w: Warscroll) -> bool: return ArmyValidator.names_or_keywords(w, PackedStringArray([leader])))
+					var found := scrolls.any(func(w: Warscroll) -> bool:
+						return ArmyValidator.names_or_keywords(w, PackedStringArray([leader]), catalog.gained_keywords(army_data, w)))
 					assert_true(found, "%s: %s regiment options leader %s matches no warscroll" % [faction.name, army.name, leader])
 
 
@@ -533,3 +537,23 @@ func test_the_magnates_crew_ironclad_cannot_lead_while_brokk_is_included() -> vo
 	var others: Array[String] = ["skywardens"]
 	var problems := _magnate_problems(others, "brokk_grungsson_lord_magnate_of_barak_nar")
 	assert_true(problems.size() > 0 and "can't be your general while your army includes Brokk Grungsson" in problems[0], str(problems))
+
+
+# Armies of Renown that give their keyword to units
+
+func test_the_magnates_crew_gives_its_keyword_to_its_units() -> void:
+	var faction := FactionCatalog.load_faction("Kharadron Overlords")
+	var catalog := ArmyCatalog.new(faction, CoreRulesCatalog.get_rules())
+	var army := Army.new()
+	army.army_of_renown = "The Magnate's Crew"
+	assert_gt(catalog.gained_keywords(army, faction.get_warscroll("skywardens")).size(), 0)
+
+
+func test_the_magnates_crew_ironclad_leads_an_endrinmaster_in_a_dirigible_suit_and_a_null_khemist() -> void:
+	var others: Array[String] = ["endrinmaster_with_dirigible_suit", "null_khemist", "skywardens", "arkanaut_frigate"]
+	assert_eq(_magnate_problems(others), PackedStringArray())
+
+
+func test_scions_of_nulahmia_let_a_vampire_lord_join_a_vampire_lord_on_nightmare_steed() -> void:
+	var others: Array[String] = ["vampire_lord"]
+	assert_eq(_regiment_problems("Soulblight Gravelords", "Scions of Nulahmia", "vampire_lord_on_nightmare_steed", others), PackedStringArray())

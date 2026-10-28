@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Taar's Grand Forgehost",
+			"keyword": "GRAND FORGEHOST",
 			"text": "When you pick the Helsmiths of Hashut faction for your army, you can choose for it to be a Taar’s Grand Forgehost Army of Renown. If you do so, use the faction rules in this section instead of the Helsmiths of Hashut faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the GRAND FORGEHOST keyword.\nROSTER OPTIONS\nUrak Taar, the First Daemonsmith (must be included and must be your general)\nAny non-HOBGROT HELSMITHS OF HASHUT INFANTRY units\nAny non-HERO HELSMITHS OF HASHUT WAR MACHINE units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -177,6 +178,7 @@
 		},
 		{
 			"name": "Ziggurat Stampede",
+			"keyword": "ZIGGURAT STAMPEDE",
 			"text": "When you pick the Helsmiths of Hashut faction for your army, you can choose for it to be a Ziggurat Stampede Army of Renown. If you do so, use the faction rules in this section instead of the Helsmiths of Hashut faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ZIGGURAT STAMPEDE keyword.\nROSTER OPTIONS\nDaemonsmith on Infernal Taurus\nAny HELSMITHS OF HASHUT CAVALRY units\nAny HELSMITHS OF HASHUT AUTOMATON units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

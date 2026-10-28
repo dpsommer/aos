@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Big Waaagh!",
+			"keyword": "BIG WAAAGH!",
 			"text": "When you pick the Ironjawz or Kruleboyz faction for your army, you can choose for it to be a Big Waaagh! Army of Renown. If you do so, use the faction rules on these pages instead of your chosen faction rules. For each regiment you include in a Big Waaagh! Army of Renown that is led by an IRONJAWZ HERO, you must include a regiment that is led by a KRULEBOYZ HERO and vice versa. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the BIG WAAAGH! keyword.\nROSTER OPTIONS\nAny IRONJAWZ units\nAny KRULEBOYZ units\nYou cannot include Regiments of Renown\nYou cannot include faction terrain\nKRULEBOYZ HEROES included in this Army of Renown can only include KRULEBOYZ units in their regiment, and IRONJAWZ HEROES included in this Army of Renown can only include IRONJAWZ units in their regiment. If your army includes Kragnos, the End of Empires, he can include either KRULEBOYZ units or IRONJAWZ units in his regiment (but not both), and he counts as a Hero from that faction for the purposes of needing to have one regiment led by an IRONJAWZ HERO for each regiment led by a KRULEBOYZ HERO and vice versa.",
 			"roster": {
 				"entries": [
@@ -213,6 +214,7 @@
 			"name": "Legions of Nagash",
 			"source": "White Dwarf",
 			"legends": true,
+			"keyword": "LEGIONS OF NAGASH",
 			"text": "When you pick the SOULBLIGHT GRAVELORDS, OSSIARCH BONEREAPERS, FLESH-EATER COURTS or NIGHTHAUNT faction for your army, you can choose for it to be a LEGIONS OF NAGASH Army of Renown instead. If you do so, use the faction rules on these pages instead of any other faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the LEGIONS OF NAGASH keyword. In addition, when you pick a manifestation lore for your army, you can pick 1 of the following lores: ‘Manifestations of the Grave’, ‘Horrors of the Necropolis’, ‘Infernal Sorceries’ or ‘Manifested Insanity’.\nLegends Rules: The rules in this article are Legends rules. This means that these rules cannot be used in competitive Matched Play events.\nROSTER OPTIONS\nLEGIONS OF NAGASH Nagash, Supreme Lord of the Underworlds\nAny non-UNIQUE DEATH units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -655,6 +657,7 @@
 			"name": "The Duardin Ascendant",
 			"source": "White Dwarf",
 			"legends": true,
+			"keyword": "DUARDIN ASCENDANT",
 			"text": "When you pick the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction for your army, you can choose for it to be a Duardin Ascendant Army of Renown. If you do so, use the faction rules on these pages instead of the Fyreslayers, Kharadron Overlords or Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the organisation below. All units in your army gain the DUARDIN ASCENDANT keyword.\nROSTER OPTIONS\nGrombrindal (must be included and must be your general)\nAny ORDER DUARDIN unit\nREGIMENT OPTIONS\nYou cannot include Regiments of Renown\nYou cannot include MANIFESTATIONS\nYou cannot include faction terrain",
 			"roster": {
 				"entries": [

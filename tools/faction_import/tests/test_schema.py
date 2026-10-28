@@ -350,3 +350,26 @@ def test_ability_keeps_summons():
 
 def test_ability_omits_empty_summons():
     assert "summons" not in schema.ability({"name": "A", "summons": []})
+
+
+def test_army_of_renown_keyword_comes_from_text():
+    out = schema.army_of_renown(aor(text="Every unit must be drawn from the roster. All units in your army gain the MAGNATE’S CREW keyword."))
+    assert out["keyword"] == "MAGNATE’S CREW"
+
+
+def test_army_of_renown_keyword_is_the_first_one_units_gain():
+    text = "All units in your army gain the RUINATION BROTHERHOOD keyword. Units in your army gain the WARMASTER keyword."
+    assert schema.army_of_renown(aor(text=text))["keyword"] == "RUINATION BROTHERHOOD"
+
+
+def test_army_of_renown_keyword_can_be_given():
+    assert schema.army_of_renown(aor(keyword="LETHIS", text="Roster options:\nAssassin"))["keyword"] == "LETHIS"
+
+
+def test_army_of_renown_omits_keyword_text_does_not_give():
+    assert "keyword" not in schema.army_of_renown(aor(text="Roster options:\nAssassin"))
+
+
+def test_army_of_renown_keyword_comes_before_text():
+    keys = list(schema.army_of_renown(aor(legends=True, text="All units in your army gain the HOST keyword.")))
+    assert keys.index("legends") < keys.index("keyword") < keys.index("text")

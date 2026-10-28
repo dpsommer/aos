@@ -3,6 +3,7 @@
 		{
 			"name": "Astral Templars",
 			"source": "White Dwarf",
+			"keyword": "ASTRAL TEMPLARS",
 			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be an Astral Templars Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ASTRAL TEMPLARS keyword.\nROSTER OPTIONS\nYndrasta, the Celestial Spear\nHamilcar Bear-Eater\nAny number of VANGUARD CHAMBER units\n1 NON-UNIQUE NON-VANGUARD CHAMBER STORMCAST ETERNALS unit for each friendly VANGUARD CHAMBER unit in your army\nYou cannot include Regiments of Renown\nYou cannot include faction terrain",
 			"roster": {
 				"entries": [
@@ -176,6 +177,7 @@
 		},
 		{
 			"name": "Draconith Skywing",
+			"keyword": "DRACONITH SKYWING",
 			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be a Draconith Skywing Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the DRACONITH SKYWING keyword.\nROSTER OPTIONS\nStormdrake Guard\nKarazai the Scarred\nKrondys, Son of Dracothion\nIonus Cryptborn\nKnight-Draconis\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -351,6 +353,7 @@
 		},
 		{
 			"name": "Heroes of the First-Forged",
+			"keyword": "FIRST-FORGED",
 			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be a Heroes of the First-Forged Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the FIRST-FORGED keyword.\nROSTER OPTIONS\nLord-Commander Bastian Carthalos (this unit gains the Warmaster keyword, must be included and must be your general).\nKarazai the Scarred\nKrondys, Son of Dracothion\nCelestant-Prime, Hammer of Sigmar\nYndrasta, the Celestial Spear\nWARRIOR CHAMBER HEROES\nPraetors\nAnnihilators\nAnnihilators with Meteoric Grandhammers\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -545,6 +548,7 @@
 		},
 		{
 			"name": "Ruination Brotherhood",
+			"keyword": "RUINATION BROTHERHOOD",
 			"text": "When you pick the Stormcast Eternals faction for your army, you can choose for it to be a Ruination Brotherhood Army of Renown. If you do so, use the faction rules on these pages instead of the Stormcast Eternals faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the RUINATION BROTHERHOOD keyword.\nROSTER OPTIONS\nIridan the Witness (this unit gains the WARMASTER keyword, must be included and must be your general)\nAny RUINATION CHAMBER units\nLiberators\nKnight-Questors\nAny other non-HERO WARRIOR CHAMBER units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

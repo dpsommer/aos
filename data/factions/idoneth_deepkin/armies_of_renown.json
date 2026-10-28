@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "The First Phalanx of Ionrach",
+			"keyword": "FIRST PHALANX",
 			"text": "When you pick the Idoneth Deepkin faction for your army, you can choose for it to be the First Phalanx of Ionrach Army of Renown. If you do so, use the faction rules in this section instead of the Idoneth Deepkin faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the FIRST PHALANX keyword.\nROSTER OPTIONS\nVolturnos, High King of the Deep (must be included and must be your general)\nAny AKHELIAN units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -141,6 +142,7 @@
 		},
 		{
 			"name": "Wardens of the Chorrileum",
+			"keyword": "CHORRILEUM",
 			"text": "When you pick the Idoneth Deepkin faction for your army, you can choose for it to be a Wardens of the Chorrileum Army of Renown. If you do so, use the faction rules in this section instead of the Idoneth Deepkin faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the CHORRILEUM keyword.\nROSTER OPTIONS\nEidolon of Mathlann, Aspect of the Sea or Eidolon of Mathlann, Aspect of the Storm (1 of these units must be included. No more than 1 can be included.)\nAny ISHARANN units\nAny NAMARTI units\nAny AKHELIAN INFANTRY units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

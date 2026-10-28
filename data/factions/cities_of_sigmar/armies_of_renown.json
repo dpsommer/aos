@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Allies of the Free Cities",
+			"keyword": "ALLIES OF THE FREE CITIES",
 			"text": "When you pick the Cities of Sigmar faction for your army, you can choose for it to be an Allies of the Free Cities Army of Renown. If you do so, use the faction rules on these pages instead of the Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the ALLIES OF THE FREE CITIES keyword.\nROSTER OPTIONS\nAny non-UNIQUE SIGMARITE units\nFor each Sigmarite unit you include, you can include:\nUp to 1 ALLIES OF THE FREE CITIES DUARDIN unit\nUp to 1 ALLIES OF THE FREE CITIES AELF unit\nYou cannot include Regiments of Renown\nYou must include 1 SIGMARITE unit for each AELF unit and each DUARDIN unit you include.",
 			"roster": {
 				"entries": [
@@ -649,6 +650,7 @@
 		},
 		{
 			"name": "The Iron March",
+			"keyword": "IRON MARCH",
 			"text": "When you pick the Cities of Sigmar faction for your army, you can choose for it to be the Iron March Army of Renown. If you do so, use the faction rules on these pages instead of the Cities of Sigmar faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the IRON MARCH keyword.\nCommanders of the Iron March, Engineers of the Iron March and Iron March Auxiliaries are unique enhancements that can be given to IRON MARCH WAR MACHINES. A unit can only have 1 of each unique enhancement.\nROSTER OPTIONS\nCannonade Cogfort\nImmolator Cogfort\nConqueror Cogfort\nLinebreaker Cogfort\nFor each Conqueror Cogfort and Linebreaker Cogfort you include, you can include:\nup to 1 Mallus Forgepriest\nup to 1 unit of Freeguild Gallants\nYou cannot include Regiments of Renown or faction terrain",
 			"roster": {
 				"entries": [

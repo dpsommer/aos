@@ -3,6 +3,7 @@
 		{
 			"name": "Renowned Army",
 			"source": "Expansion",
+			"keyword": "RENOWNED",
 			"text": "Roster restrictions.",
 			"roster": {
 				"entries": [
@@ -19,7 +20,7 @@
 					{"faction": "third_faction"}
 				],
 				"regiment_options": [
-					{"leaders": ["Unit One", "HERO"], "options": ["Any Unit Two", "0-1 Unit Three"]},
+					{"leaders": ["Unit One", "HERO"], "options": ["Any Unit Two", "0-1 Unit Three"], "heroes": true},
 					{"options": ["Any CHAOS"]}
 				]
 			},

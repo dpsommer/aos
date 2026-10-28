@@ -5,6 +5,7 @@
 		},
 		{
 			"name": "The Knights of New Summercourt",
+			"keyword": "NEW SUMMERCOURT",
 			"text": "When you pick the Flesh-eater Courts faction for your army, you can choose for it to be the Knights of New Summercourt Army of Renown. If you do so, use the faction rules in this section instead of the Flesh-eater Courts faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the NEW SUMMERCOURT keyword.\nROSTER OPTIONS\nUshoran, Mortarch of Delusion (must be included)\nAny NON-UNIQUE ABHORRANTS\nAny NOBLES\nVarghulf Courtiers\nAny KNIGHTS units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -220,6 +221,7 @@
 		},
 		{
 			"name": "The Equinox Feast",
+			"keyword": "EQUINOX FEAST",
 			"text": "When you pick the Flesh-eater Courts faction for your army, you can choose for it to be the Equinox Feast Army of Renown. If you do so, use the faction rules in this section instead of the Flesh-eater Courts faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the EQUINOX FEAST keyword.\nROSTER OPTIONS\nHigh Falconer Felgryn (must be included)\nAny NON-UNIQUE NON-MONSTER HEROES\nAny SERFS units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

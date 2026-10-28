@@ -7,6 +7,7 @@
 			"name": "Petrifex Elite",
 			"source": "White Dwarf",
 			"legends": true,
+			"keyword": "PETRIFEX ELITE",
 			"text": "When you pick the Ossiarch Bonereapers faction for your army, you can choose for it to be a Petrifex Elite Army of Renown. If you do so, use the faction rules on these pages instead of the Ossiarch Bonereapers faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the PETRIFEX ELITE keyword.\nROSTER OPTIONS\n0-1 The Grand Necromystic (must be your general if included)\nMortisan Ossifector\nMortisan Soulmason\nGothizzar Harvester\nImmortis Guard\nNecropolis Stalkers\nMorghast Harbingers\nMortek Crawler\nYou cannot include Regiments of Renown or faction terrain.",
 			"roster": {
 				"entries": [
@@ -179,6 +180,7 @@
 		},
 		{
 			"name": "The Lance of Ossia",
+			"keyword": "LANCE OF OSSIA",
 			"text": "When you pick the Ossiarch Bonereapers faction for your army, you can choose for it to be the Lance of Ossia Army of Renown. If you do so, use the faction rules on these pages instead of the Ossiarch Bonereapers faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the LANCE OF OSSIA keyword.\nROSTER OPTIONS\nArch-Kavalos Zandtos (must be included and must be your general)\nLiege-Kavalos on War Chariot\nKavalos War Chariot\nAny OSSIARCH BONEREAPERS CAVALRY units\nYou cannot include Regiments of Renown or faction terrain",
 			"roster": {
 				"entries": [
@@ -303,6 +305,7 @@
 		},
 		{
 			"name": "The Null Myriad",
+			"keyword": "NULL MYRIAD",
 			"text": "When you pick the Ossiarch Bonereapers faction for your army, you can choose for it to be the Null Myriad Army of Renown. If you do so, use the faction rules on these pages instead of the Ossiarch Bonereapers faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the NULL MYRIAD keyword.\nROSTER OPTIONS\nArkhan the Black, Mortarch of Sacrament (must be included and must be your general)\nAny non-UNIQUE OSSIARCH BONEREAPERS WIZARD HEROES\nAny non-HERO OSSIARCH BONEREAPERS INFANTRY units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

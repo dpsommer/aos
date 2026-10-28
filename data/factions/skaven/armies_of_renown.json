@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Thanquol's Mutated Menagerie",
+			"keyword": "MUTATED MENAGERIE",
 			"text": "When you pick the Skaven faction for your army, you can choose for it to be a Thanquol’s Mutated Menagerie Army of Renown. If you do so, use the faction rules on these pages instead of the Skaven faction rules. Every unit in your army must be drawn from the units listed in the roster options opposite. All units in your army gain the MUTATED MENAGERIE keyword.\nROSTER OPTIONS\nThanquol on Boneripper\nMaster Moulder\nHell Pit Abomination\nBrood Terror\nRat Ogors\nStormfiends\nYou cannot include Regiments of Renown or faction terrain",
 			"roster": {
 				"entries": [
@@ -153,6 +154,7 @@
 		},
 		{
 			"name": "The Great-grand Gnawhorde",
+			"keyword": "GNAWHORDE",
 			"text": "When you pick the Skaven faction for your army, you can choose for it to be a Great-grand Gnawhorde Army of Renown. If you do so, use the faction rules on these pages instead of the Skaven faction rules. Every unit in your army must be drawn from the units listed in the roster options opposite. All units in your army gain the GNAWHORDE keyword.\nROSTER OPTIONS\nVizzik Skour, Prophet of the Horned Rat\nNon-UNIQUE MASTERCLAN Units\nNon-UNIQUE VERMINUS units\nNon-UNIQUE SKRYRE units\nNon-UNIQUE MOULDER units\nYou cannot include Regiments of Renown or faction terrain",
 			"roster": {
 				"entries": [

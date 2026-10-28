@@ -125,12 +125,21 @@ def faction(f):
     }
 
 
+# "All units in your army gain the MAGNATE’S CREW keyword."
+AOR_KEYWORD = re.compile(r"units in your army gain the (.+?) keyword")
+
+
 def army_of_renown(a):
     out = {"name": a["name"]}
     if a.get("source"):
         out["source"] = a["source"]
     if a.get("legends"):
         out["legends"] = True
+    # The keyword all of the army's units gain, unless an override gives it.
+    found = AOR_KEYWORD.search(a.get("text", ""))
+    keyword = a.get("keyword") or (found.group(1) if found else "")
+    if keyword:
+        out["keyword"] = keyword
     out["text"] = a.get("text", "")
     if a.get("roster"):
         out["roster"] = a["roster"]

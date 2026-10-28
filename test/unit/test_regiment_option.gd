@@ -199,3 +199,113 @@ func test_hero_does_not_match_a_different_role() -> void:
 	var scroll := Kit.hero("praetor")
 	scroll.notes = "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR."
 	assert_false(RegimentOption.parse("0-1 ROYAL ATTENDANT").matches(scroll))
+
+
+# Gained keywords
+
+func test_gained_keyword_fills_a_keyword_option() -> void:
+	var scroll := _scroll(PackedStringArray(["INFANTRY"]))
+	assert_true(RegimentOption.parse("Any CREW").matches(scroll, PackedStringArray(["CREW"])))
+
+
+func test_keyword_option_is_not_filled_without_the_gained_keyword() -> void:
+	assert_false(RegimentOption.parse("Any CREW").matches(_scroll(PackedStringArray(["INFANTRY"]))))
+
+
+func test_gained_keyword_fills_a_run_alongside_a_real_keyword() -> void:
+	var scroll := _scroll(PackedStringArray(["INFANTRY"]))
+	assert_true(RegimentOption.parse("Any CREW INFANTRY").matches(scroll, PackedStringArray(["CREW"])))
+
+
+func test_gained_keyword_counts_for_a_not_keyword() -> void:
+	var scroll := _scroll(PackedStringArray(["INFANTRY"]))
+	assert_false(RegimentOption.parse("non-CREW INFANTRY").matches(scroll, PackedStringArray(["CREW"])))
+
+
+func test_gained_keyword_fills_a_unit_option_written_in_mixed_case() -> void:
+	var scroll := _scroll(PackedStringArray(["INFANTRY"]))
+	assert_true(RegimentOption.parse("Any Crew").matches(scroll, PackedStringArray(["CREW"])))
+
+
+func test_gained_keyword_is_matched_exactly() -> void:
+	var scroll := _scroll(PackedStringArray(["INFANTRY"]))
+	assert_false(RegimentOption.parse("Any CREW").matches(scroll, PackedStringArray(["OTHER"])))
+
+
+# Heroes flag
+
+func _hero_with(extra: PackedStringArray) -> Warscroll:
+	return Kit.hero("lord", PackedStringArray(), extra)
+
+
+func test_hero_matches_a_keyword_option_that_allows_heroes() -> void:
+	var option := RegimentOption.parse("Any INFANTRY")
+	option.heroes = true
+	assert_true(option.matches(_hero_with(PackedStringArray(["INFANTRY"]))))
+
+
+func test_hero_matches_a_keyword_option_through_a_gained_keyword_when_heroes_allowed() -> void:
+	var option := RegimentOption.parse("Any CREW")
+	option.heroes = true
+	assert_true(option.matches(_hero_with(PackedStringArray()), PackedStringArray(["CREW"])))
+
+
+func test_hero_without_the_keyword_does_not_match_a_heroes_option() -> void:
+	var option := RegimentOption.parse("Any INFANTRY")
+	option.heroes = true
+	assert_false(option.matches(_hero_with(PackedStringArray(["MONSTER"]))))
+
+
+func test_hero_does_not_match_a_keyword_option_through_a_gained_keyword_without_heroes() -> void:
+	var option := RegimentOption.parse("Any CREW")
+	assert_false(option.matches(_hero_with(PackedStringArray()), PackedStringArray(["CREW"])))
+
+
+func test_hero_does_not_match_a_named_unit_option_when_heroes_allowed() -> void:
+	var option := RegimentOption.parse("Any Gryph-hounds")
+	option.heroes = true
+	assert_false(option.matches(Kit.warscroll("lord", PackedStringArray(["HERO", "GRYPH"]), 100, "Lord")))
+
+
+func test_non_hero_matches_a_keyword_option_regardless_of_heroes() -> void:
+	var option := RegimentOption.parse("Any INFANTRY")
+	option.heroes = true
+	assert_true(option.matches(_scroll(PackedStringArray(["INFANTRY"]))))
+
+
+func test_heroes_defaults_to_false() -> void:
+	assert_false(RegimentOption.parse("Any INFANTRY").heroes)
+
+
+# splits_into_keywords
+
+func _has_any_of(known: Array) -> Callable:
+	return func(keyword: String) -> bool: return keyword in known
+
+
+func test_splits_into_a_single_keyword() -> void:
+	assert_true(RegimentOption.splits_into_keywords(PackedStringArray(["WARRIOR", "CHAMBER"]), _has_any_of(["WARRIOR CHAMBER"])))
+
+
+func test_splits_into_consecutive_keywords() -> void:
+	var words := PackedStringArray(["SCIONS", "OF", "NULAHMIA", "HERO"])
+	assert_true(RegimentOption.splits_into_keywords(words, _has_any_of(["SCIONS OF NULAHMIA", "HERO"])))
+
+
+func test_split_fails_when_a_word_is_not_covered() -> void:
+	var words := PackedStringArray(["SCIONS", "OF", "NULAHMIA", "HERO"])
+	assert_false(RegimentOption.splits_into_keywords(words, _has_any_of(["SCIONS OF NULAHMIA"])))
+
+
+func test_split_backtracks_from_a_longer_run_that_dead_ends() -> void:
+	var words := PackedStringArray(["A", "B", "C"])
+	assert_true(RegimentOption.splits_into_keywords(words, _has_any_of(["A B", "A", "B C"])))
+
+
+func test_split_does_not_skip_words() -> void:
+	var words := PackedStringArray(["A", "B", "C"])
+	assert_false(RegimentOption.splits_into_keywords(words, _has_any_of(["A", "C"])))
+
+
+func test_split_of_no_words_succeeds() -> void:
+	assert_true(RegimentOption.splits_into_keywords(PackedStringArray(), _has_any_of([])))

@@ -56,10 +56,9 @@ static func _unique(messages: PackedStringArray) -> PackedStringArray:
 
 
 ## Each unit with its warscroll and regiment, as {unit, warscroll, regiment, keywords}. keywords
-## includes those gained from the Army of Renown roster, and HERO for a non-Hero general. Units whose warscroll is missing from the
-## data are reported and left out.
+## includes those gained from the Army of Renown ([method ArmyCatalog.gained_keywords]), and HERO
+## for a non-Hero general. Units whose warscroll is missing from the data are reported and left out.
 static func _entries(army: Army, catalog: ArmyCatalog, result: ArmyValidation) -> Array[Dictionary]:
-	var army_roster := catalog.roster(army)
 	var entries: Array[Dictionary] = []
 	var add := func(unit: ArmyUnit, regiment: ArmyRegiment) -> void:
 		var warscroll := catalog.warscroll(unit, regiment)
@@ -67,10 +66,7 @@ static func _entries(army: Army, catalog: ArmyCatalog, result: ArmyValidation) -
 			result.problems.append("%s's warscroll is no longer in the faction data." % _unit_name(unit, null))
 			return
 		var keywords := warscroll.keywords.duplicate()
-		if army_roster:
-			for entry in army_roster.entries:
-				if _roster_matches(entry, warscroll):
-					keywords.append_array(entry.gains_keywords)
+		keywords.append_array(catalog.gained_keywords(army, warscroll))
 		if not "HERO" in keywords and catalog.is_hero(army, unit, warscroll):
 			keywords.append("HERO")
 		entries.append({"unit": unit, "warscroll": warscroll, "regiment": regiment, "keywords": keywords})
@@ -155,7 +151,7 @@ static func _check_leader_options(army: Army, regiment: ArmyRegiment, leader: Wa
 		catalog: ArmyCatalog, result: ArmyValidation) -> void:
 	var versions := catalog.leader_versions(army, leader)
 	if versions.size() == 1:
-		_check_regiment_options(regiment, leader, catalog.leader_options(army, leader), units, catalog, result)
+		_check_regiment_options(army, regiment, leader, catalog.leader_options(army, leader), units, catalog, result)
 		return
 	var paired := catalog.roster(army).paired_leaders
 	if _sides(units, regiment, catalog, paired).size() > 1:
@@ -163,7 +159,7 @@ static func _check_leader_options(army: Army, regiment: ArmyRegiment, leader: Wa
 	var best: ArmyValidation = null
 	for version in versions:
 		var checked := ArmyValidation.new()
-		_check_regiment_options(regiment, version, catalog.leader_options(army, version), units, catalog, checked)
+		_check_regiment_options(army, regiment, version, catalog.leader_options(army, version), units, catalog, checked)
 		if best == null or checked.problems.size() < best.problems.size():
 			best = checked
 	result.problems.append_array(best.problems)
@@ -212,29 +208,30 @@ static func _check_paired_leaders(army: Army, catalog: ArmyCatalog, built: Array
 
 ## Fills each option with the units it allows: required options first, then unlimited ones, so a
 ## limited option (such as "0-1 Gryph-hounds") is only used by a unit nothing else allows.
-static func _check_regiment_options(regiment: ArmyRegiment, leader: Warscroll, options: Array[RegimentOption],
+static func _check_regiment_options(army: Army, regiment: ArmyRegiment, leader: Warscroll, options: Array[RegimentOption],
 		units: Array, catalog: ArmyCatalog, result: ArmyValidation) -> void:
 	var used := {}
 	for unit: ArmyUnit in units:
 		var warscroll := catalog.warscroll(unit, regiment)
 		if warscroll == null:
 			continue
+		var gained := catalog.gained_keywords(army, warscroll)
 		var fitted: RegimentOption = null
 		for option in options:
-			if option.min > 0 and used.get(option, 0) < option.max and option.matches(warscroll):
+			if option.min > 0 and used.get(option, 0) < option.max and option.matches(warscroll, gained):
 				fitted = option
 				break
 		for option in options:
-			if fitted == null and option.max == RegimentOption.ANY and option.matches(warscroll):
+			if fitted == null and option.max == RegimentOption.ANY and option.matches(warscroll, gained):
 				fitted = option
 				break
 		if fitted == null:
 			for option in options:
-				if option.matches(warscroll) and used.get(option, 0) < option.max:
+				if option.matches(warscroll, gained) and used.get(option, 0) < option.max:
 					fitted = option
 					break
 		if fitted == null:
-			var limit := _matching_option(options, warscroll)
+			var limit := _matching_option(options, warscroll, gained)
 			if limit:
 				result.problems.append("%s can't include another %s (%s)." % [regiment.name, warscroll.name, limit.text])
 			else:
@@ -246,9 +243,9 @@ static func _check_regiment_options(regiment: ArmyRegiment, leader: Warscroll, o
 			result.problems.append("%s must include %s." % [regiment.name, option.unit if not option.unit.is_empty() else option.text])
 
 
-static func _matching_option(options: Array[RegimentOption], warscroll: Warscroll) -> RegimentOption:
+static func _matching_option(options: Array[RegimentOption], warscroll: Warscroll, gained: PackedStringArray) -> RegimentOption:
 	for option in options:
-		if option.matches(warscroll):
+		if option.matches(warscroll, gained):
 			return option
 	return null
 
@@ -441,11 +438,12 @@ static func _per_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
 
 
 ## Whether [param warscroll] matches one of [param items]: a unit name, or keywords ("HERO MONSTER").
-static func names_or_keywords(warscroll: Warscroll, items: PackedStringArray) -> bool:
+## [param gained] are keywords the unit gains from the Army of Renown.
+static func names_or_keywords(warscroll: Warscroll, items: PackedStringArray, gained := PackedStringArray()) -> bool:
 	for item in items:
-		if RegimentOption._names(warscroll, item) or _has_keyword(warscroll, item):
+		if RegimentOption._names(warscroll, item) or _has_keyword(warscroll, item) or item in gained:
 			return true
-		if Array(item.split(" ")).all(func(keyword: String) -> bool: return _has_keyword(warscroll, keyword)):
+		if RegimentOption.splits_into_keywords(item.split(" "), func(keyword: String) -> bool: return _has_keyword(warscroll, keyword) or keyword in gained):
 			return true
 	return false
 

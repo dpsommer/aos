@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Barrow Legion",
+			"keyword": "BARROW LEGION",
 			"text": "When you pick the Soulblight Gravelords faction for your army, you can choose it to be a Barrow Legion Army of Renown. If you do so, use the faction rules in this section instead of the Soulblight Gravelords faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the BARROW LEGION keyword. Wight King and Wight King on Skeletal Steed units in your army gain WARMASTER.\nROSTER OPTIONS\nAny DEATHRATTLE units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -157,6 +158,7 @@
 		},
 		{
 			"name": "Knights of the Crimson Keep",
+			"keyword": "CRIMSON KEEP",
 			"text": "When you pick the Soulblight Gravelords faction for your army, you can choose it to be a Knights of the Crimson Keep Army of Renown. If you do so, use the faction rules in this section instead of the Soulblight Gravelords faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the CRIMSON KEEP keyword.\nROSTER OPTIONS\nPrince Vhordrai (if included, must be general)\nVampire Lord on Nightmare Steed\nBlood Knights\nRevenant Draconith\nFell Bats\nYou cannot include Regiments of Renown or faction terrain",
 			"roster": {
 				"entries": [
@@ -333,6 +335,7 @@
 		},
 		{
 			"name": "Scions of Nulahmia",
+			"keyword": "SCIONS OF NULAHMIA",
 			"text": "When you pick the Soulblight Gravelords faction for your army, you can choose for it to be a Scions of Nulahmia Army of Renown. If you do so, use the faction rules on these pages instead of the Soulblight Gravelords faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SCIONS OF NULAHMIA keyword.\nROSTER OPTIONS\nSekhar, Fang of Nulahmia (must be included and must be your general)\nVampire Lord\nCoven Throne\nBloodseeker Palanquin\nDire Wolves\nFell Bats\nVampire Lord on Nightmare Steed\nYou cannot include Regiments of Renown\nREGIMENT OPTIONS\nSCIONS OF NULAHMIA Vampire Lord units can be added to regiments led by a SCIONS OF NULAHMIA HERO.",
 			"roster": {
 				"entries": [
@@ -363,6 +366,9 @@
 				"regiments_of_renown": false,
 				"regiment_options": [
 					{
+						"leaders": [
+							"SCIONS OF NULAHMIA HERO"
+						],
 						"options": [
 							"Any Vampire Lord"
 						]

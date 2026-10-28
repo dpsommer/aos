@@ -325,6 +325,7 @@ func _army_of_renown(data: Variant, path: String) -> ArmyOfRenown:
 		army.name = _string(data, "name", path, true)
 		army.source = _string(data, "source", path)
 		army.legends = _bool(data, "legends", path)
+		army.keyword = _string(data, "keyword", path)
 		army.text = _string(data, "text", path)
 		if data.has("roster"):
 			army.roster = _roster(data.roster, _join(path, "roster"))
@@ -382,6 +383,7 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 			var regiment_options := RosterRegimentOptions.new()
 			regiment_options.leaders = _strings(added[i], "leaders", added_path)
 			regiment_options.options = _strings(added[i], "options", added_path)
+			regiment_options.heroes = _bool(added[i], "heroes", added_path)
 			if regiment_options.options.is_empty():
 				_error(_join(added_path, "options"), "needs at least 1 option")
 			roster.regiment_options.append(regiment_options)

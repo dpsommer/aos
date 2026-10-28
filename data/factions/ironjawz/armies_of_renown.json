@@ -7,6 +7,7 @@
 			"name": "Ironsunz",
 			"source": "White Dwarf",
 			"legends": true,
+			"keyword": "IRONSUNZ",
 			"text": "When you pick the Ironjawz faction for your army, you can choose for it to be an Ironsunz Army of Renown. If you do so, use the faction rules on these pages instead of the Ironjawz faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the IRONSUNZ keyword.\nROSTER OPTIONS\n0-1 Dakkbad Grotkicker\nMegaboss\nWarchanter\nWeirdnob Shaman\nBrutes\nBrute Ragerz\nWeirdbrute Wrekkaz\n0-1 Tyrant (Kagruk the Kin-eater)\n0-1 Ogor Gluttons (Tarkan Ogors)\nYou cannot include Regiments of Renown\nIn addition to the above, for each unit of Brutes, Brute Ragerz or Weirdbrute Wrekkaz on your army roster, you can pick 1 of each of the following units:\nArdboy Big Boss\nArdboyz\nMaw-grunta Gougers\nMaw-grunta with Hakkin’ Krew\nGore-gruntas",
 			"roster": {
 				"entries": [
@@ -289,6 +290,7 @@
 		},
 		{
 			"name": "Krazogg's Grunta Stampede",
+			"keyword": "GRUNTA STAMPEDE",
 			"text": "When you pick the Ironjawz faction for your army, you can choose for it to be a Krazogg’s Grunta Stampede Army of Renown. If you do so, use the faction rules on this page instead of the Ironjawz faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the GRUNTA STAMPEDE keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nMaw-grunta Gougers\nGore-gruntas\nMaw-grunta with Hakkin’ Krew\nTuskboss on Maw-grunta",
 			"roster": {
 				"entries": [
@@ -400,6 +402,7 @@
 		},
 		{
 			"name": "Zoggrok's Ironmongerz",
+			"keyword": "ZOGGROK’S IRONMONGERZ",
 			"text": "When you pick the Ironjawz faction for your army, you can choose for it to be a Zoggrok’s Ironmongerz Army of Renown. If you do so, use the faction rules on these pages instead of the Ironjawz faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the ZOGGROK’S IRONMONGERZ keyword.\nROSTER OPTIONS\nZoggrok Anvilsmasha (must be included and must be your general)\nIRONJAWZ INFANTRY HEROES\nNon-HERO IRONJAWZ INFANTRY units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

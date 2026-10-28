@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Beastclaw Alfrostun",
+			"keyword": "ALFROSTUN",
 			"text": "When you pick the Ogor Mawtribes faction for your army, you can choose for it to be a Beastclaw Alfrostun Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ALFROSTUN keyword.\nAny BEASTCLAW units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -147,6 +148,7 @@
 		},
 		{
 			"name": "Mawseeker Gollop",
+			"keyword": "GOLLOP",
 			"text": "When you pick the Ogor Mawtribes faction for your army, you can choose for it to be a Mawseeker Gollop Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options below. All units in your army gain the GOLLOP keyword.\nROSTER OPTIONS\nAny MAWSEEKERS units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -325,6 +327,7 @@
 		},
 		{
 			"name": "Meatfist Mawtribe",
+			"keyword": "MEATFIST",
 			"text": "When you pick the Ogor Mawtribes faction for your army, you can choose for it to be a Meatfist Mawtribe Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the MEATFIST keyword.\nROSTER OPTIONS\nAny GUTBUSTER units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [
@@ -482,6 +485,7 @@
 		},
 		{
 			"name": "The Roving Maw",
+			"keyword": "ROVING MAW",
 			"text": "Where the ground itself groans with hunger and opens in undulating gullets, twisted, feral shapes slaughter errant warriors to feed to the grisly apertures. These are the Gorger Mawpacks, ogors afflicted with a terrible curse that keeps them in a permanent state of starvation. Ogor Butchers will often travel with these creatures in Roving Maws, testing new recipes upon them and opening Mawpits with gastromantic rituals.\nWhen you pick the Ogor Mawtribes faction for your army, you can choose for it to be a The Roving Maw Army of Renown. If you do so, use the faction rules on these pages instead of the Ogor Mawtribes faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ROVING MAW keyword.\nROSTER OPTIONS\nAny non-UNIQUE MAWSEEKER units\nAny non-UNIQUE GUTBUSTERS units\nGorger Mawpacks\nYou cannot include Regiments of Renown or a Great Mawpot",
 			"roster": {
 				"entries": [

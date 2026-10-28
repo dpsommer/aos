@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Champions of the Arena",
+			"keyword": "CHAMPIONS OF THE ARENA",
 			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a Champions of the Arena Army of Renown. If you do so, use the faction rules on these pages instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the CHAMPIONS OF THE ARENA keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nHigh Gladiatrix\nHag Queen\nSlaughter Queen\nBlood Hags\nSisters of Slaughter\nWitch Aelves",
 			"roster": {
 				"entries": [
@@ -168,6 +169,7 @@
 		},
 		{
 			"name": "The Croneseer's Pariahs",
+			"keyword": "CRONESEER’S PARIAHS",
 			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a The Croneseer’s Pariahs Army of Renown. If you do so, use these faction rules instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the CRONESEER’S PARIAHS keyword.\nROSTER OPTIONS\nKrethusa the Croneseer (must be included and must be your general)\nDAUGHTERS OF KHAINE AELF units\nYou cannot include Regiments of Renown, Morathi-Khaine or the Shadow Queen",
 			"roster": {
 				"entries": [
@@ -317,6 +319,7 @@
 		},
 		{
 			"name": "Zainthar Kai",
+			"keyword": "ZAINTHAR KAI",
 			"text": "When you pick the Daughters of Khaine faction for your army, you can choose for it to be a Zainthar Kai Army of Renown. If you do so, use the faction rules on these pages instead of the Daughters of Khaine faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the ZAINTHAR KAI keyword.\nROSTER OPTIONS\nMorathi-Khaine (must be included)\nThe Shadow Queen (must be included)\nMelusai Ironscale\nBlood Sisters\nBlood Stalkers\nKhinerai Heartrenders\nKhinerai Lifetakers\nBloodwrack Medusa\nBloodwrack Shrine\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

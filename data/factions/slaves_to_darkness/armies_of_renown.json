@@ -2,6 +2,7 @@
 	"armies_of_renown": [
 		{
 			"name": "Legion of the First Prince",
+			"keyword": "LEGION OF THE FIRST PRINCE",
 			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a Legion of the First Prince Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box opposite. All units in your army gain the LEGION OF THE FIRST PRINCE keyword except for those in a Regiment of Renown.\nROSTER OPTIONS\nBe’lakor, the Dark Master\nDaemon Prince\nEternus\nVaranguard\nChaos Sorcerer Lord\nChaos Legionnaires\nChaos Furies\nCentaurion Marshal\nLEGION OF THE FIRST PRINCE DAEMON units",
 			"roster": {
 				"entries": [
@@ -169,6 +170,7 @@
 		},
 		{
 			"name": "The Swords of Chaos",
+			"keyword": "SWORDS OF CHAOS",
 			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a The Swords of Chaos Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SWORDS OF CHAOS keyword.\nROSTER OPTIONS\nYou cannot include Regiments of Renown\nVaranguard\nAbraxia, Spear of the Everchosen\nArchaon the Everchosen",
 			"roster": {
 				"entries": [
@@ -288,6 +290,7 @@
 		},
 		{
 			"name": "Tribes of the Snow Peaks",
+			"keyword": "SNOW PEAKS",
 			"text": "When you pick the Slaves to Darkness faction for your army, you can choose for it to be a Tribes of the Snow Peaks Army of Renown. If you do so, use the faction rules on these pages instead of the Slaves to Darkness faction rules. Every unit in your army must be drawn from the units listed in the roster options box below. All units in your army gain the SNOW PEAKS keyword.\nROSTER OPTIONS\nDARKOATH units\nYou cannot include Regiments of Renown",
 			"roster": {
 				"entries": [

@@ -1326,3 +1326,28 @@ func test_roster_non_hero_general_without_unit_error_names_file_and_field_path()
 	var errors := _errors("roster_non_hero_general_no_unit")
 	assert_true(_has_error_naming(errors, "armies_of_renown.json", "roster.non_hero_general.unit"), str(errors))
 	assert_true("is required" in " ".join(errors), str(errors))
+
+
+# Army of Renown keyword and regiment option heroes
+
+func test_army_of_renown_keyword_comes_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0]
+	assert_false(str(expected.get("keyword", "")).is_empty(), "fixture army should name a keyword")
+	assert_eq(_load("valid").armies_of_renown[0].keyword, expected.keyword)
+
+
+func test_army_of_renown_without_keyword_defaults_to_empty() -> void:
+	assert_false(_json("valid", "armies_of_renown.json").armies_of_renown[1].has("keyword"), "fixture army should omit keyword")
+	assert_eq(_load("valid").armies_of_renown[1].keyword, "")
+
+
+func test_army_of_renown_roster_regiment_options_heroes_come_from_file() -> void:
+	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.regiment_options[0]
+	assert_true(expected.heroes, "fixture entry should allow heroes")
+	assert_true(_load("valid").armies_of_renown[0].roster.regiment_options[0].heroes)
+
+
+func test_army_of_renown_roster_regiment_options_without_heroes_default_to_false() -> void:
+	var data: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.regiment_options[1]
+	assert_false(data.has("heroes"), "fixture entry should omit heroes")
+	assert_false(_load("valid").armies_of_renown[0].roster.regiment_options[1].heroes)

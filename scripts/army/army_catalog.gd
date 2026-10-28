@@ -276,13 +276,32 @@ func is_hero(army: Army, unit: ArmyUnit, unit_warscroll: Warscroll) -> bool:
 
 ## [param leader]'s regiment options, plus those the army's Army of Renown gives it.
 func leader_options(army: Army, leader: Warscroll) -> Array[RegimentOption]:
-	var options := leader.regiment_options.duplicate()
+	var options := RegimentOption.parse_all(leader.regiment_options)
 	var army_roster := roster(army)
 	if army_roster:
 		for added in army_roster.regiment_options:
-			if added.leaders.is_empty() or ArmyValidator.names_or_keywords(leader, added.leaders):
-				options.append_array(added.options)
-	return RegimentOption.parse_all(options)
+			if added.leaders.is_empty() or ArmyValidator.names_or_keywords(leader, added.leaders, gained_keywords(army, leader)):
+				for option in RegimentOption.parse_all(added.options):
+					option.heroes = added.heroes
+					options.append(option)
+	return options
+
+
+## Keywords units of [param warscroll] gain from the army's Army of Renown, if its roster allows
+## them: the Army of Renown's [member ArmyOfRenown.keyword] ("MAGNATE’S CREW") and those its
+## roster entries give, such as WARMASTER.
+func gained_keywords(army: Army, unit_warscroll: Warscroll) -> PackedStringArray:
+	var result := PackedStringArray()
+	var renown := army_of_renown(army.army_of_renown)
+	if renown == null or (renown.roster and not ArmyValidator.roster_allows(renown.roster, unit_warscroll)):
+		return result
+	if not renown.keyword.is_empty():
+		result.append(renown.keyword)
+	if renown.roster:
+		for entry in renown.roster.entries:
+			if ArmyValidator._roster_matches(entry, unit_warscroll):
+				result.append_array(entry.gains_keywords)
+	return result
 
 
 ## The regiment options a unit can be added to [param regiment] with: its leader's, or for a leader
@@ -298,7 +317,7 @@ func regiment_options(army: Army, regiment: ArmyRegiment) -> Array[RegimentOptio
 		var options := leader_options(army, version)
 		var fits := versions.size() == 1 or regiment.units.slice(1).all(func(u: ArmyUnit) -> bool:
 			var unit_scroll := warscroll(u, regiment)
-			return unit_scroll == null or options.any(func(o: RegimentOption) -> bool: return o.matches(unit_scroll)))
+			return unit_scroll == null or options.any(func(o: RegimentOption) -> bool: return o.matches(unit_scroll, gained_keywords(army, unit_scroll))))
 		if fits:
 			result.append_array(options)
 	return result

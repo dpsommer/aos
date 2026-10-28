@@ -10,3 +10,7 @@ extends Resource
 @export var leaders: PackedStringArray
 ## Regiment options as written on warscrolls, e.g. "Any Bloodbound Warmonger".
 @export var options: PackedStringArray
+## Whether Heroes with the options' keywords can join as well, rather than only those the options
+## name or whose role they name, as The Magnate's Crew Ironclad's "Any MAGNATE’S CREW units" lets an
+## Endrinmaster with Dirigible Suit join.
+@export var heroes: bool

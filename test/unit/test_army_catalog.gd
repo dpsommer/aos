@@ -1029,3 +1029,124 @@ func test_non_hero_general_is_still_offered_other_enhancement_types() -> void:
 	var catalog := _crew_catalog()
 	var army := _crew_army([Kit.unit("u1", "ironclad")] as Array[ArmyUnit])
 	assert_eq(catalog.enhancement_choices(army, _scroll(catalog, "ironclad"), "Banners").size(), 1)
+
+
+# Gained keywords
+
+## A catalog with Army of Renown "Horde" (keyword [param keyword]) and the given roster entries; with
+## [param roster] false it has no roster at all.
+func _keyword_catalog(keyword: String, entries: Array[RosterEntry], roster := true) -> ArmyCatalog:
+	var scrolls: Array[Warscroll] = [Kit.warscroll("grunt", PackedStringArray(["INFANTRY"])), Kit.warscroll("beast", PackedStringArray(["MONSTER"]))]
+	var faction := Kit.faction(scrolls)
+	var renown := Kit.army_of_renown("Horde", entries)
+	renown.keyword = keyword
+	if not roster:
+		renown.roster = null
+	faction.armies_of_renown = [renown] as Array[ArmyOfRenown]
+	return Kit.catalog(faction)
+
+
+func _gained(catalog: ArmyCatalog, army: Army, id := "grunt") -> PackedStringArray:
+	return catalog.gained_keywords(army, catalog.faction.get_warscroll(id))
+
+
+func test_gained_keywords_are_empty_without_an_army_of_renown() -> void:
+	var catalog := _keyword_catalog("CREW", [Kit.roster_entry("Grunt")] as Array[RosterEntry])
+	assert_eq(_gained(catalog, Kit.army()), PackedStringArray())
+
+
+func test_gained_keywords_include_the_army_of_renown_keyword() -> void:
+	var catalog := _keyword_catalog("CREW", [Kit.roster_entry("Grunt")] as Array[RosterEntry])
+	assert_eq(_gained(catalog, _horde_army()), PackedStringArray(["CREW"]))
+
+
+func test_gained_keywords_are_empty_for_a_unit_the_roster_rejects() -> void:
+	var catalog := _keyword_catalog("CREW", [Kit.roster_entry("Grunt")] as Array[RosterEntry])
+	assert_eq(_gained(catalog, _horde_army(), "beast"), PackedStringArray())
+
+
+func test_gained_keywords_are_empty_for_an_excluded_unit() -> void:
+	var catalog := _keyword_catalog("CREW", [Kit.roster_entry("Grunt")] as Array[RosterEntry])
+	catalog.army_of_renown("Horde").roster.excluded_units = PackedStringArray(["Grunt"])
+	assert_eq(_gained(catalog, _horde_army()), PackedStringArray())
+
+
+func test_army_of_renown_without_a_roster_gives_the_keyword_to_every_unit() -> void:
+	var catalog := _keyword_catalog("CREW", [] as Array[RosterEntry], false)
+	assert_eq([_gained(catalog, _horde_army()), _gained(catalog, _horde_army(), "beast")],
+			[PackedStringArray(["CREW"]), PackedStringArray(["CREW"])])
+
+
+func test_gained_keywords_append_the_roster_entry_gains_after_the_keyword() -> void:
+	var entry := Kit.roster_entry("Grunt")
+	entry.gains_keywords = PackedStringArray(["WARMASTER"])
+	var catalog := _keyword_catalog("CREW", [entry] as Array[RosterEntry])
+	assert_eq(_gained(catalog, _horde_army()), PackedStringArray(["CREW", "WARMASTER"]))
+
+
+func test_gained_keywords_collect_the_gains_of_every_matching_entry() -> void:
+	var first := Kit.roster_entry("Grunt")
+	first.gains_keywords = PackedStringArray(["ONE"])
+	var second := Kit.roster_entry("", PackedStringArray(["INFANTRY"]))
+	second.gains_keywords = PackedStringArray(["TWO"])
+	var catalog := _keyword_catalog("", [first, second] as Array[RosterEntry])
+	assert_eq(_gained(catalog, _horde_army()), PackedStringArray(["ONE", "TWO"]))
+
+
+func test_gained_keywords_leave_out_the_gains_of_a_non_matching_entry() -> void:
+	var other := Kit.roster_entry("Beast")
+	other.gains_keywords = PackedStringArray(["NOPE"])
+	var catalog := _keyword_catalog("CREW", [Kit.roster_entry("Grunt"), other] as Array[RosterEntry])
+	assert_eq(_gained(catalog, _horde_army()), PackedStringArray(["CREW"]))
+
+
+func test_gained_keywords_skip_an_empty_army_of_renown_keyword() -> void:
+	var entry := Kit.roster_entry("Grunt")
+	entry.gains_keywords = PackedStringArray(["WARMASTER"])
+	var catalog := _keyword_catalog("", [entry] as Array[RosterEntry])
+	assert_eq(_gained(catalog, _horde_army()), PackedStringArray(["WARMASTER"]))
+
+
+func test_gained_keywords_are_empty_with_an_empty_keyword_and_no_gains() -> void:
+	var catalog := _keyword_catalog("", [Kit.roster_entry("Grunt")] as Array[RosterEntry])
+	assert_eq(_gained(catalog, _horde_army()), PackedStringArray())
+
+
+# Leader options with gained keywords
+
+func test_leader_options_match_a_leader_by_the_keyword_it_gains() -> void:
+	var catalog := _added_catalog(PackedStringArray(["CREW"]))
+	catalog.army_of_renown("Horde").keyword = "CREW"
+	catalog.army_of_renown("Horde").roster.entries = [Kit.roster_entry("Plain")] as Array[RosterEntry]
+	assert_eq(_allowed(catalog, _horde_army(), "plain"), ["beast"])
+
+
+func test_leader_options_do_not_match_a_gained_keyword_without_the_army_of_renown() -> void:
+	var catalog := _added_catalog(PackedStringArray(["CREW"]))
+	catalog.army_of_renown("Horde").keyword = "CREW"
+	assert_eq(_allowed(catalog, Kit.army(), "plain"), [])
+
+
+func test_leader_options_pass_heroes_on_to_the_added_options() -> void:
+	var catalog := _added_catalog(PackedStringArray())
+	catalog.army_of_renown("Horde").roster.regiment_options[0].heroes = true
+	var options := catalog.leader_options(_horde_army(), catalog.faction.get_warscroll("plain"))
+	assert_eq(options.map(func(o: RegimentOption) -> bool: return o.heroes), [true])
+
+
+func test_leader_options_do_not_give_the_leaders_own_options_heroes() -> void:
+	var catalog := _added_catalog(PackedStringArray())
+	catalog.army_of_renown("Horde").roster.regiment_options[0].heroes = true
+	var options := catalog.leader_options(_horde_army(), catalog.faction.get_warscroll("boss"))
+	assert_eq(options.map(func(o: RegimentOption) -> bool: return o.heroes), [false, true])
+
+
+func test_regiment_options_fit_a_unit_through_its_gained_keyword() -> void:
+	var catalog := _added_catalog(PackedStringArray(["Boss"]))
+	catalog.army_of_renown("Horde").roster.regiment_options[0].options = PackedStringArray(["Any CREW"])
+	catalog.army_of_renown("Horde").keyword = "CREW"
+	catalog.army_of_renown("Horde").roster.entries = [Kit.roster_entry("Boss"), Kit.roster_entry("Beast")] as Array[RosterEntry]
+	var army := _horde_army()
+	var beast := catalog.faction.get_warscroll("beast")
+	var options := catalog.regiment_options(army, _regiment_of("boss"))
+	assert_true(options.any(func(o: RegimentOption) -> bool: return o.matches(beast, catalog.gained_keywords(army, beast))))
