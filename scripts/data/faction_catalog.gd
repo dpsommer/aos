@@ -18,6 +18,7 @@ const _FACTIONS := {
 		"Sylvaneth",
 	],
 	GrandAlliance.Type.CHAOS: [
+		"Beasts of Chaos",
 		"Blades of Khorne",
 		"Disciples of Tzeentch",
 		"Hedonites of Slaanesh",
@@ -44,6 +45,7 @@ const _FACTIONS := {
 
 ## Data directories for factions whose rules have been added. See docs/technical/faction-data.md.
 const _DATA_DIRS := {
+	"Beasts of Chaos": "res://data/factions/beasts_of_chaos",
 	"Blades of Khorne": "res://data/factions/blades_of_khorne",
 	"Cities of Sigmar": "res://data/factions/cities_of_sigmar",
 	"Daughters of Khaine": "res://data/factions/daughters_of_khaine",
@@ -74,7 +76,7 @@ const _DATA_DIRS := {
 
 ## Factions moved to Legends as a whole. Matches the [code]legends[/code] flag in their faction.json,
 ## so the Forge can label them without loading their data.
-const _LEGENDS := ["Fyreslayers"]
+const _LEGENDS := ["Beasts of Chaos", "Fyreslayers"]
 
 static var _loaded := {}
 ## Faction ids by the ids of their manifestation warscrolls, read on first use.

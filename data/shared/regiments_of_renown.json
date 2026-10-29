@@ -233,6 +233,7 @@
 			"name": "Brand's Oathbound",
 			"points": 190,
 			"factions": [
+				"beasts_of_chaos",
 				"blades_of_khorne",
 				"disciples_of_tzeentch",
 				"hedonites_of_slaanesh",
@@ -962,6 +963,7 @@
 			"name": "Exile Scavengers",
 			"points": 390,
 			"factions": [
+				"beasts_of_chaos",
 				"cities_of_sigmar",
 				"daughters_of_khaine",
 				"fyreslayers",
@@ -1272,6 +1274,7 @@
 			"name": "Hargax's Pit-beasts",
 			"points": 350,
 			"factions": [
+				"beasts_of_chaos",
 				"blades_of_khorne",
 				"disciples_of_tzeentch",
 				"hedonites_of_slaanesh",
@@ -1579,6 +1582,7 @@
 			"name": "Krittok's Clawpack",
 			"points": 350,
 			"factions": [
+				"beasts_of_chaos",
 				"blades_of_khorne",
 				"disciples_of_tzeentch",
 				"hedonites_of_slaanesh",
@@ -1703,6 +1707,7 @@
 			"name": "Lord Skaldior's Chosen",
 			"points": 530,
 			"factions": [
+				"beasts_of_chaos",
 				"blades_of_khorne",
 				"disciples_of_tzeentch",
 				"hedonites_of_slaanesh",
@@ -2091,6 +2096,7 @@
 			"name": "Nurgle's Gift",
 			"points": 180,
 			"factions": [
+				"beasts_of_chaos",
 				"cities_of_sigmar",
 				"daughters_of_khaine",
 				"flesh_eater_courts",
@@ -2272,6 +2278,7 @@
 			"name": "Phulgoth's Shudderhood",
 			"points": 460,
 			"factions": [
+				"beasts_of_chaos",
 				"blades_of_khorne",
 				"disciples_of_tzeentch",
 				"hedonites_of_slaanesh",
@@ -2881,6 +2888,7 @@
 			"name": "Snerk's Trogg-fer-Hire",
 			"points": 200,
 			"factions": [
+				"beasts_of_chaos",
 				"blades_of_khorne",
 				"cities_of_sigmar",
 				"daughters_of_khaine",
@@ -3117,6 +3125,7 @@
 			"name": "The Coven of Thryx",
 			"points": 270,
 			"factions": [
+				"beasts_of_chaos",
 				"hedonites_of_slaanesh",
 				"maggotkin_of_nurgle",
 				"skaven",
@@ -4185,6 +4194,7 @@
 			"name": "Volt-Klaw's Enginecoven",
 			"points": 380,
 			"factions": [
+				"beasts_of_chaos",
 				"blades_of_khorne",
 				"disciples_of_tzeentch",
 				"hedonites_of_slaanesh",

@@ -1,0 +1,13 @@
+{
+	"faction": {"legends": true},
+	"fields": {
+		"chimera": {"base_size": "120 × 92mm"},
+		"cockatrice": {"keywords": ["BEAST", "BEASTS OF CHAOS", "CHAOS", "FLY"]},
+		"cygor": {"keywords": ["BEASTS OF CHAOS", "CHAOS", "MONSTER", "WARHERD"]},
+		"ghorgon": {"keywords": ["BEASTS OF CHAOS", "CHAOS", "MONSTER", "WARHERD"]},
+		"jabberslythe": {"keywords": ["BEASTS OF CHAOS", "CHAOS", "FLY", "MONSTER"]},
+		"grashraks_despoilers": {"keywords": ["BEASTS OF CHAOS", "BRAYHERD", "CHAMPION", "CHAOS", "INFANTRY", "UNIQUE"]},
+		"gors > Gor Stampede": {"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."},
+		"Summon Doomblast Dirgehorn": {"effect": "Set up a Doomblast Dirgehorn wholly within 18\" of the caster."}
+	}
+}

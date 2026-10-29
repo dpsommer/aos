@@ -1,0 +1,1488 @@
+{
+	"warscrolls": [
+		{
+			"id": "beastlord",
+			"name": "Beastlord",
+			"legends": true,
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Herd Alpha. Any BEASTS OF CHAOS"
+			],
+			"notes": "This HERO can join an eligible regiment as a Herd Alpha. This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 6,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Paired Man-ripper Axes",
+					"range": 0,
+					"attacks": "5",
+					"hit": 3,
+					"wound": 3,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-HERO (+1 Rend)",
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Hatred of Heroes",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "While this unit is in combat with any enemy HEROES, add 1 to hit rolls and wound rolls for combat attacks made by friendly BEASTS OF CHAOS units wholly within 12\" of this unit."
+				},
+				{
+					"name": "Call of Battle",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
+					"effect": "Pick a friendly non-HERO BRAYHERD INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"BEASTS OF CHAOS",
+				"BRAYHERD",
+				"INFANTRY",
+				"CHAOS"
+			]
+		},
+		{
+			"id": "beasts_of_chaos_chaos_spawn",
+			"name": "Beasts of Chaos Chaos Spawn",
+			"legends": true,
+			"points": 70,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "2D6",
+			"health": 5,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Freakish Mutations",
+					"range": 0,
+					"attacks": "2D6",
+					"hit": 5,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"BEAST"
+			]
+		},
+		{
+			"id": "bestigors",
+			"name": "Bestigors",
+			"legends": true,
+			"points": 220,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 2,
+			"save": 4,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Despoiler Axe",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Ferocious Advance",
+					"type": "passive",
+					"category": "defensive",
+					"timing": "Passive",
+					"colour": "green",
+					"effect": "Subtract 1 from wound rolls for shooting attacks that target this unit."
+				},
+				{
+					"name": "Despoilers",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Reaction: Opponent declared the 'All-out Defence' command for a unit within 6\" of this unit",
+					"colour": "red",
+					"effect": "This unit's attacks score critical hits on unmodified hit rolls of 5+ for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"BEASTS OF CHAOS",
+				"BRAYHERD"
+			]
+		},
+		{
+			"id": "bullgors",
+			"name": "Bullgors",
+			"legends": true,
+			"points": 170,
+			"unit_size": 3,
+			"base_size": "50mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 4,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Man-splitter Axes",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Iron-capped Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 3,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Warherd Charge",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"colour": "orange",
+					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a dice for each model in this unit. For each 2+, inflict 1 mortal damage on the target."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"INFANTRY",
+				"CHAMPION",
+				"BEASTS OF CHAOS",
+				"WARHERD",
+				"MUSICIAN (1/3)",
+				"STANDARD BEARER (1/3)"
+			]
+		},
+		{
+			"id": "centigors",
+			"name": "Centigors",
+			"legends": true,
+			"points": 170,
+			"unit_size": 5,
+			"base_size": "60 × 35mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "10",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Gutpiercer Spear",
+					"range": 8,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Gutpiercer Spear",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Anti-CAVALRY (+1 Rend)",
+						"Charge (+1 Damage)"
+					]
+				},
+				{
+					"name": "Clawed Forelimbs",
+					"range": 0,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Drunken Revelry",
+					"type": "active",
+					"category": "defensive",
+					"timing": "Your Movement Phase",
+					"colour": "grey",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "This unit can use this ability if it is not in combat. It has WARD (4+) for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"CHAMPION",
+				"BEASTS OF CHAOS",
+				"BRAYHERD",
+				"STANDARD BEARER (1/5)",
+				"MUSICIAN (1/5)",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "chaos_gargant",
+			"name": "Chaos Gargant",
+			"legends": true,
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "90 × 52mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "8",
+			"health": 12,
+			"save": 5,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Throwin' Rocks",
+					"range": 12,
+					"attacks": "1",
+					"hit": 5,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "'Eadbutt",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "4"
+				},
+				{
+					"name": "Massive Club",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2"
+				},
+				{
+					"name": "Mighty Kick",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Whipped Into a Frenzy",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit is within 6\" of any friendly BEASTS OF CHAOS HEROES, add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Timberrrrr!",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "When this unit is destroyed, before removing it from play, the players must roll off. The winner picks a point on the battlefield within 3\" of this unit. Inflict D3 mortal damage on each unit (friendly and enemy) within 3\" of that point that has a lower Health characteristic than this unit."
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"MONSTER"
+			]
+		},
+		{
+			"id": "chaos_warhounds",
+			"name": "Chaos Warhounds",
+			"legends": true,
+			"points": 130,
+			"unit_size": 10,
+			"base_size": "60 × 35mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "10",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Canine Jaws",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Outrunners of Chaos",
+					"type": "active",
+					"category": "movement",
+					"timing": "Reaction: You declared a CHARGE ability for this unit",
+					"colour": "orange",
+					"effect": "Change one of the dice in the charge roll to a 4."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"BEASTS OF CHAOS",
+				"BEAST"
+			]
+		},
+		{
+			"id": "chimera",
+			"name": "Chimera",
+			"legends": true,
+			"points": 200,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "10",
+			"health": 12,
+			"save": 5,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Brimstone Breath",
+					"range": 12,
+					"attacks": "6",
+					"hit": 2,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Shoot in Combat",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Mauling Claws",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Companion"
+					]
+				},
+				{
+					"name": "Chimeric Heads",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Thricefold Savagery",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Roll 3 dice. For each 4+, add 1 to the Attacks characteristic of this unit's Chimeric Heads for the rest of the turn.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"MONSTER",
+				"FLY"
+			]
+		},
+		{
+			"id": "cockatrice",
+			"name": "Cockatrice",
+			"legends": true,
+			"points": 150,
+			"unit_size": 1,
+			"base_size": "60mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "12",
+			"health": 8,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Stabbing Beak and Talons",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Petrifying Gaze",
+					"type": "active",
+					"category": "shooting",
+					"timing": "(Army,) Your Shooting Phase",
+					"colour": "blue",
+					"frequency": "Once Per Turn",
+					"declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
+					"effect": "Roll a dice for each model in the target unit. For each 6, inflict 1 mortal damage on the target. If any damage points are allocated to the target by this ability, the target has STRIKE-LAST for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"BEAST",
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"FLY"
+			]
+		},
+		{
+			"id": "cygor",
+			"name": "Cygor",
+			"legends": true,
+			"points": 170,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "8",
+			"health": 15,
+			"save": 5,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Desecrated Boulder",
+					"range": 15,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3+3",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Massive Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Anti-MANIFESTATION (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Consume Endless Spell",
+					"type": "active",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an ENDLESS SPELL within 9\" of this unit to be the target.",
+					"effect": "Roll 2D6. If the roll exceeds the target's Banishment characteristic:\n• The target is banished.\n• Heal (X) this unit, where X is an amount equal to the roll.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Battle Damaged",
+					"type": "passive",
+					"category": "damage",
+					"timing": "Passive",
+					"colour": "black",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Massive Horns is 4."
+				},
+				{
+					"name": "Soul-eater",
+					"type": "passive",
+					"category": "special",
+					"timing": "Passive",
+					"colour": "yellow",
+					"effect": "This unit can use UNBIND abilities as if it had WIZARD (1). Each time this unit unbinds a spell, inflict D3 mortal damage on the caster."
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"MONSTER",
+				"WARHERD"
+			]
+		},
+		{
+			"id": "doomblast_dirgehorn",
+			"name": "Doomblast Dirgehorn",
+			"legends": true,
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 7,
+			"save": 6,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Booming Cacophony",
+					"type": "passive",
+					"category": "defensive",
+					"timing": "Passive",
+					"colour": "green",
+					"effect": "When this MANIFESTATION is set up, the range of this ability is 6\". Subtract 1 from wound rolls for attacks made by enemy units while they are within range of this MANIFESTATION's ability."
+				},
+				{
+					"name": "Louder and Louder",
+					"type": "active",
+					"category": "special",
+					"timing": "Start of Battle Round",
+					"colour": "black",
+					"effect": "Increase the range of this MANIFESTATION's 'Booming Cacophony' ability by 6\". This effect can be applied multiple times to this MANIFESTATION and is cumulative. If this MANIFESTATION is removed from play, this effect no longer applies."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"ENDLESS SPELL",
+				"CHAOS",
+				"BEASTS OF CHAOS"
+			]
+		},
+		{
+			"id": "doombull",
+			"name": "Doombull",
+			"legends": true,
+			"points": 170,
+			"unit_size": 1,
+			"base_size": "50mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Herd Alpha. Any BEASTS OF CHAOS"
+			],
+			"notes": "This HERO can join an eligible regiment as a Herd Alpha. This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 8,
+			"save": 5,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Slaughterer's Axe",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3"
+				},
+				{
+					"name": "Alphabeast Horns",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Slaughterer's Call",
+					"type": "active",
+					"category": "movement",
+					"timing": "Any Charge Phase",
+					"colour": "orange",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly WARHERD unit that is not in combat and is wholly within 12\" of this unit to be the target.",
+					"effect": "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for the target, to a maximum of 3."
+				},
+				{
+					"name": "Alpha Charge",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"colour": "orange",
+					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"BEASTS OF CHAOS",
+				"INFANTRY",
+				"CHAOS",
+				"WARHERD"
+			]
+		},
+		{
+			"id": "dragon_ogors",
+			"name": "Dragon Ogors",
+			"legends": true,
+			"points": 200,
+			"unit_size": 3,
+			"base_size": "90 × 52mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "8",
+			"health": 5,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Storm-forged Weapons",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				},
+				{
+					"name": "Raking Foreclaws",
+					"range": 0,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Speed of an Avalanche",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"effect": "If this unit did not charge this turn and is in combat with an enemy unit that charged this turn, roll a dice. On a 4+, this unit has STRIKE-FIRST for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"BEASTS OF CHAOS",
+				"THUNDERSCORN",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "dragon_ogor_shaggoth",
+			"name": "Dragon Ogor Shaggoth",
+			"legends": true,
+			"points": 220,
+			"unit_size": 1,
+			"base_size": "90 × 52mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Herd Alpha. Any BEASTS OF CHAOS"
+			],
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "8",
+			"health": 10,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [
+				{
+					"name": "Crackling Bolts",
+					"range": 12,
+					"attacks": "2D6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)",
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Storm-forged Axe",
+					"range": 0,
+					"attacks": "6",
+					"hit": 3,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Beneath the Tempest",
+					"type": "active",
+					"category": "special",
+					"timing": "End of Any Turn",
+					"colour": "purple",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick each enemy unit in combat with this unit to be the targets.",
+					"effect": "Roll a dice. On a 2+, Heal (X) this unit, where X is an amount equal to the roll. Then, roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Scion of the Primordial Storm",
+					"type": "active",
+					"category": "special",
+					"timing": "Reaction: Opponent declared a SPELL ability",
+					"colour": "yellow",
+					"effect": "If this unit or a friendly Dragon Ogors unit wholly within 12\" of this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit or that friendly unit. This unit can use this ability more than once per phase but only once per SPELL ability."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"MONSTER",
+				"WIZARD (1)",
+				"THUNDERSCORN"
+			]
+		},
+		{
+			"id": "ghorgon",
+			"name": "Ghorgon",
+			"legends": true,
+			"points": 180,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "8",
+			"health": 15,
+			"save": 5,
+			"control": 5,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Butchering Blades",
+					"range": 0,
+					"attacks": "7",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Anti-INFANTRY(+1 Rend)"
+					]
+				},
+				{
+					"name": "Huge Slavering Maw",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D6"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Swallow Whole",
+					"type": "active",
+					"category": "special",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit in combat with this unit to be the target.",
+					"effect": "Roll a dice. If the roll exceeds the target's Health characteristic:\n• 1 model in the target unit is slain.\n• Heal (X) this unit, where X is an amount equal to the roll.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				},
+				{
+					"name": "Battle Damaged",
+					"type": "passive",
+					"category": "damage",
+					"timing": "Passive",
+					"colour": "black",
+					"effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Butchering Blades is 4."
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"MONSTER",
+				"WARHERD"
+			]
+		},
+		{
+			"id": "gors",
+			"name": "Gors",
+			"legends": true,
+			"points": 100,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 1,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Hacking Blades",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Gor Stampede",
+					"type": "active",
+					"category": "defensive",
+					"timing": "Your Charge Phase",
+					"colour": "orange",
+					"declare": "If this unit charged this phase, pick an enemy non-HERO INFANTRY unit that has fewer models than this unit and is within 1\" of it to be the target.",
+					"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"BEASTS OF CHAOS",
+				"BRAYHERD"
+			]
+		},
+		{
+			"id": "grashraks_despoilers",
+			"name": "Grashrak's Despoilers",
+			"legends": true,
+			"points": 100,
+			"unit_size": 6,
+			"base_size": "Grashrak Fellhoof and Draknar: 32mm, Gnarl, Ushkor, Korsh 'the Sneak' and Murghoth Half-horn: 25mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "8",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Despoiler Shortbow",
+					"range": 15,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Despoiler Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Grashrak Fellhoof",
+					"type": "passive",
+					"category": "special",
+					"timing": "Passive",
+					"colour": "yellow",
+					"effect": "While this unit's Grashrak Fellhoof is on the battlefield, it has WIZARD (1)."
+				},
+				{
+					"name": "Violent Despoilers",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "Add 1 to hit rolls for this unit's attacks while it is wholly outside friendly territory."
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"BRAYHERD",
+				"CHAMPION",
+				"CHAOS",
+				"INFANTRY",
+				"UNIQUE"
+			],
+			"composition": "Each model in this unit is armed with Despoiler Weapons. The models in this unit are: Grashrak Fellhoof (champion) Draknar Murghoth Half-horn Korsh ‘the Sneak’ Ushkor (also armed with a Despoiler Shortbow) Gnarl (also armed with a Despoiler Shortbow)"
+		},
+		{
+			"id": "great_bray_shaman",
+			"name": "Great Bray-Shaman",
+			"legends": true,
+			"points": 140,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Herd Alpha",
+				"0-1 BEAST",
+				"Any BRAYHERD"
+			],
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 5,
+			"save": 5,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Fetish Staff",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Infuse with Bestial Vigour",
+					"type": "active",
+					"category": "movement",
+					"timing": "Your Movement Phase",
+					"colour": "grey",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly BEASTS OF CHAOS unit wholly within 12\" of this unit to be the target.",
+					"effect": "For the rest of the turn, the target can use a RUN ability and still use CHARGE abilities later in the turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"BEASTS OF CHAOS",
+				"BRAYHERD",
+				"WIZARD (1)",
+				"INFANTRY",
+				"CHAOS"
+			]
+		},
+		{
+			"id": "herdstone",
+			"name": "Herdstone",
+			"legends": true,
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "Use model",
+			"can_reinforce": false,
+			"move": "0",
+			"health": 14,
+			"save": 4,
+			"control": 0,
+			"ranged_weapons": [],
+			"melee_weapons": [],
+			"abilities": [
+				{
+					"name": "Entropic Lodestone",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "From the second battle round onwards, add 1 to the Rend characteristic of melee weapons used by friendly BEASTS OF CHAOS units while they are wholly within 24\" of this terrain feature.\nIf this terrain feature is wholly within 18\" of the centre of the battlefield, this ability affects all friendly BEASTS OF CHAOS units on the battlefield instead of those wholly within 24\" of it."
+				}
+			],
+			"keywords": [
+				"FACTION TERRAIN",
+				"CHAOS",
+				"BEASTS OF CHAOS"
+			],
+			"composition": "The following universal terrain abilities apply to this terrain feature (Terrain, 1.2): Cover, Unstable"
+		},
+		{
+			"id": "jabberslythe",
+			"name": "Jabberslythe",
+			"legends": true,
+			"points": 190,
+			"unit_size": 1,
+			"base_size": "120 × 92mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "10",
+			"health": 12,
+			"save": 4,
+			"control": 5,
+			"ranged_weapons": [
+				{
+					"name": "Slythey Tongue",
+					"range": 8,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Shoot in Combat",
+						"Companion"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Vorpal Claws and Tail",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Aura of Madness",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Roll a D3. On a 2+, pick up to a number of enemy units equal to the roll that are within 9\" of this unit to be the targets.",
+					"effect": "For the rest of the turn, each time the unmodified hit roll for a combat attack made by the target is 1, inflict 1 mortal damage on the target after the FIGHT ability has been resolved.",
+					"keywords": [
+						"RAMPAGE"
+					]
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"FLY",
+				"MONSTER"
+			]
+		},
+		{
+			"id": "ravening_direflock",
+			"name": "Ravening Direflock",
+			"legends": true,
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "40mm",
+			"can_reinforce": false,
+			"move": "16",
+			"health": 6,
+			"save": 6,
+			"control": 0,
+			"ward": 6,
+			"banishment": 7,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Murderous Beaks",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 5,
+					"rend": 1,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Multiple Parts",
+					"type": "passive",
+					"category": "special",
+					"timing": "Passive",
+					"colour": "black",
+					"effect": "When a number of damage points equal to this MANIFESTATION's Health characteristic are allocated to it, this MANIFESTATION is destroyed and all of its parts are removed from play.\nEach time this MANIFESTATION moves, each of its parts must end within 1\" of at least 1 other part.\nEach part of this MANIFESTATION is armed with Murderous Beaks."
+				},
+				{
+					"name": "Harbingers of Dark Omens",
+					"type": "passive",
+					"category": "control",
+					"timing": "Passive",
+					"colour": "purple",
+					"effect": "Subtract 5 from the control scores of enemy units while they are within 12\" of this unit."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"ENDLESS SPELL",
+				"CHAOS",
+				"BEASTS OF CHAOS",
+				"FLY"
+			]
+		},
+		{
+			"id": "razorgor",
+			"name": "Razorgor",
+			"legends": true,
+			"points": 70,
+			"unit_size": 1,
+			"base_size": "75 × 42mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "10",
+			"health": 4,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Large Tusks and Hooves",
+					"range": 0,
+					"attacks": "5",
+					"hit": 4,
+					"wound": 2,
+					"rend": 0,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Feed on Mangled Remains",
+					"type": "passive",
+					"category": "defensive",
+					"timing": "Passive",
+					"colour": "green",
+					"effect": "Each time this unit uses a FIGHT ability, after that FIGHT ability has been resolved, Heal (D3) this unit."
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"CHAOS",
+				"BEAST"
+			]
+		},
+		{
+			"id": "tuskgor_chariots",
+			"name": "Tuskgor Chariots",
+			"legends": true,
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "105 × 70mm",
+			"can_reinforce": false,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "10",
+			"health": 7,
+			"save": 4,
+			"control": 2,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Despoiler Weapons",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				},
+				{
+					"name": "Tuskgors' Iron-hard Tusks",
+					"range": 0,
+					"attacks": "4",
+					"hit": 5,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1",
+					"abilities": [
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Tuskgor Charge",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"colour": "orange",
+					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+				}
+			],
+			"keywords": [
+				"BEASTS OF CHAOS",
+				"BRAYHERD",
+				"CHAOS",
+				"WAR MACHINE"
+			]
+		},
+		{
+			"id": "ungor_raiders",
+			"name": "Ungor Raiders",
+			"legends": true,
+			"points": 90,
+			"unit_size": 10,
+			"base_size": "25mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 1,
+			"save": 6,
+			"control": 1,
+			"ranged_weapons": [
+				{
+					"name": "Raider Bow",
+					"range": 18,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Jagged Shank",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Hidden Volley",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit is in reserve in ambush, pick a non-HERO enemy unit within 12\" of a battlefield edge to be the target.",
+					"effect": "Roll a number of dice equal to the number of models in this unit. For each 6, inflict 1 mortal damage on the target. Then, in your next movement phase, set up this unit on the battlefield using the 'Beastherd Ambush' ability. If it is not possible to do so, it is destroyed."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"BEASTS OF CHAOS",
+				"BRAYHERD"
+			]
+		},
+		{
+			"id": "ungors",
+			"name": "Ungors",
+			"legends": true,
+			"points": 90,
+			"unit_size": 10,
+			"base_size": "25mm",
+			"can_reinforce": true,
+			"notes": "This unit will move to Warhammer Legends on 1 June 2025.",
+			"move": "6",
+			"health": 1,
+			"save": 5,
+			"control": 1,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Gnarled Weapon",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 5,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (2 Hits)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Fleet of Hoof",
+					"type": "active",
+					"category": "movement",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it."
+				}
+			],
+			"keywords": [
+				"CHAOS",
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"BEASTS OF CHAOS",
+				"BRAYHERD"
+			]
+		},
+		{
+			"id": "wildfire_taurus",
+			"name": "Wildfire Taurus",
+			"legends": true,
+			"points": 0,
+			"unit_size": 1,
+			"base_size": "105 × 70mm",
+			"can_reinforce": false,
+			"move": "12",
+			"health": 10,
+			"save": 6,
+			"control": 0,
+			"ward": 6,
+			"banishment": 8,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Taurine Horns",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 2,
+					"damage": "D3",
+					"abilities": [
+						"Charge (+1 Damage)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Trail of Destruction",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Charge Phase",
+					"colour": "orange",
+					"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+					"effect": "Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target. If any damage points are allocated to the target by this ability, the target has STRIKE-LAST for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"MANIFESTATION",
+				"ENDLESS SPELL",
+				"CHAOS",
+				"BEASTS OF CHAOS",
+				"FLY"
+			]
+		}
+	]
+}
