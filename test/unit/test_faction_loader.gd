@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for building factions from JSON (scripts/data/faction_loader.gd).
+## Unit tests for building factions from JSON (scripts/data/faction/faction_loader.gd).
 ##
 ## Expectations are read from the fixture JSON, so editing a fixture value doesn't break tests.
 

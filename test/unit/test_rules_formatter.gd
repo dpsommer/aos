@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for turning an ability's rules into BBCode (scripts/ui/rules_formatter.gd).
+## Unit tests for turning an ability's rules into BBCode (scripts/ui/common/rules_formatter.gd).
 
 
 func _ability(fields := {}) -> Ability:

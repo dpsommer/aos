@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for faction data (scripts/data/faction_catalog.gd, scripts/data/grand_alliance.gd).
+## Unit tests for faction data (scripts/data/faction/faction_catalog.gd, scripts/data/faction/grand_alliance.gd).
 
 
 func test_every_alliance_has_at_least_one_faction() -> void:

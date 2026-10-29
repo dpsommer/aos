@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for the ability card (scripts/ui/ability_card.gd).
+## Unit tests for the ability card (scripts/ui/cards/ability_card.gd).
 
 const UIKit := preload("res://test/support/ui_kit.gd")
 
