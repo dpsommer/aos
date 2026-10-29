@@ -633,6 +633,77 @@ func test_wizard_in_a_regiment_of_renown_does_not_need_a_lore() -> void:
 	assert_eq(_warnings(army).size(), 0, str(_warnings(army)))
 
 
+## A catalog whose only spell lore is a Legends one.
+func _legends_spell_catalog() -> ArmyCatalog:
+	var faction := _faction()
+	var legend := Kit.lore("Old Fire", "spell")
+	legend.legends = true
+	faction.lores = [legend] as Array[Lore]
+	return _catalog(faction)
+
+
+func test_missing_lores_lists_spell_and_manifestation_for_a_wizard() -> void:
+	var army := _army()
+	army.regiments.append(_regiment("Side", "wizard"))
+	var missing := ArmyValidator.missing_lores(army, _catalog())
+	assert_eq(Array(missing), ["spell", "manifestation"])
+
+
+func test_missing_lores_lists_prayer_and_manifestation_for_a_priest() -> void:
+	var army := _army()
+	army.regiments.append(_regiment("Side", "priest"))
+	var missing := ArmyValidator.missing_lores(army, _catalog())
+	assert_eq(Array(missing), ["prayer", "manifestation"])
+
+
+func test_missing_lores_is_empty_once_the_lores_are_picked() -> void:
+	var army := _army()
+	army.regiments.append(_regiment("Side", "wizard"))
+	army.spell_lore = "Fire"
+	army.manifestation_lore = "Universal"
+	assert_eq(ArmyValidator.missing_lores(army, _catalog()).size(), 0)
+
+
+func test_missing_lores_is_empty_without_casters() -> void:
+	assert_eq(ArmyValidator.missing_lores(_army(), _catalog()).size(), 0)
+
+
+func test_missing_lores_counts_a_keyword_gained_from_the_army_of_renown() -> void:
+	var gains := Kit.roster_entry("Hero B")
+	gains.gains_keywords = PackedStringArray(["WIZARD"])
+	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), gains]
+	var catalog := _horde_catalog(entries)
+	catalog.army_of_renown("Horde").lores = [Kit.lore("Horde Fire", "spell")] as Array[Lore]
+	var army := _horde_army()
+	army.regiments.append(_regiment("Side", "hero_b"))
+	assert_has(ArmyValidator.missing_lores(army, catalog), "spell")
+
+
+func test_missing_lores_ignores_a_wizard_in_a_regiment_of_renown() -> void:
+	var army := _army()
+	army.regiments.append(_ror())
+	assert_eq(ArmyValidator.missing_lores(army, _catalog()).size(), 0)
+
+
+func test_all_legends_spell_lores_give_no_warning_without_show_legends() -> void:
+	var army := _army()
+	army.regiments.append(_regiment("Side", "wizard"))
+	assert_false(_mentions(_warnings(army, _legends_spell_catalog()), "spell lore"))
+
+
+func test_missing_lores_omits_spell_when_all_spell_lores_are_legends() -> void:
+	var army := _army()
+	army.regiments.append(_regiment("Side", "wizard"))
+	assert_does_not_have(ArmyValidator.missing_lores(army, _legends_spell_catalog()), "spell")
+
+
+func test_missing_lores_includes_legends_spell_lores_with_show_legends() -> void:
+	var army := _army()
+	army.show_legends = true
+	army.regiments.append(_regiment("Side", "wizard"))
+	assert_has(ArmyValidator.missing_lores(army, _legends_spell_catalog()), "spell")
+
+
 # Battle formation and terrain
 
 func test_missing_formation_is_a_problem() -> void:

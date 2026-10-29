@@ -13,6 +13,12 @@ const MAX_TACTICS := 2
 const MAX_REGIMENTS_OF_RENOWN := 1
 ## Enhancement types that only Heroes can be given.
 const HERO_ENHANCEMENTS: PackedStringArray = ["Heroic Traits", "Artefacts of Power"]
+## The warning for each kind of lore the army needs but hasn't picked.
+const MISSING_LORE_WARNINGS := {
+	"spell": "Your army has a Wizard but no spell lore.",
+	"prayer": "Your army has a Priest but no prayer lore.",
+	"manifestation": "Your army has a Wizard or Priest but no manifestation lore.",
+}
 
 
 ## How many units besides its leader [param regiment] can include.
@@ -367,6 +373,19 @@ static func _check_lores(army: Army, catalog: ArmyCatalog, entries: Array[Dictio
 		var picked := army.lore_name(kind)
 		if not picked.is_empty() and catalog.lore(army, kind, picked) == null:
 			result.problems.append("%s isn't a %s lore this army can pick." % [picked, kind])
+	for kind in _missing_lores(army, catalog, entries):
+		result.warnings.append(MISSING_LORE_WARNINGS[kind])
+
+
+## Kinds of lore the army needs but hasn't picked: "spell" for a Wizard, "prayer" for a Priest and
+## "manifestation" for either. Keywords units gain from the Army of Renown count, and units in a
+## Regiment of Renown don't. A kind is only listed when the army can pick a lore of it
+## ([method ArmyCatalog.lore_choices]), so the builder always has a slot to fill.
+static func missing_lores(army: Army, catalog: ArmyCatalog) -> PackedStringArray:
+	return _missing_lores(army, catalog, _entries(army, catalog, ArmyValidation.new()))
+
+
+static func _missing_lores(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary]) -> PackedStringArray:
 	var wizard := false
 	var priest := false
 	for entry in entries:
@@ -375,12 +394,12 @@ static func _check_lores(army: Army, catalog: ArmyCatalog, entries: Array[Dictio
 		for keyword: String in entry.keywords:
 			wizard = wizard or keyword.begins_with("WIZARD")
 			priest = priest or keyword.begins_with("PRIEST")
-	if wizard and army.spell_lore.is_empty() and not catalog.lores(army, "spell").is_empty():
-		result.warnings.append("Your army has a Wizard but no spell lore.")
-	if priest and army.prayer_lore.is_empty() and not catalog.lores(army, "prayer").is_empty():
-		result.warnings.append("Your army has a Priest but no prayer lore.")
-	if (wizard or priest) and army.manifestation_lore.is_empty() and not catalog.lores(army, "manifestation").is_empty():
-		result.warnings.append("Your army has a Wizard or Priest but no manifestation lore.")
+	var needed := {"spell": wizard, "prayer": priest, "manifestation": wizard or priest}
+	var result := PackedStringArray()
+	for kind: String in needed:
+		if needed[kind] and army.lore_name(kind).is_empty() and not catalog.lore_choices(army, kind).is_empty():
+			result.append(kind)
+	return result
 
 
 static func _check_formation_and_terrain(army: Army, catalog: ArmyCatalog, result: ArmyValidation) -> void:

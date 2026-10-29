@@ -26,7 +26,7 @@ Missing data | Every unit's warscroll is still in the faction data.
 ## Warnings
 
 - Fewer than 2 battle tactics cards.
-- A WIZARD with no spell lore, a PRIEST with no prayer lore, or either with no manifestation lore.
+- A WIZARD with no spell lore, a PRIEST with no prayer lore, or either with no manifestation lore. Keywords a unit gains from the Army of Renown count, and units in a Regiment of Renown don't. There's no warning when the army has no lore of that kind it can pick, e.g. when its only ones are Legends and Legends units are hidden.
 
 ## Not checked yet
 
