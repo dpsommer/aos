@@ -37,9 +37,8 @@ static func regiment_points(regiment: ArmyRegiment, army: Army, catalog: ArmyCat
 ## Lores, the battle formation and faction terrain.
 static func army_rule_points(army: Army, catalog: ArmyCatalog) -> int:
 	var points := 0
-	for pick: Array in [["spell", army.spell_lore], ["prayer", army.prayer_lore],
-			["manifestation", army.manifestation_lore]]:
-		var lore := catalog.lore(army, pick[0], pick[1])
+	for kind: String in ["spell", "prayer", "manifestation"]:
+		var lore := catalog.lore(army, kind, army.lore_name(kind))
 		points += lore.points if lore else 0
 	var formation := catalog.battle_formation(army, army.formation)
 	points += formation.points if formation else 0

@@ -62,3 +62,29 @@ func find_regiment(regiment_id: String) -> ArmyRegiment:
 		if regiment.id == regiment_id:
 			return regiment
 	return null
+
+
+## The name of the army's spell, prayer or manifestation lore ([param kind]), or empty.
+func lore_name(kind: String) -> String:
+	match kind:
+		"spell":
+			return spell_lore
+		"prayer":
+			return prayer_lore
+		"manifestation":
+			return manifestation_lore
+	return ""
+
+
+## Sets the army's lore of [param kind] to [param lore]. Returns false for an unknown kind.
+func set_lore_name(kind: String, lore: String) -> bool:
+	match kind:
+		"spell":
+			spell_lore = lore
+		"prayer":
+			prayer_lore = lore
+		"manifestation":
+			manifestation_lore = lore
+		_:
+			return false
+	return true

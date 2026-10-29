@@ -92,7 +92,7 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 	var lores: Array[Group] = []
 	var core := catalog.core
 	for kind: String in LORE_KINDS:
-		var picked: String = army.get("%s_lore" % kind)
+		var picked := army.lore_name(kind)
 		for lore in catalog.lore_choices(army, kind, picked):
 			var group := Group.new()
 			group.title = lore.name

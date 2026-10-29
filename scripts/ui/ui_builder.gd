@@ -13,6 +13,17 @@ static func label(text: String, variation := "", wrap := false) -> Label:
 	return node
 
 
+## The first node under [param node], depth first, for which [param matches] returns true, or null.
+static func find_descendant(node: Node, matches: Callable) -> Node:
+	for child in node.get_children():
+		if matches.call(child):
+			return child
+		var found := find_descendant(child, matches)
+		if found:
+			return found
+	return null
+
+
 ## A button whose [param key] lets the builder give it focus back after redrawing.
 static func button(text: String, on_pressed: Callable, key := "", variation := "", tooltip := "") -> Button:
 	var node := Button.new()

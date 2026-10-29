@@ -349,16 +349,8 @@ func set_tactic(slot: int, card_name: String) -> void:
 
 ## Sets the spell, prayer or manifestation lore ([param kind]), or clears it when empty.
 func set_lore(kind: String, lore_name: String) -> void:
-	match kind:
-		"spell":
-			army.spell_lore = lore_name
-		"prayer":
-			army.prayer_lore = lore_name
-		"manifestation":
-			army.manifestation_lore = lore_name
-		_:
-			return
-	changed.emit()
+	if army.set_lore_name(kind, lore_name):
+		changed.emit()
 
 
 func set_formation(formation_name: String) -> void:
@@ -382,9 +374,9 @@ func set_army_of_renown(army_name: String) -> void:
 	if not army_name.is_empty():
 		army.formation = ""
 	for kind: String in ["spell", "prayer", "manifestation"]:
-		var picked: String = army.get("%s_lore" % kind)
+		var picked := army.lore_name(kind)
 		if not picked.is_empty() and catalog.lore(army, kind, picked) == null:
-			army.set("%s_lore" % kind, "")
+			army.set_lore_name(kind, "")
 	for unit in army.all_units():
 		for type: String in unit.enhancements.keys():
 			if catalog.enhancement(army, type, unit.enhancements[type]) == null:

@@ -95,7 +95,7 @@ static func role_of(warscroll: Warscroll) -> String:
 ## Army of Renown. A Hero only fills an option naming it or its role, as Heroes join regiments in
 ## place of a non-Hero unit only where their profile says so, unless the option allows [member heroes].
 func matches(warscroll: Warscroll, gained := PackedStringArray()) -> bool:
-	if warscroll.has_keyword("HERO") and (_names(warscroll, subject) or role_of(warscroll).nocasecmp_to(subject) == 0):
+	if warscroll.has_keyword("HERO") and (is_named(warscroll, subject) or role_of(warscroll).nocasecmp_to(subject) == 0):
 		return true
 	if warscroll.has_keyword("HERO") and not (heroes and unit.is_empty()):
 		return false
@@ -103,7 +103,7 @@ func matches(warscroll: Warscroll, gained := PackedStringArray()) -> bool:
 		if _has(warscroll, keyword, gained):
 			return false
 	if not unit.is_empty():
-		return _names(warscroll, unit) or _has(warscroll, unit.to_upper(), gained)
+		return is_named(warscroll, unit) or _has(warscroll, unit.to_upper(), gained)
 	for run in keywords:
 		if not _has_run(warscroll, run, gained):
 			return false
@@ -114,11 +114,12 @@ static func _has(warscroll: Warscroll, keyword: String, gained: PackedStringArra
 	return warscroll.has_keyword(keyword) or keyword in gained
 
 
-## Scourge of Aqshy and Ghyran warscrolls share their printed version's name, units with a size
-## variant are named e.g. "Stormdrake Guard (1 model)", and options can leave out an epithet
-## ("Lorai" for "Lorai, Child of the Abyss"); all of these match. Apostrophes are compared
-## without regard to style, as options write "Neave’s Companions" for "Neave's Companions".
-static func _names(warscroll: Warscroll, unit_name: String) -> bool:
+## Whether [param warscroll] is the unit called [param unit_name]. Scourge of Aqshy and Ghyran
+## warscrolls share their printed version's name, units with a size variant are named e.g.
+## "Stormdrake Guard (1 model)", and options can leave out an epithet ("Lorai" for "Lorai, Child of
+## the Abyss"); all of these match. Apostrophes are compared without regard to style, as options
+## write "Neave’s Companions" for "Neave's Companions".
+static func is_named(warscroll: Warscroll, unit_name: String) -> bool:
 	var full := _plain(warscroll.name)
 	var short := _plain(unit_name)
 	return full == short or full.begins_with(short + " (") or full.begins_with(short + ", ")

@@ -311,13 +311,8 @@ func _focus_fallback() -> void:
 
 ## The control under [param node] tagged with [param key] for focus, or null.
 static func find_focus_key(node: Node, key: String) -> Control:
-	for child in node.get_children():
-		if child.get_meta(&"focus_key", "") == key and child is Control and child.is_visible_in_tree():
-			return child
-		var found := find_focus_key(child, key)
-		if found:
-			return found
-	return null
+	return UIBuilder.find_descendant(node, func(child: Node) -> bool:
+		return child.get_meta(&"focus_key", "") == key and child is Control and child.is_visible_in_tree()) as Control
 
 
 func _draw_header() -> void:
@@ -649,16 +644,12 @@ func _link(control: Control, on_pressed: Callable, tooltip: String, key: String)
 ## unless constraints are overridden. [param allow] filters further.
 func available_units(allow: Callable) -> Array[Warscroll]:
 	var army := editor.army
-	var taken := {}
-	for unit in army.all_units():
-		var warscroll := catalog.warscroll(unit, army.regiment_of(unit.uid))
-		if warscroll and warscroll.has_keyword("UNIQUE"):
-			taken[warscroll.name] = true
+	var taken := catalog.unique_unit_names(army)
 	var result: Array[Warscroll] = []
 	for warscroll in catalog.unit_warscrolls(army):
 		if warscroll.legends and not army.show_legends:
 			continue
-		if taken.has(warscroll.name) and not army.override_constraints:
+		if warscroll.name in taken and not army.override_constraints:
 			continue
 		if allow.call(warscroll):
 			result.append(warscroll)
