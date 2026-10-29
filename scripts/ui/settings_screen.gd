@@ -379,13 +379,7 @@ func _clear(tab: Node) -> void:
 
 ## The control under [param node] with the focus_key meta [param key], or null.
 func _keyed(node: Node, key: String) -> Control:
-	for child in node.get_children():
-		if child.get_meta(&"focus_key", "") == key:
-			return child
-		var found := _keyed(child, key)
-		if found:
-			return found
-	return null
+	return UIBuilder.find_descendant(node, func(child: Node) -> bool: return child.get_meta(&"focus_key", "") == key) as Control
 
 
 ## Sets the Fullscreen switch's setting from the window. Separate so tests can stub it, as the test

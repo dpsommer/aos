@@ -1,6 +1,6 @@
 # Core rules data
 
-Rules every army uses live as JSON in `data/core/`, in the same shapes as faction data (see [Faction data](faction-data.md#schema)). `CoreRulesLoader` (`scripts/data/core_rules_loader.gd`) reads them into a `CoreRules` resource, collecting problems in `errors` as `FactionLoader` does.
+Rules every army uses live as JSON in `data/core/`, in the same shapes as faction data (see [Faction data](faction-data.md#schema)). `CoreRulesLoader` (`scripts/data/core/core_rules_loader.gd`) reads them into a `CoreRules` resource, collecting problems in `errors` as `FactionLoader` does.
 
 ## Files
 

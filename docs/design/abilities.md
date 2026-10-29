@@ -1,6 +1,6 @@
 # Ability cards
 
-Every ability (warscroll abilities, battle traits, battle formations, enhancements, spells, prayers, Regiment of Renown and Spearhead abilities) is shown as an `AbilityCard` (`scripts/ui/ability_card.gd`), laid out like the abilities on the official Age of Sigmar warscrolls.
+Every ability (warscroll abilities, battle traits, battle formations, enhancements, spells, prayers, Regiment of Renown and Spearhead abilities) is shown as an `AbilityCard` (`scripts/ui/cards/ability_card.gd`), laid out like the abilities on the official Age of Sigmar warscrolls.
 
 ## Anatomy
 

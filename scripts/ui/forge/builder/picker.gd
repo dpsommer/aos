@@ -67,14 +67,9 @@ func focus_first() -> void:
 
 
 func _first_button(node: Node) -> Control:
-	for child in node.get_children():
-		if (child is Button and not child.disabled and child.theme_type_variation != &"BannerButton") \
-				or (child is PressableCard and child.pressable):
-			return child
-		var found := _first_button(child)
-		if found:
-			return found
-	return null
+	return UIBuilder.find_descendant(node, func(child: Node) -> bool:
+		return (child is Button and not child.disabled and child.theme_type_variation != &"BannerButton") \
+				or (child is PressableCard and child.pressable)) as Control
 
 
 ## Lists [param warscrolls] (or, as a Callable returning them, a list that updates as the army
@@ -154,7 +149,7 @@ func open_tactics(slot: int) -> void:
 func open_lores(kind: String, title: String) -> void:
 	var render := func() -> void:
 		var army := builder.editor.army
-		var picked: String = army.get("%s_lore" % kind)
+		var picked := army.lore_name(kind)
 		var core := builder.catalog.core
 		for lore in builder.catalog.lore_choices(army, kind):
 			if lore.name == picked:

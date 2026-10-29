@@ -74,6 +74,8 @@ const CINZEL := preload("res://assets/2d/fonts/cinzel/Cinzel.ttf")
 ## Icons are imported at twice their size so they stay sharp on high-density screens, and shown at
 ## this size.
 const ICON_SIZE := 18
+## Every state a button variation styles.
+const BUTTON_STATES: PackedStringArray = ["normal", "hover", "pressed", "disabled", "focus"]
 
 static var _theme: Theme
 
@@ -182,10 +184,28 @@ static func _create() -> Theme:
 	var theme := Theme.new()
 	theme.default_font = INTER
 	theme.default_font_size = 14
+	theme.set_color("font_color", "Label", TEXT)
+	_add_buttons(theme)
+	_add_inputs(theme)
+	_add_panels(theme)
+	_add_labels(theme)
+	_add_rich_text(theme)
+	_add_lists_and_dialogs(theme)
+
+	var separator := StyleBoxLine.new()
+	separator.color = BORDER
+	theme.set_stylebox("separator", "HSeparator", separator)
+	theme.set_stylebox("background", "ProgressBar", box(Color("#2A2F38"), Color.TRANSPARENT, 3))
+	theme.set_stylebox("fill", "ProgressBar", box(GOOD, Color.TRANSPARENT, 3))
+	theme.set_constant("separation", "VBoxContainer", 10)
+	theme.set_constant("separation", "HBoxContainer", 8)
+	return theme
+
+
+## Buttons, from the plain Button to the icon, banner, tab and card variations.
+static func _add_buttons(theme: Theme) -> void:
 	var semibold := font(INTER, 600)
 	var heading := font(CINZEL, 700)
-	theme.set_color("font_color", "Label", TEXT)
-
 	_button(theme, "Button", CONTROL, CONTROL_HOVER, CONTROL_BORDER, TEXT)
 	_button(theme, "GoldButton", GOLD, Color("#E8BB5E"), GOLD, Color("#17140C"))
 	# A destructive action, e.g. deleting an army.
@@ -203,7 +223,7 @@ static func _create() -> Theme:
 	_button(theme, "IconButton", Color.TRANSPARENT, Color("#2A2F38"), Color.TRANSPARENT, MUTED)
 	theme.set_stylebox("pressed", "IconButton", box(Color("#2A2418"), GOLD_DARK, 6, 6))
 	theme.set_color("font_pressed_color", "IconButton", Color("#E2B24F"))
-	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+	for state in BUTTON_STATES:
 		theme.set_stylebox(state, "IconButton", _square(theme.get_stylebox(state, "IconButton")))
 	theme.set_color("icon_normal_color", "IconButton", MUTED)
 	theme.set_color("icon_focus_color", "IconButton", MUTED)
@@ -213,19 +233,19 @@ static func _create() -> Theme:
 	theme.set_color("icon_disabled_color", "IconButton", Color(MUTED, 0.35))
 	_button(theme, "DangerIconButton", Color.TRANSPARENT, Color("#3A2420"), Color.TRANSPARENT, MUTED)
 	theme.set_type_variation("DangerIconButton", "IconButton")
-	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+	for state in BUTTON_STATES:
 		theme.set_stylebox(state, "DangerIconButton", _square(theme.get_stylebox(state, "DangerIconButton")))
 	theme.set_color("icon_hover_color", "DangerIconButton", Color("#F08A70"))
 	# A smaller icon button that sits inline with text, e.g. the pencil after a unit's name.
 	theme.set_type_variation("SmallIconButton", "IconButton")
-	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+	for state in BUTTON_STATES:
 		var small := theme.get_stylebox(state, "IconButton").duplicate() as StyleBox
 		small.set_content_margin_all(5)
 		theme.set_stylebox(state, "SmallIconButton", small)
 	theme.set_constant("icon_max_width", "SmallIconButton", 14)
 	# The info pane's fold banners, warscroll toggles, tabs and roster cards.
 	_button(theme, "BannerButton", Color("#22262E"), Color("#292E37"), Color("#2E333D"), Color("#D8D2C4"))
-	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+	for state in BUTTON_STATES:
 		var banner := theme.get_stylebox(state, "BannerButton").duplicate() as StyleBoxFlat
 		banner.set_corner_radius_all(6)
 		banner.content_margin_top = 7
@@ -259,7 +279,7 @@ static func _create() -> Theme:
 	theme.set_color("icon_focus_color", "TabButton", MUTED)
 	# The key's button inside a KeyChipPanel, which draws its border.
 	_button(theme, "KeyButton", Color.TRANSPARENT, CONTROL_HOVER, Color.TRANSPARENT, TEXT)
-	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+	for state in BUTTON_STATES:
 		var key_style := theme.get_stylebox(state, "KeyButton").duplicate() as StyleBoxFlat
 		key_style.set_corner_radius_all(6)
 		key_style.content_margin_top = 6
@@ -286,11 +306,15 @@ static func _create() -> Theme:
 		theme.set_constant("icon_max_width", type, ICON_SIZE)
 	theme.set_font("font", "Button", semibold)
 
+
+## The main menu's buttons, the Forge's option cards, and settings switches, sliders and fields.
+static func _add_inputs(theme: Theme) -> void:
+	var semibold := font(INTER, 600)
 	# The main menu's options.
 	for type in ["HeroButton", "HeroGoldButton", "HeroGhostButton"]:
 		var base: String = {"HeroButton": "Button", "HeroGoldButton": "GoldButton", "HeroGhostButton": "GhostButton"}[type]
 		theme.set_type_variation(type, base)
-		for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		for state in BUTTON_STATES:
 			var style := theme.get_stylebox(state, base).duplicate() as StyleBoxFlat
 			style.content_margin_top = 14
 			style.content_margin_bottom = 14
@@ -351,6 +375,9 @@ static func _create() -> Theme:
 	theme.set_icon("clear", "LineEdit", small_icon("close"))
 	_button(theme, "OptionButton", CONTROL, CONTROL_HOVER, CONTROL_BORDER, TEXT)
 
+
+## Panels: cards, rows, regiments, drop targets and warscrolls.
+static func _add_panels(theme: Theme) -> void:
 	theme.set_stylebox("panel", "PanelContainer", StyleBoxEmpty.new())
 	_panel(theme, "HeaderPanel", box(HEADER, Color("#262A32"), 0, 0))
 	# An empty list's placeholder.
@@ -413,6 +440,11 @@ static func _create() -> Theme:
 	_panel(theme, "ProblemsPanel", box(DANGER_BG, Color.TRANSPARENT, 8, 12))
 	_panel(theme, "WarningsPanel", box(WARNING_BG, Color.TRANSPARENT, 8, 12))
 
+
+## Label variations, from titles to warscroll and ability card text.
+static func _add_labels(theme: Theme) -> void:
+	var semibold := font(INTER, 600)
+	var heading := font(CINZEL, 700)
 	_label(theme, "MutedLabel", MUTED, 12)
 	_label(theme, "DisplayTitleLabel", TEXT, 56)
 	theme.set_font("font", "DisplayTitleLabel", heading)
@@ -461,6 +493,8 @@ static func _create() -> Theme:
 	_label(theme, "ProblemLabel", DANGER, 13)
 	_label(theme, "WarningLabel", WARNING, 13)
 
+
+static func _add_rich_text(theme: Theme) -> void:
 	# Rules text: Inter, with a slanted Inter for italics as the font has no italic.
 	var italic := FontVariation.new()
 	italic.base_font = INTER
@@ -478,6 +512,11 @@ static func _create() -> Theme:
 	# Space between paragraphs, so a rule's timing, Declare, Effect and keywords read as separate sections.
 	theme.set_constant("paragraph_separation", "RichTextLabel", 6)
 
+
+## The faction browser's tabs and lists, and dialogs.
+static func _add_lists_and_dialogs(theme: Theme) -> void:
+	var semibold := font(INTER, 600)
+	var heading := font(CINZEL, 700)
 	# The faction browser's tabs, like the builder's TabButton.
 	var tab_bar := _underline(Color("#262A32"))
 	theme.set_stylebox("tabbar_background", "TabContainer", tab_bar)
@@ -528,7 +567,7 @@ static func _create() -> Theme:
 		var base: String = {"DialogButton": "Button", "DialogGoldButton": "GoldButton",
 				"DialogDangerButton": "DangerButton"}[type]
 		theme.set_type_variation(type, base)
-		for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		for state in BUTTON_STATES:
 			var style := theme.get_stylebox(state, base).duplicate() as StyleBoxFlat
 			style.content_margin_left = 18
 			style.content_margin_right = 18
@@ -540,15 +579,6 @@ static func _create() -> Theme:
 	theme.set_color("font_selected_color", "ItemList", WARNING)
 	theme.set_constant("v_separation", "ItemList", 6)
 	theme.set_stylebox("split_bar_background", "HSplitContainer", StyleBoxEmpty.new())
-
-	var separator := StyleBoxLine.new()
-	separator.color = BORDER
-	theme.set_stylebox("separator", "HSeparator", separator)
-	theme.set_stylebox("background", "ProgressBar", box(Color("#2A2F38"), Color.TRANSPARENT, 3))
-	theme.set_stylebox("fill", "ProgressBar", box(GOOD, Color.TRANSPARENT, 3))
-	theme.set_constant("separation", "VBoxContainer", 10)
-	theme.set_constant("separation", "HBoxContainer", 8)
-	return theme
 
 
 static func _button(theme: Theme, type: String, color: Color, hover: Color, border: Color, font: Color) -> void:

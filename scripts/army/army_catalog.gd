@@ -220,7 +220,7 @@ func _included_units(army: Army) -> Dictionary:
 		for warscroll in home.warscrolls:
 			if not _is_unit(warscroll) or faction.get_warscroll(warscroll.id) or result.has(warscroll.id):
 				continue
-			if inclusion.units.is_empty() or Array(inclusion.units).any(func(n: String) -> bool: return RegimentOption._names(warscroll, n)):
+			if inclusion.units.is_empty() or Array(inclusion.units).any(func(n: String) -> bool: return RegimentOption.is_named(warscroll, n)):
 				result[warscroll.id] = [inclusion.faction, warscroll]
 	return result
 
@@ -252,7 +252,7 @@ func can_be_non_hero_general(army: Army, warscroll: Warscroll) -> bool:
 	var army_roster := roster(army)
 	if army_roster == null or army_roster.non_hero_general.is_empty() or warscroll.has_keyword("HERO"):
 		return false
-	return RegimentOption._names(warscroll, army_roster.non_hero_general) and non_hero_general_blocker(army).is_empty()
+	return RegimentOption.is_named(warscroll, army_roster.non_hero_general) and non_hero_general_blocker(army).is_empty()
 
 
 ## Whether [param warscroll] can lead a regiment without being a Hero: it's one of the Army of
@@ -276,20 +276,10 @@ func non_hero_general_blocker(army: Army) -> String:
 	var army_roster := roster(army)
 	if army_roster == null:
 		return ""
-	var check := func(unit: ArmyUnit, regiment: ArmyRegiment) -> String:
-		var unit_scroll := warscroll(unit, regiment)
-		if unit_scroll and Array(army_roster.non_hero_general_unless).any(func(n: String) -> bool: return RegimentOption._names(unit_scroll, n)):
+	for unit in army.all_units():
+		var unit_scroll := warscroll(unit, army.regiment_of(unit.uid))
+		if unit_scroll and Array(army_roster.non_hero_general_unless).any(func(n: String) -> bool: return RegimentOption.is_named(unit_scroll, n)):
 			return unit_scroll.name
-		return ""
-	for regiment in army.regiments:
-		for unit in regiment.units:
-			var found: String = check.call(unit, regiment)
-			if not found.is_empty():
-				return found
-	for unit in army.auxiliary:
-		var found: String = check.call(unit, null)
-		if not found.is_empty():
-			return found
 	return ""
 
 
@@ -324,7 +314,7 @@ func gained_keywords(army: Army, unit_warscroll: Warscroll) -> PackedStringArray
 		result.append(renown.keyword)
 	if renown.roster:
 		for entry in renown.roster.entries:
-			if ArmyValidator._roster_matches(entry, unit_warscroll):
+			if ArmyValidator.roster_matches(entry, unit_warscroll):
 				result.append_array(entry.gains_keywords)
 	return result
 
@@ -345,6 +335,16 @@ func regiment_options(army: Army, regiment: ArmyRegiment) -> Array[RegimentOptio
 			return unit_scroll == null or options.any(func(o: RegimentOption) -> bool: return o.matches(unit_scroll, gained_keywords(army, unit_scroll))))
 		if fits:
 			result.append_array(options)
+	return result
+
+
+## Names of the Unique units in [param army], once for each unit, which it can't include again.
+func unique_unit_names(army: Army) -> PackedStringArray:
+	var result := PackedStringArray()
+	for unit in army.all_units():
+		var unit_scroll := warscroll(unit, army.regiment_of(unit.uid))
+		if unit_scroll and unit_scroll.has_keyword("UNIQUE"):
+			result.append(unit_scroll.name)
 	return result
 
 

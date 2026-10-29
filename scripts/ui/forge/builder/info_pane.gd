@@ -153,12 +153,7 @@ func _state() -> Array:
 	match tab:
 		"roster":
 			# Unique units in the army can't be added again.
-			var unique := PackedStringArray()
-			for unit in army.all_units():
-				var warscroll := builder.catalog.warscroll(unit, army.regiment_of(unit.uid))
-				if warscroll and warscroll.has_keyword("UNIQUE"):
-					unique.append(warscroll.name)
-			state.append_array([selected, favourites, unique])
+			state.append_array([selected, favourites, builder.catalog.unique_unit_names(army)])
 		"rules":
 			state.append_array([open_lores, army.formation, army.tactics, army.spell_lore, army.prayer_lore,
 					army.manifestation_lore])
@@ -583,20 +578,8 @@ func _process(_delta: float) -> void:
 
 
 static func _find_info_key(node: Node, key: String) -> Control:
-	for child in node.get_children():
-		if child.get_meta(&"info_key", "") == key:
-			return child
-		var found := _find_info_key(child, key)
-		if found:
-			return found
-	return null
+	return UIBuilder.find_descendant(node, func(child: Node) -> bool: return child.get_meta(&"info_key", "") == key) as Control
 
 
 static func _first_button(node: Node) -> Button:
-	for child in node.get_children():
-		if child is Button and not child.disabled:
-			return child
-		var found := _first_button(child)
-		if found:
-			return found
-	return null
+	return UIBuilder.find_descendant(node, func(child: Node) -> bool: return child is Button and not child.disabled) as Button
