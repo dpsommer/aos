@@ -562,9 +562,10 @@ func test_warscroll_of_an_included_unit_in_a_built_regiment_comes_from_its_facti
 
 ## A catalog whose Army of Renown "Horde" has the given roster entries and excluded unit names, and
 ## includes all of the faction "home".
-func _filtering_catalog(entries: Array[RosterEntry], excluded := PackedStringArray()) -> ArmyCatalog:
+## [param home] is the faction the Army of Renown includes units from, [method _home] by default.
+func _filtering_catalog(entries: Array[RosterEntry], excluded := PackedStringArray(), home: Faction = null) -> ArmyCatalog:
 	var faction := _faction()
-	var home := _home()
+	home = home if home else _home()
 	var renown := faction.armies_of_renown[0]
 	renown.roster = ArmyRoster.new()
 	renown.roster.entries = entries
@@ -667,9 +668,9 @@ func test_unit_warscrolls_keep_unrestricted_units_for_an_army_without_an_army_of
 
 
 func test_unit_warscrolls_leave_out_an_included_army_of_renown_unit_for_another_army_of_renown() -> void:
-	var catalog := _filtering_catalog([Kit.roster_entry("Sailor")] as Array[RosterEntry])
-	var home := catalog._load_faction.call("home") as Faction
+	var home := _home()
 	home.get_warscroll("sailor").army_of_renown = "March"
+	var catalog := _filtering_catalog([Kit.roster_entry("Sailor")] as Array[RosterEntry], PackedStringArray(), home)
 	assert_false("sailor" in _unit_ids(catalog, _horde_army()))
 
 

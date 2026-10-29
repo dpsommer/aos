@@ -86,8 +86,15 @@ func _press(pane: InfoPane, key: String) -> void:
 	(UIKit.keyed(pane, key) as Button).pressed.emit()
 
 
+## The first label the current tab drew. The search box and tab bar have none, so it's replaced
+## whenever the tab redraws.
 func _first_content_node(pane: InfoPane) -> Node:
-	return pane._content.get_child(0)
+	return UIKit.find_all(pane, func(n: Node) -> bool: return n is Label)[0]
+
+
+## The timer that ends a link's highlight.
+func _flash_timer(pane: InfoPane) -> Timer:
+	return UIKit.find_all(pane, func(n: Node) -> bool: return n is Timer)[0]
 
 
 # --- Tabs ---
@@ -274,7 +281,7 @@ func test_searching_shows_matches_in_folded_types() -> void:
 
 func test_a_cards_warscroll_is_hidden_until_selected() -> void:
 	var pane := _pane()
-	assert_eq(_warscroll_count(pane._content), 0)
+	assert_eq(_warscroll_count(pane), 0)
 	assert_null(UIKit.keyed(pane, "info:aux:grunt"))
 
 
@@ -282,7 +289,7 @@ func test_pressing_a_card_shows_its_warscroll_and_the_add_auxiliary_button() -> 
 	var pane := _pane()
 	_press(pane, "info:card:grunt")
 	assert_eq(pane.selected, "grunt")
-	assert_gt(_warscroll_count(pane._content), 0)
+	assert_gt(_warscroll_count(pane), 0)
 	assert_eq((UIKit.keyed(pane, "info:aux:grunt") as Button).text, "Add as auxiliary unit")
 
 
@@ -320,7 +327,7 @@ func test_pressing_the_selected_card_again_hides_its_warscroll() -> void:
 	_press(pane, "info:card:grunt")
 	_press(pane, "info:card:grunt")
 	assert_eq(pane.selected, "")
-	assert_eq(_warscroll_count(pane._content), 0)
+	assert_eq(_warscroll_count(pane), 0)
 
 
 func test_only_one_card_is_selected_at_a_time() -> void:
@@ -471,7 +478,7 @@ func test_rules_tab_has_a_section_per_kind_of_rules() -> void:
 
 
 func test_sections_start_open_with_their_rules_shown() -> void:
-	assert_gt(_ability_count(_rules_pane()._content), 0)
+	assert_gt(_ability_count(_rules_pane()), 0)
 
 
 func test_folding_a_section_hides_its_rules() -> void:
@@ -480,24 +487,24 @@ func test_folding_a_section_hides_its_rules() -> void:
 		if UIKit.keyed(pane, "info:sec:" + title):
 			_press(pane, "info:sec:" + title)
 	assert_has(pane.folded, "sec:Battle Traits")
-	assert_eq(_ability_count(pane._content), 0)
+	assert_eq(_ability_count(pane), 0)
 	assert_eq(UIKit.find_all(pane, func(n: Node) -> bool: return n is TacticCard).size(), 0)
 
 
 func test_unfolding_a_section_shows_its_rules_again() -> void:
 	var pane := _rules_pane()
 	_press(pane, "info:sec:Battle Traits")
-	var folded := _ability_count(pane._content)
+	var folded := _ability_count(pane)
 	_press(pane, "info:sec:Battle Traits")
-	assert_gt(_ability_count(pane._content), folded)
+	assert_gt(_ability_count(pane), folded)
 
 
 func test_formations_are_groups_that_can_be_folded() -> void:
 	var pane := _rules_pane()
-	var before := _ability_count(pane._content)
+	var before := _ability_count(pane)
 	_press(pane, "info:grp:Battle Formations:Vanguard")
 	assert_has(pane.folded, "grp:Battle Formations:Vanguard")
-	assert_lt(_ability_count(pane._content), before)
+	assert_lt(_ability_count(pane), before)
 
 
 func test_rules_tab_has_no_manifestations_section() -> void:
@@ -506,7 +513,7 @@ func test_rules_tab_has_no_manifestations_section() -> void:
 
 ## Ability cards in the pane whose ability's name contains [param text].
 func _rules_containing(pane: InfoPane, text: String) -> Array[Node]:
-	return UIKit.find_all(pane._content, func(n: Node) -> bool:
+	return UIKit.find_all(pane, func(n: Node) -> bool:
 		return n is AbilityCard and n.ability.name.contains(text))
 
 
@@ -574,10 +581,10 @@ func test_lores_start_folded() -> void:
 
 
 func test_a_folded_lore_shows_no_rules() -> void:
-	var folded := _ability_count(_rules_pane()._content)
+	var folded := _ability_count(_rules_pane())
 	var pane := _rules_pane()
 	_press(pane, "info:grp:Lores:Fire Spells")
-	assert_gt(_ability_count(pane._content), folded)
+	assert_gt(_ability_count(pane), folded)
 
 
 func test_pressing_a_lore_unfolds_it_and_again_folds_it() -> void:
@@ -621,7 +628,7 @@ func test_rules_search_filters_the_sections() -> void:
 func test_rules_search_unfolds_matching_lores() -> void:
 	var pane := _rules_pane()
 	_search(pane, "fireball")
-	assert_gt(_ability_count(pane._content), 0)
+	assert_gt(_ability_count(pane), 0)
 
 
 func test_rules_search_with_no_match_shows_a_message() -> void:
@@ -734,9 +741,9 @@ func test_adding_a_regiment_from_the_tab_updates_the_army() -> void:
 
 func test_opening_a_unit_in_the_tab_redraws_the_tab() -> void:
 	var pane := _renown_pane()
-	var before := _warscroll_count(pane._content)
+	var before := _warscroll_count(pane)
 	_press(pane, "tab:Band:0")
-	assert_gt(_warscroll_count(pane._content), before)
+	assert_gt(_warscroll_count(pane), before)
 
 
 # --- Settings ---
@@ -1059,13 +1066,13 @@ func test_links_close_an_open_picker() -> void:
 func test_links_start_the_flash_timer() -> void:
 	var pane := _pane()
 	pane.show_tactic("Card A")
-	assert_false(pane._flash_timer.is_stopped())
+	assert_false(_flash_timer(pane).is_stopped())
 
 
 func test_flash_ends_when_the_timer_runs_out() -> void:
 	var pane := _pane()
 	pane.show_tactic("Card A")
-	pane._flash_timer.timeout.emit()
+	_flash_timer(pane).timeout.emit()
 	assert_eq(pane.flash_key, "")
 
 
@@ -1074,7 +1081,7 @@ func test_flash_highlights_only_while_it_lasts() -> void:
 	pane.show_unit(pane.builder.catalog.faction.get_warscroll("grunt"))
 	var flashing := UIKit.find_all(pane, func(n: Node) -> bool: return n is PanelContainer and n.theme_type_variation == "FlashRowPanel")
 	assert_eq(flashing.size(), 1)
-	pane._flash_timer.timeout.emit()
+	_flash_timer(pane).timeout.emit()
 	flashing = UIKit.find_all(pane, func(n: Node) -> bool: return n is PanelContainer and n.theme_type_variation == "FlashRowPanel")
 	assert_eq(flashing.size(), 0)
 
@@ -1092,9 +1099,8 @@ func test_a_tactic_link_focuses_the_card() -> void:
 	pane.show_tactic("Card B")
 	for i in 4:
 		await get_tree().process_frame
-	var target := InfoPane._find_info_key(pane._content, "tactic:Card B")
-	assert_not_null(target)
-	assert_true(target.has_focus())
+	var focused := pane.get_viewport().gui_get_focus_owner()
+	assert_true(focused is TacticCard and focused.card_name == "Card B", "focus is on %s" % focused)
 
 
 func test_a_link_to_something_missing_does_not_error_after_the_wait() -> void:
@@ -1102,7 +1108,9 @@ func test_a_link_to_something_missing_does_not_error_after_the_wait() -> void:
 	pane.show_regiment_of_renown("Nowhere")
 	for i in 4:
 		await get_tree().process_frame
-	assert_eq(pane._scroll_to, "")
+	assert_false(pane.is_processing())
+	# The missing target isn't scrolled to on a later redraw either.
+	pane.set_tab("settings")
 	assert_false(pane.is_processing())
 
 
@@ -1165,4 +1173,4 @@ func test_refresh_does_nothing_without_an_editor() -> void:
 	var pane := InfoPane.new(builder)
 	add_child_autofree(pane)
 	pane.refresh()
-	assert_eq(pane._content.get_child_count(), 0)
+	assert_eq(UIKit.find_all(pane, func(n: Node) -> bool: return n is Label).size(), 0)

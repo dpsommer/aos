@@ -405,7 +405,7 @@ func test_every_army_of_renown_roster_keyword_entry_matches_a_warscroll() -> voi
 				continue
 			for entry in army.roster.entries:
 				if entry.unit.is_empty() and entry.one_of.is_empty():
-					var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator._roster_matches(entry, w))
+					var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator.roster_matches(entry, w))
 					assert_true(found, "%s: %s roster entry %s matches no warscroll" % [faction.name, army.name, entry.keywords])
 
 
@@ -417,7 +417,7 @@ func test_every_army_of_renown_roster_per_item_matches_a_warscroll() -> void:
 			for entry in army.roster.entries:
 				if entry.per.is_empty():
 					continue
-				var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator._per_matches(entry, w))
+				var found := faction.warscrolls.any(func(w: Warscroll) -> bool: return ArmyValidator.names_or_keywords(w, entry.per))
 				assert_true(found, "%s: %s roster per %s matches no warscroll" % [faction.name, army.name, entry.per])
 
 ## Each leader an Army of Renown gives extra regiment options is the name or keyword of a warscroll
