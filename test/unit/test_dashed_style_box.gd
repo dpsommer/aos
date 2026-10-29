@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for the dashed rounded border (scripts/ui/dashed_style_box.gd).
+## Unit tests for the dashed rounded border (scripts/ui/common/dashed_style_box.gd).
 
 const RECT := Rect2(10, 20, 100, 60)
 

@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for the lore card widget (scripts/ui/forge/builder/lore_card.gd).
+## Unit tests for the lore card widget (scripts/ui/cards/lore_card.gd).
 
 const Kit := preload("res://test/support/army_kit.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")

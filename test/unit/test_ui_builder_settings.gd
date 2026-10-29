@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for the setting rows in scripts/ui/ui_builder.gd (switch_row and setting_row).
+## Unit tests for the setting rows in scripts/ui/common/ui_builder.gd (switch_row and setting_row).
 
 const UIKit := preload("res://test/support/ui_kit.gd")
 

@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for the battle tactics card widget (scripts/ui/forge/builder/tactic_card.gd).
+## Unit tests for the battle tactics card widget (scripts/ui/cards/tactic_card.gd).
 
 const UIKit := preload("res://test/support/ui_kit.gd")
 

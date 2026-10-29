@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for the warscroll card (scripts/ui/forge/builder/warscroll_card.gd).
+## Unit tests for the warscroll card (scripts/ui/cards/warscroll_card.gd).
 
 const Kit := preload("res://test/support/army_kit.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")

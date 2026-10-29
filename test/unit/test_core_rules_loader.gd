@@ -1,5 +1,5 @@
 extends GutTest
-## Unit tests for building the core rules from JSON (scripts/data/core_rules_loader.gd, core_rules.gd).
+## Unit tests for building the core rules from JSON (scripts/data/core/core_rules_loader.gd, core_rules.gd).
 ##
 ## Expectations are read from the fixture JSON, so editing a fixture value doesn't break tests.
 
