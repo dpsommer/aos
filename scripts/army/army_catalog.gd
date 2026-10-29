@@ -54,6 +54,16 @@ func enhancement_types(army: Army) -> PackedStringArray:
 	return types
 
 
+## How many enhancements of [param type] the army can include: 1 (Core Rules 4.1) unless one of its
+## tables of that type allows more, as the Swords of Chaos' First Circle Titles do.
+func enhancement_limit(army: Army, type: String) -> int:
+	var limit := 1
+	for table in enhancement_tables(army):
+		if table.name == type:
+			limit = maxi(limit, table.max)
+	return limit
+
+
 ## The enhancement called [param enhancement_name] in a table of [param type], or null.
 func enhancement(army: Army, type: String, enhancement_name: String) -> Ability:
 	var table := enhancement_table(army, type, enhancement_name)

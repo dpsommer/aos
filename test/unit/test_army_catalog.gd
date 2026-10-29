@@ -1235,3 +1235,49 @@ func test_non_hero_leader_is_not_a_hero() -> void:
 	army.regiments.append(Kit.regiment("r1", [unit] as Array[ArmyUnit]))
 	army.general_uid = "u1"
 	assert_false(catalog.is_hero(army, unit, _scroll(catalog, "gargant")))
+
+
+# Enhancement limit
+
+func _limit_catalog(faction_max: int, renown_max := 1) -> ArmyCatalog:
+	var faction := _faction()
+	faction.enhancement_tables[0].max = faction_max
+	faction.armies_of_renown[0].enhancement_tables[0].max = renown_max
+	return Kit.catalog(faction)
+
+
+func test_enhancement_limit_is_one_by_default() -> void:
+	assert_eq(_catalog().enhancement_limit(Kit.army(), "Heroic Traits"), 1)
+
+
+func test_enhancement_limit_is_the_tables_max() -> void:
+	assert_eq(_limit_catalog(3).enhancement_limit(Kit.army(), "Heroic Traits"), 3)
+
+
+func test_enhancement_limit_ignores_other_types_tables() -> void:
+	assert_eq(_limit_catalog(3).enhancement_limit(Kit.army(), "Artefacts of Power"), 1)
+
+
+func test_enhancement_limit_takes_the_largest_max_of_the_type() -> void:
+	var faction := _faction()
+	var extra := Kit.table("Heroic Traits", [Kit.ability("Other")] as Array[Ability])
+	extra.max = 2
+	faction.enhancement_tables.append(extra)
+	faction.enhancement_tables[0].max = 3
+	assert_eq(Kit.catalog(faction).enhancement_limit(Kit.army(), "Heroic Traits"), 3)
+
+
+func test_enhancement_limit_is_at_least_one() -> void:
+	assert_eq(_limit_catalog(0).enhancement_limit(Kit.army(), "Heroic Traits"), 1)
+
+
+func test_enhancement_limit_is_one_for_an_unknown_type() -> void:
+	assert_eq(_limit_catalog(3).enhancement_limit(Kit.army(), "Nonsense"), 1)
+
+
+func test_army_of_renown_limit_comes_from_its_own_tables() -> void:
+	assert_eq(_limit_catalog(3, 2).enhancement_limit(_horde_army(), "Heroic Traits"), 2)
+
+
+func test_army_of_renown_does_not_inherit_the_factions_limit() -> void:
+	assert_eq(_limit_catalog(3, 1).enhancement_limit(_horde_army(), "Heroic Traits"), 1)

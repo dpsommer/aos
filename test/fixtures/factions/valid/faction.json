@@ -18,7 +18,7 @@
 		{"name": "Formation One", "points": 20, "abilities": [{"name": "Formation Ability", "effect": "Formation effect."}]}
 	],
 	"enhancement_tables": [
-		{"name": "Heroic Traits", "group": "Group One", "entries": [{"name": "Trait Enhancement", "points": 15, "effect": "Enhancement effect."}]}
+		{"name": "Heroic Traits", "group": "Group One", "max": 3, "entries": [{"name": "Trait Enhancement", "points": 15, "effect": "Enhancement effect."}]}
 	],
 	"lores": [
 		{"name": "Lore One", "kind": "spell", "points": 20, "entries": [{"name": "Spell One", "timing": "Your Hero Phase", "casting_value": 7}]},

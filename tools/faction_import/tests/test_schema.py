@@ -373,3 +373,15 @@ def test_army_of_renown_omits_keyword_text_does_not_give():
 def test_army_of_renown_keyword_comes_before_text():
     keys = list(schema.army_of_renown(aor(legends=True, text="All units in your army gain the HOST keyword.")))
     assert keys.index("legends") < keys.index("keyword") < keys.index("text")
+
+
+def test_table_keeps_max_above_one():
+    assert schema.table({"name": "First Circle Titles", "max": 3, "entries": []})["max"] == 3
+
+
+def test_table_without_max_has_no_max_key():
+    assert "max" not in schema.table({"name": "Heroic Traits", "entries": []})
+
+
+def test_table_drops_max_of_one():
+    assert "max" not in schema.table({"name": "Heroic Traits", "max": 1, "entries": []})

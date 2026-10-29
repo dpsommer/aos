@@ -242,6 +242,7 @@
 					"units": [
 						"Varanguard"
 					],
+					"max": 3,
 					"entries": [
 						{
 							"name": "The Grimroot Order",

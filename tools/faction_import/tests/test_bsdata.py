@@ -1429,3 +1429,56 @@ def test_faction_files_do_not_match_links_by_name(tmp_path):
     (d / "Regiments of Renown.cat").write_text(catalogue_xml("Regiments of Renown", "ror"), encoding="utf-8")
     add_faction_link(d, "❖ Regiments of Renown", "some-other-id")
     assert "Regiments of Renown.cat" not in bsdata.faction_files(str(d), FACTION)
+
+
+def with_group_constraint(tmp_path, group_id, constraint):
+    """read_faction() with the raw XML `constraint` added to the group `group_id` in the fixture faction catalogue."""
+    d = fixture_copy(tmp_path)
+    path = d / (FACTION + ".cat")
+    content = path.read_text(encoding="utf-8")
+    start = content.index('<selectionEntryGroup id="%s"' % group_id)
+    end = content.index(">", start) + 1
+    path.write_text(content[:end] + "<constraints>%s</constraints>" % constraint + content[end:], encoding="utf-8")
+    return bsdata.read_faction(bsdata.Catalogues(str(d)), FACTION)
+
+
+ROSTER_MAX = '<constraint id="c-max" type="max" field="selections" scope="roster" value="%s"/>'
+
+
+def test_table_without_roster_max_has_no_max(faction_data):
+    assert all("max" not in t for t in tables(faction_data))
+
+
+def test_table_with_roster_max_above_one_has_that_max(tmp_path):
+    faction_data = with_group_constraint(tmp_path, "g-artefacts", ROSTER_MAX % "3")
+    assert table_with(faction_data, "Lens of Truth")["max"] == 3
+
+
+def test_roster_max_of_one_is_left_out(tmp_path):
+    faction_data = with_group_constraint(tmp_path, "g-artefacts", ROSTER_MAX % "1")
+    assert "max" not in table_with(faction_data, "Lens of Truth")
+
+
+def test_decimal_roster_max_is_read_as_an_int(tmp_path):
+    faction_data = with_group_constraint(tmp_path, "g-artefacts", ROSTER_MAX % "3.0")
+    assert table_with(faction_data, "Lens of Truth")["max"] == 3
+
+
+def test_nested_tables_share_their_group_max(tmp_path):
+    faction_data = with_group_constraint(tmp_path, "g-heroic", ROSTER_MAX % "3")
+    assert [t.get("max") for t in tables(faction_data) if t["name"] == "Heroic Traits"] == [3] * 2
+
+
+def test_max_only_applies_to_its_own_group(tmp_path):
+    faction_data = with_group_constraint(tmp_path, "g-heroic", ROSTER_MAX % "3")
+    assert "max" not in table_with(faction_data, "Lens of Truth")
+
+
+@pytest.mark.parametrize("constraint", [
+    '<constraint id="c" type="min" field="selections" scope="roster" value="3"/>',
+    '<constraint id="c" type="max" field="selections" scope="parent" value="3"/>',
+    '<constraint id="c" type="max" field="points" scope="roster" value="3"/>',
+])
+def test_other_constraints_are_not_a_max(tmp_path, constraint):
+    faction_data = with_group_constraint(tmp_path, "g-artefacts", constraint)
+    assert "max" not in table_with(faction_data, "Lens of Truth")

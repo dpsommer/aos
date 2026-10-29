@@ -445,7 +445,10 @@
 					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly EVERGREEN HUNT MONSTER that has not used a RAMPAGE ability this turn to use this ability, then pick an enemy unit in combat with it to be the target.",
-					"effect": "Roll a dice and add the number of damage points the target has. If the result exceeds the target's Health characteristic, 1 model in the target unit is slain."
+					"effect": "Roll a dice and add the number of damage points the target has. If the result exceeds the target's Health characteristic, 1 model in the target unit is slain.",
+					"keywords": [
+						"RAMPAGE"
+					]
 				},
 				{
 					"name": "Abundant Growth",

@@ -226,6 +226,7 @@ func _enhancement_tables(data: Dictionary, path: String) -> Array[EnhancementTab
 			table.source = _string(items[i], "source", table_path)
 			table.legends = _is_retired(table.source)
 			table.units = _strings(items[i], "units", table_path)
+			table.max = _int(items[i], "max", table_path) if items[i].has("max") else 1
 			table.entries = _abilities(items[i], "entries", table_path)
 		result.append(table)
 	return result

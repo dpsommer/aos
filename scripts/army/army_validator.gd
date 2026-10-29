@@ -311,9 +311,10 @@ static func _check_regiments_of_renown(army: Army, catalog: ArmyCatalog, result:
 					": %s armies can't include Regiments of Renown." % renown.name if renown and allowed.is_empty() else "."])
 
 
-## Core Rules 4.1: 1 enhancement of each type, never the same one twice, and none on UNIQUE units
-## or units in a Regiment of Renown. Heroic Traits and Artefacts of Power need a Hero, and a table
-## for certain units (Great Endrinworks for Skyvessels) can only go on them.
+## Core Rules 4.1: 1 enhancement of each type (or a table's own limit, such as 3 First Circle
+## Titles), never the same one twice, and none on UNIQUE units or units in a Regiment of Renown.
+## Heroic Traits and Artefacts of Power need a Hero, and a table for certain units (Great
+## Endrinworks for Skyvessels) can only go on them.
 static func _check_enhancements(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:
 	var by_type := {}
 	for entry in entries:
@@ -337,8 +338,14 @@ static func _check_enhancements(army: Army, catalog: ArmyCatalog, entries: Array
 			by_type.get_or_add(type, []).append(enhancement_name)
 	for type: String in by_type:
 		var picked: Array = by_type[type]
-		if picked.size() > 1:
-			result.problems.append("Your army can include only 1 of the %s (%d given)." % [type, picked.size()])
+		var limit := catalog.enhancement_limit(army, type)
+		if picked.size() > limit:
+			result.problems.append("Your army can include only %d of the %s (%d given)." % [limit, type, picked.size()])
+		var seen := {}
+		for enhancement_name: String in picked:
+			if seen.has(enhancement_name) and limit > 1:
+				result.problems.append("%s is given twice." % enhancement_name)
+			seen[enhancement_name] = true
 
 
 ## Which units [param table] is for, when there are few enough to name: ": only for Arkanaut

@@ -118,6 +118,17 @@ func test_enhancement_table_units_come_from_file() -> void:
 	assert_eq(_load("scourge").enhancement_tables[3].units, PackedStringArray(expected.units))
 
 
+func test_enhancement_table_max_comes_from_file() -> void:
+	var expected: int = _json("valid", "faction.json").enhancement_tables[0].max
+	assert_gt(expected, 1, "fixture table should allow more than 1")
+	assert_eq(_load("valid").enhancement_tables[0].max, expected)
+
+
+func test_enhancement_table_without_max_allows_one() -> void:
+	assert_false(_json("scourge", "faction.json").enhancement_tables[3].has("max"), "fixture table should omit max")
+	assert_eq(_load("scourge").enhancement_tables[3].max, 1)
+
+
 func test_enhancement_table_without_units_has_none() -> void:
 	assert_eq(_load("valid").enhancement_tables[0].units.size(), 0)
 

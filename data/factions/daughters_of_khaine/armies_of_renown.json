@@ -198,7 +198,7 @@
 					"category": "defensive",
 					"timing": "Passive",
 					"colour": "green",
-					"effect": "Friendly Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood units are either empty or full. They start the battle empty.\nWhile a friendly Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood unit is full:\n• That Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood has WARD (4+) against damage points inflicted by shooting attacks.\n• Subtract 1 from hit rolls for shooting attacks that target friendly CRONESEER'S PARIAHS units while they are wholly within 9\" of that Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood."
+					"effect": "Friendly Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood units are either empty or full. They start the battle empty.\nWhile a friendly Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood is full:\n• That Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood has WARD (4+) against damage points inflicted by shooting attacks.\n• Subtract 1 from hit rolls for shooting attacks that target friendly CRONESEER'S PARIAHS units while they are wholly within 9\" of that Slaughter Queen on Cauldron of Blood or Hag Queen on Cauldron of Blood."
 				},
 				{
 					"name": "Laden with Prophecy",
@@ -225,7 +225,7 @@
 					"colour": "orange",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly CRONESEER'S PARIAHS CAVALRY unit that has not charged this turn and is in combat with an enemy unit that charged this turn to be the target.",
-					"effect": "Roll a dice. On 3+, the target can immediately use a RETREAT ability as if it were your movement phase. In addition, no mortal damage is inflicted on the target by that RETREAT ability."
+					"effect": "Roll a dice. On a 3+, the target can immediately use a RETREAT ability as if it were your movement phase. In addition, no mortal damage is inflicted on the target by that RETREAT ability."
 				},
 				{
 					"name": "The Blood Reveals All",

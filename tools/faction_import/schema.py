@@ -108,6 +108,8 @@ def table(t, points=False):
         out["points"] = t.get("points") or 0
     if t.get("units"):
         out["units"] = t["units"]
+    if t.get("max", 1) > 1:
+        out["max"] = t["max"]
     out["entries"] = [ability(e) for e in t["entries"]]
     return out
 

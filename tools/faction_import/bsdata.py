@@ -282,6 +282,15 @@ def min_count(entry):
     return 0
 
 
+def army_max(group):
+    """How many of a group's enhancements an army can include, from its roster-wide max constraint:
+    3 for the Swords of Chaos' First Circle Titles. 1 when the group has none, as Core Rules 4.1 allow."""
+    for c in kids(group, "constraints", "constraint"):
+        if c.get("type") == "max" and c.get("field") == "selections" and c.get("scope") == "roster":
+            return int(float(c.get("value")))
+    return 1
+
+
 def base_size(unit):
     sizes = {}
     def size_of(rule):
@@ -434,7 +443,7 @@ def enhancement_tables(cats, root, owner="", units=()):
     """Enhancement tables, one per nested group. A table only some of `units` (unit entry, link)
     can take, other than the non-Unique Heroes, lists them as `units`: Great Endrinworks name the
     Skyvessels, and Cities of Sigmar's Heroic Traits leave out the Cogforts. Groups no unit links
-    have no `units`."""
+    have no `units`. A table an army can include more than 1 of has a `max`."""
     eligible = eligible_units(units)
     unrestricted = unrestricted_units(units)
     tables = []
@@ -444,6 +453,8 @@ def enhancement_tables(cats, root, owner="", units=()):
             continue
         names = eligible.get(group.get("id"), set())
         restriction = {"units": sorted(names)} if names and names != unrestricted else {}
+        if army_max(group) > 1:
+            restriction["max"] = army_max(group)
         direct = [enhancement(cats, e) for e in kids(group, "selectionEntries", "selectionEntry")]
         if direct:
             tables.append({"name": name, "source": source_of(cats.publication(group)), **restriction, "entries": direct})

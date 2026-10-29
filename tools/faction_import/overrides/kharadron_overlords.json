@@ -7,7 +7,9 @@
 		"scourge_of_ghyran_grundstok_gunhauler > Sky Ordinance": {"name": "Sky Ordnance"},
 		"thundriks_profiteers > Aethermatic Anatomiser": {"abilities": ["Shoot in Combat"]},
 		"Grundstok Expeditionary Force": {"roster": {"entries": [{"unit": "Arkanaut Admiral"}, {"unit": "Grundstok Thunderers"}, {"unit": "Grundstok Gunhauler"}, {"unit": "Endrinmaster with Dirigible Suit"}, {"unit": "Aether-Khemist"}, {"unit": "Codewright"}, {"unit": "Aetheric Navigator"}, {"unit": "Endrinmaster with Endrinharness"}], "regiments_of_renown": false}},
-		"Pioneer Outpost": {"roster": {"entries": [{"unit": "Arkanaut Admiral"}, {"unit": "Aetheric Navigator"}, {"unit": "Endrinmaster with Endrinharness"}, {"keywords": ["KHARADRON OVERLORDS", "INFANTRY"], "not_keywords": ["HERO"]}, {"unit": "Grundstok Gunhauler"}], "regiments_of_renown": false}},
+		"Grundstok Expeditionary Force > Aetheric Nullifier": {"timing": "Reaction: Opponent declared a SHOOT or FIGHT ability for a MANIFESTATION within 9\" of the bearer"},
+		"Grundstok Expeditionary Force > Transport Skyfarers": {"used_by": "The SKYVESSEL using that Move ability."},
+		"Pioneer Outpost": {"roster":{"entries": [{"unit": "Arkanaut Admiral"}, {"unit": "Aetheric Navigator"}, {"unit": "Endrinmaster with Endrinharness"}, {"keywords": ["KHARADRON OVERLORDS", "INFANTRY"], "not_keywords": ["HERO"]}, {"unit": "Grundstok Gunhauler"}], "regiments_of_renown": false}},
 		"The Magnate's Crew": {"roster": {"entries": [{"unit": "Brokk Grungsson, Lord-Magnate of Barak-Nar"}, {"unit": "Endrinmaster with Dirigible Suit"}, {"unit": "Null-Khemist"}, {"unit": "Arkanaut Ironclad"}, {"unit": "Arkanaut Frigate"}, {"unit": "Grundstok Gunhauler"}, {"unit": "Vongrim Salvagers"}, {"unit": "Vongrim Harpoon Crew"}, {"unit": "Skywardens"}, {"unit": "Endrinriggers"}], "regiments_of_renown": false, "faction_terrain": false, "non_hero_general": {"unit": "Arkanaut Ironclad", "unless": ["Brokk Grungsson, Lord-Magnate of Barak-Nar"]}, "regiment_options": [{"leaders": ["Arkanaut Ironclad"], "options": ["Any MAGNATE’S CREW"], "heroes": true}]}}
 	}
 }

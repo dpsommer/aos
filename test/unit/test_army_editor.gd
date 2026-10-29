@@ -724,6 +724,39 @@ func test_set_enhancement_allows_repeats_when_overriding() -> void:
 	assert_true(editor.army.find_unit("u1").enhancements.has("Heroic Traits"))
 
 
+## An editor on a populated army whose Heroic Traits allow 3 of them, with a second regiment led by hero_b.
+func _titles_editor() -> ArmyEditor:
+	var faction := _faction()
+	faction.enhancement_tables[0].entries.append(Kit.ability("Daring"))
+	faction.enhancement_tables[0].max = 3
+	var army := Kit.army()
+	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "hero_a")] as Array[ArmyUnit]))
+	army.regiments.append(Kit.regiment("r2", [Kit.unit("u2", "hero_b")] as Array[ArmyUnit]))
+	return ArmyEditor.new(army, Kit.catalog(faction))
+
+
+func test_set_enhancement_keeps_other_units_enhancements_under_a_higher_limit() -> void:
+	var editor := _titles_editor()
+	editor.set_enhancement("u1", "Heroic Traits", "Brave")
+	editor.set_enhancement("u2", "Heroic Traits", "Bold")
+	assert_eq(editor.army.find_unit("u1").enhancements["Heroic Traits"], "Brave")
+
+
+func test_set_enhancement_moves_the_same_enhancement_under_a_higher_limit() -> void:
+	var editor := _titles_editor()
+	editor.set_enhancement("u1", "Heroic Traits", "Brave")
+	editor.set_enhancement("u2", "Heroic Traits", "Brave")
+	assert_false(editor.army.find_unit("u1").enhancements.has("Heroic Traits"))
+	assert_eq(editor.army.find_unit("u2").enhancements["Heroic Traits"], "Brave")
+
+
+func test_set_enhancement_replaces_the_units_own_under_a_higher_limit() -> void:
+	var editor := _titles_editor()
+	editor.set_enhancement("u1", "Heroic Traits", "Brave")
+	editor.set_enhancement("u1", "Heroic Traits", "Bold")
+	assert_eq(editor.army.find_unit("u1").enhancements, {"Heroic Traits": "Bold"})
+
+
 func test_empty_enhancement_name_removes_the_enhancement() -> void:
 	var editor := _populated()
 	editor.set_enhancement("u1", "Heroic Traits", "Brave")

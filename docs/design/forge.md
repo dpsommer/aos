@@ -170,7 +170,7 @@ An army is an `Army` resource (`scripts/army/`): its regiments (`ArmyRegiment`),
   - regiment sizes, with a Hero leader kept first. Removing a regiment's leader, or dragging it out, leaves its slot empty (`ArmyRegiment.leaderless`, saved with the army) until `add_leader()` fills it;
   - only a regiment leader as the general;
   - one Regiment of Renown;
-  - one enhancement of each type;
+  - one enhancement of each type, or as many as the type's tables allow (3 First Circle Titles), never the same one twice;
   - weapon option counts within their caps. Reinforcing moves a count at its cap to the new cap and keeps any other count.
 - **Lookups:** `ArmyCatalog` finds the rules an army refers to. An Army of Renown's enhancements and lores replace the faction's.
 - **Points:** totalled by `ArmyPoints`.

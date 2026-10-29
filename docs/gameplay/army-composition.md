@@ -14,7 +14,7 @@ General (3.2, 3.5) | A general is picked, leads a regiment and isn't in a Regime
 Unique | No UNIQUE unit is included twice.
 Scourge warscrolls | Every unit with the same name uses the same version of its warscroll: printed, Scourge of Aqshy or Scourge of Ghyran.
 Regiments of Renown (3.5) | At most 1, and only ones the faction can include and its Army of Renown allows.
-Enhancements (4.1) | At most 1 enhancement of each type in the army. None on UNIQUE units or units in a Regiment of Renown. Heroic traits and artefacts of power only on HEROES, and a table for certain units (its `units`, e.g. Great Endrinworks for Skyvessels) only on those units. Each must still be in the army's tables.
+Enhancements (4.1) | At most 1 enhancement of each type in the army, or the table's `max` where it allows more (up to 3 First Circle Titles in a Swords of Chaos army), and never the same one twice. None on UNIQUE units or units in a Regiment of Renown. Heroic traits and artefacts of power only on HEROES, and a table for certain units (its `units`, e.g. Great Endrinworks for Skyvessels) only on those units. Each must still be in the army's tables.
 Lores (4.2) | Each picked lore is available to the army. Manifestation lores include the universal ones.
 Battle formation | One is picked when the faction has any, unless the army is an Army of Renown.
 Faction terrain | Still in the data, and allowed by the Army of Renown.

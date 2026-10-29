@@ -317,8 +317,9 @@ func set_weapon_option(uid: String, option_name: String, count: int) -> void:
 
 
 ## Gives the unit [param enhancement_name] of [param type], or removes its enhancement of that type
-## when empty. As an army can only include 1 enhancement of each type, any other unit's
-## enhancement of that type is removed.
+## when empty. As an army can usually only include 1 enhancement of each type, any other unit's
+## enhancement of that type is removed. Where the type allows more (3 First Circle Titles), only
+## another unit with the same enhancement loses it, as an army can't include it twice.
 func set_enhancement(uid: String, type: String, enhancement_name: String) -> void:
 	var unit := army.find_unit(uid)
 	if unit == null:
@@ -327,8 +328,10 @@ func set_enhancement(uid: String, type: String, enhancement_name: String) -> voi
 		unit.enhancements.erase(type)
 	else:
 		if not army.override_constraints:
+			var single := catalog.enhancement_limit(army, type) == 1
 			for other in army.all_units():
-				other.enhancements.erase(type)
+				if single or other.enhancements.get(type, "") == enhancement_name:
+					other.enhancements.erase(type)
 		unit.enhancements[type] = enhancement_name
 	changed.emit()
 

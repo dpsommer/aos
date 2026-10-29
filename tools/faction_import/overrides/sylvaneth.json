@@ -32,6 +32,7 @@
 		},
 		"Lords of the Clan": {"roster": {"entries": [{"unit": "The Lady of Vines"}, {"keywords": ["FOREST ELDER"], "not_keywords": ["UNIQUE"]}, {"keywords": ["KURNOTHI", "INFANTRY"]}], "regiments_of_renown": false}},
 		"Soulpod Guardians": {"roster": {"entries": [{"unit": "Grove Guardian"}, {"unit": "Branchwych"}, {"keywords": ["REVENANT"]}], "regiments_of_renown": false}},
-		"The Evergreen Hunt": {"roster": {"entries": [{"unit": "Belthanos, First Thorn of Kurnoth", "required": true, "general": true}, {"unit": "Kurnoth Hunters with Greatbows"}, {"unit": "Arch-Revenant"}, {"unit": "Revenant Seekers"}, {"unit": "Kurnoth Hunters with Greatscythes"}, {"unit": "Spiterider Lancers"}, {"unit": "Kurnoth Hunters with Greatswords"}], "regiments_of_renown": false}}
+		"The Evergreen Hunt > Merciful Strike": {"keywords": ["RAMPAGE"]},
+		"The Evergreen Hunt": {"roster":{"entries": [{"unit": "Belthanos, First Thorn of Kurnoth", "required": true, "general": true}, {"unit": "Kurnoth Hunters with Greatbows"}, {"unit": "Arch-Revenant"}, {"unit": "Revenant Seekers"}, {"unit": "Kurnoth Hunters with Greatscythes"}, {"unit": "Spiterider Lancers"}, {"unit": "Kurnoth Hunters with Greatswords"}], "regiments_of_renown": false}}
 	}
 }

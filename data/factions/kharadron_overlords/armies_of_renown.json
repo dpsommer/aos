@@ -40,6 +40,7 @@
 					"category": "movement",
 					"timing": "Your Movement Phase, Reaction: You declared a non-CHARGE MOVE ability for a friendly SKYVESSEL",
 					"colour": "grey",
+					"used_by": "The SKYVESSEL using that Move ability.",
 					"effect": "Pick a number of units up to that SKYVESSEL's Transport Capacity (see its warscroll) that are wholly within 6\" of it to be the targets. Units that have been transported this turn cannot be targets.\nRemove the targets from the battlefield. After the SKYVESSEL ends its move, you must set up each target unit on the battlefield, wholly within 6\" of that SKYVESSEL and not in combat. Those units have been transported. A unit cannot use CHARGE abilities if it was transported in the same turn."
 				},
 				{
@@ -91,7 +92,7 @@
 							"name": "Aetheric Nullifier",
 							"type": "active",
 							"category": "special",
-							"timing": "Opponent declared a SHOOT or FIGHT ability for a MANIFESTATION within 9\" of the bearer",
+							"timing": "Reaction: Opponent declared a SHOOT or FIGHT ability for a MANIFESTATION within 9\" of the bearer",
 							"colour": "black",
 							"effect": "Roll 2D6. If the roll equals or exceeds the banishment value listed on the MANIFESTATION's warscroll, it is banished and removed from play. You cannot pick the same MANIFESTATION to be the target of this ability more than once per phase."
 						}

@@ -467,6 +467,45 @@ func test_same_enhancement_twice_is_a_problem() -> void:
 	_assert_problem(army, "Heroic Traits")
 
 
+## A catalogue whose Heroic Traits (Brave, Bold, Daring) allow `limit` of them in an army.
+func _limit_catalog(limit: int) -> ArmyCatalog:
+	var faction := _faction()
+	faction.enhancement_tables[0].entries.append(Kit.ability("Daring"))
+	faction.enhancement_tables[0].max = limit
+	return _catalog(faction)
+
+
+## An army of hero_a plus one hero_b regiment per name, each holding that Heroic Trait.
+func _titled_army(names: Array[String]) -> Army:
+	var army := _army()
+	army.regiments[0].units[0].enhancements = {"Heroic Traits": names[0]}
+	for i in range(1, names.size()):
+		army.regiments.append(_regiment("s%d" % i, "hero_b"))
+		army.regiments[i].units[0].enhancements = {"Heroic Traits": names[i]}
+	return army
+
+
+func test_different_enhancements_up_to_the_limit_are_allowed() -> void:
+	var army := _titled_army(["Brave", "Bold", "Daring"])
+	assert_eq(_problems(army, _limit_catalog(3)).size(), 0, str(_problems(army, _limit_catalog(3))))
+
+
+func test_more_enhancements_than_the_limit_is_a_problem() -> void:
+	_assert_problem(_titled_army(["Brave", "Bold", "Daring"]), "only 2 of the Heroic Traits (3 given)", _limit_catalog(2))
+
+
+func test_exceeding_the_default_limit_names_a_limit_of_one() -> void:
+	_assert_problem(_titled_army(["Brave", "Bold"]), "only 1 of the Heroic Traits (2 given)")
+
+
+func test_same_enhancement_twice_is_a_problem_naming_it_under_a_higher_limit() -> void:
+	_assert_problem(_titled_army(["Brave", "Brave"]), "Brave is given twice", _limit_catalog(3))
+
+
+func test_different_enhancements_are_not_given_twice() -> void:
+	_assert_no_problem(_titled_army(["Brave", "Bold"]), "given twice", _limit_catalog(3))
+
+
 func test_empty_enhancement_name_is_ignored() -> void:
 	var army := _army()
 	army.regiments[0].units[0].enhancements = {"Heroic Traits": ""}
