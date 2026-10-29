@@ -39,6 +39,7 @@ import argparse, copy, glob, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bsdata, merge, regiments, schema
+import build as build_faction
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DEFAULT_DATA = os.path.join(ROOT, "data")
@@ -154,8 +155,12 @@ def apply_overrides(regs, overrides, wh_regiments):
         if not matched:
             sys.exit("replace_with_wahapedia: %r matches no ability" % name)
         for a in matched:
+            colour = a.get("colour")
             a.clear()
             a.update(copy.deepcopy(wh))
+            # Wahapedia doesn't print box colours, so the ability keeps BSData's.
+            if colour and not a.get("colour"):
+                a["colour"] = colour
     for name in overrides.get("add_from_wahapedia", []):
         r, part = target(name)
         r["abilities"].append(wahapedia_ability(r, part, "add_from_wahapedia"))
@@ -179,6 +184,22 @@ def apply_overrides(regs, overrides, wh_regiments):
     for name, factions in overrides.get("add_factions", {}).items():
         r, _ = target(name)
         r["factions"] = list(dict.fromkeys(r["factions"] + factions))
+
+
+def link_summons(regiment, manifestations):
+    """Sets "summons" on every ability of [regiment] that sets up a manifestation, unless an override
+    already set it. The regiment's own manifestations, its units (the Sigil Convocation's three
+    Lumineth ones) and its own warscrolls, are looked for first, then all of [manifestations]."""
+    unit_ids = {u.get("warscroll") for u in regiment["units"]}
+    own = [w for w in regiment.get("warscrolls", []) if "MANIFESTATION" in (w.get("keywords") or [])]
+    own += [m for m in manifestations if m["id"] in unit_ids]
+    owners = {id(a): w["id"] for w in regiment.get("warscrolls", []) for a in w["abilities"]}
+    for a in every_ability(regiment):
+        if "summons" not in a:
+            owner = owners.get(id(a), "")
+            ids = build_faction.summoned_ids(a, own, owner) or build_faction.summoned_ids(a, manifestations, owner)
+            if ids:
+                a["summons"] = ids
 
 
 def build(bsdata_dir, wahapedia_dir, overrides, data_dir=DEFAULT_DATA):
@@ -211,6 +232,10 @@ def build(bsdata_dir, wahapedia_dir, overrides, data_dir=DEFAULT_DATA):
         resolve_units(r, factions, errors)
     if errors:
         sys.exit("unresolved regiment units:\n" + "\n".join(errors))
+    # Every faction's, as a regiment can join several factions' armies.
+    manifestations = build_faction.core_manifestations(data_dir) + build_faction.other_manifestations(None, data_dir)
+    for r in merged:
+        link_summons(r, manifestations)
     return [r for r in merged], report.lines, skipped
 
 

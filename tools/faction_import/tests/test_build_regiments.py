@@ -358,6 +358,93 @@ def test_add_from_wahapedia_without_a_page_stops_the_build():
         br.apply_overrides(regs(), {"add_from_wahapedia": ["Krew > Page Rule"]}, [])
 
 
+def test_replace_with_wahapedia_keeps_bsdatas_colour_when_wahapedia_has_none():
+    r = regs()
+    r[0]["abilities"][0]["colour"] = "red"
+    br.apply_overrides(r, {"replace_with_wahapedia": {"Krew > First Rule": "First rule!"}}, WH)
+    assert r[0]["abilities"][0]["colour"] == "red"
+
+
+def test_replace_with_wahapedia_prefers_wahapedias_own_colour():
+    r = regs()
+    r[0]["abilities"][0]["colour"] = "red"
+    wh = [{"name": "krew", "abilities": [{"name": "First rule!", "effect": "W.", "colour": "blue"}]}]
+    br.apply_overrides(r, {"replace_with_wahapedia": {"Krew > First Rule": "First rule!"}}, wh)
+    assert r[0]["abilities"][0]["colour"] == "blue"
+
+
+def test_replace_with_wahapedia_gives_no_colour_when_neither_has_one():
+    r = regs()
+    br.apply_overrides(r, {"replace_with_wahapedia": {"Krew > First Rule": "First rule!"}}, WH)
+    assert "colour" not in r[0]["abilities"][0]
+
+
+# link_summons()
+
+def manifestation(wid, name):
+    return {"id": wid, "name": name, "keywords": ["MANIFESTATION"], "abilities": []}
+
+
+def summoner(name="Raise Pillar", text="Set up a Stone Pillar within 12\"."):
+    return {"name": name, "effect": text}
+
+
+def summoning_regiment(*abilities, units=(), warscrolls=()):
+    return {"name": "Krew", "abilities": list(abilities), "units": [{"warscroll": u} for u in units],
+            "warscrolls": list(warscrolls)}
+
+
+def test_link_summons_links_a_units_manifestation():
+    r = summoning_regiment(summoner(), units=["pillar"])
+    br.link_summons(r, [manifestation("pillar", "Stone Pillar")])
+    assert r["abilities"][0]["summons"] == ["pillar"]
+
+
+def test_link_summons_prefers_the_regiments_own_manifestation_to_a_same_named_one():
+    r = summoning_regiment(summoner(), units=["mine"])
+    br.link_summons(r, [manifestation("other", "Stone Pillar"), manifestation("mine", "Stone Pillar")])
+    assert r["abilities"][0]["summons"] == ["mine"]
+
+
+def test_link_summons_prefers_the_regiments_own_warscroll_manifestation():
+    own = manifestation("mine", "Stone Pillar")
+    r = summoning_regiment(summoner(), warscrolls=[own])
+    br.link_summons(r, [manifestation("other", "Stone Pillar")])
+    assert r["abilities"][0]["summons"] == ["mine"]
+
+
+def test_link_summons_falls_back_to_other_manifestations():
+    r = summoning_regiment(summoner(), units=["unrelated"])
+    br.link_summons(r, [manifestation("elsewhere", "Stone Pillar")])
+    assert r["abilities"][0]["summons"] == ["elsewhere"]
+
+
+def test_link_summons_keeps_an_existing_summons():
+    r = summoning_regiment(dict(summoner(), summons=["fixed"]), units=["pillar"])
+    br.link_summons(r, [manifestation("pillar", "Stone Pillar")])
+    assert r["abilities"][0]["summons"] == ["fixed"]
+
+
+def test_link_summons_reaches_an_own_warscrolls_ability():
+    ws = {"id": "champ", "name": "Champ", "abilities": [summoner()]}
+    r = summoning_regiment(units=["pillar"], warscrolls=[ws])
+    br.link_summons(r, [manifestation("pillar", "Stone Pillar")])
+    assert ws["abilities"][0]["summons"] == ["pillar"]
+
+
+def test_link_summons_does_not_let_an_own_warscroll_summon_itself():
+    ws = dict(manifestation("pillar", "Stone Pillar"), abilities=[summoner()])
+    r = summoning_regiment(warscrolls=[ws])
+    br.link_summons(r, [])
+    assert "summons" not in ws["abilities"][0]
+
+
+def test_link_summons_leaves_an_ability_that_sets_nothing_up_alone():
+    r = summoning_regiment({"name": "Rule", "effect": "Stone Pillar is mentioned here."}, units=["pillar"])
+    br.link_summons(r, [manifestation("pillar", "Stone Pillar")])
+    assert "summons" not in r["abilities"][0]
+
+
 def with_factions(*factions):
     r = regs()
     r[0]["factions"] = list(factions)

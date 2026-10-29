@@ -29,8 +29,15 @@
 			"used_by": "The unit using that FIGHT ability.",
 			"effect": "Pick a unit in this Regiment of Renown that has not used a FIGHT ability this turn to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved."
 		},
+		"The Sorrowmourn Choir > Harvesters of Sorrow": {
+			"colour": "yellow"
+		},
 		"Phulgoth's Shudderhood > Nauseating Convalescence": {
-			"timing": "Any Hero Phase"
+			"timing": "Any Hero Phase",
+			"colour": "purple"
+		},
+		"Godmarked Ascendant > Gifts of Chaos": {
+			"colour": "black"
 		},
 		"Rogue Engine > Mercenary Attitudes": {
 			"timing": "Your Hero Phase",

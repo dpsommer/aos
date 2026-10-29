@@ -3830,6 +3830,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Charge Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with a unit in this Regiment of Renown to be the target.",
 					"effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn.",
