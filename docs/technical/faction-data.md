@@ -1,6 +1,6 @@
 # Faction data
 
-Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoader` (`scripts/data/faction_loader.gd`) reads them into typed `Resource` classes in `scripts/data/`. `FactionCatalog` maps faction names to their data directories; a faction without one shows as "Coming soon" in the Forge.
+Each faction's rules live as JSON in `data/factions/<faction_id>/`. `FactionLoader` (`scripts/data/faction/faction_loader.gd`) reads them into typed `Resource` classes in `scripts/data/` (see [Project layout](layout.md)). `FactionCatalog` maps faction names to their data directories; a faction without one shows as "Coming soon" in the Forge.
 
 ## Files
 
@@ -132,7 +132,7 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
 
    `build.py` stops if an override matches nothing, so stale overrides get noticed.
    If the faction has a warscroll or Army of Renown another faction also has (e.g. a Death faction's Nagash), list it in `tools/faction_import/shared.json` and rebuild; see [Shared entries](#shared-entries).
-4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction_catalog.gd`. If the faction is Legends, also add it to `_LEGENDS`, which the Forge uses to label it without loading its data; `test_faction_data.gd` checks it agrees with `faction.json`.
+4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction/faction_catalog.gd`. If the faction is Legends, also add it to `_LEGENDS`, which the Forge uses to label it without loading its data; `test_faction_data.gd` checks it agrees with `faction.json`.
 5. Rerun `build_regiments.py` so the Regiments of Renown the faction can include list its id and any regiment with its units can find their warscrolls; see [Regiments of Renown](#regiments-of-renown).
 6. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
    ```sh

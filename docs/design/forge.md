@@ -55,7 +55,7 @@ The steps:
 
 ## Look
 
-Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_ready()`, built from the Forge design canvas. It provides:
+Every screen uses `UITheme` (`scripts/ui/common/ui_theme.gd`), set as its `theme` in `_ready()`, built from the Forge design canvas. It provides:
 - dark panels, warm text and a gold accent;
 - chips (tags such as Legends, Scourge or a battle tactic's kind) in pale tints of their colour, with a WCAG contrast of at least 9:1 against their background (`UITheme.CHIP_MIN_CONTRAST`);
 - Inter for text (also the project's default font) and Cinzel for headings, both in `assets/2d/fonts/` with their OFL licences;
@@ -65,11 +65,11 @@ Every screen uses `UITheme` (`scripts/ui/ui_theme.gd`), set as its `theme` in `_
 - type variations, e.g. `GoldButton`, `OptionCard`, `PageTitleLabel`.
 - dialogs in a pane-coloured window with a border. `UITheme.style_dialog()`, called on every dialog, sets its title and buttons in Cinzel (`DialogButton`; `DialogGoldButton` for the main action, e.g. Quit or Save and go back; `DialogDangerButton`, in red, for a destructive one, e.g. Delete or Discard changes). It overrides the title font on the dialog itself, because a window's title takes the theme's default font and size over its `Window` theme items. The project's default clear colour is the pane colour too: when the UI is scaled, a dialog's window can be a pixel wider and taller than its panel, and that pixel would otherwise show as a grey line along its right and bottom edges.
 
-`UIBuilder` (`scripts/ui/ui_builder.gd`) builds controls in code. Shared pieces:
-- **`OptionCard`** (`scripts/ui/option_card.gd`): a large button holding any controls, which fits its height to them. In toggle mode it shows as selected (gold border) while pressed.
-- **`PressableCard`** (`scripts/ui/forge/builder/pressable_card.gd`): the base of `TacticCard`, `LoreCard`, `RenownArmyCard` and `FormationCard`. A card that can be made pressable as a whole, with a gold outline on keyboard focus and a grey one on hover. Buttons on a pressable card (e.g. the picker's eye) still take their own clicks.
-- **`DashedStyleBox`** (`scripts/ui/dashed_style_box.gd`): a rounded box with a dashed border, used by the `DashedButton` variation for empty slots.
-- **`ArtPlaceholder`** (`scripts/ui/art_placeholder.gd`, shader `assets/shaders/ui/art_placeholder.gdshader`): diagonal stripes in a rounded box. It stands in for army, faction and unit art, including the builder's portraits.
+`UIBuilder` (`scripts/ui/common/ui_builder.gd`) builds controls in code. Shared pieces:
+- **`OptionCard`** (`scripts/ui/common/option_card.gd`): a large button holding any controls, which fits its height to them. In toggle mode it shows as selected (gold border) while pressed.
+- **`PressableCard`** (`scripts/ui/cards/pressable_card.gd`): the base of `TacticCard`, `LoreCard`, `RenownArmyCard` and `FormationCard`. A card that can be made pressable as a whole, with a gold outline on keyboard focus and a grey one on hover. Buttons on a pressable card (e.g. the picker's eye) still take their own clicks.
+- **`DashedStyleBox`** (`scripts/ui/common/dashed_style_box.gd`): a rounded box with a dashed border, used by the `DashedButton` variation for empty slots.
+- **`ArtPlaceholder`** (`scripts/ui/common/art_placeholder.gd`, shader `assets/shaders/ui/art_placeholder.gdshader`): diagonal stripes in a rounded box. It stands in for army, faction and unit art, including the builder's portraits.
 
 ## Army builder
 
@@ -193,4 +193,4 @@ An army is an `Army` resource (`scripts/army/`): its regiments (`ArmyRegiment`),
 
 ## Faction data
 
-Factions are listed by name in `scripts/data/faction_catalog.gd`, grouped by `GrandAlliance.Type` (`scripts/data/grand_alliance.gd`). The faction buttons are generated from the catalog. Factions with rules data (currently Beasts of Chaos, Blades of Khorne, Bonesplitterz, Cities of Sigmar, Daughters of Khaine, Disciples of Tzeentch, Flesh-eater Courts, Fyreslayers, Gloomspite Gitz, Hedonites of Slaanesh, Helsmiths of Hashut, Idoneth Deepkin, Ironjawz, Kharadron Overlords, Khazalite Holds, Kruleboyz, Lumineth Realm-lords, Maggotkin of Nurgle, Nighthaunt, Ogor Mawtribes, Ossiarch Bonereapers, Seraphon, Skaven, Slaves to Darkness, Sons of Behemat, Soulblight Gravelords, Stormcast Eternals and Sylvaneth) are loaded from `data/factions/`; see [Faction data](../technical/faction-data.md).
+Factions are listed by name in `scripts/data/faction/faction_catalog.gd`, grouped by `GrandAlliance.Type` (`scripts/data/faction/grand_alliance.gd`). The faction buttons are generated from the catalog. Factions with rules data (currently Beasts of Chaos, Blades of Khorne, Bonesplitterz, Cities of Sigmar, Daughters of Khaine, Disciples of Tzeentch, Flesh-eater Courts, Fyreslayers, Gloomspite Gitz, Hedonites of Slaanesh, Helsmiths of Hashut, Idoneth Deepkin, Ironjawz, Kharadron Overlords, Khazalite Holds, Kruleboyz, Lumineth Realm-lords, Maggotkin of Nurgle, Nighthaunt, Ogor Mawtribes, Ossiarch Bonereapers, Seraphon, Skaven, Slaves to Darkness, Sons of Behemat, Soulblight Gravelords, Stormcast Eternals and Sylvaneth) are loaded from `data/factions/`; see [Faction data](../technical/faction-data.md).
