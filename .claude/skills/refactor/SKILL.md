@@ -1,6 +1,6 @@
 ---
 name: refactor
-description: Find and fix code smells in production code without changing behaviour, such as duplicate or dead code, deep nesting, long functions, large classes, tight coupling, shallow interfaces, feature envy, primitive obsession and message chains. Use when the user asks to refactor, clean up, tidy, simplify or reduce tech debt in a file, folder or the whole project, or asks for a code smell review. Never edits tests; test refactoring is a separate task.
+description: Find and fix code smells in production code without changing behaviour, such as duplicate or dead code, deep nesting, long functions, large classes, tight coupling, shallow interfaces, feature envy, primitive obsession and message chains. Use when the user asks to refactor, clean up, tidy, simplify or reduce tech debt in a file, folder or the whole project, or asks for a code smell review. Never edits tests; test refactoring is the separate `refactor-tests` skill.
 ---
 
 # Refactor
@@ -9,7 +9,7 @@ Improve the structure of production code without changing what it does. The exis
 
 ## Ground rules
 
-1. **Don't touch tests.** Never create, edit, move, rename or delete anything under `test/` (including `test/support/` and `test/fixtures/`). Test refactoring is a separate task. An unchanged test suite is what shows that behaviour hasn't changed.
+1. **Don't touch tests.** Never create, edit, move, rename or delete anything under `test/` (including `test/support/` and `test/fixtures/`). Test refactoring is the separate `refactor-tests` skill. An unchanged test suite is what shows that behaviour hasn't changed.
 2. **Preserve behaviour.** A refactor changes structure, not results: same outputs, signals, side effects, saved file formats and error handling. If you find a bug, report it and leave it as it is. Fixing it is a separate change.
 3. **Keep the API the tests use.** If a test calls a function, reads a property, connects to a signal, loads a scene by path or finds a node by name, keep that name, signature and path. If a refactor would break a test, change the plan (for example, keep the old name as a thin wrapper) or skip that refactor and report it. Never change the test to fit the new code.
 4. **Stay in scope.** Only refactor production code: `scripts/`, the scripts in `scenes/`, and `tools/` if asked. Never edit `addons/` (vendored), `data/` (generated faction data; see `docs/technical/faction-data.md`) or `.uid` and `.import` files. Godot manages those.
@@ -79,7 +79,7 @@ Godot-specific care:
 - Report:
   - each change: what smell, where, which refactoring
   - smells you left alone and why (no tests, risky, would need test changes, possible bug)
-  - places where the tests could be improved, as input for the separate test refactoring task
+  - places where the tests could be improved, as input for the `refactor-tests` skill
   - the test results before and after
 
 Don't commit unless the user asks.
