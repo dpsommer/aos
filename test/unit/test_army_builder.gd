@@ -808,6 +808,20 @@ func test_empty_lore_slot_is_not_warning_coloured_without_a_wizard() -> void:
 	assert_ne(slot.get_theme_color("font_color"), UITheme.WARNING)
 
 
+func test_empty_lore_slot_is_warning_coloured_when_a_unit_gains_wizard_from_the_army_of_renown() -> void:
+	var faction := _lore_faction()
+	var gains := Kit.roster_entry("Lead")
+	gains.gains_keywords = PackedStringArray(["WIZARD"])
+	var entries: Array[RosterEntry] = [gains]
+	var renown := Kit.army_of_renown("Horde", entries)
+	renown.lores = [Kit.lore("Horde Fire", "spell")] as Array[Lore]
+	faction.armies_of_renown.append(renown)
+	var army := _valid_army()
+	army.army_of_renown = "Horde"
+	var slot := UIKit.keyed(_builder(army, faction).builder_list, "lore:spell") as Button
+	assert_eq(slot.get_theme_color("font_color"), UITheme.WARNING)
+
+
 func test_lore_section_missing_when_faction_has_no_lores() -> void:
 	var builder := _builder(_valid_army())
 	assert_null(UIKit.keyed(builder.builder_list, "lore:spell"))

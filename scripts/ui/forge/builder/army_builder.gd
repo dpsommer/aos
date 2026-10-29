@@ -577,23 +577,14 @@ static func terrain_abilities(warscroll: Warscroll) -> String:
 ## the lore's short card, which shows it in the Rules tab, with Change and Remove.
 func _lores_section() -> Control:
 	var army := editor.army
-	var wizard := false
-	var priest := false
-	for unit in army.all_units():
-		var regiment := army.regiment_of(unit.uid)
-		var warscroll := catalog.warscroll(unit, regiment)
-		if warscroll and not (regiment and regiment.is_regiment_of_renown()):
-			for keyword in warscroll.keywords:
-				wizard = wizard or keyword.begins_with("WIZARD")
-				priest = priest or keyword.begins_with("PRIEST")
+	var missing := ArmyValidator.missing_lores(army, catalog)
 	var row := UIBuilder.hbox([], 12)
-	for pick: Array in [["spell", army.spell_lore, wizard], ["prayer", army.prayer_lore, priest],
-			["manifestation", army.manifestation_lore, wizard or priest]]:
-		var kind: String = pick[0]
-		if catalog.lore_choices(army, kind, pick[1]).is_empty():
+	for kind: String in ["spell", "prayer", "manifestation"]:
+		var picked := army.lore_name(kind)
+		if catalog.lore_choices(army, kind, picked).is_empty():
 			continue
 		var title: String = RulesSections.LORE_KINDS[kind]
-		var lore := catalog.lore(army, kind, pick[1]) if not pick[1].is_empty() else null
+		var lore := catalog.lore(army, kind, picked) if not picked.is_empty() else null
 		var slot: Control
 		if lore:
 			var change := UIBuilder.button("Change", pick_lore.bind(kind), "lore:" + kind, "", "Change %s" % title.to_lower())
@@ -608,8 +599,8 @@ func _lores_section() -> Control:
 			slot = UIBuilder.button("Choose " + title.to_lower(), pick_lore.bind(kind), "lore:" + kind, "DashedButton",
 					LORE_HELP[kind])
 			slot.custom_minimum_size.y = SLOT_HEIGHT
-			# The slot turns amber when the army needs this lore and has none.
-			if pick[2]:
+			# The slot turns amber when the army needs this lore and has none, as the validator warns.
+			if kind in missing:
 				for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
 					slot.add_theme_color_override(state, UITheme.WARNING)
 		slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
