@@ -34,7 +34,7 @@ The steps:
 2. **Grand Alliance:** a card for each of Order, Chaos, Death and Destruction, with its number of factions. Pressing one goes straight to its factions.
 3. **Faction:** a card for each faction of the chosen alliance. Pressing one goes straight to its Army of Renown step.
    - Factions without rules data are disabled, with a "Coming soon" chip and tooltip.
-   - Factions moved to Legends (Beasts of Chaos, Fyreslayers) have a Legends chip. They're hidden when the Show Legends armies setting is off (see [Settings](settings.md)), and the Grand Alliance cards' faction counts leave them out.
+   - Factions moved to Legends (Beasts of Chaos, Bonesplitterz, Fyreslayers) have a Legends chip. They're hidden when the Show Legends armies setting is off (see [Settings](settings.md)), and the Grand Alliance cards' faction counts leave them out.
 4. **Army of Renown:**
    - **"No Army of Renown" card:** the faction's own rules. It's focused when the step opens, unless an Army of Renown was chosen earlier for the same faction.
    - **Army of Renown cards:** below it, two to a row. Each has:
@@ -193,4 +193,4 @@ An army is an `Army` resource (`scripts/army/`): its regiments (`ArmyRegiment`),
 
 ## Faction data
 
-Factions are listed by name in `scripts/data/faction_catalog.gd`, grouped by `GrandAlliance.Type` (`scripts/data/grand_alliance.gd`). The faction buttons are generated from the catalog. Factions with rules data (currently Beasts of Chaos, Blades of Khorne, Cities of Sigmar, Daughters of Khaine, Disciples of Tzeentch, Flesh-eater Courts, Fyreslayers, Gloomspite Gitz, Hedonites of Slaanesh, Helsmiths of Hashut, Idoneth Deepkin, Ironjawz, Kharadron Overlords, Khazalite Holds, Kruleboyz, Lumineth Realm-lords, Maggotkin of Nurgle, Nighthaunt, Ogor Mawtribes, Ossiarch Bonereapers, Seraphon, Skaven, Slaves to Darkness, Sons of Behemat, Soulblight Gravelords, Stormcast Eternals and Sylvaneth) are loaded from `data/factions/`; see [Faction data](../technical/faction-data.md).
+Factions are listed by name in `scripts/data/faction_catalog.gd`, grouped by `GrandAlliance.Type` (`scripts/data/grand_alliance.gd`). The faction buttons are generated from the catalog. Factions with rules data (currently Beasts of Chaos, Blades of Khorne, Bonesplitterz, Cities of Sigmar, Daughters of Khaine, Disciples of Tzeentch, Flesh-eater Courts, Fyreslayers, Gloomspite Gitz, Hedonites of Slaanesh, Helsmiths of Hashut, Idoneth Deepkin, Ironjawz, Kharadron Overlords, Khazalite Holds, Kruleboyz, Lumineth Realm-lords, Maggotkin of Nurgle, Nighthaunt, Ogor Mawtribes, Ossiarch Bonereapers, Seraphon, Skaven, Slaves to Darkness, Sons of Behemat, Soulblight Gravelords, Stormcast Eternals and Sylvaneth) are loaded from `data/factions/`; see [Faction data](../technical/faction-data.md).

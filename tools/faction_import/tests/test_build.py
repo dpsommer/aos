@@ -1020,3 +1020,53 @@ def test_other_manifestations_resolve_shared_warscrolls(tmp_path):
     write_warscrolls(tmp_path / "shared" / "warscrolls.json", [manifest("Shared Thing")])
     write_warscrolls(tmp_path / "factions" / "theirs" / "warscrolls.json", [{"shared": "shared_thing"}])
     assert [w["id"] for w in build.other_manifestations("mine", str(tmp_path))] == ["shared_thing"]
+
+
+# Legends notices in warscroll notes
+
+NOTICE = "This unit will move to Warhammer Legends on 1 June 2025."
+LEGENDS = {"faction": {"legends": True}}
+
+
+def with_notes(*notes):
+    d = data()
+    for w, n in zip(d["warscrolls"], notes):
+        w["notes"] = n
+    return d
+
+
+def test_legends_faction_drops_notice_from_notes():
+    d = with_notes(f"This HERO can join a unit. {NOTICE}")
+    build.apply_overrides(d, LEGENDS)
+    assert d["warscrolls"][0]["notes"] == "This HERO can join a unit."
+
+
+def test_legends_faction_drops_notice_at_start_of_notes():
+    d = with_notes(f"{NOTICE} This HERO can join a unit.")
+    build.apply_overrides(d, LEGENDS)
+    assert d["warscrolls"][0]["notes"] == "This HERO can join a unit."
+
+
+def test_legends_faction_notes_that_are_only_the_notice_become_empty():
+    d = with_notes(NOTICE)
+    build.apply_overrides(d, LEGENDS)
+    assert d["warscrolls"][0]["notes"] == ""
+
+
+def test_non_legends_faction_keeps_notice():
+    d = with_notes(f"This HERO can join a unit. {NOTICE}")
+    build.apply_overrides(d, {})
+    assert NOTICE in d["warscrolls"][0]["notes"]
+
+
+def test_legends_faction_drops_notice_from_spearhead_warscrolls():
+    d = data()
+    d["spearheads"][0]["warscrolls"][0]["notes"] = f"Keep this. {NOTICE}"
+    build.apply_overrides(d, LEGENDS)
+    assert d["spearheads"][0]["warscrolls"][0]["notes"] == "Keep this."
+
+
+def test_notes_field_override_wins_over_notice_removal():
+    d = with_notes(f"Old. {NOTICE}")
+    build.apply_overrides(d, {**LEGENDS, "fields": {"test_riders": {"notes": "Replaced."}, "test_captian": {"notes": "Mine."}}})
+    assert d["warscrolls"][0]["notes"] == "Mine."

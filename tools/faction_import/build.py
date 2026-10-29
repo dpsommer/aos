@@ -137,8 +137,20 @@ def rename_wahapedia_warscrolls(units, names):
     rename(units, names, "Wahapedia unit")
 
 
+LEGENDS_NOTICE = re.compile(r"\s*This unit will move to Warhammer Legends on [^.]*\.?")
+
+
+def drop_legends_notices(data):
+    """Wahapedia's notes announce when a unit moves to Legends; a Legends faction has already moved."""
+    for w in every_warscroll(data):
+        if w.get("notes"):
+            w["notes"] = LEGENDS_NOTICE.sub("", w["notes"]).strip()
+
+
 def apply_overrides(data, overrides):
     data["faction"].update(overrides.get("faction", {}))
+    if data["faction"].get("legends"):
+        drop_legends_notices(data)
     for old, new in overrides.get("warscroll_names", {}).items():
         matched = [w for w in every_warscroll(data) if w["name"] == old]
         if not matched:

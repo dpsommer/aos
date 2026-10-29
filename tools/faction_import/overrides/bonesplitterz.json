@@ -1,0 +1,9 @@
+{
+	"faction": {"legends": true},
+	"fields": {
+		"hedkrakkas_madmob": {"keywords": ["BONESPLITTERZ", "CHAMPION", "DESTRUCTION", "INFANTRY", "ORRUK", "UNIQUE", "WARD (6+)"]},
+		"savage_orruks": {"save": 5},
+		"savage_orruk_arrowboys": {"melee_weapons": [{"name": "Chompa", "range": 0, "attacks": "1", "hit": 4, "wound": 3, "rend": 0, "damage": "1"}]},
+		"Tireless Trackers": {"timing": "Deployment Phase", "frequency": "Once Per Battle"}
+	}
+}

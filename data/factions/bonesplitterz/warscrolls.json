@@ -1,0 +1,620 @@
+{
+	"warscrolls": [
+		{
+			"id": "hedkrakkas_madmob",
+			"name": "Hedkrakka's Madmob",
+			"legends": true,
+			"points": 100,
+			"unit_size": 4,
+			"base_size": "Hedkrakka, Gob of Gork: 40mm, Toofdagga, Wollop da Skul and Dakko Sharp-Stikka: 32mm",
+			"can_reinforce": false,
+			"notes": "This unit cannot be reinforced.",
+			"move": "5",
+			"health": 3,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Madmob Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Hedkrakka, Gob of Gork",
+					"type": "passive",
+					"category": "special",
+					"timing": "Passive",
+					"colour": "yellow",
+					"effect": "While this unit's Hedkrakka, Gob of Gork, is on the battlefield, it has WIZARD (1)."
+				},
+				{
+					"name": "Go For da Eyes",
+					"type": "active",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"colour": "blue",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "If this unit's Dakko Sharp-Stikka is on the battlefield, pick a visible enemy unit within 18\" of this unit to be the target.",
+					"effect": "Roll a dice. Add 1 to the roll if the target is a MONSTER. On a 4+, inflict 1 mortal damage on the target."
+				}
+			],
+			"keywords": [
+				"BONESPLITTERZ",
+				"CHAMPION",
+				"DESTRUCTION",
+				"INFANTRY",
+				"ORRUK",
+				"UNIQUE",
+				"WARD (6+)"
+			],
+			"composition": "Each model in this unit is armed with Madmob Weapons. The models in this unit are: Hedkrakka, Gob of Gork (champion) Toofdagga Wollop da Skul Dakko Sharp-Stikka"
+		},
+		{
+			"shared": "kragnos_the_end_of_empires",
+			"regiment_options": [
+				"Any BONESPLITTERZ"
+			],
+			"keywords": [
+				"BONESPLITTERZ"
+			]
+		},
+		{
+			"id": "maniak_weirdnob",
+			"name": "Maniak Weirdnob",
+			"legends": true,
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "60 × 35mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any BONESPLITTERZ"
+			],
+			"move": "10",
+			"health": 6,
+			"save": 5,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Bonebeast Staff",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "D3"
+				},
+				{
+					"name": "War Boar's Tusks and Hooves",
+					"range": 0,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Bone Spirit",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Combat Phase",
+					"colour": "red",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick a friendly BONESPLITTERZ CAVALRY unit within this unit's combat range to be the target.",
+					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target's combat attacks for the rest of the turn. This ability also affects Companion weapons."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"BONESPLITTERZ",
+				"WARD (6+)",
+				"CAVALRY",
+				"WIZARD (1)"
+			]
+		},
+		{
+			"id": "savage_big_boss",
+			"name": "Savage Big Boss",
+			"legends": true,
+			"points": 110,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any BONESPLITTERZ"
+			],
+			"notes": "This HERO can join a Wurrgog Prophet’s regiment.",
+			"move": "5",
+			"health": 6,
+			"save": 6,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Boss Chompa",
+					"range": 0,
+					"attacks": "6",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "3",
+					"abilities": [
+						"Anti-MONSTER (+1 Rend)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Havin' a Good Old Rukk",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Reaction: You declared a FIGHT ability for this unit",
+					"colour": "red",
+					"effect": "Pick a friendly non-HERO BONESPLITTERZ INFANTRY unit that has not used a FIGHT ability this turn and is within this unit's combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"BONESPLITTERZ",
+				"WARD (6+)",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "savage_big_stabbas",
+			"name": "Savage Big Stabbas",
+			"legends": true,
+			"points": 130,
+			"unit_size": 2,
+			"base_size": "60 × 35mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 4,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Gorktoof",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "2",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Crit (Mortal)"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Da Final Fling",
+					"type": "passive",
+					"category": "defensive",
+					"timing": "Passive",
+					"colour": "blue",
+					"effect": "While this unit is not in combat, each time a model in this unit is slain by a shooting attack and that model was within 12\" of the attacking unit, roll a dice. Add 2 to the roll if the attacking unit was a MONSTER. On a 4+, inflict D6 mortal damage on the attacking unit after the SHOOT ability has been resolved."
+				}
+			],
+			"keywords": [
+				"WARD (6+)",
+				"DESTRUCTION",
+				"BONESPLITTERZ",
+				"INFANTRY"
+			]
+		},
+		{
+			"id": "savage_boarboy_maniaks",
+			"name": "Savage Boarboy Maniaks",
+			"legends": true,
+			"points": 140,
+			"unit_size": 5,
+			"base_size": "60 × 35mm",
+			"can_reinforce": true,
+			"move": "10",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Chompas",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				},
+				{
+					"name": "War Boar's Tusks and Hooves",
+					"range": 0,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "On a Tear",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Reaction: You declared a CHARGE ability for this unit",
+					"colour": "orange",
+					"frequency": "Once Per Turn (Army)",
+					"effect": "Add 5 to this unit's control score for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"WARD (6+)",
+				"DESTRUCTION",
+				"BONESPLITTERZ",
+				"STANDARD BEARER (1/5)",
+				"MUSICIAN (1/5)",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "savage_boarboys",
+			"name": "Savage Boarboys",
+			"legends": true,
+			"points": 140,
+			"unit_size": 5,
+			"base_size": "60 × 35mm",
+			"can_reinforce": true,
+			"move": "10",
+			"health": 3,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Boarboy Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 1,
+					"damage": "1"
+				},
+				{
+					"name": "War Boar's Tusks and Hooves",
+					"range": 0,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Charge (+1 Damage)",
+						"Companion"
+					]
+				}
+			],
+			"abilities": [
+				{
+					"name": "Wild Enthusiasm",
+					"type": "passive",
+					"category": "special",
+					"timing": "Passive",
+					"colour": "purple",
+					"effect": "This unit can use the 'Power Through' command even if it has not charged this turn. In addition, when you pick a target for that command, the target does not have to have a lower Health characteristic than this unit."
+				}
+			],
+			"keywords": [
+				"CHAMPION",
+				"WARD (6+)",
+				"DESTRUCTION",
+				"BONESPLITTERZ",
+				"STANDARD BEARER (1/5)",
+				"MUSICIAN (1/5)",
+				"CAVALRY"
+			]
+		},
+		{
+			"id": "savage_orruk_arrowboys",
+			"name": "Savage Orruk Arrowboys",
+			"legends": true,
+			"points": 140,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Stinga Bow",
+					"range": 15,
+					"attacks": "2",
+					"hit": 5,
+					"wound": 4,
+					"rend": 0,
+					"damage": "1",
+					"abilities": [
+						"Crit (Auto-wound)"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Chompa",
+					"range": 0,
+					"attacks": "1",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Aim Fer Its Eyes",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Any Shooting Phase",
+					"colour": "blue",
+					"frequency": "Once Per Battle Round (Army)",
+					"declare": "If all of the attacks made with this unit's Stinga Bows this turn targeted the same enemy unit, pick that enemy unit to be the target.",
+					"effect": "Roll a dice. Add 1 to the roll if the target is a BEAST or CAVALRY unit, or add 2 to the roll if the target is a MONSTER. On a 4+, subtract 1 from the Attacks characteristic of the target's Companion weapons for the rest of the turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"WARD (6+)",
+				"DESTRUCTION",
+				"BONESPLITTERZ"
+			]
+		},
+		{
+			"id": "savage_orruk_morboys",
+			"name": "Savage Orruk Morboys",
+			"legends": true,
+			"points": 160,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 2,
+			"save": 6,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Paired Savage Weapons",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Morboy Fury",
+					"type": "passive",
+					"category": "special",
+					"timing": "Passive",
+					"colour": "black",
+					"effect": "If this unit charged this turn, enemy units cannot use commands while they are in combat with this unit."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"WARD (6+)",
+				"DESTRUCTION",
+				"BONESPLITTERZ"
+			]
+		},
+		{
+			"id": "savage_orruks",
+			"name": "Savage Orruks",
+			"legends": true,
+			"points": 140,
+			"unit_size": 10,
+			"base_size": "32mm",
+			"can_reinforce": true,
+			"move": "5",
+			"health": 2,
+			"save": 5,
+			"control": 1,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Savage Weapons",
+					"range": 0,
+					"attacks": "2",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "1"
+				}
+			],
+			"abilities": [
+				{
+					"name": "The Savage Hordes",
+					"type": "passive",
+					"category": "defensive",
+					"timing": "Passive",
+					"colour": "purple",
+					"effect": "Add 10 to the control score of this unit while it is in combat with any enemy units that charged this turn."
+				}
+			],
+			"keywords": [
+				"INFANTRY",
+				"CHAMPION",
+				"STANDARD BEARER (1/10)",
+				"MUSICIAN (1/10)",
+				"WARD (6+)",
+				"DESTRUCTION",
+				"BONESPLITTERZ"
+			]
+		},
+		{
+			"id": "wardokk",
+			"name": "Wardokk",
+			"legends": true,
+			"points": 100,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"Any BONESPLITTERZ"
+			],
+			"move": "5",
+			"health": 5,
+			"save": 6,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [],
+			"melee_weapons": [
+				{
+					"name": "Bonebeast Stikk",
+					"range": 0,
+					"attacks": "3",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Primal Hex",
+					"type": "active",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy WIZARD within 24\" of this unit to be the target.",
+					"effect": "Roll a dice. On a 3+, until the start of your next turn, each time the target uses a SPELL or UNBIND ability, this unit gains 1 ritual point."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"BONESPLITTERZ",
+				"WARD (6+)",
+				"INFANTRY",
+				"PRIEST (1)"
+			]
+		},
+		{
+			"id": "wurrgog_prophet",
+			"name": "Wurrgog Prophet",
+			"legends": true,
+			"points": 160,
+			"unit_size": 1,
+			"base_size": "32mm",
+			"can_reinforce": false,
+			"regiment_options": [
+				"0-1 Savage Big Boss",
+				"Any BONESPLITTERZ"
+			],
+			"move": "5",
+			"health": 6,
+			"save": 6,
+			"control": 2,
+			"ward": 6,
+			"ranged_weapons": [
+				{
+					"name": "Deadly Green Bolts",
+					"range": 10,
+					"attacks": "D6",
+					"hit": 4,
+					"wound": 2,
+					"rend": 1,
+					"damage": "D3",
+					"abilities": [
+						"Shoot in Combat"
+					]
+				}
+			],
+			"melee_weapons": [
+				{
+					"name": "Wurrgog Staff",
+					"range": 0,
+					"attacks": "4",
+					"hit": 4,
+					"wound": 3,
+					"rend": 0,
+					"damage": "D3"
+				}
+			],
+			"abilities": [
+				{
+					"name": "Squiggly Curse",
+					"type": "spell",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"declare": "Pick an enemy HERO in combat with the caster to be the target, then make a casting roll of 2D6.",
+					"effect": "Inflict D3 mortal damage on the target. If the target is destroyed by this spell, add 1 to this unit's power level for the rest of the battle.",
+					"casting_value": 4,
+					"keywords": [
+						"SPELL",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "Wurrgog Mask",
+					"type": "active",
+					"category": "shooting",
+					"timing": "Your Shooting Phase",
+					"colour": "blue",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "For the rest of the turn:\n• The Attacks characteristic of this unit's Deadly Green Bolts is 12 instead of D6.\n• For each unmodified hit roll of 1 for a shooting attack made by this unit, inflict D3 mortal damage on this unit after the SHOOT ability has been resolved."
+				}
+			],
+			"keywords": [
+				"HERO",
+				"DESTRUCTION",
+				"BONESPLITTERZ",
+				"WARD (6+)",
+				"INFANTRY",
+				"WIZARD (2)"
+			]
+		}
+	]
+}

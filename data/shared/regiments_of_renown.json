@@ -47,6 +47,7 @@
 			"name": "Big Grikk's Kruleshots",
 			"points": 320,
 			"factions": [
+				"bonesplitterz",
 				"gloomspite_gitz",
 				"ironjawz",
 				"ogor_mawtribes",
@@ -157,6 +158,7 @@
 			"name": "Braggit's Bottle-snatchaz",
 			"points": 480,
 			"factions": [
+				"bonesplitterz",
 				"ironjawz",
 				"kruleboyz",
 				"ogor_mawtribes",
@@ -539,6 +541,7 @@
 			"name": "Da Hurtlin' Hogz",
 			"points": 430,
 			"factions": [
+				"bonesplitterz",
 				"gloomspite_gitz",
 				"kruleboyz",
 				"ogor_mawtribes",
@@ -589,6 +592,7 @@
 			"name": "Da Kountin' Krew",
 			"points": 280,
 			"factions": [
+				"bonesplitterz",
 				"gloomspite_gitz",
 				"ironjawz",
 				"sons_of_behemat"
@@ -964,6 +968,7 @@
 			"points": 390,
 			"factions": [
 				"beasts_of_chaos",
+				"bonesplitterz",
 				"cities_of_sigmar",
 				"daughters_of_khaine",
 				"fyreslayers",
@@ -1138,6 +1143,7 @@
 			"name": "Goroan Scions",
 			"points": 360,
 			"factions": [
+				"bonesplitterz",
 				"gloomspite_gitz",
 				"ironjawz",
 				"kruleboyz",
@@ -2097,6 +2103,7 @@
 			"points": 180,
 			"factions": [
 				"beasts_of_chaos",
+				"bonesplitterz",
 				"cities_of_sigmar",
 				"daughters_of_khaine",
 				"flesh_eater_courts",
@@ -2890,6 +2897,7 @@
 			"factions": [
 				"beasts_of_chaos",
 				"blades_of_khorne",
+				"bonesplitterz",
 				"cities_of_sigmar",
 				"daughters_of_khaine",
 				"disciples_of_tzeentch",

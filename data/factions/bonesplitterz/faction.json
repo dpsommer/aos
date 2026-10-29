@@ -1,0 +1,268 @@
+{
+	"id": "bonesplitterz",
+	"name": "Bonesplitterz",
+	"grand_alliance": "destruction",
+	"legends": true,
+	"battle_traits": [
+		{
+			"name": "Spring the Trap",
+			"type": "passive",
+			"category": "offensive",
+			"timing": "Passive",
+			"colour": "red",
+			"effect": "Add 1 to wound rolls for friendly BONESPLITTERZ units that charged in the same turn."
+		},
+		{
+			"name": "Take da Bait",
+			"type": "active",
+			"category": "movement",
+			"timing": "Deployment Phase",
+			"colour": "black",
+			"frequency": "Once Per Battle",
+			"declare": "Pick up to 3 friendly BONESPLITTERZ units to be the targets.",
+			"effect": "For the rest of the battle, add 1 to the Attacks characteristic of each target's melee weapons while it is in combat with an enemy unit that charged in the same turn, and so long as the target has not charged during the battle."
+		},
+		{
+			"name": "Bonesplitterz Waaagh!",
+			"type": "active",
+			"category": "special",
+			"timing": "Your Hero Phase",
+			"colour": "yellow",
+			"frequency": "Once Per Battle (Army)",
+			"declare": "Pick each friendly BONESPLITTERZ WIZARD and BONESPLITTERZ PRIEST to be the targets.",
+			"effect": "Add 1 to the power level of each target for the rest of the turn. In addition, friendly BONESPLITTERZ units have WARD (5+) for the rest of the turn.",
+			"keywords": [
+				"WAAAGH!"
+			]
+		},
+		{
+			"name": "Monster Hunters",
+			"type": "active",
+			"category": "special",
+			"timing": "Any Charge Phase",
+			"colour": "orange",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly BONESPLITTERZ unit in combat with an enemy MONSTER to be the target.",
+			"effect": "For the rest of the turn, add 1 to wound rolls for the target's combat attacks and add 1 to save rolls for the target."
+		}
+	],
+	"battle_formations": [
+		{
+			"name": "Kunnin' Rukk",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Squint-eye Taktiks",
+					"type": "active",
+					"category": "offensive",
+					"timing": "Your Shooting Phase",
+					"colour": "blue",
+					"frequency": "Once Per Turn (Army)",
+					"declare": "Pick an enemy unit on the battlefield to be the target.",
+					"effect": "For the rest of the turn, hit rolls for shooting attacks made by friendly SAVAGE ORRUK ARROWBOYS units that target the target unit score critical hits on unmodified hit rolls of 5+."
+				}
+			]
+		},
+		{
+			"name": "Kop Rukk",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Realm-chompers",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "Ward rolls cannot be made for enemy units while they are within the combat range of any friendly BONESPLITTERZ HEROES."
+				}
+			]
+		},
+		{
+			"name": "Snaga Rukk",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "We'z da Beastiest",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "Friendly BONESPLITTERZ CAVALRY units have Anti-charge (+1 Rend)."
+				}
+			]
+		},
+		{
+			"name": "Brutal Rukk",
+			"points": 0,
+			"abilities": [
+				{
+					"name": "Tireless Trackers",
+					"type": "active",
+					"category": "movement",
+					"timing": "Deployment Phase",
+					"colour": "black",
+					"frequency": "Once Per Battle",
+					"effect": "Half the friendly non-HERO BONESPLITTERZ INFANTRY units on the battlefield (rounding up) can immediately use the 'Normal Move' ability as if it were your movement phase."
+				}
+			]
+		}
+	],
+	"enhancement_tables": [
+		{
+			"name": "Heroic Traits",
+			"group": "Da Beast Wivin",
+			"entries": [
+				{
+					"name": "Killa Instinkt",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "This unit's melee weapons have Crit (Mortal)."
+				},
+				{
+					"name": "'Orrible Leer",
+					"type": "passive",
+					"category": "",
+					"timing": "Passive",
+					"effect": "Enemy MONSTERS cannot use RAMPAGE abilities while they are in combat with this unit."
+				},
+				{
+					"name": "One Wiv Da Beast",
+					"type": "active",
+					"category": "defensive",
+					"timing": "Any Hero Phase",
+					"colour": "yellow",
+					"frequency": "Once Per Battle (Army)",
+					"effect": "The next time this phase that this unit uses a SPELL ability, instead of making a casting roll for this unit, you can use a value of 6 for the roll that cannot be modified."
+				}
+			]
+		},
+		{
+			"name": "Artefacts of Power",
+			"group": "Boss Bones and Other Gubbinz",
+			"entries": [
+				{
+					"name": "Dokk Juice",
+					"type": "passive",
+					"category": "defensive",
+					"timing": "Passive",
+					"colour": "green",
+					"effect": "If this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (1) this unit. This unit cannot use this ability again for the rest of the battle."
+				},
+				{
+					"name": "Glowin' Tattooz",
+					"type": "passive",
+					"category": "defensive",
+					"timing": "Passive",
+					"colour": "green",
+					"effect": "This unit has Ward (4+)."
+				},
+				{
+					"name": "Monsta-killa Chompa",
+					"type": "passive",
+					"category": "offensive",
+					"timing": "Passive",
+					"colour": "red",
+					"effect": "This unit has STRIKE-FIRST while it is in combat with an enemy BEAST or MONSTER."
+				}
+			]
+		}
+	],
+	"lores": [
+		{
+			"name": "Lore of the Savage Beast",
+			"kind": "spell",
+			"points": 0,
+			"entries": [
+				{
+					"name": "Glowy Green Frenzy",
+					"type": "spell",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"declare": "Pick a friendly BONESPLITTERZ WIZARD to cast this spell, pick a visible friendly unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Add 1 to the Rend characteristic of the target's melee weapons until the start of your next turn, including Companion weapons.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "Fists of Gork",
+					"type": "spell",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"declare": "Pick a friendly BONESPLITTERZ WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL"
+					]
+				},
+				{
+					"name": "Gorkamorka's War Cry",
+					"type": "spell",
+					"category": "",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"declare": "Pick a friendly BONESPLITTERZ WIZARD to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+					"effect": "Until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1.",
+					"casting_value": 6,
+					"keywords": [
+						"SPELL"
+					]
+				}
+			]
+		},
+		{
+			"name": "Prayers of the Living Wilds",
+			"kind": "prayer",
+			"points": 0,
+			"entries": [
+				{
+					"name": "Bashdokk Dance",
+					"type": "prayer",
+					"category": "movement",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"declare": "Pick a friendly BONESPLITTERZ PRIEST to chant this prayer, pick a visible friendly BONESPLITTERZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "Add 1 to charge rolls and run rolls for the target for the rest of the turn. If the chanting roll was 7+, in addition, for the rest of the turn, the target can use CHARGE abilities even if it used a RUN or RETREAT ability in the same turn.",
+					"chanting_value": 3,
+					"keywords": [
+						"PRAYER",
+						"UNLIMITED"
+					]
+				},
+				{
+					"name": "Grimdokk Dance",
+					"type": "prayer",
+					"category": "defensive",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"declare": "Pick a friendly BONESPLITTERZ PRIEST to chant this prayer, pick a visible friendly BONESPLITTERZ unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+					"effect": "Heal (3) the target unit or return a number of slain models to it with a combined Health characteristic of up to 3. If the chanting roll for this prayer was 9+, instead, Heal (6) the target unit or return a number of slain models to it with a combined Health characteristic of up to 6.",
+					"chanting_value": 4,
+					"keywords": [
+						"PRAYER"
+					]
+				},
+				{
+					"name": "Weirdokk Dance",
+					"type": "prayer",
+					"category": "special",
+					"timing": "Your Hero Phase",
+					"colour": "yellow",
+					"declare": "Pick a friendly BONESPLITTERZ PRIEST to chant this prayer. Then make a chanting roll of D6.",
+					"effect": "Subtract 1 from chanting rolls and casting rolls for enemy PRIESTS and WIZARDS while they are within 18\" of the chanter until the start of your next turn.\nIn addition, if the chanting roll was 11+, enemy PRIESTS within 18\" of the chanter each lose D6 ritual points and enemy WIZARDS cannot use UNBIND abilities while they are within 18\" of the chanter until the start of your next turn.",
+					"chanting_value": 5,
+					"keywords": [
+						"PRAYER"
+					]
+				}
+			]
+		}
+	]
+}
