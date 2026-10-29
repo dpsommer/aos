@@ -285,12 +285,36 @@ func test_max_ui_scale_leaves_the_minimum_ui_size() -> void:
 	assert_true(room.x >= GameSettings.MIN_UI_SIZE.x - 0.001 and room.y >= GameSettings.MIN_UI_SIZE.y - 0.001, str(room))
 
 
-func test_apply_graphics_sets_the_3d_scale_to_render_scale() -> void:
+func test_apply_graphics_sets_the_3d_scale_for_the_display() -> void:
 	var settings := GameSettings.new()
 	settings.render_scale = 0.75
 	var window := _window(Window.MODE_WINDOWED)
 	settings.apply_graphics(window)
-	assert_almost_eq(window.scaling_3d_scale, 0.75, 0.001)
+	assert_almost_eq(window.scaling_3d_scale, GameSettings.scale_3d(0.75, GameSettings.display_scale(window)), 0.001)
+
+
+func test_scale_3d_is_the_render_scale_on_a_standard_display() -> void:
+	assert_almost_eq(GameSettings.scale_3d(0.75, 1.0), 0.75, 0.001)
+
+
+func test_scale_3d_divides_by_the_display_scale() -> void:
+	assert_almost_eq(GameSettings.scale_3d(1.0, 2.0), 0.5, 0.001)
+	assert_almost_eq(GameSettings.scale_3d(GameSettings.RENDER_SCALE_MAX, 2.0), 1.0, 0.001)
+
+
+func test_scale_3d_stays_within_the_viewport_range() -> void:
+	assert_almost_eq(GameSettings.scale_3d(GameSettings.RENDER_SCALE_MIN, 3.0), GameSettings.SCALE_3D_MIN, 0.001)
+	assert_almost_eq(GameSettings.scale_3d(GameSettings.RENDER_SCALE_MAX, 0.5), GameSettings.SCALE_3D_MAX, 0.001)
+
+
+func test_display_scale_is_positive() -> void:
+	assert_gt(GameSettings.display_scale(_window(Window.MODE_WINDOWED)), 0.0)
+
+
+func test_render_size_is_the_window_size_in_points_scaled() -> void:
+	var window := _window(Window.MODE_WINDOWED)
+	var expected := Vector2i((Vector2(window.size) / GameSettings.display_scale(window) * 0.5).round())
+	assert_eq(GameSettings.render_size(0.5, window), expected)
 
 
 func test_reset_puts_the_properties_back_to_their_defaults() -> void:

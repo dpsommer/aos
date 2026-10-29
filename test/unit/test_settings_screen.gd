@@ -202,8 +202,7 @@ func test_render_scale_text_gives_a_percentage() -> void:
 
 func test_render_scale_text_includes_the_resulting_resolution() -> void:
 	var screen := _make_screen()
-	var size := Vector2(screen.get_window().size)
-	var expected := Vector2i((size * 0.5).round())
+	var expected := GameSettings.render_size(0.5, screen.get_window())
 	assert_string_contains(screen.render_scale_text(0.5), "%d × %d" % [expected.x, expected.y])
 
 

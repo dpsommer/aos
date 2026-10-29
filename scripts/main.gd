@@ -16,6 +16,7 @@ func _ready() -> void:
 	if _is_game():
 		GameSettings.current().apply(get_window())
 		GameSettings.current().read_window(get_window())
+		get_window().dpi_changed.connect(func() -> void: GameSettings.current().apply_graphics(get_window()))
 	show_main_menu()
 
 

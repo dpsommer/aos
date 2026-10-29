@@ -125,7 +125,7 @@ func _build_graphics() -> void:
 
 ## The render scale as a percentage, with the resolution it gives, e.g. "75% · 1440 × 810".
 func render_scale_text(scale: float) -> String:
-	var size := Vector2i((Vector2(get_window().size) * scale).round())
+	var size := GameSettings.render_size(scale, get_window())
 	return "%d%% · %d × %d" % [roundi(scale * 100), size.x, size.y]
 
 

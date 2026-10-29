@@ -7,6 +7,9 @@ extends RefCounted
 const FPS_LIMITS: Array[int] = [0, 30, 60, 90, 120, 144, 165, 240]
 const RENDER_SCALE_MIN := 0.5
 const RENDER_SCALE_MAX := 2.0
+## The range [member Viewport.scaling_3d_scale] allows.
+const SCALE_3D_MIN := 0.25
+const SCALE_3D_MAX := 2.0
 ## The least room, in UI units, every screen needs to fit: the Forge's columns need 1200 across. A low
 ## render scale enlarges text and controls only as far as leaves this much.
 const MIN_UI_SIZE := Vector2(1280, 720)
@@ -29,9 +32,10 @@ var show_legends := true
 var fullscreen: bool = ProjectSettings.get_setting("display/window/size/mode") >= DisplayServer.WINDOW_MODE_FULLSCREEN
 ## The index of the screen the window is on.
 var display := 0
-## The resolution as a fraction of the window's, for the UI and the 3D alike. Like picking a lower
-## display resolution, a lower scale makes text and controls bigger ([member Window.content_scale_factor],
-## see [method ui_scale]) and renders 3D at fewer pixels ([member Viewport.scaling_3d_scale]). The UI is
+## The resolution as a fraction of the window's in points (its pixels ÷ the display's scale factor, see
+## [method display_scale]), for the UI and the 3D alike. Like picking a lower display resolution, a lower
+## scale makes text and controls bigger ([member Window.content_scale_factor], see [method ui_scale]) and
+## renders 3D at fewer pixels ([member Viewport.scaling_3d_scale], see [method scale_3d]). The UI is
 ## still drawn at the window's full resolution, so it stays sharp.
 var render_scale := 1.0
 ## Whether the window's edges and corners can be dragged to resize it, when windowed.
@@ -122,6 +126,24 @@ static func max_ui_scale() -> float:
 	return minf(base.x / MIN_UI_SIZE.x, base.y / MIN_UI_SIZE.y)
 
 
+## How much [param scale] (a render scale) scales the 3D on a display with [param display_scale] pixels
+## per point: at a display scale of 2, 100% renders at half the window's pixels and 200% at all of them.
+static func scale_3d(scale: float, display_scale: float) -> float:
+	return clampf(scale / display_scale, SCALE_3D_MIN, SCALE_3D_MAX)
+
+
+## The scale factor of the screen [param window] is on: its pixels per point, e.g. 2 on a Retina
+## display. [method DisplayServer.screen_get_scale] gives 1 on platforms that don't have one, as Windows.
+static func display_scale(window: Window) -> float:
+	var scale := DisplayServer.screen_get_scale(window.current_screen)
+	return scale if scale > 0.0 else 1.0
+
+
+## The resolution [param scale] (a render scale) gives in [param window]: its size in points, scaled.
+static func render_size(scale: float, window: Window) -> Vector2i:
+	return Vector2i((Vector2(window.size) / display_scale(window) * scale).round())
+
+
 ## Puts [param properties] (e.g. [constant GRAPHICS]) back to their defaults. Doesn't apply or save them.
 func reset(properties: PackedStringArray) -> void:
 	var defaults := GameSettings.new()
@@ -162,7 +184,7 @@ func apply_graphics(window: Window) -> void:
 		window.mode = mode
 	window.unresizable = not window_resizable
 	window.content_scale_factor = ui_scale(render_scale)
-	window.scaling_3d_scale = render_scale
+	window.scaling_3d_scale = scale_3d(render_scale, display_scale(window))
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if vsync else DisplayServer.VSYNC_DISABLED,
 			window.get_window_id())
 	Engine.max_fps = fps_limit
