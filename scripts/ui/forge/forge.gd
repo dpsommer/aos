@@ -174,7 +174,8 @@ func _army_row(entry: ArmyStore.Entry) -> PanelContainer:
 	text.add_child(detail)
 	if not summary.note.is_empty():
 		text.add_child(UIBuilder.label(summary.note, "WarningLabel", true))
-	var art := UIBuilder.art(UIBuilder.initials(summary.faction))
+	var faction_icon := UITheme.faction_icon(summary.faction)
+	var art := UIBuilder.icon_art(faction_icon, 36) if faction_icon else UIBuilder.art(UIBuilder.initials(summary.faction))
 	art.custom_minimum_size = Vector2(56, 56)
 	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	var row := UIBuilder.hbox([art, text], 16)
@@ -286,7 +287,7 @@ func _alliance_card(alliance: GrandAlliance.Type) -> OptionCard:
 	var card := OptionCard.new()
 	card.accessibility_name = alliance_name
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var art := UIBuilder.art(alliance_name.left(1), 8, 40)
+	var art := UIBuilder.icon_art(UITheme.alliance_icon(alliance), 120)
 	art.custom_minimum_size.y = 200
 	card.add(art)
 	card.add(UIBuilder.label(alliance_name, "CardHeadingLabel"))
@@ -325,7 +326,8 @@ func _populate_factions(alliance: GrandAlliance.Type) -> void:
 		card.set_meta(&"faction", faction)
 		card.accessibility_name = faction + (" (Legends)" if FactionCatalog.is_legends(faction) else "")
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var art := UIBuilder.art(UIBuilder.initials(faction))
+		var icon := UITheme.faction_icon(faction)
+		var art := UIBuilder.icon_art(icon, 56) if icon else UIBuilder.art(UIBuilder.initials(faction))
 		art.custom_minimum_size.y = 72
 		card.add(art)
 		card.add(UIBuilder.label(faction, "CardHeadingLabel", true))
@@ -395,7 +397,8 @@ func _own_rules_card() -> OptionCard:
 	var card := _choice_card(NO_ARMY_OF_RENOWN, choose_army_of_renown.bind(""))
 	card.set_meta(&"army_of_renown", "")
 	var icon := TextureRect.new()
-	icon.texture = UITheme.icon("shield")
+	var faction_icon := UITheme.faction_icon(_faction.name)
+	icon.texture = faction_icon if faction_icon else UITheme.alliance_icon(_selected_alliance)
 	icon.modulate = UITheme.GOLD
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED

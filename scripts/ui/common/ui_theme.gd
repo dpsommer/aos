@@ -74,6 +74,37 @@ const CINZEL := preload("res://assets/2d/fonts/cinzel/Cinzel.ttf")
 ## Icons are imported at twice their size so they stay sharp on high-density screens, and shown at
 ## this size.
 const ICON_SIZE := 18
+## Each faction's icon in the AoS icon pack, under assets/2d/icons/aos/white/factions/. Factions the pack
+## has no icon for (Kruleboyz) are missing.
+const FACTION_ICONS := {
+	"Cities of Sigmar": "order/cities_of_sigmar",
+	"Daughters of Khaine": "order/daughters_of_khaine",
+	"Fyreslayers": "order/fyreslayers",
+	"Idoneth Deepkin": "order/idoneth_deepkin",
+	"Kharadron Overlords": "order/kharadron_overlords",
+	"Khazalite Holds": "order/free_peoples/dispossessed",
+	"Lumineth Realm-lords": "order/lumineth_realmlords",
+	"Seraphon": "order/seraphon",
+	"Stormcast Eternals": "order/stormcast_eternals",
+	"Sylvaneth": "order/sylvaneth",
+	"Beasts of Chaos": "chaos/beasts_of_chaos",
+	"Blades of Khorne": "chaos/khorne_bloodbound",
+	"Disciples of Tzeentch": "chaos/tzeentch_arcanites",
+	"Hedonites of Slaanesh": "chaos/hedonites_of_slaanesh",
+	"Helsmiths of Hashut": "chaos/dawi_zharr",
+	"Maggotkin of Nurgle": "chaos/maggotkin_of_nurgle",
+	"Skaven": "chaos/skaven",
+	"Slaves to Darkness": "chaos/slaves_to_darkness",
+	"Flesh-eater Courts": "death/flesh_eater_courts",
+	"Nighthaunt": "death/nighthaunt",
+	"Ossiarch Bonereapers": "death/ossiarch_bonereapers",
+	"Soulblight Gravelords": "death/legions_of_nagash",
+	"Bonesplitterz": "destruction/bonesplitterz",
+	"Gloomspite Gitz": "destruction/gloomspite_gitz",
+	"Ironjawz": "destruction/ironjawz",
+	"Ogor Mawtribes": "destruction/ogor_mawtribes",
+	"Sons of Behemat": "destruction/sons_of_behemat",
+}
 ## Every state a button variation styles.
 const BUTTON_STATES: PackedStringArray = ["normal", "hover", "pressed", "disabled", "focus"]
 
@@ -119,6 +150,16 @@ static func font(base: FontFile, weight: int) -> FontVariation:
 
 static func icon(icon_name: String) -> Texture2D:
 	return load("res://assets/2d/icons/%s.svg" % icon_name)
+
+
+## [param faction]'s icon from the AoS icon pack ([constant FACTION_ICONS]), or null if the pack has none.
+static func faction_icon(faction: String) -> Texture2D:
+	return icon("aos/white/factions/" + FACTION_ICONS[faction]) if FACTION_ICONS.has(faction) else null
+
+
+## [param alliance]'s icon from the AoS icon pack.
+static func alliance_icon(alliance: GrandAlliance.Type) -> Texture2D:
+	return icon("aos/white/factions/grand_alliances/" + GrandAlliance.display_name(alliance).to_lower())
 
 
 ## An icon drawn at [constant ICON_SIZE] where a control can't size its icon, e.g. a [LineEdit]'s.

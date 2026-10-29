@@ -169,24 +169,23 @@ func test_every_phase_is_a_known_colour_scheme() -> void:
 # icon_name
 
 func test_icon_name_uses_the_category() -> void:
-	assert_eq(AbilityCard.icon_name(_ability({category = AbilityCard.CATEGORIES[1]})),
-			"ability_" + AbilityCard.CATEGORIES[1])
+	assert_eq(AbilityCard.icon_name(_ability({category = "movement"})), "aos/white/characteristics/move")
 
 
 func test_icon_name_maps_rally_to_rallying() -> void:
-	assert_eq(AbilityCard.icon_name(_ability({category = "rally"})), "ability_rallying")
+	assert_eq(AbilityCard.icon_name(_ability({category = "rally"})), "aos/white/misc/glove")
 
 
 func test_icon_name_of_an_unknown_category_is_special() -> void:
-	assert_eq(AbilityCard.icon_name(_ability({category = "made-up"})), "ability_special")
+	assert_eq(AbilityCard.icon_name(_ability({category = "made-up"})), AbilityCard.CATEGORY_ICONS.special)
 
 
 func test_icon_name_without_a_category_is_special() -> void:
-	assert_eq(AbilityCard.icon_name(_ability()), "ability_special")
+	assert_eq(AbilityCard.icon_name(_ability()), AbilityCard.CATEGORY_ICONS.special)
 
 
 func test_every_category_has_an_icon() -> void:
-	for category: String in AbilityCard.CATEGORIES:
+	for category: String in AbilityCard.CATEGORY_ICONS:
 		var icon := UITheme.icon(AbilityCard.icon_name(_ability({category = category})))
 		assert_not_null(icon, category)
 
@@ -210,19 +209,20 @@ func test_other_names_are_not_battle_damaged() -> void:
 	assert_false(AbilityCard.is_battle_damaged(_ability({name = "Battle Damaged Again"})))
 
 
-func test_battle_damaged_icon_is_a_skull_whatever_the_category() -> void:
+func test_battle_damaged_icon_is_the_same_whatever_the_category() -> void:
 	for category in ["", "offensive", "rally", "made-up"]:
-		assert_eq(AbilityCard.icon_name(_ability({name = "Battle Damaged", category = category})), "skull", category)
+		assert_eq(AbilityCard.icon_name(_ability({name = "Battle Damaged", category = category})),
+				AbilityCard.BATTLE_DAMAGED_ICON, category)
 
 
-func test_the_skull_icon_loads() -> void:
-	assert_not_null(UITheme.icon("skull"))
+func test_the_battle_damaged_icon_loads() -> void:
+	assert_not_null(UITheme.icon(AbilityCard.BATTLE_DAMAGED_ICON))
 
 
-func test_battle_damaged_card_has_the_skull_icon() -> void:
+func test_battle_damaged_card_has_the_battle_damaged_icon() -> void:
 	var card := _card({name = "Battle Damaged", timing = "Your Hero Phase", category = "offensive"})
 	var icons := UIKit.find_all(card, func(n: Node) -> bool: return n is TextureRect)
-	assert_same(icons[0].texture, UITheme.icon("skull"))
+	assert_same(icons[0].texture, UITheme.icon(AbilityCard.BATTLE_DAMAGED_ICON))
 
 
 # header and values
@@ -299,7 +299,7 @@ func test_card_without_values_shows_no_chips() -> void:
 
 
 func test_card_shows_the_icon_for_its_category() -> void:
-	var card := _card({category = AbilityCard.CATEGORIES[0]})
+	var card := _card({category = "offensive"})
 	var icons := UIKit.find_all(card, func(n: Node) -> bool: return n is TextureRect)
 	assert_eq(icons.size(), 1)
 	assert_same(icons[0].texture, UITheme.icon(AbilityCard.icon_name(card.ability)))

@@ -266,7 +266,7 @@ func _skulls(node: Node) -> Array[Node]:
 
 
 func _skulls_in(node: Node) -> Array[Node]:
-	return UIKit.find_all(node, func(n: Node) -> bool: return n is TextureRect and n.texture == UITheme.icon("skull"))
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is TextureRect and n.texture == UITheme.icon(AbilityCard.BATTLE_DAMAGED_ICON))
 
 
 func test_weapon_named_in_full_is_battle_damaged() -> void:

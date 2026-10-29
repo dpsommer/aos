@@ -21,7 +21,7 @@ Every step shares a header and the scrolling page below it, styled by `UITheme` 
 The steps:
 1. **Saved armies:** "Your armies", most recently saved first, with **New army** at the top right.
    - **Army cards:** each has:
-     - the faction's initials as placeholder art;
+     - the faction's icon (`UITheme.faction_icon()`), or its initials if the icon pack has none;
      - the army's name;
      - its faction, alliance and points against its limit;
      - a status pill: "Valid", "N problems" or "Constraints overridden".
@@ -31,12 +31,12 @@ The steps:
      - **Delete** (icon) asks for confirmation first, with Cancel focused so a stray Enter doesn't delete the army.
    - **Unreadable files** are listed with the reason, so they can be deleted.
    - **No armies:** a placeholder says so.
-2. **Grand Alliance:** a card for each of Order, Chaos, Death and Destruction, with its number of factions. Pressing one goes straight to its factions.
-3. **Faction:** a card for each faction of the chosen alliance. Pressing one goes straight to its Army of Renown step.
+2. **Grand Alliance:** a card for each of Order, Chaos, Death and Destruction, with its icon from the AoS icon pack (`UITheme.alliance_icon()`) and its number of factions. Pressing one goes straight to its factions.
+3. **Faction:** a card for each faction of the chosen alliance, with its icon from the AoS icon pack (`UITheme.faction_icon()`, mapped in `UITheme.FACTION_ICONS`). Factions the pack has no icon for (Kruleboyz) show their initials. Where the pack has no icon by the faction's current name, the nearest one stands in: Khorne Bloodbound for Blades of Khorne, Tzeentch Arcanites for Disciples of Tzeentch, Dawi Zharr for Helsmiths of Hashut, Dispossessed for Khazalite Holds and Legions of Nagash for Soulblight Gravelords. Pressing one goes straight to its Army of Renown step.
    - Factions without rules data are disabled, with a "Coming soon" chip and tooltip.
    - Factions moved to Legends (Beasts of Chaos, Bonesplitterz, Fyreslayers) have a Legends chip. They're hidden when the Show Legends armies setting is off (see [Settings](settings.md)), and the Grand Alliance cards' faction counts leave them out.
 4. **Army of Renown:**
-   - **"No Army of Renown" card:** the faction's own rules. It's focused when the step opens, unless an Army of Renown was chosen earlier for the same faction.
+   - **"No Army of Renown" card:** the faction's own rules, with the faction's icon in gold (the Grand Alliance's if the icon pack has none). It's focused when the step opens, unless an Army of Renown was chosen earlier for the same faction.
    - **Army of Renown cards:** below it, two to a row. Each has:
      - its name and source;
      - its roster options (`Forge.roster_summary()`);
@@ -61,7 +61,7 @@ Every screen uses `UITheme` (`scripts/ui/common/ui_theme.gd`), set as its `theme
 - Inter for text (also the project's default font) and Cinzel for headings, both in `assets/2d/fonts/` with their OFL licences;
 - abilities as [ability cards](abilities.md), boxes in each ability's warscroll colour (`UITheme.ABILITY_COLOURS`);
 - rules text (`RulesFormatter.ability_body()`, shown in a `RichTextLabel`) with extra space between paragraphs so an ability's Declare and Effect read as separate sections;
-- the design's icons, in `assets/2d/icons/`;
+- the design's icons, in `assets/2d/icons/`, and the AoS icon pack in `assets/2d/icons/aos/` (white and black SVGs with the same layout: `cards/`, `characteristics/`, `deployment/`, `factions/`, `fighters/`, `misc/`, `realms/`, `treasure/`, `twists/` and `weapons/`; the UI uses the white ones, tinted). `UITheme.icon()` takes a path under `assets/2d/icons/`, e.g. `"aos/white/weapons/ranged_weapon"`; `UIBuilder.icon_art()` shows an icon on placeholder stripes;
 - type variations, e.g. `GoldButton`, `OptionCard`, `PageTitleLabel`.
 - dialogs in a pane-coloured window with a border. `UITheme.style_dialog()`, called on every dialog, sets its title and buttons in Cinzel (`DialogButton`; `DialogGoldButton` for the main action, e.g. Quit or Save and go back; `DialogDangerButton`, in red, for a destructive one, e.g. Delete or Discard changes). It overrides the title font on the dialog itself, because a window's title takes the theme's default font and size over its `Window` theme items. The project's default clear colour is the pane colour too: when the UI is scaled, a dialog's window can be a pixel wider and taller than its panel, and that pixel would otherwise show as a grey line along its right and bottom edges.
 
@@ -91,7 +91,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
       - the unit's portrait;
       - its name, with a pencil that swaps the name for a field (Enter or leaving the field renames it, a blank name goes back to the warscroll's, Esc cancels);
       - under the name, `UnitRow.subtext()`: "Leader" or "General", the warscroll's name if the unit is renamed, its model count, its enhancements and its weapon options, e.g. "General · Lord-Celestant · 1 model · Sword of Judgement", followed by Scourge and Legends chips;
-      - its points, with any points from enhancements in a gold tag after them with an enhancement icon, e.g. "150 pts [+20 ✦]" (`ArmyPoints.enhancement_points()`);
+      - its points, with any points from enhancements in a gold tag after them with an enhancement icon, e.g. "150 pts [+20 ✦]", the icon being the pack's realmstone (`ArmyPoints.enhancement_points()`);
       - buttons: Reinforce (where allowed), Options (disabled when the unit has nothing to choose), Copy and Remove.
 
       Units in a Regiment of Renown have no buttons and can't be renamed.
@@ -110,7 +110,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - **Roster:** the faction's units, plus any its Army of Renown includes from other factions (the Throngankor Alliance's Kharadron Overlords). An Army of Renown shows only the units its roster allows, and units that belong to one Army of Renown (the Iron March's Cogforts) show only in it, unless the army overrides its constraints. Units are grouped by type (Hero, Infantry, Cavalry, Monster, War Machine, Other). Each type folds, and a note counts the hidden Legends units.
     - **Unit cards:** points, plus Scourge and Legends chips.
     - **A star** pins the unit to a Favourites list at the top. Favourites are kept per faction in `user://forge.cfg`.
-    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". Warscrolls in the builder are `WarscrollCard`s, each in its own box: the name in Cinzel with points, model count and base size under it, characteristics in boxes (Move, Health, Control, Save, then Ward and Banish), a bordered table for ranged and one for melee weapons, each with its icon (`ranged.svg`, `melee.svg`), its values bold and centred in fixed-width columns so Attacks to Damage line up between the tables, each weapon's abilities under it (and a skull before a weapon changed by Battle Damaged, see [ability cards](abilities.md)), then the abilities as [ability cards](abilities.md) and the keywords. An ability that summons a manifestation (e.g. Jacobus Vyne's Summon Wisper) has the manifestation's warscroll indented under it, from `ArmyCatalog.summoned()`; so do warscrolls in Regiments of Renown cards and the faction browser. The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
+    - **Clicking a card** shows its warscroll and "Add as auxiliary unit". Warscrolls in the builder are `WarscrollCard`s, each in its own box: the name in Cinzel with points, model count and base size under it, characteristics in boxes (Move, Health, Control, Save, then Ward and Banish), a bordered table for ranged and one for melee weapons, each with its icon (the pack's `weapons/ranged_weapon.svg` and `treasure/weapons.svg`), its values bold and centred in fixed-width columns so Attacks to Damage line up between the tables, each weapon's abilities under it (and a cracked skull before a weapon changed by Battle Damaged, see [ability cards](abilities.md)), then the abilities as [ability cards](abilities.md) and the keywords. An ability that summons a manifestation (e.g. Jacobus Vyne's Summon Wisper) has the manifestation's warscroll indented under it, from `ArmyCatalog.summoned()`; so do warscrolls in Regiments of Renown cards and the faction browser. The button is disabled for a Unique unit already in the army. While the card has focus, its whole box (star included) is outlined in gold.
   - **Rules:** the rules the army uses, from `RulesSections`, in sections that each fold:
     - Battle Traits;
     - Battle Formations;

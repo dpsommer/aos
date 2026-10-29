@@ -491,3 +491,93 @@ func test_dialog_buttons_use_a_cinzel_font() -> void:
 	for type in ["DialogButton", "DialogGoldButton"]:
 		var button_font := theme.get_font("font", type) as FontVariation
 		assert_eq(button_font.base_font, UITheme.CINZEL, type)
+
+
+# --- faction and alliance icons ---
+
+
+func test_every_faction_icon_loads_a_texture() -> void:
+	for faction: String in UITheme.FACTION_ICONS:
+		assert_not_null(UITheme.faction_icon(faction), faction)
+
+
+func test_every_faction_with_an_icon_is_a_listed_faction() -> void:
+	var listed := []
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		listed.append_array(FactionCatalog.factions_for(alliance))
+	for faction: String in UITheme.FACTION_ICONS:
+		assert_has(listed, faction, "%s is not a listed faction" % faction)
+
+
+func test_every_listed_faction_but_kruleboyz_has_an_icon() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		for faction in FactionCatalog.factions_for(alliance):
+			if faction != "Kruleboyz":
+				assert_not_null(UITheme.faction_icon(faction), "%s has no icon" % faction)
+
+
+func test_faction_without_an_icon_gets_none() -> void:
+	assert_null(UITheme.faction_icon("Kruleboyz"))
+	assert_null(UITheme.faction_icon("No such faction"))
+	assert_null(UITheme.faction_icon(""))
+
+
+func test_every_grand_alliance_has_an_icon() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		assert_not_null(UITheme.alliance_icon(alliance), GrandAlliance.display_name(alliance))
+
+
+func test_grand_alliances_have_different_icons() -> void:
+	var seen := []
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var icon := UITheme.alliance_icon(alliance)
+		assert_does_not_have(seen, icon, "%s shares an icon" % GrandAlliance.display_name(alliance))
+		seen.append(icon)
+
+
+# --- UIBuilder.icon_art ---
+
+
+func _icon_of(art: ArtPlaceholder) -> TextureRect:
+	return art.get_child(0) as TextureRect
+
+
+func test_icon_art_is_an_art_placeholder_holding_one_texture_rect() -> void:
+	var node := UIBuilder.icon_art(UITheme.icon("search"), 40)
+	autofree(node)
+	assert_eq(node.get_child_count(), 1)
+	assert_true(node.get_child(0) is TextureRect)
+
+
+func test_icon_art_shows_the_texture() -> void:
+	var texture := UITheme.icon("search")
+	var node := UIBuilder.icon_art(texture, 40)
+	autofree(node)
+	assert_eq(_icon_of(node).texture, texture)
+
+
+func test_icon_art_shows_the_texture_at_the_icon_size() -> void:
+	var node := UIBuilder.icon_art(UITheme.icon("search"), 40)
+	autofree(node)
+	assert_eq(_icon_of(node).custom_minimum_size, Vector2(40, 40))
+
+
+func test_icon_art_keeps_the_icon_size_whatever_the_texture_size() -> void:
+	var node := UIBuilder.icon_art(UITheme.icon("search"), 40)
+	autofree(node)
+	assert_eq(_icon_of(node).expand_mode, TextureRect.EXPAND_IGNORE_SIZE)
+
+
+func test_icon_art_centres_the_icon_in_the_art() -> void:
+	var node := UIBuilder.icon_art(UITheme.icon("search"), 40)
+	add_child_autofree(node)
+	node.size = Vector2(200, 100)
+	await get_tree().process_frame
+	var icon := _icon_of(node)
+	assert_eq(icon.get_rect().get_center(), Vector2(100, 50))
+
+
+func test_icon_art_lets_mouse_events_through() -> void:
+	var node := UIBuilder.icon_art(UITheme.icon("search"), 40)
+	autofree(node)
+	assert_eq(node.mouse_filter, Control.MOUSE_FILTER_IGNORE)

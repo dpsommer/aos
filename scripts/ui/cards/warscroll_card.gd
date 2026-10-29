@@ -88,7 +88,7 @@ static func weapon_table(weapons: Array[Weapon], ranged: bool, damaged := Packed
 	var columns := PackedStringArray(["ATK", "HIT", "WND", "RND", "DMG"])
 	if ranged:
 		columns.insert(0, "RNG")
-	var icon := _icon("ranged" if ranged else "melee", 15)
+	var icon := _icon("aos/white/weapons/ranged_weapon" if ranged else "aos/white/treasure/weapons", 15)
 	var title := UIBuilder.label("RANGED WEAPONS" if ranged else "MELEE WEAPONS", "WeaponTitleLabel")
 	var heading := UIBuilder.hbox([icon, title], 6)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -96,7 +96,7 @@ static func weapon_table(weapons: Array[Weapon], ranged: bool, damaged := Packed
 	for weapon in weapons:
 		var weapon_name: Control = UIBuilder.label(weapon.name, "WeaponNameLabel", true)
 		if weapon.name in damaged:
-			var skull := _icon("skull", 13)
+			var skull := _icon(AbilityCard.BATTLE_DAMAGED_ICON, 13)
 			skull.tooltip_text = "Changed by Battle Damaged"
 			skull.mouse_filter = Control.MOUSE_FILTER_PASS
 			skull.size_flags_vertical = Control.SIZE_SHRINK_CENTER

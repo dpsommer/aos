@@ -210,10 +210,10 @@ func _points() -> HBoxContainer:
 		var label := tag.get_child(0)
 		tag.remove_child(label)
 		var icon := TextureRect.new()
-		icon.texture = UITheme.icon("enhancement")
+		icon.texture = UITheme.icon("aos/white/treasure/realmstone")
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		icon.custom_minimum_size = Vector2(11, 11)
+		icon.custom_minimum_size = Vector2(15, 15)
 		icon.modulate = UITheme.WARNING
 		tag.add_child(UIBuilder.hbox([label, icon], 4))
 		tag.tooltip_text = "+%d points from enhancements" % extra

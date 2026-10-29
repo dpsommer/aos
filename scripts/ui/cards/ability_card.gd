@@ -37,8 +37,19 @@ const PHASE_COLOURS := {
 	"end": "purple",
 	"passive": "green",
 }
-## Ability categories with an icon, as assets/2d/icons/ability_<category>.svg.
-const CATEGORIES := ["offensive", "defensive", "movement", "shooting", "rallying", "control", "damage", "special"]
+## The icon in assets/2d/icons for each ability category.
+const CATEGORY_ICONS := {
+	"offensive": "aos/white/characteristics/strength",
+	"defensive": "shield",
+	"movement": "aos/white/characteristics/move",
+	"shooting": "aos/white/characteristics/range",
+	"rallying": "aos/white/misc/glove",
+	"control": "aos/white/misc/active",
+	"damage": "aos/white/weapons/blast",
+	"special": "aos/white/misc/circle",
+}
+## The icon in assets/2d/icons for Battle Damaged abilities and the weapons they change: a cracked skull.
+const BATTLE_DAMAGED_ICON := "aos/white/characteristics/damage"
 
 var ability: Ability
 
@@ -132,13 +143,13 @@ static func is_battle_damaged(rule: Ability) -> bool:
 	return rule.name.to_lower() == "battle damaged"
 
 
-## The icon for [param rule]'s category in assets/2d/icons, e.g. "ability_offensive". Abilities
-## without a known category show the special icon. Battle Damaged shows a skull.
+## The icon for [param rule]'s category in assets/2d/icons ([constant CATEGORY_ICONS]). Abilities
+## without a known category show the special icon. Battle Damaged shows [constant BATTLE_DAMAGED_ICON].
 static func icon_name(rule: Ability) -> String:
 	if is_battle_damaged(rule):
-		return "skull"
+		return BATTLE_DAMAGED_ICON
 	var category := "rallying" if rule.category == "rally" else rule.category
-	return "ability_" + (category if category in CATEGORIES else "special")
+	return CATEGORY_ICONS.get(category, CATEGORY_ICONS.special)
 
 
 static func _phase_in(timing: String) -> String:

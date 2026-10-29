@@ -13,3 +13,7 @@ The simulator mirrors the tabletop experience: each game consists of five battle
 ## Documentation
 
 Technical and game documentation files are located in the `docs/` folder.
+
+# Credits
+
+[Squirem](https://ageofsigmar.lexicanum.com/wiki/User:Squirem) - AoS icon pack (obtained as part of the [tcrepo mega pack](https://tcrepo.com/downloads/warhammer-icons-compilation/))

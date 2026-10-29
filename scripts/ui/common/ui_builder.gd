@@ -134,6 +134,23 @@ static func art(text: String, corner_radius := 8, font_size := 14) -> ArtPlaceho
 	return node
 
 
+## Striped placeholder art with [param texture] in the middle at [param icon_size] pixels, e.g. a
+## faction's icon.
+static func icon_art(texture: Texture2D, icon_size: int, corner_radius := 8) -> ArtPlaceholder:
+	var node := ArtPlaceholder.new(corner_radius)
+	var icon := TextureRect.new()
+	icon.texture = texture
+	icon.modulate = UITheme.TEXT
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.custom_minimum_size = Vector2(icon_size, icon_size)
+	icon.set_anchors_preset(Control.PRESET_CENTER)
+	icon.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	icon.grow_vertical = Control.GROW_DIRECTION_BOTH
+	node.add_child(icon)
+	return node
+
+
 ## The steps of a flow, e.g. "Order › Stormcast Eternals › Army of Renown", with the step at
 ## [param current] in bold.
 static func breadcrumb(steps: PackedStringArray, current: int) -> HBoxContainer:

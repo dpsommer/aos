@@ -266,6 +266,39 @@ func test_alliance_cards_are_named_for_screen_readers() -> void:
 		assert_eq(forge.alliance_buttons[alliance].accessibility_name, GrandAlliance.display_name(alliance))
 
 
+func _icon_of(card: Control) -> Texture2D:
+	var found := UIKit.find_all(card, func(n: Node) -> bool: return n is TextureRect)
+	return (found[0] as TextureRect).texture if found else null
+
+
+func test_alliance_cards_show_their_alliance_icon() -> void:
+	var forge := _make_forge()
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		assert_eq(_icon_of(forge.alliance_buttons[alliance]), UITheme.alliance_icon(alliance),
+				GrandAlliance.display_name(alliance))
+
+
+func test_faction_cards_show_their_faction_icon() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for card: Button in forge.faction_grid.get_children():
+			var faction: String = card.get_meta(&"faction")
+			if UITheme.faction_icon(faction):
+				assert_eq(_icon_of(card), UITheme.faction_icon(faction), faction)
+
+
+func test_faction_cards_without_an_icon_show_initials() -> void:
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		var forge := _make_forge()
+		forge.show_factions(alliance)
+		for card: Button in forge.faction_grid.get_children():
+			var faction: String = card.get_meta(&"faction")
+			if not UITheme.faction_icon(faction):
+				assert_null(_icon_of(card), faction)
+				assert_has(UIKit.label_texts(card), UIBuilder.initials(faction), faction)
+
+
 func test_new_army_shows_the_alliances() -> void:
 	var forge := _make_forge()
 	forge.new_army_button.pressed.emit()
@@ -556,6 +589,30 @@ func test_renown_cards_start_with_none() -> void:
 	_open_renown(forge, _with_armies_of_renown())
 	assert_eq(forge.renown_cards()[0].get_meta(&"army_of_renown"), "")
 	assert_eq(forge.renown_cards()[0].get_parent(), forge.renown_none)
+
+
+func _has_icon(f: Faction) -> bool:
+	return UITheme.faction_icon(f.name) != null
+
+
+func test_none_card_shows_the_factions_icon() -> void:
+	var faction := _faction_where(_has_icon)
+	if faction == null:
+		pending("no available faction has an icon")
+		return
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	assert_eq(_icon_of(forge.renown_cards()[0]), UITheme.faction_icon(faction.name))
+
+
+func test_none_card_falls_back_to_the_alliance_icon() -> void:
+	var faction := _faction_where(func(f: Faction) -> bool: return not _has_icon(f))
+	if faction == null:
+		pending("every available faction has an icon")
+		return
+	var forge := _make_forge()
+	_open_renown(forge, faction)
+	assert_eq(_icon_of(forge.renown_cards()[0]), UITheme.alliance_icon(faction.grand_alliance))
 
 
 func test_renown_cards_are_none_plus_each_army_of_renown() -> void:
@@ -1380,3 +1437,33 @@ func test_row_icon_buttons_are_named_for_screen_readers() -> void:
 	var forge := _make_forge()
 	assert_eq(_row_button(forge, army.id, "Duplicate").accessibility_name, "Duplicate Vanguard")
 	assert_eq(_row_button(forge, army.id, "Delete").accessibility_name, "Delete Vanguard")
+
+
+## Saves a new army of [param faction] named [param army_name].
+func _save_army_of(faction: Faction, army_name: String) -> Army:
+	var army := ArmyEditor.create_army(ArmyCatalog.new(faction, CoreRulesCatalog.get_rules()))
+	army.name = army_name
+	assert_eq(ArmyStore.save(army), OK)
+	return army
+
+
+func test_armies_panel_row_shows_the_factions_icon() -> void:
+	var faction := _faction_where(_has_icon)
+	if faction == null:
+		pending("no available faction has an icon")
+		return
+	var army := _save_army_of(faction, "Iconic")
+	var forge := _make_forge()
+	assert_eq(_icon_of(_row(forge, army.id)), UITheme.faction_icon(faction.name))
+
+
+func test_armies_panel_row_without_a_faction_icon_shows_initials() -> void:
+	var faction := _faction_where(func(f: Faction) -> bool: return not _has_icon(f))
+	if faction == null:
+		pending("every available faction has an icon")
+		return
+	var army := _save_army_of(faction, "Plain")
+	var forge := _make_forge()
+	var row := _row(forge, army.id)
+	assert_null(_icon_of(row))
+	assert_has(UIKit.label_texts(row), UIBuilder.initials(faction.name))
