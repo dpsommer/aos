@@ -452,11 +452,6 @@ static func roster_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
 	return true
 
 
-## Kept for test/integration/test_faction_data.gd, which calls it by this name.
-static func _roster_matches(entry: RosterEntry, warscroll: Warscroll) -> bool:
-	return roster_matches(entry, warscroll)
-
-
 ## Rosters name keywords without their value: "WIZARD" matches "WIZARD (2)".
 static func _has_keyword(warscroll: Warscroll, keyword: String) -> bool:
 	if warscroll.has_keyword(keyword):

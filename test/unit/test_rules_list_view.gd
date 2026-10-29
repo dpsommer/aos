@@ -4,6 +4,11 @@ extends GutTest
 const RulesListViewScene := preload("res://scenes/ui/forge/rules_list_view.tscn")
 
 
+## Lets entries the view replaced with queue_free() be freed, so GUT doesn't count them as orphans.
+func after_each() -> void:
+	await get_tree().process_frame
+
+
 func _make_view() -> RulesListView:
 	var view: RulesListView = RulesListViewScene.instantiate()
 	add_child_autofree(view)

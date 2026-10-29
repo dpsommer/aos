@@ -10,6 +10,11 @@ const REGIMENTS_FIXTURE := "res://test/fixtures/regiments/valid"
 const UIKit := preload("res://test/support/ui_kit.gd")
 
 
+## Lets rules the browser replaced with queue_free() be freed, so GUT doesn't count them as orphans.
+func after_each() -> void:
+	await get_tree().process_frame
+
+
 func _make_browser() -> FactionBrowser:
 	var browser: FactionBrowser = FactionBrowserScene.instantiate()
 	add_child_autofree(browser)

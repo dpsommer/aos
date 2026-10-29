@@ -60,6 +60,12 @@ func _alliance_without_available_faction() -> int:
 	return -1
 
 
+## Whether any listed faction has no data yet, so the Forge shows it as unavailable.
+func _has_unavailable_faction() -> bool:
+	return GrandAlliance.Type.values().any(func(alliance: GrandAlliance.Type) -> bool:
+		return Array(FactionCatalog.factions_for(alliance)).any(func(f: String) -> bool: return not FactionCatalog.is_available(f)))
+
+
 func _first_enabled_index(forge: Forge) -> int:
 	for button: Button in forge.faction_grid.get_children():
 		if not button.disabled:
@@ -335,6 +341,9 @@ func test_available_faction_cards_are_enabled() -> void:
 
 
 func test_unavailable_faction_cards_are_disabled() -> void:
+	if not _has_unavailable_faction():
+		pending("every listed faction has data")
+		return
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
 		var forge := _make_forge()
 		forge.show_factions(alliance)
@@ -362,6 +371,9 @@ func test_faction_card_is_named_for_screen_readers() -> void:
 
 
 func test_unavailable_faction_cards_explain_why_in_tooltip() -> void:
+	if not _has_unavailable_faction():
+		pending("every listed faction has data")
+		return
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
 		var forge := _make_forge()
 		forge.show_factions(alliance)
@@ -679,13 +691,34 @@ func test_chosen_army_of_renown_is_focused_when_returning_to_the_same_faction() 
 
 
 func test_choice_is_reset_for_another_faction() -> void:
-	var faction := _with_armies_of_renown()
-	var other := _faction_where(func(f: Faction) -> bool: return f.name != faction.name)
+	GameSettings.current().show_legends = true
+	var shared := _shared_army_of_renown()
+	if shared.is_empty():
+		pending("no two available factions share an Army of Renown name")
+		return
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	forge._army_of_renown = faction.armies_of_renown[0].name
-	_open_renown(forge, other)
+	_open_renown(forge, shared[1])
+	_press(_choice_with_meta(forge.renown_grid, &"army_of_renown", shared[0]))
+	_open_renown(forge, shared[2])
+	assert_not_null(_choice_with_meta(forge.renown_grid, &"army_of_renown", shared[0]), "the other faction offers it too")
+	assert_false(_choice_with_meta(forge.renown_grid, &"army_of_renown", shared[0]).has_focus())
 	assert_true(forge.renown_cards()[0].has_focus())
+
+
+## Returns [name, faction, other faction] for an Army of Renown name offered by two available
+## factions, or an empty array if there is none.
+func _shared_army_of_renown() -> Array:
+	var owners := {}
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		for faction_name in FactionCatalog.factions_for(alliance):
+			if not FactionCatalog.is_available(faction_name):
+				continue
+			var faction := FactionCatalog.load_faction(faction_name)
+			for army in faction.armies_of_renown:
+				if owners.has(army.name) and owners[army.name].name != faction.name:
+					return [army.name, owners[army.name], faction]
+				owners[army.name] = faction
+	return []
 
 
 func test_none_is_focused_on_return_from_formation() -> void:
@@ -852,7 +885,7 @@ func test_chosen_formation_is_focused_when_returning_to_the_step() -> void:
 	_go_to(forge, Forge.Step.FORMATION)
 	var picked := forge.formation_grid.get_child(1) as Button
 	_press(picked)
-	forge.show_armies_of_renown(forge._selected_alliance, forge._faction.name)
+	forge.go_back()
 	_press(forge.renown_cards()[0])
 	assert_true(_choice_with_meta(forge.formation_grid, &"formation", picked.get_meta(&"formation")).has_focus())
 
