@@ -691,13 +691,34 @@ func test_chosen_army_of_renown_is_focused_when_returning_to_the_same_faction() 
 
 
 func test_choice_is_reset_for_another_faction() -> void:
-	var faction := _with_armies_of_renown()
-	var other := _faction_where(func(f: Faction) -> bool: return f.name != faction.name)
+	GameSettings.current().show_legends = true
+	var shared := _shared_army_of_renown()
+	if shared.is_empty():
+		pending("no two available factions share an Army of Renown name")
+		return
 	var forge := _make_forge()
-	_open_renown(forge, faction)
-	_press(_choice_with_meta(forge.renown_grid, &"army_of_renown", faction.armies_of_renown[0].name))
-	_open_renown(forge, other)
+	_open_renown(forge, shared[1])
+	_press(_choice_with_meta(forge.renown_grid, &"army_of_renown", shared[0]))
+	_open_renown(forge, shared[2])
+	assert_not_null(_choice_with_meta(forge.renown_grid, &"army_of_renown", shared[0]), "the other faction offers it too")
+	assert_false(_choice_with_meta(forge.renown_grid, &"army_of_renown", shared[0]).has_focus())
 	assert_true(forge.renown_cards()[0].has_focus())
+
+
+## Returns [name, faction, other faction] for an Army of Renown name offered by two available
+## factions, or an empty array if there is none.
+func _shared_army_of_renown() -> Array:
+	var owners := {}
+	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+		for faction_name in FactionCatalog.factions_for(alliance):
+			if not FactionCatalog.is_available(faction_name):
+				continue
+			var faction := FactionCatalog.load_faction(faction_name)
+			for army in faction.armies_of_renown:
+				if owners.has(army.name) and owners[army.name].name != faction.name:
+					return [army.name, owners[army.name], faction]
+				owners[army.name] = faction
+	return []
 
 
 func test_none_is_focused_on_return_from_formation() -> void:
