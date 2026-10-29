@@ -382,6 +382,11 @@ static func _create() -> Theme:
 	_panel(theme, "TabBarPanel", _underline(Color("#262A32")))
 	# Drop targets while dragging.
 	_panel(theme, "DropRegimentPanel", box(Color("#1D1C18"), GOLD, 10, 12))
+	# Replaces the army list's add buttons while a unit that can lead is dragged from the Roster tab.
+	var new_regiment := DashedStyleBox.new(GOLD, 10, 14, 2)
+	new_regiment.bg_color = Color(GOLD, 0.06)
+	_panel(theme, "NewRegimentDropPanel", new_regiment)
+	_panel(theme, "NewRegimentDropOnPanel", box(Color("#2A2418"), GOLD, 10, 14, 2))
 	_panel(theme, "RemoveDropPanel", box(Color(0.09, 0.1, 0.12, 0.96), Color("#7A4A3E"), 12, 0, 2))
 	_panel(theme, "RemoveDropOnPanel", box(Color(0.23, 0.14, 0.13, 0.96), Color("#F2A28A"), 12, 0, 2))
 	# Warscrolls (WarscrollCard): characteristics in boxes and each kind of weapon in a table.

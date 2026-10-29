@@ -152,6 +152,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   Units are listed in foldable sections by type (Hero, Infantry, Cavalry and so on), as in the Roster. It hides Legends units unless shown, and Unique units already in the army unless constraints are overridden.
 - **Drag and drop** (`BuilderDragDrop`, `drag_drop.gd`): a gold line shows where a drop will go, and the dragged row or card is dimmed.
   - **Roster card:** drop it in a regiment to add the unit there, or on Auxiliary Units.
+    - While a unit that can lead a regiment is dragged (one the "Add regiment" picker would offer), the "Add regiment" and "Add Regiment of Renown" buttons give way to a dashed gold area, "Drop to start a new regiment led by …", which lights up under the pointer. Dropping the unit there adds a new regiment with it as the leader.
   - **Unit:** drag its grip to move it within its regiment, to another regiment, or to Auxiliary Units. A full regiment refuses it unless constraints are overridden, and nothing goes before a Hero leader.
     - While a unit is dragged, the info pane shows "Drop to remove from army", which removes it.
   - **Regiment:** drag its grip to reorder the army list.

@@ -23,6 +23,12 @@ var drag: BuilderDragDrop
 var remove_overlay: PanelContainer
 ## Holds the auxiliary units, as a drop target.
 var auxiliary_box: PanelContainer
+## The army list's "Add regiment" buttons, which a leader dragged from the Roster tab swaps for
+## [member new_regiment_drop], where dropping it starts a new regiment.
+var add_regiment_buttons: HBoxContainer
+var new_regiment_drop: PanelContainer
+## Names the dragged leader in [member new_regiment_drop].
+var new_regiment_label: Label
 ## Unit uids with their options open, and other expanded panels' keys.
 var expanded := {}
 ## Whether the army has changed since it was opened or last saved.
@@ -432,7 +438,9 @@ func _army_list_section() -> Control:
 	var has_renown := editor.army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())
 	if editor.army.override_constraints or not has_renown:
 		add_buttons.add_child(UIBuilder.button("Add Regiment of Renown", pick_regiment_of_renown, "army:add_ror", "GhostButton"))
+	add_regiment_buttons = add_buttons
 	children.append(add_buttons)
+	children.append(_new_regiment_drop())
 	var section := _section("Army List", children)
 	# A Regiment of Renown card from the info pane is dropped on the army list.
 	var can_drop := func(at: Vector2, data: Dictionary) -> bool: return _can_drop_regiment_of_renown(at, data, section, add_buttons)
@@ -449,6 +457,52 @@ func _can_drop_regiment_of_renown(_at: Vector2, data: Dictionary, section: Contr
 
 func _drop_regiment_of_renown(_at: Vector2, data: Dictionary) -> void:
 	editor.add_regiment_of_renown(data.name)
+
+
+## A highlighted area, hidden until a leader is dragged from the Roster tab, that starts a new
+## regiment led by the unit dropped on it.
+func _new_regiment_drop() -> PanelContainer:
+	new_regiment_label = UIBuilder.label("", "CardTitleLabel")
+	new_regiment_label.add_theme_color_override("font_color", UITheme.GOLD)
+	new_regiment_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	new_regiment_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	new_regiment_drop = UIBuilder.panel("NewRegimentDropPanel", new_regiment_label)
+	new_regiment_drop.hide()
+	drag.target(new_regiment_drop, _can_drop_new_regiment, _drop_new_regiment)
+	return new_regiment_drop
+
+
+## Whether [param data] is a Roster card for a unit that can lead a new regiment.
+func can_start_regiment(data: Dictionary) -> bool:
+	if data.get("kind") != "roster":
+		return false
+	var warscroll_id: String = data.get("warscroll_id", "")
+	return not available_units(func(w: Warscroll) -> bool:
+		return w.id == warscroll_id and catalog.can_lead(editor.army, w)).is_empty()
+
+
+## Swaps the add buttons for the new regiment drop area while [param data], a leader from the Roster
+## tab, is dragged, or back again when [param data] is empty.
+func show_new_regiment_drop(data: Dictionary) -> void:
+	if not is_instance_valid(new_regiment_drop):
+		return
+	var shown := not data.is_empty() and can_start_regiment(data)
+	if shown:
+		var warscroll := catalog.find_warscroll(editor.army, data.warscroll_id)
+		new_regiment_label.text = "Drop to start a new regiment led by %s" % warscroll.name
+	new_regiment_drop.visible = shown
+	add_regiment_buttons.visible = not shown
+
+
+func _can_drop_new_regiment(_at: Vector2, data: Dictionary) -> bool:
+	if not can_start_regiment(data):
+		return false
+	drag.highlight(new_regiment_drop, "NewRegimentDropOnPanel")
+	return true
+
+
+func _drop_new_regiment(_at: Vector2, data: Dictionary) -> void:
+	editor.add_regiment(data.warscroll_id)
 
 
 func _auxiliary_section() -> Control:

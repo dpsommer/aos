@@ -2,7 +2,7 @@ class_name BuilderDragDrop
 extends RefCounted
 ## Drag and drop in the army builder. A drag carries a Dictionary:
 ## [codeblock]
-## {kind = "roster", warscroll_id = ...}  # a Roster card: adds a unit
+## {kind = "roster", warscroll_id = ...}  # a Roster card: adds a unit, or a leader's new regiment
 ## {kind = "unit", uid = ...}             # a unit in the army: moves it
 ## {kind = "reg", regiment_id = ...}      # a regiment: reorders it
 ## {kind = "ror", name = ...}             # a Regiments of Renown card: adds it
@@ -146,6 +146,7 @@ func begin(data: Variant) -> void:
 	if accepts_unit(data, null) and builder.auxiliary_box:
 		highlight(builder.auxiliary_box, "DropRegimentPanel")
 	builder.remove_overlay.visible = data.get("kind") == "unit"
+	builder.show_new_regiment_drop(data)
 	builder.set_process(true)
 
 
@@ -155,6 +156,7 @@ func end() -> void:
 	for control in _highlighted.keys():
 		unhighlight(control)
 	builder.remove_overlay.hide()
+	builder.show_new_regiment_drop({})
 	if is_instance_valid(lifted):
 		lifted.modulate.a = 1.0
 	lifted = null
@@ -168,9 +170,11 @@ func process(delta: float) -> void:
 	if line.visible and (not is_instance_valid(_line_owner) or hovered == null
 			or not (hovered == _line_owner or _line_owner.is_ancestor_of(hovered))):
 		hide_line()
-	var overlay := builder.remove_overlay
-	if overlay.visible and _highlighted.has(overlay) and not (hovered == overlay or overlay.is_ancestor_of(hovered)):
-		unhighlight(overlay)
+	# Drop areas that light up under the pointer go dark again once it leaves them.
+	for area: Control in [builder.remove_overlay, builder.new_regiment_drop]:
+		if is_instance_valid(area) and area.visible and _highlighted.has(area) and not (hovered == area
+				or (hovered and area.is_ancestor_of(hovered))):
+			unhighlight(area)
 	var scroll := builder.builder_scroll
 	var at := scroll.get_local_mouse_position()
 	if at.x < 0 or at.x > scroll.size.x:

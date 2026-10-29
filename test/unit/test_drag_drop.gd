@@ -605,3 +605,139 @@ func test_dragging_a_regiment_of_renown_card_carries_its_name() -> void:
 	var data = _start_drag(parts[0], cards[0])
 	assert_eq(data, {"kind": "ror", "name": "Band"})
 	parts[0].gui_cancel_drag()
+
+
+# --- New regiment drop area ---
+
+func test_dragging_a_leader_swaps_the_add_buttons_for_the_new_regiment_drop() -> void:
+	var builder := _builder()
+	_drag(builder).begin(_roster("wizard"))
+	assert_true(builder.new_regiment_drop.visible)
+	assert_false(builder.add_regiment_buttons.visible)
+
+
+func test_the_new_regiment_drop_names_the_dragged_leader() -> void:
+	var builder := _builder()
+	_drag(builder).begin(_roster("wizard"))
+	assert_string_contains(builder.new_regiment_label.text, "Wizard")
+
+
+func test_dragging_a_non_leader_keeps_the_add_buttons() -> void:
+	var builder := _builder()
+	_drag(builder).begin(_roster("grunt"))
+	assert_false(builder.new_regiment_drop.visible)
+	assert_true(builder.add_regiment_buttons.visible)
+
+
+func test_dragging_other_kinds_keeps_the_add_buttons() -> void:
+	for data in [_unit("u1"), {"kind": "reg", "regiment_id": "r2"}, {"kind": "ror", "name": "Band"}]:
+		var builder := _builder()
+		_drag(builder).begin(data)
+		assert_false(builder.new_regiment_drop.visible, "kind %s" % data.kind)
+		assert_true(builder.add_regiment_buttons.visible, "kind %s" % data.kind)
+
+
+func test_the_new_regiment_drop_is_hidden_before_any_drag() -> void:
+	var builder := _builder()
+	assert_false(builder.new_regiment_drop.visible)
+	assert_true(builder.add_regiment_buttons.visible)
+
+
+func test_end_restores_the_add_buttons() -> void:
+	var builder := _builder()
+	_drag(builder).begin(_roster("wizard"))
+	_drag(builder).end()
+	assert_false(builder.new_regiment_drop.visible)
+	assert_true(builder.add_regiment_buttons.visible)
+
+
+func test_can_start_regiment_accepts_a_leader_roster_card() -> void:
+	assert_true(_builder().can_start_regiment(_roster("wizard")))
+
+
+func test_can_start_regiment_refuses_a_non_leader() -> void:
+	assert_false(_builder().can_start_regiment(_roster("grunt")))
+
+
+func test_can_start_regiment_refuses_other_kinds_and_empty_data() -> void:
+	var builder := _builder()
+	assert_false(builder.can_start_regiment(_unit("u4")))
+	assert_false(builder.can_start_regiment({"kind": "reg", "regiment_id": "r2"}))
+	assert_false(builder.can_start_regiment({}))
+
+
+func test_can_start_regiment_refuses_an_unknown_warscroll() -> void:
+	assert_false(_builder().can_start_regiment(_roster("nope")))
+
+
+func test_can_start_regiment_refuses_a_taken_unique_unit() -> void:
+	var army := _army()
+	army.auxiliary.append(Kit.unit("u7", "unique"))
+	assert_false(_builder(army).can_start_regiment(_roster("unique")))
+
+
+func test_can_start_regiment_accepts_a_taken_unique_unit_when_overriding() -> void:
+	var army := _army()
+	army.auxiliary.append(Kit.unit("u7", "unique"))
+	var builder := _builder(army)
+	builder.editor.set_override_constraints(true)
+	assert_true(builder.can_start_regiment(_roster("unique")))
+
+
+func test_can_start_regiment_accepts_an_untaken_unique_unit() -> void:
+	assert_true(_builder().can_start_regiment(_roster("unique")))
+
+
+func test_the_new_regiment_drop_stays_hidden_for_a_taken_unique_unit() -> void:
+	var army := _army()
+	army.auxiliary.append(Kit.unit("u7", "unique"))
+	var builder := _builder(army)
+	_drag(builder).begin(_roster("unique"))
+	assert_false(builder.new_regiment_drop.visible)
+
+
+func test_the_new_regiment_drop_accepts_a_leader_and_refuses_others() -> void:
+	var builder := _builder()
+	assert_true(builder._can_drop_new_regiment(Vector2.ZERO, _roster("wizard")))
+	assert_false(builder._can_drop_new_regiment(Vector2.ZERO, _roster("grunt")))
+	assert_false(builder._can_drop_new_regiment(Vector2.ZERO, _unit("u2")))
+
+
+func test_the_new_regiment_drop_highlights_when_a_leader_is_over_it() -> void:
+	var builder := _builder()
+	builder._can_drop_new_regiment(Vector2.ZERO, _roster("wizard"))
+	assert_eq(builder.new_regiment_drop.theme_type_variation, &"NewRegimentDropOnPanel")
+
+
+func test_the_new_regiment_drop_is_not_highlighted_by_a_refused_drag() -> void:
+	var builder := _builder()
+	var before := builder.new_regiment_drop.theme_type_variation
+	builder._can_drop_new_regiment(Vector2.ZERO, _roster("grunt"))
+	assert_eq(builder.new_regiment_drop.theme_type_variation, before)
+
+
+func test_dropping_a_leader_adds_a_regiment_led_by_it() -> void:
+	var builder := _builder()
+	var before := builder.editor.army.regiments.size()
+	builder._drop_new_regiment(Vector2.ZERO, _roster("wizard"))
+	var regiments := builder.editor.army.regiments
+	assert_eq(regiments.size(), before + 1)
+	assert_eq(regiments[-1].units[0].warscroll_id, "wizard")
+
+
+func test_end_unhighlights_the_new_regiment_drop() -> void:
+	var builder := _builder()
+	var before := builder.new_regiment_drop.theme_type_variation
+	_drag(builder).begin(_roster("wizard"))
+	builder._can_drop_new_regiment(Vector2.ZERO, _roster("wizard"))
+	_drag(builder).end()
+	assert_eq(builder.new_regiment_drop.theme_type_variation, before)
+
+
+func test_process_unhighlights_the_new_regiment_drop_when_the_pointer_is_elsewhere() -> void:
+	var builder := _builder()
+	var before := builder.new_regiment_drop.theme_type_variation
+	_drag(builder).begin(_roster("wizard"))
+	builder._can_drop_new_regiment(Vector2.ZERO, _roster("wizard"))
+	_drag(builder).process(0.0)
+	assert_eq(builder.new_regiment_drop.theme_type_variation, before)
