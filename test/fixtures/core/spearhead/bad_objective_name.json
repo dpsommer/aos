@@ -1,0 +1,239 @@
+{
+  "name": "Test Pack",
+  "battle_rounds": 3,
+  "battlefield": {
+    "width": 20,
+    "depth": 10
+  },
+  "abilities": [
+    {
+      "name": "Rally Up",
+      "type": "active",
+      "timing": "Your Movement Phase",
+      "effect": "Rally."
+    }
+  ],
+  "terrain_abilities": [
+    {
+      "name": "Hide",
+      "type": "passive",
+      "timing": "Passive",
+      "effect": "Hidden."
+    },
+    {
+      "name": "Wobble",
+      "type": "passive",
+      "timing": "Passive",
+      "effect": "Wobbly."
+    }
+  ],
+  "terrain_features": [
+    {
+      "name": "Big Ruin",
+      "size": "large",
+      "abilities": [
+        "Hide",
+        "Wobble"
+      ]
+    },
+    {
+      "name": "Little Shrine",
+      "size": "small",
+      "abilities": [
+        "Wobble"
+      ]
+    }
+  ],
+  "objective_names": [
+    "Alpha",
+    "Beta",
+    "Gamma"
+  ],
+  "objective_radius": 2.5,
+  "realms": [
+    {
+      "name": "Fire",
+      "objectives": [
+        {
+          "type": "Beta",
+          "x": 10.0,
+          "y": 5.0
+        },
+        {
+          "type": "Alpha",
+          "x": 2.0,
+          "y": 5.0
+        },
+        {
+          "type": "Gamma",
+          "x": 18.0,
+          "y": 5.0
+        }
+      ],
+      "twists": [
+        {
+          "name": "Burn",
+          "text": "Things burn."
+        },
+        {
+          "name": "Smoke",
+          "text": "Smoky.",
+          "options": [
+            {
+              "name": "Thick",
+              "text": "Very smoky."
+            },
+            {
+              "name": "Thin",
+              "text": "Barely smoky."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Leaf",
+      "objectives": [
+        {
+          "type": "Delta",
+          "x": 3.5,
+          "y": 2.0
+        },
+        {
+          "type": "Alpha",
+          "x": 12.0,
+          "y": 8.0
+        },
+        {
+          "type": "Beta",
+          "x": 17.0,
+          "y": 5.0
+        }
+      ],
+      "twists": [
+        {
+          "name": "Grow",
+          "text": "Things grow."
+        },
+        {
+          "name": "Wilt",
+          "text": "Things wilt."
+        }
+      ]
+    }
+  ],
+  "deployment_maps": [
+    {
+      "name": "Split",
+      "territory_a": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "y": 5
+        },
+        {
+          "x": 0,
+          "y": 5
+        }
+      ],
+      "territory_b": [
+        {
+          "x": 0,
+          "y": 5
+        },
+        {
+          "x": 20,
+          "y": 5
+        },
+        {
+          "x": 20,
+          "y": 10
+        },
+        {
+          "x": 0,
+          "y": 10
+        }
+      ]
+    },
+    {
+      "name": "Slash",
+      "territory_a": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 10
+        }
+      ],
+      "territory_b": [
+        {
+          "x": 20,
+          "y": 0
+        },
+        {
+          "x": 20,
+          "y": 10
+        },
+        {
+          "x": 0,
+          "y": 10
+        }
+      ]
+    }
+  ],
+  "battleplan": {
+    "name": "Test Plan",
+    "sections": [
+      {
+        "name": "Setup",
+        "text": "Set up."
+      }
+    ],
+    "scoring": [
+      "Score 1.",
+      "Score 2."
+    ]
+  },
+  "battle_tactic_cards": [
+    {
+      "name": "Hold Alpha",
+      "condition": "Control the Alpha objective.",
+      "command": {
+        "name": "Stand Firm",
+        "type": "command",
+        "timing": "Enemy Hero Phase",
+        "effect": "Stand."
+      }
+    },
+    {
+      "name": "Raid",
+      "condition": "Be in enemy territory.",
+      "command": {
+        "name": "Dash",
+        "type": "command",
+        "timing": "Your Movement Phase",
+        "effect": "Dash."
+      }
+    }
+  ],
+  "faqs": [
+    {
+      "about": "Hold Alpha",
+      "question": "Does it count?",
+      "answer": "Yes."
+    }
+  ]
+}

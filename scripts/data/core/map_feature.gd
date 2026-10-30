@@ -16,3 +16,6 @@ const TERRAIN_SIZES: PackedStringArray = ["small", "medium"]
 @export var size: String
 ## Centre in inches from the battlefield's north-west corner.
 @export var position: Vector2
+## Radius in inches of a Spearhead objective that is bigger or smaller than its battlepack's
+## [member SpearheadBattlepack.objective_radius]. 0 if it isn't.
+@export var radius: float

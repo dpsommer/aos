@@ -214,15 +214,22 @@ func _ability(data: Variant, path: String) -> Ability:
 	ability.chanting_value = _int(data, "chanting_value", path)
 	ability.source = _string(data, "source", path)
 	ability.summons = _strings(data, "summons", path)
+	ability.options = _options(data, path)
+	return ability
+
+
+## Named sub-effects to pick from, each {"name": String, "text": String}.
+func _options(data: Dictionary, path: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
 	var options := _array(data, "options", path)
 	for i in options.size():
 		var option_path := "%s.options[%d]" % [path, i]
 		if _is_object(options[i], option_path):
-			ability.options.append({
+			result.append({
 				"name": _string(options[i], "name", option_path, true),
 				"text": _string(options[i], "text", option_path, true),
 			})
-	return ability
+	return result
 
 
 func _abilities(data: Dictionary, key: String, path: String) -> Array[Ability]:
