@@ -29,7 +29,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
-					"colour": "grey",
+					"colour": "green",
 					"effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly CASTELITE units if they did not use a MOVE ability in the same turn."
 				}
 			],
@@ -39,6 +39,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to wound rolls for that unit’s shooting attacks for the rest of the phase."
@@ -48,6 +49,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"effect": "Friendly Wildercorps Hunters units gain the REINFORCEMENTS keyword."
 				}
@@ -58,6 +60,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick 2 friendly Freeguild Fusiliers units that have been destroyed and have not already been replaced.",
 					"effect": "Set up a single replacement Freeguild Fusiliers unit with 10 models more than 6\" from all enemy units."
@@ -67,6 +70,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Your general has WARD (5+)."
 				},
 				{
@@ -74,7 +78,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Movement Phase",
-					"colour": "red",
+					"colour": "grey",
 					"frequency": "Once Per Turn",
 					"declare": "Pick an enemy INFANTRY, WAR MACHINE or CAVALRY unit in combat with your general to be the target.",
 					"effect": "Roll a dice. On a 3+, the target must immediately use the ' Retreat ' ability as if it were the enemy movement phase."
@@ -84,6 +88,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Enemy Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn",
 					"declare": "Pick an enemy unit in combat with your general to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
@@ -125,6 +130,7 @@
 							"type": "active",
 							"category": "shooting",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"declare": "Pick an enemy unit that was targeted by this unit’s shooting attacks this turn to be the target.",
 							"effect": "Add 1 to hit rolls for attacks made by friendly units that target that unit for the rest of the turn."
 						}
@@ -213,6 +219,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, the target’s melee weapons have Crit (Mortal) until the start of your next turn."
 						}
@@ -266,6 +273,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Shooting Phase",
+							"colour": "blue",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "Pick another friendly Freeguild Fusiliers unit to be the target.",
 							"effect": "Remove this unit’s Blackpowder Squire token from the battlefield, then give it to the target."
@@ -307,6 +315,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle Round",
 					"declare": "Pick a battle tactic card in your hand and place it face-down separately next to your other battle tactic cards. The information on it is still hidden from your opponent but make it clear which card is separate. The card stays separate until you use the command on it or score the battle tactic on it as described below.",
 					"effect": "When you use the command on that card, it is not discarded but returns to your hand. Your opponent can check the information on it before it returns to your hand. The card goes back to being a normal battle tactic card, with the exception that you cannot use the command on it in the same phase it went back into your hand.\nIf you did not use the command on the card you separated, you can still score the battle tactic on it at the end of your turn as normal if you met its conditions. If you do so, discard it as normal. If you neither used the command nor scored the battle tactic on the card, it automatically returns to your hand at the end of your turn.",
@@ -324,6 +333,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Friendly CAVALRY units have STRIKE-FIRST if they charged in the same turn."
 				},
 				{
@@ -331,6 +341,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Enemy Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn",
 					"declare": "Pick your Ironweld Great Cannon to use this ability.",
 					"effect": "Roll a dice. On a 3+, it can use the ‘Shoot’ ability as if it were your shooting phase."
@@ -342,6 +353,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"effect": "Heal (D6) your general."
 				},
@@ -350,6 +362,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick a friendly Freeguild Steelhelms unit within your general’s combat range.",
 					"effect": "You can return up to D3 slain models to that unit."
 				},
@@ -358,6 +371,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of your general’s Master-forged Longsword."
 				},
 				{
@@ -365,6 +379,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "Each phase, you can re-roll 1 hit roll, or 1 wound roll, or 1 save roll made for your general."
 				}
 			],
@@ -419,6 +434,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly Freeguild Steelhelms unit wholly within 12\" of this unit to be the target and roll a dice.",
 							"effect": "On a 2+, pick 1:",
 							"options": [
@@ -531,6 +547,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target and roll a dice.",
 							"effect": "On a 2+, inflict D3 mortal damage on the target."
 						}
@@ -605,6 +622,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a FIGHT ability for your general or a friendly non-HERO unit wholly within 12\" of your general",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Immediately after that FIGHT ability has been resolved, pick a point on the battlefield within 6\" of your general. Remove the unit using this ability from the battlefield and set it up again within 1\" of that point and not in combat.",
 					"options": [
@@ -621,6 +639,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "Friendly units’ ranged weapons have Shoot in Combat but you must subtract 1 from hit rolls for their shooting attacks while they are in combat."
 				},
 				{
@@ -628,6 +647,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 5 to the control scores of friendly non-HERO units while they are in combat with any enemy units that have 6 or more models or a Health characteristic of 3 or more."
 				}
 			],
@@ -646,6 +666,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "orange",
 					"effect": "Your general can use CHARGE abilities even if they used a RUN or RETREAT ability in the same turn and no mortal damage is inflicted on them by RETREAT abilities."
 				},
 				{
@@ -653,6 +674,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly unit wholly within 6\" of a battlefield edge to be the target.",
 					"effect": "Remove the target from the battlefield and set it up again wholly within 3\" of a battlefield edge and more than 6\" from all enemy units."
@@ -662,6 +684,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "Double the Attacks characteristic of your general’s melee weapons for the rest of the turn."
 				}
@@ -692,6 +715,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 3+, for the rest of the turn, add 2\" to the target’s Move characteristic but it cannot use RUN abilities."
 						},
@@ -700,7 +724,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
-							"colour": "red",
+							"colour": "purple",
 							"effect": "If this unit has the Thexa token, give that token to an enemy unit within 6\" of this unit.\nIf an enemy unit has the Thexa token, inflict D3 mortal damage on that enemy unit. Then, give this unit the Thexa token."
 						}
 					],
@@ -734,7 +758,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
-							"colour": "grey",
+							"colour": "yellow",
 							"declare": "Pick an objective within 12\" of this unit, then make a chanting roll of D6.",
 							"effect": "On a 3+, for the rest of the turn, friendly units have WARD (5+) while they are contesting that objective."
 						}
@@ -780,6 +804,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "Pick up to 1 terrain feature contested by this unit and up to 1 objective contested by this unit, then pick any enemy units also contesting them to be the targets.",
 							"effect": "Roll a dice for each target. On a 3+, inflict 1 mortal damage on the target."
@@ -815,6 +840,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"declare": "If this unit has not charged this turn, pick an enemy unit in combat with it to be the target.",
 							"effect": "For the rest of the turn, subtract 1 from the Rend characteristic of the target’s weapons for attacks that target this unit."
 						}
@@ -857,6 +883,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "Set up this unit within 6\" of an enemy unit and not in combat.",
 					"text": "Your Whisperblade is not set up during the deployment phase. Instead, from the second battle round onwards, it can use the following ability:"
 				},
@@ -865,6 +892,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a friendly model is slain by a combat attack, roll a number of dice equal to that model’s Health characteristic. For each 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
 				}
 			],
@@ -874,6 +902,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit to use this ability.",
 					"effect": "This unit can use CHARGE abilities this turn even if it used a RUN ability in the same turn."
@@ -883,6 +912,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Add 3 to the control scores of friendly Freeguild Steelhelms units."
 				}
 			],
@@ -892,6 +922,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Attacks characteristic and the Rend characteristic of your general’s Master-forged Weapon."
 				},
 				{
@@ -899,6 +930,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a visible friendly non-HERO unit wholly within 12\" of your general to be the target.",
 					"effect": "The target has WARD (4+) until the start of the next battle round."
@@ -908,6 +940,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared a RUN ability for a non-HERO unit wholly within 12\" of your general",
+					"colour": "grey",
 					"frequency": "Once Per Turn",
 					"effect": "Do not make a run roll as part of that RUN ability. Instead, add 6\" to that non-HERO unit’s Move characteristic to determine the distance each model in that unit can move as part of that RUN ability"
 				},
@@ -960,6 +993,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
 							"effect": "Remove this unit’s Relic Envoy token from the battlefield, then give it to the target."
 						},
@@ -968,6 +1002,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "While a friendly unit other than this unit has the Relic Envoy token, add 1 to wound rolls for that unit’s combat attacks.\nIf this unit is destroyed, remove the Relic Envoy token from the battlefield."
 						}
 					],
@@ -1039,6 +1074,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "While it is your turn, this unit has STRIKE-FIRST."
 						}
 					],
@@ -1071,6 +1107,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Reaction: You used a command",
+							"colour": "black",
 							"frequency": "Once Per Turn",
 							"effect": "After that command has been resolved, return the card to your hand.",
 							"options": [
@@ -1112,6 +1149,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"effect": "Return 1 slain model to this unit."
 						}
 					],

@@ -22,13 +22,40 @@
 					"name": "Blood Stalkers"
 				}
 			],
-			"battle_traits": [],
+			"battle_traits": [
+				{
+					"name": "BLOOD RITES",
+					"type": "active",
+					"category": "special",
+					"timing": "",
+					"effect": "At the start of each battle round, all friendly units gain the Blood Rites passive ability that corresponds to the current battle round number, as shown in the table on the right (units keep all Blood Rites abilities gained in previous battle rounds).",
+					"options": [
+						{
+							"name": "1: Quickening Bloodlust",
+							"text": "Add 1 to run rolls for this unit."
+						},
+						{
+							"name": "2: Headlong Fury",
+							"text": "Add 1 to charge rolls for this unit."
+						},
+						{
+							"name": "3: Zealot’s Rage",
+							"text": "Add 1 to hit rolls for combat attacks made by this unit."
+						},
+						{
+							"name": "4: Slaughterer’s Strength",
+							"text": "Add 1 to wound rolls for combat attacks made by this unit."
+						}
+					]
+				}
+			],
 			"regiment_abilities": [
 				{
 					"name": "MURDEROUS EPIPHANY",
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "All friendly units gain the Blood Rites passive ability they would have gained at the start of the next battle round (they keep this ability for the rest of the battle, but they do not gain it for a second time at the start of the next battle round)."
 				},
@@ -37,6 +64,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
 					"effect": "Add 1 to ward rolls for that unit this phase."
@@ -48,6 +76,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time a model is slain by your general, Heal (1) your general."
 				},
 				{
@@ -55,6 +84,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "Until the end of the phase, subtract 1 from hit rolls for attacks that target friendly units while they are wholly within 12\" of your general."
 				},
@@ -63,6 +93,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly Blood Stalkers units while they are wholly within 12\" of your general."
 				},
 				{
@@ -70,6 +101,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a friendly unit wholly within 9\" of your general that is not in combat. Roll a dice for each slain model from that unit.",
 					"effect": "For each 5+, you can return 1 slain model to that unit."
 				}
@@ -111,6 +143,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
 							"effect": "Add 1 to the Attacks characteristic of the target’s melee weapons for the rest of the turn."
 						},
@@ -119,6 +152,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
+							"colour": "purple",
 							"declare": "Pick an enemy unit within 1\" of this unit to be the target and roll a dice.",
 							"effect": "On a 2+, inflict 1 mortal damage on the target."
 						}
@@ -177,6 +211,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, inflict D3 mortal damage on the target."
 						}
@@ -307,6 +342,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"frequency": "Once Per Turn",
 					"declare": "Pick a friendly INFANTRY unit that is in combat and did not charge this turn to be the target.",
 					"effect": "Subtract 1 from hit rolls and wound rolls for combat attacks that target that friendly unit for the rest of the turn."
@@ -318,6 +354,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly INFANTRY unit that is in combat and did not charge this turn to be the target.",
 					"effect": "The target can move 6\" but cannot end that move in combat."
@@ -327,6 +364,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used by friendly INFANTRY units that charged in the same turn."
 				}
 			],
@@ -336,6 +374,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "Add 1 to the Rend characteristic of your general’s melee weapons for the rest of the turn."
 				},
@@ -344,6 +383,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick a visible enemy unit within 12\" of your general to be the target.",
 					"effect": "Roll a dice. If the roll equals or exceeds the target’s Save characteristic, halve the target’s Move characteristic until the start of your next turn"
 				},
@@ -352,6 +392,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to ward rolls for the target for the rest of the turn."
 				},
@@ -360,6 +401,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "If your general charged this phase, pick an enemy unit within 1\" of them to be the target.",
 					"effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
 				}
@@ -391,7 +433,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Your Hero Phase",
-							"colour": "green",
+							"colour": "yellow",
 							"declare": "Pick a visible friendly INFANTRY unit wholly within 12\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 3+, add 1 to save rolls for the target until the start of your next turn."
 						}
@@ -429,6 +471,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
 							"effect": "If this unit is in combat, the target’s melee weapons have Crit (Auto-wound) for the rest of the turn.\nIf this unit is not in combat, roll a dice. On a 3+, the target’s melee weapons have Crit (Auto-wound) for the rest of the turn."
 						}

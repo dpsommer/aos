@@ -52,6 +52,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly unit to use this ability.",
 					"effect": "That unit has STRIKE-FIRST this phase."
@@ -61,6 +62,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "Pick a friendly unit to use this ability.",
 					"effect": "For the rest of the turn, that unit can use a RETREAT ability and still use SHOOT and/or CHARGE abilities later in the turn."
 				}
@@ -71,6 +73,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Roll a dice for each enemy unit in combat with your general.",
 					"effect": "On a 5+, the unit being rolled for has STRIKE-LAST this phase."
 				},
@@ -88,6 +91,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn",
 					"declare": "Pick an enemy unit within 9\" of your general and roll a dice.",
 					"effect": "On a 4+, subtract 1 from save rolls for that unit until the start of your next turn."
@@ -97,6 +101,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"effect": "Heal (D3) your general."
 				}
 			],
@@ -126,6 +131,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Make a casting roll of 2D6.",
 							"effect": "On a 6+, roll 6 dice. For each 4+, you receive 1 depravity point."
 						}
@@ -219,7 +225,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Enemy Shooting Phase",
-							"colour": "black",
+							"colour": "blue",
 							"declare": "This unit can use this ability if any damage points were allocated to it this turn.",
 							"effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase."
 						}
@@ -305,6 +311,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "The following effects apply based on the number of friendly units on the battlefield. These effects are not cumulative:",
 					"options": [
 						{
@@ -336,6 +343,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, you can pick 2 friendly Daemonettes units instead of 1 unit. Resolve the second FIGHT ability immediately after the first."
 				},
 				{
@@ -343,6 +351,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly Seekers or Fiends unit wholly within 12\" of your general to be the target.",
 					"effect": "The target can use the ‘Normal Move’ ability as if it were your movement phase."
@@ -354,6 +363,7 @@
 					"type": "passive",
 					"category": "movement",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "When your general makes a pile-in move, if they charged in the same turn, add D6\" to the distance they can move."
 				},
 				{
@@ -361,6 +371,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target.",
 					"effect": "The target’s melee weapons, including Companion weapons, have Crit (2 Hits) until the start of your next turn."
@@ -370,6 +381,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While your general is wholly within the combat range of a friendly Daemonettes unit, both units have WARD (5+)."
 				},
 				{
@@ -377,6 +389,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a visible friendly Seekers or Fiends unit wholly within 12\" of your general to be the target.",
 					"effect": "Remove the target from the battlefield and set it up again on the battlefield more than 6\" from all enemy units."
@@ -417,6 +430,7 @@
 							"type": "active",
 							"category": "special",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick up to X different friendly units wholly within 12\" of this unit to be the targets, where X is the number of models in this unit. Then, make a casting roll of 2D6.",
 							"effect": "On a 6+, apply the relevant effect to each target:\nDaemonettes: The target’s weapons have Anti‑charge (+1 Rend) until the start of your next turn. Seekers: Add 2\" to the target’s Move characteristic until the start of your next turn. Fiends: Add 1 to hit rolls for the target’s combat attacks until the start of your next turn."
 						}
@@ -454,7 +468,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Charge Phase",
-							"colour": "red",
+							"colour": "orange",
 							"frequency": "Once Per Turn (Army)",
 							"declare": "If this unit is not in combat, pick a visible enemy unit within 9\" of it to be the target.\nIf this unit is in combat, pick an enemy unit in combat with it to be the target.",
 							"effect": "Roll a dice. On a 4+, the target has STRIKE-LAST for the rest of the turn."
@@ -542,7 +556,7 @@
 							"type": "passive",
 							"category": "movement",
 							"timing": "Passive",
-							"colour": "purple",
+							"colour": "grey",
 							"effect": "When making run rolls for this unit, if you roll a 1-3, you can use a value of 4 instead."
 						}
 					],

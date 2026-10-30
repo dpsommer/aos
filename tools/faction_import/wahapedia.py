@@ -24,6 +24,11 @@ ICON_CATEGORY = {
     "abMovement": "movement", "abOffensive": "offensive", "abRallying": "rallying",
     "abShooting": "shooting", "abSpecial": "special",
 }
+# An ability box's colour, from its header's background.
+HEADER_COLOUR = {
+    "#000000": "black", "#76602b": "yellow", "#606362": "grey", "#28435c": "blue",
+    "#a34d14": "orange", "#802022": "red", "#5e4a79": "purple", "#3d5b26": "green",
+}
 
 def join_hyphens(s):
     """Rejoins a word split after its hyphen by tags, e.g. '<span>non-</span><span>HERO</span>'."""
@@ -84,6 +89,8 @@ def parse_ability(block):
         kw_text = (kw_text + ", " + text(kw_block)).strip(", ")
     keywords = [k.strip() for k in kw_text.split(",") if k.strip()]
     a = {"name": name, "category": category, "timing": timing, "frequency": frequency}
+    colour = HEADER_COLOUR.get((header.get("bgcolor") or "").lower()) if header else None
+    if colour: a["colour"] = colour
     for key, sel in (("casting_value", ".abSpellPointsN"), ("chanting_value", ".abPrayerPointsN"),
                      ("command_points", ".abCommandPointsN")):
         value = block.select_one(sel)
@@ -342,6 +349,8 @@ def trait_rows(table):
             continue
         name = " ".join(w.capitalize() for w in text(name_el).rstrip(":").split())
         name_el.extract()
+        for label in cells[-1].find_all("b"):
+            if text(label) == "Effect:": label.extract()
         options.append({"name": "%s: %s" % (text(cells[0]), name), "text": text(cells[-1])})
     return options
 
@@ -351,10 +360,15 @@ def spearhead_battle_trait_rules(heading):
     (title, text, options, followed by an ability). Some say which units start in reserve
     before the ability that sets them up (the Bad Moon Madmob's 'Squigalanche'); others are rules
     of their own, with a title and a table (the Blades of the Lurid Dream's 'Temptations of
-    Slaanesh')."""
+    Slaanesh'). The title, text and table can each be wrapped in a block of their own (the
+    Heartflayer Troupe's 'Blood Rites')."""
     body = heading.find_next_sibling(class_="Columns2")
-    title, nodes, options = "", [], []
+    children = []
     for c in body.children if body is not None else []:
+        wrapper = isinstance(c, Tag) and "BreakInsideAvoid" in (c.get("class") or []) and c.select_one(".abHeader") is None
+        children += list(c.children) if wrapper else [c]
+    title, nodes, options = "", [], []
+    for c in children:
         if isinstance(c, Tag) and c.select_one(".abHeader") is not None:
             return title, text_join(nodes), options, True
         if isinstance(c, Tag) and "h_custom" in (c.get("class") or []):

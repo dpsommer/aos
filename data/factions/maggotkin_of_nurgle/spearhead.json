@@ -32,6 +32,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
 					"keywords": [
 						"CORE"
@@ -42,6 +43,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time an attack made by a friendly model scores a critical hit, you receive 1 disease point, to a maximum of 7."
 				},
 				{
@@ -49,6 +51,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Spend any number of your disease points. For each disease point you spend, pick an enemy unit that is in combat with any of your units and roll a dice. On a 5+, inflict 1 mortal damage on that unit (you can pick the same unit more than once)."
 				}
 			],
@@ -58,6 +61,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Phase",
 					"declare": "Pick a friendly unit.",
 					"effect": "Heal (D3) that unit."
@@ -67,6 +71,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Each time a friendly model is slain, before it is removed from play, you can pick an enemy unit within 1\" of it and roll a dice. On a 4+, inflict 1 mortal damage on that unit."
 				}
 			],
@@ -76,6 +81,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Pick a friendly Plaguebearers unit wholly within 14\" of your general.",
 					"effect": "Return 1 slain model to that unit."
 				},
@@ -84,6 +90,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"declare": "Pick an enemy unit within 7\" of your general and roll a dice for each model in that unit.",
 					"effect": "For each 5+, inflict 1 mortal damage on that unit."
 				},
@@ -92,6 +99,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"declare": "If your general is contesting an objective not contested by any enemy models, roll a dice.",
 					"effect": "On a 3+, that objective is considered by you to be desecrated. Friendly units have WARD (4+) while they are contesting a desecrated objective. If your opponent gains control of a desecrated objective, it is no longer desecrated."
 				},
@@ -230,7 +238,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "End of Any Turn",
-							"colour": "red",
+							"colour": "purple",
 							"declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target and roll a dice for each model in this unit that is within the target unit’s combat range.",
 							"effect": "For each roll that exceeds the target’s Health characteristic, inflict 1 mortal damage on it."
 						}
@@ -278,6 +286,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Charge Phase",
+							"colour": "orange",
 							"declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
 							"effect": "On a 2+, inflict D3 mortal damage on the target."
 						}
@@ -318,6 +327,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for attacks that target friendly units.",
 					"keywords": [
 						"CYCLE"
@@ -363,6 +373,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Your Turn",
+					"colour": "purple",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a terrain feature, then roll a dice for each enemy unit within 3\" of that terrain feature.",
 					"effect": "On a 4+, inflict D3 mortal damage on that enemy unit."
@@ -372,6 +383,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "For the rest of the turn:\nSubtract 1 from the Move characteristic of enemy units. Subtract 1 from run rolls for enemy units."
 				}
@@ -390,6 +402,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy unit within your general’s combat range to be the target.",
 					"effect": "The target has STRIKE-LAST for the rest of the turn."
@@ -399,6 +412,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from wound rolls for attacks that target your general."
 				},
 				{
@@ -566,6 +580,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "grey",
 							"effect": "No mortal damage is inflicted on this unit when it uses RETREAT abilities."
 						}
 					],

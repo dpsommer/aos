@@ -24,6 +24,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"declare": "Pick a battlefield edge to be the target.",
 					"effect": "That battlefield edge is leeward. For the rest of the battle, each time a friendly RIDE THE HURRICANE ability is used, after that ability has been resolved, change the leeward battlefield edge to the next edge clockwise."
 				},
@@ -32,6 +33,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit that is not in combat to be the target.",
 					"effect": "The target can move D6\" but must end that move closer to the leeward battlefield edge. It can pass through the combat ranges of enemy units but cannot end that move in combat.",
@@ -44,6 +46,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Reaction: You declared an ATTACK ability",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "Add 1 to hit rolls for attacks made as part of that ATTACK ability if the target of that ability is closer to the leeward battlefield edge than the unit using this ability.",
 					"keywords": [
@@ -63,6 +66,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick an enemy unit to be the target.",
 					"effect": "For the rest of the turn, each time the target uses a MOVE ability, it must end that move closer to the leeward battlefield edge."
@@ -72,6 +76,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick an enemy unit that is closer to the leeward battlefield edge than the large terrain feature within friendly territory to be the target.",
 					"effect": "Roll a number of dice equal to the current battle round number. For each 3+, inflict 1 mortal damage on the target.",
 					"keywords": [
@@ -85,6 +90,7 @@
 					"type": "passive",
 					"category": "control",
 					"timing": "Passive",
+					"colour": "purple",
 					"effect": "Subtract 1 from the control scores of enemy units within 6\" of your general for each friendly RIDE THE HURRICANE ability used this battle round."
 				},
 				{
@@ -92,6 +98,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "While any friendly INFANTRY units are within your general’s combat range, both your general and those INFANTRY units have WARD (5+)."
 				},
 				{
@@ -99,6 +106,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle (Army)",
 					"declare": "Pick a battlefield edge to be the target.",
 					"effect": "Change the leeward battlefield edge to the target battlefield edge."
@@ -108,6 +116,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "You can measure the range and visibility of your general’s shooting attacks from any point on the leeward battlefield edge."
 				}
 			],
@@ -143,11 +152,11 @@
 					],
 					"abilities": [
 						{
-							"name": "WINDLEAP",
+							"name": "GUIDE THE GUSTS",
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
-							"colour": "grey",
+							"colour": "yellow",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
 							"effect": "On a 6+, for the rest of the turn:\nThe target can use RETREAT abilities and still use SHOOT and/or CHARGE abilities later in the turn. No mortal damage is inflicted on the target by RETREAT abilities."
 						}
@@ -195,6 +204,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "Subtract 1 from hit rolls for attacks that target friendly units while they are wholly within 6\" of this unit."
 						},
 						{
@@ -298,6 +308,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "End of Your Turn",
+							"colour": "purple",
 							"effect": "If this unit is not in combat, remove it from the battlefield and set it up again wholly within 3\" of the leeward battlefield edge and more than 6\" from all enemy units.",
 							"keywords": [
 								"RIDE THE HURRICANE"
@@ -338,6 +349,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle Round",
 					"effect": "You must use this ability at the start of the battle round. Pick 1 FACET OF WAR ability. That FACET OF WAR ability can be used this battle round but the other cannot."
 				},
@@ -346,6 +358,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls that target friendly units.",
 					"keywords": [
 						"FACET OF WAR"
@@ -356,6 +369,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit.",
 					"effect": "Roll a dice. On a 2+, until the start of your next turn, attacks made by that unit score critical hits on unmodified hit rolls of 5+.",
@@ -368,6 +382,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, you can pick 2 units instead of 1. Resolve the second FIGHT ability immediately after the first."
 				}
 			],
@@ -377,6 +392,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "yellow",
 					"effect": "Add 1 to casting rolls for your general."
 				},
 				{
@@ -384,6 +400,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Add 1 to save rolls for friendly units that use a FIGHT ability immediately after another friendly unit because of the ‘Lightning Reactions’ ability, until the end of the phase."
 				}
 			],
@@ -404,6 +421,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target, then make a casting roll of 2D6.",
 					"effect": "On a 7+, the target has WARD (5+) until the start of your next turn."
 				},
@@ -412,6 +430,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly unit wholly within 18\" of your general, then make a casting roll of 2D6.",
 					"effect": "On a 5+, double the Move characteristic of that unit until the start of your next turn."
 				},
@@ -500,6 +519,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Each time this unit uses a FIGHT ability, you must pick either the Perfect Strike or Flurry of Blows weapon characteristics for all the attacks it makes with its Sunmetal Greatblade. In addition:\nDo not use the attack sequence for an attack made with Perfect Strike. Instead, roll a dice. On a 2+, inflict 1 mortal damage on the target unit."
 						},
 						{
@@ -507,6 +527,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
+							"colour": "green",
 							"effect": "While your general is wholly within this unit’s combat range, both this unit and your general have WARD (5+)."
 						}
 					],
@@ -543,6 +564,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
+							"colour": "red",
 							"frequency": "Once Per Battle",
 							"declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target, then roll a dice.",
 							"effect": "On a 2+, inflict D3 mortal damage on the target."
