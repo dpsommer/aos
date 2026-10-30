@@ -995,6 +995,38 @@ def test_link_summons_reaches_armies_of_renown_abilities():
     assert d["armies_of_renown"][0]["lores"][0]["entries"][0]["summons"] == ["brass_wall"]
 
 
+def summoned_unit(name, **kw):
+    w = {"id": name.lower().replace(" ", "_"), "name": name, "points": 0, "keywords": ["WAR MACHINE"], "abilities": []}
+    w.update(kw)
+    return w
+
+
+def test_a_unit_with_no_points_is_a_summoned_unit():
+    assert build.is_summoned_unit(summoned_unit("Auto-Endrin"))
+
+
+def test_a_unit_with_points_is_not_a_summoned_unit():
+    assert not build.is_summoned_unit(summoned_unit("Gunhauler", points=120))
+
+
+def test_faction_terrain_is_not_a_summoned_unit():
+    assert not build.is_summoned_unit(summoned_unit("Endrin Dock", keywords=["FACTION TERRAIN"]))
+
+
+def test_link_summons_links_a_summoned_unit_the_rules_set_up():
+    a = {"name": "Release", "keywords": [], "effect": "Set up an Auto-Endrin wholly within 6\"."}
+    d = link_data(a, [summoned_unit("Auto-Endrin")])
+    build.link_summons(d)
+    assert linked(d) == ["auto-endrin"]
+
+
+def test_link_summons_does_not_link_a_unit_with_points():
+    a = {"name": "Call", "keywords": [], "effect": "Set up a Gunhauler wholly within 6\"."}
+    d = link_data(a, [summoned_unit("Gunhauler", points=120)])
+    build.link_summons(d)
+    assert linked(d) is None
+
+
 def write_warscrolls(path, warscrolls):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"warscrolls": warscrolls}), encoding="utf-8")

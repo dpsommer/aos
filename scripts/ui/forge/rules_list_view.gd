@@ -28,6 +28,7 @@ func populate(labels: PackedStringArray, render: Callable) -> void:
 
 func select(index: int) -> void:
 	list.select(index)
+	list.ensure_current_is_visible()
 	_show(index)
 
 

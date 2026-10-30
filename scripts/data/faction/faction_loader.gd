@@ -77,7 +77,35 @@ func load_faction(dir_path: String) -> Faction:
 	for i in _array(data, "sections", "").size():
 		faction.path_to_glory.append(_rules_section(data.sections[i], "sections[%d]" % i))
 
+	_mark_summoned(faction)
 	return null if not errors.is_empty() else faction
+
+
+## Marks the faction's units (not manifestations) that its abilities summon as
+## [member Warscroll.summoned].
+func _mark_summoned(faction: Faction) -> void:
+	var abilities: Array[Ability] = []
+	abilities.append_array(faction.battle_traits)
+	for formation in faction.battle_formations:
+		abilities.append_array(formation.abilities)
+	for table in faction.enhancement_tables:
+		abilities.append_array(table.entries)
+	for lore in faction.lores:
+		abilities.append_array(lore.entries)
+	for warscroll in faction.warscrolls:
+		abilities.append_array(warscroll.abilities)
+	for army in faction.armies_of_renown:
+		abilities.append_array(army.battle_traits)
+		for table in army.enhancement_tables:
+			abilities.append_array(table.entries)
+		for lore in army.lores:
+			abilities.append_array(lore.entries)
+	var ids := {}
+	for ability in abilities:
+		for warscroll_id in ability.summons:
+			ids[warscroll_id] = true
+	for warscroll in faction.warscrolls:
+		warscroll.summoned = ids.has(warscroll.id) and not warscroll.has_keyword("MANIFESTATION")
 
 
 ## Whether [param source] is a Scourge other than [member scourge], so its rules are Legends.

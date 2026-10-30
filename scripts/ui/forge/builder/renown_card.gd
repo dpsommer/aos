@@ -52,8 +52,8 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 	if not regiment.abilities.is_empty():
 		for ability in regiment.abilities:
 			content.add_child(AbilityCard.new(ability))
-			for manifestation: Warscroll in builder.catalog.summoned(ability):
-				content.add_child(WarscrollCard.new(manifestation))
+			for summoned_unit: Warscroll in builder.catalog.summoned(ability):
+				content.add_child(WarscrollCard.summoned_card(summoned_unit))
 
 	var in_army := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.regiment_of_renown == regiment.name)
 	var has_one := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())

@@ -1,0 +1,7 @@
+{
+	"warscrolls": [
+		{"id": "summoned_unit", "name": "Summoned Unit", "points": 0, "unit_size": 1, "move": "4", "health": 1, "save": 5, "control": 1},
+		{"id": "summoned_manifestation", "name": "Summoned Manifestation", "points": 0, "unit_size": 1, "move": "6", "health": 3, "save": 5, "control": 0, "banishment": 4, "keywords": ["MANIFESTATION"]},
+		{"id": "ordinary_unit", "name": "Ordinary Unit", "points": 100, "unit_size": 5, "move": "5", "health": 1, "save": 4, "control": 1}
+	]
+}

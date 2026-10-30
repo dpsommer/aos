@@ -7,6 +7,7 @@
 		"scourge_of_ghyran_grundstok_gunhauler > Sky Ordinance": {"name": "Sky Ordnance"},
 		"thundriks_profiteers > Aethermatic Anatomiser": {"abilities": ["Shoot in Combat"]},
 		"Grundstok Expeditionary Force": {"roster": {"entries": [{"unit": "Arkanaut Admiral"}, {"unit": "Grundstok Thunderers"}, {"unit": "Grundstok Gunhauler"}, {"unit": "Endrinmaster with Dirigible Suit"}, {"unit": "Aether-Khemist"}, {"unit": "Codewright"}, {"unit": "Aetheric Navigator"}, {"unit": "Endrinmaster with Endrinharness"}], "regiments_of_renown": false}},
+		"Market Dominance": {"summons": []},
 		"Grundstok Expeditionary Force > Aetheric Nullifier": {"timing": "Reaction: Opponent declared a SHOOT or FIGHT ability for a MANIFESTATION within 9\" of the bearer"},
 		"Grundstok Expeditionary Force > Transport Skyfarers": {"used_by": "The SKYVESSEL using that Move ability."},
 		"Pioneer Outpost": {"roster":{"entries": [{"unit": "Arkanaut Admiral"}, {"unit": "Aetheric Navigator"}, {"unit": "Endrinmaster with Endrinharness"}, {"keywords": ["KHARADRON OVERLORDS", "INFANTRY"], "not_keywords": ["HERO"]}, {"unit": "Grundstok Gunhauler"}], "regiments_of_renown": false}},

@@ -1,7 +1,7 @@
 extends GutTest
-## Integration test of manifestation summons with the shipped data in data/: every ability's
-## summons resolve through ArmyCatalog.summoned, every manifestation is summoned by something and
-## every SUMMON ability links to one.
+## Integration test of summons with the shipped data in data/: every ability's summons resolve
+## through ArmyCatalog.summoned to manifestations or summoned units, every manifestation is summoned
+## by something and every SUMMON ability links to one.
 
 var _entries: Array[Dictionary] = []
 var _manifestations: Array[Warscroll] = []
@@ -86,17 +86,18 @@ func test_some_abilities_summon() -> void:
 	assert_gt(_summoning_entries().size(), 0)
 
 
-func test_every_summons_id_resolves_to_a_manifestation() -> void:
+func test_every_summons_id_resolves() -> void:
 	for entry in _summoning_entries():
 		var ability: Ability = entry.ability
 		assert_eq(entry.catalog.summoned(ability).size(), ability.summons.size(),
 				"%s: summons %s not all found" % [entry.where, ability.summons])
 
 
-func test_every_summoned_warscroll_is_a_manifestation() -> void:
+func test_every_summoned_warscroll_is_a_manifestation_or_a_summoned_unit() -> void:
 	for entry in _summoning_entries():
 		for warscroll: Warscroll in entry.catalog.summoned(entry.ability):
-			assert_true(warscroll.has_keyword("MANIFESTATION"), "%s summons %s" % [entry.where, warscroll.id])
+			assert_true(warscroll.has_keyword("MANIFESTATION") or warscroll.summoned,
+					"%s summons %s" % [entry.where, warscroll.id])
 
 
 func test_every_manifestation_is_summoned_by_an_ability() -> void:
@@ -128,6 +129,11 @@ func test_jacobus_vyne_summons_the_wisper() -> void:
 func test_bloodwrack_shrine_summons_the_avatar_of_khaine() -> void:
 	var ability := _ability_on("Daughters of Khaine", "Bloodwrack Shrine", "Born of Slaughter")
 	assert_eq(ability.summons, PackedStringArray(["avatar_of_khaine"]))
+
+
+func test_zontari_endrin_dock_summons_the_auto_endrins() -> void:
+	var ability := _ability_on("Kharadron Overlords", "Zontari Endrin Dock", "Release the Auto-Endrins")
+	assert_eq(ability.summons, PackedStringArray(["auto_endrin"]))
 
 
 func test_ossiarch_army_of_renown_spell_summons_three_manifestations() -> void:

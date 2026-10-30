@@ -10,7 +10,7 @@ Every ability (warscroll abilities, battle traits, battle formations, enhancemen
   - chips for its casting value, chanting value, command points and points, where it has them.
 - **Inner box:** the ability's name in bold Cinzel, a horizontal rule, then its rules text, Declare, Effect and options (`RulesFormatter.ability_body()`), its keywords in small capitals and its source.
 
-A summoning ability's manifestation warscrolls follow its card, from `ArmyCatalog.summoned()`.
+A summoning ability's manifestation warscrolls follow its card, from `ArmyCatalog.summoned()`. A unit it sets up, such as an Auto-Endrin, follows it as a short card that links to the full warscroll (see the [Forge](forge.md)).
 
 ## Colours
 

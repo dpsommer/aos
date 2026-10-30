@@ -1890,7 +1890,10 @@
 					"category": "movement",
 					"timing": "Deployment Phase",
 					"colour": "black",
-					"effect": "Set up a friendly Nullifier Auto-Endrin, Stuncloud Auto-Endrin and Grudgeblast Auto-Endrin (see the Auto-Endrin warscroll) on the battlefield within friendly territory, wholly within 6\" of this terrain feature and more than 9\" from all enemy units."
+					"effect": "Set up a friendly Nullifier Auto-Endrin, Stuncloud Auto-Endrin and Grudgeblast Auto-Endrin (see the Auto-Endrin warscroll) on the battlefield within friendly territory, wholly within 6\" of this terrain feature and more than 9\" from all enemy units.",
+					"summons": [
+						"auto_endrin"
+					]
 				},
 				{
 					"name": "Endrinworks Outpost",
@@ -1899,7 +1902,10 @@
 					"timing": "Your Hero Phase",
 					"colour": "yellow",
 					"declare": "Pick a friendly AUTO-ENDRIN or replacement AUTO-ENDRIN that has been removed from the battlefield to be the target.",
-					"effect": "Make a manufacturing roll of D6. Add 1 to the roll if there is a friendly Endrinmaster with Dirigible Suit or Endrinmaster with Endrinharness within 3\" of this terrain feature. On a 4+, set up a replacement AUTO-ENDRIN on the battlefield, wholly within 6\" of this terrain feature and more than 3\" from all enemy units."
+					"effect": "Make a manufacturing roll of D6. Add 1 to the roll if there is a friendly Endrinmaster with Dirigible Suit or Endrinmaster with Endrinharness within 3\" of this terrain feature. On a 4+, set up a replacement AUTO-ENDRIN on the battlefield, wholly within 6\" of this terrain feature and more than 3\" from all enemy units.",
+					"summons": [
+						"auto_endrin"
+					]
 				}
 			],
 			"keywords": [

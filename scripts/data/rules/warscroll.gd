@@ -12,6 +12,10 @@ extends Resource
 ## The only Army of Renown that can include this unit, e.g. "The Iron March" for its Immolator
 ## Cogfort. Empty for a unit any army of its faction can include.
 @export var army_of_renown: String
+## Whether only an ability sets this unit up, such as the Auto-Endrins a Zontari Endrin Dock
+## releases, so an army can't include it. [FactionLoader] sets it for a unit (not a manifestation)
+## that one of its faction's abilities summons.
+@export var summoned: bool
 
 @export_group("Battle profile")
 @export var points: int

@@ -1282,3 +1282,21 @@ func test_army_of_renown_limit_comes_from_its_own_tables() -> void:
 
 func test_army_of_renown_does_not_inherit_the_factions_limit() -> void:
 	assert_eq(_limit_catalog(3, 1).enhancement_limit(_horde_army(), "Heroic Traits"), 1)
+
+
+# Summoned units
+
+func _faction_with_summoned_unit() -> Faction:
+	var summoned_unit := Kit.warscroll("auto")
+	summoned_unit.summoned = true
+	return Kit.faction([Kit.warscroll("unit"), summoned_unit] as Array[Warscroll])
+
+
+func test_unit_warscrolls_leave_out_summoned_units() -> void:
+	var ids := Kit.catalog(_faction_with_summoned_unit()).unit_warscrolls().map(
+			func(w: Warscroll) -> String: return w.id)
+	assert_eq(ids, ["unit"])
+
+
+func test_summoned_finds_the_factions_summoned_unit() -> void:
+	assert_eq(_summoned_ids(Kit.catalog(_faction_with_summoned_unit()), ["auto"]), ["auto"])
