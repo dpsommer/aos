@@ -54,7 +54,7 @@ func _alliance_with_available_faction() -> GrandAlliance.Type:
 ## Shows the Order factions with the fixture faction, which has no data, listed among them, and
 ## returns the fixture faction's card.
 func _fixture_faction_card() -> Button:
-	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	FactionFixture.use("faction_without_data")
 	var forge := _make_forge()
 	forge.show_factions(GrandAlliance.Type.ORDER)
 	for button: Button in forge.faction_grid.get_children():
@@ -353,7 +353,7 @@ func test_first_enabled_faction_card_has_focus_after_choosing_alliance() -> void
 
 
 func test_back_button_has_focus_when_no_faction_is_available() -> void:
-	FactionFixture.list_alone(GrandAlliance.Type.ORDER)
+	FactionFixture.use("alliance_without_data")
 	var forge := _make_forge()
 	forge.show_factions(GrandAlliance.Type.ORDER)
 	assert_true(forge.back_button.has_focus())

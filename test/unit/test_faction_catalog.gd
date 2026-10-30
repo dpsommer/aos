@@ -98,31 +98,31 @@ func test_load_unknown_faction_returns_null() -> void:
 
 
 func test_load_listed_but_unavailable_faction_returns_null() -> void:
-	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	FactionFixture.use("faction_without_data")
 	var loaded := FactionCatalog.load_faction(FactionFixture.NAME)
 	assert_push_error(FactionFixture.NAME)
 	assert_null(loaded)
 
 
 func test_set_listed_lists_those_factions() -> void:
-	FactionFixture.list_alone(GrandAlliance.Type.ORDER)
+	FactionFixture.use("alliance_without_data")
 	assert_eq(FactionCatalog.factions_for(GrandAlliance.Type.ORDER), PackedStringArray([FactionFixture.NAME]))
 
 
 func test_set_listed_with_nothing_lists_the_real_factions_again() -> void:
 	var real := FactionCatalog.factions_for(GrandAlliance.Type.ORDER)
-	FactionFixture.list_alone(GrandAlliance.Type.ORDER)
+	FactionFixture.use("alliance_without_data")
 	FactionCatalog.set_listed({})
 	assert_eq(FactionCatalog.factions_for(GrandAlliance.Type.ORDER), real)
 
 
 func test_listing_a_fixture_leaves_the_real_listing_alone() -> void:
-	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	FactionFixture.use("faction_without_data")
 	assert_does_not_have(FactionCatalog.real_listing()[GrandAlliance.Type.ORDER], FactionFixture.NAME)
 
 
 func test_spearheads_skip_a_listed_faction_without_data() -> void:
-	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	FactionFixture.use("faction_without_data")
 	assert_false(FactionCatalog.spearheads().any(func(entry: Dictionary) -> bool: return entry.faction == FactionFixture.NAME))
 
 
