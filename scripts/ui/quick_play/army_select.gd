@@ -546,12 +546,16 @@ func _spearhead_detail() -> void:
 	_update_choices()
 
 
-## The army's name and details, with the battleplan card on the right.
+## The army's name and details, with the battleplan card on the right. The card takes a share of the
+## width rather than a fixed one, so the row still fits when the UI is scaled up to its smallest size
+## ([constant GameSettings.MIN_UI_SIZE]).
 func _top_row(heading: Control) -> HBoxContainer:
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_plan_card = OptionCard.new()
 	_plan_card.toggle_mode = true
-	_plan_card.custom_minimum_size.x = 360
+	_plan_card.custom_minimum_size.x = 300
+	_plan_card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_plan_card.size_flags_stretch_ratio = 0.4
 	_plan_card.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	_refresh_plan_card()
 	_plan_card.pressed.connect(show_plans)
