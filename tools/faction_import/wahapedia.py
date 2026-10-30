@@ -342,6 +342,8 @@ def trait_rows(table):
             continue
         name = " ".join(w.capitalize() for w in text(name_el).rstrip(":").split())
         name_el.extract()
+        for label in cells[-1].find_all("b"):
+            if text(label) == "Effect:": label.extract()
         options.append({"name": "%s: %s" % (text(cells[0]), name), "text": text(cells[-1])})
     return options
 
@@ -351,10 +353,15 @@ def spearhead_battle_trait_rules(heading):
     (title, text, options, followed by an ability). Some say which units start in reserve
     before the ability that sets them up (the Bad Moon Madmob's 'Squigalanche'); others are rules
     of their own, with a title and a table (the Blades of the Lurid Dream's 'Temptations of
-    Slaanesh')."""
+    Slaanesh'). The title, text and table can each be wrapped in a block of their own (the
+    Heartflayer Troupe's 'Blood Rites')."""
     body = heading.find_next_sibling(class_="Columns2")
-    title, nodes, options = "", [], []
+    children = []
     for c in body.children if body is not None else []:
+        wrapper = isinstance(c, Tag) and "BreakInsideAvoid" in (c.get("class") or []) and c.select_one(".abHeader") is None
+        children += list(c.children) if wrapper else [c]
+    title, nodes, options = "", [], []
+    for c in children:
         if isinstance(c, Tag) and c.select_one(".abHeader") is not None:
             return title, text_join(nodes), options, True
         if isinstance(c, Tag) and "h_custom" in (c.get("class") or []):

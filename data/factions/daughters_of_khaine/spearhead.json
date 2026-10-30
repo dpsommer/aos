@@ -22,7 +22,33 @@
 					"name": "Blood Stalkers"
 				}
 			],
-			"battle_traits": [],
+			"battle_traits": [
+				{
+					"name": "BLOOD RITES",
+					"type": "active",
+					"category": "special",
+					"timing": "",
+					"effect": "At the start of each battle round, all friendly units gain the Blood Rites passive ability that corresponds to the current battle round number, as shown in the table on the right (units keep all Blood Rites abilities gained in previous battle rounds).",
+					"options": [
+						{
+							"name": "1: Quickening Bloodlust",
+							"text": "Add 1 to run rolls for this unit."
+						},
+						{
+							"name": "2: Headlong Fury",
+							"text": "Add 1 to charge rolls for this unit."
+						},
+						{
+							"name": "3: Zealot’s Rage",
+							"text": "Add 1 to hit rolls for combat attacks made by this unit."
+						},
+						{
+							"name": "4: Slaughterer’s Strength",
+							"text": "Add 1 to wound rolls for combat attacks made by this unit."
+						}
+					]
+				}
+			],
 			"regiment_abilities": [
 				{
 					"name": "MURDEROUS EPIPHANY",
