@@ -392,7 +392,12 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 			for summoned: Warscroll in group.summons.get(ability, []):
 				box.add_child(WarscrollCard.new(summoned))
 		for warscroll in group.warscrolls:
-			box.add_child(WarscrollCard.new(warscroll))
+			var warscroll_card := WarscrollCard.new(warscroll)
+			warscroll_card.set_meta(&"info_key", "terrain:" + warscroll.id)
+			warscroll_card.focus_mode = Control.FOCUS_ALL
+			if flash_key == "terrain:" + warscroll.id:
+				warscroll_card.theme_type_variation = "FlashWarscrollPanel"
+			box.add_child(warscroll_card)
 		for card in group.cards:
 			var slot := army.tactics.find(card.name)
 			var chip := UITheme.chip("Battle tactic %d" % (slot + 1), "affray") if slot >= 0 else null
@@ -516,6 +521,12 @@ func show_unit(warscroll: Warscroll) -> void:
 
 func show_regiment_of_renown(regiment_name: String) -> void:
 	_go("renown", "ror:" + regiment_name)
+
+
+## Shows the faction terrain feature's warscroll in the Rules tab's Faction Terrain section.
+func show_terrain(warscroll_id: String) -> void:
+	folded.erase("sec:Faction Terrain")
+	_go("rules", "terrain:" + warscroll_id)
 
 
 ## Shows the battle tactics card in the Rules tab's Battle Tactics section.
