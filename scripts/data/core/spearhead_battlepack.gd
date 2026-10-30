@@ -33,6 +33,11 @@ extends Resource
 @export var scoring: PackedStringArray
 ## The cards in each player's battle tactic deck. Both players' decks are the same.
 @export var battle_tactic_cards: Array[SpearheadTacticCard]
+## Relics the players fight over, each named after its relic and holding the ability both players
+## can use, e.g. 'Barrel of Emberstone'. Empty if the battlepack has none.
+@export var relics: Array[Ability]
+## The battlepack's mini campaign, or null if it has none.
+@export var campaign: SpearheadCampaign
 ## Rulings on the battlepack, each {"about": String, "question": String, "answer": String}.
 @export var faqs: Array[Dictionary]
 
@@ -61,6 +66,22 @@ func get_terrain_feature(feature_name: String) -> SpearheadTerrain:
 ## The radius of [param objective]'s circle in inches.
 func radius_of(objective: MapFeature) -> float:
 	return objective.radius if objective.radius > 0 else objective_radius
+
+
+## Whether [param point] is on [param objective]'s printed circle or rectangle, edges included.
+func is_on_objective(objective: MapFeature, point: Vector2) -> bool:
+	if not objective.is_rectangle():
+		return point.distance_to(objective.position) <= radius_of(objective) + 0.0001
+	var local := (point - objective.position).rotated(-deg_to_rad(objective.rotation))
+	var half := objective.extent / 2 + Vector2(0.0001, 0.0001)
+	return absf(local.x) <= half.x and absf(local.y) <= half.y
+
+
+func get_relic(relic_name: String) -> Ability:
+	for relic in relics:
+		if relic.name == relic_name:
+			return relic
+	return null
 
 
 func get_terrain_ability(ability_name: String) -> Ability:

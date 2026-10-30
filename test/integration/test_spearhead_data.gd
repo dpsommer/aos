@@ -63,9 +63,9 @@ func test_catalog_lists_every_shipped_battlepack() -> void:
 	assert_eq(CoreRulesCatalog.spearhead_battlepacks().size(), CoreRulesCatalog.SPEARHEAD_FILES.size())
 
 
-func test_two_battlepacks_ship() -> void:
-	assert_eq(CoreRulesCatalog.spearhead_battlepacks().size(), 2)
-	assert_eq(_packs.size(), 2)
+func test_three_battlepacks_ship() -> void:
+	assert_eq(CoreRulesCatalog.spearhead_battlepacks().size(), 3)
+	assert_eq(_packs.size(), 3)
 
 
 func test_catalog_finds_battlepack_by_name() -> void:
@@ -164,26 +164,34 @@ func test_every_territory_corner_is_on_the_battlefield() -> void:
 				assert_true(_on_battlefield(pack, corner), "%s / %s: %s" % [pack.name, map.name, corner])
 
 
+func _overlaps(pack: SpearheadBattlepack, map: DeploymentMap) -> int:
+	var overlaps := 0
+	for point in _sample_points(pack):
+		if Geometry2D.is_point_in_polygon(point, map.territory_a) \
+				and Geometry2D.is_point_in_polygon(point, map.territory_b):
+			overlaps += 1
+	return overlaps
+
+
+func _uncovered(pack: SpearheadBattlepack, map: DeploymentMap) -> int:
+	var uncovered := 0
+	for point in _sample_points(pack):
+		if not map.in_territory_a(point) and not map.in_territory_b(point):
+			uncovered += 1
+	return uncovered
+
+
 func test_territories_do_not_overlap() -> void:
 	for pack in _packs:
 		assert_gt(pack.deployment_maps.size(), 0)
 		for map in pack.deployment_maps:
-			var overlaps := 0
-			for point in _sample_points(pack):
-				if Geometry2D.is_point_in_polygon(point, map.territory_a) \
-						and Geometry2D.is_point_in_polygon(point, map.territory_b):
-					overlaps += 1
-			assert_eq(overlaps, 0, "%s / %s" % [pack.name, map.name])
+			assert_eq(_overlaps(pack, map), 0, "%s / %s" % [pack.name, map.name])
 
 
 func test_territories_together_cover_the_battlefield() -> void:
 	for pack in _packs:
 		for map in pack.deployment_maps:
-			var uncovered := PackedVector2Array()
-			for point in _sample_points(pack):
-				if not map.in_territory_a(point) and not map.in_territory_b(point):
-					uncovered.append(point)
-			assert_eq(uncovered.size(), 0, "%s / %s: %s" % [pack.name, map.name, uncovered])
+			assert_eq(_uncovered(pack, map), 0, "%s / %s" % [pack.name, map.name])
 
 
 func test_twist_deck_of_every_realm_has_no_duplicate_names() -> void:
@@ -212,17 +220,122 @@ func test_every_tactic_card_command_is_a_command_with_a_timing() -> void:
 
 
 func test_every_objective_a_battle_tactic_names_exists() -> void:
-	var regex := RegEx.create_from_string("the ([A-Z][\\w' ]*?) objective")
+	var regex := RegEx.create_from_string("the ([A-Z][\\w' -]*?) objective")
+	var named := 0
 	for pack in _packs:
 		for card in pack.battle_tactic_cards:
 			for match in regex.search_all(card.condition):
-				assert_has(pack.objective_names, match.get_string(1), card.name)
+				named += 1
+				assert_has(pack.objective_names, match.get_string(1), "%s / %s" % [pack.name, card.name])
+	assert_gt(named, 0)
 
 
-func test_terrain_features_include_a_large_and_a_small_one() -> void:
+func test_every_pack_has_a_non_mystical_terrain_feature() -> void:
 	for pack in _packs:
-		var sizes := PackedStringArray()
+		var found := false
 		for terrain in pack.terrain_features:
-			sizes.append(terrain.size)
-		assert_has(sizes, "large", pack.name)
-		assert_has(sizes, "small", pack.name)
+			found = found or not terrain.mystical
+		assert_true(found, pack.name)
+
+
+func test_every_rectangular_objectives_corners_are_on_the_battlefield() -> void:
+	var rectangles := 0
+	for pack in _packs:
+		for realm in pack.realms:
+			for objective in realm.objectives:
+				if objective.is_rectangle():
+					rectangles += 1
+					for corner in objective.corners():
+						assert_true(_on_battlefield(pack, corner),
+								"%s / %s / %s: %s" % [pack.name, realm.name, objective.type, corner])
+	assert_gt(rectangles, 0)
+
+
+func test_every_road_is_on_the_battlefield() -> void:
+	for pack in _packs:
+		for realm in pack.realms:
+			for road in realm.roads:
+				assert_gte(road.size(), 3, "%s / %s" % [pack.name, realm.name])
+				for corner in road:
+					assert_true(_on_battlefield(pack, corner), "%s / %s: %s" % [pack.name, realm.name, corner])
+
+
+func test_roads_of_the_realm_with_a_junction_pass_through_the_battlefield_centre() -> void:
+	var junctions := 0
+	for pack in _packs:
+		for realm in pack.realms:
+			if realm.get_objective("Junction") == null:
+				continue
+			junctions += 1
+			assert_gt(realm.roads.size(), 0, "%s / %s" % [pack.name, realm.name])
+			for road in realm.roads:
+				assert_true(Geometry2D.is_point_in_polygon(pack.battlefield_size / 2.0, road),
+						"%s / %s" % [pack.name, realm.name])
+	assert_gt(junctions, 0)
+
+
+func test_every_twist_relic_names_a_relic() -> void:
+	for pack in _packs:
+		for realm in pack.realms:
+			for twist in realm.twists:
+				if not twist.relic.is_empty():
+					assert_not_null(pack.get_relic(twist.relic), "%s / %s / %s" % [pack.name, realm.name, twist.name])
+
+
+func test_every_starting_relic_names_a_relic() -> void:
+	for pack in _packs:
+		for realm in pack.realms:
+			for relic_name in realm.starting_relics:
+				assert_not_null(pack.get_relic(relic_name), "%s / %s: %s" % [pack.name, realm.name, relic_name])
+
+
+func test_every_realm_with_relics_has_two_starting_relics() -> void:
+	var with_relics := 0
+	for pack in _packs:
+		if pack.relics.is_empty():
+			continue
+		for realm in pack.realms:
+			with_relics += 1
+			assert_eq(realm.starting_relics.size(), 2, "%s / %s" % [pack.name, realm.name])
+	assert_gt(with_relics, 0)
+
+
+func test_every_campaign_battle_names_an_existing_realm() -> void:
+	for pack in _packs:
+		if pack.campaign:
+			assert_gt(pack.campaign.battles.size(), 0, pack.name)
+			for battle in pack.campaign.battles:
+				assert_not_null(pack.get_realm(battle.realm), "%s / %s" % [pack.name, battle.name])
+
+
+func test_every_campaign_battle_has_a_deployment_map() -> void:
+	for pack in _packs:
+		if pack.campaign:
+			for battle in pack.campaign.battles:
+				assert_not_null(battle.deployment_map, "%s / %s" % [pack.name, battle.name])
+
+
+func test_campaign_battle_territories_do_not_overlap() -> void:
+	var battles := 0
+	for pack in _packs:
+		if pack.campaign:
+			for battle in pack.campaign.battles:
+				battles += 1
+				assert_eq(_overlaps(pack, battle.deployment_map), 0, "%s / %s" % [pack.name, battle.name])
+	assert_gt(battles, 0)
+
+
+func test_campaign_battle_territories_cover_the_battlefield() -> void:
+	for pack in _packs:
+		if pack.campaign:
+			for battle in pack.campaign.battles:
+				assert_eq(_uncovered(pack, battle.deployment_map), 0, "%s / %s" % [pack.name, battle.name])
+
+
+func test_campaign_battle_territory_corners_are_on_the_battlefield() -> void:
+	for pack in _packs:
+		if pack.campaign:
+			for battle in pack.campaign.battles:
+				var map := battle.deployment_map
+				for corner in map.territory_a + map.territory_b:
+					assert_true(_on_battlefield(pack, corner), "%s / %s: %s" % [pack.name, battle.name, corner])

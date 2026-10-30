@@ -14,7 +14,7 @@
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
 - [Faction data](technical/faction-data.md): faction JSON format, sources, how to add a faction, and the Regiments of Renown
-- [Core rules data](technical/core-rules-data.md): JSON for the universal abilities and manifestation lores every army uses, the General's Handbook battlepack (season rules, battle tactics, battleplans and their FAQs), and the Spearhead battlepacks (Fire and Jade and Sand and Bone: realm battlefields with their objectives, twist and battle tactic decks, deployment maps, terrain, Call for Reinforcements)
+- [Core rules data](technical/core-rules-data.md): JSON for the universal abilities and manifestation lores every army uses, the General's Handbook battlepack (season rules, battle tactics, battleplans and their FAQs), and the Spearhead battlepacks (Fire and Jade, Sand and Bone and City of Ash: realm battlefields with their objectives and roads, twist and battle tactic decks, deployment maps, terrain, relics, the Hidden in the Ashes campaign, Call for Reinforcements)
 
 ### Design
 

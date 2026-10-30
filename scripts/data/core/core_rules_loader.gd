@@ -134,6 +134,10 @@ func _map_features(data: Dictionary, key: String, path: String, types: PackedStr
 					_error(_join(item_path, "size"), "must be one of %s" % ", ".join(MapFeature.TERRAIN_SIZES))
 			feature.position = Vector2(_float(items[i], "x", item_path, true), _float(items[i], "y", item_path, true))
 			feature.radius = _float(items[i], "radius", item_path)
+			if items[i].has("width") or items[i].has("depth"):
+				feature.extent = Vector2(_float(items[i], "width", item_path, true),
+						_float(items[i], "depth", item_path, true))
+			feature.rotation = _float(items[i], "rotation", item_path)
 		result.append(feature)
 	return result
 

@@ -402,3 +402,247 @@ func test_realm_without_terrain_has_none() -> void:
 
 func test_realm_terrain_naming_unknown_feature_is_invalid() -> void:
 	_assert_invalid("bad_realm_terrain_type", "realms[0].terrain[1].type")
+
+
+# --- Rectangular objectives ---
+
+## Fire's rectangular objective in the fixture and in the loaded battlepack.
+func _rect_data() -> Dictionary:
+	return _json().realms[0].objectives[2]
+
+
+func _rect(pack: SpearheadBattlepack) -> MapFeature:
+	return pack.realms[0].objectives[2]
+
+
+func test_objective_extent_comes_from_file() -> void:
+	var expected := _rect_data()
+	assert_eq(_rect(_load()).extent, Vector2(expected.width, expected.depth))
+
+
+func test_objective_rotation_comes_from_file() -> void:
+	assert_eq(_rect(_load()).rotation, float(_rect_data().rotation))
+
+
+func test_objective_with_extent_is_a_rectangle() -> void:
+	assert_true(_rect(_load()).is_rectangle())
+
+
+func test_objective_without_extent_is_not_a_rectangle() -> void:
+	assert_false(_load().realms[0].objectives[0].is_rectangle())
+
+
+func test_objective_rotation_defaults_to_zero() -> void:
+	assert_eq(_load().realms[0].objectives[0].rotation, 0.0)
+
+
+func test_extent_with_only_a_width_is_invalid() -> void:
+	_assert_invalid("no_extent_depth", "realms[0].objectives[2].depth")
+
+
+func test_rectangle_has_four_corners() -> void:
+	assert_eq(_rect(_load()).corners().size(), 4)
+
+
+func test_rectangle_corners_are_centred_on_its_position() -> void:
+	var feature := _rect(_load())
+	assert_true(_centroid(feature.corners()).is_equal_approx(feature.position))
+
+
+func test_rectangle_sides_are_its_width_and_depth() -> void:
+	var feature := _rect(_load())
+	var corners := feature.corners()
+	assert_almost_eq(corners[0].distance_to(corners[1]), feature.extent.x, 0.001)
+	assert_almost_eq(corners[1].distance_to(corners[2]), feature.extent.y, 0.001)
+
+
+func test_rectangle_corners_are_rotated_by_its_rotation() -> void:
+	var feature := _rect(_load())
+	var corners := feature.corners()
+	assert_almost_eq(absf(corners[1].x - corners[0].x), feature.extent.x * absf(cos(deg_to_rad(feature.rotation))), 0.001)
+
+
+# --- Standing on an objective ---
+
+func test_circle_centre_is_on_the_objective() -> void:
+	var pack := _load()
+	var objective := pack.realms[0].objectives[0]
+	assert_true(pack.is_on_objective(objective, objective.position))
+
+
+func test_point_beyond_circle_is_not_on_the_objective() -> void:
+	var pack := _load()
+	var objective := pack.realms[0].objectives[0]
+	assert_false(pack.is_on_objective(objective, objective.position + Vector2(pack.radius_of(objective) + 1.0, 0)))
+
+
+func test_point_on_circle_edge_is_on_the_objective() -> void:
+	var pack := _load()
+	var objective := pack.realms[0].objectives[0]
+	assert_true(pack.is_on_objective(objective, objective.position + Vector2(0, pack.radius_of(objective))))
+
+
+func test_circle_uses_the_battlepacks_radius_without_its_own() -> void:
+	var pack := _load()
+	var objective := pack.realms[0].objectives[1]
+	assert_true(pack.is_on_objective(objective, objective.position + Vector2(pack.objective_radius * 0.9, 0)))
+	assert_false(pack.is_on_objective(objective, objective.position + Vector2(pack.objective_radius * 1.1, 0)))
+
+
+func test_point_along_rotated_length_is_on_the_rectangle() -> void:
+	var pack := _load()
+	var feature := _rect(pack)
+	var point := feature.position + Vector2(feature.extent.x * 0.4, 0).rotated(deg_to_rad(feature.rotation))
+	assert_true(pack.is_on_objective(feature, point))
+
+
+func test_point_inside_unrotated_bounds_but_outside_rotated_rectangle_is_not_on_it() -> void:
+	var pack := _load()
+	var feature := _rect(pack)
+	var point := feature.position + Vector2(feature.extent.x * 0.4, 0)
+	assert_false(pack.is_on_objective(feature, point))
+
+
+func test_point_outside_unrotated_bounds_but_inside_rotated_rectangle_is_on_it() -> void:
+	var pack := _load()
+	var feature := _rect(pack)
+	var point := feature.position + Vector2(feature.extent.x * 0.4, 0).rotated(deg_to_rad(feature.rotation))
+	assert_gt(absf(point.y - feature.position.y), feature.extent.y / 2, "point should be outside the unrotated rectangle")
+	assert_true(pack.is_on_objective(feature, point))
+
+
+func test_rectangle_corner_is_on_the_objective() -> void:
+	var pack := _load()
+	var feature := _rect(pack)
+	assert_true(pack.is_on_objective(feature, feature.corners()[0]))
+
+
+func test_point_beyond_rectangle_edge_is_not_on_the_objective() -> void:
+	var pack := _load()
+	var feature := _rect(pack)
+	var point := feature.position + Vector2(feature.extent.x * 0.6, 0).rotated(deg_to_rad(feature.rotation))
+	assert_false(pack.is_on_objective(feature, point))
+
+
+# --- Relics ---
+
+func test_relics_come_from_file_in_order() -> void:
+	var expected: Array = _json().relics
+	var relics := _load().relics
+	assert_eq(relics.size(), expected.size())
+	for i in expected.size():
+		assert_eq(relics[i].name, expected[i].name)
+
+
+func test_get_relic_finds_by_name() -> void:
+	var relic_name: String = _json().relics[1].name
+	assert_eq(_load().get_relic(relic_name).name, relic_name)
+
+
+func test_get_relic_returns_null_for_unknown_name() -> void:
+	assert_null(_load().get_relic("Not A Relic"))
+
+
+func test_realm_starting_relics_come_from_file() -> void:
+	assert_eq(Array(_load().realms[0].starting_relics), _json().realms[0].starting_relics)
+
+
+func test_realm_without_starting_relics_has_none() -> void:
+	assert_eq(_load().realms[1].starting_relics.size(), 0)
+
+
+func test_unknown_starting_relic_is_invalid() -> void:
+	_assert_invalid("bad_starting_relic", "realms[0].starting_relics[1]")
+
+
+func test_twist_relic_comes_from_file() -> void:
+	assert_eq(_load().realms[0].twists[0].relic, _json().realms[0].twists[0].relic)
+
+
+func test_twist_relic_defaults_to_empty() -> void:
+	assert_eq(_load().realms[0].twists[1].relic, "")
+
+
+func test_twist_naming_unknown_relic_is_invalid() -> void:
+	_assert_invalid("bad_twist_relic", "realms[0].twists[0].relic")
+
+
+# --- Roads ---
+
+func test_roads_come_from_file_in_order() -> void:
+	var expected: Array = _json().realms[0].roads
+	var roads := _load().realms[0].roads
+	assert_eq(roads.size(), expected.size())
+	for i in expected.size():
+		assert_eq(roads[i], _corners(expected[i]))
+
+
+func test_realm_without_roads_has_none() -> void:
+	assert_eq(_load().realms[1].roads.size(), 0)
+
+
+func test_road_with_too_few_corners_is_invalid() -> void:
+	_assert_invalid("bad_road", "realms[0].roads[1]")
+
+
+# --- Campaign ---
+
+func test_campaign_is_null_when_absent() -> void:
+	assert_not_null(_load("no_campaign"))
+	assert_null(_load("no_campaign").campaign)
+
+
+func test_campaign_name_and_sections_come_from_file() -> void:
+	var expected: Dictionary = _json().campaign
+	var campaign := _load().campaign
+	assert_eq([campaign.name, campaign.sections.size(), campaign.sections[0].name],
+			[expected.name, expected.sections.size(), expected.sections[0].name])
+
+
+func test_campaign_battles_come_from_file_in_order() -> void:
+	var expected: Array = _json().campaign.battles
+	var battles := _load().campaign.battles
+	assert_eq(battles.size(), expected.size())
+	for i in expected.size():
+		assert_eq([battles[i].name, battles[i].realm], [expected[i].name, expected[i].realm])
+
+
+func test_campaign_battle_text_and_relics_come_from_file() -> void:
+	var expected: Dictionary = _json().campaign.battles[0]
+	var battle := _load().campaign.battles[0]
+	assert_eq([battle.text, Array(battle.starting_relics)], [expected.text, expected.starting_relics])
+
+
+func test_campaign_battle_territories_come_from_file() -> void:
+	var expected: Dictionary = _json().campaign.battles[0].deployment_map
+	var map := _load().campaign.battles[0].deployment_map
+	assert_eq([map.name, map.territory_a, map.territory_b],
+			[expected.name, _corners(expected.territory_a), _corners(expected.territory_b)])
+
+
+func test_campaign_battle_fixed_territories_come_from_file() -> void:
+	assert_eq(_load().campaign.battles[0].fixed_territories, bool(_json().campaign.battles[0].fixed_territories))
+
+
+func test_campaign_battle_fixed_territories_defaults_to_false() -> void:
+	assert_false(_load().campaign.battles[1].fixed_territories)
+
+
+func test_campaign_battle_without_relics_has_none() -> void:
+	assert_eq(_load().campaign.battles[1].starting_relics.size(), 0)
+
+
+func test_campaign_battle_naming_unknown_realm_is_invalid() -> void:
+	_assert_invalid("bad_campaign_realm", "campaign.battles[1].realm")
+
+
+func test_campaign_battle_naming_unknown_relic_is_invalid() -> void:
+	_assert_invalid("bad_battle_relic", "campaign.battles[0].starting_relics[1]")
+
+
+func test_campaign_battle_without_deployment_map_is_invalid() -> void:
+	_assert_invalid("no_battle_map", "campaign.battles[1].deployment_map")
+
+
+func test_campaign_battle_territory_with_too_few_corners_is_invalid() -> void:
+	_assert_invalid("short_battle_territory", "campaign.battles[0].deployment_map.territory_a")

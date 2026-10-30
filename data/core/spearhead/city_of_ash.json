@@ -1,0 +1,609 @@
+{
+	"name": "City of Ash",
+	"battle_rounds": 4,
+	"battlefield": {
+		"width": 30,
+		"depth": 22
+	},
+	"sections": [
+		{
+			"name": "1.0 Spearhead Armies",
+			"text": "Each player in a Spearhead battle is the commander of a Spearhead army: a set of units that comes with its own rules and warscrolls.\nArmy Composition: The army composition lists which units are included in the Spearhead army and who the general is. Unlike other Warhammer Age of Sigmar armies, the composition of a Spearhead army is fixed and cannot be changed.\nBattle Traits: Every Spearhead army has one or more battle traits: abilities that apply to some or all of the units in the army.\nRegiment Abilities: Every Spearhead army has a choice of 2 regiment abilities, each of which provides the army with a different strength in battle.\nEnhancements: Every Spearhead army has a set of 4 enhancements to pick from. These are upgrades for the army’s general.\nSpearhead Warscrolls: Spearhead warscrolls are tailored to work specifically with Spearhead and cannot be used with other battlepacks."
+		},
+		{
+			"name": "Wizards and Priests in Spearhead",
+			"text": "The Magic module in the Advanced Rules is not used in Spearhead. As a result, there are no unbinding rolls and no chance of miscasts (among other things). Spells and prayers are resolved like any other ability. You don’t need the Advanced Rules to use this battlepack."
+		},
+		{
+			"name": "2.0 Realm Battlefields",
+			"text": "Spearhead battles are fought on realm battlefields. Once the players have picked their Spearhead armies, they must agree on a realm battlefield to use. Each realm battlefield comes with a matching Spearhead deck, along with a battleplan that explains how to fight a battle on that realm battlefield.\nA realm battlefield is 30\" × 22\" and double-sided, with each side corresponding to a different location in the Mortal Realms. In this battlepack, each side of the board represents a different part of Embergard, the City of Ash. On one side, scouting forces meet in a standoff at the Shattered Crossroads. On the other side, regiments hold one another in a siege around the ruins of the Ashen Bastion.\nEach Spearhead deck consists of 2 twist decks (one for each side of the realm battlefield) and 2 battle tactic decks (one for each player).\nTwist Cards: A twist is a special rule that applies to the battle round being played. Each deck of twist cards corresponds to a specific side of the realm battlefield.\nBattle Tactic Cards: The rules on each battle tactic card are split into 2 parts: a battle tactic and a command. You can either score the battle tactic at the end of your turn if you meet its conditions (to gain victory points) or you can use the command on the card for a more immediate benefit. You cannot do both.\nEach command says when it can be used and what effect it has. After the effect has been resolved, the card is discarded. You can issue multiple commands to the same unit in the same phase."
+		},
+		{
+			"name": "4.0 Terrain and the Shattered Crossroads",
+			"text": "In every City of Ash Spearhead battle, the armies fight around 2 large terrain features. Before the armies are deployed, each player sets up 1 large terrain feature wholly within their territory and on a corner of a rectangular objective. Each large terrain feature has the Cover and Unstable passive abilities.\nThe Shattered Crossroads realm battlefield is split by straight roads and has a large circle in the middle called the junction. For rules purposes, the junction is considered part of the roads (but not vice versa)."
+		},
+		{
+			"name": "5.0 Relics",
+			"text": "Scouting forces fight over the ruins of Embergard searching for valuable treasures. These are represented by 5 relics, which have powerful effects that can turn the tide of battle.\nEach time the rules tell you to place a relic, it must be placed wholly on the battlefield, more than 3\" from all enemy units and more than 6\" from all other relics.\nRelics are contested and controlled in the same manner as terrain features (Core Rules, 32.3) and have the Unstable terrain ability. Each relic has a unique ability that can be used by both players."
+		},
+		{
+			"name": "6.0 Objectives",
+			"text": "In Spearhead battles, objectives are printed on the surface of each realm battlefield. The Shattered Crossroads battlefield has 4 small rectangular objectives and 1 large circular objective. The Ashen Bastion battlefield has 4 small circular objectives and 1 large rectangular objective.\nFortified Objectives: Objectives with terrain features on them are fortified objectives. While every model in a unit is contesting a fortified objective, that unit is in Cover.\nThe large circular objective in the middle of the Shattered Crossroads is the junction. The whole circle is the objective, not just the symbol in the centre.\nThe large rectangular objective in the middle of the Ashen Bastion is the ruin. The whole rectangle is the objective, including the walls.\nThe small objectives are named after Sigmarite symbols: Ghal Maraz (the hammer), the Twin-Tailed Comet, the High Star and the Great Wheel. In the case of the rectangle versions of these objectives, the whole rectangle is the objective, not just the circle in the middle.\nContesting Objectives: In Spearhead battles, while a model is on an objective (wholly or partially), it is contesting it."
+		},
+		{
+			"name": "7.0 Reinforcements",
+			"text": "Some units have the REINFORCEMENTS keyword. These units can be brought back to the battlefield after being destroyed as replacement units (Core Rules, 24.2). If any of your units have the REINFORCEMENTS keyword, you can use the ‘Call for Reinforcements’ ability."
+		}
+	],
+	"abilities": [
+		{
+			"name": "Call for Reinforcements",
+			"type": "active",
+			"category": "rallying",
+			"timing": "Your Movement Phase",
+			"frequency": "Once Per Turn",
+			"declare": "Pick a friendly REINFORCEMENTS unit that has been destroyed.",
+			"effect": "Set up an identical replacement unit on the battlefield, wholly within friendly territory, wholly within 6\" of the battlefield edge and not in combat.\nEach REINFORCEMENTS unit can only be replaced once. Replacement units cannot themselves be replaced.",
+			"keywords": [
+				"CORE"
+			]
+		}
+	],
+	"terrain_abilities": [
+		{
+			"name": "Cover",
+			"type": "passive",
+			"timing": "Passive",
+			"effect": "Subtract 1 from hit rolls for attacks that target a unit that is behind or wholly on this terrain feature, unless that unit charged in the same turn or has the FLY keyword."
+		},
+		{
+			"name": "Unstable",
+			"type": "passive",
+			"timing": "Passive",
+			"effect": "Models can move across but cannot be set up on or end any type of move on any part of this terrain feature that is more than 1\" tall."
+		}
+	],
+	"terrain_features": [
+		{
+			"name": "Ruined Manor",
+			"size": "large",
+			"abilities": [
+				"Cover",
+				"Unstable"
+			]
+		}
+	],
+	"objective_names": [
+		"Ghal Maraz",
+		"Twin-Tailed Comet",
+		"High Star",
+		"Great Wheel",
+		"Junction",
+		"Ruin"
+	],
+	"objective_radius": 2,
+	"relics": [
+		{
+			"name": "Barrel of Emberstone",
+			"type": "active",
+			"category": "offensive",
+			"timing": "Your Hero Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly unit within 3\" of this relic to be the target.",
+			"effect": "Add 1 to wound rolls for the target’s attacks for the rest of the turn."
+		},
+		{
+			"name": "Crate of Aqua Ghyranis",
+			"type": "passive",
+			"category": "defensive",
+			"timing": "Passive",
+			"effect": "Units have WARD (5+) while they are wholly within 6\" of this relic."
+		},
+		{
+			"name": "Ulguan Steel Caltrops",
+			"type": "active",
+			"category": "offensive",
+			"timing": "Your Combat Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "You must use this ability if this relic is within 3\" of any units (friendly or enemy) that charged this turn. Pick those units to be the targets.",
+			"effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll."
+		},
+		{
+			"name": "Battered Barricade",
+			"type": "passive",
+			"category": "defensive",
+			"timing": "Passive",
+			"effect": "Units wholly within 3\" of this relic cannot be targeted by shooting attacks unless the attacking model is within their combat range."
+		},
+		{
+			"name": "Inconspicuous Manhole",
+			"type": "active",
+			"category": "movement",
+			"timing": "Your Movement Phase",
+			"frequency": "Once Per Turn (Army)",
+			"declare": "Pick a friendly unit wholly within 3\" of this relic to be the target.",
+			"effect": "Remove the target from the battlefield and set it up again wholly within friendly territory and more than 6\" from all enemy units."
+		}
+	],
+	"realms": [
+		{
+			"name": "Shattered Crossroads",
+			"objectives": [
+				{
+					"type": "Junction",
+					"x": 15.0,
+					"y": 11.0,
+					"radius": 3.5
+				},
+				{
+					"type": "High Star",
+					"x": 6.0,
+					"y": 6.5,
+					"width": 4,
+					"depth": 5,
+					"rotation": -15
+				},
+				{
+					"type": "Ghal Maraz",
+					"x": 20.0,
+					"y": 3.0,
+					"width": 5,
+					"depth": 4,
+					"rotation": -15
+				},
+				{
+					"type": "Great Wheel",
+					"x": 24.0,
+					"y": 15.5,
+					"width": 4,
+					"depth": 5,
+					"rotation": -15
+				},
+				{
+					"type": "Twin-Tailed Comet",
+					"x": 10.0,
+					"y": 19.0,
+					"width": 5,
+					"depth": 4,
+					"rotation": -15
+				}
+			],
+			"roads": [
+				[
+					{"x": 0, "y": 13.21},
+					{"x": 30, "y": 5.17},
+					{"x": 30, "y": 8.79},
+					{"x": 0, "y": 16.83}
+				],
+				[
+					{"x": 13.86, "y": 0},
+					{"x": 19.76, "y": 22},
+					{"x": 16.14, "y": 22},
+					{"x": 10.24, "y": 0}
+				]
+			],
+			"starting_relics": [
+				"Barrel of Emberstone",
+				"Crate of Aqua Ghyranis"
+			],
+			"twists": [
+				{
+					"name": "Assassinate",
+					"text": "Starting with the active player, each player picks an enemy unit to be the mark. Each player receives 1 extra victory point at the end of the battle round if the enemy mark is destroyed this battle round.\nThe underdog must place the Inconspicuous Manhole. If there is no underdog, the players roll off and the winner must place it.",
+					"relic": "Inconspicuous Manhole"
+				},
+				{
+					"name": "Aggressive Valuation",
+					"text": "Starting with the active player, each player picks a friendly unit to have the guarded loot. Each player receives 1 extra victory point at the end of the battle round if the enemy unit that has the guarded loot is destroyed this battle round.\nThe underdog can roll a dice. On a 3+, they can force their opponent to pick a different unit to have the guarded loot."
+				},
+				{
+					"name": "Stockpiling Drive",
+					"text": "Each player receives 1 extra victory point at the end of their turn for each relic they control that they did not control at the start of their turn.\nThe underdog must place the Battered Barricade. If there is no underdog, the players roll off and the winner must place it.",
+					"relic": "Battered Barricade"
+				},
+				{
+					"name": "Crux Point",
+					"text": "Each player receives 1 extra victory point at the end of their turn if they control the junction (the large circular objective in the centre).\nThe underdog must place the Ulguan Steel Caltrops. If there is no underdog, the players roll off and the winner must place them.",
+					"relic": "Ulguan Steel Caltrops"
+				},
+				{
+					"name": "Adrenaline Rush",
+					"text": "Starting with the underdog, each player can pick up to 2 friendly units that are not in combat to immediately move up to 3\". If there is no underdog, the active player moves their units first.\nThe underdog’s units can end those moves in combat."
+				},
+				{
+					"name": "Rapid Manoeuvres",
+					"text": "While a unit is wholly on the roads, it can use CHARGE abilities even if it used a RUN ability in the same turn.\nThe underdog can pick a friendly unit. That unit’s melee weapons gain Anti-charge (+1 Rend) for the rest of the battle round."
+				}
+			]
+		},
+		{
+			"name": "Ashen Bastion",
+			"objectives": [
+				{
+					"type": "Ruin",
+					"x": 15.0,
+					"y": 11.0,
+					"width": 11,
+					"depth": 7
+				},
+				{
+					"type": "Great Wheel",
+					"x": 3.5,
+					"y": 2.5
+				},
+				{
+					"type": "Twin-Tailed Comet",
+					"x": 22.5,
+					"y": 6.0
+				},
+				{
+					"type": "Ghal Maraz",
+					"x": 7.5,
+					"y": 16.0
+				},
+				{
+					"type": "High Star",
+					"x": 26.5,
+					"y": 19.5
+				}
+			],
+			"starting_relics": [
+				"Battered Barricade",
+				"Inconspicuous Manhole"
+			],
+			"twists": [
+				{
+					"name": "Staging Posts",
+					"text": "Starting with the active player, each player picks an objective on the battlefield. Each player scores 1 extra victory point at the end of their turn for each of those objectives they control.\nThe underdog can roll a dice. On a 3+, they can force their opponent to pick a different objective."
+				},
+				{
+					"name": "Cursed Treasure",
+					"text": "Starting with the active player, each player picks an enemy unit within 3\" of a relic. For the rest of the battle round, that unit has a maximum control score of 1.\nThe underdog must place the Ulguan Steel Caltrops. If there is no underdog, the players roll off and the winner must place them.",
+					"relic": "Ulguan Steel Caltrops"
+				},
+				{
+					"name": "Equivalent Escalades",
+					"text": "Each player scores 1 extra victory point at the end of their turn if they control the large terrain feature in enemy territory.\nThe underdog must place the Barrel of Emberstone. If there is no underdog, the players roll off and the winner must place it.",
+					"relic": "Barrel of Emberstone"
+				},
+				{
+					"name": "A Timely Exit",
+					"text": "The underdog can pick a battlefield edge to be obstructed.\nEach player scores 1 extra victory point at the end of their turn for each battlefield edge that is not obstructed and has no enemy units within 3\" of it."
+				},
+				{
+					"name": "Got Your Back",
+					"text": "For the rest of the battle round, add 1 to save rolls for friendly units while they are within 3\" of any other friendly units.\nThe underdog must place the Crate of Aqua Ghyranis. If there is no underdog, the players roll off and the winner must place it.",
+					"relic": "Crate of Aqua Ghyranis"
+				},
+				{
+					"name": "We’ll Have That!",
+					"text": "Each player receives 1 extra victory point at the end of their turn if they control the relic that was placed in enemy territory at the start of the battle.\nThe underdog can pick a friendly unit to be the assault force. For the rest of the battle round, add 2 to charge rolls for the assault force."
+				}
+			]
+		}
+	],
+	"deployment_maps": [
+		{
+			"name": "Horizontal",
+			"territory_a": [
+				{"x": 0, "y": 0},
+				{"x": 30, "y": 0},
+				{"x": 30, "y": 11},
+				{"x": 0, "y": 11}
+			],
+			"territory_b": [
+				{"x": 0, "y": 11},
+				{"x": 30, "y": 11},
+				{"x": 30, "y": 22},
+				{"x": 0, "y": 22}
+			]
+		},
+		{
+			"name": "Diagonal",
+			"territory_a": [
+				{"x": 0, "y": 0},
+				{"x": 30, "y": 0},
+				{"x": 30, "y": 22}
+			],
+			"territory_b": [
+				{"x": 0, "y": 0},
+				{"x": 30, "y": 22},
+				{"x": 0, "y": 22}
+			]
+		}
+	],
+	"battleplan": {
+		"name": "City of Ash",
+		"sections": [
+			{
+				"name": "Pre-battle Sequence",
+				"text": "1. Roll off. The winner chooses who is the attacker and who is the defender.\n2. The attacker picks their regiment ability and their enhancement. Then the defender does the same.\n3. The defender chooses which side of the realm battlefield the players will fight on: the Shattered Crossroads or the Ashen Bastion.\n4. The defender picks 1 of the deployment maps (horizontal or diagonal) and chooses which territory belongs to which player.\n5. The defender sets up one large terrain feature wholly within their territory and on a corner of a rectangular objective, then the attacker does the same. The objectives on which the terrain features are placed then become fortified objectives.\n6. The defender picks one of the starting relics and sets it up wholly within their territory. The attacker then sets up the other starting relic wholly within their territory. On the Ashen Bastion, the starting relics are the Battered Barricade and the Inconspicuous Manhole. On the Shattered Crossroads, they are the Barrel of Emberstone and the Crate of Aqua Ghyranis."
+			},
+			{
+				"name": "Deployment",
+				"text": "Do not deploy armies as described in the Core Rules. Instead, the attacker sets up all the units in their army first, followed by the defender. Each unit must be set up wholly within friendly territory and more than 6\" from enemy territory."
+			},
+			{
+				"name": "Preparing the Spearhead Deck",
+				"text": "This battle uses the City of Ash Spearhead deck. One player takes the twist deck that corresponds to the side of the battlefield the players are fighting on, shuffles it and places it face down next to the battlefield (the other twist deck is not used).\nThen, each player takes 1 battle tactic deck, shuffles it and places it face down where they can reach it during the battle."
+			},
+			{
+				"name": "Start of the Battle Round Sequence",
+				"text": "The following sequence is resolved at the start of each battle round:\n1. If it is the first battle round, the attacker chooses who will take the first turn. In any other battle round, the players make a priority roll (Core Rules, 12.0).\n2. Determine the underdog (Core Rules, 12.0).\n3. The twist card is drawn.\n4. The players draw battle tactic cards.\n5. Any abilities with the Start of Battle Round timing are used."
+			},
+			{
+				"name": "Twist Cards",
+				"text": "One twist card is drawn at the start of each battle round. Follow the rules on it as soon as it is drawn."
+			},
+			{
+				"name": "Battle Tactic Cards",
+				"text": "At the start of the first battle round, each player draws a hand of 3 battle tactic cards.\nAt the start of each subsequent battle round, each player draws battle tactic cards until they once more have a hand of 3 battle tactic cards. Before they do so, they can discard any number of battle tactic cards in their hand. Cards are discarded face-up."
+			},
+			{
+				"name": "Seizing the Initiative",
+				"text": "If the player who went second in the previous battle round wins the priority roll and chooses to go first, it is called seizing the initiative. When a player seizes the initiative, they do not draw any battle tactic cards for that battle round unless they are the underdog and the difference in victory points between the two players is 5 or greater."
+			},
+			{
+				"name": "Glorious Victory",
+				"text": "The player with the most victory points at the end of the battle is the winner. If the players are tied on victory points, the battle is a draw."
+			}
+		],
+		"scoring": [
+			"Score 1 victory point if you control at least one objective.",
+			"Score 1 victory point if you control two or more objectives.",
+			"Score 1 victory point if you control more objectives than your opponent.",
+			"Score 1 victory point for each battle tactic you completed this turn."
+		]
+	},
+	"battle_tactic_cards": [
+		{
+			"name": "Take What’s Theirs",
+			"condition": "You complete this battle tactic at the end of the turn if you control a relic that is within enemy territory.",
+			"command": {
+				"name": "Prepared Riposte",
+				"type": "command",
+				"category": "movement",
+				"timing": "Enemy Movement Phase",
+				"declare": "Pick a friendly unit to be the target.",
+				"effect": "For the rest of the turn, the target has STRIKE-FIRST while it is in combat with an enemy unit that charged in the same turn."
+			}
+		},
+		{
+			"name": "Pitiless Murder",
+			"condition": "You complete this battle tactic at the end of your turn if an enemy unit was picked to be the target of all the combat attacks made by 2 or more different friendly units this turn.",
+			"command": {
+				"name": "Motivated by Greed",
+				"type": "command",
+				"category": "control",
+				"timing": "Any Hero Phase",
+				"declare": "Pick a friendly unit within 6\" of a relic to be the target.",
+				"effect": "Add D6 to the target’s control score until the start of your next turn."
+			}
+		},
+		{
+			"name": "Take the Flanks",
+			"condition": "You complete this battle tactic at the end of your turn if there are any friendly units within 3\" of each short battlefield edge.",
+			"command": {
+				"name": "Rigged Explosions",
+				"type": "command",
+				"category": "offensive",
+				"timing": "End of Any Turn",
+				"declare": "Pick a relic. Then, pick each unit (friendly and enemy) within 3\" of that relic to be the targets.",
+				"effect": "Roll a D3 for each target. Inflict an amount of mortal damage on the target equal to the roll."
+			}
+		},
+		{
+			"name": "Cut Off the Head",
+			"condition": "You complete this battle tactic at the end of your turn if the enemy general was slain this turn OR the enemy general was slain in an earlier turn and any enemy units were destroyed this turn.",
+			"command": {
+				"name": "Counter-charge",
+				"type": "command",
+				"category": "movement",
+				"timing": "Enemy Charge Phase",
+				"declare": "Pick a friendly unit that is not in combat to use this ability.",
+				"effect": "That unit can use a CHARGE ability as if it were your charge phase."
+			}
+		},
+		{
+			"name": "Raid",
+			"condition": "You complete this battle tactic at the end of your turn if any friendly units are wholly within enemy territory and not in combat.",
+			"command": {
+				"name": "Race for the Loot",
+				"type": "command",
+				"category": "movement",
+				"timing": "Any Charge Phase",
+				"declare": "Pick a relic on the battlefield to be the target.",
+				"effect": "For the rest of the turn, friendly units can finish charge moves within ½\" of the target as if it were an enemy unit."
+			}
+		},
+		{
+			"name": "Protect the Loot",
+			"condition": "You complete this battle tactic at the end of your turn if an enemy unit was destroyed by a friendly unit while that friendly unit was within 3\" of a relic.",
+			"command": {
+				"name": "Last-ditch Effort",
+				"type": "command",
+				"category": "rallying",
+				"timing": "Your Hero Phase",
+				"declare": "Pick a friendly unit that has been destroyed and has not already been replaced.",
+				"effect": "Set up either a replacement unit with a combined Health characteristic of up to 4 or a single-model replacement unit with X damage points already allocated to it, where X is its Health characteristic minus 4. The unit must be set up more than 6\" from all enemy units."
+			}
+		},
+		{
+			"name": "Hold the Centre",
+			"condition": "You complete this battle tactic at the end of your turn if there are 2 or more friendly units within 3\" of the centre of the battlefield.",
+			"command": {
+				"name": "Slip Away",
+				"type": "command",
+				"category": "movement",
+				"timing": "Any Combat Phase",
+				"declare": "Pick a friendly unit that is in combat to be the target.",
+				"effect": "The target can move 5\". It can move through the combat ranges of enemy units but it cannot end that move in combat."
+			}
+		},
+		{
+			"name": "Raze",
+			"condition": "You complete this battle tactic at the end of your turn if there are any friendly units within 3\" of the long battlefield edge in enemy territory.",
+			"command": {
+				"name": "Covetous Frenzy",
+				"type": "command",
+				"category": "offensive",
+				"timing": "Any Combat Phase",
+				"declare": "Pick a relic to be the target.",
+				"effect": "For the rest of the turn, add 1 to hit rolls for attacks made by friendly units while they are within 3\" of the target."
+			}
+		},
+		{
+			"name": "Dais of the Comet",
+			"condition": "You complete this battle tactic at the end of your turn if you control the Twin-Tailed Comet objective.",
+			"command": {
+				"name": "Go Down Fighting",
+				"type": "command",
+				"category": "offensive",
+				"timing": "Any Hero Phase",
+				"declare": "Pick a friendly unit to be the target.",
+				"effect": "For the rest of the turn, each time you make an unmodified save roll of 5+ for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved."
+			}
+		},
+		{
+			"name": "Dais of the Hammer",
+			"condition": "You complete this battle tactic at the end of your turn if you control the Ghal Maraz objective.",
+			"command": {
+				"name": "Fool’s Gold",
+				"type": "command",
+				"category": "special",
+				"timing": "End of Any Turn",
+				"declare": "Pick a relic on the battlefield to be the target.",
+				"effect": "Remove the target from the battlefield, then set it up again more than 3\" from all enemy units and more than 6\" away from all other relics."
+			}
+		},
+		{
+			"name": "Comb the Area",
+			"condition": "You complete this battle tactic at the end of your turn if all friendly units are within 3\" of a relic (it does not need to be the same relic).",
+			"command": {
+				"name": "Redeploy",
+				"type": "command",
+				"category": "movement",
+				"timing": "Enemy Movement Phase",
+				"declare": "Pick a friendly unit that is not in combat to use this ability.",
+				"effect": "That unit can move D6\". That move cannot pass through or end within the combat range of an enemy unit."
+			}
+		},
+		{
+			"name": "Material Gains",
+			"condition": "You complete this battle tactic at the end of your turn if you control more relics than your opponent.",
+			"command": {
+				"name": "Grind Them to Dust",
+				"type": "command",
+				"category": "offensive",
+				"timing": "Any Combat Phase",
+				"declare": "Pick a friendly unit to use this ability.",
+				"effect": "That unit can use 2 FIGHT abilities this phase. After the first is used, however, inflict D3 mortal damage on that unit and it has STRIKE-LAST for the rest of the turn."
+			}
+		}
+	],
+	"campaign": {
+		"name": "Hidden in the Ashes",
+		"sections": [
+			{
+				"name": "Overview",
+				"text": "Hidden in the Ashes is a mini campaign of three linked Spearhead battles played between two players, who are each trying to recover a hoard of emberstone buried at a secret location in Embergard. It uses the City of Ash battlepack rules in addition to the campaign’s rules."
+			},
+			{
+				"name": "Picking Your Spearhead Army",
+				"text": "Before starting the first battle, the players roll off. The winner picks a Spearhead army to use for the entire campaign. Then, their opponent does the same. The campaign was designed for the Sentinels of Embergard and Crixxit’s Kill-Pack, but any Spearhead armies can be used."
+			},
+			{
+				"name": "Rules Changes",
+				"text": "Instead of the City of Ash battleplan’s pre-battle sequence, use this sequence:\n1. Unless specified otherwise, roll off. The winner chooses who is the attacker and who is the defender.\n2. The attacker picks their regiment ability and their enhancement. Then the defender does the same.\n3. Unless otherwise specified, the defender chooses which territory belongs to which player.\n4. The defender sets up one large terrain feature wholly within their territory and on a corner of a rectangular objective, then the attacker does the same. The objectives the terrain features are placed on then become fortified objectives.\n5. The defender picks one of the starting relics and sets it up wholly within their territory. The attacker then sets up the other starting relic wholly within their territory."
+			},
+			{
+				"name": "Deployment",
+				"text": "Do not deploy armies as described in the Core Rules or the City of Ash battleplan. Instead, the defender sets up all the units in their army first, wholly within their territory. Then the attacker sets up all the units in their army, wholly within their territory and more than 6\" from enemy territory. The defender chooses which player takes the first turn."
+			},
+			{
+				"name": "Injuries and Deaths",
+				"text": "After each battle, your army recuperates, so it starts at full strength in the next battle."
+			},
+			{
+				"name": "Total Victory Points",
+				"text": "During the campaign, each player keeps track of their total number of victory points: the combined number of victory points they have scored in all of the battles fought so far."
+			}
+		],
+		"battles": [
+			{
+				"name": "Smouldering Skirmish",
+				"realm": "Ashen Bastion",
+				"text": "If a twist requires a player to place the Ulguan Steel Caltrops, that player must instead place the Inconspicuous Manhole.",
+				"starting_relics": [
+					"Battered Barricade",
+					"Ulguan Steel Caltrops"
+				],
+				"deployment_map": {
+					"name": "Smouldering Skirmish",
+					"territory_a": [
+						{"x": 0, "y": 0},
+						{"x": 15, "y": 0},
+						{"x": 15, "y": 22},
+						{"x": 0, "y": 22}
+					],
+					"territory_b": [
+						{"x": 15, "y": 0},
+						{"x": 30, "y": 0},
+						{"x": 30, "y": 22},
+						{"x": 15, "y": 22}
+					]
+				}
+			},
+			{
+				"name": "Blazing Blockade",
+				"realm": "Shattered Crossroads",
+				"text": "If one player has more total victory points than their opponent, the rules below apply for this battle:\nDo not roll off to determine the attacker and defender. Instead, the player with fewest victory points chooses.\nThe player with most victory points picks 2 starting relics to use in the battle.\nIf a twist requires a player to place a relic that is already on the battlefield, that player must instead place the Barrel of Emberstone or Crate of Aqua Ghyranis (if that relic is not already on the battlefield).",
+				"deployment_map": {
+					"name": "Blazing Blockade",
+					"territory_a": [
+						{"x": 0, "y": 0},
+						{"x": 30, "y": 0},
+						{"x": 30, "y": 11},
+						{"x": 0, "y": 11}
+					],
+					"territory_b": [
+						{"x": 0, "y": 11},
+						{"x": 30, "y": 11},
+						{"x": 30, "y": 22},
+						{"x": 0, "y": 22}
+					]
+				}
+			},
+			{
+				"name": "Final Conflagration",
+				"realm": "Ashen Bastion",
+				"text": "If one player has more total victory points than their opponent, the rules below apply for this battle:\nDo not roll off to determine the attacker and defender. Instead, the player with the most victory points is the defender.\nOne of the starting relics in this battle is the Barrel of Emberstone and must be set up first at the centre of the battlefield. The other starting relic is picked by the player with the most victory points and is set up by the defender wholly within the defender’s territory (the attacker does not set up a starting relic).\nIf a twist requires a player to place a relic that is already on the battlefield, that player must instead place the Battered Barricade or Inconspicuous Manhole (if that relic is not already on the battlefield).\nGlorious Victory: If one player controls the Barrel of Emberstone at the end of the battle and that player has more total victory points than their opponent, they win a major victory. If one player controls the Barrel of Emberstone at the end of the battle and that player has fewer total victory points than their opponent, they win a minor victory. If neither player controls the Barrel of Emberstone at the end of the battle but one player has more total victory points than their opponent, they win a minor victory. Any other result is a draw.",
+				"fixed_territories": true,
+				"deployment_map": {
+					"name": "Final Conflagration",
+					"territory_a": [
+						{"x": 0, "y": 0},
+						{"x": 30, "y": 0},
+						{"x": 30, "y": 11},
+						{"x": 15, "y": 11},
+						{"x": 15, "y": 22},
+						{"x": 0, "y": 22}
+					],
+					"territory_b": [
+						{"x": 15, "y": 11},
+						{"x": 30, "y": 11},
+						{"x": 30, "y": 22},
+						{"x": 15, "y": 22}
+					]
+				}
+			}
+		]
+	},
+	"faqs": [
+		{
+			"about": "5.0 Relics",
+			"question": "Are relics counted as terrain features for abilities such as ‘Strike and Fade’?",
+			"answer": "No."
+		}
+	]
+}

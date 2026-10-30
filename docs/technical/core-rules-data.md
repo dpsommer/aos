@@ -92,24 +92,27 @@ Spearhead is played on a 30" × 22" realm battlefield with its own battlepack: e
 -- | -- | --
 `fire_and_jade.json` | Fire and Jade: the Aqshy and Ghyran sides | Written by hand
 `sand_and_bone.json` | Sand and Bone: the Dolorum and Ossia sides of a Shyish battlefield | Written by hand
+`city_of_ash.json` | City of Ash: the Shattered Crossroads and Ashen Bastion sides of Embergard, its relics and the Hidden in the Ashes campaign | Written by hand
 
 Fire and Jade is the battlepack in [The Rules](https://assets.warhammer-community.com/eng_aos_core&key_the-rules_apr25-t7q3fbv0zb-bit50crc5k.pdf) (April 2025, pages 49–58). The PDF only shows the cards as illustrations, so the twist and battle tactic cards, and the rules text with its errata (the "behind a terrain feature" sentence in 5.0 Terrain) and FAQ, come from Wahapedia's [Fire and Jade](https://wahapedia.ru/aos4/the-rules/fire-and-jade/) page. Sand and Bone comes from Wahapedia's [Sand and Bone](https://wahapedia.ru/aos4/the-rules/sand-and-bone/) page, whose errata (the 'Survivor’s Grief' twist, 'Monument of Living Bone' and the Crypt of Blood set-up step) Wahapedia has applied. Flavour text is dropped and the battlepacks' introductory sections are condensed, as in the General's Handbook files. Wahapedia's typos are fixed ("lgnax", "scores l", "roll I dice", "For each 5+. Heal"). Wahapedia's Dolorum twist 'Darkened Skies' only says what happens "if there is no underdog"; the card probably also has the underdog pick the objective, but this isn't added until it can be checked.
 
-Wahapedia also has the City of Ash battlepack, which isn't in the data yet: it adds relics, roads, fortified objectives and a campaign, which this schema doesn't cover.
+City of Ash comes from Wahapedia's [City of Ash](https://wahapedia.ru/aos4/the-rules/city-of-ash/) page. It adds rectangular objectives (`MapFeature.extent` and `rotation`; `SpearheadBattlepack.is_on_objective()`), roads (`RealmBattlefield.roads`, polygons), relics (`SpearheadBattlepack.relics`, abilities named after each relic, with each realm's `starting_relics` and each twist's `relic` to place) and a campaign (`SpearheadBattlepack.campaign`: a `SpearheadCampaign` of `CampaignBattle`s, each with its realm, rules, starting relics and own deployment map; `fixed_territories` means territory A is the attacker's). Its objective positions, sizes and road widths are measured from the faint boards under Wahapedia's City of Ash deployment and campaign maps (`CoA_1.png`–`CoA_5.png`), to about ±0.5"; the roads are modelled as two 3.5" bands through the junction at the objectives' −15° tilt. The small objectives' names are guesses (the symbols can't be read at that size): check them, and the dais battle tactics that depend on them, against the board.
 
 ### Schema
 
 **Class** | **Fields** (required in bold)
 -- | --
-`SpearheadBattlepack` | **`name`**, **`battle_rounds`**, **`battlefield_size`** (from `battlefield`), `sections` (the battlepack's rules, e.g. 5.0 Terrain), `abilities` (e.g. 'Call for Reinforcements', and the mystical terrain's 'Unholy Draught'), `terrain_abilities` (the battlepack's own Cover, Obscuring and Unstable, which differ from the core rules', and e.g. Unholy), `terrain_features`, `terrain_groups`, `objective_names`, **`objective_radius`**, `realms`, `deployment_maps`, `battleplan_name`, `battleplan_sections` and `scoring` (from **`battleplan`**: `name`, `sections`, `scoring`), `battle_tactic_cards`, `faqs`
+`SpearheadBattlepack` | **`name`**, **`battle_rounds`**, **`battlefield_size`** (from `battlefield`), `sections` (the battlepack's rules, e.g. 5.0 Terrain), `abilities` (e.g. 'Call for Reinforcements', and the mystical terrain's 'Unholy Draught'), `terrain_abilities` (the battlepack's own Cover, Obscuring and Unstable, which differ from the core rules', and e.g. Unholy), `terrain_features`, `terrain_groups`, `objective_names`, **`objective_radius`**, `realms`, `deployment_maps`, `battleplan_name`, `battleplan_sections` and `scoring` (from **`battleplan`**: `name`, `sections`, `scoring`), `battle_tactic_cards`, `relics` (abilities named after each relic), `campaign`, `faqs`
 `SpearheadTerrain` | **`name`**, **`size`** (`large` or `small`), `mystical` (set up by the battleplan or a twist, not by the players), `abilities` (names of the battlepack's `terrain_abilities`)
 Terrain group | `{"name", "features"}`: terrain feature names. The defender picks a group and the attacker takes the other (Sand and Bone). Without groups, each player sets up one large and one small terrain feature (Fire and Jade)
-`RealmBattlefield` | **`name`** (the side, e.g. "Aqshy"), `objectives` (`MapFeature`s whose `type` is one of `objective_names`, with an optional `radius`), `terrain` (`MapFeature`s naming terrain features set up before the players', e.g. Ossia's Crypt of Blood), `twists`
-`TwistCard` | **`name`**, **`text`**, `options` (named effects the underdog picks from, as an ability's)
+`RealmBattlefield` | **`name`** (the side, e.g. "Aqshy"), `objectives` (`MapFeature`s whose `type` is one of `objective_names`, with an optional `radius`), `terrain` (`MapFeature`s naming terrain features set up before the players', e.g. Ossia's Crypt of Blood), `roads` (polygons, e.g. the Shattered Crossroads'), `starting_relics`, `twists`
+`TwistCard` | **`name`**, **`text`**, `options` (named effects the underdog picks from, as an ability's), `relic` (the relic the twist has a player place)
 `DeploymentMap` | **`name`** ("Horizontal" or "Diagonal"), **`territory_a`**, **`territory_b`**: polygons of at least 3 `{x, y}` corners, loaded as `PackedVector2Array`s. The defender picks the map and which territory is theirs
 `SpearheadTacticCard` | **`name`**, **`condition`** (the battle tactic), **`command`** (an `Ability` of type "command" with no command points)
+`SpearheadCampaign` | **`name`**, `sections`, `battles` (in the order they're played)
+`CampaignBattle` | **`name`**, **`realm`** (a realm's name), `text`, `starting_relics`, **`deployment_map`**, `fixed_territories` (territory A is the attacker's)
 
-Map positions are in inches from the battlefield's north-west corner, as for battleplans.
+Map positions are in inches from the battlefield's north-west corner, as for battleplans. A rectangular objective has `width` and `depth` (loaded as `MapFeature.extent`) and a clockwise `rotation` in degrees; `MapFeature.corners()` gives its corners.
 
 ### Objectives
 
