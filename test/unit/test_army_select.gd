@@ -267,6 +267,14 @@ func test_spearhead_lists_a_card_per_spearhead() -> void:
 	assert_eq(_entry_cards(screen).size(), GameModeScreen.shown_spearheads().size())
 
 
+func test_spearhead_screen_fits_the_smallest_ui_size() -> void:
+	var screen := _spearhead()
+	for entry in GameModeScreen.shown_spearheads():
+		screen.open(BattleSetup.Mode.SPEARHEAD, entry.name)
+		assert_lte(screen.get_node("Layout").get_combined_minimum_size().x, GameSettings.MIN_UI_SIZE.x,
+				"%s is too wide" % entry.name)
+
+
 func test_spearhead_without_choices_cannot_play() -> void:
 	var screen := _spearhead()
 	assert_ne(screen.play_blocker(), "")
