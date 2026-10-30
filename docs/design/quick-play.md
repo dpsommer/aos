@@ -47,7 +47,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 - **Detail:**
   - the name, its faction, Grand Alliance and general, and a pill: "Choose a regiment ability and an enhancement to play", until both are chosen, then "Ready to play";
   - **Battle Traits** (foldable, two to a row, as in Matched Play);
-  - below them, two columns: **Regiment Abilities** and **Enhancements**. Each choice is a card holding its ability card, folded to its header and name until its eye shows its rules. Pressing a card chooses it (outlined in gold with a check); pressing the chosen card unchooses it. Each column's heading has a chip, "Choose 1" or "Chosen", and a note: "Your army can use the one you choose." or "Your general takes the one you choose.";
+  - below them, two columns: **Regiment Abilities** and **Enhancements**. Each choice is a card holding its ability card, folded to its header and name until its eye shows its rules. Pressing a card chooses it (outlined in gold with a check); pressing the chosen card unchooses it. Each column's heading has a chip, "Choose 1" or "Chosen";
   - **Army:** portraits of the general and each unit, with model counts; each shows the Spearhead's own warscroll.
 - **Battle plan:** the card is disabled, so a Spearhead battle always uses Random. The Spearhead battlepacks are in the game data (see [Core rules data](../technical/core-rules-data.md#spearhead-battlepacks)), but the picker only shows the General's Handbook's battleplans.
 - **Play:** enabled once a regiment ability and an enhancement are chosen.

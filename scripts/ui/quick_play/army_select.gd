@@ -18,8 +18,8 @@ enum Pane { LIST, WARSCROLL, REGIMENT, PLANS }
 ## Lore kinds, in the order the Lores section shows them.
 const LORE_KINDS: PackedStringArray = ["spell", "prayer", "manifestation"]
 const SPEARHEAD_GROUPS := [
-	["regiment", "Regiment Abilities", "Your army can use the one you choose."],
-	["enhancement", "Enhancements", "Your general takes the one you choose."],
+	["regiment", "Regiment Abilities"],
+	["enhancement", "Enhancements"],
 ]
 
 var mode := BattleSetup.Mode.MATCHED_PLAY
@@ -522,7 +522,6 @@ func _spearhead_detail() -> void:
 			var card := _choice_card(key, ability)
 			_choice_cards[key].append(card)
 			cards.add_child(card)
-		cards.add_child(UIBuilder.label(group[2], "MutedLabel", true))
 		_choice_chips[key] = UIBuilder.hbox()
 		columns.add_child(_section(group[1], cards, "", _choice_chips[key]))
 	for column: Control in columns.get_children():
