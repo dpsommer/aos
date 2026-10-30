@@ -16,9 +16,9 @@ A summoning ability's manifestation warscrolls follow its card, from `ArmyCatalo
 
 ## Colours
 
-An ability's colour is its `colour` from the data, as printed on its warscroll and read from BSData (see [Ability colours](../technical/faction-data.md#ability-colours)). It mostly follows the phase, but not always: a passive ability that affects combat is red, and Battle Damaged is black.
+An ability's colour is its `colour` from the data, as printed on its warscroll and read from BSData, or from Wahapedia for Spearhead and other Wahapedia-only abilities (see [Ability colours](../technical/faction-data.md#ability-colours)). It mostly follows the phase, but not always: a passive ability that affects combat is red, and Battle Damaged is black.
 
-An ability without one in the data (most Spearhead abilities, the core rules, battleplans) is coloured by the phase of its timing (`AbilityCard.phase()`, `AbilityCard.PHASE_COLOURS`):
+An ability without one in the data (the core rules, battleplans) is coloured by the phase of its timing (`AbilityCard.phase()`, `AbilityCard.PHASE_COLOURS`):
 
 Phase | Timings | Colour
 -- | -- | --

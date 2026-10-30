@@ -194,6 +194,18 @@ def test_equal_command_points_are_not_reported():
     assert report.lines == []
 
 
+def test_differing_colours_are_reported():
+    report = merge.Report()
+    merge.compare_ability(report, "x", ab(colour="green"), ab(colour="yellow"))
+    assert len(report.lines) == 1 and "colour" in report.lines[0]
+
+
+def test_equal_colours_are_not_reported():
+    report = merge.Report()
+    merge.compare_ability(report, "x", ab(colour="green"), ab(colour="green"))
+    assert report.lines == []
+
+
 # merge_warscrolls()
 
 @pytest.mark.parametrize("field,value", [

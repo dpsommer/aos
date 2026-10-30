@@ -158,7 +158,7 @@ def apply_overrides(regs, overrides, wh_regiments):
             colour = a.get("colour")
             a.clear()
             a.update(copy.deepcopy(wh))
-            # Wahapedia doesn't print box colours, so the ability keeps BSData's.
+            # The ability keeps BSData's colour where Wahapedia's box has none.
             if colour and not a.get("colour"):
                 a["colour"] = colour
     for name in overrides.get("add_from_wahapedia", []):

@@ -29,7 +29,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
-					"colour": "black",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"effect": "You must use this ability at the start of each of your hero phases. Remove all daemonic power points from each friendly unit. Then, gain a number of daemonic power points equal to the current battle round number plus 1.\nThen, allocate your daemonic power points to friendly units. Each unit can have a maximum of 3 daemonic power points. Then, all unallocated daemonic power points are lost.",
 					"options": [
@@ -46,6 +46,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Deployment Phase",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"declare": "Pick up to 2 friendly Infernal Cohort units to be the targets.",
 					"effect": "Each target can immediately move up to 3\" but cannot use CHARGE abilities in the first battle round."
@@ -55,7 +56,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Shooting Phase",
-					"colour": "yellow",
+					"colour": "blue",
 					"frequency": "Once Per Turn",
 					"declare": "Pick an enemy INFANTRY unit that had any damage points allocated to it this turn as a result of shooting attacks made by a friendly Tormentor Bombard to be the target.",
 					"effect": "Until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
@@ -84,6 +85,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a visible enemy unit within 12\" of your general to be the target.",
 					"effect": "Inflict D3 mortal damage on the target."
@@ -93,6 +95,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "For the rest of the turn, your general’s attacks score critical hits on unmodified hit rolls of 5+."
 				}
@@ -163,6 +166,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Any Hero Phase",
+							"colour": "yellow",
 							"frequency": "Once Per Battle",
 							"effect": "This unit’s Gong Carrier (if any) is a token. You can remove its Gong Carrier from the battlefield and return D3 slain models to this unit."
 						},

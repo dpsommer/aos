@@ -28,6 +28,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
 					"keywords": [
 						"CORE"
@@ -38,7 +39,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
-					"colour": "purple",
+					"colour": "green",
 					"effect": "Each time a friendly VAMPIRE unit uses a FIGHT ability, after all of its attacks have been resolved, Heal (X) that VAMPIRE unit where X is the number of damage points allocated by those attacks."
 				}
 			],
@@ -61,6 +62,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "Pick your Blood Knights unit to use this ability if it charged this turn.",
 					"effect": "Inflict D3 mortal damage on each enemy unit it passed across during that CHARGE ability."
 				}
@@ -71,6 +73,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Reaction: You declared the ‘Skeleton Legion’ ability for a unit within 9\" of your general",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"effect": "Add 1 to each legion roll made for that unit."
 				},
@@ -79,6 +82,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Ignore negative modifiers to save rolls for shooting attacks that target your general."
 				},
 				{
@@ -86,6 +90,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"effect": "Remove your general from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units.",
 					"keywords": [
@@ -97,6 +102,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Make a casting roll of 2D6.",
 					"effect": "On a 7+, inflict 1 mortal damage on each enemy unit on the battlefield."
 				}
@@ -170,6 +176,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
+							"colour": "red",
 							"effect": "Add 1 to wound rolls for attacks made by this unit that target a damaged unit."
 						}
 					],
@@ -206,7 +213,7 @@
 							"type": "active",
 							"category": "rallying",
 							"timing": "Your Combat Phase",
-							"colour": "purple",
+							"colour": "red",
 							"effect": "For each slain model from this unit, make a legion roll of D6. For each 6, return 1 slain model to this unit."
 						}
 					],
@@ -305,6 +312,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit in combat with any friendly units to be the target.",
 					"effect": "Roll a dice. On a 3+, subtract 1 from the Rend characteristic of the target’s melee weapons until the start of your next turn."
@@ -324,6 +332,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly non-HERO unit that is not in combat to be the target.",
 					"effect": "For the rest of the turn, add 1\" to the target’s Move characteristic and add 3 to its control score."
@@ -335,6 +344,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "The Rend characteristic of your general’s Baleful Tomb Blade is 2."
 				},
 				{
@@ -342,6 +352,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Charge Phase",
+					"colour": "orange",
 					"declare": "Pick another friendly unit wholly within 12\" of your general to be the target.",
 					"effect": "You can re-roll charge rolls for the target for the rest of the turn."
 				},
@@ -350,6 +361,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Each time your general scores a critical hit, Heal (2) your general after the ATTACK ability has been resolved."
 				},
 				{
@@ -357,6 +369,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy unit in combat with your general to be the target.",
 					"effect": "Roll a dice. On a 2+, the target has STRIKE-LAST for the rest of the turn."

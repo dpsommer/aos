@@ -36,6 +36,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick 1 of your units in reserve.",
 					"effect": "Set up that unit anywhere on the battlefield more than 6\" from all enemy units."
@@ -55,6 +56,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit to be the target.",
 					"effect": "Roll a dice. On a 3+, add 1 to save rolls for the target for the rest of the turn."
@@ -76,6 +78,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible enemy unit within 6\" of your general to be the target.",
 					"effect": "Roll a dice. On a 3+, the target must immediately use a RETREAT ability as if it were the enemy movement phase. Immediately after that ability has been resolved, if the target is in combat, inflict 2D3 mortal damage on it."
 				},
@@ -93,6 +96,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy INFANTRY or CAVALRY unit within 6\" of your general to be the target.",
 					"effect": "For the rest of the battle, if the target is replaced using the ' Call for Reinforcements ' ability, halve the number of models in the replacement unit, rounding up."
@@ -102,6 +106,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Any Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"declare": "Pick an enemy unit within 12\" of your general to be the target.",
 					"effect": "For the rest of the turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1."
@@ -366,6 +371,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Any Charge Phase",
+					"colour": "orange",
 					"declare": "Pick a friendly unit to use this ability if it charged this phase and the charge roll was 10+. Then, pick an enemy unit within 1\" of it to be the target.",
 					"effect": "The target has STRIKE-LAST this turn."
 				},
@@ -384,6 +390,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Start of the First Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick an enemy unit on the battlefield.",
 					"effect": "Add 1 to the Rend characteristic of melee weapons used for attacks that target that unit."
@@ -393,6 +400,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Subtract 1 from hit rolls for combat attacks that target a friendly unit that charged in the same turn."
 				}
 			],
@@ -410,6 +418,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "Return 1 slain model to each friendly unit on the battlefield."
 				},
@@ -418,6 +427,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "No more than 1 enemy unit can target your general with attacks (shooting or combat) per phase."
 				},
 				{
@@ -425,6 +435,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Your general’s Sword of Stolen Hours has Crit (Mortal)."
 				}
 			],
@@ -499,7 +510,7 @@
 							"type": "passive",
 							"category": "offensive",
 							"timing": "Passive",
-							"colour": "black",
+							"colour": "red",
 							"effect": "Add 1 to wound rolls for combat attacks made by this unit if it charged in the same turn."
 						}
 					],

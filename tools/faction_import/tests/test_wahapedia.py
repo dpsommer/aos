@@ -1,3 +1,5 @@
+import pytest
+
 import wahapedia
 
 
@@ -435,3 +437,26 @@ def test_ability_command_points_come_from_command_points_element():
 
 def test_ability_without_command_points_element_has_none():
     assert "command_points" not in wahapedia.parse_ability(ability_block(""))
+
+
+def coloured_block(bgcolor):
+    html = ('<div><table><tr><td class="abHeader" bgcolor="%s">Passive</td></tr></table>'
+            '<div class="abBody"><b>THE ABILITY:</b> <b>Effect:</b> Do it.</div></div>' % bgcolor)
+    return wahapedia.BeautifulSoup(html, "html.parser").div
+
+
+@pytest.mark.parametrize("bgcolor,colour", [
+    ("#000000", "black"), ("#76602b", "yellow"), ("#606362", "grey"), ("#28435c", "blue"),
+    ("#a34d14", "orange"), ("#802022", "red"), ("#5e4a79", "purple"), ("#3d5b26", "green"),
+    ("#3D5B26", "green"),
+])
+def test_ability_colour_comes_from_header_background(bgcolor, colour):
+    assert wahapedia.parse_ability(coloured_block(bgcolor))["colour"] == colour
+
+
+def test_ability_with_unknown_header_background_has_no_colour():
+    assert "colour" not in wahapedia.parse_ability(coloured_block("#123456"))
+
+
+def test_ability_without_header_background_has_no_colour():
+    assert "colour" not in wahapedia.parse_ability(ability_block(""))

@@ -32,6 +32,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Start of Your Turn",
+					"colour": "black",
 					"frequency": "Once Per Battle Round",
 					"declare": "Pick 1 of the ur-gold runes from the ur-gold runes table, then make an activation roll of D6. Each urgold rune can only be activated once per battle.",
 					"effect": "On a 1-5, the rune’s standard effect applies. On a 6, the rune’s enhanced effect applies as well. The effects last until the start of your next turn."
@@ -43,6 +44,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Start of the First Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Battle",
 					"effect": "Pick up to 2 friendly units. Remove them from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units."
 				},
@@ -51,6 +53,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick any number of friendly units that are not in combat and are within 10\" of any enemy units.",
 					"effect": "For each of those units, pick a visible enemy unit within 10\" of it and roll a dice. On a 4+, inflict D3 mortal damage on that enemy unit."
@@ -62,6 +65,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of Any Turn",
+					"colour": "black",
 					"effect": "Heal (D3) your general."
 				},
 				{
@@ -69,6 +73,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick your general to use this ability if they are not in combat.",
 					"effect": "Roll a dice for each friendly unit on the battlefield that has any slain models. On a 3+, you can return 1 slain model to that unit."
 				},
@@ -77,6 +82,7 @@
 					"type": "passive",
 					"category": "special",
 					"timing": "Passive",
+					"colour": "black",
 					"effect": "You can re-roll activation rolls you make for the ‘Ur-gold Runes’ ability (see Battle Traits)."
 				},
 				{
@@ -115,7 +121,7 @@
 							"type": "passive",
 							"category": "defensive",
 							"timing": "Passive",
-							"colour": "purple",
+							"colour": "green",
 							"effect": "Add 1 to save rolls for friendly units while they are wholly within 12\" of this unit."
 						},
 						{
@@ -123,6 +129,7 @@
 							"type": "active",
 							"category": "defensive",
 							"timing": "Any Hero Phase",
+							"colour": "yellow",
 							"frequency": "Once Per Battle",
 							"effect": "For the rest of the turn, friendly units have WARD (5+) while they are wholly within 12\" of this unit."
 						}
