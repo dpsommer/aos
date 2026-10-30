@@ -56,8 +56,8 @@ static func describe(plan: Battleplan) -> String:
 
 func _random_card() -> PressableCard:
 	var card := _card("Random", "")
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/misc/circle"), 36, 6)
-	art.get_child(0).modulate = UITheme.GOLD
+	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 36, 6)
+	art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size = Vector2(96, 70)
 	var count := battlepack.battleplans.size()
 	var text := UIBuilder.vbox([UIBuilder.label("Random", "TitleLabel"),

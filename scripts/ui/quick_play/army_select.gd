@@ -570,8 +570,8 @@ func _refresh_plan_card() -> void:
 	_plan_card.accessibility_name = "Battle plan: %s" % name_text
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/misc/circle"), 28, 6)
-	art.get_child(0).modulate = UITheme.GOLD
+	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 28, 6)
+	art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size = Vector2(64, 48)
 	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true),
 			UIBuilder.label(sub, "MutedLabel", true)], 3)
