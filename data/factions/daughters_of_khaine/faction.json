@@ -58,7 +58,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
-					"colour": "black",
+					"colour": "green",
 					"effect": "While each model in a friendly DAUGHTERS OF KHAINE unit is contesting an objective you control, those models are not visible to enemy models more than 9\" away."
 				}
 			]
