@@ -68,7 +68,6 @@ func _ready() -> void:
 	theme = UITheme.get_theme()
 	back_button.icon = UITheme.icon("back")
 	back_button.pressed.connect(back_pressed.emit)
-	play_button.icon = UITheme.icon("play")
 	play_button.pressed.connect(func() -> void: play_requested.emit(setup()))
 
 
