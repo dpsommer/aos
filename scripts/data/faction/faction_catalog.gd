@@ -83,6 +83,8 @@ const _LEGENDS := ["Beasts of Chaos", "Bonesplitterz", "Fyreslayers"]
 static var _loaded := {}
 ## Faction ids by the ids of their manifestation warscrolls, read on first use.
 static var _manifestation_factions := {}
+## Every faction's Spearheads, read on first use by [method spearheads].
+static var _spearheads: Array[Dictionary] = []
 
 
 ## Returns a copy of the faction names for [param alliance], in display order.
@@ -120,6 +122,27 @@ static func manifestation_faction(warscroll_id: String) -> String:
 				if warscroll is Dictionary and "MANIFESTATION" in warscroll.get("keywords", []):
 					_manifestation_factions[warscroll.id] = _DATA_DIRS[faction].get_file()
 	return _manifestation_factions.get(warscroll_id, "")
+
+
+## Every faction's Spearheads, by Grand Alliance then faction in display order, each
+## {"name": String, "faction": String, "alliance": GrandAlliance.Type, "units": int}, where
+## [code]units[/code] counts the general too. Reads the factions' spearhead.json without loading
+## them.
+static func spearheads() -> Array[Dictionary]:
+	if _spearheads.is_empty():
+		for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
+			for faction: String in _FACTIONS[alliance]:
+				if not is_available(faction):
+					continue
+				var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(_DATA_DIRS[faction].path_join("spearhead.json")))
+				if not data is Dictionary:
+					continue
+				for spearhead: Variant in data.get("spearheads", []):
+					if spearhead is Dictionary and spearhead.get("name") is String:
+						var units: Variant = spearhead.get("units", [])
+						_spearheads.append({"name": spearhead.name, "faction": faction, "alliance": alliance,
+								"units": 1 + (units.size() if units is Array else 0)})
+	return _spearheads.duplicate()
 
 
 ## Loads [param faction]'s data, caching it. Returns null and reports errors if it can't be loaded.

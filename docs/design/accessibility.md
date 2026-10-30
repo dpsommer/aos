@@ -23,6 +23,12 @@ Screens are built from standard focusable controls, so they can be used without 
 - **Battle tactics cards:** every battle tactics card that can be focused (in the army list, the Rules tab and the picker) has a gold outline while it has keyboard focus. In the picker, the whole card is a button: Enter or Space chooses it, and the first card is focused when the picker opens.
 - **Save:** Save army's tooltip names the `save_army` action's first key: by default Command+S on macOS, else Ctrl+S.
 
+### Quick Play
+
+- **Esc:** goes back one step. On the army screen it first closes a warscroll, Regiment of Renown or the battleplans and returns to the list, focusing the control that opened them; in the Spearhead search box with text, it clears the search.
+- **Cards:** the mode cards, army and Spearhead cards, portraits, the battle plan card, battleplans and Spearhead choices can all be focused and pressed with Enter or Space. A Spearhead choice and a battleplan card have an eye toggle that shows their rules without choosing them.
+- **Play:** while disabled, its tooltip says what's missing, e.g. "Choose a regiment ability and an enhancement to play". An army's "!" badge, named with its problems, isn't a tab stop: the problems are listed in the army's detail too.
+
 ### Settings
 
 - **Esc:** goes back to the main menu, unless a key is being remapped: then it cancels the remap.

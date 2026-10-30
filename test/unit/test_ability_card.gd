@@ -416,3 +416,113 @@ func test_accessibility_name_is_the_ability_name() -> void:
 func test_accessibility_description_is_the_header() -> void:
 	var card := _card({frequency = "Once Per Turn", timing = "Your Hero Phase"})
 	assert_eq(card.accessibility_description, AbilityCard.header(card.ability))
+
+
+# --- Folding ---
+
+
+func _foldable(open: bool, fields := {}) -> AbilityCard:
+	var card := _card(fields)
+	card.make_foldable(open)
+	return card
+
+
+func _body_fields() -> Dictionary:
+	return {effect = "Do a thing.", keywords = PackedStringArray(["WIZARD"]), source = "Somewhere"}
+
+
+func _all_details(card: AbilityCard, shown: bool) -> bool:
+	return card._details.all(func(control: Control) -> bool: return control.visible == shown)
+
+
+func test_card_is_not_foldable_by_default() -> void:
+	assert_null(_card().fold_button)
+
+
+func test_card_is_not_folded_by_default() -> void:
+	assert_false(_card().folded)
+
+
+func test_foldable_card_has_a_fold_button() -> void:
+	assert_not_null(_foldable(true).fold_button)
+
+
+func test_foldable_card_opened_starts_unfolded() -> void:
+	assert_false(_foldable(true).folded)
+
+
+func test_foldable_card_not_opened_starts_folded() -> void:
+	assert_true(_foldable(false).folded)
+
+
+func test_card_with_a_body_has_details_to_fold() -> void:
+	assert_gt(_card(_body_fields())._details.size(), 1)
+
+
+func test_folded_card_hides_everything_below_the_name() -> void:
+	assert_true(_all_details(_foldable(false, _body_fields()), false))
+
+
+func test_unfolded_card_shows_everything_below_the_name() -> void:
+	assert_true(_all_details(_foldable(true, _body_fields()), true))
+
+
+func test_folded_card_still_shows_the_name() -> void:
+	assert_true(_foldable(false)._name_label.visible)
+
+
+func test_fold_button_folds_an_open_card() -> void:
+	var card := _foldable(true)
+	card.fold_button.pressed.emit()
+	assert_true(card.folded)
+
+
+func test_fold_button_unfolds_a_folded_card() -> void:
+	var card := _foldable(false)
+	card.fold_button.pressed.emit()
+	assert_false(card.folded)
+
+
+func test_fold_button_shows_the_details_again_when_unfolding() -> void:
+	var card := _foldable(false, _body_fields())
+	card.fold_button.pressed.emit()
+	assert_true(_all_details(card, true))
+
+
+func test_set_folded_works_without_a_fold_button() -> void:
+	var card := _card(_body_fields())
+	card.set_folded(true)
+	assert_true(_all_details(card, false))
+
+
+func test_open_fold_button_describes_itself_as_expanded() -> void:
+	assert_eq(_foldable(true).fold_button.accessibility_description, "Expanded")
+
+
+func test_folded_fold_button_describes_itself_as_collapsed() -> void:
+	assert_eq(_foldable(false).fold_button.accessibility_description, "Collapsed")
+
+
+func test_fold_button_description_follows_the_fold() -> void:
+	var card := _foldable(true)
+	card.fold_button.pressed.emit()
+	assert_eq(card.fold_button.accessibility_description, "Collapsed")
+
+
+func test_fold_button_label_names_the_ability() -> void:
+	var card := _foldable(true, {name = "Special Trick"})
+	assert_true(card.fold_button.accessibility_name.contains("Special Trick"))
+
+
+func test_fold_button_label_changes_with_the_fold() -> void:
+	var card := _foldable(true)
+	var open_label := card.fold_button.accessibility_name
+	card.fold_button.pressed.emit()
+	assert_ne(card.fold_button.accessibility_name, open_label)
+
+
+func test_fold_button_icon_changes_with_the_fold() -> void:
+	var card := _foldable(true)
+	var open_icon := card.fold_button.icon
+	card.fold_button.pressed.emit()
+	assert_ne(card.fold_button.icon, open_icon)
