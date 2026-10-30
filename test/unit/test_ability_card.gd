@@ -526,3 +526,19 @@ func test_fold_button_icon_changes_with_the_fold() -> void:
 	var open_icon := card.fold_button.icon
 	card.fold_button.pressed.emit()
 	assert_ne(card.fold_button.icon, open_icon)
+
+
+# add_header_control
+
+func test_add_header_control_appends_at_the_end_of_the_header() -> void:
+	var card := _card()
+	var control := Control.new()
+	card.add_header_control(control)
+	assert_eq(card._header.get_child(-1), control)
+
+
+func test_add_header_control_centres_the_control_vertically() -> void:
+	var card := _card()
+	var control := Control.new()
+	card.add_header_control(control)
+	assert_eq(control.size_flags_vertical, Control.SIZE_SHRINK_CENTER)

@@ -653,28 +653,16 @@ func _toggle_card(key: String, card_name: String, make: Callable) -> Control:
 
 
 ## A Spearhead regiment ability or enhancement to choose: its ability card, folded until its eye
-## shows it, with a check while it's chosen. Pressing it chooses it, or unchooses it if chosen.
-func _choice_card(group: String, ability: Ability) -> PressableCard:
+## shows it. Pressing it chooses it, or unchooses it if chosen.
+func _choice_card(group: String, ability: Ability) -> AbilityChoiceCard:
 	var key := group + ":" + ability.name
-	var card := PressableCard.new()
-	card.card_name = ability.name
-	var rules := AbilityCard.new(ability)
-	rules.set_folded(not _open.has(key))
-	var check := UIBuilder.check_badge()
-	check.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var eye := UIBuilder.icon_toggle("eye", "Show %s rules" % ability.name, not rules.folded, func(_on: bool) -> void: pass, key)
-	eye.toggled.connect(func(on: bool) -> void:
-		rules.set_folded(not on)
-		eye.tooltip_text = ("Hide %s rules" if on else "Show %s rules") % ability.name
-		eye.accessibility_name = eye.tooltip_text
+	var card := AbilityChoiceCard.new(ability, _open.has(key), key)
+	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	card.eye_toggled.connect(func(on: bool) -> void:
 		if on:
 			_open[key] = true
 		else:
 			_open.erase(key))
-	card.add_child(UIBuilder.vbox([UIBuilder.hbox([check, UIBuilder.spacer(), eye], 8), rules], 8))
-	card.make_pressable("Choose " + ability.name)
-	card.set_meta(&"ability", ability.name)
-	card.set_meta(&"check", check)
 	card.pressed.connect(_choose.bind(group, ability.name))
 	return card
 
@@ -683,11 +671,8 @@ func _choice_card(group: String, ability: Ability) -> PressableCard:
 func _update_choices() -> void:
 	for group: String in _choice_cards:
 		var chosen: String = regiment_ability if group == "regiment" else enhancement
-		for card: PressableCard in _choice_cards[group]:
-			var picked: bool = card.get_meta(&"ability") == chosen
-			card.theme_type_variation = "PickedCardPanel" if picked else "CardPanel"
-			(card.get_meta(&"check") as Control).modulate.a = 1.0 if picked else 0.0
-			card.accessibility_description = ("Chosen. Press to unchoose " if picked else "Choose ") + card.card_name
+		for card: AbilityChoiceCard in _choice_cards[group]:
+			card.selected = card.ability.name == chosen
 		_clear(_choice_chips[group])
 		_choice_chips[group].add_child(UITheme.chip("Chosen" if not chosen.is_empty() else "Choose 1",
 				"" if not chosen.is_empty() else "gold"))

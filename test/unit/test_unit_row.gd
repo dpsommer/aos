@@ -438,11 +438,11 @@ func _enh_section(row: UnitRow, type: String) -> Control:
 
 func _enh_cards(row: UnitRow, type: String) -> Array[Node]:
 	var section := _enh_section(row, type)
-	return UIKit.find_all(section, func(n: Node) -> bool: return n is OptionCard) if section else []
+	return UIKit.find_all(section, func(n: Node) -> bool: return n is AbilityChoiceCard) if section else []
 
 
-func _enh_card(row: UnitRow, uid: String, type: String, entry: String) -> OptionCard:
-	return UIKit.keyed(row, "%s:enh:%s:%s" % [uid, type, entry]) as OptionCard
+func _enh_card(row: UnitRow, uid: String, type: String, entry: String) -> AbilityChoiceCard:
+	return UIKit.keyed(row, "%s:enh:%s:%s" % [uid, type, entry]) as AbilityChoiceCard
 
 
 func test_hero_gets_a_section_for_every_enhancement_type() -> void:
@@ -474,7 +474,7 @@ func test_unique_unit_gets_no_enhancement_cards() -> void:
 	var builder := _builder(UIKit.army_with_regiment(PackedStringArray(["unique"])))
 	_tables(builder, PackedStringArray(["Heroic Traits", "Monstrous Traits"]))
 	var row := _expanded_row(builder, "u2")
-	assert_eq(UIKit.find_all(row, func(n: Node) -> bool: return n is OptionCard).size(), 0)
+	assert_eq(UIKit.find_all(row, func(n: Node) -> bool: return n is AbilityChoiceCard).size(), 0)
 
 
 func test_enhancement_section_has_a_card_for_each_enhancement() -> void:
@@ -499,27 +499,27 @@ func test_choosing_an_enhancement_gives_it_to_the_unit() -> void:
 	var builder := _builder(army)
 	_tables(builder, PackedStringArray(["Heroic Traits"]))
 	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon B")
-	card.button_pressed = true
+	card.pressed.emit()
 	assert_eq(army.find_unit("u1").enhancements["Heroic Traits"], "Boon B")
 
 
-func test_enhancement_card_is_pressed_for_the_units_current_enhancement() -> void:
+func test_enhancement_card_is_selected_for_the_units_current_enhancement() -> void:
 	var army := UIKit.army_with_regiment()
 	army.find_unit("u1").enhancements["Heroic Traits"] = "Boon A"
 	var builder := _builder(army)
 	_tables(builder, PackedStringArray(["Heroic Traits"]))
 	var row := _expanded_row(builder, "u1")
-	assert_true(_enh_card(row, "u1", "Heroic Traits", "Boon A").button_pressed)
-	assert_false(_enh_card(row, "u1", "Heroic Traits", "Boon B").button_pressed)
+	assert_true(_enh_card(row, "u1", "Heroic Traits", "Boon A").selected)
+	assert_false(_enh_card(row, "u1", "Heroic Traits", "Boon B").selected)
 
 
-func test_unpressing_the_picked_card_removes_the_enhancement() -> void:
+func test_pressing_the_picked_card_removes_the_enhancement() -> void:
 	var army := UIKit.army_with_regiment()
 	army.find_unit("u1").enhancements["Heroic Traits"] = "Boon A"
 	var builder := _builder(army)
 	_tables(builder, PackedStringArray(["Heroic Traits"]))
 	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon A")
-	card.button_pressed = false
+	card.pressed.emit()
 	assert_false(army.find_unit("u1").enhancements.has("Heroic Traits"))
 
 

@@ -12,6 +12,10 @@ Every ability (warscroll abilities, battle traits, battle formations, enhancemen
 
 A card can be made foldable (`AbilityCard.make_foldable()`): a chevron beside the name folds it to its header and name, as Quick Play's battle traits do. `AbilityCard.set_folded()` folds it without a chevron, as Quick Play's Spearhead choices do behind their eye.
 
+## Choosing an ability
+
+Where the player chooses an ability (the Forge's enhancement options and Quick Play's Spearhead regiment abilities and enhancements), it's an `AbilityChoiceCard` (`scripts/ui/cards/ability_choice_card.gd`): the ability card itself, with no box around it, filling its column's width. It's folded to its header and name until the eye at the right of its header shows its rules in full. The whole card is a button: pressing it (a click, or Enter or Space) chooses the ability, and pressing the chosen card unchooses it. The chosen card has a gold outline, as a card with keyboard focus does, and a check left of the eye. Other chips, e.g. an enhancement's table group, go before the check (`add_header_control()`).
+
 A summoning ability's manifestation warscrolls follow its card, from `ArmyCatalog.summoned()`. A unit it sets up, such as an Auto-Endrin, follows it as a short card that links to the full warscroll (see the [Forge](forge.md)).
 
 ## Colours
@@ -62,5 +66,5 @@ In a `WarscrollCard`'s weapon tables, each weapon that the unit's Battle Damaged
 - The info pane's Rules tab: battle traits, battle formations, enhancements and lores (`InfoPane`, `LoreCard`).
 - Regiments of Renown cards (`RenownCard`).
 - Battle formation cards on the Forge's Battle Formation step.
-- Enhancement cards in a unit's options (`UnitRow`), where the card's header shows the points.
+- Enhancement choices in a unit's options (`UnitRow`) and Quick Play's Spearhead choices (`ArmySelect`), as [choice cards](#choosing-an-ability).
 - The faction browser, whose tabs are built from controls by `RulesView` (`scripts/ui/forge/rules_view.gd`).

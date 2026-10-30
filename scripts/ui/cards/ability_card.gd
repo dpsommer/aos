@@ -57,6 +57,8 @@ var fold_button: Button
 ## Whether the card shows only its header and name.
 var folded := false
 var _name_label: Label
+## The header row: icon, frequency and timing, then the value chips and any [method add_header_control].
+var _header: HBoxContainer
 ## Everything under the name: the rule, rules text, keywords and source.
 var _details: Array[Control] = []
 
@@ -71,15 +73,13 @@ func _init(rule: Ability) -> void:
 
 	var timing := UIBuilder.label(header_text.to_upper(), "AbilityTimingLabel", true)
 	timing.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var top := UIBuilder.hbox([_icon(rule), timing], 6)
+	_header = UIBuilder.hbox([_icon(rule), timing], 6)
 	for value in values(rule):
-		var chip := UITheme.chip(value)
-		chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		top.add_child(chip)
+		add_header_control(UITheme.chip(value))
 	var header_margin := MarginContainer.new()
 	for side in ["left", "right", "top", "bottom"]:
 		header_margin.add_theme_constant_override("margin_" + side, 2)
-	header_margin.add_child(top)
+	header_margin.add_child(_header)
 
 	_name_label = UIBuilder.label(rule.name, "AbilityNameLabel", true)
 	_details.append(HSeparator.new())
@@ -95,6 +95,12 @@ func _init(rule: Ability) -> void:
 	inner_box.add_theme_stylebox_override("panel", UITheme.box(UITheme.ABILITY_INNER, Color.TRANSPARENT, 6, 10))
 
 	add_child(UIBuilder.vbox([header_margin, inner_box], 4))
+
+
+## Adds [param control] to the right end of the header, centred on it, e.g. a chip or a button.
+func add_header_control(control: Control) -> void:
+	control.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	_header.add_child(control)
 
 
 ## Adds a chevron beside the name that folds the card down to its header and name, and unfolds it
