@@ -30,6 +30,7 @@ func load_battlepack(file_path: String) -> SpearheadBattlepack:
 		pack.terrain_groups.append(_terrain_group(groups[i], "terrain_groups[%d]" % i, pack))
 	pack.objective_names = _strings(data, "objective_names", "")
 	pack.objective_radius = _float(data, "objective_radius", "", true)
+	pack.relics = _abilities(data, "relics", "")
 	var realms := _array(data, "realms", "")
 	for i in realms.size():
 		pack.realms.append(_realm(realms[i], "realms[%d]" % i, pack))
@@ -47,6 +48,8 @@ func load_battlepack(file_path: String) -> SpearheadBattlepack:
 	var cards := _array(data, "battle_tactic_cards", "")
 	for i in cards.size():
 		pack.battle_tactic_cards.append(_tactic_card(cards[i], "battle_tactic_cards[%d]" % i))
+	if data.has("campaign"):
+		pack.campaign = _campaign(data.campaign, "campaign", pack)
 	pack.faqs = _faqs(data, "")
 
 	return null if not errors.is_empty() else pack
@@ -92,6 +95,10 @@ func _realm(data: Variant, path: String, pack: SpearheadBattlepack) -> RealmBatt
 	for feature in pack.terrain_features:
 		feature_names.append(feature.name)
 	realm.terrain = _map_features(data, "terrain", path, feature_names, false)
+	var roads := _array(data, "roads", path)
+	for i in roads.size():
+		realm.roads.append(_corners(roads[i], _join(path, "roads[%d]" % i)))
+	realm.starting_relics = _relic_names(data, "starting_relics", path, pack)
 	var twists := _array(data, "twists", path)
 	for i in twists.size():
 		var twist_path := _join(path, "twists[%d]" % i)
@@ -100,8 +107,20 @@ func _realm(data: Variant, path: String, pack: SpearheadBattlepack) -> RealmBatt
 			twist.name = _string(twists[i], "name", twist_path, true)
 			twist.text = _string(twists[i], "text", twist_path, true)
 			twist.options = _options(twists[i], twist_path)
+			twist.relic = _string(twists[i], "relic", twist_path)
+			if not twist.relic.is_empty() and pack.get_relic(twist.relic) == null:
+				_error(_join(twist_path, "relic"), "names no relic")
 		realm.twists.append(twist)
 	return realm
+
+
+## Names of [param pack]'s relics.
+func _relic_names(data: Dictionary, key: String, path: String, pack: SpearheadBattlepack) -> PackedStringArray:
+	var names := _strings(data, key, path)
+	for i in names.size():
+		if pack.get_relic(names[i]) == null:
+			_error(_join(path, "%s[%d]" % [key, i]), "names no relic")
+	return names
 
 
 func _deployment_map(data: Variant, path: String) -> DeploymentMap:
@@ -116,18 +135,54 @@ func _deployment_map(data: Variant, path: String) -> DeploymentMap:
 
 ## A territory: at least 3 corners, each {"x", "y"}.
 func _polygon(data: Dictionary, key: String, path: String) -> PackedVector2Array:
-	var result := PackedVector2Array()
 	if not data.has(key):
 		_error(_join(path, key), "is required")
+		return PackedVector2Array()
+	return _corners(data[key], _join(path, key))
+
+
+## A polygon: a list of at least 3 corners, each {"x", "y"}.
+func _corners(items: Variant, path: String) -> PackedVector2Array:
+	var result := PackedVector2Array()
+	if not items is Array:
+		_error(path, "must be a list")
 		return result
-	var items := _array(data, key, path)
 	if items.size() < 3:
-		_error(_join(path, key), "must have at least 3 corners")
+		_error(path, "must have at least 3 corners")
 	for i in items.size():
-		var item_path := _join(path, "%s[%d]" % [key, i])
+		var item_path := "%s[%d]" % [path, i]
 		if _is_object(items[i], item_path):
 			result.append(Vector2(_float(items[i], "x", item_path, true), _float(items[i], "y", item_path, true)))
 	return result
+
+
+## Each battle's realm must be one of [param pack]'s realms.
+func _campaign(data: Variant, path: String, pack: SpearheadBattlepack) -> SpearheadCampaign:
+	var campaign := SpearheadCampaign.new()
+	if not _is_object(data, path):
+		return campaign
+	campaign.name = _string(data, "name", path, true)
+	var sections := _array(data, "sections", path)
+	for i in sections.size():
+		campaign.sections.append(_rules_section(sections[i], _join(path, "sections[%d]" % i)))
+	var battles := _array(data, "battles", path)
+	for i in battles.size():
+		var battle_path := _join(path, "battles[%d]" % i)
+		var battle := CampaignBattle.new()
+		if _is_object(battles[i], battle_path):
+			battle.name = _string(battles[i], "name", battle_path, true)
+			battle.realm = _string(battles[i], "realm", battle_path, true)
+			if not battle.realm.is_empty() and pack.get_realm(battle.realm) == null:
+				_error(_join(battle_path, "realm"), "names no realm")
+			battle.text = _string(battles[i], "text", battle_path)
+			battle.starting_relics = _relic_names(battles[i], "starting_relics", battle_path, pack)
+			if not battles[i].has("deployment_map"):
+				_error(_join(battle_path, "deployment_map"), "is required")
+			else:
+				battle.deployment_map = _deployment_map(battles[i].deployment_map, _join(battle_path, "deployment_map"))
+			battle.fixed_territories = _bool(battles[i], "fixed_territories", battle_path)
+		campaign.battles.append(battle)
+	return campaign
 
 
 func _tactic_card(data: Variant, path: String) -> SpearheadTacticCard:

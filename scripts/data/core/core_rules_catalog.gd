@@ -6,6 +6,7 @@ extends RefCounted
 const SPEARHEAD_FILES: PackedStringArray = [
 	"res://data/core/spearhead/fire_and_jade.json",
 	"res://data/core/spearhead/sand_and_bone.json",
+	"res://data/core/spearhead/city_of_ash.json",
 ]
 
 static var _rules: CoreRules

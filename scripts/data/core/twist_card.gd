@@ -7,3 +7,5 @@ extends Resource
 @export var text: String
 ## Named effects the underdog picks from, each {"name": String, "text": String}. Empty if none.
 @export var options: Array[Dictionary]
+## The relic the twist has a player place, e.g. "Battered Barricade". Empty if none.
+@export var relic: String
