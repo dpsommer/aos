@@ -5,6 +5,7 @@ const ForgeScene := preload("res://scenes/ui/forge/forge.tscn")
 const Sandbox := preload("res://test/support/sandbox.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")
 const Kit := preload("res://test/support/army_kit.gd")
+const FactionFixture := preload("res://test/support/faction_fixture.gd")
 
 
 ## Screens and faction buttons are removed with queue_free, so let a frame pass for
@@ -16,6 +17,7 @@ func before_each() -> void:
 func after_each() -> void:
 	await get_tree().process_frame
 	Sandbox.end()
+	FactionFixture.end()
 
 
 ## Returns a fresh forge instance added to the tree with its signals watched.
@@ -49,21 +51,17 @@ func _alliance_with_available_faction() -> GrandAlliance.Type:
 	return GrandAlliance.Type.values()[0]
 
 
-## Returns the first alliance with no faction data, or -1 if every alliance has some.
-func _alliance_without_available_faction() -> int:
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var available := false
-		for faction in FactionCatalog.factions_for(alliance):
-			available = available or FactionCatalog.is_available(faction)
-		if not available:
-			return alliance
-	return -1
-
-
-## Whether any listed faction has no data yet, so the Forge shows it as unavailable.
-func _has_unavailable_faction() -> bool:
-	return GrandAlliance.Type.values().any(func(alliance: GrandAlliance.Type) -> bool:
-		return Array(FactionCatalog.factions_for(alliance)).any(func(f: String) -> bool: return not FactionCatalog.is_available(f)))
+## Shows the Order factions with the fixture faction, which has no data, listed among them, and
+## returns the fixture faction's card.
+func _fixture_faction_card() -> Button:
+	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	var forge := _make_forge()
+	forge.show_factions(GrandAlliance.Type.ORDER)
+	for button: Button in forge.faction_grid.get_children():
+		if button.get_meta(&"faction") == FactionFixture.NAME:
+			return button
+	fail_test("the fixture faction has no card")
+	return null
 
 
 func _first_enabled_index(forge: Forge) -> int:
@@ -355,12 +353,9 @@ func test_first_enabled_faction_card_has_focus_after_choosing_alliance() -> void
 
 
 func test_back_button_has_focus_when_no_faction_is_available() -> void:
-	var alliance := _alliance_without_available_faction()
-	if alliance < 0:
-		pending("every alliance has an available faction")
-		return
+	FactionFixture.list_alone(GrandAlliance.Type.ORDER)
 	var forge := _make_forge()
-	forge.show_factions(alliance)
+	forge.show_factions(GrandAlliance.Type.ORDER)
 	assert_true(forge.back_button.has_focus())
 
 
@@ -374,15 +369,7 @@ func test_available_faction_cards_are_enabled() -> void:
 
 
 func test_unavailable_faction_cards_are_disabled() -> void:
-	if not _has_unavailable_faction():
-		pending("every listed faction has data")
-		return
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			if not FactionCatalog.is_available(button.get_meta(&"faction")):
-				assert_true(button.disabled, "%s is enabled" % button.accessibility_name)
+	assert_true(_fixture_faction_card().disabled)
 
 
 func test_faction_card_meta_is_plain_faction_name() -> void:
@@ -404,15 +391,7 @@ func test_faction_card_is_named_for_screen_readers() -> void:
 
 
 func test_unavailable_faction_cards_explain_why_in_tooltip() -> void:
-	if not _has_unavailable_faction():
-		pending("every listed faction has data")
-		return
-	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		var forge := _make_forge()
-		forge.show_factions(alliance)
-		for button: Button in forge.faction_grid.get_children():
-			if button.disabled:
-				assert_ne(button.tooltip_text, "", "%s has no tooltip" % button.accessibility_name)
+	assert_ne(_fixture_faction_card().tooltip_text, "")
 
 
 func test_pressing_faction_card_shows_its_army_of_renown_choice() -> void:

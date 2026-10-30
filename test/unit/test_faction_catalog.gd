@@ -1,6 +1,13 @@
 extends GutTest
 ## Unit tests for faction data (scripts/data/faction/faction_catalog.gd, scripts/data/faction/grand_alliance.gd).
 
+const FactionFixture := preload("res://test/support/faction_fixture.gd")
+
+
+func after_each() -> void:
+	FactionFixture.end()
+
+
 
 func test_every_alliance_has_at_least_one_faction() -> void:
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
@@ -60,13 +67,6 @@ func _first_available() -> String:
 	return ""
 
 
-func _first_unavailable() -> String:
-	for faction in _all_factions():
-		if not FactionCatalog.is_available(faction):
-			return faction
-	return ""
-
-
 func test_at_least_one_listed_faction_is_available() -> void:
 	assert_ne(_first_available(), "")
 
@@ -98,13 +98,32 @@ func test_load_unknown_faction_returns_null() -> void:
 
 
 func test_load_listed_but_unavailable_faction_returns_null() -> void:
-	var faction := _first_unavailable()
-	if faction.is_empty():
-		pending("every listed faction has data")
-		return
-	var loaded := FactionCatalog.load_faction(faction)
-	assert_push_error(faction)
+	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	var loaded := FactionCatalog.load_faction(FactionFixture.NAME)
+	assert_push_error(FactionFixture.NAME)
 	assert_null(loaded)
+
+
+func test_set_listed_lists_those_factions() -> void:
+	FactionFixture.list_alone(GrandAlliance.Type.ORDER)
+	assert_eq(FactionCatalog.factions_for(GrandAlliance.Type.ORDER), PackedStringArray([FactionFixture.NAME]))
+
+
+func test_set_listed_with_nothing_lists_the_real_factions_again() -> void:
+	var real := FactionCatalog.factions_for(GrandAlliance.Type.ORDER)
+	FactionFixture.list_alone(GrandAlliance.Type.ORDER)
+	FactionCatalog.set_listed({})
+	assert_eq(FactionCatalog.factions_for(GrandAlliance.Type.ORDER), real)
+
+
+func test_listing_a_fixture_leaves_the_real_listing_alone() -> void:
+	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	assert_does_not_have(FactionCatalog.real_listing()[GrandAlliance.Type.ORDER], FactionFixture.NAME)
+
+
+func test_spearheads_skip_a_listed_faction_without_data() -> void:
+	FactionFixture.list_beside(GrandAlliance.Type.ORDER)
+	assert_false(FactionCatalog.spearheads().any(func(entry: Dictionary) -> bool: return entry.faction == FactionFixture.NAME))
 
 
 func test_from_id_parses_lowercase_display_name() -> void:
