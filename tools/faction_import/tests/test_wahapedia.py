@@ -277,6 +277,22 @@ def test_spearhead_titled_rule_without_table_has_no_options(tmp_path):
     assert not trait.get("options")
 
 
+def test_spearhead_titled_rule_wrapped_in_blocks_becomes_battle_trait(tmp_path):
+    # The Heartflayer Troupe's 'Blood Rites' wraps its title, text and table in blocks of their own.
+    body = ('<div class="BreakInsideAvoid"><div class="h_custom">TEMPTATIONS</div>Each turn, roll on the table below.</div>'
+            '<div class="BreakInsideAvoid">' + TRAIT_TABLE + '</div>')
+    traits = battle_traits(tmp_path, body)
+    assert [t["name"] for t in traits] == ["TEMPTATIONS"]
+    assert traits[0]["effect"] == "Each turn, roll on the table below."
+    assert [o["name"] for o in traits[0]["options"]] == ["18+: Sadistic Spite", "12-17: Heedless Fury"]
+
+
+def test_spearhead_titled_rule_option_text_drops_effect_label(tmp_path):
+    table = TRAIT_TABLE.replace("<b>HEEDLESS FURY:</b> ", "<b>HEEDLESS FURY:</b> <b>Effect:</b> ")
+    options = battle_traits(tmp_path, titled_rule(table=table))[0]["options"]
+    assert options[1] == {"name": "12-17: Heedless Fury", "text": "Add 1 to charge rolls."}
+
+
 def test_spearhead_untitled_text_without_ability_is_dropped(tmp_path):
     assert battle_traits(tmp_path, RESERVE) == []
 
