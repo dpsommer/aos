@@ -157,3 +157,53 @@ func test_name_for_empty_id_is_empty() -> void:
 
 func test_manifestation_faction_of_an_unknown_id_is_empty() -> void:
 	assert_eq(FactionCatalog.manifestation_faction("no_such_manifestation_id"), "")
+
+
+# --- Spearheads ---
+
+
+func test_spearheads_are_listed() -> void:
+	assert_gt(FactionCatalog.spearheads().size(), 0)
+
+
+func test_every_spearhead_has_a_name_and_an_available_faction() -> void:
+	for entry in FactionCatalog.spearheads():
+		assert_false(entry.name.is_empty())
+		assert_true(FactionCatalog.is_available(entry.faction), "%s is not available" % entry.faction)
+
+
+func test_every_spearhead_belongs_to_its_factions_alliance() -> void:
+	for entry in FactionCatalog.spearheads():
+		assert_true(entry.faction in FactionCatalog.factions_for(entry.alliance), "%s is in the wrong alliance" % entry.faction)
+
+
+func test_spearheads_are_ordered_by_alliance() -> void:
+	var previous := -1
+	for entry in FactionCatalog.spearheads():
+		assert_gte(int(entry.alliance), previous, "%s is out of order" % entry.name)
+		previous = entry.alliance
+
+
+func test_spearhead_units_count_the_general() -> void:
+	for entry in FactionCatalog.spearheads():
+		assert_gte(entry.units, 1, "%s has no general" % entry.name)
+
+
+func test_spearhead_units_match_the_loaded_spearhead() -> void:
+	var entry: Dictionary = FactionCatalog.spearheads()[0]
+	var faction := FactionCatalog.load_faction(entry.faction)
+	var spearhead: Spearhead = faction.spearheads.filter(func(s: Spearhead) -> bool: return s.name == entry.name)[0]
+	assert_eq(entry.units, 1 + spearhead.units.size())
+
+
+func test_every_spearhead_can_be_loaded_from_its_faction() -> void:
+	for entry in FactionCatalog.spearheads():
+		var faction := FactionCatalog.load_faction(entry.faction)
+		assert_true(faction.spearheads.any(func(s: Spearhead) -> bool: return s.name == entry.name),
+				"%s is not in %s" % [entry.name, entry.faction])
+
+
+func test_mutating_returned_spearheads_does_not_change_later_results() -> void:
+	var count := FactionCatalog.spearheads().size()
+	FactionCatalog.spearheads().clear()
+	assert_eq(FactionCatalog.spearheads().size(), count)

@@ -348,3 +348,116 @@ func _focused_army_id(forge: Forge) -> String:
 		if row.has_meta(&"first_button") and row.get_meta(&"first_button").has_focus():
 			return row.get_meta(&"army_id")
 	return ""
+
+
+# --- Quick Play ---
+
+
+func _saved_army() -> Army:
+	var army := _new_army()
+	army.override_constraints = true
+	assert_eq(ArmyStore.save(army), OK)
+	return army
+
+
+func test_menu_quick_play_pressed_shows_game_mode_screen() -> void:
+	var main := _make_main()
+	(main.current_screen as MainMenu).quick_play_pressed.emit()
+	assert_is(main.current_screen, GameModeScreen)
+
+
+func test_menu_quick_play_pressed_leaves_one_child() -> void:
+	var main := _make_main()
+	(main.current_screen as MainMenu).quick_play_pressed.emit()
+	assert_eq(main.get_child_count(), 1)
+
+
+func test_game_mode_back_pressed_shows_main_menu() -> void:
+	var main := _make_main()
+	main.show_quick_play()
+	(main.current_screen as GameModeScreen).back_pressed.emit()
+	assert_is(main.current_screen, MainMenu)
+
+
+func test_show_quick_play_focuses_the_given_mode_card() -> void:
+	var main := _make_main()
+	main.show_quick_play(BattleSetup.Mode.MATCHED_PLAY)
+	var screen := main.current_screen as GameModeScreen
+	assert_true(screen.mode_cards[BattleSetup.Mode.MATCHED_PLAY].has_focus())
+
+
+func test_game_mode_chosen_shows_army_select() -> void:
+	var main := _make_main()
+	main.show_quick_play()
+	(main.current_screen as GameModeScreen).mode_chosen.emit(BattleSetup.Mode.MATCHED_PLAY)
+	assert_is(main.current_screen, ArmySelect)
+
+
+func test_army_select_opens_in_the_chosen_mode() -> void:
+	var main := _make_main()
+	main.show_quick_play()
+	(main.current_screen as GameModeScreen).mode_chosen.emit(BattleSetup.Mode.SPEARHEAD)
+	assert_eq((main.current_screen as ArmySelect).mode, BattleSetup.Mode.SPEARHEAD)
+
+
+func test_army_select_back_pressed_shows_game_mode_screen() -> void:
+	var main := _make_main()
+	main.show_army_select(BattleSetup.Mode.MATCHED_PLAY)
+	(main.current_screen as ArmySelect).back_pressed.emit()
+	assert_is(main.current_screen, GameModeScreen)
+
+
+func test_army_select_back_pressed_focuses_the_mode_that_was_chosen() -> void:
+	var main := _make_main()
+	main.show_army_select(BattleSetup.Mode.MATCHED_PLAY)
+	(main.current_screen as ArmySelect).back_pressed.emit()
+	var screen := main.current_screen as GameModeScreen
+	assert_true(screen.mode_cards[BattleSetup.Mode.MATCHED_PLAY].has_focus())
+
+
+func test_army_select_forge_requested_shows_forge() -> void:
+	var main := _make_main()
+	main.show_army_select(BattleSetup.Mode.MATCHED_PLAY)
+	(main.current_screen as ArmySelect).forge_requested.emit()
+	assert_is(main.current_screen, Forge)
+
+
+func test_army_select_edit_requested_shows_army_builder() -> void:
+	var main := _make_main()
+	var army := _saved_army()
+	main.show_army_select(BattleSetup.Mode.MATCHED_PLAY)
+	(main.current_screen as ArmySelect).edit_requested.emit(ArmyStore.load_army(army.id))
+	assert_is(main.current_screen, ArmyBuilder)
+
+
+func test_army_builder_opened_from_army_select_goes_back_to_army_select() -> void:
+	var main := _make_main()
+	var army := _saved_army()
+	main.show_army_select(BattleSetup.Mode.MATCHED_PLAY)
+	(main.current_screen as ArmySelect).edit_requested.emit(ArmyStore.load_army(army.id))
+	(main.current_screen as ArmyBuilder).back_pressed.emit()
+	assert_is(main.current_screen, ArmySelect)
+
+
+func test_army_select_after_editing_chooses_the_edited_army() -> void:
+	var main := _make_main()
+	var army := _saved_army()
+	main.show_army_select(BattleSetup.Mode.MATCHED_PLAY)
+	(main.current_screen as ArmySelect).edit_requested.emit(ArmyStore.load_army(army.id))
+	(main.current_screen as ArmyBuilder).back_pressed.emit()
+	assert_eq((main.current_screen as ArmySelect).army_id, army.id)
+
+
+func test_show_army_builder_with_on_back_calls_it_on_back() -> void:
+	var main := _make_main()
+	var calls: Array[int] = []
+	main.show_army_builder(_new_army(), func() -> void: calls.append(1))
+	(main.current_screen as ArmyBuilder).back_pressed.emit()
+	assert_eq(calls.size(), 1)
+
+
+func test_show_army_builder_with_on_back_does_not_show_forge() -> void:
+	var main := _make_main()
+	main.show_army_builder(_new_army(), func() -> void: pass)
+	(main.current_screen as ArmyBuilder).back_pressed.emit()
+	assert_is(main.current_screen, ArmyBuilder)

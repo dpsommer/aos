@@ -194,7 +194,7 @@ func show_regiment(regiment: RegimentOfRenown) -> void:
 ## Shows the battlepack's battleplans to choose from in the left pane.
 func show_plans() -> void:
 	var core := CoreRulesCatalog.get_rules()
-	if core == null or core.battlepack == null:
+	if core == null or core.battlepack == null or _plan_card == null:
 		return
 	_open_pane(Pane.PLANS, "Choose battle plan", BattleplanPicker.legend())
 	var picker := BattleplanPicker.new(core.battlepack, battleplan)
