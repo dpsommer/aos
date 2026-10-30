@@ -364,6 +364,38 @@ static func _add_inputs(theme: Theme) -> void:
 			theme.set_stylebox(state, type, style)
 		theme.set_font("font", type, font(CINZEL, 700))
 		theme.set_font_size("font_size", type, 17)
+	# Quick Play's Play button: large gold Cinzel with a glow, or dark while the army can't play.
+	theme.set_type_variation("PlayButton", "GoldButton")
+	for state in BUTTON_STATES:
+		var style := theme.get_stylebox(state, "GoldButton").duplicate() as StyleBoxFlat
+		if state == "disabled":
+			style = box(CARD, CONTROL_BORDER, 8, 10)
+		elif state != "focus":
+			style.border_color = Color("#F8DFA2")
+			style.shadow_color = Color(GOLD, 0.5)
+			style.shadow_size = 18
+		style.content_margin_left = 36
+		style.content_margin_right = 36
+		style.content_margin_top = 8
+		style.content_margin_bottom = 8
+		theme.set_stylebox(state, "PlayButton", style)
+	theme.set_font("font", "PlayButton", font(CINZEL, 700))
+	theme.set_font_size("font_size", "PlayButton", 28)
+	theme.set_color("font_disabled_color", "PlayButton", Color("#6B717C"))
+	theme.set_color("icon_disabled_color", "PlayButton", Color("#6B717C"))
+	theme.set_color("icon_normal_color", "PlayButton", Color("#17140C"))
+	theme.set_color("icon_hover_color", "PlayButton", Color("#17140C"))
+	theme.set_color("icon_pressed_color", "PlayButton", Color("#17140C"))
+	theme.set_color("icon_focus_color", "PlayButton", Color("#17140C"))
+	# A round "!" badge on an army with problems, naming them in its tooltip.
+	_button(theme, "ProblemButton", DANGER_BG, Color("#4A2E26"), Color("#8C2A24"), DANGER)
+	for state in BUTTON_STATES:
+		var style := theme.get_stylebox(state, "ProblemButton").duplicate() as StyleBoxFlat
+		style.set_corner_radius_all(18)
+		style.set_content_margin_all(0)
+		theme.set_stylebox(state, "ProblemButton", style)
+	theme.set_font("font", "ProblemButton", font(INTER, 800))
+	theme.set_font_size("font_size", "ProblemButton", 16)
 
 	# Choices in the Forge's steps (OptionCard): selected while pressed.
 	_button(theme, "OptionCard", Color("#1A1D23"), Color("#1A1D23"), Color("#2E333D"), TEXT)
@@ -438,6 +470,8 @@ static func _add_panels(theme: Theme) -> void:
 	key_chip_on.border_color = GOLD
 	_panel(theme, "KeyChipListeningPanel", key_chip_on)
 	_panel(theme, "FlashCardPanel", box(Color("#1A1D23"), GOLD, 10, 14, 2))
+	# A chosen card, e.g. a Spearhead's regiment ability or a battleplan.
+	_panel(theme, "PickedCardPanel", box(Color("#211F19"), GOLD, 10, 14, 2))
 	# Outlines drawn over a card (TacticCard) with keyboard focus, or hovered when it can be pressed.
 	theme.set_stylebox("focus", "CardPanel", box(Color.TRANSPARENT, GOLD, 10, 0, 2))
 	theme.set_stylebox("hover", "CardPanel", box(Color.TRANSPARENT, Color("#4A515F"), 10, 0))
@@ -503,6 +537,8 @@ static func _add_labels(theme: Theme) -> void:
 	theme.set_font("font", "ArtLabel", heading)
 	_label(theme, "TitleLabel", TEXT, 18)
 	theme.set_font("font", "TitleLabel", heading)
+	_label(theme, "GoldTitleLabel", GOLD, 18)
+	theme.set_font("font", "GoldTitleLabel", heading)
 	_label(theme, "SectionLabel", Color("#D8D2C4"), 20)
 	theme.set_font("font", "SectionLabel", heading)
 	_label(theme, "CardTitleLabel", TEXT, 15)

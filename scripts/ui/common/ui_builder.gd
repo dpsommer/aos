@@ -152,10 +152,10 @@ static func icon_art(texture: Texture2D, icon_size: int, corner_radius := 8) -> 
 
 
 ## The steps of a flow, e.g. "Order › Stormcast Eternals › Army of Renown", with the step at
-## [param current] in bold.
-static func breadcrumb(steps: PackedStringArray, current: int) -> HBoxContainer:
+## [param current] in bold. [param title] is the name screen readers announce.
+static func breadcrumb(steps: PackedStringArray, current: int, title := "Forge steps") -> HBoxContainer:
 	var row := hbox([], 10)
-	row.accessibility_name = "Forge steps"
+	row.accessibility_name = title
 	for i in steps.size():
 		if i > 0:
 			row.add_child(label("›", "BreadcrumbLabel"))

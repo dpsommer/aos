@@ -19,6 +19,7 @@
 ### Design
 
 - [Main menu](design/main-menu.md): menu options, their destinations, and the signals the menu emits
+- [Quick Play](design/quick-play.md): choosing a game mode (Spearhead or Matched Play), an army and a battleplan
 - [Forge](design/forge.md): army builder flow and screen, faction browser, signals, and faction data
 - [Ability cards](design/abilities.md): how abilities are shown everywhere: the phase-coloured box, its icon, timing and colours
 - [Settings](design/settings.md): the General, Graphics, Sound and Input tabs, key remapping, and how settings are saved and applied

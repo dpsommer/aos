@@ -52,6 +52,13 @@ const CATEGORY_ICONS := {
 const BATTLE_DAMAGED_ICON := "aos/white/characteristics/damage"
 
 var ability: Ability
+## The chevron that folds the card, or null unless [method make_foldable] was called.
+var fold_button: Button
+## Whether the card shows only its header and name.
+var folded := false
+var _name_label: Label
+## Everything under the name: the rule, rules text, keywords and source.
+var _details: Array[Control] = []
 
 
 func _init(rule: Ability) -> void:
@@ -74,18 +81,48 @@ func _init(rule: Ability) -> void:
 		header_margin.add_theme_constant_override("margin_" + side, 2)
 	header_margin.add_child(top)
 
-	var inner := UIBuilder.vbox([UIBuilder.label(rule.name, "AbilityNameLabel", true), HSeparator.new()], 6)
+	_name_label = UIBuilder.label(rule.name, "AbilityNameLabel", true)
+	_details.append(HSeparator.new())
 	var body := RulesFormatter.ability_body(rule)
 	if not body.is_empty():
-		inner.add_child(UIBuilder.rich(body))
+		_details.append(UIBuilder.rich(body))
 	if not rule.keywords.is_empty():
-		inner.add_child(UIBuilder.label(" · ".join(rule.keywords).to_upper(), "KeywordsLabel", true))
+		_details.append(UIBuilder.label(" · ".join(rule.keywords).to_upper(), "KeywordsLabel", true))
 	if not rule.source.is_empty():
-		inner.add_child(UIBuilder.label("Source: %s" % rule.source, "MutedLabel", true))
+		_details.append(UIBuilder.label("Source: %s" % rule.source, "MutedLabel", true))
+	var inner := UIBuilder.vbox([_name_label] + _details, 6)
 	var inner_box := UIBuilder.panel("", inner)
 	inner_box.add_theme_stylebox_override("panel", UITheme.box(UITheme.ABILITY_INNER, Color.TRANSPARENT, 6, 10))
 
 	add_child(UIBuilder.vbox([header_margin, inner_box], 4))
+
+
+## Adds a chevron beside the name that folds the card down to its header and name, and unfolds it
+## again. The card starts unfolded if [param open].
+func make_foldable(open: bool) -> void:
+	fold_button = UIBuilder.icon_button("chevron_down", "", func() -> void: set_folded(not folded), "", "SmallIconButton")
+	fold_button.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	# The name shares a row with the chevron, in the name's place.
+	var inner := _name_label.get_parent()
+	var index := _name_label.get_index()
+	inner.remove_child(_name_label)
+	var row := UIBuilder.hbox([_name_label, fold_button], 8)
+	inner.add_child(row)
+	inner.move_child(row, index)
+	set_folded(not open)
+
+
+## Shows only the card's header and name if [param on], or all of it.
+func set_folded(on: bool) -> void:
+	folded = on
+	for control in _details:
+		control.visible = not on
+	if fold_button:
+		fold_button.icon = UITheme.icon("chevron_right" if on else "chevron_down")
+		var label := ("Unfold " if on else "Fold ") + ability.name
+		fold_button.tooltip_text = label
+		fold_button.accessibility_name = label
+		fold_button.accessibility_description = "Collapsed" if on else "Expanded"
 
 
 ## [param rule]'s colour, a key of [constant UITheme.ABILITY_COLOURS]: its [member Ability.colour]
