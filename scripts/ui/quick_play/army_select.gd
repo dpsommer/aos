@@ -446,13 +446,7 @@ func _matched_detail(army: Army) -> void:
 	var renown := catalog.army_of_renown(army.army_of_renown) if not army.army_of_renown.is_empty() else null
 	var traits: Array[Ability] = renown.battle_traits if renown else catalog.faction.battle_traits
 	if not traits.is_empty():
-		var grid := GridContainer.new()
-		grid.columns = 2
-		grid.add_theme_constant_override("h_separation", 10)
-		grid.add_theme_constant_override("v_separation", 10)
-		for i in traits.size():
-			grid.add_child(_trait_card(traits[i], i))
-		detail_column.add_child(_section("Battle Traits", grid))
+		detail_column.add_child(_section("Battle Traits", _trait_grid(traits)))
 
 	var formation := catalog.battle_formation(army, army.formation) if not army.formation.is_empty() else null
 	if formation:
@@ -516,11 +510,8 @@ func _spearhead_detail() -> void:
 			spearhead.general]
 	_setup_pill = UIBuilder.hbox()
 	detail_column.add_child(_top_row(UIBuilder.vbox([title, UIBuilder.label(subtitle, "DescriptionLabel", true), _setup_pill], 8)))
+	detail_column.add_child(_section("Battle Traits", _trait_grid(spearhead.battle_traits)))
 	var columns := UIBuilder.hbox([], 24)
-	var traits := UIBuilder.vbox([], 10)
-	for i in spearhead.battle_traits.size():
-		traits.add_child(_trait_card(spearhead.battle_traits[i], i))
-	columns.add_child(_section("Battle Traits", traits))
 	for group: Array in SPEARHEAD_GROUPS:
 		var key: String = group[0]
 		var abilities: Array[Ability] = spearhead.regiment_abilities if key == "regiment" else spearhead.enhancements
@@ -613,6 +604,17 @@ static func _pill(text: String, kind: String) -> Control:
 
 
 ## A battle trait's card, folded unless it's open: the first starts open.
+## The battle traits, two to a row.
+func _trait_grid(traits: Array[Ability]) -> GridContainer:
+	var grid := GridContainer.new()
+	grid.columns = 2
+	grid.add_theme_constant_override("h_separation", 10)
+	grid.add_theme_constant_override("v_separation", 10)
+	for i in traits.size():
+		grid.add_child(_trait_card(traits[i], i))
+	return grid
+
+
 func _trait_card(rule: Ability, index: int) -> AbilityCard:
 	var key := "trait:%d" % index
 	var card := AbilityCard.new(rule)

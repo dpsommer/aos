@@ -734,3 +734,41 @@ func test_saved_when_long_ago_includes_the_year() -> void:
 	var saved_at := _noon() - 200 * DAY
 	var year := str(Time.get_date_dict_from_unix_time(int(saved_at)).year)
 	assert_true(ArmySelect.saved_when(saved_at, _noon()).ends_with(year))
+
+
+# --- Spearhead detail layout ---
+
+
+func _section_of(screen: ArmySelect, accessibility_name: String) -> Node:
+	var cards := UIKit.find_all(screen, func(n: Node) -> bool:
+		return n is Control and n.accessibility_name == accessibility_name)
+	return cards[0].get_parent() if not cards.is_empty() else null
+
+
+func test_spearhead_battle_traits_are_laid_out_two_to_a_row() -> void:
+	var screen := _spearhead()
+	var grids := UIKit.find_all(screen, func(n: Node) -> bool:
+		return n is GridContainer and n.get_children().any(func(c: Node) -> bool: return c is AbilityCard))
+	assert_eq(grids.size(), 1)
+	assert_eq(grids[0].columns, 2)
+	assert_eq(grids[0].get_child_count(), screen.spearhead.battle_traits.size())
+
+
+func test_spearhead_regiment_abilities_and_enhancements_share_a_row() -> void:
+	var screen := _spearhead()
+	var regiment := _section_of(screen, "Regiment Abilities")
+	var enhancements := _section_of(screen, "Enhancements")
+	assert_not_null(regiment)
+	assert_not_null(enhancements)
+	assert_true(regiment.get_parent() is HBoxContainer)
+	assert_eq(regiment.get_parent(), enhancements.get_parent())
+
+
+func test_spearhead_regiment_abilities_and_enhancements_are_below_battle_traits() -> void:
+	var screen := _spearhead()
+	var grids := UIKit.find_all(screen, func(n: Node) -> bool:
+		return n is GridContainer and n.get_children().any(func(c: Node) -> bool: return c is AbilityCard))
+	var traits_section: Node = grids[0].get_parent()
+	var row: Node = _section_of(screen, "Regiment Abilities").get_parent()
+	assert_eq(row.get_parent(), traits_section.get_parent())
+	assert_gt(row.get_index(), traits_section.get_index())
