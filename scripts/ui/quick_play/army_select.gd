@@ -494,7 +494,7 @@ func _matched_detail(army: Army) -> void:
 				army.auxiliary.map(func(unit: ArmyUnit) -> Control: return _army_portrait(army, unit, null))))
 	if regiments.get_child_count() == 0:
 		regiments.add_child(_placeholder("This army has no units yet"))
-	detail_column.add_child(_section("Army", regiments, "Click a portrait to see its warscroll"))
+	detail_column.add_child(_section("Army", regiments))
 
 	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
 	if terrain:
@@ -531,7 +531,7 @@ func _spearhead_detail() -> void:
 	portraits.append(_spearhead_portrait(spearhead.general, 1, general, true))
 	for unit in spearhead.units:
 		portraits.append(_spearhead_portrait(unit.name, unit.count, spearhead.get_warscroll(unit.name), false, unit.notes))
-	detail_column.add_child(_section("Army", _regiment_panel("", false, "", portraits), "Click a portrait to see its warscroll"))
+	detail_column.add_child(_section("Army", _regiment_panel("", false, "", portraits)))
 	_update_choices()
 
 
