@@ -11,12 +11,13 @@ const COLUMN_WIDTH := 36
 var warscroll: Warscroll
 
 
-## [param summoned], given an ability, returns the manifestations it sets up
-## ([method ArmyCatalog.summoned]); their warscrolls are shown under it.
-func _init(unit: Warscroll, summoned := Callable()) -> void:
+## [param summoned], given an ability, returns the manifestations and units it sets up
+## ([method ArmyCatalog.summoned]); they are shown under it ([method summoned_card]), and
+## [param show_summoned], given a summoned unit, shows its full warscroll.
+func _init(unit: Warscroll, summoned := Callable(), show_summoned := Callable()) -> void:
 	warscroll = unit
 	theme_type_variation = "WarscrollPanel"
-	var content := UIBuilder.vbox([_header(), _characteristics()], 10)
+	var content := UIBuilder.vbox([_header(), characteristic_row(unit)], 10)
 	var damaged := battle_damaged_weapons(unit)
 	if not unit.ranged_weapons.is_empty():
 		content.add_child(weapon_table(unit.ranged_weapons, true, damaged))
@@ -25,8 +26,8 @@ func _init(unit: Warscroll, summoned := Callable()) -> void:
 	for rule in unit.abilities:
 		content.add_child(AbilityCard.new(rule))
 		if summoned.is_valid():
-			for manifestation: Warscroll in summoned.call(rule):
-				content.add_child(WarscrollCard.new(manifestation))
+			for summoned_unit: Warscroll in summoned.call(rule):
+				content.add_child(summoned_card(summoned_unit, show_summoned))
 	var notes := PackedStringArray()
 	if not unit.composition.is_empty():
 		notes.append("[b]Unit composition:[/b] %s" % unit.composition.replace("[", "[lb]"))
@@ -40,6 +41,19 @@ func _init(unit: Warscroll, summoned := Callable()) -> void:
 	if not unit.keywords.is_empty():
 		content.add_child(UIBuilder.label(" · ".join(unit.keywords).to_upper(), "KeywordsLabel", true))
 	add_child(content)
+
+
+## What an ability that sets up [param unit] shows under its card: a manifestation's full warscroll,
+## or a [SummonedUnitCard] for a unit ([member Warscroll.summoned]), which calls [param show], if
+## valid, with the unit when pressed.
+static func summoned_card(unit: Warscroll, show := Callable()) -> Control:
+	if not unit.summoned:
+		return WarscrollCard.new(unit)
+	var card := SummonedUnitCard.new(unit)
+	if show.is_valid():
+		card.make_pressable("Show the %s warscroll" % unit.name)
+		card.pressed.connect(show.bind(unit))
+	return card
 
 
 ## The characteristics shown in boxes, in warscroll order, as [name, value] pairs. Manifestations
@@ -160,9 +174,10 @@ func _header() -> HBoxContainer:
 	return UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names], 10)
 
 
-func _characteristics() -> HBoxContainer:
+## [param unit]'s [method characteristics], each in a box.
+static func characteristic_row(unit: Warscroll) -> HBoxContainer:
 	var row := UIBuilder.hbox([], 6)
-	for stat: Array in characteristics(warscroll):
+	for stat: Array in characteristics(unit):
 		var value := UIBuilder.label(stat[1], "StatValueLabel")
 		var key := UIBuilder.label(stat[0].to_upper(), "StatNameLabel")
 		for label in [value, key]:

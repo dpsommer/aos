@@ -155,7 +155,8 @@ func battle_formation(army: Army, formation_name: String) -> BattleFormation:
 	return null
 
 
-## Warscrolls that can be units in the army: not manifestations or faction terrain. With
+## Warscrolls that can be units in the army: not manifestations, faction terrain or units only an
+## ability sets up ([member Warscroll.summoned]). With
 ## [param army], they include the units its Army of Renown draws from other factions and, unless the
 ## army overrides its constraints, leave out those its roster doesn't allow and those only another
 ## Army of Renown can include.
@@ -178,7 +179,8 @@ func unit_warscrolls(army: Army = null) -> Array[Warscroll]:
 
 
 static func _is_unit(warscroll: Warscroll) -> bool:
-	return not warscroll.has_keyword("MANIFESTATION") and not warscroll.has_keyword("FACTION TERRAIN")
+	return not warscroll.has_keyword("MANIFESTATION") and not warscroll.has_keyword("FACTION TERRAIN") \
+			and not warscroll.summoned
 
 
 ## The warscroll called [param warscroll_id] in the army's faction, or among the units its Army of
@@ -383,14 +385,19 @@ func warscroll(unit: ArmyUnit, regiment: ArmyRegiment = null) -> Warscroll:
 	return faction.get_warscroll(unit.warscroll_id)
 
 
-## The manifestations [param ability] sets up, from its [member Ability.summons]: the faction's
-## own, the core rules' universal ones, or another faction's, which a shared Army of Renown such
-## as Legions of Nagash or a Regiment of Renown can summon. Ids that name no manifestation are
-## skipped.
+## The manifestations and units [param ability] sets up, from its [member Ability.summons]. A
+## manifestation is the faction's own, the core rules' universal one, or another faction's, which a
+## shared Army of Renown such as Legions of Nagash or a Regiment of Renown can summon. A unit, such
+## as the Zontari Endrin Dock's Auto-Endrins, is the faction's own ([member Warscroll.summoned]).
+## Ids that name neither are skipped.
 func summoned(ability: Ability) -> Array[Warscroll]:
 	var result: Array[Warscroll] = []
 	for warscroll_id in ability.summons:
-		var found := faction.get_warscroll(warscroll_id)
+		var own := faction.get_warscroll(warscroll_id)
+		if own and own.summoned:
+			result.append(own)
+			continue
+		var found := own
 		if (not found or not found.has_keyword("MANIFESTATION")) and core:
 			found = core.get_manifestation(warscroll_id)
 		if not found:

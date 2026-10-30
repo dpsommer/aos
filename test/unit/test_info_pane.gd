@@ -1174,3 +1174,73 @@ func test_refresh_does_nothing_without_an_editor() -> void:
 	add_child_autofree(pane)
 	pane.refresh()
 	assert_eq(UIKit.find_all(pane, func(n: Node) -> bool: return n is Label).size(), 0)
+
+
+# --- Summoned units ---
+
+func _summoning_ability(ability_name: String) -> Ability:
+	var ability := Kit.ability(ability_name)
+	ability.summons = PackedStringArray(["auto"])
+	return ability
+
+
+## _faction() where the terrain's "Release" ability summons the unit "auto", which only abilities set up.
+func _faction_with_summoned_unit() -> Faction:
+	var faction := _faction()
+	var auto := Kit.warscroll("auto", PackedStringArray(), 0, "Auto-Endrin")
+	auto.summoned = true
+	faction.warscrolls.append(auto)
+	faction.get_warscroll("terrain").abilities = [_summoning_ability("Release")] as Array[Ability]
+	return faction
+
+
+func _summoned_unit_cards(node: Node) -> Array[Node]:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is SummonedUnitCard)
+
+
+func _summoned_warscroll_card(pane: InfoPane) -> Control:
+	var found := UIKit.find_all(pane, func(n: Node) -> bool: return n.get_meta(&"info_key", "") == "summoned:auto")
+	return found[0] if not found.is_empty() else null
+
+
+func test_show_summoned_unit_switches_to_the_rules_tab() -> void:
+	var pane := _pane(null, _faction_with_summoned_unit())
+	pane.show_summoned_unit(pane.builder.catalog.faction.get_warscroll("auto"))
+	assert_eq(pane.tab, "rules")
+
+
+func test_show_summoned_unit_unfolds_the_summoned_units_section() -> void:
+	var pane := _pane(null, _faction_with_summoned_unit())
+	pane.folded["sec:Summoned Units"] = true
+	pane.show_summoned_unit(pane.builder.catalog.faction.get_warscroll("auto"))
+	assert_does_not_have(pane.folded, "sec:Summoned Units")
+
+
+func test_show_summoned_unit_flashes_its_warscroll_card() -> void:
+	var pane := _pane(null, _faction_with_summoned_unit())
+	pane.show_summoned_unit(pane.builder.catalog.faction.get_warscroll("auto"))
+	assert_eq(pane.flash_key, "summoned:auto")
+	var card := _summoned_warscroll_card(pane)
+	assert_not_null(card)
+	assert_eq(card.theme_type_variation, &"FlashWarscrollPanel")
+
+
+func test_the_rules_tab_shows_a_summoned_units_full_warscroll() -> void:
+	var pane := _pane(null, _faction_with_summoned_unit())
+	pane.set_tab("rules")
+	assert_not_null(_summoned_warscroll_card(pane))
+
+
+func test_a_summoning_ability_shows_the_unit_as_a_short_card() -> void:
+	var pane := _pane(null, _faction_with_summoned_unit())
+	pane.set_tab("rules")
+	assert_eq(_summoned_unit_cards(pane).size(), 1)
+
+
+func test_pressing_a_short_card_under_the_terrain_shows_the_unit_in_the_rules_tab() -> void:
+	var pane := _pane(null, _faction_with_summoned_unit())
+	pane.set_tab("rules")
+	pane.folded["sec:Summoned Units"] = true
+	(_summoned_unit_cards(pane)[0] as SummonedUnitCard).pressed.emit()
+	assert_eq(pane.flash_key, "summoned:auto")
+	assert_does_not_have(pane.folded, "sec:Summoned Units")

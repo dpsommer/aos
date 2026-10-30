@@ -1391,3 +1391,17 @@ func test_army_of_renown_roster_without_non_hero_leaders_has_none() -> void:
 	var data: Dictionary = _json("roster_without_excluded_units", "armies_of_renown.json").armies_of_renown[0].roster
 	assert_false(data.has("non_hero_leaders"), "fixture roster should omit non_hero_leaders")
 	assert_eq(_load("roster_without_excluded_units").armies_of_renown[0].roster.non_hero_leaders.size(), 0)
+
+
+# Summoned units
+
+func test_a_unit_an_ability_summons_is_marked_summoned() -> void:
+	assert_true(_load("summons").get_warscroll("summoned_unit").summoned)
+
+
+func test_a_manifestation_an_ability_summons_is_not_marked_summoned() -> void:
+	assert_false(_load("summons").get_warscroll("summoned_manifestation").summoned)
+
+
+func test_a_unit_no_ability_summons_is_not_marked_summoned() -> void:
+	assert_false(_load("summons").get_warscroll("ordinary_unit").summoned)

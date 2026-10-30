@@ -484,3 +484,87 @@ func test_filter_does_not_change_the_input_sections() -> void:
 	var before := _section(sections, "Battle Formations").count()
 	RulesSections.filter(sections, "wall breaker")
 	assert_eq(_section(sections, "Battle Formations").count(), before)
+
+
+# --- Summoned units ---
+
+func _summoning(ability_name: String, ids: Array) -> Ability:
+	var ability := Kit.ability(ability_name)
+	ability.summons = PackedStringArray(ids)
+	return ability
+
+
+## _faction() with the unit "auto", which only abilities set up, and the manifestation "flame".
+func _faction_with_unit() -> Faction:
+	var faction := _faction()
+	var auto := Kit.warscroll("auto")
+	auto.summoned = true
+	faction.warscrolls.append(auto)
+	return faction
+
+
+func _summoned_ids(sections: Array[RulesSections.Section]) -> Array:
+	var section := _section(sections, "Summoned Units")
+	return _ids(section.groups[0].warscrolls) if section else []
+
+
+func test_battle_traits_link_the_units_they_summon() -> void:
+	var faction := _faction_with_unit()
+	faction.battle_traits = [_summoning("Release", ["auto"])] as Array[Ability]
+	var group := _section(_build(null, faction), "Battle Traits").groups[0]
+	assert_eq(_ids(group.summons[group.abilities[0]]), ["auto"])
+
+
+func test_formations_link_the_units_they_summon() -> void:
+	var faction := _faction_with_unit()
+	faction.battle_formations[0].abilities = [_summoning("Release", ["auto"])] as Array[Ability]
+	var group := _section(_build(null, faction), "Battle Formations").groups[0]
+	assert_eq(_ids(group.summons[group.abilities[0]]), ["auto"])
+
+
+func test_enhancements_link_the_units_they_summon() -> void:
+	var faction := _faction_with_unit()
+	faction.enhancement_tables[0].entries = [_summoning("Release", ["auto"])] as Array[Ability]
+	var group := _section(_build(null, faction), "Enhancements").groups[0]
+	assert_eq(_ids(group.summons[group.abilities[0]]), ["auto"])
+
+
+func test_abilities_that_summon_nothing_have_no_summons_entry() -> void:
+	var group := _section(_build(), "Battle Traits").groups[0]
+	assert_true(group.summons.is_empty())
+
+
+func test_summoned_units_section_follows_faction_terrain() -> void:
+	var faction := _faction_with_unit()
+	faction.battle_traits = [_summoning("Release", ["auto"])] as Array[Ability]
+	var titles := _titles(_build(null, faction))
+	assert_eq(titles[titles.find("Faction Terrain") + 1], "Summoned Units")
+
+
+func test_summoned_units_section_lists_a_unit_a_shown_ability_summons() -> void:
+	var faction := _faction_with_unit()
+	faction.battle_traits = [_summoning("Release", ["auto"])] as Array[Ability]
+	assert_eq(_summoned_ids(_build(null, faction)), ["auto"])
+
+
+func test_summoned_units_section_lists_a_unit_a_terrain_ability_summons() -> void:
+	var faction := _faction_with_unit()
+	faction.get_warscroll("terrain").abilities = [_summoning("Release", ["auto"])] as Array[Ability]
+	assert_eq(_summoned_ids(_build(null, faction)), ["auto"])
+
+
+func test_summoned_units_section_lists_each_unit_once() -> void:
+	var faction := _faction_with_unit()
+	faction.battle_traits = [_summoning("Release", ["auto"])] as Array[Ability]
+	faction.get_warscroll("terrain").abilities = [_summoning("Release Again", ["auto"])] as Array[Ability]
+	assert_eq(_summoned_ids(_build(null, faction)), ["auto"])
+
+
+func test_summoned_units_section_leaves_out_manifestations() -> void:
+	var faction := _faction_with_unit()
+	faction.battle_traits = [_summoning("Release", ["auto", "flame"])] as Array[Ability]
+	assert_eq(_summoned_ids(_build(null, faction)), ["auto"])
+
+
+func test_summoned_units_section_is_dropped_when_nothing_summons_a_unit() -> void:
+	assert_does_not_have(_titles(_build(null, _faction_with_unit())), "Summoned Units")

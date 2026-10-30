@@ -4,15 +4,15 @@ extends RefCounted
 ## [WarscrollCard]s and [LoreCard]s, so they look as they do in the army builder.
 
 
-## [param summoned], given an ability, returns the manifestations it sets up
-## ([method ArmyCatalog.summoned]); their warscrolls are shown under it.
+## [param summoned], given an ability, returns the manifestations and units it sets up
+## ([method ArmyCatalog.summoned]); they are shown under it ([method WarscrollCard.summoned_card]).
 static func abilities(rules: Array[Ability], summoned := Callable()) -> VBoxContainer:
 	var box := UIBuilder.vbox([], 10)
 	for rule in rules:
 		box.add_child(AbilityCard.new(rule))
 		if summoned.is_valid():
-			for manifestation: Warscroll in summoned.call(rule):
-				box.add_child(WarscrollCard.new(manifestation))
+			for summoned_unit: Warscroll in summoned.call(rule):
+				box.add_child(WarscrollCard.summoned_card(summoned_unit))
 	return box
 
 
@@ -27,8 +27,9 @@ static func battle_formation(formation: BattleFormation) -> VBoxContainer:
 	return _section("%s (%d pts)" % [formation.name, formation.points], abilities(formation.abilities))
 
 
-static func warscroll(unit: Warscroll, summoned := Callable()) -> WarscrollCard:
-	return WarscrollCard.new(unit, summoned)
+## [param show_summoned], given a unit [param unit] summons, shows its warscroll.
+static func warscroll(unit: Warscroll, summoned := Callable(), show_summoned := Callable()) -> WarscrollCard:
+	return WarscrollCard.new(unit, summoned, show_summoned)
 
 
 static func faction_rules(faction: Faction, summoned := Callable()) -> VBoxContainer:

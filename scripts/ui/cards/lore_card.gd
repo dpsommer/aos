@@ -10,8 +10,8 @@ var heading_label: Label
 
 ## [param heading] is shown over the lore's name, e.g. "Spell Lore". [param action] is shown in the top
 ## right corner (at the end of the name's row without a heading), e.g. a "Change" button, or null
-## for none. [param summoned], given an ability, returns the
-## manifestations it summons ([method ArmyCatalog.summoned]), shown in full cards.
+## for none. [param summoned], given an ability, returns the manifestations and units it summons
+## ([method ArmyCatalog.summoned]), shown under it ([method WarscrollCard.summoned_card]).
 func _init(lore: Lore, full: bool, heading := "", action: Control = null, summoned := Callable()) -> void:
 	super()
 	card_name = lore.name
@@ -37,8 +37,8 @@ func _init(lore: Lore, full: bool, heading := "", action: Control = null, summon
 		for ability in lore.entries:
 			content.add_child(AbilityCard.new(ability))
 			if summoned.is_valid():
-				for manifestation: Warscroll in summoned.call(ability):
-					content.add_child(WarscrollCard.new(manifestation))
+				for summoned_unit: Warscroll in summoned.call(ability):
+					content.add_child(WarscrollCard.summoned_card(summoned_unit))
 	else:
 		var chips := HFlowContainer.new()
 		for ability in lore.entries:

@@ -55,7 +55,10 @@ func show_faction(data: Faction) -> void:
 	var labels := PackedStringArray()
 	for unit in data.warscrolls:
 		labels.append(_warscroll_label(unit))
-	warscrolls.populate(labels, func(i: int) -> Control: return RulesView.warscroll(data.warscrolls[i], catalog.summoned))
+	# A summoned unit's short card, e.g. the Zontari Endrin Dock's Auto-Endrin, selects its warscroll.
+	var show_summoned := func(unit: Warscroll) -> void: warscrolls.select(data.warscrolls.find(unit))
+	warscrolls.populate(labels,
+			func(i: int) -> Control: return RulesView.warscroll(data.warscrolls[i], catalog.summoned, show_summoned))
 
 	labels = PackedStringArray()
 	for army in data.armies_of_renown:

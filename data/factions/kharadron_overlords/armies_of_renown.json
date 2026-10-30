@@ -226,7 +226,10 @@
 							"timing": "Reaction: You declared the 'Endrinworks Outpost' ability for a Zontari Endrin Dock",
 							"colour": "yellow",
 							"frequency": "Once Per Battle",
-							"effect": "If this unit is wholly within 9\" of that Zontari Endrin Dock, instead of resolving the effect of that 'Endrinworks Outpost' ability, set up a replacement AUTO-ENDRIN on the battlefield, wholly within 6\" of that Zontari Endrin Dock and more than 3\" from all enemy units."
+							"effect": "If this unit is wholly within 9\" of that Zontari Endrin Dock, instead of resolving the effect of that 'Endrinworks Outpost' ability, set up a replacement AUTO-ENDRIN on the battlefield, wholly within 6\" of that Zontari Endrin Dock and more than 3\" from all enemy units.",
+							"summons": [
+								"auto_endrin"
+							]
 						}
 					]
 				},

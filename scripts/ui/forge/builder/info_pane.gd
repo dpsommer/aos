@@ -297,7 +297,7 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 			func(_on: bool) -> void: toggle_favourite(warscroll.id), "info:star:" + key)
 	var content := UIBuilder.vbox([UIBuilder.hbox([button, star], 4)], 10)
 	if open:
-		content.add_child(WarscrollCard.new(warscroll, builder.catalog.summoned))
+		content.add_child(WarscrollCard.new(warscroll, builder.catalog.summoned, show_summoned_unit))
 		var add := UIBuilder.button("Add as auxiliary unit", func() -> void: builder.editor.add_auxiliary(warscroll.id),
 				"info:aux:" + key, "", "Add %s to the army as an auxiliary unit" % warscroll.name)
 		add.disabled = builder.available_units(func(w: Warscroll) -> bool: return w == warscroll).is_empty()
@@ -388,14 +388,16 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 	if open:
 		for ability in group.abilities:
 			box.add_child(AbilityCard.new(ability))
-			# A summoning spell or prayer carries the warscrolls of the manifestations it summons.
+			# A summoning ability carries the warscrolls of the manifestations it summons, and short
+			# cards of the units, whose warscrolls are in the Summoned Units section.
 			for summoned: Warscroll in group.summons.get(ability, []):
-				box.add_child(WarscrollCard.new(summoned))
+				box.add_child(WarscrollCard.summoned_card(summoned, show_summoned_unit))
 		for warscroll in group.warscrolls:
-			var warscroll_card := WarscrollCard.new(warscroll)
-			warscroll_card.set_meta(&"info_key", "terrain:" + warscroll.id)
+			var warscroll_card := WarscrollCard.new(warscroll, builder.catalog.summoned, show_summoned_unit)
+			var info_key := ("summoned:" if warscroll.summoned else "terrain:") + warscroll.id
+			warscroll_card.set_meta(&"info_key", info_key)
 			warscroll_card.focus_mode = Control.FOCUS_ALL
-			if flash_key == "terrain:" + warscroll.id:
+			if flash_key == info_key:
 				warscroll_card.theme_type_variation = "FlashWarscrollPanel"
 			box.add_child(warscroll_card)
 		for card in group.cards:
@@ -527,6 +529,13 @@ func show_regiment_of_renown(regiment_name: String) -> void:
 func show_terrain(warscroll_id: String) -> void:
 	folded.erase("sec:Faction Terrain")
 	_go("rules", "terrain:" + warscroll_id)
+
+
+## Shows the warscroll of [param unit], a unit an ability sets up ([member Warscroll.summoned]), in
+## the Rules tab's Summoned Units section.
+func show_summoned_unit(unit: Warscroll) -> void:
+	folded.erase("sec:Summoned Units")
+	_go("rules", "summoned:" + unit.id)
 
 
 ## Shows the battle tactics card in the Rules tab's Battle Tactics section.

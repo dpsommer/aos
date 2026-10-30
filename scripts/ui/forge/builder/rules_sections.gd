@@ -26,8 +26,8 @@ class Group:
 	var abilities: Array[Ability] = []
 	var warscrolls: Array[Warscroll] = []
 	var cards: Array[BattleTacticCard] = []
-	## The manifestations ([code]Array[Warscroll][/code]) each of [member abilities] summons, by
-	## ability, from [method ArmyCatalog.summoned].
+	## The manifestations and units ([code]Array[Warscroll][/code]) each of [member abilities]
+	## summons, by ability, from [method ArmyCatalog.summoned].
 	var summons := {}
 
 	func size() -> int:
@@ -56,7 +56,9 @@ class Section:
 
 ## The rules [param army] uses, from [param catalog]: an Army of Renown's battle traits,
 ## enhancements and lores replace the faction's, and it has no battle formations. Legends enhancement
-## tables and lores are left out unless the army shows Legends, though its picked lores stay.
+## tables and lores are left out unless the army shows Legends, though its picked lores stay. The
+## units those rules set up ([member Warscroll.summoned]), such as the Zontari Endrin Dock's
+## Auto-Endrins, have their warscrolls in a Summoned Units section.
 static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 	var faction := catalog.faction
 	var renown := catalog.army_of_renown(army.army_of_renown)
@@ -64,6 +66,7 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 
 	var traits := Group.new()
 	traits.abilities = renown.battle_traits if renown else faction.battle_traits
+	_link_summons(traits, catalog)
 	_add(sections, "Battle Traits", [traits])
 
 	var formations: Array[Group] = []
@@ -73,6 +76,7 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 		group.points = formation.points
 		group.selected = formation.name == army.formation
 		group.abilities = formation.abilities
+		_link_summons(group, catalog)
 		formations.append(group)
 	_add(sections, "Battle Formations", formations)
 
@@ -86,6 +90,7 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 		group.source = table.source
 		group.legends = table.legends
 		group.abilities = table.entries
+		_link_summons(group, catalog)
 		enhancements.append(group)
 	_add(sections, "Enhancements", enhancements)
 
@@ -103,10 +108,7 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 			group.selected = lore.name == picked
 			group.lore = true
 			group.abilities = lore.entries
-			for ability in lore.entries:
-				var summoned := catalog.summoned(ability)
-				if not summoned.is_empty():
-					group.summons[ability] = summoned
+			_link_summons(group, catalog)
 			lores.append(group)
 	_add(sections, "Lores", lores)
 
@@ -116,11 +118,36 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 		terrain.warscrolls = catalog.terrain_warscrolls()
 	_add(sections, "Faction Terrain", [terrain])
 
+	var summoned := Group.new()
+	for section in sections:
+		for group in section.groups:
+			for units: Array in group.summons.values():
+				_add_summoned_units(summoned, units)
+			for warscroll in group.warscrolls:
+				for ability in warscroll.abilities:
+					_add_summoned_units(summoned, catalog.summoned(ability))
+	_add(sections, "Summoned Units", [summoned])
+
 	var tactics := Group.new()
 	if core and core.battlepack:
 		tactics.cards = core.battlepack.battle_tactic_cards
 	_add(sections, "Battle Tactics", [tactics])
 	return sections
+
+
+## Sets [member Group.summons] for each of [param group]'s abilities that summons something.
+static func _link_summons(group: Group, catalog: ArmyCatalog) -> void:
+	for ability in group.abilities:
+		var summoned := catalog.summoned(ability)
+		if not summoned.is_empty():
+			group.summons[ability] = summoned
+
+
+## Adds the units among [param warscrolls] ([member Warscroll.summoned]) to [param group], once each.
+static func _add_summoned_units(group: Group, warscrolls: Array) -> void:
+	for warscroll: Warscroll in warscrolls:
+		if warscroll.summoned and warscroll not in group.warscrolls:
+			group.warscrolls.append(warscroll)
 
 
 static func _add(sections: Array[Section], title: String, groups: Array) -> void:

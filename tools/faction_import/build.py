@@ -224,12 +224,22 @@ def summoned_ids(a, manifestations, owner_id=""):
     return result
 
 
+def is_summoned_unit(w):
+    """Whether warscroll [w] is a unit only an ability sets up, such as the Zontari Endrin Dock's
+    Auto-Endrins: one with no points that isn't a manifestation or faction terrain."""
+    keywords = w.get("keywords") or []
+    return bool(w.get("id")) and w.get("points") == 0 and "MANIFESTATION" not in keywords \
+        and "FACTION TERRAIN" not in keywords
+
+
 def link_summons(data, core=(), others=()):
-    """Sets "summons" on every ability that sets up one of the faction's manifestations, or one of
-    [core], the universal ones, to their warscroll ids, unless an override already set it. Failing
-    those it looks in [others], other factions' manifestations, for shared Armies of Renown such as
-    Legions of Nagash, whose lores summon several factions' manifestations."""
-    own = [w for w in data["warscrolls"] if "MANIFESTATION" in (w.get("keywords") or []) and w.get("id")]
+    """Sets "summons" on every ability that sets up one of the faction's manifestations or summoned
+    units (is_summoned_unit()), or one of [core], the universal manifestations, to their
+    warscroll ids, unless an override already set it. Failing those it looks in [others], other
+    factions' manifestations, for shared Armies of Renown such as Legions of Nagash, whose lores
+    summon several factions' manifestations."""
+    own = [w for w in data["warscrolls"]
+           if ("MANIFESTATION" in (w.get("keywords") or []) and w.get("id")) or is_summoned_unit(w)]
     own += list(core)
     owners = {id(a): w.get("id", "") for w in every_warscroll(data) for a in w["abilities"]}
     for a in every_ability(data):

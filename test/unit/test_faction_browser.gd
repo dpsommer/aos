@@ -8,6 +8,7 @@ const FactionBrowserScene := preload("res://scenes/ui/forge/faction_browser.tscn
 const FIXTURE := "res://test/fixtures/factions/valid"
 const REGIMENTS_FIXTURE := "res://test/fixtures/regiments/valid"
 const UIKit := preload("res://test/support/ui_kit.gd")
+const Kit := preload("res://test/support/army_kit.gd")
 
 
 ## Lets rules the browser replaced with queue_free() be freed, so GUT doesn't count them as orphans.
@@ -357,3 +358,22 @@ func test_released_cancel_does_nothing() -> void:
 	var browser := _make_browser()
 	_press_cancel(browser, false)
 	assert_signal_not_emitted(browser, "back_pressed")
+
+
+func _faction_with_summoned_unit() -> Faction:
+	var auto := Kit.warscroll("auto", PackedStringArray(), 0, "Auto-Endrin")
+	auto.summoned = true
+	var dock := Kit.warscroll("dock", PackedStringArray(), 100, "Dock")
+	dock.abilities = [Kit.ability("Release")] as Array[Ability]
+	dock.abilities[0].summons = PackedStringArray(["auto"])
+	return Kit.faction([dock, auto] as Array[Warscroll])
+
+
+func test_pressing_a_summoned_unit_card_selects_its_warscroll() -> void:
+	var browser := _make_browser()
+	browser.show_faction(_faction_with_summoned_unit())
+	browser.warscrolls.select(0)
+	var card := UIKit.find_all(browser.warscrolls.detail, func(n: Node) -> bool: return n is SummonedUnitCard)[0]
+	(card as SummonedUnitCard).pressed.emit()
+	assert_eq(_shown_warscroll(browser.warscrolls).id, "auto")
+	assert_eq(browser.warscrolls.list.get_selected_items(), PackedInt32Array([1]))

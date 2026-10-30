@@ -1,0 +1,8 @@
+{
+	"id": "summons_faction",
+	"name": "Summons Faction",
+	"grand_alliance": "order",
+	"battle_traits": [
+		{"name": "Release", "effect": "Set up units.", "summons": ["summoned_unit", "summoned_manifestation"]}
+	]
+}
