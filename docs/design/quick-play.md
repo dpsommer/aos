@@ -6,7 +6,7 @@ Both screens are laid out for the design's 1440 × 900 and styled by `UITheme` (
 
 ## Game mode
 
-Scene `scenes/ui/quick_play/game_mode_screen.tscn`, script `scripts/ui/quick_play/game_mode_screen.gd` (`GameModeScreen`). "Choose a game mode" over a card for each mode, each with its icon in gold on placeholder stripes, its name, a description and chips:
+Scene `scenes/ui/quick_play/game_mode_screen.tscn`, script `scripts/ui/quick_play/game_mode_screen.gd` (`GameModeScreen`). "Choose a game mode" over a card for each mode, each with its icon in white on placeholder stripes, its name, a description and chips:
 - **Spearhead** (the icon pack's spear): small, fixed forces from each faction's Spearhead box. Chips count the Spearheads (`GameModeScreen.shown_spearheads()`: every faction's, from `FactionCatalog.spearheads()`, without Legends factions' unless Settings shows them) and say "Fixed rosters".
 - **Matched Play** (the pack's frenzied): an army built in the Forge. Chips say "Your Forge armies" and name the General's Handbook battlepack in gold.
 

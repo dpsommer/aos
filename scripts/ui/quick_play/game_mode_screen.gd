@@ -77,7 +77,7 @@ func _mode_card(mode: BattleSetup.Mode) -> OptionCard:
 	card.accessibility_description = DESCRIPTIONS[mode]
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var art := UIBuilder.icon_art(UITheme.icon(ICONS[mode]), 132)
-	art.get_child(0).modulate = UITheme.GOLD
+	art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size.y = 240
 	card.add(art)
 	var heading := UIBuilder.label(title, "CardHeadingLabel")
