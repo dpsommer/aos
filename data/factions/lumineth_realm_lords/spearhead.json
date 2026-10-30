@@ -152,7 +152,7 @@
 					],
 					"abilities": [
 						{
-							"name": "WINDLEAP",
+							"name": "GUIDE THE GUSTS",
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
