@@ -651,13 +651,13 @@ func _toggle_card(key: String, card_name: String, make: Callable) -> Control:
 	return card
 
 
-## A Spearhead regiment ability or enhancement to choose: its ability card, folded until its eye
+## A Spearhead regiment ability or enhancement to choose: its ability card, folded until its chevron
 ## shows it. Pressing it chooses it, or unchooses it if chosen.
 func _choice_card(group: String, ability: Ability) -> AbilityChoiceCard:
 	var key := group + ":" + ability.name
 	var card := AbilityChoiceCard.new(ability, _open.has(key), key)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	card.eye_toggled.connect(func(on: bool) -> void:
+	card.fold_toggled.connect(func(on: bool) -> void:
 		if on:
 			_open[key] = true
 		else:

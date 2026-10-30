@@ -282,12 +282,12 @@ func _options() -> VBoxContainer:
 
 
 ## A card for [param entry] of [param table], showing its points, table group, Scourge and Legends
-## tags in its header, folded until its eye shows its rules. Pressing it gives the unit the
+## tags in its header, folded until its chevron unfolds it. Pressing it gives the unit the
 ## enhancement, or takes it away if [param picked].
 func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, picked: bool) -> AbilityChoiceCard:
 	var key := "%s:enh:%s:%s" % [unit.uid, type, entry.name]
-	var eye_key := key + ":eye"
-	var card := AbilityChoiceCard.new(entry, builder.expanded.has(eye_key), eye_key)
+	var fold_key := key + ":fold"
+	var card := AbilityChoiceCard.new(entry, builder.expanded.has(fold_key), fold_key)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.set_meta(&"focus_key", key)
 	card.set_meta(&"enhancement", entry.name)
@@ -299,12 +299,12 @@ func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, pi
 	if table.legends:
 		card.add_header_control(UITheme.chip("Legends", "legends"))
 	card.selected = picked
-	# The eye folds the card in place, so the row isn't redrawn.
-	card.eye_toggled.connect(func(on: bool) -> void:
+	# The chevron folds the card in place, so the row isn't redrawn.
+	card.fold_toggled.connect(func(on: bool) -> void:
 		if on:
-			builder.expanded[eye_key] = true
+			builder.expanded[fold_key] = true
 		else:
-			builder.expanded.erase(eye_key))
+			builder.expanded.erase(fold_key))
 	card.pressed.connect(func() -> void:
 		builder.editor.set_enhancement(unit.uid, type, "" if picked else entry.name))
 	return card

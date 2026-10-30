@@ -503,6 +503,39 @@ func test_choosing_an_enhancement_gives_it_to_the_unit() -> void:
 	assert_eq(army.find_unit("u1").enhancements["Heroic Traits"], "Boon B")
 
 
+# A unit row lets the mouse through its controls for drag and drop, so a click on a card's chevron
+# reaches the card too.
+func test_click_on_an_enhancement_chevron_does_not_choose_it() -> void:
+	var army := UIKit.army_with_regiment()
+	var builder := _builder(army)
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var row := _expanded_row(builder, "u1")
+	row.size = Vector2(400, 0)
+	await get_tree().process_frame
+	var card := _enh_card(row, "u1", "Heroic Traits", "Boon B")
+	var click := InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = true
+	click.position = card.get_global_transform().affine_inverse() * card.fold_button.get_global_rect().get_center()
+	card._gui_input(click)
+	assert_eq(army.find_unit("u1").enhancements.get("Heroic Traits", ""), "")
+
+
+func test_enhancement_chevron_unfolds_the_card() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon B")
+	card.fold_button.pressed.emit()
+	assert_false(card.folded)
+
+
+func test_enhancement_chevron_has_a_focus_key() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon B")
+	assert_eq(card.fold_button.get_meta(&"focus_key", ""), "u1:enh:Heroic Traits:Boon B:fold")
+
+
 func test_enhancement_card_is_selected_for_the_units_current_enhancement() -> void:
 	var army := UIKit.army_with_regiment()
 	army.find_unit("u1").enhancements["Heroic Traits"] = "Boon A"
