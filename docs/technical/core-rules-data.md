@@ -83,3 +83,36 @@ PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/battleplan_
 ```
 
 Check each overlay (the map with every detected icon circled and labelled) against the map before committing. `test/integration/test_core_rules_data.gd` checks that features lie on the battlefield, territories don't overlap and no map uses more objectives of a type than the battlepack has.
+
+## Spearhead battlepacks
+
+Spearhead is played on a 30" × 22" realm battlefield with its own battlepack: each double-sided realm battlefield comes with a battleplan and a Spearhead deck (a twist deck for each side and two identical battle tactic decks). Each battlepack is one JSON file in `data/core/spearhead/`, listed in `CoreRulesCatalog.SPEARHEAD_FILES`. `SpearheadLoader` (`scripts/data/core/spearhead_loader.gd`) reads one into a `SpearheadBattlepack`, collecting problems in `errors`; `CoreRulesCatalog.spearhead_battlepacks()` loads them all once. The Spearhead armies themselves (warscrolls, battle traits, regiment abilities and enhancements) are faction data (see [Faction data](faction-data.md)).
+
+**File** | **Battlepack** | **Source**
+-- | -- | --
+`fire_and_jade.json` | Fire and Jade: the Aqshy and Ghyran sides | Written by hand
+`sand_and_bone.json` | Sand and Bone: the Dolorum and Ossia sides of a Shyish battlefield | Written by hand
+
+Fire and Jade is the battlepack in [The Rules](https://assets.warhammer-community.com/eng_aos_core&key_the-rules_apr25-t7q3fbv0zb-bit50crc5k.pdf) (April 2025, pages 49–58). The PDF only shows the cards as illustrations, so the twist and battle tactic cards, and the rules text with its errata (the "behind a terrain feature" sentence in 5.0 Terrain) and FAQ, come from Wahapedia's [Fire and Jade](https://wahapedia.ru/aos4/the-rules/fire-and-jade/) page. Sand and Bone comes from Wahapedia's [Sand and Bone](https://wahapedia.ru/aos4/the-rules/sand-and-bone/) page, whose errata (the 'Survivor’s Grief' twist, 'Monument of Living Bone' and the Crypt of Blood set-up step) Wahapedia has applied. Flavour text is dropped and the battlepacks' introductory sections are condensed, as in the General's Handbook files. Wahapedia's typos are fixed ("lgnax", "scores l", "roll I dice", "For each 5+. Heal"). Wahapedia's Dolorum twist 'Darkened Skies' only says what happens "if there is no underdog"; the card probably also has the underdog pick the objective, but this isn't added until it can be checked.
+
+Wahapedia also has the City of Ash battlepack, which isn't in the data yet: it adds relics, roads, fortified objectives and a campaign, which this schema doesn't cover.
+
+### Schema
+
+**Class** | **Fields** (required in bold)
+-- | --
+`SpearheadBattlepack` | **`name`**, **`battle_rounds`**, **`battlefield_size`** (from `battlefield`), `sections` (the battlepack's rules, e.g. 5.0 Terrain), `abilities` (e.g. 'Call for Reinforcements', and the mystical terrain's 'Unholy Draught'), `terrain_abilities` (the battlepack's own Cover, Obscuring and Unstable, which differ from the core rules', and e.g. Unholy), `terrain_features`, `terrain_groups`, `objective_names`, **`objective_radius`**, `realms`, `deployment_maps`, `battleplan_name`, `battleplan_sections` and `scoring` (from **`battleplan`**: `name`, `sections`, `scoring`), `battle_tactic_cards`, `faqs`
+`SpearheadTerrain` | **`name`**, **`size`** (`large` or `small`), `mystical` (set up by the battleplan or a twist, not by the players), `abilities` (names of the battlepack's `terrain_abilities`)
+Terrain group | `{"name", "features"}`: terrain feature names. The defender picks a group and the attacker takes the other (Sand and Bone). Without groups, each player sets up one large and one small terrain feature (Fire and Jade)
+`RealmBattlefield` | **`name`** (the side, e.g. "Aqshy"), `objectives` (`MapFeature`s whose `type` is one of `objective_names`, with an optional `radius`), `terrain` (`MapFeature`s naming terrain features set up before the players', e.g. Ossia's Crypt of Blood), `twists`
+`TwistCard` | **`name`**, **`text`**, `options` (named effects the underdog picks from, as an ability's)
+`DeploymentMap` | **`name`** ("Horizontal" or "Diagonal"), **`territory_a`**, **`territory_b`**: polygons of at least 3 `{x, y}` corners, loaded as `PackedVector2Array`s. The defender picks the map and which territory is theirs
+`SpearheadTacticCard` | **`name`**, **`condition`** (the battle tactic), **`command`** (an `Ability` of type "command" with no command points)
+
+Map positions are in inches from the battlefield's north-west corner, as for battleplans.
+
+### Objectives
+
+Spearhead objectives are printed on the realm battlefield and a model contests one while it is on it (wholly or partially), so each has a centre and a radius rather than a 3" control zone: the battlepack's `objective_radius`, or the objective's own `radius` where it differs (`SpearheadBattlepack.radius_of()`), e.g. Dolorum's large central Grief objective. An objective on a battlefield edge overhangs it, so its centre is inside the battlefield but its circle isn't. Not every side has every objective: Ossia has 4 of Sand and Bone's 5.
+
+Positions and sizes are measured from the board photos and realm maps on Wahapedia's [Spearhead Doubles](https://wahapedia.ru/aos4/the-rules/spearhead-doubles/) page (`SD_1.png`–`SD_4.png` show each side north up), rounded to the nearest half inch. Each board is point-symmetric about its centre, and the positions are rounded so that they stay symmetric. Objectives are named by matching their symbols to the battlepack's objective key (Wahapedia's `Obj_Spearhead.png` and `Objectives_SnB.png`). Fire and Jade's objectives are 6" across. Sand and Bone's are 5" across, except Dolorum's Grief, which is about 6". The photos are small, so the names of Ossia's objectives are less certain than the others: Delusion is clear, Necropolis and Blood (the central pair the 'Dais' battle tactics name) are likely, and Night is a guess.

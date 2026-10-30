@@ -108,19 +108,19 @@ func _battleplan(data: Variant, path: String) -> Battleplan:
 	battleplan.twist = _string(data, "twist", path)
 	battleplan.abilities = _abilities(data, "abilities", path)
 	battleplan.scoring = _strings(data, "scoring", path)
-	battleplan.objectives = _map_features(data, "objectives", path, true)
-	battleplan.terrain = _map_features(data, "terrain", path, false)
+	battleplan.objectives = _map_features(data, "objectives", path, MapFeature.OBJECTIVE_TYPES, false)
+	battleplan.terrain = _map_features(data, "terrain", path, MapFeature.TERRAIN_TYPES, true)
 	battleplan.attacker_territory = _rects(data, "attacker_territory", path)
 	battleplan.defender_territory = _rects(data, "defender_territory", path)
 	battleplan.faqs = _faqs(data, path)
 	return battleplan
 
 
-## Objectives when [param objectives] is true, else terrain features, which also have a size.
-func _map_features(data: Dictionary, key: String, path: String, objectives: bool) -> Array[MapFeature]:
+## Features whose type is one of [param types]. Terrain features ([param sized]) also have a size.
+func _map_features(data: Dictionary, key: String, path: String, types: PackedStringArray,
+		sized: bool) -> Array[MapFeature]:
 	var result: Array[MapFeature] = []
 	var items := _array(data, key, path)
-	var types := MapFeature.OBJECTIVE_TYPES if objectives else MapFeature.TERRAIN_TYPES
 	for i in items.size():
 		var item_path := _join(path, "%s[%d]" % [key, i])
 		var feature := MapFeature.new()
@@ -128,11 +128,12 @@ func _map_features(data: Dictionary, key: String, path: String, objectives: bool
 			feature.type = _string(items[i], "type", item_path, true)
 			if not feature.type.is_empty() and not feature.type in types:
 				_error(_join(item_path, "type"), "must be one of %s" % ", ".join(types))
-			if not objectives:
+			if sized:
 				feature.size = _string(items[i], "size", item_path, true)
 				if not feature.size.is_empty() and not feature.size in MapFeature.TERRAIN_SIZES:
 					_error(_join(item_path, "size"), "must be one of %s" % ", ".join(MapFeature.TERRAIN_SIZES))
 			feature.position = Vector2(_float(items[i], "x", item_path, true), _float(items[i], "y", item_path, true))
+			feature.radius = _float(items[i], "radius", item_path)
 		result.append(feature)
 	return result
 
