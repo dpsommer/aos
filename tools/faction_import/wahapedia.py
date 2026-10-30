@@ -24,6 +24,11 @@ ICON_CATEGORY = {
     "abMovement": "movement", "abOffensive": "offensive", "abRallying": "rallying",
     "abShooting": "shooting", "abSpecial": "special",
 }
+# An ability box's colour, from its header's background.
+HEADER_COLOUR = {
+    "#000000": "black", "#76602b": "yellow", "#606362": "grey", "#28435c": "blue",
+    "#a34d14": "orange", "#802022": "red", "#5e4a79": "purple", "#3d5b26": "green",
+}
 
 def join_hyphens(s):
     """Rejoins a word split after its hyphen by tags, e.g. '<span>non-</span><span>HERO</span>'."""
@@ -84,6 +89,8 @@ def parse_ability(block):
         kw_text = (kw_text + ", " + text(kw_block)).strip(", ")
     keywords = [k.strip() for k in kw_text.split(",") if k.strip()]
     a = {"name": name, "category": category, "timing": timing, "frequency": frequency}
+    colour = HEADER_COLOUR.get((header.get("bgcolor") or "").lower()) if header else None
+    if colour: a["colour"] = colour
     for key, sel in (("casting_value", ".abSpellPointsN"), ("chanting_value", ".abPrayerPointsN"),
                      ("command_points", ".abCommandPointsN")):
         value = block.select_one(sel)

@@ -56,6 +56,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SAURUS unit to be the target",
 					"effect": "Roll a dice. On a 3+, that unit has WARD (6+) until the start of your next turn."
@@ -65,6 +66,7 @@
 					"type": "active",
 					"category": "shooting",
 					"timing": "Your Shooting Phase",
+					"colour": "blue",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly SKINK unit to be the target.",
 					"effect": "Roll a dice. On a 3+, the target’s ranged weapons have Crit (Auto-wound) for the rest of the turn, including Companion weapons."
@@ -76,6 +78,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"declare": "Pick a visible friendly unit wholly within 12\" of your general and not in combat to be the target.",
 					"effect": "Roll a dice. On a 3+, the target can immediately use the ' Normal Move ' ability as if it were your movement phase."
 				},
@@ -93,6 +96,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick an enemy unit in combat with your general to be the target.",
 					"effect": "Ward rolls cannot be made for the target for the rest of the turn."
 				},
@@ -101,6 +105,7 @@
 					"type": "active",
 					"category": "rallying",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"declare": "Your general must use this ability if it has been destroyed. Roll a dice.",
 					"effect": "On a 2+, you can set up a replacement unit with 1 Sunblood model anywhere on the battlefield more than 6\" from all enemy units."
 				}
@@ -131,7 +136,7 @@
 							"type": "passive",
 							"category": "special",
 							"timing": "Passive",
-							"colour": "green",
+							"colour": "black",
 							"effect": "While this unit includes a Sunblood, ignore the first damage point that would be allocated to this unit each phase and add 1 to this unit’s control score."
 						},
 						{
@@ -139,6 +144,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target and roll a dice.",
 							"effect": "On a 3+, the target’s weapons have Crit (2 Hits) for the rest of the turn, including Companion weapons."
 						}
@@ -259,7 +265,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Any Combat Phase",
-							"colour": "blue",
+							"colour": "red",
 							"declare": "Pick an enemy unit in combat with this unit to be the target.",
 							"effect": "Roll a dice. On a 4+, subtract 1 from hit rolls for the target’s combat attacks for the rest of the turn."
 						}
@@ -340,6 +346,7 @@
 					"type": "active",
 					"category": "special",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"declare": "Pick your general to use this ability if they are in combat.",
 					"effect": "Pick 1 of the following:",
 					"options": [
@@ -360,6 +367,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"frequency": "Once Per Phase",
 					"declare": "Roll a dice for each enemy unit in combat with any friendly units.",
 					"effect": "On a 3+, inflict 1 mortal damage on the unit being rolled for."
@@ -369,6 +377,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
+					"colour": "green",
 					"effect": "Friendly units have WARD (6+) while they are wholly within friendly territory."
 				}
 			],
@@ -378,6 +387,7 @@
 					"type": "active",
 					"category": "control",
 					"timing": "End of Any Turn",
+					"colour": "purple",
 					"effect": "Roll a dice. Add the roll to your general’s control score this turn."
 				},
 				{
@@ -385,6 +395,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "Add 1 to the Rend characteristic of your general’s Relic Celestite Weapon."
 				},
 				{
@@ -392,7 +403,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Enemy Movement Phase",
-					"colour": "yellow",
+					"colour": "grey",
 					"frequency": "Once Per Battle",
 					"declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
 					"effect": "That unit can use the ‘Normal Move’ ability as if it were your movement phase."
@@ -402,6 +413,7 @@
 					"type": "passive",
 					"category": "shooting",
 					"timing": "Passive",
+					"colour": "blue",
 					"effect": "The Attacks characteristic of your general’s Sunbolt Gauntlet is 6 instead of D6."
 				}
 			],
@@ -464,6 +476,7 @@
 							"type": "active",
 							"category": "movement",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
 							"effect": "Until the start of your next turn, add 1 to charge rolls for the target."
 						}

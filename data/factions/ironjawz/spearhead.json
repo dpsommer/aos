@@ -28,6 +28,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Movement Phase",
+					"colour": "grey",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
 					"keywords": [
 						"CORE"
@@ -58,6 +59,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Reaction: You declared the ‘Mighty Destroyers’ ability",
+					"colour": "yellow",
 					"frequency": "Once Per Battle",
 					"effect": "All friendly units on the battlefield that were not set up this turn are the targets of that ability instead."
 				}
@@ -68,6 +70,7 @@
 					"type": "passive",
 					"category": "offensive",
 					"timing": "Passive",
+					"colour": "red",
 					"effect": "The Rend characteristic of your general’s melee weapons is 2."
 				},
 				{
@@ -121,6 +124,7 @@
 							"type": "active",
 							"category": "offensive",
 							"timing": "Your Hero Phase",
+							"colour": "yellow",
 							"declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
 							"effect": "Roll a dice. On a 2+, add 1 to the Attacks characteristic of the target’s melee weapons until the start of your next turn."
 						}

@@ -32,6 +32,7 @@
 					"type": "active",
 					"category": "offensive",
 					"timing": "Any Combat Phase",
+					"colour": "red",
 					"frequency": "Once Per Battle",
 					"declare": "Pick your general to use this ability, then pick another friendly unit wholly within 12\" of them to be the target.",
 					"effect": "Your general and the target have STRIKE-FIRST this phase."
@@ -43,6 +44,7 @@
 					"type": "active",
 					"category": "defensive",
 					"timing": "Start of the First Battle Round",
+					"colour": "black",
 					"frequency": "Once Per Turn (Army)",
 					"declare": "Pick a friendly unit to use this ability.",
 					"effect": "In this battle, that unit is not visible to enemy models that are more than 12\" away from it."
@@ -52,7 +54,7 @@
 					"type": "passive",
 					"category": "defensive",
 					"timing": "Passive",
-					"colour": "red",
+					"colour": "green",
 					"effect": "Subtract 1 from wound rolls for attacks made by enemy units in the first battle round."
 				}
 			],
@@ -70,6 +72,7 @@
 					"type": "active",
 					"category": "movement",
 					"timing": "Your Hero Phase",
+					"colour": "yellow",
 					"frequency": "Once Per Turn",
 					"declare": "Pick a friendly unit wholly within 12\" of your general.",
 					"effect": "If that unit uses a RETREAT ability this turn, no mortal damage is inflicted on it and it can still use SHOOT and/or CHARGE abilities later in the turn."
@@ -309,6 +312,7 @@
 							"type": "passive",
 							"category": "shooting",
 							"timing": "Passive",
+							"colour": "blue",
 							"effect": "The Damage characteristic of this unit’s Beast-skewer Bolts is 6 instead of D6 if the target is a MONSTER."
 						}
 					],

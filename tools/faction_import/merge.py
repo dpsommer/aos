@@ -79,7 +79,7 @@ class Report:
 
 
 def compare_ability(report, where, bs, wh):
-    for field in ("timing", "frequency", "casting_value", "chanting_value", "command_points", "points"):
+    for field in ("timing", "frequency", "colour", "casting_value", "chanting_value", "command_points", "points"):
         if (bs.get(field) or "") != (wh.get(field) or "") and (bs.get(field) or wh.get(field)):
             if field == "timing" and norm_text(bs.get(field)).rstrip(".") == norm_text(wh.get(field)).rstrip("."):
                 continue
