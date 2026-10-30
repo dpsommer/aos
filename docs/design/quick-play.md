@@ -17,7 +17,7 @@ Pressing a card emits `mode_chosen`. Spearhead's card is focused when the screen
 Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/army_select.gd` (`ArmySelect`), for either mode. The breadcrumb names the mode.
 
 - **Header:** after the breadcrumb, a box with the points limit (the army's, or "Fixed roster" for a Spearhead) and the rules ("General's Handbook 2026-27" or "Spearhead"), then **Play**: large and gold, with a glow, once the army can play; otherwise dark and disabled, its tooltip saying why (`ArmySelect.play_blocker()`), e.g. "Fix this army's problems to play".
-- **Left pane (480 px):** the list of armies. It gives way to one of these, each with a Back button ("Armies" or "Spearheads") that returns to the list and gives focus back to the control that opened it:
+- **Left pane (460 px, the same width as the Forge army builder's left pane):** the list of armies. It gives way to one of these, each with a Back button ("Armies" or "Spearheads") that returns to the list and gives focus back to the control that opened it:
   - a unit's warscroll (`WarscrollCard`), from a portrait;
   - a Regiment of Renown's units and rules (`RulesView.regiment_of_renown()`), from its units' portraits;
   - the battleplans (`BattleplanPicker`), from the battle plan card.
