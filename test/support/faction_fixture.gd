@@ -1,12 +1,12 @@
 extends RefCounted
-## Lists the factions of a fixture in test/fixtures/catalog/ in place of the real ones, so tests can
+## Lists the factions of a fixture in test/fixtures/factions/ in place of the real ones, so tests can
 ## check how factions without rules data are shown now that every real faction has some. Each
 ## fixture's factions.json lists faction names by Grand Alliance id; alliances it leaves out keep
 ## their real factions.
 ## Call use() in a test and end() in after_each.
 ## Preload it: const FactionFixture := preload("res://test/support/faction_fixture.gd")
 
-const DIRECTORY := "res://test/fixtures/catalog"
+const DIRECTORY := "res://test/fixtures/factions"
 ## The faction the fixtures list without data.
 const NAME := "Fixture Faction"
 
