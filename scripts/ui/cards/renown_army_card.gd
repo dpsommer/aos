@@ -5,18 +5,10 @@ extends PressableCard
 ## [param action] is shown at the end of the name's row, e.g. a "Change" button, or null for none.
 func _init(renown: ArmyOfRenown, full: bool, action: Control = null) -> void:
 	super()
-	card_name = renown.name
-	var content := UIBuilder.vbox([], 8)
-	var title := UIBuilder.label(renown.name, "TitleLabel", true)
-	var title_row := UIBuilder.hbox([title], 6)
+	var tags: Array[Control] = []
 	if not renown.source.is_empty():
-		var source := UIBuilder.label(renown.source, "MutedLabel")
-		source.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		title_row.add_child(source)
-	if action:
-		action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		title_row.add_child(action)
-	content.add_child(title_row)
+		tags.append(UIBuilder.label(renown.source, "MutedLabel"))
+	_add_title(renown.name, "", tags, action)
 	var roster := Forge.roster_summary(renown)
 	if not roster.is_empty():
 		content.add_child(UIBuilder.label(roster, "MutedLabel", true))
@@ -30,4 +22,3 @@ func _init(renown: ArmyOfRenown, full: bool, action: Control = null) -> void:
 	if full:
 		for ability in renown.battle_traits:
 			content.add_child(AbilityCard.new(ability))
-	add_child(content)

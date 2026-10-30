@@ -14,21 +14,7 @@ const KIND_NAMES := {"affray": "Affray", "strike": "Strike", "domination": "Domi
 ## or null for none.
 func _init(card: BattleTacticCard, form: Form, heading := "", action: Control = null) -> void:
 	super()
-	card_name = card.name
-	var content := UIBuilder.vbox([], 8)
-	# As on a LoreCard: the heading and the action share the top row, so actions line up across
-	# both kinds of card. Without a heading, the action sits at the end of the name's row.
-	if not heading.is_empty():
-		var top := UIBuilder.hbox([UIBuilder.label(heading, "MutedLabel"), UIBuilder.spacer()], 6)
-		if action:
-			top.add_child(action)
-		content.add_child(top)
-	var title := UIBuilder.label(card.name, "TitleLabel", true)
-	var title_row := UIBuilder.hbox([title])
-	if action and heading.is_empty():
-		action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		title_row.add_child(action)
-	content.add_child(title_row)
+	_add_title(card.name, heading, [], action)
 	match form:
 		Form.FULL:
 			# Rules divide the card's setup, each battle tactic and its FAQs.
@@ -51,7 +37,6 @@ func _init(card: BattleTacticCard, form: Form, heading := "", action: Control = 
 			for tactic in card.tactics:
 				chips.add_child(UITheme.chip(tactic.name, tactic.kind))
 			content.add_child(chips)
-	add_child(content)
 
 
 ## A battle tactic's kind, name and victory points.

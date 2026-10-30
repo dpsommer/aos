@@ -5,18 +5,10 @@ extends PressableCard
 ## [param action] is shown at the end of the name's row, e.g. a "Change" button, or null for none.
 func _init(formation: BattleFormation, full: bool, action: Control = null) -> void:
 	super()
-	card_name = formation.name
-	var content := UIBuilder.vbox([], 8)
-	var title := UIBuilder.label(formation.name, "TitleLabel", true)
-	var title_row := UIBuilder.hbox([title], 6)
+	var tags: Array[Control] = []
 	if formation.points > 0:
-		var points := UITheme.chip("%d pts" % formation.points, "gold")
-		points.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		title_row.add_child(points)
-	if action:
-		action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		title_row.add_child(action)
-	content.add_child(title_row)
+		tags.append(UITheme.chip("%d pts" % formation.points, "gold"))
+	_add_title(formation.name, "", tags, action)
 	if full:
 		for ability in formation.abilities:
 			content.add_child(AbilityCard.new(ability))
@@ -25,4 +17,3 @@ func _init(formation: BattleFormation, full: bool, action: Control = null) -> vo
 		for ability in formation.abilities:
 			chips.add_child(UITheme.chip(ability.name))
 		content.add_child(chips)
-	add_child(content)

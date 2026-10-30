@@ -9,6 +9,10 @@ signal pressed
 ## Whether the card emits [signal pressed] and outlines itself while hovered.
 var pressable := false
 var card_name := ""
+## The card's rows, from its heading and name down, or null until [method _add_title].
+var content: VBoxContainer
+## The muted heading over the card's name, or null without one.
+var heading_label: Label
 var _hovered := false
 
 
@@ -18,6 +22,31 @@ func _init() -> void:
 	mouse_exited.connect(_set_hovered.bind(false))
 	focus_entered.connect(queue_redraw)
 	focus_exited.connect(queue_redraw)
+
+
+## Adds the card's [member content] with its first rows: [param heading] (if not empty) over
+## [param title], with [param tags] after the title. [param action], e.g. an eye or a "Change"
+## button, goes in the top right corner: at the end of the heading's row, so the title has the
+## card's full width, or of the title's row without a heading. Cards then add their own rows to
+## [member content].
+func _add_title(title: String, heading := "", tags: Array[Control] = [], action: Control = null) -> void:
+	card_name = title
+	content = UIBuilder.vbox([], 8)
+	add_child(content)
+	if not heading.is_empty():
+		heading_label = UIBuilder.label(heading, "MutedLabel")
+		var top := UIBuilder.hbox([heading_label, UIBuilder.spacer()], 6)
+		if action:
+			top.add_child(action)
+		content.add_child(top)
+	var title_row := UIBuilder.hbox([UIBuilder.label(title, "TitleLabel", true)], 6)
+	for tag in tags:
+		tag.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		title_row.add_child(tag)
+	if action and heading.is_empty():
+		action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		title_row.add_child(action)
+	content.add_child(title_row)
 
 
 ## Makes the whole card a button: focusable, and emitting [signal pressed] when clicked or when
