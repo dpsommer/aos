@@ -80,6 +80,44 @@ func test_action_can_be_any_control() -> void:
 	assert_true(node.is_ancestor_of(chip))
 
 
+## The row holding the card's name.
+func _title_row(node: TacticCard) -> Node:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is Label and n.text == "Hold the Line")[0].get_parent()
+
+
+## The label showing [param text] on [param node].
+func _label(node: TacticCard, text: String) -> Label:
+	return UIKit.find_all(node, func(n: Node) -> bool: return n is Label and n.text == text)[0]
+
+
+func test_without_a_heading_the_action_ends_the_names_row() -> void:
+	var action := Button.new()
+	var node := _make(false, "", action)
+	var row := _title_row(node)
+	assert_eq(action.get_parent(), row)
+	assert_eq(action.get_index(), row.get_child_count() - 1)
+
+
+func test_without_a_heading_the_action_is_vertically_centred() -> void:
+	var action := Button.new()
+	_make(false, "", action)
+	assert_eq(action.size_flags_vertical, Control.SIZE_SHRINK_CENTER)
+
+
+func test_with_a_heading_the_action_shares_the_headings_row() -> void:
+	var action := Button.new()
+	var node := _make(false, "Slot 1", action)
+	assert_eq(action.get_parent(), _label(node, "Slot 1").get_parent())
+	assert_ne(action.get_parent(), _title_row(node))
+
+
+func test_with_a_heading_the_action_ends_the_headings_row() -> void:
+	var action := Button.new()
+	var node := _make(false, "Slot 1", action)
+	var row := action.get_parent()
+	assert_eq(action.get_index(), row.get_child_count() - 1)
+
+
 # --- Pressing and focus ---
 
 func _click() -> InputEventMouseButton:

@@ -9,16 +9,26 @@ enum Form { SUMMARY, BRIEF, FULL }
 const KIND_NAMES := {"affray": "Affray", "strike": "Strike", "domination": "Domination"}
 
 
-## [param action] is shown beside the card's name, e.g. a "Change" button or a chip, or null for
-## none.
+## [param heading] is shown over the card's name, e.g. "Slot 1". [param action] is shown in the top
+## right corner (at the end of the name's row without a heading), e.g. a "Change" button or a chip,
+## or null for none.
 func _init(card: BattleTacticCard, form: Form, heading := "", action: Control = null) -> void:
 	super()
 	card_name = card.name
 	var content := UIBuilder.vbox([], 8)
+	# As on a LoreCard: the heading and the action share the top row, so actions line up across
+	# both kinds of card. Without a heading, the action sits at the end of the name's row.
 	if not heading.is_empty():
-		content.add_child(UIBuilder.label(heading, "MutedLabel"))
+		var top := UIBuilder.hbox([UIBuilder.label(heading, "MutedLabel"), UIBuilder.spacer()], 6)
+		if action:
+			top.add_child(action)
+		content.add_child(top)
 	var title := UIBuilder.label(card.name, "TitleLabel", true)
-	content.add_child(UIBuilder.hbox([title, action] if action else [title]))
+	var title_row := UIBuilder.hbox([title])
+	if action and heading.is_empty():
+		action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		title_row.add_child(action)
+	content.add_child(title_row)
 	match form:
 		Form.FULL:
 			# Rules divide the card's setup, each battle tactic and its FAQs.
