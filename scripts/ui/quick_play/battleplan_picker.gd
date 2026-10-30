@@ -147,8 +147,8 @@ static func _check() -> Control:
 	return check
 
 
-## A gold heading over rules text.
+## A heading over rules text.
 static func _rules(heading: String, text: String) -> VBoxContainer:
 	var title := UIBuilder.label(heading.to_upper(), "StatNameLabel")
-	title.add_theme_color_override("font_color", UITheme.GOLD)
+	title.add_theme_color_override("font_color", UITheme.TEXT)
 	return UIBuilder.vbox([title, UIBuilder.label(text, "BodyLabel", true)], 4)

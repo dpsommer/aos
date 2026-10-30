@@ -776,10 +776,10 @@ static func _pin(art: Control, badge: Control, corner: Control.LayoutPreset) -> 
 	badge.set_anchors_and_offsets_preset(corner, Control.PRESET_MODE_MINSIZE, 6)
 
 
-## [param title] in gold over [param content], with [param note] beside the title if given, and
+## [param title] over [param content], with [param note] beside the title if given, and
 ## [param extra] at the end of its row if not null.
 static func _section(title: String, content: Control, note := "", extra: Control = null) -> VBoxContainer:
-	var heading := UIBuilder.hbox([UIBuilder.label(title, "GoldTitleLabel")], 12)
+	var heading := UIBuilder.hbox([UIBuilder.label(title, "TitleLabel")], 12)
 	if not note.is_empty():
 		var note_label := UIBuilder.label(note, "MutedLabel")
 		note_label.size_flags_vertical = Control.SIZE_SHRINK_END

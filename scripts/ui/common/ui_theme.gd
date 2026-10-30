@@ -537,8 +537,6 @@ static func _add_labels(theme: Theme) -> void:
 	theme.set_font("font", "ArtLabel", heading)
 	_label(theme, "TitleLabel", TEXT, 18)
 	theme.set_font("font", "TitleLabel", heading)
-	_label(theme, "GoldTitleLabel", GOLD, 18)
-	theme.set_font("font", "GoldTitleLabel", heading)
 	_label(theme, "SectionLabel", Color("#D8D2C4"), 20)
 	theme.set_font("font", "SectionLabel", heading)
 	_label(theme, "CardTitleLabel", TEXT, 15)
