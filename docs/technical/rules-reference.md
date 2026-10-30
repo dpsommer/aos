@@ -10,6 +10,15 @@ Faction data (warscrolls, battle traits, enhancements and so on) is built from B
 
 Games Workshop's [Rules Updates](https://assets.warhammer-community.com/eng_23-09_aos_core&key_rule_updates-eu6fu82jl3-dlyuiignte.pdf) PDF (September 2026) collects errata and FAQs for every book. Its errata should be reflected in the faction data, and its FAQ rulings are summarised per faction in [Faction FAQs](../gameplay/faq/README.md).
 
+Updated Spearhead rules are published as one PDF per Spearhead on Warhammer Community's downloads page. To check the data against one, download it into an empty directory outside the repo and compare the two printouts. The tools need `tools/spearhead_pdf/requirements.txt`, installed in the "aos" pyenv virtualenv:
+
+```sh
+python -I tools/spearhead_pdf/extract.py <pdf> --out <text dir>
+python -I tools/spearhead_pdf/dump.py <faction id> "<Spearhead name>"
+```
+
+`extract.py` gives each page twice. Layout mode keeps the columns, so ability text reads in order, but leaves out the rotated weapon tables. Plain mode has the weapon tables and stats, out of order. Fix a difference with an override in the faction's overrides file (see [Faction data](faction-data.md)), as Wahapedia, which Spearheads are built from, may not have the update yet.
+
 ## Documenting rules
 
 Summaries of how each rule is implemented belong in `docs/gameplay/`. Keep them short, and reference the source document rather than reproducing rules text.
