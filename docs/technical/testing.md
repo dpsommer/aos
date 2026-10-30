@@ -38,6 +38,7 @@ Tests can also be run from the GUT panel in the editor.
 - Success or failure of a test must be irrelevant for the success of another. No state should be maintained in the test suite
 - Tests must be isolated from external dependencies
 - Tests must never touch the player's files in `user://`. Any test that creates the Forge, `Main`, an army builder or the Settings screen, or reads `GameSettings.current()`, calls `Sandbox.begin()` in `before_each` and `Sandbox.end()` in `after_each` (`test/support/sandbox.gd`). It points saved armies, favourites and settings at temporary paths and deletes them afterwards, starts settings at their defaults, and puts the keys and audio volumes back to their defaults
+- Every real faction has data, so tests of how a faction without data is shown list a fixture one instead. `FactionFixture.use(fixture)` (`test/support/faction_fixture.gd`) lists the factions in `test/fixtures/factions/<fixture>/factions.json`, by Grand Alliance id, in place of an alliance's real ones: `faction_without_data` lists one beside a faction with data, and `alliance_without_data` leaves an alliance with no faction that has data. Call `FactionFixture.end()` in `after_each` to list the real factions again
 - Tests should check one single, specific aspect of a function, class, or module
 - Avoid "A equals A" tests that simply check code values against identical test values
 - Avoid fragile testing patterns, such as testing for specific constant values. Most of the time, updating a constant should not cause test failures

@@ -85,11 +85,26 @@ static var _loaded := {}
 static var _manifestation_factions := {}
 ## Every faction's Spearheads, read on first use by [method spearheads].
 static var _spearheads: Array[Dictionary] = []
+## The factions listed for each Grand Alliance: [constant _FACTIONS], or what [method set_listed] gave.
+static var _listed: Dictionary = _FACTIONS
 
 
 ## Returns a copy of the faction names for [param alliance], in display order.
 static func factions_for(alliance: GrandAlliance.Type) -> PackedStringArray:
-	return PackedStringArray(_FACTIONS[alliance])
+	return PackedStringArray(_listed[alliance])
+
+
+## Lists [param listed] (names by [enum GrandAlliance.Type], as [constant _FACTIONS]) in place of the
+## real factions, or the real ones again if it's empty. For tests, e.g. to list a faction without data;
+## see test/support/faction_fixture.gd.
+static func set_listed(listed: Dictionary) -> void:
+	_listed = listed if not listed.is_empty() else _FACTIONS
+	_spearheads.clear()
+
+
+## The real factions listed for each Grand Alliance, whatever [method set_listed] gave.
+static func real_listing() -> Dictionary:
+	return _FACTIONS.duplicate(true)
 
 
 ## Whether [param faction] has rules data and can be opened.
@@ -131,7 +146,7 @@ static func manifestation_faction(warscroll_id: String) -> String:
 static func spearheads() -> Array[Dictionary]:
 	if _spearheads.is_empty():
 		for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-			for faction: String in _FACTIONS[alliance]:
+			for faction: String in _listed[alliance]:
 				if not is_available(faction):
 					continue
 				var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(_DATA_DIRS[faction].path_join("spearhead.json")))
