@@ -259,7 +259,12 @@ func _options() -> VBoxContainer:
 		var section := UIBuilder.vbox([UIBuilder.label(type, "SectionLabel")], 8)
 		section.set_meta(&"enhancement_type", type)
 		var picked: String = unit.enhancements.get(type, "")
-		for table in builder.catalog.enhancement_choices(army, warscroll, type, picked, unit):
+		var tables := builder.catalog.enhancement_choices(army, warscroll, type, picked, unit)
+		for i in tables.size():
+			var table := tables[i]
+			# A rule between sources, e.g. the battletome's tables and a Scourge's.
+			if i > 0 and table.source != tables[i - 1].source:
+				section.add_child(HSeparator.new())
 			for entry in table.entries:
 				section.add_child(_enhancement_card(type, table, entry, entry.name == picked))
 		box.add_child(section)
