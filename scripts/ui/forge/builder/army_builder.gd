@@ -557,8 +557,10 @@ func _terrain_row(warscroll: Warscroll) -> PanelContainer:
 	else:
 		toggle = UIBuilder.button("Add", editor.set_faction_terrain.bind(warscroll.id), "terrain:" + warscroll.id,
 				"GhostButton", "Add %s to the army" % warscroll.name)
-	var row := UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names, UIBuilder.label("%d pts" % warscroll.points, "MutedLabel"),
-			toggle], 10)
+	var portrait := UIBuilder.portrait(warscroll.name, info_pane.show_terrain.bind(warscroll.id),
+			"Show %s in the Rules tab" % warscroll.name)
+	portrait.set_meta(&"focus_key", "terrain_portrait:" + warscroll.id)
+	var row := UIBuilder.hbox([portrait, names, UIBuilder.label("%d pts" % warscroll.points, "MutedLabel"), toggle], 10)
 	return UIBuilder.panel("RowPanel", row)
 
 

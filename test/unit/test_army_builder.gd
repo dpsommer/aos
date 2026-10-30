@@ -649,6 +649,42 @@ func test_terrain_row_shows_a_portrait() -> void:
 	assert_true(UIKit.find_all(row, func(n: Node) -> bool: return n is ArtPlaceholder).size() > 0)
 
 
+func _terrain_portrait(builder: ArmyBuilder) -> Button:
+	return UIKit.keyed(builder.builder_list, "terrain_portrait:terrain") as Button
+
+
+func _rules_terrain_card(builder: ArmyBuilder) -> Control:
+	var found := UIKit.find_all(builder.info_pane, func(n: Node) -> bool: return n.get_meta(&"info_key", "") == "terrain:terrain")
+	return found[0] if not found.is_empty() else null
+
+
+func test_terrain_portrait_is_a_button() -> void:
+	var builder := _builder(_valid_army())
+	assert_not_null(_terrain_portrait(builder))
+
+
+func test_pressing_the_terrain_portrait_shows_it_in_the_rules_tab() -> void:
+	var builder := _builder(_valid_army())
+	_terrain_portrait(builder).pressed.emit()
+	assert_eq(builder.info_pane.tab, "rules")
+	assert_eq(builder.info_pane.flash_key, "terrain:terrain")
+
+
+func test_pressing_the_terrain_portrait_unfolds_the_terrain_section() -> void:
+	var builder := _builder(_valid_army())
+	builder.info_pane.folded["sec:Faction Terrain"] = true
+	_terrain_portrait(builder).pressed.emit()
+	assert_false(builder.info_pane.folded.has("sec:Faction Terrain"))
+
+
+func test_pressing_the_terrain_portrait_flashes_its_warscroll_card() -> void:
+	var builder := _builder(_valid_army())
+	_terrain_portrait(builder).pressed.emit()
+	var card := _rules_terrain_card(builder)
+	assert_not_null(card)
+	assert_eq(card.theme_type_variation, &"FlashWarscrollPanel")
+
+
 func test_terrain_abilities_lists_the_universal_terrain_abilities() -> void:
 	var terrain := Kit.warscroll("portal", PackedStringArray(["FACTION TERRAIN"]))
 	terrain.composition = "The following universal terrain abilities apply to this terrain feature (Terrain, 1.2): Cover, Impassable"

@@ -459,6 +459,7 @@ static func _add_panels(theme: Theme) -> void:
 	_panel(theme, "RemoveDropOnPanel", box(Color(0.23, 0.14, 0.13, 0.96), Color("#F2A28A"), 12, 0, 2))
 	# Warscrolls (WarscrollCard): characteristics in boxes and each kind of weapon in a table.
 	_panel(theme, "WarscrollPanel", box(Color("#16191E"), Color("#343A45"), 8, 12))
+	_panel(theme, "FlashWarscrollPanel", box(Color("#16191E"), GOLD, 8, 12, 2))
 	var stat := box(CONTROL, Color.TRANSPARENT, 6, 6)
 	stat.content_margin_left = 2
 	stat.content_margin_right = 2
