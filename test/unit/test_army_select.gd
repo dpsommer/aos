@@ -378,9 +378,9 @@ func test_choosing_another_ability_replaces_the_choice() -> void:
 
 func test_pressing_a_choice_card_chooses_it() -> void:
 	var screen := _spearhead()
-	var card: PressableCard = screen._choice_cards["regiment"][0]
+	var card: AbilityChoiceCard = screen._choice_cards["regiment"][0]
 	card.pressed.emit()
-	assert_eq(screen.regiment_ability, card.get_meta(&"ability"))
+	assert_eq(screen.regiment_ability, card.ability.name)
 
 
 func test_choosing_another_spearhead_clears_the_choices() -> void:

@@ -282,35 +282,31 @@ func _options() -> VBoxContainer:
 
 
 ## A card for [param entry] of [param table], showing its points, table group, Scourge and Legends
-## tags and rules. Pressing it gives the unit the enhancement, or takes it away if [param picked].
-func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, picked: bool) -> OptionCard:
-	var card := OptionCard.new()
-	card.toggle_mode = true
-	card.button_pressed = picked
-	card.accessibility_name = entry.name
-	card.tooltip_text = ("Remove %s" if picked else "Give the unit %s") % entry.name
+## tags in its header, folded until its eye shows its rules. Pressing it gives the unit the
+## enhancement, or takes it away if [param picked].
+func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, picked: bool) -> AbilityChoiceCard:
+	var key := "%s:enh:%s:%s" % [unit.uid, type, entry.name]
+	var eye_key := key + ":eye"
+	var card := AbilityChoiceCard.new(entry, builder.expanded.has(eye_key), eye_key)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	card.set_meta(&"focus_key", "%s:enh:%s:%s" % [unit.uid, type, entry.name])
+	card.set_meta(&"focus_key", key)
 	card.set_meta(&"enhancement", entry.name)
-	# The points are in the ability card's header.
-	var top := UIBuilder.hbox([], 6)
 	if not table.group.is_empty():
-		top.add_child(UITheme.chip(table.group))
+		card.add_header_control(UITheme.chip(table.group))
 	var scourge := UIBuilder.scourge_tag(table.source)
 	if scourge:
-		top.add_child(scourge)
+		card.add_header_control(scourge)
 	if table.legends:
-		top.add_child(UITheme.chip("Legends", "legends"))
-	top.add_child(UIBuilder.spacer())
-	if picked:
-		top.add_child(UIBuilder.check_badge())
-	if top.get_child_count() > 1:
-		card.add(top)
-	else:
-		top.free()
-	card.add(AbilityCard.new(entry))
-	card.toggled.connect(func(on: bool) -> void:
-		builder.editor.set_enhancement(unit.uid, type, entry.name if on else ""))
+		card.add_header_control(UITheme.chip("Legends", "legends"))
+	card.selected = picked
+	# The eye folds the card in place, so the row isn't redrawn.
+	card.eye_toggled.connect(func(on: bool) -> void:
+		if on:
+			builder.expanded[eye_key] = true
+		else:
+			builder.expanded.erase(eye_key))
+	card.pressed.connect(func() -> void:
+		builder.editor.set_enhancement(unit.uid, type, "" if picked else entry.name))
 	return card
 
 
