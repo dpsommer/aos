@@ -76,13 +76,17 @@
         {
           "type": "Gamma",
           "x": 18.0,
-          "y": 5.0
+          "y": 5.0,
+          "width": 6.0,
+          "depth": 2.0,
+          "rotation": 90.0
         }
       ],
       "twists": [
         {
           "name": "Burn",
-          "text": "Things burn."
+          "text": "Things burn.",
+          "relic": "Golden Cup"
         },
         {
           "name": "Smoke",
@@ -110,6 +114,44 @@
           "x": 4.0,
           "y": 8.0
         }
+      ],
+      "roads": [
+        [
+          {
+            "x": 0,
+            "y": 4
+          },
+          {
+            "x": 20,
+            "y": 4
+          },
+          {
+            "x": 20,
+            "y": 6
+          },
+          {
+            "x": 0,
+            "y": 6
+          }
+        ],
+        [
+          {
+            "x": 8,
+            "y": 0
+          },
+          {
+            "x": 12,
+            "y": 0
+          },
+          {
+            "x": 10,
+            "y": 10
+          }
+        ]
+      ],
+      "starting_relics": [
+        "Golden Cup",
+        "Silver Cup"
       ]
     },
     {
@@ -271,5 +313,121 @@
         "Little Shrine"
       ]
     }
-  ]
+  ],
+  "relics": [
+    {
+      "name": "Golden Cup",
+      "type": "passive",
+      "timing": "Passive",
+      "effect": "Gold."
+    },
+    {
+      "name": "Silver Cup",
+      "type": "passive",
+      "timing": "Passive",
+      "effect": "Silver."
+    }
+  ],
+  "campaign": {
+    "name": "Test Campaign",
+    "sections": [
+      {
+        "name": "Rules Changes",
+        "text": "Changes."
+      }
+    ],
+    "battles": [
+      {
+        "name": "First",
+        "realm": "Leaf",
+        "text": "Fight.",
+        "starting_relics": [
+          "Silver Cup"
+        ],
+        "deployment_map": {
+          "name": "Left Right",
+          "territory_a": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 10,
+              "y": 0
+            },
+            {
+              "x": 10,
+              "y": 10
+            },
+            {
+              "x": 0,
+              "y": 10
+            }
+          ],
+          "territory_b": [
+            {
+              "x": 10,
+              "y": 0
+            },
+            {
+              "x": 20,
+              "y": 0
+            },
+            {
+              "x": 20,
+              "y": 10
+            },
+            {
+              "x": 10,
+              "y": 10
+            }
+          ]
+        },
+        "fixed_territories": true
+      },
+      {
+        "name": "Second",
+        "realm": "Fire",
+        "deployment_map": {
+          "name": "Right Left",
+          "territory_a": [
+            {
+              "x": 10,
+              "y": 0
+            },
+            {
+              "x": 20,
+              "y": 0
+            },
+            {
+              "x": 20,
+              "y": 10
+            },
+            {
+              "x": 10,
+              "y": 10
+            }
+          ],
+          "territory_b": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 10,
+              "y": 0
+            },
+            {
+              "x": 10,
+              "y": 10
+            },
+            {
+              "x": 0,
+              "y": 10
+            }
+          ]
+        }
+      }
+    ]
+  }
 }

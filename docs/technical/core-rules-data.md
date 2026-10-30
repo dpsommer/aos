@@ -102,15 +102,17 @@ City of Ash comes from Wahapedia's [City of Ash](https://wahapedia.ru/aos4/the-r
 
 **Class** | **Fields** (required in bold)
 -- | --
-`SpearheadBattlepack` | **`name`**, **`battle_rounds`**, **`battlefield_size`** (from `battlefield`), `sections` (the battlepack's rules, e.g. 5.0 Terrain), `abilities` (e.g. 'Call for Reinforcements', and the mystical terrain's 'Unholy Draught'), `terrain_abilities` (the battlepack's own Cover, Obscuring and Unstable, which differ from the core rules', and e.g. Unholy), `terrain_features`, `terrain_groups`, `objective_names`, **`objective_radius`**, `realms`, `deployment_maps`, `battleplan_name`, `battleplan_sections` and `scoring` (from **`battleplan`**: `name`, `sections`, `scoring`), `battle_tactic_cards`, `faqs`
+`SpearheadBattlepack` | **`name`**, **`battle_rounds`**, **`battlefield_size`** (from `battlefield`), `sections` (the battlepack's rules, e.g. 5.0 Terrain), `abilities` (e.g. 'Call for Reinforcements', and the mystical terrain's 'Unholy Draught'), `terrain_abilities` (the battlepack's own Cover, Obscuring and Unstable, which differ from the core rules', and e.g. Unholy), `terrain_features`, `terrain_groups`, `objective_names`, **`objective_radius`**, `realms`, `deployment_maps`, `battleplan_name`, `battleplan_sections` and `scoring` (from **`battleplan`**: `name`, `sections`, `scoring`), `battle_tactic_cards`, `relics` (abilities named after each relic), `campaign`, `faqs`
 `SpearheadTerrain` | **`name`**, **`size`** (`large` or `small`), `mystical` (set up by the battleplan or a twist, not by the players), `abilities` (names of the battlepack's `terrain_abilities`)
 Terrain group | `{"name", "features"}`: terrain feature names. The defender picks a group and the attacker takes the other (Sand and Bone). Without groups, each player sets up one large and one small terrain feature (Fire and Jade)
-`RealmBattlefield` | **`name`** (the side, e.g. "Aqshy"), `objectives` (`MapFeature`s whose `type` is one of `objective_names`, with an optional `radius`), `terrain` (`MapFeature`s naming terrain features set up before the players', e.g. Ossia's Crypt of Blood), `twists`
-`TwistCard` | **`name`**, **`text`**, `options` (named effects the underdog picks from, as an ability's)
+`RealmBattlefield` | **`name`** (the side, e.g. "Aqshy"), `objectives` (`MapFeature`s whose `type` is one of `objective_names`, with an optional `radius`), `terrain` (`MapFeature`s naming terrain features set up before the players', e.g. Ossia's Crypt of Blood), `roads` (polygons, e.g. the Shattered Crossroads'), `starting_relics`, `twists`
+`TwistCard` | **`name`**, **`text`**, `options` (named effects the underdog picks from, as an ability's), `relic` (the relic the twist has a player place)
 `DeploymentMap` | **`name`** ("Horizontal" or "Diagonal"), **`territory_a`**, **`territory_b`**: polygons of at least 3 `{x, y}` corners, loaded as `PackedVector2Array`s. The defender picks the map and which territory is theirs
 `SpearheadTacticCard` | **`name`**, **`condition`** (the battle tactic), **`command`** (an `Ability` of type "command" with no command points)
+`SpearheadCampaign` | **`name`**, `sections`, `battles` (in the order they're played)
+`CampaignBattle` | **`name`**, **`realm`** (a realm's name), `text`, `starting_relics`, **`deployment_map`**, `fixed_territories` (territory A is the attacker's)
 
-Map positions are in inches from the battlefield's north-west corner, as for battleplans.
+Map positions are in inches from the battlefield's north-west corner, as for battleplans. A rectangular objective has `width` and `depth` (loaded as `MapFeature.extent`) and a clockwise `rotation` in degrees; `MapFeature.corners()` gives its corners.
 
 ### Objectives
 
