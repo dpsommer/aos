@@ -236,6 +236,11 @@ func test_spearhead_play_button_is_as_tall_as_the_points_limit_and_rules_box() -
 	assert_eq(screen.play_button.size.y, _info_box(screen).size.y)
 
 
+func test_rules_are_gold() -> void:
+	var screen := _spearhead()
+	assert_eq(screen.rules_label.get_theme_color("font_color"), UITheme.GOLD)
+
+
 func test_play_emits_the_setup() -> void:
 	var army := _save_army("Free", true)
 	var screen := _matched_play()

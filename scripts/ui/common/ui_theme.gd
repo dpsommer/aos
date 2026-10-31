@@ -537,6 +537,9 @@ static func _add_labels(theme: Theme) -> void:
 	theme.set_font("font", "SectionLabel", heading)
 	_label(theme, "CardTitleLabel", TEXT, 15)
 	theme.set_font("font", "CardTitleLabel", semibold)
+	# Quick Play's rules, e.g. "General's Handbook 2026-27".
+	_label(theme, "GoldTitleLabel", GOLD, 15)
+	theme.set_font("font", "GoldTitleLabel", semibold)
 	_label(theme, "FavouritesLabel", WARNING, 13)
 	theme.set_font("font", "FavouritesLabel", heading)
 	var caps := font(INTER, 600)
