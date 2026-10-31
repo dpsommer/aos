@@ -23,7 +23,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
   - the battleplans (`BattleplanPicker`), from the battle plan card.
 
   Esc goes back to the list from these, and from the list goes back to the game mode.
-- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right, with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card): "Random" (picked when the battle starts) or the chosen battleplan with its table and number. It's outlined in gold while the battleplans are open.
+- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right, with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card): "Random" (picked when the battle starts) or the chosen battleplan's name. It's outlined in gold while the battleplans are open.
 
 ### Matched Play
 
@@ -56,7 +56,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 
 `BattleplanPicker` (`scripts/ui/quick_play/battleplan_picker.gd`) lists, under "Choose battle plan" and a key to the map colours (Attacker red, Defender blue):
 - **Random:** "One of the 12 battleplans below, picked when the battle starts."
-- each table's battleplans, under "TABLE 1" and "TABLE 2": a small map, the battleplan's number and name, and its twist cut to two lines.
+- each battleplan, in the battlepack's order: a small map, its name, and its twist cut to two lines. The battlepack's tables and numbers aren't shown, as they're for rolling a battleplan on the tabletop.
 
 The chosen card is outlined in gold with a check. An eye shows a battleplan in full, swapped in place: a map the width of the pane with its terrain, a caption ("60" × 44" · dashed: terrain · gold rings: objectives with their 3" control zone"), its setup, twist, abilities as [ability cards](abilities.md) and scoring. Pressing a card chooses it and returns to the list.
 

@@ -563,7 +563,7 @@ func _refresh_plan_card() -> void:
 	var plan := core.battlepack.get_battleplan(battleplan) if core and core.battlepack and not battleplan.is_empty() else null
 	if plan:
 		name_text = plan.name
-		sub = BattleplanPicker.describe(plan)
+		sub = ""
 	if mode == BattleSetup.Mode.SPEARHEAD:
 		sub = "Spearhead battleplans aren't in the game yet"
 	_plan_card.disabled = mode == BattleSetup.Mode.SPEARHEAD or core == null or core.battlepack == null
@@ -573,8 +573,9 @@ func _refresh_plan_card() -> void:
 	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 28, 6)
 	art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size = Vector2(64, 48)
-	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true),
-			UIBuilder.label(sub, "MutedLabel", true)], 3)
+	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true)], 3)
+	if not sub.is_empty():
+		text.add_child(UIBuilder.label(sub, "MutedLabel", true))
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var chevron := TextureRect.new()
 	chevron.texture = UITheme.icon("chevron_right")

@@ -1,7 +1,7 @@
 class_name BattleplanPicker
 extends VBoxContainer
-## The battlepack's battleplans to choose from: Random, then each table's battleplans with a small
-## map and their twist. An eye shows a battleplan in full: a larger map with its terrain, its twist,
+## The battlepack's battleplans to choose from: Random, then each battleplan with a small map and
+## its twist. An eye shows a battleplan in full: a larger map with its terrain, its twist,
 ## abilities and scoring. Pressing a card chooses it.
 
 ## The player chose [param battleplan], or Random if it's empty.
@@ -22,14 +22,11 @@ func _init(pack: Battlepack, chosen := "") -> void:
 	add_theme_constant_override("separation", 8)
 	cards[""] = _random_card()
 	add_child(cards[""])
-	for table in [1, 2]:
-		var plans := battlepack.battleplans.filter(func(plan: Battleplan) -> bool: return plan.table == table)
-		if plans.is_empty():
-			continue
-		add_child(UIBuilder.label("TABLE %d" % table, "StatNameLabel"))
-		for plan: Battleplan in plans:
-			cards[plan.name] = _plan_card(plan)
-			add_child(cards[plan.name])
+	# The battlepack's tables and numbers are for rolling a battleplan on the tabletop, so they
+	# aren't shown.
+	for plan in battlepack.battleplans:
+		cards[plan.name] = _plan_card(plan)
+		add_child(cards[plan.name])
 
 
 ## The chosen card, to give it focus when the picker opens.
@@ -47,11 +44,6 @@ static func legend() -> HBoxContainer:
 		swatch.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		row.add_child(UIBuilder.hbox([swatch, UIBuilder.label(pair[0], "MutedLabel")], 4))
 	return row
-
-
-## Where [param plan] is in the battlepack's tables, e.g. "Table 1 · battleplan 3".
-static func describe(plan: Battleplan) -> String:
-	return "Table %d · battleplan %d" % [plan.table, plan.number]
 
 
 func _random_card() -> PressableCard:
@@ -75,8 +67,7 @@ func _random_card() -> PressableCard:
 func _plan_card(plan: Battleplan) -> PressableCard:
 	var full: bool = _open.has(plan.name)
 	var card := _card(plan.name, plan.name)
-	var number := UIBuilder.label(str(plan.number), "MutedLabel")
-	var title := UIBuilder.hbox([number, UIBuilder.label(plan.name, "TitleLabel", true)], 8)
+	var title := UIBuilder.label(plan.name, "TitleLabel", true)
 	var twist := UIBuilder.label(plan.twist, "MutedLabel", true)
 	twist.max_lines_visible = 2
 	twist.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
