@@ -6,7 +6,11 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 12,
@@ -83,7 +87,10 @@
 			"name": "Arachnarok Spider with Flinger",
 			"points": 210,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 16,
@@ -200,7 +207,10 @@
 			"name": "Arachnarok Spider with Spiderfang Warparty",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 16,
@@ -297,7 +307,11 @@
 			"name": "Bad Moon Loonshrine",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 160,
+				"width": 160
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 14,
@@ -330,7 +344,10 @@
 			"name": "Boingrot Bounderz",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "D6+6",
 			"health": 2,
@@ -390,7 +407,35 @@
 			"legends": true,
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "Borgit Wolf-Killa and Rigg and Shamm: 28.5mm, Hobblin' Dregg and Snagz: 25mm, Uglug: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Borgit Wolf-Killa and Rigg and Shamm",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Hobblin' Dregg and Snagz",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					},
+					{
+						"name": "Uglug",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -474,7 +519,10 @@
 			"name": "Dankhold Troggboss",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any TROGGOTH"
@@ -539,7 +587,10 @@
 			"name": "Dankhold Troggoth",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 10,
@@ -599,7 +650,11 @@
 			"name": "Doom Diver Catapult",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 12,
@@ -662,7 +717,10 @@
 			"name": "Droggz da Sunchompa",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any GLOOMSPITE GITZ",
@@ -741,7 +799,10 @@
 			"name": "Fellwater Troggoths",
 			"points": 160,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -803,7 +864,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 160,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "6",
@@ -867,7 +931,11 @@
 			"name": "Frazzlegit Shaman on War-Wheela",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any GITMOB"
@@ -934,7 +1002,10 @@
 			"name": "Fungoid Cave-Shaman",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Moonclan Agitator",
@@ -993,7 +1064,10 @@
 			"name": "Gobbapalooza",
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -1059,7 +1133,27 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 7,
-			"base_size": "Grinkrak the Great, Skolko and Pronk, Grib, da Wonky Lance: 32mm, Pokin' Snark, Snorbo da Spore, Pointy Burk, Moonface Nagz: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Grinkrak the Great, Skolko and Pronk, Grib, da Wonky Lance",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Pokin' Snark, Snorbo da Spore, Pointy Burk, Moonface Nagz",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -1145,7 +1239,10 @@
 			"name": "Loonboss",
 			"points": 70,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any MOONCLAN",
@@ -1212,7 +1309,10 @@
 			"name": "Loonboss on Giant Cave Squig",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Moonclan Agitator",
@@ -1275,7 +1375,10 @@
 			"name": "Loonboss on Mangler Squigs",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Moonclan Agitator",
@@ -1378,7 +1481,11 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Moonclan Agitator",
@@ -1446,7 +1553,10 @@
 			"name": "Loonsmasha Fanatics",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "2D6",
 			"health": 1,
@@ -1508,7 +1618,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "2D6",
@@ -1569,7 +1682,10 @@
 			"legends": true,
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any MOONCLAN"
@@ -1615,7 +1731,10 @@
 			"name": "Malevolent Moon",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 6,
@@ -1659,7 +1778,10 @@
 			"name": "Mangler Squigs",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"move": "D6+8",
 			"health": 14,
@@ -1746,7 +1868,27 @@
 			"legends": true,
 			"points": 210,
 			"unit_size": 1,
-			"base_size": "Mollog: 50mm, Minions: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Mollog",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 50
+						}
+					},
+					{
+						"name": "Minions",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any TROGGOTH"
@@ -1829,7 +1971,10 @@
 			"name": "Moonclan Shootas",
 			"points": 110,
 			"unit_size": 20,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -1883,7 +2028,10 @@
 			"name": "Moonclan Stabbas",
 			"points": 110,
 			"unit_size": 20,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -1927,7 +2075,10 @@
 			"name": "Mork's Mighty Mushroom",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -1961,7 +2112,10 @@
 			"name": "Rabble-Rowza",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -2043,7 +2197,11 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "12",
@@ -2112,7 +2270,10 @@
 			"name": "Rockgut Troggoths",
 			"points": 170,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -2164,7 +2325,11 @@
 			"name": "Scrapskuttle's Arachnacauldron",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 6,
@@ -2209,7 +2374,10 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SPIDERFANG"
@@ -2276,7 +2444,11 @@
 			"name": "Scuttletide",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 100
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 6,
@@ -2330,7 +2502,10 @@
 			"name": "Skitterstrand Arachnarok",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 13,
@@ -2428,7 +2603,11 @@
 			"name": "Skragrott, the Loonking",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any GLOOMSPITE GITZ",
@@ -2501,7 +2680,11 @@
 			"name": "Snarlboss",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any GITMOB"
@@ -2568,7 +2751,11 @@
 			"name": "Snarlboss on War-Wheela",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any GITMOB"
@@ -2664,7 +2851,11 @@
 			"name": "Snarlfang Riders",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -2730,7 +2921,11 @@
 			"name": "Snarlpack Cavalry",
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 3,
@@ -2795,7 +2990,10 @@
 			"name": "Sneaky Snufflers",
 			"points": 80,
 			"unit_size": 6,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -2851,7 +3049,11 @@
 			"name": "Spider Riders",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 2,
@@ -2917,7 +3119,10 @@
 			"name": "Sporesplatta Fanatics",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "2D6",
 			"health": 1,
@@ -2966,7 +3171,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 80,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "2D6",
@@ -3016,7 +3224,10 @@
 			"name": "Squigboss with Gnasha-squig",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Moonclan Agitator",
@@ -3087,7 +3298,10 @@
 			"name": "Squig Herd",
 			"points": 100,
 			"unit_size": 12,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "D6+3",
 			"health": 1,
@@ -3149,7 +3363,10 @@
 			"name": "Squig Hoppers",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "D6+8",
 			"health": 2,
@@ -3205,7 +3422,11 @@
 			"name": "Sunsteala Wheelas",
 			"points": 120,
 			"unit_size": 2,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 6,
@@ -3280,7 +3501,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 150,
 			"unit_size": 2,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "12",
@@ -3351,7 +3576,10 @@
 			"name": "Trugg, the Troggoth King",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Dankhold Troggboss",
@@ -3436,7 +3664,10 @@
 			"name": "Webspinner Shaman",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SPIDERFANG",
@@ -3501,7 +3732,10 @@
 			"name": "Webspinner Shaman on Arachnarok Spider",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SPIDERFANG",
@@ -3624,7 +3858,11 @@
 			"name": "Wolfgit Retinue",
 			"points": 70,
 			"unit_size": 2,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Snarlboss in your army. This unit cannot be reinforced.",
 			"move": "12",
@@ -3689,7 +3927,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 9,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",

@@ -24,6 +24,7 @@ Input | Key bindings | See [Input](#input) | Remaps the keys for every action.
 The Input tab lists the remappable actions (`InputBindings.SECTIONS`, `scripts/settings/input_bindings.gd`) by section:
 - **Menus:** Confirm (`ui_accept`), Back (`ui_cancel`), Up, Down, Left, Right (`ui_up` and so on), Next control and Previous control (`ui_focus_next`, `ui_focus_prev`).
 - **Forge:** Save army (`save_army`, defined in `project.godot`; Command+S on macOS, else Ctrl+S). The army builder's Save button uses it as its shortcut.
+- **Battle:** the game map's camera (see [Battle](battle.md#camera)): Move camera forward, back, left and right (`camera_forward`, `camera_back`, `camera_left`, `camera_right`: W, S, A, D) and Turn camera left and right (`camera_rotate_left`, `camera_rotate_right`: Q, E), all defined in `project.godot`.
 
 Each action's row has three parts: its name, its keys, and Add key and Reset on the right. The keys wrap onto more lines when there are several, and never move or overlap Add key and Reset. Each key is a chip (`KeyChipPanel`) holding the key's button and its remove button; the chip turns gold (`KeyChipListeningPanel`) while that key waits for a new one. An action with no keys says "No keys".
 

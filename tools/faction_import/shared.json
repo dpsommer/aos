@@ -18,6 +18,8 @@
 		"The Duardin Ascendant"
 	],
 	"fields": {
+		"foot_of_gork": {"base_size": {"shape": "model", "length": 120, "width": 120}},
+		"morkspit_marsh": {"base_size": {"shape": "model", "length": 200, "width": 150}},
 		"grombrindal_the_white_dwarf > As Stern As Stone": {
 			"effect": "Friendly DUARDIN INFANTRY units have WARD (5+) while they are wholly within 12\" of this unit."
 		},

@@ -5,7 +5,11 @@
 			"name": "Anointed Sentinels",
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 4,
@@ -59,7 +63,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 170,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "10",
@@ -113,7 +121,10 @@
 			"name": "Ashen Elder",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Hashutite Commander",
@@ -168,7 +179,11 @@
 			"name": "Bull Centaurs",
 			"points": 190,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 4,
@@ -222,7 +237,10 @@
 			"name": "Daemonsmith",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Hashutite Commander",
@@ -285,7 +303,10 @@
 			"name": "Daemonsmith on Infernal Taurus",
 			"points": 270,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Hashutite Commander",
@@ -390,7 +411,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 350,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Hashutite Commander",
@@ -496,7 +520,10 @@
 			"name": "Deathshrieker Rocket Battery",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 8,
@@ -558,7 +585,10 @@
 			"name": "Dominator Engine with Bane Maces",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 10,
@@ -610,7 +640,10 @@
 			"name": "Dominator Engine with Immolation Cannons",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 10,
@@ -677,7 +710,10 @@
 			"name": "Hobgrot Vandalz",
 			"points": 70,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -720,7 +756,10 @@
 			"name": "Infernal Cohort with Hashutite Blades",
 			"points": 90,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -783,7 +822,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "4",
@@ -848,7 +890,10 @@
 			"name": "Infernal Cohort with Hashutite Spears",
 			"points": 90,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -918,7 +963,10 @@
 			"name": "Infernal Razers with Blunderbusses",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -979,7 +1027,10 @@
 			"name": "Infernal Razers with Flamehurlers",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -1044,7 +1095,35 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "Zuldrakka the Hateful: 32mm, Grisk Back-stabba: 25mm, Tokkor the Immolator, Morudok and Imnidrin: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Zuldrakka the Hateful",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Grisk Back-stabba",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					},
+					{
+						"name": "Tokkor the Immolator, Morudok and Imnidrin",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",
@@ -1111,7 +1190,10 @@
 			"name": "Tormentor Bombard",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 8,
@@ -1174,7 +1256,10 @@
 			"name": "Urak Taar, the First Daemonsmith",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Hashutite Commander",
@@ -1293,7 +1378,10 @@
 			"name": "War Despot",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any HELSMITHS OF HASHUT"
@@ -1350,7 +1438,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any HELSMITHS OF HASHUT"

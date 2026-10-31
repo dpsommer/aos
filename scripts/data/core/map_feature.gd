@@ -8,6 +8,9 @@ const OBJECTIVE_TYPES: PackedStringArray = ["Sun Seekers", "Golden Lions", "Held
 const TERRAIN_TYPES: PackedStringArray = ["area_or_obstacle", "obscuring", "place_of_power"]
 ## Values of [member size] for terrain features.
 const TERRAIN_SIZES: PackedStringArray = ["small", "medium"]
+## How wide each size of terrain feature is, in inches: battleplan maps show only where terrain
+## goes, so maps and the battlefield give each a square of this width.
+const TERRAIN_WIDTHS := {"small": 4.0, "medium": 6.0}
 
 ## Objective type, e.g. "Sun Seekers", or terrain type: "area_or_obstacle" (the player picks
 ## either), "obscuring" or "place_of_power".

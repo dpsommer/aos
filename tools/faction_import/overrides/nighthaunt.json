@@ -3,6 +3,7 @@
 		"The Clattering Procession > Fell Riders": "Fell Riders"
 	},
 	"fields": {
+		"nexus_of_grief": {"base_size": {"shape": "model", "length": 150, "width": 100}},
 		"tomb_banshee > Piercing Scream": {
 			"range": 10,
 			"abilities": ["Crit (Auto-wound)", "Shoot in Combat"]

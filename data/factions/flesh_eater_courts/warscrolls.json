@@ -5,7 +5,10 @@
 			"name": "Abhorrant Archregent",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FLESH-EATER COURTS",
@@ -70,7 +73,10 @@
 			"name": "Abhorrant Cardinal",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Royal Attendant",
@@ -132,7 +138,10 @@
 			"name": "Abhorrant Ghoul King",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FLESH-EATER COURTS",
@@ -197,7 +206,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Royal Attendant",
@@ -257,7 +269,10 @@
 			"name": "Abhorrant Ghoul King on Royal Terrorgheist",
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FLESH-EATER COURTS",
@@ -379,7 +394,10 @@
 			"name": "Abhorrant Ghoul King on Royal Zombie Dragon",
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FLESH-EATER COURTS",
@@ -500,7 +518,10 @@
 			"name": "Abhorrant Gorewarden",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Royal Attendant",
@@ -580,7 +601,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Royal Attendant",
@@ -641,7 +665,11 @@
 			"name": "Cadaverous Barricade",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 200,
+				"width": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 10,
@@ -674,7 +702,10 @@
 			"name": "Chalice of Ushoran",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -719,7 +750,11 @@
 			"name": "Charnel Throne",
 			"points": 10,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 100
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 10,
@@ -775,7 +810,11 @@
 			"name": "Corpsemare Stampede",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 10,
@@ -828,7 +867,10 @@
 			"name": "Crypt Flayers",
 			"points": 140,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 4,
@@ -886,7 +928,10 @@
 			"name": "Crypt Flayers (2 Models)",
 			"points": 90,
 			"unit_size": 2,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Crypt Infernal Courtier in your army. This unit cannot be reinforced.",
 			"move": "12",
@@ -946,7 +991,10 @@
 			"legends": true,
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SERFS"
@@ -993,7 +1041,10 @@
 			"name": "Crypt Ghouls",
 			"points": 140,
 			"unit_size": 20,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1039,7 +1090,10 @@
 			"name": "Cryptguard",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1097,7 +1151,10 @@
 			"name": "Crypt Haunter Courtier",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SERFS",
@@ -1154,7 +1211,10 @@
 			"name": "Crypt Horrors",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "7",
 			"health": 4,
@@ -1203,7 +1263,10 @@
 			"name": "Crypt Horrors (2 Models)",
 			"points": 100,
 			"unit_size": 2,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Crypt Haunter Courtier in your army. This unit cannot be reinforced.",
 			"move": "7",
@@ -1253,7 +1316,10 @@
 			"name": "Crypt Infernal Courtier",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SERFS",
@@ -1328,7 +1394,10 @@
 			"name": "Grand Justice Gormayne",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 KNIGHTS",
@@ -1390,7 +1459,27 @@
 			"name": "High Falconer Felgryn",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "High Falconer Felgryn: 32mm, Grype: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "High Falconer Felgryn",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Grype",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -1474,7 +1563,10 @@
 			"name": "Marrowscroll Herald",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SERFS",
@@ -1542,7 +1634,11 @@
 			"name": "Morbheg Knights",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 4,
@@ -1640,7 +1736,43 @@
 			"name": "Royal Beastflayers",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "Royal Flaymaster, Beastflayer Baron: 32mm, 2 x Offal Hounds: 40mm, 3 x Ghoul Trackers: 25mm, 3 x Ghoul Gore-Squires: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Royal Flaymaster, Beastflayer Baron",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Offal Hounds",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Ghoul Trackers",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					},
+					{
+						"name": "Ghoul Gore-Squires",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1687,7 +1819,10 @@
 			"name": "Royal Decapitator",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SERFS",
@@ -1744,7 +1879,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 BEAST",
@@ -1804,7 +1942,10 @@
 			"name": "Royal Terrorgheist",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 14,
@@ -1900,7 +2041,10 @@
 			"name": "Royal Zombie Dragon",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 14,
@@ -1995,7 +2139,27 @@
 			"legends": true,
 			"points": 80,
 			"unit_size": 7,
-			"base_size": "Duke Crakmarrow and The Duke's Harriers: 32mm, Gristlewel, Valreek the Tracker, The Royal Butcher, Master Talon and The Night's Herald: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Duke Crakmarrow and The Duke's Harriers",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Gristlewel, Valreek the Tracker, The Royal Butcher, Master Talon and The Night's Herald",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -2059,7 +2223,27 @@
 			"legends": true,
 			"points": 80,
 			"unit_size": 5,
-			"base_size": "Gristla Tenderhooke: 32mm, The Carnskyr, Flensemaster Pewdrig, Seddrik the Chain and Young Master Kretch: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Gristla Tenderhooke",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "The Carnskyr, Flensemaster Pewdrig, Seddrik the Chain and Young Master Kretch",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -2117,7 +2301,10 @@
 			"name": "Ushoran, Mortarch of Delusion",
 			"points": 450,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FLESH-EATER COURTS",
@@ -2221,7 +2408,11 @@
 			"name": "Varghulf Courtier",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 8,
@@ -2278,7 +2469,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "10",

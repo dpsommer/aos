@@ -7,6 +7,7 @@
 		"athol_khul > Oath of Murder": "Unknowing Herald"
 	},
 	"fields": {
+		"nexus_chaotica": {"base_size": {"shape": "model", "length": 150, "width": 120}},
 		"Pledge to Chaos": {"effect": "Pick 1 of the following Pledge to Chaos keywords:\n• PLEDGED TO KHORNE\n• PLEDGED TO TZEENTCH\n• PLEDGED TO NURGLE\n• PLEDGED TO SLAANESH\nThe target has that keyword for the rest of the battle."},
 		"Brand of Unbreakable Bonds": {"declare": "This unit cannot use this ability if it has an Ensorcelled Banner."},
 		"Venomous Tail Strike": {"effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn."},
@@ -23,7 +24,7 @@
 		"legion_of_the_first_prince_beasts_of_nurgle > Attention Seekers": {"frequency": "Once Per Turn (Army)"},
 		"First-damned Prince": {"effect": "While a friendly Be'lakor is within the combat range of any friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON units:\n• That friendly Be'lakor has WARD (4+).\n• In addition, each time you make a successful ward roll for that friendly Be'lakor, allocate 1 damage point to a friendly non-HERO LEGION OF THE FIRST PRINCE DAEMON unit within Be'lakor's combat range after the damage sequence for Be'lakor has been resolved (ward rolls cannot be made for those damage points)."},
 		"Rage of Arkhar": {"timing": "Your Combat Phase"},
-		"realmscourge_rupture": {"health": 6},
+		"realmscourge_rupture": {"health": 6, "base_size": {"shape": "model", "length": 150, "width": 100}},
 		"eightfold_doom_sigil": {"keywords": ["WARD (6+)", "MANIFESTATION", "ENDLESS SPELL", "CHAOS", "SLAVES TO DARKNESS"]},
 		"scourge_of_ghyran_abraxia_spear_of_the_everchosen > The Thanatorg's Vicious Claws": {"name": "The Thanatorg's Claws and Fangs"},
 		"scourge_of_ghyran_abraxia_spear_of_the_everchosen > Battle Damaged": {"effect": "While this unit has 10 or more damage points, the Attacks characteristic of The Thanatorg's Claws and Fangs is 4."},

@@ -5,7 +5,10 @@
 			"name": "Beast of Nurgle",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "7",
 			"health": 8,
@@ -57,7 +60,10 @@
 			"name": "Belga the Cystwitch",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Plaguebearers",
@@ -121,7 +127,10 @@
 			"name": "Bloab Rotspawned",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -222,7 +231,10 @@
 			"name": "Cankerborn",
 			"points": 170,
 			"unit_size": 2,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -295,7 +307,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -360,7 +375,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON",
@@ -420,7 +438,11 @@
 			"name": "Feculent Gnarlmaw",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 120,
+				"width": 120
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 7,
@@ -484,7 +506,11 @@
 			"name": "Festus the Leechlord",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "150 × 95mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 150,
+				"width": 95
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Plague Scion",
@@ -583,7 +609,10 @@
 			"name": "Gelgus Pust, the Prince of Sores",
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Plague Scion",
@@ -664,7 +693,35 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "Phleghmus Potbelly: 40mm, Slunge, Maggoty Strewg and Bug-Eyed Dripterus: 32mm, Squort: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Phleghmus Potbelly",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Slunge, Maggoty Strewg and Bug-Eyed Dripterus",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Squort",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",
@@ -723,7 +780,10 @@
 			"name": "Great Unclean One",
 			"points": 380,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Plague Scion",
@@ -821,7 +881,10 @@
 			"name": "Gutrot Spume",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -895,7 +958,11 @@
 			"name": "Harbinger of Decay",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -970,7 +1037,11 @@
 			"name": "Horticulous Slimux",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -1047,7 +1118,10 @@
 			"name": "Lord of Afflictions",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ROTBRINGERS"
@@ -1120,7 +1194,10 @@
 			"name": "Lord of Blights",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ROTBRINGERS"
@@ -1182,7 +1259,10 @@
 			"name": "Lord of Plagues",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ROTBRINGERS"
@@ -1242,7 +1322,10 @@
 			"name": "Morbidex Twiceborn",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -1345,7 +1428,10 @@
 			"name": "Nurglings",
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 4,
@@ -1392,7 +1478,10 @@
 			"name": "Orghotts Daemonspew",
 			"points": 250,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -1487,7 +1576,10 @@
 			"name": "Pestigors",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -1532,7 +1624,10 @@
 			"name": "Plaguebearers",
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1580,7 +1675,10 @@
 			"name": "Plague Drones",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 5,
@@ -1649,7 +1747,10 @@
 			"name": "Poxbringer, Herald of Nurgle",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -1700,7 +1801,10 @@
 			"name": "Pox-Wretches",
 			"points": 110,
 			"unit_size": 14,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -1756,7 +1860,10 @@
 			"name": "Pusgoyle Blightlords",
 			"points": 190,
 			"unit_size": 2,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 8,
@@ -1822,7 +1929,10 @@
 			"name": "Pusgoyle Blightlords (1 Model)",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Lord of Afflictions in your army.",
 			"move": "8",
@@ -1889,7 +1999,10 @@
 			"name": "Putrid Blightkings",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -1940,7 +2053,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 140,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "4",
@@ -1999,7 +2115,10 @@
 			"name": "Rotbringer Sorcerer",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ROTBRINGERS",
@@ -2049,7 +2168,10 @@
 			"name": "Rotigus",
 			"points": 420,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Plague Scion",
@@ -2143,7 +2265,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 430,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Plague Scion",
@@ -2258,7 +2383,35 @@
 			"name": "Rotmire Creed",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "Witherlord, Bloated One: 32mm, 2 x Carrion Catchers: 28.5mm, 6 x Mirefolk Outcasts: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Witherlord, Bloated One",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Carrion Catchers",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Mirefolk Outcasts",
+						"count": 6,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2314,7 +2467,10 @@
 			"name": "Rotswords",
 			"points": 210,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -2364,7 +2520,10 @@
 			"name": "Shaman Foulhoof",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -2427,7 +2586,10 @@
 			"name": "Sloppity Bilepiper, Herald of Nurgle",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -2476,7 +2638,11 @@
 			"name": "Sloven Knights",
 			"points": 180,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 4,
@@ -2537,7 +2703,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 180,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "8",
@@ -2598,7 +2768,10 @@
 			"name": "Spoilpox Scrivener, Herald of Nurgle",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -2680,7 +2853,10 @@
 			"name": "The Glottkin",
 			"points": 470,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Rotbringer Lord",
@@ -2791,7 +2967,10 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",

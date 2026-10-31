@@ -385,3 +385,12 @@ def test_table_without_max_has_no_max_key():
 
 def test_table_drops_max_of_one():
     assert "max" not in schema.table({"name": "Heroic Traits", "max": 1, "entries": []})
+
+
+def test_warscroll_writes_base_size_as_parsed_object():
+    assert schema.warscroll(ws(base_size="60 × 35mm"))["base_size"] == {"shape": "oval", "length": 60, "width": 35}
+
+
+def test_warscroll_keeps_base_size_object():
+    base = {"shape": "round", "diameter": 32}
+    assert schema.warscroll(ws(base_size=base))["base_size"] == base

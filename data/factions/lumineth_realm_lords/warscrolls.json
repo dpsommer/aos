@@ -5,7 +5,10 @@
 			"name": "Alarith Spirit of the Mountain",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 14,
@@ -79,7 +82,10 @@
 			"name": "Alarith Stoneguard",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -122,7 +128,10 @@
 			"name": "Alarith Stonemage",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -187,7 +196,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -249,7 +261,10 @@
 			"name": "Archmage Teclis and Celennar, Spirit of Hysh",
 			"points": 640,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Lumineth Paragon",
@@ -381,7 +396,10 @@
 			"name": "Avalenor, the Stoneheart King",
 			"points": 390,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Alarith Stonemage",
@@ -471,7 +489,10 @@
 			"name": "Ellania and Ellathor, Eclipsian Warsages",
 			"points": 330,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Lumineth Paragon",
@@ -567,7 +588,10 @@
 			"name": "Hurakan Spirit of the Wind",
 			"points": 270,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "18",
 			"health": 8,
@@ -652,7 +676,11 @@
 			"name": "Hurakan Windchargers",
 			"points": 180,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 3,
@@ -721,7 +749,11 @@
 			"name": "Hurakan Windmage",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -799,7 +831,10 @@
 			"name": "Hyshian Twinstones",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 5,
@@ -851,7 +886,11 @@
 			"name": "Lyrior Uthralle, Warden of Ymetrica",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Lumineth Paragon",
@@ -942,7 +981,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -1014,7 +1056,11 @@
 			"name": "Rune of Petrification",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -1047,7 +1093,11 @@
 			"name": "Sanctum of Amyntok",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 150
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -1088,7 +1138,10 @@
 			"name": "Scinari Calligrave",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -1138,7 +1191,10 @@
 			"name": "Scinari Cathallar",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -1189,7 +1245,10 @@
 			"name": "Scinari Enlightener",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -1266,7 +1325,10 @@
 			"name": "Scinari Loreseeker",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -1343,7 +1405,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -1429,7 +1494,10 @@
 			"name": "Sevireth, Lord of the Seventh Wind",
 			"points": 350,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Hurakan Windmage",
@@ -1521,7 +1589,11 @@
 			"name": "Shrine Luminor",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 100
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 12,
@@ -1578,7 +1650,10 @@
 			"name": "The Light of Eltharion",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Lumineth Paragon",
@@ -1667,7 +1742,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Lumineth Paragon",
@@ -1751,7 +1829,27 @@
 			"legends": true,
 			"points": 190,
 			"unit_size": 4,
-			"base_size": "Thyrielle, Orieth, Sirikith, Anara: 28.5mm, Tzul: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Thyrielle, Orieth, Sirikith, Anara",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Tzul",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "7",
@@ -1845,7 +1943,10 @@
 			"name": "Vanari Auralan Sentinels",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1900,7 +2001,10 @@
 			"name": "Vanari Auralan Wardens",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1946,7 +2050,10 @@
 			"name": "Vanari Bannerblade",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any VANARI"
@@ -1996,7 +2103,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any VANARI"
@@ -2045,7 +2155,10 @@
 			"name": "Vanari Bladelords",
 			"points": 140,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -2098,7 +2211,11 @@
 			"name": "Vanari Dawnriders",
 			"points": 200,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 3,
@@ -2157,7 +2274,10 @@
 			"name": "Vanari Lord Regent",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ydrilan Riverblades",
@@ -2217,7 +2337,11 @@
 			"name": "Vanari Lord Regent on Lightcourser",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Lumineth Paragon",
@@ -2289,7 +2413,10 @@
 			"name": "Vanari Starshard Ballista",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 5,
@@ -2353,7 +2480,35 @@
 			"name": "Ydrilan Riverblades",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "Pureflood Seneschal: 32mm, 4 x Crestdancers: 32mm, 5 x Stream-runners: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Pureflood Seneschal",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Crestdancers",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Stream-runners",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "7",
 			"health": 1,

@@ -410,7 +410,10 @@
 					"name": "Outlaw Conqueror Cogfort",
 					"points": 0,
 					"unit_size": 1,
-					"base_size": "160mm",
+					"base_size": {
+						"shape": "round",
+						"diameter": 160
+					},
 					"can_reinforce": false,
 					"move": "6",
 					"health": 25,
@@ -1224,7 +1227,10 @@
 					"name": "Gotrek Gurnisson",
 					"points": 0,
 					"unit_size": 1,
-					"base_size": "32mm",
+					"base_size": {
+						"shape": "round",
+						"diameter": 32
+					},
 					"can_reinforce": false,
 					"move": "4",
 					"health": 8,
@@ -1796,7 +1802,10 @@
 					"name": "Mask of the Deceiver",
 					"points": 0,
 					"unit_size": 1,
-					"base_size": "40mm",
+					"base_size": {
+						"shape": "round",
+						"diameter": 40
+					},
 					"can_reinforce": false,
 					"move": "5",
 					"health": 6,
@@ -2432,7 +2441,10 @@
 					"name": "Outlaw Cannonade Cogfort",
 					"points": 0,
 					"unit_size": 1,
-					"base_size": "160mm",
+					"base_size": {
+						"shape": "round",
+						"diameter": 160
+					},
 					"can_reinforce": false,
 					"move": "6",
 					"health": 25,

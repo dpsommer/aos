@@ -3,6 +3,7 @@
 		"Petrifex Elite > Summon Soulstealer Carrion": "Summon Nightmare Predator"
 	},
 	"fields": {
+		"bone_tithe_nexus": {"base_size": {"shape": "model", "length": 120, "width": 120}},
 		"Remorseless Conquerors": {"name": "Unfaltering Pace"},
 		"Necrotic Impetus": {"name": "Necrotic Blast"},
 		"kavalos_war_chariot > Kavalos Steed's Hooves, Teeth, and Barbed Tails": {"name": "Chariot Steeds' Fangs and Claws"},

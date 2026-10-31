@@ -5,7 +5,10 @@
 			"name": "Alchemite Warforger",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SIGMARITE WAR MACHINE",
@@ -55,7 +58,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SIGMARITE WAR MACHINE",
@@ -104,7 +110,10 @@
 			"army_of_renown": "Allies of the Free Cities",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in an Allies of the Free Cities Army of Renown.",
 			"move": "4",
@@ -168,7 +177,10 @@
 			"army_of_renown": "Allies of the Free Cities",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in an Allies of the Free Cities Army of Renown.",
 			"move": "6",
@@ -225,7 +237,10 @@
 			"army_of_renown": "Allies of the Free Cities",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in an Allies of the Free Cities Army of Renown.",
 			"move": "6",
@@ -273,7 +288,27 @@
 			"army_of_renown": "Allies of the Free Cities",
 			"points": 160,
 			"unit_size": 9,
-			"base_size": "Kyndledroth, Drothmaster, Drothblood Thane and Vulkyn Runefather: 32mm, 5 x Scalebreakers: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Kyndledroth, Drothmaster, Drothblood Thane and Vulkyn Runefather",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Scalebreakers",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced. This unit can only be taken in an Allies of the Free Cities Army of Renown.",
 			"move": "4",
@@ -336,7 +371,10 @@
 			"name": "Amethyst Knellmage",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SIGMARITE WAR MACHINE",
@@ -397,7 +435,10 @@
 			"name": "Aqshian Pyrocaster",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SIGMARITE WAR MACHINE",
@@ -455,7 +496,10 @@
 			"name": "Assassin",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any AELF INFANTRY"
@@ -513,7 +557,10 @@
 			"name": "Battlemage",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SIGMARITE INFANTRY"
@@ -560,7 +607,11 @@
 			"name": "Battlemage on Celestial Hurricanum",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SIGMARITE INFANTRY",
@@ -631,7 +682,11 @@
 			"name": "Battlemage on Griffon",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SIGMARITE INFANTRY",
@@ -716,7 +771,11 @@
 			"name": "Battlemage on Luminark of Hysh",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SIGMARITE INFANTRY",
@@ -795,7 +854,10 @@
 			"name": "Black Ark Corsairs",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -853,7 +915,10 @@
 			"name": "Black Ark Fleetmaster",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any AELF"
@@ -901,7 +966,10 @@
 			"name": "Black Guard",
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -945,7 +1013,10 @@
 			"name": "Bleakswords",
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -994,7 +1065,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 5,
@@ -1046,7 +1120,35 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "Pater Filius: 40mm, Friar Galvic: 32mm, Scorched Yakob, Acolyte Arcus and Soror Tazat: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Pater Filius",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Friar Galvic",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Scorched Yakob, Acolyte Arcus and Soror Tazat",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -1114,7 +1216,10 @@
 			"name": "Callis and Toll",
 			"points": 240,
 			"unit_size": 2,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"1 Toll’s Companions",
@@ -1186,7 +1291,10 @@
 			"name": "Cannonade Cogfort",
 			"points": 530,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -1310,7 +1418,11 @@
 			"name": "Celestial Hurricanum",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "8",
@@ -1366,7 +1478,10 @@
 			"name": "Cogsmith",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DUARDIN"
@@ -1423,7 +1538,10 @@
 			"name": "Conqueror Cogfort",
 			"points": 420,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -1537,7 +1655,11 @@
 			"name": "Dark Riders",
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "12",
@@ -1611,7 +1733,10 @@
 			"name": "Darkshards",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -1669,7 +1794,10 @@
 			"name": "Dawner's Triumph",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -1711,7 +1839,11 @@
 			"name": "Drakespawn Chariot",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "10",
@@ -1769,7 +1901,11 @@
 			"name": "Drakespawn Knights",
 			"points": 190,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "10",
@@ -1830,7 +1966,10 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 6,
@@ -1886,7 +2025,11 @@
 			"name": "Dreadlord on Black Dragon",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Ark Fleetmaster",
@@ -1995,7 +2138,10 @@
 			"name": "Dreadspears",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -2044,7 +2190,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -2106,7 +2255,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 5,
@@ -2156,7 +2308,11 @@
 			"name": "Erasmus Zonn, the Enlightened One",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SIGMARITE"
@@ -2259,7 +2415,10 @@
 			"name": "Executioners",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -2304,7 +2463,10 @@
 			"name": "Flagellants",
 			"points": 80,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -2346,7 +2508,11 @@
 			"name": "Freeguild Cavalier-Marshal",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -2432,7 +2598,11 @@
 			"name": "Freeguild Cavaliers",
 			"points": 180,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 3,
@@ -2492,7 +2662,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "10",
@@ -2551,7 +2725,27 @@
 			"name": "Freeguild Command Corps Adjutants",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "Great Herald and Mascot Gargoylian: 28.5mm, Arch-Knight: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Great Herald and Mascot Gargoylian",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Arch-Knight",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -2595,7 +2789,27 @@
 			"name": "Freeguild Command Corps Auxiliaries",
 			"points": 0,
 			"unit_size": 2,
-			"base_size": "Soul Shepherd: 40mm, War Surgeon: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Soul Shepherd",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "War Surgeon",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced. This unit can only be taken in a regiment that contains a Freeguild Command Corp Adjutant unit and no other Freeguild Command Corp Auxiliaries. This unit does not count towards the number of friendly units that can accompany a Hero.",
 			"move": "5",
@@ -2650,7 +2864,10 @@
 			"name": "Freeguild Command Corps Whisperblade",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in a regiment that contains a Freeguild Command Corp Adjutant unit and no other Freeguild Command Corp Whisperblades. This unit does not count towards the number of friendly units that can accompany a HERO.",
 			"move": "5",
@@ -2694,7 +2911,10 @@
 			"name": "Freeguild Fusiliers",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2755,7 +2975,10 @@
 			"name": "Freeguild Gallants",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -2805,7 +3028,10 @@
 			"name": "Freeguild Grenadiers",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2859,7 +3085,27 @@
 			"name": "Freeguild Marshal and Relic Envoy",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "Freeguild Marshal: 32mm, Relic Envoy: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Freeguild Marshal",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Relic Envoy",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -2932,7 +3178,11 @@
 			"name": "Freeguild Marshal on Griffon",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -3016,7 +3266,10 @@
 			"name": "Freeguild Steelhelms",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -3062,7 +3315,10 @@
 			"name": "Fusil-Major on Ogor Warhulk",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -3126,7 +3382,10 @@
 			"name": "Galen and Doralia ven Denst",
 			"points": 140,
 			"unit_size": 2,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ironweld Great Cannon",
@@ -3211,7 +3470,10 @@
 			"name": "Gate Gargants",
 			"points": 320,
 			"unit_size": 2,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",
@@ -3278,7 +3540,10 @@
 			"legends": true,
 			"points": 180,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -3350,7 +3615,10 @@
 			"name": "Gyrobomber",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "12",
@@ -3414,7 +3682,10 @@
 			"name": "Gyrocopter",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "12",
@@ -3468,7 +3739,10 @@
 			"name": "Hammerers",
 			"points": 170,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "4",
@@ -3516,7 +3790,35 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 6,
-			"base_size": "Haskel Hexbane: 32mm, Brydget Axwold, Quiet Pock and Aemos Duncarrow: 28.5mm, Ratspike and Grotbiter: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Haskel Hexbane",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Brydget Axwold, Quiet Pock and Aemos Duncarrow",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Ratspike and Grotbiter",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -3608,7 +3910,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 5,
@@ -3682,7 +3987,10 @@
 			"name": "Ironbreakers",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "4",
@@ -3726,7 +4034,10 @@
 			"name": "Irondrakes",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "4",
@@ -3785,7 +4096,10 @@
 			"name": "Ironweld Great Cannon",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"move": "3",
 			"health": 6,
@@ -3838,7 +4152,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 5,
@@ -3907,7 +4224,27 @@
 			"name": "Jorvan Kreel, Heir of the Kraken",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "Jorvan Kreel: 32mm, Thexa: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Jorvan Kreel",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Thexa",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -3972,7 +4309,11 @@
 			"name": "Kharibdyss",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "8",
@@ -4032,7 +4373,10 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -4085,7 +4429,10 @@
 			"name": "Longbeards",
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "4",
@@ -4131,7 +4478,11 @@
 			"name": "Luminark of Hysh",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "8",
@@ -4195,7 +4546,10 @@
 			"name": "Mallus Forgepriest",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SIGMARITE WAR MACHINE",
@@ -4247,7 +4601,11 @@
 			"name": "Pontifex Zenestra, Matriarch of the Great Wheel",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -4334,7 +4692,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -4408,7 +4770,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -4488,7 +4854,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 5,
@@ -4534,7 +4903,10 @@
 			"name": "Runelord",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DUARDIN"
@@ -4593,7 +4965,11 @@
 			"name": "Scourgerunner Chariot",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "10",
@@ -4663,7 +5039,10 @@
 			"name": "Sorceress",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Ark Fleetmaster",
@@ -4722,7 +5101,11 @@
 			"name": "Sorceress on Black Dragon",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Ark Fleetmaster",
@@ -4841,7 +5224,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"move": "3",
 			"health": 6,
@@ -4906,7 +5292,11 @@
 			"name": "Steam Tank",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "8",
@@ -4980,7 +5370,11 @@
 			"name": "Steam Tank Commander",
 			"points": 250,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Steam Tank"
@@ -5086,7 +5480,10 @@
 			"name": "Tahlia Vedra, Lioness of the Parch",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Freeguild Veteran",
@@ -5195,7 +5592,10 @@
 			"army_of_renown": "The Iron March",
 			"points": 510,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Freeguild Gallants"
@@ -5299,7 +5699,10 @@
 			"army_of_renown": "The Iron March",
 			"points": 450,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Freeguild Gallants"
@@ -5409,7 +5812,27 @@
 			"name": "Toll's Companions",
 			"points": 0,
 			"unit_size": 4,
-			"base_size": "Valius, the Keeper Aqshian: 40mm, Mistress Verentia, Balthas the gryph-hound and Lyssa Revenya: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Valius, the Keeper Aqshian",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Mistress Verentia, Balthas the gryph-hound and Lyssa Revenya",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in Callis and Toll’s regiment.",
 			"move": "5",
@@ -5475,7 +5898,10 @@
 			"name": "Warden King",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cogsmith",
@@ -5531,7 +5957,11 @@
 			"name": "War Hydra",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "8",
@@ -5604,7 +6034,35 @@
 			"name": "Wildercorps Hunters",
 			"points": 120,
 			"unit_size": 11,
-			"base_size": "Wildercorps Warden, Arbalest: 40mm, 2 x Leatherhides and Trailblazer: 28.5mm, 2 x Scouts and 4 x Trailhounds: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Wildercorps Warden, Arbalest",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "2 x Leatherhides and Trailblazer",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "2 x Scouts and 4 x Trailhounds",
+						"count": 6,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -5694,7 +6152,10 @@
 			"legends": true,
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 1,

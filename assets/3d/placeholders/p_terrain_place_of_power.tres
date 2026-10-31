@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "p_terrain_place_of_power"
+albedo_color = Color(0.357, 0.306, 0.525, 1)
+roughness = 0.7
+emission_enabled = true
+emission = Color(0.506, 0.345, 0.667, 1)
+emission_energy_multiplier = 0.25

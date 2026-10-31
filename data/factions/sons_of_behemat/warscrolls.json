@@ -5,7 +5,11 @@
 			"name": "Ancient Ghyrochs",
 			"points": 0,
 			"unit_size": 2,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in Ma Maegran’s regiment. This unit cannot be reinforced.",
 			"move": "8",
@@ -58,7 +62,10 @@
 			"name": "Beast-smasher Mega-Gargant",
 			"points": 380,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SONS OF BEHEMAT",
@@ -157,7 +164,10 @@
 			"name": "Boss-stompers",
 			"points": 370,
 			"unit_size": 3,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",
@@ -212,7 +222,10 @@
 			"name": "Gatebreaker Mega-Gargant",
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SONS OF BEHEMAT",
@@ -320,7 +333,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Eager Lout",
@@ -427,7 +443,10 @@
 			"name": "King Brodd",
 			"points": 430,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Eager Lout",
@@ -548,7 +567,10 @@
 			"name": "Kraken-eater Mega-Gargant",
 			"points": 370,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SONS OF BEHEMAT",
@@ -647,7 +669,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 430,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Eager Lout",
@@ -762,7 +787,10 @@
 			"name": "Ma Maegran, Chooser of the Mighty",
 			"points": 370,
 			"unit_size": 1,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Ancient Ghyrochs (required)",
@@ -868,7 +896,11 @@
 			"name": "Mancrusher Gargant",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 12,
@@ -956,7 +988,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "8",
@@ -1026,7 +1062,10 @@
 			"name": "Rock-hurlers",
 			"points": 380,
 			"unit_size": 3,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",
@@ -1105,7 +1144,10 @@
 			"name": "Warstomper Mega-Gargant",
 			"points": 390,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SONS OF BEHEMAT",

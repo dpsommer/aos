@@ -5,6 +5,8 @@
 		"Astral Templars > Thundrous Roar": "Tenacious Trackers"
 	},
 	"fields": {
+		"stormreach_portal": {"base_size": {"shape": "model", "length": 150, "width": 80}},
+		"hamilcar_bear_eater": {"base_size": {"shape": "round", "diameter": 40}},
 		"knight_zephyros": {"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR", "legends": true},
 		"knight_venator": {"notes": "This HERO can join an eligible regiment as a STORMCAST EXEMPLAR", "base_size": "50mm"},
 		"celestar_ballista": {"notes": "", "base_size": "Celestar Ballista: 60mm, Celestar Ballista Crew: 40mm"},

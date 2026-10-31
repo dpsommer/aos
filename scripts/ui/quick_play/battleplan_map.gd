@@ -7,10 +7,11 @@ extends Control
 const GROUND := Color("#2A2F38")
 const ATTACKER := Color(0.722, 0.267, 0.231, 0.55)
 const DEFENDER := Color(0.239, 0.455, 0.659, 0.6)
+## Territories on a [member neutral] map: who is attacker isn't known yet.
+const NEUTRAL_ATTACKER := Color(0.788, 0.8, 0.827, 0.28)
+const NEUTRAL_DEFENDER := Color(0.788, 0.8, 0.827, 0.12)
 const OBJECTIVE := Color("#F0C46A")
 const TERRAIN := Color(0.925, 0.906, 0.863, 0.55)
-## How wide each size of terrain feature is drawn, in inches.
-const TERRAIN_WIDTHS := {"small": 4.0, "medium": 6.0}
 ## Units within this many inches of an objective contest it.
 const CONTROL_RANGE := 3.0
 ## An objective's diameter in pixels on a map that isn't [member detailed].
@@ -22,6 +23,9 @@ var battlefield := Vector2(60, 44)
 ## Whether to draw the terrain and the objectives' control zones. A detailed map is as wide as its
 ## container, and as tall as the battlefield's shape makes it.
 var detailed := false
+## Whether to shade the territories grey instead of red and blue, before the roll-off decides
+## who is the attacker.
+var neutral := false
 
 
 func _init(plan: Battleplan, battlefield_size: Vector2, show_detail := false) -> void:
@@ -51,12 +55,12 @@ func to_map(inches: Vector2) -> Vector2:
 func _draw() -> void:
 	draw_style_box(UITheme.box(GROUND, UITheme.CONTROL_BORDER, 4), Rect2(Vector2.ZERO, size))
 	for area in battleplan.attacker_territory:
-		draw_rect(Rect2(to_map(area.position), to_map(area.size)), ATTACKER)
+		draw_rect(Rect2(to_map(area.position), to_map(area.size)), NEUTRAL_ATTACKER if neutral else ATTACKER)
 	for area in battleplan.defender_territory:
-		draw_rect(Rect2(to_map(area.position), to_map(area.size)), DEFENDER)
+		draw_rect(Rect2(to_map(area.position), to_map(area.size)), NEUTRAL_DEFENDER if neutral else DEFENDER)
 	if detailed:
 		for feature in battleplan.terrain:
-			var width: float = TERRAIN_WIDTHS.get(feature.size, TERRAIN_WIDTHS.medium)
+			var width: float = MapFeature.TERRAIN_WIDTHS.get(feature.size, MapFeature.TERRAIN_WIDTHS.medium)
 			_dashed_rect(Rect2(to_map(feature.position - Vector2(width, width) / 2), to_map(Vector2(width, width))))
 	var radius := to_map(Vector2(CONTROL_RANGE, 0)).x if detailed else SMALL_OBJECTIVE / 2
 	for objective in battleplan.objectives:

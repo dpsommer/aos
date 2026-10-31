@@ -319,7 +319,7 @@ func _warscroll(data: Variant, path: String, with_profile: bool) -> Warscroll:
 	warscroll.army_of_renown = _string(data, "army_of_renown", path)
 	warscroll.points = _int(data, "points", path, with_profile)
 	warscroll.unit_size = _int(data, "unit_size", path, with_profile)
-	warscroll.base_size = _string(data, "base_size", path)
+	warscroll.base_size = _base_size(data, "base_size", path)
 	warscroll.can_reinforce = _bool(data, "can_reinforce", path)
 	warscroll.regiment_options = _strings(data, "regiment_options", path)
 	warscroll.notes = _string(data, "notes", path)
@@ -338,6 +338,44 @@ func _warscroll(data: Variant, path: String, with_profile: bool) -> Warscroll:
 	for i in options.size():
 		warscroll.weapon_options.append(_weapon_option(options[i], "%s.weapon_options[%d]" % [path, i]))
 	return warscroll
+
+
+## The [BaseSize] in [param key], or null when there's none. See docs/technical/faction-data.md#base-sizes.
+func _base_size(data: Dictionary, key: String, path: String, allow_mixed := true) -> BaseSize:
+	if not data.has(key):
+		return null
+	var field := _join(path, key)
+	if not _is_object(data[key], field):
+		return null
+	var base_data: Dictionary = data[key]
+	match _string(base_data, "shape", field, true):
+		"round":
+			return BaseSize.round_base(_millimetres(base_data, "diameter", field, true))
+		"oval":
+			return BaseSize.oval(_millimetres(base_data, "length", field, true), _millimetres(base_data, "width", field, true))
+		"model":
+			return BaseSize.model(_millimetres(base_data, "length", field), _millimetres(base_data, "width", field))
+		"mixed" when allow_mixed:
+			var groups: Array[BaseSizeGroup] = []
+			var items := _array(base_data, "models", field)
+			for i in items.size():
+				var group_path := "%s.models[%d]" % [field, i]
+				var group := BaseSizeGroup.new()
+				if _is_object(items[i], group_path):
+					group.name = _string(items[i], "name", group_path)
+					group.count = _int(items[i], "count", group_path, true)
+					group.note = _string(items[i], "note", group_path)
+					group.base = _base_size(items[i], "base", group_path, false)
+					if group.base == null:
+						_error(_join(group_path, "base"), "is required")
+				groups.append(group)
+			if groups.is_empty():
+				_error(_join(field, "models"), "must list at least one group")
+			return BaseSize.mixed(groups)
+		var other:
+			if not other.is_empty() or base_data.has("shape"):
+				_error(_join(field, "shape"), "must be round, oval, model%s" % (" or mixed" if allow_mixed else ""))
+	return null
 
 
 func _weapon_option(data: Variant, path: String) -> WeaponOption:
@@ -517,6 +555,19 @@ func _int(data: Dictionary, key: String, path: String, required := false) -> int
 		_error(_join(path, key), "must be a whole number")
 		return 0
 	return int(value)
+
+
+## A size in millimetres: a positive number.
+func _millimetres(data: Dictionary, key: String, path: String, required := false) -> float:
+	if not data.has(key):
+		if required:
+			_error(_join(path, key), "is required")
+		return 0.0
+	var value: Variant = data[key]
+	if not (value is float or value is int) or value <= 0:
+		_error(_join(path, key), "must be a positive number of millimetres")
+		return 0.0
+	return float(value)
 
 
 func _bool(data: Dictionary, key: String, path: String, default := false) -> bool:

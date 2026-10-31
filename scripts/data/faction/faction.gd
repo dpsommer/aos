@@ -23,3 +23,12 @@ func get_warscroll(warscroll_id: String) -> Warscroll:
 		if warscroll.id == warscroll_id:
 			return warscroll
 	return null
+
+
+## The faction's warscroll called [param warscroll_name], or null. Spearhead warscrolls have no
+## battle profile, so a Spearhead unit's base comes from its faction's warscroll of the same name.
+func find_warscroll(warscroll_name: String) -> Warscroll:
+	for warscroll in warscrolls:
+		if warscroll.name == warscroll_name:
+			return warscroll
+	return null

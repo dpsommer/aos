@@ -3,6 +3,7 @@ extends GutTest
 
 const MainScene := preload("res://scenes/main.tscn")
 const Sandbox := preload("res://test/support/sandbox.gd")
+const BattleKit := preload("res://test/support/battle_kit.gd")
 
 
 ## Screens and faction buttons are removed with queue_free, so let a frame pass for
@@ -461,3 +462,88 @@ func test_show_army_builder_with_on_back_does_not_show_forge() -> void:
 	main.show_army_builder(_new_army(), func() -> void: pass)
 	(main.current_screen as ArmyBuilder).back_pressed.emit()
 	assert_is(main.current_screen, ArmyBuilder)
+
+
+# Battle
+
+func _show_loading(main: Main) -> LoadingScreen:
+	main.show_army_select(BattleSetup.Mode.SPEARHEAD)
+	(main.current_screen as ArmySelect).play_requested.emit(BattleKit.real_spearhead_setup())
+	return main.current_screen as LoadingScreen
+
+
+func test_army_select_play_requested_shows_loading_screen() -> void:
+	var main := _make_main()
+	assert_is(_show_loading(main), LoadingScreen)
+
+
+func test_loading_screen_is_the_only_child() -> void:
+	var main := _make_main()
+	_show_loading(main)
+	await get_tree().process_frame
+	assert_eq(main.get_child_count(), 1)
+
+
+func test_loading_screen_builds_the_battle_for_the_setup() -> void:
+	var main := _make_main()
+	var setup := BattleKit.real_spearhead_setup()
+	main.show_army_select(BattleSetup.Mode.SPEARHEAD)
+	(main.current_screen as ArmySelect).play_requested.emit(setup)
+	assert_eq((main.current_screen as LoadingScreen).battle.player.name, setup.spearhead)
+
+
+func test_loading_screen_finished_shows_the_battle_map() -> void:
+	var main := _make_main()
+	var screen := _show_loading(main)
+	screen.finish()
+	assert_is(main.current_screen, BattleMap)
+	assert_eq(main.current_screen, screen.map)
+
+
+func test_battle_map_is_a_child_of_main() -> void:
+	var main := _make_main()
+	_show_loading(main).finish()
+	assert_eq(main.current_screen.get_parent(), main)
+
+
+func test_battle_map_menu_requested_shows_main_menu() -> void:
+	var main := _make_main()
+	_show_loading(main).finish()
+	(main.current_screen as BattleMap).menu_requested.emit()
+	assert_is(main.current_screen, MainMenu)
+
+
+func test_battle_map_is_freed_when_returning_to_the_main_menu() -> void:
+	var main := _make_main()
+	_show_loading(main).finish()
+	var map := main.current_screen
+	(map as BattleMap).menu_requested.emit()
+	assert_true(map.is_queued_for_deletion())
+
+
+func test_show_battle_map_shows_the_given_map() -> void:
+	var main := _make_main()
+	var map: BattleMap = load("res://scenes/battle/battle_map.tscn").instantiate()
+	main.show_battle_map(map)
+	assert_eq(main.current_screen, map)
+
+
+func test_loading_screen_failed_returns_to_army_select() -> void:
+	var main := _make_main()
+	main.show_army_select(BattleSetup.Mode.SPEARHEAD)
+	var setup := BattleSetup.new()
+	(main.current_screen as ArmySelect).play_requested.emit(setup)
+	await wait_for_signal((main.current_screen as LoadingScreen).failed, 2)
+	assert_is(main.current_screen, ArmySelect)
+	assert_push_error_count(1)
+
+
+func test_loading_screen_failed_returns_to_the_army_step_of_the_same_mode() -> void:
+	var main := _make_main()
+	main.show_army_select(BattleSetup.Mode.MATCHED_PLAY)
+	var setup := BattleSetup.new()
+	setup.mode = BattleSetup.Mode.MATCHED_PLAY
+	(main.current_screen as ArmySelect).play_requested.emit(setup)
+	await wait_for_signal((main.current_screen as LoadingScreen).failed, 2)
+	assert_eq((main.current_screen as ArmySelect).mode, BattleSetup.Mode.MATCHED_PLAY)
+	assert_push_error_count(1)

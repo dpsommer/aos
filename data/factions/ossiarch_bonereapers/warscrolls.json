@@ -5,7 +5,10 @@
 			"name": "Arch-Kavalos Zandtos",
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mortisan Vizier",
@@ -83,7 +86,11 @@
 			"name": "Arkhan the Black, Mortarch of Sacrament",
 			"points": 430,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Legion Subcommander",
@@ -196,7 +203,11 @@
 			"name": "Bone-tithe Nexus",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 120,
+				"width": 120
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 13,
@@ -236,7 +247,11 @@
 			"name": "Bone-tithe Shrieker",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 7,
@@ -293,7 +308,11 @@
 			"name": "Gothizzar Harvester",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 10,
@@ -353,7 +372,10 @@
 			"name": "Immortis Guard",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 4,
@@ -397,7 +419,27 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 6,
-			"base_size": "Mir Kainan: 40mm, Binar Khenta, Karu, Senha, Nohem and Hakor: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Mir Kainan",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Binar Khenta, Karu, Senha, Nohem and Hakor",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -466,7 +508,11 @@
 			"name": "Katakros, Mortarch of the Necropolis",
 			"points": 450,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Legion Subcommander",
@@ -573,7 +619,11 @@
 			"name": "Kavalos Deathriders",
 			"points": 160,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 3,
@@ -634,7 +684,11 @@
 			"name": "Kavalos War Chariot",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 10,
@@ -703,7 +757,10 @@
 			"name": "Liege-Kavalos",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mortisan Vizier",
@@ -774,7 +831,11 @@
 			"name": "Liege-Kavalos on War Chariot",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mortisan Vizier",
@@ -849,7 +910,10 @@
 			"name": "Liege-Mortek",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mortek Crawler",
@@ -899,7 +963,10 @@
 			"name": "Morghast Archai",
 			"points": 240,
 			"unit_size": 2,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 6,
@@ -955,7 +1022,10 @@
 			"name": "Morghast Harbingers",
 			"points": 230,
 			"unit_size": 2,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 6,
@@ -1001,7 +1071,11 @@
 			"name": "Mortek Crawler",
 			"points": 250,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 12,
@@ -1065,7 +1139,10 @@
 			"name": "Mortek Guard",
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -1113,7 +1190,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "4",
@@ -1162,7 +1242,10 @@
 			"name": "Mortek Triaxes",
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -1231,7 +1314,10 @@
 			"name": "Mortisan Boneshaper",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
@@ -1291,7 +1377,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
@@ -1353,7 +1442,10 @@
 			"name": "Mortisan Ossifector",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gothizzar Harvester",
@@ -1406,7 +1498,10 @@
 			"name": "Mortisan Soulmason",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gothizzar Harvester",
@@ -1460,7 +1555,10 @@
 			"name": "Mortisan Soulreaper",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
@@ -1523,7 +1621,10 @@
 			"name": "Mortis Reapers",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -1581,7 +1682,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "6",
@@ -1669,7 +1773,10 @@
 			"name": "Necropolis Stalkers",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "7",
 			"health": 4,
@@ -1712,7 +1819,10 @@
 			"name": "Nightmare Predator",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 7,
@@ -1756,7 +1866,10 @@
 			"name": "Soulstealer Carrion",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 7,
@@ -1800,7 +1913,36 @@
 			"name": "Teratic Cohort",
 			"points": 90,
 			"unit_size": 8,
-			"base_size": "Kavalos Centari: 60 × 35mm, 2 × Mortek Cykloptians: 32mm, 5 × Teratic Prowlers and Aviarch Harpies: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Kavalos Centari",
+						"count": 1,
+						"base": {
+							"shape": "oval",
+							"length": 60,
+							"width": 35
+						}
+					},
+					{
+						"name": "Mortek Cykloptians",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "5 × Teratic Prowlers and Aviarch Harpies",
+						"count": 6,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "7",
 			"health": 1,
@@ -1852,7 +1994,35 @@
 			"legends": true,
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "Thanatek: 32mm, Sekhmor, Tukhar: 28.5mm, Xar-Tamok, Medeb-Ahk: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Thanatek",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Sekhmor, Tukhar",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Xar-Tamok, Medeb-Ahk",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",
@@ -1907,7 +2077,11 @@
 			"legends": true,
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any PETRIFEX ELITE units"
@@ -1984,7 +2158,10 @@
 			"name": "Vokmortian, Master of the Bone-tithe",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Legion Subcommander",
@@ -2060,7 +2237,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Legion Subcommander",

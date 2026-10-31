@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "p_objective_zone"
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.941, 0.769, 0.416, 0.12)
+cull_mode = 2

@@ -78,3 +78,25 @@ func test_map_ignores_the_mouse_so_the_card_gets_presses() -> void:
 func test_map_is_named_for_its_battleplan() -> void:
 	var map := _map()
 	assert_true(map.accessibility_name.contains("Test Plan"))
+
+
+func test_map_is_not_neutral_by_default() -> void:
+	assert_false(_map().neutral)
+
+
+func test_neutral_territories_are_less_colourful_than_the_sides() -> void:
+	assert_lt(BattleplanMap.NEUTRAL_ATTACKER.s, BattleplanMap.ATTACKER.s)
+	assert_lt(BattleplanMap.NEUTRAL_DEFENDER.s, BattleplanMap.DEFENDER.s)
+
+
+func test_neutral_territories_are_not_the_same_shade() -> void:
+	assert_ne(BattleplanMap.NEUTRAL_ATTACKER, BattleplanMap.NEUTRAL_DEFENDER)
+
+
+func test_neutral_map_can_be_drawn() -> void:
+	var map := _map(Vector2(60, 44), true)
+	map.neutral = true
+	map.size = Vector2(240, 176)
+	map.queue_redraw()
+	await get_tree().process_frame
+	assert_true(map.neutral)

@@ -18,6 +18,14 @@ const SECTIONS := {
 	"Forge": [
 		["save_army", "Save army"],
 	],
+	"Battle": [
+		["camera_forward", "Move camera forward"],
+		["camera_back", "Move camera back"],
+		["camera_left", "Move camera left"],
+		["camera_right", "Move camera right"],
+		["camera_rotate_left", "Turn camera left"],
+		["camera_rotate_right", "Turn camera right"],
+	],
 }
 
 

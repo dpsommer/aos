@@ -5,7 +5,10 @@
 			"name": "Avatar of Khaine",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 7,
@@ -56,7 +59,10 @@
 			"name": "Bladewind",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 7,
@@ -101,7 +107,10 @@
 			"name": "Blood Hags",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -164,7 +173,10 @@
 			"name": "Blood Sisters",
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 3,
@@ -211,7 +223,10 @@
 			"name": "Blood Stalkers",
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 3,
@@ -267,7 +282,10 @@
 			"name": "Bloodwrack Medusa",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any non-AELF"
@@ -329,7 +347,11 @@
 			"name": "Bloodwrack Shrine",
 			"points": 270,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -420,7 +442,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 250,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -495,7 +521,10 @@
 			"name": "Bloodwrack Viper",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 10,
@@ -551,7 +580,11 @@
 			"name": "Doomfire Warlocks",
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "14",
@@ -619,7 +652,27 @@
 			"legends": true,
 			"points": 70,
 			"unit_size": 5,
-			"base_size": "Gryselle: 32mm, Kalexis, Retaria, Thrialla and Traxya: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Gryselle",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Kalexis, Retaria, Thrialla and Traxya",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -669,7 +722,10 @@
 			"name": "Hag Queen",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -722,7 +778,11 @@
 			"name": "Hag Queen on Cauldron of Blood",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -797,7 +857,10 @@
 			"name": "Heart of Fury",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 7,
@@ -830,7 +893,10 @@
 			"name": "High Gladiatrix",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any AELF"
@@ -882,7 +948,27 @@
 			"name": "Khainite Shadowstalkers",
 			"points": 130,
 			"unit_size": 9,
-			"base_size": "Shroud Queen: 40mm, 1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Shroud Queen",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades",
+						"count": 8,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -937,7 +1023,27 @@
 			"source": "Scourge of Aqshy",
 			"points": 120,
 			"unit_size": 9,
-			"base_size": "Shroud Queen: 40mm, 1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Shroud Queen",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "1x Slaughtershade, 2x Darkflame Warlocks, 5x Shroudblades",
+						"count": 8,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "6",
@@ -993,7 +1099,10 @@
 			"name": "Khinerai Heartrenders",
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -1047,7 +1156,10 @@
 			"name": "Khinerai Lifetakers",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -1097,7 +1209,27 @@
 			"legends": true,
 			"points": 220,
 			"unit_size": 4,
-			"base_size": "Krieta, Wing of the Crone, Tazari and Azphel, the Hag's Eye: 28.5mm, Kaerna Vix: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Krieta, Wing of the Crone, Tazari and Azphel, the Hag's Eye",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Kaerna Vix",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -1155,7 +1287,10 @@
 			"name": "Krethusa the Croneseer",
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -1233,7 +1368,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -1326,7 +1464,10 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAUGHTERS OF KHAINE AELF"
@@ -1410,7 +1551,10 @@
 			"name": "Melusai Ironscale",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any non-AELF"
@@ -1465,7 +1609,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any non-AELF"
@@ -1519,7 +1666,10 @@
 			"name": "Morathi-Khaine",
 			"points": 770,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"The Shadow Queen (required)",
@@ -1599,7 +1749,27 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "Kyrae: 40mm, Khamyss, Kyrssa, Morgwaeth the Bloodied and Lethyr: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Kyrae",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Khamyss, Kyrssa, Morgwaeth the Bloodied and Lethyr",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -1671,7 +1841,10 @@
 			"name": "Shrine of Dark Tribute",
 			"points": 20,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 12,
@@ -1718,7 +1891,10 @@
 			"name": "Sisters of Slaughter",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1765,7 +1941,10 @@
 			"name": "Slaughter Queen",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -1819,7 +1998,11 @@
 			"name": "Slaughter Queen on Cauldron of Blood",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Coven Matriarch",
@@ -1891,7 +2074,27 @@
 			"legends": true,
 			"points": 80,
 			"unit_size": 4,
-			"base_size": "Drusylla Vyserax, Sylarc Greyblood and Valyssa Umbrael: 28.5mm, Slythael Shadestalker: 40mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Drusylla Vyserax, Sylarc Greyblood and Valyssa Umbrael",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Slythael Shadestalker",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -1956,7 +2159,10 @@
 			"name": "The Shadow Queen",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in Morathi‐Khaine’s regiment.",
 			"move": "12",
@@ -2048,7 +2254,10 @@
 			"name": "Witch Aelves",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,

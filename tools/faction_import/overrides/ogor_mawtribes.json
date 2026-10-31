@@ -4,6 +4,8 @@
 		"The Roving Maw > Prime Gutserver": "Prime Gutserver"
 	},
 	"fields": {
+		"mawpit": {"base_size": {"shape": "model", "length": 160, "width": 160}},
+		"great_mawpot": {"base_size": {"shape": "model", "length": 100, "width": 100}},
 		"gorlok_blackpowder": {
 			"base_size": "Gorlok Blackpowder: 50mm, Peggz, Kagey, Mange and Shreek (tokens): 25mm",
 			"keywords": [

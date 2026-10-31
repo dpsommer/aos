@@ -1,5 +1,6 @@
 {
 	"fields": {
+		"realmshaper_engine": {"base_size": {"shape": "model", "length": 200, "width": 150}},
 		"SCALED AEGIS": {"frequency": "Once Per Turn (Army)"},
 		"FOLLOWERS OF HUANCHI": {"frequency": "Once Per Turn (Army)"},
 		"ripperdactyl_riders_2_models": {"unit_size": 2},

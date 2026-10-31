@@ -5,7 +5,11 @@
 			"name": "Bladebringer, Herald on Exalted Chariot",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler",
@@ -78,7 +82,11 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler",
@@ -170,7 +178,11 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any WAR MACHINE",
@@ -240,7 +252,27 @@
 			"name": "Blissbarb Archers",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "Blissbarb Archers: 28.5mm, Blissbrew Homonculus: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Blissbarb Archers",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Blissbrew Homonculus",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -301,7 +333,11 @@
 			"name": "Blissbarb Seekers",
 			"points": 160,
 			"unit_size": 5,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 4,
@@ -366,7 +402,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "14",
@@ -432,7 +472,11 @@
 			"name": "Contorted Epitome",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler",
@@ -499,7 +543,10 @@
 			"name": "Daemonettes",
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -548,7 +595,11 @@
 			"name": "Dexcessa, the Talon of Slaanesh",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Synessa or Slaaneshi Beguiler",
@@ -630,7 +681,11 @@
 			"name": "Dreadful Visage",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 6,
@@ -679,7 +734,11 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "10",
@@ -735,7 +794,11 @@
 			"name": "Fane of Slaanesh",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 150
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 10,
@@ -769,7 +832,11 @@
 			"name": "Fiends",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 4,
@@ -825,7 +892,11 @@
 			"name": "Glutos Orscollion, Lord of Gluttony",
 			"points": 460,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Dark Egotist",
@@ -950,7 +1021,11 @@
 			"name": "Hellflayer",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "10",
@@ -1027,7 +1102,11 @@
 			"name": "Hellstriders",
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "12",
@@ -1087,7 +1166,11 @@
 			"name": "Infernal Enrapturess, Herald of Slaanesh",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -1145,7 +1228,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -1201,7 +1288,10 @@
 			"name": "Keeper of Secrets",
 			"points": 410,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler",
@@ -1309,7 +1399,10 @@
 			"name": "Lord of Hubris",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYBARITE"
@@ -1368,7 +1461,10 @@
 			"name": "Lord of Hysteria",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYBARITE"
@@ -1426,7 +1522,10 @@
 			"name": "Lord of Pain",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYBARITE"
@@ -1480,7 +1579,11 @@
 			"name": "Mesmerising Mirror",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -1514,7 +1617,10 @@
 			"name": "Myrmidesh Painbringers",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -1565,7 +1671,11 @@
 			"name": "Seeker Chariot",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "12",
@@ -1621,7 +1731,11 @@
 			"name": "Seekers",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 3,
@@ -1682,7 +1796,10 @@
 			"name": "Shalaxi Helbane",
 			"points": 410,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler",
@@ -1790,7 +1907,10 @@
 			"name": "Shardspeaker of Slaanesh",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Dark Egotist",
@@ -1851,7 +1971,10 @@
 			"name": "Sigvald, Prince of Slaanesh",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Dark Egotist",
@@ -1935,7 +2058,10 @@
 			"name": "Slaangor Fiendbloods",
 			"points": 140,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 3,
@@ -2001,7 +2127,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "6",
@@ -2068,7 +2197,11 @@
 			"name": "Slickblade Seekers",
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 4,
@@ -2125,7 +2258,10 @@
 			"name": "Syll'Esske, the Vengeful Allegiance",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler or Dark Egotist",
@@ -2205,7 +2341,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler or Dark Egotist",
@@ -2286,7 +2425,10 @@
 			"name": "Symbaresh Twinsouls",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -2336,7 +2478,11 @@
 			"name": "Synessa, the Voice of Slaanesh",
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Dexcessa or Slaaneshi Beguiler",
@@ -2428,7 +2574,35 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 4,
-			"base_size": "Vasillac the Gifted: 32mm, Slakeslash: 40mm, Glissete and Hadzu: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Vasillac the Gifted",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Slakeslash",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Glissete and Hadzu",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -2485,7 +2659,10 @@
 			"name": "The Masque",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -2556,7 +2733,27 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "Vexmor, the Excessively Indolent: 40mm, Lascivyr, the Bladed Blessing and Vashtiss the Coiled: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Vexmor, the Excessively Indolent",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Lascivyr, the Bladed Blessing and Vashtiss the Coiled",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -2610,7 +2807,27 @@
 			"name": "Thricefold Discord",
 			"points": 190,
 			"unit_size": 3,
-			"base_size": "Vexmor, the Excessively Indolent: 40mm, Lascivyr, the Bladed Blessing and Vashtiss the Coiled: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Vexmor, the Excessively Indolent",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Lascivyr, the Bladed Blessing and Vashtiss the Coiled",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaaneshi Beguiler",
@@ -2692,7 +2909,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -2749,7 +2969,11 @@
 			"name": "Wheels of Excruciation",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 6,

@@ -5,7 +5,11 @@
 			"name": "Beast-skewer Killbow",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 5,
@@ -70,7 +74,10 @@
 			"name": "Breaka-boss on Mirebrute Troggoth",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -152,7 +159,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -201,7 +211,35 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "Mannok da Kunnin': 40mm, Torka Tuffskul: 32mm, Shank, Gikkit and Krookgrin: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Mannok da Kunnin'",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Torka Tuffskul",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Shank, Gikkit and Krookgrin",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -252,7 +290,10 @@
 			"name": "Gobsprakk, the Mouth of Mork",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -378,7 +419,10 @@
 			"name": "Gutrippaz",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -423,7 +467,10 @@
 			"name": "Hobgrot Slittaboss",
 			"points": 60,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
@@ -482,7 +529,10 @@
 			"name": "Hobgrot Slittaz",
 			"points": 70,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -538,7 +588,10 @@
 			"name": "Killaboss on Corpse-rippa Vulcha",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -633,7 +686,11 @@
 			"name": "Killaboss on Great Gnashtoof",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -703,7 +760,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -776,7 +837,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -848,7 +913,27 @@
 			"name": "Killaboss with Stab-grot",
 			"points": 70,
 			"unit_size": 1,
-			"base_size": "Killaboss: 40mm, Stab-grot: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Killaboss",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Stab-grot",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any KRULEBOYZ"
@@ -926,7 +1011,27 @@
 			"source": "Scourge of Aqshy",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "Killaboss: 40mm, Stab-grot: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Killaboss",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Stab-grot",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -997,7 +1102,35 @@
 			"name": "Kruleboyz Monsta-killaz",
 			"points": 140,
 			"unit_size": 7,
-			"base_size": "Beastnob: 40mm, 6 x Monsta-killaz: 32mm, Klutcha-grot: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Beastnob",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Monsta-killaz",
+						"count": 6,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Klutcha-grot",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -1060,7 +1193,10 @@
 			"name": "Man-skewer Boltboyz",
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -1136,7 +1272,11 @@
 			"name": "Marshcrawla Sloggoth",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 10,
@@ -1198,7 +1338,10 @@
 			"name": "Murknob with Belcha-banna",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any KRULEBOYZ"
@@ -1254,7 +1397,10 @@
 			"name": "Skaregob Totem",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 12,
@@ -1309,7 +1455,11 @@
 			"name": "Snatchaboss on Sludgeraker Beast",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -1403,7 +1553,11 @@
 			"name": "Swampboss Skumdrekk",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -1508,7 +1662,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 210,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Mob Wrangler",
@@ -1592,7 +1750,27 @@
 			"name": "Swampcalla Shaman with Pot-grot",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "Swampcalla Shaman: 40mm, Pot-grot: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Swampcalla Shaman",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Pot-grot",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any KRULEBOYZ"

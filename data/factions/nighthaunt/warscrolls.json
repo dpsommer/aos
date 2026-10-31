@@ -5,7 +5,10 @@
 			"name": "Awlrach the Drowner",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cursed Soul",
@@ -66,7 +69,11 @@
 			"name": "Black Coach",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 12,
@@ -162,7 +169,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "10",
@@ -256,7 +267,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "10",
@@ -349,7 +364,10 @@
 			"name": "Bladegheist Revenants",
 			"points": 200,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -395,7 +413,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
@@ -448,7 +469,10 @@
 			"name": "Chainghasts",
 			"points": 90,
 			"unit_size": 2,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",
@@ -507,7 +531,10 @@
 			"name": "Chainrasps",
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 1,
@@ -555,7 +582,10 @@
 			"name": "Craventhrone Guard",
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -617,7 +647,11 @@
 			"name": "Dreadblade Harrows",
 			"points": 120,
 			"unit_size": 2,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 3,
@@ -687,7 +721,10 @@
 			"name": "Dreadscythe Harridans",
 			"points": 190,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -734,7 +771,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -782,7 +822,10 @@
 			"name": "Grimghast Reapers",
 			"points": 190,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -830,7 +873,10 @@
 			"name": "Guardian of Souls",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
@@ -884,7 +930,11 @@
 			"name": "Hexwraiths",
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 3,
@@ -945,7 +995,10 @@
 			"name": "Knight of Shrouds",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cursed Soul",
@@ -1003,7 +1056,11 @@
 			"name": "Knight of Shrouds on Ethereal Steed",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cursed Soul",
@@ -1074,7 +1131,10 @@
 			"name": "Krulghast Cruciator",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
@@ -1139,7 +1199,10 @@
 			"name": "Kurdoss Valentian, the Craven King",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cursed Soul",
@@ -1201,7 +1264,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cursed Soul",
@@ -1276,7 +1342,10 @@
 			"name": "Lady Olynder, Mortarch of Grief",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cursed Soul",
@@ -1366,7 +1435,10 @@
 			"name": "Lord Executioner",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
@@ -1429,7 +1501,10 @@
 			"name": "Lord Vitriolic",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
@@ -1521,7 +1596,10 @@
 			"name": "Mortalis Terminexus",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -1555,7 +1633,10 @@
 			"name": "Myrmourn Banshees",
 			"points": 100,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -1614,7 +1695,11 @@
 			"name": "Nexus of Grief",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 100
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -1665,7 +1750,43 @@
 			"name": "Pyregheists",
 			"points": 180,
 			"unit_size": 8,
-			"base_size": "Deacon of Flames: 40mm, 2 x Balefire Guard: 32mm, 2 x Flamewraiths: 32mm, 3 x Torchwraiths: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Deacon of Flames",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Balefire Guard",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Flamewraiths",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Torchwraiths",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -1727,7 +1848,11 @@
 			"name": "Reikenor the Grimhailer",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Cursed Soul",
@@ -1815,7 +1940,10 @@
 			"name": "Scriptor Mortis",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
@@ -1876,7 +2004,11 @@
 			"name": "Shyish Reaper",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 7,
@@ -1923,7 +2055,10 @@
 			"name": "Spirit Hosts",
 			"points": 110,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 3,
@@ -1969,7 +2104,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "8",
@@ -2017,7 +2155,10 @@
 			"name": "Spirit Torment",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
@@ -2069,7 +2210,35 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 4,
-			"base_size": "The Wielder of the Blade: 40mm, The Bearer of the Block and The Scriptor of the Sentence: 32mm, The Sharpener of the Blade: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "The Wielder of the Blade",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "The Bearer of the Block and The Scriptor of the Sentence",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "The Sharpener of the Blade",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",
@@ -2131,7 +2300,27 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 7,
-			"base_size": "Varclav the Cruel, The Ever-hanged, The Ironwretch, The Exhumed, The Silenced and The Uncrowned: 25mm, The Briar Queen: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Varclav the Cruel, The Ever-hanged, The Ironwretch, The Exhumed, The Silenced and The Uncrowned",
+						"count": 6,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					},
+					{
+						"name": "The Briar Queen",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",
@@ -2216,7 +2405,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Black Coach",
@@ -2291,7 +2483,10 @@
 			"name": "Vault of Souls",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,

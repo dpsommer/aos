@@ -238,6 +238,10 @@ static func _create() -> Theme:
 	theme.set_stylebox("separator", "HSeparator", separator)
 	theme.set_stylebox("background", "ProgressBar", box(Color("#2A2F38"), Color.TRANSPARENT, 3))
 	theme.set_stylebox("fill", "ProgressBar", box(GOOD, Color.TRANSPARENT, 3))
+	# The loading screen's bar: gold, as in the design.
+	theme.set_type_variation("LoadingBar", "ProgressBar")
+	theme.set_stylebox("background", "LoadingBar", box(Color("#2A2F38"), Color.TRANSPARENT, 4))
+	theme.set_stylebox("fill", "LoadingBar", box(GOLD, Color.TRANSPARENT, 4))
 	theme.set_constant("separation", "VBoxContainer", 10)
 	theme.set_constant("separation", "HBoxContainer", 8)
 	return theme

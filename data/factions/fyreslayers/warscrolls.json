@@ -5,7 +5,10 @@
 			"name": "Auric Flamekeeper",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FYRESLAYERS"
@@ -68,7 +71,10 @@
 			"name": "Auric Hearthguard",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -124,7 +130,10 @@
 			"name": "Auric Runefather",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Grimnir’s Chosen",
@@ -182,7 +191,11 @@
 			"name": "Auric Runefather on Magmadroth",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Grimnir’s Chosen",
@@ -301,7 +314,10 @@
 			"name": "Auric Runemaster",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Grimnir’s Chosen",
@@ -380,7 +396,10 @@
 			"name": "Auric Runesmiter",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FYRESLAYERS"
@@ -441,7 +460,11 @@
 			"name": "Auric Runesmiter on Magmadroth",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FYRESLAYERS"
@@ -558,7 +581,10 @@
 			"name": "Auric Runeson",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Grimnir’s Chosen",
@@ -617,7 +643,11 @@
 			"name": "Auric Runeson on Magmadroth",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Grimnir’s Chosen",
@@ -737,7 +767,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 330,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Grimnir’s Chosen",
@@ -871,7 +905,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Grimnir’s Chosen",
@@ -992,7 +1030,10 @@
 			"name": "Battlesmith",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FYRESLAYERS"
@@ -1047,7 +1088,10 @@
 			"name": "Doomseeker",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FYRESLAYERS"
@@ -1103,7 +1147,10 @@
 			"name": "Grimhold Exile",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FYRESLAYERS"
@@ -1167,7 +1214,10 @@
 			"name": "Grimwrath Berzerker",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any FYRESLAYERS"
@@ -1239,7 +1289,10 @@
 			"name": "Hearthguard Berzerkers with Berzerker Broadaxes",
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1290,7 +1343,10 @@
 			"name": "Hearthguard Berzerkers with Flamestrike Poleaxes",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1345,7 +1401,11 @@
 			"name": "Magmic Battleforge",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use Model",
+			"base_size": {
+				"shape": "model",
+				"length": 160,
+				"width": 120
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -1388,7 +1448,11 @@
 			"name": "Molten Infernoth",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 10,
@@ -1449,7 +1513,11 @@
 			"name": "Runic Fyrewall",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 200,
+				"width": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -1484,7 +1552,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",
@@ -1547,7 +1618,10 @@
 			"name": "Vulkite Berzerkers with Bladed Slingshields",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1591,7 +1665,10 @@
 			"name": "Vulkite Berzerkers with Fyresteel Weapons",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1635,7 +1712,25 @@
 			"name": "Vulkyn Flameseekers",
 			"points": 160,
 			"unit_size": 9,
-			"base_size": "4/9 32mm\n5/9 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1697,7 +1792,25 @@
 			"source": "Scourge of Aqshy",
 			"points": 190,
 			"unit_size": 9,
-			"base_size": "4/9 32mm\n5/9 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "4",
@@ -1773,7 +1886,10 @@
 			"name": "Zharrgron Flame-spitter",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 5,

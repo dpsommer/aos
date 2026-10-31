@@ -6,7 +6,10 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Herd Alpha. Any BEASTS OF CHAOS"
@@ -64,7 +67,10 @@
 			"legends": true,
 			"points": 70,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "2D6",
 			"health": 5,
@@ -99,7 +105,10 @@
 			"legends": true,
 			"points": 220,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -154,7 +163,10 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 4,
@@ -211,7 +223,11 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 2,
@@ -279,7 +295,11 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 12,
@@ -359,7 +379,11 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 2,
@@ -402,7 +426,11 @@
 			"legends": true,
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 12,
@@ -477,7 +505,10 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 8,
@@ -523,7 +554,11 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 15,
@@ -601,7 +636,10 @@
 			"legends": true,
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 7,
@@ -643,7 +681,10 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Herd Alpha. Any BEASTS OF CHAOS"
@@ -712,7 +753,11 @@
 			"legends": true,
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 5,
@@ -765,7 +810,11 @@
 			"legends": true,
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Herd Alpha. Any BEASTS OF CHAOS"
@@ -841,7 +890,11 @@
 			"legends": true,
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 15,
@@ -907,7 +960,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -955,7 +1011,27 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 6,
-			"base_size": "Grashrak Fellhoof and Draknar: 32mm, Gnarl, Ushkor, Korsh 'the Sneak' and Murghoth Half-horn: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Grashrak Fellhoof and Draknar",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Gnarl, Ushkor, Korsh 'the Sneak' and Murghoth Half-horn",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",
@@ -1018,7 +1094,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Herd Alpha",
@@ -1068,7 +1147,11 @@
 			"legends": true,
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 150
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 14,
@@ -1099,7 +1182,11 @@
 			"legends": true,
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 12,
@@ -1162,7 +1249,10 @@
 			"legends": true,
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"move": "16",
 			"health": 6,
@@ -1215,7 +1305,11 @@
 			"legends": true,
 			"points": 70,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 4,
@@ -1258,7 +1352,11 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 7,
@@ -1315,7 +1413,10 @@
 			"legends": true,
 			"points": 90,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1374,7 +1475,10 @@
 			"legends": true,
 			"points": 90,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1422,7 +1526,11 @@
 			"legends": true,
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 10,

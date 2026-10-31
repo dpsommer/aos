@@ -5,7 +5,10 @@
 			"name": "Aetherwings",
 			"points": 80,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 2,
@@ -49,7 +52,10 @@
 			"name": "Annihilators",
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -100,7 +106,10 @@
 			"name": "Annihilators with Meteoric Grandhammers",
 			"points": 180,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -152,7 +161,11 @@
 			"legends": true,
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any STORMCAST ETERNALS"
@@ -236,7 +249,10 @@
 			"legends": true,
 			"points": 310,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any STORMCAST ETERNALS"
@@ -322,7 +338,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -393,7 +412,10 @@
 			"name": "Celestant-Prime, Hammer of Sigmar",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -466,7 +488,27 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "Celestar Ballista: 60mm, Celestar Ballista Crew: 40mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Celestar Ballista",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 60
+						}
+					},
+					{
+						"name": "Celestar Ballista Crew",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"move": "3",
 			"health": 6,
@@ -523,7 +565,10 @@
 			"name": "Celestian Vortex",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 7,
@@ -570,7 +615,10 @@
 			"name": "Dais Arcanum",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 0,
@@ -603,7 +651,10 @@
 			"legends": true,
 			"points": 240,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -669,7 +720,10 @@
 			"legends": true,
 			"points": 210,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -736,7 +790,11 @@
 			"name": "Dracothian Guard Concussors",
 			"points": 200,
 			"unit_size": 2,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -815,7 +873,11 @@
 			"name": "Dracothian Guard Concussors (1 model)",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Lord-Celestant on Dracoth in your army.",
 			"move": "10",
@@ -895,7 +957,11 @@
 			"name": "Dracothian Guard Desolators",
 			"points": 170,
 			"unit_size": 2,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -972,7 +1038,11 @@
 			"name": "Dracothian Guard Desolators (1 model)",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Lord-Celestant on Dracoth in your army.",
 			"move": "10",
@@ -1050,7 +1120,11 @@
 			"name": "Dracothian Guard Fulminators",
 			"points": 190,
 			"unit_size": 2,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -1128,7 +1202,11 @@
 			"name": "Dracothian Guard Fulminators (1 model)",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Lord-Celestant on Dracoth in your army.",
 			"move": "10",
@@ -1207,7 +1285,11 @@
 			"name": "Dracothian Guard Tempestors",
 			"points": 170,
 			"unit_size": 2,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -1294,7 +1376,11 @@
 			"name": "Dracothian Guard Tempestors (1 model)",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Lord-Celestant on Dracoth in your army.",
 			"move": "10",
@@ -1382,7 +1468,11 @@
 			"name": "Drakesworn Templar",
 			"points": 390,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -1491,7 +1581,10 @@
 			"name": "Everblaze Comet",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 5,
@@ -1534,7 +1627,10 @@
 			"legends": true,
 			"points": 180,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 3,
@@ -1588,7 +1684,11 @@
 			"legends": true,
 			"points": 240,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -1652,7 +1752,10 @@
 			"name": "Gardus Steel Soul",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -1716,7 +1819,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -1775,7 +1881,10 @@
 			"name": "Gryph-hounds",
 			"points": 80,
 			"unit_size": 6,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "9",
 			"health": 2,
@@ -1821,6 +1930,10 @@
 			"legends": true,
 			"points": 230,
 			"unit_size": 1,
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ASTRAL TEMPLARS units"
@@ -1879,7 +1992,10 @@
 			"name": "Ionus Cryptborn, Warden of Lost Souls",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -1998,7 +2114,11 @@
 			"name": "Iridan the Witness",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any STORMCAST ETERNALS",
@@ -2090,7 +2210,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any STORMCAST ETERNALS",
@@ -2193,7 +2317,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -2296,7 +2424,10 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -2374,7 +2505,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -2451,7 +2585,10 @@
 			"name": "Karazai the Scarred",
 			"points": 420,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -2545,7 +2682,10 @@
 			"name": "Knight-Arcanum",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -2595,7 +2735,10 @@
 			"name": "Knight-Azyros",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 WARRIOR CHAMBER",
@@ -2661,7 +2804,11 @@
 			"name": "Knight-Draconis",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any EXTREMIS CHAMBER"
@@ -2754,7 +2901,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -2810,7 +2960,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -2869,7 +3022,28 @@
 			"name": "Knight-Judicator with Gryph-hounds",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "Knight-Judicator: 90 × 52mm, 2 x Gryph-hounds: 40mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Knight-Judicator",
+						"count": 1,
+						"base": {
+							"shape": "oval",
+							"length": 90,
+							"width": 52
+						}
+					},
+					{
+						"name": "Gryph-hounds",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Gryph-hounds",
@@ -2935,7 +3109,10 @@
 			"name": "Knight-Questor",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Questor Soulsworn",
@@ -3003,7 +3180,10 @@
 			"name": "Knight-Relictor",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -3052,7 +3232,10 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -3132,7 +3315,10 @@
 			"name": "Knight-Vexillor",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -3180,7 +3366,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Gryph-hounds",
@@ -3252,7 +3441,10 @@
 			"name": "Krondys, Son of Dracothion",
 			"points": 480,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -3373,7 +3565,10 @@
 			"name": "Liberators",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -3439,7 +3634,10 @@
 			"name": "Lorai, Child of the Abyss",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"None"
@@ -3501,7 +3699,11 @@
 			"name": "Lord-Aquilor",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Gryph-hounds",
@@ -3583,7 +3785,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER INFANTRY"
@@ -3639,7 +3844,11 @@
 			"legends": true,
 			"points": 210,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER CAVALRY"
@@ -3708,7 +3917,11 @@
 			"legends": true,
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER"
@@ -3775,7 +3988,10 @@
 			"legends": true,
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER"
@@ -3857,7 +4073,10 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any WARRIOR CHAMBER INFANTRY"
@@ -3935,7 +4154,10 @@
 			"name": "Lord-Celestant",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -3985,7 +4207,11 @@
 			"name": "Lord-Celestant on Dracoth",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4068,7 +4294,11 @@
 			"name": "Lord-Celestant on Stardrake",
 			"points": 490,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4172,7 +4402,10 @@
 			"name": "Lord-Commander Bastian Carthalos",
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4250,7 +4483,10 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER INFANTRY"
@@ -4305,7 +4541,27 @@
 			"name": "Lord-Imperatant",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "Lord-Imperatant: 40mm, Gryph-hound: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Lord-Imperatant",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Gryph-hound",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4366,7 +4622,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SACROSANCT CHAMBER INFANTRY",
@@ -4417,7 +4676,10 @@
 			"name": "Lord-Relictor",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4468,7 +4730,27 @@
 			"name": "Lord-Terminos",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "Lord-Terminos: 40mm, Memorian: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Lord-Terminos",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Memorian",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4536,7 +4818,10 @@
 			"name": "Lord-Veritant",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4615,7 +4900,11 @@
 			"name": "Lord-Vigilant on Gryph-stalker",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -4685,7 +4974,11 @@
 			"name": "Lord-Vigilant on Morrgryph",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any RUINATION CHAMBER",
@@ -4767,7 +5060,10 @@
 			"name": "Neave Blacktalon",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Neave’s Companions (required), Lorai (required)",
@@ -4853,7 +5149,10 @@
 			"name": "Neave's Companions",
 			"points": 0,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in Neave Blacktalon’s regiment. This unit cannot be reinforced.",
 			"move": "5",
@@ -4930,7 +5229,10 @@
 			"name": "Praetors",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 3,
@@ -4979,7 +5281,10 @@
 			"name": "Prosecutors",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -5052,7 +5357,10 @@
 			"legends": true,
 			"points": 220,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -5114,7 +5422,10 @@
 			"name": "Questor Soulsworn",
 			"points": 210,
 			"unit_size": 6,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -5178,7 +5489,10 @@
 			"name": "Reclusians",
 			"points": 140,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 3,
@@ -5232,7 +5546,10 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -5298,7 +5615,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -5364,7 +5684,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -5419,7 +5742,10 @@
 			"name": "Stormcoven",
 			"points": 210,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -5484,7 +5810,11 @@
 			"name": "Stormdrake Guard",
 			"points": 290,
 			"unit_size": 2,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 9,
@@ -5586,7 +5916,11 @@
 			"name": "Stormdrake Guard (1 model)",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Knight-Draconis in your army.",
 			"move": "12",
@@ -5689,7 +6023,11 @@
 			"name": "Stormreach Portal",
 			"points": 20,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 80
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 12,
@@ -5721,7 +6059,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -5777,7 +6118,11 @@
 			"name": "Stormstrike Chariot",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 10,
@@ -5865,7 +6210,11 @@
 			"name": "Stormstrike Palladors",
 			"points": 180,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 5,
@@ -5925,7 +6274,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 210,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "12",
@@ -5996,7 +6349,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -6066,7 +6422,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -6133,7 +6492,10 @@
 			"name": "Tornus the Redeemed",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -6213,7 +6575,11 @@
 			"name": "Vandus Hammerhand",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",
@@ -6297,7 +6663,10 @@
 			"name": "Vanguard-Hunters",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -6371,7 +6740,11 @@
 			"name": "Vanguard-Palladors with Shock Handaxes",
 			"points": 240,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 5,
@@ -6450,7 +6823,11 @@
 			"name": "Vanguard-Palladors with Starstrike Javelins",
 			"points": 260,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 5,
@@ -6536,7 +6913,10 @@
 			"name": "Vanguard-Raptors with Hurricane Crossbows",
 			"points": 110,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -6601,7 +6981,28 @@
 			"name": "Vanguard-Raptors with Longstrike Crossbows",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "Raptor-Prime: 40mm, 2 x Vanguard-Raptors with Longstrike Crossbows: 60 × 35mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Raptor-Prime",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Vanguard-Raptors with Longstrike Crossbows",
+						"count": 2,
+						"base": {
+							"shape": "oval",
+							"length": 60,
+							"width": 35
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -6665,7 +7066,10 @@
 			"name": "Vanquishers",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -6711,7 +7115,10 @@
 			"name": "Vigilors",
 			"points": 140,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -6762,7 +7169,10 @@
 			"name": "Vindictors",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -6808,7 +7218,27 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "Xandire's Truthseekers: 40mm, Taros (token): 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Xandire's Truthseekers",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Taros (token)",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -6887,7 +7317,10 @@
 			"name": "Yndrasta, the Celestial Spear",
 			"points": 270,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 STORMCAST EXEMPLAR",

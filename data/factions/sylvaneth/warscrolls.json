@@ -5,7 +5,10 @@
 			"name": "Alarielle the Everqueen",
 			"points": 620,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Forest Sentinel",
@@ -153,7 +156,10 @@
 			"name": "Arch-Revenant",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYLVANETH non-MONSTER"
@@ -209,7 +215,11 @@
 			"name": "Awakened Wyldwood",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 250,
+				"width": 150
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -259,7 +269,11 @@
 			"name": "Belthanos, First Thorn of Kurnoth",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "150 × 95mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 150,
+				"width": 95
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYLVANETH"
@@ -350,7 +364,10 @@
 			"name": "Branchwych",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY"
@@ -397,7 +414,10 @@
 			"name": "Dryads",
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -437,7 +457,11 @@
 			"name": "Drycha Hamadreth",
 			"points": 250,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYLVANETH"
@@ -529,7 +553,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Forest Sentinel",
@@ -613,7 +641,11 @@
 			"name": "Gladewyrm",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 80
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 7,
@@ -671,7 +703,10 @@
 			"name": "Gossamid Archers",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -738,7 +773,11 @@
 			"name": "Grove Guardian",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYLVANETH"
@@ -812,7 +851,11 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 6,
@@ -880,7 +923,10 @@
 			"name": "Kurnoth Hunters with Greatbows",
 			"points": 190,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -943,7 +989,10 @@
 			"name": "Kurnoth Hunters with Greatswords",
 			"points": 210,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -997,7 +1046,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 220,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "6",
@@ -1054,7 +1106,10 @@
 			"name": "Kurnoth Hunters with Greatscythes",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -1108,7 +1163,11 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 3,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 3,
@@ -1164,7 +1223,10 @@
 			"name": "Revenant Seekers",
 			"points": 180,
 			"unit_size": 3,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 5,
@@ -1234,7 +1296,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 240,
 			"unit_size": 3,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "12",
@@ -1305,7 +1370,36 @@
 			"legends": true,
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "Skaeth the Huntsman: 50 × 25mm, Althaen, Sheoch and Karthaen, Huntcaller: 32mm, Lighaen: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Skaeth the Huntsman",
+						"count": 1,
+						"base": {
+							"shape": "oval",
+							"length": 50,
+							"width": 25
+						}
+					},
+					{
+						"name": "Althaen, Sheoch and Karthaen, Huntcaller",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Lighaen",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -1368,7 +1462,11 @@
 			"name": "Spirit of Durthu",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Forest Sentinel",
@@ -1460,7 +1558,10 @@
 			"name": "Spite-Revenants",
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -1505,7 +1606,10 @@
 			"name": "Spiterider Lancers",
 			"points": 230,
 			"unit_size": 3,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 5,
@@ -1574,7 +1678,10 @@
 			"name": "Spiteswarm Hive",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -1633,7 +1740,10 @@
 			"name": "The Lady of Vines",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYLVANETH"
@@ -1722,7 +1832,43 @@
 			"name": "The Twistweald",
 			"points": 160,
 			"unit_size": 8,
-			"base_size": "Swarmsage: 40mm, Twistroot Wardens and Twistroot Revenant: 32mm, Twistroot Dryads: 28.5mm, Twistroot Spite-Revenant: 40mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Swarmsage",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Twistroot Wardens and Twistroot Revenant",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Twistroot Dryads",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Twistroot Spite-Revenant",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -1796,7 +1942,11 @@
 			"name": "Treelord",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 14,
@@ -1887,7 +2037,11 @@
 			"name": "Treelord Ancient",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Forest Sentinel",
@@ -1982,7 +2136,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Forest Sentinel",
@@ -2076,7 +2234,10 @@
 			"name": "Tree-Revenants",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -2119,7 +2280,11 @@
 			"name": "Vengeful Skullroot",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 8,
@@ -2163,7 +2328,11 @@
 			"name": "Warsong Revenant",
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SYLVANETH"
@@ -2220,7 +2389,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
