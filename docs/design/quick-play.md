@@ -20,7 +20,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 - **Left pane (460 px, the same width as the Forge army builder's left pane):** the list of armies. It gives way to one of these, each with a Back button ("Armies" or "Spearheads") that returns to the list and gives focus back to the control that opened it:
   - a unit's warscroll (`WarscrollCard`), from a portrait;
   - a Regiment of Renown's units and rules (`RulesView.regiment_of_renown()`), from its units' portraits;
-  - the battleplans (`BattleplanPicker`), from the battle plan card.
+  - the battleplans (`BattleplanPicker`, or `RealmPicker` in Spearhead), from the battle plan card.
 
   Esc goes back to the list from these, and from the list goes back to the game mode.
 - **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right: "Random" (picked when the battle starts), with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card), or the chosen battleplan's name, with its map (`BattleplanMap`) in the icon's place. The icon or map fills a 64 × 48 box, and the card stays the same size whichever is chosen. It's outlined in gold while the battleplans are open.
@@ -49,7 +49,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
   - **Battle Traits** (foldable, two to a row, as in Matched Play, but the first starts unfolded);
   - below them, two columns: **Regiment Abilities** and **Enhancements**. Each choice is an [ability choice card](abilities.md#choosing-an-ability), as in the Forge's enhancement options. Pressing a card chooses it; pressing the chosen card unchooses it. Each column's heading has a chip, "Choose 1" or "Chosen";
   - **Army:** portraits of the general and each unit, with model counts; each shows the Spearhead's own warscroll.
-- **Battle plan:** the card is disabled, so a Spearhead battle always uses Random. The Spearhead battlepacks are in the game data (see [Core rules data](../technical/core-rules-data.md#spearhead-battlepacks)), but the picker only shows the General's Handbook's battleplans.
+- **Battle plan:** each Spearhead battlepack has one battleplan, fought on whichever side of its realm battlefield the defender chooses, so the card chooses a side (see [Realm battlefields](#realm-battlefields)). It shows "Random" or the side's name over its battlepack's, e.g. "Ossia" over "Sand and Bone".
 - **Play:** enabled once a regiment ability and an enhancement are chosen.
 
 ### Battleplans
@@ -62,9 +62,19 @@ The chosen card is outlined in gold with a check. An eye shows a battleplan in f
 
 `BattleplanMap` (`scripts/ui/quick_play/battleplan_map.gd`) draws a map from the battleplan's data: territories, objectives as gold rings and, on a detailed map, terrain as dashed squares (4" small, 6" medium) and each objective's 3" control zone.
 
+### Realm battlefields
+
+`RealmPicker` (`scripts/ui/quick_play/realm_picker.gd`) is Spearhead's battleplan picker, under "Choose battle plan" (no colour key, as the defender chooses which territory is whose). It lists the Spearhead battlepacks from the game data (see [Core rules data](../technical/core-rules-data.md#spearhead-battlepacks)):
+- **Random:** "One of the 6 realm battlefields below, picked when the battle starts."
+- under each battlepack's name, a card for each side of its realm battlefield (Aqshy and Ghyran, Dolorum and Ossia, the Shattered Crossroads and the Ashen Bastion): a small map, the side's name, and how many objectives, twists and starting relics it has.
+
+The chosen card is outlined in gold with a check. An eye shows a side in full, swapped in place: a map the width of the pane with the objectives named, a caption ("30" × 22" · gold: objectives, contested by models on them", plus roads and pre-set terrain where the side has them), the deployment maps on that side ("The defender picks a map and which territory is theirs."), the battleplan's pre-battle sequence as Setup, the side's starting relics as [ability cards](abilities.md), its twist deck and the scoring. Pressing a card chooses it and returns to the list. Deployment maps and terrain stay pre-battle choices, made when the battle starts.
+
+`RealmMap` (`scripts/ui/quick_play/realm_map.gd`) draws a side from its data: roads in grey, objectives as gold circles (each its battlepack's radius or its own) or rotated rectangles, and terrain set up before the players' (Ossia's Crypt of Blood) as a dashed square. Given a deployment map, it shades territory A lighter than B with a line between them. A detailed map names the objectives.
+
 ## Choices
 
-`BattleSetup` (`scripts/battle/battle_setup.gd`) holds what the player chose: the mode, the Forge army or the Spearhead (its faction, name, regiment ability and enhancement), and the battleplan's name, empty for Random. `ArmySelect.setup()` builds it.
+`BattleSetup` (`scripts/battle/battle_setup.gd`) holds what the player chose: the mode, the Forge army or the Spearhead (its faction, name, regiment ability and enhancement), and the battleplan: in Matched Play its name (`battleplan`), in Spearhead the battlepack's name and the realm battlefield's side (`battlepack` and `realm`), each empty for Random. `ArmySelect.setup()` builds it.
 
 ## Signals
 

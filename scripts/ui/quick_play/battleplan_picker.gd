@@ -57,7 +57,7 @@ func _random_card() -> PressableCard:
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var row := UIBuilder.hbox([art, text], 12)
 	if selected.is_empty():
-		row.add_child(_check())
+		row.add_child(check_mark())
 	card.add_child(row)
 	card.make_pressable("Pick a battleplan at random when the battle starts")
 	return card
@@ -75,7 +75,7 @@ func _plan_card(plan: Battleplan) -> PressableCard:
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var row := UIBuilder.hbox([BattleplanMap.new(plan, battlepack.battlefield_size), text], 12)
 	if selected == plan.name:
-		row.add_child(_check())
+		row.add_child(check_mark())
 	var eye := UIBuilder.icon_toggle("eye", ("Hide " if full else "Show ") + plan.name + " rules", full,
 			func(_on: bool) -> void: pass, "plan:" + plan.name)
 	eye.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -87,12 +87,12 @@ func _plan_card(plan: Battleplan) -> PressableCard:
 		content.add_child(UIBuilder.label("%d\" × %d\" · dashed: terrain · gold rings: objectives with their %d\" control zone" % [
 				battlepack.battlefield_size.x, battlepack.battlefield_size.y, BattleplanMap.CONTROL_RANGE], "MutedLabel", true))
 		if not plan.text.is_empty():
-			content.add_child(_rules("Setup", plan.text))
-		content.add_child(_rules("Twist", plan.twist))
+			content.add_child(rules_block("Setup", plan.text))
+		content.add_child(rules_block("Twist", plan.twist))
 		for ability in plan.abilities:
 			content.add_child(AbilityCard.new(ability))
 		if not plan.scoring.is_empty():
-			content.add_child(_rules("Scoring", "\n".join(plan.scoring)))
+			content.add_child(rules_block("Scoring", "\n".join(plan.scoring)))
 	card.add_child(content)
 	card.make_pressable("Choose " + plan.name)
 	card.set_meta(&"eye", eye)
@@ -132,14 +132,14 @@ func _on_eye_toggled(on: bool, plan: Battleplan) -> void:
 	(cards[plan.name].get_meta(&"eye") as Button).grab_focus()
 
 
-static func _check() -> Control:
+static func check_mark() -> Control:
 	var check := UIBuilder.check_badge()
 	check.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	return check
 
 
 ## A heading over rules text.
-static func _rules(heading: String, text: String) -> VBoxContainer:
+static func rules_block(heading: String, text: String) -> VBoxContainer:
 	var title := UIBuilder.label(heading.to_upper(), "StatNameLabel")
 	title.add_theme_color_override("font_color", UITheme.TEXT)
 	return UIBuilder.vbox([title, UIBuilder.label(text, "BodyLabel", true)], 4)

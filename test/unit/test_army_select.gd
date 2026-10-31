@@ -465,9 +465,140 @@ func test_play_in_spearhead_emits_the_setup_with_the_spearhead() -> void:
 	assert_eq((params[0] as BattleSetup).spearhead, screen.spearhead.name)
 
 
-func test_spearhead_battleplan_card_is_disabled() -> void:
+func test_spearhead_battleplan_card_is_enabled() -> void:
 	var screen := _spearhead()
-	assert_true(screen._plan_card.disabled)
+	assert_false(screen._plan_card.disabled)
+
+
+func _realm_picker(screen: ArmySelect) -> RealmPicker:
+	return UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is RealmPicker)[0]
+
+
+func _first_realm() -> String:
+	return CoreRulesCatalog.spearhead_battlepacks()[0].realms[0].name
+
+
+func _plan_card_texts(screen: ArmySelect) -> Array:
+	return UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is Label).map(func(l: Label) -> String: return l.text)
+
+
+func test_spearhead_plans_pane_shows_a_realm_picker() -> void:
+	var screen := _spearhead()
+	screen.show_plans()
+	assert_eq(screen.pane, ArmySelect.Pane.PLANS)
+	assert_eq(UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is RealmPicker).size(), 1)
+
+
+func test_spearhead_plans_pane_has_no_battleplan_picker() -> void:
+	var screen := _spearhead()
+	screen.show_plans()
+	assert_eq(UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is BattleplanPicker).size(), 0)
+
+
+func test_picking_a_realm_sets_it() -> void:
+	var screen := _spearhead()
+	screen.show_plans()
+	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	assert_eq(screen.realm, _first_realm())
+
+
+func test_picking_a_realm_returns_to_the_list() -> void:
+	var screen := _spearhead()
+	screen.show_plans()
+	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	assert_eq(screen.pane, ArmySelect.Pane.LIST)
+
+
+func test_picking_a_realm_leaves_the_battleplan_alone() -> void:
+	var screen := _spearhead()
+	screen.show_plans()
+	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	assert_eq(screen.battleplan, "")
+
+
+func test_picking_random_clears_the_realm() -> void:
+	var screen := _spearhead()
+	screen.realm = _first_realm()
+	screen.show_plans()
+	_realm_picker(screen).cards[""].pressed.emit()
+	assert_eq(screen.realm, "")
+
+
+func test_realm_picker_opens_on_the_chosen_realm() -> void:
+	var screen := _spearhead()
+	screen.realm = _first_realm()
+	screen.show_plans()
+	assert_eq(_realm_picker(screen).selected, _first_realm())
+
+
+func test_spearhead_setup_carries_the_realm() -> void:
+	var screen := _spearhead()
+	screen.realm = _first_realm()
+	assert_eq(screen.setup().realm, _first_realm())
+
+
+func test_spearhead_setup_carries_the_realms_battlepack() -> void:
+	var pack := CoreRulesCatalog.spearhead_battlepacks()[0]
+	var screen := _spearhead()
+	screen.realm = pack.realms[0].name
+	assert_eq(screen.setup().battlepack, pack.name)
+
+
+func test_spearhead_setup_carries_the_battlepack_of_the_last_pack() -> void:
+	var pack := CoreRulesCatalog.spearhead_battlepacks()[-1]
+	var screen := _spearhead()
+	screen.realm = pack.realms[0].name
+	assert_eq(screen.setup().battlepack, pack.name)
+
+
+func test_spearhead_setup_is_random_by_default() -> void:
+	var setup := _spearhead().setup()
+	assert_eq(setup.realm, "")
+	assert_eq(setup.battlepack, "")
+
+
+func test_spearhead_setup_ignores_an_unknown_realm() -> void:
+	var screen := _spearhead()
+	screen.realm = "No Such Realm"
+	var setup := screen.setup()
+	assert_eq(setup.realm, "")
+	assert_eq(setup.battlepack, "")
+
+
+func test_spearhead_setup_has_no_battleplan() -> void:
+	var screen := _spearhead()
+	screen.realm = _first_realm()
+	screen.battleplan = "Some Plan"
+	assert_eq(screen.setup().battleplan, "")
+
+
+func test_spearhead_setup_still_carries_the_spearhead() -> void:
+	var screen := _spearhead()
+	screen.realm = _first_realm()
+	assert_eq(screen.setup().spearhead, screen.spearhead.name)
+
+
+func test_matched_play_setup_has_no_battlepack_or_realm() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	screen.realm = _first_realm()
+	var setup := screen.setup()
+	assert_eq(setup.realm, "")
+	assert_eq(setup.battlepack, "")
+
+
+func test_plan_card_names_the_chosen_realm_and_its_battlepack() -> void:
+	var screen := _spearhead()
+	var pack := CoreRulesCatalog.spearhead_battlepacks()[0]
+	screen.show_plans()
+	_realm_picker(screen).cards[pack.realms[0].name].pressed.emit()
+	var texts := _plan_card_texts(screen)
+	assert_true(texts.has(pack.realms[0].name))
+	assert_true(texts.has(pack.name))
+
+
+func test_plan_card_is_random_before_a_realm_is_chosen() -> void:
+	assert_string_contains(_spearhead()._plan_card.accessibility_name, "Random")
 
 
 # --- Spearhead search ---
