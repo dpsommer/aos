@@ -36,8 +36,6 @@ On a fresh checkout (no `.godot/` folder), run `godot --headless --import` first
 
 The Claude GitHub Actions workflows (`.github/workflows/claude.yml` and `claude-code-review.yml`) install Godot with `.github/actions/setup-godot/`, which puts it on `PATH` as `godot` and imports the project. Claude is allowed to run `godot --headless -s addons/gut/gut_cmdln.gd ...`, so it can run any of the commands above. Bump the action's `version` input when the project moves to a new Godot release.
 
-`claude-code-review.yml` also has a `claude-refactor` job. When a PR changes `.gd` files, it runs the `refactor` skill on the changed production scripts and then the `refactor-tests` skill on the changed files under `test/`. Each skill only edits the files the PR changed, commits and pushes its changes to the PR branch, and posts its report as a PR comment. It doesn't run on Claude's own pushes or on PRs from forks.
-
 ## Key practices
 
 **Unit tests:**
