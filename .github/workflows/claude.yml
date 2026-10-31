@@ -30,6 +30,9 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Set up Godot
+        uses: ./.github/actions/setup-godot
+
       - name: Run Claude Code
         id: claude
         uses: anthropics/claude-code-action@v1
@@ -47,4 +50,6 @@ jobs:
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
           # claude_args: '--allowed-tools Bash(gh pr *)'
+          # Lets Claude run the GUT test suite (see docs/technical/testing.md)
+          claude_args: '--allowedTools "Bash(godot --headless -s addons/gut/gut_cmdln.gd *)"'
 
