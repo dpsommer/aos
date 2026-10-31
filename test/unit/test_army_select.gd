@@ -214,6 +214,28 @@ func test_playable_army_play_tooltip_is_not_a_blocker() -> void:
 	assert_ne(screen.play_button.tooltip_text, screen.play_blocker())
 
 
+## The panel holding the points limit and rules, beside the Play button.
+func _info_box(screen: ArmySelect) -> Control:
+	var node: Node = screen.limit_label
+	while not node is PanelContainer:
+		node = node.get_parent()
+	return node
+
+
+func test_play_button_is_as_tall_as_the_points_limit_and_rules_box() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	await get_tree().process_frame
+	assert_gt(_info_box(screen).size.y, 0.0)
+	assert_eq(screen.play_button.size.y, _info_box(screen).size.y)
+
+
+func test_spearhead_play_button_is_as_tall_as_the_points_limit_and_rules_box() -> void:
+	var screen := _spearhead()
+	await get_tree().process_frame
+	assert_eq(screen.play_button.size.y, _info_box(screen).size.y)
+
+
 func test_play_emits_the_setup() -> void:
 	var army := _save_army("Free", true)
 	var screen := _matched_play()

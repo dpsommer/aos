@@ -376,8 +376,9 @@ static func _add_inputs(theme: Theme) -> void:
 			style.shadow_size = 4
 		style.content_margin_left = 36
 		style.content_margin_right = 36
-		style.content_margin_top = 8
-		style.content_margin_bottom = 8
+		# Little vertical padding, so it's no taller than the points limit and rules box beside it.
+		style.content_margin_top = 5
+		style.content_margin_bottom = 5
 		theme.set_stylebox(state, "PlayButton", style)
 	theme.set_font("font", "PlayButton", font(CINZEL, 700))
 	theme.set_font_size("font_size", "PlayButton", 28)
