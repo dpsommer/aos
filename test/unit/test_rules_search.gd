@@ -108,6 +108,24 @@ func test_regiment_text_ignores_units_of_unknown_factions() -> void:
 	assert_eq(text, "Solo  Hermit")
 
 
+func test_regiment_text_includes_the_alliance_name_of_unit_factions() -> void:
+	var units: Array[RegimentUnit] = [Kit.renown_unit("Sky Captain", "captain", "kharadron_overlords")]
+	var text := RulesSearch.regiment_text(Kit.regiment_of_renown("Privateers", 100, units))
+	assert_string_contains(text, GrandAlliance.display_name(GrandAlliance.Type.ORDER))
+
+
+func test_regiment_text_lists_an_alliance_once_for_units_of_two_order_factions() -> void:
+	var units: Array[RegimentUnit] = [Kit.renown_unit("A", "a", "kharadron_overlords"), Kit.renown_unit("B", "b", "seraphon")]
+	var text := RulesSearch.regiment_text(Kit.regiment_of_renown("Privateers", 100, units))
+	assert_eq(text.count(GrandAlliance.display_name(GrandAlliance.Type.ORDER)), 1)
+
+
+func test_regiment_search_by_alliance_name_finds_the_regiment() -> void:
+	var units: Array[RegimentUnit] = [Kit.renown_unit("Sky Captain", "captain", "kharadron_overlords")]
+	var regiment := Kit.regiment_of_renown("Privateers", 100, units)
+	assert_true(RulesSearch.matches(RulesSearch.regiment_text(regiment), RulesSearch.words("order")))
+
+
 func test_regiment_search_by_faction_name_finds_the_regiment() -> void:
 	var units: Array[RegimentUnit] = [Kit.renown_unit("Sky Captain", "captain", "kharadron_overlords")]
 	var regiment := Kit.regiment_of_renown("Privateers", 100, units)

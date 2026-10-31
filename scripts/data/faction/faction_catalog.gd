@@ -117,6 +117,14 @@ static func is_legends(faction: String) -> bool:
 	return faction in _LEGENDS
 
 
+## The Grand Alliance [param faction] belongs to, or -1 if it isn't a known faction.
+static func alliance_of(faction: String) -> int:
+	for alliance: GrandAlliance.Type in _FACTIONS:
+		if faction in _FACTIONS[alliance]:
+			return alliance
+	return -1
+
+
 ## Name of the faction whose data directory is named [param faction_id], or empty if none is.
 static func name_for_id(faction_id: String) -> String:
 	for faction: String in _DATA_DIRS:

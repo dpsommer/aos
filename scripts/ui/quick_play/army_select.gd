@@ -294,7 +294,8 @@ func _fill_list() -> void:
 	var group := ButtonGroup.new()
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
 		var shown := spearheads.filter(func(entry: Dictionary) -> bool:
-			return entry.alliance == alliance and RulesSearch.matches("%s %s" % [entry.name, entry.faction], words))
+			return entry.alliance == alliance and RulesSearch.matches("%s %s %s" % [entry.name, entry.faction,
+					GrandAlliance.display_name(alliance)], words))
 		if shown.is_empty():
 			continue
 		_list_box.add_child(UIBuilder.label(GrandAlliance.display_name(alliance).to_upper(), "StatNameLabel"))

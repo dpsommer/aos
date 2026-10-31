@@ -39,7 +39,8 @@ static func tactic_text(card: BattleTacticCard) -> String:
 	return " ".join(parts)
 
 
-## Includes the names of the factions its units come from, so "Kharadron" finds Drekki's Privateers.
+## Includes the names of the factions its units come from, and their Grand Alliances, so "Kharadron"
+## and "Order" find Drekki's Privateers.
 static func regiment_text(regiment: RegimentOfRenown) -> String:
 	var parts := PackedStringArray([regiment.name, regiment.text])
 	var factions := PackedStringArray()
@@ -48,7 +49,13 @@ static func regiment_text(regiment: RegimentOfRenown) -> String:
 		var faction_name := FactionCatalog.name_for_id(unit.faction_id)
 		if not faction_name.is_empty() and not faction_name in factions:
 			factions.append(faction_name)
+	var alliances := PackedStringArray()
+	for faction_name in factions:
+		var alliance := FactionCatalog.alliance_of(faction_name)
+		if alliance != -1 and not GrandAlliance.display_name(alliance) in alliances:
+			alliances.append(GrandAlliance.display_name(alliance))
 	parts.append_array(factions)
+	parts.append_array(alliances)
 	for ability in regiment.abilities:
 		parts.append(ability_text(ability))
 	return " ".join(parts)

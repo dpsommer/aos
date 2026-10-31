@@ -226,3 +226,15 @@ func test_mutating_returned_spearheads_does_not_change_later_results() -> void:
 	var count := FactionCatalog.spearheads().size()
 	FactionCatalog.spearheads().clear()
 	assert_eq(FactionCatalog.spearheads().size(), count)
+
+
+func test_alliance_of_an_order_faction() -> void:
+	assert_eq(FactionCatalog.alliance_of("Kharadron Overlords"), GrandAlliance.Type.ORDER)
+
+
+func test_alliance_of_a_destruction_faction() -> void:
+	assert_eq(FactionCatalog.alliance_of("Gloomspite Gitz"), GrandAlliance.Type.DESTRUCTION)
+
+
+func test_alliance_of_an_unknown_faction_is_minus_one() -> void:
+	assert_eq(FactionCatalog.alliance_of("Not A Real Faction"), -1)

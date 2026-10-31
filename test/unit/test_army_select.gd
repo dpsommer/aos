@@ -665,6 +665,23 @@ func test_search_filters_out_spearheads_that_do_not_match() -> void:
 	assert_lt(_entry_cards(screen).size(), GameModeScreen.shown_spearheads().size())
 
 
+func test_search_by_alliance_name_keeps_that_alliances_spearheads() -> void:
+	var screen := _spearhead()
+	var entry: Dictionary = GameModeScreen.shown_spearheads()[0]
+	screen._on_search_changed(GrandAlliance.display_name(entry.alliance))
+	assert_true(entry.name in _spearhead_names(screen))
+
+
+func test_search_by_alliance_name_filters_out_other_alliances_spearheads() -> void:
+	var screen := _spearhead()
+	var entry: Dictionary = GameModeScreen.shown_spearheads()[0]
+	screen._on_search_changed(GrandAlliance.display_name(entry.alliance))
+	var names := _spearhead_names(screen)
+	for other: Dictionary in GameModeScreen.shown_spearheads():
+		if other.alliance != entry.alliance:
+			assert_false(other.name in names, "%s should be filtered out" % other.name)
+
+
 func test_search_without_matches_shows_no_cards() -> void:
 	var screen := _spearhead()
 	screen._on_search_changed("zzzzzz-no-such-spearhead")

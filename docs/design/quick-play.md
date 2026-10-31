@@ -43,7 +43,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 
 ### Spearhead
 
-- **Spearheads:** every Spearhead shown on the game mode screen, grouped by Grand Alliance, each with its faction's icon, name, faction and unit count (its general included). A search box above filters them by Spearhead or faction name; Esc in it clears it. The first Spearhead starts chosen.
+- **Spearheads:** every Spearhead shown on the game mode screen, grouped by Grand Alliance, each with its faction's icon, name, faction and unit count (its general included). A search box above filters them by Spearhead, faction or Grand Alliance name; Esc in it clears it. The first Spearhead starts chosen.
 - **Detail:**
   - the name, its faction, Grand Alliance and general, and a pill: "Choose a regiment ability and an enhancement to play", until both are chosen, then "Ready to play";
   - **Battle Traits** (foldable, two to a row, as in Matched Play, but the first starts unfolded);
