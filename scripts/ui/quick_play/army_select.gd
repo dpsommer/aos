@@ -23,6 +23,8 @@ const SPEARHEAD_GROUPS := [
 ]
 ## The gap between the left pane's lists and their scroll bar, so cards don't run into it.
 const SCROLL_GAP := 10
+## The size of the battleplan card's art, a map or the Random icon.
+const PLAN_ART_SIZE := Vector2(64, 48)
 
 var mode := BattleSetup.Mode.MATCHED_PLAY
 var pane := Pane.LIST
@@ -572,18 +574,30 @@ func _refresh_plan_card() -> void:
 	_plan_card.accessibility_name = "Battle plan: %s" % name_text
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 28, 6)
-	art.get_child(0).modulate = UITheme.TEXT
-	art.custom_minimum_size = Vector2(64, 48)
+	var art := _plan_art(plan, core.battlepack.battlefield_size if plan else Vector2.ZERO)
 	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true)], 3)
-	if not sub.is_empty():
-		text.add_child(UIBuilder.label(sub, "MutedLabel", true))
+	# The note's line stays when it's empty, so the card is the same size whatever's chosen.
+	text.add_child(UIBuilder.label(sub, "MutedLabel", true))
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var chevron := TextureRect.new()
 	chevron.texture = UITheme.icon("chevron_right")
 	chevron.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 	chevron.modulate = UITheme.MUTED
 	_plan_card.add(UIBuilder.hbox([art, text, chevron], 14))
+
+
+## The battleplan card's art, always [constant PLAN_ART_SIZE]: the chosen battleplan's map, or the
+## monster icon for Random.
+static func _plan_art(plan: Battleplan, battlefield_size: Vector2) -> Control:
+	var art: Control
+	if plan:
+		art = BattleplanMap.new(plan, battlefield_size)
+	else:
+		art = UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 40, 6)
+		art.get_child(0).modulate = UITheme.TEXT
+	art.custom_minimum_size = PLAN_ART_SIZE
+	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	return art
 
 
 func _status_pill() -> Control:

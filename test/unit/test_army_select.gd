@@ -633,6 +633,57 @@ func test_picked_battleplan_is_in_the_setup() -> void:
 	assert_eq(screen.setup().battleplan, _first_plan_name())
 
 
+func _pick_plan(screen: ArmySelect, plan_name: String) -> void:
+	screen.show_plans()
+	var picker: BattleplanPicker = UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is BattleplanPicker)[0]
+	picker.cards[plan_name].pressed.emit()
+
+
+func _plan_maps(screen: ArmySelect) -> Array[Node]:
+	return UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is BattleplanMap)
+
+
+func test_random_battleplan_card_shows_the_icon_filling_its_art() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	await get_tree().process_frame
+	assert_true(_plan_maps(screen).is_empty())
+	var art: Control = UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is ArtPlaceholder)[0]
+	assert_eq(art.size, ArmySelect.PLAN_ART_SIZE)
+	assert_eq(art.get_child(0).size.y, 40.0)
+
+
+func test_picked_battleplan_card_shows_its_map_in_place_of_the_icon() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	_pick_plan(screen, _first_plan_name())
+	await get_tree().process_frame
+	var maps := _plan_maps(screen)
+	assert_eq(maps.size(), 1)
+	assert_eq(maps[0].battleplan.name, _first_plan_name())
+	assert_eq(maps[0].size, ArmySelect.PLAN_ART_SIZE)
+	assert_true(UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is ArtPlaceholder).is_empty())
+
+
+func test_picking_a_battleplan_keeps_the_card_size() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	await get_tree().process_frame
+	var random_size := screen._plan_card.size
+	_pick_plan(screen, _first_plan_name())
+	await get_tree().process_frame
+	assert_eq(screen._plan_card.size, random_size)
+
+
+func test_picking_random_shows_the_icon_again() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	_pick_plan(screen, _first_plan_name())
+	_pick_plan(screen, "")
+	await get_tree().process_frame
+	assert_true(_plan_maps(screen).is_empty())
+
+
 # --- Saved armies list ---
 
 

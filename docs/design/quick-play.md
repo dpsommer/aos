@@ -23,7 +23,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
   - the battleplans (`BattleplanPicker`), from the battle plan card.
 
   Esc goes back to the list from these, and from the list goes back to the game mode.
-- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right, with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card): "Random" (picked when the battle starts) or the chosen battleplan's name. It's outlined in gold while the battleplans are open.
+- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right: "Random" (picked when the battle starts), with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card), or the chosen battleplan's name, with its map (`BattleplanMap`) in the icon's place. The icon or map fills a 64 × 48 box, and the card stays the same size whichever is chosen. It's outlined in gold while the battleplans are open.
 
 ### Matched Play
 
