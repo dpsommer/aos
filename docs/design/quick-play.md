@@ -49,7 +49,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
   - **Battle Traits** (foldable, two to a row, as in Matched Play, but the first starts unfolded);
   - below them, two columns: **Regiment Abilities** and **Enhancements**. Each choice is an [ability choice card](abilities.md#choosing-an-ability), as in the Forge's enhancement options. Pressing a card chooses it; pressing the chosen card unchooses it. Each column's heading has a chip, "Choose 1" or "Chosen";
   - **Army:** portraits of the general and each unit, with model counts; each shows the Spearhead's own warscroll.
-- **Battle plan:** each Spearhead battlepack has one battleplan, fought on whichever side of its realm battlefield the defender chooses, so the card chooses a side (see [Realm battlefields](#realm-battlefields)). It shows "Random" or the side's name over its battlepack's, e.g. "Ossia" over "Sand and Bone".
+- **Battle plan:** each Spearhead battlepack has one battleplan, fought on whichever side of its realm battlefield the defender chooses, so the card chooses a side (see [Realm battlefields](#realm-battlefields)). It shows "Random" or the side's name over its battlepack's, e.g. "Ossia" over "Sand and Bone", with the side's map (`RealmMap`) in the icon's place, as in Matched Play.
 - **Play:** enabled once a regiment ability and an enhancement are chosen.
 
 ### Battleplans

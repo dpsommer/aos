@@ -516,6 +516,36 @@ func test_picking_a_realm_leaves_the_battleplan_alone() -> void:
 	assert_eq(screen.battleplan, "")
 
 
+func test_spearhead_random_battleplan_card_shows_the_icon() -> void:
+	var screen := _spearhead()
+	await get_tree().process_frame
+	assert_true(UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is RealmMap).is_empty())
+	var art: Control = UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is ArtPlaceholder)[0]
+	assert_eq(art.size, ArmySelect.PLAN_ART_SIZE)
+
+
+func test_picked_realm_card_shows_its_map_in_place_of_the_icon() -> void:
+	var screen := _spearhead()
+	screen.show_plans()
+	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	await get_tree().process_frame
+	var maps := UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is RealmMap)
+	assert_eq(maps.size(), 1)
+	assert_eq(maps[0].realm.name, _first_realm())
+	assert_eq(maps[0].size, ArmySelect.PLAN_ART_SIZE)
+	assert_true(UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is ArtPlaceholder).is_empty())
+
+
+func test_picking_a_realm_keeps_the_card_size() -> void:
+	var screen := _spearhead()
+	await get_tree().process_frame
+	var random_size := screen._plan_card.size
+	screen.show_plans()
+	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	await get_tree().process_frame
+	assert_eq(screen._plan_card.size, random_size)
+
+
 func test_picking_random_clears_the_realm() -> void:
 	var screen := _spearhead()
 	screen.realm = _first_realm()

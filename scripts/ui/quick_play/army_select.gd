@@ -592,12 +592,14 @@ func _refresh_plan_card() -> void:
 		child.queue_free()
 	var name_text := "Random"
 	var sub := "Picked when the battle starts"
+	var map: Control = null
 	if mode == BattleSetup.Mode.SPEARHEAD:
 		var packs := CoreRulesCatalog.spearhead_battlepacks()
 		var pack := RealmPicker.battlepack_of(packs, realm) if not realm.is_empty() else null
 		if pack:
 			name_text = realm
 			sub = pack.name
+			map = RealmMap.new(pack, pack.get_realm(realm))
 		_plan_card.disabled = packs.is_empty()
 	else:
 		var core := CoreRulesCatalog.get_rules()
@@ -605,11 +607,12 @@ func _refresh_plan_card() -> void:
 		if plan:
 			name_text = plan.name
 			sub = ""
+			map = BattleplanMap.new(plan, core.battlepack.battlefield_size)
 		_plan_card.disabled = core == null or core.battlepack == null
 	_plan_card.accessibility_name = "Battle plan: %s" % name_text
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"
-	var art := _plan_art(plan, core.battlepack.battlefield_size if plan else Vector2.ZERO)
+	var art := _plan_art(map)
 	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true)], 3)
 	# The note's line stays when it's empty, so the card is the same size whatever's chosen.
 	text.add_child(UIBuilder.label(sub, "MutedLabel", true))
@@ -621,13 +624,11 @@ func _refresh_plan_card() -> void:
 	_plan_card.add(UIBuilder.hbox([art, text, chevron], 14))
 
 
-## The battleplan card's art, always [constant PLAN_ART_SIZE]: the chosen battleplan's map, or the
-## monster icon for Random.
-static func _plan_art(plan: Battleplan, battlefield_size: Vector2) -> Control:
-	var art: Control
-	if plan:
-		art = BattleplanMap.new(plan, battlefield_size)
-	else:
+## The battleplan card's art, always [constant PLAN_ART_SIZE]: the chosen battleplan's or realm
+## battlefield side's [param map], or the monster icon for Random.
+static func _plan_art(map: Control) -> Control:
+	var art := map
+	if art == null:
 		art = UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 40, 6)
 		art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size = PLAN_ART_SIZE
