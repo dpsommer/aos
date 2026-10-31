@@ -26,8 +26,10 @@ const SCROLL_GAP := 10
 
 var mode := BattleSetup.Mode.MATCHED_PLAY
 var pane := Pane.LIST
-## The chosen battleplan's name, or empty for Random.
+## The chosen battleplan's name, in Matched Play, or empty for Random.
 var battleplan := ""
+## The chosen side of a Spearhead realm battlefield, in Spearhead, or empty for Random.
+var realm := ""
 ## Matched Play: the saved armies, most recently saved first, and the chosen one's id.
 var entries: Array[ArmyStore.Entry] = []
 var army_id := ""
@@ -138,11 +140,16 @@ func play_blocker() -> String:
 func setup() -> BattleSetup:
 	var result := BattleSetup.new()
 	result.mode = mode
-	result.battleplan = battleplan
 	if mode == BattleSetup.Mode.MATCHED_PLAY:
+		result.battleplan = battleplan
 		var entry := _entry(army_id)
 		result.army = entry.army if entry else null
-	elif spearhead:
+		return result
+	var pack := RealmPicker.battlepack_of(CoreRulesCatalog.spearhead_battlepacks(), realm) if not realm.is_empty() else null
+	if pack:
+		result.battlepack = pack.name
+		result.realm = realm
+	if spearhead:
 		result.faction = spearhead_faction.name
 		result.spearhead = spearhead.name
 		result.regiment_ability = regiment_ability
@@ -192,10 +199,16 @@ func show_regiment(regiment: RegimentOfRenown) -> void:
 	pane_box.add_child(_scroll(RulesView.regiment_of_renown(regiment, catalog.summoned if catalog else Callable())))
 
 
-## Shows the battlepack's battleplans to choose from in the left pane.
+## Shows the battleplans to choose from in the left pane: the General's Handbook's, or in Spearhead
+## the sides of the Spearhead battlepacks' realm battlefields.
 func show_plans() -> void:
+	if _plan_card == null:
+		return
+	if mode == BattleSetup.Mode.SPEARHEAD:
+		_show_realms()
+		return
 	var core := CoreRulesCatalog.get_rules()
-	if core == null or core.battlepack == null or _plan_card == null:
+	if core == null or core.battlepack == null:
 		return
 	_open_pane(Pane.PLANS, "Choose battle plan", BattleplanPicker.legend())
 	var picker := BattleplanPicker.new(core.battlepack, battleplan)
@@ -205,8 +218,24 @@ func show_plans() -> void:
 	_focus_later(picker.selected_card())
 
 
+func _show_realms() -> void:
+	var packs := CoreRulesCatalog.spearhead_battlepacks()
+	if packs.is_empty():
+		return
+	_open_pane(Pane.PLANS, "Choose battle plan")
+	var picker := RealmPicker.new(packs, realm)
+	picker.picked.connect(func(_pack: String, side: String) -> void: _on_plan_picked(side))
+	pane_box.add_child(_scroll(picker))
+	_plan_card.set_pressed_no_signal(true)
+	_focus_later(picker.selected_card())
+
+
+## The player chose [param plan]: a battleplan's name, or in Spearhead a realm battlefield's side.
 func _on_plan_picked(plan: String) -> void:
-	battleplan = plan
+	if mode == BattleSetup.Mode.SPEARHEAD:
+		realm = plan
+	else:
+		battleplan = plan
 	_opener = _plan_card
 	_refresh_plan_card()
 	show_list()
@@ -553,22 +582,28 @@ func _top_row(heading: Control) -> HBoxContainer:
 	return UIBuilder.hbox([heading, _plan_card], 24)
 
 
-## Fills the battleplan card: Random or the chosen battleplan. Spearhead has no battleplans of its
-## own in the game data yet, so its card is disabled.
+## Fills the battleplan card: Random or the chosen battleplan, or in Spearhead the chosen realm
+## battlefield's side with its battlepack.
 func _refresh_plan_card() -> void:
 	for child in _plan_card.content.get_children():
 		_plan_card.content.remove_child(child)
 		child.queue_free()
 	var name_text := "Random"
 	var sub := "Picked when the battle starts"
-	var core := CoreRulesCatalog.get_rules()
-	var plan := core.battlepack.get_battleplan(battleplan) if core and core.battlepack and not battleplan.is_empty() else null
-	if plan:
-		name_text = plan.name
-		sub = ""
 	if mode == BattleSetup.Mode.SPEARHEAD:
-		sub = "Spearhead battleplans aren't in the game yet"
-	_plan_card.disabled = mode == BattleSetup.Mode.SPEARHEAD or core == null or core.battlepack == null
+		var packs := CoreRulesCatalog.spearhead_battlepacks()
+		var pack := RealmPicker.battlepack_of(packs, realm) if not realm.is_empty() else null
+		if pack:
+			name_text = realm
+			sub = pack.name
+		_plan_card.disabled = packs.is_empty()
+	else:
+		var core := CoreRulesCatalog.get_rules()
+		var plan := core.battlepack.get_battleplan(battleplan) if core and core.battlepack and not battleplan.is_empty() else null
+		if plan:
+			name_text = plan.name
+			sub = ""
+		_plan_card.disabled = core == null or core.battlepack == null
 	_plan_card.accessibility_name = "Battle plan: %s" % name_text
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"

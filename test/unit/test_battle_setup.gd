@@ -16,3 +16,18 @@ func test_display_names_are_not_empty() -> void:
 
 func test_battleplan_is_empty_for_random_by_default() -> void:
 	assert_true(BattleSetup.new().battleplan.is_empty())
+
+
+func test_battlepack_is_empty_for_random_by_default() -> void:
+	assert_true(BattleSetup.new().battlepack.is_empty())
+
+
+func test_realm_is_empty_for_random_by_default() -> void:
+	assert_true(BattleSetup.new().realm.is_empty())
+
+
+func test_battlepack_and_realm_are_independent_of_the_battleplan() -> void:
+	var setup := BattleSetup.new()
+	setup.battlepack = "Some Pack"
+	setup.realm = "Some Realm"
+	assert_true(setup.battleplan.is_empty())
