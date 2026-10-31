@@ -423,7 +423,7 @@ func _choose_spearhead(entry: Dictionary) -> void:
 				spearhead = army
 	regiment_ability = ""
 	enhancement = ""
-	_open = {"trait:0": true}
+	_open = {}
 	limit_label.text = "Fixed roster"
 	rules_label.text = "Spearhead"
 	_show_detail()

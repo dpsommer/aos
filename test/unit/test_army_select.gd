@@ -1030,10 +1030,11 @@ func test_matched_play_battle_traits_start_folded() -> void:
 	assert_eq(unfolded.map(func(card: AbilityCard) -> String: return card.ability.name), [])
 
 
-func test_spearhead_first_battle_trait_starts_unfolded() -> void:
+func test_spearhead_battle_traits_start_folded() -> void:
 	var cards := _trait_cards(_spearhead())
 	assert_false(cards.is_empty())
-	assert_false(cards[0].folded)
+	var unfolded := cards.filter(func(card: AbilityCard) -> bool: return not card.folded)
+	assert_eq(unfolded.map(func(card: AbilityCard) -> String: return card.ability.name), [])
 
 
 func test_spearhead_regiment_abilities_and_enhancements_share_a_row() -> void:
