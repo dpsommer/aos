@@ -754,6 +754,25 @@ func test_spearhead_battle_traits_are_laid_out_two_to_a_row() -> void:
 	assert_eq(grids[0].get_child_count(), screen.spearhead.battle_traits.size())
 
 
+func _trait_cards(screen: ArmySelect) -> Array[Node]:
+	return UIKit.find_all(screen, func(n: Node) -> bool:
+		return n is AbilityCard and n.get_parent() is GridContainer)
+
+
+func test_matched_play_battle_traits_start_folded() -> void:
+	_save_army("Army")
+	var cards := _trait_cards(_matched_play())
+	assert_false(cards.is_empty())
+	for card: AbilityCard in cards:
+		assert_true(card.folded, card.ability.name)
+
+
+func test_spearhead_first_battle_trait_starts_unfolded() -> void:
+	var cards := _trait_cards(_spearhead())
+	assert_false(cards.is_empty())
+	assert_false(cards[0].folded)
+
+
 func test_spearhead_regiment_abilities_and_enhancements_share_a_row() -> void:
 	var screen := _spearhead()
 	var regiment := _section_of(screen, "Regiment Abilities")

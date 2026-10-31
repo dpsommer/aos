@@ -375,7 +375,7 @@ func _choose_army(id: String) -> void:
 	var entry := _entry(id)
 	army_id = id if entry and _can_choose(entry) else ""
 	_info = army_info(entry) if not army_id.is_empty() else {}
-	_open = {"trait:0": true}
+	_open = {}
 	limit_label.text = "%d pts" % entry.army.points_limit if not army_id.is_empty() else "—"
 	var core := CoreRulesCatalog.get_rules()
 	rules_label.text = core.battlepack.name if core and core.battlepack else "Matched Play"
@@ -604,7 +604,6 @@ static func _pill(text: String, kind: String) -> Control:
 	return pill
 
 
-## A battle trait's card, folded unless it's open: the first starts open.
 ## The battle traits, two to a row.
 func _trait_grid(traits: Array[Ability]) -> GridContainer:
 	var grid := GridContainer.new()
@@ -616,6 +615,7 @@ func _trait_grid(traits: Array[Ability]) -> GridContainer:
 	return grid
 
 
+## A battle trait's card, folded unless it's open.
 func _trait_card(rule: Ability, index: int) -> AbilityCard:
 	var key := "trait:%d" % index
 	var card := AbilityCard.new(rule)

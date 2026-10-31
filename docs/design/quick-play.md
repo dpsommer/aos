@@ -34,7 +34,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
   - With no saved armies, a placeholder offers **Open the Forge** (`forge_requested`).
 - **Detail:**
   - the name with a status pill ("Army valid", "N problems" or "Constraints overridden"), its faction and Army of Renown or formation, and its points; then its problems, if any, in a red box;
-  - **Battle Traits** (the Army of Renown's, else the faction's), two to a row, each foldable by a chevron beside its name (`AbilityCard.make_foldable()`); the first starts unfolded;
+  - **Battle Traits** (the Army of Renown's, else the faction's), two to a row, each foldable by a chevron beside its name (`AbilityCard.make_foldable()`), all starting folded;
   - **Battle Formation** as a short `FormationCard`;
   - **Battle Tactics**, a short `TacticCard` per slot, or a dashed "No battle tactics card in slot 2"; beside them **Lores**, a short `LoreCard` per lore, or a dashed "No spell lore" etc. Formations, tactics cards and lores have an eye that shows them in full in place, keeping focus on the eye;
   - **Army:** each regiment in a box with its name (and a Regiment of Renown chip), unit count and points, then its units' 112 px portraits: the General's crown, the model count, the unit's name, and "General", its enhancements and points under it. Auxiliary units follow in their own box;
@@ -46,7 +46,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 - **Spearheads:** every Spearhead shown on the game mode screen, grouped by Grand Alliance, each with its faction's icon, name, faction and unit count (its general included). A search box above filters them by Spearhead or faction name; Esc in it clears it. The first Spearhead starts chosen.
 - **Detail:**
   - the name, its faction, Grand Alliance and general, and a pill: "Choose a regiment ability and an enhancement to play", until both are chosen, then "Ready to play";
-  - **Battle Traits** (foldable, two to a row, as in Matched Play);
+  - **Battle Traits** (foldable, two to a row, as in Matched Play, but the first starts unfolded);
   - below them, two columns: **Regiment Abilities** and **Enhancements**. Each choice is an [ability choice card](abilities.md#choosing-an-ability), as in the Forge's enhancement options. Pressing a card chooses it; pressing the chosen card unchooses it. Each column's heading has a chip, "Choose 1" or "Chosen";
   - **Army:** portraits of the general and each unit, with model counts; each shows the Spearhead's own warscroll.
 - **Battle plan:** the card is disabled, so a Spearhead battle always uses Random. The Spearhead battlepacks are in the game data (see [Core rules data](../technical/core-rules-data.md#spearhead-battlepacks)), but the picker only shows the General's Handbook's battleplans.
