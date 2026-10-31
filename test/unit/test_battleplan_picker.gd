@@ -163,6 +163,19 @@ func test_full_card_shows_the_twist() -> void:
 	assert_true(UIKit.has_label_containing(picker.cards["Alpha"], "Twist"))
 
 
-func test_describe_gives_table_and_number() -> void:
-	var text := BattleplanPicker.describe(_plan("Alpha", 2, 5))
-	assert_true(text.contains("2") and text.contains("5"))
+# Tables and numbers are for rolling a battleplan on the tabletop.
+func test_no_table_headings() -> void:
+	assert_false(UIKit.has_label_containing(_picker(), "TABLE"))
+
+
+func test_cards_show_no_battleplan_numbers() -> void:
+	var picker := _picker()
+	for plan_name in ["Alpha", "Beta", "Gamma"]:
+		var numbers := UIKit.find_all(picker.cards[plan_name], func(n: Node) -> bool: return n is Label and n.text.is_valid_int())
+		assert_eq(numbers.size(), 0, plan_name)
+
+
+func test_battleplans_are_listed_in_the_battlepacks_order() -> void:
+	var picker := _picker()
+	var order := ["Alpha", "Beta", "Gamma"].map(func(plan_name: String) -> int: return picker.cards[plan_name].get_index())
+	assert_eq(order, [1, 2, 3])

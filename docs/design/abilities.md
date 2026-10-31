@@ -10,11 +10,11 @@ Every ability (warscroll abilities, battle traits, battle formations, enhancemen
   - chips for its casting value, chanting value, command points and points, where it has them.
 - **Inner box:** the ability's name in bold Cinzel, a horizontal rule, then its rules text, Declare, Effect and options (`RulesFormatter.ability_body()`), its keywords in small capitals and its source.
 
-A card can be made foldable (`AbilityCard.make_foldable()`): a chevron beside the name folds it to its header and name, as Quick Play's battle traits do. `AbilityCard.set_folded()` folds it without a chevron, as Quick Play's Spearhead choices do behind their eye.
+A card can be made foldable (`AbilityCard.make_foldable()`): a chevron beside the name folds it to its header and name, as Quick Play's battle traits and [ability choice cards](#choosing-an-ability) do. `AbilityCard.set_folded()` folds it without a chevron.
 
 ## Choosing an ability
 
-Where the player chooses an ability (the Forge's enhancement options and Quick Play's Spearhead regiment abilities and enhancements), it's an `AbilityChoiceCard` (`scripts/ui/cards/ability_choice_card.gd`): the ability card itself, with no box around it, filling its column's width. It's folded to its header and name until the eye at the right of its header shows its rules in full. The whole card is a button: pressing it (a click, or Enter or Space) chooses the ability, and pressing the chosen card unchooses it. The chosen card has a gold outline, as a card with keyboard focus does, and a check left of the eye. Other chips, e.g. an enhancement's table group, go before the check (`add_header_control()`).
+Where the player chooses an ability (the Forge's enhancement options and Quick Play's Spearhead regiment abilities and enhancements), it's an `AbilityChoiceCard` (`scripts/ui/cards/ability_choice_card.gd`): the ability card itself, with no box around it, filling its column's width. It's folded to its header and name until the chevron beside its name unfolds it. The chevron takes its own clicks and keeps focus, even in the Forge's unit rows, which let the mouse through to their drop targets. The whole card is a button: pressing it (a click, or Enter or Space) chooses the ability, and pressing the chosen card unchooses it. The chosen card has a gold outline, as a card with keyboard focus does, and a check at the right of its header. Other chips, e.g. an enhancement's table group, go before the check (`add_header_control()`).
 
 A summoning ability's manifestation warscrolls follow its card, from `ArmyCatalog.summoned()`. A unit it sets up, such as an Auto-Endrin, follows it as a short card that links to the full warscroll (see the [Forge](forge.md)).
 

@@ -35,53 +35,76 @@ func test_starts_unfolded_when_open() -> void:
 	assert_false(_card(true).folded)
 
 
-func test_eye_starts_pressed_when_open() -> void:
-	assert_true(_card(true).eye.button_pressed)
-
-
-func test_eye_unfolds_the_card() -> void:
+func test_chevron_unfolds_the_card() -> void:
 	var card := _card()
-	card.eye.button_pressed = true
+	card.fold_button.pressed.emit()
 	assert_false(card.folded)
 
 
-func test_eye_folds_the_card_again() -> void:
+func test_chevron_folds_the_card_again() -> void:
 	var card := _card(true)
-	card.eye.button_pressed = false
+	card.fold_button.pressed.emit()
 	assert_true(card.folded)
 
 
-func test_eye_emits_eye_toggled_open() -> void:
+func test_chevron_emits_fold_toggled_open() -> void:
 	var card := _card()
 	watch_signals(card)
-	card.eye.button_pressed = true
-	assert_signal_emitted_with_parameters(card, "eye_toggled", [true])
+	card.fold_button.pressed.emit()
+	assert_signal_emitted_with_parameters(card, "fold_toggled", [true])
 
 
-func test_eye_emits_eye_toggled_closed() -> void:
+func test_chevron_emits_fold_toggled_closed() -> void:
 	var card := _card(true)
 	watch_signals(card)
-	card.eye.button_pressed = false
-	assert_signal_emitted_with_parameters(card, "eye_toggled", [false])
+	card.fold_button.pressed.emit()
+	assert_signal_emitted_with_parameters(card, "fold_toggled", [false])
 
 
-func test_eye_tooltip_offers_show_when_folded() -> void:
-	assert_true(_card().eye.tooltip_text.begins_with("Show"))
-
-
-func test_eye_tooltip_offers_hide_when_unfolded() -> void:
-	assert_true(_card(true).eye.tooltip_text.begins_with("Hide"))
-
-
-func test_eye_tooltip_changes_when_toggled() -> void:
+func test_chevron_does_not_emit_pressed() -> void:
 	var card := _card()
-	var before := card.eye.tooltip_text
-	card.eye.button_pressed = true
-	assert_ne(card.eye.tooltip_text, before)
+	watch_signals(card)
+	card.fold_button.pressed.emit()
+	assert_signal_not_emitted(card, "pressed")
 
 
-func test_eye_tooltip_names_the_ability() -> void:
-	assert_true(_card().eye.tooltip_text.contains("Made-up Ability"))
+func test_chevron_tooltip_names_the_ability() -> void:
+	assert_true(_card().fold_button.tooltip_text.contains("Made-up Ability"))
+
+
+func test_chevron_takes_the_focus_key() -> void:
+	var rule := Ability.new()
+	rule.name = "Made-up Ability"
+	var card := AbilityChoiceCard.new(rule, false, "slot:fold")
+	add_child_autofree(card)
+	assert_eq(card.fold_button.get_meta(&"focus_key", ""), "slot:fold")
+
+
+func test_chevron_can_take_focus() -> void:
+	assert_eq(_card().fold_button.focus_mode, Control.FOCUS_ALL)
+
+
+# A drop target (BuilderDragDrop.pass_mouse) lets clicks on the chevron reach the card too.
+func test_click_on_the_chevron_does_not_emit_pressed() -> void:
+	var card := _card()
+	BuilderDragDrop.pass_mouse(card)
+	await get_tree().process_frame
+	watch_signals(card)
+	var click := _click()
+	click.position = card.get_global_transform().affine_inverse() * card.fold_button.get_global_rect().get_center()
+	card._gui_input(click)
+	assert_signal_not_emitted(card, "pressed")
+
+
+func test_click_beside_the_chevron_emits_pressed() -> void:
+	var card := _card()
+	BuilderDragDrop.pass_mouse(card)
+	await get_tree().process_frame
+	watch_signals(card)
+	var click := _click()
+	click.position = Vector2(4, 4)
+	card._gui_input(click)
+	assert_signal_emitted(card, "pressed")
 
 
 # selected
@@ -148,8 +171,11 @@ func test_description_keeps_the_timing_when_selected() -> void:
 
 func test_left_click_emits_pressed() -> void:
 	var card := _card()
+	await get_tree().process_frame
 	watch_signals(card)
-	card._gui_input(_click())
+	var click := _click()
+	click.position = Vector2(4, 4)
+	card._gui_input(click)
 	assert_signal_emitted(card, "pressed")
 
 
@@ -200,16 +226,10 @@ func test_add_header_control_goes_before_the_check() -> void:
 	assert_lt(chip.get_index(), card._check.get_index())
 
 
-func test_add_header_control_keeps_the_eye_last() -> void:
+func test_add_header_control_keeps_the_check_last() -> void:
 	var card := _card()
 	card.add_header_control(Control.new())
-	assert_eq(card._header.get_child(-1), card.eye)
-
-
-func test_add_header_control_keeps_the_check_before_the_eye() -> void:
-	var card := _card()
-	card.add_header_control(Control.new())
-	assert_lt(card._check.get_index(), card.eye.get_index())
+	assert_eq(card._header.get_child(-1), card._check)
 
 
 func test_added_controls_keep_their_order() -> void:

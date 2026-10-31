@@ -6,7 +6,7 @@ Both screens are laid out for the design's 1440 × 900 and styled by `UITheme` (
 
 ## Game mode
 
-Scene `scenes/ui/quick_play/game_mode_screen.tscn`, script `scripts/ui/quick_play/game_mode_screen.gd` (`GameModeScreen`). "Choose a game mode" over a card for each mode, each with its icon in gold on placeholder stripes, its name, a description and chips:
+Scene `scenes/ui/quick_play/game_mode_screen.tscn`, script `scripts/ui/quick_play/game_mode_screen.gd` (`GameModeScreen`). "Choose a game mode" over a card for each mode, each with its icon in white on placeholder stripes, its name, a description and chips:
 - **Spearhead** (the icon pack's spear): small, fixed forces from each faction's Spearhead box. Chips count the Spearheads (`GameModeScreen.shown_spearheads()`: every faction's, from `FactionCatalog.spearheads()`, without Legends factions' unless Settings shows them) and say "Fixed rosters".
 - **Matched Play** (the pack's frenzied): an army built in the Forge. Chips say "Your Forge armies" and name the General's Handbook battlepack in gold.
 
@@ -16,14 +16,14 @@ Pressing a card emits `mode_chosen`. Spearhead's card is focused when the screen
 
 Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/army_select.gd` (`ArmySelect`), for either mode. The breadcrumb names the mode.
 
-- **Header:** after the breadcrumb, a box with the points limit (the army's, or "Fixed roster" for a Spearhead) and the rules ("General's Handbook 2026-27" or "Spearhead"), then **Play**: large and gold, with a glow, once the army can play; otherwise dark and disabled, its tooltip saying why (`ArmySelect.play_blocker()`), e.g. "Fix this army's problems to play".
+- **Header:** after the breadcrumb, a box with the points limit (the army's, or "Fixed roster" for a Spearhead) and the rules ("General's Handbook 2026-27" or "Spearhead"), then **Play**: large and gold, with a slight glow, once the army can play; otherwise dark and disabled, its tooltip saying why (`ArmySelect.play_blocker()`), e.g. "Fix this army's problems to play".
 - **Left pane (460 px, the same width as the Forge army builder's left pane):** the list of armies. It gives way to one of these, each with a Back button ("Armies" or "Spearheads") that returns to the list and gives focus back to the control that opened it:
   - a unit's warscroll (`WarscrollCard`), from a portrait;
   - a Regiment of Renown's units and rules (`RulesView.regiment_of_renown()`), from its units' portraits;
   - the battleplans (`BattleplanPicker`), from the battle plan card.
 
   Esc goes back to the list from these, and from the list goes back to the game mode.
-- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right: "Random" (picked when the battle starts) or the chosen battleplan with its table and number. It's outlined in gold while the battleplans are open.
+- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right, with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card): "Random" (picked when the battle starts) or the chosen battleplan's name. It's outlined in gold while the battleplans are open.
 
 ### Matched Play
 
@@ -56,7 +56,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 
 `BattleplanPicker` (`scripts/ui/quick_play/battleplan_picker.gd`) lists, under "Choose battle plan" and a key to the map colours (Attacker red, Defender blue):
 - **Random:** "One of the 12 battleplans below, picked when the battle starts."
-- each table's battleplans, under "TABLE 1" and "TABLE 2": a small map, the battleplan's number and name, and its twist cut to two lines.
+- each battleplan, in the battlepack's order: a small map, its name, and its twist cut to two lines. The battlepack's tables and numbers aren't shown, as they're for rolling a battleplan on the tabletop.
 
 The chosen card is outlined in gold with a check. An eye shows a battleplan in full, swapped in place: a map the width of the pane with its terrain, a caption ("60" × 44" · dashed: terrain · gold rings: objectives with their 3" control zone"), its setup, twist, abilities as [ability cards](abilities.md) and scoring. Pressing a card chooses it and returns to the list.
 

@@ -9,16 +9,12 @@ enum Form { SUMMARY, BRIEF, FULL }
 const KIND_NAMES := {"affray": "Affray", "strike": "Strike", "domination": "Domination"}
 
 
-## [param action] is shown beside the card's name, e.g. a "Change" button or a chip, or null for
-## none.
+## [param heading] is shown over the card's name, e.g. "Slot 1". [param action] is shown in the top
+## right corner (at the end of the name's row without a heading), e.g. a "Change" button or a chip,
+## or null for none.
 func _init(card: BattleTacticCard, form: Form, heading := "", action: Control = null) -> void:
 	super()
-	card_name = card.name
-	var content := UIBuilder.vbox([], 8)
-	if not heading.is_empty():
-		content.add_child(UIBuilder.label(heading, "MutedLabel"))
-	var title := UIBuilder.label(card.name, "TitleLabel", true)
-	content.add_child(UIBuilder.hbox([title, action] if action else [title]))
+	_add_title(card.name, heading, [], action)
 	match form:
 		Form.FULL:
 			# Rules divide the card's setup, each battle tactic and its FAQs.
@@ -41,7 +37,6 @@ func _init(card: BattleTacticCard, form: Form, heading := "", action: Control = 
 			for tactic in card.tactics:
 				chips.add_child(UITheme.chip(tactic.name, tactic.kind))
 			content.add_child(chips)
-	add_child(content)
 
 
 ## A battle tactic's kind, name and victory points.

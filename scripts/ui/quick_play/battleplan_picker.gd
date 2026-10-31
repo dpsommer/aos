@@ -1,7 +1,7 @@
 class_name BattleplanPicker
 extends VBoxContainer
-## The battlepack's battleplans to choose from: Random, then each table's battleplans with a small
-## map and their twist. An eye shows a battleplan in full: a larger map with its terrain, its twist,
+## The battlepack's battleplans to choose from: Random, then each battleplan with a small map and
+## its twist. An eye shows a battleplan in full: a larger map with its terrain, its twist,
 ## abilities and scoring. Pressing a card chooses it.
 
 ## The player chose [param battleplan], or Random if it's empty.
@@ -22,14 +22,11 @@ func _init(pack: Battlepack, chosen := "") -> void:
 	add_theme_constant_override("separation", 8)
 	cards[""] = _random_card()
 	add_child(cards[""])
-	for table in [1, 2]:
-		var plans := battlepack.battleplans.filter(func(plan: Battleplan) -> bool: return plan.table == table)
-		if plans.is_empty():
-			continue
-		add_child(UIBuilder.label("TABLE %d" % table, "StatNameLabel"))
-		for plan: Battleplan in plans:
-			cards[plan.name] = _plan_card(plan)
-			add_child(cards[plan.name])
+	# The battlepack's tables and numbers are for rolling a battleplan on the tabletop, so they
+	# aren't shown.
+	for plan in battlepack.battleplans:
+		cards[plan.name] = _plan_card(plan)
+		add_child(cards[plan.name])
 
 
 ## The chosen card, to give it focus when the picker opens.
@@ -49,15 +46,10 @@ static func legend() -> HBoxContainer:
 	return row
 
 
-## Where [param plan] is in the battlepack's tables, e.g. "Table 1 · battleplan 3".
-static func describe(plan: Battleplan) -> String:
-	return "Table %d · battleplan %d" % [plan.table, plan.number]
-
-
 func _random_card() -> PressableCard:
 	var card := _card("Random", "")
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/misc/circle"), 36, 6)
-	art.get_child(0).modulate = UITheme.GOLD
+	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 36, 6)
+	art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size = Vector2(96, 70)
 	var count := battlepack.battleplans.size()
 	var text := UIBuilder.vbox([UIBuilder.label("Random", "TitleLabel"),
@@ -75,8 +67,7 @@ func _random_card() -> PressableCard:
 func _plan_card(plan: Battleplan) -> PressableCard:
 	var full: bool = _open.has(plan.name)
 	var card := _card(plan.name, plan.name)
-	var number := UIBuilder.label(str(plan.number), "MutedLabel")
-	var title := UIBuilder.hbox([number, UIBuilder.label(plan.name, "TitleLabel", true)], 8)
+	var title := UIBuilder.label(plan.name, "TitleLabel", true)
 	var twist := UIBuilder.label(plan.twist, "MutedLabel", true)
 	twist.max_lines_visible = 2
 	twist.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -147,8 +138,8 @@ static func _check() -> Control:
 	return check
 
 
-## A gold heading over rules text.
+## A heading over rules text.
 static func _rules(heading: String, text: String) -> VBoxContainer:
 	var title := UIBuilder.label(heading.to_upper(), "StatNameLabel")
-	title.add_theme_color_override("font_color", UITheme.GOLD)
+	title.add_theme_color_override("font_color", UITheme.TEXT)
 	return UIBuilder.vbox([title, UIBuilder.label(text, "BodyLabel", true)], 4)

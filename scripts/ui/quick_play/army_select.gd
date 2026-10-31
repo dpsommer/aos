@@ -21,6 +21,8 @@ const SPEARHEAD_GROUPS := [
 	["regiment", "Regiment Abilities"],
 	["enhancement", "Enhancements"],
 ]
+## The gap between the left pane's lists and their scroll bar, so cards don't run into it.
+const SCROLL_GAP := 10
 
 var mode := BattleSetup.Mode.MATCHED_PLAY
 var pane := Pane.LIST
@@ -68,7 +70,6 @@ func _ready() -> void:
 	theme = UITheme.get_theme()
 	back_button.icon = UITheme.icon("back")
 	back_button.pressed.connect(back_pressed.emit)
-	play_button.icon = UITheme.icon("play")
 	play_button.pressed.connect(func() -> void: play_requested.emit(setup()))
 
 
@@ -495,7 +496,7 @@ func _matched_detail(army: Army) -> void:
 				army.auxiliary.map(func(unit: ArmyUnit) -> Control: return _army_portrait(army, unit, null))))
 	if regiments.get_child_count() == 0:
 		regiments.add_child(_placeholder("This army has no units yet"))
-	detail_column.add_child(_section("Army", regiments, "Click a portrait to see its warscroll"))
+	detail_column.add_child(_section("Army", regiments))
 
 	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
 	if terrain:
@@ -532,7 +533,7 @@ func _spearhead_detail() -> void:
 	portraits.append(_spearhead_portrait(spearhead.general, 1, general, true))
 	for unit in spearhead.units:
 		portraits.append(_spearhead_portrait(unit.name, unit.count, spearhead.get_warscroll(unit.name), false, unit.notes))
-	detail_column.add_child(_section("Army", _regiment_panel("", false, "", portraits), "Click a portrait to see its warscroll"))
+	detail_column.add_child(_section("Army", _regiment_panel("", false, "", portraits)))
 	_update_choices()
 
 
@@ -564,18 +565,19 @@ func _refresh_plan_card() -> void:
 	var plan := core.battlepack.get_battleplan(battleplan) if core and core.battlepack and not battleplan.is_empty() else null
 	if plan:
 		name_text = plan.name
-		sub = BattleplanPicker.describe(plan)
+		sub = ""
 	if mode == BattleSetup.Mode.SPEARHEAD:
 		sub = "Spearhead battleplans aren't in the game yet"
 	_plan_card.disabled = mode == BattleSetup.Mode.SPEARHEAD or core == null or core.battlepack == null
 	_plan_card.accessibility_name = "Battle plan: %s" % name_text
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/misc/circle"), 28, 6)
-	art.get_child(0).modulate = UITheme.GOLD
+	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 28, 6)
+	art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size = Vector2(64, 48)
-	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true),
-			UIBuilder.label(sub, "MutedLabel", true)], 3)
+	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true)], 3)
+	if not sub.is_empty():
+		text.add_child(UIBuilder.label(sub, "MutedLabel", true))
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var chevron := TextureRect.new()
 	chevron.texture = UITheme.icon("chevron_right")
@@ -652,13 +654,13 @@ func _toggle_card(key: String, card_name: String, make: Callable) -> Control:
 	return card
 
 
-## A Spearhead regiment ability or enhancement to choose: its ability card, folded until its eye
+## A Spearhead regiment ability or enhancement to choose: its ability card, folded until its chevron
 ## shows it. Pressing it chooses it, or unchooses it if chosen.
 func _choice_card(group: String, ability: Ability) -> AbilityChoiceCard:
 	var key := group + ":" + ability.name
 	var card := AbilityChoiceCard.new(ability, _open.has(key), key)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	card.eye_toggled.connect(func(on: bool) -> void:
+	card.fold_toggled.connect(func(on: bool) -> void:
 		if on:
 			_open[key] = true
 		else:
@@ -776,10 +778,10 @@ static func _pin(art: Control, badge: Control, corner: Control.LayoutPreset) -> 
 	badge.set_anchors_and_offsets_preset(corner, Control.PRESET_MODE_MINSIZE, 6)
 
 
-## [param title] in gold over [param content], with [param note] beside the title if given, and
+## [param title] over [param content], with [param note] beside the title if given, and
 ## [param extra] at the end of its row if not null.
 static func _section(title: String, content: Control, note := "", extra: Control = null) -> VBoxContainer:
-	var heading := UIBuilder.hbox([UIBuilder.label(title, "GoldTitleLabel")], 12)
+	var heading := UIBuilder.hbox([UIBuilder.label(title, "TitleLabel")], 12)
 	if not note.is_empty():
 		var note_label := UIBuilder.label(note, "MutedLabel")
 		note_label.size_flags_vertical = Control.SIZE_SHRINK_END
@@ -805,12 +807,17 @@ static func _empty(title: String, text: String) -> PanelContainer:
 			UIBuilder.label(text, "DescriptionLabel", true)], 8))
 
 
+## [param content] scrolling vertically, with a gap of [constant SCROLL_GAP] before the scroll bar.
 static func _scroll(content: Control) -> ScrollContainer:
 	var scroll := ScrollContainer.new()
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var margin := MarginContainer.new()
+	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	margin.add_theme_constant_override("margin_right", SCROLL_GAP)
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(content)
+	margin.add_child(content)
+	scroll.add_child(margin)
 	return scroll
 
 

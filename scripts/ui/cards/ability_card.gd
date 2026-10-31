@@ -104,9 +104,9 @@ func add_header_control(control: Control) -> void:
 
 
 ## Adds a chevron beside the name that folds the card down to its header and name, and unfolds it
-## again. The card starts unfolded if [param open].
-func make_foldable(open: bool) -> void:
-	fold_button = UIBuilder.icon_button("chevron_down", "", func() -> void: set_folded(not folded), "", "SmallIconButton")
+## again. The card starts unfolded if [param open]. [param key] is the chevron's focus key.
+func make_foldable(open: bool, key := "") -> void:
+	fold_button = UIBuilder.icon_button("chevron_down", "", func() -> void: set_folded(not folded), key, "SmallIconButton")
 	fold_button.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	# The name shares a row with the chevron, in the name's place.
 	var inner := _name_label.get_parent()

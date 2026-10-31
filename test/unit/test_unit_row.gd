@@ -486,6 +486,68 @@ func test_enhancement_section_has_a_card_for_each_enhancement() -> void:
 	assert_not_null(_enh_card(row, "u1", "Heroic Traits", "Boon B"))
 
 
+## Gives [param type] one table per entry of [param sources], each with a single card named "Boon <index>".
+func _sourced_tables(builder: ArmyBuilder, type: String, sources: PackedStringArray) -> void:
+	var tables: Array[EnhancementTable] = []
+	for i in sources.size():
+		var table := Kit.table(type, [Kit.ability("Boon %d" % i)] as Array[Ability])
+		table.source = sources[i]
+		tables.append(table)
+	builder.catalog.faction.enhancement_tables = tables
+
+
+func _separators(row: UnitRow, type: String) -> Array[Node]:
+	var section := _enh_section(row, type)
+	return section.get_children().filter(func(n: Node) -> bool: return n is HSeparator) if section else []
+
+
+func test_enhancement_tables_from_one_source_have_no_separator() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_sourced_tables(builder, "Heroic Traits", PackedStringArray(["", ""]))
+	assert_eq(_separators(_expanded_row(builder, "u1"), "Heroic Traits").size(), 0)
+
+
+func test_separator_sits_between_battletome_and_scourge_cards() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_sourced_tables(builder, "Heroic Traits", PackedStringArray(["", "Scourge of Aqshy"]))
+	var row := _expanded_row(builder, "u1")
+	var separators := _separators(row, "Heroic Traits")
+	assert_eq(separators.size(), 1)
+	var first := _enh_card(row, "u1", "Heroic Traits", "Boon 0")
+	var second := _enh_card(row, "u1", "Heroic Traits", "Boon 1")
+	assert_lt(first.get_index(), separators[0].get_index())
+	assert_lt(separators[0].get_index(), second.get_index())
+
+
+func test_tables_sharing_a_source_are_not_separated() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_sourced_tables(builder, "Heroic Traits", PackedStringArray(["", "", "Scourge of Aqshy"]))
+	assert_eq(_separators(_expanded_row(builder, "u1"), "Heroic Traits").size(), 1)
+
+
+func test_each_change_of_source_adds_a_separator() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_sourced_tables(builder, "Heroic Traits", PackedStringArray(["", "Scourge of Aqshy", "Scourge of Ghyran"]))
+	assert_eq(_separators(_expanded_row(builder, "u1"), "Heroic Traits").size(), 2)
+
+
+func test_no_separator_before_the_first_table() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_sourced_tables(builder, "Heroic Traits", PackedStringArray(["Scourge of Aqshy", "Scourge of Ghyran"]))
+	var section := _enh_section(_expanded_row(builder, "u1"), "Heroic Traits")
+	assert_false(section.get_child(1) is HSeparator)
+
+
+func test_separators_stay_in_their_own_types_section() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	var mixed := Kit.table("Heroic Traits", [Kit.ability("Boon 0")] as Array[Ability])
+	var scourge := Kit.table("Heroic Traits", [Kit.ability("Boon 1")] as Array[Ability])
+	scourge.source = "Scourge of Aqshy"
+	var other := Kit.table("Artefacts of Power", [Kit.ability("Relic")] as Array[Ability])
+	builder.catalog.faction.enhancement_tables = [mixed, scourge, other] as Array[EnhancementTable]
+	assert_eq(_separators(_expanded_row(builder, "u1"), "Artefacts of Power").size(), 0)
+
+
 func test_enhancement_heading_is_a_section_label_with_the_type() -> void:
 	var builder := _builder(UIKit.army_with_regiment())
 	_tables(builder, PackedStringArray(["Heroic Traits"]))
@@ -501,6 +563,39 @@ func test_choosing_an_enhancement_gives_it_to_the_unit() -> void:
 	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon B")
 	card.pressed.emit()
 	assert_eq(army.find_unit("u1").enhancements["Heroic Traits"], "Boon B")
+
+
+# A unit row lets the mouse through its controls for drag and drop, so a click on a card's chevron
+# reaches the card too.
+func test_click_on_an_enhancement_chevron_does_not_choose_it() -> void:
+	var army := UIKit.army_with_regiment()
+	var builder := _builder(army)
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var row := _expanded_row(builder, "u1")
+	row.size = Vector2(400, 0)
+	await get_tree().process_frame
+	var card := _enh_card(row, "u1", "Heroic Traits", "Boon B")
+	var click := InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = true
+	click.position = card.get_global_transform().affine_inverse() * card.fold_button.get_global_rect().get_center()
+	card._gui_input(click)
+	assert_eq(army.find_unit("u1").enhancements.get("Heroic Traits", ""), "")
+
+
+func test_enhancement_chevron_unfolds_the_card() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon B")
+	card.fold_button.pressed.emit()
+	assert_false(card.folded)
+
+
+func test_enhancement_chevron_has_a_focus_key() -> void:
+	var builder := _builder(UIKit.army_with_regiment())
+	_tables(builder, PackedStringArray(["Heroic Traits"]))
+	var card := _enh_card(_expanded_row(builder, "u1"), "u1", "Heroic Traits", "Boon B")
+	assert_eq(card.fold_button.get_meta(&"focus_key", ""), "u1:enh:Heroic Traits:Boon B:fold")
 
 
 func test_enhancement_card_is_selected_for_the_units_current_enhancement() -> void:

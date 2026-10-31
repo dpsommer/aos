@@ -364,7 +364,7 @@ static func _add_inputs(theme: Theme) -> void:
 			theme.set_stylebox(state, type, style)
 		theme.set_font("font", type, font(CINZEL, 700))
 		theme.set_font_size("font_size", type, 17)
-	# Quick Play's Play button: large gold Cinzel with a glow, or dark while the army can't play.
+	# Quick Play's Play button: large gold Cinzel with a slight glow, or dark while the army can't play.
 	theme.set_type_variation("PlayButton", "GoldButton")
 	for state in BUTTON_STATES:
 		var style := theme.get_stylebox(state, "GoldButton").duplicate() as StyleBoxFlat
@@ -373,7 +373,7 @@ static func _add_inputs(theme: Theme) -> void:
 		elif state != "focus":
 			style.border_color = Color("#F8DFA2")
 			style.shadow_color = Color(GOLD, 0.5)
-			style.shadow_size = 18
+			style.shadow_size = 4
 		style.content_margin_left = 36
 		style.content_margin_right = 36
 		style.content_margin_top = 8
@@ -382,11 +382,6 @@ static func _add_inputs(theme: Theme) -> void:
 	theme.set_font("font", "PlayButton", font(CINZEL, 700))
 	theme.set_font_size("font_size", "PlayButton", 28)
 	theme.set_color("font_disabled_color", "PlayButton", Color("#6B717C"))
-	theme.set_color("icon_disabled_color", "PlayButton", Color("#6B717C"))
-	theme.set_color("icon_normal_color", "PlayButton", Color("#17140C"))
-	theme.set_color("icon_hover_color", "PlayButton", Color("#17140C"))
-	theme.set_color("icon_pressed_color", "PlayButton", Color("#17140C"))
-	theme.set_color("icon_focus_color", "PlayButton", Color("#17140C"))
 	# A round "!" badge on an army with problems, naming them in its tooltip.
 	_button(theme, "ProblemButton", DANGER_BG, Color("#4A2E26"), Color("#8C2A24"), DANGER)
 	for state in BUTTON_STATES:
@@ -537,8 +532,6 @@ static func _add_labels(theme: Theme) -> void:
 	theme.set_font("font", "ArtLabel", heading)
 	_label(theme, "TitleLabel", TEXT, 18)
 	theme.set_font("font", "TitleLabel", heading)
-	_label(theme, "GoldTitleLabel", GOLD, 18)
-	theme.set_font("font", "GoldTitleLabel", heading)
 	_label(theme, "SectionLabel", Color("#D8D2C4"), 20)
 	theme.set_font("font", "SectionLabel", heading)
 	_label(theme, "CardTitleLabel", TEXT, 15)

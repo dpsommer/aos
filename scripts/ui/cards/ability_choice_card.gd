@@ -1,14 +1,14 @@
 class_name AbilityChoiceCard
 extends AbilityCard
 ## An ability to choose, e.g. a Forge enhancement or a Spearhead regiment ability. It shows only its
-## header and name until the eye at the right of its header shows it in full. The whole card is a
-## button: pressing it emits [signal pressed]. While [member selected] it has a gold outline, as
-## when it has keyboard focus, and a check left of the eye.
+## header and name until the chevron beside its name unfolds it. The whole card is a button:
+## pressing it emits [signal pressed]. While [member selected] it has a gold outline, as when it
+## has keyboard focus, and a check at the right of its header.
 
 ## Emitted when the card is clicked, or Enter or Space is pressed while it has focus.
 signal pressed
-## Emitted when the eye shows the card in full ([param open]) or folds it again.
-signal eye_toggled(open: bool)
+## Emitted when the chevron unfolds the card ([param open]) or folds it again.
+signal fold_toggled(open: bool)
 
 const OUTLINE_WIDTH := 3
 ## The outline while hovered, light enough to show on any ability colour.
@@ -22,28 +22,18 @@ var selected := false:
 		tooltip_text = ("Unchoose %s" if value else "Choose %s") % ability.name
 		accessibility_description = ("Chosen. " if value else "") + AbilityCard.header(ability)
 		queue_redraw()
-## The eye that shows the card in full or folds it.
-var eye: Button
 var _check: Control
 var _hovered := false
 
 
-## [param open] shows the card in full. [param key] is the eye's focus key.
+## [param open] shows the card unfolded. [param key] is the chevron's focus key.
 func _init(rule: Ability, open := false, key := "") -> void:
 	super(rule)
-	set_folded(not open)
 	var check := UIBuilder.check_badge()
 	add_header_control(check)
-	eye = UIBuilder.icon_button("eye", "", func() -> void: pass, key, "SmallIconButton")
-	eye.toggle_mode = true
-	eye.button_pressed = open
-	_label_eye()
-	eye.toggled.connect(func(on: bool) -> void:
-		set_folded(not on)
-		_label_eye()
-		eye_toggled.emit(on))
-	add_header_control(eye)
 	_check = check
+	make_foldable(open, key)
+	fold_button.pressed.connect(func() -> void: fold_toggled.emit(not folded))
 	selected = false
 	focus_mode = Control.FOCUS_ALL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -54,19 +44,14 @@ func _init(rule: Ability, open := false, key := "") -> void:
 	focus_exited.connect(queue_redraw)
 
 
-## Adds [param control] to the header, before the check and the eye, e.g. a chip.
+## Adds [param control] to the header, before the check, e.g. a chip.
 func add_header_control(control: Control) -> void:
 	super(control)
 	if _check:
 		_header.move_child(control, _check.get_index())
 
 
-func _label_eye() -> void:
-	eye.tooltip_text = ("Hide %s rules" if eye.button_pressed else "Show %s rules") % ability.name
-	eye.accessibility_name = eye.tooltip_text
-
-
-## Lets clicks through to the card, except on buttons such as the eye.
+## Lets clicks through to the card, except on buttons such as the chevron.
 static func _ignore_mouse(node: Node) -> void:
 	if node is BaseButton:
 		return
@@ -78,6 +63,11 @@ static func _ignore_mouse(node: Node) -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	var click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+	# A click on the chevron is the chevron's, even where a drop target (BuilderDragDrop.pass_mouse) lets
+	# it pass through to the card.
+	if click and fold_button.get_global_rect().has_point(get_global_transform() * event.position):
+		accept_event()
+		return
 	if click or event.is_action_pressed("ui_accept"):
 		accept_event()
 		pressed.emit()
