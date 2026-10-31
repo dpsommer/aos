@@ -30,6 +30,12 @@ godot --headless -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_foo.gd -
 
 Tests can also be run from the GUT panel in the editor.
 
+On a fresh checkout (no `.godot/` folder), run `godot --headless --import` first so `class_name` scripts resolve.
+
+## CI
+
+The Claude GitHub Actions workflows (`.github/workflows/claude.yml` and `claude-code-review.yml`) install Godot with `.github/actions/setup-godot/`, which puts it on `PATH` as `godot` and imports the project. Claude is allowed to run `godot --headless -s addons/gut/gut_cmdln.gd ...`, so it can run any of the commands above. Bump the action's `version` input when the project moves to a new Godot release.
+
 ## Key practices
 
 **Unit tests:**
