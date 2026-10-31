@@ -16,8 +16,14 @@ enum Mode { SPEARHEAD, MATCHED_PLAY }
 @export var regiment_ability: String
 ## Name of the Spearhead enhancement the player's general takes.
 @export var enhancement: String
-## Name of the battleplan, or empty to pick one at random when the battle starts.
+## Name of the General's Handbook battleplan, in Matched Play, or empty to pick one at random when
+## the battle starts.
 @export var battleplan: String
+## Name of the Spearhead battlepack, in Spearhead, or empty to pick a realm battlefield at random
+## when the battle starts.
+@export var battlepack: String
+## Name of the side of the battlepack's realm battlefield, e.g. "Aqshy", or empty for Random.
+@export var realm: String
 
 
 static func display_name(of: Mode) -> String:
