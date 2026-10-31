@@ -21,6 +21,8 @@ const SPEARHEAD_GROUPS := [
 	["regiment", "Regiment Abilities"],
 	["enhancement", "Enhancements"],
 ]
+## The gap between the left pane's lists and their scroll bar, so cards don't run into it.
+const SCROLL_GAP := 10
 
 var mode := BattleSetup.Mode.MATCHED_PLAY
 var pane := Pane.LIST
@@ -805,12 +807,17 @@ static func _empty(title: String, text: String) -> PanelContainer:
 			UIBuilder.label(text, "DescriptionLabel", true)], 8))
 
 
+## [param content] scrolling vertically, with a gap of [constant SCROLL_GAP] before the scroll bar.
 static func _scroll(content: Control) -> ScrollContainer:
 	var scroll := ScrollContainer.new()
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var margin := MarginContainer.new()
+	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	margin.add_theme_constant_override("margin_right", SCROLL_GAP)
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(content)
+	margin.add_child(content)
+	scroll.add_child(margin)
 	return scroll
 
 

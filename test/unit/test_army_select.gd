@@ -772,3 +772,16 @@ func test_spearhead_regiment_abilities_and_enhancements_are_below_battle_traits(
 	var row: Node = _section_of(screen, "Regiment Abilities").get_parent()
 	assert_eq(row.get_parent(), traits_section.get_parent())
 	assert_gt(row.get_index(), traits_section.get_index())
+
+
+# --- Layout ---
+
+func test_list_entries_stop_short_of_the_scroll_bar() -> void:
+	var screen := _make_select()
+	screen.open(BattleSetup.Mode.SPEARHEAD)
+	for i in 3:
+		await get_tree().process_frame
+	var scroll := UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is ScrollContainer)[0] as ScrollContainer
+	var card := _entry_cards(screen)[0] as Control
+	assert_true(scroll.get_v_scroll_bar().visible, "the list should be long enough to scroll")
+	assert_lte(card.get_global_rect().end.x, scroll.get_v_scroll_bar().get_global_rect().position.x - ArmySelect.SCROLL_GAP)
