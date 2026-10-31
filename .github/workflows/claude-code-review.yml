@@ -46,3 +46,81 @@ jobs:
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
 
+
+  # Runs the project's refactor skills (.claude/skills/) over the files this PR changed and pushes the results to the
+  # PR branch. Skipped for Claude's own pushes so its refactor commits don't start another round, and for fork PRs,
+  # which can't be pushed to.
+  claude-refactor:
+    if: |
+      github.actor != 'claude[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: claude-refactor-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: read
+      id-token: write
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Find changed GDScript files
+        id: changed
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          changed=$(git diff --name-only --diff-filter=d "origin/$BASE_REF...HEAD" -- '*.gd')
+          production=$(printf '%s\n' "$changed" | grep -vE '^(test|addons)/' | grep . || true)
+          tests=$(printf '%s\n' "$changed" | grep -E '^test/' | grep . || true)
+          {
+            echo "production<<EOF"; echo "$production"; echo "EOF"
+            echo "tests<<EOF"; echo "$tests"; echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Godot
+        if: steps.changed.outputs.production != '' || steps.changed.outputs.tests != ''
+        uses: ./.github/actions/setup-godot
+
+      - name: Refactor changed production code
+        if: steps.changed.outputs.production != ''
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Use the `refactor` skill on the production GDScript files changed in PR #${{ github.event.pull_request.number }}, and only those files:
+
+            ${{ steps.changed.outputs.production }}
+
+            You're running unattended in CI on the PR branch `${{ github.head_ref }}`, which is checked out. Follow the skill, with these changes:
+            - Only edit the files listed above, plus `docs/` if a refactor changes something the docs describe. If a smell can only be fixed by editing other files, leave it and report it.
+            - Nobody can answer questions. Skip any refactor the skill says to check with the user first, and list it in the report.
+            - When you're done and the full test suite passes with nothing under `test/` changed, commit your changes with a message starting "Refactor" and push them with `git push origin HEAD:${{ github.head_ref }}`. If you made no changes, don't commit.
+            - Post the skill's report as one PR comment, headed "Refactor", with `gh pr comment ${{ github.event.pull_request.number }} --body-file <file>`.
+          claude_args: >-
+            --allowedTools "Skill,Read,Edit,Write,Glob,Grep,Bash(godot --headless -s addons/gut/gut_cmdln.gd *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git mv *),Bash(git checkout -- *),Bash(git add *),Bash(git commit *),Bash(git push origin HEAD:*),Bash(gh pr comment *),Bash(find *),Bash(grep *),Bash(wc *)"
+
+      - name: Refactor changed tests
+        if: steps.changed.outputs.tests != ''
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Use the `refactor-tests` skill on the test files changed in PR #${{ github.event.pull_request.number }}, and only those files:
+
+            ${{ steps.changed.outputs.tests }}
+
+            You're running unattended in CI on the PR branch `${{ github.head_ref }}`, which is checked out. Follow the skill, with these changes:
+            - Only edit the files listed above, plus `docs/technical/testing.md` if the skill says to update it. If a smell can only be fixed by editing other test files or helpers in `test/support/`, leave it and report it. The sabotage check's temporary production edits are fine, as long as they're reverted.
+            - Nobody can answer questions. Skip any change the skill says to show the user first (deleting, merging or moving tests between levels), and list it in the report.
+            - When you're done and the full test suite passes with nothing outside `test/` and `docs/` changed, commit your changes with a message starting "Refactor tests" and push them with `git push origin HEAD:${{ github.head_ref }}`. If you made no changes, don't commit.
+            - Post the skill's report as one PR comment, headed "Refactor tests", with `gh pr comment ${{ github.event.pull_request.number }} --body-file <file>`.
+          claude_args: >-
+            --allowedTools "Skill,Read,Edit,Write,Glob,Grep,Bash(godot --headless -s addons/gut/gut_cmdln.gd *),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git checkout -- *),Bash(git add *),Bash(git commit *),Bash(git push origin HEAD:*),Bash(gh pr comment *),Bash(find *),Bash(grep *),Bash(wc *)"
