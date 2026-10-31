@@ -5,7 +5,10 @@
 			"name": "Abyssal Tendril",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -59,7 +62,11 @@
 			"name": "Akhelian Allopex",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 8,
@@ -149,7 +156,11 @@
 			"name": "Akhelian Ishlaen Guard",
 			"points": 170,
 			"unit_size": 3,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 4,
@@ -215,7 +226,10 @@
 			"name": "Akhelian King",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Akhelian Raidmaster or Isharann Emissary",
@@ -287,7 +301,11 @@
 			"name": "Akhelian Leviadon",
 			"points": 450,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 16,
@@ -378,7 +396,11 @@
 			"name": "Akhelian Morrsarr Guard",
 			"points": 160,
 			"unit_size": 3,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 4,
@@ -440,7 +462,10 @@
 			"name": "Akhelian Thrallmaster",
 			"points": 70,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IDONETH DEEPKIN"
@@ -495,7 +520,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any NAMARTI"
@@ -552,7 +580,27 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 4,
-			"base_size": "Alathyrr, Renglaith and Cyreni of the Abyss: 32mm, Cephanyr: 40mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Alathyrr, Renglaith and Cyreni of the Abyss",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Cephanyr",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -619,7 +667,10 @@
 			"name": "Eidolon of Mathlann, Aspect of the Sea",
 			"points": 310,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Isharann Emissary",
@@ -713,7 +764,10 @@
 			"name": "Eidolon of Mathlann, Aspect of the Storm",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Isharann Emissary",
@@ -787,7 +841,27 @@
 			"legends": true,
 			"points": 80,
 			"unit_size": 5,
-			"base_size": "Tammael, Elathain Ill-fated, Fuirann and Duinclaw: 32mm, Spinefin: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Tammael, Elathain Ill-fated, Fuirann and Duinclaw",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Spinefin",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -855,7 +929,11 @@
 			"name": "Gloomtide Shipwreck",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 250,
+				"width": 120
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 7,
@@ -905,7 +983,10 @@
 			"name": "Ikon of the Sea",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IDONETH DEEPKIN"
@@ -964,7 +1045,10 @@
 			"name": "Ikon of the Storm",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IDONETH DEEPKIN"
@@ -1019,7 +1103,10 @@
 			"name": "Incarnate of the Deep",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 12,
@@ -1086,7 +1173,10 @@
 			"name": "Isharann Soulrender",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Isharann Emissary",
@@ -1155,7 +1245,10 @@
 			"name": "Isharann Soulscryer",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Isharann Emissary",
@@ -1203,7 +1296,10 @@
 			"name": "Isharann Tidecaster",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Isharann Emissary",
@@ -1268,7 +1364,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Isharann Emissary",
@@ -1332,7 +1431,10 @@
 			"name": "Lotann, Warden of the Soul Ledgers",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IDONETH DEEPKIN"
@@ -1404,7 +1506,10 @@
 			"name": "Mathaela, Oracle of the Abyss",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Isharann Emissary",
@@ -1494,7 +1599,10 @@
 			"name": "Namarti Reavers",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "7",
 			"health": 1,
@@ -1550,7 +1658,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack",
 			"move": "7",
@@ -1607,7 +1718,10 @@
 			"name": "Namarti Thralls",
 			"points": 90,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1654,7 +1768,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 80,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "6",
@@ -1707,7 +1824,10 @@
 			"name": "Volturnos, High King of the Deep",
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Akhelian Raidmaster or Isharann Emissary",

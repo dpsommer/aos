@@ -77,7 +77,7 @@ func test_single_model_is_not_pluralised() -> void:
 
 func test_subtitle_shows_base_size() -> void:
 	var scroll := _scroll()
-	scroll.base_size = "32mm"
+	scroll.base_size = BaseSize.round_base(32)
 	assert_true(UIKit.has_label_containing(_card(scroll), "32mm base"))
 
 

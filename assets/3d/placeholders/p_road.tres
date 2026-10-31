@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "p_road"
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.663, 0.678, 0.714, 0.18)
+cull_mode = 2

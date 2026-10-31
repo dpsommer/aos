@@ -1,6 +1,7 @@
 {
 	"faction": {"legends": true},
 	"fields": {
+		"herdstone": {"base_size": {"shape": "model", "length": 150, "width": 150}},
 		"chimera": {"base_size": "120 × 92mm"},
 		"cockatrice": {"keywords": ["BEAST", "BEASTS OF CHAOS", "CHAOS", "FLY"]},
 		"cygor": {"keywords": ["BEASTS OF CHAOS", "CHAOS", "MONSTER", "WARHERD"]},

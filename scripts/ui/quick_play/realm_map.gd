@@ -10,8 +10,6 @@ const TERRITORY_A := Color(0.925, 0.906, 0.863, 0.3)
 const TERRITORY_B := Color(0.0, 0.0, 0.0, 0.25)
 const TERRITORY_EDGE := Color(0.925, 0.906, 0.863, 0.8)
 const ROAD := Color(0.663, 0.678, 0.714, 0.22)
-## How wide each size of Spearhead terrain feature is drawn, in inches.
-const TERRAIN_WIDTHS := {"small": 3.0, "large": 6.0}
 const NAME_FONT_SIZE := 11
 
 var battlepack: SpearheadBattlepack
@@ -72,7 +70,7 @@ func _draw() -> void:
 		draw_polyline(a + PackedVector2Array([a[0]]), TERRITORY_EDGE, 1.5, true)
 	for feature in realm.terrain:
 		var terrain := battlepack.get_terrain_feature(feature.type)
-		var width: float = TERRAIN_WIDTHS.get(terrain.size if terrain else "large", TERRAIN_WIDTHS.large)
+		var width: float = SpearheadTerrain.WIDTHS.get(terrain.size if terrain else "large", SpearheadTerrain.WIDTHS.large)
 		_dashed_rect(Rect2(to_map(feature.position - Vector2(width, width) / 2), to_map(Vector2(width, width))))
 	for objective in realm.objectives:
 		_draw_objective(objective)

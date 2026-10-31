@@ -5,7 +5,7 @@
 			"name": "Shared Hero",
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {"shape": "round", "diameter": 100},
 			"move": "10",
 			"health": 20,
 			"save": 3,

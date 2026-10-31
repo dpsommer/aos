@@ -5,6 +5,8 @@
 		"Kurnoth Hunters with Kurnoth Scythes": "Kurnoth Hunters with Greatscythes"
 	},
 	"fields": {
+		"gladewyrm": {"base_size": {"shape": "model", "length": 150, "width": 80}},
+		"awakened_wyldwood": {"base_size": {"shape": "model", "length": 250, "width": 150}},
 		"The Land Awakens": {"effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within the creeping overgrowth and more than 9\" from all enemy units."},
 		"Spirit of The Dark Forest": {"timing": "Enemy Hero Phase", "frequency": "Once Per Battle", "effect": "Halve the target's Move characteristic for the rest of the turn."},
 		"Spellsinger": {"effect": "If this unit is a WIZARD, add 1 to casting rolls for this unit.\nIf this unit is not a WIZARD, it can use the 'Unbind' ability as if it had WIZARD (1)."},

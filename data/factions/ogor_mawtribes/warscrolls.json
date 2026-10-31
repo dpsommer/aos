@@ -5,7 +5,10 @@
 			"name": "Bloodpelt Hunter",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BEASTCLAW",
@@ -78,7 +81,10 @@
 			"name": "Butcher",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Maw Nomad",
@@ -139,7 +145,10 @@
 			"name": "Cleavers",
 			"points": 220,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 4,
@@ -183,7 +192,10 @@
 			"name": "Firebelly",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Gnoblars",
@@ -245,7 +257,11 @@
 			"name": "Frostlord on Stonehorn",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any OGOR MAWTRIBES",
@@ -336,7 +352,11 @@
 			"name": "Frostlord on Thundertusk",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any OGOR MAWTRIBES",
@@ -435,7 +455,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MAW NOMAD",
@@ -531,7 +555,11 @@
 			"name": "Frost Sabres",
 			"points": 70,
 			"unit_size": 2,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "9",
@@ -583,7 +611,10 @@
 			"name": "Gluttons",
 			"points": 210,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 4,
@@ -626,7 +657,10 @@
 			"name": "Gnoblars",
 			"points": 130,
 			"unit_size": 20,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "5",
@@ -687,7 +721,11 @@
 			"name": "Gnoblar Scraplauncher",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 9,
@@ -745,7 +783,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "9",
@@ -805,7 +847,10 @@
 			"name": "Gorger Mawpack",
 			"points": 240,
 			"unit_size": 5,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -868,7 +913,27 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "Gorlok Blackpowder: 50mm, Peggz, Kagey, Mange and Shreek (tokens): 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Gorlok Blackpowder",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 50
+						}
+					},
+					{
+						"name": "Peggz, Kagey, Mange and Shreek (tokens)",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This HERO can join an eligible regiment as a Maw Nomad.",
 			"move": "6",
@@ -953,7 +1018,11 @@
 			"name": "Great Mawpot",
 			"points": 20,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 100,
+				"width": 100
+			},
 			"can_reinforce": false,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "0",
@@ -1001,7 +1070,10 @@
 			"name": "Grell Firefist",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any OGOR MAWTRIBES"
@@ -1080,7 +1152,10 @@
 			"name": "Gutseers",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 4,
@@ -1134,7 +1209,36 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "Hrothgorn Mantrapper: 40mm, Thrafnir: 25 × 50mm, Gnoblar tokens: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Hrothgorn Mantrapper",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Thrafnir",
+						"count": 1,
+						"base": {
+							"shape": "oval",
+							"length": 50,
+							"width": 25
+						}
+					},
+					{
+						"name": "Gnoblar tokens",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This HERO can join an eligible regiment as a Maw Nomad.",
 			"move": "6",
@@ -1215,7 +1319,28 @@
 			"name": "Hunters with Sabrefangs",
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "Hunter: 40mm, Sabrefang: 60 × 35mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Hunter",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Sabrefang",
+						"count": 1,
+						"base": {
+							"shape": "oval",
+							"length": 60,
+							"width": 35
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 4,
@@ -1298,7 +1423,11 @@
 			"name": "Huskard on Stonehorn",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Maw Nomad",
@@ -1389,7 +1518,11 @@
 			"name": "Huskard on Thundertusk",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Maw Nomad",
@@ -1495,7 +1628,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any OGOR MAWTRIBES"
@@ -1620,7 +1757,10 @@
 			"name": "Icebrow Hunter",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BEASTCLAW"
@@ -1695,7 +1835,10 @@
 			"name": "Icefall Yhetees",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -1737,7 +1880,11 @@
 			"name": "Ironblaster",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 9,
@@ -1808,7 +1955,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "9",
@@ -1875,7 +2026,10 @@
 			"name": "Ironguts",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 4,
@@ -1958,7 +2112,10 @@
 			"name": "Leadbelchers",
 			"points": 140,
 			"unit_size": 4,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -2020,7 +2177,10 @@
 			"name": "Maneaters",
 			"points": 180,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "6",
@@ -2076,7 +2236,10 @@
 			"name": "Mantrapper",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BEASTCLAW",
@@ -2156,7 +2319,11 @@
 			"name": "Maulbeast Cavalry",
 			"points": 280,
 			"unit_size": 2,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 7,
@@ -2221,7 +2388,11 @@
 			"name": "Maulbeast Raiders",
 			"points": 210,
 			"unit_size": 2,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 7,
@@ -2290,7 +2461,11 @@
 			"name": "Mawpit",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 160,
+				"width": 160
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 12,
@@ -2354,7 +2529,11 @@
 			"name": "Morga the Mighty, Overtyrant",
 			"points": 420,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Maw Nomad",
@@ -2457,7 +2636,11 @@
 			"name": "Mournfang Pack",
 			"points": 200,
 			"unit_size": 2,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"notes": "This unit will move to Warhammer Legends on 1 June 2027.",
 			"move": "9",
@@ -2518,7 +2701,10 @@
 			"name": "Redd the Maw, High Slaughtermaster",
 			"points": 420,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Maw Nomad",
@@ -2609,7 +2795,11 @@
 			"name": "Slaughtermaster",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any MAWSEEKERS"
@@ -2678,7 +2868,11 @@
 			"name": "Stonehorn Beastriders",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -2763,7 +2957,11 @@
 			"name": "Thundertusk Beastriders",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -2861,7 +3059,10 @@
 			"name": "Tyrant",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any OGOR MAWTRIBES"
@@ -2918,7 +3119,11 @@
 			"name": "Tyrant on Glutthorn",
 			"points": 390,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any OGOR MAWTRIBES",

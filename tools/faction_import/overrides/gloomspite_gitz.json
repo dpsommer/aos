@@ -1,5 +1,10 @@
 {
 	"fields": {
+		"wolfgit_retinue": {"base_size": {"shape": "oval", "length": 60, "width": 35}},
+		"snarlboss": {"base_size": {"shape": "oval", "length": 60, "width": 35}},
+		"rippas_snarlfangs": {"base_size": {"shape": "oval", "length": 60, "width": 35}},
+		"scuttletide": {"base_size": {"shape": "model", "length": 150, "width": 100}},
+		"bad_moon_loonshrine": {"base_size": {"shape": "model", "length": 160, "width": 160}},
 		"The Faces of the Bad Moon": {"effect": "If it is the first battle round, pick the starting face of the Bad Moon (Grinnin', Scowlin', Sulkin' or Cacklin'). If it is not the first battle round, the face of the Bad Moon moves to the next face in the sequence."},
 		"Under the Light of the Bad Moon": {"options": [
 			{"name": "Frothing Zealots", "text": "While the Bad Moon is Cacklin' or Grinnin', add 5 to the control scores of friendly non-SQUIG MOONCLAN units."},

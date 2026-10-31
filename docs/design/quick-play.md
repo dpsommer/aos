@@ -1,6 +1,6 @@
 # Quick Play
 
-Quick Play sets up a battle against an AI opponent: the player picks a game mode, then an army and a battleplan. The design is the "Quick Play Flow" canvas artifact. There's no battle screen yet, so Play hands its choices on and nothing more happens (see [Signals](#signals)).
+Quick Play sets up a battle against an AI opponent: the player picks a game mode, then an army and a battleplan. The design is the "Quick Play Flow" canvas artifact. Play opens the [loading screen and game map](battle.md).
 
 Both screens are laid out for the design's 1440 × 900 and styled by `UITheme` (see [Forge](forge.md#look)). Their header has Back, which names where it goes, and the breadcrumb "Quick Play › Game mode › Army". Esc does the same as Back.
 
@@ -60,7 +60,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 
 The chosen card is outlined in gold with a check. An eye shows a battleplan in full, swapped in place: a map the width of the pane with its terrain, a caption ("60" × 44" · dashed: terrain · gold rings: objectives with their 3" control zone"), its setup, twist, abilities as [ability cards](abilities.md) and scoring. Pressing a card chooses it and returns to the list.
 
-`BattleplanMap` (`scripts/ui/quick_play/battleplan_map.gd`) draws a map from the battleplan's data: territories, objectives as gold rings and, on a detailed map, terrain as dashed squares (4" small, 6" medium) and each objective's 3" control zone.
+`BattleplanMap` (`scripts/ui/quick_play/battleplan_map.gd`) draws a map from the battleplan's data: territories, objectives as gold rings and, on a detailed map, terrain as dashed squares (4" small, 6" medium, `MapFeature.TERRAIN_WIDTHS`) and each objective's 3" control zone. A `neutral` map shades both territories grey, as the loading screen does before the roll-off.
 
 ### Realm battlefields
 
@@ -86,4 +86,4 @@ The chosen card is outlined in gold with a check. An eye shows a side in full, s
 `ArmySelect.back_pressed` | Back, or Esc on the list. `Main` returns to the game mode, focusing the mode's card.
 `ArmySelect.edit_requested(army)` | The player pressed an army's Edit. `Main` opens the army builder; its Back returns to the army step.
 `ArmySelect.forge_requested` | The player has no armies and pressed Open the Forge. `Main` opens the Forge.
-`ArmySelect.play_requested(setup)` | The player pressed Play. Not connected yet: there's no battle screen.
+`ArmySelect.play_requested(setup)` | The player pressed Play. `Main` opens the loading screen (see [Battle](battle.md)).

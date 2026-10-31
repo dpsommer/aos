@@ -130,23 +130,23 @@ func test_bind_replacing_a_key_the_action_lacks_adds_it() -> void:
 
 
 func test_bind_takes_the_key_from_another_action() -> void:
-	InputBindings.set_keys(OTHER, [_key(KEY_Q)])
-	InputBindings.bind(ACTION, _key(KEY_Q))
+	InputBindings.set_keys(OTHER, [_key(KEY_F9)])
+	InputBindings.bind(ACTION, _key(KEY_F9))
 	assert_eq(InputBindings.keys(OTHER).size(), 0)
 
 
 func test_bind_returns_the_actions_it_took_the_key_from() -> void:
-	InputBindings.set_keys(OTHER, [_key(KEY_Q)])
-	assert_eq(InputBindings.bind(ACTION, _key(KEY_Q)), PackedStringArray([OTHER]))
+	InputBindings.set_keys(OTHER, [_key(KEY_F9)])
+	assert_eq(InputBindings.bind(ACTION, _key(KEY_F9)), PackedStringArray([OTHER]))
 
 
 func test_bind_returns_nothing_when_no_action_had_the_key() -> void:
-	assert_eq(InputBindings.bind(ACTION, _key(KEY_Q)).size(), 0)
+	assert_eq(InputBindings.bind(ACTION, _key(KEY_F9)).size(), 0)
 
 
 func test_bind_does_not_report_the_action_itself() -> void:
-	InputBindings.set_keys(ACTION, [_key(KEY_Q)])
-	assert_eq(InputBindings.bind(ACTION, _key(KEY_Q)).size(), 0)
+	InputBindings.set_keys(ACTION, [_key(KEY_F9)])
+	assert_eq(InputBindings.bind(ACTION, _key(KEY_F9)).size(), 0)
 
 
 func test_bind_keeps_a_key_with_different_modifiers_on_other_actions() -> void:
@@ -239,3 +239,33 @@ func test_encode_keeps_command_or_control_portable() -> void:
 	var decoded := InputBindings.decode(InputBindings.encode([key]))[0]
 	assert_true(decoded.command_or_control_autoremap)
 	assert_eq(InputBindings.key_code(decoded), InputBindings.key_code(key))
+
+
+# --- Battle section ---
+
+
+func test_battle_section_lists_the_camera_actions() -> void:
+	var actions: Array[String] = []
+	for entry: Array in InputBindings.SECTIONS["Battle"]:
+		actions.append(entry[0])
+	assert_eq(actions.size(), 6)
+	for action in ["camera_forward", "camera_back", "camera_left", "camera_right", "camera_rotate_left", "camera_rotate_right"]:
+		assert_true(action in actions, action)
+
+
+func test_every_camera_action_has_a_default_key() -> void:
+	for entry: Array in InputBindings.SECTIONS["Battle"]:
+		assert_gt(InputBindings.keys(entry[0]).size(), 0, entry[0])
+
+
+func test_camera_actions_have_different_default_keys() -> void:
+	var seen := {}
+	for entry: Array in InputBindings.SECTIONS["Battle"]:
+		for code in _codes(entry[0]):
+			assert_false(seen.has(code), entry[0])
+			seen[code] = true
+
+
+func test_camera_actions_have_display_names() -> void:
+	for entry: Array in InputBindings.SECTIONS["Battle"]:
+		assert_eq(InputBindings.display_name(entry[0]), entry[1])

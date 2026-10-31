@@ -3,6 +3,7 @@
 Each function takes a loosely built dict and returns it with the schema's key order,
 empty optional fields dropped and defaults filled in, so output diffs stay small.
 """
+import base_size
 import re
 
 # The comma can come before "(Army)" as well as after it (Wahapedia's "Once Per Battle, (Army) Your
@@ -73,8 +74,9 @@ def warscroll(w, with_profile=True):
     if with_profile:
         out["points"] = w.get("points") or 0
         out["unit_size"] = w.get("unit_size") or 1
-        if w.get("base_size"):
-            out["base_size"] = w["base_size"]
+        base = base_size.parse(w.get("base_size"))
+        if base:
+            out["base_size"] = base
         out["can_reinforce"] = bool(w.get("can_reinforce"))
         if w.get("regiment_options"):
             out["regiment_options"] = w["regiment_options"]

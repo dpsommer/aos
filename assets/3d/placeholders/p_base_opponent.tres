@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "p_base_opponent"
+albedo_color = Color(0.353, 0.165, 0.149, 1)
+roughness = 0.6
+rim_enabled = true
+rim = 0.6
+rim_tint = 0.8

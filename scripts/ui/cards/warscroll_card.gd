@@ -153,8 +153,8 @@ func _header() -> HBoxContainer:
 		details.append("%d pts" % warscroll.points)
 	if warscroll.unit_size > 0:
 		details.append("%d %s" % [warscroll.unit_size, "model" if warscroll.unit_size == 1 else "models"])
-	if not warscroll.base_size.is_empty():
-		details.append("%s base" % warscroll.base_size)
+	if warscroll.base_size:
+		details.append("%s base" % warscroll.base_size.text())
 	if warscroll.can_reinforce:
 		details.append("Can be reinforced")
 	var title := UIBuilder.label(warscroll.name, "WarscrollNameLabel", true)

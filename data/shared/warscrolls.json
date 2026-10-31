@@ -5,7 +5,11 @@
 			"name": "Foot of Gork",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 120,
+				"width": 120
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -49,7 +53,10 @@
 			"name": "Gork-Roara",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 6,
@@ -96,7 +103,10 @@
 			"legends": true,
 			"points": 360,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "Legends Warscroll",
 			"move": "4",
@@ -167,7 +177,10 @@
 			"name": "Kragnos, the End of Empires",
 			"points": 580,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 18,
@@ -267,7 +280,11 @@
 			"name": "Morkspit Marsh",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 200,
+				"width": 150
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -309,7 +326,10 @@
 			"name": "Nagash, Supreme Lord of the Undead",
 			"points": 750,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 18,
@@ -409,7 +429,10 @@
 			"legends": true,
 			"points": 670,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 18,

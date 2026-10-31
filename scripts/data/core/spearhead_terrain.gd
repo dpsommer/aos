@@ -4,6 +4,8 @@ extends Resource
 
 ## Values of [member size].
 const SIZES: PackedStringArray = ["large", "small"]
+## How wide each size of feature is, in inches, as maps and the battlefield draw it: a square.
+const WIDTHS := {"small": 3.0, "large": 6.0}
 
 @export var name: String
 ## "large" or "small".

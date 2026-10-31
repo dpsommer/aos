@@ -1,5 +1,7 @@
 {
 	"fields": {
+		"shrine_luminor": {"base_size": {"shape": "model", "length": 150, "width": 100}},
+		"sanctum_of_amyntok": {"base_size": {"shape": "model", "length": 150, "width": 150}},
 		"WINDLEAP": {"name": "GUIDE THE GUSTS"},
 		"scourge_of_aqshy_alarith_stonemage": {"notes": "This HERO can join the regiment of Avalenor, the Stoneheart King. This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack."},
 		"Vanari Paragons": {

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <!-- Placeholder for a battleplan's realm art: dark diagonal stripes, as in the design. -->
+  <defs>
+    <pattern id="stripes" width="62.2" height="62.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="62.2" height="62.2" fill="#101215"/>
+      <rect width="31.1" height="62.2" fill="#14161A"/>
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="40%" r="75%">
+      <stop offset="0" stop-color="#0C0D10" stop-opacity="0"/>
+      <stop offset="0.7" stop-color="#0C0D10" stop-opacity="0.85"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="900" fill="url(#stripes)"/>
+  <rect width="1440" height="900" fill="url(#vignette)"/>
+</svg>

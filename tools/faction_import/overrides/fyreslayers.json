@@ -2,6 +2,8 @@
 	"faction": {"legends": true},
 	"remove_armies_of_renown": ["The Duardin Ascendant"],
 	"fields": {
+		"runic_fyrewall": {"base_size": {"shape": "model", "length": 200, "width": 50}},
+		"magmic_battleforge": {"base_size": {"shape": "model", "length": 160, "width": 120}},
 		"auric_hearthguard": {"keywords": ["CHAMPION", "DUARDIN", "FYRESLAYERS", "INFANTRY", "ORDER", "WARD (6+)"]},
 		"vulkyn_flameseekers": {"base_size": "4/9 32mm\n5/9 28.5mm"},
 		"scourge_of_aqshy_vulkyn_flameseekers": {"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.", "base_size": "4/9 32mm\n5/9 28.5mm"},

@@ -3,6 +3,7 @@
 		"Corpulent Avalanche": "Corpulent Avalanche"
 	},
 	"fields": {
+		"feculent_gnarlmaw": {"base_size": {"shape": "model", "length": 120, "width": 120}},
 		"pusgoyle_blightlords_1_model": {
 			"unit_size": 1
 		},

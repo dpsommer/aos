@@ -438,19 +438,19 @@ func test_bind_key_takes_the_key_from_another_action() -> void:
 
 func test_bind_key_notes_which_action_lost_the_key() -> void:
 	var screen := _make_screen()
-	InputBindings.set_keys(OTHER, [_key(KEY_Q)])
+	InputBindings.set_keys(OTHER, [_key(KEY_F9)])
 	screen.listen(ACTION, null)
-	screen.bind_key(_key(KEY_Q))
-	var expected := "%s was removed from %s." % [InputBindings.key_name(_key(KEY_Q)), InputBindings.display_name(OTHER)]
+	screen.bind_key(_key(KEY_F9))
+	var expected := "%s was removed from %s." % [InputBindings.key_name(_key(KEY_F9)), InputBindings.display_name(OTHER)]
 	assert_true(UIKit.has_label_containing(screen.input, expected), expected)
 
 
 func test_bind_key_names_every_action_that_lost_the_key() -> void:
 	var screen := _make_screen()
-	InputBindings.set_keys(OTHER, [_key(KEY_Q)])
-	InputBindings.set_keys("ui_up", [_key(KEY_Q)])
+	InputBindings.set_keys(OTHER, [_key(KEY_F9)])
+	InputBindings.set_keys("ui_up", [_key(KEY_F9)])
 	screen.listen(ACTION, null)
-	screen.bind_key(_key(KEY_Q))
+	screen.bind_key(_key(KEY_F9))
 	assert_true(UIKit.has_label_containing(screen.input, InputBindings.display_name(OTHER)))
 	assert_true(UIKit.has_label_containing(screen.input, InputBindings.display_name("ui_up")))
 
@@ -458,7 +458,7 @@ func test_bind_key_names_every_action_that_lost_the_key() -> void:
 func test_bind_key_without_a_conflict_has_no_note() -> void:
 	var screen := _make_screen()
 	screen.listen(ACTION, null)
-	screen.bind_key(_key(KEY_Q))
+	screen.bind_key(_key(KEY_F9))
 	assert_false(UIKit.has_label_containing(screen.input, "was removed from"))
 
 

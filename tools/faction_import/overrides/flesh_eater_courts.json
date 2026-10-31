@@ -3,6 +3,8 @@
 		"New Summercourt": "The Knights of New Summercourt"
 	},
 	"fields": {
+		"charnel_throne": {"base_size": {"shape": "model", "length": 150, "width": 100}},
+		"cadaverous_barricade": {"base_size": {"shape": "model", "length": 200, "width": 50}},
 		"The Equinox Feast > Summon Chalice of Ushoran": {"declare": "If there is not a friendly Chalice of Ushoran on the battlefield, pick a friendly EQUINOX FEAST WIZARD to cast this spell, then make a casting roll of 2D6."},
 		"The Knights of New Summercourt > Summon Corpsemare Stampede": {"declare": "If there is not a friendly Corpsemare Stampede on the battlefield, pick a friendly NEW SUMMERCOURT WIZARD to cast this spell, then make a casting roll of 2D6."},
 		"The Knights of New Summercourt > Excommunication": {"declare": "Pick a friendly NEW SUMMERCOURT PRIEST to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6."},

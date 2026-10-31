@@ -5,7 +5,10 @@
 			"name": "Ardboy Big Boss",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY"
@@ -57,7 +60,10 @@
 			"name": "Ardboyz",
 			"points": 160,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -102,7 +108,10 @@
 			"name": "Bossrokk Tower",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 12,
@@ -173,7 +182,10 @@
 			"name": "Brute Ragerz",
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -224,7 +236,10 @@
 			"name": "Brutes",
 			"points": 160,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -279,7 +294,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "4",
@@ -337,7 +355,10 @@
 			"legends": true,
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IRONSUNZ units"
@@ -447,7 +468,10 @@
 			"name": "Gordrakk, the Fist of Gork",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Headstompa",
@@ -556,7 +580,11 @@
 			"name": "Gore-gruntas",
 			"points": 160,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "9",
 			"health": 5,
@@ -614,7 +642,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 170,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "9",
@@ -675,7 +707,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",
@@ -733,7 +768,11 @@
 			"name": "Maw-grunta Gougers",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 12,
@@ -810,7 +849,11 @@
 			"name": "Maw-grunta with Hakkin' Krew",
 			"points": 250,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 12,
@@ -897,7 +940,10 @@
 			"name": "Megaboss",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Headstompa",
@@ -951,7 +997,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Headstompa",
@@ -1007,7 +1056,10 @@
 			"name": "Megaboss on Maw-krusha",
 			"points": 310,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Headstompa",
@@ -1105,7 +1157,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",
@@ -1155,7 +1210,11 @@
 			"name": "Tuskboss on Maw-grunta",
 			"points": 270,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Headstompa",
@@ -1255,7 +1314,10 @@
 			"name": "Warchanter",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IRONJAWZ"
@@ -1300,7 +1362,10 @@
 			"name": "Weirdbrute Wrekkaz",
 			"points": 90,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 3,
@@ -1346,7 +1411,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 90,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "4",
@@ -1394,7 +1462,10 @@
 			"name": "Weirdnob Shaman",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IRONJAWZ"
@@ -1452,7 +1523,27 @@
 			"name": "Zoggrok Anvilsmasha",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "Zoggrok Anvilsmasha: 50mm, Klonk: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Zoggrok Anvilsmasha",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 50
+						}
+					},
+					{
+						"name": "Klonk",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any IRONJAWZ"

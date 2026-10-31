@@ -5,7 +5,10 @@
 			"name": "Acolyte Globadiers",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"notes": "You cannot include more than 1 SKRYRE WEAPON TEAM in a regiment led by a non-SKRYRE HERO.",
 			"move": "6",
@@ -70,7 +73,10 @@
 			"name": "Arch-Warlock",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -139,7 +145,10 @@
 			"name": "Bell of Doom",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"move": "3D6",
 			"health": 7,
@@ -183,7 +192,10 @@
 			"name": "Brood Terror",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 12,
@@ -262,7 +274,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 240,
 			"unit_size": 1,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "6",
@@ -344,7 +359,10 @@
 			"name": "Clanrats",
 			"points": 150,
 			"unit_size": 20,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -390,7 +408,10 @@
 			"name": "Clawlord",
 			"points": 70,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any VERMINUS"
@@ -443,7 +464,11 @@
 			"name": "Clawlord on Gnaw-beast",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any VERMINUS"
@@ -523,7 +548,10 @@
 			"name": "Deathmaster",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -597,7 +625,10 @@
 			"name": "Deathmaster Crixxit",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -668,7 +699,10 @@
 			"name": "Doom-flayers",
 			"points": 100,
 			"unit_size": 2,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"notes": "You cannot include more than 1 SKRYRE WAR MACHINE in a regiment led by a non-SKRYRE HERO.",
 			"move": "2D6+3",
@@ -714,7 +748,11 @@
 			"name": "Doomwheel",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"notes": "You cannot include more than 1 SKRYRE WAR MACHINE in a regiment led by a non-SKRYRE HERO.",
 			"move": "2D6+7",
@@ -781,7 +819,11 @@
 			"name": "Gnawhole",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 120,
+				"width": 80
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -831,7 +873,10 @@
 			"name": "Grey Seer",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -877,7 +922,11 @@
 			"name": "Grey Seer on Screaming Bell",
 			"points": 310,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -979,7 +1028,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 330,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -1082,7 +1135,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 330,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -1186,7 +1243,26 @@
 			"name": "Gutter Runners",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "1/10 32mm (Champion)\n9/10 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 1,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 9,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "7",
 			"health": 1,
@@ -1258,7 +1334,11 @@
 			"name": "Hell Pit Abomination",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "D6+5",
 			"health": 14,
@@ -1331,7 +1411,10 @@
 			"name": "Krittok Foulblade",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -1410,7 +1493,11 @@
 			"name": "Lord Skreech Verminking",
 			"points": 350,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -1521,7 +1608,10 @@
 			"name": "Master Moulder",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -1593,7 +1683,10 @@
 			"name": "Night Runners",
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "7",
 			"health": 1,
@@ -1671,7 +1764,10 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -1722,7 +1818,11 @@
 			"name": "Plagueclaw",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "3",
 			"health": 8,
@@ -1775,7 +1875,10 @@
 			"name": "Plague Monks",
 			"points": 140,
 			"unit_size": 20,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1821,7 +1924,36 @@
 			"name": "Plaguepack",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "Plague Censer Bearer: 28.5mm, Plaguepack: 1/5 32mm (Champion)\n3/5 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Plague Censer Bearer",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Plaguepack",
+						"count": 1,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Plaguepack",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -1889,7 +2021,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -1938,7 +2073,11 @@
 			"name": "Plague Priest on Plague Furnace",
 			"points": 350,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -2041,7 +2180,11 @@
 			"name": "Ratling Guns",
 			"points": 160,
 			"unit_size": 3,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "You cannot include more than 1 SKRYRE WEAPON TEAM in a regiment led by a non-SKRYRE HERO.",
 			"move": "6",
@@ -2096,7 +2239,11 @@
 			"name": "Ratling Warpblaster",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"notes": "You cannot include more than 1 SKRYRE WAR MACHINE in a regiment led by a non-SKRYRE HERO.",
 			"move": "6",
@@ -2159,7 +2306,10 @@
 			"name": "Rat Ogors",
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 4,
@@ -2214,7 +2364,35 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "Skabbik Plagueseeker: 32mm, Rabidius Skench: 28.5mm, Poxlix, Itchitt, Rikkit and Skritter: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Skabbik Plagueseeker",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Rabidius Skench",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Poxlix, Itchitt, Rikkit and Skritter",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 2,
@@ -2282,7 +2460,27 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "Slynk Skittershank and Snyp Padpaw: 32mm, Kreep Kinwhisper, Skulck and Krowch't: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Slynk Skittershank and Snyp Padpaw",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Kreep Kinwhisper, Skulck and Krowch't",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"move": "7",
 			"health": 2,
@@ -2364,7 +2562,27 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "Krrk the Almost-trusted, The Lurking Skaven, The Hungering Skaven and The Festering Skaven: 25mm, Skritch Spiteclaw: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Krrk the Almost-trusted, The Lurking Skaven, The Hungering Skaven and The Festering Skaven",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					},
+					{
+						"name": "Skritch Spiteclaw",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 2,
@@ -2418,7 +2636,10 @@
 			"name": "Stormfiends",
 			"points": 230,
 			"unit_size": 3,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 6,
@@ -2531,7 +2752,10 @@
 			"name": "Stormvermin",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -2577,7 +2801,11 @@
 			"name": "Thanquol on Boneripper",
 			"points": 310,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -2694,7 +2922,11 @@
 			"name": "Verminlord Corruptor",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -2775,7 +3007,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -2869,7 +3105,11 @@
 			"name": "Verminlord Deceiver",
 			"points": 360,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -2952,7 +3192,11 @@
 			"name": "Verminlord Warbringer",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -3019,7 +3263,11 @@
 			"name": "Verminlord Warpseer",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -3104,7 +3352,11 @@
 			"name": "Vermintide",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "7",
 			"health": 13,
@@ -3150,7 +3402,10 @@
 			"name": "Vizzik Skour, Prophet of the Horned Rat",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "130mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 130
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skaven Overclaw",
@@ -3253,7 +3508,10 @@
 			"name": "Warlock Bombardier",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -3320,7 +3578,10 @@
 			"name": "Warlock Engineer",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -3389,7 +3650,10 @@
 			"name": "Warlock Galvaneer",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Clanrats",
@@ -3460,7 +3724,11 @@
 			"name": "Warpfire Throwers",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "You cannot include more than 1 SKRYRE WEAPON TEAM in a regiment led by a non-SKRYRE HERO.",
 			"move": "6",
@@ -3515,7 +3783,11 @@
 			"name": "Warp-Grinder",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"notes": "You cannot include more than 1 SKRYRE WAR MACHINE in a regiment led by a non-SKRYRE HERO.",
 			"move": "5",
@@ -3579,7 +3851,11 @@
 			"name": "Warp Lightning Cannon",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "You cannot include more than 1 SKRYRE WAR MACHINE in a regiment led by a non-SKRYRE HERO.",
 			"move": "3",
@@ -3639,7 +3915,10 @@
 			"name": "Warp Lightning Vortex",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 7,
@@ -3689,7 +3968,11 @@
 			"name": "Warplock Jezzails",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -3743,7 +4026,11 @@
 			"name": "Warpvolt Scourgers",
 			"points": 170,
 			"unit_size": 3,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"notes": "You cannot include more than 1 SKRYRE WEAPON TEAM in a regiment led by a non-SKRYRE HERO.",
 			"move": "6",
@@ -3800,7 +4087,27 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 4,
-			"base_size": "Zikkit Rockgnaw and Rittak Verm: 32mm, Krittatok, Nitch Singe-snout and Tik Tik: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Zikkit Rockgnaw and Rittak Verm",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Krittatok, Nitch Singe-snout and Tik Tik",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced",
 			"move": "6",

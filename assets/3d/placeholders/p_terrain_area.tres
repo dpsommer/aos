@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "p_terrain_area"
+albedo_color = Color(0.196, 0.176, 0.145, 1)
+roughness = 0.9

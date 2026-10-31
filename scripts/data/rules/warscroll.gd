@@ -20,7 +20,8 @@ extends Resource
 @export_group("Battle profile")
 @export var points: int
 @export var unit_size: int
-@export var base_size: String
+## The models' bases, or null when the data has none.
+@export var base_size: BaseSize
 @export var can_reinforce: bool
 @export var regiment_options: PackedStringArray
 @export var notes: String

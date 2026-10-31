@@ -5,7 +5,11 @@
 			"name": "Bleeding Icon",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -40,7 +44,11 @@
 			"name": "Bloodcrushers",
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -103,7 +111,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "10",
@@ -169,7 +181,10 @@
 			"name": "Bloodletters",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -220,7 +235,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "5",
@@ -271,7 +289,10 @@
 			"name": "Bloodmaster, Herald of Khorne",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaughter Seeker",
@@ -324,7 +345,10 @@
 			"name": "Bloodreavers",
 			"points": 80,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -370,7 +394,10 @@
 			"name": "Bloodsecrator",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -427,7 +454,10 @@
 			"name": "Bloodstoker",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -477,7 +507,11 @@
 			"name": "Bloodthirster of Insensate Rage",
 			"points": 410,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaughter Seeker",
@@ -552,7 +586,11 @@
 			"name": "Bloodthirster of Unfettered Fury",
 			"points": 390,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaughter Seeker",
@@ -642,7 +680,10 @@
 			"name": "Blood Warriors",
 			"points": 180,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -689,7 +730,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 190,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "5",
@@ -736,7 +780,44 @@
 			"name": "Claws of Karanak",
 			"points": 100,
 			"unit_size": 8,
-			"base_size": "Packlord: 40mm, Hound of Wrath: 60 × 35mm, 2 x Brutalisers: 32mm, 4 x Blood Whelps: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Packlord",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Hound of Wrath",
+						"count": 1,
+						"base": {
+							"shape": "oval",
+							"length": 60,
+							"width": 35
+						}
+					},
+					{
+						"name": "Brutalisers",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Blood Whelps",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -789,7 +870,10 @@
 			"name": "Deathbringer",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -849,7 +933,11 @@
 			"name": "Flesh Hounds",
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 2,
@@ -897,7 +985,10 @@
 			"legends": true,
 			"points": 70,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -953,7 +1044,10 @@
 			"legends": true,
 			"points": 190,
 			"unit_size": 3,
-			"base_size": "Dromm and Gorehulk: 40mm, Skullgrinder Herax: 40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -1001,7 +1095,11 @@
 			"name": "Herald of Khorne on Blood Throne",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaughter Seeker",
@@ -1063,7 +1161,10 @@
 			"name": "Hexgorger Skulls",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 6,
@@ -1116,7 +1217,27 @@
 			"legends": true,
 			"points": 90,
 			"unit_size": 4,
-			"base_size": "Kamandora and Throkk: 32mm, Antro Krast and Ghalista: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Kamandora and Throkk",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Antro Krast and Ghalista",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -1173,7 +1294,11 @@
 			"name": "Karanak",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Claws of Karanak",
@@ -1246,7 +1371,11 @@
 			"name": "Khorgorath",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 8,
@@ -1304,7 +1433,10 @@
 			"legends": true,
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Bloodbound Warmonger",
@@ -1394,7 +1526,10 @@
 			"legends": true,
 			"points": 310,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaughter Seeker",
@@ -1471,7 +1606,11 @@
 			"legends": true,
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -1540,7 +1679,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -1601,7 +1743,10 @@
 			"name": "Mighty Lord of Khorne",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Bloodbound Warmonger",
@@ -1672,7 +1817,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Bloodbound Warmonger",
@@ -1750,7 +1898,11 @@
 			"name": "Mighty Skullcrushers",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -1810,7 +1962,10 @@
 			"name": "Realmgore Ritualist",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -1862,7 +2017,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -1919,7 +2077,10 @@
 			"name": "Skarbrand",
 			"points": 430,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaughter Seeker",
@@ -2005,7 +2166,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -2066,6 +2230,11 @@
 			"name": "Skull Altar",
 			"points": 0,
 			"unit_size": 1,
+			"base_size": {
+				"shape": "model",
+				"length": 130,
+				"width": 100
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 10,
@@ -2122,7 +2291,11 @@
 			"name": "Skull Cannon",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 8,
@@ -2202,7 +2375,10 @@
 			"name": "Skullgrinder",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -2264,7 +2440,11 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON CAVALRY",
@@ -2339,7 +2519,10 @@
 			"name": "Skullreapers",
 			"points": 170,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 3,
@@ -2385,7 +2568,10 @@
 			"name": "Skulltaker",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLADES OF KHORNE DAEMON"
@@ -2456,7 +2642,10 @@
 			"name": "Slaughterpriest",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND"
@@ -2516,7 +2705,10 @@
 			"legends": true,
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BLOODBOUND",
@@ -2590,7 +2782,11 @@
 			"name": "Wrath-axe",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 7,
@@ -2635,7 +2831,10 @@
 			"name": "Wrathmongers",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 3,
@@ -2690,7 +2889,11 @@
 			"name": "Wrath of Khorne Bloodthirster",
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Slaughter Seeker",

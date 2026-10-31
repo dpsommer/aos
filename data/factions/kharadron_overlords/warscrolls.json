@@ -5,7 +5,10 @@
 			"name": "Aetheric Navigator",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SKYVESSEL",
@@ -75,7 +78,10 @@
 			"name": "Aether-Khemist",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SKYVESSEL",
@@ -145,7 +151,10 @@
 			"name": "Arkanaut Admiral",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Guild Officer",
@@ -216,7 +225,10 @@
 			"name": "Arkanaut Company",
 			"points": 80,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -295,7 +307,11 @@
 			"name": "Arkanaut Frigate",
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -388,7 +404,11 @@
 			"name": "Arkanaut Ironclad",
 			"points": 430,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 18,
@@ -476,7 +496,10 @@
 			"name": "Auto-Endrin",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 5,
@@ -538,7 +561,10 @@
 			"name": "Brokk Grungsson, Lord-Magnate of Barak-Nar",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Guild Officer",
@@ -632,7 +658,10 @@
 			"name": "Codewright",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SKYVESSEL",
@@ -709,7 +738,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SKYVESSEL",
@@ -779,7 +811,10 @@
 			"name": "Drekki Flynt",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Guild Officer",
@@ -861,7 +896,10 @@
 			"name": "Endrinmaster with Dirigible Suit",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SKYVESSEL",
@@ -942,7 +980,10 @@
 			"name": "Endrinmaster with Endrinharness",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any INFANTRY",
@@ -1000,7 +1041,10 @@
 			"name": "Endrinriggers",
 			"points": 90,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -1095,7 +1139,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "12",
@@ -1196,7 +1243,11 @@
 			"name": "Grundstok Gunhauler",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "14",
 			"health": 10,
@@ -1276,7 +1327,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack. This unit can be reinforced even though it has a minimum unit size of 1.",
 			"move": "14",
@@ -1345,7 +1400,10 @@
 			"name": "Grundstok Thunderers",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1432,7 +1490,10 @@
 			"name": "Null-Khemist",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Guild Officer",
@@ -1503,7 +1564,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 SKYVESSEL",
@@ -1573,7 +1637,10 @@
 			"name": "Skywardens",
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -1669,7 +1736,27 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 5,
-			"base_size": "Khazgan Drakkskewer, Dead-Eye Lund and Bjorgen Thundrik: 32mm, Enrik Ironhail and Garodd Alensen: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Khazgan Drakkskewer, Dead-Eye Lund and Bjorgen Thundrik",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Enrik Ironhail and Garodd Alensen",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "4",
@@ -1748,7 +1835,10 @@
 			"name": "Vongrim Harpoon Crew",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -1805,7 +1895,10 @@
 			"name": "Vongrim Salvagers",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -1866,7 +1959,10 @@
 			"name": "Zontari Endrin Dock",
 			"points": 20,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 10,

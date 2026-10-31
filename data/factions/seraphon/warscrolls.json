@@ -5,7 +5,11 @@
 			"name": "Aggradon Lancers",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,
@@ -64,7 +68,11 @@
 			"name": "Bastiladon with Ark of Sotek",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 12,
@@ -138,7 +146,11 @@
 			"name": "Bastiladon with Solar Engine",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 12,
@@ -211,7 +223,11 @@
 			"name": "Engine of the Gods",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 14,
@@ -304,7 +320,26 @@
 			"name": "Hunters of Huanchi with Dartpipes",
 			"points": 80,
 			"unit_size": 5,
-			"base_size": "1/5 28.5mm (Champion)\n4/5 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 1,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 1,
@@ -383,7 +418,26 @@
 			"name": "Hunters of Huanchi with Starstone Bolas",
 			"points": 90,
 			"unit_size": 5,
-			"base_size": "2/5 28.5mm (Champion, Hunter Javelin)\n3/5 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 2,
+						"note": "Champion, Hunter Javelin",
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 1,
@@ -478,7 +532,10 @@
 			"name": "Kroxigor",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 6,
@@ -534,7 +591,10 @@
 			"name": "Kroxigor Warspawned",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 6,
@@ -598,7 +658,10 @@
 			"name": "Lord Kroak",
 			"points": 410,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skink Starpriest, Skink Starseer or Favoured Spawning",
@@ -695,7 +758,11 @@
 			"name": "Raptadon Chargers",
 			"points": 140,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 3,
@@ -753,7 +820,11 @@
 			"name": "Raptadon Hunters",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 3,
@@ -819,7 +890,11 @@
 			"name": "Realmshaper Engine",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 200,
+				"width": 150
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 15,
@@ -858,7 +933,10 @@
 			"name": "Ripperdactyl Chief",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -940,7 +1018,10 @@
 			"name": "Ripperdactyl Riders",
 			"points": 100,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 3,
@@ -1016,7 +1097,10 @@
 			"name": "Ripperdactyl Riders (2 Models)",
 			"points": 70,
 			"unit_size": 2,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Ripperdactyl Chief in your army. This unit cannot be reinforced.",
 			"move": "14",
@@ -1093,7 +1177,10 @@
 			"name": "Saurus Astrolith Bearer",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SAURUS"
@@ -1146,7 +1233,10 @@
 			"name": "Saurus Guard",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -1189,7 +1279,10 @@
 			"name": "Saurus Oldblood",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Favoured Spawning",
@@ -1243,7 +1336,11 @@
 			"name": "Saurus Oldblood on Carnosaur",
 			"points": 210,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Favoured Spawning",
@@ -1357,7 +1454,11 @@
 			"source": "Scourge of Ghyran",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Favoured Spawning",
@@ -1459,7 +1560,11 @@
 			"name": "Saurus Scar-Veteran on Aggradon",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Favoured Spawning",
@@ -1530,7 +1635,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Favoured Spawning",
@@ -1613,7 +1722,11 @@
 			"name": "Saurus Scar-Veteran on Carnosaur",
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Favoured Spawning",
@@ -1704,7 +1817,10 @@
 			"name": "Saurus Warriors",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -1747,7 +1863,11 @@
 			"name": "Skink Oracle on Troglodon",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -1863,7 +1983,10 @@
 			"name": "Skinks",
 			"points": 70,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "8",
 			"health": 1,
@@ -1917,7 +2040,10 @@
 			"name": "Skink Starpriest",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -1967,7 +2093,10 @@
 			"name": "Skink Starseer",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -2031,7 +2160,10 @@
 			"name": "Slann Starmaster",
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skink Starpriest, Skink Starseer or Favoured Spawning",
@@ -2119,7 +2251,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Skink Starpriest or Favoured Spawning",
@@ -2197,7 +2332,28 @@
 			"name": "Spawn of Chotec",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "Spawn of Chotec: 90 × 52mm, 3 × Sun Acolytes: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Spawn of Chotec",
+						"count": 1,
+						"base": {
+							"shape": "oval",
+							"length": 90,
+							"width": 52
+						}
+					},
+					{
+						"name": "Sun Acolytes",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"move": "5",
 			"health": 8,
@@ -2274,7 +2430,11 @@
 			"name": "Stegadon",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 14,
@@ -2370,7 +2530,11 @@
 			"name": "Stegadon Chief",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -2490,7 +2654,35 @@
 			"name": "Sunblood Pack",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "Sunblood: 40mm, 2 × Saurus Bodyguard: 32mm, Venomites: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Sunblood",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Saurus Bodyguard",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Venomites",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SERAPHON"
@@ -2554,7 +2746,10 @@
 			"name": "Terradon Chief",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -2625,7 +2820,10 @@
 			"name": "Terradon Riders",
 			"points": 90,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 3,
@@ -2700,7 +2898,10 @@
 			"name": "Terradon Riders (2 Models)",
 			"points": 70,
 			"unit_size": 2,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"notes": "You can include 1 unit of this type for each Terradon Chief in your army. This unit cannot be reinforced.",
 			"move": "14",
@@ -2776,7 +2977,10 @@
 			"name": "Terrawings",
 			"points": 70,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 2,
@@ -2821,7 +3025,35 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "Kro-Jax, the Aegis: 40mm, So-Kar, Ro-Tak, the Guardian: 32mm, Sotek’s Venomites: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Kro-Jax, the Aegis",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "So-Kar, Ro-Tak, the Guardian",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Sotek’s Venomites",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -2883,7 +3115,27 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 6,
-			"base_size": "Klaq-Trok: 32mm, Kixi-Taka, the Diviner, Otapatl, Huachi, Tok and Xepic: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Klaq-Trok",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Kixi-Taka, the Diviner, Otapatl, Huachi, Tok and Xepic",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "8",

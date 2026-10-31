@@ -5,7 +5,10 @@
 			"name": "Argent Shard",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -47,7 +50,10 @@
 			"name": "Blue Horrors and Brimstone Horrors",
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -117,7 +123,11 @@
 			"name": "Burning Chariot of Tzeentch",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "12",
 			"health": 8,
@@ -189,7 +199,10 @@
 			"name": "Burning Sigil of Tzeentch",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -223,7 +236,10 @@
 			"name": "Changecaster, Herald of Tzeentch",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -281,7 +297,10 @@
 			"name": "Chaos Spawn of Tzeentch",
 			"points": 60,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "2D6",
 			"health": 5,
@@ -336,7 +355,10 @@
 			"name": "Curseling, Eye of Tzeentch",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Chaos Spawn of Tzeentch",
@@ -407,7 +429,11 @@
 			"name": "Daemonic Simulacrum",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "105 × 70mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 105,
+				"width": 70
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 8,
@@ -456,7 +482,27 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "Ephilim the Unknowable, Flamespooler and Spawnmaw: 32mm, Kindlefinger and Apo'trax, the Starefysh: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Ephilim the Unknowable, Flamespooler and Spawnmaw",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Kindlefinger and Apo'trax, the Starefysh",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -525,7 +571,11 @@
 			"name": "Exalted Flamer of Tzeentch",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 5,
@@ -595,7 +645,27 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 5,
-			"base_size": "Vortemis the All-seeing, K'charik, Narvia and Turosh: 32mm, Horrors: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Vortemis the All-seeing, K'charik, Narvia and Turosh",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Horrors",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -649,7 +719,10 @@
 			"name": "Fatemaster",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Chaos Spawn of Tzeentch",
@@ -709,7 +782,10 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Chaos Spawn of Tzeentch",
@@ -777,7 +853,11 @@
 			"name": "Fateskimmer, Herald of Tzeentch on Burning Chariot",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Tzeentchian Deceiver",
@@ -849,7 +929,10 @@
 			"name": "Flamers of Tzeentch",
 			"points": 130,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "9",
 			"health": 2,
@@ -920,7 +1003,10 @@
 			"legends": true,
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -992,7 +1078,10 @@
 			"name": "Gaunt Summoner",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Tzeentchian Deceiver",
@@ -1073,7 +1162,10 @@
 			"name": "Gaunt Summoner on Disc of Tzeentch",
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Tzeentchian Deceiver",
@@ -1170,7 +1262,27 @@
 			"name": "Jade Obelisk",
 			"points": 100,
 			"unit_size": 9,
-			"base_size": "5 x Desecrators, Nephrite Priestess, Obelisk Bearer: 32mm, 5 x Idolarc, Defacers: 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "5 x Desecrators, Nephrite Priestess, Obelisk Bearer",
+						"count": 7,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "5 x Idolarc, Defacers",
+						"count": 6,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -1233,7 +1345,10 @@
 			"name": "Kairic Acolytes",
 			"points": 90,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -1279,7 +1394,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2025-26 battlepack.",
 			"move": "5",
@@ -1331,7 +1449,10 @@
 			"name": "Kairos Fateweaver",
 			"points": 400,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Tzeentchian Deceiver",
@@ -1429,7 +1550,10 @@
 			"name": "Lord of Change",
 			"points": 380,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Tzeentchian Deceiver",
@@ -1525,7 +1649,10 @@
 			"name": "Magister",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ARCANITE"
@@ -1596,7 +1723,10 @@
 			"name": "Magister on Disc of Tzeentch",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ARCANITE",
@@ -1677,7 +1807,10 @@
 			"name": "Ogroid Thaumaturge",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ARCANITE"
@@ -1753,7 +1886,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ARCANITE"
@@ -1832,7 +1968,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any ARCANITE"
@@ -1907,7 +2046,10 @@
 			"name": "Pink Horrors",
 			"points": 170,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -1977,7 +2119,10 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2068,7 +2213,10 @@
 			"legends": true,
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Pyrozealot",
@@ -2144,7 +2292,10 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "90mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 90
+			},
 			"can_reinforce": false,
 			"move": "3",
 			"health": 8,
@@ -2224,7 +2375,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 10,
-			"base_size": "25mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 25
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2269,7 +2423,10 @@
 			"name": "Screamers of Tzeentch",
 			"points": 80,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 3,
@@ -2324,7 +2481,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "14",
@@ -2375,7 +2535,10 @@
 			"legends": true,
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON",
@@ -2451,7 +2614,10 @@
 			"name": "The Changeling",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DAEMON"
@@ -2522,7 +2688,10 @@
 			"name": "Tome of Eyes",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -2572,7 +2741,10 @@
 			"name": "Tzaangor Enlightened",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"notes": "Previously Tzaangor Enlightened on Discs of Tzeentch.",
 			"move": "14",
@@ -2631,7 +2803,10 @@
 			"name": "Tzaangor Enlightened on Foot",
 			"points": 110,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"notes": "Previously Tzaangor Enlightened. This unit will move to Warhammer Legends on 1 June 2027",
 			"move": "6",
@@ -2674,7 +2849,10 @@
 			"name": "Tzaangors",
 			"points": 170,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 2,
@@ -2721,7 +2899,10 @@
 			"name": "Tzaangor Shaman",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Arcanite Cabalist",
@@ -2793,7 +2974,10 @@
 			"name": "Tzaangor Skyfires",
 			"points": 160,
 			"unit_size": 3,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "14",
 			"health": 4,

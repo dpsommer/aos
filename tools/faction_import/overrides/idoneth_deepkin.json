@@ -1,5 +1,6 @@
 {
 	"fields": {
+		"gloomtide_shipwreck": {"base_size": {"shape": "model", "length": 250, "width": 120}},
 		"Twin Tides": {"timing": "Reaction: You declared an ATTACK ability for a friendly AKHELIAN unit", "frequency": "Once Per Turn (Army)"},
 		"akhelian_thrallmaster > Akhelian Insights": {"timing": "Passive"},
 		"cyrenis_razors > Cyreni of the Abyss": {"effect": "While this unit's Cyreni of the Abyss is on the battlefield, it has WIZARD (1)."},

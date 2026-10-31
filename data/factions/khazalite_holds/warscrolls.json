@@ -5,7 +5,10 @@
 			"name": "Auric Flamekeeper",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -67,7 +70,10 @@
 			"name": "Auric Hearthguard",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -138,7 +144,10 @@
 			"name": "Auric Runefather",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -192,7 +201,11 @@
 			"name": "Auric Runefather on Magmadroth",
 			"points": 320,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -292,7 +305,10 @@
 			"name": "Auric Runemaster",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -367,7 +383,10 @@
 			"name": "Auric Runesmiter",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -422,7 +441,11 @@
 			"name": "Auric Runesmiter on Magmadroth",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -524,7 +547,10 @@
 			"name": "Auric Runeson",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -585,7 +611,11 @@
 			"name": "Auric Runeson on Magmadroth",
 			"points": 290,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -689,7 +719,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -817,7 +851,10 @@
 			"name": "Battlesmith",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -869,7 +906,10 @@
 			"name": "Clangunners with Thrundok Rifles",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -933,7 +973,10 @@
 			"name": "Clangunners with Thrundrin Shotcannons",
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -1000,7 +1043,10 @@
 			"name": "Clanshields",
 			"points": 110,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -1055,7 +1101,10 @@
 			"name": "Doomseeker",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -1108,7 +1157,10 @@
 			"name": "Gholems of Gazul",
 			"points": 210,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -1158,7 +1210,10 @@
 			"name": "Gholems of Valaya",
 			"points": 200,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -1209,7 +1264,10 @@
 			"name": "Gotrek Gurnisson",
 			"points": 220,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 8,
@@ -1278,7 +1336,10 @@
 			"name": "Grimhold Exile",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -1343,7 +1404,10 @@
 			"name": "Grimwrath Berzerker",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -1412,7 +1476,10 @@
 			"name": "Hearthguard Berzerkers",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -1465,7 +1532,11 @@
 			"name": "High Kyng Valankrom",
 			"points": 390,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 16,
@@ -1578,7 +1649,10 @@
 			"name": "Hjulda Drakkblud",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -1643,7 +1717,11 @@
 			"name": "Magmic Battleforge",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use Model",
+			"base_size": {
+				"shape": "model",
+				"length": 160,
+				"width": 120
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 8,
@@ -1685,7 +1763,10 @@
 			"name": "Oathkeeper Cannon",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 6,
@@ -1745,7 +1826,27 @@
 			"name": "Ormyr and Ashtongue",
 			"points": 140,
 			"unit_size": 2,
-			"base_size": "Ormyr: 32mm, Ashtongue: 50mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Ormyr",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Ashtongue",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 50
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -1824,7 +1925,10 @@
 			"name": "Runewright",
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -1875,7 +1979,10 @@
 			"name": "Stonebreaker Mortar",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 6,
@@ -1938,7 +2045,10 @@
 			"name": "Thrynn",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"move": "4",
 			"health": 5,
@@ -1999,7 +2109,11 @@
 			"name": "Thrynn on War Throne",
 			"points": 340,
 			"unit_size": 1,
-			"base_size": "170 × 105mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 170,
+				"width": 105
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 16,
@@ -2105,7 +2219,10 @@
 			"name": "Valayan Guardians with Rune Axes and Shields",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -2160,7 +2277,10 @@
 			"name": "Valayan Guardians with Runic Halberds",
 			"points": 110,
 			"unit_size": 5,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -2215,7 +2335,10 @@
 			"name": "Vulkite Berzerkers with Bladed Slingshields",
 			"points": 150,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -2260,7 +2383,10 @@
 			"name": "Vulkite Berzerkers with Fyresteel Weapons",
 			"points": 130,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -2305,7 +2431,35 @@
 			"name": "Vulkyn Flameseekers",
 			"points": 160,
 			"unit_size": 9,
-			"base_size": "Vulkyn Runefather and Kyndledroth: 32mm, Vulkyn Flameseeker: 2/7 32mm\n5/7 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Vulkyn Runefather and Kyndledroth",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Vulkyn Flameseeker",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Vulkyn Flameseeker",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,
@@ -2376,7 +2530,35 @@
 			"source": "Scourge of Aqshy",
 			"points": 190,
 			"unit_size": 9,
-			"base_size": "Vulkyn Runefather and Kyndledroth: 32mm, Vulkyn Flameseeker: 2/9 32mm\n5/9 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Vulkyn Runefather and Kyndledroth",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Vulkyn Flameseeker",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Vulkyn Flameseeker",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 2,

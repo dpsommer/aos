@@ -6,7 +6,7 @@
 			"army_of_renown": "Test March",
 			"points": 120,
 			"unit_size": 5,
-			"base_size": "32mm",
+			"base_size": {"shape": "round", "diameter": 32},
 			"can_reinforce": true,
 			"regiment_options": ["Any INFANTRY"],
 			"move": "4",

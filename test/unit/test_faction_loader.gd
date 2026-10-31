@@ -276,8 +276,8 @@ func test_absent_banishment_defaults_to_zero() -> void:
 func test_warscroll_battle_profile_comes_from_file() -> void:
 	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0]
 	var unit: Warscroll = _load("valid").warscrolls[0]
-	assert_eq([unit.points, unit.unit_size, unit.base_size, unit.can_reinforce],
-			[int(expected.points), int(expected.unit_size), expected.base_size, expected.can_reinforce])
+	assert_eq([unit.points, unit.unit_size, unit.base_size.diameter, unit.can_reinforce],
+			[int(expected.points), int(expected.unit_size), float(expected.base_size.diameter), expected.can_reinforce])
 
 
 func test_warscroll_regiment_options_are_carried_over() -> void:
@@ -327,7 +327,7 @@ func test_warscroll_source_and_legends_come_from_file() -> void:
 
 func test_missing_optional_warscroll_fields_use_defaults() -> void:
 	var unit: Warscroll = _load("valid").warscrolls[1]
-	assert_eq([unit.ward, unit.can_reinforce, unit.base_size, unit.ranged_weapons.size()], [0, false, "", 0])
+	assert_eq([unit.ward, unit.can_reinforce, unit.base_size, unit.ranged_weapons.size()], [0, false, null, 0])
 
 
 func test_weapon_dice_expressions_stay_strings() -> void:

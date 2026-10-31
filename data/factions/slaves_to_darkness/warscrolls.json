@@ -5,7 +5,10 @@
 			"name": "Abraxia, Spear of the Everchosen",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -125,7 +128,10 @@
 			"source": "Scourge of Ghyran",
 			"points": 300,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -229,7 +235,10 @@
 			"name": "Archaon, the Everchosen",
 			"points": 780,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -353,7 +362,10 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any DARKOATH"
@@ -411,7 +423,10 @@
 			"name": "Be'lakor, the Dark Master",
 			"points": 450,
 			"unit_size": 1,
-			"base_size": "100mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 100
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Eternus or Ruinous Champion",
@@ -521,7 +536,10 @@
 			"name": "Centaurion Marshal",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "80mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 80
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -570,7 +588,11 @@
 			"name": "Chaos Chariot",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 7,
@@ -642,7 +664,10 @@
 			"name": "Chaos Chosen",
 			"points": 250,
 			"unit_size": 5,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 3,
@@ -689,7 +714,10 @@
 			"name": "Chaos Furies",
 			"points": 100,
 			"unit_size": 6,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 1,
@@ -732,7 +760,11 @@
 			"name": "Chaos Knights",
 			"points": 240,
 			"unit_size": 5,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 4,
@@ -790,7 +822,26 @@
 			"name": "Chaos Legionnaires",
 			"points": 80,
 			"unit_size": 8,
-			"base_size": "5/8 32mm (Champion)\n3/8 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 5,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -833,7 +884,10 @@
 			"name": "Chaos Lord",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -882,7 +936,11 @@
 			"name": "Chaos Lord on Daemonic Mount",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -943,7 +1001,11 @@
 			"name": "Chaos Lord on Karkadrak",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -1017,7 +1079,11 @@
 			"source": "Scourge of Aqshy",
 			"points": 200,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -1092,7 +1158,11 @@
 			"legends": true,
 			"points": 260,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -1168,7 +1238,10 @@
 			"name": "Chaos Sorcerer Lord",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -1219,7 +1292,11 @@
 			"legends": true,
 			"points": 280,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -1295,7 +1372,10 @@
 			"name": "Chaos Spawn",
 			"points": 60,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"move": "2D6",
 			"health": 5,
@@ -1338,7 +1418,10 @@
 			"name": "Chaos Warriors",
 			"points": 180,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -1385,7 +1468,10 @@
 			"source": "Scourge of Aqshy",
 			"points": 200,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit is legal for Matched Play for battles fought using the General’s Handbook 2026-27 battlepack.",
 			"move": "5",
@@ -1434,7 +1520,11 @@
 			"legends": true,
 			"points": 250,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -1514,7 +1604,33 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 9,
-			"base_size": "1/9 40mm (Champion)\n3/9 28.5mm\n5/9 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 1,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1585,7 +1701,33 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 8,
-			"base_size": "1/8 32mm (Champion)\n4/8 28.5mm\n3/8 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 1,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -1648,7 +1790,10 @@
 			"name": "Daemon Prince",
 			"points": 230,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -1715,7 +1860,11 @@
 			"name": "Darkfire Daemonrift",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 6,
@@ -1772,7 +1921,10 @@
 			"name": "Darkoath Chieftain",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Oathsworn",
@@ -1831,7 +1983,11 @@
 			"name": "Darkoath Chieftain on Warsteed",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Oathsworn",
@@ -1902,7 +2058,11 @@
 			"name": "Darkoath Fellriders",
 			"points": 130,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "12",
 			"health": 3,
@@ -1989,7 +2149,10 @@
 			"name": "Darkoath Marauders",
 			"points": 80,
 			"unit_size": 10,
-			"base_size": "28.5mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 28.5
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2041,7 +2204,26 @@
 			"name": "Darkoath Savagers",
 			"points": 90,
 			"unit_size": 10,
-			"base_size": "3/10 32mm (Champion)\n7/10 28.5mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 3,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 7,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2086,7 +2268,10 @@
 			"name": "Darkoath Warqueen",
 			"points": 80,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Oathsworn",
@@ -2149,7 +2334,10 @@
 			"name": "Darkoath Wilderfiend",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "8",
 			"health": 9,
@@ -2228,7 +2416,11 @@
 			"name": "Eightfold Doom-sigil",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 6,
@@ -2261,7 +2453,11 @@
 			"name": "Eternus, Blade of the First Prince",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Ruinous Champion",
@@ -2334,7 +2530,10 @@
 			"name": "Exalted Hero of Chaos",
 			"points": 90,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 MONSTER",
@@ -2384,7 +2583,10 @@
 			"name": "Fomoroid Crusher",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"move": "6",
 			"health": 8,
@@ -2441,7 +2643,10 @@
 			"name": "Gaunt Summoner",
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SLAVES TO DARKNESS"
@@ -2528,7 +2733,10 @@
 			"name": "Gaunt Summoner on Disc of Tzeentch",
 			"points": 190,
 			"unit_size": 1,
-			"base_size": "40mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 40
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any SLAVES TO DARKNESS"
@@ -2629,7 +2837,27 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 6,
-			"base_size": "Theddra Skull-scryer, Shond Head-Claimer, Jagathra, Grundann Blood-Eye and Ollo: 32mm, Grawl: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Theddra Skull-scryer, Shond Head-Claimer, Jagathra, Grundann Blood-Eye and Ollo",
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Grawl",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -2699,7 +2927,11 @@
 			"name": "Gorebeast Chariot",
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 8,
@@ -2770,7 +3002,10 @@
 			"name": "Gunnar Brand",
 			"points": 180,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Singri Brand (required), The Oathsworn Kin (required)",
@@ -2832,7 +3067,33 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 10,
-			"base_size": "3/10 32mm (Champion)\n4/10 28.5mm\n3/10 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 3,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -2890,7 +3151,36 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 8,
-			"base_size": "Iron Golem: 3/8 32mm (Champion)\n4/8 28.5mm, Ogor Breacher: 40mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Iron Golem",
+						"count": 3,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Iron Golem",
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Ogor Breacher",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "4",
 			"health": 1,
@@ -2955,7 +3245,10 @@
 			"legends": true,
 			"points": 170,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -3011,7 +3304,10 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "60mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 60
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "7",
@@ -3067,7 +3363,11 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "8",
@@ -3133,7 +3433,10 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 170,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "5",
@@ -3185,7 +3488,11 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 140,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "10",
@@ -3246,7 +3553,10 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 120,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "9",
@@ -3310,7 +3620,11 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 130,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "10",
@@ -3390,7 +3704,10 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "4",
@@ -3442,7 +3759,10 @@
 			"army_of_renown": "Legion of the First Prince",
 			"points": 70,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"notes": "This unit can only be taken in a Legion of the First Prince Army of Renown.",
 			"move": "14",
@@ -3493,7 +3813,11 @@
 			"name": "Mindstealer Sphiranx",
 			"points": 140,
 			"unit_size": 1,
-			"base_size": "90 × 52mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 90,
+				"width": 52
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 10,
@@ -3537,7 +3861,11 @@
 			"name": "Mutalith Vortex Beast",
 			"points": 150,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -3615,7 +3943,11 @@
 			"name": "Nexus Chaotica",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 120
+			},
 			"can_reinforce": false,
 			"move": "0",
 			"health": 12,
@@ -3663,7 +3995,10 @@
 			"name": "Ogroid Myrmidon",
 			"points": 120,
 			"unit_size": 1,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any Ogroid Theridons",
@@ -3730,7 +4065,10 @@
 			"name": "Ogroid Theridons",
 			"points": 150,
 			"unit_size": 3,
-			"base_size": "50mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 50
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 5,
@@ -3776,7 +4114,11 @@
 			"name": "Raptoryx",
 			"points": 100,
 			"unit_size": 6,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 2,
@@ -3818,7 +4160,11 @@
 			"name": "Realmscourge Rupture",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "Use model",
+			"base_size": {
+				"shape": "model",
+				"length": 150,
+				"width": 100
+			},
 			"can_reinforce": false,
 			"move": "9",
 			"health": 6,
@@ -3867,7 +4213,33 @@
 			"legends": true,
 			"points": 120,
 			"unit_size": 8,
-			"base_size": "3/8 32mm (Champion)\n3/8 28.5mm\n2/8 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 3,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -3924,7 +4296,11 @@
 			"name": "Singri Brand",
 			"points": 0,
 			"unit_size": 1,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"None"
@@ -4004,7 +4380,11 @@
 			"name": "Slaughterbrute",
 			"points": 170,
 			"unit_size": 1,
-			"base_size": "120 × 92mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 120,
+				"width": 92
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 14,
@@ -4084,7 +4464,10 @@
 			"legends": true,
 			"points": 330,
 			"unit_size": 1,
-			"base_size": "160mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 160
+			},
 			"can_reinforce": false,
 			"move": "10",
 			"health": 16,
@@ -4189,7 +4572,33 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 9,
-			"base_size": "3/9 32mm (Champion)\n4/9 28.5mm\n2/9 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 3,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 1,
@@ -4234,7 +4643,33 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 9,
-			"base_size": "3/10 32mm (Champion)\n2/10 28.5mm\n5/10 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 3,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 5,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "6",
@@ -4290,7 +4725,44 @@
 			"legends": true,
 			"points": 150,
 			"unit_size": 13,
-			"base_size": "Tarantulos Brood: 1/13 32mm (Champion)\n2/13 28.5mm\n7/13 25mm, Spider Swarm: 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Tarantulos Brood",
+						"count": 1,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Tarantulos Brood",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Tarantulos Brood",
+						"count": 7,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					},
+					{
+						"name": "Spider Swarm",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -4359,7 +4831,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 4,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -4416,7 +4891,10 @@
 			"name": "The Oathsworn Kin",
 			"points": 0,
 			"unit_size": 3,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"notes": "This unit can only be taken in Gunnar Brand’s regiment. This unit cannot be reinforced.",
 			"move": "5",
@@ -4486,7 +4964,40 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 9,
-			"base_size": "1/9 40mm (Champion)\n1/9 32mm\n3/9 28.5mm\n4/9 25mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"count": 1,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"count": 4,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -4544,7 +5055,52 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 9,
-			"base_size": "Untamed Beast: 1/9 40mm\n2/9 32mm (Champion)\n2/9 28.5mm\n3/9 25mm, First Fang: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Untamed Beast",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Untamed Beast",
+						"count": 2,
+						"note": "Champion",
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					},
+					{
+						"name": "Untamed Beast",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 28.5
+						}
+					},
+					{
+						"name": "Untamed Beast",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 25
+						}
+					},
+					{
+						"name": "First Fang",
+						"count": 1,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": true,
 			"move": "6",
 			"health": 1,
@@ -4598,7 +5154,11 @@
 			"name": "Varanguard",
 			"points": 290,
 			"unit_size": 3,
-			"base_size": "75 × 42mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 75,
+				"width": 42
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 5,

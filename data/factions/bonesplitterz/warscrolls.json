@@ -6,7 +6,27 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 4,
-			"base_size": "Hedkrakka, Gob of Gork: 40mm, Toofdagga, Wollop da Skul and Dakko Sharp-Stikka: 32mm",
+			"base_size": {
+				"shape": "mixed",
+				"models": [
+					{
+						"name": "Hedkrakka, Gob of Gork",
+						"count": 2,
+						"base": {
+							"shape": "round",
+							"diameter": 40
+						}
+					},
+					{
+						"name": "Toofdagga, Wollop da Skul and Dakko Sharp-Stikka",
+						"count": 3,
+						"base": {
+							"shape": "round",
+							"diameter": 32
+						}
+					}
+				]
+			},
 			"can_reinforce": false,
 			"notes": "This unit cannot be reinforced.",
 			"move": "5",
@@ -72,7 +92,11 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BONESPLITTERZ"
@@ -134,7 +158,10 @@
 			"legends": true,
 			"points": 110,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BONESPLITTERZ"
@@ -184,7 +211,11 @@
 			"legends": true,
 			"points": 130,
 			"unit_size": 2,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 4,
@@ -230,7 +261,11 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 3,
@@ -289,7 +324,11 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 5,
-			"base_size": "60 × 35mm",
+			"base_size": {
+				"shape": "oval",
+				"length": 60,
+				"width": 35
+			},
 			"can_reinforce": true,
 			"move": "10",
 			"health": 3,
@@ -347,7 +386,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -407,7 +449,10 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -452,7 +497,10 @@
 			"legends": true,
 			"points": 140,
 			"unit_size": 10,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": true,
 			"move": "5",
 			"health": 2,
@@ -497,7 +545,10 @@
 			"legends": true,
 			"points": 100,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"Any BONESPLITTERZ"
@@ -546,7 +597,10 @@
 			"legends": true,
 			"points": 160,
 			"unit_size": 1,
-			"base_size": "32mm",
+			"base_size": {
+				"shape": "round",
+				"diameter": 32
+			},
 			"can_reinforce": false,
 			"regiment_options": [
 				"0-1 Savage Big Boss",

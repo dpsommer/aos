@@ -10,6 +10,7 @@ const ARMY_BUILDER_SCENE := preload("res://scenes/ui/forge/builder/army_builder.
 const SETTINGS_SCENE := preload("res://scenes/ui/settings_screen.tscn")
 const GAME_MODE_SCENE := preload("res://scenes/ui/quick_play/game_mode_screen.tscn")
 const ARMY_SELECT_SCENE := preload("res://scenes/ui/quick_play/army_select.tscn")
+const LOADING_SCENE := preload("res://scenes/ui/battle/loading_screen.tscn")
 
 var current_screen: Node
 
@@ -89,6 +90,7 @@ func show_army_select(mode: BattleSetup.Mode, focus := "") -> void:
 	screen.open(mode, focus)
 	screen.back_pressed.connect(show_quick_play.bind(mode))
 	screen.forge_requested.connect(show_forge)
+	screen.play_requested.connect(show_loading)
 	screen.edit_requested.connect(func(army: Army) -> void:
 		show_army_builder(army, func() -> void: show_army_select(BattleSetup.Mode.MATCHED_PLAY, army.id)))
 
@@ -106,10 +108,31 @@ func show_army_builder(army: Army, on_back := Callable()) -> void:
 	builder.back_pressed.connect(on_back if on_back.is_valid() else func() -> void: show_forge(-1, "", army.id))
 
 
+## Opens the loading screen for [param setup], which builds the game map and then shows it. If the
+## battle can't be set up, returns to the army step.
+func show_loading(setup: BattleSetup) -> void:
+	var screen: LoadingScreen = _show_screen(LOADING_SCENE)
+	screen.finished.connect(show_battle_map)
+	screen.failed.connect(func(message: String) -> void:
+		push_error(message)
+		show_army_select(setup.mode))
+	screen.open(setup)
+
+
+## Shows [param map], built by the loading screen. Its Menu returns to the main menu.
+func show_battle_map(map: BattleMap) -> void:
+	_show_node(map)
+	map.menu_requested.connect(show_main_menu)
+
+
 func _show_screen(scene: PackedScene) -> Node:
+	return _show_node(scene.instantiate())
+
+
+func _show_node(node: Node) -> Node:
 	if current_screen:
 		remove_child(current_screen)
 		current_screen.queue_free()
-	current_screen = scene.instantiate()
+	current_screen = node
 	add_child(current_screen)
 	return current_screen

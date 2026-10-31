@@ -1,6 +1,7 @@
 {
 	"armies_of_renown_from": ["Fyreslayers - Lofnir Drothkeepers", "Fyreslayers - The Duardin Ascendant [LEGENDS]"],
 	"fields": {
+		"magmic_battleforge": {"base_size": {"shape": "model", "length": 160, "width": 120}},
 		"Battle Damaged": {"colour": "black"},
 		"gholems_of_gazul > Runes of Gazul": {"colour": "red", "category": "offensive"},
 		"gotrek_gurnisson > Too Stubborn to Die": {"colour": "green", "category": "defensive"},
