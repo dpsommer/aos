@@ -16,14 +16,14 @@ Pressing a card emits `mode_chosen`. Spearhead's card is focused when the screen
 
 Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/army_select.gd` (`ArmySelect`), for either mode. The breadcrumb names the mode.
 
-- **Header:** after the breadcrumb, a box with the points limit (the army's, or "Fixed roster" for a Spearhead) and the rules ("General's Handbook 2026-27" or "Spearhead"), then **Play**: large and gold, with a slight glow, once the army can play; otherwise dark and disabled, its tooltip saying why (`ArmySelect.play_blocker()`), e.g. "Fix this army's problems to play".
+- **Header:** after the breadcrumb, a box with the points limit (the army's, or "Fixed roster" for a Spearhead) and the rules, in gold ("General's Handbook 2026-27" or "Spearhead"), then **Play**, as tall as that box: large and gold, with a slight glow, once the army can play; otherwise dark and disabled, its tooltip saying why (`ArmySelect.play_blocker()`), e.g. "Fix this army's problems to play".
 - **Left pane (460 px, the same width as the Forge army builder's left pane):** the list of armies. It gives way to one of these, each with a Back button ("Armies" or "Spearheads") that returns to the list and gives focus back to the control that opened it:
   - a unit's warscroll (`WarscrollCard`), from a portrait;
   - a Regiment of Renown's units and rules (`RulesView.regiment_of_renown()`), from its units' portraits;
   - the battleplans (`BattleplanPicker`, or `RealmPicker` in Spearhead), from the battle plan card.
 
   Esc goes back to the list from these, and from the list goes back to the game mode.
-- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right, with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card): "Random" (picked when the battle starts) or the chosen battleplan's name. It's outlined in gold while the battleplans are open.
+- **Detail:** the chosen army, scrolling on its own. Its top row has the army's name and details, with the **battle plan card** on the right: "Random" (picked when the battle starts), with a white monster icon (`fighters/gargantuan`, as on the battleplan picker's Random card), or the chosen battleplan's name, with its map (`BattleplanMap`) in the icon's place. The icon or map fills a 64 × 48 box, and the card stays the same size whichever is chosen. It's outlined in gold while the battleplans are open.
 
 ### Matched Play
 
@@ -34,7 +34,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
   - With no saved armies, a placeholder offers **Open the Forge** (`forge_requested`).
 - **Detail:**
   - the name with a status pill ("Army valid", "N problems" or "Constraints overridden"), its faction and Army of Renown or formation, and its points; then its problems, if any, in a red box;
-  - **Battle Traits** (the Army of Renown's, else the faction's), two to a row, each foldable by a chevron beside its name (`AbilityCard.make_foldable()`); the first starts unfolded;
+  - **Battle Traits** (the Army of Renown's, else the faction's), two to a row, each foldable by a chevron beside its name (`AbilityCard.make_foldable()`), all starting folded;
   - **Battle Formation** as a short `FormationCard`;
   - **Battle Tactics**, a short `TacticCard` per slot, or a dashed "No battle tactics card in slot 2"; beside them **Lores**, a short `LoreCard` per lore, or a dashed "No spell lore" etc. Formations, tactics cards and lores have an eye that shows them in full in place, keeping focus on the eye;
   - **Army:** each regiment in a box with its name (and a Regiment of Renown chip), unit count and points, then its units' 112 px portraits: the General's crown, the model count, the unit's name, and "General", its enhancements and points under it. Auxiliary units follow in their own box;
@@ -46,10 +46,10 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
 - **Spearheads:** every Spearhead shown on the game mode screen, grouped by Grand Alliance, each with its faction's icon, name, faction and unit count (its general included). A search box above filters them by Spearhead or faction name; Esc in it clears it. The first Spearhead starts chosen.
 - **Detail:**
   - the name, its faction, Grand Alliance and general, and a pill: "Choose a regiment ability and an enhancement to play", until both are chosen, then "Ready to play";
-  - **Battle Traits** (foldable, two to a row, as in Matched Play);
+  - **Battle Traits** (foldable, two to a row, as in Matched Play, but the first starts unfolded);
   - below them, two columns: **Regiment Abilities** and **Enhancements**. Each choice is an [ability choice card](abilities.md#choosing-an-ability), as in the Forge's enhancement options. Pressing a card chooses it; pressing the chosen card unchooses it. Each column's heading has a chip, "Choose 1" or "Chosen";
   - **Army:** portraits of the general and each unit, with model counts; each shows the Spearhead's own warscroll.
-- **Battle plan:** each Spearhead battlepack has one battleplan, fought on whichever side of its realm battlefield the defender chooses, so the card chooses a side (see [Realm battlefields](#realm-battlefields)). It shows "Random" or the side's name over its battlepack's, e.g. "Ossia" over "Sand and Bone".
+- **Battle plan:** each Spearhead battlepack has one battleplan, fought on whichever side of its realm battlefield the defender chooses, so the card chooses a side (see [Realm battlefields](#realm-battlefields)). It shows "Random" or the side's name over its battlepack's, e.g. "Ossia" over "Sand and Bone", with the side's map (`RealmMap`) in the icon's place, as in Matched Play.
 - **Play:** enabled once a regiment ability and an enhancement are chosen.
 
 ### Battleplans

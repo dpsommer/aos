@@ -214,6 +214,33 @@ func test_playable_army_play_tooltip_is_not_a_blocker() -> void:
 	assert_ne(screen.play_button.tooltip_text, screen.play_blocker())
 
 
+## The panel holding the points limit and rules, beside the Play button.
+func _info_box(screen: ArmySelect) -> Control:
+	var node: Node = screen.limit_label
+	while not node is PanelContainer:
+		node = node.get_parent()
+	return node
+
+
+func test_play_button_is_as_tall_as_the_points_limit_and_rules_box() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	await get_tree().process_frame
+	assert_gt(_info_box(screen).size.y, 0.0)
+	assert_eq(screen.play_button.size.y, _info_box(screen).size.y)
+
+
+func test_spearhead_play_button_is_as_tall_as_the_points_limit_and_rules_box() -> void:
+	var screen := _spearhead()
+	await get_tree().process_frame
+	assert_eq(screen.play_button.size.y, _info_box(screen).size.y)
+
+
+func test_rules_stand_out_from_the_points_limit() -> void:
+	var screen := _spearhead()
+	assert_ne(screen.rules_label.get_theme_color("font_color"), screen.limit_label.get_theme_color("font_color"))
+
+
 func test_play_emits_the_setup() -> void:
 	var army := _save_army("Free", true)
 	var screen := _matched_play()
@@ -489,6 +516,46 @@ func test_picking_a_realm_leaves_the_battleplan_alone() -> void:
 	assert_eq(screen.battleplan, "")
 
 
+## The battle plan card, found by the name screen readers announce.
+func _battleplan_card(screen: ArmySelect) -> Control:
+	return UIKit.find_all(screen, func(n: Node) -> bool:
+		return n is Control and n.accessibility_name.begins_with("Battle plan:"))[0]
+
+
+## The nodes of [param type] on the battle plan card, e.g. its map.
+func _plan_card_nodes(screen: ArmySelect, type: Variant) -> Array[Node]:
+	return UIKit.find_all(_battleplan_card(screen), func(n: Node) -> bool: return is_instance_of(n, type))
+
+
+func test_spearhead_random_battleplan_card_shows_the_icon() -> void:
+	var screen := _spearhead()
+	await get_tree().process_frame
+	assert_true(_plan_card_nodes(screen, RealmMap).is_empty())
+	assert_eq(_plan_card_nodes(screen, ArtPlaceholder)[0].size, ArmySelect.PLAN_ART_SIZE)
+
+
+func test_picked_realm_card_shows_its_map_in_place_of_the_icon() -> void:
+	var screen := _spearhead()
+	screen.show_plans()
+	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	await get_tree().process_frame
+	var maps := _plan_card_nodes(screen, RealmMap)
+	assert_eq(maps.size(), 1)
+	assert_eq(maps[0].realm.name, _first_realm())
+	assert_eq(maps[0].size, ArmySelect.PLAN_ART_SIZE)
+	assert_true(_plan_card_nodes(screen, ArtPlaceholder).is_empty())
+
+
+func test_picking_a_realm_keeps_the_card_size() -> void:
+	var screen := _spearhead()
+	await get_tree().process_frame
+	var random_size := _battleplan_card(screen).size
+	screen.show_plans()
+	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	await get_tree().process_frame
+	assert_eq(_battleplan_card(screen).size, random_size)
+
+
 func test_picking_random_clears_the_realm() -> void:
 	var screen := _spearhead()
 	screen.realm = _first_realm()
@@ -737,6 +804,54 @@ func test_picked_battleplan_is_in_the_setup() -> void:
 	assert_eq(screen.setup().battleplan, _first_plan_name())
 
 
+func _pick_plan(screen: ArmySelect, plan_name: String) -> void:
+	screen.show_plans()
+	var picker: BattleplanPicker = UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is BattleplanPicker)[0]
+	picker.cards[plan_name].pressed.emit()
+
+
+func test_random_battleplan_card_shows_the_icon_filling_its_art() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	await get_tree().process_frame
+	assert_true(_plan_card_nodes(screen, BattleplanMap).is_empty())
+	var art: Control = _plan_card_nodes(screen, ArtPlaceholder)[0]
+	var icon: TextureRect = UIKit.find_all(art, func(n: Node) -> bool: return n is TextureRect)[0]
+	assert_eq(art.size, ArmySelect.PLAN_ART_SIZE)
+	assert_gte(icon.size.y, art.size.y * 0.75, "the icon fills most of its box")
+
+
+func test_picked_battleplan_card_shows_its_map_in_place_of_the_icon() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	_pick_plan(screen, _first_plan_name())
+	await get_tree().process_frame
+	var maps := _plan_card_nodes(screen, BattleplanMap)
+	assert_eq(maps.size(), 1)
+	assert_eq(maps[0].battleplan.name, _first_plan_name())
+	assert_eq(maps[0].size, ArmySelect.PLAN_ART_SIZE)
+	assert_true(_plan_card_nodes(screen, ArtPlaceholder).is_empty())
+
+
+func test_picking_a_battleplan_keeps_the_card_size() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	await get_tree().process_frame
+	var random_size := _battleplan_card(screen).size
+	_pick_plan(screen, _first_plan_name())
+	await get_tree().process_frame
+	assert_eq(_battleplan_card(screen).size, random_size)
+
+
+func test_picking_random_shows_the_icon_again() -> void:
+	_save_army("Free", true)
+	var screen := _matched_play()
+	_pick_plan(screen, _first_plan_name())
+	_pick_plan(screen, "")
+	await get_tree().process_frame
+	assert_true(_plan_card_nodes(screen, BattleplanMap).is_empty())
+
+
 # --- Saved armies list ---
 
 
@@ -883,6 +998,25 @@ func test_spearhead_battle_traits_are_laid_out_two_to_a_row() -> void:
 	assert_eq(grids.size(), 1)
 	assert_eq(grids[0].columns, 2)
 	assert_eq(grids[0].get_child_count(), screen.spearhead.battle_traits.size())
+
+
+func _trait_cards(screen: ArmySelect) -> Array[Node]:
+	return UIKit.find_all(screen, func(n: Node) -> bool:
+		return n is AbilityCard and n.get_parent() is GridContainer)
+
+
+func test_matched_play_battle_traits_start_folded() -> void:
+	_save_army("Army")
+	var cards := _trait_cards(_matched_play())
+	assert_false(cards.is_empty())
+	var unfolded := cards.filter(func(card: AbilityCard) -> bool: return not card.folded)
+	assert_eq(unfolded.map(func(card: AbilityCard) -> String: return card.ability.name), [])
+
+
+func test_spearhead_first_battle_trait_starts_unfolded() -> void:
+	var cards := _trait_cards(_spearhead())
+	assert_false(cards.is_empty())
+	assert_false(cards[0].folded)
 
 
 func test_spearhead_regiment_abilities_and_enhancements_share_a_row() -> void:

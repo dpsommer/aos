@@ -23,6 +23,8 @@ const SPEARHEAD_GROUPS := [
 ]
 ## The gap between the left pane's lists and their scroll bar, so cards don't run into it.
 const SCROLL_GAP := 10
+## The size of the battleplan card's art, a map or the Random icon.
+const PLAN_ART_SIZE := Vector2(64, 48)
 
 var mode := BattleSetup.Mode.MATCHED_PLAY
 var pane := Pane.LIST
@@ -404,7 +406,7 @@ func _choose_army(id: String) -> void:
 	var entry := _entry(id)
 	army_id = id if entry and _can_choose(entry) else ""
 	_info = army_info(entry) if not army_id.is_empty() else {}
-	_open = {"trait:0": true}
+	_open = {}
 	limit_label.text = "%d pts" % entry.army.points_limit if not army_id.is_empty() else "—"
 	var core := CoreRulesCatalog.get_rules()
 	rules_label.text = core.battlepack.name if core and core.battlepack else "Matched Play"
@@ -590,12 +592,14 @@ func _refresh_plan_card() -> void:
 		child.queue_free()
 	var name_text := "Random"
 	var sub := "Picked when the battle starts"
+	var map: Control = null
 	if mode == BattleSetup.Mode.SPEARHEAD:
 		var packs := CoreRulesCatalog.spearhead_battlepacks()
 		var pack := RealmPicker.battlepack_of(packs, realm) if not realm.is_empty() else null
 		if pack:
 			name_text = realm
 			sub = pack.name
+			map = RealmMap.new(pack, pack.get_realm(realm))
 		_plan_card.disabled = packs.is_empty()
 	else:
 		var core := CoreRulesCatalog.get_rules()
@@ -603,22 +607,33 @@ func _refresh_plan_card() -> void:
 		if plan:
 			name_text = plan.name
 			sub = ""
+			map = BattleplanMap.new(plan, core.battlepack.battlefield_size)
 		_plan_card.disabled = core == null or core.battlepack == null
 	_plan_card.accessibility_name = "Battle plan: %s" % name_text
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 28, 6)
-	art.get_child(0).modulate = UITheme.TEXT
-	art.custom_minimum_size = Vector2(64, 48)
+	var art := _plan_art(map)
 	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true)], 3)
-	if not sub.is_empty():
-		text.add_child(UIBuilder.label(sub, "MutedLabel", true))
+	# The note's line stays when it's empty, so the card is the same size whatever's chosen.
+	text.add_child(UIBuilder.label(sub, "MutedLabel", true))
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var chevron := TextureRect.new()
 	chevron.texture = UITheme.icon("chevron_right")
 	chevron.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 	chevron.modulate = UITheme.MUTED
 	_plan_card.add(UIBuilder.hbox([art, text, chevron], 14))
+
+
+## The battleplan card's art, always [constant PLAN_ART_SIZE]: the chosen battleplan's or realm
+## battlefield side's [param map], or the monster icon for Random.
+static func _plan_art(map: Control) -> Control:
+	var art := map
+	if art == null:
+		art = UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 40, 6)
+		art.get_child(0).modulate = UITheme.TEXT
+	art.custom_minimum_size = PLAN_ART_SIZE
+	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	return art
 
 
 func _status_pill() -> Control:
@@ -639,7 +654,6 @@ static func _pill(text: String, kind: String) -> Control:
 	return pill
 
 
-## A battle trait's card, folded unless it's open: the first starts open.
 ## The battle traits, two to a row.
 func _trait_grid(traits: Array[Ability]) -> GridContainer:
 	var grid := GridContainer.new()
@@ -651,6 +665,7 @@ func _trait_grid(traits: Array[Ability]) -> GridContainer:
 	return grid
 
 
+## A battle trait's card, folded unless it's open.
 func _trait_card(rule: Ability, index: int) -> AbilityCard:
 	var key := "trait:%d" % index
 	var card := AbilityCard.new(rule)
