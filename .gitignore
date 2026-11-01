@@ -10,3 +10,6 @@ __pycache__/
 
 # Local BSData checkout used by tools/faction_import
 /tools/bsdata/
+
+# Scratch output from tools/, e.g. tools/store_360 (has its own .gdignore)
+/tmp/
