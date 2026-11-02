@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://drar3d2s0xru"
+path="res://.godot/imported/scinari_loreseeker.obj-4620d87c0f4b017fec628fa8279535cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/scinari_loreseeker.obj-4620d87c0f4b017fec628fa8279535cc.mesh"]
+
+source_file="res://assets/3d/models/order/lumineth_realm_lords/scinari_loreseeker.obj"
+dest_files=["res://.godot/imported/scinari_loreseeker.obj-4620d87c0f4b017fec628fa8279535cc.mesh", "res://.godot/imported/scinari_loreseeker.obj-4620d87c0f4b017fec628fa8279535cc.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

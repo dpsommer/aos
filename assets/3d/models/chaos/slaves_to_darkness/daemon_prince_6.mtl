@@ -1,0 +1,16 @@
+newmtl daemon_prince_6_1
+Kd 1.000 1.000 1.000
+map_Kd textures/daemon_prince_6.jpg
+
+newmtl daemon_prince_6_2
+Kd 1.000 1.000 1.000
+map_Kd textures/daemon_prince_6_t2.jpg
+
+newmtl daemon_prince_6_3
+Kd 1.000 1.000 1.000
+map_Kd textures/daemon_prince_6_t3.jpg
+
+newmtl daemon_prince_6_4
+Kd 1.000 1.000 1.000
+map_Kd textures/daemon_prince_6_t4.jpg
+

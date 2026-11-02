@@ -1,0 +1,8 @@
+newmtl emerald_lifeswarm_1
+Kd 1.000 1.000 1.000
+map_Kd textures/emerald_lifeswarm_t2.jpg
+
+newmtl emerald_lifeswarm_2_cutout
+Kd 1.000 1.000 1.000
+map_Kd textures/emerald_lifeswarm_t3.png
+

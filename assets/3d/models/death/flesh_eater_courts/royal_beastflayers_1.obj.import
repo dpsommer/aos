@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dsouhu7tukrha"
+path="res://.godot/imported/royal_beastflayers_1.obj-5fa49000c97b482074c10b14a55fd30a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/royal_beastflayers_1.obj-5fa49000c97b482074c10b14a55fd30a.mesh"]
+
+source_file="res://assets/3d/models/death/flesh_eater_courts/royal_beastflayers_1.obj"
+dest_files=["res://.godot/imported/royal_beastflayers_1.obj-5fa49000c97b482074c10b14a55fd30a.mesh", "res://.godot/imported/royal_beastflayers_1.obj-5fa49000c97b482074c10b14a55fd30a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

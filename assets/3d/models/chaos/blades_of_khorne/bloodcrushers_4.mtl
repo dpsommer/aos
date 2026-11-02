@@ -1,0 +1,8 @@
+newmtl bloodcrushers_4_1
+Kd 1.000 1.000 1.000
+map_Kd textures/bloodcrushers_4.jpg
+
+newmtl bloodcrushers_4_2
+Kd 1.000 1.000 1.000
+map_Kd textures/bloodcrushers_4_2.jpg
+

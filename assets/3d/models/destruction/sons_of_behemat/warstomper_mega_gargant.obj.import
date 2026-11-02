@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dr08865jko2ms"
+path="res://.godot/imported/warstomper_mega_gargant.obj-cbbf58372f74e21fd0a98f10a972fb88.mesh"
+
+[deps]
+
+files=["res://.godot/imported/warstomper_mega_gargant.obj-cbbf58372f74e21fd0a98f10a972fb88.mesh"]
+
+source_file="res://assets/3d/models/destruction/sons_of_behemat/warstomper_mega_gargant.obj"
+dest_files=["res://.godot/imported/warstomper_mega_gargant.obj-cbbf58372f74e21fd0a98f10a972fb88.mesh", "res://.godot/imported/warstomper_mega_gargant.obj-cbbf58372f74e21fd0a98f10a972fb88.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

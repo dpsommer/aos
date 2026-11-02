@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cms3eo1a8hcrc"
+path="res://.godot/imported/archmage_teclis_and_celennar_spirit_of_hysh.obj-c054051f34cf0253bdf58285f5b1515d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/archmage_teclis_and_celennar_spirit_of_hysh.obj-c054051f34cf0253bdf58285f5b1515d.mesh"]
+
+source_file="res://assets/3d/models/order/lumineth_realm_lords/archmage_teclis_and_celennar_spirit_of_hysh.obj"
+dest_files=["res://.godot/imported/archmage_teclis_and_celennar_spirit_of_hysh.obj-c054051f34cf0253bdf58285f5b1515d.mesh", "res://.godot/imported/archmage_teclis_and_celennar_spirit_of_hysh.obj-c054051f34cf0253bdf58285f5b1515d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ge3l5ganqx6p"
+path="res://.godot/imported/freeguild_gallants_3.obj-5c73981a5b8dfa0200a1d83456611146.mesh"
+
+[deps]
+
+files=["res://.godot/imported/freeguild_gallants_3.obj-5c73981a5b8dfa0200a1d83456611146.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/freeguild_gallants_3.obj"
+dest_files=["res://.godot/imported/freeguild_gallants_3.obj-5c73981a5b8dfa0200a1d83456611146.mesh", "res://.godot/imported/freeguild_gallants_3.obj-5c73981a5b8dfa0200a1d83456611146.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

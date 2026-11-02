@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ey5l16ywqmn6"
+path="res://.godot/imported/sanguine_swarm_1.obj-1f1e5ff27efbb68772edfd11d09ab8bd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sanguine_swarm_1.obj-1f1e5ff27efbb68772edfd11d09ab8bd.mesh"]
+
+source_file="res://assets/3d/models/death/soulblight_gravelords/sanguine_swarm_1.obj"
+dest_files=["res://.godot/imported/sanguine_swarm_1.obj-1f1e5ff27efbb68772edfd11d09ab8bd.mesh", "res://.godot/imported/sanguine_swarm_1.obj-1f1e5ff27efbb68772edfd11d09ab8bd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

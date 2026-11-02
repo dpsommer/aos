@@ -1,0 +1,9 @@
+mtllib painted_guard.mtl
+o m
+v -0.5 -1 -0.5
+v 0.5 -1 -0.5
+v 0 -1 0.5
+v 0 2 0
+usemtl paint
+f 1 2 3
+f 1 2 4

@@ -1,9 +1,9 @@
 class_name ModelPlaceholder
 extends RefCounted
-## Stands in for models until there are 3D models: each model is drawn as its base, a disc (round
-## or oval) or, for a model with no base, a slab its best-guess footprint in size. One
-## [MultiMeshInstance3D] per kind of base keeps big armies cheap. Units are inches: 1 Godot unit is
-## 1". See docs/design/battle.md.
+## Draws each unit's models: each model's base, a disc (round or oval) or, for a model with no base,
+## a slab its best-guess footprint in size, and standing on it the unit's 3D model when
+## [ModelLibrary] has one. One [MultiMeshInstance3D] per kind of base and per model mesh keeps big
+## armies cheap. Units are inches: 1 Godot unit is 1". See docs/design/battle.md.
 
 ## A base's thickness: about 4mm.
 const BASE_HEIGHT := 0.16
@@ -14,6 +14,10 @@ const LABEL_HEIGHT := 2.0
 
 const PLAYER_MATERIAL := preload("res://assets/3d/placeholders/p_base_player.tres")
 const OPPONENT_MATERIAL := preload("res://assets/3d/placeholders/p_base_opponent.tres")
+const PLAYER_MODEL_MATERIAL := preload("res://assets/3d/placeholders/p_model_player.tres")
+const OPPONENT_MODEL_MATERIAL := preload("res://assets/3d/placeholders/p_model_opponent.tres")
+## How far a unit's name floats above its tallest model.
+const LABEL_CLEARANCE := 0.75
 
 static var _disc: CylinderMesh
 static var _slab: BoxMesh
@@ -61,8 +65,26 @@ static func transform_of(base: BaseSize, inches: Vector2, facing: float) -> Tran
 	return Transform3D(basis, to_world(inches, size.y / 2))
 
 
-## [param unit]'s models, one [MultiMeshInstance3D] per kind of base, and its name above them.
-static func build_unit(unit: BattleUnit, facing: float, is_player: bool) -> Node3D:
+## Where a model's [param mesh] goes for a model at [param inches], facing [param facing]: its
+## origin, the middle of its own base, over the model's position, its lowest point on top of the
+## base, and its front (-Z, as the model files have it) turned to [param facing].
+static func model_transform(mesh: Mesh, inches: Vector2, facing: float) -> Transform3D:
+	var basis := Basis(Vector3.UP, yaw(facing) - PI / 2)
+	return Transform3D(basis, to_world(inches, BASE_HEIGHT - mesh.get_aabb().position.y))
+
+
+## The names [param unit]'s 3D model can go by: the unit's own, then its warscroll's.
+static func model_names(unit: BattleUnit) -> PackedStringArray:
+	var names := PackedStringArray([unit.name])
+	if unit.warscroll and unit.warscroll.name != unit.name:
+		names.append(unit.warscroll.name)
+	return names
+
+
+## [param unit]'s models, one [MultiMeshInstance3D] per kind of base and per model mesh from
+## [param library], and its name above them. A unit with several model meshes gives them to its
+## models in turn.
+static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library := ModelLibrary.shared()) -> Node3D:
 	var root := Node3D.new()
 	root.name = _node_name(unit.name)
 	var kinds := {}
@@ -84,12 +106,45 @@ static func build_unit(unit: BattleUnit, facing: float, is_player: bool) -> Node
 		instance.multimesh = multimesh
 		instance.material_override = PLAYER_MATERIAL if is_player else OPPONENT_MATERIAL
 		root.add_child(instance)
+	var tallest := _add_models(root, unit, facing, is_player, library)
 	if not unit.positions.is_empty():
 		var middle := Vector2.ZERO
 		for position in unit.positions:
 			middle += position
-		root.add_child(label(unit.name, to_world(middle / unit.positions.size(), LABEL_HEIGHT)))
+		var height := maxf(LABEL_HEIGHT, tallest + LABEL_CLEARANCE)
+		root.add_child(label(unit.name, to_world(middle / unit.positions.size(), height)))
 	return root
+
+
+## Adds [param unit]'s 3D models to [param root], one [MultiMeshInstance3D] per mesh, and returns
+## how high the tallest stands (0 with no models).
+static func _add_models(root: Node3D, unit: BattleUnit, facing: float, is_player: bool, library: ModelLibrary) -> float:
+	if library == null:
+		return 0.0
+	var meshes := library.meshes_for(model_names(unit))
+	if meshes.is_empty():
+		return 0.0
+	var count := mini(unit.bases.size(), unit.positions.size())
+	var tallest := 0.0
+	for m in mini(meshes.size(), count):
+		var mesh := meshes[m]
+		var multimesh := MultiMesh.new()
+		multimesh.transform_format = MultiMesh.TRANSFORM_3D
+		multimesh.mesh = mesh
+		@warning_ignore("integer_division")
+		multimesh.instance_count = (count - m + meshes.size() - 1) / meshes.size()
+		var n := 0
+		for i in range(m, count, meshes.size()):
+			multimesh.set_instance_transform(n, model_transform(mesh, unit.positions[i], facing))
+			n += 1
+		var instance := MultiMeshInstance3D.new()
+		instance.name = "Model%d" % (m + 1)
+		instance.multimesh = multimesh
+		if not ModelLibrary.is_textured(mesh):
+			instance.material_override = PLAYER_MODEL_MATERIAL if is_player else OPPONENT_MODEL_MATERIAL
+		root.add_child(instance)
+		tallest = maxf(tallest, BASE_HEIGHT + mesh.get_aabb().size.y)
+	return tallest
 
 
 ## A name that floats over the battlefield, facing the camera, hidden from far away.

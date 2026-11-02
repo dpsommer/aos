@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://xcnakkxx5px3"
+path="res://.godot/imported/malevolent_moon.obj-ca9cc0d6c7ba37d4c5137b8593a8948f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/malevolent_moon.obj-ca9cc0d6c7ba37d4c5137b8593a8948f.mesh"]
+
+source_file="res://assets/3d/models/destruction/gloomspite_gitz/malevolent_moon.obj"
+dest_files=["res://.godot/imported/malevolent_moon.obj-ca9cc0d6c7ba37d4c5137b8593a8948f.mesh", "res://.godot/imported/malevolent_moon.obj-ca9cc0d6c7ba37d4c5137b8593a8948f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

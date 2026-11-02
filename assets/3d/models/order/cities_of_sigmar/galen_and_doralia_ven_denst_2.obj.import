@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d15ax5tjo2bc3"
+path="res://.godot/imported/galen_and_doralia_ven_denst_2.obj-fbc759983601c6c1853f90de5ed7e06e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/galen_and_doralia_ven_denst_2.obj-fbc759983601c6c1853f90de5ed7e06e.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/galen_and_doralia_ven_denst_2.obj"
+dest_files=["res://.godot/imported/galen_and_doralia_ven_denst_2.obj-fbc759983601c6c1853f90de5ed7e06e.mesh", "res://.godot/imported/galen_and_doralia_ven_denst_2.obj-fbc759983601c6c1853f90de5ed7e06e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://7e5623j0xt3s"
+path="res://.godot/imported/vulkyn_flameseekers_15.obj-279e1e53a020ad48810f69ed78c21ff2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/vulkyn_flameseekers_15.obj-279e1e53a020ad48810f69ed78c21ff2.mesh"]
+
+source_file="res://assets/3d/models/order/khazalite_holds/vulkyn_flameseekers_15.obj"
+dest_files=["res://.godot/imported/vulkyn_flameseekers_15.obj-279e1e53a020ad48810f69ed78c21ff2.mesh", "res://.godot/imported/vulkyn_flameseekers_15.obj-279e1e53a020ad48810f69ed78c21ff2.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

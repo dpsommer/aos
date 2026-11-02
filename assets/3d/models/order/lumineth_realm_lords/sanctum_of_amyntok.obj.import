@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ddidpq18tu786"
+path="res://.godot/imported/sanctum_of_amyntok.obj-9d04bc5fe4b460fc16b4c0718318d25b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sanctum_of_amyntok.obj-9d04bc5fe4b460fc16b4c0718318d25b.mesh"]
+
+source_file="res://assets/3d/models/order/lumineth_realm_lords/sanctum_of_amyntok.obj"
+dest_files=["res://.godot/imported/sanctum_of_amyntok.obj-9d04bc5fe4b460fc16b4c0718318d25b.mesh", "res://.godot/imported/sanctum_of_amyntok.obj-9d04bc5fe4b460fc16b4c0718318d25b.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

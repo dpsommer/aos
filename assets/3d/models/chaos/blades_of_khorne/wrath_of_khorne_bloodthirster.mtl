@@ -1,0 +1,16 @@
+newmtl wrath_of_khorne_bloodthirster_1
+Kd 1.000 1.000 1.000
+map_Kd textures/wrath_of_khorne_bloodthirster.jpg
+
+newmtl wrath_of_khorne_bloodthirster_2
+Kd 1.000 1.000 1.000
+map_Kd textures/wrath_of_khorne_bloodthirster_2.jpg
+
+newmtl wrath_of_khorne_bloodthirster_3
+Kd 0.800 0.800 0.800
+map_Kd textures/wrath_of_khorne_bloodthirster_4.jpg
+
+newmtl wrath_of_khorne_bloodthirster_4
+Kd 1.000 1.000 1.000
+map_Kd textures/wrath_of_khorne_bloodthirster_3.jpg
+

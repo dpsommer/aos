@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cubnni4uw0slp"
+path="res://.godot/imported/blue_horrors_and_brimstone_horrors_1.obj-557cab3ae755609b26794b98fe5343ea.mesh"
+
+[deps]
+
+files=["res://.godot/imported/blue_horrors_and_brimstone_horrors_1.obj-557cab3ae755609b26794b98fe5343ea.mesh"]
+
+source_file="res://assets/3d/models/chaos/disciples_of_tzeentch/blue_horrors_and_brimstone_horrors_1.obj"
+dest_files=["res://.godot/imported/blue_horrors_and_brimstone_horrors_1.obj-557cab3ae755609b26794b98fe5343ea.mesh", "res://.godot/imported/blue_horrors_and_brimstone_horrors_1.obj-557cab3ae755609b26794b98fe5343ea.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

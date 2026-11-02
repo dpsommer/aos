@@ -1,0 +1,12 @@
+newmtl thrynn_on_war_throne_1
+Kd 1.000 1.000 1.000
+map_Kd textures/high_kyng_valankrom.jpg
+
+newmtl thrynn_on_war_throne_2
+Kd 1.000 1.000 1.000
+map_Kd textures/high_kyng_valankrom_t2.jpg
+
+newmtl thrynn_on_war_throne_3
+Kd 1.000 1.000 1.000
+map_Kd textures/high_kyng_valankrom_t3.jpg
+

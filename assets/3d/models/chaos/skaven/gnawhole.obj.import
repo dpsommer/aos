@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://utwcg6ufvr1n"
+path="res://.godot/imported/gnawhole.obj-980a469a7d0487f5ce2d12c0d2f0ffa3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gnawhole.obj-980a469a7d0487f5ce2d12c0d2f0ffa3.mesh"]
+
+source_file="res://assets/3d/models/chaos/skaven/gnawhole.obj"
+dest_files=["res://.godot/imported/gnawhole.obj-980a469a7d0487f5ce2d12c0d2f0ffa3.mesh", "res://.godot/imported/gnawhole.obj-980a469a7d0487f5ce2d12c0d2f0ffa3.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

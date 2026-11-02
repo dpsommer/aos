@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dn148aviuvbfo"
+path="res://.godot/imported/murknob_with_belcha_banna.obj-9c749fe003ece4a8a3a31a28138cb17c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/murknob_with_belcha_banna.obj-9c749fe003ece4a8a3a31a28138cb17c.mesh"]
+
+source_file="res://assets/3d/models/destruction/kruleboyz/murknob_with_belcha_banna.obj"
+dest_files=["res://.godot/imported/murknob_with_belcha_banna.obj-9c749fe003ece4a8a3a31a28138cb17c.mesh", "res://.godot/imported/murknob_with_belcha_banna.obj-9c749fe003ece4a8a3a31a28138cb17c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

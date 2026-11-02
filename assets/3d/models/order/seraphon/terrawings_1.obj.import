@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://wm7j8w7yd5bu"
+path="res://.godot/imported/terrawings_1.obj-66c8552deb1ca557883cef5ca36b0116.mesh"
+
+[deps]
+
+files=["res://.godot/imported/terrawings_1.obj-66c8552deb1ca557883cef5ca36b0116.mesh"]
+
+source_file="res://assets/3d/models/order/seraphon/terrawings_1.obj"
+dest_files=["res://.godot/imported/terrawings_1.obj-66c8552deb1ca557883cef5ca36b0116.mesh", "res://.godot/imported/terrawings_1.obj-66c8552deb1ca557883cef5ca36b0116.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

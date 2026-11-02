@@ -1,0 +1,20 @@
+newmtl katakros_mortarch_of_the_necropolis_1
+Kd 1.000 1.000 1.000
+map_Kd textures/katakros_mortarch_of_the_necropolis.jpg
+
+newmtl katakros_mortarch_of_the_necropolis_2
+Kd 1.000 1.000 1.000
+map_Kd textures/katakros_mortarch_of_the_necropolis_t2.jpg
+
+newmtl katakros_mortarch_of_the_necropolis_3
+Kd 1.000 1.000 1.000
+map_Kd textures/katakros_mortarch_of_the_necropolis_t3.jpg
+
+newmtl katakros_mortarch_of_the_necropolis_4
+Kd 1.000 1.000 1.000
+map_Kd textures/katakros_mortarch_of_the_necropolis_t4.jpg
+
+newmtl katakros_mortarch_of_the_necropolis_5
+Kd 1.000 1.000 1.000
+map_Kd textures/katakros_mortarch_of_the_necropolis_t5.jpg
+

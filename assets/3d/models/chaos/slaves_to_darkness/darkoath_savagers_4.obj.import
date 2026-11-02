@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://tyqhxa13krno"
+path="res://.godot/imported/darkoath_savagers_4.obj-2baff69d807ad2af0e7185848d9484dd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/darkoath_savagers_4.obj-2baff69d807ad2af0e7185848d9484dd.mesh"]
+
+source_file="res://assets/3d/models/chaos/slaves_to_darkness/darkoath_savagers_4.obj"
+dest_files=["res://.godot/imported/darkoath_savagers_4.obj-2baff69d807ad2af0e7185848d9484dd.mesh", "res://.godot/imported/darkoath_savagers_4.obj-2baff69d807ad2af0e7185848d9484dd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,16 @@
+newmtl squig_hoppers_1_1
+Kd 1.000 1.000 1.000
+map_Kd textures/squig_hoppers_1.jpg
+
+newmtl squig_hoppers_1_2
+Kd 1.000 1.000 1.000
+map_Kd textures/squig_hoppers_1_3.jpg
+
+newmtl squig_hoppers_1_3
+Kd 1.000 1.000 1.000
+map_Kd textures/squig_hoppers_1_4.jpg
+
+newmtl squig_hoppers_1_4
+Kd 1.000 1.000 1.000
+map_Kd textures/squig_hoppers_1_2.jpg
+

@@ -1,0 +1,2 @@
+Pillow==13.0.0
+UnityPy==1.25.4  # needs a Python built with lzma (the aos virtualenv's is)

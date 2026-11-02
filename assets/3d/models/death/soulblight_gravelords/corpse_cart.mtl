@@ -1,0 +1,8 @@
+newmtl corpse_cart_1
+Kd 1.000 1.000 1.000
+map_Kd textures/corpse_cart.jpg
+
+newmtl corpse_cart_2
+Kd 1.000 1.000 1.000
+map_Kd textures/corpse_cart_t2.jpg
+

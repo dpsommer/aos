@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://byqbs68ad3lw2"
+path="res://.godot/imported/saurus_guard_1.obj-be3a0415de3079577dbcc3d6203fa9d6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/saurus_guard_1.obj-be3a0415de3079577dbcc3d6203fa9d6.mesh"]
+
+source_file="res://assets/3d/models/order/seraphon/saurus_guard_1.obj"
+dest_files=["res://.godot/imported/saurus_guard_1.obj-be3a0415de3079577dbcc3d6203fa9d6.mesh", "res://.godot/imported/saurus_guard_1.obj-be3a0415de3079577dbcc3d6203fa9d6.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

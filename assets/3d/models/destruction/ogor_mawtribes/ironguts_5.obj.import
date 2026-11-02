@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bhbhfsa1627a4"
+path="res://.godot/imported/ironguts_5.obj-744ea0f165a1519b19a1c04bd9e76423.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ironguts_5.obj-744ea0f165a1519b19a1c04bd9e76423.mesh"]
+
+source_file="res://assets/3d/models/destruction/ogor_mawtribes/ironguts_5.obj"
+dest_files=["res://.godot/imported/ironguts_5.obj-744ea0f165a1519b19a1c04bd9e76423.mesh", "res://.godot/imported/ironguts_5.obj-744ea0f165a1519b19a1c04bd9e76423.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

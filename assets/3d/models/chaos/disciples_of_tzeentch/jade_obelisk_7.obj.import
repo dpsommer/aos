@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cph54m57dgjdk"
+path="res://.godot/imported/jade_obelisk_7.obj-487f59f20f5e8ec3e95db5bdebe4696f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/jade_obelisk_7.obj-487f59f20f5e8ec3e95db5bdebe4696f.mesh"]
+
+source_file="res://assets/3d/models/chaos/disciples_of_tzeentch/jade_obelisk_7.obj"
+dest_files=["res://.godot/imported/jade_obelisk_7.obj-487f59f20f5e8ec3e95db5bdebe4696f.mesh", "res://.godot/imported/jade_obelisk_7.obj-487f59f20f5e8ec3e95db5bdebe4696f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
