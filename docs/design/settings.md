@@ -1,6 +1,6 @@
 # Settings
 
-The Settings screen opens from the main menu's Settings option (`scenes/ui/settings_screen.tscn`, script `scripts/ui/settings_screen.gd`, `SettingsScreen`). It has a header with Back ("Main menu") and four tabs: General, Graphics, Sound and Input. Each tab is a column of setting rows, built with `UIBuilder.switch_row()` and `UIBuilder.setting_row()`, the same rows as the army builder's Army settings.
+The Settings screen opens from the main menu's Settings option, or from the battle map's menu (`scenes/ui/settings_screen.tscn`, script `scripts/ui/settings_screen.gd`, `SettingsScreen`). It has a header with Back ("Back", since it can return to either menu) and four tabs: General, Graphics, Sound and Input. Each tab is a column of setting rows, built with `UIBuilder.switch_row()` and `UIBuilder.setting_row()`, the same rows as the army builder's Army settings.
 
 Every change is applied and saved straight away; there's no Apply or Cancel. Each tab has a **Reset all** button at the top right that puts that tab's settings back to their defaults (see [Saving](#saving)), applies and saves them, then focuses the tab's first setting. It's disabled while the tab's settings are all defaults. The General, Graphics and Sound tabs' settings are listed in `GameSettings.GENERAL`, `GRAPHICS` and `SOUND`, and `GameSettings.reset()` and `is_default()` take those lists; the Input tab's Reset all resets every key (see [Input](#input)). Back or Esc emits `back_pressed`, and `Main` returns to the main menu.
 
