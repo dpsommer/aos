@@ -506,10 +506,10 @@ func test_battle_map_is_a_child_of_main() -> void:
 	assert_eq(main.current_screen.get_parent(), main)
 
 
-func test_giving_up_shows_the_main_menu() -> void:
+func test_surrendering_shows_the_main_menu() -> void:
 	var main := _make_main()
 	_show_loading(main).finish()
-	(main.current_screen as BattleMap).gave_up.emit()
+	(main.current_screen as BattleMap).surrendered.emit()
 	assert_is(main.current_screen, MainMenu)
 
 
@@ -524,7 +524,7 @@ func test_battle_map_is_freed_when_returning_to_the_main_menu() -> void:
 	var main := _make_main()
 	_show_loading(main).finish()
 	var map := main.current_screen
-	(map as BattleMap).gave_up.emit()
+	(map as BattleMap).surrendered.emit()
 	assert_true(map.is_queued_for_deletion())
 
 

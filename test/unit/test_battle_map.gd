@@ -327,12 +327,12 @@ func test_escape_before_the_map_is_built_does_nothing() -> void:
 	assert_false(map.is_menu_open())
 
 
-func test_give_up_emits_gave_up() -> void:
+func test_surrender_emits_surrendered() -> void:
 	var map := _built_map()
 	map.open_menu()
 	watch_signals(map)
-	map.pause_menu.give_up_pressed.emit()
-	assert_signal_emitted(map, "gave_up")
+	map.pause_menu.surrender_pressed.emit()
+	assert_signal_emitted(map, "surrendered")
 
 
 func test_save_and_quit_emits_save_and_quit_requested() -> void:
@@ -343,10 +343,10 @@ func test_save_and_quit_emits_save_and_quit_requested() -> void:
 	assert_signal_emitted(map, "save_and_quit_requested")
 
 
-func test_give_up_does_not_request_save_and_quit() -> void:
+func test_surrender_does_not_request_save_and_quit() -> void:
 	var map := _built_map()
 	watch_signals(map)
-	map.pause_menu.give_up_pressed.emit()
+	map.pause_menu.surrender_pressed.emit()
 	assert_signal_not_emitted(map, "save_and_quit_requested")
 
 
