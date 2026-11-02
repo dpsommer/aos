@@ -188,7 +188,10 @@ func test_calling_off_a_regiment_drops_its_unit_being_placed() -> void:
 	_start()
 	_c.pick_regiment(_me().regiments[0])
 	_c.call_off_regiment()
-	assert_true(_c._state.is_empty())
+	var unit := _unit(_me(), "A1")
+	assert_false(_c.unit_nodes.has(unit), "the unit being placed is taken off the board")
+	assert_eq(unit.positions.size(), 0, "the unit being placed loses its spot")
+	assert_false(_c.confirm().is_empty(), "nothing is left to confirm")
 
 
 # arranging

@@ -574,7 +574,7 @@ func test_a_role_choice_outside_the_roll_off_is_ignored() -> void:
 	var panel := map.roll_off_panel
 	panel.role_chosen.emit(true)
 	var controller := map.deployment_controller
-	map._on_role_chosen(false)
+	panel.role_chosen.emit(false)
 	assert_same(map.deployment_controller, controller)
 	assert_true(map.battle.player_is_attacker)
 
