@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bpsyivdfm8t4x"
+path="res://.godot/imported/lord_executioner.obj-d6891fc2cb487c4e61c8910c5399f783.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lord_executioner.obj-d6891fc2cb487c4e61c8910c5399f783.mesh"]
+
+source_file="res://assets/3d/models/death/nighthaunt/lord_executioner.obj"
+dest_files=["res://.godot/imported/lord_executioner.obj-d6891fc2cb487c4e61c8910c5399f783.mesh", "res://.godot/imported/lord_executioner.obj-d6891fc2cb487c4e61c8910c5399f783.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

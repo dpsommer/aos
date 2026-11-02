@@ -1,0 +1,16 @@
+newmtl cadaverous_barricade_1
+Kd 1.000 1.000 1.000
+map_Kd textures/cadaverous_barricade.jpg
+
+newmtl cadaverous_barricade_2_cutout
+Kd 1.000 1.000 1.000
+map_Kd textures/cadaverous_barricade_t2.png
+
+newmtl cadaverous_barricade_3
+Kd 1.000 0.992 1.000
+map_Kd textures/cadaverous_barricade_t3.jpg
+
+newmtl cadaverous_barricade_4_cutout
+Kd 1.000 1.000 1.000
+map_Kd textures/cadaverous_barricade_t4.png
+

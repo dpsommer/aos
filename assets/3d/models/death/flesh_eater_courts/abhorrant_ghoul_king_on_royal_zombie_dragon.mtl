@@ -1,0 +1,8 @@
+newmtl abhorrant_ghoul_king_on_royal_zombie_dragon_1
+Kd 1.000 1.000 1.000
+map_Kd textures/abhorrant_ghoul_king_on_royal_zombie_dragon.jpg
+
+newmtl abhorrant_ghoul_king_on_royal_zombie_dragon_2
+Kd 1.000 1.000 1.000
+map_Kd textures/abhorrant_ghoul_king_on_royal_zombie_dragon_t2.jpg
+

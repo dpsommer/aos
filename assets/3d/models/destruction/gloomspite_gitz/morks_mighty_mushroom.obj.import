@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b7p2f0xmokcgw"
+path="res://.godot/imported/morks_mighty_mushroom.obj-83911066e9ef88902967580e2d7e09ad.mesh"
+
+[deps]
+
+files=["res://.godot/imported/morks_mighty_mushroom.obj-83911066e9ef88902967580e2d7e09ad.mesh"]
+
+source_file="res://assets/3d/models/destruction/gloomspite_gitz/morks_mighty_mushroom.obj"
+dest_files=["res://.godot/imported/morks_mighty_mushroom.obj-83911066e9ef88902967580e2d7e09ad.mesh", "res://.godot/imported/morks_mighty_mushroom.obj-83911066e9ef88902967580e2d7e09ad.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

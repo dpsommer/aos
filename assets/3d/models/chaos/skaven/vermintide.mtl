@@ -1,0 +1,8 @@
+newmtl vermintide_1
+Kd 1.000 1.000 1.000
+map_Kd textures/vermintide.jpg
+
+newmtl vermintide_2
+Kd 1.000 1.000 1.000
+map_Kd textures/vermintide_t2.jpg
+

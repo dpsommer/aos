@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://m3wj4gs1hld5"
+path="res://.godot/imported/tzaangor_skyfires.obj-6eb33a118333848eb3ad29a4f66787bd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tzaangor_skyfires.obj-6eb33a118333848eb3ad29a4f66787bd.mesh"]
+
+source_file="res://assets/3d/models/chaos/disciples_of_tzeentch/tzaangor_skyfires.obj"
+dest_files=["res://.godot/imported/tzaangor_skyfires.obj-6eb33a118333848eb3ad29a4f66787bd.mesh", "res://.godot/imported/tzaangor_skyfires.obj-6eb33a118333848eb3ad29a4f66787bd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

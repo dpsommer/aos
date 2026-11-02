@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b8oj0gs17lwa"
+path="res://.godot/imported/hearthguard_berzerkers_with_berzerker_broadaxes_2.obj-8233349575c7c543900e5dcd04b61586.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hearthguard_berzerkers_with_berzerker_broadaxes_2.obj-8233349575c7c543900e5dcd04b61586.mesh"]
+
+source_file="res://assets/3d/models/order/fyreslayers/hearthguard_berzerkers_with_berzerker_broadaxes_2.obj"
+dest_files=["res://.godot/imported/hearthguard_berzerkers_with_berzerker_broadaxes_2.obj-8233349575c7c543900e5dcd04b61586.mesh", "res://.godot/imported/hearthguard_berzerkers_with_berzerker_broadaxes_2.obj-8233349575c7c543900e5dcd04b61586.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

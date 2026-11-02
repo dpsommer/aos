@@ -1,0 +1,8 @@
+newmtl fatemaster_1_1
+Kd 1.000 1.000 1.000
+map_Kd textures/fatemaster_1_2.jpg
+
+newmtl fatemaster_1_2
+Kd 1.000 1.000 1.000
+map_Kd textures/fatemaster_1.jpg
+

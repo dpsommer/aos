@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bfqnj7qjhdnic"
+path="res://.godot/imported/mangler_squigs.obj-df042db4bb777819ea08f3f46a5fd8bd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mangler_squigs.obj-df042db4bb777819ea08f3f46a5fd8bd.mesh"]
+
+source_file="res://assets/3d/models/destruction/gloomspite_gitz/mangler_squigs.obj"
+dest_files=["res://.godot/imported/mangler_squigs.obj-df042db4bb777819ea08f3f46a5fd8bd.mesh", "res://.godot/imported/mangler_squigs.obj-df042db4bb777819ea08f3f46a5fd8bd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

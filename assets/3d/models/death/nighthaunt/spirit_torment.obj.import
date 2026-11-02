@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bjqj5xpnrvcq8"
+path="res://.godot/imported/spirit_torment.obj-5825e9ff4414dfdec1d8724107db8a3a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spirit_torment.obj-5825e9ff4414dfdec1d8724107db8a3a.mesh"]
+
+source_file="res://assets/3d/models/death/nighthaunt/spirit_torment.obj"
+dest_files=["res://.godot/imported/spirit_torment.obj-5825e9ff4414dfdec1d8724107db8a3a.mesh", "res://.godot/imported/spirit_torment.obj-5825e9ff4414dfdec1d8724107db8a3a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

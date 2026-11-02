@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ix3rnyaskvwd"
+path="res://.godot/imported/terradon_chief.obj-aeb740735b08f8d6c6817ee6ad9c1728.mesh"
+
+[deps]
+
+files=["res://.godot/imported/terradon_chief.obj-aeb740735b08f8d6c6817ee6ad9c1728.mesh"]
+
+source_file="res://assets/3d/models/order/seraphon/terradon_chief.obj"
+dest_files=["res://.godot/imported/terradon_chief.obj-aeb740735b08f8d6c6817ee6ad9c1728.mesh", "res://.godot/imported/terradon_chief.obj-aeb740735b08f8d6c6817ee6ad9c1728.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c78gf1crxp8we"
+path="res://.godot/imported/saurus_warriors_1.obj-8fde0308d5717d3551ab32def370dceb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/saurus_warriors_1.obj-8fde0308d5717d3551ab32def370dceb.mesh"]
+
+source_file="res://assets/3d/models/order/seraphon/saurus_warriors_1.obj"
+dest_files=["res://.godot/imported/saurus_warriors_1.obj-8fde0308d5717d3551ab32def370dceb.mesh", "res://.godot/imported/saurus_warriors_1.obj-8fde0308d5717d3551ab32def370dceb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dy1kbapri1xqs"
+path="res://.godot/imported/necropolis_stalkers_3.obj-cb6b13940c2ec37d8ce58958288193cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/necropolis_stalkers_3.obj-cb6b13940c2ec37d8ce58958288193cc.mesh"]
+
+source_file="res://assets/3d/models/death/ossiarch_bonereapers/necropolis_stalkers_3.obj"
+dest_files=["res://.godot/imported/necropolis_stalkers_3.obj-cb6b13940c2ec37d8ce58958288193cc.mesh", "res://.godot/imported/necropolis_stalkers_3.obj-cb6b13940c2ec37d8ce58958288193cc.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://md6m3bwj10wa"
+path="res://.godot/imported/spirit_of_durthu.obj-c7a86c0f2e63bbb2aaed7c29b2a7fee1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spirit_of_durthu.obj-c7a86c0f2e63bbb2aaed7c29b2a7fee1.mesh"]
+
+source_file="res://assets/3d/models/order/sylvaneth/spirit_of_durthu.obj"
+dest_files=["res://.godot/imported/spirit_of_durthu.obj-c7a86c0f2e63bbb2aaed7c29b2a7fee1.mesh", "res://.godot/imported/spirit_of_durthu.obj-c7a86c0f2e63bbb2aaed7c29b2a7fee1.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

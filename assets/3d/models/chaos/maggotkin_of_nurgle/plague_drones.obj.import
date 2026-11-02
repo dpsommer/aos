@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://lgyuqkw5kni1"
+path="res://.godot/imported/plague_drones.obj-9b17af243ff68e194dd0771768bc1ffe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/plague_drones.obj-9b17af243ff68e194dd0771768bc1ffe.mesh"]
+
+source_file="res://assets/3d/models/chaos/maggotkin_of_nurgle/plague_drones.obj"
+dest_files=["res://.godot/imported/plague_drones.obj-9b17af243ff68e194dd0771768bc1ffe.mesh", "res://.godot/imported/plague_drones.obj-9b17af243ff68e194dd0771768bc1ffe.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

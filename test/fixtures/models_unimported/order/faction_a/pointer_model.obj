@@ -1,0 +1,5 @@
+# Git LFS pointer text, as a checkout without Git LFS has in place of a model (the comment
+# keeps Git LFS itself from reading this fixture as a pointer).
+version https://git-lfs.github.com/spec/v1
+oid sha256:0000000000000000000000000000000000000000000000000000000000000000
+size 1234

@@ -1,0 +1,8 @@
+newmtl huskard_on_thundertusk_2_1
+Kd 1.000 1.000 1.000
+map_Kd textures/frostlord_on_thundertusk.jpg
+
+newmtl huskard_on_thundertusk_2_2
+Kd 1.000 1.000 1.000
+map_Kd textures/huskard_on_thundertusk_1.jpg
+

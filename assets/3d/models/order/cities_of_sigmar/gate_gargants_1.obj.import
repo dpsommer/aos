@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://q8uddu7480gb"
+path="res://.godot/imported/gate_gargants_1.obj-75f0fa70aa83aa663faea515d974a5bf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gate_gargants_1.obj-75f0fa70aa83aa663faea515d974a5bf.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/gate_gargants_1.obj"
+dest_files=["res://.godot/imported/gate_gargants_1.obj-75f0fa70aa83aa663faea515d974a5bf.mesh", "res://.godot/imported/gate_gargants_1.obj-75f0fa70aa83aa663faea515d974a5bf.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

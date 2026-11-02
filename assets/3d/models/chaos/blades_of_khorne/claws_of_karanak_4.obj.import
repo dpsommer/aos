@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cpdjbps8jss33"
+path="res://.godot/imported/claws_of_karanak_4.obj-a575ef432c9c88a0e59a8da4f207a9dc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/claws_of_karanak_4.obj-a575ef432c9c88a0e59a8da4f207a9dc.mesh"]
+
+source_file="res://assets/3d/models/chaos/blades_of_khorne/claws_of_karanak_4.obj"
+dest_files=["res://.godot/imported/claws_of_karanak_4.obj-a575ef432c9c88a0e59a8da4f207a9dc.mesh", "res://.godot/imported/claws_of_karanak_4.obj-a575ef432c9c88a0e59a8da4f207a9dc.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

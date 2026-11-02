@@ -1,0 +1,8 @@
+newmtl battlemage_on_griffon_1
+Kd 1.000 1.000 1.000
+map_Kd textures/battlemage_on_griffon.jpg
+
+newmtl battlemage_on_griffon_2
+Kd 1.000 1.000 1.000
+map_Kd textures/battlemage_on_griffon_t2.jpg
+

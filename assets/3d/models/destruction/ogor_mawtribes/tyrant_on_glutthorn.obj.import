@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cwejjewlda8h0"
+path="res://.godot/imported/tyrant_on_glutthorn.obj-8c7318cf7324a5364d5344b09e76e2cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tyrant_on_glutthorn.obj-8c7318cf7324a5364d5344b09e76e2cc.mesh"]
+
+source_file="res://assets/3d/models/destruction/ogor_mawtribes/tyrant_on_glutthorn.obj"
+dest_files=["res://.godot/imported/tyrant_on_glutthorn.obj-8c7318cf7324a5364d5344b09e76e2cc.mesh", "res://.godot/imported/tyrant_on_glutthorn.obj-8c7318cf7324a5364d5344b09e76e2cc.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

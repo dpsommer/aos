@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bvrjoco3krj5a"
+path="res://.godot/imported/chalice_of_ushoran.obj-ef17a32119591d39b9e36e245ad1f40f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/chalice_of_ushoran.obj-ef17a32119591d39b9e36e245ad1f40f.mesh"]
+
+source_file="res://assets/3d/models/death/flesh_eater_courts/chalice_of_ushoran.obj"
+dest_files=["res://.godot/imported/chalice_of_ushoran.obj-ef17a32119591d39b9e36e245ad1f40f.mesh", "res://.godot/imported/chalice_of_ushoran.obj-ef17a32119591d39b9e36e245ad1f40f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

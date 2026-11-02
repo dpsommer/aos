@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cyrps7klju5rx"
+path="res://.godot/imported/annihilators_2.obj-92a1cab77a6dafe7aa1d5faba9b2d567.mesh"
+
+[deps]
+
+files=["res://.godot/imported/annihilators_2.obj-92a1cab77a6dafe7aa1d5faba9b2d567.mesh"]
+
+source_file="res://assets/3d/models/order/stormcast_eternals/annihilators_2.obj"
+dest_files=["res://.godot/imported/annihilators_2.obj-92a1cab77a6dafe7aa1d5faba9b2d567.mesh", "res://.godot/imported/annihilators_2.obj-92a1cab77a6dafe7aa1d5faba9b2d567.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

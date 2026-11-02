@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://kbq2fi1iv6mu"
+path="res://.godot/imported/gholems_of_gazul.obj-7dc3e85e573fd1197f494b4afe452dfd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gholems_of_gazul.obj-7dc3e85e573fd1197f494b4afe452dfd.mesh"]
+
+source_file="res://assets/3d/models/order/khazalite_holds/gholems_of_gazul.obj"
+dest_files=["res://.godot/imported/gholems_of_gazul.obj-7dc3e85e573fd1197f494b4afe452dfd.mesh", "res://.godot/imported/gholems_of_gazul.obj-7dc3e85e573fd1197f494b4afe452dfd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

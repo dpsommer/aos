@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://4weabcb3qchw"
+path="res://.godot/imported/darkoath_fellriders_1.obj-f4ffb0059da8bda69c115831bd680890.mesh"
+
+[deps]
+
+files=["res://.godot/imported/darkoath_fellriders_1.obj-f4ffb0059da8bda69c115831bd680890.mesh"]
+
+source_file="res://assets/3d/models/chaos/slaves_to_darkness/darkoath_fellriders_1.obj"
+dest_files=["res://.godot/imported/darkoath_fellriders_1.obj-f4ffb0059da8bda69c115831bd680890.mesh", "res://.godot/imported/darkoath_fellriders_1.obj-f4ffb0059da8bda69c115831bd680890.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

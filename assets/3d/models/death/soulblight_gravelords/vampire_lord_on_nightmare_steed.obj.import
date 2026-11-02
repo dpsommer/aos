@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b005fd5rk20cx"
+path="res://.godot/imported/vampire_lord_on_nightmare_steed.obj-5403915ce52da7c126e7306fbbd01e20.mesh"
+
+[deps]
+
+files=["res://.godot/imported/vampire_lord_on_nightmare_steed.obj-5403915ce52da7c126e7306fbbd01e20.mesh"]
+
+source_file="res://assets/3d/models/death/soulblight_gravelords/vampire_lord_on_nightmare_steed.obj"
+dest_files=["res://.godot/imported/vampire_lord_on_nightmare_steed.obj-5403915ce52da7c126e7306fbbd01e20.mesh", "res://.godot/imported/vampire_lord_on_nightmare_steed.obj-5403915ce52da7c126e7306fbbd01e20.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

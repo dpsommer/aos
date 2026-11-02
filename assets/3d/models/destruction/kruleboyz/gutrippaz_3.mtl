@@ -1,0 +1,8 @@
+newmtl gutrippaz_3_1
+Kd 1.000 1.000 1.000
+map_Kd textures/gutrippaz_3_2.jpg
+
+newmtl gutrippaz_3_2
+Kd 1.000 1.000 1.000
+map_Kd textures/gutrippaz_3.jpg
+

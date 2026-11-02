@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c45a7r3e25ek0"
+path="res://.godot/imported/morbidex_twiceborn.obj-4526e68fce56b6227070a0dbb537f116.mesh"
+
+[deps]
+
+files=["res://.godot/imported/morbidex_twiceborn.obj-4526e68fce56b6227070a0dbb537f116.mesh"]
+
+source_file="res://assets/3d/models/chaos/maggotkin_of_nurgle/morbidex_twiceborn.obj"
+dest_files=["res://.godot/imported/morbidex_twiceborn.obj-4526e68fce56b6227070a0dbb537f116.mesh", "res://.godot/imported/morbidex_twiceborn.obj-4526e68fce56b6227070a0dbb537f116.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

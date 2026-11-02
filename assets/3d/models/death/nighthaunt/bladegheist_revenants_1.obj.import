@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://by2sjkiiaqhap"
+path="res://.godot/imported/bladegheist_revenants_1.obj-d55f9375f8f165b7df6ed9002813f00c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bladegheist_revenants_1.obj-d55f9375f8f165b7df6ed9002813f00c.mesh"]
+
+source_file="res://assets/3d/models/death/nighthaunt/bladegheist_revenants_1.obj"
+dest_files=["res://.godot/imported/bladegheist_revenants_1.obj-d55f9375f8f165b7df6ed9002813f00c.mesh", "res://.godot/imported/bladegheist_revenants_1.obj-d55f9375f8f165b7df6ed9002813f00c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

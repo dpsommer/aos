@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://6n6qt3hcypyo"
+path="res://.godot/imported/null_khemist.obj-78a000199f9dfabf55050190c4431af1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/null_khemist.obj-78a000199f9dfabf55050190c4431af1.mesh"]
+
+source_file="res://assets/3d/models/order/kharadron_overlords/null_khemist.obj"
+dest_files=["res://.godot/imported/null_khemist.obj-78a000199f9dfabf55050190c4431af1.mesh", "res://.godot/imported/null_khemist.obj-78a000199f9dfabf55050190c4431af1.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

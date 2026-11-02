@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dvoqo18v1pagu"
+path="res://.godot/imported/loonsmasha_fanatics.obj-ab013aed814484095022ca70927b0914.mesh"
+
+[deps]
+
+files=["res://.godot/imported/loonsmasha_fanatics.obj-ab013aed814484095022ca70927b0914.mesh"]
+
+source_file="res://assets/3d/models/destruction/gloomspite_gitz/loonsmasha_fanatics.obj"
+dest_files=["res://.godot/imported/loonsmasha_fanatics.obj-ab013aed814484095022ca70927b0914.mesh", "res://.godot/imported/loonsmasha_fanatics.obj-ab013aed814484095022ca70927b0914.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

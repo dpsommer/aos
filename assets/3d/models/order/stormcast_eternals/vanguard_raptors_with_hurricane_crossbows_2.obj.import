@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5o22s0g31w6t"
+path="res://.godot/imported/vanguard_raptors_with_hurricane_crossbows_2.obj-dd44f8a95cf1c8f2cef8c7b2040e878a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/vanguard_raptors_with_hurricane_crossbows_2.obj-dd44f8a95cf1c8f2cef8c7b2040e878a.mesh"]
+
+source_file="res://assets/3d/models/order/stormcast_eternals/vanguard_raptors_with_hurricane_crossbows_2.obj"
+dest_files=["res://.godot/imported/vanguard_raptors_with_hurricane_crossbows_2.obj-dd44f8a95cf1c8f2cef8c7b2040e878a.mesh", "res://.godot/imported/vanguard_raptors_with_hurricane_crossbows_2.obj-dd44f8a95cf1c8f2cef8c7b2040e878a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

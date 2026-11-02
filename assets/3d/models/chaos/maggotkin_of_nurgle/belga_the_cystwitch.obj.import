@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://7lwowp2ps8hm"
+path="res://.godot/imported/belga_the_cystwitch.obj-2b3bc5b64b182dcfadcca9dd663900f3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/belga_the_cystwitch.obj-2b3bc5b64b182dcfadcca9dd663900f3.mesh"]
+
+source_file="res://assets/3d/models/chaos/maggotkin_of_nurgle/belga_the_cystwitch.obj"
+dest_files=["res://.godot/imported/belga_the_cystwitch.obj-2b3bc5b64b182dcfadcca9dd663900f3.mesh", "res://.godot/imported/belga_the_cystwitch.obj-2b3bc5b64b182dcfadcca9dd663900f3.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

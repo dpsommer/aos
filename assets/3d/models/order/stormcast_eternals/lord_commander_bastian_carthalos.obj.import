@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://e50k5py8s3wc"
+path="res://.godot/imported/lord_commander_bastian_carthalos.obj-88c61a64e1d729093f1ff6a8993b4571.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lord_commander_bastian_carthalos.obj-88c61a64e1d729093f1ff6a8993b4571.mesh"]
+
+source_file="res://assets/3d/models/order/stormcast_eternals/lord_commander_bastian_carthalos.obj"
+dest_files=["res://.godot/imported/lord_commander_bastian_carthalos.obj-88c61a64e1d729093f1ff6a8993b4571.mesh", "res://.godot/imported/lord_commander_bastian_carthalos.obj-88c61a64e1d729093f1ff6a8993b4571.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

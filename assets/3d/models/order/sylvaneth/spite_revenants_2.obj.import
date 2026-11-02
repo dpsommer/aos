@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cap7mhkebv0ch"
+path="res://.godot/imported/spite_revenants_2.obj-addf7df564bb13cfce211d3b1e96c91e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spite_revenants_2.obj-addf7df564bb13cfce211d3b1e96c91e.mesh"]
+
+source_file="res://assets/3d/models/order/sylvaneth/spite_revenants_2.obj"
+dest_files=["res://.godot/imported/spite_revenants_2.obj-addf7df564bb13cfce211d3b1e96c91e.mesh", "res://.godot/imported/spite_revenants_2.obj-addf7df564bb13cfce211d3b1e96c91e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

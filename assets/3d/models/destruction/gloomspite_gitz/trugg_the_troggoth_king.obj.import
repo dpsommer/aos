@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dom2m4yiq5v1r"
+path="res://.godot/imported/trugg_the_troggoth_king.obj-3ecba8bb5180238d2a0fc2c820c9dd54.mesh"
+
+[deps]
+
+files=["res://.godot/imported/trugg_the_troggoth_king.obj-3ecba8bb5180238d2a0fc2c820c9dd54.mesh"]
+
+source_file="res://assets/3d/models/destruction/gloomspite_gitz/trugg_the_troggoth_king.obj"
+dest_files=["res://.godot/imported/trugg_the_troggoth_king.obj-3ecba8bb5180238d2a0fc2c820c9dd54.mesh", "res://.godot/imported/trugg_the_troggoth_king.obj-3ecba8bb5180238d2a0fc2c820c9dd54.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cwcp61nu1w1px"
+path="res://.godot/imported/lord_imperatant.obj-a48c450fdc7d1568e8abdd74e3543581.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lord_imperatant.obj-a48c450fdc7d1568e8abdd74e3543581.mesh"]
+
+source_file="res://assets/3d/models/order/stormcast_eternals/lord_imperatant.obj"
+dest_files=["res://.godot/imported/lord_imperatant.obj-a48c450fdc7d1568e8abdd74e3543581.mesh", "res://.godot/imported/lord_imperatant.obj-a48c450fdc7d1568e8abdd74e3543581.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

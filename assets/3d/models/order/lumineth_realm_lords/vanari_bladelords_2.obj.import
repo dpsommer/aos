@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b0dog8tf3l0md"
+path="res://.godot/imported/vanari_bladelords_2.obj-e7ff2912a0c2ac7f31a1d232698a5957.mesh"
+
+[deps]
+
+files=["res://.godot/imported/vanari_bladelords_2.obj-e7ff2912a0c2ac7f31a1d232698a5957.mesh"]
+
+source_file="res://assets/3d/models/order/lumineth_realm_lords/vanari_bladelords_2.obj"
+dest_files=["res://.godot/imported/vanari_bladelords_2.obj-e7ff2912a0c2ac7f31a1d232698a5957.mesh", "res://.godot/imported/vanari_bladelords_2.obj-e7ff2912a0c2ac7f31a1d232698a5957.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

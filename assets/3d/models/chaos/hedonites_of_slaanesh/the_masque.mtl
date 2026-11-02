@@ -1,0 +1,4 @@
+newmtl the_masque_1
+Kd 0.883 0.883 0.883
+map_Kd textures/the_masque.jpg
+

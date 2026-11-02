@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dhr15t5g6fbll"
+path="res://.godot/imported/abraxia_spear_of_the_everchosen.obj-2d931edd97eaa1283fca88396fb13848.mesh"
+
+[deps]
+
+files=["res://.godot/imported/abraxia_spear_of_the_everchosen.obj-2d931edd97eaa1283fca88396fb13848.mesh"]
+
+source_file="res://assets/3d/models/chaos/slaves_to_darkness/abraxia_spear_of_the_everchosen.obj"
+dest_files=["res://.godot/imported/abraxia_spear_of_the_everchosen.obj-2d931edd97eaa1283fca88396fb13848.mesh", "res://.godot/imported/abraxia_spear_of_the_everchosen.obj-2d931edd97eaa1283fca88396fb13848.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bys5tk5vw7d71"
+path="res://.godot/imported/warp_grinder.obj-651437889e985a22f3ec2a8e0f160036.mesh"
+
+[deps]
+
+files=["res://.godot/imported/warp_grinder.obj-651437889e985a22f3ec2a8e0f160036.mesh"]
+
+source_file="res://assets/3d/models/chaos/skaven/warp_grinder.obj"
+dest_files=["res://.godot/imported/warp_grinder.obj-651437889e985a22f3ec2a8e0f160036.mesh", "res://.godot/imported/warp_grinder.obj-651437889e985a22f3ec2a8e0f160036.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

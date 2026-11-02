@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://vckmr4esj22x"
+path="res://.godot/imported/volturnos_high_king_of_the_deep.obj-87acbd8310d60d6cbd2a032758147f7a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/volturnos_high_king_of_the_deep.obj-87acbd8310d60d6cbd2a032758147f7a.mesh"]
+
+source_file="res://assets/3d/models/order/idoneth_deepkin/volturnos_high_king_of_the_deep.obj"
+dest_files=["res://.godot/imported/volturnos_high_king_of_the_deep.obj-87acbd8310d60d6cbd2a032758147f7a.mesh", "res://.godot/imported/volturnos_high_king_of_the_deep.obj-87acbd8310d60d6cbd2a032758147f7a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

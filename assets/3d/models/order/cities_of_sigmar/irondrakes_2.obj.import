@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ci47fosj6glru"
+path="res://.godot/imported/irondrakes_2.obj-5e03a0b88fe09ce0b9283a87527e64fa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/irondrakes_2.obj-5e03a0b88fe09ce0b9283a87527e64fa.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/irondrakes_2.obj"
+dest_files=["res://.godot/imported/irondrakes_2.obj-5e03a0b88fe09ce0b9283a87527e64fa.mesh", "res://.godot/imported/irondrakes_2.obj-5e03a0b88fe09ce0b9283a87527e64fa.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

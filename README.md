@@ -16,4 +16,14 @@ Technical and game documentation files are located in the `docs/` folder.
 
 # Credits
 
-[Squirem](https://ageofsigmar.lexicanum.com/wiki/User:Squirem) - AoS icon pack (obtained as part of the [tcrepo mega pack](https://tcrepo.com/downloads/warhammer-icons-compilation/))
+## Icons
+
+* [Squirem](https://ageofsigmar.lexicanum.com/wiki/User:Squirem) - AoS icon pack (obtained as part of the [tcrepo mega pack](https://tcrepo.com/downloads/warhammer-icons-compilation/))
+
+## Models
+
+* The Tabletop Simulator [Ulthuan Workshop mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3202337953)
+    * [Poro](https://steamcommunity.com/id/spawnoftheking)
+    * Seaborne
+    * erasmos
+

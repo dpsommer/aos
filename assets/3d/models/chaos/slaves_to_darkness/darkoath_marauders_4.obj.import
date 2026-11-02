@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bxl2mywebnjiq"
+path="res://.godot/imported/darkoath_marauders_4.obj-21638c8a609b4262ef34905c19e7c15c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/darkoath_marauders_4.obj-21638c8a609b4262ef34905c19e7c15c.mesh"]
+
+source_file="res://assets/3d/models/chaos/slaves_to_darkness/darkoath_marauders_4.obj"
+dest_files=["res://.godot/imported/darkoath_marauders_4.obj-21638c8a609b4262ef34905c19e7c15c.mesh", "res://.godot/imported/darkoath_marauders_4.obj-21638c8a609b4262ef34905c19e7c15c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

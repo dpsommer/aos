@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cu2as7h3mfllr"
+path="res://.godot/imported/drakespawn_knights_1.obj-ed1f9764507927e0705d5ea7190a673c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/drakespawn_knights_1.obj-ed1f9764507927e0705d5ea7190a673c.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/drakespawn_knights_1.obj"
+dest_files=["res://.godot/imported/drakespawn_knights_1.obj-ed1f9764507927e0705d5ea7190a673c.mesh", "res://.godot/imported/drakespawn_knights_1.obj-ed1f9764507927e0705d5ea7190a673c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

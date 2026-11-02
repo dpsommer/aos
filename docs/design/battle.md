@@ -72,14 +72,15 @@ Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`B
 - **Objectives:**
   - A 40mm gold marker, its zone and its name.
   - The zone is Matched Play's 3" control range, or a Spearhead objective's own radius or rectangle.
-- **Terrain** (`TerrainPlaceholder`): a block the feature's footprint in size, turned to face across its side's territory.
+- **Terrain** (`TerrainPlaceholder`): a block the feature's footprint in size, turned to face across its side's territory. Faction terrain with a 3D model (see [3D models](../technical/models.md)) is drawn as the model instead, with its textures (or in `p_model` if it has none).
   - Area terrain or obstacles are low slabs, obscuring terrain is tall and Places of Power are purple discs.
   - Spearhead features are 1" or 2.5" tall.
   - Faction terrain is a disc on a round base, or a slab for "Use model".
   - Faction and Spearhead features are named.
-- **Models** (`ModelPlaceholder`): each model is its base, so units take up the room they would on the tabletop. Round bases are discs and oval ones are discs stretched along the way the model faces. A "Use model" model is a slab its best-guess footprint in size.
+- **Models** (`ModelPlaceholder`): each model has its base, so units take up the room they would on the tabletop. Round bases are discs and oval ones are discs stretched along the way the model faces. A "Use model" model is a slab its best-guess footprint in size.
   - Bases are blue for the player (`p_base_player`) and red for the opponent (`p_base_opponent`).
-  - Each unit's models are one `MultiMeshInstance3D` per kind of base, with the unit's name floating above them, hidden from far away.
+  - A unit whose name or warscroll has 3D models (`ModelLibrary`, see [3D models](../technical/models.md)) has them standing on its bases, facing the way the unit does, with their textures. A model without materials of its own is drawn blue-grey for the player (`p_model_player`) or red-grey for the opponent (`p_model_opponent`). A unit with several model variants gives them to its models in turn. Units without models are just their bases.
+  - Each unit's models are one `MultiMeshInstance3D` per kind of base and per model mesh, with the unit's name floating above its tallest model, hidden from far away.
 - **Overlay** (`BattleHud`, `scripts/ui/battle/battle_hud.gd`):
   - The header has Menu, the battleplan's or realm's name, and pills "You · Attacker" (blue) and "Opponent · Defender" (red), or the other way round.
   - The camera controls are in the bottom-left corner.

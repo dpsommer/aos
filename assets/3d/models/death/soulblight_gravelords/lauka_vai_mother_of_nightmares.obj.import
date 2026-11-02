@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dtv83lw8yi261"
+path="res://.godot/imported/lauka_vai_mother_of_nightmares.obj-448ccb1dd35d6ac782f7d2e257add7f8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lauka_vai_mother_of_nightmares.obj-448ccb1dd35d6ac782f7d2e257add7f8.mesh"]
+
+source_file="res://assets/3d/models/death/soulblight_gravelords/lauka_vai_mother_of_nightmares.obj"
+dest_files=["res://.godot/imported/lauka_vai_mother_of_nightmares.obj-448ccb1dd35d6ac782f7d2e257add7f8.mesh", "res://.godot/imported/lauka_vai_mother_of_nightmares.obj-448ccb1dd35d6ac782f7d2e257add7f8.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

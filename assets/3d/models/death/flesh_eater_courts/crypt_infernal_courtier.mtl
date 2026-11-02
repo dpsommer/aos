@@ -1,0 +1,8 @@
+newmtl crypt_infernal_courtier_1
+Kd 1.000 1.000 1.000
+map_Kd textures/crypt_infernal_courtier_2.jpg
+
+newmtl crypt_infernal_courtier_2
+Kd 1.000 1.000 1.000
+map_Kd textures/crypt_infernal_courtier.jpg
+

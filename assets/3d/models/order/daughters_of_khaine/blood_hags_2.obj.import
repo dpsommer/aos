@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b8fj74kk3co0m"
+path="res://.godot/imported/blood_hags_2.obj-cf5914c37ec3d60c02e7ec8cfdada3fd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/blood_hags_2.obj-cf5914c37ec3d60c02e7ec8cfdada3fd.mesh"]
+
+source_file="res://assets/3d/models/order/daughters_of_khaine/blood_hags_2.obj"
+dest_files=["res://.godot/imported/blood_hags_2.obj-cf5914c37ec3d60c02e7ec8cfdada3fd.mesh", "res://.godot/imported/blood_hags_2.obj-cf5914c37ec3d60c02e7ec8cfdada3fd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

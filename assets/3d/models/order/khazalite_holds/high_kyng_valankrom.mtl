@@ -1,0 +1,12 @@
+newmtl high_kyng_valankrom_1
+Kd 1.000 1.000 1.000
+map_Kd textures/high_kyng_valankrom.jpg
+
+newmtl high_kyng_valankrom_2
+Kd 1.000 1.000 1.000
+map_Kd textures/high_kyng_valankrom_t2.jpg
+
+newmtl high_kyng_valankrom_3
+Kd 1.000 1.000 1.000
+map_Kd textures/high_kyng_valankrom_t3.jpg
+

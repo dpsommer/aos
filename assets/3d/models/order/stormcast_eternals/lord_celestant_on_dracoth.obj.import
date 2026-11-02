@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c6kk6arwnhqk7"
+path="res://.godot/imported/lord_celestant_on_dracoth.obj-df55c7bfc1020ae0ac7a0e4dcfe88c99.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lord_celestant_on_dracoth.obj-df55c7bfc1020ae0ac7a0e4dcfe88c99.mesh"]
+
+source_file="res://assets/3d/models/order/stormcast_eternals/lord_celestant_on_dracoth.obj"
+dest_files=["res://.godot/imported/lord_celestant_on_dracoth.obj-df55c7bfc1020ae0ac7a0e4dcfe88c99.mesh", "res://.godot/imported/lord_celestant_on_dracoth.obj-df55c7bfc1020ae0ac7a0e4dcfe88c99.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

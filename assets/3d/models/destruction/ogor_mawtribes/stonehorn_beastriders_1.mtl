@@ -1,0 +1,8 @@
+newmtl stonehorn_beastriders_1_1
+Kd 1.000 1.000 1.000
+map_Kd textures/huskard_on_thundertusk_1.jpg
+
+newmtl stonehorn_beastriders_1_2
+Kd 1.000 1.000 1.000
+map_Kd textures/frostlord_on_thundertusk.jpg
+

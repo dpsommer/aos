@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bb5wg34xbneki"
+path="res://.godot/imported/abhorrant_ghoul_king_on_royal_zombie_dragon.obj-088306478a5a29a2f8c64fdde310e069.mesh"
+
+[deps]
+
+files=["res://.godot/imported/abhorrant_ghoul_king_on_royal_zombie_dragon.obj-088306478a5a29a2f8c64fdde310e069.mesh"]
+
+source_file="res://assets/3d/models/death/flesh_eater_courts/abhorrant_ghoul_king_on_royal_zombie_dragon.obj"
+dest_files=["res://.godot/imported/abhorrant_ghoul_king_on_royal_zombie_dragon.obj-088306478a5a29a2f8c64fdde310e069.mesh", "res://.godot/imported/abhorrant_ghoul_king_on_royal_zombie_dragon.obj-088306478a5a29a2f8c64fdde310e069.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

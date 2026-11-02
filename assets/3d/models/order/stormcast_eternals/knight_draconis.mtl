@@ -1,0 +1,8 @@
+newmtl knight_draconis_1
+Kd 1.000 1.000 1.000
+map_Kd textures/knight_draconis_2.jpg
+
+newmtl knight_draconis_2
+Kd 1.000 1.000 1.000
+map_Kd textures/knight_draconis.jpg
+

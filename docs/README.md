@@ -14,13 +14,14 @@
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
 - [Faction data](technical/faction-data.md): faction JSON format, sources, how to add a faction, and the Regiments of Renown
+- [3D models](technical/models.md): where unit, manifestation and faction terrain models live, how they're named and found, their scale, axes and textures, building them from Tabletop Simulator's cache, and Git LFS
 - [Core rules data](technical/core-rules-data.md): JSON for the universal abilities and manifestation lores every army uses, the General's Handbook battlepack (season rules, battle tactics, battleplans and their FAQs), and the Spearhead battlepacks (Fire and Jade, Sand and Bone and City of Ash: realm battlefields with their objectives and roads, twist and battle tactic decks, deployment maps, terrain, relics, the Hidden in the Ashes campaign, Call for Reinforcements)
 
 ### Design
 
 - [Main menu](design/main-menu.md): menu options, their destinations, and the signals the menu emits
 - [Quick Play](design/quick-play.md): choosing a game mode (Spearhead or Matched Play), an army and a battleplan
-- [Battle](design/battle.md): the loading screen and the game map: the battlefield at tabletop size, placeholder models on their bases, auto-deployment and the camera
+- [Battle](design/battle.md): the loading screen and the game map: the battlefield at tabletop size, models on their bases (3D models where there are any), auto-deployment and the camera
 - [Forge](design/forge.md): army builder flow and screen, faction browser, signals, and faction data
 - [Ability cards](design/abilities.md): how abilities are shown everywhere: the phase-coloured box, its icon, timing and colours
 - [Settings](design/settings.md): the General, Graphics, Sound and Input tabs, key remapping, and how settings are saved and applied

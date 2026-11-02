@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://punt5tsmfn5s"
+path="res://.godot/imported/gutrippaz_3.obj-fbf1dd8b17de9bf41cc1048810834b49.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gutrippaz_3.obj-fbf1dd8b17de9bf41cc1048810834b49.mesh"]
+
+source_file="res://assets/3d/models/destruction/kruleboyz/gutrippaz_3.obj"
+dest_files=["res://.godot/imported/gutrippaz_3.obj-fbf1dd8b17de9bf41cc1048810834b49.mesh", "res://.godot/imported/gutrippaz_3.obj-fbf1dd8b17de9bf41cc1048810834b49.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
