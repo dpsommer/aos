@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b0i45lbmf5iu7"
+path="res://.godot/imported/darkshards_1.obj-8c0f3ee8f972f8231ffb5d77764fc74b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/darkshards_1.obj-8c0f3ee8f972f8231ffb5d77764fc74b.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/darkshards_1.obj"
+dest_files=["res://.godot/imported/darkshards_1.obj-8c0f3ee8f972f8231ffb5d77764fc74b.mesh", "res://.godot/imported/darkshards_1.obj-8c0f3ee8f972f8231ffb5d77764fc74b.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

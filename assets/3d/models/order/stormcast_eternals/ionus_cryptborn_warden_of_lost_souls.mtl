@@ -1,0 +1,8 @@
+newmtl ionus_cryptborn_warden_of_lost_souls_1
+Kd 1.000 1.000 1.000
+map_Kd textures/ionus_cryptborn_warden_of_lost_souls.jpg
+
+newmtl ionus_cryptborn_warden_of_lost_souls_2
+Kd 1.000 1.000 1.000
+map_Kd textures/ionus_cryptborn_warden_of_lost_souls_t2.jpg
+

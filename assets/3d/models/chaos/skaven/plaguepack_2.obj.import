@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bq8a4jwaal4fn"
+path="res://.godot/imported/plaguepack_2.obj-ebb42558c5cf794105964482e7232dac.mesh"
+
+[deps]
+
+files=["res://.godot/imported/plaguepack_2.obj-ebb42558c5cf794105964482e7232dac.mesh"]
+
+source_file="res://assets/3d/models/chaos/skaven/plaguepack_2.obj"
+dest_files=["res://.godot/imported/plaguepack_2.obj-ebb42558c5cf794105964482e7232dac.mesh", "res://.godot/imported/plaguepack_2.obj-ebb42558c5cf794105964482e7232dac.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

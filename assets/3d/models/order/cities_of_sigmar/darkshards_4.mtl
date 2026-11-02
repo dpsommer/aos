@@ -1,0 +1,12 @@
+newmtl darkshards_4_1
+Kd 1.000 1.000 1.000
+map_Kd textures/darkshards_2.jpg
+
+newmtl darkshards_4_2
+Kd 1.000 1.000 1.000
+map_Kd textures/bleakswords_4.jpg
+
+newmtl darkshards_4_3
+Kd 1.000 1.000 1.000
+map_Kd textures/bleakswords_4_t2.jpg
+

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d0yeoth5ml0ov"
+path="res://.godot/imported/kavalos_deathriders_2.obj-d6a084e5ff8acaf4b9e7065b3ee02217.mesh"
+
+[deps]
+
+files=["res://.godot/imported/kavalos_deathriders_2.obj-d6a084e5ff8acaf4b9e7065b3ee02217.mesh"]
+
+source_file="res://assets/3d/models/death/ossiarch_bonereapers/kavalos_deathriders_2.obj"
+dest_files=["res://.godot/imported/kavalos_deathriders_2.obj-d6a084e5ff8acaf4b9e7065b3ee02217.mesh", "res://.godot/imported/kavalos_deathriders_2.obj-d6a084e5ff8acaf4b9e7065b3ee02217.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

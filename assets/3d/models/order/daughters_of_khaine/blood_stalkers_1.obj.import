@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://6bwuxynpdv6y"
+path="res://.godot/imported/blood_stalkers_1.obj-6af6d45bab898cd6f0a6e36141246c2b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/blood_stalkers_1.obj-6af6d45bab898cd6f0a6e36141246c2b.mesh"]
+
+source_file="res://assets/3d/models/order/daughters_of_khaine/blood_stalkers_1.obj"
+dest_files=["res://.godot/imported/blood_stalkers_1.obj-6af6d45bab898cd6f0a6e36141246c2b.mesh", "res://.godot/imported/blood_stalkers_1.obj-6af6d45bab898cd6f0a6e36141246c2b.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

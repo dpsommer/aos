@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bbqa165441ylw"
+path="res://.godot/imported/kurnoth_hunters_with_greatbows.obj-93a5188628c968711dd94229af94175c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/kurnoth_hunters_with_greatbows.obj-93a5188628c968711dd94229af94175c.mesh"]
+
+source_file="res://assets/3d/models/order/sylvaneth/kurnoth_hunters_with_greatbows.obj"
+dest_files=["res://.godot/imported/kurnoth_hunters_with_greatbows.obj-93a5188628c968711dd94229af94175c.mesh", "res://.godot/imported/kurnoth_hunters_with_greatbows.obj-93a5188628c968711dd94229af94175c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,8 @@
+newmtl prince_vhordrai_1
+Kd 1.000 1.000 1.000
+map_Kd textures/prince_vhordrai.jpg
+
+newmtl prince_vhordrai_2
+Kd 1.000 1.000 1.000
+map_Kd textures/prince_vhordrai_t2.jpg
+

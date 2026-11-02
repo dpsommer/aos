@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://5f5n30s8otna"
+path="res://.godot/imported/battlemage_on_luminark_of_hysh.obj-bb6c6e2a83a4e27a982ec3c6b255f616.mesh"
+
+[deps]
+
+files=["res://.godot/imported/battlemage_on_luminark_of_hysh.obj-bb6c6e2a83a4e27a982ec3c6b255f616.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/battlemage_on_luminark_of_hysh.obj"
+dest_files=["res://.godot/imported/battlemage_on_luminark_of_hysh.obj-bb6c6e2a83a4e27a982ec3c6b255f616.mesh", "res://.godot/imported/battlemage_on_luminark_of_hysh.obj-bb6c6e2a83a4e27a982ec3c6b255f616.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

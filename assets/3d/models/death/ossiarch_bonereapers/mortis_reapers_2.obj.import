@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dcrsap5c6yxx4"
+path="res://.godot/imported/mortis_reapers_2.obj-9cc38b0dd06953b88b81e20b74d4227b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mortis_reapers_2.obj-9cc38b0dd06953b88b81e20b74d4227b.mesh"]
+
+source_file="res://assets/3d/models/death/ossiarch_bonereapers/mortis_reapers_2.obj"
+dest_files=["res://.godot/imported/mortis_reapers_2.obj-9cc38b0dd06953b88b81e20b74d4227b.mesh", "res://.godot/imported/mortis_reapers_2.obj-9cc38b0dd06953b88b81e20b74d4227b.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

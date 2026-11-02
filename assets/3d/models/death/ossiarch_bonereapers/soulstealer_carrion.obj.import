@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://yl8iahdj76wy"
+path="res://.godot/imported/soulstealer_carrion.obj-25209ce8002e9456822734273bb7171e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/soulstealer_carrion.obj-25209ce8002e9456822734273bb7171e.mesh"]
+
+source_file="res://assets/3d/models/death/ossiarch_bonereapers/soulstealer_carrion.obj"
+dest_files=["res://.godot/imported/soulstealer_carrion.obj-25209ce8002e9456822734273bb7171e.mesh", "res://.godot/imported/soulstealer_carrion.obj-25209ce8002e9456822734273bb7171e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

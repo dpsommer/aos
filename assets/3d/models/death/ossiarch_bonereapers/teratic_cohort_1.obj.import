@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://lorx3p3ayfu0"
+path="res://.godot/imported/teratic_cohort_1.obj-da4c558ca394b2b787e67f132d8d6648.mesh"
+
+[deps]
+
+files=["res://.godot/imported/teratic_cohort_1.obj-da4c558ca394b2b787e67f132d8d6648.mesh"]
+
+source_file="res://assets/3d/models/death/ossiarch_bonereapers/teratic_cohort_1.obj"
+dest_files=["res://.godot/imported/teratic_cohort_1.obj-da4c558ca394b2b787e67f132d8d6648.mesh", "res://.godot/imported/teratic_cohort_1.obj-da4c558ca394b2b787e67f132d8d6648.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

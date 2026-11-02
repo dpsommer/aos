@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b8tk8sehaco3o"
+path="res://.godot/imported/chaos_lord_on_daemonic_mount.obj-583e3f3840b210b519236c24f85afd5d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/chaos_lord_on_daemonic_mount.obj-583e3f3840b210b519236c24f85afd5d.mesh"]
+
+source_file="res://assets/3d/models/chaos/slaves_to_darkness/chaos_lord_on_daemonic_mount.obj"
+dest_files=["res://.godot/imported/chaos_lord_on_daemonic_mount.obj-583e3f3840b210b519236c24f85afd5d.mesh", "res://.godot/imported/chaos_lord_on_daemonic_mount.obj-583e3f3840b210b519236c24f85afd5d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

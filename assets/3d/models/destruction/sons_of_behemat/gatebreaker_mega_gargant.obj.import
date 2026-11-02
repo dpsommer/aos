@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dtcyn3lllax17"
+path="res://.godot/imported/gatebreaker_mega_gargant.obj-4e656ef1a5685e7628a4fad8ef54080d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gatebreaker_mega_gargant.obj-4e656ef1a5685e7628a4fad8ef54080d.mesh"]
+
+source_file="res://assets/3d/models/destruction/sons_of_behemat/gatebreaker_mega_gargant.obj"
+dest_files=["res://.godot/imported/gatebreaker_mega_gargant.obj-4e656ef1a5685e7628a4fad8ef54080d.mesh", "res://.godot/imported/gatebreaker_mega_gargant.obj-4e656ef1a5685e7628a4fad8ef54080d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

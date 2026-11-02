@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cnsjfeed4w8jj"
+path="res://.godot/imported/warlock_galvaneer.obj-3124f0777cd9412a32821c9d170cec0f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/warlock_galvaneer.obj-3124f0777cd9412a32821c9d170cec0f.mesh"]
+
+source_file="res://assets/3d/models/chaos/skaven/warlock_galvaneer.obj"
+dest_files=["res://.godot/imported/warlock_galvaneer.obj-3124f0777cd9412a32821c9d170cec0f.mesh", "res://.godot/imported/warlock_galvaneer.obj-3124f0777cd9412a32821c9d170cec0f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

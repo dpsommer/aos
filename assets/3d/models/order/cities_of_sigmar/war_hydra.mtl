@@ -1,0 +1,8 @@
+newmtl war_hydra_1
+Kd 1.000 1.000 1.000
+map_Kd textures/war_hydra.jpg
+
+newmtl war_hydra_2
+Kd 1.000 1.000 1.000
+map_Kd textures/war_hydra_t2.jpg
+

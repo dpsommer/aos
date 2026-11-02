@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://chqfyiidhnn3q"
+path="res://.godot/imported/cannonade_cogfort.obj-baaa149fcbbcbc9c07cf5cb3e8fe5b0d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cannonade_cogfort.obj-baaa149fcbbcbc9c07cf5cb3e8fe5b0d.mesh"]
+
+source_file="res://assets/3d/models/order/cities_of_sigmar/cannonade_cogfort.obj"
+dest_files=["res://.godot/imported/cannonade_cogfort.obj-baaa149fcbbcbc9c07cf5cb3e8fe5b0d.mesh", "res://.godot/imported/cannonade_cogfort.obj-baaa149fcbbcbc9c07cf5cb3e8fe5b0d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

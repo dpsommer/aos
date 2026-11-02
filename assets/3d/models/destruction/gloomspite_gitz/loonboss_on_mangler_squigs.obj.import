@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://vbatb04nm1yh"
+path="res://.godot/imported/loonboss_on_mangler_squigs.obj-c8e1d7840d122a51878e467a96cd93cd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/loonboss_on_mangler_squigs.obj-c8e1d7840d122a51878e467a96cd93cd.mesh"]
+
+source_file="res://assets/3d/models/destruction/gloomspite_gitz/loonboss_on_mangler_squigs.obj"
+dest_files=["res://.godot/imported/loonboss_on_mangler_squigs.obj-c8e1d7840d122a51878e467a96cd93cd.mesh", "res://.godot/imported/loonboss_on_mangler_squigs.obj-c8e1d7840d122a51878e467a96cd93cd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

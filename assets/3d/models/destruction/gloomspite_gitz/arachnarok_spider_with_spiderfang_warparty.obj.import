@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfsn3d2o4ps5m"
+path="res://.godot/imported/arachnarok_spider_with_spiderfang_warparty.obj-bd06920e9a4f7b8753b95ca4c3c5295f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/arachnarok_spider_with_spiderfang_warparty.obj-bd06920e9a4f7b8753b95ca4c3c5295f.mesh"]
+
+source_file="res://assets/3d/models/destruction/gloomspite_gitz/arachnarok_spider_with_spiderfang_warparty.obj"
+dest_files=["res://.godot/imported/arachnarok_spider_with_spiderfang_warparty.obj-bd06920e9a4f7b8753b95ca4c3c5295f.mesh", "res://.godot/imported/arachnarok_spider_with_spiderfang_warparty.obj-bd06920e9a4f7b8753b95ca4c3c5295f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

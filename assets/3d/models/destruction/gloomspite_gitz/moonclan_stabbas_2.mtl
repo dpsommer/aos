@@ -1,0 +1,12 @@
+newmtl moonclan_stabbas_2_1
+Kd 1.000 1.000 1.000
+map_Kd textures/moonclan_stabbas_2.jpg
+
+newmtl moonclan_stabbas_2_2
+Kd 1.000 1.000 1.000
+map_Kd textures/moonclan_stabbas_2_t2.jpg
+
+newmtl moonclan_stabbas_2_3
+Kd 1.000 1.000 1.000
+map_Kd textures/moonclan_stabbas_2_t3.jpg
+

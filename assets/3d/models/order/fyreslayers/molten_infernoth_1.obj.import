@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b6m72km5i8ivi"
+path="res://.godot/imported/molten_infernoth_1.obj-80a2056db9eea28701903e270082e8c2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/molten_infernoth_1.obj-80a2056db9eea28701903e270082e8c2.mesh"]
+
+source_file="res://assets/3d/models/order/fyreslayers/molten_infernoth_1.obj"
+dest_files=["res://.godot/imported/molten_infernoth_1.obj-80a2056db9eea28701903e270082e8c2.mesh", "res://.godot/imported/molten_infernoth_1.obj-80a2056db9eea28701903e270082e8c2.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

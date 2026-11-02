@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dysya3bckcpof"
+path="res://.godot/imported/krulghast_cruciator.obj-72ca3b6c7ca1d6a02c1b7b6fd7add584.mesh"
+
+[deps]
+
+files=["res://.godot/imported/krulghast_cruciator.obj-72ca3b6c7ca1d6a02c1b7b6fd7add584.mesh"]
+
+source_file="res://assets/3d/models/death/nighthaunt/krulghast_cruciator.obj"
+dest_files=["res://.godot/imported/krulghast_cruciator.obj-72ca3b6c7ca1d6a02c1b7b6fd7add584.mesh", "res://.godot/imported/krulghast_cruciator.obj-72ca3b6c7ca1d6a02c1b7b6fd7add584.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

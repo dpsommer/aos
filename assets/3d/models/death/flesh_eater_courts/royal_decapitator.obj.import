@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dy46c8n2348iy"
+path="res://.godot/imported/royal_decapitator.obj-9ab85dc5a241a329a0fbdd31c944a2e4.mesh"
+
+[deps]
+
+files=["res://.godot/imported/royal_decapitator.obj-9ab85dc5a241a329a0fbdd31c944a2e4.mesh"]
+
+source_file="res://assets/3d/models/death/flesh_eater_courts/royal_decapitator.obj"
+dest_files=["res://.godot/imported/royal_decapitator.obj-9ab85dc5a241a329a0fbdd31c944a2e4.mesh", "res://.godot/imported/royal_decapitator.obj-9ab85dc5a241a329a0fbdd31c944a2e4.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

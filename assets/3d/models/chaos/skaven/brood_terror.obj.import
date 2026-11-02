@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cd2sn1mg3iyxg"
+path="res://.godot/imported/brood_terror.obj-75a86516dce15db9901b0bc3dd05a755.mesh"
+
+[deps]
+
+files=["res://.godot/imported/brood_terror.obj-75a86516dce15db9901b0bc3dd05a755.mesh"]
+
+source_file="res://assets/3d/models/chaos/skaven/brood_terror.obj"
+dest_files=["res://.godot/imported/brood_terror.obj-75a86516dce15db9901b0bc3dd05a755.mesh", "res://.godot/imported/brood_terror.obj-75a86516dce15db9901b0bc3dd05a755.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

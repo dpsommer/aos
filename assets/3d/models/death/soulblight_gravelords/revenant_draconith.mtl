@@ -1,0 +1,8 @@
+newmtl revenant_draconith_1
+Kd 1.000 1.000 1.000
+map_Kd textures/revenant_draconith.jpg
+
+newmtl revenant_draconith_2
+Kd 1.000 1.000 1.000
+map_Kd textures/revenant_draconith_t2.jpg
+

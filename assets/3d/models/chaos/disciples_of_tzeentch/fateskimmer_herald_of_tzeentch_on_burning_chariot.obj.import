@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5pmcxm6hr7vq"
+path="res://.godot/imported/fateskimmer_herald_of_tzeentch_on_burning_chariot.obj-aef59030aab76211f68c7f76ebc1f346.mesh"
+
+[deps]
+
+files=["res://.godot/imported/fateskimmer_herald_of_tzeentch_on_burning_chariot.obj-aef59030aab76211f68c7f76ebc1f346.mesh"]
+
+source_file="res://assets/3d/models/chaos/disciples_of_tzeentch/fateskimmer_herald_of_tzeentch_on_burning_chariot.obj"
+dest_files=["res://.godot/imported/fateskimmer_herald_of_tzeentch_on_burning_chariot.obj-aef59030aab76211f68c7f76ebc1f346.mesh", "res://.godot/imported/fateskimmer_herald_of_tzeentch_on_burning_chariot.obj-aef59030aab76211f68c7f76ebc1f346.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

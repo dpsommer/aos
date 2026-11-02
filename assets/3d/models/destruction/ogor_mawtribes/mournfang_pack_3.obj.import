@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dat28dhrxl8dy"
+path="res://.godot/imported/mournfang_pack_3.obj-a7cd69fb49130d69d03165124645643f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mournfang_pack_3.obj-a7cd69fb49130d69d03165124645643f.mesh"]
+
+source_file="res://assets/3d/models/destruction/ogor_mawtribes/mournfang_pack_3.obj"
+dest_files=["res://.godot/imported/mournfang_pack_3.obj-a7cd69fb49130d69d03165124645643f.mesh", "res://.godot/imported/mournfang_pack_3.obj-a7cd69fb49130d69d03165124645643f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

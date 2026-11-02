@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgq1h4yetu12h"
+path="res://.godot/imported/gorslav_the_gravekeeper.obj-8cd678437460f0275ad1275695a85a29.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gorslav_the_gravekeeper.obj-8cd678437460f0275ad1275695a85a29.mesh"]
+
+source_file="res://assets/3d/models/death/soulblight_gravelords/gorslav_the_gravekeeper.obj"
+dest_files=["res://.godot/imported/gorslav_the_gravekeeper.obj-8cd678437460f0275ad1275695a85a29.mesh", "res://.godot/imported/gorslav_the_gravekeeper.obj-8cd678437460f0275ad1275695a85a29.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

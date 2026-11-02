@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cmyeitm8rfcjo"
+path="res://.godot/imported/herald_of_khorne_on_blood_throne.obj-e4a537b57348c6fbbdda11aa0b90dc83.mesh"
+
+[deps]
+
+files=["res://.godot/imported/herald_of_khorne_on_blood_throne.obj-e4a537b57348c6fbbdda11aa0b90dc83.mesh"]
+
+source_file="res://assets/3d/models/chaos/blades_of_khorne/herald_of_khorne_on_blood_throne.obj"
+dest_files=["res://.godot/imported/herald_of_khorne_on_blood_throne.obj-e4a537b57348c6fbbdda11aa0b90dc83.mesh", "res://.godot/imported/herald_of_khorne_on_blood_throne.obj-e4a537b57348c6fbbdda11aa0b90dc83.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
