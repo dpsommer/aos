@@ -20,6 +20,11 @@ func _labels(root: Node3D) -> Array[Node]:
 	return root.get_children().filter(func(child: Node) -> bool: return child is Label3D)
 
 
+## Faction terrain on a round base, named [param shrine_name] (a fixture model by default).
+func _shrine(shrine_name := "Test Shrine") -> BattleTerrain:
+	return BattleTerrain.from_warscroll(BattleKit.warscroll(shrine_name, 1, 60.0))
+
+
 func test_block_is_the_size_of_the_footprint() -> void:
 	var feature := BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 6.0)
 	feature.footprint = Vector2(6, 4)
@@ -59,12 +64,11 @@ func test_place_of_power_is_a_disc() -> void:
 	assert_is(block.mesh, CylinderMesh)
 
 
-func test_faction_terrain_on_a_round_base_is_a_disc() -> void:
-	var feature := BattleTerrain.from_warscroll(BattleKit.warscroll("Shrine", 1, 60.0))
-	assert_true(TerrainPlaceholder.is_round(feature))
+func test_faction_terrain_on_a_round_base_is_round() -> void:
+	assert_true(TerrainPlaceholder.is_round(_shrine("Shrine")))
 
 
-func test_faction_terrain_without_a_base_is_a_box() -> void:
+func test_faction_terrain_without_a_base_is_not_round() -> void:
 	var feature := BattleTerrain.from_warscroll(BattleKit.warscroll("Shrine", 1, 0.0))
 	assert_false(TerrainPlaceholder.is_round(feature))
 
@@ -98,15 +102,13 @@ func test_small_spearhead_feature_is_lower_than_a_large_one() -> void:
 
 
 func test_faction_terrain_has_a_name_label() -> void:
-	var feature := BattleTerrain.from_warscroll(BattleKit.warscroll("Shrine", 1, 60.0))
-	var root := _built(feature)
-	var labels := _labels(root)
+	var labels := _labels(_built(_shrine("Shrine")))
+	assert_eq(labels.size(), 1)
 	assert_eq(labels[0].text, "Shrine")
 
 
 func test_battleplan_terrain_has_no_label() -> void:
-	var root := _built(BattleKit.terrain(BattleTerrain.Kind.OBSCURING))
-	assert_eq(root.get_child_count(), 1)
+	assert_eq(_labels(_built(BattleKit.terrain(BattleTerrain.Kind.OBSCURING))).size(), 0)
 
 
 func test_unnamed_terrain_still_has_a_node_name() -> void:
@@ -116,10 +118,6 @@ func test_unnamed_terrain_still_has_a_node_name() -> void:
 
 
 # models
-
-func _shrine(shrine_name := "Test Shrine") -> BattleTerrain:
-	return BattleTerrain.from_warscroll(BattleKit.warscroll(shrine_name, 1, 60.0))
-
 
 func test_faction_terrain_has_its_model_by_name() -> void:
 	assert_not_null(TerrainPlaceholder.model_of(_shrine(), ModelKit.library()))

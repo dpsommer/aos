@@ -22,6 +22,18 @@ func _meshes_of_type(root: Node, mesh_class: Variant) -> Array[MeshInstance3D]:
 	return result
 
 
+## [param root]'s [param mesh_class] meshes drawn with [param material].
+func _meshes_with(root: Node, mesh_class: Variant, material: Material) -> Array:
+	return _meshes_of_type(root, mesh_class).filter(
+			func(child: MeshInstance3D) -> bool: return child.material_override == material)
+
+
+## [param root]'s filled polygons: array meshes of triangles (outlines are lines).
+func _fills(root: Node) -> Array:
+	return _meshes_of_type(root, ArrayMesh).filter(
+			func(child: MeshInstance3D) -> bool: return child.mesh.surface_get_primitive_type(0) == Mesh.PRIMITIVE_TRIANGLES)
+
+
 # board
 
 func test_board_is_as_big_as_a_matched_play_battlefield() -> void:
@@ -34,6 +46,18 @@ func test_board_is_as_big_as_a_spearhead_battlefield() -> void:
 	var board := autofree(BoardBuilder.board(Battle.SPEARHEAD_BATTLEFIELD)) as MeshInstance3D
 	var size := (board.mesh as BoxMesh).size
 	assert_eq(Vector2(size.x, size.z), Battle.SPEARHEAD_BATTLEFIELD)
+
+
+func test_board_covers_from_the_north_west_corner() -> void:
+	var board := autofree(BoardBuilder.board(Vector2(30, 22))) as MeshInstance3D
+	var half := (board.mesh as BoxMesh).size / 2
+	assert_almost_eq(board.position.x - half.x, 0.0, 0.001)
+	assert_almost_eq(board.position.z - half.z, 0.0, 0.001)
+
+
+func test_board_top_is_at_ground_level() -> void:
+	var board := autofree(BoardBuilder.board(Vector2(30, 22))) as MeshInstance3D
+	assert_almost_eq(board.position.y + (board.mesh as BoxMesh).size.y / 2, 0.0, 0.001)
 
 
 func _printed_board(size := Vector2(30, 22)) -> MeshInstance3D:
@@ -100,18 +124,6 @@ func test_board_print_without_a_folder_is_null() -> void:
 	assert_null(BoardBuilder.board_print("Test Realm", BOARD_FIXTURES + "/missing"))
 
 
-func test_board_covers_from_the_north_west_corner() -> void:
-	var board := autofree(BoardBuilder.board(Vector2(30, 22))) as MeshInstance3D
-	var half := (board.mesh as BoxMesh).size / 2
-	assert_almost_eq(board.position.x - half.x, 0.0, 0.001)
-	assert_almost_eq(board.position.z - half.z, 0.0, 0.001)
-
-
-func test_board_top_is_at_ground_level() -> void:
-	var board := autofree(BoardBuilder.board(Vector2(30, 22))) as MeshInstance3D
-	assert_almost_eq(board.position.y + (board.mesh as BoxMesh).size.y / 2, 0.0, 0.001)
-
-
 # territory
 
 func test_territory_has_a_fill_and_an_outline_per_polygon() -> void:
@@ -122,11 +134,7 @@ func test_territory_has_a_fill_and_an_outline_per_polygon() -> void:
 func test_territory_fills_are_array_meshes_with_triangles() -> void:
 	var root := autofree(BoardBuilder.territory(_polygons(3), true)) as Node3D
 	assert_eq(_meshes_of_type(root, ArrayMesh).size(), 6)
-	var fills := 0
-	for child: MeshInstance3D in _meshes_of_type(root, ArrayMesh):
-		if (child.mesh as ArrayMesh).surface_get_primitive_type(0) == Mesh.PRIMITIVE_TRIANGLES:
-			fills += 1
-	assert_eq(fills, 3)
+	assert_eq(_fills(root).size(), 3)
 
 
 func test_territory_polygon_that_cannot_be_filled_is_still_outlined() -> void:
@@ -170,37 +178,29 @@ func test_circular_objective_is_placed_at_its_position() -> void:
 
 func test_circular_objective_zone_has_the_given_radius() -> void:
 	var root := autofree(BoardBuilder.objective(BattleKit.feature("Obj", Vector2.ZERO), 3.0)) as Node3D
-	var zone: MeshInstance3D = null
-	for child in _meshes_of_type(root, CylinderMesh):
-		if child.material_override == BoardBuilder.OBJECTIVE_ZONE:
-			zone = child
-	assert_not_null(zone)
-	assert_eq((zone.mesh as CylinderMesh).top_radius, 3.0)
+	var zones := _meshes_with(root, CylinderMesh, BoardBuilder.OBJECTIVE_ZONE)
+	assert_eq(zones.size(), 1)
+	assert_eq((zones[0].mesh as CylinderMesh).top_radius, 3.0)
 
 
 func test_rectangular_objective_zone_is_a_filled_polygon_not_a_disc() -> void:
 	var feature := BattleKit.feature("Obj", Vector2(10, 10))
 	feature.extent = Vector2(6, 4)
 	var root := autofree(BoardBuilder.objective(feature, 3.0)) as Node3D
-	var zones := 0
-	for child in _meshes_of_type(root, ArrayMesh):
-		if child.material_override == BoardBuilder.OBJECTIVE_ZONE:
-			zones += 1
-	assert_eq(zones, 1)
-	for child in _meshes_of_type(root, CylinderMesh):
-		assert_ne(child.material_override, BoardBuilder.OBJECTIVE_ZONE)
+	assert_eq(_meshes_with(root, ArrayMesh, BoardBuilder.OBJECTIVE_ZONE).size(), 1, "a filled polygon zone")
+	assert_eq(_meshes_with(root, CylinderMesh, BoardBuilder.OBJECTIVE_ZONE).size(), 0, "no disc zone")
 
 
-func test_objective_has_a_marker_and_a_label_with_its_name() -> void:
+func test_objective_has_a_label_with_its_name() -> void:
 	var root := autofree(BoardBuilder.objective(BattleKit.feature("Sun Seekers", Vector2.ZERO), 3.0)) as Node3D
 	var labels := root.get_children().filter(func(child: Node) -> bool: return child is Label3D)
 	assert_eq(labels.size(), 1)
 	assert_eq(labels[0].text, "Sun Seekers")
-	var marker: MeshInstance3D = null
-	for child in _meshes_of_type(root, CylinderMesh):
-		if child.material_override == BoardBuilder.OBJECTIVE:
-			marker = child
-	assert_not_null(marker)
+
+
+func test_objective_has_a_marker() -> void:
+	var root := autofree(BoardBuilder.objective(BattleKit.feature("Sun Seekers", Vector2.ZERO), 3.0)) as Node3D
+	assert_eq(_meshes_with(root, CylinderMesh, BoardBuilder.OBJECTIVE).size(), 1)
 
 
 # shapes

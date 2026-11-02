@@ -24,13 +24,16 @@ func _matched(plan_name := "", seed_value := 1, plans: Array[Battleplan] = []) -
 	return BattleBuilder.build(BattleKit.matched_play_setup(plan_name), _rng(seed_value), BattleKit.core(plans), [], BattleKit.faction())
 
 
+## A Matched Play battle from [param setup], with one battleplan and [param faction]'s warscrolls.
+func _build_matched(setup: BattleSetup, faction: Faction = BattleKit.faction(), rules: CoreRules = null) -> Battle:
+	if rules == null:
+		rules = BattleKit.core([BattleKit.battleplan("A")] as Array[Battleplan])
+	return BattleBuilder.build(setup, _rng(), rules, [], faction)
+
+
 func _spearhead(pack_name := "", realm_name := "", seed_value := 1) -> Battle:
 	return BattleBuilder.build(BattleKit.spearhead_setup(pack_name, realm_name), _rng(seed_value), BattleKit.core([] as Array[Battleplan]),
 			_packs(), BattleKit.spearhead_faction())
-
-
-func _same_polygons(a: Array[PackedVector2Array], b: Array[PackedVector2Array]) -> bool:
-	return a.size() == b.size() and a.hash() == b.hash()
 
 
 # Both modes
@@ -48,13 +51,12 @@ func test_matched_play_builds_a_matched_play_battle() -> void:
 func test_matched_play_without_an_army_gives_no_battle() -> void:
 	var setup := BattleKit.matched_play_setup()
 	setup.army = null
-	var plans: Array[Battleplan] = [BattleKit.battleplan("A")]
-	assert_null(BattleBuilder.build(setup, _rng(), BattleKit.core(plans), [], BattleKit.faction()))
+	assert_null(_build_matched(setup))
 
 
 func test_matched_play_without_battleplans_gives_no_battle() -> void:
-	var battle := BattleBuilder.build(BattleKit.matched_play_setup(), _rng(), BattleKit.core([] as Array[Battleplan]), [], BattleKit.faction())
-	assert_null(battle)
+	var no_plans := BattleKit.core([] as Array[Battleplan])
+	assert_null(_build_matched(BattleKit.matched_play_setup(), BattleKit.faction(), no_plans))
 
 
 func test_matched_play_keeps_the_chosen_battleplan() -> void:
@@ -99,10 +101,9 @@ func test_matched_play_takes_the_twist_and_table_from_the_battleplan() -> void:
 
 
 func test_matched_play_uses_the_battlepacks_battlefield_size() -> void:
-	var plans: Array[Battleplan] = [BattleKit.battleplan("A")]
-	var rules := BattleKit.core(plans)
+	var rules := BattleKit.core([BattleKit.battleplan("A")] as Array[Battleplan])
 	rules.battlepack.battlefield_size = Vector2(50, 40)
-	var battle := BattleBuilder.build(BattleKit.matched_play_setup(), _rng(), rules, [], BattleKit.faction())
+	var battle := _build_matched(BattleKit.matched_play_setup(), BattleKit.faction(), rules)
 	assert_eq(battle.battlefield_size, Vector2(50, 40))
 
 
@@ -128,9 +129,7 @@ func test_matched_play_player_has_the_armys_units() -> void:
 func test_matched_play_reinforced_unit_has_twice_the_models() -> void:
 	var setup := BattleKit.matched_play_setup()
 	setup.army.auxiliary[0].reinforced = true
-	var plans: Array[Battleplan] = [BattleKit.battleplan("A")]
-	var battle := BattleBuilder.build(setup, _rng(), BattleKit.core(plans), [], BattleKit.faction())
-	assert_eq(battle.player.model_count(), 10)
+	assert_eq(_build_matched(setup).player.model_count(), 10)
 
 
 func test_matched_play_army_has_points() -> void:
@@ -166,8 +165,7 @@ func test_faction_terrain_the_army_chose_is_added() -> void:
 	var faction := BattleKit.faction()
 	faction.warscrolls.append(shrine)
 	setup.army.faction_terrain = shrine.id
-	var plans: Array[Battleplan] = [BattleKit.battleplan("A")]
-	var battle := BattleBuilder.build(setup, _rng(), BattleKit.core(plans), [], faction)
+	var battle := _build_matched(setup, faction)
 	assert_eq(battle.player.terrain.size(), 1)
 	assert_eq(battle.opponent.terrain.size(), 1)
 
@@ -235,15 +233,11 @@ func test_ordinary_regiments_are_not_of_renown() -> void:
 
 
 func test_the_opponent_has_the_same_regiments_over_its_own_units() -> void:
-	var battle := BattleBuilder.build(_matched_setup_with_regiments(), _rng(), BattleKit.core([BattleKit.battleplan("A")] as Array[Battleplan]), [], BattleKit.faction())
-	assert_eq(battle.opponent.regiments.size(), battle.player.regiments.size())
-	assert_same(battle.opponent.units[0].regiment, battle.opponent.regiments[0])
-
-
-func _matched_setup_with_regiments() -> BattleSetup:
 	var setup := BattleKit.matched_play_setup()
 	setup.army = _army_with_regiments()
-	return setup
+	var battle := _build_matched(setup)
+	assert_eq(battle.opponent.regiments.size(), battle.player.regiments.size())
+	assert_same(battle.opponent.units[0].regiment, battle.opponent.regiments[0])
 
 
 # Spearhead
