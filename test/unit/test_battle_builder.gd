@@ -353,6 +353,19 @@ func test_spearhead_terrain_group_skips_unknown_features() -> void:
 	assert_eq(BattleBuilder.spearhead_terrain(pack, 0).size(), 1)
 
 
+func test_spearhead_terrain_variant_is_the_group() -> void:
+	var pack := BattleKit.spearhead_pack("Pack", ["Aqshy"])
+	for feature in BattleBuilder.spearhead_terrain(pack, 1):
+		assert_eq(feature.variant, 1)
+
+
+func test_spearhead_terrain_variant_is_the_group_without_groups() -> void:
+	var pack := BattleKit.spearhead_pack("Pack", ["Aqshy"])
+	pack.terrain_groups = [] as Array[Dictionary]
+	for feature in BattleBuilder.spearhead_terrain(pack, 1):
+		assert_eq(feature.variant, 1)
+
+
 # merge_rects
 
 func test_touching_rects_merge_into_one_polygon() -> void:

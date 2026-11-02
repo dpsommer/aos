@@ -3,6 +3,8 @@ extends GutTest
 ## (scripts/battle/map/board_builder.gd).
 
 const BattleKit := preload("res://test/support/battle_kit.gd")
+## A tiny board image (Test Realm) and a Git LFS pointer Godot fails to import (Unimported Realm).
+const BOARD_FIXTURES := "res://test/fixtures/boards"
 
 
 func _polygons(count: int) -> Array[PackedVector2Array]:
@@ -32,6 +34,70 @@ func test_board_is_as_big_as_a_spearhead_battlefield() -> void:
 	var board := autofree(BoardBuilder.board(Battle.SPEARHEAD_BATTLEFIELD)) as MeshInstance3D
 	var size := (board.mesh as BoxMesh).size
 	assert_eq(Vector2(size.x, size.z), Battle.SPEARHEAD_BATTLEFIELD)
+
+
+func _printed_board(size := Vector2(30, 22)) -> MeshInstance3D:
+	var texture := BoardBuilder.board_print("Test Realm", BOARD_FIXTURES)
+	return autofree(BoardBuilder.board(size, texture)) as MeshInstance3D
+
+
+func test_board_has_no_print_without_a_texture() -> void:
+	var board := autofree(BoardBuilder.board(Vector2(30, 22))) as MeshInstance3D
+	assert_null(board.get_node_or_null("Print"))
+
+
+func test_printed_board_has_a_print() -> void:
+	assert_is(_printed_board().get_node_or_null("Print"), MeshInstance3D)
+
+
+func test_print_is_as_big_as_the_board() -> void:
+	var size := Vector2(44, 30)
+	var plane := (_printed_board(size).get_node("Print") as MeshInstance3D).mesh as PlaneMesh
+	assert_eq(plane.size, size)
+
+
+func test_print_is_the_texture() -> void:
+	var board := _printed_board()
+	var material := (board.get_node("Print") as MeshInstance3D).material_override as StandardMaterial3D
+	assert_eq(material.albedo_texture, BoardBuilder.board_print("Test Realm", BOARD_FIXTURES))
+
+
+func test_print_lies_just_above_the_top_of_the_board() -> void:
+	var board := _printed_board()
+	var print := board.get_node("Print") as Node3D
+	var height := board.position.y + print.position.y
+	assert_between(height, 0.0001, 0.1)
+
+
+func test_print_is_centred_on_the_board() -> void:
+	var print := _printed_board().get_node("Print") as Node3D
+	assert_eq([print.position.x, print.position.z], [0.0, 0.0])
+
+
+# board_print
+
+func test_board_print_loads_the_realms_image() -> void:
+	assert_is(BoardBuilder.board_print("Test Realm", BOARD_FIXTURES), Texture2D)
+
+
+func test_board_print_finds_the_image_by_slug() -> void:
+	assert_not_null(BoardBuilder.board_print("test-REALM", BOARD_FIXTURES))
+
+
+func test_board_print_of_an_empty_name_is_null() -> void:
+	assert_null(BoardBuilder.board_print("", BOARD_FIXTURES))
+
+
+func test_board_print_without_an_image_is_null() -> void:
+	assert_null(BoardBuilder.board_print("Nowhere", BOARD_FIXTURES))
+
+
+func test_board_print_of_an_unimported_image_is_null() -> void:
+	assert_null(BoardBuilder.board_print("Unimported Realm", BOARD_FIXTURES))
+
+
+func test_board_print_without_a_folder_is_null() -> void:
+	assert_null(BoardBuilder.board_print("Test Realm", BOARD_FIXTURES + "/missing"))
 
 
 func test_board_covers_from_the_north_west_corner() -> void:

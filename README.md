@@ -22,8 +22,17 @@ Technical and game documentation files are located in the `docs/` folder.
 
 ## Models
 
-* The Tabletop Simulator [Ulthuan Workshop mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3202337953)
+* All Army models - Tabletop Simulator [Ulthuan Workshop mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3202337953)
     * [Poro](https://steamcommunity.com/id/spawnoftheking)
     * Seaborne
     * erasmos
-
+* Spearhead terrain and boards - Tabletop Simulator [Age of Sigmar Spearhead mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3352713596)
+    * magik930
+    * squirrels
+    * Jehabo
+    * Brother Monke
+    * and previous Spearhead mod authors:
+        * Deinok
+        * Saturnboi
+        * HauntedBagel
+        * JadePhoenix

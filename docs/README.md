@@ -14,7 +14,7 @@
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
 - [Faction data](technical/faction-data.md): faction JSON format, sources, how to add a faction, and the Regiments of Renown
-- [3D models](technical/models.md): where unit, manifestation and faction terrain models live, how they're named and found, their scale, axes and textures, building them from Tabletop Simulator's cache, and Git LFS
+- [3D models](technical/models.md): where unit, manifestation, faction terrain and Spearhead terrain models and the realm battlefields' boards live, how they're named and found, their scale, axes and textures, building them from Tabletop Simulator's cache, and Git LFS
 - [Core rules data](technical/core-rules-data.md): JSON for the universal abilities and manifestation lores every army uses, the General's Handbook battlepack (season rules, battle tactics, battleplans and their FAQs), and the Spearhead battlepacks (Fire and Jade, Sand and Bone and City of Ash: realm battlefields with their objectives and roads, twist and battle tactic decks, deployment maps, terrain, relics, the Hidden in the Ashes campaign, Call for Reinforcements)
 
 ### Design

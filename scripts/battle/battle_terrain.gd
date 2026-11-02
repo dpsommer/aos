@@ -35,6 +35,9 @@ var rotation: float
 var base: BaseSize
 ## A faction terrain feature's warscroll, or null.
 var warscroll: Warscroll
+## Which of its models to draw when it has several (the Spearhead mod's two Ruined Domiciles), so
+## the players' copies of a feature can look different.
+var variant: int
 
 
 ## A battleplan's terrain feature, placed where its map shows it.
@@ -78,6 +81,6 @@ func reach() -> float:
 
 func copy() -> BattleTerrain:
 	var terrain := BattleTerrain.new()
-	for property in ["kind", "name", "size", "position", "placed", "footprint", "rotation", "base", "warscroll"]:
+	for property in ["kind", "name", "size", "position", "placed", "footprint", "rotation", "base", "warscroll", "variant"]:
 		terrain.set(property, get(property))
 	return terrain

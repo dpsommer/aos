@@ -11,7 +11,13 @@ const ROAD := preload("res://assets/3d/placeholders/p_road.tres")
 const LINE := preload("res://assets/3d/placeholders/p_line.tres")
 const TERRITORY_SHADER := preload("res://assets/shaders/p_territory.gdshader")
 
+## The realm battlefields' boards, from the Spearhead mod (see docs/technical/models.md), each
+## named for its realm as a slug, e.g. [code]ashen_bastion.jpg[/code].
+const BOARDS := "res://assets/3d/boards"
+
 const BOARD_THICKNESS := 1.0
+## The printed board lies just above the slab's top, under the overlays.
+const PRINT_HEIGHT := 0.004
 ## Heights above the board that keep overlays from flickering into each other.
 const ROAD_HEIGHT := 0.01
 const TERRITORY_HEIGHT := 0.02
@@ -27,8 +33,9 @@ const OPPONENT_COLOURS := [Color(0.91, 0.408, 0.361, 0.2), Color(0.722, 0.267, 0
 const OBJECTIVE_EDGE := Color("#F0C46A")
 
 
-## The board: a slab [param size] wide and deep, its top at height 0.
-static func board(size: Vector2) -> MeshInstance3D:
+## The board: a slab [param size] wide and deep, its top at height 0, with [param printed] (a realm
+## battlefield's printed board, north at the top of the image) stretched over its top if given.
+static func board(size: Vector2, printed: Texture2D = null) -> MeshInstance3D:
 	var mesh := BoxMesh.new()
 	mesh.size = Vector3(size.x, BOARD_THICKNESS, size.y)
 	var result := MeshInstance3D.new()
@@ -36,7 +43,31 @@ static func board(size: Vector2) -> MeshInstance3D:
 	result.mesh = mesh
 	result.material_override = BOARD
 	result.position = Vector3(size.x / 2, -BOARD_THICKNESS / 2, size.y / 2)
+	if printed:
+		var top := MeshInstance3D.new()
+		top.name = "Print"
+		var plane := PlaneMesh.new()
+		plane.size = size
+		top.mesh = plane
+		var material := StandardMaterial3D.new()
+		material.albedo_texture = printed
+		material.roughness = 0.95
+		top.material_override = material
+		top.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		top.position.y = BOARD_THICKNESS / 2 + PRINT_HEIGHT
+		result.add_child(top)
 	return result
+
+
+## The printed board of the realm battlefield [param realm_name], e.g. "Aqshy", from the folder
+## [param root], or null if there's none (or it's a Git LFS pointer that didn't import).
+static func board_print(realm_name: String, root := BOARDS) -> Texture2D:
+	if realm_name.is_empty():
+		return null
+	var path := root.path_join(ModelLibrary.slug(realm_name) + ".jpg")
+	if not ResourceLoader.exists(path) or not ModelLibrary.is_imported(path):
+		return null
+	return load(path) as Texture2D
 
 
 ## A side's territory: striped polygons with their edges outlined.

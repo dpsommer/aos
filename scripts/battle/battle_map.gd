@@ -86,8 +86,10 @@ func _step(stage: Stage, text: String, run: Callable) -> Dictionary:
 
 
 func _build_battlefield() -> void:
-	add_child(BoardBuilder.board(battle.battlefield_size))
-	if not battle.roads.is_empty():
+	var printed := BoardBuilder.board_print(battle.realm.name) if battle.realm else null
+	add_child(BoardBuilder.board(battle.battlefield_size, printed))
+	# A printed board has its roads on it.
+	if not battle.roads.is_empty() and printed == null:
 		add_child(BoardBuilder.roads(battle.roads))
 	terrain_root = _group("Terrain")
 	objectives_root = _group("Objectives")

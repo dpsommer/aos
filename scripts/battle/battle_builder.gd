@@ -145,19 +145,25 @@ static func spearhead_army(spearhead: Spearhead, faction: Faction, setup: Battle
 
 
 ## The Spearhead terrain features one player sets up: terrain group [param group] if the
-## battlepack has groups, else every feature that isn't mystical (set up before the battle).
+## battlepack has groups, else every feature that isn't mystical (set up before the battle). Their
+## [member BattleTerrain.variant] is [param group], so each player's copies look different.
 static func spearhead_terrain(pack: SpearheadBattlepack, group: int) -> Array[BattleTerrain]:
-	var result: Array[BattleTerrain] = []
+	var features: Array[SpearheadTerrain] = []
 	if not pack.terrain_groups.is_empty():
 		var chosen: Dictionary = pack.terrain_groups[group % pack.terrain_groups.size()]
 		for feature_name: String in chosen.get("features", []):
 			var feature := pack.get_terrain_feature(feature_name)
 			if feature:
-				result.append(BattleTerrain.from_spearhead(feature))
-		return result
-	for feature in pack.terrain_features:
-		if not feature.mystical:
-			result.append(BattleTerrain.from_spearhead(feature))
+				features.append(feature)
+	else:
+		for feature in pack.terrain_features:
+			if not feature.mystical:
+				features.append(feature)
+	var result: Array[BattleTerrain] = []
+	for feature in features:
+		var terrain := BattleTerrain.from_spearhead(feature)
+		terrain.variant = group
+		result.append(terrain)
 	return result
 
 

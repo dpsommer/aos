@@ -143,6 +143,8 @@
 		{
 			"name": "Crypt of Blood",
 			"size": "large",
+			"length": 4.5,
+			"width": 2,
 			"mystical": true,
 			"abilities": [
 				"Unholy",
@@ -153,6 +155,8 @@
 		{
 			"name": "Icon of Nulahmia",
 			"size": "small",
+			"length": 2,
+			"width": 2,
 			"mystical": true,
 			"abilities": [
 				"Inspiring",

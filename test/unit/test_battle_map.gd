@@ -203,6 +203,19 @@ func test_build_adds_the_battles_roads() -> void:
 	assert_not_null(_built_map(battle).get_node_or_null("Roads"))
 
 
+func test_build_draws_roads_on_a_board_without_a_print() -> void:
+	var battle := _battle()
+	battle.realm = BattleKit.realm("Realm Without A Board")
+	battle.roads = [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
+	assert_not_null(_built_map(battle).get_node_or_null("Roads"))
+
+
+func test_build_leaves_the_board_bare_without_a_print() -> void:
+	var battle := _battle()
+	battle.realm = BattleKit.realm("Realm Without A Board")
+	assert_null(_built_map(battle).get_node("Board").get_node_or_null("Print"))
+
+
 # Menu
 
 func test_build_adds_a_hidden_pause_menu() -> void:

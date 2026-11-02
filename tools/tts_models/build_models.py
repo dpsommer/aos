@@ -2,7 +2,11 @@
 
 Usage (from the project root, in the "aos" pyenv virtualenv with requirements.txt installed):
 
-    python -I tools/tts_models/build_models.py <Mods folder> [<workshop id or save path>] [--only <warscroll>] [--out assets/3d/models] [--dry]
+    python -I tools/tts_models/build_models.py <Mods folder> [<workshop id or save path>] [--only <name>] [--out assets/3d/models] [--dry]
+    python -I tools/tts_models/build_models.py <Mods folder> 3352713596
+
+The second builds the Spearhead mod's terrain features and relics (in assets/3d/models/shared/spearhead/)
+and its realm battlefields' boards (in assets/3d/boards/) instead of units; see SPEARHEAD_MODS.
 
 The Mods folder is Tabletop Simulator's cache: ~/Library/Tabletop Simulator/Mods on macOS, and
 Documents/My Games/Tabletop Simulator/Mods on Windows, unless Tabletop Simulator's settings move it.
@@ -39,6 +43,15 @@ sys.path.insert(0, HERE)  # for bundles.py, as -I leaves the script's folder out
 
 # The Ulthuan mod (https://steamcommunity.com/sharedfiles/filedetails/?id=3202337953).
 MOD = "3202337953"
+# Mods built for their Spearhead terrain features, relics and boards rather than their units: the Age
+# of Sigmar Spearhead mod (https://steamcommunity.com/sharedfiles/filedetails/?id=3352713596).
+SPEARHEAD_MODS = {"3352713596"}
+# Where Spearhead terrain features and relics go, under the models folder. A unit build leaves it be.
+SPEARHEAD_FOLDER = "shared/spearhead"
+# Where the realm battlefields' boards go, from the project root.
+BOARDS = os.path.join("assets", "3d", "boards")
+# Boards are scaled down to at most this many pixels on a side.
+BOARD_SIZE = 4096
 
 # A piece no taller than this (inches) is a base, topper or collider.
 FLAT = 0.35
@@ -159,6 +172,42 @@ class Warscrolls:
         return f"{self.alliance[faction]}/{faction}"
 
 
+class SpearheadPieces:
+    """The Spearhead battlepacks' terrain features, relics and realm battlefields, from
+    data/core/spearhead/: what the Spearhead mod's models and boards are named for."""
+
+    def __init__(self):
+        self.models = {}  # norm(name) -> name, for terrain features and relics
+        self.realms = {}  # norm(name) -> name
+        for path in sorted(glob.glob(os.path.join(DATA, "core", "spearhead", "*.json"))):
+            pack = json.load(open(path))
+            for item in pack.get("terrain_features", []) + pack.get("relics", []):
+                self.models[norm(item["name"])] = item["name"]
+            for realm in pack.get("realms", []):
+                self.realms[norm(realm["name"])] = realm["name"]
+
+    @staticmethod
+    def _forms(nickname):
+        # "Crypt of Blood (Ossia)" is the Crypt of Blood.
+        return [nickname, re.sub(r"\([^)]*\)", "", nickname)]
+
+    def model(self, nickname, overrides):
+        """The terrain feature or relic a model's nickname is, 'skip', or None."""
+        if nickname in overrides:
+            return overrides[nickname]
+        for form in self._forms(nickname):
+            if norm(form) in self.models:
+                return self.models[norm(form)]
+        return None
+
+    def realm(self, nickname):
+        return next((self.realms[norm(f)] for f in self._forms(nickname) if norm(f) in self.realms), None)
+
+    @staticmethod
+    def folder(target):
+        return SPEARHEAD_FOLDER
+
+
 def match(nickname, tile, warscrolls, overrides, cache):
     """The warscroll a model's nickname is, 'skip', or None."""
     if nickname in overrides:
@@ -198,10 +247,11 @@ def color_of(obj):
     return (c.get("r", 1.0), c.get("g", 1.0), c.get("b", 1.0))
 
 
-def definitions(save):
+def definitions(save, top_level=False):
     """Every model in the save: {name, tile, tree}. A tree node is {mesh, bundle, diffuse, color, t,
     children}: its .obj mesh or asset bundle (cache keys), its texture's cache key and colour, its
-    transform and its child objects."""
+    transform and its child objects. With [top_level], only the models on the table (and their
+    other states), not those in bags or spawned by scripts."""
     result = []
 
     def tree(obj):
@@ -214,7 +264,7 @@ def definitions(save):
     def collect(obj, tile):
         if obj.get("Name") == "Custom_Model" and (obj.get("CustomMesh") or {}).get("MeshURL"):
             result.append({"name": (obj.get("Nickname") or "").strip(), "tile": tile, "tree": tree(obj)})
-        for child in obj.get("ContainedObjects") or []:
+        for child in [] if top_level else obj.get("ContainedObjects") or []:
             collect(child, tile)
         for state in (obj.get("States") or {}).values():
             collect(state, tile)
@@ -223,8 +273,24 @@ def definitions(save):
         tile = (obj.get("Nickname") or obj.get("Name") or "").strip()
         collect(obj, tile)
         # Faction tiles spawn their models from JSON kept in their Lua script.
-        for block in re.findall(r"\[\[(\{.*?\})\]\]", obj.get("LuaScript") or "", re.S):
+        for block in [] if top_level else re.findall(r"\[\[(\{.*?\})\]\]", obj.get("LuaScript") or "", re.S):
             collect(json.loads(block), tile)
+    return result
+
+
+def boards(save):
+    """Every image tile on the table, and its other states: [(nickname, image cache key)]. A
+    Spearhead mod's realm battlefields are the states of one tile."""
+    result = []
+
+    def collect(obj):
+        if obj.get("Name") == "Custom_Tile" and (obj.get("CustomImage") or {}).get("ImageURL"):
+            result.append(((obj.get("Nickname") or "").strip(), mesh_key(obj["CustomImage"]["ImageURL"])))
+        for state in (obj.get("States") or {}).values():
+            collect(state)
+
+    for obj in save["ObjectStates"]:
+        collect(obj)
     return result
 
 
@@ -348,10 +414,10 @@ def material_key(material):
     return (material["texture"], tuple(round(c, 3) for c in material["color"]))
 
 
-def assemble(tree, cache):
+def assemble(tree, cache, flat=FLAT):
     """The model's pieces as one mesh in its root's frame, or None if it's only flat pieces. The mod
     turns each piece to face the root's front, -Z, and lines it up with the root's base (a ship
-    along its oval), so pieces keep their turn. Faces keep their pieces' materials: fm[i] indexes
+    along its oval), so pieces keep their turn. Pieces no taller than [param flat] are left out. Faces keep their pieces' materials: fm[i] indexes
     face i's in materials."""
     parts = []
     for node, world, rotation in pieces(tree):
@@ -360,7 +426,7 @@ def assemble(tree, cache):
             if not points:
                 continue
             height = max(p[1] for p in points) - min(p[1] for p in points)
-            if height <= FLAT:
+            if height <= flat:
                 continue
             normals = [transform_point([r + [0] for r in rotation] + [[0, 0, 0, 1]], n) for n in piece["vn"]]
             parts.append({**piece, "v": points, "vn": normals})
@@ -472,11 +538,15 @@ class Files:
                     with open(imported, "w") as file:
                         file.write(text.replace("\nvalid=false\n", "\n"))
 
-    def remove_stale(self):
-        """Deletes the files under out that the build didn't make (and Godot's .import files of
-        those), and empty folders. Returns how many."""
+    def remove_stale(self, within="", leave=()):
+        """Deletes the files under out/within that the build didn't make (and Godot's .import files
+        of those), and empty folders, except in the folders [leave] (from out), which other builds
+        make. Returns how many."""
         removed = 0
-        for folder, dirs, names in os.walk(self.out, topdown=False):
+        top = os.path.join(self.out, within) if within else self.out
+        for folder, dirs, names in os.walk(top, topdown=False):
+            if any(os.path.relpath(folder, self.out) == f or os.path.relpath(folder, self.out).startswith(f + os.sep) for f in leave):
+                continue
             for name in names:
                 path = os.path.relpath(os.path.join(folder, name), self.out)
                 source = path[: -len(".import")] if path.endswith(".import") else path
@@ -484,18 +554,18 @@ class Files:
                     removed += 1
                     if not self.dry:
                         os.remove(os.path.join(folder, name))
-            if not self.dry and folder != self.out and not os.listdir(folder):
+            if not self.dry and folder not in (self.out, top) and not os.listdir(folder):
                 os.rmdir(folder)
         return removed
 
 
-def texture_owners(units, warscrolls):
+def texture_owners(units, folder_of):
     """Where each texture goes, by its source (("image", key) or ("bundle", key) for all of an asset
     bundle's): (folder, name) of the first model in the save that uses it, in the order models
     are built, as its name; a model's later textures are <name>_t2 and so on."""
     owners, count = {}, Counter()
     for target, models in sorted(units.items()):
-        folder, name = warscrolls.folder(target), target_slug(target)
+        folder, name = folder_of(target), target_slug(target)
         for i, (nickname, tree) in enumerate(sorted(models, key=lambda m: m[0])):
             stem = name if len(models) == 1 else f"{name}_{i + 1}"
             for node, _, _ in pieces(tree):
@@ -585,29 +655,29 @@ def signature(tree):
     return (sig(tree, True), tuple(round(t.get(k, 1.0) or 1.0, 2) for k in ("scaleX", "scaleY", "scaleZ")))
 
 
+def write_board(image, path, files):
+    """[image], a realm battlefield's board, as a .jpg at [path] (from the project root), scaled
+    down to [BOARD_SIZE], with an .import file for a 3D texture (mipmaps, VRAM compression)."""
+    image = image.convert("RGB")
+    image.thumbnail((BOARD_SIZE, BOARD_SIZE), Image.Resampling.LANCZOS)
+    data = io.BytesIO()
+    image.save(data, "JPEG", quality=88, optimize=True)
+    files.write(path, data.getvalue())
+    files.write(path + ".import", '[remap]\n\nimporter="texture"\ntype="CompressedTexture2D"\n\n'
+                "[params]\n\ncompress/mode=2\nmipmaps/generate=true\ndetect_3d/compress_to=0\n", keep=True)
+
+
 # ---------------------------------------------------------------------------------------------
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("tts", help="Tabletop Simulator's Mods folder, e.g. ~/Library/Tabletop Simulator/Mods")
-    parser.add_argument("save", nargs="?", default=MOD, help="the mod's workshop id, or a path to its save")
-    parser.add_argument("--out", default=os.path.join(ROOT, "assets", "3d", "models"))
-    parser.add_argument("--overrides", default=os.path.join(HERE, "overrides.json"))
-    parser.add_argument("--only", action="append", default=[], metavar="NAME",
-                        help="build only this warscroll's models (repeatable); nothing is deleted")
-    parser.add_argument("--dry", action="store_true", help="report what would be written, changed and removed")
-    args = parser.parse_args()
-    args.tts = os.path.expanduser(args.tts)
-    save_path = os.path.join(args.tts, "Workshop", args.save + ".json") if args.save.isdigit() else args.save
-
+def collect_units(save, overrides):
+    """The Ulthuan-style mod's units: (target -> [(nickname, tree)], unmatched counts, folder_of)."""
     warscrolls = Warscrolls()
-    overrides = json.load(open(args.overrides))
     names = {}
-    units = defaultdict(list)  # target -> [(nickname, tree)]
+    units = defaultdict(list)
     unmatched = Counter()
     seen = set()
-    for model in definitions(json.load(open(save_path))):
+    for model in definitions(save):
         target = match(model["name"], model["tile"], warscrolls, overrides, names)
         if not target:
             unmatched[(model["tile"], model["name"])] += 1
@@ -619,20 +689,83 @@ def main():
             continue
         seen.add(key)
         units[target].append((model["name"], model["tree"]))
+    return units, unmatched, warscrolls.folder
+
+
+def collect_spearhead(save, overrides, spearhead):
+    """The Spearhead mod's terrain features and relics on the table, as [collect_units]. Other
+    models on the table (scoresheets, territory overlays) aren't reported."""
+    units = defaultdict(list)
+    seen = set()
+    for model in definitions(save, top_level=True):
+        target = spearhead.model(model["name"], overrides)
+        if not target or target == "skip":
+            continue
+        key = (target, signature(model["tree"]))
+        if key in seen:
+            continue
+        seen.add(key)
+        units[target].append((model["name"], model["tree"]))
+    return units, Counter(), spearhead.folder
+
+
+def build_boards(save, tts, spearhead, files, report):
+    """Writes the boards of the save's realm battlefields to [BOARDS]."""
+    cache = Cache(tts)
+    report["boards"], report["missing_boards"] = {}, []
+    for nickname, key in boards(save):
+        realm = spearhead.realm(nickname)
+        if not realm or realm in report["boards"]:
+            continue
+        if key not in cache.images:
+            report["missing_boards"].append(realm)
+            print(f"{realm}: board not cached", file=sys.stderr)
+            continue
+        Image.MAX_IMAGE_PIXELS = None  # boards are big scans
+        path = os.path.join(BOARDS, slug(realm) + ".jpg")
+        write_board(Image.open(cache.images[key]), path, files)
+        report["boards"][realm] = path
+        print(f"{realm}: board", file=sys.stderr)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("tts", help="Tabletop Simulator's Mods folder, e.g. ~/Library/Tabletop Simulator/Mods")
+    parser.add_argument("save", nargs="?", default=MOD, help="the mod's workshop id, or a path to its save")
+    parser.add_argument("--out", default=os.path.join(ROOT, "assets", "3d", "models"))
+    parser.add_argument("--overrides", default=os.path.join(HERE, "overrides.json"))
+    parser.add_argument("--spearhead", action="store_true",
+                        help="build Spearhead terrain, relics and boards (the default for SPEARHEAD_MODS)")
+    parser.add_argument("--only", action="append", default=[], metavar="NAME",
+                        help="build only this warscroll's (or terrain feature's) models (repeatable); nothing is deleted")
+    parser.add_argument("--dry", action="store_true", help="report what would be written, changed and removed")
+    args = parser.parse_args()
+    args.tts = os.path.expanduser(args.tts)
+    save_path = os.path.join(args.tts, "Workshop", args.save + ".json") if args.save.isdigit() else args.save
+    is_spearhead = args.spearhead or args.save in SPEARHEAD_MODS
+
+    save = json.load(open(save_path))
+    overrides = json.load(open(args.overrides))
+    spearhead = SpearheadPieces() if is_spearhead else None
+    if spearhead:
+        units, unmatched, folder_of = collect_spearhead(save, overrides, spearhead)
+    else:
+        units, unmatched, folder_of = collect_units(save, overrides)
 
     report = {"unmatched": sorted(f"{t} :: {n}" for t, n in unmatched), "units": {}}
     cache = Cache(args.tts)
     files = Files(args.out, args.dry)
-    textures = Textures(cache, args.out, texture_owners(units, warscrolls), files)
+    textures = Textures(cache, args.out, texture_owners(units, folder_of), files)
     only = {norm(name) for name in args.only}
     for target, models in sorted(units.items()):
         name = target_slug(target)
         if only and norm(target) not in only and norm(name) not in only:
             continue
-        folder = warscrolls.folder(target)
+        folder = folder_of(target)
         meshes = []
         for nickname, tree in sorted(models, key=lambda m: m[0]):
-            mesh = assemble(tree, cache)
+            # Terrain has no base to leave out, and some of it (a manhole) is flat.
+            mesh = assemble(tree, cache, flat=0.0 if spearhead else FLAT)
             if mesh:
                 meshes.append((nickname, mesh))
         report["units"][target] = []
@@ -642,9 +775,15 @@ def main():
             write_model(mesh, folder, stem, files, textures)
         print(f"{target}: {len(meshes)}", file=sys.stderr)
     report["textures"] = len(textures.written)
-    report["changed"] = sorted(files.changed)
+    board_files = Files(ROOT, args.dry)
+    if spearhead and not only:
+        build_boards(save, args.tts, spearhead, board_files, report)
+    report["changed"] = sorted(files.changed + board_files.changed)
     if not only:
-        report["removed"] = files.remove_stale()
+        if spearhead:
+            report["removed"] = files.remove_stale(within=SPEARHEAD_FOLDER) + board_files.remove_stale(within=BOARDS)
+        else:
+            report["removed"] = files.remove_stale(leave=(SPEARHEAD_FOLDER,))
     json.dump(report, sys.stdout, indent=1)
 
 

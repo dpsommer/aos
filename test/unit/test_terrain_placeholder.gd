@@ -194,3 +194,122 @@ func test_a_null_library_builds_the_block() -> void:
 func test_a_textured_model_keeps_its_own_materials() -> void:
 	var root := _built(_shrine("Painted Guard"), ModelKit.textured_library())
 	assert_null(_block(root).material_override)
+
+
+# Spearhead terrain
+
+## A Spearhead feature named [param feature_name] with the footprint [param footprint].
+func _spearhead(feature_name: String, footprint: Vector2, variant := 0) -> BattleTerrain:
+	var feature := BattleTerrain.from_spearhead(BattleKit.terrain_feature(feature_name, "large"))
+	feature.footprint = footprint
+	feature.variant = variant
+	return feature
+
+
+## The built model's bounds in the feature's frame, after its instance's transform.
+func _bounds(root: Node3D) -> AABB:
+	var instance := _block(root)
+	return instance.transform * instance.mesh.get_aabb()
+
+
+func test_spearhead_feature_has_its_model_by_name() -> void:
+	assert_not_null(TerrainPlaceholder.model_of(_spearhead("Long Ruin", Vector2(6, 3)), ModelKit.library()))
+
+
+func test_spearhead_feature_without_a_model_has_none() -> void:
+	assert_null(TerrainPlaceholder.model_of(_spearhead("Nobody", Vector2(6, 3)), ModelKit.library()))
+
+
+func test_spearhead_feature_uses_the_variant_for_its_model() -> void:
+	var first := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 0), ModelKit.library())
+	var second := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 1), ModelKit.library())
+	assert_ne(first, second)
+
+
+func test_spearhead_variant_wraps_around_the_models() -> void:
+	var first := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 0), ModelKit.library())
+	var wrapped := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 2), ModelKit.library())
+	assert_same(first, wrapped)
+
+
+func test_spearhead_negative_variant_wraps_around_the_models() -> void:
+	var last := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 1), ModelKit.library())
+	var wrapped := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), -1), ModelKit.library())
+	assert_same(last, wrapped)
+
+
+func test_spearhead_model_is_drawn_for_the_variant() -> void:
+	var feature := _spearhead("Twin Ruin", Vector2(20, 20), 1)
+	assert_eq(_block(_built(feature)).mesh, TerrainPlaceholder.model_of(feature, ModelKit.library()))
+
+
+func test_spearhead_model_has_the_models_height_ratio_when_scaled() -> void:
+	var tall := _bounds(_built(_spearhead("Twin Ruin", Vector2(2, 2), 1)))
+	var short := _bounds(_built(_spearhead("Twin Ruin", Vector2(2, 2), 0)))
+	assert_almost_eq(tall.size.y / short.size.y, 3.0, 0.001)
+
+
+func test_spearhead_model_fits_inside_the_footprint() -> void:
+	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(5, 2))))
+	assert_lte(bounds.size.x, 5.0 + 0.001)
+	assert_lte(bounds.size.z, 2.0 + 0.001)
+
+
+func test_spearhead_model_long_along_z_is_laid_along_x() -> void:
+	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(20, 20))))
+	assert_gt(bounds.size.x, bounds.size.z)
+
+
+func test_spearhead_model_fills_a_footprint_its_length_limits() -> void:
+	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(6, 20))))
+	assert_almost_eq(bounds.size.x, 6.0, 0.001)
+
+
+func test_spearhead_model_fills_a_footprint_its_width_limits() -> void:
+	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(20, 1))))
+	assert_almost_eq(bounds.size.z, 1.0, 0.001)
+
+
+func test_spearhead_model_keeps_its_proportions() -> void:
+	var small := _bounds(_built(_spearhead("Long Ruin", Vector2(3, 3))))
+	var large := _bounds(_built(_spearhead("Long Ruin", Vector2(12, 12))))
+	assert_almost_eq(large.size.x / small.size.x, large.size.y / small.size.y, 0.001)
+	assert_almost_eq(large.size.x / small.size.x, large.size.z / small.size.z, 0.001)
+
+
+func test_spearhead_model_can_be_scaled_up() -> void:
+	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(60, 60))))
+	assert_gt(bounds.size.x, 6.0)
+
+
+func test_spearhead_model_stands_on_the_ground() -> void:
+	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(5, 2))))
+	assert_almost_eq(bounds.position.y, 0.0, 0.001)
+
+
+func test_spearhead_model_is_centred_on_the_feature() -> void:
+	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(5, 2))))
+	assert_almost_eq(bounds.get_center().x, 0.0, 0.001)
+	assert_almost_eq(bounds.get_center().z, 0.0, 0.001)
+
+
+func test_spearhead_label_floats_above_the_scaled_model() -> void:
+	var root := _built(_spearhead("Long Ruin", Vector2(5, 2)))
+	var label := _labels(root)[0] as Label3D
+	assert_almost_eq(label.position.y, _bounds(root).end.y + 1.0, 0.001)
+
+
+func test_spearhead_feature_without_a_model_is_a_block_its_footprint_across() -> void:
+	var block := _block(_built(_spearhead("Nobody", Vector2(6, 3))))
+	assert_eq([block.scale.x, block.scale.z], [6.0, 3.0])
+
+
+func test_spearhead_model_with_an_empty_footprint_is_not_scaled() -> void:
+	var instance := _block(_built(_spearhead("Long Ruin", Vector2.ZERO)))
+	assert_almost_eq(instance.scale.x, 1.0, 0.001)
+
+
+func test_faction_model_is_not_fitted_to_its_footprint() -> void:
+	var feature := _shrine()
+	feature.footprint = Vector2(50, 50)
+	assert_eq(_block(_built(feature)).scale, Vector3.ONE)

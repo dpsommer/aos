@@ -58,13 +58,13 @@ Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`B
 - **Board** (`BoardBuilder`): a slab the battlefield's size (`p_battlefield`).
   - Once the roll-off has decided them, each side's territory is striped and outlined, blue for the player and red for the opponent (`p_territory.gdshader`, its stripes moving each side's way). Until then there are none, and the camera looks at the whole battlefield.
   - The part of the player's territory too close to the enemy to deploy units in is shaded dark (`BoardBuilder.no_deploy`).
-  - Realm battlefields have their roads.
+  - A realm battlefield has its printed board from the Spearhead Tabletop Simulator mod stretched over the top (`BoardBuilder.board_print`, from `assets/3d/boards/`), north at the top of the image, with its roads and objective markings printed on it. Without the board image (a checkout without Git LFS), its roads are drawn instead.
 - **Objectives:**
   - A 40mm gold marker, its zone and its name.
   - The zone is Matched Play's 3" control range, or a Spearhead objective's own radius or rectangle.
-- **Terrain** (`TerrainPlaceholder`): a block the feature's footprint in size, turned to face across its side's territory. Faction terrain with a 3D model (see [3D models](../technical/models.md)) is drawn as the model instead, with its textures (or in `p_model` if it has none).
+- **Terrain** (`TerrainPlaceholder`): a block the feature's footprint in size, turned to face across its side's territory. Faction terrain with a 3D model (see [3D models](../technical/models.md)) is drawn as the model instead, with its textures (or in `p_model` if it has none). So is a Spearhead feature with a model: its long side along the footprint's length, centred on it and scaled evenly to fit inside it, so it covers the ground the rules use. A feature with more than one model (Ruined Domicile, Ravaged Shrine, Ruined Manor) shows one per player (`BattleTerrain.variant`).
   - Area terrain or obstacles are low slabs, obscuring terrain is tall and Places of Power are purple discs.
-  - Spearhead features are 1" or 2.5" tall.
+  - Spearhead features without a model are 1" or 2.5" tall.
   - Faction terrain is a disc on a round base, or a slab for "Use model".
   - Faction and Spearhead features are named.
 - **Models** (`ModelPlaceholder`): each model has its base, so units take up the room they would on the tabletop. Round bases are discs and oval ones are discs stretched along the way the model faces. A "Use model" model is a slab its best-guess footprint in size.
