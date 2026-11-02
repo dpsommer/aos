@@ -570,3 +570,52 @@ func test_terrain_over_a_deployed_model_is_a_problem() -> void:
 	battle.player.terrain.append(feature)
 	var problems := DeploymentRules.terrain_problems(battle, battle.player, feature, Vector2(30, 9), 0.0)
 	assert_true(Array(problems).any(func(p: String) -> bool: return p.contains("models")))
+
+
+# staged units
+
+func test_models_overlapping_a_staged_unit_are_flagged() -> void:
+	var battle := _matched()
+	var staged := _unit(3)
+	staged.positions = _row(3, Vector2(10, 5))
+	var staged_units: Array[BattleUnit] = [staged]
+	var bad := DeploymentRules.invalid_models(battle, battle.player, _unit(3), _row(3, Vector2(10, 5)), 0.0, [], staged_units)
+	assert_eq(bad.overlapping.size(), 3)
+
+
+func test_models_clear_of_a_staged_unit_are_not_flagged() -> void:
+	var battle := _matched()
+	var staged := _unit(3)
+	staged.positions = _row(3, Vector2(10, 5))
+	var staged_units: Array[BattleUnit] = [staged]
+	var bad := DeploymentRules.invalid_models(battle, battle.player, _unit(3), _row(3, Vector2(30, 5)), 0.0, [], staged_units)
+	assert_eq(bad.overlapping.size(), 0)
+
+
+func test_a_staged_unit_does_not_overlap_itself() -> void:
+	var battle := _matched()
+	var unit := _unit(3)
+	unit.positions = _row(3, Vector2(10, 5))
+	var staged_units: Array[BattleUnit] = [unit]
+	assert_eq(DeploymentRules.unit_problems(battle, battle.player, unit, unit.positions, 0.0, [], staged_units).size(), 0)
+
+
+func test_a_deployed_staged_unit_is_only_counted_once() -> void:
+	var battle := _matched()
+	var other := _unit(3)
+	other.positions = _row(3, Vector2(10, 5))
+	other.deployed = true
+	battle.player.units.append(other)
+	var staged_units: Array[BattleUnit] = [other]
+	var bad := DeploymentRules.invalid_models(battle, battle.player, _unit(3), _row(3, Vector2(10, 5)), 0.0, [], staged_units)
+	assert_eq(bad.overlapping.size(), 3)
+
+
+func test_unit_problems_mention_overlap_with_a_staged_unit() -> void:
+	var battle := _matched()
+	var staged := _unit(3)
+	staged.positions = _row(3, Vector2(10, 5))
+	var staged_units: Array[BattleUnit] = [staged]
+	var without := DeploymentRules.unit_problems(battle, battle.player, _unit(3), _row(3, Vector2(10, 5)), 0.0)
+	var with := DeploymentRules.unit_problems(battle, battle.player, _unit(3), _row(3, Vector2(10, 5)), 0.0, [], staged_units)
+	assert_gt(with.size(), without.size())

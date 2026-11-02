@@ -841,3 +841,374 @@ func test_the_ais_units_are_on_the_board_once_deployed() -> void:
 func test_the_hud_goes_into_the_overlay() -> void:
 	_start()
 	assert_same(_c.hud.get_parent(), _map.overlay)
+
+
+# Spearhead: the whole army set out at once
+
+## Starts a Spearhead game on the map, the player the attacker unless [param player_first] is false.
+func _start_spearhead(player_first := true) -> void:
+	_battle = BattleKit.spearhead_deployment_battle()
+	_battle.player_is_attacker = player_first
+	_start()
+
+
+## Starts a Spearhead game where the player has a reserve ability (for [param owner_name]'s unit, or
+## any unit if empty), returning it.
+func _start_spearhead_with_reserve(owner_name := "") -> DeploymentAbility:
+	_battle = BattleKit.spearhead_deployment_battle()
+	var entry := _reserve_entry(owner_name)
+	_start()
+	return entry
+
+
+func _army_units() -> Array[BattleUnit]:
+	return _me().units
+
+
+func _stage_mode() -> String:
+	return _c._state.get("mode", "")
+
+
+func test_the_army_is_staged_automatically_on_the_players_turn() -> void:
+	_start_spearhead()
+	assert_eq(_c.staged_units().size(), _army_units().size())
+	assert_eq(_stage_mode(), "army")
+
+
+func test_staged_units_are_valid_and_not_deployed() -> void:
+	_start_spearhead()
+	for unit in _army_units():
+		assert_false(unit.deployed, unit.name)
+		assert_eq(unit.positions.size(), unit.model_count(), unit.name)
+		assert_eq(DeploymentRules.unit_problems(_battle, _me(), unit, unit.positions, unit.facing, [], _c.staged_units()).size(), 0, unit.name)
+
+
+func test_staged_units_are_drawn_on_the_board() -> void:
+	_start_spearhead()
+	for unit in _army_units():
+		assert_true(_c.unit_nodes.has(unit), unit.name)
+
+
+func test_staging_places_no_unit_over_another() -> void:
+	_start_spearhead()
+	var units := _army_units()
+	for unit in units:
+		var overlapping: PackedInt32Array = DeploymentRules.invalid_models(_battle, _me(), unit, unit.positions, unit.facing, [], units).overlapping
+		assert_eq(overlapping.size(), 0, unit.name)
+
+
+func test_nothing_is_picked_up_after_staging() -> void:
+	_start_spearhead()
+	assert_false(_c.is_holding())
+	assert_null(_c.moving_unit())
+
+
+func test_the_army_is_staged_after_the_ai_deploys_first() -> void:
+	_start_spearhead(false)
+	await wait_process_frames(2)
+	for unit in _battle.opponent.units:
+		assert_true(unit.deployed, unit.name)
+	assert_eq(_c.staged_units().size(), _army_units().size())
+	assert_eq(_stage_mode(), "army")
+
+
+func test_staged_units_keep_clear_of_the_ais_army() -> void:
+	_start_spearhead(false)
+	await wait_process_frames(2)
+	for unit in _army_units():
+		assert_eq(DeploymentRules.unit_problems(_battle, _me(), unit, unit.positions, unit.facing, [], _c.staged_units()).size(), 0, unit.name)
+
+
+func test_the_army_is_not_staged_while_the_ai_is_to_act() -> void:
+	_start_spearhead(false)
+	assert_eq(_c.staged_units().size(), 0)
+
+
+func test_picking_a_staged_unit_selects_it_without_holding_it() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "A2")
+	_c.pick_unit(unit)
+	assert_same(_c.moving_unit(), unit)
+	assert_false(_c.is_holding())
+
+
+func test_picking_a_unit_keeps_the_others_where_they_are() -> void:
+	_start_spearhead()
+	var before := _unit(_me(), "A1").positions.duplicate()
+	_c.pick_unit(_unit(_me(), "A2"))
+	assert_eq(_unit(_me(), "A1").positions, before)
+
+
+func test_staged_unit_at_finds_the_unit_under_a_point() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	assert_same(_c.staged_unit_at(unit.positions[0]), unit)
+
+
+func test_staged_unit_at_finds_nothing_in_empty_space() -> void:
+	_start_spearhead()
+	assert_null(_c.staged_unit_at(Vector2(-50, -50)))
+
+
+func test_clicking_a_staged_unit_selects_and_picks_it_up() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	_c.click(unit.positions[0])
+	assert_same(_c.moving_unit(), unit)
+	assert_true(_c.is_holding())
+
+
+func test_alt_clicking_a_staged_unit_picks_up_one_model() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	var others := [unit.positions[1], unit.positions[2]]
+	_c.click(unit.positions[0], true)
+	_c.hover(unit.positions[0] + Vector2(0, 1))
+	assert_eq([unit.positions[1], unit.positions[2]], others)
+
+
+func test_clicking_empty_space_picks_nothing_up() -> void:
+	_start_spearhead()
+	_c.click(Vector2(-50, -50))
+	assert_false(_c.is_holding())
+
+
+func test_a_picked_unit_follows_the_mouse() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	_c.click(unit.positions[0])
+	_c.move_to(Vector2(50, 8))
+	assert_almost_eq(_middle(unit).x, 50.0, 0.01)
+
+
+func test_moving_one_unit_leaves_the_others() -> void:
+	_start_spearhead()
+	var before := _unit(_me(), "A1").positions.duplicate()
+	_c.pick_unit(_unit(_me(), "B1"))
+	_c.move_to(Vector2(50, 8))
+	assert_eq(_unit(_me(), "A1").positions, before)
+
+
+func test_changing_formation_rearranges_only_the_picked_unit() -> void:
+	_start_spearhead()
+	var other := _unit(_me(), "A1").positions.duplicate()
+	var unit := _unit(_me(), "B1")
+	var before := unit.positions.duplicate()
+	_c.pick_unit(unit)
+	_c.set_formation(Formations.Kind.values()[Formations.Kind.size() - 1])
+	assert_ne(unit.positions, before)
+	assert_eq(_unit(_me(), "A1").positions, other)
+
+
+func test_turning_the_picked_unit_changes_its_facing() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	var before := unit.facing
+	_c.pick_unit(unit)
+	_c.turn(DeploymentController.TURN_STEP)
+	assert_ne(unit.facing, before)
+
+
+func test_moving_a_unit_out_of_its_zone_raises_a_problem_naming_it() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "A2")
+	_c.pick_unit(unit)
+	_c.move_to(Vector2(30, 40))
+	assert_true(_c._state.problems.size() > 0)
+	assert_string_contains(_c._state.problems[0], "A2")
+
+
+func test_two_staged_units_overlapping_are_flagged() -> void:
+	_start_spearhead()
+	var a1 := _unit(_me(), "A1")
+	_c.pick_unit(_unit(_me(), "A2"))
+	_c.move_to(_middle(a1))
+	var named: Array = Array(_c._state.problems).filter(func(p: String) -> bool: return p.begins_with("A1:") or p.begins_with("A2:"))
+	assert_gt(named.size(), 0)
+
+
+func test_putting_a_unit_back_clears_its_problems() -> void:
+	_start_spearhead()
+	_c.pick_unit(_unit(_me(), "A2"))
+	_c.move_to(Vector2(30, 40))
+	_c.undo()
+	assert_eq(_c._state.problems.size(), 0)
+
+
+func test_undo_restores_the_picked_unit_to_where_it_was_when_picked() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "A2")
+	var before := unit.positions.duplicate()
+	var facing := unit.facing
+	_c.pick_unit(unit)
+	_c.move_to(Vector2(50, 8))
+	_c.turn(DeploymentController.TURN_STEP)
+	_c.undo()
+	assert_eq(unit.positions, before)
+	assert_almost_eq(unit.facing, facing, 0.0001)
+
+
+func test_undo_puts_the_unit_down() -> void:
+	_start_spearhead()
+	_c.click(_unit(_me(), "A2").positions[0])
+	_c.undo()
+	assert_false(_c.is_holding())
+
+
+func test_undo_restores_to_where_it_was_picked_not_where_it_was_staged() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "A2")
+	_c.pick_unit(unit)
+	_c.move_to(Vector2(50, 8))
+	var moved := unit.positions.duplicate()
+	_c.pick_unit(unit)
+	_c.move_to(Vector2(40, 8))
+	_c.undo()
+	assert_eq(unit.positions, moved)
+
+
+func test_undo_with_nothing_picked_changes_nothing() -> void:
+	_start_spearhead()
+	var before := _unit(_me(), "A1").positions.duplicate()
+	_c.undo()
+	assert_eq(_unit(_me(), "A1").positions, before)
+
+
+func test_confirm_deploys_the_whole_army() -> void:
+	_start_spearhead()
+	assert_eq(_c.confirm(), "")
+	for unit in _army_units():
+		assert_true(unit.deployed, unit.name)
+
+
+func test_confirm_with_a_unit_out_of_the_zone_is_refused_and_deploys_nothing() -> void:
+	_start_spearhead()
+	_c.pick_unit(_unit(_me(), "A2"))
+	_c.move_to(Vector2(30, 40))
+	var error := _c.confirm()
+	assert_string_contains(error, "A2")
+	for unit in _army_units():
+		assert_false(unit.deployed, unit.name)
+
+
+func test_a_refused_confirm_keeps_the_army_staged() -> void:
+	_start_spearhead()
+	_c.pick_unit(_unit(_me(), "A2"))
+	_c.move_to(Vector2(30, 40))
+	_c.confirm()
+	assert_eq(_stage_mode(), "army")
+	assert_eq(_c.staged_units().size(), _army_units().size())
+
+
+func test_confirming_after_fixing_the_problem_deploys() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "A2")
+	_c.pick_unit(unit)
+	_c.move_to(Vector2(30, 40))
+	_c.confirm()
+	_c.undo()
+	assert_eq(_c.confirm(), "")
+	assert_true(unit.deployed)
+
+
+func test_confirming_refuses_overlapping_units() -> void:
+	_start_spearhead()
+	_c.pick_unit(_unit(_me(), "A2"))
+	_c.move_to(_middle(_unit(_me(), "A1")))
+	assert_ne(_c.confirm(), "")
+	assert_false(_unit(_me(), "A1").deployed)
+
+
+func test_confirm_removes_the_rings_from_every_unit() -> void:
+	_start_spearhead()
+	_c.confirm()
+	for unit in _army_units():
+		assert_null(_c.unit_nodes[unit].get_node_or_null("Rings"), unit.name)
+
+
+func test_confirming_hands_over_to_the_ai_which_then_deploys_its_army() -> void:
+	_start_spearhead()
+	_c.confirm()
+	await wait_process_frames(2)
+	for unit in _battle.opponent.units:
+		assert_true(unit.deployed, unit.name)
+
+
+func test_the_whole_army_is_not_staged_again_after_confirming() -> void:
+	_start_spearhead()
+	_c.confirm()
+	await wait_process_frames(2)
+	assert_eq(_c.staged_units().size(), 0)
+
+
+func test_cancel_after_picking_returns_to_the_army() -> void:
+	_start_spearhead()
+	_c.pick_unit(_unit(_me(), "A1"))
+	_c.cancel()
+	assert_eq(_stage_mode(), "army")
+	assert_null(_c.moving_unit())
+
+
+func test_cancelling_an_ability_returns_to_army_mode_with_units_in_place() -> void:
+	var entry := _start_spearhead_with_reserve()
+	var before := _unit(_me(), "A1").positions.duplicate()
+	_c.pick_ability(entry)
+	_c.cancel()
+	assert_eq(_stage_mode(), "army")
+	assert_eq(_unit(_me(), "A1").positions, before)
+
+
+func test_a_reserve_while_staged_keeps_the_other_units_where_they_are() -> void:
+	var entry := _start_spearhead_with_reserve("B1")
+	var a1 := _unit(_me(), "A1").positions.duplicate()
+	var a2 := _unit(_me(), "A2").positions.duplicate()
+	_c.pick_ability(entry)
+	assert_eq(_c.confirm(), "")
+	assert_eq(_unit(_me(), "A1").positions, a1)
+	assert_eq(_unit(_me(), "A2").positions, a2)
+
+
+func test_a_reserve_while_staged_takes_the_reserved_unit_off_the_board() -> void:
+	var entry := _start_spearhead_with_reserve("B1")
+	var reserved := _unit(_me(), "B1")
+	_c.pick_ability(entry)
+	_c.confirm()
+	assert_false(_c.unit_nodes.has(reserved))
+	assert_false(reserved in _c.staged_units())
+
+
+func test_after_a_reserve_the_rest_are_still_staged() -> void:
+	var entry := _start_spearhead_with_reserve("B1")
+	_c.pick_ability(entry)
+	_c.confirm()
+	assert_eq(_c.staged_units().size(), _army_units().size() - 1)
+	assert_eq(_stage_mode(), "army")
+
+
+func test_matched_play_is_never_in_army_mode() -> void:
+	_start()
+	assert_ne(_stage_mode(), "army")
+	assert_eq(_c.staged_units().size(), 0)
+
+
+func test_matched_play_picking_a_unit_holds_it_alone() -> void:
+	_start()
+	_c.pick_unit(_unit(_me(), "A1"))
+	assert_eq(_stage_mode(), "unit")
+	assert_eq(_c.staged_units().size(), 0)
+	assert_false(_unit(_me(), "A2").positions.size() > 0)
+
+
+func test_a_cramped_army_is_staged_with_every_unit_valid() -> void:
+	_battle = BattleKit.cramped_spearhead_battle(BattleKit.cramped_units())
+	_start()
+	for unit in _army_units():
+		assert_eq(unit.positions.size(), unit.model_count(), unit.name)
+		var problems := DeploymentRules.unit_problems(_battle, _me(), unit, unit.positions, unit.facing, [], _c.staged_units())
+		assert_eq(problems.size(), 0, "%s: %s" % [unit.name, problems])
+
+
+func test_a_cramped_army_that_fits_shows_no_problems() -> void:
+	_battle = BattleKit.cramped_spearhead_battle(BattleKit.cramped_units())
+	_start()
+	assert_false(_c.hud.alert.visible)

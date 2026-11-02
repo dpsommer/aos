@@ -6,7 +6,9 @@ extends Node
 ## picked up: it follows the mouse until a click puts it down. Clicking one of its models (or the
 ## feature) picks it up again; Alt-clicking picks up just that model. The formation keys rearrange
 ## it and the turn key turns it. Rings and outlines are blue where it can go while it's held, green
-## once it's down, and red where it can't go. See docs/design/battle.md.
+## once it's down, and red where it can't go. In Spearhead the player's whole army is set out at
+## once, each unit in a valid spot if there is one; the player picks units up and moves them about,
+## then confirms them all together. See docs/design/battle.md.
 
 ## Both armies are deployed.
 signal finished
@@ -45,6 +47,9 @@ var _hold_offset := Vector2.ZERO
 var _ai_pending := false
 ## The step the board's no-deploy shading is for.
 var _shaded_step := -1
+## The player's units set out on the board but not yet deployed, in Spearhead (see
+## [method stage_army]).
+var _staged: Array[BattleUnit] = []
 
 
 func _init(on: BattleMap) -> void:
@@ -94,11 +99,11 @@ func is_player_turn() -> bool:
 func pick_unit(unit: BattleUnit) -> void:
 	if not is_player_turn() or not unit in deployment.pickable_units(player()):
 		return
+	if deployment.deploys_whole_army(player()):
+		_pick_staged(unit)
+		return
 	_drop_placing()
-	var positions := PlaceholderDeployment.spot_for_unit(battle, player(), unit)
-	if positions.is_empty():
-		var middle := PlaceholderDeployment.centroid(DeploymentRules.unit_zone(battle, player()))
-		positions = Formations.arrange(Formations.Kind.WIDE_BLOCK, unit.bases, middle, player().facing)
+	var positions := _starting_spot(unit)
 	unit.positions = positions
 	unit.facing = player().facing
 	_start_positions = positions.duplicate()
@@ -108,6 +113,74 @@ func pick_unit(unit: BattleUnit) -> void:
 	_hold(WHOLE, Vector2.ZERO)
 	_validate()
 	_refresh_hud()
+
+
+## Where [param unit] starts when it's picked or set out: a valid spot clear of [param staged] if
+## there is one, else a block in the middle of the zone.
+func _starting_spot(unit: BattleUnit, staged: Array[BattleUnit] = []) -> PackedVector2Array:
+	var positions := PlaceholderDeployment.spot_for_unit(battle, player(), unit, [], staged)
+	if positions.is_empty():
+		var middle := PlaceholderDeployment.centroid(DeploymentRules.unit_zone(battle, player()))
+		positions = Formations.arrange(Formations.Kind.WIDE_BLOCK, unit.bases, middle, player().facing)
+	return positions
+
+
+## Sets out every unit of the player's not yet deployed on the board at once, in Spearhead, each in
+## a valid spot if there is one, without deploying them: the player moves them about, then
+## confirms them all together. Units already set out keep where they are.
+func stage_army() -> void:
+	if not deployment.deploys_whole_army(player()):
+		return
+	_sync_staged()
+	var new_units: Array[BattleUnit] = []
+	for unit in deployment.pickable_units(player()):
+		if not unit in _staged:
+			new_units.append(unit)
+	var spots := PlaceholderDeployment.spots_for_army(battle, player(), new_units, _staged)
+	for unit in new_units:
+		unit.facing = player().facing
+		var positions: PackedVector2Array = spots.get(unit, PackedVector2Array())
+		unit.positions = positions if not positions.is_empty() else _starting_spot(unit, _staged)
+		_staged.append(unit)
+		_add_unit_node(unit, true)
+	_state = {"mode": "army", "unit": null, "formation": -1}
+	_held = NOTHING
+	_validate()
+	_refresh_hud()
+
+
+## The units set out but not yet deployed, in Spearhead.
+func staged_units() -> Array[BattleUnit]:
+	return _staged.duplicate()
+
+
+## Picks [param unit] of the army set out, for the formation and turn keys and Undo.
+func _pick_staged(unit: BattleUnit) -> void:
+	if _state.get("mode") != "army":
+		_drop_placing()
+		stage_army()
+	if not unit in _staged:
+		return
+	_select(unit)
+	_validate()
+	_refresh_hud()
+
+
+func _select(unit: BattleUnit) -> void:
+	_state.unit = unit
+	_state.formation = -1
+	_start_positions = unit.positions.duplicate()
+	_start_facing = unit.facing
+
+
+## Lets go of units set out that have since been deployed: set up, or put in reserve (taking them
+## off the board).
+func _sync_staged() -> void:
+	for unit in _staged.duplicate():
+		if unit.deployed:
+			_staged.erase(unit)
+			if not unit.is_on_battlefield():
+				_free_node(unit_nodes, unit)
 
 
 ## Starts 'Deploy Regiment' for [param regiment], then places its first unit.
@@ -181,10 +254,8 @@ func toggle_target(unit: BattleUnit) -> void:
 
 ## Arranges the unit being placed in formation [param kind] around its middle.
 func set_formation(kind: int) -> void:
-	if _state.get("mode") != "unit":
-		return
-	var unit: BattleUnit = _state.unit
-	if unit.model_count() < 2:
+	var unit := moving_unit()
+	if unit == null or unit.model_count() < 2:
 		return
 	unit.positions = Formations.arrange(kind as Formations.Kind, unit.bases, _middle(unit.positions), unit.facing)
 	_state.formation = kind
@@ -195,8 +266,10 @@ func set_formation(kind: int) -> void:
 ## Turns what's being placed by [param amount] radians, clockwise.
 func turn(amount: float) -> void:
 	match _state.get("mode"):
-		"unit":
-			var unit: BattleUnit = _state.unit
+		"unit", "army":
+			var unit := moving_unit()
+			if unit == null:
+				return
 			var middle := _middle(unit.positions)
 			for i in unit.positions.size():
 				unit.positions[i] = middle + (unit.positions[i] - middle).rotated(amount)
@@ -211,8 +284,10 @@ func turn(amount: float) -> void:
 ## Moves what's being placed so its middle is at [param point].
 func move_to(point: Vector2) -> void:
 	match _state.get("mode"):
-		"unit":
-			var unit: BattleUnit = _state.unit
+		"unit", "army":
+			var unit := moving_unit()
+			if unit == null:
+				return
 			_shift(unit, point - _middle(unit.positions))
 			_moved()
 		"terrain":
@@ -224,9 +299,9 @@ func move_to(point: Vector2) -> void:
 ## Moves model [param index] of the unit being placed by [param by], or the whole unit if
 ## [param index] is -1.
 func move_model(index: int, by: Vector2) -> void:
-	if _state.get("mode") != "unit":
+	var unit := moving_unit()
+	if unit == null:
 		return
-	var unit: BattleUnit = _state.unit
 	if index < 0:
 		_shift(unit, by)
 	elif index < unit.positions.size():
@@ -239,8 +314,10 @@ func move_model(index: int, by: Vector2) -> void:
 func undo() -> void:
 	_held = NOTHING
 	match _state.get("mode"):
-		"unit":
-			var unit: BattleUnit = _state.unit
+		"unit", "army":
+			var unit := moving_unit()
+			if unit == null:
+				return
 			unit.positions = _start_positions.duplicate()
 			unit.facing = _start_facing
 			_state.formation = -1
@@ -259,6 +336,9 @@ func cancel() -> void:
 		deployment.cancel_regiment(player())
 		return
 	_drop_placing()
+	if deployment.deploys_whole_army(player()):
+		stage_army()
+		return
 	_refresh_hud()
 
 
@@ -284,6 +364,12 @@ func confirm() -> String:
 			error = deployment.place_unit(player(), unit, unit.positions, unit.facing)
 			if error.is_empty():
 				ModelPlaceholder.show_rings(unit_nodes[unit], unit, PackedInt32Array(), false)
+		"army":
+			var units: Array[BattleUnit] = _staged.duplicate()
+			error = deployment.place_army(player(), units)
+			if error.is_empty():
+				for unit: BattleUnit in units:
+					ModelPlaceholder.show_rings(unit_nodes[unit], unit, PackedInt32Array(), false)
 		"terrain":
 			var feature: BattleTerrain = placing.feature
 			var node: Node3D = terrain_nodes[feature]
@@ -327,18 +413,31 @@ func click(point: Vector2, single := false) -> void:
 		return
 	match _state.get("mode"):
 		"unit":
-			var unit: BattleUnit = _state.unit
-			var index := model_at(point)
-			if index < 0:
+			_pick_up(_state.unit, point, single)
+		"army":
+			var unit := staged_unit_at(point)
+			if unit == null:
 				return
-			if single:
-				_hold(index, unit.positions[index] - point)
-			else:
-				_hold(WHOLE, _middle(unit.positions) - point)
+			if unit != _state.unit:
+				_select(unit)
+			_pick_up(unit, point, single)
+			_refresh_hud()
 		"terrain":
 			var feature: BattleTerrain = _state.feature
 			if Geometry2D.is_point_in_polygon(point, DeploymentRules.terrain_outline(feature, feature.position, feature.rotation)):
 				_hold(WHOLE, feature.position - point)
+
+
+## Picks up [param unit] (or just its model under [param point], if [param single]) by the model
+## under [param point], if there is one.
+func _pick_up(unit: BattleUnit, point: Vector2, single: bool) -> void:
+	var index := _model_index(unit, point)
+	if index < 0:
+		return
+	if single:
+		_hold(index, unit.positions[index] - point)
+	else:
+		_hold(WHOLE, _middle(unit.positions) - point)
 
 
 ## The mouse is over [param point] on the board: what's held follows it.
@@ -347,9 +446,8 @@ func hover(point: Vector2) -> void:
 		return
 	if _held == WHOLE:
 		move_to(point + _hold_offset)
-	elif _state.get("mode") == "unit":
-		var unit: BattleUnit = _state.unit
-		move_model(_held, point + _hold_offset - unit.positions[_held])
+	elif moving_unit():
+		move_model(_held, point + _hold_offset - moving_unit().positions[_held])
 
 
 ## Puts down what's held where it is.
@@ -405,11 +503,32 @@ func _pointer(event: InputEvent) -> bool:
 	return true
 
 
+## The unit being moved: the one being placed, or the one picked in the army set out; null if none.
+func moving_unit() -> BattleUnit:
+	if _state.get("mode") in ["unit", "army"]:
+		return _state.get("unit")
+	return null
+
+
 ## The model of the unit being placed under [param point], or -1.
 func model_at(point: Vector2) -> int:
-	if _state.get("mode") != "unit":
-		return -1
-	var unit: BattleUnit = _state.unit
+	var unit := moving_unit()
+	return _model_index(unit, point) if unit else -1
+
+
+## The unit set out under [param point], the picked one first, or null.
+func staged_unit_at(point: Vector2) -> BattleUnit:
+	var picked := moving_unit()
+	if picked and _model_index(picked, point) >= 0:
+		return picked
+	for unit in _staged:
+		if _model_index(unit, point) >= 0:
+			return unit
+	return null
+
+
+## The model of [param unit] under [param point], the nearest if several, or -1.
+func _model_index(unit: BattleUnit, point: Vector2) -> int:
 	var best := -1
 	var best_distance := INF
 	for i in unit.positions.size():
@@ -437,9 +556,10 @@ func _middle(positions: PackedVector2Array) -> Vector2:
 ## Redraws what's being placed where it now is, and checks it.
 func _moved() -> void:
 	match _state.get("mode"):
-		"unit":
-			var unit: BattleUnit = _state.unit
-			ModelPlaceholder.update_unit(unit_nodes[unit], unit)
+		"unit", "army":
+			var unit := moving_unit()
+			if unit:
+				ModelPlaceholder.update_unit(unit_nodes[unit], unit)
 		"terrain":
 			var feature: BattleTerrain = _state.feature
 			var node: Node3D = terrain_nodes[feature]
@@ -455,13 +575,10 @@ func _validate() -> void:
 		"unit":
 			var unit: BattleUnit = _state.unit
 			var bad := DeploymentRules.invalid_models(battle, player(), unit, unit.positions, unit.facing)
-			var invalid := PackedInt32Array()
-			for key in ["outside", "overlapping", "incoherent"]:
-				for i: int in bad[key]:
-					if not i in invalid:
-						invalid.append(i)
-			ModelPlaceholder.show_rings(unit_nodes[unit], unit, invalid, true, is_holding())
+			ModelPlaceholder.show_rings(unit_nodes[unit], unit, _all_invalid(bad), true, is_holding())
 			problems = DeploymentRules.unit_problems(battle, player(), unit, unit.positions, unit.facing)
+		"army":
+			problems = _validate_army()
 		"terrain":
 			var feature: BattleTerrain = _state.feature
 			problems = deployment.terrain_problems(player(), feature, feature.position, feature.rotation)
@@ -471,6 +588,30 @@ func _validate() -> void:
 				problems.append("Pick at least one unit.")
 	_state["problems"] = problems
 	hud.set_problems(problems)
+
+
+## Checks every unit set out against the rules and each other, ringing each model, and returns
+## their problems, each starting with its unit's name.
+func _validate_army() -> PackedStringArray:
+	var problems := PackedStringArray()
+	var zone := DeploymentRules.unit_zone(battle, player())
+	for unit in _staged:
+		var bad := DeploymentRules.invalid_models(battle, player(), unit, unit.positions, unit.facing, zone, _staged)
+		var held := is_holding() and unit == moving_unit()
+		ModelPlaceholder.show_rings(unit_nodes[unit], unit, _all_invalid(bad), true, held)
+		for problem in DeploymentRules.unit_problems(battle, player(), unit, unit.positions, unit.facing, zone, _staged):
+			problems.append("%s: %s" % [unit.name, problem])
+	return problems
+
+
+## Every model in [param bad] ([method DeploymentRules.invalid_models]), once.
+func _all_invalid(bad: Dictionary) -> PackedInt32Array:
+	var invalid := PackedInt32Array()
+	for key in ["outside", "overlapping", "incoherent"]:
+		for i: int in bad[key]:
+			if not i in invalid:
+				invalid.append(i)
+	return invalid
 
 
 ## The outline of [param feature] being placed, around its footprint: coloured by
@@ -553,25 +694,29 @@ func _refresh_hud() -> void:
 	var current := mini(deployment.step, deployment.step_names().size())
 	map.hud.set_phase("DEPLOYMENT", deployment.step_names(), current)
 	map.hud.set_controls_bottom(DeploymentHud.TRAY_HEIGHT + 14 if hud.is_tray_visible() else 0.0)
-	map.hud.set_extra_controls(_placing_keys() if _state.get("mode") in ["unit", "terrain"] else PackedStringArray())
+	map.hud.set_extra_controls(_placing_keys() if _state.get("mode") in ["unit", "terrain", "army"] else PackedStringArray())
 
 
 func _placing_keys() -> PackedStringArray:
 	var keys := PackedStringArray(["Click  put down" if is_holding() else "Click  pick up",
 			"%s  turn" % BattleHud.key_for("rotate_selection"), "%s  undo" % BattleHud.key_for("undo_placement")])
-	if _state.get("mode") == "unit":
+	if _state.get("mode") in ["unit", "army"]:
 		keys.insert(0, "Click / Alt-click  pick up unit / model")
 		keys.append("%s–%s  formation" % [BattleHud.key_for("formation_1"), BattleHud.key_for("formation_5")])
 	return keys
 
 
 func _on_changed() -> void:
+	_sync_staged()
 	_sync_board()
 	if deployment.step != _shaded_step:
 		_shaded_step = deployment.step
 		map.show_no_deploy(deployment.step == Deployment.Step.TERRAIN)
 	if not is_player_turn():
 		_drop_placing()
+	elif _state.is_empty() and deployment.deploys_whole_army(player()):
+		# Spearhead: the whole army is set out at once, to move about and confirm together.
+		stage_army()
 	elif _state.is_empty() and deployment.step == Deployment.Step.TERRAIN:
 		var unplaced := player().unplaced_terrain()
 		if not unplaced.is_empty():

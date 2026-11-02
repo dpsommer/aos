@@ -28,7 +28,7 @@ The sides alternate. When one side has nothing left to do in a step, the other k
 **Spearhead** runs the same steps in a different order:
 
 1. **Terrain:** the defender sets up all its terrain features, then the attacker.
-2. **Armies:** the attacker sets up its whole army, then the defender.
+2. **Armies:** the attacker sets up its whole army, then the defender. The player's army is set out automatically and confirmed in one go (`Deployment.place_army()`): every unit is checked against the rules and against the others, and they're deployed together (see [Battle](../design/battle.md#deployment)). The AI still sets up unit by unit.
 3. **Abilities:** these alternate from the attacker, as in Matched Play.
 
 A side has something left to do when:
@@ -72,6 +72,8 @@ Narrow block | Four ranks.
 Loose | Ranks with gaps just under ½".
 Wedge | Rows of 1, 2, 3 and so on, with the point towards the enemy.
 
+A unit with bases of different sizes (Wildercorps Hunters: 40mm, 28.5mm and 25mm) is laid out in the shape for a base of their average size. Each model after the first is then set ¼" from one or two models already down (two in a unit of 7 or more), as near its place in the shape as it will go without overlapping. So the unit is coherent however its bases differ.
+
 ## Abilities
 
 `DeploymentAbilities` collects each army's deployment abilities, as `DeploymentAbility`s:
@@ -108,7 +110,16 @@ Not supported | Any other DEPLOY or DEPLOY TERRAIN ability, e.g. 'Rise from the 
 
 On its turn the AI repeats the earliest action of the player's it hasn't matched yet. Positions are reflected through the middle of the battlefield and facings turned round. Battleplan and Spearhead territories are point-symmetric, so a legal placement stays legal. It mirrors 'Deploy Regiment', reserves and recorded abilities too.
 
-When it can't mirror, it sets up automatically with `PlaceholderDeployment.spot_for_unit()` and `spot_for_terrain()`. That happens when there's nothing to copy yet (it's the attacker), or when the reflected spot isn't allowed. In the Abilities step with nothing to copy, it presses Done.
+When it can't mirror, it sets up automatically with `PlaceholderDeployment.spot_for_unit()` and `spot_for_terrain()`. In Spearhead it plans its whole army at once with `spots_for_army()` (see below) and sets the units up from that plan. That happens when there's nothing to copy yet (it's the attacker), or when the reflected spot isn't allowed. In the Abilities step with nothing to copy, it presses Done.
+
+**Setting out a whole army** (`PlaceholderDeployment.spots_for_army()`, used for the player's Spearhead army and the AI's): the biggest units go first, each in a coherent formation. It first spreads them out as `spot_for_unit()` does: from the back rank, middle out, 1" apart and clear of terrain. If any unit doesn't fit, it packs them all in instead:
+
+- Spots are tried from one end of the back rank to the other, on a ¼" grid.
+- Units are ½" apart, or closer if they must be.
+- Bases are checked by their real shape, not as circles, so ovals pack closer.
+- Models may stand in the battlefield's terrain, as the rules allow, but not in faction terrain.
+
+Every Spearhead's army fits this way on every realm battlefield, deployment map and side.
 
 `spot_for_terrain()` spreads features out. It picks the legal spot with the most room from other terrain (the first one into a corner, away from the territory's middle), trying 8 turns of the feature. If the army has another feature to set up, it only takes a spot that leaves a legal one for that too. Every placement it makes follows the rules, including the waived gap above.
 

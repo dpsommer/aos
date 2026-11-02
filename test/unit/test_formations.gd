@@ -155,6 +155,114 @@ func _depth(positions: PackedVector2Array) -> float:
 	return high - low
 
 
+## Bases for groups of `[count, diameter_mm]` (or `[count, length_mm, width_mm]` for an oval).
+func _mixed(groups: Array) -> Array[BaseSize]:
+	var result: Array[BaseSize] = []
+	for entry: Array in groups:
+		for i in entry[0]:
+			result.append(BaseSize.round_base(entry[1]) if entry.size() == 2 else BaseSize.oval(entry[1], entry[2]))
+	return result
+
+
+## Mixes of base sizes, by name: the Wildercorps Hunters', a small two-size unit and one with an oval.
+func _mixes() -> Dictionary:
+	return {
+		"wildercorps": _mixed([[2, 40.0], [3, 28.5], [6, 25.0]]),
+		"two sizes": _mixed([[2, 40.0], [3, 25.0]]),
+		"with an oval": _mixed([[1, 60.0, 35.0], [4, 32.0], [3, 25.0]]),
+		"large": _mixed([[3, 40.0], [10, 25.0], [8, 32.0]]),
+	}
+
+
+func _overlapping_pairs(positions: PackedVector2Array, bases: Array[BaseSize], facing: float) -> int:
+	var count := 0
+	for i in positions.size():
+		for j in range(i + 1, positions.size()):
+			if DeploymentRules.bases_overlap(bases[i], positions[i], facing, bases[j], positions[j], facing):
+				count += 1
+	return count
+
+
+# arrange: mixed bases
+
+func test_every_formation_is_coherent_for_mixed_bases() -> void:
+	var mixes := _mixes()
+	for mix in mixes:
+		for kind in ALL_KINDS:
+			var positions := Formations.arrange(kind, mixes[mix], Vector2(15, 11), 0.0)
+			assert_true(Coherency.is_coherent(positions, mixes[mix], 0.0), "%s %s" % [Formations.NAMES[kind], mix])
+
+
+func test_a_loose_formation_of_mixed_bases_with_an_oval_is_coherent() -> void:
+	var bases: Array[BaseSize] = _mixes()["with an oval"]
+	for facing in [0.0, 1.0, PI, -2.0]:
+		var positions := Formations.arrange(Formations.Kind.LOOSE, bases, Vector2(15, 11), facing)
+		assert_true(Coherency.is_coherent(positions, bases, facing), "facing %f" % facing)
+
+
+func test_mixed_bases_are_coherent_whichever_way_they_face() -> void:
+	var bases: Array[BaseSize] = _mixes()["wildercorps"]
+	for kind in ALL_KINDS:
+		for facing in [0.0, 1.0, PI, -2.0]:
+			var positions := Formations.arrange(kind, bases, Vector2(15, 11), facing)
+			assert_true(Coherency.is_coherent(positions, bases, facing), "%s facing %f" % [Formations.NAMES[kind], facing])
+
+
+func test_mixed_bases_do_not_overlap() -> void:
+	var mixes := _mixes()
+	for mix in mixes:
+		for kind in ALL_KINDS:
+			for facing in [0.0, 1.0]:
+				var positions := Formations.arrange(kind, mixes[mix], Vector2(15, 11), facing)
+				assert_eq(_overlapping_pairs(positions, mixes[mix], facing), 0, "%s %s facing %f" % [Formations.NAMES[kind], mix, facing])
+
+
+func test_mixed_bases_get_one_position_each() -> void:
+	var mixes := _mixes()
+	for mix in mixes:
+		for kind in ALL_KINDS:
+			assert_eq(Formations.arrange(kind, mixes[mix], Vector2(15, 11), 0.0).size(), mixes[mix].size(), "%s %s" % [Formations.NAMES[kind], mix])
+
+
+func test_mixed_bases_are_roughly_centred_on_the_anchor() -> void:
+	var bases: Array[BaseSize] = _mixes()["wildercorps"]
+	var anchor := Vector2(15, 11)
+	for kind in ALL_KINDS:
+		var positions := Formations.arrange(kind, bases, anchor, 0.0)
+		assert_lt(_centre(positions).distance_to(anchor), 2.0, Formations.NAMES[kind])
+
+
+func test_mixed_bases_are_packed_closer_than_the_largest_base_would_be() -> void:
+	var mixed: Array[BaseSize] = _mixes()["wildercorps"]
+	var all_largest := _bases(mixed.size(), 40.0)
+	var packed := Formations.arrange(Formations.Kind.LINE, mixed, Vector2.ZERO, 0.0)
+	var spread := Formations.arrange(Formations.Kind.LINE, all_largest, Vector2.ZERO, 0.0)
+	assert_lt(_extent(packed), _extent(spread))
+
+
+func test_mixed_bases_nearly_equal_to_one_another_stay_coherent() -> void:
+	var bases := _mixed([[5, 32.0], [5, 32.5]])
+	for kind in ALL_KINDS:
+		var positions := Formations.arrange(kind, bases, Vector2(15, 11), 0.0)
+		assert_true(Coherency.is_coherent(positions, bases, 0.0), Formations.NAMES[kind])
+
+
+func test_uniform_bases_keep_their_spacing() -> void:
+	var bases := _bases(5, 40.0)
+	var positions := Formations.arrange(Formations.Kind.LINE, bases, Vector2.ZERO, 0.0)
+	var diameter := bases[0].footprint().x
+	assert_almost_eq(_closest_pair(positions), diameter + Formations.CLOSE_GAP, 0.01)
+
+
+## How far apart the models are across the whole formation, in either direction.
+func _extent(positions: PackedVector2Array) -> float:
+	var farthest := 0.0
+	for a in positions:
+		for b in positions:
+			farthest = maxf(farthest, a.distance_to(b))
+	return farthest
+
+
 # kinds_for
 
 func test_no_formations_for_a_single_model() -> void:

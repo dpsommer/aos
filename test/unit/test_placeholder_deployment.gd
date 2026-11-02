@@ -213,7 +213,7 @@ func test_circle_may_touch_the_edge() -> void:
 
 
 func test_circle_within_any_of_several_polygons_counts() -> void:
-	var polygons: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 4, 4), BattleKit.rect_polygon(20, 0, 10, 10)]
+	var polygons: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 6, 4), BattleKit.rect_polygon(20, 0, 10, 10)]
 	assert_true(PlaceholderDeployment.is_wholly_within(polygons, Vector2(25, 5), 2.0))
 
 
@@ -500,3 +500,172 @@ func test_space_is_clear_away_from_everything() -> void:
 	var battle := _field()
 	_on_battlefield(battle.player.units[0], Vector2(10, 5))
 	assert_true(PlaceholderDeployment.space_of(battle).is_clear(Vector2(40, 5), 0.5))
+
+
+func test_spot_for_a_unit_keeps_clear_of_staged_units() -> void:
+	var battle := _field()
+	var first := battle.player.units[0]
+	var second := battle.player.units[1]
+	first.positions = PlaceholderDeployment.spot_for_unit(battle, battle.player, first)
+	var staged: Array[BattleUnit] = [first]
+	var spot := PlaceholderDeployment.spot_for_unit(battle, battle.player, second, [], staged)
+	assert_eq(DeploymentRules.unit_problems(battle, battle.player, second, spot, battle.player.facing, [], staged).size(), 0)
+
+
+func test_space_of_includes_the_models_of_staged_units() -> void:
+	var battle := _field()
+	var unit := battle.player.units[0]
+	unit.positions = PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	var staged: Array[BattleUnit] = [unit]
+	assert_true(PlaceholderDeployment.space_of(battle).is_clear(unit.positions[0], 0.1))
+	assert_false(PlaceholderDeployment.space_of(battle, staged).is_clear(unit.positions[0], 0.1))
+
+
+func test_space_of_ignores_staged_units_that_are_deployed() -> void:
+	var battle := _field()
+	var unit := battle.player.units[0]
+	unit.positions = PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	unit.deployed = true
+	var staged: Array[BattleUnit] = [unit]
+	assert_eq(PlaceholderDeployment.space_of(battle, staged).is_clear(unit.positions[0], 0.1),
+			PlaceholderDeployment.space_of(battle).is_clear(unit.positions[0], 0.1))
+
+
+func test_space_of_ignores_terrain_models_can_stand_in_when_asked() -> void:
+	var battle := _field()
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 4.0, Vector2(15, 11)))
+	assert_false(PlaceholderDeployment.space_of(battle).is_clear(Vector2(15, 11), 0.1))
+	assert_true(PlaceholderDeployment.space_of(battle, [], false).is_clear(Vector2(15, 11), 0.1))
+
+
+func test_space_of_keeps_faction_terrain_when_ignoring_the_rest() -> void:
+	var battle := _field()
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(15, 11)))
+	assert_false(PlaceholderDeployment.space_of(battle, [], false).is_clear(Vector2(15, 11), 0.1))
+
+
+# spot_for_unit: coherency
+
+func _coherent_spot(unit: BattleUnit) -> bool:
+	var battle := BattleKit.cramped_spearhead_battle([unit] as Array[BattleUnit])
+	battle.battlefield_size = Vector2(60, 44)
+	battle.player_territory = [BattleKit.rect_polygon(0, 0, 60, 20)] as Array[PackedVector2Array]
+	battle.opponent_territory = [BattleKit.rect_polygon(0, 24, 60, 20)] as Array[PackedVector2Array]
+	var positions := PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	return positions.size() == unit.model_count() and Coherency.is_coherent(positions, unit.bases, battle.player.facing)
+
+
+func test_a_spot_for_a_mixed_base_unit_is_coherent() -> void:
+	assert_true(_coherent_spot(BattleKit.mixed_unit("Hunters", [[2, 40.0], [3, 28.5], [6, 25.0]])))
+
+
+func test_a_spot_for_a_big_unit_of_one_base_size_is_coherent() -> void:
+	assert_true(_coherent_spot(BattleKit.unit("Big", 11, 32.0)))
+
+
+# spots_for_army
+
+func _spots(battle: Battle, units: Array[BattleUnit], staged: Array[BattleUnit] = []) -> Dictionary:
+	return PlaceholderDeployment.spots_for_army(battle, battle.player, units, staged)
+
+
+func _cramped() -> Battle:
+	return BattleKit.cramped_spearhead_battle(BattleKit.cramped_units())
+
+
+func test_the_army_spots_cover_every_unit() -> void:
+	var battle := _cramped()
+	var spots := _spots(battle, battle.player.units)
+	for unit in battle.player.units:
+		assert_eq(spots[unit].size(), unit.model_count(), unit.name)
+
+
+func test_the_army_spots_pass_the_deployment_rules() -> void:
+	var battle := _cramped()
+	var spots := _spots(battle, battle.player.units)
+	for unit in battle.player.units:
+		unit.positions = spots[unit]
+		unit.facing = battle.player.facing
+	for unit in battle.player.units:
+		var problems := DeploymentRules.unit_problems(battle, battle.player, unit, unit.positions, unit.facing, [], battle.player.units)
+		assert_eq(problems.size(), 0, "%s: %s" % [unit.name, problems])
+
+
+func test_the_army_spots_do_not_overlap_between_units() -> void:
+	var battle := _cramped()
+	var spots := _spots(battle, battle.player.units)
+	var models: Array = []
+	for unit in battle.player.units:
+		for i in unit.model_count():
+			models.append([unit.bases[i], spots[unit][i]])
+	var facing := battle.player.facing
+	var overlapping := 0
+	for i in models.size():
+		for j in range(i + 1, models.size()):
+			if DeploymentRules.bases_overlap(models[i][0], models[i][1], facing, models[j][0], models[j][1], facing):
+				overlapping += 1
+	assert_eq(overlapping, 0)
+
+
+func test_the_army_spots_leave_the_units_as_they_were() -> void:
+	var battle := _cramped()
+	var unit := battle.player.units[0]
+	var before := PackedVector2Array([Vector2(1, 1)])
+	unit.positions = before
+	unit.facing = 0.123
+	_spots(battle, battle.player.units)
+	assert_eq(unit.positions, before)
+	assert_eq(unit.facing, 0.123)
+
+
+func test_the_army_spots_keep_clear_of_staged_units() -> void:
+	var battle := BattleKit.cramped_spearhead_battle([BattleKit.unit("Staged", 5), BattleKit.unit("New", 5)] as Array[BattleUnit])
+	var staged_unit := battle.player.units[0]
+	var other := battle.player.units[1]
+	staged_unit.facing = battle.player.facing
+	staged_unit.positions = _spots(battle, [staged_unit] as Array[BattleUnit])[staged_unit]
+	var staged: Array[BattleUnit] = [staged_unit]
+	var spot: PackedVector2Array = _spots(battle, [other] as Array[BattleUnit], staged)[other]
+	other.facing = battle.player.facing
+	assert_eq(DeploymentRules.unit_problems(battle, battle.player, other, spot, other.facing, [], staged).size(), 0)
+
+
+func test_a_cramped_zone_fits_what_spreading_out_cannot() -> void:
+	var battle := _cramped()
+	var staged: Array[BattleUnit] = []
+	var without_room := 0
+	for unit in battle.player.units:
+		unit.facing = battle.player.facing
+		unit.positions = PlaceholderDeployment.spot_for_unit(battle, battle.player, unit, [], staged)
+		without_room += 1 if unit.positions.is_empty() else 0
+		staged.append(unit)
+	assert_gt(without_room, 0, "the scenario needs a zone too cramped to spread out in")
+	var spots := _spots(battle, battle.player.units)
+	for unit in battle.player.units:
+		assert_eq(spots[unit].size(), unit.model_count(), unit.name)
+
+
+func test_a_big_oval_fits_a_cramped_zone_packed_in() -> void:
+	var unit := BattleKit.oval_unit("Beast", 120.0, 92.0)
+	var battle := BattleKit.cramped_spearhead_battle([unit] as Array[BattleUnit])
+	var spot := PlaceholderDeployment.spot_for_unit(battle, battle.player, unit, [], [], true)
+	assert_eq(spot.size(), 1)
+
+
+## A 6" by 4" zone, so that a search of it that finds nothing is quick.
+func _small_zone() -> Array[PackedVector2Array]:
+	return [BattleKit.rect_polygon(0, 0, 6, 4)] as Array[PackedVector2Array]
+
+
+func test_models_packed_in_may_stand_in_terrain_that_isnt_faction_terrain() -> void:
+	var unit := BattleKit.unit("Unit", 3)
+	var battle := BattleKit.cramped_spearhead_battle([unit] as Array[BattleUnit])
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 20.0, Vector2(2, 2)))
+	assert_false(PlaceholderDeployment.spot_for_unit(battle, battle.player, unit, _small_zone(), [], true).is_empty())
+
+
+func test_models_packed_in_keep_off_faction_terrain() -> void:
+	var unit := BattleKit.unit("Unit", 1)
+	var battle := BattleKit.cramped_spearhead_battle([unit] as Array[BattleUnit])
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 20.0, Vector2(2, 2)))
+	assert_true(PlaceholderDeployment.spot_for_unit(battle, battle.player, unit, _small_zone(), [], true).is_empty())

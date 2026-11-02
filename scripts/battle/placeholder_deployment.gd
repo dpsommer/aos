@@ -52,16 +52,28 @@ static func deploy(battle: Battle) -> void:
 
 
 ## Where [param unit] of [param army] could be set up: its models' positions in a block wholly
-## within [param zone] (the army's deployable zone if empty), clear of terrain and other models, or
-## an empty array if there's no room. Doesn't set the unit up.
+## within [param zone] (the army's deployable zone if empty), clear of terrain, other models and the
+## models of [param staged] (units set out but not yet deployed), or an empty array if there's no
+## room. Doesn't set the unit up. [param packed] packs it in tight instead, for a cramped zone: from
+## one end of the back rank along, as near other units as it will go (see [method spots_for_army]).
 static func spot_for_unit(battle: Battle, army: BattleArmy, unit: BattleUnit,
-		zone: Array[PackedVector2Array] = []) -> PackedVector2Array:
+		zone: Array[PackedVector2Array] = [], staged: Array[BattleUnit] = [], packed := false) -> PackedVector2Array:
 	if zone.is_empty():
 		zone = DeploymentRules.unit_zone(battle, army)
-	var space := space_of(battle)
+	# Packed in, models may stand in the battlefield's terrain, as the rules allow.
+	var space := space_of(battle, staged, not packed)
 	var back := -Vector2.from_angle(army.facing)
-	var spots := _spots(zone, back)
 	var shapes := _shapes(unit, back, army.facing)
+	if packed:
+		var spots := _packed_spots(zone, back)
+		for gap: float in [MODEL_GAP, 0.05]:
+			for spot in spots:
+				for offsets in shapes:
+					var positions := _try(unit, spot, offsets, zone, space, gap, army.facing)
+					if not positions.is_empty():
+						return positions
+		return PackedVector2Array()
+	var spots := _spots(zone, back)
 	# The rules' gap between units first, then tighter ones if the zone is too cramped for it.
 	for gap: float in [UNIT_GAP, MODEL_GAP, 0.05]:
 		for offsets in shapes:
@@ -72,22 +84,83 @@ static func spot_for_unit(battle: Battle, army: BattleArmy, unit: BattleUnit,
 	return PackedVector2Array()
 
 
+## Spots for every one of [param units] of [param army] at once, by unit, each clear of the others
+## and of [param staged]: the biggest first, spread out as [method spot_for_unit] does if they all
+## fit, else packed in tight from one end. A unit with no room at all gets an empty array.
+static func spots_for_army(battle: Battle, army: BattleArmy, units: Array[BattleUnit],
+		staged: Array[BattleUnit] = []) -> Dictionary:
+	var zone := DeploymentRules.unit_zone(battle, army)
+	var order := units.duplicate()
+	order.sort_custom(func(a: BattleUnit, b: BattleUnit) -> bool: return _area(a) > _area(b))
+	var result := {}
+	for packed in [false, true]:
+		result = _army_spots(battle, army, order, zone, staged, packed)
+		var all_fit := true
+		for unit: BattleUnit in result:
+			all_fit = all_fit and not result[unit].is_empty()
+		if all_fit:
+			break
+	return result
+
+
+static func _army_spots(battle: Battle, army: BattleArmy, units: Array, zone: Array[PackedVector2Array],
+		staged: Array[BattleUnit], packed: bool) -> Dictionary:
+	var result := {}
+	var taken := staged.duplicate()
+	var saved := {}
+	for unit: BattleUnit in units:
+		saved[unit] = [unit.positions, unit.facing]
+	for unit: BattleUnit in units:
+		unit.facing = army.facing
+		var positions := spot_for_unit(battle, army, unit, zone, taken, packed)
+		result[unit] = positions
+		# Counted as set out while the rest are placed, then put back as they were.
+		unit.positions = positions
+		taken.append(unit)
+	for unit: BattleUnit in units:
+		unit.positions = saved[unit][0]
+		unit.facing = saved[unit][1]
+	return result
+
+
+## The ground [param unit]'s bases cover.
+static func _area(unit: BattleUnit) -> float:
+	var total := 0.0
+	for base in unit.bases:
+		total += base.footprint().x * base.footprint().y
+	return total
+
+
 ## The arrangements to try for [param unit], as offsets: blocks filling from the back rank, then
-## narrower and wider formations.
+## narrower and wider formations; only those in coherency, so the unit can be set up there.
 static func _shapes(unit: BattleUnit, back: Vector2, facing: float) -> Array[PackedVector2Array]:
-	var shapes: Array[PackedVector2Array] = [_block_formation(unit, back)]
+	var shapes: Array[PackedVector2Array] = []
+	var tries: Array[PackedVector2Array] = [_block_formation(unit, back)]
 	for kind in [Formations.Kind.NARROW_BLOCK, Formations.Kind.WIDE_BLOCK, Formations.Kind.LINE, Formations.Kind.WEDGE]:
-		shapes.append(Formations.arrange(kind, unit.bases, Vector2.ZERO, facing))
+		tries.append(Formations.arrange(kind, unit.bases, Vector2.ZERO, facing))
+	for offsets in tries:
+		if Coherency.is_coherent(offsets, unit.bases, facing):
+			shapes.append(offsets)
 	return shapes
 
 
+## [param unit]'s models in [param offsets] from [param spot], if they're all wholly within
+## [param zone] and [param gap] clear of everything in [param space]; else empty. With
+## [param facing], bases are checked by their real shape, so ovals pack closer; without, as
+## circles.
 static func _try(unit: BattleUnit, spot: Vector2, offsets: PackedVector2Array, zone: Array[PackedVector2Array],
-		space: Space, gap: float) -> PackedVector2Array:
+		space: Space, gap: float, facing := NAN) -> PackedVector2Array:
 	var positions := PackedVector2Array()
 	for i in offsets.size():
 		var at := spot + offsets[i]
-		var radius := DeploymentRules.reach_of(unit.bases[i])
-		if not is_wholly_within(zone, at, radius) or not space.is_clear(at, radius + gap):
+		var base := unit.bases[i]
+		var radius := DeploymentRules.reach_of(base)
+		var within := is_wholly_within(zone, at, radius) if is_nan(facing) \
+				else DeploymentRules.is_wholly_within(zone, DeploymentRules.base_outline(base, at, facing))
+		if not within:
+			return PackedVector2Array()
+		var clear := space.is_clear(at, radius + gap) if is_nan(facing) else space.is_clear_of(at, base, facing, gap)
+		if not clear:
 			return PackedVector2Array()
 		positions.append(at)
 	return positions
@@ -181,12 +254,17 @@ static func _clearance(outline: PackedVector2Array, others: Array[PackedVector2A
 	return (nearest if nearest < INF else 1000.0) + spread
 
 
-## Everything already on [param battle]'s battlefield as circles: placed terrain features and
-## deployed models.
-static func space_of(battle: Battle) -> Space:
+## Everything already on [param battle]'s battlefield as circles: placed terrain features (only
+## those models can't stand in, unless [param all_terrain]), deployed models and the models of
+## [param staged].
+static func space_of(battle: Battle, staged: Array[BattleUnit] = [], all_terrain := true) -> Space:
 	var space := Space.new()
+	for unit in staged:
+		if not unit.deployed:
+			for i in unit.positions.size():
+				space.add_model(unit.positions[i], unit.bases[i], unit.facing)
 	for feature in battle.all_terrain():
-		if feature.placed:
+		if feature.placed and (all_terrain or DeploymentRules.is_impassable(feature)):
 			space.add(feature.position, feature.reach())
 	for army in [battle.player, battle.opponent]:
 		if army == null:
@@ -194,7 +272,7 @@ static func space_of(battle: Battle) -> Space:
 		for unit: BattleUnit in army.units:
 			if unit.is_on_battlefield():
 				for i in unit.positions.size():
-					space.add(unit.positions[i], DeploymentRules.reach_of(unit.bases[i]))
+					space.add_model(unit.positions[i], unit.bases[i], unit.facing)
 	return space
 
 
@@ -315,6 +393,20 @@ static func _spots(own: Array[PackedVector2Array], back: Vector2) -> PackedVecto
 	return PackedVector2Array(spots)
 
 
+## Spots to try for units packed in tight: back rank first, from one end of each rank to the other.
+static func _packed_spots(own: Array[PackedVector2Array], back: Vector2) -> PackedVector2Array:
+	var across := Vector2(-back.y, back.x)
+	# Fine enough for a big base that only just fits the zone's depth.
+	var spots := Array(_grid(own, STEP / 4))
+	spots.sort_custom(func(a: Vector2, b: Vector2) -> bool:
+		var rank_a := roundf(a.dot(back) / STEP)
+		var rank_b := roundf(b.dot(back) / STEP)
+		if rank_a != rank_b:
+			return rank_a > rank_b
+		return a.dot(across) < b.dot(across))
+	return PackedVector2Array(spots)
+
+
 ## Points [param step] apart across the territory's bounds that are in the territory.
 static func _grid(own: Array[PackedVector2Array], step := STEP) -> PackedVector2Array:
 	var result := PackedVector2Array()
@@ -341,6 +433,8 @@ class Space:
 	const CELL := 4.0
 	## Vector2i cell -> Array of Vector3(x, y, radius).
 	var _cells := {}
+	## The models added with [method add_model], by their Vector3 in [member _cells]: [base, facing].
+	var _models := {}
 	var _largest := 0.0
 
 	func add(point: Vector2, radius: float) -> void:
@@ -349,6 +443,33 @@ class Space:
 			_cells[cell] = []
 		_cells[cell].append(Vector3(point.x, point.y, radius))
 		_largest = maxf(_largest, radius)
+
+	## Adds a model on [param base] at [param point], facing [param facing]: a circle round it, and
+	## its real shape for [method is_clear_of].
+	func add_model(point: Vector2, base: BaseSize, facing: float) -> void:
+		var radius := DeploymentRules.reach_of(base)
+		add(point, radius)
+		_models[Vector3(point.x, point.y, radius)] = [base, facing]
+
+	## Whether a model on [param base] at [param point], facing [param facing], is at least
+	## [param gap] from everything added so far: models by their real shape, the rest as circles.
+	func is_clear_of(point: Vector2, base: BaseSize, facing: float, gap: float) -> bool:
+		var radius := DeploymentRules.reach_of(base)
+		var reach := ceili((radius + gap + _largest) / CELL)
+		var cell := Vector2i((point / CELL).floor())
+		for dx in range(-reach, reach + 1):
+			for dy in range(-reach, reach + 1):
+				for circle: Vector3 in _cells.get(cell + Vector2i(dx, dy), []):
+					var at := Vector2(circle.x, circle.y)
+					if point.distance_to(at) >= radius + circle.z + gap:
+						continue
+					var model: Array = _models.get(circle, [])
+					if model.is_empty():
+						return false
+					if DeploymentRules.bases_overlap(base, point, facing, model[0], at, model[1]) \
+							or DeploymentRules.base_gap(base, point, facing, model[0], at, model[1]) < gap:
+						return false
+		return true
 
 	## Whether a circle of [param radius] at [param point] overlaps nothing added so far.
 	func is_clear(point: Vector2, radius: float) -> bool:

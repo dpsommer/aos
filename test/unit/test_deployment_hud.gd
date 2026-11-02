@@ -533,3 +533,85 @@ func test_the_terrain_panel_notes_when_the_feature_is_cramped() -> void:
 	var hud := _terrain_hud(true)
 	assert_eq(UIKit.labels_with_variation(hud.placing_panel, "WarningLabel").size(), 1)
 
+
+
+# Spearhead army panel
+
+## A HUD for a Spearhead game, the player first, with [param state] as what the player is doing.
+func _army_hud(state := {"mode": "army", "unit": null}) -> DeploymentHud:
+	_battle = BattleKit.spearhead_deployment_battle()
+	_me = _battle.player
+	_d = Deployment.new(_battle)
+	return _hud(state)
+
+
+func test_the_army_panel_has_its_own_heading() -> void:
+	var hud := _army_hud()
+	assert_true(UIKit.has_label_containing(hud.placing_panel, "DEPLOY YOUR ARMY"))
+
+
+func test_the_army_panel_confirm_button_deploys_the_army() -> void:
+	var hud := _army_hud()
+	assert_eq(hud.confirm_button.text, "Confirm deployment")
+
+
+func test_undo_is_disabled_when_no_unit_is_picked() -> void:
+	var hud := _army_hud()
+	assert_true(hud.undo_button.disabled)
+
+
+func test_undo_is_enabled_when_a_unit_is_picked() -> void:
+	var hud := _army_hud({"mode": "army", "unit": _unit("A1")})
+	assert_false(hud.undo_button.disabled)
+
+
+func test_the_army_panel_names_the_picked_unit() -> void:
+	var hud := _army_hud({"mode": "army", "unit": _unit("A1")})
+	assert_true(UIKit.has_label_containing(hud.placing_panel, "A1"))
+
+
+func test_the_army_panel_offers_formations_for_the_picked_unit() -> void:
+	var hud := _army_hud({"mode": "army", "unit": _unit("A1")})
+	assert_gt(hud.formation_buttons.size(), 0)
+
+
+func test_the_army_panel_offers_no_formations_with_no_unit_picked() -> void:
+	var hud := _army_hud()
+	assert_eq(hud.formation_buttons.size(), 0)
+
+
+func test_the_army_panel_shows_the_problems_it_is_given() -> void:
+	var hud := _army_hud({"mode": "army", "unit": null, "problems": PackedStringArray(["A1: 3 models are outside"])})
+	assert_true(hud.alert.visible)
+	assert_string_contains(hud.alert_label.text, "A1")
+
+
+func test_the_banner_asks_the_player_to_move_their_units_then_confirm() -> void:
+	var hud := _army_hud()
+	assert_string_contains(hud.banner_text.text.to_lower(), "confirm")
+
+
+func test_the_banner_prompt_differs_from_matched_plays() -> void:
+	var matched := _hud().banner_text.text
+	assert_ne(_army_hud().banner_text.text, matched)
+
+
+func test_the_deploy_unit_hint_says_the_units_are_set_out() -> void:
+	var hud := _army_hud()
+	var texts: Array = hud.ability_buttons.map(func(b: Button) -> String: return b.text)
+	assert_true(texts.any(func(t: String) -> bool: return t.contains("set out")))
+
+
+func test_tray_tiles_of_undeployed_units_say_to_pick_them_to_move() -> void:
+	var hud := _army_hud()
+	assert_string_contains(hud.tray_buttons[_unit("A1")].tooltip_text, "move")
+
+
+func test_tray_tile_tooltips_in_matched_play_do_not_mention_moving() -> void:
+	var hud := _hud()
+	assert_false(hud.tray_buttons[_unit("A1")].tooltip_text.contains("to move"))
+
+
+func test_the_matched_play_unit_panel_is_unaffected() -> void:
+	var hud := _hud({"mode": "unit", "unit": _unit("A1"), "formation": -1})
+	assert_false(UIKit.has_label_containing(hud.placing_panel, "DEPLOY YOUR ARMY"))

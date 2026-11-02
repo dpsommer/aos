@@ -108,6 +108,7 @@ If the player is the defender in Spearhead, `DeploymentMapPicker` (`scripts/ui/b
   - Reserve and recorded abilities are buttons that start using them. Their effect is the tooltip.
 - **Placing,** on the right:
   - **A unit:** its name and model count, the regiment's units as chips while one is being deployed, and the formations with their keys, or "Single-model unit: pick it up and put it down, and turn it with R."
+  - **A Spearhead army:** "Deploy your army", the picked unit's name and formations (or "Pick a unit on the board or in the tray…" while none is picked), and "Confirm deployment" for all of them. Undo is for the picked unit.
   - **A terrain feature:** its name, the rule for where it goes and how to move and turn it. If no spot left meets the gap from other terrain, it says the gap is waived.
   - **An ability:** its declare and effect, its targets as chips to pick and "Its use is recorded; its effect isn't applied yet." for one that isn't a reserve.
   - **Problems:** any problems, in red, e.g. "2 models are outside your deployable zone…".
@@ -125,6 +126,7 @@ If the player is the defender in Spearhead, `DeploymentMapPicker` (`scripts/ui/b
 - Each model has a ring under it, and a terrain feature an outline around its footprint. While it's picked up they're blue where it can go and red where it can't, so the player can sweep it round to find a valid spot. Put down, they're green or red.
 - The terrain step picks the next feature by itself, as there's nothing else to do.
 - While a regiment is being deployed, its next unit is picked by itself after each Confirm.
+- **Spearhead armies:** when the player's turn in the Armies step comes, all their units are set out at once, each in a valid spot clear of the others (`DeploymentController.stage_army()`, with `PlaceholderDeployment.spots_for_army()`; see [Deployment](../gameplay/deployment.md#the-ai)), but not yet deployed. Clicking any of them picks it up (and picks it for the formation and turn keys); clicking a tray tile picks it without picking it up. Every unit's rings are checked against the rules and the other units, the problems are listed with the unit's name, and "Confirm deployment" sets the whole army up together (`Deployment.place_army()`). Undo puts the picked unit back where it was when it was picked. A reserve ability can still be used first: its units leave the board and the rest stay where they are.
 
 **Control** | **Does**
 -- | --

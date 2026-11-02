@@ -12,6 +12,9 @@ var deployment: Deployment
 var army: BattleArmy
 ## The army it mirrors.
 var model: BattleArmy
+## Where each of its units goes when it sets up its whole army by itself, by unit (see
+## [method _planned_spot]).
+var _plan := {}
 
 
 func _init(of: Deployment, ai: BattleArmy, player: BattleArmy) -> void:
@@ -136,7 +139,9 @@ func _mirror_unit(original: BattleUnit, unit: BattleUnit) -> bool:
 
 
 func _auto_unit(unit: BattleUnit) -> bool:
-	var positions := PlaceholderDeployment.spot_for_unit(deployment.battle, army, unit)
+	var positions := _planned_spot(unit)
+	if positions.is_empty():
+		positions = PlaceholderDeployment.spot_for_unit(deployment.battle, army, unit)
 	if not positions.is_empty() and deployment.place_unit(army, unit, positions, army.facing).is_empty():
 		return true
 	# No room anywhere: set it up regardless rather than stall the phase.
@@ -144,6 +149,24 @@ func _auto_unit(unit: BattleUnit) -> bool:
 		var middle := PlaceholderDeployment.centroid(deployment.battle.territory_of(army))
 		positions = Formations.arrange(Formations.Kind.WIDE_BLOCK, unit.bases, middle, army.facing)
 	return deployment.place_unit(army, unit, positions, army.facing, false).is_empty()
+
+
+## Where [param unit] goes when the AI sets up its whole army in one go (Spearhead): planned for
+## every unit it has left at once ([method PlaceholderDeployment.spots_for_army]), so they all fit.
+## Empty otherwise, or if the plan has no room for it.
+func _planned_spot(unit: BattleUnit) -> PackedVector2Array:
+	if not deployment.deploys_whole_army(army):
+		return PackedVector2Array()
+	var positions: PackedVector2Array = _plan.get(unit, PackedVector2Array())
+	if positions.is_empty() or not _plan_fits(unit, positions):
+		_plan = PlaceholderDeployment.spots_for_army(deployment.battle, army, deployment.pickable_units(army))
+		positions = _plan.get(unit, PackedVector2Array())
+	return positions
+
+
+## Whether [param positions] are still free for [param unit]: nothing else has been set up there.
+func _plan_fits(unit: BattleUnit, positions: PackedVector2Array) -> bool:
+	return DeploymentRules.unit_problems(deployment.battle, army, unit, positions, army.facing).is_empty()
 
 
 func _other_turn() -> bool:

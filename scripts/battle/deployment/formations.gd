@@ -1,7 +1,8 @@
 class_name Formations
 extends RefCounted
 ## Ready-made arrangements of a unit's models for deployment: a line, wide or narrow blocks, a
-## loose block and a wedge. Each is coherent (see [Coherency]) for bases of one size. Positions
+## loose block and a wedge. Each is coherent (see [Coherency]); a unit with bases of different
+## sizes has each model packed against its neighbours, in the formation's shape. Positions
 ## are in inches; a unit faces [code]facing[/code] (radians clockwise from east), towards the
 ## enemy. See docs/gameplay/deployment.md.
 
@@ -26,14 +27,30 @@ static func arrange(kind: Kind, bases: Array[BaseSize], anchor: Vector2, facing:
 		return PackedVector2Array()
 	if count == 1:
 		return PackedVector2Array([anchor])
-	var largest := _largest_base(bases)
-	var size := largest.footprint()
 	var gap := LOOSE_GAP if kind == Kind.LOOSE else CLOSE_GAP
+	if _is_uniform(bases):
+		return _place(_offsets(kind, count, _largest_base(bases), gap), anchor, facing)
+	# Mixed bases (e.g. Wildercorps Hunters' 40mm, 28.5mm and 25mm): the shape for a base of their
+	# average size, each model then packed against its neighbours so it stays coherent.
+	var shape := _place(_offsets(kind, count, _average_base(bases), gap), anchor, facing)
+	# Tighter gaps if need be: an oval's edge isn't the same distance all round, so a gap near ½"
+	# can leave it out of coherency.
+	for pack_gap in [gap, CLOSE_GAP, CLOSE_GAP / 2]:
+		var packed := _pack(shape, bases, facing, minf(pack_gap, gap))
+		if not packed.is_empty():
+			return packed
+	return _place(_offsets(kind, count, _largest_base(bases), gap), anchor, facing)
+
+
+## The (across, back) offsets of [param count] models in formation [param kind], spaced for
+## [param base] with [param gap] between neighbours.
+static func _offsets(kind: Kind, count: int, base: BaseSize, gap: float) -> Array[Vector2]:
+	var size := base.footprint()
 	# Models stand side by side across the facing, and ranks one behind the other.
 	var across_step := size.y + gap
 	var depth_step := size.x + gap
 	# How far behind two neighbours a model sits, nestled between them, [param gap] from each.
-	var nestle := nestle_depth(largest, across_step, gap)
+	var nestle := nestle_depth(base, across_step, gap)
 	var offsets: Array[Vector2] = []
 	match kind:
 		Kind.LINE:
@@ -46,7 +63,7 @@ static func arrange(kind: Kind, bases: Array[BaseSize], anchor: Vector2, facing:
 			offsets = _block(count, mini(count, ceili(sqrt(count * 2.0))), across_step, depth_step, nestle)
 		Kind.WEDGE:
 			offsets = _wedge(count, across_step, nestle)
-	return _place(offsets, anchor, facing)
+	return offsets
 
 
 ## The formations that make sense for [param model_count] models: none for a single model.
@@ -66,6 +83,89 @@ static func _largest_base(bases: Array[BaseSize]) -> BaseSize:
 		if footprint.x * footprint.y > best.x * best.y:
 			result = base
 	return result
+
+
+## Whether every one of [param bases] has the same footprint and shape.
+static func _is_uniform(bases: Array[BaseSize]) -> bool:
+	for base in bases:
+		if base.shape != bases[0].shape or not base.footprint().is_equal_approx(bases[0].footprint()):
+			return false
+	return true
+
+
+## A round base of [param bases]' average size.
+static func _average_base(bases: Array[BaseSize]) -> BaseSize:
+	var total := 0.0
+	for base in bases:
+		total += (base.footprint().x + base.footprint().y) / 2
+	return BaseSize.round_base(total / bases.size() * BaseSize.MM_PER_INCH)
+
+
+## [param bases]' models packed as near as they'll go to the spots in [param shape], in order: each
+## after the first is set [param gap] from one or two models already down, where it doesn't overlap
+## any, so the unit is coherent however its bases differ in size. Empty if it can't be done.
+static func _pack(shape: PackedVector2Array, bases: Array[BaseSize], facing: float, gap: float) -> PackedVector2Array:
+	var count := bases.size()
+	var needed := Coherency.neighbours_needed(count)
+	var placed := PackedVector2Array([shape[0]])
+	var radii := PackedFloat32Array()
+	for base in bases:
+		radii.append((base.footprint().x + base.footprint().y) / 4)
+	for k in range(1, count):
+		var best := Vector2.INF
+		var best_distance := INF
+		for candidate in _candidates(placed, radii, k, shape[k], gap):
+			var distance := candidate.distance_to(shape[k])
+			if distance < best_distance and _fits(placed, bases, facing, k, candidate, mini(needed, k)):
+				best = candidate
+				best_distance = distance
+		if best == Vector2.INF:
+			return PackedVector2Array()
+		placed.append(best)
+	return placed if Coherency.is_coherent(placed, bases, facing) else PackedVector2Array()
+
+
+## Spots for model [param k] [param gap] from the models in [param placed]: towards
+## [param target] from each, and touching each touching pair of them.
+static func _candidates(placed: PackedVector2Array, radii: PackedFloat32Array, k: int, target: Vector2, gap: float) -> PackedVector2Array:
+	var result := PackedVector2Array()
+	for i in placed.size():
+		var reach := radii[i] + radii[k] + gap
+		var towards := (target - placed[i]).normalized() if not target.is_equal_approx(placed[i]) else Vector2.RIGHT
+		result.append(placed[i] + towards * reach)
+		for j in range(i + 1, placed.size()):
+			var apart := placed[i].distance_to(placed[j])
+			if apart > radii[i] + radii[j] + Coherency.MAX_GAP + 0.01:
+				continue
+			result.append_array(_circle_crossings(placed[i], reach, placed[j], radii[j] + radii[k] + gap))
+	return result
+
+
+## Where the circles round [param a] of radius [param ra] and round [param b] of radius
+## [param rb] cross: none, or two points.
+static func _circle_crossings(a: Vector2, ra: float, b: Vector2, rb: float) -> PackedVector2Array:
+	var d := a.distance_to(b)
+	if d < 0.0001 or d > ra + rb or d < absf(ra - rb):
+		return PackedVector2Array()
+	var along := (ra * ra - rb * rb + d * d) / (2 * d)
+	var height := sqrt(maxf(ra * ra - along * along, 0.0))
+	var direction := (b - a) / d
+	var middle := a + direction * along
+	var across := Vector2(-direction.y, direction.x) * height
+	return PackedVector2Array([middle + across, middle - across])
+
+
+## Whether model [param k] at [param at] overlaps none of [param placed] and is within coherency
+## of at least [param needed] of them.
+static func _fits(placed: PackedVector2Array, bases: Array[BaseSize], facing: float, k: int, at: Vector2, needed: int) -> bool:
+	var near := 0
+	for i in placed.size():
+		var gap := DeploymentRules.base_gap(bases[i], placed[i], facing, bases[k], at, facing)
+		if DeploymentRules.bases_overlap(bases[i], placed[i], facing, bases[k], at, facing) or gap < 0.01:
+			return false
+		if gap <= Coherency.MAX_GAP:
+			near += 1
+	return near >= needed
 
 
 ## How far back a model on [param base] sits when nestled between two others [param across_step]

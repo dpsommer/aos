@@ -282,6 +282,40 @@ func place_unit(army: BattleArmy, unit: BattleUnit, positions: PackedVector2Arra
 	return ""
 
 
+## Whether [param army] sets its whole army up at once now: its turn in Spearhead's armies step,
+## where the player's units are all set out and moved about before one confirm
+## ([method place_army]).
+func deploys_whole_army(army: BattleArmy) -> bool:
+	return battle.is_spearhead() and step == Step.UNITS and army == active and not is_done()
+
+
+## Sets up every one of [param units] of [param army] where its [member BattleUnit.positions] and
+## [member BattleUnit.facing] put it, all together: each is checked against the others as well as
+## what's already deployed. Returns why they can't, naming the unit, or empty if they were set up.
+func place_army(army: BattleArmy, units: Array[BattleUnit]) -> String:
+	if not deploys_whole_army(army):
+		return "It isn't your turn to deploy your army."
+	if units.is_empty():
+		return "There's nothing to deploy."
+	var zone := DeploymentRules.unit_zone(battle, army)
+	var pickable := pickable_units(army)
+	for unit in units:
+		if not unit in pickable:
+			return "%s can't be deployed now." % unit.name
+		if unit.positions.size() != unit.model_count():
+			return "Every model of %s needs a position." % unit.name
+		var problems := DeploymentRules.unit_problems(battle, army, unit, unit.positions, unit.facing, zone, units)
+		if not problems.is_empty():
+			return "%s: %s" % [unit.name, problems[0]]
+	for unit in units:
+		unit.deployed = true
+		unit.reserve = ""
+		_break_regiment(unit)
+		_log({"army": army, "action": "unit", "unit": unit})
+	_advance()
+	return ""
+
+
 ## Sets up [param units] of [param army] in reserve with [param entry]. They count as deployed.
 func reserve(army: BattleArmy, entry: DeploymentAbility, units: Array[BattleUnit]) -> String:
 	if not can_use(army, entry) or entry.kind() != DeploymentAbility.Kind.RESERVE:

@@ -881,3 +881,116 @@ func test_spearhead_alternation_flags_only_the_abilities_step() -> void:
 func test_matched_play_alternates_terrain_and_units() -> void:
 	assert_true(_d.alternates(Deployment.Step.TERRAIN))
 	assert_true(_d.alternates(Deployment.Step.UNITS))
+
+
+# whole army (Spearhead)
+
+## A started Spearhead deployment with no terrain, where the player (the attacker) deploys first.
+func _army_game() -> void:
+	_battle = BattleKit.spearhead_deployment_battle()
+	_me = _battle.player
+	_them = _battle.opponent
+	_d = Deployment.new(_battle)
+	_d.start()
+
+
+## Gives every undeployed unit of [param army] its own valid row, one behind another.
+func _stage(army: BattleArmy) -> Array[BattleUnit]:
+	var units := army.undeployed_units()
+	for i in units.size():
+		var anchor := Vector2(10.0 + i * 15.0, 5.0 if army == _battle.player else 39.0)
+		units[i].positions = Formations.arrange(Formations.Kind.WIDE_BLOCK, units[i].bases, anchor, army.facing)
+		units[i].facing = army.facing
+	return units
+
+
+func test_the_attacker_deploys_its_whole_army_at_once_in_army_game() -> void:
+	_army_game()
+	assert_true(_d.deploys_whole_army(_me))
+
+
+func test_the_defender_does_not_deploy_whole_army_while_the_attacker_is_to_act() -> void:
+	_army_game()
+	assert_false(_d.deploys_whole_army(_them))
+
+
+func test_matched_play_never_deploys_a_whole_army() -> void:
+	_start()
+	assert_false(_d.deploys_whole_army(_me))
+
+
+func test_no_army_deploys_as_a_whole_once_deployment_is_done() -> void:
+	_army_game()
+	_d.place_army(_me, _stage(_me))
+	_d.place_army(_them, _stage(_them))
+	assert_true(_d.is_done())
+	assert_false(_d.deploys_whole_army(_me))
+
+
+func test_placing_an_army_deploys_every_unit() -> void:
+	_army_game()
+	assert_eq(_d.place_army(_me, _stage(_me)), "")
+	for unit in _me.units:
+		assert_true(unit.deployed, unit.name)
+
+
+func test_placing_an_army_logs_each_unit() -> void:
+	_army_game()
+	_d.place_army(_me, _stage(_me))
+	var logged := _d.history.filter(func(entry: Dictionary) -> bool: return entry.action == "unit" and entry.army == _me)
+	assert_eq(logged.size(), _me.units.size())
+
+
+func test_placing_an_army_hands_the_turn_over_once() -> void:
+	_army_game()
+	watch_signals(_d)
+	_d.place_army(_me, _stage(_me))
+	assert_signal_emit_count(_d, "changed", 1)
+	assert_same(_d.active, _them)
+
+
+func test_placing_an_army_out_of_turn_is_refused() -> void:
+	_army_game()
+	var units := _stage(_them)
+	assert_ne(_d.place_army(_them, units), "")
+	assert_false(units[0].deployed)
+
+
+func test_placing_no_units_is_refused() -> void:
+	_army_game()
+	var none: Array[BattleUnit] = []
+	assert_ne(_d.place_army(_me, none), "")
+
+
+func test_a_problem_names_the_unit_and_deploys_nothing() -> void:
+	_army_game()
+	var units := _stage(_me)
+	units[1].positions = Formations.arrange(Formations.Kind.WIDE_BLOCK, units[1].bases, Vector2(30, 40), _me.facing)
+	var error := _d.place_army(_me, units)
+	assert_true(error.begins_with("%s: " % units[1].name), error)
+	for unit in _me.units:
+		assert_false(unit.deployed, unit.name)
+
+
+func test_units_overlapping_each_other_are_refused() -> void:
+	_army_game()
+	var units := _stage(_me)
+	units[1].positions = units[0].positions.duplicate()
+	assert_ne(_d.place_army(_me, units), "")
+	assert_false(units[0].deployed)
+
+
+func test_a_unit_without_a_position_for_every_model_is_refused() -> void:
+	_army_game()
+	var units := _stage(_me)
+	units[0].positions = PackedVector2Array([Vector2(10, 5)])
+	var error := _d.place_army(_me, units)
+	assert_string_contains(error, units[0].name)
+	assert_false(units[0].deployed)
+
+
+func test_a_unit_that_is_already_deployed_cannot_be_placed_again() -> void:
+	_army_game()
+	var units := _stage(_me)
+	units[0].deployed = true
+	assert_string_contains(_d.place_army(_me, units), units[0].name)

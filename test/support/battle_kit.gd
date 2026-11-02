@@ -23,6 +23,28 @@ static func unit(unit_name: String, count: int, base_mm := 32.0) -> BattleUnit:
 	return BattleUnit.create(unit_name, warscroll(unit_name, count, base_mm), count)
 
 
+## A unit whose models have the bases of [param groups], each `[count, diameter_mm]` for a round
+## base or `[count, length_mm, width_mm]` for an oval, e.g. `[[2, 40.0], [3, 28.5], [6, 25.0]]`.
+static func mixed_unit(unit_name: String, groups: Array) -> BattleUnit:
+	var of: Array[BaseSizeGroup] = []
+	var total := 0
+	for entry: Array in groups:
+		var group := BaseSizeGroup.new()
+		group.count = entry[0]
+		group.base = BaseSize.round_base(entry[1]) if entry.size() == 2 else BaseSize.oval(entry[1], entry[2])
+		of.append(group)
+		total += group.count
+	var scroll := Kit.warscroll(unit_name.to_snake_case(), PackedStringArray(), 100, unit_name)
+	scroll.unit_size = total
+	scroll.base_size = BaseSize.mixed(of)
+	return BattleUnit.create(unit_name, scroll, total)
+
+
+## A unit of one model on an oval base of [param length_mm] by [param width_mm].
+static func oval_unit(unit_name: String, length_mm: float, width_mm: float) -> BattleUnit:
+	return mixed_unit(unit_name, [[1, length_mm, width_mm]])
+
+
 static func army(unit_name := "Unit", count := 5) -> BattleArmy:
 	var result := BattleArmy.new()
 	result.name = "Army"
@@ -231,3 +253,49 @@ static func deployment_battle() -> Battle:
 	result.opponent = army.mirror()
 	result.face_armies()
 	return result
+
+
+## A Spearhead battle for the deployment phase: the board and territories of [method deployment_battle],
+## the player the attacker. Each army has no regiments and three units of three models (`A1`, `A2`
+## and `B1`) with only the Deploy Unit ability; the opponent's is a [method BattleArmy.mirror] of the
+## player's.
+static func spearhead_deployment_battle() -> Battle:
+	var result := deployment_battle()
+	result.mode = BattleSetup.Mode.SPEARHEAD
+	var army := BattleArmy.new()
+	army.name = "Army"
+	army.faction_name = "Faction"
+	for unit_name in ["A1", "A2", "B1"]:
+		army.units.append(unit(unit_name, 3))
+	army.deployment_abilities.append_array(DeploymentAbilities.universal(DeploymentAbilities.SPEARHEAD_UNIVERSAL, null))
+	result.player = army
+	result.opponent = army.mirror()
+	result.face_armies()
+	return result
+
+
+## A Spearhead battle on a 30" x 22" board with territories 30" x 11" at the top (the player's) and
+## bottom, so each side's deployable zone is 30" x 5". Each army is a mirror of [param units] and
+## the player is the attacker unless [param player_first] is false.
+static func cramped_spearhead_battle(units: Array[BattleUnit], player_first := true) -> Battle:
+	var result := spearhead_deployment_battle()
+	result.battlefield_size = Vector2(30, 22)
+	result.player_is_attacker = player_first
+	result.player_territory = [rect_polygon(0, 0, 30, 11)] as Array[PackedVector2Array]
+	result.opponent_territory = [rect_polygon(0, 11, 30, 11)] as Array[PackedVector2Array]
+	result.player.units.assign(units)
+	result.opponent = result.player.mirror()
+	result.face_armies()
+	return result
+
+
+## Units that don't all fit a 30" x 5" zone spread out 1" apart, but do packed in tight: a mix of
+## bases, a big oval single model (which only fits with its centre about 2.5" deep), and two blocks.
+static func cramped_units() -> Array[BattleUnit]:
+	var units: Array[BattleUnit] = [
+		mixed_unit("Hunters", [[2, 40.0], [3, 28.5], [6, 25.0]]),
+		oval_unit("Beast", 120.0, 92.0),
+		unit("Guard", 10, 40.0),
+		unit("Rats", 10, 25.0),
+	]
+	return units

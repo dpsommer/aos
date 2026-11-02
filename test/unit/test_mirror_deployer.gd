@@ -339,3 +339,30 @@ func test_it_passes_the_abilities_step_when_there_is_nothing_to_mirror() -> void
 	_mirror.take_turn()
 	assert_eq(_d.actions_of(_ai)[0].action, "pass")
 	assert_true(_d.is_done())
+
+
+# Spearhead: the whole army at once, with no player deployment to mirror
+
+## A cramped Spearhead battle the AI sets up first, as the attacker, its army the cramped units.
+func _cramped_attacker() -> void:
+	_battle = BattleKit.cramped_spearhead_battle(BattleKit.cramped_units(), false)
+	_me = _battle.player
+	_ai = _battle.opponent
+	_d = Deployment.new(_battle)
+	_mirror = MirrorDeployer.new(_d, _ai, _me)
+	_d.start()
+
+
+func test_the_attacking_ai_sets_up_every_unit_in_a_cramped_zone() -> void:
+	_cramped_attacker()
+	_mirror.play()
+	for unit in _ai.units:
+		assert_true(unit.deployed, unit.name)
+
+
+func test_the_attacking_ai_sets_its_units_up_legally_in_a_cramped_zone() -> void:
+	_cramped_attacker()
+	_mirror.play()
+	for unit in _ai.units:
+		var problems := DeploymentRules.unit_problems(_battle, _ai, unit, unit.positions, unit.facing, [], _ai.units)
+		assert_eq(problems.size(), 0, "%s: %s" % [unit.name, problems])

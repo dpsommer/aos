@@ -200,10 +200,11 @@ static func is_impassable(feature: BattleTerrain) -> bool:
 
 ## What's wrong with setting up [param unit] of [param army] with its models at [param positions],
 ## facing [param facing], as sentences for the placing panel. Empty if it can go there.
-## [param zone] defaults to the army's deployable zone.
+## [param zone] defaults to the army's deployable zone. [param staged] are units set out but not yet
+## deployed (a Spearhead army being arranged), whose models it mustn't overlap either.
 static func unit_problems(battle: Battle, army: BattleArmy, unit: BattleUnit, positions: PackedVector2Array,
-		facing: float, zone_polygons: Array[PackedVector2Array] = []) -> PackedStringArray:
-	var bad := invalid_models(battle, army, unit, positions, facing, zone_polygons)
+		facing: float, zone_polygons: Array[PackedVector2Array] = [], staged: Array[BattleUnit] = []) -> PackedStringArray:
+	var bad := invalid_models(battle, army, unit, positions, facing, zone_polygons, staged)
 	var problems := PackedStringArray()
 	if bad.outside.size() > 0:
 		problems.append("%s outside your deployable zone: wholly within your territory and more than %d\" from enemy territory." \
@@ -222,14 +223,15 @@ static func _models(count: int) -> String:
 
 ## The models of [param unit] that can't go where [param positions] puts them, by reason:
 ## [code]outside[/code] the zone, [code]overlapping[/code] other models or impassable terrain, and
-## [code]incoherent[/code]. Each is a [PackedInt32Array] of model indices.
+## [code]incoherent[/code]. Each is a [PackedInt32Array] of model indices. [param staged] as in
+## [method unit_problems].
 static func invalid_models(battle: Battle, army: BattleArmy, unit: BattleUnit, positions: PackedVector2Array,
-		facing: float, zone_polygons: Array[PackedVector2Array] = []) -> Dictionary:
+		facing: float, zone_polygons: Array[PackedVector2Array] = [], staged: Array[BattleUnit] = []) -> Dictionary:
 	if zone_polygons.is_empty():
 		zone_polygons = unit_zone(battle, army)
 	var outside := PackedInt32Array()
 	var overlapping := PackedInt32Array()
-	var others := _other_models(battle, unit)
+	var others := _other_models(battle, unit, staged)
 	var blocks: Array[BattleTerrain] = []
 	for feature in battle.all_terrain():
 		if feature.placed and is_impassable(feature):
@@ -254,9 +256,14 @@ static func invalid_models(battle: Battle, army: BattleArmy, unit: BattleUnit, p
 	}
 
 
-## Every deployed model on the battlefield but [param unit]'s, as [unit, index] pairs.
-static func _other_models(battle: Battle, unit: BattleUnit) -> Array:
+## Every deployed model on the battlefield but [param unit]'s, and those of [param staged], as
+## [unit, index] pairs.
+static func _other_models(battle: Battle, unit: BattleUnit, staged: Array[BattleUnit] = []) -> Array:
 	var result := []
+	for other in staged:
+		if other != unit and not other.deployed:
+			for i in other.positions.size():
+				result.append([other, i])
 	for army in [battle.player, battle.opponent]:
 		if army == null:
 			continue
