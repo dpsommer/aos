@@ -28,6 +28,7 @@ aos/
 **Folder** | **Purpose** | **Subfolders**
 -- | -- | --
 addons/ | Contains Godot plugins | <ul><li>gut/</li></ul>
+.githooks/ | Git hooks, enabled with `git config core.hooksPath .githooks` | <ul><li>pre-push: runs the refactor skills on the `.gd` files a push changes, then Git LFS (see `docs/technical/testing.md`)</li><li>post-checkout, post-commit, post-merge: Git LFS's hooks</li></ul>
 assets/ | Contains game asset files | <ul><li>2d/: fonts and icons (`icons/aos/` is the AoS icon pack, in `white/` and `black/`)</li><li>3d/: `placeholders/` holds placeholder materials; `models/` holds unit, manifestation and faction terrain models with their `.mtl` materials and `textures/`, in `<alliance>/<faction>/` and `shared/manifestations/`, stored in Git LFS (see `docs/technical/models.md`)</li><li>audio/</li><li>shaders/: `ui/` holds shaders for UI controls</li></ul>
 data/ | Contains game data loaded at runtime, e.g. faction rules as JSON (see `docs/technical/faction-data.md`) | <ul><li>core/: core rules abilities, universal manifestation lores and the General's Handbook battlepack (see `docs/technical/core-rules-data.md`)<ul><li>spearhead/: a Spearhead battlepack per realm battlefield, e.g. `fire_and_jade.json`</li></ul></li><li>factions/</li><li>shared/: warscrolls and Armies of Renown used by several factions</li></ul>
 docs/ | Contains all project documentation (index in `docs/README.md`) | <ul><li>design/</li><li>gameplay/</li><li>technical/</li></ul>

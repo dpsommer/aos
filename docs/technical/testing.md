@@ -36,7 +36,14 @@ On a fresh checkout (no `.godot/` folder), run `godot --headless --import` first
 
 The Claude GitHub Actions workflows (`.github/workflows/claude.yml` and `claude-code-review.yml`) install Godot with `.github/actions/setup-godot/`, which puts it on `PATH` as `godot` and imports the project. Claude is allowed to run `godot --headless -s addons/gut/gut_cmdln.gd ...`, so it can run any of the commands above. Bump the action's `version` input when the project moves to a new Godot release.
 
-`claude-code-review.yml` also has a `claude-refactor` job. When a PR changes `.gd` files, it runs the `refactor` skill on the changed production scripts and then the `refactor-tests` skill on the changed files under `test/`. Each skill only edits the files the PR changed, commits and pushes its changes to the PR branch, and posts its report as a PR comment. It doesn't run on Claude's own pushes or on PRs from forks.
+## Refactor hook
+
+`.githooks/pre-push` runs the project's refactor skills with Claude Code before each push: the `refactor` skill on the production `.gd` files the push changes, then the `refactor-tests` skill on the changed files under `test/`. Each only edits those files, runs the full suite, and commits its changes as a "Refactor" or "Refactor tests" commit. If either commits, the push stops so the commits can be looked over; push again to send them. The hook then runs Git LFS's own pre-push, which uploads the models.
+
+- **Enable it** once per clone: `git config core.hooksPath .githooks`. `.githooks/` also has Git LFS's other hooks, as Git then no longer runs those in `.git/hooks/`.
+- **Needs** Claude Code (`claude`) on `PATH`; without it, the hook says so and the push goes ahead.
+- **Clean tree:** the hook stops the push if there are uncommitted changes, as the skills commit theirs.
+- **Skip it** for one push with `SKIP_REFACTOR_HOOK=1 git push` (Git LFS still runs), or every hook with `git push --no-verify`. It doesn't run again on a push whose newest commit is its own (they end with `Refactor-Hook: yes`).
 
 ## Key practices
 

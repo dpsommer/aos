@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# Before a push, runs the project's refactor skills (.claude/skills/) with Claude Code on the GDScript
+# files the push changes: `refactor` on production scripts, then `refactor-tests` on files under
+# test/. If they change anything, they commit it (a "Refactor" or "Refactor tests" commit) and the push
+# stops, so the commits can be looked at and pushed with another `git push`. Then Git LFS uploads the
+# pushed models (git lfs pre-push), as its own hook would.
+#
+# Enable with `git config core.hooksPath .githooks` (see docs/technical/testing.md). Skip the skills for
+# one push with `SKIP_REFACTOR_HOOK=1 git push`, or skip every hook with `git push --no-verify`.
+
+set -u
+remote="$1"
+url="$2"
+refs=$(cat)  # "<local ref> <local sha> <remote ref> <remote sha>" per pushed ref
+zero=0000000000000000000000000000000000000000
+trailer="Refactor-Hook: yes"
+
+lfs_pre_push() {
+	command -v git-lfs >/dev/null 2>&1 || {
+		printf >&2 "\nThis repository uses Git LFS, but 'git-lfs' isn't on your PATH.\n\n"
+		exit 2
+	}
+	printf '%s\n' "$refs" | git lfs pre-push "$remote" "$url"
+}
+
+note() { printf >&2 'pre-push: %s\n' "$*"; }
+
+# The .gd files the push changes, for the pushed ref that's checked out (the skills edit the working tree).
+changed_gd() {
+	local head local_ref local_sha remote_ref remote_sha base
+	head=$(git rev-parse HEAD)
+	while read -r local_ref local_sha remote_ref remote_sha; do
+		[ -z "${local_sha:-}" ] && continue
+		[ "$local_sha" = "$zero" ] && continue  # deleting a branch
+		if [ "$local_sha" != "$head" ]; then
+			note "skipping the refactor skills for $local_ref, which isn't checked out"
+			continue
+		fi
+		if [ "$remote_sha" != "$zero" ] && git cat-file -e "$remote_sha^{commit}" 2>/dev/null; then
+			base=$remote_sha
+		else
+			base=$(git merge-base "$local_sha" "$remote/main" 2>/dev/null || git merge-base "$local_sha" main 2>/dev/null) || continue
+		fi
+		git diff --name-only --diff-filter=d "$base" "$local_sha" -- '*.gd'
+	done <<<"$refs"
+}
+
+run_skill() {  # $1 skill, $2 files, $3 commit message start, $4 extra rules
+	local prompt
+	prompt="Use the \`$1\` skill on these GDScript files, which the push about to happen changes, and only these files:
+
+$2
+
+You're running unattended in a git pre-push hook on the checked-out branch. Follow the skill, with these changes:
+- $4
+- Nobody can answer questions. Skip anything the skill says to check with the user first, and list it in the report.
+- When you're done and the full test suite passes, commit your changes with a message starting \"$3\", ending with the line \"$trailer\". Don't push. If you made no changes, don't commit.
+- End with the skill's report."
+	note "running the $1 skill on: $(printf '%s' "$2" | tr '\n' ' ')"
+	claude -p "$prompt" --allowedTools "Skill,Read,Edit,Write,Glob,Grep,Bash(godot --headless -s addons/gut/gut_cmdln.gd *),Bash(godot --headless --import*),Bash(git status*),Bash(git diff*),Bash(git log*),Bash(git mv *),Bash(git checkout -- *),Bash(git add *),Bash(git commit *),Bash(find *),Bash(grep *),Bash(wc *)" >&2
+}
+
+refactor() {
+	[ "${SKIP_REFACTOR_HOOK:-}" = "1" ] && return 0
+	if ! command -v claude >/dev/null 2>&1; then
+		note "Claude Code isn't on your PATH, so the refactor skills didn't run"
+		return 0
+	fi
+	# The skills just ran on this push if its tip is one of their commits; don't go round again.
+	git log -1 --format=%B HEAD | grep -qx "$trailer" && return 0
+	local files production tests before
+	files=$(changed_gd | sort -u)
+	production=$(printf '%s\n' "$files" | grep -vE '^(test|addons)/' | grep . || true)
+	tests=$(printf '%s\n' "$files" | grep -E '^test/' | grep . || true)
+	[ -z "$production" ] && [ -z "$tests" ] && return 0
+	if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+		note "commit or stash your changes first: the refactor skills commit theirs (or push with SKIP_REFACTOR_HOOK=1)"
+		exit 1
+	fi
+	before=$(git rev-parse HEAD)
+	if [ -n "$production" ]; then
+		run_skill refactor "$production" "Refactor" \
+			"Only edit the files listed above, plus \`docs/\` if a refactor changes something the docs describe. If a smell can only be fixed by editing other files, leave it and report it. Nothing under \`test/\` may change."
+	fi
+	if [ -n "$tests" ]; then
+		run_skill refactor-tests "$tests" "Refactor tests" \
+			"Only edit the files listed above, plus \`docs/technical/testing.md\` if the skill says to update it. If a smell can only be fixed by editing other test files or helpers in \`test/support/\`, leave it and report it. The sabotage check's temporary production edits are fine, as long as they're reverted."
+	fi
+	if [ "$(git rev-parse HEAD)" != "$before" ]; then
+		note "the refactor skills committed changes:"
+		git log --oneline "$before..HEAD" >&2
+		note "look them over, then push again"
+		exit 1
+	fi
+}
+
+refactor
+lfs_pre_push
