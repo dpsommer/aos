@@ -104,9 +104,7 @@ func pick_unit(unit: BattleUnit) -> void:
 	_start_positions = positions.duplicate()
 	_start_facing = unit.facing
 	_state = {"mode": "unit", "unit": unit, "formation": -1}
-	var node := ModelPlaceholder.build_unit(unit, unit.facing, true)
-	map.armies_root.add_child(node)
-	unit_nodes[unit] = node
+	_add_unit_node(unit, true)
 	_hold(WHOLE, Vector2.ZERO)
 	_validate()
 	_refresh_hud()
@@ -135,9 +133,7 @@ func pick_terrain(feature: BattleTerrain) -> void:
 	_start_at = feature.position
 	_start_facing = feature.rotation
 	_state = {"mode": "terrain", "feature": feature}
-	var node := TerrainPlaceholder.build(feature)
-	map.terrain_root.add_child(node)
-	terrain_nodes[feature] = node
+	_add_terrain_node(feature)
 	_hold(WHOLE, Vector2.ZERO)
 	_validate()
 	_refresh_hud()
@@ -378,24 +374,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		undo()
 	elif event.is_action_pressed("rotate_selection"):
 		turn(TURN_STEP)
-	else:
-		for kind in Formations.Kind.size():
-			if event.is_action_pressed("formation_%d" % (kind + 1)):
-				set_formation(kind)
-				get_viewport().set_input_as_handled()
-				return
-		var point: Variant = null
-		if (event is InputEventMouseButton or event is InputEventMouseMotion) and map.camera:
-			point = map.camera.ground_point(event.position)
-		if point == null:
-			return
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			click(point, event.alt_pressed)
-		elif event is InputEventMouseMotion and is_holding():
-			hover(point)
-		else:
-			return
+	elif not (_formation_key(event) or _pointer(event)):
+		return
 	get_viewport().set_input_as_handled()
+
+
+## Handles a formation key. Returns whether [param event] was one.
+func _formation_key(event: InputEvent) -> bool:
+	for kind in Formations.Kind.size():
+		if event.is_action_pressed("formation_%d" % (kind + 1)):
+			set_formation(kind)
+			return true
+	return false
+
+
+## Handles a left click or, while holding, a mouse move on the board. Returns whether
+## [param event] was one.
+func _pointer(event: InputEvent) -> bool:
+	var point: Variant = null
+	if (event is InputEventMouseButton or event is InputEventMouseMotion) and map.camera:
+		point = map.camera.ground_point(event.position)
+	if point == null:
+		return false
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		click(point, event.alt_pressed)
+	elif event is InputEventMouseMotion and is_holding():
+		hover(point)
+	else:
+		return false
+	return true
 
 
 ## The model of the unit being placed under [param point], or -1.
@@ -518,14 +525,22 @@ func _sync_board() -> void:
 	for army in [battle.player, battle.opponent]:
 		for unit: BattleUnit in army.units:
 			if unit.is_on_battlefield() and not unit_nodes.has(unit):
-				var node := ModelPlaceholder.build_unit(unit, unit.facing, army == battle.player)
-				map.armies_root.add_child(node)
-				unit_nodes[unit] = node
+				_add_unit_node(unit, army == battle.player)
 		for feature: BattleTerrain in army.terrain:
 			if feature.placed and not terrain_nodes.has(feature):
-				var node := TerrainPlaceholder.build(feature)
-				map.terrain_root.add_child(node)
-				terrain_nodes[feature] = node
+				_add_terrain_node(feature)
+
+
+func _add_unit_node(unit: BattleUnit, is_player: bool) -> void:
+	var node := ModelPlaceholder.build_unit(unit, unit.facing, is_player)
+	map.armies_root.add_child(node)
+	unit_nodes[unit] = node
+
+
+func _add_terrain_node(feature: BattleTerrain) -> void:
+	var node := TerrainPlaceholder.build(feature)
+	map.terrain_root.add_child(node)
+	terrain_nodes[feature] = node
 
 
 func _refresh_hud() -> void:

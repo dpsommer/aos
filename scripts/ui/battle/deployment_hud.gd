@@ -110,7 +110,7 @@ func _is_player_turn() -> bool:
 func _banner() -> PanelContainer:
 	var panel := PanelContainer.new()
 	panel.name = "Banner"
-	panel.add_theme_stylebox_override("panel", UITheme.box(Color(0.09, 0.102, 0.122, 0.94), PLAYER_EDGE, 999, 10))
+	panel.add_theme_stylebox_override("panel", _banner_box(PLAYER_EDGE))
 	panel.anchor_left = 0.5
 	panel.anchor_right = 0.5
 	panel.offset_top = 80
@@ -140,8 +140,13 @@ func _refresh_banner() -> void:
 	else:
 		banner_title.text = "Your deployment"
 		banner_text.text = _prompt(army)
-	banner.add_theme_stylebox_override("panel", UITheme.box(Color(0.09, 0.102, 0.122, 0.94), edge, 999, 10))
+	banner.add_theme_stylebox_override("panel", _banner_box(edge))
 	_centre_banner.call_deferred()
+
+
+## The banner's pill, edged in [param edge]: the side whose turn it is.
+func _banner_box(edge: Color) -> StyleBox:
+	return UITheme.box(Color(0.09, 0.102, 0.122, 0.94), edge, 999, 10)
 
 
 ## What [param who] is doing now, e.g. "Set up your faction terrain".
@@ -309,14 +314,18 @@ func _call_off_button() -> Button:
 
 
 func _title(text: String) -> Label:
-	var label := UIBuilder.label(text, "CardTitleLabel", true)
-	return label
+	return UIBuilder.label(text, "CardTitleLabel", true)
 
 
-func _regiment_chips() -> Control:
+func _chip_flow() -> HFlowContainer:
 	var flow := HFlowContainer.new()
 	flow.add_theme_constant_override("h_separation", 6)
 	flow.add_theme_constant_override("v_separation", 6)
+	return flow
+
+
+func _regiment_chips() -> Control:
+	var flow := _chip_flow()
 	for unit in deployment.regiment.units:
 		var chip := UIBuilder.button("%s ×%d" % [unit.name, unit.model_count()], unit_picked.emit.bind(unit), "chip_" + unit.name, "KeyButton")
 		chip.toggle_mode = true
@@ -380,9 +389,7 @@ func _choosing() -> Array:
 	children.append(UIBuilder.label("Effect: " + entry.ability.effect, "DescriptionLabel", true))
 	if not targets.is_empty():
 		children.append(UIBuilder.label("Pick the targets:" if multi else "Pick the target (optional):", "SectionLabel"))
-		var flow := HFlowContainer.new()
-		flow.add_theme_constant_override("h_separation", 6)
-		flow.add_theme_constant_override("v_separation", 6)
+		var flow := _chip_flow()
 		for unit: BattleUnit in targets:
 			var chip := UIBuilder.button(unit.name, target_toggled.emit.bind(unit), "target_" + unit.name, "KeyButton")
 			chip.toggle_mode = true

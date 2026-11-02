@@ -57,15 +57,15 @@ func build_steps(of: Battle) -> Array[Dictionary]:
 	for i in terrain.size():
 		steps.append(_step(Stage.TERRAIN, "Placing terrain features · %d of %d" % [i + 1, terrain.size()], _add_terrain.bind(terrain[i])))
 	steps.append(_step(Stage.OBJECTIVES, "Placing objectives", _build_objectives))
-	steps.append_array(_army_steps(battle.player, true, Stage.PLAYER_MODELS, "your"))
-	steps.append_array(_army_steps(battle.opponent, false, Stage.OPPONENT_MODELS, "the opponent's"))
+	steps.append_array(_army_steps(battle.player, Stage.PLAYER_MODELS, "your"))
+	steps.append_array(_army_steps(battle.opponent, Stage.OPPONENT_MODELS, "the opponent's"))
 	return steps
 
 
 ## One step per unit in [param army], loading its 3D models so deployment doesn't stall on them,
 ## or a single empty step if it has none, so the loading screen's checklist still ticks off its
 ## stage. The units are set up later, in the deployment phase.
-func _army_steps(army: BattleArmy, _is_player: bool, stage: Stage, whose: String) -> Array[Dictionary]:
+func _army_steps(army: BattleArmy, stage: Stage, whose: String) -> Array[Dictionary]:
 	var steps: Array[Dictionary] = []
 	for i in army.units.size():
 		steps.append(_step(stage, "Preparing %s models · %d of %d" % [whose, i + 1, army.units.size()],
@@ -193,10 +193,7 @@ func _on_deployed() -> void:
 ## Draws each side's territory, and the part of the player's they can't deploy units in.
 func _show_territories() -> void:
 	for node_name in ["PlayerTerritory", "OpponentTerritory", "NoDeploy"]:
-		var old := get_node_or_null(node_name)
-		if old:
-			remove_child(old)
-			old.queue_free()
+		_remove_child_named(node_name)
 	add_child(BoardBuilder.territory(battle.player_territory, true))
 	add_child(BoardBuilder.territory(battle.opponent_territory, false))
 	if battle.roles_assigned:
@@ -207,10 +204,7 @@ func _show_territories() -> void:
 ## [param terrain] (Spearhead's 3" from enemy territory and the long edges; nothing in Matched
 ## Play), else for units (9" from enemy territory, 6" in Spearhead).
 func show_no_deploy(terrain: bool) -> void:
-	var old := get_node_or_null("NoDeploy")
-	if old:
-		remove_child(old)
-		old.queue_free()
+	_remove_child_named("NoDeploy")
 	var zone: Array[PackedVector2Array]
 	var text: String
 	if terrain:
@@ -218,9 +212,15 @@ func show_no_deploy(terrain: bool) -> void:
 		text = "Too close for terrain"
 	else:
 		zone = DeploymentRules.unit_zone(battle, battle.player)
-		var gap := DeploymentRules.SPEARHEAD_GAP if battle.is_spearhead() else DeploymentRules.MATCHED_PLAY_GAP
-		text = "Within %d\" of enemy territory" % int(gap)
+		text = "Within %d\" of enemy territory" % int(DeploymentRules.unit_gap(battle))
 	add_child(BoardBuilder.no_deploy(battle.player_territory, zone, text, battle.player.facing))
+
+
+func _remove_child_named(node_name: String) -> void:
+	var old := get_node_or_null(node_name)
+	if old:
+		remove_child(old)
+		old.queue_free()
 
 
 ## Adds [param control] to the overlay under the menu.

@@ -83,17 +83,21 @@ static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2A
 				fill.material_override = material
 				root.add_child(fill)
 				root.add_child(outline(piece, NO_DEPLOY_HEIGHT, NO_DEPLOY_EDGE))
-				var middle := Vector2.ZERO
-				for point in piece:
-					middle += point
-				var label := ModelPlaceholder.label(text, ModelPlaceholder.to_world(middle / piece.size(), 0.5), 110)
-				label.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-				# Flat on the board, its top towards the enemy.
-				label.rotation = Vector3(-PI / 2, -(facing + PI / 2), 0)
-				label.modulate = NO_DEPLOY_EDGE
-				label.visibility_range_end = 0.0
-				root.add_child(label)
+				root.add_child(_no_deploy_label(piece, text, facing))
 	return root
+
+
+## [param text] lying flat in the middle of [param piece], its top towards the enemy.
+static func _no_deploy_label(piece: PackedVector2Array, text: String, facing: float) -> Label3D:
+	var middle := Vector2.ZERO
+	for point in piece:
+		middle += point
+	var label := ModelPlaceholder.label(text, ModelPlaceholder.to_world(middle / piece.size(), 0.5), 110)
+	label.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	label.rotation = Vector3(-PI / 2, -(facing + PI / 2), 0)
+	label.modulate = NO_DEPLOY_EDGE
+	label.visibility_range_end = 0.0
+	return label
 
 
 ## The roads printed on a realm battlefield.

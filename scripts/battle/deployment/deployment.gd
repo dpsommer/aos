@@ -99,7 +99,7 @@ func remaining(army: BattleArmy) -> int:
 func reason_unavailable(army: BattleArmy, entry: DeploymentAbility) -> String:
 	if not entry in army.deployment_abilities:
 		return "Not this army's ability."
-	if _is_used(army, entry):
+	if is_used(army, entry):
 		return "Already used." if not entry.is_once_per_battle() else "Used: once per battle."
 	match entry.kind():
 		DeploymentAbility.Kind.UNSUPPORTED:
@@ -325,9 +325,11 @@ func pass_step(army: BattleArmy) -> String:
 	return ""
 
 
-## Whether [param army] has used [param entry].
+## Whether [param army] has used [param entry]. The universal deploy abilities are never used up.
 func is_used(army: BattleArmy, entry: DeploymentAbility) -> bool:
-	return _is_used(army, entry)
+	if entry.kind() in [DeploymentAbility.Kind.DEPLOY_UNIT, DeploymentAbility.Kind.DEPLOY_REGIMENT, DeploymentAbility.Kind.DEPLOY_TERRAIN]:
+		return false
+	return _used.has(_used_key(army, entry))
 
 
 ## The actions [param army] has taken, in order.
@@ -337,12 +339,6 @@ func actions_of(army: BattleArmy) -> Array[Dictionary]:
 		if entry.army == army:
 			result.append(entry)
 	return result
-
-
-func _is_used(army: BattleArmy, entry: DeploymentAbility) -> bool:
-	if entry.kind() in [DeploymentAbility.Kind.DEPLOY_UNIT, DeploymentAbility.Kind.DEPLOY_REGIMENT, DeploymentAbility.Kind.DEPLOY_TERRAIN]:
-		return false
-	return _used.has(_used_key(army, entry))
 
 
 func _mark_used(army: BattleArmy, entry: DeploymentAbility) -> void:

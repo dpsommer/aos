@@ -75,10 +75,7 @@ static func spot_for_unit(battle: Battle, army: BattleArmy, unit: BattleUnit,
 ## The arrangements to try for [param unit], as offsets: blocks filling from the back rank, then
 ## narrower and wider formations.
 static func _shapes(unit: BattleUnit, back: Vector2, facing: float) -> Array[PackedVector2Array]:
-	var widest := 0.0
-	for base in unit.bases:
-		widest = maxf(widest, base.footprint().x)
-	var shapes: Array[PackedVector2Array] = [formation(unit.model_count(), widest + MODEL_GAP, back)]
+	var shapes: Array[PackedVector2Array] = [_block_formation(unit, back)]
 	for kind in [Formations.Kind.NARROW_BLOCK, Formations.Kind.WIDE_BLOCK, Formations.Kind.LINE, Formations.Kind.WEDGE]:
 		shapes.append(Formations.arrange(kind, unit.bases, Vector2.ZERO, facing))
 	return shapes
@@ -268,11 +265,16 @@ static func _terrain_fits(spot: Vector2, reach: float, gap: float, own: Array[Pa
 	return true
 
 
-static func _place_unit(unit: BattleUnit, own: Array[PackedVector2Array], back: Vector2, spots: PackedVector2Array, space: Space) -> void:
+## [param unit]'s models in a [method formation], spaced for its widest base.
+static func _block_formation(unit: BattleUnit, back: Vector2) -> PackedVector2Array:
 	var widest := 0.0
 	for base in unit.bases:
 		widest = maxf(widest, base.footprint().x)
-	var offsets := formation(unit.model_count(), widest + MODEL_GAP, back)
+	return formation(unit.model_count(), widest + MODEL_GAP, back)
+
+
+static func _place_unit(unit: BattleUnit, own: Array[PackedVector2Array], back: Vector2, spots: PackedVector2Array, space: Space) -> void:
+	var offsets := _block_formation(unit, back)
 	for spot in spots:
 		var positions := PackedVector2Array()
 		for i in offsets.size():

@@ -45,11 +45,16 @@ static func zone(own: Array[PackedVector2Array], enemy: Array[PackedVector2Array
 	return result
 
 
-## The deployable zone for [param army]'s units in [param battle]: 9" from enemy territory in
-## Matched Play, 6" in Spearhead.
+## How far from enemy territory units are set up in [param battle]: 9" in Matched Play, 6" in
+## Spearhead.
+static func unit_gap(battle: Battle) -> float:
+	return SPEARHEAD_GAP if battle.is_spearhead() else MATCHED_PLAY_GAP
+
+
+## The deployable zone for [param army]'s units in [param battle]: more than [method unit_gap] from
+## enemy territory.
 static func unit_zone(battle: Battle, army: BattleArmy) -> Array[PackedVector2Array]:
-	var gap := SPEARHEAD_GAP if battle.is_spearhead() else MATCHED_PLAY_GAP
-	return zone(battle.territory_of(army), battle.enemy_territory_of(army), gap)
+	return zone(battle.territory_of(army), battle.enemy_territory_of(army), unit_gap(battle))
 
 
 ## Where [param army]'s terrain features can go: its territory, and in Spearhead more than 3" from
@@ -201,9 +206,8 @@ static func unit_problems(battle: Battle, army: BattleArmy, unit: BattleUnit, po
 	var bad := invalid_models(battle, army, unit, positions, facing, zone_polygons)
 	var problems := PackedStringArray()
 	if bad.outside.size() > 0:
-		var gap := SPEARHEAD_GAP if battle.is_spearhead() else MATCHED_PLAY_GAP
 		problems.append("%s outside your deployable zone: wholly within your territory and more than %d\" from enemy territory." \
-				% [_models(bad.outside.size()), int(gap)])
+				% [_models(bad.outside.size()), int(unit_gap(battle))])
 	if bad.overlapping.size() > 0:
 		problems.append("%s overlapping other models or terrain." % _models(bad.overlapping.size()))
 	if bad.incoherent.size() > 0:

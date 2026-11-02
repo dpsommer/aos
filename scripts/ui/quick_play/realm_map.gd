@@ -71,7 +71,7 @@ func _draw() -> void:
 	for feature in realm.terrain:
 		var terrain := battlepack.get_terrain_feature(feature.type)
 		var footprint: Vector2 = terrain.footprint() if terrain else SpearheadTerrain.FOOTPRINTS.large
-		_dashed_rect(Rect2(to_map(feature.position - footprint / 2), to_map(footprint)))
+		BattleplanMap.dashed_rect(self, Rect2(to_map(feature.position - footprint / 2), to_map(footprint)))
 	for objective in realm.objectives:
 		_draw_objective(objective)
 	if detailed:
@@ -104,9 +104,3 @@ func _draw_name(objective: MapFeature) -> void:
 func _fill(points: PackedVector2Array, color: Color) -> void:
 	if points.size() >= 3:
 		draw_colored_polygon(points, color)
-
-
-func _dashed_rect(rect: Rect2) -> void:
-	var corners := [rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)]
-	for i in 4:
-		draw_dashed_line(corners[i], corners[(i + 1) % 4], BattleplanMap.TERRAIN, 1.5, 4)

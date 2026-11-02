@@ -167,21 +167,23 @@ func _reserve_ability_for(unit: BattleUnit) -> DeploymentAbility:
 
 
 func _counterpart_unit(unit: BattleUnit) -> BattleUnit:
-	var index := model.units.find(unit)
-	return army.units[index] if index >= 0 and index < army.units.size() else null
+	return _at_same_index(unit, model.units, army.units)
 
 
 ## The player's unit that [param unit] mirrors.
 func _model_unit(unit: BattleUnit) -> BattleUnit:
-	var index := army.units.find(unit)
-	return model.units[index] if index >= 0 and index < model.units.size() else null
+	return _at_same_index(unit, army.units, model.units)
 
 
 func _counterpart_regiment(regiment: BattleRegiment) -> BattleRegiment:
-	var index := model.regiments.find(regiment)
-	return army.regiments[index] if index >= 0 and index < army.regiments.size() else null
+	return _at_same_index(regiment, model.regiments, army.regiments)
 
 
 func _counterpart_ability(entry: DeploymentAbility) -> DeploymentAbility:
-	var index := model.deployment_abilities.find(entry)
-	return army.deployment_abilities[index] if index >= 0 and index < army.deployment_abilities.size() else null
+	return _at_same_index(entry, model.deployment_abilities, army.deployment_abilities)
+
+
+## The item of [param to] at [param item]'s index in [param from], or null.
+static func _at_same_index(item: Variant, from: Array, to: Array) -> Variant:
+	var index := from.find(item)
+	return to[index] if index >= 0 and index < to.size() else null
