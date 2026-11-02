@@ -157,3 +157,44 @@ func test_outline_has_a_segment_per_edge() -> void:
 func test_circle_points_are_a_radius_from_the_centre() -> void:
 	for point in BoardBuilder.circle(Vector2(5, 5), 3.0, 16):
 		assert_almost_eq(point.distance_to(Vector2(5, 5)), 3.0, 0.001)
+
+
+# no_deploy
+
+func test_no_deploy_is_named_for_its_group() -> void:
+	var root := autofree(BoardBuilder.no_deploy(_polygons(1), _polygons(1))) as Node3D
+	assert_eq(root.name, "NoDeploy")
+
+
+func test_no_deploy_is_empty_when_the_whole_territory_can_be_deployed_in() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, own)) as Node3D
+	assert_eq(root.get_child_count(), 0)
+
+
+func test_no_deploy_shades_the_part_outside_the_zone() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var zone: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 6, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, zone)) as Node3D
+	assert_gt(_meshes_of_type(root, ArrayMesh).size(), 0)
+
+
+func test_no_deploy_shades_everything_when_there_is_no_zone() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array])) as Node3D
+	assert_gt(root.get_child_count(), 0)
+
+
+func test_no_deploy_without_territory_is_empty() -> void:
+	var root := autofree(BoardBuilder.no_deploy([] as Array[PackedVector2Array], _polygons(1))) as Node3D
+	assert_eq(root.get_child_count(), 0)
+
+
+func test_no_deploy_shading_stays_inside_the_territory() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var zone: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 6, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, zone)) as Node3D
+	for mesh in _meshes_of_type(root, ArrayMesh):
+		var bounds := mesh.mesh.get_aabb()
+		assert_gte(bounds.position.x, 5.99)
+		assert_lte(bounds.end.x, 10.01)

@@ -149,6 +149,15 @@ func test_every_terrain_group_has_one_large_and_one_small_feature() -> void:
 			assert_eq(sizes, PackedStringArray(["large", "small"]), "%s / %s" % [pack.name, group.name])
 
 
+func test_every_terrain_feature_has_a_footprint_at_least_as_long_as_it_is_wide() -> void:
+	for pack in _packs:
+		for feature in pack.terrain_features:
+			var footprint := feature.footprint()
+			var context := "%s / %s" % [pack.name, feature.name]
+			assert_gt(footprint.y, 0.0, context)
+			assert_gte(footprint.x, footprint.y, context)
+
+
 func test_every_objective_centre_is_on_the_battlefield() -> void:
 	for pack in _packs:
 		for realm in pack.realms:

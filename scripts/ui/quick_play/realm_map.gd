@@ -70,8 +70,8 @@ func _draw() -> void:
 		draw_polyline(a + PackedVector2Array([a[0]]), TERRITORY_EDGE, 1.5, true)
 	for feature in realm.terrain:
 		var terrain := battlepack.get_terrain_feature(feature.type)
-		var width: float = SpearheadTerrain.WIDTHS.get(terrain.size if terrain else "large", SpearheadTerrain.WIDTHS.large)
-		_dashed_rect(Rect2(to_map(feature.position - Vector2(width, width) / 2), to_map(Vector2(width, width))))
+		var footprint: Vector2 = terrain.footprint() if terrain else SpearheadTerrain.FOOTPRINTS.large
+		_dashed_rect(Rect2(to_map(feature.position - footprint / 2), to_map(footprint)))
 	for objective in realm.objectives:
 		_draw_objective(objective)
 	if detailed:

@@ -1,9 +1,10 @@
 class_name PlaceholderDeployment
 extends RefCounted
-## Sets both armies up in their territories until the deployment screens exist: each side's
-## terrain features first, then its units in blocks, filling its territory from the edge farthest
-## from the enemy. Every base is wholly within its territory and clear of terrain and other units.
-## Positions are in inches. See docs/design/battle.md.
+## Automatic deployment: sets terrain features and units up in a territory without asking, units in
+## blocks filling it from the edge farthest from the enemy. The AI uses it for whatever it can't
+## mirror from the player ([MirrorDeployer]) until it has a deployment AI of its own. Every base
+## is wholly within the zone and clear of terrain and other units. Positions are in inches. See
+## docs/gameplay/deployment.md.
 
 ## Gap between a unit's models: coherency is 1/2".
 const MODEL_GAP := 0.5
@@ -15,6 +16,12 @@ const TERRAIN_GAP := 3.0
 const STEP := 1.0
 ## Most models in a unit's front rank.
 const MAX_RANK := 10
+## How many turns a terrain feature is tried at, over half a turn (it's symmetrical).
+const TERRAIN_TURNS := 8
+## How many different spots are tried for a terrain feature to leave room for the next one.
+const LOOKAHEAD := 24
+## Spots tried for a terrain feature are at least this far apart.
+const SPREAD := 2.0
 
 
 ## Sets up [param battle]'s armies: fills in [member BattleTerrain.position] for each army's
@@ -40,6 +47,158 @@ static func deploy(battle: Battle) -> void:
 		var spots := _spots(own, back)
 		for unit in army.units:
 			_place_unit(unit, own, back, spots, space)
+			unit.facing = army.facing
+			unit.deployed = true
+
+
+## Where [param unit] of [param army] could be set up: its models' positions in a block wholly
+## within [param zone] (the army's deployable zone if empty), clear of terrain and other models, or
+## an empty array if there's no room. Doesn't set the unit up.
+static func spot_for_unit(battle: Battle, army: BattleArmy, unit: BattleUnit,
+		zone: Array[PackedVector2Array] = []) -> PackedVector2Array:
+	if zone.is_empty():
+		zone = DeploymentRules.unit_zone(battle, army)
+	var space := space_of(battle)
+	var back := -Vector2.from_angle(army.facing)
+	var spots := _spots(zone, back)
+	var shapes := _shapes(unit, back, army.facing)
+	# The rules' gap between units first, then tighter ones if the zone is too cramped for it.
+	for gap: float in [UNIT_GAP, MODEL_GAP, 0.05]:
+		for offsets in shapes:
+			for spot in spots:
+				var positions := _try(unit, spot, offsets, zone, space, gap)
+				if not positions.is_empty():
+					return positions
+	return PackedVector2Array()
+
+
+## The arrangements to try for [param unit], as offsets: blocks filling from the back rank, then
+## narrower and wider formations.
+static func _shapes(unit: BattleUnit, back: Vector2, facing: float) -> Array[PackedVector2Array]:
+	var widest := 0.0
+	for base in unit.bases:
+		widest = maxf(widest, base.footprint().x)
+	var shapes: Array[PackedVector2Array] = [formation(unit.model_count(), widest + MODEL_GAP, back)]
+	for kind in [Formations.Kind.NARROW_BLOCK, Formations.Kind.WIDE_BLOCK, Formations.Kind.LINE, Formations.Kind.WEDGE]:
+		shapes.append(Formations.arrange(kind, unit.bases, Vector2.ZERO, facing))
+	return shapes
+
+
+static func _try(unit: BattleUnit, spot: Vector2, offsets: PackedVector2Array, zone: Array[PackedVector2Array],
+		space: Space, gap: float) -> PackedVector2Array:
+	var positions := PackedVector2Array()
+	for i in offsets.size():
+		var at := spot + offsets[i]
+		var radius := DeploymentRules.reach_of(unit.bases[i])
+		if not is_wholly_within(zone, at, radius) or not space.is_clear(at, radius + gap):
+			return PackedVector2Array()
+		positions.append(at)
+	return positions
+
+
+## Where [param feature] of [param army] could be set up within the deployment rules
+## ([method DeploymentRules.terrain_problems]), nearest the middle of its territory, as
+## [code]{"at": Vector2, "rotation": float}[/code], or an empty dictionary if nowhere will do.
+## [param relaxed] lets it go nearer other terrain than the rules allow, as long as it doesn't touch.
+static func spot_for_terrain(battle: Battle, army: BattleArmy, feature: BattleTerrain, relaxed := false) -> Dictionary:
+	# A coarse grid first, as it's much quicker; a fine one only if that finds nothing.
+	var candidates := _terrain_spots(battle, army, feature, relaxed, STEP)
+	if candidates.is_empty():
+		candidates = _terrain_spots(battle, army, feature, relaxed, STEP / 2)
+	var next: BattleTerrain = null
+	for other in army.unplaced_terrain():
+		if other != feature:
+			next = other
+			break
+	if next == null or relaxed or candidates.is_empty():
+		return candidates[0] if not candidates.is_empty() else {}
+	# Leave room for the army's next feature: the best spot that still has one for it.
+	for i in mini(candidates.size(), LOOKAHEAD):
+		var candidate: Dictionary = candidates[i]
+		feature.position = candidate.at
+		feature.rotation = candidate.rotation
+		feature.placed = true
+		var room := not _terrain_spots(battle, army, next, false, STEP, true).is_empty()
+		feature.placed = false
+		if room:
+			return candidate
+	return candidates[0]
+
+
+## A good spot for [param feature], without leaving room for the army's next one: quick, for a
+## suggestion to the player. Empty if there's none.
+static func first_terrain_spot(battle: Battle, army: BattleArmy, feature: BattleTerrain, relaxed := false) -> Dictionary:
+	var spots := _terrain_spots(battle, army, feature, relaxed, STEP / 2)
+	return spots[0] if not spots.is_empty() else {}
+
+
+## Whether [param feature] has any spot that meets the deployment rules in full.
+static func has_terrain_spot(battle: Battle, army: BattleArmy, feature: BattleTerrain) -> bool:
+	return not _terrain_spots(battle, army, feature, false, STEP, true).is_empty() \
+			or not _terrain_spots(battle, army, feature, false, STEP / 2, true).is_empty()
+
+
+## Valid spots for [param feature] on a grid [param step] apart, best first (see
+## [method _clearance]); just the first valid one if [param any].
+static func _terrain_spots(battle: Battle, army: BattleArmy, feature: BattleTerrain, relaxed: bool, step: float, any := false) -> Array[Dictionary]:
+	var zone := DeploymentRules.terrain_zone(battle, army)
+	var middle := centroid(battle.territory_of(army))
+	var others: Array[PackedVector2Array] = []
+	for other in battle.all_terrain():
+		if other != feature and other.placed:
+			others.append(DeploymentRules.terrain_outline(other, other.position, other.rotation))
+	# Relaxed, it only has to keep off other terrain, not the rules' gap from it.
+	var gap := 0.0 if relaxed else -1.0
+	var found: Array[Dictionary] = []
+	for turn in TERRAIN_TURNS:
+		var rotation := army.facing + PI / 2 + turn * PI / TERRAIN_TURNS
+		for spot in _grid(zone, step):
+			if not DeploymentRules.terrain_problems(battle, army, feature, spot, rotation, gap, zone).is_empty():
+				continue
+			found.append({"at": spot, "rotation": rotation,
+					"score": _clearance(DeploymentRules.terrain_outline(feature, spot, rotation), others, spot, middle)})
+			if any:
+				return found
+	found.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.score > b.score)
+	# Spread the candidates out: the best spot of each area, so the lookahead tries different places.
+	var spread: Array[Dictionary] = []
+	for candidate in found:
+		var near := false
+		for kept in spread:
+			if kept.at.distance_to(candidate.at) < SPREAD:
+				near = true
+				break
+		if not near:
+			spread.append(candidate)
+	return spread
+
+
+## How well a feature with [param outline] at [param spot] leaves room for others: its gap to the
+## nearest other terrain, then, with none yet, how far it is from the territory's [param middle],
+## so the first feature goes to a corner and leaves the middle free.
+static func _clearance(outline: PackedVector2Array, others: Array[PackedVector2Array], spot: Vector2, middle: Vector2) -> float:
+	var nearest := INF
+	for other in others:
+		nearest = minf(nearest, DeploymentRules.gap_between(outline, other))
+	var spread := spot.distance_to(middle) / 100.0
+	return (nearest if nearest < INF else 1000.0) + spread
+
+
+## Everything already on [param battle]'s battlefield as circles: placed terrain features and
+## deployed models.
+static func space_of(battle: Battle) -> Space:
+	var space := Space.new()
+	for feature in battle.all_terrain():
+		if feature.placed:
+			space.add(feature.position, feature.reach())
+	for army in [battle.player, battle.opponent]:
+		if army == null:
+			continue
+		for unit: BattleUnit in army.units:
+			if unit.is_on_battlefield():
+				for i in unit.positions.size():
+					space.add(unit.positions[i], DeploymentRules.reach_of(unit.bases[i]))
+	return space
 
 
 ## Each unit's models in ranks: the front rank (up to [constant MAX_RANK], two ranks for 6 or more

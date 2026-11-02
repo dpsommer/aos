@@ -49,10 +49,12 @@ static func battle() -> Battle:
 	result.battlefield_size = Vector2(30, 22)
 	result.title = "Test Battle"
 	result.player_is_attacker = true
+	result.roles_assigned = true
 	result.player_territory = [rect_polygon(0, 0, 10, 22)] as Array[PackedVector2Array]
 	result.opponent_territory = [rect_polygon(20, 0, 10, 22)] as Array[PackedVector2Array]
 	result.player = army("Player Unit")
 	result.opponent = army("Opponent Unit")
+	result.face_armies()
 	return result
 
 
@@ -169,3 +171,63 @@ static func real_spearhead_setup() -> BattleSetup:
 	setup.faction = entries[0].faction
 	setup.spearhead = entries[0].name
 	return setup
+
+
+## An ability used in the deployment phase: [param keywords] such as "DEPLOY" or "DEPLOY TERRAIN",
+## and [param effect] and [param declare] text.
+static func ability(ability_name: String, keywords := PackedStringArray(["DEPLOY"]), effect := "", declare := "", frequency := "") -> Ability:
+	var result := Ability.new()
+	result.name = ability_name
+	result.keywords = keywords
+	result.effect = effect
+	result.declare = declare
+	result.frequency = frequency
+	return result
+
+
+## A [DeploymentAbility] of [param of] from [param source], optionally owned by a unit or tied to a
+## Regiment of Renown.
+static func deploy_entry(of: Ability, source := "Warscroll", owner: BattleUnit = null, regiment: BattleRegiment = null) -> DeploymentAbility:
+	return DeploymentAbility.create(of, source, owner, regiment)
+
+
+## A [BattleRegiment] of [param units] named [param regiment_name], the units pointed back at it.
+static func regiment(regiment_name: String, units: Array[BattleUnit], renown := false) -> BattleRegiment:
+	var result := BattleRegiment.new()
+	result.name = regiment_name
+	result.is_renown = renown
+	result.units = units
+	for unit in units:
+		unit.regiment = result
+	return result
+
+
+## A Matched Play battle for the deployment phase: territories at the top and bottom of a 60" x 44"
+## board, the player the attacker. Each army has the universal abilities and two regiments of two
+## units each (`A1`, `A2` and `B1`, `B2`) beside an auxiliary `Aux`, all with 3 models; the opponent's
+## is a [method BattleArmy.mirror] of the player's.
+static func deployment_battle() -> Battle:
+	var result := Battle.new()
+	result.mode = BattleSetup.Mode.MATCHED_PLAY
+	result.battlefield_size = Vector2(60, 44)
+	result.title = "Test Battle"
+	result.player_is_attacker = true
+	result.roles_assigned = true
+	result.player_territory = [rect_polygon(0, 0, 60, 18)] as Array[PackedVector2Array]
+	result.opponent_territory = [rect_polygon(0, 26, 60, 18)] as Array[PackedVector2Array]
+	var army := BattleArmy.new()
+	army.name = "Army"
+	army.faction_name = "Faction"
+	for names: Array in [["A1", "A2"], ["B1", "B2"]]:
+		var members: Array[BattleUnit] = []
+		for unit_name: String in names:
+			var member := unit(unit_name, 3)
+			members.append(member)
+			army.units.append(member)
+		army.regiments.append(regiment("Regiment %s" % names[0][0], members))
+	army.units.append(unit("Aux", 3))
+	army.deployment_abilities.append_array(DeploymentAbilities.universal(DeploymentAbilities.MATCHED_PLAY_UNIVERSAL, null))
+	result.player = army
+	result.opponent = army.mirror()
+	result.face_armies()
+	return result

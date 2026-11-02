@@ -1,0 +1,173 @@
+class_name Formations
+extends RefCounted
+## Ready-made arrangements of a unit's models for deployment: a line, wide or narrow blocks, a
+## loose block and a wedge. Each is coherent (see [Coherency]) for bases of one size. Positions
+## are in inches; a unit faces [code]facing[/code] (radians clockwise from east), towards the
+## enemy. See docs/gameplay/deployment.md.
+
+enum Kind { LINE, WIDE_BLOCK, NARROW_BLOCK, LOOSE, WEDGE }
+
+## Each formation's name and shape, for the placing panel, in [enum Kind] order.
+const NAMES: PackedStringArray = ["Line", "Wide block", "Narrow block", "Loose", "Wedge"]
+const SHAPES: PackedStringArray = ["1 rank", "2 ranks", "4 ranks", "½\" apart", "point forward"]
+## The gap between neighbouring bases in a close formation.
+const CLOSE_GAP := 0.25
+## The gap in a loose formation: as wide as coherency allows.
+const LOOSE_GAP := Coherency.MAX_GAP - 0.02
+## Units of up to this many models stand in a single rank as a line.
+const SINGLE_RANK_LINE := Coherency.LARGE_UNIT - 1
+
+
+## Where each of [param bases]' models stands in formation [param kind], centred on
+## [param anchor] and facing [param facing].
+static func arrange(kind: Kind, bases: Array[BaseSize], anchor: Vector2, facing: float) -> PackedVector2Array:
+	var count := bases.size()
+	if count == 0:
+		return PackedVector2Array()
+	if count == 1:
+		return PackedVector2Array([anchor])
+	var largest := _largest_base(bases)
+	var size := largest.footprint()
+	var gap := LOOSE_GAP if kind == Kind.LOOSE else CLOSE_GAP
+	# Models stand side by side across the facing, and ranks one behind the other.
+	var across_step := size.y + gap
+	var depth_step := size.x + gap
+	# How far behind two neighbours a model sits, nestled between them, [param gap] from each.
+	var nestle := nestle_depth(largest, across_step, gap)
+	var offsets: Array[Vector2] = []
+	match kind:
+		Kind.LINE:
+			offsets = _line(count, across_step, nestle)
+		Kind.WIDE_BLOCK:
+			offsets = _block(count, ceili(count / 2.0), across_step, depth_step, nestle)
+		Kind.NARROW_BLOCK:
+			offsets = _block(count, ceili(count / 4.0), across_step, depth_step, nestle)
+		Kind.LOOSE:
+			offsets = _block(count, mini(count, ceili(sqrt(count * 2.0))), across_step, depth_step, nestle)
+		Kind.WEDGE:
+			offsets = _wedge(count, across_step, nestle)
+	return _place(offsets, anchor, facing)
+
+
+## The formations that make sense for [param model_count] models: none for a single model.
+static func kinds_for(model_count: int) -> Array[Kind]:
+	var result: Array[Kind] = []
+	if model_count > 1:
+		result.assign([Kind.LINE, Kind.WIDE_BLOCK, Kind.NARROW_BLOCK, Kind.LOOSE, Kind.WEDGE])
+	return result
+
+
+## The base with the biggest footprint.
+static func _largest_base(bases: Array[BaseSize]) -> BaseSize:
+	var result := bases[0]
+	for base in bases:
+		var footprint := base.footprint()
+		var best := result.footprint()
+		if footprint.x * footprint.y > best.x * best.y:
+			result = base
+	return result
+
+
+## How far back a model on [param base] sits when nestled between two others [param across_step]
+## apart, so it's [param gap] from each, edge to edge: half a hexagon for round bases, measured for
+## others.
+static func nestle_depth(base: BaseSize, across_step: float, gap: float) -> float:
+	var low := 0.0
+	var high := base.footprint().x + gap
+	var side := Vector2(0, across_step / 2)
+	for i in 30:
+		var middle := (low + high) / 2
+		# In the base's own frame: x along the facing, so "back" is -x.
+		if DeploymentRules.base_gap(base, Vector2.ZERO, 0.0, base, Vector2(-middle, 0) + side, 0.0) < gap:
+			low = middle
+		else:
+			high = middle
+	return low
+
+
+## Offsets as (across, back): one rank, or for big units two staggered rows, so the models at
+## each end still have two neighbours.
+static func _line(count: int, step: float, nestle: float) -> Array[Vector2]:
+	var result: Array[Vector2] = []
+	if count <= SINGLE_RANK_LINE:
+		for i in count:
+			result.append(Vector2(i * step, 0))
+		return result
+	for i in count:
+		result.append(Vector2(i * step / 2, nestle if i % 2 == 1 else 0.0))
+	return result
+
+
+## Offsets in ranks of [param columns]. A part-filled last rank sits nestled between the models in
+## front of it, from the middle out, so each of its models touches two of them.
+static func _block(count: int, columns: int, across_step: float, depth_step: float, nestle: float) -> Array[Vector2]:
+	var result: Array[Vector2] = []
+	columns = maxi(columns, 1)
+	@warning_ignore("integer_division")
+	var full_ranks := count / columns
+	for i in full_ranks * columns:
+		@warning_ignore("integer_division")
+		result.append(Vector2((i % columns) * across_step, (i / columns) * depth_step))
+	var left_over := count - full_ranks * columns
+	if left_over == 0:
+		return result
+	if full_ranks == 0:
+		for i in left_over:
+			result.append(Vector2(i * across_step, 0))
+		return result
+	var depth := (full_ranks - 1) * depth_step + nestle
+	for slot in _middle_out(columns - 1, left_over):
+		result.append(Vector2((slot + 0.5) * across_step, depth))
+	return result
+
+
+## [param count] of the slots 0 to [param slots] - 1, from the middle out, in order.
+static func _middle_out(slots: int, count: int) -> Array[int]:
+	var order: Array[int] = []
+	for i in slots:
+		order.append(i)
+	var middle := (slots - 1) / 2.0
+	order.sort_custom(func(a: int, b: int) -> bool:
+		return absf(a - middle) < absf(b - middle) or (absf(a - middle) == absf(b - middle) and a < b))
+	var picked := order.slice(0, count)
+	picked.sort()
+	return picked
+
+
+## Offsets in rows of 1, 2, 3 and so on behind the point, packed so each model touches those
+## beside and in front of it. A part-filled last row fills its middle first.
+static func _wedge(count: int, step: float, nestle: float) -> Array[Vector2]:
+	var result: Array[Vector2] = []
+	var row := 0
+	while result.size() < count:
+		var left := count - result.size()
+		var slots: Array[int] = []
+		if left >= row + 1:
+			for j in row + 1:
+				slots.append(j)
+		else:
+			# The middle slots touch two models in front; the end ones only one.
+			for j in _middle_out(row - 1, mini(left, row - 1)):
+				slots.append(j + 1)
+			if left > row - 1:
+				slots.append(0)
+		for j in slots:
+			result.append(Vector2((j - row / 2.0) * step, row * nestle))
+		row += 1
+	return result
+
+
+## Turns (across, back) offsets into battlefield positions centred on [param anchor].
+static func _place(offsets: Array[Vector2], anchor: Vector2, facing: float) -> PackedVector2Array:
+	var middle := Vector2.ZERO
+	for offset in offsets:
+		middle += offset
+	middle /= offsets.size()
+	var forward := Vector2.from_angle(facing)
+	var across := Vector2(-forward.y, forward.x)
+	var result := PackedVector2Array()
+	for offset in offsets:
+		var local := offset - middle
+		# The first rank is at the front, towards the enemy.
+		result.append(anchor + across * local.x - forward * local.y)
+	return result

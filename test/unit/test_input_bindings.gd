@@ -248,7 +248,6 @@ func test_battle_section_lists_the_camera_actions() -> void:
 	var actions: Array[String] = []
 	for entry: Array in InputBindings.SECTIONS["Battle"]:
 		actions.append(entry[0])
-	assert_eq(actions.size(), 6)
 	for action in ["camera_forward", "camera_back", "camera_left", "camera_right", "camera_rotate_left", "camera_rotate_right"]:
 		assert_true(action in actions, action)
 

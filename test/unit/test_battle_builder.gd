@@ -3,6 +3,7 @@ extends GutTest
 ## (scripts/battle/battle_builder.gd), with small in-code data.
 
 const BattleKit := preload("res://test/support/battle_kit.gd")
+const Kit := preload("res://test/support/army_kit.gd")
 
 const SEEDS := 24
 
@@ -24,7 +25,8 @@ func _matched(plan_name := "", seed_value := 1, plans: Array[Battleplan] = []) -
 
 
 func _spearhead(pack_name := "", realm_name := "", seed_value := 1) -> Battle:
-	return BattleBuilder.build(BattleKit.spearhead_setup(pack_name, realm_name), _rng(seed_value), null, _packs(), BattleKit.spearhead_faction())
+	return BattleBuilder.build(BattleKit.spearhead_setup(pack_name, realm_name), _rng(seed_value), BattleKit.core([] as Array[Battleplan]),
+			_packs(), BattleKit.spearhead_faction())
 
 
 func _same_polygons(a: Array[PackedVector2Array], b: Array[PackedVector2Array]) -> bool:
@@ -146,23 +148,10 @@ func test_opponent_units_are_not_the_players() -> void:
 	assert_ne(battle.opponent.units[0], battle.player.units[0])
 
 
-func test_player_is_attacker_territory_follows_the_roll() -> void:
-	var plan := BattleKit.battleplan("A")
-	var attacker := BattleBuilder.merge_rects(plan.attacker_territory)
-	var defender := BattleBuilder.merge_rects(plan.defender_territory)
-	for seed_value in SEEDS:
-		var battle := _matched("A", seed_value, [plan] as Array[Battleplan])
-		var own := attacker if battle.player_is_attacker else defender
-		var other := defender if battle.player_is_attacker else attacker
-		assert_true(_same_polygons(battle.player_territory, own), "player, seed %d" % seed_value)
-		assert_true(_same_polygons(battle.opponent_territory, other), "opponent, seed %d" % seed_value)
-
-
-func test_the_player_is_attacker_for_some_seeds_and_defender_for_others() -> void:
-	var seen := {}
-	for seed_value in SEEDS:
-		seen[_matched("", seed_value).player_is_attacker] = true
-	assert_eq(seen.size(), 2)
+func test_matched_play_leaves_the_roles_to_the_roll_off() -> void:
+	var battle := _matched()
+	assert_false(battle.roles_assigned)
+	assert_false(battle.has_territories())
 
 
 func test_matched_play_battle_has_no_spearhead_data() -> void:
@@ -185,6 +174,76 @@ func test_faction_terrain_the_army_chose_is_added() -> void:
 
 func test_army_without_faction_terrain_has_none() -> void:
 	assert_eq(_matched().player.terrain.size(), 0)
+
+
+# Regiments
+
+func _army_with_regiments() -> Army:
+	var army := BattleKit.matched_play_setup().army
+	army.regiments = [
+		Kit.regiment("r1", [Kit.unit("a", "unit"), Kit.unit("b", "unit")] as Array[ArmyUnit]),
+		Kit.regiment("r2", [Kit.unit("c", "unit")] as Array[ArmyUnit], "Vanguard"),
+		Kit.ror_regiment("r3", "Renowned", [Kit.unit("d", "unit")] as Array[ArmyUnit]),
+	] as Array[ArmyRegiment]
+	army.regiments[0].name = ""
+	return army
+
+
+func _built() -> BattleArmy:
+	return BattleBuilder.army_of(_army_with_regiments(), Kit.catalog(BattleKit.faction()))
+
+
+func test_army_has_a_battle_regiment_for_each_forge_regiment() -> void:
+	assert_eq(_built().regiments.size(), 3)
+
+
+func test_regiment_units_are_in_the_armys_units_in_order() -> void:
+	var army := _built()
+	assert_eq(army.units.slice(0, 2), army.regiments[0].units)
+	assert_eq(army.regiments[1].units[0], army.units[2])
+
+
+func test_units_know_their_regiment() -> void:
+	var army := _built()
+	assert_same(army.units[0].regiment, army.regiments[0])
+	assert_same(army.units[2].regiment, army.regiments[1])
+
+
+func test_auxiliary_units_have_no_regiment() -> void:
+	var army := _built()
+	var auxiliary: BattleUnit = army.units[army.units.size() - 1]
+	assert_null(auxiliary.regiment)
+	assert_eq(army.units.size(), 5)
+
+
+func test_an_unnamed_regiment_is_numbered_by_its_position() -> void:
+	assert_eq(_built().regiments[0].name, "Regiment 1")
+
+
+func test_a_named_regiment_keeps_its_name() -> void:
+	assert_eq(_built().regiments[1].name, "Vanguard")
+
+
+func test_a_regiment_of_renown_is_named_after_it() -> void:
+	var regiment := _built().regiments[2]
+	assert_eq(regiment.name, "Renowned")
+	assert_true(regiment.is_renown)
+
+
+func test_ordinary_regiments_are_not_of_renown() -> void:
+	assert_false(_built().regiments[0].is_renown)
+
+
+func test_the_opponent_has_the_same_regiments_over_its_own_units() -> void:
+	var battle := BattleBuilder.build(_matched_setup_with_regiments(), _rng(), BattleKit.core([BattleKit.battleplan("A")] as Array[Battleplan]), [], BattleKit.faction())
+	assert_eq(battle.opponent.regiments.size(), battle.player.regiments.size())
+	assert_same(battle.opponent.units[0].regiment, battle.opponent.regiments[0])
+
+
+func _matched_setup_with_regiments() -> BattleSetup:
+	var setup := BattleKit.matched_play_setup()
+	setup.army = _army_with_regiments()
+	return setup
 
 
 # Spearhead
@@ -237,24 +296,13 @@ func test_spearhead_battlefield_terrain_is_placed_and_sized_by_its_feature() -> 
 	var feature := _spearhead("Pack", "Aqshy").terrain[0]
 	assert_true(feature.placed)
 	assert_eq(feature.position, Vector2(7, 5))
-	assert_eq(feature.footprint, Vector2.ONE * SpearheadTerrain.WIDTHS["small"])
+	assert_eq(feature.footprint, SpearheadTerrain.FOOTPRINTS["small"])
 
 
-func test_spearhead_territories_are_the_deployment_maps_two_sides() -> void:
-	for seed_value in SEEDS:
-		var battle := _spearhead("Pack", "Aqshy", seed_value)
-		var both := [battle.deployment.territory_a, battle.deployment.territory_b]
-		assert_eq(battle.player_territory.size(), 1)
-		assert_true(battle.player_territory[0] in both)
-		assert_true(battle.opponent_territory[0] in both)
-		assert_ne(battle.player_territory[0], battle.opponent_territory[0])
-
-
-func test_spearhead_players_take_either_territory() -> void:
-	var seen := {}
-	for seed_value in SEEDS:
-		seen[_spearhead("Pack", "Aqshy", seed_value).player_territory[0] == BattleKit.deployment("x").territory_a] = true
-	assert_eq(seen.size(), 2)
+func test_spearhead_leaves_the_deployment_map_to_the_defender() -> void:
+	var battle := _spearhead("Pack", "Aqshy")
+	assert_null(battle.deployment)
+	assert_false(battle.has_territories())
 
 
 func test_spearhead_army_has_the_general_and_each_unit() -> void:
@@ -269,7 +317,7 @@ func test_spearhead_army_has_no_points() -> void:
 
 func test_spearhead_unit_bases_come_from_the_factions_warscrolls() -> void:
 	var faction := BattleKit.spearhead_faction()
-	var battle := BattleBuilder.build(BattleKit.spearhead_setup(), _rng(), null, _packs(), faction)
+	var battle := BattleBuilder.build(BattleKit.spearhead_setup(), _rng(), BattleKit.core([] as Array[Battleplan]), _packs(), faction)
 	var alpha: BattleUnit = battle.player.units[1]
 	assert_eq(alpha.name, "Alpha")
 	assert_eq(alpha.bases[0], faction.find_warscroll("Alpha").base_size)
@@ -278,15 +326,6 @@ func test_spearhead_unit_bases_come_from_the_factions_warscrolls() -> void:
 func test_spearhead_opponent_mirrors_the_player() -> void:
 	var battle := _spearhead()
 	assert_eq([battle.opponent.name, battle.opponent.model_count()], [battle.player.name, battle.player.model_count()])
-
-
-func test_each_side_sets_up_its_own_terrain_group() -> void:
-	for seed_value in SEEDS:
-		var battle := _spearhead("Pack", "Aqshy", seed_value)
-		var attacker := battle.player if battle.player_is_attacker else battle.opponent
-		var defender := battle.opponent if battle.player_is_attacker else battle.player
-		assert_eq(defender.terrain.size(), 1, "defender, seed %d" % seed_value)
-		assert_eq(attacker.terrain.size(), 2, "attacker, seed %d" % seed_value)
 
 
 func test_spearhead_terrain_without_groups_skips_mystical_features() -> void:

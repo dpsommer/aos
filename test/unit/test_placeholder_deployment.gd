@@ -215,3 +215,288 @@ func test_circle_may_touch_the_edge() -> void:
 func test_circle_within_any_of_several_polygons_counts() -> void:
 	var polygons: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 4, 4), BattleKit.rect_polygon(20, 0, 10, 10)]
 	assert_true(PlaceholderDeployment.is_wholly_within(polygons, Vector2(25, 5), 2.0))
+
+
+# spot_for_unit
+
+func _field() -> Battle:
+	return BattleKit.deployment_battle()
+
+
+func _on_battlefield(unit: BattleUnit, at: Vector2) -> void:
+	unit.positions = PackedVector2Array([at])
+	unit.deployed = true
+
+
+func test_spot_for_a_unit_has_a_position_per_model() -> void:
+	var battle := _field()
+	var unit := battle.player.units[0]
+	assert_eq(PlaceholderDeployment.spot_for_unit(battle, battle.player, unit).size(), unit.model_count())
+
+
+func test_spot_for_a_unit_breaks_no_deployment_rule() -> void:
+	var battle := _field()
+	var unit := battle.player.units[0]
+	var positions := PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	assert_eq(DeploymentRules.unit_problems(battle, battle.player, unit, positions, battle.player.facing).size(), 0)
+
+
+func test_spot_for_a_unit_does_not_deploy_it() -> void:
+	var battle := _field()
+	var unit := battle.player.units[0]
+	PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	assert_false(unit.deployed)
+	assert_eq(unit.positions.size(), 0)
+
+
+func test_spot_for_a_unit_keeps_clear_of_deployed_units() -> void:
+	var battle := _field()
+	var first := battle.player.units[0]
+	var second := battle.player.units[1]
+	var first_spot := PlaceholderDeployment.spot_for_unit(battle, battle.player, first)
+	first.positions = first_spot
+	first.deployed = true
+	var second_spot := PlaceholderDeployment.spot_for_unit(battle, battle.player, second)
+	assert_eq(DeploymentRules.unit_problems(battle, battle.player, second, second_spot, battle.player.facing).size(), 0)
+
+
+func test_spot_for_a_unit_is_in_the_matched_play_zone() -> void:
+	var battle := _field()
+	var zone := DeploymentRules.unit_zone(battle, battle.player)
+	var unit := battle.player.units[0]
+	var positions := PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	for i in positions.size():
+		assert_true(DeploymentRules.is_wholly_within(zone, DeploymentRules.base_outline(unit.bases[i], positions[i], 0.0)))
+
+
+func test_spot_for_a_unit_is_empty_when_there_is_no_room() -> void:
+	var battle := _field()
+	var tiny: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 1, 1)]
+	assert_eq(PlaceholderDeployment.spot_for_unit(battle, battle.player, battle.player.units[0], tiny).size(), 0)
+
+
+func test_spot_for_a_unit_uses_a_given_zone() -> void:
+	var battle := _field()
+	var zone: Array[PackedVector2Array] = [BattleKit.rect_polygon(40, 2, 15, 10)]
+	var positions := PlaceholderDeployment.spot_for_unit(battle, battle.player, battle.player.units[0], zone)
+	assert_gt(positions.size(), 0)
+	for position in positions:
+		assert_gt(position.x, 40.0)
+
+
+func test_spot_for_a_unit_keeps_clear_of_battlefield_terrain() -> void:
+	var battle := _field()
+	var first_spot := PlaceholderDeployment.spot_for_unit(battle, battle.player, battle.player.units[0])
+	var blocker := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, first_spot[0], true)
+	battle.terrain.append(blocker)
+	var unit := battle.player.units[0]
+	var positions := PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	assert_eq(DeploymentRules.unit_problems(battle, battle.player, unit, positions, battle.player.facing).size(), 0)
+	assert_ne(positions, first_spot)
+
+
+func test_spot_for_a_big_unit_still_fits() -> void:
+	var battle := _field()
+	var unit := BattleKit.unit("Horde", 40)
+	battle.player.units.append(unit)
+	var positions := PlaceholderDeployment.spot_for_unit(battle, battle.player, unit)
+	assert_eq(positions.size(), 40)
+
+
+# spot_for_terrain
+
+func _terrain_field() -> Battle:
+	var battle := _field()
+	battle.player_territory = [BattleKit.rect_polygon(0, 0, 10, 10)] as Array[PackedVector2Array]
+	return battle
+
+
+func test_spot_for_terrain_has_a_position_and_rotation() -> void:
+	var battle := _field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature)
+	assert_true(spot.has("at"))
+	assert_true(spot.has("rotation"))
+
+
+func test_spot_for_terrain_breaks_no_deployment_rule() -> void:
+	var battle := _field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature)
+	assert_eq(DeploymentRules.terrain_problems(battle, battle.player, feature, spot.at, spot.rotation).size(), 0)
+
+
+func test_spot_for_terrain_keeps_away_from_other_terrain() -> void:
+	var battle := _field()
+	var other := BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 11))
+	battle.terrain.append(other)
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature)
+	assert_gt(spot.at.distance_to(other.position), 8.0)
+
+
+func test_spot_for_terrain_leaves_room_for_the_armys_next_feature() -> void:
+	var battle := _terrain_field()
+	var first := BattleKit.terrain(BattleTerrain.Kind.FACTION, 2.0, Vector2.ZERO, false)
+	var second := BattleKit.terrain(BattleTerrain.Kind.FACTION, 2.0, Vector2.ZERO, false)
+	battle.player.terrain.append_array([first, second])
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, first)
+	first.position = spot.at
+	first.rotation = spot.rotation
+	first.placed = true
+	assert_true(PlaceholderDeployment.has_terrain_spot(battle, battle.player, second))
+
+
+func test_spot_for_terrain_is_empty_when_nowhere_meets_the_rules() -> void:
+	var battle := _terrain_field()
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5)))
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	assert_true(PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature).is_empty())
+
+
+func test_relaxed_spot_for_terrain_goes_nearer_other_terrain() -> void:
+	var battle := _terrain_field()
+	var other := BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5))
+	battle.terrain.append(other)
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature, true)
+	assert_false(spot.is_empty())
+
+
+func test_relaxed_spot_for_terrain_still_keeps_off_other_terrain() -> void:
+	var battle := _terrain_field()
+	var other := BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5))
+	battle.terrain.append(other)
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature, true)
+	var gap := DeploymentRules.gap_between(DeploymentRules.terrain_outline(feature, spot.at, spot.rotation),
+			DeploymentRules.terrain_outline(other, other.position, other.rotation))
+	assert_gt(gap, 0.0)
+
+
+func test_spot_for_terrain_is_empty_when_the_feature_is_bigger_than_the_territory() -> void:
+	var battle := _terrain_field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 20.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	assert_true(PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature, true).is_empty())
+
+
+func test_spot_for_terrain_puts_the_first_feature_away_from_the_middle_of_the_territory() -> void:
+	var battle := _field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, feature)
+	assert_gt(spot.at.distance_to(PlaceholderDeployment.centroid(battle.player_territory)), 3.0)
+
+
+func test_spot_for_terrain_puts_the_second_feature_away_from_the_first() -> void:
+	var battle := _field()
+	var first := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2(5, 5))
+	var second := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append_array([first, second])
+	var spot := PlaceholderDeployment.spot_for_terrain(battle, battle.player, second)
+	assert_gt(spot.at.distance_to(first.position), DeploymentRules.FACTION_TERRAIN_GAP + 3.0)
+
+
+# first_terrain_spot and has_terrain_spot
+
+func test_first_terrain_spot_has_a_position_and_rotation() -> void:
+	var battle := _field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.first_terrain_spot(battle, battle.player, feature)
+	assert_true(spot.has("at") and spot.has("rotation"))
+
+
+func test_first_terrain_spot_breaks_no_deployment_rule() -> void:
+	var battle := _field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	var spot := PlaceholderDeployment.first_terrain_spot(battle, battle.player, feature)
+	assert_eq(DeploymentRules.terrain_problems(battle, battle.player, feature, spot.at, spot.rotation).size(), 0)
+
+
+func test_first_terrain_spot_is_empty_when_nowhere_meets_the_rules() -> void:
+	var battle := _terrain_field()
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5)))
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	assert_true(PlaceholderDeployment.first_terrain_spot(battle, battle.player, feature).is_empty())
+
+
+func test_relaxed_first_terrain_spot_goes_where_the_rules_gap_is_not_met() -> void:
+	var battle := _terrain_field()
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5)))
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	assert_false(PlaceholderDeployment.first_terrain_spot(battle, battle.player, feature, true).is_empty())
+
+
+func test_there_is_a_terrain_spot_with_room() -> void:
+	var battle := _field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	assert_true(PlaceholderDeployment.has_terrain_spot(battle, battle.player, feature))
+
+
+func test_there_is_no_terrain_spot_when_other_terrain_leaves_no_gap() -> void:
+	var battle := _terrain_field()
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5)))
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	assert_false(PlaceholderDeployment.has_terrain_spot(battle, battle.player, feature))
+
+
+func test_there_is_no_terrain_spot_for_a_feature_bigger_than_the_territory() -> void:
+	var battle := _terrain_field()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 20.0, Vector2.ZERO, false)
+	battle.player.terrain.append(feature)
+	assert_false(PlaceholderDeployment.has_terrain_spot(battle, battle.player, feature))
+
+
+# space_of
+
+func test_space_holds_placed_terrain() -> void:
+	var battle := _field()
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 4.0, Vector2(20, 9)))
+	assert_false(PlaceholderDeployment.space_of(battle).is_clear(Vector2(20, 9), 0.5))
+
+
+func test_space_ignores_unplaced_terrain() -> void:
+	var battle := _field()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(20, 9), false))
+	assert_true(PlaceholderDeployment.space_of(battle).is_clear(Vector2(20, 9), 0.5))
+
+
+func test_space_holds_deployed_models_of_both_armies() -> void:
+	var battle := _field()
+	_on_battlefield(battle.player.units[0], Vector2(10, 5))
+	_on_battlefield(battle.opponent.units[0], Vector2(50, 39))
+	var space := PlaceholderDeployment.space_of(battle)
+	assert_false(space.is_clear(Vector2(10, 5), 0.2))
+	assert_false(space.is_clear(Vector2(50, 39), 0.2))
+
+
+func test_space_ignores_units_not_yet_deployed() -> void:
+	var battle := _field()
+	battle.player.units[0].positions = PackedVector2Array([Vector2(10, 5)])
+	assert_true(PlaceholderDeployment.space_of(battle).is_clear(Vector2(10, 5), 0.2))
+
+
+func test_space_ignores_units_in_reserve() -> void:
+	var battle := _field()
+	_on_battlefield(battle.player.units[0], Vector2(10, 5))
+	battle.player.units[0].reserve = "in the clouds"
+	assert_true(PlaceholderDeployment.space_of(battle).is_clear(Vector2(10, 5), 0.2))
+
+
+func test_space_is_clear_away_from_everything() -> void:
+	var battle := _field()
+	_on_battlefield(battle.player.units[0], Vector2(10, 5))
+	assert_true(PlaceholderDeployment.space_of(battle).is_clear(Vector2(40, 5), 0.5))

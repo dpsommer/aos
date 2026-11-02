@@ -21,7 +21,7 @@
 
 - [Main menu](design/main-menu.md): menu options, their destinations, and the signals the menu emits
 - [Quick Play](design/quick-play.md): choosing a game mode (Spearhead or Matched Play), an army and a battleplan
-- [Battle](design/battle.md): the loading screen and the game map: the battlefield at tabletop size, models on their bases (3D models where there are any), auto-deployment, the camera and the in-battle menu
+- [Battle](design/battle.md): the loading screen and the game map: the battlefield at tabletop size, models on their bases (3D models where there are any), the roll-off, the Spearhead deployment map picker, the deployment screens, the camera and the in-battle menu
 - [Forge](design/forge.md): army builder flow and screen, faction browser, signals, and faction data
 - [Ability cards](design/abilities.md): how abilities are shown everywhere: the phase-coloured box, its icon, timing and colours
 - [Settings](design/settings.md): the General, Graphics, Sound and Input tabs, key remapping, and how settings are saved and applied
@@ -30,6 +30,7 @@
 ### Gameplay
 
 - [Army composition](gameplay/army-composition.md): the army rules the Forge checks, and what it doesn't check yet
+- [Deployment](gameplay/deployment.md): the roll-off, the deployment steps and who goes when, where units and terrain can be set up, coherency, formations, deployment abilities and reserves, and the AI's mirrored deployment
 - [Faction FAQs](gameplay/faq/README.md): each faction's official FAQ rulings from the latest rules update
 
 Add new documents to this index.

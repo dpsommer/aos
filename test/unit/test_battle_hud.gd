@@ -196,3 +196,154 @@ func test_refresh_controls_updates_the_menu_tooltip() -> void:
 	InputBindings.set_keys("ui_cancel", [_key(KEY_P)])
 	hud.refresh_controls()
 	assert_eq(hud.menu_button.tooltip_text, "Menu (P)")
+
+
+# roles and the pills
+
+func test_pills_omit_roles_before_the_roll_off() -> void:
+	var battle := BattleKit.battle()
+	battle.roles_assigned = false
+	var hud := _hud(battle)
+	assert_false(UIKit.has_label_containing(hud.player_pill, "Attacker"))
+	assert_false(UIKit.has_label_containing(hud.player_pill, "Defender"))
+	assert_false(UIKit.has_label_containing(hud.opponent_pill, "Attacker"))
+	assert_false(UIKit.has_label_containing(hud.opponent_pill, "Defender"))
+
+
+func test_pills_show_the_roles_once_refreshed_after_the_roll_off() -> void:
+	var battle := BattleKit.battle()
+	battle.roles_assigned = false
+	var hud := _hud(battle)
+	battle.roles_assigned = true
+	hud.refresh_roles()
+	assert_true(UIKit.has_label_containing(hud.player_pill, "Attacker"))
+
+
+func test_pills_show_how_many_units_each_side_has_left() -> void:
+	var hud := _hud()
+	hud.refresh_roles(3, 5)
+	assert_true(UIKit.has_label_containing(hud.player_pill, "3 left"))
+	assert_true(UIKit.has_label_containing(hud.opponent_pill, "5 left"))
+
+
+func test_pills_leave_the_count_out_by_default() -> void:
+	var hud := _hud()
+	hud.refresh_roles()
+	assert_false(UIKit.has_label_containing(hud.player_pill, "left"))
+
+
+func test_a_side_with_none_left_says_so() -> void:
+	var hud := _hud()
+	hud.refresh_roles(0, 2)
+	assert_true(UIKit.has_label_containing(hud.player_pill, "0 left"))
+
+
+func test_the_pill_text_separates_its_parts() -> void:
+	var hud := _hud()
+	hud.refresh_roles(4, -1)
+	assert_string_contains(hud.player_pill_label.text, " · ")
+
+
+# set_phase
+
+func test_set_phase_shows_the_phase_name() -> void:
+	var hud := _hud()
+	hud.set_phase("DEPLOYMENT")
+	assert_eq(hud.phase_label.text, "DEPLOYMENT")
+
+
+func test_set_phase_without_steps_hides_the_step_list() -> void:
+	var hud := _hud()
+	hud.set_phase("DEPLOYMENT", PackedStringArray(["One", "Two"]), 0)
+	hud.set_phase("PRE-BATTLE")
+	assert_false(hud.steps_row.visible)
+
+
+func test_set_phase_lists_each_step() -> void:
+	var hud := _hud()
+	hud.set_phase("DEPLOYMENT", PackedStringArray(["Terrain", "Armies", "Abilities"]), 1)
+	assert_true(UIKit.has_label_containing(hud.steps_row, "Terrain"))
+	assert_true(UIKit.has_label_containing(hud.steps_row, "Armies"))
+	assert_true(UIKit.has_label_containing(hud.steps_row, "Abilities"))
+	assert_true(hud.steps_row.visible)
+
+
+func test_set_phase_ticks_the_steps_before_the_current_one() -> void:
+	var hud := _hud()
+	hud.set_phase("DEPLOYMENT", PackedStringArray(["Terrain", "Armies", "Abilities"]), 1)
+	var texts := UIKit.label_texts(hud.steps_row)
+	assert_true(texts[0].begins_with("✓"))
+	assert_false(texts[1].begins_with("✓"))
+	assert_false(texts[2].begins_with("✓"))
+
+
+func test_set_phase_marks_the_current_step_for_screen_readers() -> void:
+	var hud := _hud()
+	hud.set_phase("DEPLOYMENT", PackedStringArray(["Terrain", "Armies"]), 1)
+	var labels := UIKit.find_all(hud.steps_row, func(n: Node) -> bool: return n is Label)
+	assert_string_contains((labels[1] as Label).accessibility_name, "current step")
+	assert_string_contains((labels[0] as Label).accessibility_name, "done")
+
+
+func test_set_phase_replaces_the_previous_steps() -> void:
+	var hud := _hud()
+	hud.set_phase("DEPLOYMENT", PackedStringArray(["Terrain", "Armies"]), 0)
+	hud.set_phase("DEPLOYMENT", PackedStringArray(["Armies"]), 0)
+	await wait_process_frames(1)
+	assert_eq(UIKit.label_texts(hud.steps_row).size(), 1)
+
+
+# extra controls
+
+func test_extra_controls_are_added_to_the_controls_panel() -> void:
+	var hud := _hud()
+	hud.set_extra_controls(PackedStringArray(["R  rotate unit"]))
+	assert_true(UIKit.has_label_containing(hud.controls, "rotate unit"))
+
+
+func test_removing_the_extra_controls_takes_them_off_the_panel() -> void:
+	var hud := _hud()
+	hud.set_extra_controls(PackedStringArray(["R  rotate unit"]))
+	hud.set_extra_controls(PackedStringArray())
+	assert_false(UIKit.has_label_containing(hud.controls, "rotate unit"))
+
+
+func test_extra_controls_survive_a_refresh_of_the_keys() -> void:
+	var hud := _hud()
+	hud.set_extra_controls(PackedStringArray(["R  rotate unit"]))
+	hud.refresh_controls()
+	assert_true(UIKit.has_label_containing(hud.controls, "rotate unit"))
+
+
+func test_controls_bottom_moves_the_panel_up() -> void:
+	var hud := _hud()
+	var before := hud.controls.position.y
+	hud.set_controls_bottom(200.0)
+	assert_lt(hud.controls.position.y, before)
+
+
+func test_the_raised_controls_panel_stays_raised_after_a_refresh() -> void:
+	var hud := _hud()
+	hud.set_controls_bottom(200.0)
+	var raised := hud.controls.position.y
+	hud.refresh_controls()
+	assert_eq(hud.controls.position.y, raised)
+
+
+# key_for
+
+func test_key_for_is_the_first_bound_key() -> void:
+	InputBindings.set_keys("camera_forward", [_key(KEY_I)])
+	assert_eq(BattleHud.key_for("camera_forward"), "I")
+
+
+func test_key_for_an_unbound_action_says_none() -> void:
+	InputBindings.set_keys("camera_forward", [])
+	assert_eq(BattleHud.key_for("camera_forward"), "None")
+
+
+func test_refreshing_the_controls_does_not_repeat_the_camera_lines() -> void:
+	var hud := _hud()
+	var before := UIKit.label_texts(hud.controls).size()
+	hud.refresh_controls()
+	assert_eq(UIKit.label_texts(hud.controls).size(), before)

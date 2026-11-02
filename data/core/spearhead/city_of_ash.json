@@ -67,6 +67,8 @@
 		{
 			"name": "Ruined Manor",
 			"size": "large",
+			"length": 4.5,
+			"width": 3.5,
 			"abilities": [
 				"Cover",
 				"Unstable"

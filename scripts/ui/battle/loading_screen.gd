@@ -218,8 +218,8 @@ func _kind_text() -> String:
 func _description() -> String:
 	if not battle.twist.is_empty():
 		return battle.twist
-	return "The %s side of the %s realm battlefield, with the %s deployment map." % [battle.title, battle.battlepack.name,
-			battle.deployment.name.to_lower()]
+	return "The %s side of the %s realm battlefield. The defender picks the deployment map after the roll-off." \
+			% [battle.title, battle.battlepack.name]
 
 
 func _progress() -> Control:

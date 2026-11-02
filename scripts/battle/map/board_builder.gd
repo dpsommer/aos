@@ -17,6 +17,10 @@ const ROAD_HEIGHT := 0.01
 const TERRITORY_HEIGHT := 0.02
 const ZONE_HEIGHT := 0.03
 const OBJECTIVE_HEIGHT := 0.12
+const NO_DEPLOY_HEIGHT := 0.025
+## The shading over territory too close to the enemy to deploy in.
+const NO_DEPLOY := Color(0.047, 0.051, 0.063, 0.5)
+const NO_DEPLOY_EDGE := Color(0.961, 0.647, 0.557, 0.8)
 ## Territory stripes and edges: [stripe, gap, edge] for each side.
 const PLAYER_COLOURS := [Color(0.376, 0.62, 0.886, 0.22), Color(0.239, 0.455, 0.659, 0.08), Color(0.431, 0.667, 0.922)]
 const OPPONENT_COLOURS := [Color(0.91, 0.408, 0.361, 0.2), Color(0.722, 0.267, 0.231, 0.08), Color(0.922, 0.431, 0.384)]
@@ -51,6 +55,44 @@ static func territory(polygons: Array[PackedVector2Array], is_player: bool) -> N
 			fill.material_override = material
 			root.add_child(fill)
 		root.add_child(outline(polygon, TERRITORY_HEIGHT, colours[2]))
+	return root
+
+
+## The part of a side's territory its units can't be set up in (too close to enemy territory),
+## shaded dark: [param own] territory less the deployable [param zone].
+## [param facing] is the way the side faces (radians clockwise from east): the label reads the right
+## way up from behind it.
+## [param text] labels each part, e.g. "Within 9\" of enemy territory".
+static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2Array], text := "Too close to the enemy", facing := -PI / 2) -> Node3D:
+	var root := Node3D.new()
+	root.name = "NoDeploy"
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.albedo_color = NO_DEPLOY
+	for polygon in own:
+		var pieces: Array[PackedVector2Array] = [polygon]
+		for keep in zone:
+			var next: Array[PackedVector2Array] = []
+			for piece in pieces:
+				next.append_array(Geometry2D.clip_polygons(piece, keep))
+			pieces = next
+		for piece in pieces:
+			var fill := flat_polygon(piece, NO_DEPLOY_HEIGHT)
+			if fill:
+				fill.material_override = material
+				root.add_child(fill)
+				root.add_child(outline(piece, NO_DEPLOY_HEIGHT, NO_DEPLOY_EDGE))
+				var middle := Vector2.ZERO
+				for point in piece:
+					middle += point
+				var label := ModelPlaceholder.label(text, ModelPlaceholder.to_world(middle / piece.size(), 0.5), 110)
+				label.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+				# Flat on the board, its top towards the enemy.
+				label.rotation = Vector3(-PI / 2, -(facing + PI / 2), 0)
+				label.modulate = NO_DEPLOY_EDGE
+				label.visibility_range_end = 0.0
+				root.add_child(label)
 	return root
 
 

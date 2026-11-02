@@ -12,6 +12,14 @@ var warscroll: Warscroll
 var bases: Array[BaseSize] = []
 ## Each model's centre, in inches from the battlefield's north-west corner, once deployed.
 var positions := PackedVector2Array()
+## Which way the unit's models face, in radians clockwise from east.
+var facing := 0.0
+## The regiment the unit is in, or null for an auxiliary unit or a Spearhead's.
+var regiment: BattleRegiment
+## Whether it has been deployed, on the battlefield or in reserve.
+var deployed := false
+## The reserve it was set up in, e.g. "in the clouds", or empty if it's on the battlefield.
+var reserve := ""
 
 
 ## A unit of [param model_count] models of [param of], whose bases come from [param base_source]
@@ -30,7 +38,17 @@ func model_count() -> int:
 	return bases.size()
 
 
-## A copy, not yet deployed.
+## Whether it has been set up on the battlefield (not in reserve).
+func is_on_battlefield() -> bool:
+	return deployed and reserve.is_empty() and not positions.is_empty()
+
+
+## Whether its warscroll has [param keyword].
+func has_keyword(keyword: String) -> bool:
+	return warscroll != null and warscroll.has_keyword(keyword)
+
+
+## A copy, not yet deployed and in no regiment ([method BattleArmy.mirror] puts it in one).
 func copy() -> BattleUnit:
 	var unit := BattleUnit.new()
 	unit.name = name

@@ -352,3 +352,123 @@ func test_a_textured_model_keeps_its_own_materials_for_the_opponent() -> void:
 func test_an_untextured_model_still_gets_the_side_material() -> void:
 	var root := _built(_unit_named("Lone Statue", 2))
 	assert_not_null(_models(root)[0].material_override)
+
+
+# update_unit (the instances' transforms and colours live in the rendering server, which a headless
+# run doesn't have, so these check what the nodes can tell)
+
+func test_update_unit_moves_the_name_label_over_the_unit() -> void:
+	var unit := _unit_named("Plain Guard", 2)
+	var root := _built(unit)
+	unit.positions = PackedVector2Array([Vector2(40, 30), Vector2(42, 30)])
+	ModelPlaceholder.update_unit(root, unit)
+	var label := root.get_node("Label") as Label3D
+	assert_eq([label.position.x, label.position.z], [41.0, 30.0])
+
+
+func test_update_unit_keeps_the_label_height() -> void:
+	var unit := _unit_named("Plain Guard", 2)
+	var root := _built(unit)
+	var height := (root.get_node("Label") as Label3D).position.y
+	unit.positions[0] = Vector2(5, 5)
+	ModelPlaceholder.update_unit(root, unit)
+	assert_eq((root.get_node("Label") as Label3D).position.y, height)
+
+
+func test_update_unit_ignores_models_that_lost_their_positions() -> void:
+	var unit := _unit_named("Plain Guard", 3)
+	var root := _built(unit)
+	unit.positions.resize(2)
+	ModelPlaceholder.update_unit(root, unit)
+	assert_eq((root.get_node("Label") as Label3D).position.x, 1.5)
+
+
+# show_rings
+
+func _rings(root: Node3D) -> MultiMeshInstance3D:
+	return root.get_node_or_null("Rings") as MultiMeshInstance3D
+
+
+func test_show_rings_adds_a_ring_per_model() -> void:
+	var unit := _unit_named("Plain Guard", 3)
+	var root := _built(unit)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	assert_eq(_rings(root).multimesh.instance_count, 3)
+
+
+func test_showing_the_rings_again_keeps_one_ring_set() -> void:
+	var unit := _unit_named("Plain Guard", 2)
+	var root := _built(unit)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array([0]))
+	var sets := root.get_children().filter(func(n: Node) -> bool: return n.name == "Rings")
+	assert_eq(sets.size(), 1)
+
+
+func test_hiding_the_rings_removes_them() -> void:
+	var unit := _unit_named("Plain Guard", 2)
+	var root := _built(unit)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array(), false)
+	assert_null(_rings(root))
+
+
+func test_hiding_rings_that_are_not_shown_does_nothing() -> void:
+	var unit := _unit_named("Plain Guard", 2)
+	var root := _built(unit)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array(), false)
+	assert_null(_rings(root))
+
+
+func test_rings_do_not_cast_shadows() -> void:
+	var unit := _unit_named("Plain Guard", 2)
+	var root := _built(unit)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	assert_eq(_rings(root).cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_OFF)
+
+
+func test_showing_the_rings_for_a_smaller_unit_resizes_them() -> void:
+	var unit := _unit_named("Plain Guard", 3)
+	var root := _built(unit)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	unit.positions.resize(2)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	assert_eq(_rings(root).multimesh.instance_count, 2)
+
+
+# ring_colour
+
+func test_an_invalid_ring_differs_from_a_valid_one() -> void:
+	assert_ne(ModelPlaceholder.ring_colour(false, false), ModelPlaceholder.ring_colour(true, false))
+
+
+func test_an_invalid_ring_is_the_same_held_or_not() -> void:
+	assert_eq(ModelPlaceholder.ring_colour(false, true), ModelPlaceholder.ring_colour(false, false))
+
+
+func test_a_held_ring_differs_from_one_put_down() -> void:
+	assert_ne(ModelPlaceholder.ring_colour(true, true), ModelPlaceholder.ring_colour(true, false))
+
+
+func test_a_held_ring_differs_from_an_invalid_one() -> void:
+	assert_ne(ModelPlaceholder.ring_colour(true, true), ModelPlaceholder.ring_colour(false, true))
+
+
+# outline_mesh
+
+func test_an_outline_mesh_has_one_surface() -> void:
+	var outline := DeploymentRules.terrain_outline(BattleKit.terrain(), Vector2.ZERO, 0.0)
+	assert_eq(ModelPlaceholder.outline_mesh(outline, 0.1).get_surface_count(), 1)
+
+
+func test_an_outline_mesh_has_vertices_all_round_the_outline() -> void:
+	var outline := DeploymentRules.terrain_outline(BattleKit.terrain(), Vector2.ZERO, 0.0)
+	var arrays := ModelPlaceholder.outline_mesh(outline, 0.1).surface_get_arrays(0)
+	assert_gte(arrays[Mesh.ARRAY_VERTEX].size(), outline.size() * 2)
+
+
+func test_an_outline_mesh_sits_at_the_height_given() -> void:
+	var outline := DeploymentRules.terrain_outline(BattleKit.terrain(), Vector2.ZERO, 0.0)
+	var low := ModelPlaceholder.outline_mesh(outline, 0.1).get_aabb()
+	var high := ModelPlaceholder.outline_mesh(outline, 0.6).get_aabb()
+	assert_gt(high.position.y, low.position.y)

@@ -53,6 +53,17 @@ func frame(area: Rect2, facing: float) -> void:
 	_apply()
 
 
+## The point on the board (in inches) under [param screen_position], or null if the view there
+## doesn't meet the board.
+func ground_point(screen_position: Vector2) -> Variant:
+	var origin := camera.project_ray_origin(screen_position)
+	var direction := camera.project_ray_normal(screen_position)
+	if direction.y > -0.0001:
+		return null
+	var hit := origin + direction * (-origin.y / direction.y)
+	return Vector2(hit.x, hit.z)
+
+
 ## Moves the target by [param amount] in view terms: x right, y forward, in inches.
 func pan(amount: Vector2) -> void:
 	var forward := Vector3(-sin(yaw), 0, -cos(yaw))

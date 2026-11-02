@@ -1,9 +1,9 @@
 class_name BattleBuilder
 extends RefCounted
 ## Makes a [Battle] from what the player chose in Quick Play ([BattleSetup]): picks the battleplan
-## or realm battlefield if it's Random, the Spearhead deployment map and territories, and who is
-## the attacker, and builds both armies. The AI's army mirrors the player's for now. See
-## docs/design/battle.md.
+## or realm battlefield if it's Random and builds both armies, with their regiments and deployment
+## abilities. The roll-off decides who is the attacker later ([method Battle.assign_roles]). The
+## AI's army mirrors the player's for now. See docs/design/battle.md.
 
 
 ## The battle for [param setup], or null without the data it needs. [param core], [param packs]
@@ -15,7 +15,8 @@ static func build(setup: BattleSetup, rng: RandomNumberGenerator, core: CoreRule
 		return null
 	if setup.mode == BattleSetup.Mode.MATCHED_PLAY:
 		return _matched_play(setup, rng, core if core else CoreRulesCatalog.get_rules(), faction)
-	return _spearhead(setup, rng, packs if not packs.is_empty() else CoreRulesCatalog.spearhead_battlepacks(), faction)
+	return _spearhead(setup, rng, packs if not packs.is_empty() else CoreRulesCatalog.spearhead_battlepacks(), faction,
+			core if core else CoreRulesCatalog.get_rules())
 
 
 static func _matched_play(setup: BattleSetup, rng: RandomNumberGenerator, core: CoreRules, faction: Faction) -> Battle:
@@ -43,15 +44,10 @@ static func _matched_play(setup: BattleSetup, rng: RandomNumberGenerator, core: 
 		battle.terrain.append(BattleTerrain.from_battleplan(feature))
 	battle.player = army_of(setup.army, ArmyCatalog.new(faction, core))
 	battle.opponent = battle.player.mirror()
-	battle.player_is_attacker = rng.randi_range(0, 1) == 0
-	var attacker := merge_rects(plan.attacker_territory)
-	var defender := merge_rects(plan.defender_territory)
-	battle.player_territory = attacker if battle.player_is_attacker else defender
-	battle.opponent_territory = defender if battle.player_is_attacker else attacker
 	return battle
 
 
-static func _spearhead(setup: BattleSetup, rng: RandomNumberGenerator, packs: Array[SpearheadBattlepack], faction: Faction) -> Battle:
+static func _spearhead(setup: BattleSetup, rng: RandomNumberGenerator, packs: Array[SpearheadBattlepack], faction: Faction, core: CoreRules) -> Battle:
 	if packs.is_empty():
 		return null
 	if faction == null and not setup.faction.is_empty():
@@ -89,34 +85,41 @@ static func _spearhead(setup: BattleSetup, rng: RandomNumberGenerator, packs: Ar
 		terrain.position = feature.position
 		terrain.placed = true
 		battle.terrain.append(terrain)
-	battle.deployment = pack.deployment_maps[rng.randi_range(0, pack.deployment_maps.size() - 1)]
-	var player_has_a := rng.randi_range(0, 1) == 0
-	battle.player_territory = [battle.deployment.territory_a if player_has_a else battle.deployment.territory_b]
-	battle.opponent_territory = [battle.deployment.territory_b if player_has_a else battle.deployment.territory_a]
-	battle.player_is_attacker = rng.randi_range(0, 1) == 0
-	battle.player = spearhead_army(spearhead, faction)
+	battle.player = spearhead_army(spearhead, faction, setup, core)
 	battle.opponent = battle.player.mirror()
-	# The defender sets up the first terrain group (or every feature), then the attacker the second.
-	battle.player.terrain = spearhead_terrain(pack, 1 if battle.player_is_attacker else 0)
-	battle.opponent.terrain = spearhead_terrain(pack, 0 if battle.player_is_attacker else 1)
 	return battle
 
 
-## A Forge army's units and faction terrain, with its points.
+## A Forge army's units, regiments, faction terrain and deployment abilities, with its points.
 static func army_of(army: Army, catalog: ArmyCatalog) -> BattleArmy:
 	var result := BattleArmy.new()
 	result.name = army.name
 	result.faction_name = catalog.faction.name
 	result.points = ArmyPoints.total(army, catalog)
 	for regiment in army.regiments:
+		var battle_regiment := BattleRegiment.new()
+		battle_regiment.name = _regiment_name(regiment, result.regiments.size())
+		battle_regiment.is_renown = regiment.is_regiment_of_renown()
 		for unit in regiment.units:
-			result.units.append(_unit(unit, regiment, catalog))
+			var battle_unit := _unit(unit, regiment, catalog)
+			battle_unit.regiment = battle_regiment
+			battle_regiment.units.append(battle_unit)
+			result.units.append(battle_unit)
+		result.regiments.append(battle_regiment)
 	for unit in army.auxiliary:
 		result.units.append(_unit(unit, null, catalog))
+	DeploymentAbilities.for_army(result, army, catalog)
 	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
 	if terrain:
 		result.terrain.append(BattleTerrain.from_warscroll(terrain))
 	return result
+
+
+## The regiment's name: a Regiment of Renown's, the player's, or "Regiment N".
+static func _regiment_name(regiment: ArmyRegiment, index: int) -> String:
+	if regiment.is_regiment_of_renown():
+		return regiment.regiment_of_renown
+	return regiment.name if not regiment.name.is_empty() else "Regiment %d" % (index + 1)
 
 
 static func _unit(unit: ArmyUnit, regiment: ArmyRegiment, catalog: ArmyCatalog) -> BattleUnit:
@@ -125,9 +128,9 @@ static func _unit(unit: ArmyUnit, regiment: ArmyRegiment, catalog: ArmyCatalog) 
 	return BattleUnit.create(warscroll.name if warscroll else unit.warscroll_id, warscroll, count)
 
 
-## A Spearhead's general and units. Their bases come from the faction's warscrolls of the same
-## names, as a Spearhead's own have no battle profile.
-static func spearhead_army(spearhead: Spearhead, faction: Faction) -> BattleArmy:
+## A Spearhead's general and units, and its deployment abilities. Their bases come from the
+## faction's warscrolls of the same names, as a Spearhead's own have no battle profile.
+static func spearhead_army(spearhead: Spearhead, faction: Faction, setup: BattleSetup = null, core: CoreRules = null) -> BattleArmy:
 	var result := BattleArmy.new()
 	result.name = spearhead.name
 	result.faction_name = faction.name
@@ -137,6 +140,7 @@ static func spearhead_army(spearhead: Spearhead, faction: Faction) -> BattleArmy
 	for entry: Array in entries:
 		var unit_name: String = entry[0]
 		result.units.append(BattleUnit.create(unit_name, spearhead.get_warscroll(unit_name), entry[1], faction.find_warscroll(unit_name)))
+	DeploymentAbilities.for_spearhead(result, spearhead, setup, core)
 	return result
 
 

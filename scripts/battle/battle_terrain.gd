@@ -56,8 +56,7 @@ static func from_spearhead(feature: SpearheadTerrain) -> BattleTerrain:
 	terrain.kind = Kind.SPEARHEAD
 	terrain.name = feature.name
 	terrain.size = feature.size
-	var width: float = SpearheadTerrain.WIDTHS.get(feature.size, SpearheadTerrain.WIDTHS.large)
-	terrain.footprint = Vector2(width, width)
+	terrain.footprint = feature.footprint()
 	return terrain
 
 

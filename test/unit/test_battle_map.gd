@@ -160,17 +160,20 @@ func test_build_limits_the_camera_to_the_battlefield() -> void:
 	assert_eq(map.camera.bounds, Rect2(Vector2.ZERO, battle.battlefield_size))
 
 
+func _placed_count(battle: Battle) -> int:
+	return battle.all_terrain().filter(func(feature: BattleTerrain) -> bool: return feature.placed).size()
+
+
 func test_build_adds_a_node_per_placed_terrain_feature() -> void:
 	var battle := _battle()
 	var map := _built_map(battle)
-	assert_eq(map.terrain_root.get_child_count(), battle.all_terrain().size())
+	assert_eq(map.terrain_root.get_child_count(), _placed_count(battle))
 
 
-func test_build_skips_terrain_that_was_never_placed() -> void:
+func test_build_leaves_army_terrain_for_deployment() -> void:
 	var battle := _battle()
-	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 4.0, Vector2.ZERO, false))
-	var map := _built_map(battle)
-	assert_eq(map.terrain_root.get_child_count(), battle.all_terrain().size() - 1)
+	_built_map(battle)
+	assert_false(battle.player.terrain[0].placed)
 
 
 func test_build_adds_a_node_per_objective() -> void:
@@ -179,16 +182,15 @@ func test_build_adds_a_node_per_objective() -> void:
 	assert_eq(map.objectives_root.get_child_count(), battle.objectives.size())
 
 
-func test_build_adds_a_node_per_unit() -> void:
-	var battle := _battle()
-	var map := _built_map(battle)
-	assert_eq(map.armies_root.get_child_count(), battle.player.units.size() + battle.opponent.units.size())
+func test_build_leaves_the_armies_for_deployment() -> void:
+	var map := _built_map()
+	assert_eq(map.armies_root.get_child_count(), 0)
 
 
-func test_build_deploys_the_armies() -> void:
+func test_build_does_not_deploy_any_unit() -> void:
 	var battle := _battle()
 	_built_map(battle)
-	assert_eq(battle.player.units[0].positions.size(), battle.player.units[0].model_count())
+	assert_false(battle.player.units[0].deployed)
 
 
 func test_build_leaves_out_roads_when_the_battle_has_none() -> void:
@@ -434,3 +436,203 @@ func test_close_settings_without_settings_does_nothing() -> void:
 	var controls := map.hud.controls
 	map.close_settings()
 	assert_eq(map.hud.controls, controls)
+
+
+# start: the roll-off and deployment
+
+func _rolled_map(battle: Battle, seed_value := 1) -> BattleMap:
+	var map := _built_map(battle)
+	map.rng.seed = seed_value
+	return map
+
+
+## A Matched Play battle before the roll-off: the territories come from the battleplan by role.
+func _matched_battle() -> Battle:
+	var battle := BattleKit.deployment_battle()
+	battle.player_territory = [] as Array[PackedVector2Array]
+	battle.opponent_territory = [] as Array[PackedVector2Array]
+	battle.roles_assigned = false
+	battle.battleplan = BattleKit.battleplan("Plan")
+	return battle
+
+
+## A Spearhead battle before the roll-off and the deployment map: two maps to pick from.
+func _spearhead_battle() -> Battle:
+	var battle := BattleKit.battle()
+	battle.player_territory = [] as Array[PackedVector2Array]
+	battle.opponent_territory = [] as Array[PackedVector2Array]
+	battle.roles_assigned = false
+	battle.battlepack = BattleKit.spearhead_pack("Pack", ["Aqshy"] as Array[String])
+	battle.battlepack.deployment_maps = [BattleKit.deployment("First"), BattleKit.deployment("Second")] as Array[DeploymentMap]
+	battle.realm = battle.battlepack.realms[0]
+	return battle
+
+
+func test_start_does_nothing_on_an_unbuilt_map() -> void:
+	var map := _map()
+	map.start()
+	assert_eq(map.phase, BattleMap.Phase.BUILDING)
+	assert_null(map.roll_off_panel)
+
+
+func test_start_rolls_off_and_shows_the_roll_off_panel() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	assert_eq(map.phase, BattleMap.Phase.ROLL_OFF)
+	assert_not_null(map.battle.roll_off)
+	assert_same(map.roll_off_panel.get_parent(), map.overlay)
+
+
+func test_the_roll_off_panel_sits_under_the_menu() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	assert_lt(map.roll_off_panel.get_index(), map.pause_menu.get_index())
+
+
+func test_starting_twice_rolls_only_once() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	var panel := map.roll_off_panel
+	map.start()
+	assert_same(map.roll_off_panel, panel)
+
+
+func test_the_same_seed_gives_the_same_roll_off() -> void:
+	var first := _rolled_map(_matched_battle(), 9)
+	first.start()
+	var second := _rolled_map(_matched_battle(), 9)
+	second.start()
+	assert_eq(first.battle.roll_off.rolls, second.battle.roll_off.rolls)
+
+
+func test_roles_are_not_assigned_before_the_player_chooses() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	assert_false(map.battle.roles_assigned)
+	assert_false(map.battle.has_territories())
+
+
+func test_choosing_attacker_in_matched_play_gives_territories_and_starts_deployment() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(true)
+	assert_true(map.battle.player_is_attacker)
+	assert_true(map.battle.has_territories())
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
+	assert_not_null(map.deployment_controller)
+
+
+func test_choosing_defender_makes_the_opponent_the_attacker() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(false)
+	assert_false(map.battle.player_is_attacker)
+	assert_same(map.battle.attacker(), map.battle.opponent)
+
+
+func test_the_roll_off_panel_is_removed_once_a_role_is_chosen() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	var panel := map.roll_off_panel
+	panel.role_chosen.emit(true)
+	assert_null(map.roll_off_panel)
+	assert_null(panel.get_parent())
+
+
+func test_the_header_shows_the_roles_after_the_roll_off() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(true)
+	assert_string_contains(map.hud.player_pill_label.text, "Attacker")
+
+
+func test_the_roll_off_panel_is_gone_from_the_overlay_when_deployment_starts() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(true)
+	assert_null(map.overlay.get_node_or_null("RollOffPanel"))
+
+
+func test_deployment_shades_the_territory_too_close_to_the_enemy() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(true)
+	assert_not_null(map.get_node_or_null("NoDeploy"))
+	assert_not_null(map.get_node_or_null("PlayerTerritory"))
+
+
+func test_deployment_puts_the_deployment_hud_in_the_overlay() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(true)
+	assert_same(map.deployment_controller.hud.get_parent(), map.overlay)
+
+
+func test_a_role_choice_outside_the_roll_off_is_ignored() -> void:
+	var map := _rolled_map(_matched_battle())
+	map.start()
+	var panel := map.roll_off_panel
+	panel.role_chosen.emit(true)
+	var controller := map.deployment_controller
+	map._on_role_chosen(false)
+	assert_same(map.deployment_controller, controller)
+	assert_true(map.battle.player_is_attacker)
+
+
+func test_spearhead_attacker_leaves_the_deployment_map_to_the_ai() -> void:
+	var map := _rolled_map(_spearhead_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(true)
+	assert_null(map.map_picker)
+	assert_true(map.battle.has_territories())
+	assert_true(map.battle.deployment in map.battle.battlepack.deployment_maps)
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
+
+
+func test_spearhead_defender_picks_the_deployment_map() -> void:
+	var map := _rolled_map(_spearhead_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(false)
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT_MAP)
+	assert_same(map.map_picker.get_parent(), map.overlay)
+	assert_false(map.battle.has_territories())
+	assert_null(map.deployment_controller)
+
+
+func test_picking_a_map_gives_the_defender_its_territory_and_starts_deployment() -> void:
+	var map := _rolled_map(_spearhead_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(false)
+	var picked := map.battle.battlepack.deployment_maps[1]
+	map.map_picker.chosen.emit(picked, false)
+	assert_same(map.battle.deployment, picked)
+	assert_eq(map.battle.player_territory, [picked.territory_b] as Array[PackedVector2Array])
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
+	assert_null(map.map_picker)
+
+
+func test_spearhead_roles_give_each_side_its_terrain() -> void:
+	var map := _rolled_map(_spearhead_battle())
+	map.start()
+	map.roll_off_panel.role_chosen.emit(false)
+	assert_gt(map.battle.player.terrain.size(), 0)
+	assert_gt(map.battle.opponent.terrain.size(), 0)
+
+
+func test_deployment_finished_is_emitted_when_both_armies_are_down() -> void:
+	var battle := _matched_battle()
+	for army in [battle.player, battle.opponent]:
+		var keep: Array[BattleUnit] = [army.units[4]]
+		army.units = keep
+		army.regiments = [] as Array[BattleRegiment]
+	var map := _rolled_map(battle)
+	map.start()
+	map.roll_off_panel.role_chosen.emit(true)
+	var controller := map.deployment_controller
+	controller.ai_delay = 0.0
+	watch_signals(map)
+	controller.pick_unit(battle.player.units[0])
+	controller.confirm()
+	await wait_process_frames(3)
+	assert_signal_emitted(map, "deployment_finished")
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYED)

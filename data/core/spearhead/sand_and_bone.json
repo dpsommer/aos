@@ -101,6 +101,8 @@
 		{
 			"name": "Large Wall",
 			"size": "large",
+			"length": 6,
+			"width": 1.5,
 			"abilities": [
 				"Cover",
 				"Obscuring",
@@ -110,6 +112,8 @@
 		{
 			"name": "Large Fence",
 			"size": "large",
+			"length": 6,
+			"width": 1.5,
 			"abilities": [
 				"Cover",
 				"Obscuring",
@@ -119,6 +123,8 @@
 		{
 			"name": "Small Wall",
 			"size": "small",
+			"length": 3,
+			"width": 1,
 			"abilities": [
 				"Cover",
 				"Unstable"
@@ -127,6 +133,8 @@
 		{
 			"name": "Small Fence",
 			"size": "small",
+			"length": 3,
+			"width": 1,
 			"abilities": [
 				"Cover",
 				"Unstable"

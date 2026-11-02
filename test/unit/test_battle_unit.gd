@@ -84,3 +84,60 @@ func test_copy_has_its_own_bases_array() -> void:
 	var copy := unit.copy()
 	copy.bases.clear()
 	assert_eq(unit.model_count(), 3)
+
+
+# deployment state
+
+func test_new_unit_is_in_no_regiment_or_reserve() -> void:
+	var unit := BattleKit.unit("U", 2)
+	assert_null(unit.regiment)
+	assert_eq(unit.reserve, "")
+	assert_false(unit.deployed)
+
+
+func test_a_unit_with_positions_that_is_deployed_is_on_the_battlefield() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.deployed = true
+	unit.positions = PackedVector2Array([Vector2(3, 3)])
+	assert_true(unit.is_on_battlefield())
+
+
+func test_an_undeployed_unit_is_not_on_the_battlefield() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.positions = PackedVector2Array([Vector2(3, 3)])
+	assert_false(unit.is_on_battlefield())
+
+
+func test_a_unit_in_reserve_is_not_on_the_battlefield() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.deployed = true
+	unit.reserve = "in the clouds"
+	unit.positions = PackedVector2Array([Vector2(3, 3)])
+	assert_false(unit.is_on_battlefield())
+
+
+func test_a_deployed_unit_without_positions_is_not_on_the_battlefield() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.deployed = true
+	assert_false(unit.is_on_battlefield())
+
+
+func test_has_keyword_asks_the_warscroll() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.warscroll.keywords = PackedStringArray(["HERO"])
+	assert_true(unit.has_keyword("HERO"))
+	assert_false(unit.has_keyword("WIZARD"))
+
+
+func test_has_keyword_is_false_without_a_warscroll() -> void:
+	var unit := BattleUnit.new()
+	assert_false(unit.has_keyword("HERO"))
+
+
+func test_copy_is_in_no_regiment_or_reserve() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.regiment = BattleRegiment.new()
+	unit.reserve = "in the clouds"
+	var copy := unit.copy()
+	assert_null(copy.regiment)
+	assert_eq(copy.reserve, "")
