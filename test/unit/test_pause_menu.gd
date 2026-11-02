@@ -90,11 +90,50 @@ func test_settings_button_emits_settings_pressed() -> void:
 	assert_signal_emitted(menu, "settings_pressed")
 
 
-func test_give_up_button_emits_give_up_pressed() -> void:
+func test_surrender_dialog_is_hidden_initially() -> void:
+	assert_false(_menu().surrender_dialog.visible)
+
+
+func test_surrender_button_opens_the_dialog() -> void:
+	var menu := _menu()
+	menu.surrender_button.pressed.emit()
+	assert_true(menu.surrender_dialog.visible)
+
+
+func test_surrender_button_alone_does_not_emit_surrender_pressed() -> void:
 	var menu := _menu()
 	watch_signals(menu)
-	menu.give_up_button.pressed.emit()
-	assert_signal_emitted(menu, "give_up_pressed")
+	menu.surrender_button.pressed.emit()
+	assert_signal_not_emitted(menu, "surrender_pressed")
+
+
+func test_surrender_dialog_focuses_cancel() -> void:
+	var menu := _menu()
+	menu.confirm_surrender()
+	assert_true(menu.surrender_dialog.get_cancel_button().has_focus())
+
+
+func test_confirming_surrender_dialog_emits_surrender_pressed() -> void:
+	var menu := _menu()
+	menu.confirm_surrender()
+	watch_signals(menu)
+	menu.surrender_dialog.confirmed.emit()
+	assert_signal_emitted(menu, "surrender_pressed")
+
+
+func test_cancelling_surrender_dialog_does_not_emit_surrender_pressed() -> void:
+	var menu := _menu()
+	menu.confirm_surrender()
+	watch_signals(menu)
+	menu.surrender_dialog.canceled.emit()
+	assert_signal_not_emitted(menu, "surrender_pressed")
+
+
+func test_cancelling_surrender_dialog_refocuses_the_surrender_button() -> void:
+	var menu := _menu()
+	menu.confirm_surrender()
+	menu.surrender_dialog.canceled.emit()
+	assert_true(menu.surrender_button.has_focus())
 
 
 func test_save_and_quit_button_emits_save_and_quit_pressed() -> void:
@@ -107,8 +146,9 @@ func test_save_and_quit_button_emits_save_and_quit_pressed() -> void:
 func test_a_button_emits_only_its_own_signal() -> void:
 	var menu := _menu()
 	watch_signals(menu)
-	menu.give_up_button.pressed.emit()
+	menu.settings_button.pressed.emit()
 	assert_signal_not_emitted(menu, "resume_pressed")
+	assert_signal_not_emitted(menu, "surrender_pressed")
 	assert_signal_not_emitted(menu, "save_and_quit_pressed")
 
 

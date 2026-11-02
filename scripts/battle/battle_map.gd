@@ -4,8 +4,8 @@ extends Node3D
 ## both armies, each model shown by its base, a camera and the overlay. [LoadingScreen] builds it a
 ## step at a time ([method build_steps]); Main then shows it. See docs/design/battle.md.
 
-## Give Up in the menu.
-signal gave_up
+## Surrender in the menu, once confirmed.
+signal surrendered
 ## Save and Quit in the menu.
 signal save_and_quit_requested
 
@@ -95,7 +95,7 @@ func _build_overlay() -> void:
 	pause_menu = PauseMenu.new()
 	pause_menu.resume_pressed.connect(close_menu)
 	pause_menu.settings_pressed.connect(open_settings)
-	pause_menu.give_up_pressed.connect(gave_up.emit)
+	pause_menu.surrender_pressed.connect(surrendered.emit)
 	pause_menu.save_and_quit_pressed.connect(save_and_quit_requested.emit)
 	overlay.add_child(pause_menu)
 	add_child(overlay)

@@ -94,7 +94,7 @@ Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`B
 -- | --
 Resume (or Back) | Closes the menu. The header slides back.
 Settings | Opens the Settings screen over the map. Its Back returns to the menu, and the camera controls and the gear's tooltip show any keys rebound there.
-Give Up | Emits `gave_up`. For now `Main` returns to the main menu.
+Surrender (red) | A red button. Opens a dialog, "Are you sure?", that reads "Surrendering will result in a loss." with Cancel (focused) and Surrender. Cancel or Esc returns to the menu with Surrender focused; Surrender emits `surrendered`. For now `Main` returns to the main menu.
 Save and Quit | Emits `save_and_quit_requested`. There's no saving yet, so `Main` returns to the main menu.
 
 ### Camera
@@ -116,5 +116,5 @@ The keys are remappable in Settings › Input, Battle (see [Settings](settings.m
 `ArmySelect.play_requested(setup)` | `Main.show_loading()` opens the loading screen.
 `LoadingScreen.finished(map)` | The map is built. `Main.show_battle_map()` shows it in the loading screen's place.
 `LoadingScreen.failed(message)` | The battle couldn't be set up. `Main` returns to the army step.
-`BattleMap.gave_up` | Give Up in the game map's menu. `Main` returns to the main menu.
+`BattleMap.surrendered` | Surrender in the game map's menu, once confirmed. `Main` returns to the main menu.
 `BattleMap.save_and_quit_requested` | Save and Quit in the game map's menu. `Main` returns to the main menu.
