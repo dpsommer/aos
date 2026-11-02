@@ -22,11 +22,11 @@ var pause_menu: PauseMenu
 ## The Settings screen while it's open over the map, else null.
 var settings_screen: SettingsScreen
 var overlay: CanvasLayer
-## Whether the menu is fading out after Resume.
-var _menu_closing := false
 var terrain_root: Node3D
 var objectives_root: Node3D
 var armies_root: Node3D
+## Whether the menu is fading out after Resume.
+var _menu_closing := false
 
 
 ## The steps that build the map for [param of], in order. Each is a dictionary with
@@ -40,13 +40,20 @@ func build_steps(of: Battle) -> Array[Dictionary]:
 	for i in terrain.size():
 		steps.append(_step(Stage.TERRAIN, "Placing terrain features · %d of %d" % [i + 1, terrain.size()], _add_terrain.bind(terrain[i])))
 	steps.append(_step(Stage.OBJECTIVES, "Placing objectives", _build_objectives))
-	for side: Array in [[battle.player, true, Stage.PLAYER_MODELS, "your"], [battle.opponent, false, Stage.OPPONENT_MODELS, "the opponent's"]]:
-		var army: BattleArmy = side[0]
-		for i in army.units.size():
-			steps.append(_step(side[2], "Setting up %s models · %d of %d" % [side[3], i + 1, army.units.size()],
-					_add_unit.bind(army.units[i], army.facing, side[1])))
-		if army.units.is_empty():
-			steps.append(_step(side[2], "Setting up %s models" % side[3], func() -> void: pass))
+	steps.append_array(_army_steps(battle.player, true, Stage.PLAYER_MODELS, "your"))
+	steps.append_array(_army_steps(battle.opponent, false, Stage.OPPONENT_MODELS, "the opponent's"))
+	return steps
+
+
+## One step per unit in [param army], or a single empty step if it has none, so the loading
+## screen's checklist still ticks off its stage.
+func _army_steps(army: BattleArmy, is_player: bool, stage: Stage, whose: String) -> Array[Dictionary]:
+	var steps: Array[Dictionary] = []
+	for i in army.units.size():
+		steps.append(_step(stage, "Setting up %s models · %d of %d" % [whose, i + 1, army.units.size()],
+				_add_unit.bind(army.units[i], army.facing, is_player)))
+	if army.units.is_empty():
+		steps.append(_step(stage, "Setting up %s models" % whose, func() -> void: pass))
 	return steps
 
 
@@ -75,6 +82,11 @@ func _build_battlefield() -> void:
 	camera.bounds = Rect2(Vector2.ZERO, battle.battlefield_size)
 	camera.frame(_bounds_of(battle.player_territory), battle.player.facing)
 	add_child(camera)
+	_build_overlay()
+
+
+## The overlay: the HUD and the menu, wired to open and close each other.
+func _build_overlay() -> void:
 	overlay = CanvasLayer.new()
 	overlay.name = "Overlay"
 	hud = BattleHud.new(battle)

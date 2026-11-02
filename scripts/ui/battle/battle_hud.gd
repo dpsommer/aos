@@ -6,9 +6,9 @@ extends Control
 
 signal menu_pressed
 
-const PLAYER_PILL := [Color(0.141, 0.322, 0.494, 0.45), Color("#3D74A8"), Color("#C7DEFA"), Color("#7FB2E8")]
 ## How long the header takes to slide in or out, in seconds.
 const SLIDE_SECONDS := 0.2
+const PLAYER_PILL := [Color(0.141, 0.322, 0.494, 0.45), Color("#3D74A8"), Color("#C7DEFA"), Color("#7FB2E8")]
 const OPPONENT_PILL := [Color(0.549, 0.165, 0.141, 0.35), Color("#8C2A24"), Color("#FFC8B5"), Color("#E58A80")]
 
 var menu_button: Button
