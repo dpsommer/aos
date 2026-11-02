@@ -1,8 +1,8 @@
 newmtl corpsemare_stampede_1_cutout
 Kd 1.000 1.000 1.000
-map_Kd textures/corpsemare_stampede.png
+map_Kd textures/corpsemare_stampede_2.png
 
 newmtl corpsemare_stampede_2_cutout
 Kd 1.000 1.000 1.000
-map_Kd textures/corpsemare_stampede_t2.png
+map_Kd textures/corpsemare_stampede.png
 

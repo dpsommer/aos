@@ -4,5 +4,5 @@ map_Kd textures/malevolent_moon.jpg
 
 newmtl malevolent_moon_2
 Kd 1.000 1.000 1.000
-map_Kd textures/malevolent_moon_t2.jpg
+map_Kd textures/malevolent_moon_2.jpg
 

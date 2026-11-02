@@ -1,8 +1,8 @@
 newmtl ionus_cryptborn_warden_of_lost_souls_1
 Kd 1.000 1.000 1.000
-map_Kd textures/ionus_cryptborn_warden_of_lost_souls.jpg
+map_Kd ../khazalite_holds/textures/auric_runesmiter_2.jpg
 
 newmtl ionus_cryptborn_warden_of_lost_souls_2
 Kd 1.000 1.000 1.000
-map_Kd textures/ionus_cryptborn_warden_of_lost_souls_t2.jpg
+map_Kd textures/ionus_cryptborn_warden_of_lost_souls.jpg
 

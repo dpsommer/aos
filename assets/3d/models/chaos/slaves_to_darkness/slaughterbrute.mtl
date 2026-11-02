@@ -4,5 +4,5 @@ map_Kd textures/slaughterbrute.jpg
 
 newmtl slaughterbrute_2
 Kd 1.000 1.000 1.000
-map_Kd textures/slaughterbrute_t2.jpg
+map_Kd textures/slaughterbrute_2.jpg
 

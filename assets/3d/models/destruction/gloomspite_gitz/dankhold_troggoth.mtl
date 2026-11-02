@@ -4,5 +4,5 @@ map_Kd textures/dankhold_troggoth.jpg
 
 newmtl dankhold_troggoth_2
 Kd 1.000 1.000 1.000
-map_Kd textures/dankhold_troggoth_t2.jpg
+map_Kd textures/dankhold_troggoth_2.jpg
 

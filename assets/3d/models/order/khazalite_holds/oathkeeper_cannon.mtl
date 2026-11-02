@@ -1,6 +1,6 @@
 newmtl oathkeeper_cannon_1
 Kd 1.000 1.000 1.000
-map_Kd ../stormcast_eternals/textures/ionus_cryptborn_warden_of_lost_souls.jpg
+map_Kd textures/auric_runesmiter_2.jpg
 
 newmtl oathkeeper_cannon_2
 Kd 1.000 1.000 1.000

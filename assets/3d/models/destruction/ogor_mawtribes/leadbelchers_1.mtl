@@ -4,9 +4,9 @@ map_Kd textures/leadbelchers_1.jpg
 
 newmtl leadbelchers_1_2
 Kd 1.000 1.000 1.000
-map_Kd textures/leadbelchers_1_t2.jpg
+map_Kd textures/leadbelchers_1_2.jpg
 
 newmtl leadbelchers_1_3
 Kd 1.000 1.000 1.000
-map_Kd textures/leadbelchers_1_t3.jpg
+map_Kd textures/leadbelchers_1_3.jpg
 

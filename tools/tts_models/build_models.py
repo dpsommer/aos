@@ -2,7 +2,7 @@
 
 Usage (from the project root, in the "aos" pyenv virtualenv with requirements.txt installed):
 
-    python -I tools/tts_models/build_models.py <Mods folder> [<workshop id or save path>] [--out assets/3d/models] [--dry]
+    python -I tools/tts_models/build_models.py <Mods folder> [<workshop id or save path>] [--only <warscroll>] [--out assets/3d/models] [--dry]
 
 The Mods folder is Tabletop Simulator's cache: ~/Library/Tabletop Simulator/Mods on macOS, and
 Documents/My Games/Tabletop Simulator/Mods on Windows, unless Tabletop Simulator's settings move it.
@@ -21,11 +21,12 @@ toppers, colliders) are left out, as the game draws its own bases.
 import argparse
 import difflib
 import glob
+import hashlib
+import io
 import json
 import math
 import os
 import re
-import shutil
 import sys
 from collections import Counter, defaultdict
 
@@ -235,9 +236,9 @@ def matmul(a, b):
     return [[sum(a[i][k] * b[k][j] for k in range(4)) for j in range(4)] for i in range(4)]
 
 
-def local_matrix(t, translate=True):
-    """A Unity transform (Euler degrees applied Z, X, then Y) as a 4x4 matrix."""
-    rx, ry, rz = (math.radians(t.get(k, 0.0) or 0.0) for k in ("rotX", "rotY", "rotZ"))
+def local_matrix(t, translate=True, rotate=True):
+    """A Unity transform (Euler degrees applied Z, X, then Y) as a 4x4 matrix, and its rotation."""
+    rx, ry, rz = (math.radians(t.get(k, 0.0) or 0.0) if rotate else 0.0 for k in ("rotX", "rotY", "rotZ"))
     cx, sx, cy, sy, cz, sz = math.cos(rx), math.sin(rx), math.cos(ry), math.sin(ry), math.cos(rz), math.sin(rz)
     mx = [[1, 0, 0], [0, cx, -sx], [0, sx, cx]]
     my = [[cy, 0, sy], [0, 1, 0], [-sy, 0, cy]]
@@ -249,12 +250,13 @@ def local_matrix(t, translate=True):
 
 
 def pieces(tree):
-    """Each mesh of a model (its node) with its matrix from the mesh's file to the root's position
-    (the root's rotation and scale applied, its position not), and its rotation alone."""
+    """Each mesh of a model (its node) with its matrix from the mesh's file to the root's frame (the
+    root's scale applied, but not its position or rotation, which only place it on the table), and
+    its rotation alone."""
     result = []
 
     def walk(node, parent, parent_rotation):
-        m, r = local_matrix(node["t"], translate=parent is not None)
+        m, r = local_matrix(node["t"], translate=parent is not None, rotate=parent is not None)
         world = matmul(parent, m) if parent else m
         rotation = [[sum(parent_rotation[i][k] * r[k][j] for k in range(3)) for j in range(3)] for i in range(3)] if parent_rotation else r
         if node["mesh"] or node["bundle"]:
@@ -298,6 +300,7 @@ class Cache:
         self.tts = tts
         self.images = self._index("Images")
         self._last = (None, None)
+        self.bundle_textures = {}  # bundle path -> its textures' path ids, sorted
 
     def _index(self, folder):
         path = os.path.join(self.tts, folder)
@@ -315,7 +318,9 @@ class Cache:
             if not os.path.exists(path):
                 return []
             import bundles  # needs UnityPy, only for asset bundles
-            return self._keep(path, lambda: bundles.load(path))
+            result = self._keep(path, lambda: bundles.load(path))
+            self.bundle_textures.setdefault(path, sorted({m["texture"][1] for p in result for m in p["materials"] if m["texture"]}))
+            return result
         path = os.path.join(self.tts, "Models", node["mesh"] + ".obj")
         if not os.path.exists(path):
             return []
@@ -344,9 +349,10 @@ def material_key(material):
 
 
 def assemble(tree, cache):
-    """The model's pieces as one mesh in its main piece's frame (the main piece's rotation undone, so
-    its front stays -Z), centred on the root, or None if it's only flat pieces. Faces keep their
-    pieces' materials: fm[i] indexes face i's in materials."""
+    """The model's pieces as one mesh in its root's frame, or None if it's only flat pieces. The mod
+    turns each piece to face the root's front, -Z, and lines it up with the root's base (a ship
+    along its oval), so pieces keep their turn. Faces keep their pieces' materials: fm[i] indexes
+    face i's in materials."""
     parts = []
     for node, world, rotation in pieces(tree):
         for piece in cache.pieces(node):
@@ -357,27 +363,16 @@ def assemble(tree, cache):
             if height <= FLAT:
                 continue
             normals = [transform_point([r + [0] for r in rotation] + [[0, 0, 0, 1]], n) for n in piece["vn"]]
-            parts.append({**piece, "v": points, "vn": normals, "rotation": rotation, "size": len(points)})
+            parts.append({**piece, "v": points, "vn": normals})
     if not parts:
         return None
-    main = max(parts, key=lambda p: p["size"])
-    # Undo the main piece's turn about the vertical axis (in file space, where X is mirrored).
-    r = main["rotation"]
-    yaw = math.atan2(r[0][2], r[2][2])
-    c, s = math.cos(yaw), math.sin(yaw)
-
-    def unturn(p):
-        x, y, z = -p[0], p[1], p[2]
-        x, z = c * x - s * z, s * x + c * z
-        return (-x, y, z)
-
     out = {"v": [], "vt": [], "vn": [], "f": [], "fm": [], "materials": []}
     keys = {}
     for part in parts:
         ov, ot, on = len(out["v"]), len(out["vt"]), len(out["vn"])
-        out["v"] += [unturn(p) for p in part["v"]]
+        out["v"] += part["v"]
         out["vt"] += part["vt"]
-        out["vn"] += [unturn(n) for n in part["vn"]]
+        out["vn"] += part["vn"]
         index = []
         for material in part["materials"]:
             key = material_key(material)
@@ -396,20 +391,28 @@ def assemble(tree, cache):
 
 
 class Textures:
-    """The textures written so far, by texture: each is written once, scaled down, next to the first
-    model that uses it, in its folder's textures/, as a .jpg, or a .png if it's a cutout."""
+    """Writes each texture once, scaled down, as a .jpg, or a .png if it's a cutout, in the textures/
+    of the folder of the first model in the save that uses it, named for that model (see
+    [owners]), so where a texture goes doesn't depend on which models are built."""
 
-    def __init__(self, cache, out, dry):
-        self.cache, self.out, self.dry = cache, out, dry
+    def __init__(self, cache, out, owners, files):
+        self.cache, self.out, self.owners, self.files = cache, out, owners, files
         self.written = {}  # texture -> (path from out, cutout) or None if it can't be read
-        self.names = set()
 
-    def get(self, texture, folder, stem):
+    def get(self, texture):
         if texture not in self.written:
-            self.written[texture] = self._write(texture, folder, stem)
+            self.written[texture] = self._write(texture)
         return self.written[texture]
 
-    def _write(self, texture, folder, stem):
+    def _name(self, texture):
+        if texture[0] == "image":
+            return self.owners[("image", texture[1])]
+        bundle_path, path_id = texture
+        folder, name = self.owners[("bundle", os.path.splitext(os.path.basename(bundle_path))[0])]
+        k = self.cache.bundle_textures[bundle_path].index(path_id)
+        return folder, name if k == 0 else f"{name}_{k + 1}"
+
+    def _write(self, texture):
         try:
             image = self.cache.image(texture)
             image.load()
@@ -422,59 +425,151 @@ class Textures:
             cutout = image.getchannel("A").getextrema()[0] < CUTOUT_ALPHA
         image = image.convert("RGBA" if cutout else "RGB")
         image.thumbnail((TEXTURE_SIZE, TEXTURE_SIZE), Image.Resampling.LANCZOS)
-        n, name = 1, stem
-        while f"{folder}/textures/{name}" in self.names:
-            n += 1
-            name = f"{stem}_t{n}"
-        self.names.add(f"{folder}/textures/{name}")
+        folder, name = self._name(texture)
         path = f"{folder}/textures/{name}.{'png' if cutout else 'jpg'}"
-        if not self.dry:
-            os.makedirs(os.path.join(self.out, folder, "textures"), exist_ok=True)
-            if cutout:
-                image.save(os.path.join(self.out, path), optimize=True)
-            else:
-                image.save(os.path.join(self.out, path), quality=85, optimize=True)
-            # Mipmaps and VRAM compression, as for any texture on a 3D model. Detecting 3D use is
-            # off, or the editor reimports every texture again when it first loads the models.
-            with open(os.path.join(self.out, path + ".import"), "w") as file:
-                file.write('[remap]\n\nimporter="texture"\ntype="CompressedTexture2D"\n\n'
-                           "[params]\n\ncompress/mode=2\nmipmaps/generate=true\ndetect_3d/compress_to=0\n")
+        data = io.BytesIO()
+        if cutout:
+            image.save(data, "PNG", optimize=True)
+        else:
+            image.save(data, "JPEG", quality=85, optimize=True)
+        self.files.write(path, data.getvalue())
+        # Mipmaps and VRAM compression, as for any texture on a 3D model. Detecting 3D use is off,
+        # or the editor reimports every texture again when it first loads the models. Written only
+        # once: Godot adds the texture's uid to it.
+        self.files.write(path + ".import", '[remap]\n\nimporter="texture"\ntype="CompressedTexture2D"\n\n'
+                         "[params]\n\ncompress/mode=2\nmipmaps/generate=true\ndetect_3d/compress_to=0\n",
+                         keep=True)
         return path, cutout
 
 
-def write_model(mesh, folder, stem, out, textures):
-    """[mesh] as out/folder/stem.obj, with its materials in stem.mtl. Materials are named for their
+class Files:
+    """Writes files under [out] only when their content changes, so Godot reimports only what did,
+    and remembers what was written, so a full build can delete what it no longer makes."""
+
+    def __init__(self, out, dry):
+        self.out, self.dry = out, dry
+        self.made = set()  # paths from out
+        self.changed = []
+
+    def write(self, path, data, keep=False):
+        """Writes [data] (str or bytes) to out/path unless it's already there (or, with [keep], unless
+        the file exists at all)."""
+        self.made.add(path)
+        full = os.path.join(self.out, path)
+        data = data.encode() if isinstance(data, str) else data
+        if os.path.exists(full) and (keep or open(full, "rb").read() == data):
+            return
+        self.changed.append(path)
+        if not self.dry:
+            os.makedirs(os.path.dirname(full), exist_ok=True)
+            with open(full, "wb") as file:
+                file.write(data)
+            # Godot doesn't retry a file whose last import failed, even when it changes.
+            imported = full + ".import"
+            if os.path.exists(imported):
+                text = open(imported).read()
+                if "\nvalid=false\n" in text:
+                    with open(imported, "w") as file:
+                        file.write(text.replace("\nvalid=false\n", "\n"))
+
+    def remove_stale(self):
+        """Deletes the files under out that the build didn't make (and Godot's .import files of
+        those), and empty folders. Returns how many."""
+        removed = 0
+        for folder, dirs, names in os.walk(self.out, topdown=False):
+            for name in names:
+                path = os.path.relpath(os.path.join(folder, name), self.out)
+                source = path[: -len(".import")] if path.endswith(".import") else path
+                if source not in self.made:
+                    removed += 1
+                    if not self.dry:
+                        os.remove(os.path.join(folder, name))
+            if not self.dry and folder != self.out and not os.listdir(folder):
+                os.rmdir(folder)
+        return removed
+
+
+def texture_owners(units, warscrolls):
+    """Where each texture goes, by its source (("image", key) or ("bundle", key) for all of an asset
+    bundle's): (folder, name) of the first model in the save that uses it, in the order models
+    are built, as its name; a model's later textures are <name>_t2 and so on."""
+    owners, count = {}, Counter()
+    for target, models in sorted(units.items()):
+        folder, name = warscrolls.folder(target), target_slug(target)
+        for i, (nickname, tree) in enumerate(sorted(models, key=lambda m: m[0])):
+            stem = name if len(models) == 1 else f"{name}_{i + 1}"
+            for node, _, _ in pieces(tree):
+                source = ("bundle", node["bundle"]) if node["bundle"] else ("image", node["diffuse"]) if node["diffuse"] else None
+                if source and source not in owners:
+                    count[(folder, stem)] += 1
+                    n = count[(folder, stem)]
+                    owners[source] = (folder, stem if n == 1 else f"{stem}_t{n}")
+    return owners
+
+
+def target_slug(target):
+    return slug(target.split(":", 2)[2] if target.startswith("x:") else target)
+
+
+def write_model(mesh, folder, stem, files, textures):
+    """[mesh] as folder/stem.obj, with its materials in stem.mtl. Materials are named for their
     texture (or colour); a cutout's name ends in _cutout (ModelLibrary turns on alpha scissor)."""
-    names = []
-    with open(os.path.join(out, folder, stem + ".mtl"), "w") as mtl:
-        for i, material in enumerate(mesh["materials"]):
-            texture = textures.get(material["texture"], folder, stem) if material["texture"] else None
-            name = f"{stem}_{i + 1}" + ("_cutout" if texture and texture[1] else "")
-            names.append(name)
-            r, g, b = material["color"]
-            mtl.write(f"newmtl {name}\nKd {r:.3f} {g:.3f} {b:.3f}\n")
-            if texture:
-                mtl.write(f"map_Kd {os.path.relpath(texture[0], folder)}\n")
-            mtl.write("\n")
+    names, mtl = [], []
+    for i, material in enumerate(mesh["materials"]):
+        texture = textures.get(material["texture"]) if material["texture"] else None
+        name = f"{stem}_{i + 1}" + ("_cutout" if texture and texture[1] else "")
+        names.append(name)
+        r, g, b = material["color"]
+        mtl.append(f"newmtl {name}\nKd {r:.3f} {g:.3f} {b:.3f}\n")
+        if texture:
+            mtl.append(f"map_Kd {os.path.relpath(texture[0], folder)}\n")
+        mtl.append("\n")
+    mtl = "".join(mtl)
+    files.write(f"{folder}/{stem}.mtl", mtl)
+    complete(mesh)
     groups = defaultdict(list)
     for face, m in zip(mesh["f"], mesh["fm"]):
         groups[m].append(face)
-    with open(os.path.join(out, folder, stem + ".obj"), "w") as file:
-        file.write(f"# Assembled by tools/tts_models/build_models.py\nmtllib {stem}.mtl\no {stem}\n")
-        file.writelines(f"v {x:.4f} {y:.4f} {z:.4f}\n" for x, y, z in mesh["v"])
-        file.writelines(f"vt {u:.4f} {v:.4f}\n" for u, v in mesh["vt"])
-        file.writelines(f"vn {x:.3f} {y:.3f} {z:.3f}\n" for x, y, z in mesh["vn"])
-        for m, faces in sorted(groups.items()):
-            # Godot can't import a surface whose faces only some have normals (or UVs), as when a
-            # piece without them joins one with: then they're left out for the whole surface.
-            corners = [corner for face in faces for corner in face]
-            uvs = all(b for _, b, _ in corners)
-            normals = all(c for _, _, c in corners)
-            file.write(f"usemtl {names[m]}\n")
-            for face in faces:
-                file.write("f " + " ".join(
-                    f"{a}/{b}/{c}" if uvs and normals else f"{a}//{c}" if normals else f"{a}/{b}" if uvs else str(a)
-                    for a, b, c in face) + "\n")
+    # Godot doesn't reimport an .obj when only its .mtl changes, so the .obj carries the .mtl's hash.
+    obj = [f"# Assembled by tools/tts_models/build_models.py (mtl {hashlib.sha1(mtl.encode()).hexdigest()[:12]})\n"
+           f"mtllib {stem}.mtl\no {stem}\n"]
+    obj += [f"v {x:.4f} {y:.4f} {z:.4f}\n" for x, y, z in mesh["v"]]
+    obj += [f"vt {u:.4f} {v:.4f}\n" for u, v in mesh["vt"]]
+    obj += [f"vn {x:.3f} {y:.3f} {z:.3f}\n" for x, y, z in mesh["vn"]]
+    for m, faces in sorted(groups.items()):
+        obj.append(f"usemtl {names[m]}\n")
+        obj += ["f " + " ".join(f"{a}/{b}/{c}" for a, b, c in face) + "\n" for face in faces]
+    files.write(f"{folder}/{stem}.obj", "".join(obj))
+
+
+def complete(mesh):
+    """Gives every face corner of [mesh] a normal and texture coordinates, as Godot can't import a
+    surface whose faces only some have them, nor make tangents for a textured surface without
+    normals. A missing normal is the vertex's smooth normal over the faces without normals (their
+    corners wind counter-clockwise, as the pieces' own normals agree); a missing UV is (0, 0)."""
+    sums = {}
+    for face in mesh["f"]:
+        if all(c for _, _, c in face):
+            continue
+        a, b, c = (mesh["v"][corner[0] - 1] for corner in face[:3])
+        u = [b[i] - a[i] for i in range(3)]
+        w = [c[i] - a[i] for i in range(3)]
+        n = (u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0])
+        for corner in face:
+            if not corner[2]:
+                s = sums.setdefault(corner[0], [0.0, 0.0, 0.0])
+                for i in range(3):
+                    s[i] += n[i]
+    index = {}
+    for vertex, (x, y, z) in sums.items():
+        length = math.sqrt(x * x + y * y + z * z) or 1.0
+        mesh["vn"].append((x / length, y / length, z / length) if length > 1e-12 else (0.0, 1.0, 0.0))
+        index[vertex] = len(mesh["vn"])
+    blank = 0
+    if any(not b for face in mesh["f"] for _, b, _ in face):
+        mesh["vt"].append((0.0, 0.0))
+        blank = len(mesh["vt"])
+    mesh["f"] = [[(a, b or blank, c or index[a]) for a, b, c in face] for face in mesh["f"]]
 
 
 def signature(tree):
@@ -499,7 +594,9 @@ def main():
     parser.add_argument("save", nargs="?", default=MOD, help="the mod's workshop id, or a path to its save")
     parser.add_argument("--out", default=os.path.join(ROOT, "assets", "3d", "models"))
     parser.add_argument("--overrides", default=os.path.join(HERE, "overrides.json"))
-    parser.add_argument("--dry", action="store_true", help="report what would be written")
+    parser.add_argument("--only", action="append", default=[], metavar="NAME",
+                        help="build only this warscroll's models (repeatable); nothing is deleted")
+    parser.add_argument("--dry", action="store_true", help="report what would be written, changed and removed")
     args = parser.parse_args()
     args.tts = os.path.expanduser(args.tts)
     save_path = os.path.join(args.tts, "Workshop", args.save + ".json") if args.save.isdigit() else args.save
@@ -524,33 +621,30 @@ def main():
         units[target].append((model["name"], model["tree"]))
 
     report = {"unmatched": sorted(f"{t} :: {n}" for t, n in unmatched), "units": {}}
-    if not args.dry and os.path.isdir(args.out):
-        for path in glob.glob(os.path.join(args.out, "*")):
-            shutil.rmtree(path) if os.path.isdir(path) else os.remove(path)
     cache = Cache(args.tts)
-    textures = Textures(cache, args.out, args.dry)
+    files = Files(args.out, args.dry)
+    textures = Textures(cache, args.out, texture_owners(units, warscrolls), files)
+    only = {norm(name) for name in args.only}
     for target, models in sorted(units.items()):
+        name = target_slug(target)
+        if only and norm(target) not in only and norm(name) not in only:
+            continue
         folder = warscrolls.folder(target)
-        name = slug(target.split(":", 2)[2] if target.startswith("x:") else target)
         meshes = []
         for nickname, tree in sorted(models, key=lambda m: m[0]):
             mesh = assemble(tree, cache)
             if mesh:
                 meshes.append((nickname, mesh))
-        files = []
+        report["units"][target] = []
         for i, (nickname, mesh) in enumerate(meshes):
             stem = name if len(meshes) == 1 else f"{name}_{i + 1}"
-            files.append({"file": f"{folder}/{stem}.obj", "nickname": nickname})
-            if args.dry:
-                for material in mesh["materials"]:
-                    if material["texture"]:
-                        textures.written.setdefault(material["texture"], None)
-            else:
-                os.makedirs(os.path.join(args.out, folder), exist_ok=True)
-                write_model(mesh, folder, stem, args.out, textures)
-        report["units"][target] = files
-        print(f"{target}: {len(files)}", file=sys.stderr)
+            report["units"][target].append({"file": f"{folder}/{stem}.obj", "nickname": nickname})
+            write_model(mesh, folder, stem, files, textures)
+        print(f"{target}: {len(meshes)}", file=sys.stderr)
     report["textures"] = len(textures.written)
+    report["changed"] = sorted(files.changed)
+    if not only:
+        report["removed"] = files.remove_stale()
     json.dump(report, sys.stdout, indent=1)
 
 

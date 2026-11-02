@@ -1,8 +1,8 @@
 newmtl spider_riders_1_1
 Kd 1.000 1.000 1.000
-map_Kd textures/skitterstrand_arachnarok.jpg
+map_Kd textures/skitterstrand_arachnarok_t2.jpg
 
 newmtl spider_riders_1_2
 Kd 1.000 1.000 1.000
-map_Kd textures/skitterstrand_arachnarok_t2.jpg
+map_Kd textures/skitterstrand_arachnarok_t3.jpg
 

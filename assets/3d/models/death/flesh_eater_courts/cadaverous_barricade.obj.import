@@ -4,11 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://c2xtdb2qonx5w"
-valid=false
+path="res://.godot/imported/cadaverous_barricade.obj-2e3b7a544faf8d5aba12e35adeaae08d.mesh"
 
 [deps]
 
+files=["res://.godot/imported/cadaverous_barricade.obj-2e3b7a544faf8d5aba12e35adeaae08d.mesh"]
+
 source_file="res://assets/3d/models/death/flesh_eater_courts/cadaverous_barricade.obj"
+dest_files=["res://.godot/imported/cadaverous_barricade.obj-2e3b7a544faf8d5aba12e35adeaae08d.mesh", "res://.godot/imported/cadaverous_barricade.obj-2e3b7a544faf8d5aba12e35adeaae08d.mesh"]
 
 [params]
 
