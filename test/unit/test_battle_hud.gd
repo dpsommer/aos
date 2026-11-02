@@ -24,6 +24,15 @@ func _hud(battle: Battle = null) -> BattleHud:
 	return hud
 
 
+func _header_is_off_screen(hud: BattleHud) -> bool:
+	return hud.header.position.y + hud.header.size.y < 1.0
+
+
+## Waits until [param done] is true, or a little longer than a slide takes.
+func _await_slide(done: Callable) -> void:
+	await wait_until(done, BattleHud.SLIDE_SECONDS + 0.5)
+
+
 func test_move_keys_show_the_default_keys() -> void:
 	assert_eq(BattleHud.move_keys(), "WASD")
 
@@ -121,17 +130,17 @@ func test_hiding_the_header_slides_it_off_screen() -> void:
 	var hud := _hud()
 	await get_tree().process_frame
 	hud.set_header_hidden(true)
-	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
-	assert_lt(hud.header.position.y + hud.header.size.y, 1.0)
+	await _await_slide(_header_is_off_screen.bind(hud))
+	assert_true(_header_is_off_screen(hud), "the header slides off screen")
 
 
 func test_showing_the_header_slides_it_back() -> void:
 	var hud := _hud()
 	await get_tree().process_frame
 	hud.set_header_hidden(true)
-	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	await _await_slide(_header_is_off_screen.bind(hud))
 	hud.set_header_hidden(false)
-	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	await _await_slide(func() -> bool: return is_equal_approx(hud.header.position.y, 0.0))
 	assert_almost_eq(hud.header.position.y, 0.0, 0.01)
 
 

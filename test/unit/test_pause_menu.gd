@@ -8,14 +8,24 @@ func _menu() -> PauseMenu:
 	return menu
 
 
-func _escape() -> InputEventAction:
+func _action(action: StringName) -> InputEventAction:
 	var event := InputEventAction.new()
-	event.action = "ui_cancel"
+	event.action = action
 	event.pressed = true
 	return event
 
 
-func _wait_for_fade() -> void:
+func _escape() -> InputEventAction:
+	return _action("ui_cancel")
+
+
+## Waits until [param done] is true, or a little longer than a fade takes.
+func _await_fade(done: Callable) -> void:
+	await wait_until(done, PauseMenu.FADE_SECONDS + 0.5)
+
+
+## Waits for a whole fade, for checks that something didn't happen once it ended.
+func _await_whole_fade() -> void:
 	await wait_seconds(PauseMenu.FADE_SECONDS + 0.1)
 
 
@@ -38,7 +48,7 @@ func test_open_focuses_resume() -> void:
 func test_open_fades_the_menu_in() -> void:
 	var menu := _menu()
 	menu.open()
-	await _wait_for_fade()
+	await _await_fade(func() -> bool: return is_equal_approx(menu.modulate.a, 1.0))
 	assert_almost_eq(menu.modulate.a, 1.0, 0.01)
 
 
@@ -46,7 +56,7 @@ func test_close_hides_the_menu_after_the_fade() -> void:
 	var menu := _menu()
 	menu.open()
 	menu.close()
-	await _wait_for_fade()
+	await _await_fade(func() -> bool: return not menu.visible)
 	assert_false(menu.visible)
 
 
@@ -62,7 +72,7 @@ func test_reopening_while_closing_keeps_the_menu_shown() -> void:
 	menu.open()
 	menu.close()
 	menu.open()
-	await _wait_for_fade()
+	await _await_whole_fade()
 	assert_true(menu.visible)
 
 
@@ -120,10 +130,8 @@ func test_escape_does_nothing_while_hidden() -> void:
 func test_other_input_does_not_resume() -> void:
 	var menu := _menu()
 	menu.open()
-	var event := _escape()
-	event.action = "ui_accept"
 	watch_signals(menu)
-	menu._unhandled_input(event)
+	menu._unhandled_input(_action("ui_accept"))
 	assert_signal_not_emitted(menu, "resume_pressed")
 
 
