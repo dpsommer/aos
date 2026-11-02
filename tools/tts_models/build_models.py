@@ -1,12 +1,13 @@
 """Builds assets/3d/models/ from a Tabletop Simulator mod in Tabletop Simulator's cache.
 
-Usage (from the project root, in a Python with lzma, Pillow and UnityPy; see requirements.txt):
+Usage (from the project root, in the "aos" pyenv virtualenv with requirements.txt installed):
 
-    python -I tools/tts_models/build_models.py [<workshop id or save path>] [--tts <Mods folder>] [--out assets/3d/models] [--dry]
+    python -I tools/tts_models/build_models.py <Mods folder> [<workshop id or save path>] [--out assets/3d/models] [--dry]
 
+The Mods folder is Tabletop Simulator's cache: ~/Library/Tabletop Simulator/Mods on macOS, and
+Documents/My Games/Tabletop Simulator/Mods on Windows, unless Tabletop Simulator's settings move it.
 The mod is the Ulthuan mod (workshop id 3202337953) unless another is given. Everything is read from
-Tabletop Simulator's Mods folder (~/Library/Tabletop Simulator/Mods on macOS): the save from
-Workshop/, the .obj meshes from Models/, their textures from Images/ and the models the mod ships as
+the Mods folder: the save from Workshop/, the .obj meshes from Models/, their textures from Images/ and the models the mod ships as
 Unity asset bundles from Assetbundles/. Subscribe to the mod and load it once in Tabletop Simulator
 so it caches them all.
 
@@ -37,7 +38,6 @@ sys.path.insert(0, HERE)  # for bundles.py, as -I leaves the script's folder out
 
 # The Ulthuan mod (https://steamcommunity.com/sharedfiles/filedetails/?id=3202337953).
 MOD = "3202337953"
-TTS = os.path.expanduser("~/Library/Tabletop Simulator/Mods")
 
 # A piece no taller than this (inches) is a base, topper or collider.
 FLAT = 0.35
@@ -495,12 +495,13 @@ def signature(tree):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("tts", help="Tabletop Simulator's Mods folder, e.g. ~/Library/Tabletop Simulator/Mods")
     parser.add_argument("save", nargs="?", default=MOD, help="the mod's workshop id, or a path to its save")
-    parser.add_argument("--tts", default=TTS, help="Tabletop Simulator's Mods folder")
     parser.add_argument("--out", default=os.path.join(ROOT, "assets", "3d", "models"))
     parser.add_argument("--overrides", default=os.path.join(HERE, "overrides.json"))
     parser.add_argument("--dry", action="store_true", help="report what would be written")
     args = parser.parse_args()
+    args.tts = os.path.expanduser(args.tts)
     save_path = os.path.join(args.tts, "Workshop", args.save + ".json") if args.save.isdigit() else args.save
 
     warscrolls = Warscrolls()

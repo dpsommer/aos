@@ -38,16 +38,16 @@ The models come from a Tabletop Simulator mod (see [Building the models](#buildi
 
 ## Building the models
 
-`tools/tts_models/build_models.py` builds the whole folder from the [Ulthuan](https://steamcommunity.com/sharedfiles/filedetails/?id=3202337953) Tabletop Simulator mod, reading everything from Tabletop Simulator's cache (`~/Library/Tabletop Simulator/Mods` on macOS): the save from `Workshop/`, the `.obj` meshes from `Models/`, their textures from `Images/` and the models the mod ships as Unity asset bundles (the Arkanaut Ironclad, Lord-Celestant on Stardrake, Megaboss on Maw-krusha and about 240 more) from `Assetbundles/`. Subscribe to the mod and load it once in Tabletop Simulator so it downloads them all.
+`tools/tts_models/build_models.py` builds the whole folder from the [Ulthuan](https://steamcommunity.com/sharedfiles/filedetails/?id=3202337953) Tabletop Simulator mod, reading everything from Tabletop Simulator's cache, its `Mods` folder (`~/Library/Tabletop Simulator/Mods` on macOS, `Documents/My Games/Tabletop Simulator/Mods` on Windows, unless Tabletop Simulator's settings move it): the save from `Workshop/`, the `.obj` meshes from `Models/`, their textures from `Images/` and the models the mod ships as Unity asset bundles (the Arkanaut Ironclad, Lord-Celestant on Stardrake, Megaboss on Maw-krusha and about 240 more) from `Assetbundles/`. Subscribe to the mod and load it once in Tabletop Simulator so it downloads them all.
 
-The script needs Pillow and [UnityPy](https://pypi.org/project/UnityPy/) (`tools/tts_models/requirements.txt`), and UnityPy needs a Python built with `lzma`. The `aos` pyenv virtualenv's Python isn't, so use a separate virtualenv, e.g. on Homebrew's Python:
+The script needs Pillow and [UnityPy](https://pypi.org/project/UnityPy/) (`tools/tts_models/requirements.txt`), installed in the `aos` pyenv virtualenv (UnityPy needs a Python built with `lzma`). Pass the `Mods` folder first:
 
 ```sh
-python -I tools/tts_models/build_models.py > tmp/tts_models_build.json
+python -I tools/tts_models/build_models.py "$HOME/Library/Tabletop Simulator/Mods" > tmp/tts_models_build.json
 godot --headless --import
 ```
 
-It replaces everything in `assets/3d/models/` (`--dry` only reports) and prints a report of which nickname went to which file. A workshop id or save path picks another mod, and `--tts` another cache folder. It takes about 7 minutes, and Godot's import about 3.
+It replaces everything in `assets/3d/models/` (`--dry` only reports) and prints a report of which nickname went to which file. A workshop id or save path after the `Mods` folder picks another mod. It takes about 7 minutes, and Godot's import about 3.
 
 How it works:
 
