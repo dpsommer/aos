@@ -196,70 +196,18 @@ func test_calling_off_a_regiment_drops_its_unit_being_placed() -> void:
 
 # arranging
 
-func test_a_formation_rearranges_the_unit_coherently() -> void:
-	_start()
-	var unit := _unit(_me(), "A1")
-	_c.pick_unit(unit)
-	var before := unit.positions.duplicate()
-	_c.set_formation(Formations.Kind.LINE)
-	assert_ne(unit.positions, before)
-	assert_true(Coherency.is_coherent(unit.positions, unit.bases, unit.facing))
 
 
-func test_a_formation_keeps_the_units_middle() -> void:
-	_start()
-	var unit := _unit(_me(), "A1")
-	_c.pick_unit(unit)
-	var middle := _middle(unit)
-	_c.set_formation(Formations.Kind.WEDGE)
-	assert_almost_eq(_middle(unit), middle, Vector2(0.01, 0.01))
 
 
-func test_a_formation_does_nothing_for_a_single_model() -> void:
-	var solo := BattleKit.unit("Solo", 1)
-	_battle.player.units.append(solo)
-	_battle.opponent = _me().mirror()
-	_start()
-	_c.pick_unit(solo)
-	var before := solo.positions.duplicate()
-	_c.set_formation(Formations.Kind.LINE)
-	assert_eq(solo.positions, before)
 
 
-func test_a_formation_does_nothing_when_nothing_is_picked() -> void:
-	_start()
-	_c.set_formation(Formations.Kind.LINE)
-	assert_eq(_c.hud.formation_buttons.size(), 0)
 
 
-func test_turning_turns_the_unit_about_its_middle() -> void:
-	_start()
-	var unit := _unit(_me(), "A1")
-	_c.pick_unit(unit)
-	var middle := _middle(unit)
-	var facing := unit.facing
-	_c.turn(0.5)
-	assert_almost_eq(unit.facing, facing + 0.5, 0.0001)
-	assert_almost_eq(_middle(unit), middle, Vector2(0.01, 0.01))
 
 
-func test_turning_keeps_the_unit_coherent() -> void:
-	_start()
-	var unit := _unit(_me(), "A1")
-	_c.pick_unit(unit)
-	_c.turn(0.7)
-	assert_true(Coherency.is_coherent(unit.positions, unit.bases, unit.facing))
 
 
-func test_turning_terrain_turns_the_feature() -> void:
-	_me().terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false))
-	_battle.opponent = _me().mirror()
-	_start()
-	var feature := _me().terrain[0]
-	_c.pick_terrain(feature)
-	var rotation := feature.rotation
-	_c.turn(0.4)
-	assert_almost_eq(feature.rotation, rotation + 0.4, 0.0001)
 
 
 func test_moving_to_a_point_puts_the_unit_there() -> void:
@@ -332,19 +280,12 @@ func test_undo_puts_the_unit_back_where_it_started() -> void:
 	var positions := unit.positions.duplicate()
 	var facing := unit.facing
 	_c.move_to(Vector2(40, 8))
-	_c.turn(1.0)
+	_c.orient(Vector2(20, 5), Vector2(26, 9))
 	_c.undo()
 	assert_eq(unit.positions, positions)
 	assert_eq(unit.facing, facing)
 
 
-func test_undo_clears_the_formation_choice() -> void:
-	_start()
-	_c.pick_unit(_unit(_me(), "A1"))
-	_c.set_formation(Formations.Kind.LINE)
-	_c.undo()
-	for button in _c.hud.formation_buttons:
-		assert_false(button.button_pressed)
 
 
 func test_undo_puts_terrain_back_where_it_started() -> void:
@@ -487,17 +428,14 @@ func test_a_unit_picked_up_by_a_model_follows_the_mouse() -> void:
 	assert_almost_eq(_middle(unit), middle + Vector2(3, 1), Vector2(0.01, 0.01))
 
 
-func test_alt_clicking_a_model_picks_up_just_that_model() -> void:
-	var unit := _put_down_unit()
-	_c.click(unit.positions[1], true)
-	assert_true(_c.is_holding())
 
 
 func test_hovering_moves_only_the_model_picked_up() -> void:
 	var unit := _put_down_unit()
 	var before := unit.positions.duplicate()
 	var at := unit.positions[1]
-	_c.click(at, true)
+	_c.toggle_single_model()
+	_c.click(at)
 	_c.hover(at + Vector2(0, -1.5))
 	assert_ne(unit.positions[1], before[1])
 	assert_eq([unit.positions[0], unit.positions[2]], [before[0], before[2]])
@@ -958,13 +896,6 @@ func test_clicking_a_staged_unit_selects_and_picks_it_up() -> void:
 	assert_true(_c.is_holding())
 
 
-func test_alt_clicking_a_staged_unit_picks_up_one_model() -> void:
-	_start_spearhead()
-	var unit := _unit(_me(), "B1")
-	var others := [unit.positions[1], unit.positions[2]]
-	_c.click(unit.positions[0], true)
-	_c.hover(unit.positions[0] + Vector2(0, 1))
-	assert_eq([unit.positions[1], unit.positions[2]], others)
 
 
 func test_clicking_empty_space_picks_nothing_up() -> void:
@@ -989,24 +920,8 @@ func test_moving_one_unit_leaves_the_others() -> void:
 	assert_eq(_unit(_me(), "A1").positions, before)
 
 
-func test_changing_formation_rearranges_only_the_picked_unit() -> void:
-	_start_spearhead()
-	var other := _unit(_me(), "A1").positions.duplicate()
-	var unit := _unit(_me(), "B1")
-	var before := unit.positions.duplicate()
-	_c.pick_unit(unit)
-	_c.set_formation(Formations.Kind.values()[Formations.Kind.size() - 1])
-	assert_ne(unit.positions, before)
-	assert_eq(_unit(_me(), "A1").positions, other)
 
 
-func test_turning_the_picked_unit_changes_its_facing() -> void:
-	_start_spearhead()
-	var unit := _unit(_me(), "B1")
-	var before := unit.facing
-	_c.pick_unit(unit)
-	_c.turn(DeploymentController.TURN_STEP)
-	assert_ne(unit.facing, before)
 
 
 func test_moving_a_unit_out_of_its_zone_raises_a_problem_naming_it() -> void:
@@ -1042,7 +957,7 @@ func test_undo_restores_the_picked_unit_to_where_it_was_when_picked() -> void:
 	var facing := unit.facing
 	_c.pick_unit(unit)
 	_c.move_to(Vector2(50, 8))
-	_c.turn(DeploymentController.TURN_STEP)
+	_c.orient(Vector2(20, 5), Vector2(26, 9))
 	_c.undo()
 	assert_eq(unit.positions, before)
 	assert_almost_eq(unit.facing, facing, 0.0001)
@@ -1212,3 +1127,539 @@ func test_a_cramped_army_that_fits_shows_no_problems() -> void:
 	_battle = BattleKit.cramped_spearhead_battle(BattleKit.cramped_units())
 	_start()
 	assert_false(_c.hud.alert.visible)
+
+
+# press and drag
+
+const PRESS := Vector2(20, 5)
+
+
+## The front rank's reach across the unit's right, from its models' positions.
+func _reach(unit: BattleUnit) -> float:
+	var forward := Vector2.from_angle(unit.facing)
+	var right := Vector2(-forward.y, forward.x)
+	var low := INF
+	var high := -INF
+	for position in unit.positions:
+		low = minf(low, position.dot(right))
+		high = maxf(high, position.dot(right))
+	return high - low
+
+
+## A unit picked and held, ready to be pressed on.
+func _held_unit() -> BattleUnit:
+	_start()
+	var unit := _unit(_me(), "A1")
+	_c.pick_unit(unit)
+	return unit
+
+
+func test_pressing_while_holding_starts_a_press() -> void:
+	_held_unit()
+	_c.press(PRESS)
+	assert_true(_c.is_pressing())
+
+
+func test_nothing_is_pressing_to_begin_with() -> void:
+	_held_unit()
+	assert_false(_c.is_pressing())
+
+
+func test_pressing_and_releasing_without_dragging_puts_the_unit_down() -> void:
+	_held_unit()
+	_c.press(PRESS)
+	_c.release()
+	assert_false(_c.is_holding())
+	assert_false(_c.is_pressing())
+
+
+func test_a_quick_click_keeps_the_units_positions_and_facing() -> void:
+	var unit := _held_unit()
+	_c.hover(Vector2(30, 6))
+	var positions := unit.positions.duplicate()
+	var facing := unit.facing
+	_c.press(Vector2(30, 6))
+	_c.release()
+	assert_eq(unit.positions, positions)
+	assert_eq(unit.facing, facing)
+
+
+func test_pressing_when_not_holding_picks_up() -> void:
+	var unit := _put_down_unit()
+	_c.press(unit.positions[1])
+	assert_true(_c.is_holding())
+	assert_false(_c.is_pressing())
+
+
+func test_pressing_on_empty_board_when_not_holding_picks_nothing_up() -> void:
+	_put_down_unit()
+	_c.press(Vector2(55, 3))
+	assert_false(_c.is_holding())
+
+
+func test_releasing_without_a_press_does_nothing() -> void:
+	_held_unit()
+	_c.release()
+	assert_true(_c.is_holding())
+
+
+func test_dragging_without_a_press_does_nothing() -> void:
+	var unit := _held_unit()
+	var before := unit.positions.duplicate()
+	_c.drag_to(Vector2(30, 5))
+	assert_eq(unit.positions, before)
+
+
+func test_dragging_east_faces_the_unit_north() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(6, 0))
+	assert_almost_eq(unit.facing, -PI / 2, 0.0001)
+
+
+func test_dragging_faces_the_unit_left_of_the_drag() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	var drag := Vector2(3, 4)
+	_c.drag_to(PRESS + drag)
+	assert_almost_eq(unit.facing, drag.angle() - PI / 2, 0.0001)
+
+
+func test_dragging_puts_the_front_left_model_at_the_press_point() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(6, 2))
+	assert_true(unit.positions[0].is_equal_approx(PRESS))
+
+
+func test_the_dragged_line_runs_along_the_drag() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(40, 0))
+	var last := unit.positions[unit.positions.size() - 1]
+	assert_gt(last.x, PRESS.x)
+	assert_almost_eq(last.y, PRESS.y, 0.5)
+
+
+func test_a_dragged_unit_stays_coherent() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	for length in [0.5, 2.0, 4.0, 8.0, 30.0]:
+		_c.drag_to(PRESS + Vector2(length, length / 2))
+		assert_true(Coherency.is_coherent(unit.positions, unit.bases, unit.facing), "drag %.1f" % length)
+
+
+func test_dragging_further_never_narrows_the_unit() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	var last := -1.0
+	for length in [0.5, 2.0, 4.0, 6.0, 8.0, 12.0, 30.0]:
+		_c.drag_to(PRESS + Vector2(length, 0))
+		var reach := _reach(unit)
+		assert_gte(reach, last - 0.001, "drag %.1f" % length)
+		last = reach
+
+
+func test_dragging_far_spreads_the_unit_wider_than_a_short_drag() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(0.5, 0))
+	var short := _reach(unit)
+	_c.drag_to(PRESS + Vector2(40, 0))
+	assert_gt(_reach(unit), short)
+
+
+func test_dragging_further_than_coherency_allows_stops_widening() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(40, 0))
+	var widest := _reach(unit)
+	_c.drag_to(PRESS + Vector2(80, 0))
+	assert_almost_eq(_reach(unit), widest, 0.01)
+
+
+func test_releasing_after_a_drag_puts_the_unit_down_where_it_was_lined_up() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(6, 0))
+	var positions := unit.positions.duplicate()
+	_c.release()
+	assert_false(_c.is_holding())
+	assert_eq(unit.positions, positions)
+
+
+func test_a_zero_length_drag_changes_nothing() -> void:
+	var unit := _held_unit()
+	var before := unit.positions.duplicate()
+	_c.press(PRESS)
+	_c.drag_to(PRESS)
+	assert_eq(unit.positions, before)
+
+
+func test_hovering_is_ignored_while_pressing() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	var before := unit.positions.duplicate()
+	_c.hover(Vector2(40, 8))
+	assert_eq(unit.positions, before)
+
+
+func test_hovering_follows_the_mouse_again_after_a_release() -> void:
+	var unit := _held_unit()
+	_c.press(PRESS)
+	_c.release()
+	var grabbed := unit.positions[0]
+	var offset := _middle(unit) - grabbed
+	_c.click(grabbed)
+	_c.hover(Vector2(40, 8))
+	assert_almost_eq(_middle(unit), Vector2(40, 8) + offset, Vector2(0.01, 0.01))
+
+
+func test_undo_after_dragging_puts_the_unit_back() -> void:
+	var unit := _held_unit()
+	var positions := unit.positions.duplicate()
+	var facing := unit.facing
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(8, 3))
+	_c.undo()
+	assert_eq(unit.positions, positions)
+	assert_eq(unit.facing, facing)
+
+
+func test_orienting_a_single_model_unit_turns_it_in_place() -> void:
+	var solo := BattleKit.unit("Solo", 1)
+	_battle.player.units.append(solo)
+	_battle.opponent = _me().mirror()
+	_start()
+	_c.pick_unit(solo)
+	var at := solo.positions[0]
+	_c.orient(PRESS, PRESS + Vector2(6, 0))
+	assert_almost_eq(solo.facing, -PI / 2, 0.0001)
+	assert_true(solo.positions[0].is_equal_approx(PRESS), "the model goes to the press point (was %s)" % at)
+
+
+func test_orienting_with_nothing_picked_does_nothing() -> void:
+	_start()
+	_c.orient(PRESS, PRESS + Vector2(6, 0))
+	assert_false(_c.is_holding())
+
+
+# dragging terrain
+
+func test_dragging_terrain_turns_it_along_the_drag() -> void:
+	var feature := _terrain_start()
+	_c.press(PRESS)
+	var drag := Vector2(4, 3)
+	_c.drag_to(PRESS + drag)
+	assert_almost_eq(feature.rotation, drag.angle(), 0.0001)
+
+
+func test_dragging_terrain_turns_it_about_the_press_point() -> void:
+	var feature := _terrain_start()
+	_c.hover(Vector2(24, 7))
+	var distance := feature.position.distance_to(PRESS)
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(-3, 5))
+	assert_almost_eq(feature.position.distance_to(PRESS), distance, 0.001)
+
+
+func test_dragging_terrain_twice_turns_from_where_it_was_at_the_press() -> void:
+	var feature := _terrain_start()
+	_c.hover(Vector2(24, 7))
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(-3, 5))
+	_c.drag_to(PRESS + Vector2(0, 5))
+	var once := feature.position
+	_c.drag_to(PRESS + Vector2(-3, 5))
+	_c.drag_to(PRESS + Vector2(0, 5))
+	assert_true(feature.position.is_equal_approx(once))
+
+
+func test_releasing_terrain_after_a_drag_puts_it_down() -> void:
+	var feature := _terrain_start()
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(4, 3))
+	var rotation := feature.rotation
+	_c.release()
+	assert_false(_c.is_holding())
+	assert_eq(feature.rotation, rotation)
+
+
+func test_a_quick_click_keeps_terrain_as_it_is() -> void:
+	var feature := _terrain_start()
+	_c.hover(Vector2(24, 7))
+	var position := feature.position
+	var rotation := feature.rotation
+	_c.press(Vector2(24, 7))
+	_c.release()
+	assert_eq(feature.position, position)
+	assert_eq(feature.rotation, rotation)
+
+
+func test_undo_after_dragging_terrain_puts_it_back() -> void:
+	var feature := _terrain_start()
+	var position := feature.position
+	var rotation := feature.rotation
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(4, 3))
+	_c.undo()
+	assert_eq(feature.position, position)
+	assert_eq(feature.rotation, rotation)
+
+
+# single-model mode
+
+func test_single_model_mode_is_off_to_begin_with() -> void:
+	_start()
+	assert_false(_c.single_model)
+
+
+func test_toggling_single_model_mode_turns_it_on_and_off() -> void:
+	_start()
+	_c.toggle_single_model()
+	assert_true(_c.single_model)
+	_c.toggle_single_model()
+	assert_false(_c.single_model)
+
+
+func test_in_single_model_mode_clicking_picks_up_just_that_model() -> void:
+	var unit := _put_down_unit()
+	var before := unit.positions.duplicate()
+	_c.toggle_single_model()
+	_c.click(unit.positions[1])
+	_c.hover(before[1] + Vector2(0, -1.5))
+	assert_ne(unit.positions[1], before[1])
+	assert_eq([unit.positions[0], unit.positions[2]], [before[0], before[2]])
+
+
+func test_turning_single_model_mode_off_picks_up_the_whole_unit_again() -> void:
+	var unit := _put_down_unit()
+	_c.toggle_single_model()
+	_c.toggle_single_model()
+	var middle := _middle(unit)
+	_c.click(unit.positions[1])
+	_c.hover(unit.positions[1] + Vector2(3, 0))
+	assert_almost_eq(_middle(unit), middle + Vector2(3, 0), Vector2(0.01, 0.01))
+
+
+func test_the_hud_toggle_turns_single_model_mode_on() -> void:
+	_held_unit()
+	_c.hud.single_model_toggled.emit()
+	assert_true(_c.single_model)
+
+
+func test_the_hud_toggle_shows_single_model_mode() -> void:
+	_held_unit()
+	_c.toggle_single_model()
+	assert_true(_c.hud.single_model_button.button_pressed)
+
+
+func test_in_single_model_mode_a_drag_does_not_rearrange_the_unit() -> void:
+	var unit := _put_down_unit()
+	_c.toggle_single_model()
+	_c.click(unit.positions[1])
+	var positions := unit.positions.duplicate()
+	var facing := unit.facing
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(8, 3))
+	assert_eq(unit.positions, positions)
+	assert_eq(unit.facing, facing)
+
+
+func test_in_single_model_mode_releasing_puts_the_model_down() -> void:
+	var unit := _put_down_unit()
+	_c.toggle_single_model()
+	_c.click(unit.positions[1])
+	_c.press(PRESS)
+	_c.release()
+	assert_false(_c.is_holding())
+
+
+# the Spearhead army
+
+func test_dragging_a_staged_unit_lines_it_up_from_the_press_point() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	_c.click(unit.positions[0])
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(6, 0))
+	assert_true(unit.positions[0].is_equal_approx(PRESS))
+	assert_almost_eq(unit.facing, -PI / 2, 0.0001)
+
+
+func test_dragging_a_staged_unit_leaves_the_others() -> void:
+	_start_spearhead()
+	var other := _unit(_me(), "A1").positions.duplicate()
+	var unit := _unit(_me(), "B1")
+	_c.click(unit.positions[0])
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(6, 0))
+	assert_eq(_unit(_me(), "A1").positions, other)
+
+
+func test_a_dragged_staged_unit_stays_coherent() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	_c.click(unit.positions[0])
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(30, 4))
+	assert_true(Coherency.is_coherent(unit.positions, unit.bases, unit.facing))
+
+
+func test_releasing_a_dragged_staged_unit_puts_it_down() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	_c.click(unit.positions[0])
+	_c.press(PRESS)
+	_c.drag_to(PRESS + Vector2(6, 0))
+	_c.release()
+	assert_false(_c.is_holding())
+
+
+func test_single_model_mode_picks_up_one_staged_model() -> void:
+	_start_spearhead()
+	var unit := _unit(_me(), "B1")
+	var others := [unit.positions[1], unit.positions[2]]
+	_c.toggle_single_model()
+	_c.click(unit.positions[0])
+	_c.hover(unit.positions[0] + Vector2(0, 1))
+	assert_eq([unit.positions[1], unit.positions[2]], others)
+
+
+func test_the_army_hud_toggle_turns_single_model_mode_on() -> void:
+	_start_spearhead()
+	_c.pick_unit(_unit(_me(), "B1"))
+	_c.hud.single_model_toggled.emit()
+	assert_true(_c.single_model)
+
+
+# input events
+
+func _screen() -> Vector2:
+	return _map.get_viewport().get_visible_rect().size / 2
+
+
+func _mouse_button(at: Vector2, pressed: bool) -> InputEventMouseButton:
+	var event := InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_LEFT
+	event.pressed = pressed
+	event.position = at
+	return event
+
+
+func _mouse_motion(at: Vector2) -> InputEventMouseMotion:
+	var event := InputEventMouseMotion.new()
+	event.position = at
+	return event
+
+
+func _action(name: String) -> InputEventAction:
+	var event := InputEventAction.new()
+	event.action = name
+	event.pressed = true
+	return event
+
+
+func test_mouse_motion_moves_the_held_unit() -> void:
+	var unit := _held_unit()
+	_c._unhandled_input(_mouse_motion(_screen()))
+	assert_almost_eq(_middle(unit), _map.camera.ground_point(_screen()), Vector2(0.01, 0.01))
+
+
+func test_pressing_the_left_button_while_holding_starts_a_press() -> void:
+	_held_unit()
+	_c._unhandled_input(_mouse_button(_screen(), true))
+	assert_true(_c.is_pressing())
+
+
+func test_a_click_with_the_mouse_puts_the_unit_down_as_it_is() -> void:
+	var unit := _held_unit()
+	_c._unhandled_input(_mouse_motion(_screen()))
+	var positions := unit.positions.duplicate()
+	_c._unhandled_input(_mouse_button(_screen(), true))
+	_c._unhandled_input(_mouse_button(_screen(), false))
+	assert_false(_c.is_holding())
+	assert_eq(unit.positions, positions)
+
+
+func test_a_small_wobble_while_pressed_is_not_a_drag() -> void:
+	var unit := _held_unit()
+	_c._unhandled_input(_mouse_motion(_screen()))
+	_c._unhandled_input(_mouse_button(_screen(), true))
+	var positions := unit.positions.duplicate()
+	_c._unhandled_input(_mouse_motion(_screen() + Vector2(DeploymentController.DRAG_PIXELS / 3, 0)))
+	assert_eq(unit.positions, positions)
+
+
+func test_moving_the_mouse_far_while_pressed_lines_the_unit_up() -> void:
+	var unit := _held_unit()
+	var start := _screen()
+	_c._unhandled_input(_mouse_motion(start))
+	_c._unhandled_input(_mouse_button(start, true))
+	var away := start + Vector2(DeploymentController.DRAG_PIXELS * 10, 0)
+	_c._unhandled_input(_mouse_motion(away))
+	var from: Vector2 = _map.camera.ground_point(start)
+	var to: Vector2 = _map.camera.ground_point(away)
+	assert_almost_eq(unit.facing, (to - from).angle() - PI / 2, 0.0001)
+	assert_true(unit.positions[0].is_equal_approx(from))
+
+
+func test_a_drag_carries_on_once_started_even_if_the_mouse_comes_back_close() -> void:
+	var unit := _held_unit()
+	var start := _screen()
+	_c._unhandled_input(_mouse_motion(start))
+	_c._unhandled_input(_mouse_button(start, true))
+	_c._unhandled_input(_mouse_motion(start + Vector2(DeploymentController.DRAG_PIXELS * 10, 0)))
+	var facing := unit.facing
+	_c._unhandled_input(_mouse_motion(start + Vector2(0, DeploymentController.DRAG_PIXELS * 10)))
+	assert_ne(unit.facing, facing)
+
+
+func test_releasing_the_left_button_after_a_drag_puts_the_unit_down() -> void:
+	var unit := _held_unit()
+	var start := _screen()
+	_c._unhandled_input(_mouse_button(start, true))
+	_c._unhandled_input(_mouse_motion(start + Vector2(DeploymentController.DRAG_PIXELS * 10, 0)))
+	var positions := unit.positions.duplicate()
+	_c._unhandled_input(_mouse_button(start, false))
+	assert_false(_c.is_holding())
+	assert_eq(unit.positions, positions)
+
+
+func test_the_mouse_does_nothing_out_of_turn() -> void:
+	_battle.player_is_attacker = false
+	_start()
+	_c._unhandled_input(_mouse_button(_screen(), true))
+	assert_false(_c.is_pressing())
+
+
+func test_the_single_model_key_toggles_single_model_mode() -> void:
+	_held_unit()
+	_c._unhandled_input(_action("single_model_mode"))
+	assert_true(_c.single_model)
+
+
+func test_the_single_model_key_does_nothing_while_placing_terrain() -> void:
+	_terrain_start()
+	_c._unhandled_input(_action("single_model_mode"))
+	assert_false(_c.single_model)
+
+
+func test_the_single_model_key_does_nothing_with_nothing_being_placed() -> void:
+	_start()
+	_c._unhandled_input(_action("single_model_mode"))
+	assert_false(_c.single_model)
+
+
+func test_the_undo_key_puts_the_unit_back() -> void:
+	var unit := _held_unit()
+	var positions := unit.positions.duplicate()
+	_c.move_to(Vector2(40, 8))
+	_c._unhandled_input(_action("undo_placement"))
+	assert_eq(unit.positions, positions)
+
+
+func test_the_single_model_key_works_in_the_spearhead_army() -> void:
+	_start_spearhead()
+	_c._unhandled_input(_action("single_model_mode"))
+	assert_true(_c.single_model)

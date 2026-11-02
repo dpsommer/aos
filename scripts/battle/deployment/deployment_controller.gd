@@ -3,10 +3,12 @@ extends Node
 ## Runs the deployment phase on the game map: the [Deployment] rules, the AI's turns
 ## ([MirrorDeployer]), the [DeploymentHud], and placing units and terrain on the board with the
 ## mouse and keys. A unit or feature picked from the tray starts in a valid spot if there is one,
-## picked up: it follows the mouse until a click puts it down. Clicking one of its models (or the
-## feature) picks it up again; Alt-clicking picks up just that model. The formation keys rearrange
-## it and the turn key turns it. Rings and outlines are blue where it can go while it's held, green
-## once it's down, and red where it can't go. In Spearhead the player's whole army is set out at
+## picked up: it follows the mouse until a click puts it down. Pressing and dragging instead lines
+## the unit up along the drag, from the press point, facing left of it, spread as wide as the drag
+## and coherency allow (a terrain feature turns along the drag, about the press point). Clicking one
+## of its models (or the feature) picks it up again; in single-model mode, just that model. Rings
+## and outlines are blue where it can go while it's held, green once it's down, and red where it
+## can't go. In Spearhead the player's whole army is set out at
 ## once, each unit in a valid spot if there is one; the player picks units up and moves them about,
 ## then confirms them all together. See docs/design/battle.md.
 
@@ -15,8 +17,8 @@ signal finished
 
 ## How long the AI waits before each of its actions, in seconds, so the player can follow.
 const AI_DELAY := 0.6
-## How far the turn key turns a unit or terrain feature.
-const TURN_STEP := PI / 12
+## How far the pointer moves, in pixels, before a press becomes a drag rather than a click.
+const DRAG_PIXELS := 6.0
 ## Values of what's held.
 const NOTHING := -2
 const WHOLE := -1
@@ -50,6 +52,19 @@ var _shaded_step := -1
 ## The player's units set out on the board but not yet deployed, in Spearhead (see
 ## [method stage_army]).
 var _staged: Array[BattleUnit] = []
+## Whether clicking a model picks up just that model rather than its whole unit.
+var single_model := false
+## Where the mouse was pressed on the board while holding something, or null: releasing puts it
+## down, and dragging first lines it up ([method drag_to]).
+var _press_at: Variant = null
+## Where the press was on the screen, to tell a drag from a click.
+var _press_screen := Vector2.ZERO
+## Whether the press has become a drag.
+var _dragged := false
+## A held terrain feature's position and rotation when the press began, to turn it about the press
+## point.
+var _press_position := Vector2.ZERO
+var _press_rotation := 0.0
 
 
 func _init(on: BattleMap) -> void:
@@ -63,7 +78,7 @@ func _init(on: BattleMap) -> void:
 	hud.regiment_picked.connect(pick_regiment)
 	hud.terrain_picked.connect(pick_terrain)
 	hud.ability_picked.connect(pick_ability)
-	hud.formation_picked.connect(set_formation)
+	hud.single_model_toggled.connect(toggle_single_model)
 	hud.target_toggled.connect(toggle_target)
 	hud.confirm_pressed.connect(confirm)
 	hud.undo_pressed.connect(undo)
@@ -108,7 +123,7 @@ func pick_unit(unit: BattleUnit) -> void:
 	unit.facing = player().facing
 	_start_positions = positions.duplicate()
 	_start_facing = unit.facing
-	_state = {"mode": "unit", "unit": unit, "formation": -1}
+	_state = {"mode": "unit", "unit": unit}
 	_add_unit_node(unit, true)
 	_hold(WHOLE, Vector2.ZERO)
 	_validate()
@@ -143,7 +158,7 @@ func stage_army() -> void:
 		unit.positions = positions if not positions.is_empty() else _starting_spot(unit, _staged)
 		_staged.append(unit)
 		_add_unit_node(unit, true)
-	_state = {"mode": "army", "unit": null, "formation": -1}
+	_state = {"mode": "army", "unit": null}
 	_held = NOTHING
 	_validate()
 	_refresh_hud()
@@ -154,7 +169,7 @@ func staged_units() -> Array[BattleUnit]:
 	return _staged.duplicate()
 
 
-## Picks [param unit] of the army set out, for the formation and turn keys and Undo.
+## Picks [param unit] of the army set out, for Undo.
 func _pick_staged(unit: BattleUnit) -> void:
 	if _state.get("mode") != "army":
 		_drop_placing()
@@ -168,7 +183,6 @@ func _pick_staged(unit: BattleUnit) -> void:
 
 func _select(unit: BattleUnit) -> void:
 	_state.unit = unit
-	_state.formation = -1
 	_start_positions = unit.positions.duplicate()
 	_start_facing = unit.facing
 
@@ -252,35 +266,6 @@ func toggle_target(unit: BattleUnit) -> void:
 
 # Arranging
 
-## Arranges the unit being placed in formation [param kind] around its middle.
-func set_formation(kind: int) -> void:
-	var unit := moving_unit()
-	if unit == null or unit.model_count() < 2:
-		return
-	unit.positions = Formations.arrange(kind as Formations.Kind, unit.bases, _middle(unit.positions), unit.facing)
-	_state.formation = kind
-	_moved()
-	_refresh_hud()
-
-
-## Turns what's being placed by [param amount] radians, clockwise.
-func turn(amount: float) -> void:
-	match _state.get("mode"):
-		"unit", "army":
-			var unit := moving_unit()
-			if unit == null:
-				return
-			var middle := _middle(unit.positions)
-			for i in unit.positions.size():
-				unit.positions[i] = middle + (unit.positions[i] - middle).rotated(amount)
-			unit.facing += amount
-			_moved()
-		"terrain":
-			var feature: BattleTerrain = _state.feature
-			feature.rotation += amount
-			_moved()
-
-
 ## Moves what's being placed so its middle is at [param point].
 func move_to(point: Vector2) -> void:
 	match _state.get("mode"):
@@ -306,7 +291,6 @@ func move_model(index: int, by: Vector2) -> void:
 		_shift(unit, by)
 	elif index < unit.positions.size():
 		unit.positions[index] += by
-		_state.formation = -1
 	_moved()
 
 
@@ -320,7 +304,6 @@ func undo() -> void:
 				return
 			unit.positions = _start_positions.duplicate()
 			unit.facing = _start_facing
-			_state.formation = -1
 			_moved()
 			_refresh_hud()
 		"terrain":
@@ -405,12 +388,13 @@ func is_holding() -> bool:
 	return _held != NOTHING
 
 
-## A click on the board at [param point]: puts down what's held, or picks up what's under it (just
-## one model if [param single]).
+## A quick click on the board at [param point]: puts down what's held where it is, or picks up
+## what's under it (just one model in single-model mode, or if [param single]).
 func click(point: Vector2, single := false) -> void:
 	if is_holding():
 		put_down()
 		return
+	single = single or single_model
 	match _state.get("mode"):
 		"unit":
 			_pick_up(_state.unit, point, single)
@@ -440,9 +424,79 @@ func _pick_up(unit: BattleUnit, point: Vector2, single: bool) -> void:
 		_hold(WHOLE, _middle(unit.positions) - point)
 
 
+## The mouse button goes down at [param point] on the board. While holding something, it waits to
+## see whether this is a click or a drag ([method drag_to], [method release]); otherwise it picks up
+## what's under the pointer.
+func press(point: Vector2) -> void:
+	if not is_holding():
+		click(point)
+		return
+	_press_at = point
+	_dragged = false
+	if _state.get("mode") == "terrain":
+		var feature: BattleTerrain = _state.feature
+		_press_position = feature.position
+		_press_rotation = feature.rotation
+	_refresh_hud()
+
+
+## Whether the mouse button is down after a press while holding something.
+func is_pressing() -> bool:
+	return _press_at != null
+
+
+## The pointer is dragged to [param point] after [method press]: a held unit is lined up from the
+## press point to here ([method orient]), a held terrain feature turned along the drag. A single
+## model held stays where it is.
+func drag_to(point: Vector2) -> void:
+	if not is_pressing() or not is_holding():
+		return
+	_dragged = true
+	orient(_press_at, point)
+
+
+## The mouse button comes up: what's held is put down, lined up if it was dragged.
+func release() -> void:
+	if not is_pressing():
+		return
+	_press_at = null
+	_dragged = false
+	put_down()
+
+
+## Lines what's held up along the line [param from] to [param to]. A unit stands with its front
+## rank running from [param from] towards [param to], as wide as that is (as far as coherency
+## allows, and in a deep column if it's short), facing left of the line: dragged left to right,
+## it faces up the screen. A terrain feature's length turns along the line, about [param from].
+func orient(from: Vector2, to: Vector2) -> void:
+	var line := to - from
+	if line.length() < 0.01:
+		return
+	match _state.get("mode"):
+		"unit", "army":
+			var unit := moving_unit()
+			if unit == null or _held != WHOLE:
+				return
+			var facing := line.angle() - PI / 2
+			unit.positions = Formations.spread(unit.bases, from, facing, line.length())
+			unit.facing = facing
+			_moved()
+		"terrain":
+			var feature: BattleTerrain = _state.feature
+			feature.rotation = line.angle()
+			feature.position = from + (_press_position - from).rotated(feature.rotation - _press_rotation)
+			_moved()
+
+
+## Turns single-model mode on or off: clicking a model picks up just that model.
+func toggle_single_model() -> void:
+	single_model = not single_model
+	_refresh_hud()
+
+
 ## The mouse is over [param point] on the board: what's held follows it.
 func hover(point: Vector2) -> void:
-	if not is_holding():
+	if not is_holding() or is_pressing():
 		return
 	if _held == WHOLE:
 		move_to(point + _hold_offset)
@@ -452,6 +506,8 @@ func hover(point: Vector2) -> void:
 
 ## Puts down what's held where it is.
 func put_down() -> void:
+	_press_at = null
+	_dragged = false
 	if not is_holding():
 		return
 	_held = NOTHING
@@ -470,36 +526,36 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("undo_placement"):
 		undo()
-	elif event.is_action_pressed("rotate_selection"):
-		turn(TURN_STEP)
-	elif not (_formation_key(event) or _pointer(event)):
+	elif event.is_action_pressed("single_model_mode") and _state.get("mode") in ["unit", "army"]:
+		toggle_single_model()
+	elif not _pointer(event):
 		return
 	get_viewport().set_input_as_handled()
 
 
-## Handles a formation key. Returns whether [param event] was one.
-func _formation_key(event: InputEvent) -> bool:
-	for kind in Formations.Kind.size():
-		if event.is_action_pressed("formation_%d" % (kind + 1)):
-			set_formation(kind)
-			return true
-	return false
-
-
-## Handles a left click or, while holding, a mouse move on the board. Returns whether
-## [param event] was one.
+## Handles the left button going down or up, or a mouse move while holding something, on the
+## board. Returns whether [param event] was one.
 func _pointer(event: InputEvent) -> bool:
 	var point: Variant = null
 	if (event is InputEventMouseButton or event is InputEventMouseMotion) and map.camera:
 		point = map.camera.ground_point(event.position)
-	if point == null:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed and point != null:
+			_press_screen = event.position
+			press(point)
+		elif not event.pressed and is_pressing():
+			release()
+		else:
+			return false
+		return true
+	if point == null or not event is InputEventMouseMotion or not is_holding():
 		return false
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		click(point, event.alt_pressed)
-	elif event is InputEventMouseMotion and is_holding():
-		hover(point)
+	if is_pressing():
+		# A small wobble during a click isn't a drag.
+		if _dragged or event.position.distance_to(_press_screen) > DRAG_PIXELS:
+			drag_to(point)
 	else:
-		return false
+		hover(point)
 	return true
 
 
@@ -650,6 +706,8 @@ func _drop_placing() -> void:
 				_free_node(terrain_nodes, feature)
 	_state = {}
 	_held = NOTHING
+	_press_at = null
+	_dragged = false
 
 
 func _free_node(nodes: Dictionary, key: Variant) -> void:
@@ -687,6 +745,7 @@ func _add_terrain_node(feature: BattleTerrain) -> void:
 func _refresh_hud() -> void:
 	var state := _state.duplicate()
 	state["busy"] = not is_player_turn()
+	state["single"] = single_model
 	hud.refresh(state)
 	if not _state.is_empty() and _state.has("problems"):
 		hud.set_problems(_state.problems)
@@ -698,11 +757,17 @@ func _refresh_hud() -> void:
 
 
 func _placing_keys() -> PackedStringArray:
-	var keys := PackedStringArray(["Click  put down" if is_holding() else "Click  pick up",
-			"%s  turn" % BattleHud.key_for("rotate_selection"), "%s  undo" % BattleHud.key_for("undo_placement")])
-	if _state.get("mode") in ["unit", "army"]:
-		keys.insert(0, "Click / Alt-click  pick up unit / model")
-		keys.append("%s–%s  formation" % [BattleHud.key_for("formation_1"), BattleHud.key_for("formation_5")])
+	var keys := PackedStringArray()
+	var is_unit: bool = _state.get("mode") in ["unit", "army"]
+	if is_holding():
+		keys.append("Click  put down")
+		if _held == WHOLE:
+			keys.append("Drag  line up and face left of the drag" if is_unit else "Drag  turn along the drag")
+	else:
+		keys.append("Click  pick up model" if is_unit and single_model else "Click  pick up")
+	if is_unit:
+		keys.append("%s  single-model mode: %s" % [BattleHud.key_for("single_model_mode"), "on" if single_model else "off"])
+	keys.append("%s  undo" % BattleHud.key_for("undo_placement"))
 	return keys
 
 

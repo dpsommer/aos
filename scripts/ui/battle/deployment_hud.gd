@@ -2,7 +2,7 @@ class_name DeploymentHud
 extends Control
 ## The deployment phase's overlay (the design's boards 5 and 6), under the header: a banner saying
 ## whose turn it is, the deployment abilities on the left, the placing panel on the right
-## (formations, problems, Undo and Confirm) and the tray of regiments, units and terrain to set up
+## (how to place it, single-model mode, problems, Undo and Confirm) and the tray of regiments, units and terrain to set up
 ## along the bottom. [DeploymentController] drives it with [method refresh] and listens to its
 ## signals. See docs/design/battle.md.
 
@@ -10,7 +10,8 @@ signal unit_picked(unit: BattleUnit)
 signal regiment_picked(regiment: BattleRegiment)
 signal terrain_picked(feature: BattleTerrain)
 signal ability_picked(entry: DeploymentAbility)
-signal formation_picked(kind: int)
+## Single-model mode on or off.
+signal single_model_toggled
 signal target_toggled(unit: BattleUnit)
 signal confirm_pressed
 signal undo_pressed
@@ -40,7 +41,8 @@ var alert: PanelContainer
 var alert_label: Label
 var confirm_button: Button
 var undo_button: Button
-var formation_buttons: Array[Button] = []
+## The single-model mode toggle, while a unit of several models is being placed.
+var single_model_button: Button
 ## Buttons in the tray by the unit, regiment or terrain feature they pick.
 var tray_buttons := {}
 var ability_buttons: Array[Button] = []
@@ -76,7 +78,7 @@ func _init(of: Deployment, player_army: BattleArmy) -> void:
 ## Rebuilds the overlay for the deployment's current state and [param state], what the player is
 ## doing: [code]mode[/code] ("", "unit", "terrain", "choose" or "army": arranging a Spearhead army
 ## set out on the board), [code]unit[/code],
-## [code]feature[/code], [code]formation[/code], [code]problems[/code], [code]entry[/code],
+## [code]feature[/code], [code]single[/code] (single-model mode), [code]problems[/code], [code]entry[/code],
 ## [code]targets[/code], [code]selected[/code] and [code]busy[/code] (the AI's turn).
 func refresh(state: Dictionary) -> void:
 	_state = state
@@ -278,7 +280,7 @@ func _hint(entry: DeploymentAbility) -> String:
 
 
 func _refresh_placing() -> void:
-	formation_buttons.clear()
+	single_model_button = null
 	target_buttons.clear()
 	alert = null
 	confirm_button = null
@@ -345,49 +347,47 @@ func _regiment_chips() -> Control:
 func _unit_placing() -> Array:
 	var unit: BattleUnit = _state.unit
 	var children: Array = [_heading("Placing"), _title(unit.name),
-		UIBuilder.label("%d model%s · click a model to pick the unit up and click again to put it down; Alt-click picks up one model. Blue: it can go there." \
-				% [unit.model_count(), "" if unit.model_count() == 1 else "s"], "MutedLabel", true)]
+		UIBuilder.label("%d model%s" % [unit.model_count(), "" if unit.model_count() == 1 else "s"], "MutedLabel")]
 	if deployment.regiment:
 		children.append(_regiment_chips())
 		if not deployment.regiment.any_deployed():
 			children.append(_call_off_button())
-	children.append_array(_formation_controls(unit))
+	children.append_array(_unit_controls(unit))
 	children.append(_alert())
 	children.append(_buttons(_next_text()))
 	return children
 
 
-## The formation buttons for [param unit], or a note for a single model.
-func _formation_controls(unit: BattleUnit) -> Array:
+## How to place [param unit], and the single-model mode toggle if it has several models.
+func _unit_controls(unit: BattleUnit) -> Array:
 	var children: Array = []
-	if unit.model_count() > 1:
-		children.append(UIBuilder.label("Formation", "SectionLabel"))
-		for kind in Formations.kinds_for(unit.model_count()):
-			var key := BattleHud.key_for("formation_%d" % (kind + 1))
-			var button := UIBuilder.button("%s   %s   (%s)" % [key, Formations.NAMES[kind], Formations.SHAPES[kind]],
-					formation_picked.emit.bind(kind), "formation_%d" % kind, "KeyButton")
-			button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-			button.toggle_mode = true
-			button.set_pressed_no_signal(_state.get("formation", -1) == kind)
-			button.accessibility_name = "Formation %s, %s, key %s" % [Formations.NAMES[kind], Formations.SHAPES[kind], key]
-			formation_buttons.append(button)
-			children.append(button)
-	else:
-		children.append(UIBuilder.label("Single-model unit: pick it up and put it down, and turn it with %s." % BattleHud.key_for("rotate_selection"), "MutedLabel", true))
+	if unit.model_count() == 1:
+		children.append(UIBuilder.label("Click to put it down. Press and drag to turn it: it faces left of the drag, so dragging left to right faces it forward. Click it to pick it up again.", "MutedLabel", true))
+		return children
+	children.append(UIBuilder.label("Click to put it down as it is. Press and drag to line it up: the front rank runs from where you press along the drag, as wide as you drag and coherency allows, facing left of it (left to right faces forward). Click a model to pick the unit up again.", "MutedLabel", true))
+	var key := BattleHud.key_for("single_model_mode")
+	var on: bool = _state.get("single", false)
+	single_model_button = UIBuilder.button("%s   Single-model mode: %s" % [key, "on" if on else "off"], single_model_toggled.emit, "single_model", "KeyButton")
+	single_model_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	single_model_button.toggle_mode = true
+	single_model_button.set_pressed_no_signal(on)
+	single_model_button.tooltip_text = "Click a model to pick up just that model, to move models one at a time."
+	single_model_button.accessibility_name = "Single-model mode, %s, key %s" % ["on" if on else "off", key]
+	children.append(single_model_button)
 	return children
 
 
-## Arranging a Spearhead army set out on the board: the picked unit's formations, every problem,
+## Arranging a Spearhead army set out on the board: how to place the picked unit, every problem,
 ## and one Confirm for the lot.
 func _army_placing() -> Array:
 	var unit: BattleUnit = _state.get("unit")
 	var children: Array = [_heading("Deploy your army"),
-		UIBuilder.label("Your units are set out in your deployable zone. Click a unit to pick it up and click again to put it down; Alt-click picks up one model. Blue: it can go there.", "MutedLabel", true)]
+		UIBuilder.label("Your units are set out in your deployable zone. Click a unit to pick it up. Blue: it can go there.", "MutedLabel", true)]
 	if unit:
 		children.append(_title(unit.name))
-		children.append_array(_formation_controls(unit))
+		children.append_array(_unit_controls(unit))
 	else:
-		children.append(UIBuilder.label("Pick a unit on the board or in the tray to change its formation or turn it.", "DescriptionLabel", true))
+		children.append(UIBuilder.label("Pick a unit on the board or in the tray to move it or line it up.", "DescriptionLabel", true))
 	children.append(_alert())
 	var other := deployment.battle.enemy_of(army)
 	children.append(_buttons("deploy all · %s" % ("opponent next" if deployment.has_work(other) else "next step")))
@@ -407,7 +407,7 @@ func _terrain_placing() -> Array:
 		var note := UIBuilder.label("There's no room left for the gap from other terrain features, so it only has to keep clear of them.", "WarningLabel", true)
 		children.append(note)
 	return children + [
-		UIBuilder.label("Click it to pick it up and click again to put it down; %s turns it. Blue: it can go there." % BattleHud.key_for("rotate_selection"), "MutedLabel", true),
+		UIBuilder.label("Click to put it down. Press and drag to turn it: its length runs along the drag. Click it to pick it up again. Blue: it can go there.", "MutedLabel", true),
 		_alert(), _buttons(_next_text())]
 
 

@@ -25,12 +25,7 @@ const SECTIONS := {
 		["camera_right", "Move camera right"],
 		["camera_rotate_left", "Turn camera left"],
 		["camera_rotate_right", "Turn camera right"],
-		["rotate_selection", "Turn unit or terrain"],
-		["formation_1", "Formation: line"],
-		["formation_2", "Formation: wide block"],
-		["formation_3", "Formation: narrow block"],
-		["formation_4", "Formation: loose"],
-		["formation_5", "Formation: wedge"],
+		["single_model_mode", "Single-model mode"],
 		["undo_placement", "Undo placement"],
 	],
 }

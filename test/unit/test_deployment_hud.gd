@@ -269,35 +269,6 @@ func test_placing_a_unit_shows_confirm_and_undo() -> void:
 	assert_true(hud.placing_panel.visible)
 
 
-func test_formation_buttons_are_shown_for_a_multi_model_unit() -> void:
-	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
-	assert_eq(hud.formation_buttons.size(), Formations.kinds_for(3).size())
-
-
-func test_formation_buttons_are_left_out_for_a_single_model_unit() -> void:
-	var single := BattleKit.unit("Solo", 1)
-	_me.units.append(single)
-	var hud := _hud({"mode": "unit", "unit": single})
-	assert_eq(hud.formation_buttons.size(), 0)
-
-
-func test_the_chosen_formation_is_shown_pressed() -> void:
-	var hud := _hud({"mode": "unit", "unit": _unit("A1"), "formation": Formations.Kind.WEDGE})
-	var pressed: Array[Button] = []
-	for button in hud.formation_buttons:
-		if button.button_pressed:
-			pressed.append(button)
-	assert_eq(pressed.size(), 1)
-	assert_same(pressed[0], hud.formation_buttons[Formations.Kind.WEDGE])
-
-
-func test_pressing_a_formation_emits_formation_picked() -> void:
-	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
-	watch_signals(hud)
-	hud.formation_buttons[2].pressed.emit()
-	assert_signal_emitted_with_parameters(hud, "formation_picked", [2])
-
-
 func test_confirm_and_undo_emit_their_signals() -> void:
 	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
 	watch_signals(hud)
@@ -348,12 +319,102 @@ func test_set_problems_without_a_placing_panel_does_nothing_wrong() -> void:
 	assert_null(hud.alert)
 
 
+func test_a_multi_model_unit_gets_a_single_model_toggle() -> void:
+	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
+	assert_not_null(hud.single_model_button)
+	assert_true(hud.single_model_button.toggle_mode)
+
+
+func test_a_single_model_unit_gets_no_single_model_toggle() -> void:
+	var single := BattleKit.unit("Solo", 1)
+	_me.units.append(single)
+	var hud := _hud({"mode": "unit", "unit": single})
+	assert_null(hud.single_model_button)
+
+
+func test_a_single_model_unit_still_gets_instructions() -> void:
+	var single := BattleKit.unit("Solo", 1)
+	_me.units.append(single)
+	var hud := _hud({"mode": "unit", "unit": single})
+	assert_true(UIKit.has_label_containing(hud.placing_panel, "drag"))
+
+
+func test_the_toggle_is_not_pressed_when_single_model_mode_is_off() -> void:
+	var hud := _hud({"mode": "unit", "unit": _unit("A1"), "single": false})
+	assert_false(hud.single_model_button.button_pressed)
+
+
+func test_the_toggle_is_pressed_when_single_model_mode_is_on() -> void:
+	var hud := _hud({"mode": "unit", "unit": _unit("A1"), "single": true})
+	assert_true(hud.single_model_button.button_pressed)
+
+
+func test_the_toggle_text_follows_the_mode() -> void:
+	var on := _hud({"mode": "unit", "unit": _unit("A1"), "single": true})
+	var off := _hud({"mode": "unit", "unit": _unit("A1"), "single": false})
+	assert_ne(on.single_model_button.text, off.single_model_button.text)
+
+
+func test_the_toggle_accessibility_name_says_the_mode_and_key() -> void:
+	var hud := _hud({"mode": "unit", "unit": _unit("A1"), "single": true})
+	assert_string_contains(hud.single_model_button.accessibility_name, "on")
+	assert_string_contains(hud.single_model_button.accessibility_name, BattleHud.key_for("single_model_mode"))
+
+
+func test_pressing_the_toggle_emits_single_model_toggled() -> void:
+	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
+	watch_signals(hud)
+	hud.single_model_button.pressed.emit()
+	assert_signal_emitted(hud, "single_model_toggled")
+
+
+func test_the_unit_panel_has_no_formation_buttons() -> void:
+	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
+	assert_false(hud.has_signal("formation_picked"))
+	assert_false("formation_buttons" in hud)
+
+
+func test_the_army_panel_offers_the_toggle_for_a_multi_model_unit() -> void:
+	var hud := _army_hud({"mode": "army", "unit": _unit("A1")})
+	assert_not_null(hud.single_model_button)
+
+
+func test_the_army_panel_reflects_single_model_mode() -> void:
+	var hud := _army_hud({"mode": "army", "unit": _unit("A1"), "single": true})
+	assert_true(hud.single_model_button.button_pressed)
+
+
+func test_the_army_panel_offers_no_toggle_with_no_unit_picked() -> void:
+	var hud := _army_hud()
+	assert_null(hud.single_model_button)
+
+
+func test_the_army_toggle_emits_single_model_toggled() -> void:
+	var hud := _army_hud({"mode": "army", "unit": _unit("A1")})
+	watch_signals(hud)
+	hud.single_model_button.pressed.emit()
+	assert_signal_emitted(hud, "single_model_toggled")
+
+
+func test_the_terrain_panel_has_no_single_model_toggle() -> void:
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	_me.terrain.append(feature)
+	var hud := _hud({"mode": "terrain", "feature": feature})
+	assert_null(hud.single_model_button)
+
+
+func test_the_terrain_panel_says_dragging_turns_it() -> void:
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
+	_me.terrain.append(feature)
+	var hud := _hud({"mode": "terrain", "feature": feature})
+	assert_true(UIKit.has_label_containing(hud.placing_panel, "drag to turn"))
+
+
 func test_placing_terrain_shows_confirm() -> void:
 	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
 	_me.terrain.append(feature)
 	var hud := _hud({"mode": "terrain", "feature": feature})
 	assert_not_null(hud.confirm_button)
-	assert_eq(hud.formation_buttons.size(), 0)
 
 
 func test_the_placing_panel_is_hidden_on_the_opponents_turn() -> void:
@@ -570,16 +631,6 @@ func test_the_army_panel_names_the_picked_unit() -> void:
 	assert_true(UIKit.has_label_containing(hud.placing_panel, "A1"))
 
 
-func test_the_army_panel_offers_formations_for_the_picked_unit() -> void:
-	var hud := _army_hud({"mode": "army", "unit": _unit("A1")})
-	assert_gt(hud.formation_buttons.size(), 0)
-
-
-func test_the_army_panel_offers_no_formations_with_no_unit_picked() -> void:
-	var hud := _army_hud()
-	assert_eq(hud.formation_buttons.size(), 0)
-
-
 func test_the_army_panel_shows_the_problems_it_is_given() -> void:
 	var hud := _army_hud({"mode": "army", "unit": null, "problems": PackedStringArray(["A1: 3 models are outside"])})
 	assert_true(hud.alert.visible)
@@ -613,5 +664,5 @@ func test_tray_tile_tooltips_in_matched_play_do_not_mention_moving() -> void:
 
 
 func test_the_matched_play_unit_panel_is_unaffected() -> void:
-	var hud := _hud({"mode": "unit", "unit": _unit("A1"), "formation": -1})
+	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
 	assert_false(UIKit.has_label_containing(hud.placing_panel, "DEPLOY YOUR ARMY"))

@@ -276,3 +276,209 @@ func test_every_formation_is_offered_for_several_models() -> void:
 func test_names_and_shapes_cover_every_kind() -> void:
 	assert_eq(Formations.NAMES.size(), ALL_KINDS.size())
 	assert_eq(Formations.SHAPES.size(), ALL_KINDS.size())
+
+
+# spread
+
+const SPREAD_COUNTS: Array[int] = [2, 5, 6, 7, 11, 20]
+const SPREAD_FACINGS: Array[float] = [0.0, -PI / 2, 1.1, PI]
+
+
+func _base() -> BaseSize:
+	return BaseSize.round_base(32.0)
+
+
+func _mixed_bases() -> Array[BaseSize]:
+	var result: Array[BaseSize] = []
+	for mm in [40.0, 40.0, 28.5, 28.5, 28.5, 25.0, 25.0, 25.0, 25.0]:
+		result.append(BaseSize.round_base(mm))
+	return result
+
+
+## The widths from nothing to well past the widest line, for [param count] models.
+func _widths(count: int) -> Array[float]:
+	var widest := Formations.max_width(count, _base())
+	var result: Array[float] = [0.0, 0.5, widest / 3, widest / 2, widest * 0.8, widest, widest * 3]
+	return result
+
+
+## How far across the unit's right the models' spread is.
+func _front_span(positions: PackedVector2Array, facing: float) -> float:
+	var forward := Vector2.from_angle(facing)
+	var right := Vector2(-forward.y, forward.x)
+	var low := INF
+	var high := -INF
+	for position in positions:
+		low = minf(low, position.dot(right))
+		high = maxf(high, position.dot(right))
+	return high - low
+
+
+## How many ranks (rows of models at distinct depths) there are.
+func _ranks(positions: PackedVector2Array, facing: float) -> int:
+	var forward := Vector2.from_angle(facing)
+	var depths: Array[float] = []
+	for position in positions:
+		var depth := position.dot(forward)
+		if not depths.any(func(d: float) -> bool: return absf(d - depth) < 0.3):
+			depths.append(depth)
+	return depths.size()
+
+
+func _overlaps(bases: Array[BaseSize], positions: PackedVector2Array, facing: float) -> bool:
+	for i in positions.size():
+		for j in range(i + 1, positions.size()):
+			if DeploymentRules.bases_overlap(bases[i], positions[i], facing, bases[j], positions[j], facing):
+				return true
+	return false
+
+
+func test_spread_is_coherent_at_every_width() -> void:
+	for count in SPREAD_COUNTS:
+		var bases := _bases(count)
+		for width in _widths(count):
+			var positions := Formations.spread(bases, Vector2(10, 10), 0.4, width)
+			assert_true(Coherency.is_coherent(positions, bases, 0.4), "x%d width %.2f" % [count, width])
+
+
+func test_spread_does_not_overlap_bases_at_any_width() -> void:
+	for count in SPREAD_COUNTS:
+		var bases := _bases(count)
+		for width in _widths(count):
+			var positions := Formations.spread(bases, Vector2(10, 10), 0.4, width)
+			assert_false(_overlaps(bases, positions, 0.4), "x%d width %.2f" % [count, width])
+
+
+func test_spread_is_coherent_whichever_way_it_faces() -> void:
+	for facing in SPREAD_FACINGS:
+		var bases := _bases(11)
+		var positions := Formations.spread(bases, Vector2(10, 10), facing, 8.0)
+		assert_true(Coherency.is_coherent(positions, bases, facing), "facing %.2f" % facing)
+
+
+func test_spread_gives_one_position_per_model() -> void:
+	for count in SPREAD_COUNTS:
+		assert_eq(Formations.spread(_bases(count), Vector2.ZERO, 0.0, 6.0).size(), count)
+
+
+func test_spread_of_mixed_bases_is_coherent_at_every_width() -> void:
+	var bases := _mixed_bases()
+	for width in [0.0, 3.0, 6.0, 10.0, 40.0]:
+		var positions := Formations.spread(bases, Vector2(10, 10), 0.4, width)
+		assert_true(Coherency.is_coherent(positions, bases, 0.4), "width %.1f" % width)
+
+
+func test_spread_of_mixed_bases_does_not_overlap() -> void:
+	var bases := _mixed_bases()
+	for width in [0.0, 3.0, 6.0, 10.0, 40.0]:
+		var positions := Formations.spread(bases, Vector2(10, 10), 0.4, width)
+		assert_false(_overlaps(bases, positions, 0.4), "width %.1f" % width)
+
+
+func test_spread_puts_the_front_left_model_at_the_point() -> void:
+	var at := Vector2(13, -4)
+	for count in SPREAD_COUNTS:
+		for width in _widths(count):
+			var positions := Formations.spread(_bases(count), at, 0.9, width)
+			assert_true(positions[0].is_equal_approx(at), "x%d width %.2f" % [count, width])
+
+
+func test_spread_of_one_model_is_the_point() -> void:
+	var positions := Formations.spread(_bases(1), Vector2(3, 4), 1.0, 9.0)
+	assert_eq(positions, PackedVector2Array([Vector2(3, 4)]))
+
+
+func test_spread_of_no_models_is_empty() -> void:
+	assert_eq(Formations.spread(_bases(0), Vector2(3, 4), 1.0, 9.0).size(), 0)
+
+
+func test_the_front_rank_runs_along_the_facings_right() -> void:
+	for facing in SPREAD_FACINGS:
+		var forward := Vector2.from_angle(facing)
+		var right := Vector2(-forward.y, forward.x)
+		var positions := Formations.spread(_bases(5), Vector2.ZERO, facing, 100.0)
+		assert_gt(positions[4].dot(right), positions[0].dot(right), "facing %.2f" % facing)
+		assert_almost_eq(positions[4].dot(forward), positions[0].dot(forward), 0.01, "facing %.2f" % facing)
+
+
+func test_no_model_stands_in_front_of_the_front_rank() -> void:
+	var forward := Vector2.from_angle(0.7)
+	var positions := Formations.spread(_bases(11), Vector2(2, 2), 0.7, 5.0)
+	for position in positions:
+		assert_lt(position.dot(forward), (Vector2(2, 2)).dot(forward) + 0.01)
+
+
+func test_a_wider_drag_never_makes_the_front_narrower() -> void:
+	for count in SPREAD_COUNTS:
+		var bases := _bases(count)
+		var last := -1.0
+		for step in 40:
+			var width := step * Formations.max_width(count, _base()) / 30.0
+			var span := _front_span(Formations.spread(bases, Vector2.ZERO, 0.3, width), 0.3)
+			assert_gte(span, last - 0.001, "x%d width %.2f" % [count, width])
+			last = span
+
+
+func test_a_drag_past_the_widest_line_gives_no_more_width() -> void:
+	for count in SPREAD_COUNTS:
+		var widest := Formations.max_width(count, _base())
+		var at_max := _front_span(Formations.spread(_bases(count), Vector2.ZERO, 0.0, widest), 0.0)
+		var past := _front_span(Formations.spread(_bases(count), Vector2.ZERO, 0.0, widest * 4), 0.0)
+		assert_almost_eq(past, at_max, 0.01, "x%d" % count)
+
+
+func test_the_front_never_spans_more_than_the_widest() -> void:
+	for count in SPREAD_COUNTS:
+		var widest := Formations.max_width(count, _base())
+		for width in _widths(count):
+			var span := _front_span(Formations.spread(_bases(count), Vector2.ZERO, 0.0, width), 0.0)
+			assert_lte(span, widest + 0.01, "x%d width %.2f" % [count, width])
+
+
+func test_a_narrow_drag_gives_more_ranks_than_a_wide_one() -> void:
+	for count in [5, 7, 11, 20]:
+		var narrow := Formations.spread(_bases(count), Vector2.ZERO, 0.0, 0.0)
+		var wide := Formations.spread(_bases(count), Vector2.ZERO, 0.0, Formations.max_width(count, _base()))
+		assert_gt(_ranks(narrow, 0.0), _ranks(wide, 0.0), "x%d" % count)
+
+
+func test_a_narrow_drag_gives_a_column_narrower_than_the_widest_line() -> void:
+	var narrow := Formations.spread(_bases(11), Vector2.ZERO, 0.0, 0.0)
+	assert_lt(_front_span(narrow, 0.0), Formations.max_width(11, _base()) / 2)
+
+
+func test_a_small_unit_at_the_widest_is_a_single_rank() -> void:
+	for count in [2, 3, 5, 6]:
+		var positions := Formations.spread(_bases(count), Vector2.ZERO, 0.0, Formations.max_width(count, _base()))
+		assert_eq(_ranks(positions, 0.0), 1, "x%d" % count)
+
+
+func test_a_large_unit_at_the_widest_has_a_rank_and_two_tucked_models() -> void:
+	for count in [7, 11, 20]:
+		var positions := Formations.spread(_bases(count), Vector2.ZERO, 0.0, Formations.max_width(count, _base()))
+		var forward := Vector2.from_angle(0.0)
+		var back := 0
+		for position in positions:
+			if absf(position.dot(forward) - positions[0].dot(forward)) > 0.1:
+				back += 1
+		assert_eq(back, 2, "x%d" % count)
+
+
+func test_every_model_of_a_widest_large_unit_has_two_neighbours() -> void:
+	for count in [7, 11, 20]:
+		var bases := _bases(count)
+		var positions := Formations.spread(bases, Vector2.ZERO, 0.0, Formations.max_width(count, _base()))
+		for i in count:
+			var near := 0
+			for j in count:
+				if i != j and DeploymentRules.base_gap(bases[i], positions[i], 0.0, bases[j], positions[j], 0.0) <= Coherency.MAX_GAP:
+					near += 1
+			assert_gte(near, 2, "x%d model %d" % [count, i])
+
+
+func test_the_widest_line_is_wider_for_more_models() -> void:
+	assert_gt(Formations.max_width(11, _base()), Formations.max_width(5, _base()))
+
+
+func test_a_bigger_base_has_a_wider_widest_line() -> void:
+	assert_gt(Formations.max_width(5, BaseSize.round_base(60.0)), Formations.max_width(5, BaseSize.round_base(25.0)))

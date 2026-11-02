@@ -18,6 +18,9 @@ const LOOSE_GAP := Coherency.MAX_GAP - 0.02
 ## Units of up to this many models stand in a single rank as a line.
 const SINGLE_RANK_LINE := Coherency.LARGE_UNIT - 1
 
+## [method _coherent_columns] by unit size and base.
+static var _columns_cache := {}
+
 
 ## Where each of [param bases]' models stands in formation [param kind], centred on
 ## [param anchor] and facing [param facing].
@@ -64,6 +67,134 @@ static func _offsets(kind: Kind, count: int, base: BaseSize, gap: float) -> Arra
 		Kind.WEDGE:
 			offsets = _wedge(count, across_step, nestle)
 	return offsets
+
+
+## Where each of [param bases]' models stands in ranks facing [param facing], the front rank
+## [param width] wide (centre to centre), running from [param front_left] (the front-left model) to
+## the unit's right. A narrow width stacks the models in a deep column; the wider it is, the more
+## stand in the front rank and the fewer ranks behind, and past a close-packed line the gaps open to
+## just under ½", as wide as coherency allows. A unit of 7 or more stretches to a single rank with
+## its two end models tucked in behind the models next to them, as each model needs two neighbours.
+## Always coherent for bases of one size;
+## mixed bases are packed against their neighbours as in [method arrange].
+static func spread(bases: Array[BaseSize], front_left: Vector2, facing: float, width: float) -> PackedVector2Array:
+	var count := bases.size()
+	if count == 0:
+		return PackedVector2Array()
+	if count == 1:
+		return PackedVector2Array([front_left])
+	var uniform := _is_uniform(bases)
+	var base := _largest_base(bases) if uniform else _average_base(bases)
+	var offsets := _spread_offsets(count, base, width)
+	var shape := PackedVector2Array()
+	var forward := Vector2.from_angle(facing)
+	var right := Vector2(-forward.y, forward.x)
+	for offset in offsets:
+		shape.append(front_left + right * offset.x - forward * offset.y)
+	if uniform:
+		return shape
+	for gap in [CLOSE_GAP, CLOSE_GAP / 2]:
+		var packed := _pack(shape, bases, facing, gap)
+		if not packed.is_empty():
+			return packed
+	return arrange(Kind.WIDE_BLOCK, bases, _centre(shape), facing)
+
+
+## The widest [param count] models on [param base] stand in coherency, centre to centre across the
+## front: a line with gaps just under ½".
+static func max_width(count: int, base: BaseSize) -> float:
+	return _span(_spread_layout(count, count, base, LOOSE_GAP))
+
+
+## The (across, back) offsets for [method spread]: the widest coherent layout whose close-packed
+## front rank fits [param width] (the narrowest if none does), its gaps then opened up to fill it,
+## as far as coherency allows. The front-left model is at (0, 0).
+static func _spread_offsets(count: int, base: BaseSize, width: float) -> Array[Vector2]:
+	var columns := 0
+	var best_span := -1.0
+	for candidate: int in _coherent_columns(count, base):
+		var span := _span(_spread_layout(count, candidate, base, CLOSE_GAP))
+		if columns == 0 or (span <= width + 0.001 and span >= best_span):
+			columns = candidate
+			best_span = span
+	if columns == 0:
+		return _spread_layout(count, count, base, CLOSE_GAP)
+	var close_span := _span(_spread_layout(count, columns, base, CLOSE_GAP))
+	var loose_span := _span(_spread_layout(count, columns, base, LOOSE_GAP))
+	var gap := CLOSE_GAP
+	if loose_span > close_span + 0.001:
+		gap = lerpf(CLOSE_GAP, LOOSE_GAP, clampf((width - close_span) / (loose_span - close_span), 0.0, 1.0))
+	return _spread_layout(count, columns, base, gap)
+
+
+## The front-rank sizes [method _spread_layout] can use for [param count] models on [param base]
+## and stay coherent, narrowest first. Worked out once for each count and base size.
+static func _coherent_columns(count: int, base: BaseSize) -> Array:
+	var key := "%d:%d:%v" % [count, base.shape, base.footprint()]
+	if _columns_cache.has(key):
+		return _columns_cache[key]
+	var bases: Array[BaseSize] = []
+	for i in count:
+		bases.append(base)
+	var result := []
+	for columns in range(1, count + 1):
+		if Coherency.is_coherent(_place_raw(_spread_layout(count, columns, base, CLOSE_GAP)), bases, 0.0):
+			result.append(columns)
+	_columns_cache[key] = result
+	return result
+
+
+## [param count] models on [param base] with [param columns] in the front rank, [param gap] apart:
+## a block, or with [param columns] of [param count] a line ([method _wide_line]).
+static func _spread_layout(count: int, columns: int, base: BaseSize, gap: float) -> Array[Vector2]:
+	var size := base.footprint()
+	var across_step := size.y + gap
+	var nestle := nestle_depth(base, across_step, gap)
+	if columns >= count:
+		return _wide_line(count, across_step, nestle)
+	return _block(count, columns, across_step, size.x + gap, nestle)
+
+
+## The widest coherent line: one rank, or for a unit of 7 or more (each model needing two
+## neighbours) one rank of all but two, the two tucked in behind the first and last pairs. The
+## front rank comes first.
+static func _wide_line(count: int, step: float, nestle: float) -> Array[Vector2]:
+	var result: Array[Vector2] = []
+	if count < Coherency.LARGE_UNIT:
+		for i in count:
+			result.append(Vector2(i * step, 0))
+		return result
+	var front := count - 2
+	for i in front:
+		result.append(Vector2(i * step, 0))
+	result.append(Vector2(step / 2, nestle))
+	result.append(Vector2((front - 1.5) * step, nestle))
+	return result
+
+
+## How far apart the leftmost and rightmost models are, centre to centre.
+static func _span(offsets: Array[Vector2]) -> float:
+	var low := INF
+	var high := -INF
+	for offset in offsets:
+		low = minf(low, offset.x)
+		high = maxf(high, offset.x)
+	return high - low if high >= low else 0.0
+
+
+## (across, back) offsets as positions facing east, for checking coherency.
+static func _place_raw(offsets: Array[Vector2]) -> PackedVector2Array:
+	var result := PackedVector2Array()
+	for offset in offsets:
+		result.append(Vector2(-offset.y, offset.x))
+	return result
+
+
+static func _centre(positions: PackedVector2Array) -> Vector2:
+	var total := Vector2.ZERO
+	for position in positions:
+		total += position
+	return total / positions.size()
 
 
 ## The formations that make sense for [param model_count] models: none for a single model.

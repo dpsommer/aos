@@ -107,8 +107,8 @@ If the player is the defender in Spearhead, `DeploymentMapPicker` (`scripts/ui/b
   - Its status is "In use", "Used" or "Once per battle".
   - Reserve and recorded abilities are buttons that start using them. Their effect is the tooltip.
 - **Placing,** on the right:
-  - **A unit:** its name and model count, the regiment's units as chips while one is being deployed, and the formations with their keys, or "Single-model unit: pick it up and put it down, and turn it with R."
-  - **A Spearhead army:** "Deploy your army", the picked unit's name and formations (or "Pick a unit on the board or in the tray…" while none is picked), and "Confirm deployment" for all of them. Undo is for the picked unit.
+  - **A unit:** its name and model count, the regiment's units as chips while one is being deployed, how to put it down and line it up, and a Single-model mode toggle with its key (for a unit of several models).
+  - **A Spearhead army:** "Deploy your army", the picked unit's name, how to place it and the Single-model mode toggle (or "Pick a unit on the board or in the tray…" while none is picked), and "Confirm deployment" for all of them. Undo is for the picked unit.
   - **A terrain feature:** its name, the rule for where it goes and how to move and turn it. If no spot left meets the gap from other terrain, it says the gap is waived.
   - **An ability:** its declare and effect, its targets as chips to pick and "Its use is recorded; its effect isn't applied yet." for one that isn't a reserve.
   - **Problems:** any problems, in red, e.g. "2 models are outside your deployable zone…".
@@ -123,18 +123,19 @@ If the player is the defender in Spearhead, `DeploymentMapPicker` (`scripts/ui/b
 **Placing:**
 
 - A unit or terrain feature picked from the tray starts in a valid spot if there is one, already picked up: it follows the mouse once the pointer is over the board, and a click puts it down. Clicking it again picks it up again, so it can be moved as often as needed before Confirm.
+- **Lining up:** while it's held, pressing the left button and dragging lines it up instead of putting it down where it is. A unit's front rank runs from where the button went down towards the pointer, and the unit faces left of the drag: dragged left to right across the screen, it faces up the screen, away from the camera. A short drag stacks the unit in a deep column; the further the drag, the more models stand in the front rank, until the gaps open to just under ½" and it can't spread any further and stay coherent (`Formations.spread()`; see [Deployment](../gameplay/deployment.md#formations)). A single model just turns. A terrain feature turns so its length runs along the drag, about the point where the button went down. Releasing the button puts it down. A quick click, with the pointer moved no more than 6 pixels, puts it down as it is.
+- **Single-model mode** (M, or the toggle in the placing panel): clicking a model picks up just that model, to move models one at a time. Pressing M again turns it off. The whole unit still follows the mouse when it's first picked from the tray.
 - Each model has a ring under it, and a terrain feature an outline around its footprint. While it's picked up they're blue where it can go and red where it can't, so the player can sweep it round to find a valid spot. Put down, they're green or red.
 - The terrain step picks the next feature by itself, as there's nothing else to do.
 - While a regiment is being deployed, its next unit is picked by itself after each Confirm.
-- **Spearhead armies:** when the player's turn in the Armies step comes, all their units are set out at once, each in a valid spot clear of the others (`DeploymentController.stage_army()`, with `PlaceholderDeployment.spots_for_army()`; see [Deployment](../gameplay/deployment.md#the-ai)), but not yet deployed. Clicking any of them picks it up (and picks it for the formation and turn keys); clicking a tray tile picks it without picking it up. Every unit's rings are checked against the rules and the other units, the problems are listed with the unit's name, and "Confirm deployment" sets the whole army up together (`Deployment.place_army()`). Undo puts the picked unit back where it was when it was picked. A reserve ability can still be used first: its units leave the board and the rest stay where they are.
+- **Spearhead armies:** when the player's turn in the Armies step comes, all their units are set out at once, each in a valid spot clear of the others (`DeploymentController.stage_army()`, with `PlaceholderDeployment.spots_for_army()`; see [Deployment](../gameplay/deployment.md#the-ai)), but not yet deployed. Clicking any of them picks it up (just the model clicked, in single-model mode); clicking a tray tile picks it without picking it up. Every unit's rings are checked against the rules and the other units, the problems are listed with the unit's name, and "Confirm deployment" sets the whole army up together (`Deployment.place_army()`). Undo puts the picked unit back where it was when it was picked. A reserve ability can still be used first: its units leave the board and the rest stay where they are.
 
 **Control** | **Does**
 -- | --
 Left-click a model of the unit, or the terrain feature | Pick it up; it follows the mouse
-Alt + left-click a model | Pick up just that model
-Left-click while holding something | Put it down there
-1 to 5 (`formation_1`…`formation_5`) | Line, wide block, narrow block, loose, wedge, around the unit's middle
-R (`rotate_selection`) | Turn the unit or feature 15°
+Left-click while holding something | Put it down there, as it is
+Left-drag while holding something | Line the unit up from where the drag starts, facing left of the drag; turn a terrain feature along it
+M (`single_model_mode`), or the toggle | Single-model mode: clicking a model picks up just that model
 Ctrl+Z (`undo_placement`), or Undo | Put it back where it started
 
 **The AI's turn:** each action comes 0.6 seconds after the last, and its units and terrain appear on the board.

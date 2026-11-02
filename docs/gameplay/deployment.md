@@ -62,7 +62,13 @@ A unit can't be set up while it's out of coherency.
 
 ### Formations
 
-`Formations.arrange()` lays a unit out in one of five shapes. Each is coherent for bases of one size.
+The player lines a unit up by dragging (see [Battle](../design/battle.md#deployment)). `Formations.spread()` stands it in ranks facing left of the drag, the front rank running from where the drag started, as wide as the drag:
+
+- It picks the widest layout whose front rank, close-packed, fits the drag: a deep column for a short drag, more models across and fewer ranks behind for a longer one. Only layouts in coherency are used; a single column, for instance, isn't coherent in a unit of 7 or more.
+- It then opens the gaps up to fill the drag, to just under ½".
+- The widest it goes is a line: one rank with gaps just under ½". In a unit of 7 or more, each model needs two neighbours, so the two end models are tucked in behind the models next to them.
+
+Automatic placement (the AI's, and setting out a Spearhead army) uses `Formations.arrange()`, which lays a unit out in one of five shapes. Each is coherent for bases of one size.
 
 **Formation** | **Shape**
 -- | --
