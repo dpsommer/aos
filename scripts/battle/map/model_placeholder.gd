@@ -11,13 +11,13 @@ const BASE_HEIGHT := 0.16
 const MODEL_HEIGHT := 0.75
 ## How high a unit's name floats above it.
 const LABEL_HEIGHT := 2.0
+## How far a unit's name floats above its tallest model.
+const LABEL_CLEARANCE := 0.75
 
 const PLAYER_MATERIAL := preload("res://assets/3d/placeholders/p_base_player.tres")
 const OPPONENT_MATERIAL := preload("res://assets/3d/placeholders/p_base_opponent.tres")
 const PLAYER_MODEL_MATERIAL := preload("res://assets/3d/placeholders/p_model_player.tres")
 const OPPONENT_MODEL_MATERIAL := preload("res://assets/3d/placeholders/p_model_opponent.tres")
-## How far a unit's name floats above its tallest model.
-const LABEL_CLEARANCE := 0.75
 
 static var _disc: CylinderMesh
 static var _slab: BoxMesh
@@ -87,6 +87,17 @@ static func model_names(unit: BattleUnit) -> PackedStringArray:
 static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library := ModelLibrary.shared()) -> Node3D:
 	var root := Node3D.new()
 	root.name = _node_name(unit.name)
+	_add_bases(root, unit, facing, is_player)
+	var tallest := _add_models(root, unit, facing, is_player, library)
+	if not unit.positions.is_empty():
+		var height := maxf(LABEL_HEIGHT, tallest + LABEL_CLEARANCE)
+		root.add_child(label(unit.name, to_world(_middle_of(unit.positions), height)))
+	return root
+
+
+## Adds [param unit]'s bases to [param root], one [MultiMeshInstance3D] per kind of base (shape
+## and size).
+static func _add_bases(root: Node3D, unit: BattleUnit, facing: float, is_player: bool) -> void:
 	var kinds := {}
 	for i in mini(unit.bases.size(), unit.positions.size()):
 		var key := "%d:%s" % [unit.bases[i].shape, unit.bases[i].footprint()]
@@ -106,14 +117,14 @@ static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library
 		instance.multimesh = multimesh
 		instance.material_override = PLAYER_MATERIAL if is_player else OPPONENT_MATERIAL
 		root.add_child(instance)
-	var tallest := _add_models(root, unit, facing, is_player, library)
-	if not unit.positions.is_empty():
-		var middle := Vector2.ZERO
-		for position in unit.positions:
-			middle += position
-		var height := maxf(LABEL_HEIGHT, tallest + LABEL_CLEARANCE)
-		root.add_child(label(unit.name, to_world(middle / unit.positions.size(), height)))
-	return root
+
+
+## The middle of [param positions] (not empty): their average.
+static func _middle_of(positions: PackedVector2Array) -> Vector2:
+	var sum := Vector2.ZERO
+	for position in positions:
+		sum += position
+	return sum / positions.size()
 
 
 ## Adds [param unit]'s 3D models to [param root], one [MultiMeshInstance3D] per mesh, and returns

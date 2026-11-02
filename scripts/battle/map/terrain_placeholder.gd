@@ -59,35 +59,43 @@ static func model_of(feature: BattleTerrain, library: ModelLibrary) -> Mesh:
 static func build(feature: BattleTerrain, library := ModelLibrary.shared()) -> Node3D:
 	var root := Node3D.new()
 	root.name = feature.name.validate_node_name() if not feature.name.is_empty() else "Terrain"
-	var height := height_of(feature)
-	var mesh_instance := MeshInstance3D.new()
 	var model := model_of(feature, library)
-	if model:
-		mesh_instance.mesh = model
-		if not ModelLibrary.is_textured(model):
-			mesh_instance.material_override = MODEL
-		mesh_instance.rotation.y = -PI / 2
-		mesh_instance.position.y = -model.get_aabb().position.y
-		height = model.get_aabb().size.y
-		root.add_child(mesh_instance)
-		_place(root, feature, height)
-		return root
+	var height := model.get_aabb().size.y if model else height_of(feature)
+	root.add_child(_model_instance(model) if model else _block_instance(feature, height))
+	_place(root, feature, height)
+	return root
+
+
+## [param model] standing on the ground, its front (-Z) turned to face the way the feature does
+## (+X), in [constant MODEL] if it has no materials of its own.
+static func _model_instance(model: Mesh) -> MeshInstance3D:
+	var instance := MeshInstance3D.new()
+	instance.mesh = model
+	if not ModelLibrary.is_textured(model):
+		instance.material_override = MODEL
+	instance.rotation.y = -PI / 2
+	instance.position.y = -model.get_aabb().position.y
+	return instance
+
+
+## The placeholder for [param feature]: a disc or block its footprint across and [param height]
+## tall, in its kind's material.
+static func _block_instance(feature: BattleTerrain, height: float) -> MeshInstance3D:
+	var instance := MeshInstance3D.new()
 	if is_round(feature):
 		var disc := CylinderMesh.new()
 		disc.top_radius = 0.5
 		disc.bottom_radius = 0.5
 		disc.height = 1.0
-		mesh_instance.mesh = disc
+		instance.mesh = disc
 	else:
 		var block := BoxMesh.new()
 		block.size = Vector3.ONE
-		mesh_instance.mesh = block
-	mesh_instance.material_override = material_of(feature)
-	mesh_instance.scale = Vector3(feature.footprint.x, height, feature.footprint.y)
-	mesh_instance.position.y = height / 2
-	root.add_child(mesh_instance)
-	_place(root, feature, height)
-	return root
+		instance.mesh = block
+	instance.material_override = material_of(feature)
+	instance.scale = Vector3(feature.footprint.x, height, feature.footprint.y)
+	instance.position.y = height / 2
+	return instance
 
 
 static func _place(root: Node3D, feature: BattleTerrain, height: float) -> void:

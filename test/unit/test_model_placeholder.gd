@@ -24,6 +24,11 @@ func _multimeshes(root: Node) -> Array[MultiMeshInstance3D]:
 	return result
 
 
+## How many models each of [param instances] draws, in order.
+func _instance_counts(instances: Array[MultiMeshInstance3D]) -> Array:
+	return instances.map(func(instance: MultiMeshInstance3D) -> int: return instance.multimesh.instance_count)
+
+
 # size_of
 
 func test_round_base_is_as_wide_and_deep_as_its_diameter() -> void:
@@ -103,12 +108,9 @@ func test_each_kind_of_base_makes_its_own_multimesh() -> void:
 	var small := BaseSize.round_base(25)
 	var big := BaseSize.round_base(50)
 	var bases: Array[BaseSize] = [small, big, small, small, big]
-	var root := _built(_unit_with_positions(bases))
-	var counts: Array[int] = []
-	for instance in _multimeshes(root):
-		counts.append(instance.multimesh.instance_count)
+	var counts := _instance_counts(_multimeshes(_built(_unit_with_positions(bases))))
 	counts.sort()
-	assert_eq(counts, [2, 3] as Array[int])
+	assert_eq(counts, [2, 3])
 
 
 func test_oval_and_round_bases_are_separate_multimeshes() -> void:
@@ -284,11 +286,7 @@ func test_variants_get_a_multimesh_each() -> void:
 
 
 func test_variants_are_dealt_to_models_in_turn() -> void:
-	var root := _built(_unit_named("Twin Raiders", 5))
-	var counts: Array[int] = []
-	for instance in _models(root):
-		counts.append(instance.multimesh.instance_count)
-	assert_eq(counts, [3, 2] as Array[int])
+	assert_eq(_instance_counts(_models(_built(_unit_named("Twin Raiders", 5)))), [3, 2])
 
 
 func test_fewer_models_than_variants_skips_the_spare_variants() -> void:
