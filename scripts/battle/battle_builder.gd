@@ -52,17 +52,10 @@ static func _spearhead(setup: BattleSetup, rng: RandomNumberGenerator, packs: Ar
 		return null
 	if faction == null and not setup.faction.is_empty():
 		faction = FactionCatalog.load_faction(setup.faction)
-	var spearhead: Spearhead = null
-	if faction:
-		for army in faction.spearheads:
-			if army.name == setup.spearhead:
-				spearhead = army
+	var spearhead := _find_spearhead(faction, setup.spearhead)
 	if spearhead == null:
 		return null
-	var pack: SpearheadBattlepack = null
-	for candidate in packs:
-		if candidate.name == setup.battlepack:
-			pack = candidate
+	var pack := _find_battlepack(packs, setup.battlepack)
 	var realm := pack.get_realm(setup.realm) if pack and not setup.realm.is_empty() else null
 	var battle := Battle.new()
 	battle.was_random = realm == null
@@ -79,15 +72,40 @@ static func _spearhead(setup: BattleSetup, rng: RandomNumberGenerator, packs: Ar
 	battle.objectives = realm.objectives.duplicate()
 	battle.roads = realm.roads.duplicate()
 	for feature in realm.terrain:
-		var known := pack.get_terrain_feature(feature.type)
-		var terrain := BattleTerrain.from_spearhead(known) if known else BattleTerrain.new()
-		terrain.name = feature.type
-		terrain.position = feature.position
-		terrain.placed = true
-		battle.terrain.append(terrain)
+		battle.terrain.append(_realm_terrain(feature, pack))
 	battle.player = spearhead_army(spearhead, faction, setup, core)
 	battle.opponent = battle.player.mirror()
 	return battle
+
+
+## [param faction]'s Spearhead named [param spearhead_name] (the last if several are), or null.
+static func _find_spearhead(faction: Faction, spearhead_name: String) -> Spearhead:
+	var found: Spearhead = null
+	if faction:
+		for army in faction.spearheads:
+			if army.name == spearhead_name:
+				found = army
+	return found
+
+
+## The battlepack in [param packs] named [param pack_name] (the last if several are), or null.
+static func _find_battlepack(packs: Array[SpearheadBattlepack], pack_name: String) -> SpearheadBattlepack:
+	var found: SpearheadBattlepack = null
+	for candidate in packs:
+		if candidate.name == pack_name:
+			found = candidate
+	return found
+
+
+## A realm battlefield's terrain feature, placed where its map shows it, with [param pack]'s rules
+## for its type if the battlepack has them.
+static func _realm_terrain(feature: MapFeature, pack: SpearheadBattlepack) -> BattleTerrain:
+	var known := pack.get_terrain_feature(feature.type)
+	var terrain := BattleTerrain.from_spearhead(known) if known else BattleTerrain.new()
+	terrain.name = feature.type
+	terrain.position = feature.position
+	terrain.placed = true
+	return terrain
 
 
 ## A Forge army's units, regiments, faction terrain and deployment abilities, with its points.
@@ -148,23 +166,29 @@ static func spearhead_army(spearhead: Spearhead, faction: Faction, setup: Battle
 ## battlepack has groups, else every feature that isn't mystical (set up before the battle). Their
 ## [member BattleTerrain.variant] is [param group], so each player's copies look different.
 static func spearhead_terrain(pack: SpearheadBattlepack, group: int) -> Array[BattleTerrain]:
-	var features: Array[SpearheadTerrain] = []
-	if not pack.terrain_groups.is_empty():
-		var chosen: Dictionary = pack.terrain_groups[group % pack.terrain_groups.size()]
-		for feature_name: String in chosen.get("features", []):
-			var feature := pack.get_terrain_feature(feature_name)
-			if feature:
-				features.append(feature)
-	else:
-		for feature in pack.terrain_features:
-			if not feature.mystical:
-				features.append(feature)
 	var result: Array[BattleTerrain] = []
-	for feature in features:
+	for feature in _group_features(pack, group):
 		var terrain := BattleTerrain.from_spearhead(feature)
 		terrain.variant = group
 		result.append(terrain)
 	return result
+
+
+## The Spearhead terrain features in [param pack]'s terrain group [param group], or every feature
+## that isn't mystical if it has no groups.
+static func _group_features(pack: SpearheadBattlepack, group: int) -> Array[SpearheadTerrain]:
+	var features: Array[SpearheadTerrain] = []
+	if pack.terrain_groups.is_empty():
+		for feature in pack.terrain_features:
+			if not feature.mystical:
+				features.append(feature)
+		return features
+	var chosen: Dictionary = pack.terrain_groups[group % pack.terrain_groups.size()]
+	for feature_name: String in chosen.get("features", []):
+		var feature := pack.get_terrain_feature(feature_name)
+		if feature:
+			features.append(feature)
+	return features
 
 
 ## [param rects] as polygons, rects that touch merged into one.
@@ -172,17 +196,18 @@ static func merge_rects(rects: Array[Rect2]) -> Array[PackedVector2Array]:
 	var polygons: Array[PackedVector2Array] = []
 	for rect in rects:
 		polygons.append(PackedVector2Array([rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)]))
-	var merged := true
-	while merged and polygons.size() > 1:
-		merged = false
-		for i in polygons.size():
-			for j in range(i + 1, polygons.size()):
-				var union := Geometry2D.merge_polygons(polygons[i], polygons[j])
-				if union.size() == 1:
-					polygons[i] = union[0]
-					polygons.remove_at(j)
-					merged = true
-					break
-			if merged:
-				break
+	while polygons.size() > 1 and _merge_first_pair(polygons):
+		pass
 	return polygons
+
+
+## Merges the first two of [param polygons] that touch into one, in place. False if none touch.
+static func _merge_first_pair(polygons: Array[PackedVector2Array]) -> bool:
+	for i in polygons.size():
+		for j in range(i + 1, polygons.size()):
+			var union := Geometry2D.merge_polygons(polygons[i], polygons[j])
+			if union.size() == 1:
+				polygons[i] = union[0]
+				polygons.remove_at(j)
+				return true
+	return false

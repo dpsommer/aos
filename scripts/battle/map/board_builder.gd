@@ -44,19 +44,24 @@ static func board(size: Vector2, printed: Texture2D = null) -> MeshInstance3D:
 	result.material_override = BOARD
 	result.position = Vector3(size.x / 2, -BOARD_THICKNESS / 2, size.y / 2)
 	if printed:
-		var top := MeshInstance3D.new()
-		top.name = "Print"
-		var plane := PlaneMesh.new()
-		plane.size = size
-		top.mesh = plane
-		var material := StandardMaterial3D.new()
-		material.albedo_texture = printed
-		material.roughness = 0.95
-		top.material_override = material
-		top.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		top.position.y = BOARD_THICKNESS / 2 + PRINT_HEIGHT
-		result.add_child(top)
+		result.add_child(_print(size, printed))
 	return result
+
+
+## [param printed] on a plane [param size] across, lying on top of the board's slab.
+static func _print(size: Vector2, printed: Texture2D) -> MeshInstance3D:
+	var top := MeshInstance3D.new()
+	top.name = "Print"
+	var plane := PlaneMesh.new()
+	plane.size = size
+	top.mesh = plane
+	var material := StandardMaterial3D.new()
+	material.albedo_texture = printed
+	material.roughness = 0.95
+	top.material_override = material
+	top.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	top.position.y = BOARD_THICKNESS / 2 + PRINT_HEIGHT
+	return top
 
 
 ## The printed board of the realm battlefield [param realm_name], e.g. "Aqshy", from the folder
@@ -102,20 +107,26 @@ static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2A
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.albedo_color = NO_DEPLOY
 	for polygon in own:
-		var pieces: Array[PackedVector2Array] = [polygon]
-		for keep in zone:
-			var next: Array[PackedVector2Array] = []
-			for piece in pieces:
-				next.append_array(Geometry2D.clip_polygons(piece, keep))
-			pieces = next
-		for piece in pieces:
+		for piece in _clip_all(polygon, zone):
 			var fill := flat_polygon(piece, NO_DEPLOY_HEIGHT)
-			if fill:
-				fill.material_override = material
-				root.add_child(fill)
-				root.add_child(outline(piece, NO_DEPLOY_HEIGHT, NO_DEPLOY_EDGE))
-				root.add_child(_no_deploy_label(piece, text, facing))
+			if fill == null:
+				continue
+			fill.material_override = material
+			root.add_child(fill)
+			root.add_child(outline(piece, NO_DEPLOY_HEIGHT, NO_DEPLOY_EDGE))
+			root.add_child(_no_deploy_label(piece, text, facing))
 	return root
+
+
+## What's left of [param polygon] once each of [param cuts] is taken out of it.
+static func _clip_all(polygon: PackedVector2Array, cuts: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var pieces: Array[PackedVector2Array] = [polygon]
+	for cut in cuts:
+		var next: Array[PackedVector2Array] = []
+		for piece in pieces:
+			next.append_array(Geometry2D.clip_polygons(piece, cut))
+		pieces = next
+	return pieces
 
 
 ## [param text] lying flat in the middle of [param piece], its top towards the enemy.
@@ -150,27 +161,47 @@ static func objective(feature: MapFeature, radius: float) -> Node3D:
 	root.name = "Objective"
 	root.position = ModelPlaceholder.to_world(feature.position)
 	if feature.is_rectangle():
-		var local := PackedVector2Array()
-		for corner in feature.corners():
-			local.append(corner - feature.position)
-		var fill := flat_polygon(local, ZONE_HEIGHT)
-		if fill:
-			fill.material_override = OBJECTIVE_ZONE
-			root.add_child(fill)
-		root.add_child(outline(local, ZONE_HEIGHT, OBJECTIVE_EDGE))
+		_add_rectangle_zone(root, feature)
 	else:
-		var zone := MeshInstance3D.new()
-		var disc := CylinderMesh.new()
-		disc.top_radius = radius
-		disc.bottom_radius = radius
-		disc.height = 0.01
-		disc.radial_segments = 64
-		disc.rings = 1
-		zone.mesh = disc
-		zone.material_override = OBJECTIVE_ZONE
-		zone.position.y = ZONE_HEIGHT
-		root.add_child(zone)
-		root.add_child(outline(circle(Vector2.ZERO, radius), ZONE_HEIGHT, OBJECTIVE_EDGE))
+		_add_round_zone(root, radius)
+	root.add_child(_objective_marker())
+	var name_label := ModelPlaceholder.label(feature.type, Vector3(0, 2.5, 0), 56)
+	name_label.modulate = Color("#F8DFA2")
+	name_label.visibility_range_end = 0.0
+	root.add_child(name_label)
+	return root
+
+
+## A rectangular objective's zone, filled and outlined, relative to its centre.
+static func _add_rectangle_zone(root: Node3D, feature: MapFeature) -> void:
+	var local := PackedVector2Array()
+	for corner in feature.corners():
+		local.append(corner - feature.position)
+	var fill := flat_polygon(local, ZONE_HEIGHT)
+	if fill:
+		fill.material_override = OBJECTIVE_ZONE
+		root.add_child(fill)
+	root.add_child(outline(local, ZONE_HEIGHT, OBJECTIVE_EDGE))
+
+
+## A round objective zone [param radius] across from its centre, filled and outlined.
+static func _add_round_zone(root: Node3D, radius: float) -> void:
+	var zone := MeshInstance3D.new()
+	var disc := CylinderMesh.new()
+	disc.top_radius = radius
+	disc.bottom_radius = radius
+	disc.height = 0.01
+	disc.radial_segments = 64
+	disc.rings = 1
+	zone.mesh = disc
+	zone.material_override = OBJECTIVE_ZONE
+	zone.position.y = ZONE_HEIGHT
+	root.add_child(zone)
+	root.add_child(outline(circle(Vector2.ZERO, radius), ZONE_HEIGHT, OBJECTIVE_EDGE))
+
+
+## The objective marker: a coin standing on the board.
+static func _objective_marker() -> MeshInstance3D:
 	var marker := MeshInstance3D.new()
 	var coin := CylinderMesh.new()
 	coin.top_radius = Battle.OBJECTIVE_MARKER / 2
@@ -179,12 +210,7 @@ static func objective(feature: MapFeature, radius: float) -> Node3D:
 	marker.mesh = coin
 	marker.material_override = OBJECTIVE
 	marker.position.y = OBJECTIVE_HEIGHT / 2
-	root.add_child(marker)
-	var name_label := ModelPlaceholder.label(feature.type, Vector3(0, 2.5, 0), 56)
-	name_label.modulate = Color("#F8DFA2")
-	name_label.visibility_range_end = 0.0
-	root.add_child(name_label)
-	return root
+	return marker
 
 
 ## [param polygon] (in inches) as a flat mesh at [param height], or null if it can't be filled.

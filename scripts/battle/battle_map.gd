@@ -155,18 +155,26 @@ func _on_role_chosen(player_attacks: bool) -> void:
 	roll_off_panel = null
 	battle.assign_roles(player_attacks)
 	hud.refresh_roles()
-	if battle.is_spearhead() and not battle.has_territories():
-		if player_attacks:
-			# The AI defends: it picks the deployment map and territories at random.
-			var maps := battle.battlepack.deployment_maps
-			_on_deployment_chosen(maps[rng.randi_range(0, maps.size() - 1)], rng.randi_range(0, 1) == 0)
-		else:
-			phase = Phase.DEPLOYMENT_MAP
-			map_picker = DeploymentMapPicker.new(battle)
-			map_picker.chosen.connect(_on_deployment_chosen)
-			_add_to_overlay(map_picker)
-		return
-	_begin_deployment()
+	if not battle.is_spearhead() or battle.has_territories():
+		_begin_deployment()
+	elif player_attacks:
+		_ai_chooses_deployment()
+	else:
+		_open_map_picker()
+
+
+## The AI defends: it picks the deployment map and territories at random.
+func _ai_chooses_deployment() -> void:
+	var maps := battle.battlepack.deployment_maps
+	_on_deployment_chosen(maps[rng.randi_range(0, maps.size() - 1)], rng.randi_range(0, 1) == 0)
+
+
+## The player defends: they pick the deployment map and territories.
+func _open_map_picker() -> void:
+	phase = Phase.DEPLOYMENT_MAP
+	map_picker = DeploymentMapPicker.new(battle)
+	map_picker.chosen.connect(_on_deployment_chosen)
+	_add_to_overlay(map_picker)
 
 
 func _on_deployment_chosen(map: DeploymentMap, player_has_a: bool) -> void:

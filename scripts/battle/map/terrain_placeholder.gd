@@ -43,10 +43,16 @@ static func is_round(feature: BattleTerrain) -> bool:
 	return feature.kind == BattleTerrain.Kind.PLACE_OF_POWER or (feature.base != null and feature.base.shape != BaseSize.Shape.MODEL)
 
 
+## Whether [param feature] is a faction or Spearhead feature, which can have a 3D model and a name
+## label.
+static func _has_model(feature: BattleTerrain) -> bool:
+	return feature.kind in [BattleTerrain.Kind.FACTION, BattleTerrain.Kind.SPEARHEAD]
+
+
 ## The 3D model of a faction or Spearhead terrain feature, from [param library], or null. A
 ## feature with several models has its [member BattleTerrain.variant]'s.
 static func model_of(feature: BattleTerrain, library: ModelLibrary) -> Mesh:
-	if feature.kind not in [BattleTerrain.Kind.FACTION, BattleTerrain.Kind.SPEARHEAD] or library == null:
+	if not _has_model(feature) or library == null:
 		return null
 	var names := PackedStringArray([feature.name])
 	if feature.warscroll:
@@ -77,10 +83,7 @@ static func build(feature: BattleTerrain, library := ModelLibrary.shared()) -> N
 ## [param model] standing on the ground, its front (-Z) turned to face the way the feature does
 ## (+X), in [constant MODEL] if it has no materials of its own.
 static func _model_instance(model: Mesh) -> MeshInstance3D:
-	var instance := MeshInstance3D.new()
-	instance.mesh = model
-	if not ModelLibrary.is_textured(model):
-		instance.material_override = MODEL
+	var instance := _mesh_instance(model)
 	instance.rotation.y = -PI / 2
 	instance.position.y = -model.get_aabb().position.y
 	return instance
@@ -91,10 +94,7 @@ static func _model_instance(model: Mesh) -> MeshInstance3D:
 ## fit inside the footprint, so it covers the ground the rules use. In [constant MODEL] if it has
 ## no materials of its own.
 static func _fitted_instance(model: Mesh, footprint: Vector2) -> MeshInstance3D:
-	var instance := MeshInstance3D.new()
-	instance.mesh = model
-	if not ModelLibrary.is_textured(model):
-		instance.material_override = MODEL
+	var instance := _mesh_instance(model)
 	var bounds := model.get_aabb()
 	var along_z := bounds.size.z > bounds.size.x
 	var length := maxf(bounds.size.x, bounds.size.z)
@@ -106,6 +106,15 @@ static func _fitted_instance(model: Mesh, footprint: Vector2) -> MeshInstance3D:
 	var basis := Basis(Vector3.UP, -PI / 2 if along_z else 0.0).scaled(Vector3.ONE * fit)
 	var bottom := Vector3(bounds.get_center().x, bounds.position.y, bounds.get_center().z)
 	instance.transform = Transform3D(basis, -(basis * bottom))
+	return instance
+
+
+## [param model] in [constant MODEL] if it has no materials of its own.
+static func _mesh_instance(model: Mesh) -> MeshInstance3D:
+	var instance := MeshInstance3D.new()
+	instance.mesh = model
+	if not ModelLibrary.is_textured(model):
+		instance.material_override = MODEL
 	return instance
 
 
@@ -132,5 +141,5 @@ static func _block_instance(feature: BattleTerrain, height: float) -> MeshInstan
 static func _place(root: Node3D, feature: BattleTerrain, height: float) -> void:
 	root.position = ModelPlaceholder.to_world(feature.position)
 	root.rotation.y = ModelPlaceholder.yaw(feature.rotation)
-	if feature.kind in [BattleTerrain.Kind.FACTION, BattleTerrain.Kind.SPEARHEAD]:
+	if _has_model(feature):
 		root.add_child(ModelPlaceholder.label(feature.name, Vector3(0, height + 1.0, 0)))
