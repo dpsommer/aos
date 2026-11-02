@@ -1,18 +1,23 @@
 class_name BattleHud
 extends Control
-## The game map's overlay, from the design's deployment boards: a header with Menu, the
-## battleplan's name and who is attacker and defender, and the camera controls in the corner. See
-## docs/design/battle.md.
+## The game map's overlay, from the design's deployment boards: a header with the battleplan's name,
+## who is attacker and defender and the menu's settings gear, and the camera controls in the corner.
+## The header slides up out of view while the menu is open. See docs/design/battle.md.
 
 signal menu_pressed
 
+## How long the header takes to slide in or out, in seconds.
+const SLIDE_SECONDS := 0.2
 const PLAYER_PILL := [Color(0.141, 0.322, 0.494, 0.45), Color("#3D74A8"), Color("#C7DEFA"), Color("#7FB2E8")]
 const OPPONENT_PILL := [Color(0.549, 0.165, 0.141, 0.35), Color("#8C2A24"), Color("#FFC8B5"), Color("#E58A80")]
 
 var menu_button: Button
+var header: PanelContainer
 var title_label: Label
 var player_pill: PanelContainer
 var opponent_pill: PanelContainer
+var controls: Control
+var _slide: Tween
 
 
 func _init(battle: Battle) -> void:
@@ -20,30 +25,53 @@ func _init(battle: Battle) -> void:
 	theme = UITheme.get_theme()
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(_header(battle))
-	add_child(_controls())
+	header = _header(battle)
+	add_child(header)
+	controls = _controls()
+	add_child(controls)
+
+
+## Slides the header up out of view if [param hidden], or back down if not.
+func set_header_hidden(hidden: bool) -> void:
+	if _slide:
+		_slide.kill()
+	_slide = create_tween()
+	_slide.tween_property(header, "position:y", -header.size.y if hidden else 0.0, SLIDE_SECONDS) \
+			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
+## Shows the keys as currently bound, e.g. after they were rebound in Settings: rebuilds the camera
+## controls panel and updates the menu button's tooltip.
+func refresh_controls() -> void:
+	menu_button.tooltip_text = menu_tooltip()
+	menu_button.accessibility_name = menu_button.tooltip_text
+	var fresh := _controls()
+	controls.replace_by(fresh)
+	controls.free()
+	controls = fresh
 
 
 func _header(battle: Battle) -> Control:
-	var header := PanelContainer.new()
-	header.name = "Header"
-	header.set_anchors_preset(Control.PRESET_TOP_WIDE)
-	header.custom_minimum_size.y = 64
-	header.add_theme_stylebox_override("panel", UITheme.box(Color(0.047, 0.051, 0.063, 0.85), Color.TRANSPARENT, 0, 0))
+	var bar := PanelContainer.new()
+	bar.name = "Header"
+	bar.set_anchors_preset(Control.PRESET_TOP_WIDE)
+	bar.custom_minimum_size.y = 64
+	bar.add_theme_stylebox_override("panel", UITheme.box(Color(0.047, 0.051, 0.063, 0.85), Color.TRANSPARENT, 0, 0))
 	var margin := MarginContainer.new()
 	for side in ["left", "right"]:
 		margin.add_theme_constant_override("margin_" + side, 20)
-	menu_button = UIBuilder.button("Menu", menu_pressed.emit, "menu", "GhostButton", "Back to the main menu (Esc)")
+	menu_button = UIBuilder.icon_button("settings", menu_tooltip(), menu_pressed.emit, "menu")
+	menu_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	title_label = UIBuilder.label(battle.title, "TitleLabel")
 	var role := "Attacker" if battle.player_is_attacker else "Defender"
 	var other := "Defender" if battle.player_is_attacker else "Attacker"
 	player_pill = _pill("You · %s" % role, PLAYER_PILL)
 	opponent_pill = _pill("Opponent · %s" % other, OPPONENT_PILL)
-	var row := UIBuilder.hbox([menu_button, UIBuilder.spacer(), title_label, player_pill, opponent_pill], 16)
+	var row := UIBuilder.hbox([UIBuilder.spacer(), title_label, player_pill, opponent_pill, menu_button], 16)
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	margin.add_child(row)
-	header.add_child(margin)
-	return header
+	bar.add_child(margin)
+	return bar
 
 
 func _pill(text: String, colours: Array) -> PanelContainer:
@@ -80,6 +108,13 @@ func _controls() -> Control:
 		UIBuilder.label("Wheel  zoom", "MutedLabel"),
 	], 6))
 	return panel
+
+
+## The menu button's tooltip, naming the first key bound to Back ([code]ui_cancel[/code]), e.g.
+## "Menu (Esc)", or just "Menu" if none is.
+static func menu_tooltip() -> String:
+	var keys := InputBindings.keys("ui_cancel")
+	return "Menu (%s)" % InputBindings.key_name(keys[0]) if not keys.is_empty() else "Menu"
 
 
 ## The camera's move keys as currently bound, e.g. "WASD", or "None" if unbound.

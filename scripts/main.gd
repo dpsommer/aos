@@ -119,10 +119,12 @@ func show_loading(setup: BattleSetup) -> void:
 	screen.open(setup)
 
 
-## Shows [param map], built by the loading screen. Its Menu returns to the main menu.
+## Shows [param map], built by the loading screen. Give Up and Save and Quit in its menu return to
+## the main menu (there's no saving yet).
 func show_battle_map(map: BattleMap) -> void:
 	_show_node(map)
-	map.menu_requested.connect(show_main_menu)
+	map.gave_up.connect(show_main_menu)
+	map.save_and_quit_requested.connect(show_main_menu)
 
 
 func _show_screen(scene: PackedScene) -> Node:

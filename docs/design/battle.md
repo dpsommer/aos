@@ -82,9 +82,20 @@ Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`B
   - A unit whose name or warscroll has 3D models (`ModelLibrary`, see [3D models](../technical/models.md)) has them standing on its bases, facing the way the unit does, with their textures. A model without materials of its own is drawn blue-grey for the player (`p_model_player`) or red-grey for the opponent (`p_model_opponent`). A unit with several model variants gives them to its models in turn. Units without models are just their bases.
   - Each unit's models are one `MultiMeshInstance3D` per kind of base and per model mesh, with the unit's name floating above its tallest model, hidden from far away.
 - **Overlay** (`BattleHud`, `scripts/ui/battle/battle_hud.gd`):
-  - The header has Menu, the battleplan's or realm's name, and pills "You · Attacker" (blue) and "Opponent · Defender" (red), or the other way round.
+  - The header has the battleplan's or realm's name, pills "You · Attacker" (blue) and "Opponent · Defender" (red), or the other way round, and a settings gear at the top right, 20px in like the pills. The gear's tooltip names the first key bound to Back (`ui_cancel`), e.g. "Menu (Esc)", or is just "Menu" if Back has no key.
   - The camera controls are in the bottom-left corner.
-  - Menu or Esc emits `menu_requested`, and `Main` returns to the main menu.
+  - The gear or Back (Esc by default) opens the menu.
+
+### Menu
+
+`PauseMenu` (`scripts/ui/battle/pause_menu.gd`) opens over the map. The battlefield is dimmed, the header slides up out of view and the camera stops until the menu closes.
+
+**Option** | **Does**
+-- | --
+Resume (or Back) | Closes the menu. The header slides back.
+Settings | Opens the Settings screen over the map. Its Back returns to the menu, and the camera controls and the gear's tooltip show any keys rebound there.
+Give Up | Emits `gave_up`. For now `Main` returns to the main menu.
+Save and Quit | Emits `save_and_quit_requested`. There's no saving yet, so `Main` returns to the main menu.
 
 ### Camera
 
@@ -105,4 +116,5 @@ The keys are remappable in Settings › Input, Battle (see [Settings](settings.m
 `ArmySelect.play_requested(setup)` | `Main.show_loading()` opens the loading screen.
 `LoadingScreen.finished(map)` | The map is built. `Main.show_battle_map()` shows it in the loading screen's place.
 `LoadingScreen.failed(message)` | The battle couldn't be set up. `Main` returns to the army step.
-`BattleMap.menu_requested` | Menu or Esc on the game map. `Main` returns to the main menu.
+`BattleMap.gave_up` | Give Up in the game map's menu. `Main` returns to the main menu.
+`BattleMap.save_and_quit_requested` | Save and Quit in the game map's menu. `Main` returns to the main menu.
