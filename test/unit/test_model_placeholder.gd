@@ -2,6 +2,7 @@ extends GutTest
 ## Unit tests for the placeholder models (scripts/battle/map/model_placeholder.gd).
 
 const BattleKit := preload("res://test/support/battle_kit.gd")
+const ModelKit := preload("res://test/support/model_kit.gd")
 
 const MM_PER_INCH := BaseSize.MM_PER_INCH
 
@@ -88,13 +89,13 @@ func test_to_world_puts_south_on_positive_z() -> void:
 
 func test_one_kind_of_base_makes_one_multimesh() -> void:
 	var base := BaseSize.round_base(32)
-	var root := autofree(ModelPlaceholder.build_unit(_unit_with_positions([base, base, base] as Array[BaseSize]), 0.0, true)) as Node3D
+	var root := _built(_unit_with_positions([base, base, base] as Array[BaseSize]))
 	assert_eq(_multimeshes(root).size(), 1)
 
 
 func test_multimesh_has_an_instance_per_model() -> void:
 	var base := BaseSize.round_base(32)
-	var root := autofree(ModelPlaceholder.build_unit(_unit_with_positions([base, base, base] as Array[BaseSize]), 0.0, true)) as Node3D
+	var root := _built(_unit_with_positions([base, base, base] as Array[BaseSize]))
 	assert_eq(_multimeshes(root)[0].multimesh.instance_count, 3)
 
 
@@ -102,7 +103,7 @@ func test_each_kind_of_base_makes_its_own_multimesh() -> void:
 	var small := BaseSize.round_base(25)
 	var big := BaseSize.round_base(50)
 	var bases: Array[BaseSize] = [small, big, small, small, big]
-	var root := autofree(ModelPlaceholder.build_unit(_unit_with_positions(bases), 0.0, true)) as Node3D
+	var root := _built(_unit_with_positions(bases))
 	var counts: Array[int] = []
 	for instance in _multimeshes(root):
 		counts.append(instance.multimesh.instance_count)
@@ -112,20 +113,20 @@ func test_each_kind_of_base_makes_its_own_multimesh() -> void:
 
 func test_oval_and_round_bases_are_separate_multimeshes() -> void:
 	var bases: Array[BaseSize] = [BaseSize.round_base(50), BaseSize.oval(50, 25)]
-	var root := autofree(ModelPlaceholder.build_unit(_unit_with_positions(bases), 0.0, true)) as Node3D
+	var root := _built(_unit_with_positions(bases))
 	assert_eq(_multimeshes(root).size(), 2)
 
 
 func test_models_without_a_base_use_a_different_mesh_to_round_bases() -> void:
 	var bases: Array[BaseSize] = [BaseSize.round_base(50), BaseSize.model()]
-	var root := autofree(ModelPlaceholder.build_unit(_unit_with_positions(bases), 0.0, true)) as Node3D
+	var root := _built(_unit_with_positions(bases))
 	var meshes := _multimeshes(root).map(func(instance: MultiMeshInstance3D) -> Mesh: return instance.multimesh.mesh)
 	assert_ne(meshes[0], meshes[1])
 
 
 func test_unit_has_a_label_with_its_name() -> void:
 	var base := BaseSize.round_base(32)
-	var root := autofree(ModelPlaceholder.build_unit(_unit_with_positions([base] as Array[BaseSize]), 0.0, true)) as Node3D
+	var root := _built(_unit_with_positions([base] as Array[BaseSize]))
 	var labels := root.get_children().filter(func(child: Node) -> bool: return child is Label3D)
 	assert_eq(labels.size(), 1)
 	assert_eq(labels[0].text, "Test Unit")
@@ -133,7 +134,7 @@ func test_unit_has_a_label_with_its_name() -> void:
 
 func test_undeployed_unit_has_no_models_or_label() -> void:
 	var unit := BattleKit.unit("U", 3)
-	var root := autofree(ModelPlaceholder.build_unit(unit, 0.0, true)) as Node3D
+	var root := _built(unit)
 	assert_eq(root.get_child_count(), 0)
 
 
@@ -141,39 +142,32 @@ func test_models_without_positions_are_skipped() -> void:
 	var base := BaseSize.round_base(32)
 	var unit := _unit_with_positions([base, base, base] as Array[BaseSize])
 	unit.positions.resize(2)
-	var root := autofree(ModelPlaceholder.build_unit(unit, 0.0, true)) as Node3D
+	var root := _built(unit)
 	assert_eq(_multimeshes(root)[0].multimesh.instance_count, 2)
 
 
 func test_the_two_sides_use_different_materials() -> void:
 	var base := BaseSize.round_base(32)
 	var unit := _unit_with_positions([base] as Array[BaseSize])
-	var mine := autofree(ModelPlaceholder.build_unit(unit, 0.0, true)) as Node3D
-	var theirs := autofree(ModelPlaceholder.build_unit(unit, 0.0, false)) as Node3D
+	var mine := _built(unit)
+	var theirs := _built(unit, false)
 	assert_ne(_multimeshes(mine)[0].material_override, _multimeshes(theirs)[0].material_override)
 
 
 func test_unit_node_is_named_after_the_unit() -> void:
 	var unit := BattleKit.unit("Stormcast", 1)
-	assert_eq(autofree(ModelPlaceholder.build_unit(unit, 0.0, true)).name, &"Stormcast")
+	assert_eq(_built(unit).name, &"Stormcast")
 
 
 func test_unnamed_unit_still_has_a_node_name() -> void:
 	var unit := BattleKit.unit("", 1)
-	assert_false(autofree(ModelPlaceholder.build_unit(unit, 0.0, true)).name.is_empty())
+	assert_false(_built(unit).name.is_empty())
 
 
 # model_transform
 
-const MODELS := "res://test/fixtures/models"
-
-
-func _library() -> ModelLibrary:
-	return ModelLibrary.new(MODELS)
-
-
 func _mesh(model_name: String) -> Mesh:
-	return _library().meshes_for(PackedStringArray([model_name]))[0]
+	return ModelKit.library().meshes_for(PackedStringArray([model_name]))[0]
 
 
 func _models(root: Node) -> Array[MultiMeshInstance3D]:
@@ -182,6 +176,12 @@ func _models(root: Node) -> Array[MultiMeshInstance3D]:
 		if child is MultiMeshInstance3D and child.multimesh.mesh is ArrayMesh:
 			result.append(child)
 	return result
+
+
+## [param unit]'s models, built from [param library] (the untextured fixture models by default)
+## and freed after the test.
+func _built(unit: BattleUnit, is_player := true, library: ModelLibrary = ModelKit.library()) -> Node3D:
+	return autofree(ModelPlaceholder.build_unit(unit, 0.0, is_player, library)) as Node3D
 
 
 func _unit_named(unit_name: String, count: int, warscroll_name := "") -> BattleUnit:
@@ -258,33 +258,33 @@ func test_model_names_without_a_warscroll_are_just_the_unit_name() -> void:
 # build_unit with models
 
 func test_a_unit_with_a_model_adds_a_model_multimesh() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Lone Statue", 3), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Lone Statue", 3))
 	assert_eq(_models(root).size(), 1)
 
 
 func test_the_model_multimesh_has_an_instance_per_model() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Lone Statue", 3), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Lone Statue", 3))
 	assert_eq(_models(root)[0].multimesh.instance_count, 3)
 
 
 func test_a_unit_keeps_its_bases_under_its_models() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Lone Statue", 3), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Lone Statue", 3))
 	assert_eq(_multimeshes(root).size() - _models(root).size(), 1)
 
 
 func test_the_model_is_found_by_the_warscroll_name() -> void:
 	var unit := _unit_named("Spearhead Guard", 2, "Lone Statue")
-	var root := autofree(ModelPlaceholder.build_unit(unit, 0.0, true, _library())) as Node3D
+	var root := _built(unit)
 	assert_eq(_models(root).size(), 1)
 
 
 func test_variants_get_a_multimesh_each() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Twin Raiders", 4), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Twin Raiders", 4))
 	assert_eq(_models(root).size(), 2)
 
 
 func test_variants_are_dealt_to_models_in_turn() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Twin Raiders", 5), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Twin Raiders", 5))
 	var counts: Array[int] = []
 	for instance in _models(root):
 		counts.append(instance.multimesh.instance_count)
@@ -292,32 +292,32 @@ func test_variants_are_dealt_to_models_in_turn() -> void:
 
 
 func test_fewer_models_than_variants_skips_the_spare_variants() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Twin Raiders", 1), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Twin Raiders", 1))
 	assert_eq(_models(root).size(), 1)
 
 
 func test_models_without_positions_get_no_model() -> void:
 	var unit := _unit_named("Lone Statue", 3)
 	unit.positions.resize(2)
-	var root := autofree(ModelPlaceholder.build_unit(unit, 0.0, true, _library())) as Node3D
+	var root := _built(unit)
 	assert_eq(_models(root)[0].multimesh.instance_count, 2)
 
 
 func test_the_two_sides_use_different_model_materials() -> void:
 	var unit := _unit_named("Lone Statue", 1)
-	var mine := autofree(ModelPlaceholder.build_unit(unit, 0.0, true, _library())) as Node3D
-	var theirs := autofree(ModelPlaceholder.build_unit(unit, 0.0, false, _library())) as Node3D
+	var mine := _built(unit)
+	var theirs := _built(unit, false)
 	assert_ne(_models(mine)[0].material_override, _models(theirs)[0].material_override)
 
 
 func test_a_null_library_gives_bases_only() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Lone Statue", 3), 0.0, true, null)) as Node3D
+	var root := _built(_unit_named("Lone Statue", 3), true, null)
 	assert_eq(_models(root).size(), 0)
 	assert_eq(_multimeshes(root).size(), 1)
 
 
 func test_a_unit_without_a_model_gives_bases_only() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Nobody", 3), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Nobody", 3))
 	assert_eq(_models(root).size(), 0)
 	assert_eq(_multimeshes(root).size(), 1)
 
@@ -327,35 +327,30 @@ func _label(root: Node) -> Label3D:
 
 
 func test_the_label_floats_above_the_tallest_model() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Twin Raiders", 2), 0.0, true, _library())) as Node3D
-	var tallest := ModelPlaceholder.BASE_HEIGHT + _mesh("Twin Raiders").get_aabb().size.y
-	for mesh in _library().meshes_for(PackedStringArray(["Twin Raiders"])):
-		tallest = maxf(tallest, ModelPlaceholder.BASE_HEIGHT + mesh.get_aabb().size.y)
-	assert_gt(_label(root).position.y, tallest)
+	var root := _built(_unit_named("Twin Raiders", 2))
+	var variants := ModelKit.library().meshes_for(PackedStringArray(["Twin Raiders"]))
+	assert_gt(_label(root).position.y, ModelPlaceholder.BASE_HEIGHT + variants[0].get_aabb().size.y)
+	assert_gt(_label(root).position.y, ModelPlaceholder.BASE_HEIGHT + variants[1].get_aabb().size.y)
 
 
 func test_a_tall_model_lifts_the_label_above_that_of_a_bare_unit() -> void:
-	var tall := autofree(ModelPlaceholder.build_unit(_unit_named("Twin Raiders", 2), 0.0, true, _library())) as Node3D
-	var bare := autofree(ModelPlaceholder.build_unit(_unit_named("Nobody", 2), 0.0, true, _library())) as Node3D
+	var tall := _built(_unit_named("Twin Raiders", 2))
+	var bare := _built(_unit_named("Nobody", 2))
 	assert_gt(_label(tall).position.y, _label(bare).position.y)
 
 
 # textured models
 
-func _textured_library() -> ModelLibrary:
-	return ModelLibrary.new("res://test/fixtures/models_textured")
-
-
 func test_a_textured_model_keeps_its_own_materials() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Painted Guard", 2), 0.0, true, _textured_library())) as Node3D
+	var root := _built(_unit_named("Painted Guard", 2), true, ModelKit.textured_library())
 	assert_null(_models(root)[0].material_override)
 
 
 func test_a_textured_model_keeps_its_own_materials_for_the_opponent() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Painted Guard", 2), 0.0, false, _textured_library())) as Node3D
+	var root := _built(_unit_named("Painted Guard", 2), false, ModelKit.textured_library())
 	assert_null(_models(root)[0].material_override)
 
 
 func test_an_untextured_model_still_gets_the_side_material() -> void:
-	var root := autofree(ModelPlaceholder.build_unit(_unit_named("Lone Statue", 2), 0.0, true, _library())) as Node3D
+	var root := _built(_unit_named("Lone Statue", 2))
 	assert_not_null(_models(root)[0].material_override)

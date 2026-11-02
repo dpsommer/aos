@@ -70,4 +70,4 @@ Units with no model are drawn as their bases. Scuttletide has none, as its asset
 
 ## Git LFS
 
-The models are about 2.5 GB of `.obj` files and 400 MB of textures, so `.gitattributes` stores `assets/3d/models/**/*.obj`, `*.jpg` and `*.png` in [Git LFS](https://git-lfs.com/). Install it (`brew install git-lfs`, then `git lfs install`) before cloning, or the checkout has pointer files in place of models. The `.mtl` and `.import` files are ordinary text.
+The models are about 2.5 GB of `.obj` files and 400 MB of textures, so `.gitattributes` stores `assets/3d/models/**/*.obj`, `*.jpg` and `*.png` in [Git LFS](https://git-lfs.com/). Install it (`brew install git-lfs`, then `git lfs install`) before cloning, or the checkout has pointer files in place of models. Godot fails to import those (`valid=false` in their `.import` files), and `ModelLibrary.is_imported()` leaves them out, so units are drawn as their bases without errors. CI checks out without Git LFS, so tests never depend on the real models. The `.mtl` and `.import` files are ordinary text.

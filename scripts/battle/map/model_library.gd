@@ -138,5 +138,16 @@ func _scan_dir(path: String) -> void:
 	for entry in ResourceLoader.list_directory(path):
 		if entry.ends_with("/"):
 			_scan_dir(path.path_join(entry.trim_suffix("/")))
-		elif entry.get_extension().to_lower() in EXTENSIONS:
+		elif entry.get_extension().to_lower() in EXTENSIONS and is_imported(path.path_join(entry)):
 			_paths[entry.get_basename()] = path.path_join(entry)
+
+
+## Whether [param path] can be loaded: false when Godot failed to import it ([code]valid=false[/code]
+## in its [code].import[/code] file), as for a model that's still a Git LFS pointer in a checkout
+## without Git LFS. Loading one of those is an engine error, so such a model counts as missing and
+## its unit is drawn as bases. A file Godot doesn't import (a [code].tres[/code]) can be loaded.
+static func is_imported(path: String) -> bool:
+	var config := ConfigFile.new()
+	if config.load(path + ".import") != OK:
+		return true
+	return config.get_value("remap", "valid", true)
