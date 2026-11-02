@@ -94,3 +94,96 @@ func test_menu_button_emits_menu_pressed() -> void:
 
 func test_hud_does_not_block_the_mouse() -> void:
 	assert_eq(_hud().mouse_filter, Control.MOUSE_FILTER_IGNORE)
+
+
+func test_menu_button_is_the_last_thing_in_the_header() -> void:
+	var hud := _hud()
+	var row := hud.menu_button.get_parent()
+	assert_eq(row.get_child(row.get_child_count() - 1), hud.menu_button)
+
+
+func test_menu_button_is_inside_the_header() -> void:
+	var hud := _hud()
+	assert_true(hud.header.is_ancestor_of(hud.menu_button))
+
+
+func test_menu_button_is_an_icon_button() -> void:
+	var button := _hud().menu_button
+	assert_not_null(button.icon)
+	assert_true(button.text.is_empty())
+
+
+func test_header_starts_at_the_top_of_the_screen() -> void:
+	assert_eq(_hud().header.position.y, 0.0)
+
+
+func test_hiding_the_header_slides_it_off_screen() -> void:
+	var hud := _hud()
+	await get_tree().process_frame
+	hud.set_header_hidden(true)
+	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	assert_lt(hud.header.position.y + hud.header.size.y, 1.0)
+
+
+func test_showing_the_header_slides_it_back() -> void:
+	var hud := _hud()
+	await get_tree().process_frame
+	hud.set_header_hidden(true)
+	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	hud.set_header_hidden(false)
+	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	assert_almost_eq(hud.header.position.y, 0.0, 0.01)
+
+
+func test_refresh_controls_shows_rebound_keys() -> void:
+	var hud := _hud()
+	InputBindings.set_keys("camera_forward", [_key(KEY_I)])
+	hud.refresh_controls()
+	assert_true(UIKit.has_label_containing(hud.controls, BattleHud.move_keys()))
+
+
+func test_refresh_controls_replaces_the_old_panel() -> void:
+	var hud := _hud()
+	var old := hud.controls
+	hud.refresh_controls()
+	assert_ne(hud.controls, old)
+	assert_eq(hud.controls.get_parent(), hud)
+
+
+func test_refresh_controls_keeps_a_single_controls_panel() -> void:
+	var hud := _hud()
+	var before := hud.get_child_count()
+	hud.refresh_controls()
+	await get_tree().process_frame
+	assert_eq(hud.get_child_count(), before)
+
+
+func test_menu_tooltip_names_the_back_key() -> void:
+	assert_eq(BattleHud.menu_tooltip(), "Menu (%s)" % InputBindings.key_name(InputBindings.keys("ui_cancel")[0]))
+
+
+func test_menu_tooltip_follows_a_rebinding() -> void:
+	InputBindings.set_keys("ui_cancel", [_key(KEY_P)])
+	assert_eq(BattleHud.menu_tooltip(), "Menu (P)")
+
+
+func test_menu_tooltip_names_only_the_first_back_key() -> void:
+	InputBindings.set_keys("ui_cancel", [_key(KEY_P), _key(KEY_O)])
+	assert_false(BattleHud.menu_tooltip().contains("O"))
+
+
+func test_menu_tooltip_has_no_key_when_back_is_unbound() -> void:
+	InputBindings.set_keys("ui_cancel", [])
+	assert_eq(BattleHud.menu_tooltip(), "Menu")
+
+
+func test_menu_button_shows_the_menu_tooltip() -> void:
+	InputBindings.set_keys("ui_cancel", [_key(KEY_P)])
+	assert_eq(_hud().menu_button.tooltip_text, "Menu (P)")
+
+
+func test_refresh_controls_updates_the_menu_tooltip() -> void:
+	var hud := _hud()
+	InputBindings.set_keys("ui_cancel", [_key(KEY_P)])
+	hud.refresh_controls()
+	assert_eq(hud.menu_button.tooltip_text, "Menu (P)")

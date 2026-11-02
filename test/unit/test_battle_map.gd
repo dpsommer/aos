@@ -185,31 +185,254 @@ func test_build_includes_roads_only_when_the_battle_has_them() -> void:
 
 # Menu
 
-func test_menu_button_requests_the_menu() -> void:
+func test_menu_button_opens_the_menu() -> void:
 	var map := _map()
 	map.build(_battle())
-	watch_signals(map)
 	map.hud.menu_button.pressed.emit()
-	assert_signal_emitted(map, "menu_requested")
+	assert_true(map.is_menu_open())
 
 
-func test_escape_requests_the_menu() -> void:
+func test_escape_opens_the_menu() -> void:
 	var map := _map()
 	map.build(_battle())
-	watch_signals(map)
 	var event := InputEventAction.new()
 	event.action = "ui_cancel"
 	event.pressed = true
 	map._unhandled_input(event)
-	assert_signal_emitted(map, "menu_requested")
+	assert_true(map.is_menu_open())
 
 
-func test_other_input_does_not_request_the_menu() -> void:
+func test_other_input_does_not_open_the_menu() -> void:
 	var map := _map()
 	map.build(_battle())
-	watch_signals(map)
 	var event := InputEventAction.new()
 	event.action = "ui_accept"
 	event.pressed = true
 	map._unhandled_input(event)
-	assert_signal_not_emitted(map, "menu_requested")
+	assert_false(map.is_menu_open())
+
+
+func _built_map() -> BattleMap:
+	var map := _map()
+	map.build(_battle())
+	return map
+
+
+func _escape() -> InputEventAction:
+	var event := InputEventAction.new()
+	event.action = "ui_cancel"
+	event.pressed = true
+	return event
+
+
+func test_build_adds_a_hidden_pause_menu() -> void:
+	var map := _built_map()
+	assert_is(map.pause_menu, PauseMenu)
+	assert_false(map.pause_menu.visible)
+
+
+func test_the_menu_starts_closed() -> void:
+	assert_false(_built_map().is_menu_open())
+
+
+func test_open_menu_shows_the_pause_menu() -> void:
+	var map := _built_map()
+	map.open_menu()
+	assert_true(map.pause_menu.visible)
+
+
+func test_open_menu_slides_the_header_away() -> void:
+	var map := _built_map()
+	await get_tree().process_frame
+	map.open_menu()
+	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	assert_lt(map.hud.header.position.y + map.hud.header.size.y, 1.0)
+
+
+func test_open_menu_stops_the_camera() -> void:
+	var map := _built_map()
+	map.open_menu()
+	assert_false(map.camera.is_processing())
+	assert_false(map.camera.is_processing_unhandled_input())
+
+
+func test_open_menu_before_the_map_is_built_does_nothing() -> void:
+	var map := _map()
+	map.open_menu()
+	assert_false(map.is_menu_open())
+
+
+func test_close_menu_closes_the_menu() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.close_menu()
+	assert_false(map.is_menu_open())
+
+
+func test_close_menu_hides_the_pause_menu_after_the_fade() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.close_menu()
+	await wait_seconds(PauseMenu.FADE_SECONDS + 0.1)
+	assert_false(map.pause_menu.visible)
+
+
+func test_close_menu_restarts_the_camera() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.close_menu()
+	assert_true(map.camera.is_processing())
+	assert_true(map.camera.is_processing_unhandled_input())
+
+
+func test_close_menu_brings_the_header_back() -> void:
+	var map := _built_map()
+	await get_tree().process_frame
+	map.open_menu()
+	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	map.close_menu()
+	await wait_seconds(BattleHud.SLIDE_SECONDS + 0.1)
+	assert_almost_eq(map.hud.header.position.y, 0.0, 0.01)
+
+
+func test_close_menu_while_closed_leaves_the_camera_alone() -> void:
+	var map := _built_map()
+	map.camera.set_process(false)
+	map.close_menu()
+	assert_false(map.camera.is_processing())
+
+
+func test_resume_closes_the_menu() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.pause_menu.resume_pressed.emit()
+	assert_false(map.is_menu_open())
+
+
+func test_escape_while_the_menu_is_open_leaves_it_open() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map._unhandled_input(_escape())
+	assert_true(map.is_menu_open())
+	assert_false(map.camera.is_processing())
+
+
+func test_escape_reopens_the_menu_once_it_is_closing() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.close_menu()
+	map._unhandled_input(_escape())
+	assert_true(map.is_menu_open())
+
+
+func test_escape_before_the_map_is_built_does_nothing() -> void:
+	var map := _map()
+	map._unhandled_input(_escape())
+	assert_false(map.is_menu_open())
+
+
+func test_give_up_emits_gave_up() -> void:
+	var map := _built_map()
+	map.open_menu()
+	watch_signals(map)
+	map.pause_menu.give_up_pressed.emit()
+	assert_signal_emitted(map, "gave_up")
+
+
+func test_save_and_quit_emits_save_and_quit_requested() -> void:
+	var map := _built_map()
+	map.open_menu()
+	watch_signals(map)
+	map.pause_menu.save_and_quit_pressed.emit()
+	assert_signal_emitted(map, "save_and_quit_requested")
+
+
+func test_give_up_does_not_request_save_and_quit() -> void:
+	var map := _built_map()
+	watch_signals(map)
+	map.pause_menu.give_up_pressed.emit()
+	assert_signal_not_emitted(map, "save_and_quit_requested")
+
+
+func test_settings_button_opens_the_settings_screen() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.pause_menu.settings_pressed.emit()
+	assert_is(map.settings_screen, SettingsScreen)
+	assert_true(map.settings_screen.is_inside_tree())
+
+
+func test_settings_screen_is_added_to_the_overlay() -> void:
+	var map := _built_map()
+	map.open_settings()
+	assert_eq(map.settings_screen.get_parent(), map.overlay)
+
+
+func test_settings_screen_is_drawn_over_the_menu() -> void:
+	var map := _built_map()
+	map.open_settings()
+	assert_gt(map.settings_screen.get_index(), map.pause_menu.get_index())
+
+
+func test_open_settings_twice_keeps_one_screen() -> void:
+	var map := _built_map()
+	map.open_settings()
+	var first := map.settings_screen
+	map.open_settings()
+	assert_eq(map.settings_screen, first)
+
+
+func test_the_menu_stays_open_under_settings() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.open_settings()
+	assert_true(map.is_menu_open())
+
+
+func test_settings_back_closes_settings() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.open_settings()
+	map.settings_screen.back_pressed.emit()
+	assert_null(map.settings_screen)
+
+
+func test_close_settings_frees_the_screen() -> void:
+	var map := _built_map()
+	map.open_settings()
+	var screen := map.settings_screen
+	map.close_settings()
+	await get_tree().process_frame
+	assert_false(is_instance_valid(screen))
+
+
+func test_close_settings_refocuses_the_menus_settings_button() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.open_settings()
+	map.close_settings()
+	assert_true(map.pause_menu.settings_button.has_focus())
+
+
+func test_close_settings_refreshes_the_hud_controls() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.open_settings()
+	var old := map.hud.controls
+	map.close_settings()
+	assert_ne(map.hud.controls, old)
+
+
+func test_close_settings_keeps_the_menu_open() -> void:
+	var map := _built_map()
+	map.open_menu()
+	map.open_settings()
+	map.close_settings()
+	assert_true(map.is_menu_open())
+
+
+func test_close_settings_without_settings_does_nothing() -> void:
+	var map := _built_map()
+	var controls := map.hud.controls
+	map.close_settings()
+	assert_eq(map.hud.controls, controls)
