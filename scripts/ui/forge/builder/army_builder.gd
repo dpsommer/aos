@@ -403,9 +403,10 @@ func _army_list_section() -> Control:
 	(add_buttons.get_node(^"%AddRegiment") as Button).pressed.connect(pick_leader.bind(""))
 	var add_renown: Button = add_buttons.get_node(^"%AddRegimentOfRenown")
 	add_renown.pressed.connect(pick_regiment_of_renown)
-	# An army has at most one Regiment of Renown, unless it overrides its constraints.
+	# An army has at most one Regiment of Renown, and some (most Armies of Renown) can't include any,
+	# unless it overrides its constraints.
 	var has_renown := editor.army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())
-	if not editor.army.override_constraints and has_renown:
+	if not editor.army.override_constraints and (has_renown or catalog.regiments_of_renown(editor.army).is_empty()):
 		add_renown.free()
 	add_regiment_buttons = add_buttons
 	children.append(add_buttons)

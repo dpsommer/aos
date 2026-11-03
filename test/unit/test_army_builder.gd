@@ -800,6 +800,37 @@ func test_add_regiment_of_renown_shown_with_one_when_constraints_are_overridden(
 	assert_not_null(UIKit.keyed(builder.builder_list, "army:add_ror"))
 
 
+func _forbidding_faction() -> Faction:
+	var faction := _renown_faction()
+	var renown := Kit.army_of_renown("Solo")
+	renown.roster.regiments_of_renown = false
+	faction.armies_of_renown.append(renown)
+	return faction
+
+
+func _solo_army() -> Army:
+	var army := _valid_army()
+	army.army_of_renown = "Solo"
+	return army
+
+
+func test_add_regiment_of_renown_hidden_when_the_army_of_renown_forbids_them() -> void:
+	var builder := _builder(_solo_army(), _forbidding_faction())
+	assert_null(UIKit.keyed(builder.builder_list, "army:add_ror"))
+
+
+func test_add_regiment_of_renown_shown_when_the_army_of_renown_forbids_them_but_constraints_are_overridden() -> void:
+	var army := _solo_army()
+	army.override_constraints = true
+	var builder := _builder(army, _forbidding_faction())
+	assert_not_null(UIKit.keyed(builder.builder_list, "army:add_ror"))
+
+
+func test_add_regiment_of_renown_hidden_when_the_faction_has_none() -> void:
+	var builder := _builder(_valid_army(), UIKit.faction())
+	assert_null(UIKit.keyed(builder.builder_list, "army:add_ror"))
+
+
 # --- Lore help ---
 
 func _lore_faction() -> Faction:
