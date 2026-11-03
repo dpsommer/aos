@@ -1587,6 +1587,40 @@ func test_mouse_motion_moves_the_held_unit() -> void:
 	assert_almost_eq(_middle(unit), _map.camera.ground_point(_screen()), Vector2(0.01, 0.01))
 
 
+func _camera_drag(at: Vector2, mask: MouseButtonMask) -> InputEventMouseMotion:
+	var event := _mouse_motion(at)
+	event.button_mask = mask
+	event.relative = Vector2(50, 0)
+	return event
+
+
+func _push_camera_drag(button: MouseButton, mask: MouseButtonMask) -> void:
+	var press := _mouse_button(_screen(), true)
+	press.button_index = button
+	_map.get_viewport().push_input(press)
+	_map.get_viewport().push_input(_camera_drag(_screen(), mask))
+
+
+func test_a_right_drag_while_holding_pans_the_camera() -> void:
+	_held_unit()
+	var target := _map.camera.target
+	_push_camera_drag(MOUSE_BUTTON_RIGHT, MOUSE_BUTTON_MASK_RIGHT)
+	assert_ne(_map.camera.target, target)
+
+
+func test_a_middle_drag_while_holding_turns_the_camera() -> void:
+	_held_unit()
+	var yaw := _map.camera.yaw
+	_push_camera_drag(MOUSE_BUTTON_MIDDLE, MOUSE_BUTTON_MASK_MIDDLE)
+	assert_ne(_map.camera.yaw, yaw)
+
+
+func test_the_held_unit_follows_the_mouse_during_a_camera_drag() -> void:
+	var unit := _held_unit()
+	_c._unhandled_input(_camera_drag(_screen(), MOUSE_BUTTON_MASK_RIGHT))
+	assert_almost_eq(_middle(unit), _map.camera.ground_point(_screen()), Vector2(0.01, 0.01))
+
+
 func test_pressing_the_left_button_while_holding_starts_a_press() -> void:
 	_held_unit()
 	_c._unhandled_input(_mouse_button(_screen(), true))

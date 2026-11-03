@@ -544,7 +544,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 ## Handles the left button going down or up, or a mouse move while holding something, on the
-## board. Returns whether [param event] was one.
+## board. Returns whether [param event] was one that's used up here: a move with the right or
+## middle button down is also the camera's.
 func _pointer(event: InputEvent) -> bool:
 	var point: Variant = null
 	if (event is InputEventMouseButton or event is InputEventMouseMotion) and map.camera:
@@ -566,7 +567,8 @@ func _pointer(event: InputEvent) -> bool:
 			drag_to(point)
 	else:
 		hover(point)
-	return true
+	# The camera pans and turns with the right and middle buttons, so leave those drags to it.
+	return not event.button_mask & (MOUSE_BUTTON_MASK_RIGHT | MOUSE_BUTTON_MASK_MIDDLE)
 
 
 ## The unit being moved: the one being placed, or the one picked in the army set out; null if none.
