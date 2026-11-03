@@ -28,8 +28,8 @@ const NO_DEPLOY_HEIGHT := 0.025
 const NO_DEPLOY := Color(0.047, 0.051, 0.063, 0.5)
 const NO_DEPLOY_EDGE := Color(0.961, 0.647, 0.557, 0.8)
 ## Territory stripes and edges: [stripe, gap, edge] for each side.
-const PLAYER_COLOURS := [Color(0.376, 0.62, 0.886, 0.22), Color(0.239, 0.455, 0.659, 0.08), Color(0.431, 0.667, 0.922)]
-const OPPONENT_COLOURS := [Color(0.91, 0.408, 0.361, 0.2), Color(0.722, 0.267, 0.231, 0.08), Color(0.922, 0.431, 0.384)]
+const PLAYER_COLOURS := [Color(0.376, 0.62, 0.886, 0.11), Color(0.239, 0.455, 0.659, 0.04), Color(0.431, 0.667, 0.922, 0.5)]
+const OPPONENT_COLOURS := [Color(0.91, 0.408, 0.361, 0.1), Color(0.722, 0.267, 0.231, 0.04), Color(0.922, 0.431, 0.384, 0.5)]
 const OBJECTIVE_EDGE := Color("#F0C46A")
 
 
