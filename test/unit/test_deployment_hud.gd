@@ -576,22 +576,22 @@ func test_the_banner_is_anchored_to_the_middle_of_the_screen() -> void:
 
 # cramped terrain note
 
-func _terrain_hud(cramped: bool) -> DeploymentHud:
-	if cramped:
-		_battle.player_territory = [BattleKit.rect_polygon(0, 0, 10, 10)] as Array[PackedVector2Array]
-		_battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5)))
+## A HUD placing a faction terrain feature 3" across.
+func _terrain_hud() -> DeploymentHud:
 	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false)
 	_me.terrain.append(feature)
 	return _hud({"mode": "terrain", "feature": feature})
 
 
 func test_the_terrain_panel_has_no_cramped_note_when_there_is_room() -> void:
-	var hud := _terrain_hud(false)
+	var hud := _terrain_hud()
 	assert_eq(UIKit.labels_with_variation(hud.placing_panel, "WarningLabel").size(), 0)
 
 
 func test_the_terrain_panel_notes_when_the_feature_is_cramped() -> void:
-	var hud := _terrain_hud(true)
+	_battle.player_territory = [BattleKit.rect_polygon(0, 0, 10, 10)] as Array[PackedVector2Array]
+	_battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(5, 5)))
+	var hud := _terrain_hud()
 	assert_eq(UIKit.labels_with_variation(hud.placing_panel, "WarningLabel").size(), 1)
 
 

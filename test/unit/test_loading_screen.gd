@@ -243,29 +243,29 @@ func test_the_map_outlives_the_screen_once_handed_over() -> void:
 	map.free()
 
 
-func test_an_unusable_setup_emits_failed() -> void:
+## A watched screen opened with an empty setup, which it can't build a battle from.
+func _opened_unusable() -> LoadingScreen:
 	var screen: LoadingScreen = LoadingScene.instantiate()
 	add_child_autofree(screen)
 	watch_signals(screen)
 	screen.open(BattleSetup.new())
+	return screen
+
+
+func test_an_unusable_setup_emits_failed() -> void:
+	var screen := _opened_unusable()
 	await wait_for_signal(screen.failed, 2)
 	assert_signal_emitted(screen, "failed")
 
 
 func test_failed_says_why() -> void:
-	var screen: LoadingScreen = LoadingScene.instantiate()
-	add_child_autofree(screen)
-	watch_signals(screen)
-	screen.open(BattleSetup.new())
+	var screen := _opened_unusable()
 	await wait_for_signal(screen.failed, 2)
 	assert_false(get_signal_parameters(screen, "failed")[0].is_empty())
 
 
 func test_a_failed_screen_has_no_map_and_never_finishes() -> void:
-	var screen: LoadingScreen = LoadingScene.instantiate()
-	add_child_autofree(screen)
-	watch_signals(screen)
-	screen.open(BattleSetup.new())
+	var screen := _opened_unusable()
 	await wait_for_signal(screen.failed, 2)
 	assert_null(screen.map)
 	assert_eq(screen.steps.size(), 0)
@@ -273,7 +273,4 @@ func test_a_failed_screen_has_no_map_and_never_finishes() -> void:
 
 
 func test_a_failed_screen_has_no_progress() -> void:
-	var screen: LoadingScreen = LoadingScene.instantiate()
-	add_child_autofree(screen)
-	screen.open(BattleSetup.new())
-	assert_eq(screen.progress(), 0.0)
+	assert_eq(_opened_unusable().progress(), 0.0)

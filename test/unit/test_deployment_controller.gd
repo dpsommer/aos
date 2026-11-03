@@ -803,6 +803,11 @@ func _army_units() -> Array[BattleUnit]:
 	return _me().units
 
 
+## The problems the HUD's alert shows the player, one per line.
+func _shown_problems() -> PackedStringArray:
+	return _c.hud.alert_label.text.split("\n", false)
+
+
 func _stage_mode() -> String:
 	return _c._state.get("mode", "")
 
@@ -929,8 +934,8 @@ func test_moving_a_unit_out_of_its_zone_raises_a_problem_naming_it() -> void:
 	var unit := _unit(_me(), "A2")
 	_c.pick_unit(unit)
 	_c.move_to(Vector2(30, 40))
-	assert_true(_c._state.problems.size() > 0)
-	assert_string_contains(_c._state.problems[0], "A2")
+	assert_gt(_shown_problems().size(), 0)
+	assert_string_contains(_shown_problems()[0], "A2")
 
 
 func test_two_staged_units_overlapping_are_flagged() -> void:
@@ -938,7 +943,7 @@ func test_two_staged_units_overlapping_are_flagged() -> void:
 	var a1 := _unit(_me(), "A1")
 	_c.pick_unit(_unit(_me(), "A2"))
 	_c.move_to(_middle(a1))
-	var named: Array = Array(_c._state.problems).filter(func(p: String) -> bool: return p.begins_with("A1:") or p.begins_with("A2:"))
+	var named: Array = Array(_shown_problems()).filter(func(p: String) -> bool: return p.begins_with("A1:") or p.begins_with("A2:"))
 	assert_gt(named.size(), 0)
 
 
@@ -947,7 +952,7 @@ func test_putting_a_unit_back_clears_its_problems() -> void:
 	_c.pick_unit(_unit(_me(), "A2"))
 	_c.move_to(Vector2(30, 40))
 	_c.undo()
-	assert_eq(_c._state.problems.size(), 0)
+	assert_eq(_shown_problems().size(), 0)
 
 
 func test_undo_restores_the_picked_unit_to_where_it_was_when_picked() -> void:
