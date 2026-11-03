@@ -432,7 +432,7 @@ func _matched_detail(army: Army) -> void:
 	var catalog: ArmyCatalog = _info.catalog
 	# The pill follows the name, so the name doesn't stretch.
 	var subtitle: String = _info.faction + (" · " + _info.rules if not _info.rules.is_empty() else "")
-	var heading := _heading(_info.name, subtitle, _info.points)
+	var heading := ArmyHeading.create(_info.name, subtitle, _info.points)
 	heading.get_node(^"%TitleRow").add_child(_status_pill())
 	detail_column.add_child(_top_row(heading))
 	if not _info.problems.is_empty() and not _info.overridden:
@@ -508,7 +508,7 @@ func _lores(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 func _spearhead_detail() -> void:
 	var subtitle := "%s · %s · General: %s" % [spearhead_faction.name, GrandAlliance.display_name(spearhead_faction.grand_alliance),
 			spearhead.general]
-	var heading := _heading(spearhead.name, subtitle, "")
+	var heading := ArmyHeading.create(spearhead.name, subtitle)
 	var title: Label = heading.get_node(^"%Title")
 	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -618,18 +618,6 @@ static func _pill(text: String, kind: String) -> Control:
 	label.add_theme_color_override("font_color", UITheme.STATUS[kind][1])
 	pill.add_theme_stylebox_override("panel", UITheme.pill(kind))
 	return pill
-
-
-## The detail pane's heading: [param title], [param subtitle] and, if not empty, [param points].
-static func _heading(title: String, subtitle: String, points: String) -> VBoxContainer:
-	var heading: VBoxContainer = load("res://scenes/ui/quick_play/army_heading.tscn").instantiate()
-	(heading.get_node(^"%Title") as Label).text = title
-	(heading.get_node(^"%Subtitle") as Label).text = subtitle
-	if not points.is_empty():
-		var label: Label = heading.get_node(^"%Points")
-		label.text = points
-		label.visible = true
-	return heading
 
 
 ## The battle traits, two to a row.

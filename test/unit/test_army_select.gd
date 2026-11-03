@@ -183,6 +183,15 @@ func test_pressing_an_army_card_chooses_it() -> void:
 	assert_eq(screen.army_id, older.id)
 
 
+func test_a_long_army_name_shows_at_most_two_lines_in_the_list() -> void:
+	_save_army(" ".join(PackedStringArray(range(40).map(func(i: int) -> String: return "Word%d" % i))))
+	var screen := _matched_play()
+	await wait_process_frames(2)
+	var title: Label = _entry_cards(screen)[0].get_node(^"%Title")
+	assert_gt(title.get_line_count(), 2)
+	assert_eq(title.get_visible_line_count(), 2)
+
+
 func test_army_without_faction_data_cannot_be_chosen() -> void:
 	var id := _save_unplayable_army()
 	var screen := _matched_play()

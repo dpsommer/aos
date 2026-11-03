@@ -1,8 +1,11 @@
 [gd_scene format=3]
 
+[ext_resource type="Script" path="res://scripts/ui/quick_play/army_heading.gd" id="1_heading"]
+
 [node name="ArmyHeading" type="VBoxContainer"]
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
+script = ExtResource("1_heading")
 
 [node name="TitleRow" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -13,6 +16,7 @@ theme_override_constants/separation = 12
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"PageTitleLabel"
+autowrap_mode = 3
 
 [node name="Subtitle" type="Label" parent="."]
 unique_name_in_owner = true
