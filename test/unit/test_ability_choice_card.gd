@@ -11,6 +11,11 @@ func _card(open := false) -> AbilityChoiceCard:
 	return card
 
 
+## The check the card's scene shows at the right of its header while selected.
+func _check(card: AbilityChoiceCard) -> Control:
+	return card.get_node(^"%Check")
+
+
 func _click(button := MOUSE_BUTTON_LEFT, down := true) -> InputEventMouseButton:
 	var event := InputEventMouseButton.new()
 	event.button_index = button
@@ -114,20 +119,20 @@ func test_starts_unselected() -> void:
 
 
 func test_check_is_hidden_when_unselected() -> void:
-	assert_eq(_card()._check.modulate.a, 0.0)
+	assert_eq(_check(_card()).modulate.a, 0.0)
 
 
 func test_check_shows_when_selected() -> void:
 	var card := _card()
 	card.selected = true
-	assert_eq(card._check.modulate.a, 1.0)
+	assert_eq(_check(card).modulate.a, 1.0)
 
 
 func test_check_hides_when_deselected() -> void:
 	var card := _card()
 	card.selected = true
 	card.selected = false
-	assert_eq(card._check.modulate.a, 0.0)
+	assert_eq(_check(card).modulate.a, 0.0)
 
 
 func test_tooltip_offers_choose_when_unselected() -> void:
@@ -223,13 +228,13 @@ func test_add_header_control_goes_before_the_check() -> void:
 	var card := _card()
 	var chip := Control.new()
 	card.add_header_control(chip)
-	assert_lt(chip.get_index(), card._check.get_index())
+	assert_lt(chip.get_index(), _check(card).get_index())
 
 
 func test_add_header_control_keeps_the_check_last() -> void:
 	var card := _card()
 	card.add_header_control(Control.new())
-	assert_eq(card._header.get_child(-1), card._check)
+	assert_eq(card.get_node(^"%Header").get_child(-1), _check(card))
 
 
 func test_added_controls_keep_their_order() -> void:

@@ -542,7 +542,7 @@ func _icon_of(art: ArtPlaceholder) -> TextureRect:
 	return UIKit.find_shown(art, func(n: Node) -> bool: return n is TextureRect)[0] as TextureRect
 
 
-func test_icon_art_is_an_art_placeholder_showing_only_one_texture_rect() -> void:
+func test_icon_art_shows_only_its_icon() -> void:
 	var node := UIBuilder.icon_art(UITheme.icon("search"), 40)
 	autofree(node)
 	var shown := UIKit.find_shown(node, func(n: Node) -> bool: return n is Control)

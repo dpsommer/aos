@@ -47,12 +47,8 @@ func _value_of(stats: Array, key: String) -> String:
 	return ""
 
 
-func _labels(node: Node, variation: String) -> Array[Node]:
-	return UIKit.find_shown(node, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation)
-
-
 func _table_count(node: Node) -> int:
-	return _labels(node, "WeaponTitleLabel").size()
+	return UIKit.labels_with_variation(node, "WeaponTitleLabel").size()
 
 
 func test_card_shows_the_units_name() -> void:
@@ -190,7 +186,7 @@ func test_melee_value_columns_line_up_with_ranged_ones() -> void:
 	var scroll := _scroll()
 	scroll.ranged_weapons = [_weapon("Bow", 18)] as Array[Weapon]
 	scroll.melee_weapons = [_weapon()] as Array[Weapon]
-	var cells := _labels(_card(scroll), "WeaponValueLabel")
+	var cells := UIKit.labels_with_variation(_card(scroll), "WeaponValueLabel")
 	assert_eq(cells.size(), 11)
 	var ranged_trailing := cells.slice(1, 6)
 	var melee := cells.slice(6)
@@ -207,7 +203,7 @@ func test_weapon_abilities_are_shown_under_the_weapon() -> void:
 func test_weapon_without_abilities_shows_no_ability_line() -> void:
 	var scroll := _scroll()
 	scroll.melee_weapons = [_weapon("Axe")] as Array[Weapon]
-	assert_eq(_labels(_card(scroll), "MutedLabel").size(), 1)
+	assert_eq(UIKit.labels_with_variation(_card(scroll), "MutedLabel").size(), 1)
 
 
 func test_each_ability_gets_an_ability_card() -> void:
