@@ -128,13 +128,17 @@ static func is_wholly_within(polygons: Array[PackedVector2Array], outline: Packe
 
 
 static func _contains(polygon: PackedVector2Array, point: Vector2) -> bool:
-	if Geometry2D.is_point_in_polygon(point, polygon):
-		return true
+	return Geometry2D.is_point_in_polygon(point, polygon) or edge_distance(polygon, point) <= EPSILON
+
+
+## The distance from [param point] to the nearest edge of [param polygon], inside or out (INF if
+## it has no points).
+static func edge_distance(polygon: PackedVector2Array, point: Vector2) -> float:
+	var best := INF
 	for i in polygon.size():
 		var closest := Geometry2D.get_closest_point_to_segment(point, polygon[i], polygon[(i + 1) % polygon.size()])
-		if closest.distance_to(point) <= EPSILON:
-			return true
-	return false
+		best = minf(best, closest.distance_to(point))
+	return best
 
 
 ## The shortest distance between two outlines, or 0 if they overlap.
@@ -147,9 +151,7 @@ static func gap_between(a: PackedVector2Array, b: PackedVector2Array) -> float:
 static func _one_way_gap(from: PackedVector2Array, to: PackedVector2Array) -> float:
 	var best := INF
 	for point in from:
-		for i in to.size():
-			var closest := Geometry2D.get_closest_point_to_segment(point, to[i], to[(i + 1) % to.size()])
-			best = minf(best, closest.distance_to(point))
+		best = minf(best, edge_distance(to, point))
 	return best
 
 
@@ -335,10 +337,7 @@ static func _covers_objective(battle: Battle, objective: MapFeature, outline: Pa
 static func _distance_to_point(outline: PackedVector2Array, point: Vector2) -> float:
 	if Geometry2D.is_point_in_polygon(point, outline):
 		return 0.0
-	var best := INF
-	for i in outline.size():
-		best = minf(best, Geometry2D.get_closest_point_to_segment(point, outline[i], outline[(i + 1) % outline.size()]).distance_to(point))
-	return best
+	return edge_distance(outline, point)
 
 
 static func _overlaps_models(battle: Battle, outline: PackedVector2Array) -> bool:

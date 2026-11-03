@@ -94,17 +94,23 @@ func _units_turn() -> bool:
 				if unit and unit in deployment.pickable_units(army):
 					return _mirror_unit(entry.unit, unit)
 			"reserve":
-				var ability := _counterpart_ability(entry.ability)
-				var units: Array[BattleUnit] = []
-				for unit: BattleUnit in entry.units:
-					var counterpart := _counterpart_unit(unit)
-					if counterpart and not counterpart.deployed:
-						units.append(counterpart)
-				if ability and not units.is_empty() and deployment.can_use(army, ability) \
-						and deployment.reserve(army, ability, units).is_empty():
+				if _mirror_reserve(entry):
 					return true
 	var pickable := deployment.pickable_units(army)
 	return _auto_unit(pickable[0]) if not pickable.is_empty() else false
+
+
+## Sets up in reserve the counterparts not yet deployed of the units the player put in reserve in
+## [param entry], with the same ability. Returns whether it did.
+func _mirror_reserve(entry: Dictionary) -> bool:
+	var ability := _counterpart_ability(entry.ability)
+	var units: Array[BattleUnit] = []
+	for unit: BattleUnit in entry.units:
+		var counterpart := _counterpart_unit(unit)
+		if counterpart and not counterpart.deployed:
+			units.append(counterpart)
+	return ability != null and not units.is_empty() and deployment.can_use(army, ability) \
+			and deployment.reserve(army, ability, units).is_empty()
 
 
 ## Sets up the next unit of the regiment being deployed: mirrored if the player has set its

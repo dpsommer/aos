@@ -13,10 +13,11 @@ static func build(setup: BattleSetup, rng: RandomNumberGenerator, core: CoreRule
 		packs: Array[SpearheadBattlepack] = [], faction: Faction = null) -> Battle:
 	if setup == null:
 		return null
+	if core == null:
+		core = CoreRulesCatalog.get_rules()
 	if setup.mode == BattleSetup.Mode.MATCHED_PLAY:
-		return _matched_play(setup, rng, core if core else CoreRulesCatalog.get_rules(), faction)
-	return _spearhead(setup, rng, packs if not packs.is_empty() else CoreRulesCatalog.spearhead_battlepacks(), faction,
-			core if core else CoreRulesCatalog.get_rules())
+		return _matched_play(setup, rng, core, faction)
+	return _spearhead(setup, rng, packs if not packs.is_empty() else CoreRulesCatalog.spearhead_battlepacks(), faction, core)
 
 
 static func _matched_play(setup: BattleSetup, rng: RandomNumberGenerator, core: CoreRules, faction: Faction) -> Battle:

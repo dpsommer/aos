@@ -274,10 +274,7 @@ func place_unit(army: BattleArmy, unit: BattleUnit, positions: PackedVector2Arra
 			return problems[0]
 	unit.positions = positions
 	unit.facing = facing
-	unit.deployed = true
-	unit.reserve = ""
-	_break_regiment(unit)
-	_log({"army": army, "action": "unit", "unit": unit})
+	_deploy(army, unit)
 	_advance()
 	return ""
 
@@ -308,10 +305,7 @@ func place_army(army: BattleArmy, units: Array[BattleUnit]) -> String:
 		if not problems.is_empty():
 			return "%s: %s" % [unit.name, problems[0]]
 	for unit in units:
-		unit.deployed = true
-		unit.reserve = ""
-		_break_regiment(unit)
-		_log({"army": army, "action": "unit", "unit": unit})
+		_deploy(army, unit)
 	_advance()
 	return ""
 
@@ -385,6 +379,14 @@ func _used_key(army: BattleArmy, entry: DeploymentAbility) -> String:
 	if entry.is_once_per_army():
 		return "%d:%s" % [army.get_instance_id(), entry.name()]
 	return "%d:%d" % [army.get_instance_id(), entry.get_instance_id()]
+
+
+## Marks [param unit] of [param army] set up on the battlefield where it stands, and logs it.
+func _deploy(army: BattleArmy, unit: BattleUnit) -> void:
+	unit.deployed = true
+	unit.reserve = ""
+	_break_regiment(unit)
+	_log({"army": army, "action": "unit", "unit": unit})
 
 
 func _break_regiment(unit: BattleUnit) -> void:

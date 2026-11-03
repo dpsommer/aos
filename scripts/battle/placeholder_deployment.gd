@@ -95,10 +95,7 @@ static func spots_for_army(battle: Battle, army: BattleArmy, units: Array[Battle
 	var result := {}
 	for packed in [false, true]:
 		result = _army_spots(battle, army, order, zone, staged, packed)
-		var all_fit := true
-		for unit: BattleUnit in result:
-			all_fit = all_fit and not result[unit].is_empty()
-		if all_fit:
+		if result.values().all(func(positions: PackedVector2Array) -> bool: return not positions.is_empty()):
 			break
 	return result
 
@@ -175,11 +172,7 @@ static func spot_for_terrain(battle: Battle, army: BattleArmy, feature: BattleTe
 	var candidates := _terrain_spots(battle, army, feature, relaxed, STEP)
 	if candidates.is_empty():
 		candidates = _terrain_spots(battle, army, feature, relaxed, STEP / 2)
-	var next: BattleTerrain = null
-	for other in army.unplaced_terrain():
-		if other != feature:
-			next = other
-			break
+	var next := _next_unplaced(army, feature)
 	if next == null or relaxed or candidates.is_empty():
 		return candidates[0] if not candidates.is_empty() else {}
 	# Leave room for the army's next feature: the best spot that still has one for it.
@@ -193,6 +186,14 @@ static func spot_for_terrain(battle: Battle, army: BattleArmy, feature: BattleTe
 		if room:
 			return candidate
 	return candidates[0]
+
+
+## [param army]'s first terrain feature not yet set up other than [param feature], or null.
+static func _next_unplaced(army: BattleArmy, feature: BattleTerrain) -> BattleTerrain:
+	for other in army.unplaced_terrain():
+		if other != feature:
+			return other
+	return null
 
 
 ## A good spot for [param feature], without leaving room for the army's next one: quick, for a
@@ -230,15 +231,15 @@ static func _terrain_spots(battle: Battle, army: BattleArmy, feature: BattleTerr
 			if any:
 				return found
 	found.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.score > b.score)
-	# Spread the candidates out: the best spot of each area, so the lookahead tries different places.
+	return _spread_out(found)
+
+
+## The best of [param candidates] (best first) in each area: none within [constant SPREAD] of a
+## better one, so the lookahead tries different places.
+static func _spread_out(candidates: Array[Dictionary]) -> Array[Dictionary]:
 	var spread: Array[Dictionary] = []
-	for candidate in found:
-		var near := false
-		for kept in spread:
-			if kept.at.distance_to(candidate.at) < SPREAD:
-				near = true
-				break
-		if not near:
+	for candidate in candidates:
+		if not spread.any(func(kept: Dictionary) -> bool: return kept.at.distance_to(candidate.at) < SPREAD):
 			spread.append(candidate)
 	return spread
 
@@ -261,8 +262,7 @@ static func space_of(battle: Battle, staged: Array[BattleUnit] = [], all_terrain
 	var space := Space.new()
 	for unit in staged:
 		if not unit.deployed:
-			for i in unit.positions.size():
-				space.add_model(unit.positions[i], unit.bases[i], unit.facing)
+			space.add_unit(unit)
 	for feature in battle.all_terrain():
 		if feature.placed and (all_terrain or DeploymentRules.is_impassable(feature)):
 			space.add(feature.position, feature.reach())
@@ -271,8 +271,7 @@ static func space_of(battle: Battle, staged: Array[BattleUnit] = [], all_terrain
 			continue
 		for unit: BattleUnit in army.units:
 			if unit.is_on_battlefield():
-				for i in unit.positions.size():
-					space.add_model(unit.positions[i], unit.bases[i], unit.facing)
+				space.add_unit(unit)
 	return space
 
 
@@ -305,15 +304,7 @@ static func centroid(polygons: Array[PackedVector2Array]) -> Vector2:
 ## Whether a circle of [param radius] at [param point] is wholly within one of [param polygons].
 static func is_wholly_within(polygons: Array[PackedVector2Array], point: Vector2, radius: float) -> bool:
 	for polygon in polygons:
-		if not Geometry2D.is_point_in_polygon(point, polygon):
-			continue
-		var clear := true
-		for i in polygon.size():
-			var closest := Geometry2D.get_closest_point_to_segment(point, polygon[i], polygon[(i + 1) % polygon.size()])
-			if closest.distance_to(point) < radius - 0.001:
-				clear = false
-				break
-		if clear:
+		if Geometry2D.is_point_in_polygon(point, polygon) and DeploymentRules.edge_distance(polygon, point) >= radius - 0.001:
 			return true
 	return false
 
@@ -383,28 +374,27 @@ static func _place_unit(unit: BattleUnit, own: Array[PackedVector2Array], back: 
 static func _spots(own: Array[PackedVector2Array], back: Vector2) -> PackedVector2Array:
 	var across := Vector2(-back.y, back.x)
 	var middle := centroid(own)
-	var spots := Array(_grid(own))
-	spots.sort_custom(func(a: Vector2, b: Vector2) -> bool:
-		var rank_a := roundf(a.dot(back) / STEP)
-		var rank_b := roundf(b.dot(back) / STEP)
-		if rank_a != rank_b:
-			return rank_a > rank_b
-		return absf((a - middle).dot(across)) < absf((b - middle).dot(across)))
-	return PackedVector2Array(spots)
+	return _by_rank(_grid(own), back, func(spot: Vector2) -> float: return absf((spot - middle).dot(across)))
 
 
 ## Spots to try for units packed in tight: back rank first, from one end of each rank to the other.
 static func _packed_spots(own: Array[PackedVector2Array], back: Vector2) -> PackedVector2Array:
 	var across := Vector2(-back.y, back.x)
 	# Fine enough for a big base that only just fits the zone's depth.
-	var spots := Array(_grid(own, STEP / 4))
-	spots.sort_custom(func(a: Vector2, b: Vector2) -> bool:
+	return _by_rank(_grid(own, STEP / 4), back, func(spot: Vector2) -> float: return spot.dot(across))
+
+
+## [param spots] in ranks [constant STEP] deep across [param back], the back rank first, each rank
+## in order of [param along] (lowest first).
+static func _by_rank(spots: PackedVector2Array, back: Vector2, along: Callable) -> PackedVector2Array:
+	var sorted := Array(spots)
+	sorted.sort_custom(func(a: Vector2, b: Vector2) -> bool:
 		var rank_a := roundf(a.dot(back) / STEP)
 		var rank_b := roundf(b.dot(back) / STEP)
 		if rank_a != rank_b:
 			return rank_a > rank_b
-		return a.dot(across) < b.dot(across))
-	return PackedVector2Array(spots)
+		return along.call(a) < along.call(b))
+	return PackedVector2Array(sorted)
 
 
 ## Points [param step] apart across the territory's bounds that are in the territory.
@@ -450,6 +440,11 @@ class Space:
 		var radius := DeploymentRules.reach_of(base)
 		add(point, radius)
 		_models[Vector3(point.x, point.y, radius)] = [base, facing]
+
+	## Adds every model of [param unit] where it stands ([method add_model]).
+	func add_unit(unit: BattleUnit) -> void:
+		for i in unit.positions.size():
+			add_model(unit.positions[i], unit.bases[i], unit.facing)
 
 	## Whether a model on [param base] at [param point], facing [param facing], is at least
 	## [param gap] from everything added so far: models by their real shape, the rest as circles.

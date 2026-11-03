@@ -443,7 +443,20 @@ func _matched_detail(army: Army) -> void:
 		for problem: String in _info.problems:
 			lines.add_child(UIBuilder.label("• " + problem, "ProblemLabel", true))
 		detail_column.add_child(UIBuilder.panel("ProblemsPanel", lines))
+	detail_column.add_child(_section("Army", _regiments(army, catalog)))
+	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
+	if terrain:
+		var portrait := _portrait(terrain.name, "%d pts" % terrain.points, "", false, show_warscroll.bind(terrain),
+				"%s warscroll" % terrain.name)
+		detail_column.add_child(_section("Faction Terrain", _regiment_panel("", false, "", [portrait])))
+	var columns := UIBuilder.hbox([_section("Battle Tactics", _tactics(army, catalog)), _section("Lores", _lores(army, catalog))], 24)
+	for column: Control in columns.get_children():
+		column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	detail_column.add_child(columns)
 
+
+## [param army]'s regiments and auxiliary units, each in its box with its portraits.
+func _regiments(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 	var regiments := UIBuilder.vbox([], 12)
 	for regiment in army.regiments:
 		var meta := "%d unit%s · %d pts" % [regiment.units.size(), "" if regiment.units.size() == 1 else "s",
@@ -458,14 +471,11 @@ func _matched_detail(army: Army) -> void:
 				army.auxiliary.map(func(unit: ArmyUnit) -> Control: return _army_portrait(army, unit, null))))
 	if regiments.get_child_count() == 0:
 		regiments.add_child(_placeholder("This army has no units yet"))
-	detail_column.add_child(_section("Army", regiments))
+	return regiments
 
-	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
-	if terrain:
-		var portrait := _portrait(terrain.name, "%d pts" % terrain.points, "", false, show_warscroll.bind(terrain),
-				"%s warscroll" % terrain.name)
-		detail_column.add_child(_section("Faction Terrain", _regiment_panel("", false, "", [portrait])))
 
+## [param army]'s battle tactics cards, by slot, or a placeholder for an empty slot.
+func _tactics(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 	var tactics := UIBuilder.vbox([], 10)
 	for slot in ArmyValidator.MAX_TACTICS:
 		var card := catalog.battle_tactic_card(army.tactics[slot]) if slot < army.tactics.size() else null
@@ -475,6 +485,11 @@ func _matched_detail(army: Army) -> void:
 				return TacticCard.new(card, TacticCard.Form.FULL if full else TacticCard.Form.SUMMARY, heading_text, eye)))
 		else:
 			tactics.add_child(_placeholder("No battle tactics card in slot %d" % (slot + 1)))
+	return tactics
+
+
+## [param army]'s lores, in [constant LORE_KINDS] order, then a placeholder for each it hasn't.
+func _lores(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 	var lores := UIBuilder.vbox([], 10)
 	var missing := UIBuilder.hbox([], 10)
 	for kind in LORE_KINDS:
@@ -489,10 +504,8 @@ func _matched_detail(army: Army) -> void:
 			missing.add_child(empty)
 	if missing.get_child_count() > 0:
 		lores.add_child(missing)
-	var columns := UIBuilder.hbox([_section("Battle Tactics", tactics), _section("Lores", lores)], 24)
-	for column: Control in columns.get_children():
-		column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	detail_column.add_child(columns)
+	return lores
+
 
 func _spearhead_detail() -> void:
 	var title := UIBuilder.label(spearhead.name, "PageTitleLabel", true)
@@ -520,7 +533,6 @@ func _spearhead_detail() -> void:
 	for column: Control in columns.get_children():
 		column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	detail_column.add_child(columns)
-	_update_play()
 
 
 ## The army's name and details, with the battleplan card on the right. The card takes a share of the
@@ -542,9 +554,7 @@ func _top_row(heading: Control) -> HBoxContainer:
 ## Fills the battleplan card: Random or the chosen battleplan, or in Spearhead the chosen
 ## battlepack with its sides.
 func _refresh_plan_card() -> void:
-	for child in _plan_card.content.get_children():
-		_plan_card.content.remove_child(child)
-		child.queue_free()
+	_clear(_plan_card.content)
 	var name_text := "Random"
 	var sub := "Picked when the battle starts"
 	var map: Control = null
@@ -633,12 +643,18 @@ func _trait_card(rule: Ability, index: int) -> AbilityCard:
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	card.make_foldable(_open.has(key))
+	_remember_fold(card, key)
+	return card
+
+
+## Keeps [param card]'s folded state under [param key] in [member _open] as it's toggled, so it
+## stays when the detail pane is rebuilt.
+func _remember_fold(card: AbilityCard, key: String) -> void:
 	card.fold_button.pressed.connect(func() -> void:
 		if card.folded:
 			_open.erase(key)
 		else:
 			_open[key] = true)
-	return card
 
 
 ## A card built by [param make], given whether to show it in full and an eye toggle to put on it.
@@ -672,11 +688,7 @@ func _ability_card(group: String, ability: Ability, index: int) -> AbilityCard:
 	var card := AbilityCard.new(ability)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.make_foldable(_open.has(key), key)
-	card.fold_button.pressed.connect(func() -> void:
-		if card.folded:
-			_open.erase(key)
-		else:
-			_open[key] = true)
+	_remember_fold(card, key)
 	return card
 
 

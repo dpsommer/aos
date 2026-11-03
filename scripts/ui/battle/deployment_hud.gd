@@ -289,17 +289,19 @@ func _refresh_placing() -> void:
 	if not _is_player_turn() or deployment.is_done():
 		_set_content(placing_panel, [])
 		return
+	var content: Array
 	match _state.get("mode", ""):
 		"unit":
-			_set_content(placing_panel, _unit_placing())
+			content = _unit_placing()
 		"terrain":
-			_set_content(placing_panel, _terrain_placing())
+			content = _terrain_placing()
 		"choose":
-			_set_content(placing_panel, _choosing())
+			content = _choosing()
 		"army":
-			_set_content(placing_panel, _army_placing())
+			content = _army_placing()
 		_:
-			_set_content(placing_panel, _idle())
+			content = _idle()
+	_set_content(placing_panel, content)
 	set_problems(_state.get("problems", PackedStringArray()))
 
 
@@ -545,13 +547,8 @@ func _unit_tile(unit: BattleUnit) -> Button:
 	var status := ""
 	if unit.deployed:
 		status = "In reserve: %s" % unit.reserve if not unit.reserve.is_empty() else "Deployed"
-	var tile := UIBuilder.button("%s\n×%d%s" % [unit.name, unit.model_count(), "\n" + status if not status.is_empty() else ""],
-			unit_picked.emit.bind(unit), "unit_%d" % unit.get_instance_id(), "CardButton")
-	tile.custom_minimum_size = Vector2(110, 96)
-	tile.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	tile.add_theme_font_size_override("font_size", 12)
-	tile.toggle_mode = true
-	tile.set_pressed_no_signal(_state.get("unit") == unit)
+	var tile := _tile("%s\n×%d%s" % [unit.name, unit.model_count(), "\n" + status if not status.is_empty() else ""],
+			unit_picked.emit.bind(unit), "unit_%d" % unit.get_instance_id(), 110, _state.get("unit") == unit)
 	tile.disabled = not _is_player_turn() or not unit in deployment.pickable_units(army)
 	tile.tooltip_text = "Deploy Unit: set %s up on its own" % unit.name if not unit.deployed else status
 	if not unit.deployed and deployment.deploys_whole_army(army):
@@ -561,16 +558,22 @@ func _unit_tile(unit: BattleUnit) -> Button:
 	return tile
 
 
+## A tray tile [param width] wide showing [param text], pressed in if it's [param picked].
+func _tile(text: String, on_pressed: Callable, id: String, width: float, picked: bool) -> Button:
+	var tile := UIBuilder.button(text, on_pressed, id, "CardButton")
+	tile.custom_minimum_size = Vector2(width, 96)
+	tile.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	tile.add_theme_font_size_override("font_size", 12)
+	tile.toggle_mode = true
+	tile.set_pressed_no_signal(picked)
+	return tile
+
+
 func _terrain_group() -> PanelContainer:
 	var tiles: Array = []
 	for feature in army.terrain:
-		var tile := UIBuilder.button("%s%s" % [feature.name, "\nSet up" if feature.placed else ""],
-				terrain_picked.emit.bind(feature), "terrain_%d" % feature.get_instance_id(), "CardButton")
-		tile.custom_minimum_size = Vector2(132, 96)
-		tile.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		tile.add_theme_font_size_override("font_size", 12)
-		tile.toggle_mode = true
-		tile.set_pressed_no_signal(_state.get("feature") == feature)
+		var tile := _tile("%s%s" % [feature.name, "\nSet up" if feature.placed else ""],
+				terrain_picked.emit.bind(feature), "terrain_%d" % feature.get_instance_id(), 132, _state.get("feature") == feature)
 		tile.disabled = not _is_player_turn() or feature.placed
 		tile.accessibility_name = "%s%s" % [feature.name, ", set up" if feature.placed else ", set it up"]
 		tray_buttons[feature] = tile

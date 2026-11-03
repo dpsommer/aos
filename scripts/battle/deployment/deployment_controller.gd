@@ -340,38 +340,48 @@ func confirm() -> String:
 	var placing := _state
 	# Cleared first: the rules signal the change before returning, and the next pick depends on it.
 	_state = {}
-	var error := ""
-	match placing.get("mode"):
-		"unit":
-			var unit: BattleUnit = placing.unit
-			error = deployment.place_unit(player(), unit, unit.positions, unit.facing)
-			if error.is_empty():
-				ModelPlaceholder.show_rings(unit_nodes[unit], unit, PackedInt32Array(), false)
-		"army":
-			var units: Array[BattleUnit] = _staged.duplicate()
-			error = deployment.place_army(player(), units)
-			if error.is_empty():
-				for unit: BattleUnit in units:
-					ModelPlaceholder.show_rings(unit_nodes[unit], unit, PackedInt32Array(), false)
-		"terrain":
-			var feature: BattleTerrain = placing.feature
-			var node: Node3D = terrain_nodes[feature]
-			error = deployment.place_terrain(player(), feature, feature.position, feature.rotation)
-			if error.is_empty():
-				_remove_terrain_ring(node)
-		"choose":
-			var entry: DeploymentAbility = placing.entry
-			var selected: Array[BattleUnit] = placing.selected
-			if entry.kind() == DeploymentAbility.Kind.RESERVE:
-				error = deployment.reserve(player(), entry, selected)
-			else:
-				error = deployment.record(player(), entry, selected[0] if not selected.is_empty() else null)
-		_:
-			error = "Nothing to confirm."
+	var error := _commit(placing)
 	if not error.is_empty():
 		_state = placing
 		hud.set_problems(PackedStringArray([error]))
 	return error
+
+
+## Hands what [param placing] holds to the rules. Returns why they refused it, or empty.
+func _commit(placing: Dictionary) -> String:
+	match placing.get("mode"):
+		"unit":
+			var unit: BattleUnit = placing.unit
+			var error := deployment.place_unit(player(), unit, unit.positions, unit.facing)
+			if error.is_empty():
+				_settle_rings(unit)
+			return error
+		"army":
+			var units: Array[BattleUnit] = _staged.duplicate()
+			var error := deployment.place_army(player(), units)
+			if error.is_empty():
+				for unit: BattleUnit in units:
+					_settle_rings(unit)
+			return error
+		"terrain":
+			var feature: BattleTerrain = placing.feature
+			var node: Node3D = terrain_nodes[feature]
+			var error := deployment.place_terrain(player(), feature, feature.position, feature.rotation)
+			if error.is_empty():
+				_remove_terrain_ring(node)
+			return error
+		"choose":
+			var entry: DeploymentAbility = placing.entry
+			var selected: Array[BattleUnit] = placing.selected
+			if entry.kind() == DeploymentAbility.Kind.RESERVE:
+				return deployment.reserve(player(), entry, selected)
+			return deployment.record(player(), entry, selected[0] if not selected.is_empty() else null)
+	return "Nothing to confirm."
+
+
+## Shows [param unit]'s rings as set up: valid and not held.
+func _settle_rings(unit: BattleUnit) -> void:
+	ModelPlaceholder.show_rings(unit_nodes[unit], unit, PackedInt32Array(), false)
 
 
 ## The player is done with the abilities step.
@@ -526,7 +536,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("undo_placement"):
 		undo()
-	elif event.is_action_pressed("single_model_mode") and _state.get("mode") in ["unit", "army"]:
+	elif event.is_action_pressed("single_model_mode") and _is_placing_units():
 		toggle_single_model()
 	elif not _pointer(event):
 		return
@@ -561,9 +571,13 @@ func _pointer(event: InputEvent) -> bool:
 
 ## The unit being moved: the one being placed, or the one picked in the army set out; null if none.
 func moving_unit() -> BattleUnit:
-	if _state.get("mode") in ["unit", "army"]:
-		return _state.get("unit")
-	return null
+	return _state.get("unit") if _is_placing_units() else null
+
+
+## Whether the player is placing a unit or arranging an army set out, rather than terrain or an
+## ability.
+func _is_placing_units() -> bool:
+	return _state.get("mode") in ["unit", "army"]
 
 
 ## The model of the unit being placed under [param point], or -1.
@@ -758,7 +772,7 @@ func _refresh_hud() -> void:
 
 func _placing_keys() -> PackedStringArray:
 	var keys := PackedStringArray()
-	var is_unit: bool = _state.get("mode") in ["unit", "army"]
+	var is_unit := _is_placing_units()
 	if is_holding():
 		keys.append("Click  put down")
 		if _held == WHOLE:
@@ -779,21 +793,27 @@ func _on_changed() -> void:
 		map.show_no_deploy(deployment.step == Deployment.Step.TERRAIN)
 	if not is_player_turn():
 		_drop_placing()
-	elif _state.is_empty() and deployment.deploys_whole_army(player()):
+	elif _state.is_empty():
+		_start_next_pick()
+	_refresh_hud()
+	if deployment.active == battle.opponent and not deployment.is_done():
+		_schedule_ai()
+
+
+## On the player's turn with nothing picked, picks up what they must place next, if anything.
+func _start_next_pick() -> void:
+	if deployment.deploys_whole_army(player()):
 		# Spearhead: the whole army is set out at once, to move about and confirm together.
 		stage_army()
-	elif _state.is_empty() and deployment.step == Deployment.Step.TERRAIN:
+	elif deployment.step == Deployment.Step.TERRAIN:
 		var unplaced := player().unplaced_terrain()
 		if not unplaced.is_empty():
 			# There's nothing else to do in this step: start placing the next feature.
 			pick_terrain.call_deferred(unplaced[0])
-	elif _state.is_empty() and deployment.regiment and deployment.active == player():
+	elif deployment.regiment and deployment.active == player():
 		var next := deployment.pickable_units(player())
 		if not next.is_empty():
 			pick_unit.call_deferred(next[0])
-	_refresh_hud()
-	if deployment.active == battle.opponent and not deployment.is_done():
-		_schedule_ai()
 
 
 func _schedule_ai() -> void:
