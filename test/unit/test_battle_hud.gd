@@ -132,6 +132,35 @@ func test_header_starts_at_the_top_of_the_screen() -> void:
 	assert_eq(_hud().header.position.y, 0.0)
 
 
+## The gap between the controls panel's bottom edge and the bottom of the HUD.
+func _controls_gap(hud: BattleHud) -> float:
+	return hud.size.y - (hud.controls.position.y + hud.controls.size.y)
+
+
+func test_controls_panel_sits_in_the_bottom_left_corner() -> void:
+	var hud := _hud()
+	await get_tree().process_frame
+	assert_almost_eq(hud.controls.position.x, 20.0, 0.5)
+	assert_almost_eq(_controls_gap(hud), 20.0, 0.5)
+
+
+func test_controls_panel_moves_up_by_the_bottom_offset() -> void:
+	var hud := _hud()
+	await get_tree().process_frame
+	hud.set_controls_bottom(100.0)
+	await get_tree().process_frame
+	assert_almost_eq(_controls_gap(hud), 120.0, 0.5)
+
+
+func test_controls_panel_returns_to_the_corner_without_an_offset() -> void:
+	var hud := _hud()
+	await get_tree().process_frame
+	hud.set_controls_bottom(100.0)
+	hud.set_controls_bottom(0.0)
+	await get_tree().process_frame
+	assert_almost_eq(_controls_gap(hud), 20.0, 0.5)
+
+
 func test_hiding_the_header_slides_it_off_screen() -> void:
 	var hud := _hud()
 	await get_tree().process_frame

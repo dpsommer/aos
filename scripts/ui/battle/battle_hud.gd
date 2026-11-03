@@ -126,8 +126,10 @@ func set_extra_controls(lines: PackedStringArray) -> void:
 
 ## Moves the controls panel up by [param offset] pixels, e.g. above the deployment tray.
 func set_controls_bottom(offset: float) -> void:
-	controls.position.y = -20 - offset
-	controls.set_meta(&"bottom", offset)
+	# Offsets, not position: the panel is anchored to the bottom and grows up, while position is
+	# measured from the top of the HUD.
+	controls.offset_top = -20 - offset
+	controls.offset_bottom = -20 - offset
 
 
 ## Shows the keys as currently bound, e.g. after they were rebound in Settings: in the camera
