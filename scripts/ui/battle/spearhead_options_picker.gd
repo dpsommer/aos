@@ -35,8 +35,10 @@ func _init(of: BattleArmy, against: BattleArmy, attacks: bool) -> void:
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)
-	var title := UIBuilder.label("Pick your regiment ability and enhancement", "DisplayTitleLabel")
+	var title := UIBuilder.label("Pick your regiment ability and enhancement", "DisplayTitleLabel", true)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	# Wraps to the panel's width rather than running off a small screen.
+	title.custom_minimum_size.x = COLUMN_WIDTH * 2 + 80
 	var subtitle := UIBuilder.label(_subtitle(), "DescriptionLabel", true)
 	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var columns := UIBuilder.hbox([

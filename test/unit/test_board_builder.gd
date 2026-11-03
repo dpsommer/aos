@@ -264,3 +264,25 @@ func test_no_deploy_shading_stays_inside_the_territory() -> void:
 		var bounds := mesh.mesh.get_aabb()
 		assert_gte(bounds.position.x, 5.99)
 		assert_lte(bounds.end.x, 10.01)
+
+
+func _labels(root: Node) -> Array[Node]:
+	return root.find_children("*", "Label3D", true, false)
+
+
+func test_no_deploy_without_text_has_no_labels() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array], "")) as Node3D
+	assert_eq(_labels(root).size(), 0)
+
+
+func test_no_deploy_without_text_is_still_shaded() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array], "")) as Node3D
+	assert_gt(_meshes_of_type(root, ArrayMesh).size(), 0)
+
+
+func test_no_deploy_with_text_has_a_label() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array], "Keep out")) as Node3D
+	assert_gt(_labels(root).size(), 0)

@@ -296,8 +296,9 @@ func show_no_deploy(terrain: bool) -> void:
 	var zone: Array[PackedVector2Array]
 	var text: String
 	if terrain:
+		# Shaded without a label: the placing panel says where terrain can go.
 		zone = DeploymentRules.terrain_zone(battle, battle.player)
-		text = "Too close for terrain"
+		text = ""
 	else:
 		zone = DeploymentRules.unit_zone(battle, battle.player)
 		text = "Within %d\" of enemy territory" % int(DeploymentRules.unit_gap(battle))

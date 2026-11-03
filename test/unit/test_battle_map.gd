@@ -931,3 +931,21 @@ func test_deployment_finished_is_emitted_when_both_armies_are_down() -> void:
 	await wait_process_frames(3)
 	assert_signal_emitted(map, "deployment_finished")
 	assert_eq(map.phase, BattleMap.Phase.DEPLOYED)
+
+
+func test_the_terrain_step_shades_without_a_label() -> void:
+	var map := _built_map(BattleKit.deployment_battle())
+	map.show_no_deploy(true)
+	var shade := map.get_node_or_null("NoDeploy")
+	assert_not_null(shade)
+	assert_eq(shade.find_children("*", "Label3D", true, false).size(), 0)
+
+
+func test_the_unit_step_labels_the_shade_with_the_enemy_gap() -> void:
+	var map := _built_map(BattleKit.deployment_battle())
+	map.show_no_deploy(false)
+	var shade := map.get_node_or_null("NoDeploy")
+	assert_not_null(shade)
+	var labels := shade.find_children("*", "Label3D", true, false)
+	assert_gt(labels.size(), 0)
+	assert_string_contains((labels[0] as Label3D).text, "Within")

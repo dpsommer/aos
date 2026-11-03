@@ -98,7 +98,7 @@ static func territory(polygons: Array[PackedVector2Array], is_player: bool) -> N
 ## shaded dark: [param own] territory less the deployable [param zone].
 ## [param facing] is the way the side faces (radians clockwise from east): the label reads the right
 ## way up from behind it.
-## [param text] labels each part, e.g. "Within 9\" of enemy territory".
+## [param text] labels each part, e.g. "Within 9\" of enemy territory"; empty leaves them unlabelled.
 static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2Array], text := "Too close to the enemy", facing := -PI / 2) -> Node3D:
 	var root := Node3D.new()
 	root.name = "NoDeploy"
@@ -114,7 +114,8 @@ static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2A
 			fill.material_override = material
 			root.add_child(fill)
 			root.add_child(outline(piece, NO_DEPLOY_HEIGHT, NO_DEPLOY_EDGE))
-			root.add_child(_no_deploy_label(piece, text, facing))
+			if not text.is_empty():
+				root.add_child(_no_deploy_label(piece, text, facing))
 	return root
 
 

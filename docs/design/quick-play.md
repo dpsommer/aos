@@ -68,7 +68,7 @@ The chosen card is outlined in gold with a check. An eye shows a battleplan in f
 
 The chosen card is outlined in gold with a check. An eye shows a battlepack in full, swapped in place: for each side, its name, a map the width of the pane with the objectives named, a caption ("30" × 22" · gold: objectives, contested by models on them", plus roads and pre-set terrain where the side has them), its starting relics as [ability cards](abilities.md) and its twist deck; then the deployment maps ("The defender picks the side, a map and which territory is theirs."), the battleplan's pre-battle sequence as Setup and the scoring. Pressing a card chooses it and returns to the list. The side, deployment map, terrain, regiment abilities and enhancements are all pre-battle choices, made after the roll-off.
 
-`RealmMap` (`scripts/ui/quick_play/realm_map.gd`) draws a side from its data: roads in grey, objectives as gold circles (each its battlepack's radius or its own) or rotated rectangles, and terrain set up before the players' (Ossia's Crypt of Blood) as a dashed square. Given a deployment map, it shades territory A lighter than B with a line between them. A detailed map names the objectives.
+`RealmMap` (`scripts/ui/quick_play/realm_map.gd`) draws a side from its data: roads in grey, objectives as gold circles (each its battlepack's radius or its own) or rotated rectangles, and terrain set up before the players' (Ossia's Crypt of Blood) as a dashed square. Given a deployment map, it shades territory A lighter than B with a line between them, and writes "A" and "B" in the middle of each. A detailed map names the objectives.
 
 ## Choices
 

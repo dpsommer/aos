@@ -2,7 +2,8 @@ class_name DeploymentMapPicker
 extends Control
 ## Spearhead: the defender picks the side of the realm battlefield (Pre-battle Sequence, step 3),
 ## then the deployment map and which territory is theirs (step 4), over the dimmed battlefield.
-## Each map is shown on the chosen side with territory A lighter than B. See docs/design/battle.md.
+## Each map is shown on the chosen side with its territories marked A and B. The map is on the
+## left and the choices on the right, so it fits a short screen. See docs/design/battle.md.
 
 ## The player picked [param side] of the realm battlefield and [param map], taking territory A if
 ## [param player_has_a].
@@ -38,7 +39,7 @@ func _init(of: Battle) -> void:
 	_map = pack.deployment_maps[0] if not pack.deployment_maps.is_empty() else null
 	var title := UIBuilder.label("Pick the battlefield", "DisplayTitleLabel")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var subtitle := UIBuilder.label("You're the defender: pick the side of the %s realm battlefield, the deployment map and which territory is yours. Territory A is the lighter one." % pack.name, "DescriptionLabel")
+	var subtitle := UIBuilder.label("You're the defender: pick the side of the %s realm battlefield, the deployment map and which territory is yours." % pack.name, "DescriptionLabel", true)
 	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var realms := UIBuilder.hbox([], 8)
 	for realm in pack.realms:
@@ -67,8 +68,11 @@ func _init(of: Battle) -> void:
 	confirm_button = UIBuilder.button("Confirm", _confirm, "confirm", "GoldButton")
 	confirm_button.custom_minimum_size = Vector2(220, 44)
 	confirm_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	var card := UIBuilder.panel("CardPanel", UIBuilder.vbox([_row("Side", realms), _row("Deployment map", maps), preview_holder,
-			_row("Your territory", territories), confirm_button], 16))
+	var choices := UIBuilder.vbox([_row("Side", realms), _row("Deployment map", maps), _row("Your territory", territories),
+			confirm_button], 20)
+	choices.alignment = BoxContainer.ALIGNMENT_CENTER
+	choices.custom_minimum_size.x = 280
+	var card := UIBuilder.panel("CardPanel", UIBuilder.hbox([preview_holder, choices], 24))
 	card.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	var column := UIBuilder.vbox([title, subtitle, card], 20)
 	var center := CenterContainer.new()

@@ -206,3 +206,22 @@ func test_the_defender_sees_no_picks_if_the_opponent_has_not_chosen() -> void:
 func test_the_attacker_is_not_shown_the_opponents_picks() -> void:
 	var picker := _picker(true, _chosen_opponent())
 	assert_false(UIKit.has_label_containing(picker, "Your opponent picked"))
+
+
+# At the smallest UI size
+
+func test_the_title_fits_the_smallest_screen_and_wraps() -> void:
+	var screen := Control.new()
+	screen.size = GameSettings.MIN_UI_SIZE
+	add_child_autofree(screen)
+	var picker := SpearheadOptionsPicker.new(_army(), null, true)
+	picker.set_anchors_preset(Control.PRESET_FULL_RECT)
+	screen.add_child(picker)
+	for i in 4:
+		await get_tree().process_frame
+	var titles := UIKit.labels_with_variation(picker, "DisplayTitleLabel")
+	assert_eq(titles.size(), 1)
+	var title := titles[0]
+	assert_lte(title.size.x, GameSettings.MIN_UI_SIZE.x)
+	assert_true(Rect2(Vector2.ZERO, GameSettings.MIN_UI_SIZE).encloses(title.get_global_rect()))
+	assert_gt(title.get_line_count(), 1)

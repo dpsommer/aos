@@ -178,3 +178,48 @@ func test_changing_the_side_keeps_a_single_preview() -> void:
 	picker.realm_buttons[1].pressed.emit()
 	await wait_process_frames(1)
 	assert_eq(picker.preview_holder.get_child_count(), 1)
+
+
+## A picker laid out in a screen of [param screen_size], once it has settled.
+func _laid_out(screen_size: Vector2) -> Array:
+	var screen := Control.new()
+	add_child_autofree(screen)
+	screen.set_deferred("size", screen_size)
+	var picker := DeploymentMapPicker.new(_battle())
+	screen.add_child(picker)
+	await wait_frames(4)
+	return [screen, picker]
+
+
+func _all_labels(node: Node) -> Array[Label]:
+	var found: Array[Label] = []
+	if node is Label:
+		found.append(node)
+	for child in node.get_children():
+		found.append_array(_all_labels(child))
+	return found
+
+
+func test_the_content_fits_the_smallest_screen() -> void:
+	var laid_out := await _laid_out(Vector2(1280, 720))
+	var screen_rect := Rect2(laid_out[0].global_position, laid_out[0].size)
+	var picker: DeploymentMapPicker = laid_out[1]
+	var content := picker.preview_holder.get_global_rect()
+	for button in [picker.confirm_button, picker.territory_a_button, picker.realm_buttons[0], picker.map_buttons[0]]:
+		content = content.merge(button.get_global_rect())
+	for label in _all_labels(picker):
+		content = content.merge(label.get_global_rect())
+	assert_true(screen_rect.encloses(content), "content %s is outside the screen %s" % [content, screen_rect])
+
+
+func test_the_preview_is_beside_the_choices() -> void:
+	var picker: DeploymentMapPicker = (await _laid_out(Vector2(1280, 720)))[1]
+	var preview_right := picker.preview_holder.get_global_rect().end.x
+	for button in [picker.realm_buttons[0], picker.map_buttons[0], picker.territory_a_button, picker.confirm_button]:
+		assert_lte(preview_right, button.get_global_rect().position.x, "%s is not right of the preview" % button.name)
+
+
+func test_the_subtitle_does_not_explain_the_territory_shading() -> void:
+	var picker: DeploymentMapPicker = (await _laid_out(Vector2(1280, 720)))[1]
+	for label in _all_labels(picker):
+		assert_false(label.text.contains("lighter one"), label.text)

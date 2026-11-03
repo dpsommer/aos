@@ -1,7 +1,7 @@
 class_name RollOffPanel
 extends Control
 ## The roll-off over the dimmed battlefield (the design's board 4): each side's dice tumbles and
-## lands, a tie is rolled again, and the winner picks attacker or defender. If the player won they
+## lands, a tie is rolled again ("Tie: rolling again"), and the winner picks attacker or defender. If the player won they
 ## choose with the Attacker and Defender buttons; if the AI won, a banner says which role the
 ## player has and Continue goes on. See docs/design/battle.md.
 
@@ -15,6 +15,10 @@ const TIE_SECONDS := 0.8
 const DIM := Color(0.047, 0.051, 0.063, 0.72)
 const PLAYER_PIPS := Color("#24527E")
 const OPPONENT_PIPS := Color("#8C2A24")
+## A role button's smallest size; it grows taller to fit its description.
+const ROLE_BUTTON_SIZE := Vector2(400, 104)
+## How wide a role's description wraps.
+const ROLE_TEXT_WIDTH := 250.0
 
 var battle: Battle
 var roll_off: RollOff
@@ -143,9 +147,6 @@ func _result_card() -> PanelContainer:
 		continue_button.custom_minimum_size = Vector2(220, 44)
 		continue_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		parts = [heading, you, continue_button]
-	var note := UIBuilder.label("A tie is rolled again.", "MutedLabel")
-	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	parts.append(note)
 	var card := UIBuilder.panel("CardPanel", UIBuilder.vbox(parts, 16))
 	card.name = "Result"
 	card.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
@@ -163,7 +164,7 @@ func _role_button(attacks: bool) -> Button:
 	var button := Button.new()
 	button.name = "AttackerButton" if attacks else "DefenderButton"
 	button.theme_type_variation = "OptionCard"
-	button.custom_minimum_size = Vector2(312, 104)
+	button.custom_minimum_size = ROLE_BUTTON_SIZE
 	button.accessibility_name = "%s: %s" % ["Attacker" if attacks else "Defender", _role_text(attacks)]
 	button.pressed.connect(func() -> void: role_chosen.emit(attacks))
 	var preview: Control
@@ -177,7 +178,7 @@ func _role_button(attacks: bool) -> Button:
 	preview.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var name_label := UIBuilder.label("Attacker" if attacks else "Defender", "CardTitleLabel")
 	var text := UIBuilder.label(_role_text(attacks), "DescriptionLabel", true)
-	text.custom_minimum_size.x = 170
+	text.custom_minimum_size.x = ROLE_TEXT_WIDTH
 	var words := UIBuilder.vbox([name_label, text], 4)
 	words.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var row := UIBuilder.hbox([preview, words], 16)
@@ -189,7 +190,16 @@ func _role_button(attacks: bool) -> Button:
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
 	margin.add_child(row)
 	button.add_child(margin)
+	# A button doesn't grow to fit its children: grow it to fit the wrapped description.
+	margin.minimum_size_changed.connect(_fit_role_button.bind(button, margin))
+	_fit_role_button.call_deferred(button, margin)
 	return button
+
+
+## Untyped, as the deferred call can come after the panel is freed, which a typed argument rejects.
+static func _fit_role_button(button: Variant, content: Variant) -> void:
+	if is_instance_valid(button) and is_instance_valid(content):
+		(button as Button).custom_minimum_size.y = maxf(ROLE_BUTTON_SIZE.y, (content as Control).get_combined_minimum_size().y)
 
 
 func _value_label() -> Label:

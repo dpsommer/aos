@@ -177,3 +177,53 @@ func test_a_loss_says_which_role_the_ai_chose() -> void:
 func test_a_loss_tells_the_player_their_role() -> void:
 	var panel := _panel(_lost(), true)
 	assert_true(UIKit.has_label_containing(panel.result_card, "You are the defender"))
+
+
+# At the smallest UI size
+
+## A panel laid out in a screen of [constant GameSettings.MIN_UI_SIZE], the player having won.
+func _laid_out_panel(battle: Battle) -> RollOffPanel:
+	var screen := Control.new()
+	screen.custom_minimum_size = GameSettings.MIN_UI_SIZE
+	screen.size = GameSettings.MIN_UI_SIZE
+	add_child_autofree(screen)
+	var panel := RollOffPanel.new(battle, _won(), true)
+	panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+	screen.add_child(panel)
+	panel.finish()
+	for i in 4:
+		await get_tree().process_frame
+	return panel
+
+
+func _assert_role_buttons_fit(panel: RollOffPanel) -> void:
+	for button in [panel.attacker_button, panel.defender_button]:
+		var content := button.get_child(0) as Control
+		var needed := content.get_combined_minimum_size()
+		assert_gte(button.size.y, needed.y, "%s is tall enough for its content" % button.name)
+		assert_gte(button.size.x, needed.x, "%s is wide enough for its content" % button.name)
+	var right := panel.defender_button.get_global_rect().end.x
+	assert_lte(right, GameSettings.MIN_UI_SIZE.x, "both buttons fit the screen's width")
+	assert_gte(panel.attacker_button.get_global_rect().position.x, 0.0)
+
+
+func test_matched_play_role_buttons_fit_their_content_at_the_smallest_size() -> void:
+	var panel := await _laid_out_panel(_matched_battle())
+	_assert_role_buttons_fit(panel)
+
+
+func test_spearhead_role_buttons_fit_their_content_at_the_smallest_size() -> void:
+	var panel := await _laid_out_panel(BattleKit.battle())
+	_assert_role_buttons_fit(panel)
+
+
+func test_the_result_card_does_not_say_a_tie_is_rolled_again() -> void:
+	var panel := _panel(_won())
+	panel.finish()
+	assert_false(UIKit.has_label_containing(panel.result_card, "A tie is rolled again"))
+
+
+func test_the_result_card_of_a_loss_does_not_say_a_tie_is_rolled_again() -> void:
+	var panel := _panel(_lost())
+	panel.finish()
+	assert_false(UIKit.has_label_containing(panel.result_card, "A tie is rolled again"))
