@@ -310,7 +310,7 @@ func _unit_placing() -> Array:
 			children.append(_call_off_button())
 	children.append_array(_unit_controls(unit))
 	children.append(_alert())
-	children.append(_buttons(_next_text()))
+	children.append(_buttons("Confirm"))
 	return children
 
 
@@ -346,7 +346,7 @@ func _army_placing() -> Array:
 		children.append(UIBuilder.label("Pick a unit on the board or in the tray to move it or line it up.", "DescriptionLabel", true))
 	children.append(_alert())
 	var other := deployment.battle.enemy_of(army)
-	children.append(_buttons("deploy all · %s" % ("opponent next" if deployment.has_work(other) else "next step")))
+	children.append(_buttons("Confirm deploy all"))
 	confirm_button.text = "Confirm deployment"
 	undo_button.disabled = unit == null
 	return children
@@ -364,7 +364,7 @@ func _terrain_placing() -> Array:
 		children.append(note)
 	return children + [
 		UIBuilder.label("Click to put it down. Press and drag to turn it: its length runs along the drag. Click it to pick it up again. Blue: it can go there.", "MutedLabel", true),
-		_alert(), _buttons(_next_text())]
+		_alert(), _buttons("Confirm")]
 
 
 func _choosing() -> Array:
@@ -409,18 +409,8 @@ func _buttons(confirm_text: String, back_text := "Undo") -> HBoxContainer:
 	confirm_button = row.get_node(^"%Confirm")
 	confirm_button.pressed.connect(confirm_pressed.emit)
 	confirm_button.tooltip_text = confirm_text
-	confirm_button.text = "Confirm · %s" % confirm_text if back_text == "Undo" else confirm_text
+	confirm_button.text = confirm_text
 	return row
-
-
-## Who goes after this placement, for Confirm's subtitle.
-func _next_text() -> String:
-	if deployment.regiment and deployment.regiment.units.filter(func(u: BattleUnit) -> bool: return not u.deployed).size() > 1:
-		return "next unit in the regiment"
-	var other := deployment.battle.enemy_of(army)
-	if deployment.alternates(deployment.step) and deployment.has_work(other):
-		return "opponent next"
-	return "you go again"
 
 
 # Tray

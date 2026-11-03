@@ -98,7 +98,7 @@ After the roll-off, the attacker picks its regiment ability and its general's en
 
 ### Battlefield (Spearhead)
 
-Then the defender picks the side of the realm battlefield, the deployment map and which territory is theirs (steps 3 and 4). If the player is the defender, `DeploymentMapPicker` (`scripts/ui/battle/deployment_map_picker.gd`) asks for all three. On the left is the chosen side's map with that deployment map's territories, A lighter than B and each marked with its letter. On the right are a Side row with a tab per side (e.g. Aqshy, Ghyran), a Deployment map row (Horizontal, Diagonal), a Your territory row (Territory A or B) and Confirm ("Confirm: Ghyran, Diagonal, territory A"). Side by side, it fits the smallest UI size. If the AI defends, it picks all three at random. The game map then redraws the board for that side: its printed board, its terrain features and its objectives (`Battle.choose_realm()`), and the header shows the side's name in place of the battlepack's.
+Then the defender picks the side of the realm battlefield, the deployment map and which territory is theirs (steps 3 and 4). If the player is the defender, `DeploymentMapPicker` (`scripts/ui/battle/deployment_map_picker.gd`) asks for all three. On the left is the chosen side's map with that deployment map's territories, A lighter than B and each marked with its letter. On the right are a Side row with a tab per side (e.g. Aqshy, Ghyran), a Deployment map row (Horizontal, Diagonal), a Your territory row (Territory A or B) and Confirm. Side by side, it fits the smallest UI size. If the AI defends, it picks all three at random. The game map then redraws the board for that side: its printed board, its terrain features and its objectives (`Battle.choose_realm()`), and the header shows the side's name in place of the battlepack's.
 
 ### Deployment
 
@@ -116,7 +116,7 @@ Then the defender picks the side of the realm battlefield, the deployment map an
   - **A terrain feature:** its name, the rule for where it goes and how to move and turn it. If no spot left meets the gap from other terrain, it says the gap is waived.
   - **An ability:** its declare and effect, its targets as chips to pick and "Its use is recorded; its effect isn't applied yet." for one that isn't a reserve.
   - **Problems:** any problems, in red, e.g. "2 models are outside your deployable zone…".
-  - **Buttons:** Undo (or Cancel for an ability), and Confirm with who goes next, e.g. "Confirm · opponent next". Confirm is disabled while there are problems.
+  - **Buttons:** Undo (or Cancel for an ability), and Confirm with who goes next, e.g. "Confirm". Confirm is disabled while there are problems.
   - **In the Abilities step:** "Done with abilities" ends the player's part of it.
 - **Tray,** along the bottom: what's left to set up.
   - **Terrain step:** the faction terrain (or Spearhead terrain features).

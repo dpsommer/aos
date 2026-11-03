@@ -100,4 +100,4 @@ func _refresh() -> void:
 		preview.size_flags_horizontal = Control.SIZE_FILL
 		preview_holder.add_child(preview)
 	confirm_button.disabled = _map == null or _realm == null
-	confirm_button.text = "Confirm: %s, %s, territory %s" % [_realm.name if _realm else "-", _map.name if _map else "-", "A" if _has_a else "B"]
+	confirm_button.text = "Confirm"
