@@ -11,6 +11,7 @@
 ### Technical
 
 - [Project layout](technical/layout.md): folder structure and what goes where
+- [UI scenes](technical/ui-scenes.md): prefer Godot scenes over building visible elements in code, how the scenes are written (factories, unique names, inherited scenes), and what's still built in code
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
 - [Faction data](technical/faction-data.md): faction JSON format, sources, how to add a faction, and the Regiments of Renown

@@ -116,7 +116,7 @@ func _show_step(shown: Step) -> void:
 	back_button.text = BACK_LABELS[shown]
 	back_button.tooltip_text = "Back to " + BACK_LABELS[shown].to_lower()
 	header_title.visible = shown == Step.ARMIES
-	_clear(breadcrumb)
+	UIBuilder.clear(breadcrumb)
 	if shown != Step.ARMIES:
 		breadcrumb.add_child(UIBuilder.breadcrumb(breadcrumb_steps(), shown - 1))
 	browse_button.visible = shown == Step.RENOWN or shown == Step.FORMATION
@@ -141,7 +141,7 @@ func breadcrumb_steps() -> PackedStringArray:
 ## Shows the saved armies, most recently saved first, focusing the army with [param focus_id] if
 ## given.
 func show_armies(focus_id := "") -> void:
-	_clear(army_list)
+	UIBuilder.clear(army_list)
 	var focus: Control = new_army_button
 	for entry in ArmyStore.list():
 		var row := _army_row(entry)
@@ -149,16 +149,7 @@ func show_armies(focus_id := "") -> void:
 		if entry.id == focus_id or (focus_id.is_empty() and focus == new_army_button):
 			focus = row.get_meta(&"first_button")
 	if army_list.get_child_count() == 0:
-		var empty := UIBuilder.vbox([
-			UIBuilder.label("No saved armies yet", "CardHeadingLabel"),
-			UIBuilder.label("Start one with New army.", "DescriptionLabel"),
-		], 8)
-		empty.alignment = BoxContainer.ALIGNMENT_CENTER
-		for label: Label in empty.get_children():
-			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		var panel := UIBuilder.panel("EmptyPanel", empty)
-		panel.custom_minimum_size.y = 160
-		army_list.add_child(panel)
+		army_list.add_child(load("res://scenes/ui/forge/no_armies_panel.tscn").instantiate())
 	_show_step(Step.ARMIES)
 	focus.grab_focus()
 
@@ -166,39 +157,51 @@ func show_armies(focus_id := "") -> void:
 ## A saved army's card: its name, details and status, with Open, Duplicate and Delete.
 func _army_row(entry: ArmyStore.Entry) -> PanelContainer:
 	var summary := army_summary(entry)
-	var text := UIBuilder.vbox([UIBuilder.label(summary.name, "CardHeadingLabel")], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	text.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var detail := UIBuilder.label(" · ".join(summary.details), "MutedLabel", true)
-	detail.add_theme_font_size_override("font_size", 13)
-	text.add_child(detail)
+	var card: PanelContainer = load("res://scenes/ui/forge/army_row.tscn").instantiate()
+	(card.get_node(^"%Name") as Label).text = summary.name
+	(card.get_node(^"%Detail") as Label).text = " · ".join(summary.details)
 	if not summary.note.is_empty():
-		text.add_child(UIBuilder.label(summary.note, "WarningLabel", true))
-	var faction_icon := UITheme.faction_icon(summary.faction)
-	var art := UIBuilder.icon_art(faction_icon, 36) if faction_icon else UIBuilder.art(UIBuilder.initials(summary.faction))
-	art.custom_minimum_size = Vector2(56, 56)
-	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var row := UIBuilder.hbox([art, text], 16)
+		var note: Label = card.get_node(^"%Note")
+		note.text = summary.note
+		note.visible = true
+	_fill_faction_art(card.get_node(^"%Art"), summary.faction, 36)
 	if not summary.status_kind.is_empty():
-		var status := UIBuilder.panel("", UIBuilder.label(summary.status))
+		var status: PanelContainer = card.get_node(^"%Status")
 		status.add_theme_stylebox_override("panel", UITheme.pill(summary.status_kind))
-		(status.get_child(0) as Label).add_theme_color_override("font_color", UITheme.STATUS[summary.status_kind][1])
-		status.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		row.add_child(status)
-	var open := UIBuilder.button("Open", army_opened.emit.bind(entry.army) if summary.can_open else func() -> void: pass,
-			"", "", "Open " + summary.name)
+		var status_label: Label = card.get_node(^"%StatusLabel")
+		status_label.text = summary.status
+		status_label.add_theme_color_override("font_color", UITheme.STATUS[summary.status_kind][1])
+		status.visible = true
+	var open: Button = card.get_node(^"%Open")
+	open.tooltip_text = "Open " + summary.name
 	open.disabled = not summary.can_open
-	var copy := UIBuilder.icon_button("copy", "Duplicate " + summary.name, _duplicate.bind(entry.id), "")
+	if summary.can_open:
+		open.pressed.connect(army_opened.emit.bind(entry.army))
+	var copy: Button = card.get_node(^"%Copy")
+	_name_icon_button(copy, "Duplicate " + summary.name)
+	copy.pressed.connect(_duplicate.bind(entry.id))
 	copy.disabled = entry.army == null
-	var delete := UIBuilder.icon_button("delete", "Delete " + summary.name, _confirm_delete.bind(entry.id, summary.name),
-			"", "DangerIconButton")
-	for button: Button in [open, copy, delete]:
-		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		row.add_child(button)
-	var card := UIBuilder.panel("CardPanel", row)
+	var delete: Button = card.get_node(^"%Delete")
+	_name_icon_button(delete, "Delete " + summary.name)
+	delete.pressed.connect(_confirm_delete.bind(entry.id, summary.name))
 	card.set_meta(&"army_id", entry.id)
 	card.set_meta(&"first_button", open if summary.can_open else copy if not copy.disabled else delete)
 	return card
+
+
+static func _name_icon_button(button: Button, label: String) -> void:
+	button.tooltip_text = label
+	button.accessibility_name = label
+
+
+## Shows [param faction]'s icon at [param icon_size] on [param art], or its initials if the icon
+## pack has none.
+static func _fill_faction_art(art: ArtPlaceholder, faction: String, icon_size: int) -> void:
+	var icon := UITheme.faction_icon(faction)
+	if icon:
+		art.set_icon(icon, icon_size)
+	else:
+		art.set_caption(UIBuilder.initials(faction))
 
 
 ## A saved army's summary for its card:
@@ -284,15 +287,12 @@ func show_alliances() -> void:
 
 func _alliance_card(alliance: GrandAlliance.Type) -> OptionCard:
 	var alliance_name := GrandAlliance.display_name(alliance)
-	var card := OptionCard.new()
+	var card: OptionCard = load("res://scenes/ui/forge/alliance_card.tscn").instantiate()
 	card.accessibility_name = alliance_name
-	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var art := UIBuilder.icon_art(UITheme.alliance_icon(alliance), 120)
-	art.custom_minimum_size.y = 200
-	card.add(art)
-	card.add(UIBuilder.label(alliance_name, "CardHeadingLabel"))
+	(card.get_node(^"%Art") as ArtPlaceholder).set_icon(UITheme.alliance_icon(alliance), 120)
+	(card.get_node(^"%Name") as Label).text = alliance_name
 	var count := shown_factions(alliance).size()
-	card.add(UIBuilder.label("%d faction%s" % [count, "" if count == 1 else "s"], "MutedLabel"))
+	(card.get_node(^"%Count") as Label).text = "%d faction%s" % [count, "" if count == 1 else "s"]
 	card.pressed.connect(show_factions.bind(alliance))
 	return card
 
@@ -320,18 +320,14 @@ static func shown_factions(alliance: GrandAlliance.Type) -> PackedStringArray:
 
 
 func _populate_factions(alliance: GrandAlliance.Type) -> void:
-	_clear(faction_grid)
+	UIBuilder.clear(faction_grid)
 	for faction in shown_factions(alliance):
-		var card := OptionCard.new()
+		var card: OptionCard = load("res://scenes/ui/forge/faction_card.tscn").instantiate()
 		card.set_meta(&"faction", faction)
 		card.accessibility_name = faction + (" (Legends)" if FactionCatalog.is_legends(faction) else "")
-		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var icon := UITheme.faction_icon(faction)
-		var art := UIBuilder.icon_art(icon, 56) if icon else UIBuilder.art(UIBuilder.initials(faction))
-		art.custom_minimum_size.y = 72
-		card.add(art)
-		card.add(UIBuilder.label(faction, "CardHeadingLabel", true))
-		var chips := UIBuilder.hbox([], 6)
+		_fill_faction_art(card.get_node(^"%Art"), faction, 56)
+		(card.get_node(^"%Name") as Label).text = faction
+		var chips: HBoxContainer = card.get_node(^"%Chips")
 		if FactionCatalog.is_legends(faction):
 			chips.add_child(UITheme.chip("Legends", "legends"))
 		if FactionCatalog.is_available(faction):
@@ -342,10 +338,8 @@ func _populate_factions(alliance: GrandAlliance.Type) -> void:
 			card.tooltip_text = "Coming soon"
 			card.accessibility_description = "Coming soon"
 			chips.add_child(UITheme.chip("Coming soon"))
-		if chips.get_child_count() > 0:
-			card.add(chips)
-		else:
-			chips.free()
+		chips.visible = chips.get_child_count() > 0
+		UIBuilder.ignore_mouse(chips)
 		faction_grid.add_child(card)
 
 
@@ -365,11 +359,11 @@ func show_armies_of_renown(alliance: GrandAlliance.Type, faction_name: String) -
 	_faction = faction
 	renown_description.text = ("Optional. An Army of Renown replaces the %s faction rules with its own and limits which"
 			+ " units you can take. You can change this later in the builder's settings.") % faction.name
-	_clear(renown_chips)
+	UIBuilder.clear(renown_chips)
 	if faction.legends:
 		renown_chips.add_child(UITheme.chip("Legends", "legends"))
-	_clear(renown_none)
-	_clear(renown_grid)
+	UIBuilder.clear(renown_none)
+	UIBuilder.clear(renown_grid)
 	var own := _own_rules_card()
 	renown_none.add_child(own)
 	var focus: Button = own
@@ -394,54 +388,43 @@ func renown_cards() -> Array[OptionCard]:
 
 
 func _own_rules_card() -> OptionCard:
-	var card := _choice_card(NO_ARMY_OF_RENOWN, choose_army_of_renown.bind(""))
+	var card: OptionCard = load("res://scenes/ui/forge/own_rules_card.tscn").instantiate()
+	_set_choice(card, NO_ARMY_OF_RENOWN, choose_army_of_renown.bind(""))
 	card.set_meta(&"army_of_renown", "")
-	var icon := TextureRect.new()
 	var faction_icon := UITheme.faction_icon(_faction.name)
-	icon.texture = faction_icon if faction_icon else UITheme.alliance_icon(_selected_alliance)
-	icon.modulate = UITheme.GOLD
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	icon.custom_minimum_size = Vector2(26, 26)
-	var badge := UIBuilder.panel("", UIBuilder.vbox([icon]))
-	badge.add_theme_stylebox_override("panel", UITheme.box(Color.TRANSPARENT, UITheme.CONTROL_BORDER, 28, 14))
-	badge.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	(card.get_node(^"%Icon") as TextureRect).texture = faction_icon if faction_icon else UITheme.alliance_icon(_selected_alliance)
+	(card.get_node(^"%Badge") as PanelContainer).add_theme_stylebox_override("panel",
+			UITheme.box(Color.TRANSPARENT, UITheme.CONTROL_BORDER, 28, 14))
 	var next := "choose a Battle Formation next" if not _faction.battle_formations.is_empty() else "its own rules"
-	var text := UIBuilder.vbox([
-		UIBuilder.label(NO_ARMY_OF_RENOWN, "CardHeadingLabel"),
-		UIBuilder.label("Use the full %s roster and %s." % [_faction.name, next], "DescriptionLabel", true),
-	], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	(card.get_node(^"%Title") as Label).text = NO_ARMY_OF_RENOWN
+	(card.get_node(^"%Description") as Label).text = "Use the full %s roster and %s." % [_faction.name, next]
 	var chip := UITheme.chip("Recommended for new lists")
 	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	card.add(UIBuilder.hbox([badge, text, chip], 20))
+	chip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.get_node(^"%Row").add_child(chip)
 	return card
 
 
 func _renown_card(army: ArmyOfRenown) -> OptionCard:
-	var card := _choice_card(army.name + (" (Legends)" if army.legends else ""), choose_army_of_renown.bind(army.name))
+	var card: OptionCard = load("res://scenes/ui/forge/renown_option_card.tscn").instantiate()
+	_set_choice(card, army.name + (" (Legends)" if army.legends else ""), choose_army_of_renown.bind(army.name))
 	card.set_meta(&"army_of_renown", army.name)
-	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var art := UIBuilder.art(UIBuilder.initials(army.name))
-	art.custom_minimum_size.y = 96
-	card.add(art)
-	var title := UIBuilder.label(army.name, "CardHeadingLabel", true)
-	var heading := UIBuilder.hbox([title], 12)
+	(card.get_node(^"%Art") as ArtPlaceholder).set_caption(UIBuilder.initials(army.name))
+	(card.get_node(^"%Name") as Label).text = army.name
 	if not army.source.is_empty():
-		heading.add_child(UIBuilder.label(army.source, "MutedLabel"))
-	card.add(heading)
+		var source: Label = card.get_node(^"%Source")
+		source.text = army.source
+		source.visible = true
 	var roster := roster_summary(army)
 	if not roster.is_empty():
-		card.add(UIBuilder.label(roster, "BodyLabel", true))
-	var chips := HFlowContainer.new()
-	chips.add_theme_constant_override("h_separation", 6)
-	chips.add_theme_constant_override("v_separation", 6)
+		var roster_label: Label = card.get_node(^"%Roster")
+		roster_label.text = roster
+		roster_label.visible = true
+	var chips: HFlowContainer = card.get_node(^"%Chips")
 	for chip: Array in renown_chips_for(army):
 		chips.add_child(UITheme.chip(chip[0], chip[1]))
-	if chips.get_child_count() > 0:
-		card.add(chips)
-	else:
-		chips.free()
+	chips.visible = chips.get_child_count() > 0
+	UIBuilder.ignore_mouse(chips)
 	return card
 
 
@@ -498,7 +481,7 @@ func choose_army_of_renown(army_name: String) -> void:
 
 
 func _show_formations() -> void:
-	_clear(formation_grid)
+	UIBuilder.clear(formation_grid)
 	var focus: Button = null
 	for formation in _faction.battle_formations:
 		var card := _formation_card(formation)
@@ -510,9 +493,9 @@ func _show_formations() -> void:
 
 
 func _formation_card(formation: BattleFormation) -> OptionCard:
-	var card := _choice_card(formation.name, choose_formation.bind(formation.name))
+	var card: OptionCard = load("res://scenes/ui/forge/formation_option_card.tscn").instantiate()
+	_set_choice(card, formation.name, choose_formation.bind(formation.name))
 	card.set_meta(&"formation", formation.name)
-	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.min_height = 260
 	var chip: PanelContainer
 	if formation.points > 0:
@@ -520,12 +503,12 @@ func _formation_card(formation: BattleFormation) -> OptionCard:
 	else:
 		chip = UITheme.chip(formation.abilities[0].type if not formation.abilities.is_empty() else "Formation")
 	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	card.add(UIBuilder.hbox([chip]))
-	card.add(UIBuilder.label(formation.name, "CardHeadingLabel", true))
-	var rules := UIBuilder.vbox([], 10)
+	card.get_node(^"%ChipRow").add_child(chip)
+	(card.get_node(^"%Name") as Label).text = formation.name
+	var rules: VBoxContainer = card.get_node(^"%Rules")
 	for ability in formation.abilities:
-		rules.add_child(AbilityCard.new(ability))
-	card.add(rules)
+		rules.add_child(AbilityCard.create(ability))
+	UIBuilder.ignore_mouse(card.content)
 	return card
 
 
@@ -538,12 +521,11 @@ func choose_formation(formation_name: String) -> void:
 # --- Shared ---
 
 
-## A card named [param title] for screen readers, calling [param on_pressed] when it's pressed.
-func _choice_card(title: String, on_pressed: Callable) -> OptionCard:
-	var card := OptionCard.new()
+## Names [param card] [param title] for screen readers, and has it call [param on_pressed] when
+## it's pressed.
+static func _set_choice(card: OptionCard, title: String, on_pressed: Callable) -> void:
 	card.accessibility_name = title
 	card.pressed.connect(on_pressed)
-	return card
 
 
 func _start(army_of_renown: String, formation: String) -> void:
@@ -553,9 +535,3 @@ func _start(army_of_renown: String, formation: String) -> void:
 
 func _on_browse_pressed() -> void:
 	browse_requested.emit(_selected_alliance, _faction.name)
-
-
-func _clear(container: Node) -> void:
-	for child in container.get_children():
-		container.remove_child(child)
-		child.queue_free()

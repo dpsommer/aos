@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/forge/builder/army_builder.gd" id="1_builder"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/delete.svg" id="2_delete"]
 
 [node name="ArmyBuilder" type="Control"]
 layout_mode = 3
@@ -108,6 +109,33 @@ custom_minimum_size = Vector2(460, 0)
 layout_mode = 2
 theme_type_variation = &"PanePanel"
 
+[node name="RemoveOverlay" type="PanelContainer" parent="Layout/Body/LeftPane"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_type_variation = &"RemoveDropPanel"
+
+[node name="Center" type="CenterContainer" parent="Layout/Body/LeftPane/RemoveOverlay"]
+layout_mode = 2
+
+[node name="Stack" type="VBoxContainer" parent="Layout/Body/LeftPane/RemoveOverlay/Center"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Bin" type="TextureRect" parent="Layout/Body/LeftPane/RemoveOverlay/Center/Stack"]
+modulate = Color(0.9608, 0.6471, 0.5569, 1)
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("2_delete")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Body/LeftPane/RemoveOverlay/Center/Stack"]
+layout_mode = 2
+theme_type_variation = &"CardTitleLabel"
+theme_override_colors/font_color = Color(0.9608, 0.6471, 0.5569, 1)
+text = "Drop to remove from army"
+
 [node name="BuilderScroll" type="ScrollContainer" parent="Layout/Body"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -126,3 +154,19 @@ theme_override_constants/margin_bottom = 24
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 20
+
+[node name="DiscardDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Unsaved changes"
+ok_button_text = "Discard changes"
+dialog_text = "This army has unsaved changes."
+cancel_button_text = "Keep editing"
+
+[node name="SaveFailedDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Couldn't save"
+
+[connection signal="pressed" from="Layout/Header/Margin/Row/BackButton" to="." method="request_back"]
+[connection signal="pressed" from="Layout/Header/Margin/Row/SaveButton" to="." method="save"]
+[connection signal="confirmed" from="DiscardDialog" to="." method="_on_discard_confirmed"]
+[connection signal="custom_action" from="DiscardDialog" to="." method="_on_discard_dialog_action"]

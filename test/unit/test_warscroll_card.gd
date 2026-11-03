@@ -28,7 +28,7 @@ func _scroll() -> Warscroll:
 
 
 func _card(scroll: Warscroll, summoned := Callable()) -> WarscrollCard:
-	var card := WarscrollCard.new(scroll, summoned)
+	var card := WarscrollCard.create(scroll, summoned)
 	add_child_autofree(card)
 	return card
 
@@ -47,12 +47,8 @@ func _value_of(stats: Array, key: String) -> String:
 	return ""
 
 
-func _labels(node: Node, variation: String) -> Array[Node]:
-	return UIKit.find_all(node, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation)
-
-
 func _table_count(node: Node) -> int:
-	return _labels(node, "WeaponTitleLabel").size()
+	return UIKit.labels_with_variation(node, "WeaponTitleLabel").size()
 
 
 func test_card_shows_the_units_name() -> void:
@@ -190,7 +186,7 @@ func test_melee_value_columns_line_up_with_ranged_ones() -> void:
 	var scroll := _scroll()
 	scroll.ranged_weapons = [_weapon("Bow", 18)] as Array[Weapon]
 	scroll.melee_weapons = [_weapon()] as Array[Weapon]
-	var cells := _labels(_card(scroll), "WeaponValueLabel")
+	var cells := UIKit.labels_with_variation(_card(scroll), "WeaponValueLabel")
 	assert_eq(cells.size(), 11)
 	var ranged_trailing := cells.slice(1, 6)
 	var melee := cells.slice(6)
@@ -207,7 +203,7 @@ func test_weapon_abilities_are_shown_under_the_weapon() -> void:
 func test_weapon_without_abilities_shows_no_ability_line() -> void:
 	var scroll := _scroll()
 	scroll.melee_weapons = [_weapon("Axe")] as Array[Weapon]
-	assert_eq(_labels(_card(scroll), "MutedLabel").size(), 1)
+	assert_eq(UIKit.labels_with_variation(_card(scroll), "MutedLabel").size(), 1)
 
 
 func test_each_ability_gets_an_ability_card() -> void:
@@ -402,14 +398,14 @@ func test_pressing_a_summoned_card_shows_its_unit() -> void:
 
 
 func test_an_abilitys_summoned_unit_is_a_short_card_under_it() -> void:
-	var card := WarscrollCard.new(_summoning_scroll(), _summons(_summoned_unit()))
+	var card := WarscrollCard.create(_summoning_scroll(), _summons(_summoned_unit()))
 	add_child_autofree(card)
 	assert_eq(_short_cards(card).size(), 1)
 
 
 func test_an_abilitys_summoned_manifestation_is_a_full_warscroll_under_it() -> void:
 	var flame := Kit.warscroll("flame", PackedStringArray(["MANIFESTATION"]))
-	var card := WarscrollCard.new(_summoning_scroll(), _summons(flame))
+	var card := WarscrollCard.create(_summoning_scroll(), _summons(flame))
 	add_child_autofree(card)
 	assert_eq(_short_cards(card).size(), 0)
 	assert_eq(UIKit.find_all(card, func(n: Node) -> bool: return n is WarscrollCard).size(), 1)
@@ -418,7 +414,7 @@ func test_an_abilitys_summoned_manifestation_is_a_full_warscroll_under_it() -> v
 func test_pressing_an_abilitys_summoned_card_calls_show_summoned() -> void:
 	var unit := _summoned_unit()
 	var shown: Array[Warscroll] = []
-	var card := WarscrollCard.new(_summoning_scroll(), _summons(unit), func(u: Warscroll) -> void: shown.append(u))
+	var card := WarscrollCard.create(_summoning_scroll(), _summons(unit), func(u: Warscroll) -> void: shown.append(u))
 	add_child_autofree(card)
 	(_short_cards(card)[0] as SummonedUnitCard).pressed.emit()
 	assert_eq(shown, [unit])

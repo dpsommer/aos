@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[node name="AuxiliaryBox" type="PanelContainer"]
+theme_type_variation = &"RegimentPanel"
+
+[node name="Rows" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AddRow" type="HBoxContainer" parent="Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Add" type="Button" parent="Rows/AddRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GhostButton"
+text = "Add auxiliary unit"
+metadata/focus_key = "army:add_aux"
+
+[node name="Hint" type="Label" parent="Rows/AddRow"]
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "or drag one here"

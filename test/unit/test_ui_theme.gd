@@ -253,7 +253,7 @@ func test_banner_shows_the_count() -> void:
 
 
 func test_banner_without_a_count_has_no_tally() -> void:
-	assert_eq(_banner(true, "").get_child_count(), 0)
+	assert_eq(UIKit.find_shown(_banner(true, ""), func(n: Node) -> bool: return n is Label).size(), 0)
 
 
 func test_banner_icon_differs_when_open_and_closed() -> void:
@@ -360,7 +360,7 @@ func test_breadcrumb_marks_only_the_current_step() -> void:
 
 
 func _card() -> OptionCard:
-	var card := OptionCard.new()
+	var card := OptionCard.create()
 	add_child_autofree(card)
 	return card
 
@@ -539,14 +539,15 @@ func test_grand_alliances_have_different_icons() -> void:
 
 
 func _icon_of(art: ArtPlaceholder) -> TextureRect:
-	return art.get_child(0) as TextureRect
+	return UIKit.find_shown(art, func(n: Node) -> bool: return n is TextureRect)[0] as TextureRect
 
 
-func test_icon_art_is_an_art_placeholder_holding_one_texture_rect() -> void:
+func test_icon_art_shows_only_its_icon() -> void:
 	var node := UIBuilder.icon_art(UITheme.icon("search"), 40)
 	autofree(node)
-	assert_eq(node.get_child_count(), 1)
-	assert_true(node.get_child(0) is TextureRect)
+	var shown := UIKit.find_shown(node, func(n: Node) -> bool: return n is Control)
+	assert_eq(shown.size(), 1)
+	assert_true(shown[0] is TextureRect)
 
 
 func test_icon_art_shows_the_texture() -> void:

@@ -9,19 +9,14 @@ signal pressed
 ## Whether the card emits [signal pressed] and outlines itself while hovered.
 var pressable := false
 var card_name := ""
-## The card's rows, from its heading and name down, or null until [method _add_title].
-var content: VBoxContainer
+## The card's rows, from its heading and name down. Cards add their own rows after
+## [method _add_title].
+var content: VBoxContainer:
+	get:
+		return get_node(^"%Content")
 ## The muted heading over the card's name, or null without one.
 var heading_label: Label
 var _hovered := false
-
-
-func _init() -> void:
-	theme_type_variation = "CardPanel"
-	mouse_entered.connect(_set_hovered.bind(true))
-	mouse_exited.connect(_set_hovered.bind(false))
-	focus_entered.connect(queue_redraw)
-	focus_exited.connect(queue_redraw)
 
 
 ## Adds the card's [member content] with its first rows: [param heading] (if not empty) over
@@ -31,22 +26,21 @@ func _init() -> void:
 ## [member content].
 func _add_title(title: String, heading := "", tags: Array[Control] = [], action: Control = null) -> void:
 	card_name = title
-	content = UIBuilder.vbox([], 8)
-	add_child(content)
+	var title_row: HBoxContainer = %TitleRow
+	title_row.visible = true
+	(%Title as Label).text = title
 	if not heading.is_empty():
-		heading_label = UIBuilder.label(heading, "MutedLabel")
-		var top := UIBuilder.hbox([heading_label, UIBuilder.spacer()], 6)
+		heading_label = %Heading
+		heading_label.text = heading
+		%HeadingRow.visible = true
 		if action:
-			top.add_child(action)
-		content.add_child(top)
-	var title_row := UIBuilder.hbox([UIBuilder.label(title, "TitleLabel", true)], 6)
+			%HeadingRow.add_child(action)
 	for tag in tags:
 		tag.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		title_row.add_child(tag)
 	if action and heading.is_empty():
 		action.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		title_row.add_child(action)
-	content.add_child(title_row)
 
 
 ## Makes the whole card a button: focusable, and emitting [signal pressed] when clicked or when
@@ -59,16 +53,15 @@ func make_pressable(description: String) -> void:
 	tooltip_text = description
 	accessibility_name = card_name
 	accessibility_description = description
-	_ignore_mouse(get_child(0))
+	UIBuilder.ignore_mouse(get_child(0), true)
 
 
-func _ignore_mouse(node: Node) -> void:
-	if node is BaseButton:
-		return
-	if node is Control:
-		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for child in node.get_children():
-		_ignore_mouse(child)
+## Adds a row to [member content] with a chip naming each of [param abilities], e.g. a lore's spells.
+func _add_name_chips(abilities: Array[Ability]) -> void:
+	var chips := HFlowContainer.new()
+	for ability in abilities:
+		chips.add_child(UITheme.chip(ability.name))
+	content.add_child(chips)
 
 
 func _gui_input(event: InputEvent) -> void:

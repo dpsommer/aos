@@ -57,7 +57,7 @@ func _packs() -> Array[SpearheadBattlepack]:
 
 
 func _picker(chosen := "") -> RealmPicker:
-	var picker := RealmPicker.new(_packs(), chosen)
+	var picker := RealmPicker.create(_packs(), chosen)
 	add_child_autofree(picker)
 	return picker
 

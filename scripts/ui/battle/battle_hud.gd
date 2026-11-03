@@ -10,8 +10,6 @@ signal menu_pressed
 
 ## How long the header takes to slide in or out, in seconds.
 const SLIDE_SECONDS := 0.2
-const PLAYER_PILL := [Color(0.141, 0.322, 0.494, 0.45), Color("#3D74A8"), Color("#C7DEFA"), Color("#7FB2E8")]
-const OPPONENT_PILL := [Color(0.549, 0.165, 0.141, 0.35), Color("#8C2A24"), Color("#FFC8B5"), Color("#E58A80")]
 
 var menu_button: Button
 var header: PanelContainer
@@ -34,16 +32,36 @@ var _opponent_left := -1
 var _extra_controls := PackedStringArray()
 
 
-func _init(battle: Battle) -> void:
-	_battle = battle
-	name = "BattleHud"
+static func create(battle: Battle) -> BattleHud:
+	var hud: BattleHud = load("res://scenes/ui/battle/battle_hud.tscn").instantiate()
+	hud._battle = battle
+	hud.title_label.text = battle.title
+	hud.refresh_roles()
+	hud.refresh_controls()
+	return hud
+
+
+func _init() -> void:
 	theme = UITheme.get_theme()
-	set_anchors_preset(Control.PRESET_FULL_RECT)
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	header = _header(battle)
-	add_child(header)
-	controls = _controls()
-	add_child(controls)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_SCENE_INSTANTIATED:
+		header = %Header
+		menu_button = %Menu
+		phase_badge = %PhaseBadge
+		phase_label = %Phase
+		steps_row = %Steps
+		title_label = %Title
+		player_pill = %PlayerPill
+		opponent_pill = %OpponentPill
+		player_pill_label = %PlayerLabel
+		opponent_pill_label = %OpponentLabel
+		controls = %Controls
+
+
+func _on_menu_pressed() -> void:
+	menu_pressed.emit()
 
 
 ## Slides the header up out of view if [param hidden], or back down if not.
@@ -59,9 +77,7 @@ func set_header_hidden(hidden: bool) -> void:
 ## highlighted, the ones before it ticked. No steps hides the step list.
 func set_phase(phase: String, steps: PackedStringArray = [], current := -1) -> void:
 	phase_label.text = phase
-	for child in steps_row.get_children():
-		steps_row.remove_child(child)
-		child.queue_free()
+	UIBuilder.clear(steps_row)
 	for i in steps.size():
 		if i > 0:
 			var line := ColorRect.new()
@@ -114,100 +130,19 @@ func set_controls_bottom(offset: float) -> void:
 	controls.set_meta(&"bottom", offset)
 
 
-## Shows the keys as currently bound, e.g. after they were rebound in Settings: rebuilds the camera
-## controls panel and updates the menu button's tooltip.
+## Shows the keys as currently bound, e.g. after they were rebound in Settings: in the camera
+## controls panel, with any extra lines, and in the menu button's tooltip.
 func refresh_controls() -> void:
 	menu_button.tooltip_text = menu_tooltip()
 	menu_button.accessibility_name = menu_button.tooltip_text
-	var fresh := _controls()
-	var bottom: float = controls.get_meta(&"bottom", 0.0)
-	var index := controls.get_index()
-	remove_child(controls)
-	controls.free()
-	add_child(fresh)
-	move_child(fresh, index)
-	controls = fresh
-	if bottom > 0.0:
-		set_controls_bottom(bottom)
-
-
-func _header(battle: Battle) -> Control:
-	var bar := PanelContainer.new()
-	bar.name = "Header"
-	bar.set_anchors_preset(Control.PRESET_TOP_WIDE)
-	bar.custom_minimum_size.y = 64
-	bar.add_theme_stylebox_override("panel", UITheme.box(Color(0.047, 0.051, 0.063, 0.85), Color.TRANSPARENT, 0, 0))
-	var margin := MarginContainer.new()
-	for side in ["left", "right"]:
-		margin.add_theme_constant_override("margin_" + side, 20)
-	menu_button = UIBuilder.icon_button("settings", menu_tooltip(), menu_pressed.emit, "menu")
-	menu_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	title_label = UIBuilder.label(battle.title, "TitleLabel")
-	player_pill = _pill(_pill_text("You", battle.player_is_attacker, -1), PLAYER_PILL)
-	opponent_pill = _pill(_pill_text("Opponent", not battle.player_is_attacker, -1), OPPONENT_PILL)
-	player_pill_label = player_pill.get_meta(&"label")
-	opponent_pill_label = opponent_pill.get_meta(&"label")
-	phase_label = UIBuilder.label("PRE-BATTLE")
-	phase_label.add_theme_font_size_override("font_size", 12)
-	phase_label.add_theme_color_override("font_color", Color("#C9CCD3"))
-	phase_badge = PanelContainer.new()
-	phase_badge.name = "PhaseBadge"
-	var badge_style := UITheme.box(Color("#2A2F38"), Color.TRANSPARENT, 4, 0)
-	badge_style.content_margin_left = 10
-	badge_style.content_margin_right = 10
-	badge_style.content_margin_top = 4
-	badge_style.content_margin_bottom = 4
-	phase_badge.add_theme_stylebox_override("panel", badge_style)
-	phase_badge.add_child(phase_label)
-	phase_badge.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	steps_row = UIBuilder.hbox([], 8)
-	steps_row.name = "Steps"
-	steps_row.visible = false
-	var row := UIBuilder.hbox([phase_badge, steps_row, UIBuilder.spacer(), title_label, player_pill, opponent_pill, menu_button], 16)
-	row.alignment = BoxContainer.ALIGNMENT_CENTER
-	margin.add_child(row)
-	bar.add_child(margin)
-	return bar
-
-
-func _pill(text: String, colours: Array) -> PanelContainer:
-	var pill := PanelContainer.new()
-	var style := UITheme.box(colours[0], colours[1], 999, 0)
-	style.content_margin_left = 12
-	style.content_margin_right = 12
-	style.content_margin_top = 6
-	style.content_margin_bottom = 6
-	pill.add_theme_stylebox_override("panel", style)
-	var dot := ColorRect.new()
-	dot.color = colours[3]
-	dot.custom_minimum_size = Vector2(8, 8)
-	dot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var label := UIBuilder.label(text)
-	label.add_theme_color_override("font_color", colours[2])
-	label.add_theme_font_size_override("font_size", 13)
-	pill.add_child(UIBuilder.hbox([dot, label], 8))
-	pill.set_meta(&"label", label)
-	pill.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	return pill
-
-
-## The camera controls, with the keys as currently bound.
-func _controls() -> Control:
-	var panel := PanelContainer.new()
-	panel.name = "Controls"
-	panel.add_theme_stylebox_override("panel", UITheme.box(Color(0.09, 0.102, 0.122, 0.9), UITheme.BORDER, 8, 12))
-	panel.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
-	panel.position = Vector2(20, -20)
-	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	var lines: Array = [
-		UIBuilder.label("RMB / %s  move camera" % move_keys(), "MutedLabel"),
-		UIBuilder.label("MMB / %s  rotate camera" % turn_keys(), "MutedLabel"),
-		UIBuilder.label("Wheel  zoom", "MutedLabel"),
-	]
+	(%Move as Label).text = "RMB / %s  move camera" % move_keys()
+	(%Rotate as Label).text = "MMB / %s  rotate camera" % turn_keys()
+	var lines: VBoxContainer = %Lines
+	for extra in lines.get_children().slice(3):
+		lines.remove_child(extra)
+		extra.queue_free()
 	for line in _extra_controls:
-		lines.append(UIBuilder.label(line, "MutedLabel"))
-	panel.add_child(UIBuilder.vbox(lines, 6))
-	return panel
+		lines.add_child(UIBuilder.label(line, "MutedLabel"))
 
 
 ## The menu button's tooltip, naming the first key bound to Back ([code]ui_cancel[/code]), e.g.

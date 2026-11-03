@@ -1170,7 +1170,7 @@ func test_refresh_after_a_skipped_change_still_shows_current_data() -> void:
 func test_refresh_does_nothing_without_an_editor() -> void:
 	var builder := ArmyBuilder.new()
 	autofree(builder)
-	var pane := InfoPane.new(builder)
+	var pane := InfoPane.create(builder)
 	add_child_autofree(pane)
 	pane.refresh()
 	assert_eq(UIKit.find_all(pane, func(n: Node) -> bool: return n is Label).size(), 0)

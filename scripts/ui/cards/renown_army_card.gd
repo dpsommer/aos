@@ -3,8 +3,13 @@ extends PressableCard
 ## An Army of Renown: its name, source, roster options and limits, and in full its battle traits.
 
 ## [param action] is shown at the end of the name's row, e.g. a "Change" button, or null for none.
-func _init(renown: ArmyOfRenown, full: bool, action: Control = null) -> void:
-	super()
+static func create(renown: ArmyOfRenown, full: bool, action: Control = null) -> RenownArmyCard:
+	var card: RenownArmyCard = load("res://scenes/ui/cards/renown_army_card.tscn").instantiate()
+	card._fill(renown, full, action)
+	return card
+
+
+func _fill(renown: ArmyOfRenown, full: bool, action: Control) -> void:
 	var tags: Array[Control] = []
 	if not renown.source.is_empty():
 		tags.append(UIBuilder.label(renown.source, "MutedLabel"))
@@ -21,4 +26,4 @@ func _init(renown: ArmyOfRenown, full: bool, action: Control = null) -> void:
 		chips.free()
 	if full:
 		for ability in renown.battle_traits:
-			content.add_child(AbilityCard.new(ability))
+			content.add_child(AbilityCard.create(ability))

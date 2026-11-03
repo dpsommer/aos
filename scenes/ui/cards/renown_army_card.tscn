@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/cards/pressable_card.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/ui/cards/renown_army_card.gd" id="2_card"]
+
+[node name="RenownArmyCard" instance=ExtResource("1_base")]
+script = ExtResource("2_card")

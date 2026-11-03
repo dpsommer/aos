@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[node name="ActionRow" type="PanelContainer"]
+theme_type_variation = &"RowPanel"
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"CardTitleLabel"
+
+[node name="Keys" type="HFlowContainer" parent="Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="Buttons" type="HBoxContainer" parent="Row"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="Add" type="Button" parent="Row/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"GhostButton"
+text = "Add key"
+
+[node name="Reset" type="Button" parent="Row/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GhostButton"
+text = "Reset"

@@ -27,17 +27,19 @@ var _hovered := false
 
 
 ## [param open] shows the card unfolded. [param key] is the chevron's focus key.
-func _init(rule: Ability, open := false, key := "") -> void:
-	super(rule)
-	var check := UIBuilder.check_badge()
-	add_header_control(check)
-	_check = check
+static func create(rule: Ability, open := false, key := "") -> AbilityChoiceCard:
+	var card: AbilityChoiceCard = load("res://scenes/ui/cards/ability_choice_card.tscn").instantiate()
+	card._check = card.get_node(^"%Check")
+	card._fill(rule)
+	card._fill_choice(open, key)
+	return card
+
+
+func _fill_choice(open: bool, key: String) -> void:
 	make_foldable(open, key)
 	fold_button.pressed.connect(func() -> void: fold_toggled.emit(not folded))
 	selected = false
-	focus_mode = Control.FOCUS_ALL
-	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	_ignore_mouse(get_child(0))
+	UIBuilder.ignore_mouse(get_child(0), true)
 	mouse_entered.connect(_set_hovered.bind(true))
 	mouse_exited.connect(_set_hovered.bind(false))
 	focus_entered.connect(queue_redraw)
@@ -49,16 +51,6 @@ func add_header_control(control: Control) -> void:
 	super(control)
 	if _check:
 		_header.move_child(control, _check.get_index())
-
-
-## Lets clicks through to the card, except on buttons such as the chevron.
-static func _ignore_mouse(node: Node) -> void:
-	if node is BaseButton:
-		return
-	if node is Control:
-		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for child in node.get_children():
-		_ignore_mouse(child)
 
 
 func _gui_input(event: InputEvent) -> void:

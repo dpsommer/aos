@@ -1,0 +1,89 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/battle/pause_menu.gd" id="1_menu"]
+
+[node name="PauseMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.024, 0.031, 0.6)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+layout_mode = 2
+theme_type_variation = &"CardPanel"
+
+[node name="Buttons" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/Panel/Buttons"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Center/Panel/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+theme_type_variation = &"GoldButton"
+text = "Resume"
+metadata/focus_key = "resume"
+
+[node name="Settings" type="Button" parent="Center/Panel/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+text = "Settings"
+metadata/focus_key = "settings"
+
+[node name="Surrender" type="Button" parent="Center/Panel/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+theme_type_variation = &"DangerButton"
+text = "Surrender"
+metadata/focus_key = "surrender"
+
+[node name="SaveAndQuit" type="Button" parent="Center/Panel/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+text = "Save and Quit"
+metadata/focus_key = "save_and_quit"
+
+[node name="SurrenderDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Are you sure?"
+ok_button_text = "Surrender"
+dialog_text = "Surrendering will result in a loss."
+cancel_button_text = "Cancel"
+
+[connection signal="pressed" from="Center/Panel/Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Center/Panel/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Center/Panel/Buttons/Surrender" to="." method="confirm_surrender"]
+[connection signal="pressed" from="Center/Panel/Buttons/SaveAndQuit" to="." method="_on_save_and_quit_pressed"]
+[connection signal="confirmed" from="SurrenderDialog" to="." method="_on_surrender_confirmed"]
+[connection signal="canceled" from="SurrenderDialog" to="." method="_on_surrender_canceled"]

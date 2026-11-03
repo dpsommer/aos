@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[node name="TrayTile" type="Button"]
+custom_minimum_size = Vector2(110, 96)
+theme_type_variation = &"CardButton"
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+autowrap_mode = 3

@@ -155,13 +155,12 @@ func build_input() -> void:
 	var focus_key: String = focused.get_meta(&"focus_key", "") if focused and input.is_ancestor_of(focused) else ""
 	var note := _input_note.text if _input_note else ""
 	_clear(input)
-	var help := UIBuilder.label("Select a key to change it, then press the new key. Esc cancels.", "DescriptionLabel",
-			true)
-	var reset_all := UIBuilder.button("Reset all", reset_all_keys, "settings:reset_all", "GhostButton",
-			"Reset every key to its default")
+	var help: HBoxContainer = load("res://scenes/ui/settings/input_help.tscn").instantiate()
+	var reset_all: Button = help.get_node(^"%ResetAll")
+	reset_all.pressed.connect(reset_all_keys)
 	reset_all.disabled = Array(InputBindings.actions()).all(func(action: String) -> bool:
 		return InputBindings.is_default(action))
-	input.add_child(UIBuilder.hbox([help, reset_all], 16))
+	input.add_child(help)
 	_input_note = UIBuilder.label(note, "WarningLabel", true)
 	_input_note.visible = not note.is_empty()
 	input.add_child(_input_note)
@@ -178,43 +177,48 @@ func build_input() -> void:
 ## removes it, wrapping onto more lines as needed; and Add key and Reset, apart from the keys. Reset is
 ## disabled while the action has its default keys.
 func _action_row(action: String, action_name: String) -> PanelContainer:
-	var title := UIBuilder.label(action_name, "CardTitleLabel")
-	title.custom_minimum_size.x = 150
-	title.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var key_list := HFlowContainer.new()
-	key_list.add_theme_constant_override("h_separation", 8)
-	key_list.add_theme_constant_override("v_separation", 8)
-	key_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	key_list.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	var row: PanelContainer = load("res://scenes/ui/settings/action_row.tscn").instantiate()
+	(row.get_node(^"%Title") as Label).text = action_name
+	var key_list: HFlowContainer = row.get_node(^"%Keys")
 	for key in InputBindings.keys(action):
 		var key_name := InputBindings.key_name(key)
 		var code := InputBindings.key_code(key)
 		var listening := listening_action == action and _listening_key != null \
 				and InputBindings.key_code(_listening_key) == code
-		var change := UIBuilder.button("Press a key…" if listening else key_name, listen.bind(action, key),
-				"key:%s:%d" % [action, code], "KeyButton", "Change %s: %s" % [action_name, key_name])
+		var chip: PanelContainer = load("res://scenes/ui/settings/key_chip.tscn").instantiate()
+		if listening:
+			chip.theme_type_variation = "KeyChipListeningPanel"
+		var change: Button = chip.get_node(^"%Change")
+		change.text = "Press a key…" if listening else key_name
+		change.tooltip_text = "Change %s: %s" % [action_name, key_name]
 		change.accessibility_name = change.tooltip_text
-		change.custom_minimum_size.x = 80
-		var remove := UIBuilder.icon_button("close", "Remove %s from %s" % [key_name, action_name],
-				remove_key.bind(action, key), "remove:%s:%d" % [action, code], "SmallIconButton")
-		remove.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		key_list.add_child(UIBuilder.panel("KeyChipListeningPanel" if listening else "KeyChipPanel",
-				UIBuilder.hbox([change, remove], 2)))
+		change.set_meta(&"focus_key", "key:%s:%d" % [action, code])
+		change.pressed.connect(listen.bind(action, key))
+		var remove: Button = chip.get_node(^"%Remove")
+		remove.tooltip_text = "Remove %s from %s" % [key_name, action_name]
+		remove.accessibility_name = remove.tooltip_text
+		remove.set_meta(&"focus_key", "remove:%s:%d" % [action, code])
+		remove.pressed.connect(remove_key.bind(action, key))
+		key_list.add_child(chip)
 	if key_list.get_child_count() == 0:
 		key_list.add_child(UIBuilder.label("No keys", "MutedLabel"))
 	var adding := listening_action == action and _listening_key == null
-	var add := UIBuilder.button("Press a key…" if adding else "Add key", listen.bind(action, null), "add:" + action,
-			"GoldButton" if adding else "GhostButton", "Add a key for " + action_name)
-	add.accessibility_name = add.tooltip_text
+	var add: Button = row.get_node(^"%Add")
 	# Wide enough for "Press a key…", so the row doesn't shift while listening.
-	add.custom_minimum_size.x = 120
-	var reset := UIBuilder.button("Reset", reset_keys.bind(action), "reset:" + action, "GhostButton",
-			"Reset %s to its default keys" % action_name)
+	add.text = "Press a key…" if adding else "Add key"
+	if adding:
+		add.theme_type_variation = "GoldButton"
+	add.tooltip_text = "Add a key for " + action_name
+	add.accessibility_name = add.tooltip_text
+	add.set_meta(&"focus_key", "add:" + action)
+	add.pressed.connect(listen.bind(action, null))
+	var reset: Button = row.get_node(^"%Reset")
+	reset.tooltip_text = "Reset %s to its default keys" % action_name
 	reset.accessibility_name = reset.tooltip_text
+	reset.set_meta(&"focus_key", "reset:" + action)
+	reset.pressed.connect(reset_keys.bind(action))
 	reset.disabled = InputBindings.is_default(action)
-	var buttons := UIBuilder.hbox([add, reset], 8)
-	buttons.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	return UIBuilder.panel("RowPanel", UIBuilder.hbox([title, key_list, buttons], 16))
+	return row
 
 
 ## Waits for a key press to replace [param key] of [param action], or to add one if it's null.
@@ -299,12 +303,15 @@ func _setter(property: String, apply: Callable) -> Callable:
 ## [param apply], then [param rebuild] to show them. It's disabled while they're all defaults.
 func _reset_row(properties: PackedStringArray, key: String, tab_name: String, apply: Callable,
 		rebuild: Callable) -> HBoxContainer:
-	var button := UIBuilder.button("Reset all", reset_tab.bind(properties, apply, rebuild, "settings:reset_" + key),
-			"settings:reset_" + key, "GhostButton", "Reset every %s setting to its default" % tab_name)
+	var row: HBoxContainer = load("res://scenes/ui/settings/reset_row.tscn").instantiate()
+	var button: Button = row.get_node(^"%Reset")
+	button.pressed.connect(reset_tab.bind(properties, apply, rebuild, "settings:reset_" + key))
+	button.set_meta(&"focus_key", "settings:reset_" + key)
+	button.tooltip_text = "Reset every %s setting to its default" % tab_name
 	button.accessibility_name = button.tooltip_text
 	button.disabled = settings.is_default(properties)
 	_reset_buttons[button] = properties
-	return UIBuilder.hbox([UIBuilder.spacer(), button])
+	return row
 
 
 ## Puts [param properties] back to their defaults, applies and saves them with [param apply], and
@@ -339,18 +346,16 @@ func _switch(property: String, title: String, description: String, apply: Callab
 ## applies only when it ends, e.g. for a setting that resizes the slider itself.
 func _slider(property: String, title: String, min_value: float, max_value: float, step: float, format: Callable,
 		apply: Callable, note: String, on_release := false) -> PanelContainer:
-	var slider := HSlider.new()
+	var control: HBoxContainer = load("res://scenes/ui/settings/slider_control.tscn").instantiate()
+	var slider: HSlider = control.get_node(^"%Slider")
 	slider.min_value = min_value
 	slider.max_value = max_value
 	slider.step = step
 	slider.value = settings.get(property)
 	slider.accessibility_name = title
-	slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	slider.set_meta(&"focus_key", "settings:" + property)
-	var shown := UIBuilder.label(format.call(slider.value), "BodyLabel")
-	shown.custom_minimum_size.x = 140
-	shown.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	var shown: Label = control.get_node(^"%Value")
+	shown.text = format.call(slider.value)
 	var set_value := _setter(property, apply)
 	var dragging := [false]
 	slider.drag_started.connect(func() -> void: dragging[0] = true)
@@ -364,7 +369,7 @@ func _slider(property: String, title: String, min_value: float, max_value: float
 		if not (on_release and dragging[0]):
 			set_value.call(value))
 	slider.accessibility_description = shown.text
-	return UIBuilder.setting_row(title, UIBuilder.hbox([slider, shown], 16), note)
+	return UIBuilder.setting_row(title, control, note)
 
 
 ## Frees [param tab]'s rows, forgetting its Reset all button.

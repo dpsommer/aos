@@ -1,0 +1,67 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/forge/builder/regiment_panel.gd" id="1_panel"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/grip.svg" id="2_grip"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/chevron_down.svg" id="3_chevron"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/rename.svg" id="4_rename"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/delete.svg" id="5_delete"]
+
+[node name="RegimentPanel" type="PanelContainer"]
+theme_type_variation = &"RegimentPanel"
+script = ExtResource("1_panel")
+
+[node name="Content" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Grip" type="Button" parent="Content/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Reorder regiment: drag, or use the arrow keys"
+mouse_default_cursor_shape = 13
+theme_type_variation = &"GripButton"
+icon = ExtResource("2_grip")
+icon_alignment = 1
+accessibility_name = "Reorder regiment: drag, or use the arrow keys"
+
+[node name="Collapse" type="Button" parent="Content/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"IconButton"
+icon = ExtResource("3_chevron")
+icon_alignment = 1
+
+[node name="Title" type="Label" parent="Content/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SectionLabel"
+
+[node name="Points" type="Label" parent="Content/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+
+[node name="Rename" type="Button" parent="Content/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Rename regiment"
+theme_type_variation = &"IconButton"
+icon = ExtResource("4_rename")
+icon_alignment = 1
+accessibility_name = "Rename regiment"
+
+[node name="Delete" type="Button" parent="Content/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Delete regiment"
+theme_type_variation = &"DangerIconButton"
+icon = ExtResource("5_delete")
+icon_alignment = 1
+accessibility_name = "Delete regiment"

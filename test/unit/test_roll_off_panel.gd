@@ -29,7 +29,7 @@ func _lost() -> RollOff:
 
 
 func _panel(rolled: RollOff, ai_attacks := true, battle: Battle = null) -> RollOffPanel:
-	var panel := RollOffPanel.new(battle if battle else BattleKit.battle(), rolled, ai_attacks)
+	var panel := RollOffPanel.create(battle if battle else BattleKit.battle(), rolled, ai_attacks)
 	add_child_autofree(panel)
 	return panel
 
@@ -187,7 +187,7 @@ func _laid_out_panel(battle: Battle) -> RollOffPanel:
 	screen.custom_minimum_size = GameSettings.MIN_UI_SIZE
 	screen.size = GameSettings.MIN_UI_SIZE
 	add_child_autofree(screen)
-	var panel := RollOffPanel.new(battle, _won(), true)
+	var panel := RollOffPanel.create(battle, _won(), true)
 	panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 	screen.add_child(panel)
 	panel.finish()

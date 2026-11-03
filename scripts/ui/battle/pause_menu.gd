@@ -11,7 +11,6 @@ signal save_and_quit_pressed
 
 ## How long the dimming fades in or out, in seconds.
 const FADE_SECONDS := 0.2
-const DIM := Color(0.02, 0.024, 0.031, 0.6)
 
 var resume_button: Button
 var settings_button: Button
@@ -21,47 +20,42 @@ var save_and_quit_button: Button
 var _fade: Tween
 
 
+static func create() -> PauseMenu:
+	return load("res://scenes/ui/battle/pause_menu.tscn").instantiate()
+
+
 func _init() -> void:
-	name = "PauseMenu"
 	theme = UITheme.get_theme()
-	set_anchors_preset(Control.PRESET_FULL_RECT)
-	mouse_filter = Control.MOUSE_FILTER_STOP
-	var dim := ColorRect.new()
-	dim.name = "Dim"
-	dim.color = DIM
-	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
-	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(dim)
-	resume_button = UIBuilder.button("Resume", resume_pressed.emit, "resume", "GoldButton")
-	settings_button = UIBuilder.button("Settings", settings_pressed.emit, "settings")
-	surrender_button = UIBuilder.button("Surrender", confirm_surrender, "surrender", "DangerButton")
-	save_and_quit_button = UIBuilder.button("Save and Quit", save_and_quit_pressed.emit, "save_and_quit")
-	var buttons: Array[Button] = [resume_button, settings_button, surrender_button, save_and_quit_button]
-	for button in buttons:
-		button.custom_minimum_size = Vector2(260, 44)
-	var title := UIBuilder.label("Menu", "SectionLabel")
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var panel := UIBuilder.panel("CardPanel", UIBuilder.vbox([title] + buttons, 12))
-	panel.name = "Panel"
-	var center := CenterContainer.new()
-	center.set_anchors_preset(Control.PRESET_FULL_RECT)
-	center.add_child(panel)
-	add_child(center)
-	_build_surrender_dialog()
-	hide()
 
 
-func _build_surrender_dialog() -> void:
-	surrender_dialog = ConfirmationDialog.new()
-	surrender_dialog.name = "SurrenderDialog"
-	surrender_dialog.title = "Are you sure?"
-	surrender_dialog.dialog_text = "Surrendering will result in a loss."
-	surrender_dialog.ok_button_text = "Surrender"
-	surrender_dialog.cancel_button_text = "Cancel"
-	UITheme.style_dialog(surrender_dialog, "DialogDangerButton")
-	surrender_dialog.confirmed.connect(surrender_pressed.emit)
-	surrender_dialog.canceled.connect(surrender_button.grab_focus)
-	add_child(surrender_dialog)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_SCENE_INSTANTIATED:
+		resume_button = %Resume
+		settings_button = %Settings
+		surrender_button = %Surrender
+		save_and_quit_button = %SaveAndQuit
+		surrender_dialog = %SurrenderDialog
+		UITheme.style_dialog(surrender_dialog, "DialogDangerButton")
+
+
+func _on_resume_pressed() -> void:
+	resume_pressed.emit()
+
+
+func _on_settings_pressed() -> void:
+	settings_pressed.emit()
+
+
+func _on_save_and_quit_pressed() -> void:
+	save_and_quit_pressed.emit()
+
+
+func _on_surrender_confirmed() -> void:
+	surrender_pressed.emit()
+
+
+func _on_surrender_canceled() -> void:
+	surrender_button.grab_focus()
 
 
 ## Asks the player to confirm surrendering, with Cancel focused so a stray Enter doesn't surrender.

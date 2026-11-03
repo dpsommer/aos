@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[node name="PortraitGroup" type="PanelContainer"]
+theme_type_variation = &"RegimentPanel"
+
+[node name="Stack" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Stack"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+
+[node name="Meta" type="Label" parent="Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"MutedLabel"
+
+[node name="Portraits" type="HFlowContainer" parent="Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14

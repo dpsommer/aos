@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/cards/ability_card.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scripts/ui/cards/ability_choice_card.gd" id="2_card"]
+[ext_resource type="PackedScene" path="res://scenes/ui/common/check_badge.tscn" id="3_check"]
+
+[node name="AbilityChoiceCard" instance=ExtResource("1_base")]
+focus_mode = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("2_card")
+
+[node name="Check" parent="Layout/HeaderMargin/Header" index="2" instance=ExtResource("3_check")]
+unique_name_in_owner = true
+size_flags_vertical = 4

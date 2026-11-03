@@ -14,6 +14,7 @@ The project is at an early stage. The main scene is `scenes/main.tscn` (`Main`),
 
 - `docs/technical/`: engineering docs.
   - `layout.md`: folder structure. GDScript goes in `scripts/`, scenes in `scenes/`, assets in `assets/{2d,3d,audio,shaders}`. `addons/gut/` is vendored third-party code, so don't edit it.
+  - `ui-scenes.md`: always prefer creating a Godot scene to building visible elements (modals, menus, cards, HUDs) in code, and how the project's UI scenes are written.
   - `testing.md`: test layout, how to run tests headless, and the testing rules. Follow it when writing tests.
   - `rules-reference.md`: the official rules PDFs and how to use them.
   - `faction-data.md`: faction JSON format in `data/factions/`, sources (BSData first, Wahapedia for gaps), and how to add a faction with `tools/faction_import/`.

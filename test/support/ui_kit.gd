@@ -79,16 +79,30 @@ static func keyed(node: Node, key: String) -> Control:
 	return found[0] if not found.is_empty() else null
 
 
+## Like [method find_all], but only nodes that are shown: hidden controls, and everything under them,
+## are skipped, as scenes keep their optional parts hidden until there is something to show.
+static func find_shown(node: Node, matches: Callable) -> Array[Node]:
+	var result: Array[Node] = []
+	for child in node.get_children():
+		if child is CanvasItem and not child.visible:
+			continue
+		if matches.call(child):
+			result.append(child)
+		result.append_array(find_shown(child, matches))
+	return result
+
+
+## The text of every shown label under [param node].
 static func label_texts(node: Node) -> PackedStringArray:
 	var result := PackedStringArray()
-	for found in find_all(node, func(n: Node) -> bool: return n is Label):
+	for found in find_shown(node, func(n: Node) -> bool: return n is Label):
 		result.append((found as Label).text)
 	return result
 
 
 static func labels_with_variation(node: Node, variation: String) -> Array[Label]:
 	var result: Array[Label] = []
-	for found in find_all(node, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation):
+	for found in find_shown(node, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation):
 		result.append(found)
 	return result
 

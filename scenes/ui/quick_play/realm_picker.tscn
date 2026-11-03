@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/quick_play/realm_picker.gd" id="1_picker"]
+
+[node name="RealmPicker" type="VBoxContainer"]
+theme_override_constants/separation = 8
+script = ExtResource("1_picker")

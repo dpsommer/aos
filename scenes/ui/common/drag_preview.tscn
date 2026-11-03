@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[node name="DragPreview" type="PanelContainer"]
+theme_type_variation = &"RowPanel"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2

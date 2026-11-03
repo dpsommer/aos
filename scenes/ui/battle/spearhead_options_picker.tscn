@@ -1,0 +1,106 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/battle/spearhead_options_picker.gd" id="1_picker"]
+
+[node name="SpearheadOptionsPicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_picker")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.047, 0.051, 0.063, 0.72)
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="Center" type="CenterContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Column" type="VBoxContainer" parent="Scroll/Center"]
+custom_minimum_size = Vector2(840, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Scroll/Center/Column"]
+custom_minimum_size = Vector2(840, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"DisplayTitleLabel"
+text = "Pick your regiment ability and enhancement"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Subtitle" type="Label" parent="Scroll/Center/Column"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"DescriptionLabel"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Card" type="PanelContainer" parent="Scroll/Center/Column"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"CardPanel"
+
+[node name="Stack" type="VBoxContainer" parent="Scroll/Center/Column/Card"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Columns" type="HBoxContainer" parent="Scroll/Center/Column/Card/Stack"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Regiment" type="VBoxContainer" parent="Scroll/Center/Column/Card/Stack/Columns"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+accessibility_name = "Regiment ability"
+
+[node name="Heading" type="Label" parent="Scroll/Center/Column/Card/Stack/Columns/Regiment"]
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+text = "REGIMENT ABILITY"
+
+[node name="Enhancement" type="VBoxContainer" parent="Scroll/Center/Column/Card/Stack/Columns"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Heading" type="Label" parent="Scroll/Center/Column/Card/Stack/Columns/Enhancement"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+text = "ENHANCEMENT"
+
+[node name="Confirm" type="Button" parent="Scroll/Center/Column/Card/Stack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"GoldButton"
+text = "Confirm"
+metadata/focus_key = "confirm"
+
+[connection signal="pressed" from="Scroll/Center/Column/Card/Stack/Confirm" to="." method="_confirm"]

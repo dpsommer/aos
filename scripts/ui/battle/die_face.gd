@@ -21,12 +21,12 @@ var value := 1:
 	set(to):
 		value = clampi(to, 1, 6)
 		queue_redraw()
-var pip_colour := Color("#24527E")
+@export var pip_colour := Color("#24527E")
 var tumbling := false
 var _since_change := 0.0
 
 
-func _init(size_px: float, colour: Color) -> void:
+func _init(size_px := 100.0, colour := Color("#24527E")) -> void:
 	pip_colour = colour
 	custom_minimum_size = Vector2(size_px, size_px)
 	pivot_offset = Vector2(size_px, size_px) / 2

@@ -19,7 +19,7 @@ func after_each() -> void:
 
 func _panel(army: Army, regiment_id := "r1") -> Array:
 	var builder := UIKit.builder(self, army)
-	var panel := RegimentPanel.new(builder, army.find_regiment(regiment_id))
+	var panel := RegimentPanel.create(builder, army.find_regiment(regiment_id))
 	add_child_autofree(panel)
 	return [panel, builder]
 
@@ -43,7 +43,7 @@ func test_collapsed_regiment_shows_no_units() -> void:
 	var army := UIKit.army_with_regiment(PackedStringArray(["grunt"]))
 	var builder := UIKit.builder(self, army)
 	builder.collapsed["r1"] = true
-	var panel := RegimentPanel.new(builder, army.regiments[0])
+	var panel := RegimentPanel.create(builder, army.regiments[0])
 	add_child_autofree(panel)
 	assert_eq(_unit_rows(panel).size(), 0)
 	assert_null(UIKit.keyed(panel, "r1:add"))
@@ -113,7 +113,7 @@ func test_renaming_regiment_shows_a_name_field() -> void:
 	var army := UIKit.army_with_regiment()
 	var builder := UIKit.builder(self, army)
 	builder.renaming = "r1"
-	var panel := RegimentPanel.new(builder, army.regiments[0])
+	var panel := RegimentPanel.create(builder, army.regiments[0])
 	add_child_autofree(panel)
 	assert_true(UIKit.keyed(panel, "r1:name") is LineEdit)
 

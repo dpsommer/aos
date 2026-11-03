@@ -23,7 +23,7 @@ func after_each() -> void:
 
 func _hud(state := {}) -> DeploymentHud:
 	_d.start()
-	var hud := DeploymentHud.new(_d, _me)
+	var hud := DeploymentHud.create(_d, _me)
 	add_child_autofree(hud)
 	hud.refresh(state)
 	return hud

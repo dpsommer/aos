@@ -32,7 +32,7 @@ func _pack() -> Battlepack:
 
 
 func _picker(chosen := "") -> BattleplanPicker:
-	var picker := BattleplanPicker.new(_pack(), chosen)
+	var picker := BattleplanPicker.create(_pack(), chosen)
 	add_child_autofree(picker)
 	watch_signals(picker)
 	return picker

@@ -8,17 +8,21 @@ var regiment: ArmyRegiment
 var warscroll: Warscroll
 
 
-func _init(army_builder: ArmyBuilder, army_unit: ArmyUnit, army_regiment: ArmyRegiment) -> void:
+static func create(army_builder: ArmyBuilder, army_unit: ArmyUnit, army_regiment: ArmyRegiment) -> UnitRow:
+	var row: UnitRow = load("res://scenes/ui/forge/builder/unit_row.tscn").instantiate()
+	row._fill(army_builder, army_unit, army_regiment)
+	return row
+
+
+func _fill(army_builder: ArmyBuilder, army_unit: ArmyUnit, army_regiment: ArmyRegiment) -> void:
 	builder = army_builder
 	unit = army_unit
 	regiment = army_regiment
 	warscroll = builder.catalog.warscroll(unit, regiment)
-	theme_type_variation = "RowPanel"
 	set_meta(&"uid", unit.uid)
-	var content := UIBuilder.vbox([_summary()], 8)
+	_fill_summary()
 	if builder.expanded.has(unit.uid) and has_options():
-		content.add_child(_options())
-	add_child(content)
+		%Content.add_child(_options())
 	if not _in_renown():
 		BuilderDragDrop.pass_mouse(self)
 
@@ -115,38 +119,36 @@ func _on_grip_input(event: InputEvent, grip: Button) -> void:
 		builder.editor.move_unit(unit.uid, regiment.id if regiment else "", to + (1 if step > 0 else 0))
 
 
-func _summary() -> HBoxContainer:
+## Fills in the unit's line from the scene's controls, removing those it doesn't have.
+func _fill_summary() -> void:
 	var editor := builder.editor
 	var army := editor.army
 	var renown := _in_renown()
 	var title := warscroll.name if warscroll else unit.warscroll_id
 	var shown := unit.label if not unit.label.is_empty() else title
 	var key := unit.uid + ":"
-	var name_line: Control
+	var names: VBoxContainer = %Names
 	if builder.renaming == unit.uid:
-		name_line = _name_edit()
+		%NameLine.free()
+		var edit := _name_edit()
+		names.add_child(edit)
+		names.move_child(edit, 0)
 	else:
-		var heading := UIBuilder.label(shown)
-		heading.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		var heading: Label = %Heading
+		heading.text = shown
 		heading.tooltip_text = shown
-		heading.mouse_filter = Control.MOUSE_FILTER_PASS
-		name_line = InlineLine.new()
-		name_line.add_child(heading)
-		if not renown:
-			name_line.add_child(UIBuilder.icon_button("rename", "Rename unit", builder.start_renaming.bind(unit.uid),
-					key + "rename", "SmallIconButton"))
-	var detail := UIBuilder.label(subtext(unit, regiment, army, warscroll), "MutedLabel")
-	detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		var rename: Button = %Rename
+		if renown:
+			rename.free()
+		else:
+			_key(rename, key + "rename")
+			rename.pressed.connect(builder.start_renaming.bind(unit.uid))
+	var detail: Label = %Detail
+	detail.text = subtext(unit, regiment, army, warscroll)
 	detail.tooltip_text = detail.text
-	detail.mouse_filter = Control.MOUSE_FILTER_PASS
-	var sub := InlineLine.new(6)
-	sub.add_child(detail)
 	if warscroll:
 		for tag in UIBuilder.tags(warscroll):
-			sub.add_child(tag)
-	var names := UIBuilder.vbox([name_line, sub], 2)
-	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			%SubLine.add_child(tag)
 
 	var portrait: Control
 	if renown:
@@ -156,71 +158,95 @@ func _summary() -> HBoxContainer:
 		portrait = UIBuilder.portrait(title, builder.info_pane.show_unit.bind(warscroll), "Show %s in the Roster" % warscroll.name)
 	else:
 		portrait = UIBuilder.portrait(title)
-	var row := UIBuilder.hbox([portrait, names], 10)
+	var row: HBoxContainer = %Summary
+	row.add_child(portrait)
+	row.move_child(portrait, names.get_index())
 	# The General's crown takes the grip's place on the left, so a Hero leader lines up with the
 	# grips of the units below it.
+	var crown: Button = %Crown
 	if regiment and regiment.leader() == unit:
 		var general := unit.uid == army.general_uid
-		var crown := UIBuilder.icon_toggle("crown", "Remove as general" if general else "Make general", general,
-				func(_on: bool) -> void: editor.set_general(unit.uid), key + "general")
-		row.add_child(crown)
+		crown.button_pressed = general
+		crown.tooltip_text = "Remove as general" if general else "Make general"
+		crown.accessibility_name = crown.tooltip_text
+		_key(crown, key + "general")
+		crown.toggled.connect(func(_on: bool) -> void: editor.set_general(unit.uid))
+		# Before the grip, as the crown went to the front first.
 		row.move_child(crown, 0)
+	else:
+		crown.free()
+	var grip: Button = %Grip
+	var gap: Control = %Gap
 	if movable():
-		var grip := UIBuilder.icon_button("grip", "Reorder unit: drag, or use the arrow keys", func() -> void: pass,
-				key + "grip", "GripButton")
-		grip.mouse_default_cursor_shape = Control.CURSOR_MOVE
+		_key(grip, key + "grip")
 		grip.gui_input.connect(_on_grip_input.bind(grip))
 		builder.drag.source(grip, {"kind": "unit", "uid": unit.uid}, shown, self)
-		row.add_child(grip)
 		row.move_child(grip, 0)
+		gap.free()
 	elif renown:
 		# Regiment of Renown units can't be reordered, so a gap the width of a grip (a square icon
 		# button) lines them up with the units of other regiments.
-		var gap := Control.new()
 		gap.custom_minimum_size.x = UITheme.icon_button_width("GripButton")
-		row.add_child(gap)
 		row.move_child(gap, 0)
-	if not renown:
-		row.add_child(_points())
+		grip.free()
+	else:
+		grip.free()
+		gap.free()
+	if renown:
+		%Points.free()
+	else:
+		_fill_points()
+	var reinforce: Button = %Reinforce
 	if warscroll and warscroll.can_reinforce and not renown:
-		row.add_child(UIBuilder.icon_toggle("reinforce", "Unreinforce unit" if unit.reinforced else "Reinforce unit",
-				unit.reinforced, func(on: bool) -> void: editor.set_reinforced(unit.uid, on), key + "reinforce"))
+		reinforce.button_pressed = unit.reinforced
+		reinforce.tooltip_text = "Unreinforce unit" if unit.reinforced else "Reinforce unit"
+		reinforce.accessibility_name = reinforce.tooltip_text
+		_key(reinforce, key + "reinforce")
+		reinforce.toggled.connect(func(on: bool) -> void: editor.set_reinforced(unit.uid, on))
+	else:
+		reinforce.free()
+	var options: Button = %Options
 	if warscroll and not renown:
-		var options := UIBuilder.icon_toggle("options", "Unit options", builder.expanded.has(unit.uid) and has_options(),
-				func(_on: bool) -> void: builder.toggle_expanded(unit.uid), key + "options")
+		options.button_pressed = builder.expanded.has(unit.uid) and has_options()
+		_key(options, key + "options")
+		options.toggled.connect(func(_on: bool) -> void: builder.toggle_expanded(unit.uid))
 		if not has_options():
 			options.disabled = true
 			options.tooltip_text = "This unit has no options"
-		row.add_child(options)
-	if not renown:
-		row.add_child(UIBuilder.icon_button("copy", "Duplicate unit", func() -> void: editor.duplicate_unit(unit.uid), key + "copy"))
-		row.add_child(UIBuilder.icon_button("delete", "Remove unit", func() -> void: editor.remove_unit(unit.uid), key + "remove",
-				"DangerIconButton"))
-	return row
+	else:
+		options.free()
+	var copy: Button = %Copy
+	var remove: Button = %Remove
+	if renown:
+		copy.free()
+		remove.free()
+	else:
+		_key(copy, key + "copy")
+		copy.pressed.connect(func() -> void: editor.duplicate_unit(unit.uid))
+		_key(remove, key + "remove")
+		remove.pressed.connect(func() -> void: editor.remove_unit(unit.uid))
+
+
+static func _key(control: Control, key: String) -> void:
+	control.set_meta(&"focus_key", key)
 
 
 ## The unit's points, followed by a tag with any points its enhancements add, e.g. "150 pts +20".
-func _points() -> HBoxContainer:
+func _fill_points() -> void:
 	var army := builder.editor.army
 	var extra := ArmyPoints.enhancement_points(unit, regiment, army, builder.catalog)
 	var base := ArmyPoints.unit_points(unit, regiment, army, builder.catalog) - extra
-	var box := UIBuilder.hbox([UIBuilder.label("%d pts" % base, "MutedLabel")], 6)
+	(%BasePoints as Label).text = "%d pts" % base
+	var box: HBoxContainer = %Points
 	if extra > 0:
-		var tag := UITheme.chip("+%d" % extra, "gold")
-		var label := tag.get_child(0)
-		tag.remove_child(label)
-		var icon := TextureRect.new()
-		icon.texture = UITheme.icon("aos/white/treasure/realmstone")
-		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		icon.custom_minimum_size = Vector2(15, 15)
-		icon.modulate = UITheme.WARNING
-		tag.add_child(UIBuilder.hbox([label, icon], 4))
+		var tag: PanelContainer = load("res://scenes/ui/forge/builder/enhancement_points_tag.tscn").instantiate()
+		tag.add_theme_stylebox_override("panel", UITheme.chip_style("gold"))
+		var label: Label = tag.get_node(^"%Label")
+		label.text = "+%d" % extra
+		label.add_theme_color_override("font_color", UITheme.chip_text_colour("gold"))
 		tag.tooltip_text = "+%d points from enhancements" % extra
-		tag.mouse_filter = Control.MOUSE_FILTER_PASS
 		tag.set_meta(&"enhancement_points", extra)
 		box.add_child(tag)
-	return box
 
 
 ## The field that replaces the unit's name while it's renamed. A blank name goes back to the
@@ -270,7 +296,8 @@ func _options() -> VBoxContainer:
 		box.add_child(section)
 
 	for option in warscroll.weapon_options:
-		var spin := SpinBox.new()
+		var option_row: HBoxContainer = load("res://scenes/ui/forge/builder/weapon_option_row.tscn").instantiate()
+		var spin: SpinBox = option_row.get_node(^"%Count")
 		spin.max_value = WeaponOptions.cap(option, warscroll, unit.reinforced)
 		spin.value = WeaponOptions.value(unit, option, warscroll)
 		spin.tooltip_text = "Models with a %s" % option.name
@@ -280,9 +307,9 @@ func _options() -> VBoxContainer:
 				else "Replaces %s · %d per %d models" % [option.replaces, option.max, option.per]
 		if not option.note.is_empty():
 			note += " · " + option.note
-		var text := UIBuilder.vbox([UIBuilder.label(option.name), UIBuilder.label(note, "MutedLabel", true)], 2)
-		text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		box.add_child(UIBuilder.hbox([text, spin]))
+		(option_row.get_node(^"%Name") as Label).text = option.name
+		(option_row.get_node(^"%Note") as Label).text = note
+		box.add_child(option_row)
 	return box
 
 
@@ -292,7 +319,7 @@ func _options() -> VBoxContainer:
 func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, picked: bool) -> AbilityChoiceCard:
 	var key := "%s:enh:%s:%s" % [unit.uid, type, entry.name]
 	var fold_key := key + ":fold"
-	var card := AbilityChoiceCard.new(entry, builder.expanded.has(fold_key), fold_key)
+	var card := AbilityChoiceCard.create(entry, builder.expanded.has(fold_key), fold_key)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.set_meta(&"focus_key", key)
 	card.set_meta(&"enhancement", entry.name)
@@ -313,44 +340,3 @@ func _enhancement_card(type: String, table: EnhancementTable, entry: Ability, pi
 	card.pressed.connect(func() -> void:
 		builder.editor.set_enhancement(unit.uid, type, "" if picked else entry.name))
 	return card
-
-
-## A label with controls right after its text, such as a unit's name and its rename button, or
-## its details and their tags. The label is cut short with an ellipsis when there isn't room for
-## all of them.
-class InlineLine extends Container:
-	var separation: int
-
-	func _init(gap := 4) -> void:
-		separation = gap
-
-	func _get_minimum_size() -> Vector2:
-		var result := Vector2.ZERO
-		for child: Control in get_children():
-			result.y = maxf(result.y, child.get_combined_minimum_size().y)
-		for child in _trailing():
-			result.x += child.get_combined_minimum_size().x + separation
-		return result
-
-	func _notification(what: int) -> void:
-		if what != NOTIFICATION_SORT_CHILDREN:
-			return
-		var heading := get_child(0) as Label
-		var room := size.x
-		for child in _trailing():
-			room -= child.get_combined_minimum_size().x + separation
-		var text_width := heading.get_theme_font("font").get_string_size(heading.text, HORIZONTAL_ALIGNMENT_LEFT, -1,
-				heading.get_theme_font_size("font_size")).x + 1
-		var x := clampf(text_width, 0, maxf(room, 0))
-		fit_child_in_rect(heading, Rect2(0, 0, x, size.y))
-		for child in _trailing():
-			var child_size := child.get_combined_minimum_size()
-			x += separation
-			fit_child_in_rect(child, Rect2(x, (size.y - child_size.y) / 2, child_size.x, child_size.y))
-			x += child_size.x
-
-	func _trailing() -> Array[Control]:
-		var result: Array[Control] = []
-		for child in get_children().slice(1):
-			result.append(child as Control)
-		return result

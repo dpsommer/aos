@@ -38,7 +38,8 @@ func _init(army_builder: ArmyBuilder) -> void:
 ## [param label], and [param lift] (or the control) is dimmed while dragging.
 func source(control: Control, payload: Dictionary, label: String, lift: Control = null) -> void:
 	var begin := func(_at: Vector2) -> Variant:
-		var preview := UIBuilder.panel("RowPanel", UIBuilder.label(label))
+		var preview: PanelContainer = load("res://scenes/ui/common/drag_preview.tscn").instantiate()
+		(preview.get_node(^"%Label") as Label).text = label
 		preview.theme = UITheme.get_theme()
 		builder.set_drag_preview(preview)
 		lifted = lift if lift else control

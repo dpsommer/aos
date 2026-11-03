@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[node name="PointsStepper" type="HBoxContainer"]
+
+[node name="Down" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "−"
+metadata/focus_key = "info:points_down"
+
+[node name="Points" type="SpinBox" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+max_value = 100000.0
+step = 50.0
+alignment = 1
+accessibility_name = "Points limit"
+metadata/focus_key = "info:points"
+
+[node name="Up" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "+"
+metadata/focus_key = "info:points_up"

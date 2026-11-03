@@ -18,10 +18,15 @@ var cards := {}
 var _open := {}
 
 
-func _init(packs: Array[SpearheadBattlepack], chosen := "") -> void:
+static func create(packs: Array[SpearheadBattlepack], chosen := "") -> RealmPicker:
+	var picker: RealmPicker = load("res://scenes/ui/quick_play/realm_picker.tscn").instantiate()
+	picker._fill(packs, chosen)
+	return picker
+
+
+func _fill(packs: Array[SpearheadBattlepack], chosen: String) -> void:
 	battlepacks = packs
 	selected = chosen
-	add_theme_constant_override("separation", 8)
 	cards[""] = _random_card()
 	add_child(cards[""])
 	for pack in battlepacks:
@@ -43,47 +48,28 @@ static func battlepack_of(packs: Array[SpearheadBattlepack], realm: String) -> S
 
 
 func _random_card() -> PressableCard:
-	var card := _card("Random", "")
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 36, 6)
-	art.get_child(0).modulate = UITheme.TEXT
-	art.custom_minimum_size = Vector2(96, 70)
-	var text := UIBuilder.vbox([UIBuilder.label("Random", "TitleLabel"),
-			UIBuilder.label("One of the %d realm battlefields below, picked when the battle starts." % battlepacks.size(), "MutedLabel", true)], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var row := UIBuilder.hbox([art, text], 12)
-	if selected.is_empty():
-		row.add_child(BattleplanPicker.check_mark())
-	card.add_child(row)
-	card.make_pressable("Pick a realm battlefield at random when the battle starts")
+	var card := BattleplanPicker.random_card(
+			"One of the %d realm battlefields below, picked when the battle starts." % battlepacks.size(),
+			selected.is_empty(), "Pick a realm battlefield at random when the battle starts")
+	_set_up_card(card, "Random", "")
 	return card
 
 
 ## [param pack]'s card, in brief or, if it's open, in full.
 func _pack_card(pack: SpearheadBattlepack) -> PressableCard:
 	var full: bool = _open.has(pack.name)
-	var card := _card(pack.name, pack.name)
 	var sides := PackedStringArray()
 	var maps := UIBuilder.hbox([], 6)
 	for realm in pack.realms:
 		sides.append(realm.name)
 		maps.add_child(RealmMap.new(pack, realm))
-	var text := UIBuilder.vbox([UIBuilder.label(pack.name, "TitleLabel", true),
-			UIBuilder.label("Sides: %s · the defender picks one" % " or ".join(sides), "MutedLabel", true)], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var row := UIBuilder.hbox([maps, text], 12)
-	if selected == pack.name:
-		row.add_child(BattleplanPicker.check_mark())
-	var eye := UIBuilder.icon_toggle("eye", ("Hide " if full else "Show ") + pack.name + " rules", full,
-			func(_on: bool) -> void: pass, "pack:" + pack.name)
-	eye.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	row.add_child(eye)
-	var content := UIBuilder.vbox([row], 12)
+	var card := BattleplanPicker.choice_card(maps, pack.name, "Sides: %s · the defender picks one" % " or ".join(sides),
+			selected == pack.name, full, "pack:" + pack.name)
+	_set_up_card(card, pack.name, pack.name)
 	if full:
-		_add_details(content, pack)
-	card.add_child(content)
+		_add_details(card.get_node(^"%Stack"), pack)
 	card.make_pressable("Choose %s" % pack.name)
-	card.set_meta(&"eye", eye)
-	eye.toggled.connect(_on_eye_toggled.bind(pack))
+	(card.get_meta(&"eye") as Button).toggled.connect(_on_eye_toggled.bind(pack))
 	return card
 
 
@@ -116,7 +102,7 @@ func _add_side(content: VBoxContainer, pack: SpearheadBattlepack, realm: RealmBa
 	for relic_name in realm.starting_relics:
 		var relic := pack.get_relic(relic_name)
 		if relic:
-			content.add_child(AbilityCard.new(relic))
+			content.add_child(AbilityCard.create(relic))
 	if not realm.twists.is_empty():
 		content.add_child(_twists(realm))
 
@@ -126,8 +112,7 @@ static func _deployment_maps(pack: SpearheadBattlepack, realm: RealmBattlefield)
 	var title := _heading("Deployment maps")
 	var maps := UIBuilder.hbox([], 16)
 	for deployment in pack.deployment_maps:
-		maps.add_child(UIBuilder.vbox([RealmMap.new(pack, realm, false, deployment),
-				UIBuilder.label(deployment.name, "MutedLabel")], 4))
+		maps.add_child(captioned_map(RealmMap.new(pack, realm, false, deployment), deployment.name))
 	return UIBuilder.vbox([title, maps,
 			UIBuilder.label("The defender picks the side, a map and which territory is theirs.", "MutedLabel", true)], 6)
 
@@ -140,19 +125,27 @@ static func _twists(realm: RealmBattlefield) -> VBoxContainer:
 		var lines := PackedStringArray([twist.text])
 		for option in twist.options:
 			lines.append("• %s: %s" % [option.name, option.text])
-		box.add_child(UIBuilder.vbox([UIBuilder.label(twist.name, "AbilityNameLabel", true),
-				UIBuilder.label("\n".join(lines), "BodyLabel", true)], 2))
+		var entry: VBoxContainer = load("res://scenes/ui/quick_play/twist_entry.tscn").instantiate()
+		(entry.get_node(^"%Name") as Label).text = twist.name
+		(entry.get_node(^"%Text") as Label).text = "\n".join(lines)
+		box.add_child(entry)
 	return box
 
 
-func _card(card_name: String, pack_name: String) -> PressableCard:
-	var card := PressableCard.new()
+## [param map] over [param caption].
+static func captioned_map(map: Control, caption: String) -> VBoxContainer:
+	var box: VBoxContainer = load("res://scenes/ui/quick_play/captioned_map.tscn").instantiate()
+	(box.get_node(^"%Caption") as Label).text = caption
+	box.add_child(map)
+	box.move_child(map, 0)
+	return box
+
+
+func _set_up_card(card: PressableCard, card_name: String, pack_name: String) -> void:
 	card.card_name = card_name
-	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	if pack_name == selected:
 		card.theme_type_variation = "PickedCardPanel"
 	card.pressed.connect(_pick.bind(pack_name))
-	return card
 
 
 func _pick(pack_name: String) -> void:

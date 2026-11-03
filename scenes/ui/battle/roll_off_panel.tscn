@@ -1,0 +1,165 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/battle/roll_off_panel.gd" id="1_panel"]
+[ext_resource type="Script" path="res://scripts/ui/battle/die_face.gd" id="2_die"]
+
+[node name="RollOffPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_panel")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.047, 0.051, 0.063, 0.72)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Column" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Title" type="Label" parent="Center/Column"]
+layout_mode = 2
+theme_type_variation = &"DisplayTitleLabel"
+text = "Roll-off"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/Column"]
+layout_mode = 2
+theme_type_variation = &"DescriptionLabel"
+text = "The winner picks who is the attacker. The attacker deploys first."
+horizontal_alignment = 1
+
+[node name="Dice" type="HBoxContainer" parent="Center/Column"]
+layout_mode = 2
+theme_override_constants/separation = 160
+alignment = 1
+
+[node name="PlayerColumn" type="VBoxContainer" parent="Center/Column/Dice"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Holder" type="CenterContainer" parent="Center/Column/Dice/PlayerColumn"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+
+[node name="PlayerDie" type="Control" parent="Center/Column/Dice/PlayerColumn/Holder"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+mouse_filter = 2
+pivot_offset = Vector2(70, 70)
+script = ExtResource("2_die")
+pip_colour = Color(0.1412, 0.3216, 0.4941, 1)
+
+[node name="Who" type="Label" parent="Center/Column/Dice/PlayerColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498, 0.6627, 0.8392, 1)
+theme_override_font_sizes/font_size = 12
+text = "YOU"
+horizontal_alignment = 1
+
+[node name="PlayerValue" type="Label" parent="Center/Column/Dice/PlayerColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_type_variation = &"DisplayTitleLabel"
+horizontal_alignment = 1
+
+[node name="OpponentColumn" type="VBoxContainer" parent="Center/Column/Dice"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Holder" type="CenterContainer" parent="Center/Column/Dice/OpponentColumn"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+
+[node name="OpponentDie" type="Control" parent="Center/Column/Dice/OpponentColumn/Holder"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+mouse_filter = 2
+pivot_offset = Vector2(55, 55)
+script = ExtResource("2_die")
+pip_colour = Color(0.549, 0.1647, 0.1412, 1)
+
+[node name="Who" type="Label" parent="Center/Column/Dice/OpponentColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898, 0.5412, 0.502, 1)
+theme_override_font_sizes/font_size = 12
+text = "OPPONENT"
+horizontal_alignment = 1
+
+[node name="OpponentValue" type="Label" parent="Center/Column/Dice/OpponentColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_type_variation = &"DisplayTitleLabel"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="Center/Column"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"DescriptionLabel"
+horizontal_alignment = 1
+
+[node name="Result" type="PanelContainer" parent="Center/Column"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"CardPanel"
+
+[node name="Parts" type="VBoxContainer" parent="Center/Column/Result"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Heading" type="Label" parent="Center/Column/Result/Parts"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GoldTitleLabel"
+horizontal_alignment = 1
+
+[node name="Roles" type="HBoxContainer" parent="Center/Column/Result/Parts"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="YourRole" type="Label" parent="Center/Column/Result/Parts"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_type_variation = &"DescriptionLabel"
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="Center/Column/Result/Parts"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(220, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"GoldButton"
+text = "Continue"
+metadata/focus_key = "continue"
+
+[connection signal="pressed" from="Center/Column/Result/Parts/Continue" to="." method="_on_continue_pressed"]

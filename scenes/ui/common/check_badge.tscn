@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/common/check_badge.gd" id="1_badge"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/check.svg" id="2_check"]
+
+[node name="CheckBadge" type="PanelContainer"]
+script = ExtResource("1_badge")
+
+[node name="Check" type="TextureRect" parent="."]
+modulate = Color(0.0901961, 0.0784314, 0.0470588, 1)
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+texture = ExtResource("2_check")
+expand_mode = 1
+stretch_mode = 5

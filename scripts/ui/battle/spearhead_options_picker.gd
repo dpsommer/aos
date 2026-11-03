@@ -8,8 +8,6 @@ extends Control
 ## called [param enhancement].
 signal chosen(regiment_ability: String, enhancement: String)
 
-const DIM := Color(0.047, 0.051, 0.063, 0.72)
-const COLUMN_WIDTH := 380.0
 
 var army: BattleArmy
 ## The opponent's army, whose choices are shown if they've made them.
@@ -22,45 +20,27 @@ var cards := {"regiment": [], "enhancement": []}
 var confirm_button: Button
 
 
-func _init(of: BattleArmy, against: BattleArmy, attacks: bool) -> void:
+static func create(of: BattleArmy, against: BattleArmy, attacks: bool) -> SpearheadOptionsPicker:
+	var picker: SpearheadOptionsPicker = load("res://scenes/ui/battle/spearhead_options_picker.tscn").instantiate()
+	picker._fill(of, against, attacks)
+	return picker
+
+
+func _init() -> void:
+	theme = UITheme.get_theme()
+
+
+func _fill(of: BattleArmy, against: BattleArmy, attacks: bool) -> void:
 	army = of
 	opponent = against
 	is_attacker = attacks
-	name = "SpearheadOptionsPicker"
-	theme = UITheme.get_theme()
-	set_anchors_preset(Control.PRESET_FULL_RECT)
-	mouse_filter = Control.MOUSE_FILTER_STOP
-	var dim := ColorRect.new()
-	dim.color = DIM
-	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
-	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(dim)
-	var title := UIBuilder.label("Pick your regiment ability and enhancement", "DisplayTitleLabel", true)
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	# Wraps to the panel's width rather than running off a small screen.
-	title.custom_minimum_size.x = COLUMN_WIDTH * 2 + 80
-	var subtitle := UIBuilder.label(_subtitle(), "DescriptionLabel", true)
-	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var columns := UIBuilder.hbox([
-		_column("regiment", "Regiment ability", army.spearhead.regiment_abilities),
-		_column("enhancement", "Enhancement · %s" % army.spearhead.general, army.spearhead.enhancements),
-	], 24)
-	confirm_button = UIBuilder.button("Confirm", _confirm, "confirm", "GoldButton")
-	confirm_button.custom_minimum_size = Vector2(220, 44)
-	confirm_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	var card := UIBuilder.panel("CardPanel", UIBuilder.vbox([columns, confirm_button], 16))
-	card.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	var column := UIBuilder.vbox([title, subtitle, card], 20)
-	column.custom_minimum_size.x = COLUMN_WIDTH * 2 + 80
-	var scroll := ScrollContainer.new()
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.set_anchors_preset(Control.PRESET_FULL_RECT)
-	var center := CenterContainer.new()
-	center.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	center.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	center.add_child(column)
-	scroll.add_child(center)
-	add_child(scroll)
+	confirm_button = %Confirm
+	(%Subtitle as Label).text = _subtitle()
+	var enhancement_heading := "Enhancement · %s" % army.spearhead.general
+	(%Heading as Label).text = enhancement_heading.to_upper()
+	%Enhancement.accessibility_name = enhancement_heading
+	_add_cards(%Regiment, "regiment", army.spearhead.regiment_abilities)
+	_add_cards(%Enhancement, "enhancement", army.spearhead.enhancements)
 	_refresh()
 
 
@@ -92,17 +72,13 @@ func _subtitle() -> String:
 	return text
 
 
-func _column(group: String, heading: String, abilities: Array[Ability]) -> VBoxContainer:
-	var box := UIBuilder.vbox([UIBuilder.label(heading.to_upper(), "StatNameLabel")], 10)
-	box.custom_minimum_size.x = COLUMN_WIDTH
-	box.accessibility_name = heading
+func _add_cards(box: VBoxContainer, group: String, abilities: Array[Ability]) -> void:
 	for ability in abilities:
-		var card := AbilityChoiceCard.new(ability, false, "%s:%s" % [group, ability.name])
+		var card := AbilityChoiceCard.create(ability, false, "%s:%s" % [group, ability.name])
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		card.pressed.connect(pick.bind(group, ability.name))
 		cards[group].append(card)
 		box.add_child(card)
-	return box
 
 
 func _confirm() -> void:

@@ -18,20 +18,9 @@ func _phase(timing: String, fields := {}) -> String:
 
 
 func _card(fields := {}) -> AbilityCard:
-	var card := AbilityCard.new(_ability(fields))
+	var card := AbilityCard.create(_ability(fields))
 	add_child_autofree(card)
 	return card
-
-
-func _labels(card: Node, variation: String) -> Array[Node]:
-	return UIKit.find_all(card, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation)
-
-
-func _label_texts(card: Node) -> PackedStringArray:
-	var result := PackedStringArray()
-	for label in UIKit.find_all(card, func(n: Node) -> bool: return n is Label):
-		result.append(label.text)
-	return result
 
 
 func _bg(card: AbilityCard) -> Color:
@@ -277,24 +266,22 @@ func test_values_include_every_nonzero_value() -> void:
 
 func test_card_shows_the_header_in_capitals() -> void:
 	var card := _card({frequency = "Once Per Turn", timing = "Your Hero Phase"})
-	var labels := _labels(card, "AbilityTimingLabel")
+	var labels := UIKit.labels_with_variation(card, "AbilityTimingLabel")
 	assert_eq(labels.size(), 1)
 	assert_eq(labels[0].text, AbilityCard.header(card.ability).to_upper())
 
 
 func test_card_shows_a_chip_for_each_value() -> void:
-	var rule := _ability({casting_value = 7, points = 20})
-	var card := AbilityCard.new(rule)
-	add_child_autofree(card)
-	var texts := Array(_label_texts(card)).map(func(text: String) -> String: return text.to_lower())
-	for value in AbilityCard.values(rule):
+	var card := _card({casting_value = 7, points = 20})
+	var texts := Array(UIKit.label_texts(card)).map(func(text: String) -> String: return text.to_lower())
+	for value in AbilityCard.values(card.ability):
 		assert_true(value.to_lower() in texts, value)
 
 
 func test_card_without_values_shows_no_chips() -> void:
 	var card := _card({timing = "Your Hero Phase"})
-	var plain := _label_texts(card)
-	var valued := _label_texts(_card({timing = "Your Hero Phase", points = 20}))
+	var plain := UIKit.label_texts(card)
+	var valued := UIKit.label_texts(_card({timing = "Your Hero Phase", points = 20}))
 	assert_eq(valued.size(), plain.size() + 1)
 
 
@@ -307,20 +294,20 @@ func test_card_shows_the_icon_for_its_category() -> void:
 
 func test_card_shows_its_name() -> void:
 	var card := _card({name = "Special Trick"})
-	var names := _labels(card, "AbilityNameLabel")
+	var names := UIKit.labels_with_variation(card, "AbilityNameLabel")
 	assert_eq(names.size(), 1)
 	assert_eq(names[0].text, "Special Trick")
 
 
 func test_name_comes_before_the_separator_before_the_body() -> void:
 	var card := _card({effect = "Something happens."})
-	var name_label: Node = _labels(card, "AbilityNameLabel")[0]
-	var inner := name_label.get_parent()
-	var separators := inner.get_children().filter(func(n: Node) -> bool: return n is HSeparator)
-	var bodies := inner.get_children().filter(func(n: Node) -> bool: return n is RichTextLabel)
+	var name_row: Node = UIKit.labels_with_variation(card, "AbilityNameLabel")[0].get_parent()
+	var inner := name_row.get_parent()
+	var separators := inner.get_children().filter(func(n: Node) -> bool: return n is HSeparator and n.visible)
+	var bodies := inner.get_children().filter(func(n: Node) -> bool: return n is RichTextLabel and n.visible)
 	assert_eq(separators.size(), 1)
 	assert_eq(bodies.size(), 1)
-	assert_lt(name_label.get_index(), separators[0].get_index())
+	assert_lt(name_row.get_index(), separators[0].get_index())
 	assert_lt(separators[0].get_index(), bodies[0].get_index())
 
 
@@ -332,29 +319,29 @@ func test_body_shows_the_rules_text() -> void:
 
 func test_card_with_no_rules_text_has_no_body() -> void:
 	var card := _card()
-	assert_eq(UIKit.find_all(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
+	assert_eq(UIKit.find_shown(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
 
 
 func test_card_shows_its_keywords() -> void:
 	var card := _card({keywords = PackedStringArray(["FIRSTWORD", "SECONDWORD"])})
-	var labels := _labels(card, "KeywordsLabel")
+	var labels := UIKit.labels_with_variation(card, "KeywordsLabel")
 	assert_eq(labels.size(), 1)
 	assert_string_contains(labels[0].text, "FIRSTWORD")
 	assert_string_contains(labels[0].text, "SECONDWORD")
 
 
 func test_card_without_keywords_has_no_keywords_label() -> void:
-	assert_eq(_labels(_card(), "KeywordsLabel").size(), 0)
+	assert_eq(UIKit.labels_with_variation(_card(), "KeywordsLabel").size(), 0)
 
 
 func test_card_shows_its_source() -> void:
-	var labels := _labels(_card({source = "Made-up Book"}), "MutedLabel")
+	var labels := UIKit.labels_with_variation(_card({source = "Made-up Book"}), "MutedLabel")
 	assert_eq(labels.size(), 1)
 	assert_string_contains(labels[0].text, "Made-up Book")
 
 
 func test_card_without_a_source_has_no_source_label() -> void:
-	assert_eq(_labels(_card(), "MutedLabel").size(), 0)
+	assert_eq(UIKit.labels_with_variation(_card(), "MutedLabel").size(), 0)
 
 
 func test_cards_of_different_phases_have_different_backgrounds() -> void:
@@ -431,8 +418,11 @@ func _body_fields() -> Dictionary:
 	return {effect = "Do a thing.", keywords = PackedStringArray(["WIZARD"]), source = "Somewhere"}
 
 
+## Whether every part under the name that [method _body_fields] fills (the separator, rules text,
+## keywords and source) is [param shown].
 func _all_details(card: AbilityCard, shown: bool) -> bool:
-	return card._details.all(func(control: Control) -> bool: return control.visible == shown)
+	return [^"%Separator", ^"%Body", ^"%Keywords", ^"%Source"].all(
+			func(path: NodePath) -> bool: return (card.get_node(path) as Control).visible == shown)
 
 
 func test_card_is_not_foldable_by_default() -> void:
@@ -455,10 +445,6 @@ func test_foldable_card_not_opened_starts_folded() -> void:
 	assert_true(_foldable(false).folded)
 
 
-func test_card_with_a_body_has_details_to_fold() -> void:
-	assert_gt(_card(_body_fields())._details.size(), 1)
-
-
 func test_folded_card_hides_everything_below_the_name() -> void:
 	assert_true(_all_details(_foldable(false, _body_fields()), false))
 
@@ -468,7 +454,7 @@ func test_unfolded_card_shows_everything_below_the_name() -> void:
 
 
 func test_folded_card_still_shows_the_name() -> void:
-	assert_true(_foldable(false)._name_label.visible)
+	assert_eq(UIKit.labels_with_variation(_foldable(false), "AbilityNameLabel").size(), 1)
 
 
 func test_fold_button_folds_an_open_card() -> void:
@@ -534,7 +520,7 @@ func test_add_header_control_appends_at_the_end_of_the_header() -> void:
 	var card := _card()
 	var control := Control.new()
 	card.add_header_control(control)
-	assert_eq(card._header.get_child(-1), control)
+	assert_eq(card.get_node(^"%Header").get_child(-1), control)
 
 
 func test_add_header_control_centres_the_control_vertically() -> void:

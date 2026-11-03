@@ -3,7 +3,7 @@ extends GutTest
 
 
 func _menu() -> PauseMenu:
-	var menu := PauseMenu.new()
+	var menu := PauseMenu.create()
 	add_child_autofree(menu)
 	return menu
 

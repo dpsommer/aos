@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/cards/pressable_card.tscn" id="1_card"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/eye.svg" id="2_eye"]
+
+[node name="ChoiceCard" instance=ExtResource("1_card")]
+size_flags_horizontal = 3
+
+[node name="Stack" type="VBoxContainer" parent="Content" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Row" type="HBoxContainer" parent="Content/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Text" type="VBoxContainer" parent="Content/Stack/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="ChoiceTitle" type="Label" parent="Content/Stack/Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+autowrap_mode = 3
+
+[node name="Subtitle" type="Label" parent="Content/Stack/Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MutedLabel"
+autowrap_mode = 3
+
+[node name="Eye" type="Button" parent="Content/Stack/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"IconButton"
+toggle_mode = true
+icon = ExtResource("2_eye")
+icon_alignment = 1

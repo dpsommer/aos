@@ -73,7 +73,7 @@ func _init(on: BattleMap) -> void:
 	name = "DeploymentController"
 	deployment = Deployment.new(battle)
 	mirror = MirrorDeployer.new(deployment, battle.opponent, battle.player)
-	hud = DeploymentHud.new(deployment, battle.player)
+	hud = DeploymentHud.create(deployment, battle.player)
 	hud.unit_picked.connect(pick_unit)
 	hud.regiment_picked.connect(pick_regiment)
 	hud.terrain_picked.connect(pick_terrain)

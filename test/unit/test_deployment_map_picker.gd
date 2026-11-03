@@ -27,7 +27,7 @@ func _battle(map_names: Array[String] = ["First", "Second"], picked_realm := tru
 
 
 func _picker(battle: Battle = null) -> DeploymentMapPicker:
-	var picker := DeploymentMapPicker.new(battle if battle else _battle())
+	var picker := DeploymentMapPicker.create(battle if battle else _battle())
 	add_child_autofree(picker)
 	return picker
 
@@ -185,7 +185,7 @@ func _laid_out(screen_size: Vector2) -> Array:
 	var screen := Control.new()
 	add_child_autofree(screen)
 	screen.set_deferred("size", screen_size)
-	var picker := DeploymentMapPicker.new(_battle())
+	var picker := DeploymentMapPicker.create(_battle())
 	screen.add_child(picker)
 	await wait_frames(4)
 	return [screen, picker]

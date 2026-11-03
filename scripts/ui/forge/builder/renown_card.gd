@@ -9,29 +9,37 @@ var regiment: RegimentOfRenown
 
 ## [param context] ("tab" or "pick") keeps each place's open warscrolls apart. [param on_added]
 ## runs after the regiment is added. [param flash] highlights the card after a link to it.
-func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String, on_added := Callable(), flash := false) -> void:
+static func create(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String, on_added := Callable(),
+		flash := false) -> RenownCard:
+	var card: RenownCard = load("res://scenes/ui/forge/builder/renown_card.tscn").instantiate()
+	card._fill(army_builder, renown, context, on_added, flash)
+	return card
+
+
+func _fill(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String, on_added: Callable, flash: bool) -> void:
 	builder = army_builder
 	regiment = renown
-	theme_type_variation = "FlashCardPanel" if flash else "CardPanel"
+	if flash:
+		theme_type_variation = "FlashCardPanel"
 	set_meta(&"info_key", "ror:" + regiment.name)
 	var army := builder.editor.army
 	var count := 0
 	for unit in regiment.units:
 		count += unit.count
-	var title := UIBuilder.label(regiment.name, "CardTitleLabel", true)
-	var names := UIBuilder.vbox([title, UIBuilder.label("%d unit%s · fixed regiment" % [count, "" if count == 1 else "s"],
-			"MutedLabel")], 2)
-	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var content := UIBuilder.vbox([UIBuilder.hbox([names, UITheme.chip("%d pts" % regiment.points, "gold")])], 8)
+	(%Title as Label).text = regiment.name
+	(%Subtitle as Label).text = "%d unit%s · fixed regiment" % [count, "" if count == 1 else "s"]
+	%TitleRow.add_child(UITheme.chip("%d pts" % regiment.points, "gold"))
 	var allowed := regiment in builder.catalog.regiments_of_renown(army)
-	if not allowed or regiment.legends:
-		var chips := HFlowContainer.new()
-		if not allowed:
-			chips.add_child(UITheme.chip("Not normally available", "legends"))
-		if regiment.legends:
-			chips.add_child(UITheme.chip("Legends", "legends"))
-		content.add_child(chips)
+	var chips: HFlowContainer = %Chips
+	if not allowed:
+		chips.add_child(UITheme.chip("Not normally available", "legends"))
+	if regiment.legends:
+		chips.add_child(UITheme.chip("Legends", "legends"))
+	chips.visible = chips.get_child_count() > 0
 
+	# The units' warscroll toggles, then the regiment's rules, go before its text.
+	var content: VBoxContainer = %Content
+	var rules: Array[Control] = []
 	for i in regiment.units.size():
 		var unit := regiment.units[i]
 		var key := "%s:%s:%d" % [context, regiment.name, i]
@@ -43,36 +51,48 @@ func _init(army_builder: ArmyBuilder, renown: RegimentOfRenown, context: String,
 		var toggle := UIBuilder.banner(text, "", open, builder.toggle_expanded.bind(key), key, "SubheadButton")
 		toggle.tooltip_text = ("Hide " if open else "Show ") + unit.name + "'s warscroll"
 		toggle.disabled = warscroll == null
-		content.add_child(toggle)
+		rules.append(toggle)
 		if open and warscroll:
-			content.add_child(WarscrollCard.new(warscroll, builder.catalog.summoned))
-
+			rules.append(WarscrollCard.create(warscroll, builder.catalog.summoned))
+	var text_label: Label = %Text
+	for control in rules:
+		content.add_child(control)
+		content.move_child(control, text_label.get_index())
 	if not regiment.text.is_empty():
-		content.add_child(UIBuilder.label(regiment.text, "MutedLabel", true))
-	if not regiment.abilities.is_empty():
-		for ability in regiment.abilities:
-			content.add_child(AbilityCard.new(ability))
-			for summoned_unit: Warscroll in builder.catalog.summoned(ability):
-				content.add_child(WarscrollCard.summoned_card(summoned_unit))
+		text_label.text = regiment.text
+		text_label.visible = true
+	var status: Label = %Status
+	for ability in regiment.abilities:
+		for control: Control in [AbilityCard.create(ability) as Control] + _summoned(ability):
+			content.add_child(control)
+			content.move_child(control, status.get_index())
 
 	var in_army := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.regiment_of_renown == regiment.name)
 	var has_one := army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())
 	if has_one and not army.override_constraints:
-		content.add_child(UIBuilder.label("In your army" if in_army else "Your army already has a Regiment of Renown",
-				"MutedLabel", true))
+		status.text = "In your army" if in_army else "Your army already has a Regiment of Renown"
+		status.visible = true
 	else:
-		var add := func() -> void:
+		var add: Button = %Add
+		add.tooltip_text = "Add %s to the army" % regiment.name
+		add.set_meta(&"focus_key", "%s:add:%s" % [context, regiment.name])
+		add.pressed.connect(func() -> void:
 			if builder.editor.add_regiment_of_renown(regiment.name) and on_added.is_valid():
-				on_added.call()
-		content.add_child(UIBuilder.hbox([UIBuilder.button("Add to army", add, "%s:add:%s" % [context, regiment.name],
-				"GoldButton", "Add %s to the army" % regiment.name)]))
+				on_added.call())
+		%AddRow.visible = true
 		if context == "tab":
 			builder.drag.source(self, {"kind": "ror", "name": regiment.name}, regiment.name)
 			mouse_default_cursor_shape = Control.CURSOR_MOVE
-	add_child(content)
 	if context == "tab":
 		# Drags from the card's text start a drag of the card.
 		BuilderDragDrop.pass_mouse(self)
+
+
+func _summoned(ability: Ability) -> Array[Control]:
+	var result: Array[Control] = []
+	for summoned_unit: Warscroll in builder.catalog.summoned(ability):
+		result.append(WarscrollCard.summoned_card(summoned_unit))
+	return result
 
 
 func _warscroll(unit: RegimentUnit) -> Warscroll:
