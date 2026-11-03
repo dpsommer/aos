@@ -99,6 +99,32 @@ func _spearhead_names(screen: ArmySelect) -> Array:
 	return _entry_cards(screen).map(func(card: Node) -> String: return card.get_meta(&"spearhead"))
 
 
+func _count(root: Node, type: Variant) -> int:
+	return UIKit.find_all(root, func(n: Node) -> bool: return is_instance_of(n, type)).size()
+
+
+func _count_cards_in(screen: ArmySelect, heading: String) -> int:
+	return _count(_section_of(screen, heading), AbilityCard)
+
+
+## Types [param text] into the Spearhead search box, as the player would.
+func _search(screen: ArmySelect, text: String) -> void:
+	var box: LineEdit = UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is LineEdit)[0]
+	box.text = text
+	box.text_changed.emit(text)
+	box.grab_focus()
+
+
+## The battle plan card beside the detail's heading.
+func _plan_card(screen: ArmySelect) -> OptionCard:
+	return UIKit.find_all(screen.detail_column, func(n: Node) -> bool:
+		return n is OptionCard and n.accessibility_name.begins_with("Battle plan"))[0]
+
+
+func _labels(root: Node, text: String) -> Array[Node]:
+	return UIKit.find_all(root, func(n: Node) -> bool: return n is Label and n.text.to_upper() == text.to_upper())
+
+
 func _first_plan_name() -> String:
 	return CoreRulesCatalog.get_rules().battlepack.battleplans[0].name
 
@@ -160,7 +186,7 @@ func test_pressing_an_army_card_chooses_it() -> void:
 func test_army_without_faction_data_cannot_be_chosen() -> void:
 	var id := _save_unplayable_army()
 	var screen := _matched_play()
-	screen._choose_army(id)
+	_entry_cards(screen).filter(func(c: Node) -> bool: return c.get_meta(&"army_id") == id)[0].pressed.emit()
 	assert_eq(screen.army_id, "")
 
 
@@ -176,18 +202,12 @@ func test_army_without_faction_data_has_a_disabled_card() -> void:
 func test_army_with_problems_cannot_play() -> void:
 	_save_army("Empty")
 	var screen := _matched_play()
-	if screen._info.problems.is_empty():
-		pending("a new army has no problems")
-		return
 	assert_ne(screen.play_blocker(), "")
 
 
 func test_army_with_problems_disables_play() -> void:
 	_save_army("Empty")
 	var screen := _matched_play()
-	if screen._info.problems.is_empty():
-		pending("a new army has no problems")
-		return
 	assert_true(screen.play_button.disabled)
 
 
@@ -282,9 +302,6 @@ func test_spearhead_chooses_the_first_spearhead() -> void:
 
 func test_spearhead_focus_chooses_that_spearhead() -> void:
 	var shown := GameModeScreen.shown_spearheads()
-	if shown.size() < 2:
-		pending("fewer than two Spearheads")
-		return
 	var screen := _spearhead(shown[-1].name)
 	assert_eq(screen.spearhead.name, shown[-1].name)
 
@@ -302,138 +319,57 @@ func test_spearhead_screen_fits_the_smallest_ui_size() -> void:
 				"%s is too wide" % entry.name)
 
 
-func test_spearhead_without_choices_cannot_play() -> void:
+func test_spearhead_can_play_without_choosing_abilities() -> void:
+	assert_eq(_spearhead().play_blocker(), "")
+
+
+func test_spearhead_enables_play() -> void:
+	assert_false(_spearhead().play_button.disabled)
+
+
+func test_spearhead_play_tooltip_is_not_a_blocker() -> void:
 	var screen := _spearhead()
-	assert_ne(screen.play_blocker(), "")
+	assert_ne(screen.play_button.tooltip_text, screen.play_blocker())
 
 
-func test_spearhead_with_only_a_regiment_ability_cannot_play() -> void:
+func test_spearhead_regiment_abilities_and_enhancements_are_read_only() -> void:
 	var screen := _spearhead()
-	screen._choose("regiment", screen.spearhead.regiment_abilities[0].name)
-	assert_ne(screen.play_blocker(), "")
+	assert_eq(_count(screen, AbilityChoiceCard), 0)
 
 
-func test_spearhead_with_only_an_enhancement_cannot_play() -> void:
+func test_spearhead_shows_a_card_per_regiment_ability_and_enhancement() -> void:
 	var screen := _spearhead()
-	screen._choose("enhancement", screen.spearhead.enhancements[0].name)
-	assert_ne(screen.play_blocker(), "")
+	var cards := _count_cards_in(screen, "Regiment Abilities") + _count_cards_in(screen, "Enhancements")
+	assert_eq(cards, screen.spearhead.regiment_abilities.size() + screen.spearhead.enhancements.size())
 
 
-func test_spearhead_blocker_asks_for_the_missing_enhancement() -> void:
+func test_spearhead_ability_cards_start_folded() -> void:
 	var screen := _spearhead()
-	screen._choose("regiment", screen.spearhead.regiment_abilities[0].name)
-	assert_true(screen.play_blocker().contains("enhancement"))
+	for heading in ["Regiment Abilities", "Enhancements"]:
+		for card in UIKit.find_all(_section_of(screen, heading), func(n: Node) -> bool: return n is AbilityCard):
+			assert_true(card.folded, "%s: %s" % [heading, card.ability.name])
 
 
-func test_spearhead_blocker_asks_for_the_missing_regiment_ability() -> void:
+func test_spearhead_ability_cards_can_be_unfolded() -> void:
 	var screen := _spearhead()
-	screen._choose("enhancement", screen.spearhead.enhancements[0].name)
-	assert_true(screen.play_blocker().contains("regiment ability"))
+	var card: AbilityCard = UIKit.find_all(_section_of(screen, "Enhancements"), func(n: Node) -> bool: return n is AbilityCard)[0]
+	card.fold_button.pressed.emit()
+	assert_false(card.folded)
 
 
-func test_spearhead_with_both_choices_can_play() -> void:
-	var screen := _spearhead()
-	screen._choose("regiment", screen.spearhead.regiment_abilities[0].name)
-	screen._choose("enhancement", screen.spearhead.enhancements[0].name)
-	assert_eq(screen.play_blocker(), "")
+func test_spearhead_says_the_abilities_are_picked_later() -> void:
+	assert_eq(_labels(_spearhead(), "Picked later").size(), 2)
 
 
-func test_spearhead_with_both_choices_enables_play() -> void:
-	var screen := _spearhead()
-	screen._choose("regiment", screen.spearhead.regiment_abilities[0].name)
-	screen._choose("enhancement", screen.spearhead.enhancements[0].name)
-	assert_false(screen.play_button.disabled)
+func test_matched_play_does_not_say_anything_is_picked_later() -> void:
+	_save_army("Free", true)
+	assert_eq(_labels(_matched_play(), "Picked later").size(), 0)
 
 
-func test_spearhead_without_choices_disables_play() -> void:
-	var screen := _spearhead()
-	assert_true(screen.play_button.disabled)
-
-
-func test_spearhead_without_choices_shows_the_blocker_as_play_tooltip() -> void:
-	var screen := _spearhead()
-	assert_eq(screen.play_button.tooltip_text, screen.play_blocker())
-
-
-func test_choosing_a_regiment_ability_sets_it() -> void:
-	var screen := _spearhead()
-	var ability_name: String = screen.spearhead.regiment_abilities[0].name
-	screen._choose("regiment", ability_name)
-	assert_eq(screen.regiment_ability, ability_name)
-
-
-func test_choosing_a_regiment_ability_leaves_the_enhancement_alone() -> void:
-	var screen := _spearhead()
-	screen._choose("regiment", screen.spearhead.regiment_abilities[0].name)
-	assert_eq(screen.enhancement, "")
-
-
-func test_choosing_an_enhancement_sets_it() -> void:
-	var screen := _spearhead()
-	var ability_name: String = screen.spearhead.enhancements[0].name
-	screen._choose("enhancement", ability_name)
-	assert_eq(screen.enhancement, ability_name)
-
-
-func test_pressing_a_chosen_ability_unchooses_it() -> void:
-	var screen := _spearhead()
-	var ability_name: String = screen.spearhead.regiment_abilities[0].name
-	screen._choose("regiment", ability_name)
-	screen._choose("regiment", ability_name)
-	assert_eq(screen.regiment_ability, "")
-
-
-func test_unchoosing_disables_play_again() -> void:
-	var screen := _spearhead()
-	var regiment_name: String = screen.spearhead.regiment_abilities[0].name
-	screen._choose("regiment", regiment_name)
-	screen._choose("enhancement", screen.spearhead.enhancements[0].name)
-	screen._choose("regiment", regiment_name)
-	assert_true(screen.play_button.disabled)
-
-
-func test_choosing_another_ability_replaces_the_choice() -> void:
-	var screen := _spearhead()
-	var abilities := _ability_names(screen.spearhead.regiment_abilities)
-	if abilities.size() < 2:
-		pending("fewer than two regiment abilities")
-		return
-	screen._choose("regiment", abilities[0])
-	screen._choose("regiment", abilities[1])
-	assert_eq(screen.regiment_ability, abilities[1])
-
-
-func test_pressing_a_choice_card_chooses_it() -> void:
-	var screen := _spearhead()
-	var card: AbilityChoiceCard = screen._choice_cards["regiment"][0]
-	card.pressed.emit()
-	assert_eq(screen.regiment_ability, card.ability.name)
-
-
-func test_choosing_another_spearhead_clears_the_choices() -> void:
-	var shown := GameModeScreen.shown_spearheads()
-	if shown.size() < 2:
-		pending("fewer than two Spearheads")
-		return
-	var screen := _spearhead()
-	screen._choose("regiment", screen.spearhead.regiment_abilities[0].name)
-	screen._choose("enhancement", screen.spearhead.enhancements[0].name)
-	screen._choose_spearhead(shown[1])
-	assert_eq(screen.regiment_ability + screen.enhancement, "")
-
-
-func test_spearhead_setup_has_the_regiment_ability() -> void:
-	var screen := _spearhead()
-	var ability_name: String = screen.spearhead.regiment_abilities[0].name
-	screen._choose("regiment", ability_name)
-	assert_eq(screen.setup().regiment_ability, ability_name)
-
-
-func test_spearhead_setup_has_the_enhancement() -> void:
-	var screen := _spearhead()
-	var ability_name: String = screen.spearhead.enhancements[0].name
-	screen._choose("enhancement", ability_name)
-	assert_eq(screen.setup().enhancement, ability_name)
+func test_spearhead_setup_has_no_regiment_ability_or_enhancement() -> void:
+	var setup := _spearhead().setup()
+	assert_eq(setup.regiment_ability, "")
+	assert_eq(setup.enhancement, "")
 
 
 func test_spearhead_setup_has_the_spearhead() -> void:
@@ -458,8 +394,6 @@ func test_spearhead_setup_has_no_army() -> void:
 
 func test_play_in_spearhead_emits_the_setup_with_the_spearhead() -> void:
 	var screen := _spearhead()
-	screen._choose("regiment", screen.spearhead.regiment_abilities[0].name)
-	screen._choose("enhancement", screen.spearhead.enhancements[0].name)
 	screen.play_button.pressed.emit()
 	var params: Array = get_signal_parameters(screen, "play_requested")
 	assert_eq((params[0] as BattleSetup).spearhead, screen.spearhead.name)
@@ -467,19 +401,19 @@ func test_play_in_spearhead_emits_the_setup_with_the_spearhead() -> void:
 
 func test_spearhead_battleplan_card_is_enabled() -> void:
 	var screen := _spearhead()
-	assert_false(screen._plan_card.disabled)
+	assert_false(_plan_card(screen).disabled)
 
 
 func _realm_picker(screen: ArmySelect) -> RealmPicker:
 	return UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is RealmPicker)[0]
 
 
-func _first_realm() -> String:
-	return CoreRulesCatalog.spearhead_battlepacks()[0].realms[0].name
+func _first_pack() -> String:
+	return CoreRulesCatalog.spearhead_battlepacks()[0].name
 
 
 func _plan_card_texts(screen: ArmySelect) -> Array:
-	return UIKit.find_all(screen._plan_card, func(n: Node) -> bool: return n is Label).map(func(l: Label) -> String: return l.text)
+	return UIKit.find_all(_plan_card(screen), func(n: Node) -> bool: return n is Label).map(func(l: Label) -> String: return l.text)
 
 
 func test_spearhead_plans_pane_shows_a_realm_picker() -> void:
@@ -495,24 +429,24 @@ func test_spearhead_plans_pane_has_no_battleplan_picker() -> void:
 	assert_eq(UIKit.find_all(screen.pane_box, func(n: Node) -> bool: return n is BattleplanPicker).size(), 0)
 
 
-func test_picking_a_realm_sets_it() -> void:
+func test_picking_a_battlepack_sets_it() -> void:
 	var screen := _spearhead()
 	screen.show_plans()
-	_realm_picker(screen).cards[_first_realm()].pressed.emit()
-	assert_eq(screen.realm, _first_realm())
+	_realm_picker(screen).cards[_first_pack()].pressed.emit()
+	assert_eq(screen.battlepack, _first_pack())
 
 
-func test_picking_a_realm_returns_to_the_list() -> void:
+func test_picking_a_battlepack_returns_to_the_list() -> void:
 	var screen := _spearhead()
 	screen.show_plans()
-	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	_realm_picker(screen).cards[_first_pack()].pressed.emit()
 	assert_eq(screen.pane, ArmySelect.Pane.LIST)
 
 
-func test_picking_a_realm_leaves_the_battleplan_alone() -> void:
+func test_picking_a_battlepack_leaves_the_battleplan_alone() -> void:
 	var screen := _spearhead()
 	screen.show_plans()
-	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	_realm_picker(screen).cards[_first_pack()].pressed.emit()
 	assert_eq(screen.battleplan, "")
 
 
@@ -534,111 +468,94 @@ func test_spearhead_random_battleplan_card_shows_the_icon() -> void:
 	assert_eq(_plan_card_nodes(screen, ArtPlaceholder)[0].size, ArmySelect.PLAN_ART_SIZE)
 
 
-func test_picked_realm_card_shows_its_map_in_place_of_the_icon() -> void:
+func test_picked_battlepack_card_shows_its_first_sides_map_in_place_of_the_icon() -> void:
 	var screen := _spearhead()
 	screen.show_plans()
-	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	_realm_picker(screen).cards[_first_pack()].pressed.emit()
 	await get_tree().process_frame
 	var maps := _plan_card_nodes(screen, RealmMap)
 	assert_eq(maps.size(), 1)
-	assert_eq(maps[0].realm.name, _first_realm())
+	assert_eq(maps[0].realm, CoreRulesCatalog.spearhead_battlepacks()[0].realms[0])
 	assert_eq(maps[0].size, ArmySelect.PLAN_ART_SIZE)
 	assert_true(_plan_card_nodes(screen, ArtPlaceholder).is_empty())
 
 
-func test_picking_a_realm_keeps_the_card_size() -> void:
+func test_picking_a_battlepack_keeps_the_card_size() -> void:
 	var screen := _spearhead()
 	await get_tree().process_frame
 	var random_size := _battleplan_card(screen).size
 	screen.show_plans()
-	_realm_picker(screen).cards[_first_realm()].pressed.emit()
+	_realm_picker(screen).cards[_first_pack()].pressed.emit()
 	await get_tree().process_frame
 	assert_eq(_battleplan_card(screen).size, random_size)
 
 
-func test_picking_random_clears_the_realm() -> void:
+func test_picking_random_clears_the_battlepack() -> void:
 	var screen := _spearhead()
-	screen.realm = _first_realm()
+	screen.battlepack = _first_pack()
 	screen.show_plans()
 	_realm_picker(screen).cards[""].pressed.emit()
-	assert_eq(screen.realm, "")
+	assert_eq(screen.battlepack, "")
 
 
-func test_realm_picker_opens_on_the_chosen_realm() -> void:
+func test_realm_picker_opens_on_the_chosen_battlepack() -> void:
 	var screen := _spearhead()
-	screen.realm = _first_realm()
+	screen.battlepack = _first_pack()
 	screen.show_plans()
-	assert_eq(_realm_picker(screen).selected, _first_realm())
+	assert_eq(_realm_picker(screen).selected, _first_pack())
 
 
-func test_spearhead_setup_carries_the_realm() -> void:
+func test_spearhead_setup_carries_the_battlepack() -> void:
 	var screen := _spearhead()
-	screen.realm = _first_realm()
-	assert_eq(screen.setup().realm, _first_realm())
-
-
-func test_spearhead_setup_carries_the_realms_battlepack() -> void:
-	var pack := CoreRulesCatalog.spearhead_battlepacks()[0]
-	var screen := _spearhead()
-	screen.realm = pack.realms[0].name
-	assert_eq(screen.setup().battlepack, pack.name)
-
-
-func test_spearhead_setup_carries_the_battlepack_of_the_last_pack() -> void:
-	var pack := CoreRulesCatalog.spearhead_battlepacks()[-1]
-	var screen := _spearhead()
-	screen.realm = pack.realms[0].name
-	assert_eq(screen.setup().battlepack, pack.name)
+	screen.battlepack = _first_pack()
+	assert_eq(screen.setup().battlepack, _first_pack())
 
 
 func test_spearhead_setup_is_random_by_default() -> void:
-	var setup := _spearhead().setup()
-	assert_eq(setup.realm, "")
-	assert_eq(setup.battlepack, "")
+	assert_eq(_spearhead().setup().battlepack, "")
 
 
-func test_spearhead_setup_ignores_an_unknown_realm() -> void:
+func test_spearhead_setup_leaves_the_realm_to_the_defender() -> void:
 	var screen := _spearhead()
-	screen.realm = "No Such Realm"
-	var setup := screen.setup()
-	assert_eq(setup.realm, "")
-	assert_eq(setup.battlepack, "")
+	screen.battlepack = _first_pack()
+	assert_eq(screen.setup().realm, "")
 
 
 func test_spearhead_setup_has_no_battleplan() -> void:
 	var screen := _spearhead()
-	screen.realm = _first_realm()
+	screen.battlepack = _first_pack()
 	screen.battleplan = "Some Plan"
 	assert_eq(screen.setup().battleplan, "")
 
 
 func test_spearhead_setup_still_carries_the_spearhead() -> void:
 	var screen := _spearhead()
-	screen.realm = _first_realm()
+	screen.battlepack = _first_pack()
 	assert_eq(screen.setup().spearhead, screen.spearhead.name)
 
 
 func test_matched_play_setup_has_no_battlepack_or_realm() -> void:
 	_save_army("Free", true)
 	var screen := _matched_play()
-	screen.realm = _first_realm()
+	screen.battlepack = _first_pack()
 	var setup := screen.setup()
 	assert_eq(setup.realm, "")
 	assert_eq(setup.battlepack, "")
 
 
-func test_plan_card_names_the_chosen_realm_and_its_battlepack() -> void:
+func test_plan_card_names_the_chosen_battlepack_and_its_sides() -> void:
 	var screen := _spearhead()
 	var pack := CoreRulesCatalog.spearhead_battlepacks()[0]
 	screen.show_plans()
-	_realm_picker(screen).cards[pack.realms[0].name].pressed.emit()
+	_realm_picker(screen).cards[pack.name].pressed.emit()
 	var texts := _plan_card_texts(screen)
-	assert_true(texts.has(pack.realms[0].name))
 	assert_true(texts.has(pack.name))
+	var sides := PackedStringArray(pack.realms.map(func(side: RealmBattlefield) -> String: return side.name))
+	assert_true(texts.has("%s: the defender picks" % " or ".join(sides)))
 
 
-func test_plan_card_is_random_before_a_realm_is_chosen() -> void:
-	assert_string_contains(_spearhead()._plan_card.accessibility_name, "Random")
+func test_plan_card_is_random_before_a_battlepack_is_chosen() -> void:
+	assert_string_contains(_plan_card(_spearhead()).accessibility_name, "Random")
 
 
 # --- Spearhead search ---
@@ -647,74 +564,69 @@ func test_plan_card_is_random_before_a_realm_is_chosen() -> void:
 func test_search_by_name_keeps_that_spearhead() -> void:
 	var screen := _spearhead()
 	var target: String = GameModeScreen.shown_spearheads()[0].name
-	screen._on_search_changed(target)
+	_search(screen, target)
 	assert_true(target in _spearhead_names(screen))
 
 
 func test_search_by_faction_keeps_that_factions_spearheads() -> void:
 	var screen := _spearhead()
 	var entry: Dictionary = GameModeScreen.shown_spearheads()[0]
-	screen._on_search_changed(entry.faction)
+	_search(screen, entry.faction)
 	assert_true(entry.name in _spearhead_names(screen))
 
 
 func test_search_filters_out_spearheads_that_do_not_match() -> void:
 	var screen := _spearhead()
 	var entry: Dictionary = GameModeScreen.shown_spearheads()[0]
-	screen._on_search_changed(entry.name)
+	_search(screen, entry.name)
 	assert_lt(_entry_cards(screen).size(), GameModeScreen.shown_spearheads().size())
 
 
 func test_search_by_alliance_name_keeps_that_alliances_spearheads() -> void:
 	var screen := _spearhead()
 	var entry: Dictionary = GameModeScreen.shown_spearheads()[0]
-	screen._on_search_changed(GrandAlliance.display_name(entry.alliance))
+	_search(screen, GrandAlliance.display_name(entry.alliance))
 	assert_true(entry.name in _spearhead_names(screen))
 
 
 func test_search_by_alliance_name_filters_out_other_alliances_spearheads() -> void:
 	var screen := _spearhead()
 	var entry: Dictionary = GameModeScreen.shown_spearheads()[0]
-	screen._on_search_changed(GrandAlliance.display_name(entry.alliance))
-	var names := _spearhead_names(screen)
-	for other: Dictionary in GameModeScreen.shown_spearheads():
-		if other.alliance != entry.alliance:
-			assert_false(other.name in names, "%s should be filtered out" % other.name)
+	_search(screen, GrandAlliance.display_name(entry.alliance))
+	var other_alliances := GameModeScreen.shown_spearheads().filter(func(other: Dictionary) -> bool:
+		return other.alliance != entry.alliance).map(func(other: Dictionary) -> String: return other.name)
+	assert_eq(_spearhead_names(screen).filter(func(name: String) -> bool: return name in other_alliances), [])
 
 
 func test_search_without_matches_shows_no_cards() -> void:
 	var screen := _spearhead()
-	screen._on_search_changed("zzzzzz-no-such-spearhead")
+	_search(screen, "zzzzzz-no-such-spearhead")
 	assert_eq(_entry_cards(screen).size(), 0)
 
 
 func test_search_without_matches_says_so() -> void:
 	var screen := _spearhead()
-	screen._on_search_changed("zzzzzz-no-such-spearhead")
+	_search(screen, "zzzzzz-no-such-spearhead")
 	assert_true(UIKit.has_label_containing(screen.pane_box, "No Spearheads match"))
 
 
 func test_clearing_the_search_restores_the_list() -> void:
 	var screen := _spearhead()
-	screen._on_search_changed("zzzzzz-no-such-spearhead")
-	screen._on_search_changed("")
+	_search(screen, "zzzzzz-no-such-spearhead")
+	_search(screen, "")
 	assert_eq(_entry_cards(screen).size(), GameModeScreen.shown_spearheads().size())
 
 
 func test_escape_in_a_filled_search_clears_it() -> void:
 	var screen := _spearhead()
-	screen._search.text = "zzz"
-	screen._on_search_changed("zzz")
-	screen._search.grab_focus()
+	_search(screen, "zzz")
 	screen._unhandled_input(_escape_event())
 	assert_eq(screen.query, "")
 
 
 func test_escape_in_a_filled_search_does_not_go_back() -> void:
 	var screen := _spearhead()
-	screen._search.text = "zzz"
-	screen._on_search_changed("zzz")
-	screen._search.grab_focus()
+	_search(screen, "zzz")
 	screen._unhandled_input(_escape_event())
 	assert_signal_not_emitted(screen, "back_pressed")
 
@@ -1022,14 +934,6 @@ func _trait_cards(screen: ArmySelect) -> Array[Node]:
 		return n is AbilityCard and n.get_parent() is GridContainer)
 
 
-func test_matched_play_battle_traits_start_folded() -> void:
-	_save_army("Army")
-	var cards := _trait_cards(_matched_play())
-	assert_false(cards.is_empty())
-	var unfolded := cards.filter(func(card: AbilityCard) -> bool: return not card.folded)
-	assert_eq(unfolded.map(func(card: AbilityCard) -> String: return card.ability.name), [])
-
-
 func test_spearhead_battle_traits_start_folded() -> void:
 	var cards := _trait_cards(_spearhead())
 	assert_false(cards.is_empty())
@@ -1055,6 +959,62 @@ func test_spearhead_regiment_abilities_and_enhancements_are_below_battle_traits(
 	var row: Node = _section_of(screen, "Regiment Abilities").get_parent()
 	assert_eq(row.get_parent(), traits_section.get_parent())
 	assert_gt(row.get_index(), traits_section.get_index())
+
+
+# --- Detail section order ---
+
+const SECTION_TITLES := ["Army", "Faction Terrain", "Battle Traits", "Battle Formation", "Battle Tactics", "Lores",
+		"Regiment Abilities", "Enhancements"]
+
+
+## The detail's section titles in the order they appear on screen.
+func _section_titles(screen: ArmySelect) -> Array:
+	var labels := UIKit.find_all(screen.detail_column, func(n: Node) -> bool:
+		return n is Label and SECTION_TITLES.has(n.text.capitalize()) and n.theme_type_variation == &"TitleLabel")
+	return labels.map(func(label: Label) -> String: return label.text.capitalize())
+
+
+## Saves an army of the first faction with data, with its first faction terrain and battle formation,
+## and its first Army of Renown if [param renown].
+func _save_full_army(renown := false) -> Army:
+	var faction := _faction()
+	var catalog := ArmyCatalog.new(faction, CoreRulesCatalog.get_rules())
+	var army_of_renown: String = faction.armies_of_renown[0].name if renown else ""
+	var army := ArmyEditor.create_army(catalog, army_of_renown, faction.battle_formations[0].name)
+	army.name = "Full"
+	army.faction_terrain = catalog.terrain_warscrolls()[0].id
+	assert_eq(ArmyStore.save(army), OK)
+	return army
+
+
+func test_matched_play_puts_army_before_faction_terrain_before_tactics_and_lores() -> void:
+	var army := _save_full_army()
+	assert_eq(_section_titles(_matched_play(army.id)), ["Army", "Faction Terrain", "Battle Tactics", "Lores"])
+
+
+func test_matched_play_without_faction_terrain_goes_from_army_to_tactics_and_lores() -> void:
+	_save_army("Plain")
+	assert_eq(_section_titles(_matched_play()), ["Army", "Battle Tactics", "Lores"])
+
+
+func test_matched_play_has_no_battle_traits_or_formation_section() -> void:
+	var army := _save_full_army()
+	var titles := _section_titles(_matched_play(army.id))
+	assert_false(titles.has("Battle Traits"))
+	assert_false(titles.has("Battle Formation"))
+
+
+func test_matched_play_army_of_renown_has_no_battle_traits_section() -> void:
+	var army := _save_full_army(true)
+	assert_false(_section_titles(_matched_play(army.id)).has("Battle Traits"))
+
+
+func test_spearhead_puts_army_before_battle_traits_before_abilities_and_enhancements() -> void:
+	assert_eq(_section_titles(_spearhead()), ["Army", "Battle Traits", "Regiment Abilities", "Enhancements"])
+
+
+func test_spearhead_does_not_say_ready_to_play() -> void:
+	assert_eq(_labels(_spearhead().detail_column, "Ready to play").size(), 0)
 
 
 # --- Layout ---

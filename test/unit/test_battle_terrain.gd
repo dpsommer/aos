@@ -59,7 +59,22 @@ func test_large_spearhead_feature_is_wider_than_small() -> void:
 
 func test_spearhead_feature_footprint_matches_the_map_width() -> void:
 	var terrain := BattleTerrain.from_spearhead(BattleKit.terrain_feature("A", "small"))
-	assert_eq(terrain.footprint, Vector2.ONE * SpearheadTerrain.WIDTHS["small"])
+	assert_eq(terrain.footprint, SpearheadTerrain.FOOTPRINTS["small"])
+
+
+func test_spearhead_feature_takes_the_features_footprint() -> void:
+	var feature := BattleKit.terrain_feature("Wall", "small")
+	feature.length = 8.0
+	feature.width = 1.5
+	assert_eq(BattleTerrain.from_spearhead(feature).footprint, feature.footprint())
+
+
+func test_spearhead_feature_footprint_is_rectangular_when_the_data_says_so() -> void:
+	var feature := BattleKit.terrain_feature("Wall", "small")
+	feature.length = 8.0
+	feature.width = 1.5
+	var footprint := BattleTerrain.from_spearhead(feature).footprint
+	assert_ne(footprint.x, footprint.y)
 
 
 func test_warscroll_terrain_is_sized_from_its_base() -> void:

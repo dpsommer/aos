@@ -30,8 +30,9 @@ var mode := BattleSetup.Mode.MATCHED_PLAY
 var pane := Pane.LIST
 ## The chosen battleplan's name, in Matched Play, or empty for Random.
 var battleplan := ""
-## The chosen side of a Spearhead realm battlefield, in Spearhead, or empty for Random.
-var realm := ""
+## The chosen Spearhead battlepack's name (its realm battlefield, e.g. "Fire and Jade"), in
+## Spearhead, or empty for Random. The defender picks the side after the roll-off.
+var battlepack := ""
 ## Matched Play: the saved armies, most recently saved first, and the chosen one's id.
 var entries: Array[ArmyStore.Entry] = []
 var army_id := ""
@@ -39,9 +40,6 @@ var army_id := ""
 var spearheads: Array[Dictionary] = []
 var spearhead: Spearhead
 var spearhead_faction: Faction
-## The Spearhead's regiment ability and enhancement the player chose, or empty.
-var regiment_ability := ""
-var enhancement := ""
 ## The Spearhead list's search query.
 var query := ""
 
@@ -54,11 +52,6 @@ var _opener: Control
 var _plan_card: OptionCard
 var _list_box: VBoxContainer
 var _search: LineEdit
-## The Spearhead choice cards by group key ("regiment" or "enhancement").
-var _choice_cards := {}
-## Holds each Spearhead group's "Choose 1" or "Chosen" chip, by group key.
-var _choice_chips := {}
-var _setup_pill: Control
 
 @onready var back_button: Button = %BackButton
 @onready var breadcrumb: HBoxContainer = %Breadcrumb
@@ -130,12 +123,7 @@ func play_blocker() -> String:
 		return ""
 	if spearhead == null:
 		return "Choose a Spearhead to play"
-	var missing := PackedStringArray()
-	if regiment_ability.is_empty():
-		missing.append("a regiment ability")
-	if enhancement.is_empty():
-		missing.append("an enhancement")
-	return "" if missing.is_empty() else "Choose %s to play" % " and ".join(missing)
+	return ""
 
 
 ## What the player has chosen, as Play hands it on.
@@ -147,15 +135,10 @@ func setup() -> BattleSetup:
 		var entry := _entry(army_id)
 		result.army = entry.army if entry else null
 		return result
-	var pack := RealmPicker.battlepack_of(CoreRulesCatalog.spearhead_battlepacks(), realm) if not realm.is_empty() else null
-	if pack:
-		result.battlepack = pack.name
-		result.realm = realm
+	result.battlepack = battlepack
 	if spearhead:
 		result.faction = spearhead_faction.name
 		result.spearhead = spearhead.name
-		result.regiment_ability = regiment_ability
-		result.enhancement = enhancement
 	return result
 
 
@@ -202,7 +185,7 @@ func show_regiment(regiment: RegimentOfRenown) -> void:
 
 
 ## Shows the battleplans to choose from in the left pane: the General's Handbook's, or in Spearhead
-## the sides of the Spearhead battlepacks' realm battlefields.
+## the Spearhead battlepacks' realm battlefields.
 func show_plans() -> void:
 	if _plan_card == null:
 		return
@@ -225,17 +208,17 @@ func _show_realms() -> void:
 	if packs.is_empty():
 		return
 	_open_pane(Pane.PLANS, "Choose battle plan")
-	var picker := RealmPicker.new(packs, realm)
-	picker.picked.connect(func(_pack: String, side: String) -> void: _on_plan_picked(side))
+	var picker := RealmPicker.new(packs, battlepack)
+	picker.picked.connect(_on_plan_picked)
 	pane_box.add_child(_scroll(picker))
 	_plan_card.set_pressed_no_signal(true)
 	_focus_later(picker.selected_card())
 
 
-## The player chose [param plan]: a battleplan's name, or in Spearhead a realm battlefield's side.
+## The player chose [param plan]: a battleplan's name, or in Spearhead a battlepack's.
 func _on_plan_picked(plan: String) -> void:
 	if mode == BattleSetup.Mode.SPEARHEAD:
-		realm = plan
+		battlepack = plan
 	else:
 		battleplan = plan
 	_opener = _plan_card
@@ -421,22 +404,10 @@ func _choose_spearhead(entry: Dictionary) -> void:
 		for army in spearhead_faction.spearheads:
 			if army.name == entry.name:
 				spearhead = army
-	regiment_ability = ""
-	enhancement = ""
 	_open = {}
 	limit_label.text = "Fixed roster"
 	rules_label.text = "Spearhead"
 	_show_detail()
-
-
-func _choose(group: String, ability_name: String) -> void:
-	var current: String = regiment_ability if group == "regiment" else enhancement
-	var chosen := "" if current == ability_name else ability_name
-	if group == "regiment":
-		regiment_ability = chosen
-	else:
-		enhancement = chosen
-	_update_choices()
 
 
 # --- Detail ---
@@ -444,10 +415,7 @@ func _choose(group: String, ability_name: String) -> void:
 
 func _show_detail() -> void:
 	_clear(detail_column)
-	_choice_cards.clear()
-	_choice_chips.clear()
 	_plan_card = null
-	_setup_pill = null
 	if mode == BattleSetup.Mode.MATCHED_PLAY:
 		if army_id.is_empty():
 			detail_column.add_child(_empty("No army chosen", "Choose one of your armies on the left."))
@@ -475,45 +443,20 @@ func _matched_detail(army: Army) -> void:
 		for problem: String in _info.problems:
 			lines.add_child(UIBuilder.label("• " + problem, "ProblemLabel", true))
 		detail_column.add_child(UIBuilder.panel("ProblemsPanel", lines))
-
-	var renown := catalog.army_of_renown(army.army_of_renown) if not army.army_of_renown.is_empty() else null
-	var traits: Array[Ability] = renown.battle_traits if renown else catalog.faction.battle_traits
-	if not traits.is_empty():
-		detail_column.add_child(_section("Battle Traits", _trait_grid(traits)))
-
-	var formation := catalog.battle_formation(army, army.formation) if not army.formation.is_empty() else null
-	if formation:
-		detail_column.add_child(_section("Battle Formation", _toggle_card("formation", formation.name,
-				func(full: bool, eye: Control) -> Control: return FormationCard.new(formation, full, eye))))
-
-	var tactics := UIBuilder.vbox([], 10)
-	for slot in ArmyValidator.MAX_TACTICS:
-		var card := catalog.battle_tactic_card(army.tactics[slot]) if slot < army.tactics.size() else null
-		if card:
-			var heading_text := "Slot %d" % (slot + 1)
-			tactics.add_child(_toggle_card("tactic:%d" % slot, card.name, func(full: bool, eye: Control) -> Control:
-				return TacticCard.new(card, TacticCard.Form.FULL if full else TacticCard.Form.SUMMARY, heading_text, eye)))
-		else:
-			tactics.add_child(_placeholder("No battle tactics card in slot %d" % (slot + 1)))
-	var lores := UIBuilder.vbox([], 10)
-	var missing := UIBuilder.hbox([], 10)
-	for kind in LORE_KINDS:
-		var lore_name := army.lore_name(kind)
-		var lore := catalog.lore(army, kind, lore_name) if not lore_name.is_empty() else null
-		if lore:
-			lores.add_child(_toggle_card("lore:" + kind, lore.name, func(full: bool, eye: Control) -> Control:
-				return LoreCard.new(lore, full, "%s Lore" % kind.capitalize(), eye, catalog.summoned)))
-		else:
-			var empty := _placeholder("No %s lore" % kind)
-			empty.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			missing.add_child(empty)
-	if missing.get_child_count() > 0:
-		lores.add_child(missing)
-	var columns := UIBuilder.hbox([_section("Battle Tactics", tactics), _section("Lores", lores)], 24)
+	detail_column.add_child(_section("Army", _regiments(army, catalog)))
+	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
+	if terrain:
+		var portrait := _portrait(terrain.name, "%d pts" % terrain.points, "", false, show_warscroll.bind(terrain),
+				"%s warscroll" % terrain.name)
+		detail_column.add_child(_section("Faction Terrain", _regiment_panel("", false, "", [portrait])))
+	var columns := UIBuilder.hbox([_section("Battle Tactics", _tactics(army, catalog)), _section("Lores", _lores(army, catalog))], 24)
 	for column: Control in columns.get_children():
 		column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	detail_column.add_child(columns)
 
+
+## [param army]'s regiments and auxiliary units, each in its box with its portraits.
+func _regiments(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 	var regiments := UIBuilder.vbox([], 12)
 	for regiment in army.regiments:
 		var meta := "%d unit%s · %d pts" % [regiment.units.size(), "" if regiment.units.size() == 1 else "s",
@@ -528,21 +471,53 @@ func _matched_detail(army: Army) -> void:
 				army.auxiliary.map(func(unit: ArmyUnit) -> Control: return _army_portrait(army, unit, null))))
 	if regiments.get_child_count() == 0:
 		regiments.add_child(_placeholder("This army has no units yet"))
-	detail_column.add_child(_section("Army", regiments))
+	return regiments
 
-	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
-	if terrain:
-		var portrait := _portrait(terrain.name, "%d pts" % terrain.points, "", false, show_warscroll.bind(terrain),
-				"%s warscroll" % terrain.name)
-		detail_column.add_child(_section("Faction Terrain", _regiment_panel("", false, "", [portrait])))
+
+## [param army]'s battle tactics cards, by slot, or a placeholder for an empty slot.
+func _tactics(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
+	var tactics := UIBuilder.vbox([], 10)
+	for slot in ArmyValidator.MAX_TACTICS:
+		var card := catalog.battle_tactic_card(army.tactics[slot]) if slot < army.tactics.size() else null
+		if card:
+			var heading_text := "Slot %d" % (slot + 1)
+			tactics.add_child(_toggle_card("tactic:%d" % slot, card.name, func(full: bool, eye: Control) -> Control:
+				return TacticCard.new(card, TacticCard.Form.FULL if full else TacticCard.Form.SUMMARY, heading_text, eye)))
+		else:
+			tactics.add_child(_placeholder("No battle tactics card in slot %d" % (slot + 1)))
+	return tactics
+
+
+## [param army]'s lores, in [constant LORE_KINDS] order, then a placeholder for each it hasn't.
+func _lores(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
+	var lores := UIBuilder.vbox([], 10)
+	var missing := UIBuilder.hbox([], 10)
+	for kind in LORE_KINDS:
+		var lore_name := army.lore_name(kind)
+		var lore := catalog.lore(army, kind, lore_name) if not lore_name.is_empty() else null
+		if lore:
+			lores.add_child(_toggle_card("lore:" + kind, lore.name, func(full: bool, eye: Control) -> Control:
+				return LoreCard.new(lore, full, "%s Lore" % kind.capitalize(), eye, catalog.summoned)))
+		else:
+			var empty := _placeholder("No %s lore" % kind)
+			empty.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			missing.add_child(empty)
+	if missing.get_child_count() > 0:
+		lores.add_child(missing)
+	return lores
 
 
 func _spearhead_detail() -> void:
 	var title := UIBuilder.label(spearhead.name, "PageTitleLabel", true)
 	var subtitle := "%s · %s · General: %s" % [spearhead_faction.name, GrandAlliance.display_name(spearhead_faction.grand_alliance),
 			spearhead.general]
-	_setup_pill = UIBuilder.hbox()
-	detail_column.add_child(_top_row(UIBuilder.vbox([title, UIBuilder.label(subtitle, "DescriptionLabel", true), _setup_pill], 8)))
+	detail_column.add_child(_top_row(UIBuilder.vbox([title, UIBuilder.label(subtitle, "DescriptionLabel", true)], 8)))
+	var portraits: Array = []
+	var general := spearhead.get_warscroll(spearhead.general)
+	portraits.append(_spearhead_portrait(spearhead.general, 1, general, true))
+	for unit in spearhead.units:
+		portraits.append(_spearhead_portrait(unit.name, unit.count, spearhead.get_warscroll(unit.name), false, unit.notes))
+	detail_column.add_child(_section("Army", _regiment_panel("", false, "", portraits)))
 	detail_column.add_child(_section("Battle Traits", _trait_grid(spearhead.battle_traits)))
 	var columns := UIBuilder.hbox([], 24)
 	for group: Array in SPEARHEAD_GROUPS:
@@ -550,23 +525,14 @@ func _spearhead_detail() -> void:
 		var abilities: Array[Ability] = spearhead.regiment_abilities if key == "regiment" else spearhead.enhancements
 		var cards := UIBuilder.vbox([], 10)
 		cards.accessibility_name = group[1]
-		_choice_cards[key] = []
-		for ability in abilities:
-			var card := _choice_card(key, ability)
-			_choice_cards[key].append(card)
-			cards.add_child(card)
-		_choice_chips[key] = UIBuilder.hbox()
-		columns.add_child(_section(group[1], cards, "", _choice_chips[key]))
+		for i in abilities.size():
+			cards.add_child(_ability_card(key, abilities[i], i))
+		var chip := UITheme.chip("Picked later")
+		chip.tooltip_text = "After the roll-off, the attacker picks a regiment ability and an enhancement, then the defender."
+		columns.add_child(_section(group[1], cards, "", chip))
 	for column: Control in columns.get_children():
 		column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	detail_column.add_child(columns)
-	var portraits: Array = []
-	var general := spearhead.get_warscroll(spearhead.general)
-	portraits.append(_spearhead_portrait(spearhead.general, 1, general, true))
-	for unit in spearhead.units:
-		portraits.append(_spearhead_portrait(unit.name, unit.count, spearhead.get_warscroll(unit.name), false, unit.notes))
-	detail_column.add_child(_section("Army", _regiment_panel("", false, "", portraits)))
-	_update_choices()
 
 
 ## The army's name and details, with the battleplan card on the right. The card takes a share of the
@@ -585,22 +551,26 @@ func _top_row(heading: Control) -> HBoxContainer:
 	return UIBuilder.hbox([heading, _plan_card], 24)
 
 
-## Fills the battleplan card: Random or the chosen battleplan, or in Spearhead the chosen realm
-## battlefield's side with its battlepack.
+## Fills the battleplan card: Random or the chosen battleplan, or in Spearhead the chosen
+## battlepack with its sides.
 func _refresh_plan_card() -> void:
-	for child in _plan_card.content.get_children():
-		_plan_card.content.remove_child(child)
-		child.queue_free()
+	_clear(_plan_card.content)
 	var name_text := "Random"
 	var sub := "Picked when the battle starts"
 	var map: Control = null
 	if mode == BattleSetup.Mode.SPEARHEAD:
 		var packs := CoreRulesCatalog.spearhead_battlepacks()
-		var pack := RealmPicker.battlepack_of(packs, realm) if not realm.is_empty() else null
+		var pack: SpearheadBattlepack = null
+		for candidate in packs:
+			if candidate.name == battlepack and not battlepack.is_empty():
+				pack = candidate
 		if pack:
-			name_text = realm
-			sub = pack.name
-			map = RealmMap.new(pack, pack.get_realm(realm))
+			name_text = pack.name
+			var sides := PackedStringArray()
+			for side in pack.realms:
+				sides.append(side.name)
+			sub = "%s: the defender picks" % " or ".join(sides)
+			map = RealmMap.new(pack, pack.realms[0]) if not pack.realms.is_empty() else null
 		_plan_card.disabled = packs.is_empty()
 	else:
 		var core := CoreRulesCatalog.get_rules()
@@ -673,12 +643,18 @@ func _trait_card(rule: Ability, index: int) -> AbilityCard:
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	card.make_foldable(_open.has(key))
+	_remember_fold(card, key)
+	return card
+
+
+## Keeps [param card]'s folded state under [param key] in [member _open] as it's toggled, so it
+## stays when the detail pane is rebuilt.
+func _remember_fold(card: AbilityCard, key: String) -> void:
 	card.fold_button.pressed.connect(func() -> void:
 		if card.folded:
 			_open.erase(key)
 		else:
 			_open[key] = true)
-	return card
 
 
 ## A card built by [param make], given whether to show it in full and an eye toggle to put on it.
@@ -705,35 +681,15 @@ func _toggle_card(key: String, card_name: String, make: Callable) -> Control:
 	return card
 
 
-## A Spearhead regiment ability or enhancement to choose: its ability card, folded until its chevron
-## shows it. Pressing it chooses it, or unchooses it if chosen.
-func _choice_card(group: String, ability: Ability) -> AbilityChoiceCard:
-	var key := group + ":" + ability.name
-	var card := AbilityChoiceCard.new(ability, _open.has(key), key)
+## A Spearhead regiment ability or enhancement, to read: its ability card, folded until its
+## chevron shows it. They're picked after the roll-off, not here.
+func _ability_card(group: String, ability: Ability, index: int) -> AbilityCard:
+	var key := "%s:%d" % [group, index]
+	var card := AbilityCard.new(ability)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	card.fold_toggled.connect(func(on: bool) -> void:
-		if on:
-			_open[key] = true
-		else:
-			_open.erase(key))
-	card.pressed.connect(_choose.bind(group, ability.name))
+	card.make_foldable(_open.has(key), key)
+	_remember_fold(card, key)
 	return card
-
-
-## Shows which Spearhead regiment ability and enhancement are chosen, and whether it can play.
-func _update_choices() -> void:
-	for group: String in _choice_cards:
-		var chosen: String = regiment_ability if group == "regiment" else enhancement
-		for card: AbilityChoiceCard in _choice_cards[group]:
-			card.selected = card.ability.name == chosen
-		_clear(_choice_chips[group])
-		_choice_chips[group].add_child(UITheme.chip("Chosen" if not chosen.is_empty() else "Choose 1",
-				"" if not chosen.is_empty() else "gold"))
-	if _setup_pill:
-		_clear(_setup_pill)
-		var blocker := play_blocker()
-		_setup_pill.add_child(_pill("Ready to play" if blocker.is_empty() else blocker, "valid" if blocker.is_empty() else "overridden"))
-	_update_play()
 
 
 func _update_play() -> void:

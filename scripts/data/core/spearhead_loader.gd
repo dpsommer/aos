@@ -65,6 +65,12 @@ func _terrain(data: Variant, path: String, pack: SpearheadBattlepack) -> Spearhe
 	if not terrain.size.is_empty() and not terrain.size in SpearheadTerrain.SIZES:
 		_error(_join(path, "size"), "must be one of %s" % ", ".join(SpearheadTerrain.SIZES))
 	terrain.mystical = _bool(data, "mystical", path)
+	terrain.length = _float(data, "length", path)
+	terrain.width = _float(data, "width", path)
+	if (terrain.length > 0.0) != (terrain.width > 0.0) or terrain.length < 0.0 or terrain.width < 0.0:
+		_error(_join(path, "length"), "length and width must both be given, and positive")
+	elif terrain.length < terrain.width:
+		_error(_join(path, "length"), "must be the long side, at least the width")
 	terrain.abilities = _strings(data, "abilities", path)
 	for i in terrain.abilities.size():
 		if pack.get_terrain_ability(terrain.abilities[i]) == null:

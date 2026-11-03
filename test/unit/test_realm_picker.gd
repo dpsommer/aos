@@ -51,6 +51,7 @@ func _pack(pack_name: String, realm_names: Array[String], relics: Array[String] 
 	return pack
 
 
+## "Pack One" has the sides Alpha and Beta (both start with Relic X), "Pack Two" the side Gamma.
 func _packs() -> Array[SpearheadBattlepack]:
 	return [_pack("Pack One", ["Alpha", "Beta"], ["Relic X"]), _pack("Pack Two", ["Gamma"])]
 
@@ -69,8 +70,8 @@ func _has_text(root: Node, text: String) -> bool:
 	return not UIKit.find_all(root, func(n: Node) -> bool: return (n is Label or n is RichTextLabel) and str(n.text).contains(text)).is_empty()
 
 
-func _set_open(picker: RealmPicker, realm: String, open: bool) -> void:
-	(picker.cards[realm].get_meta(&"eye") as Button).button_pressed = open
+func _set_open(picker: RealmPicker, pack: String, open: bool) -> void:
+	(picker.cards[pack].get_meta(&"eye") as Button).button_pressed = open
 
 
 func _count(root: Node, type: Variant) -> int:
@@ -84,28 +85,35 @@ func test_has_a_random_card() -> void:
 	assert_true(_picker().cards.has(""))
 
 
-func test_has_a_card_per_side() -> void:
+func test_has_a_card_per_battlepack() -> void:
 	var picker := _picker()
-	for side in ["Alpha", "Beta", "Gamma"]:
-		assert_true(picker.cards.has(side), side)
+	for pack in ["Pack One", "Pack Two"]:
+		assert_true(picker.cards.has(pack), pack)
+
+
+func test_has_no_card_per_side() -> void:
+	var picker := _picker()
+	assert_false(picker.cards.has("Alpha"))
+	assert_false(picker.cards.has("Gamma"))
 
 
 func test_has_no_other_cards() -> void:
-	assert_eq(_picker().cards.size(), 4)
+	assert_eq(_picker().cards.size(), 3)
 
 
-func test_each_pack_has_a_heading() -> void:
+func test_pack_cards_have_a_small_map_per_side() -> void:
 	var picker := _picker()
-	assert_true(_has_text(picker, "PACK ONE"))
-	assert_true(_has_text(picker, "PACK TWO"))
+	assert_eq(_maps(picker.cards["Pack One"], false).size(), 2)
+	assert_eq(_maps(picker.cards["Pack Two"], false).size(), 1)
 
 
-func test_side_cards_have_a_small_map() -> void:
-	assert_eq(_maps(_picker(), false).size(), 3)
-
-
-func test_side_cards_have_no_detailed_map() -> void:
+func test_pack_cards_have_no_detailed_map() -> void:
 	assert_eq(_maps(_picker(), true).size(), 0)
+
+
+func test_a_pack_card_names_its_sides() -> void:
+	var picker := _picker()
+	assert_true(_has_text(picker.cards["Pack One"], "Alpha or Beta"))
 
 
 # --- Selection ---
@@ -120,58 +128,51 @@ func test_selected_card_is_random_when_nothing_is_chosen() -> void:
 	assert_eq(picker.selected_card(), picker.cards[""])
 
 
-func test_selected_card_is_the_chosen_sides() -> void:
-	var picker := _picker("Beta")
-	assert_eq(picker.selected_card(), picker.cards["Beta"])
+func test_selected_card_is_the_chosen_packs() -> void:
+	var picker := _picker("Pack Two")
+	assert_eq(picker.selected_card(), picker.cards["Pack Two"])
 
 
-func test_selected_card_falls_back_to_random_for_an_unknown_side() -> void:
+func test_selected_card_falls_back_to_random_for_an_unknown_pack() -> void:
 	var picker := _picker("Nowhere")
 	assert_eq(picker.selected_card(), picker.cards[""])
 
 
 func test_chosen_card_looks_different_from_the_others() -> void:
-	var picker := _picker("Alpha")
-	assert_ne(picker.cards["Alpha"].theme_type_variation, picker.cards["Beta"].theme_type_variation)
+	var picker := _picker("Pack One")
+	assert_ne(picker.cards["Pack One"].theme_type_variation, picker.cards["Pack Two"].theme_type_variation)
 
 
 func test_random_card_looks_picked_when_random_is_chosen() -> void:
 	var picker := _picker()
-	assert_ne(picker.cards[""].theme_type_variation, picker.cards["Alpha"].theme_type_variation)
+	assert_ne(picker.cards[""].theme_type_variation, picker.cards["Pack One"].theme_type_variation)
 
 
 # --- Picking ---
 
 
-func test_pressing_a_side_emits_its_pack_and_realm() -> void:
+func test_pressing_a_pack_emits_its_name() -> void:
 	var picker := _picker()
 	watch_signals(picker)
-	picker.cards["Gamma"].pressed.emit()
-	assert_signal_emitted_with_parameters(picker, "picked", ["Pack Two", "Gamma"])
+	picker.cards["Pack Two"].pressed.emit()
+	assert_signal_emitted_with_parameters(picker, "picked", ["Pack Two"])
 
 
-func test_pressing_a_side_in_the_first_pack_emits_that_pack() -> void:
-	var picker := _picker()
-	watch_signals(picker)
-	picker.cards["Beta"].pressed.emit()
-	assert_signal_emitted_with_parameters(picker, "picked", ["Pack One", "Beta"])
-
-
-func test_pressing_random_emits_empty_pack_and_realm() -> void:
-	var picker := _picker("Alpha")
+func test_pressing_random_emits_an_empty_name() -> void:
+	var picker := _picker("Pack One")
 	watch_signals(picker)
 	picker.cards[""].pressed.emit()
-	assert_signal_emitted_with_parameters(picker, "picked", ["", ""])
+	assert_signal_emitted_with_parameters(picker, "picked", [""])
 
 
-func test_pressing_a_side_selects_it() -> void:
+func test_pressing_a_pack_selects_it() -> void:
 	var picker := _picker()
-	picker.cards["Beta"].pressed.emit()
-	assert_eq(picker.selected, "Beta")
+	picker.cards["Pack One"].pressed.emit()
+	assert_eq(picker.selected, "Pack One")
 
 
 func test_pressing_random_clears_the_selection() -> void:
-	var picker := _picker("Beta")
+	var picker := _picker("Pack One")
 	picker.cards[""].pressed.emit()
 	assert_eq(picker.selected, "")
 
@@ -199,10 +200,10 @@ func test_battlepack_of_with_no_packs_is_null() -> void:
 # --- Eye toggle ---
 
 
-func test_every_side_card_has_an_eye() -> void:
+func test_every_pack_card_has_an_eye() -> void:
 	var picker := _picker()
-	for side in ["Alpha", "Beta", "Gamma"]:
-		assert_true(picker.cards[side].get_meta(&"eye") is Button, side)
+	for pack in ["Pack One", "Pack Two"]:
+		assert_true(picker.cards[pack].get_meta(&"eye") is Button, pack)
 
 
 func test_random_card_has_no_eye() -> void:
@@ -211,84 +212,99 @@ func test_random_card_has_no_eye() -> void:
 
 func test_eye_swaps_in_a_full_card() -> void:
 	var picker := _picker()
-	var brief: Control = picker.cards["Alpha"]
-	_set_open(picker, "Alpha", true)
-	assert_ne(picker.cards["Alpha"], brief)
+	var brief: Control = picker.cards["Pack One"]
+	_set_open(picker, "Pack One", true)
+	assert_ne(picker.cards["Pack One"], brief)
 
 
-func test_opening_a_card_adds_a_detailed_map() -> void:
+func test_opening_a_card_adds_a_detailed_map_per_side() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	assert_eq(_maps(picker.cards["Alpha"], true).size(), 1)
+	_set_open(picker, "Pack One", true)
+	assert_eq(_maps(picker.cards["Pack One"], true).size(), 2)
 
 
-func test_opening_a_card_adds_a_map_per_deployment() -> void:
+func test_opening_a_card_adds_a_map_per_deployment_once() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	var maps := UIKit.find_all(picker.cards["Alpha"], func(n: Node) -> bool: return n is RealmMap and n.deployment != null)
+	_set_open(picker, "Pack One", true)
+	var maps := UIKit.find_all(picker.cards["Pack One"], func(n: Node) -> bool: return n is RealmMap and n.deployment != null)
 	assert_eq(maps.size(), 1)
 
 
-func test_opening_a_card_shows_its_starting_relics() -> void:
+func test_opening_a_card_shows_each_sides_starting_relics() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	assert_eq(_count(picker.cards["Alpha"], AbilityCard), 1)
+	_set_open(picker, "Pack One", true)
+	assert_eq(_count(picker.cards["Pack One"], AbilityCard), 2)
 
 
 func test_opening_a_card_without_relics_shows_none() -> void:
 	var picker := _picker()
-	_set_open(picker, "Gamma", true)
-	assert_eq(_count(picker.cards["Gamma"], AbilityCard), 0)
+	_set_open(picker, "Pack Two", true)
+	assert_eq(_count(picker.cards["Pack Two"], AbilityCard), 0)
+
+
+func test_opening_a_card_shows_each_sides_heading() -> void:
+	var picker := _picker()
+	_set_open(picker, "Pack One", true)
+	assert_true(_has_text(picker.cards["Pack One"], "ALPHA"))
+	assert_true(_has_text(picker.cards["Pack One"], "BETA"))
+
+
+func test_opening_a_card_shows_each_sides_twist_deck() -> void:
+	var picker := _picker()
+	_set_open(picker, "Pack One", true)
+	assert_true(_has_text(picker.cards["Pack One"], "ALPHA TWIST DECK"))
+	assert_true(_has_text(picker.cards["Pack One"], "BETA TWIST DECK"))
 
 
 func test_opening_a_card_shows_its_twists() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	assert_true(_has_text(picker.cards["Alpha"], "Twist of Alpha"))
+	_set_open(picker, "Pack One", true)
+	assert_true(_has_text(picker.cards["Pack One"], "Twist of Alpha"))
+	assert_true(_has_text(picker.cards["Pack One"], "Twist of Beta"))
 
 
 func test_opening_a_card_shows_the_scoring() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	assert_true(_has_text(picker.cards["Alpha"], "Score a point"))
+	_set_open(picker, "Pack One", true)
+	assert_true(_has_text(picker.cards["Pack One"], "Score a point"))
 
 
 func test_opening_a_card_shows_the_setup() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	assert_true(_has_text(picker.cards["Alpha"], "Setup text"))
+	_set_open(picker, "Pack One", true)
+	assert_true(_has_text(picker.cards["Pack One"], "Setup text"))
 
 
 func test_opening_a_card_keeps_its_place_in_the_list() -> void:
 	var picker := _picker()
-	var index: int = picker.cards["Beta"].get_index()
-	_set_open(picker, "Beta", true)
-	assert_eq(picker.cards["Beta"].get_index(), index)
+	var index: int = picker.cards["Pack Two"].get_index()
+	_set_open(picker, "Pack Two", true)
+	assert_eq(picker.cards["Pack Two"].get_index(), index)
 
 
 func test_opening_a_card_leaves_the_others_brief() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	assert_eq(_maps(picker.cards["Beta"], true).size(), 0)
+	_set_open(picker, "Pack One", true)
+	assert_eq(_maps(picker.cards["Pack Two"], true).size(), 0)
 
 
 func test_opening_a_card_does_not_pick_it() -> void:
 	var picker := _picker()
 	watch_signals(picker)
-	_set_open(picker, "Alpha", true)
+	_set_open(picker, "Pack One", true)
 	assert_signal_not_emitted(picker, "picked")
 
 
 func test_closing_a_card_swaps_the_brief_form_back() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
-	_set_open(picker, "Alpha", false)
+	_set_open(picker, "Pack One", true)
+	_set_open(picker, "Pack One", false)
 	assert_eq(_maps(picker, true).size(), 0)
 
 
 func test_open_card_can_still_be_picked() -> void:
 	var picker := _picker()
-	_set_open(picker, "Alpha", true)
+	_set_open(picker, "Pack One", true)
 	watch_signals(picker)
-	picker.cards["Alpha"].pressed.emit()
-	assert_signal_emitted_with_parameters(picker, "picked", ["Pack One", "Alpha"])
+	picker.cards["Pack One"].pressed.emit()
+	assert_signal_emitted_with_parameters(picker, "picked", ["Pack One"])

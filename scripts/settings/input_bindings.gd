@@ -25,6 +25,8 @@ const SECTIONS := {
 		["camera_right", "Move camera right"],
 		["camera_rotate_left", "Turn camera left"],
 		["camera_rotate_right", "Turn camera right"],
+		["single_model_mode", "Single-model mode"],
+		["undo_placement", "Undo placement"],
 	],
 }
 
@@ -89,11 +91,9 @@ static func bind(action: String, key: InputEventKey, replacing: InputEventKey = 
 	var taken_from := PackedStringArray()
 	var code := key_code(key)
 	for other in actions():
-		var kept: Array[InputEventKey] = []
-		for event in keys(other):
-			if key_code(event) != code:
-				kept.append(event)
-		if kept.size() < keys(other).size() and other != action:
+		var had := keys(other)
+		var kept := _without(had, code)
+		if kept.size() < had.size() and other != action:
 			taken_from.append(other)
 		set_keys(other, kept)
 	var new_keys := keys(action)
@@ -113,11 +113,16 @@ static func bind(action: String, key: InputEventKey, replacing: InputEventKey = 
 
 ## Removes [param key] from [param action].
 static func unbind(action: String, key: InputEventKey) -> void:
+	set_keys(action, _without(keys(action), key_code(key)))
+
+
+## [param key_list] less any key whose [method key_code] is [param code].
+static func _without(key_list: Array[InputEventKey], code: int) -> Array[InputEventKey]:
 	var kept: Array[InputEventKey] = []
-	for event in keys(action):
-		if key_code(event) != key_code(key):
+	for event in key_list:
+		if key_code(event) != code:
 			kept.append(event)
-	set_keys(action, kept)
+	return kept
 
 
 ## A key with its modifiers as one number, e.g. [code]KEY_S | KEY_MASK_CTRL[/code]. Command or Control

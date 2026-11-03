@@ -4,6 +4,8 @@ extends GutTest
 ##
 ## Expectations are read from the fixture JSON, so editing a fixture value doesn't break tests.
 
+const BattleKit := preload("res://test/support/battle_kit.gd")
+
 const FIXTURES := "res://test/fixtures/core/spearhead"
 
 
@@ -365,6 +367,59 @@ func test_terrain_feature_mystical_defaults_to_false() -> void:
 
 func test_non_boolean_mystical_is_invalid() -> void:
 	_assert_invalid("bad_mystical", "terrain_features[2].mystical")
+
+
+func test_terrain_feature_length_and_width_come_from_file() -> void:
+	var expected: Dictionary = _json("terrain_sized").terrain_features[0]
+	var terrain := _load("terrain_sized").terrain_features[0]
+	assert_eq([terrain.length, terrain.width], [float(expected.length), float(expected.width)])
+
+
+func test_terrain_feature_footprint_is_its_length_by_its_width() -> void:
+	var terrain := _load("terrain_sized").terrain_features[0]
+	assert_eq(terrain.footprint(), Vector2(terrain.length, terrain.width))
+
+
+func test_terrain_feature_without_a_size_has_the_footprint_of_its_size() -> void:
+	var large := BattleKit.terrain_feature("A", "large")
+	var small := BattleKit.terrain_feature("B", "small")
+	assert_gt(large.footprint().x * large.footprint().y, small.footprint().x * small.footprint().y)
+	assert_gt(large.footprint().x, large.footprint().y)
+
+
+func test_terrain_feature_with_only_a_length_has_the_footprint_of_its_size() -> void:
+	var terrain := BattleKit.terrain_feature("A", "large")
+	var by_size := terrain.footprint()
+	terrain.length = 9.0
+	assert_eq(terrain.footprint(), by_size)
+
+
+func test_terrain_feature_with_only_a_width_has_the_footprint_of_its_size() -> void:
+	var terrain := BattleKit.terrain_feature("A", "small")
+	var by_size := terrain.footprint()
+	terrain.width = 1.0
+	assert_eq(terrain.footprint(), by_size)
+
+
+func test_terrain_feature_without_length_or_width_loads_with_none() -> void:
+	var terrain := _load().terrain_features[0]
+	assert_eq([terrain.length, terrain.width], [0.0, 0.0])
+
+
+func test_terrain_feature_with_only_a_length_is_invalid() -> void:
+	_assert_invalid("terrain_length_only", "terrain_features[0].length")
+
+
+func test_terrain_feature_with_only_a_width_is_invalid() -> void:
+	_assert_invalid("terrain_width_only", "terrain_features[0].length")
+
+
+func test_terrain_feature_with_a_negative_length_and_width_is_invalid() -> void:
+	_assert_invalid("terrain_negative_size", "terrain_features[0].length")
+
+
+func test_terrain_feature_wider_than_it_is_long_is_invalid() -> void:
+	_assert_invalid("terrain_wide", "terrain_features[0].length")
 
 
 func test_get_terrain_feature_finds_by_name() -> void:

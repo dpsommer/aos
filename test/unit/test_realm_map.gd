@@ -137,3 +137,33 @@ func test_draws_a_full_realm_without_error() -> void:
 	map.queue_redraw()
 	await wait_frames(2)
 	assert_not_null(map)
+
+
+func _deployed_map(map_size: Vector2, with_deployment := true) -> RealmMap:
+	var deployment: DeploymentMap = null
+	if with_deployment:
+		deployment = _deployment()
+		deployment.territory_a = PackedVector2Array([Vector2(0, 0), Vector2(30, 0), Vector2(30, 11), Vector2(0, 11)])
+		deployment.territory_b = PackedVector2Array([Vector2(0, 11), Vector2(30, 11), Vector2(30, 22), Vector2(0, 22)])
+	var map := _map(_pack(), false, deployment)
+	map.size = map_size
+	map.queue_redraw()
+	return map
+
+
+func test_draws_territory_letters_at_the_smallest_size_without_error() -> void:
+	var map := _deployed_map(Vector2(20, 14))
+	await wait_frames(2)
+	assert_true(map.is_visible_in_tree())
+
+
+func test_draws_territory_letters_at_a_large_size_without_error() -> void:
+	var map := _deployed_map(Vector2(2400, 1760))
+	await wait_frames(2)
+	assert_true(map.is_visible_in_tree())
+
+
+func test_draws_without_a_deployment_map_without_error() -> void:
+	var map := _deployed_map(Vector2(300, 220), false)
+	await wait_frames(2)
+	assert_null(map.deployment)

@@ -2,8 +2,8 @@ class_name RealmMap
 extends Control
 ## One side of a Spearhead realm battlefield, drawn from its data: the roads printed on it, the
 ## objectives as gold circles or rectangles and the terrain features set up before the players'
-## as dashed squares. With a [member deployment] map, its territories are shaded: A lighter than B,
-## as the defender chooses which is theirs. A [member detailed] map names the objectives.
+## as dashed squares. With a [member deployment] map, its territories are shaded, A lighter than B,
+## and marked "A" and "B", as the defender chooses which is theirs. A [member detailed] map names the objectives.
 
 ## Territory A's and B's shading, and the line between them.
 const TERRITORY_A := Color(0.925, 0.906, 0.863, 0.3)
@@ -67,16 +67,36 @@ func _draw() -> void:
 		_fill(_polygon(road), ROAD)
 	if deployment:
 		var a := _polygon(deployment.territory_a)
-		draw_polyline(a + PackedVector2Array([a[0]]), TERRITORY_EDGE, 1.5, true)
+		if a.size() >= 2:
+			draw_polyline(a + PackedVector2Array([a[0]]), TERRITORY_EDGE, 1.5, true)
 	for feature in realm.terrain:
 		var terrain := battlepack.get_terrain_feature(feature.type)
-		var width: float = SpearheadTerrain.WIDTHS.get(terrain.size if terrain else "large", SpearheadTerrain.WIDTHS.large)
-		_dashed_rect(Rect2(to_map(feature.position - Vector2(width, width) / 2), to_map(Vector2(width, width))))
+		var footprint: Vector2 = terrain.footprint() if terrain else SpearheadTerrain.FOOTPRINTS.large
+		BattleplanMap.dashed_rect(self, Rect2(to_map(feature.position - footprint / 2), to_map(footprint)))
 	for objective in realm.objectives:
 		_draw_objective(objective)
 	if detailed:
 		for objective in realm.objectives:
 			_draw_name(objective)
+	if deployment:
+		_draw_territory_letter("A", deployment.territory_a)
+		_draw_territory_letter("B", deployment.territory_b)
+
+
+## Writes [param letter] in the middle of the territory [param points], sized to the map.
+func _draw_territory_letter(letter: String, points: PackedVector2Array) -> void:
+	if points.is_empty():
+		return
+	var middle := Vector2.ZERO
+	for point in points:
+		middle += point
+	middle = to_map(middle / points.size())
+	var font := get_theme_default_font()
+	var font_size := clampi(roundi(size.y / 7), 10, 48)
+	var text_size := font.get_string_size(letter, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
+	var at := middle + Vector2(-text_size.x / 2, font.get_ascent(font_size) / 2 - 1)
+	draw_string_outline(font, at, letter, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, maxi(font_size / 6, 2), BattleplanMap.GROUND)
+	draw_string(font, at, letter, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, UITheme.TEXT)
 
 
 func _draw_objective(objective: MapFeature) -> void:
@@ -104,9 +124,3 @@ func _draw_name(objective: MapFeature) -> void:
 func _fill(points: PackedVector2Array, color: Color) -> void:
 	if points.size() >= 3:
 		draw_colored_polygon(points, color)
-
-
-func _dashed_rect(rect: Rect2) -> void:
-	var corners := [rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)]
-	for i in 4:
-		draw_dashed_line(corners[i], corners[(i + 1) % 4], BattleplanMap.TERRAIN, 1.5, 4)

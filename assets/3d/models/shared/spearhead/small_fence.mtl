@@ -1,0 +1,4 @@
+newmtl small_fence_1
+Kd 1.000 1.000 1.000
+map_Kd textures/small_fence.jpg
+

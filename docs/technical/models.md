@@ -1,6 +1,6 @@
 # 3D models
 
-Unit, manifestation and faction terrain models live in `assets/3d/models/`, one Wavefront `.obj` per model, imported by Godot's OBJ importer as a `Mesh`. `ModelLibrary` (`scripts/battle/map/model_library.gd`) finds them by name, and the game map stands them on their bases (see [Battle](../design/battle.md#game-map)).
+Unit, manifestation, faction terrain and Spearhead terrain models live in `assets/3d/models/`, one Wavefront `.obj` per model, imported by Godot's OBJ importer as a `Mesh`. `ModelLibrary` (`scripts/battle/map/model_library.gd`) finds them by name, and the game map stands them on their bases (see [Battle](../design/battle.md#game-map)).
 
 ## Folders
 
@@ -8,8 +8,11 @@ Unit, manifestation and faction terrain models live in `assets/3d/models/`, one 
 assets/3d/models/
 ├── <alliance>/<faction>/   # order, chaos, death, destruction; faction ids as in data/factions/
 └── shared/
-    └── manifestations/     # the universal manifestations in data/core/manifestation_lores.json
+    ├── manifestations/     # the universal manifestations in data/core/manifestation_lores.json
+    └── spearhead/          # Spearhead terrain features and relics (data/core/spearhead/)
 ```
+
+The Spearhead realm battlefields' printed boards are in `assets/3d/boards/`, one `.jpg` per realm named as a slug (`ashen_bastion.jpg`). See [Spearhead terrain and boards](#spearhead-terrain-and-boards).
 
 - A model goes in the folder of the faction whose warscroll it is. A unit two factions share (Fyreslayers' and Khazalite Holds' Auric Runefather) goes in the one that isn't Legends.
 - A shared warscroll (`data/shared/warscrolls.json`, e.g. the Orruk manifestations) goes in the first faction that lists it.
@@ -66,8 +69,24 @@ How it works:
 - **Names:** a model's nickname (e.g. "Chaos Warrior Champion (Scourge of Aqshy)", "Darkoath Fellrider w/Javelins") is matched to a warscroll in `data/`, among the factions of the tile it's on. Scourge tags, "w/" loadouts, counts such as "5/5" and roles (Champion, Musician, Standard Bearer, Banner) are dropped, then the name is matched exactly, as a plural, as the start of a single warscroll's name, or closely (`difflib`, 0.86). `overrides.json` gives the warscroll for nicknames that don't match that way, or `skip` for companions with no model of their own (Klonk, Thexa, Blot Toads). A target of `x:<faction>:<Name>` files a model under that faction with a name that isn't a warscroll's.
 - **Variants:** a unit's different models (a champion, a musician, other poses or paint schemes) are its numbered variants. Copies of the same model are kept once.
 
-Units with no model are drawn as their bases. Scuttletide has none, as its asset bundle isn't in the cache.
+Units with no model are drawn as their bases.
+
+### Spearhead terrain and boards
+
+The [Age of Sigmar Spearhead](https://steamcommunity.com/sharedfiles/filedetails/?id=3352713596) mod has the Spearhead battlepacks' terrain features, relics and realm battlefields. Load it once in Tabletop Simulator, and switch the battlefield tile through each of its states (Aqshy, Ghyran, Ossia, Dolorum, Ashen Bastion, Shattered Crossroads) so Tabletop Simulator caches every board. Then build them with the same script:
+
+```sh
+python -I tools/tts_models/build_models.py "$HOME/Library/Tabletop Simulator/Mods" 3352713596 > tmp/tts_spearhead_build.json
+godot --headless --import
+```
+
+The mod's workshop id is in `SPEARHEAD_MODS`, so it's built this way automatically; `--spearhead` does it for another save.
+
+- **Models:** only the objects on the table are read (not the units in the faction bags). A model's nickname is matched to a terrain feature or relic in `data/core/spearhead/` by name, without a bracketed realm ("Crypt of Blood (Ossia)"). They go in `shared/spearhead/`, with flat pieces kept (a manhole is flat). Ruined Domicile, Ravaged Shrine and Ruined Manor have two models each, `_1` and `_2`. The City of Ash relics have a plain grey texture in the mod.
+- **Boards:** each state of the battlefield tile named for a realm battlefield is written to `assets/3d/boards/<realm>.jpg`, scaled down to 4096 pixels on its long side. The image covers the battlefield exactly, north at the top. The report lists any board not in the cache under `missing_boards`.
+- **Cleaning up:** a Spearhead build only deletes stale files in `shared/spearhead/` and `assets/3d/boards/`, and a unit build never deletes anything in `shared/spearhead/`.
+- **Size:** in game a model is fitted to its feature's footprint from the battlepack data (see [Battle](../design/battle.md#game-map)), so the rules and the model agree. Scuttletide has none, as its asset bundle isn't in the cache.
 
 ## Git LFS
 
-The models are about 2.5 GB of `.obj` files and 400 MB of textures, so `.gitattributes` stores `assets/3d/models/**/*.obj`, `*.jpg` and `*.png` in [Git LFS](https://git-lfs.com/). Install it (`brew install git-lfs`, then `git lfs install`) before cloning, or the checkout has pointer files in place of models. Godot fails to import those (`valid=false` in their `.import` files), and `ModelLibrary.is_imported()` leaves them out, so units are drawn as their bases without errors. CI checks out without Git LFS, so tests never depend on the real models. The `.mtl` and `.import` files are ordinary text.
+The models are about 2.5 GB of `.obj` files and 400 MB of textures, so `.gitattributes` stores `assets/3d/models/**/*.obj`, `*.jpg` and `*.png`, and the boards in `assets/3d/boards/`, in [Git LFS](https://git-lfs.com/). Install it (`brew install git-lfs`, then `git lfs install`) before cloning, or the checkout has pointer files in place of models. Godot fails to import those (`valid=false` in their `.import` files), and `ModelLibrary.is_imported()` leaves them out, so units are drawn as their bases without errors. CI checks out without Git LFS, so tests never depend on the real models. The `.mtl` and `.import` files are ordinary text.

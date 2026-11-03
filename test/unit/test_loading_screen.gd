@@ -17,12 +17,13 @@ func after_each() -> void:
 
 
 ## A screen opened for the first real Spearhead, which doesn't build by itself.
-func _opened() -> LoadingScreen:
+func _opened(setup: BattleSetup = null) -> LoadingScreen:
 	var screen: LoadingScreen = LoadingScene.instantiate()
 	screen.min_seconds = 0.0
 	add_child_autofree(screen)
 	screen.set_process(false)
-	var setup := BattleKit.real_spearhead_setup()
+	if setup == null:
+		setup = BattleKit.real_spearhead_setup()
 	assert_not_null(setup, "the game data should have a Spearhead")
 	screen.open(setup)
 	return screen
@@ -42,6 +43,58 @@ func test_open_shows_the_matchup() -> void:
 	var screen := _opened()
 	assert_true(UIKit.has_label_containing(screen, screen.battle.player.name))
 	assert_true(UIKit.has_label_containing(screen, screen.battle.player.details()))
+
+
+## A screen for the first real Spearhead on the first side of the first real battlepack.
+func _opened_on_a_side() -> LoadingScreen:
+	var pack := CoreRulesCatalog.spearhead_battlepacks()[0]
+	var setup := BattleKit.real_spearhead_setup()
+	setup.battlepack = pack.name
+	setup.realm = pack.realms[0].name
+	return _opened(setup)
+
+
+func _maps(screen: LoadingScreen) -> Array[Node]:
+	return UIKit.find_all(screen, func(n: Node) -> bool: return n is RealmMap)
+
+
+func test_without_a_side_the_battle_has_no_realm() -> void:
+	assert_null(_opened().battle.realm)
+
+
+func test_without_a_side_the_screen_shows_a_map_per_side() -> void:
+	var screen := _opened()
+	assert_eq(_maps(screen).size(), screen.battle.battlepack.realms.size())
+
+
+func test_without_a_side_the_screen_names_the_sides() -> void:
+	var screen := _opened()
+	var names := PackedStringArray(screen.battle.battlepack.realms.map(func(side: RealmBattlefield) -> String: return side.name))
+	assert_true(UIKit.has_label_containing(screen, "Sides: %s" % " or ".join(names)))
+
+
+func test_without_a_side_the_screen_does_not_count_objectives() -> void:
+	assert_false(UIKit.has_label_containing(_opened(), "objectives"))
+
+
+func test_without_a_side_the_screen_describes_the_pre_battle_picks() -> void:
+	var screen := _opened()
+	assert_true(UIKit.has_label_containing(screen, "picks the side of the realm battlefield"))
+
+
+func test_with_a_side_the_screen_shows_one_map() -> void:
+	assert_eq(_maps(_opened_on_a_side()).size(), 1)
+
+
+func test_with_a_side_the_screen_counts_its_objectives_and_terrain() -> void:
+	var screen := _opened_on_a_side()
+	assert_true(UIKit.has_label_containing(screen, "%d objectives" % screen.battle.objectives.size()))
+	assert_false(UIKit.has_label_containing(screen, "Sides:"))
+
+
+func test_with_a_side_the_screen_is_titled_by_it() -> void:
+	var screen := _opened_on_a_side()
+	assert_true(UIKit.has_label_containing(screen, screen.battle.realm.name))
 
 
 func test_progress_starts_at_zero() -> void:
@@ -190,29 +243,29 @@ func test_the_map_outlives_the_screen_once_handed_over() -> void:
 	map.free()
 
 
-func test_an_unusable_setup_emits_failed() -> void:
+## A watched screen opened with an empty setup, which it can't build a battle from.
+func _opened_unusable() -> LoadingScreen:
 	var screen: LoadingScreen = LoadingScene.instantiate()
 	add_child_autofree(screen)
 	watch_signals(screen)
 	screen.open(BattleSetup.new())
+	return screen
+
+
+func test_an_unusable_setup_emits_failed() -> void:
+	var screen := _opened_unusable()
 	await wait_for_signal(screen.failed, 2)
 	assert_signal_emitted(screen, "failed")
 
 
 func test_failed_says_why() -> void:
-	var screen: LoadingScreen = LoadingScene.instantiate()
-	add_child_autofree(screen)
-	watch_signals(screen)
-	screen.open(BattleSetup.new())
+	var screen := _opened_unusable()
 	await wait_for_signal(screen.failed, 2)
 	assert_false(get_signal_parameters(screen, "failed")[0].is_empty())
 
 
 func test_a_failed_screen_has_no_map_and_never_finishes() -> void:
-	var screen: LoadingScreen = LoadingScene.instantiate()
-	add_child_autofree(screen)
-	watch_signals(screen)
-	screen.open(BattleSetup.new())
+	var screen := _opened_unusable()
 	await wait_for_signal(screen.failed, 2)
 	assert_null(screen.map)
 	assert_eq(screen.steps.size(), 0)
@@ -220,7 +273,4 @@ func test_a_failed_screen_has_no_map_and_never_finishes() -> void:
 
 
 func test_a_failed_screen_has_no_progress() -> void:
-	var screen: LoadingScreen = LoadingScene.instantiate()
-	add_child_autofree(screen)
-	screen.open(BattleSetup.new())
-	assert_eq(screen.progress(), 0.0)
+	assert_eq(_opened_unusable().progress(), 0.0)

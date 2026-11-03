@@ -19,8 +19,20 @@ const OPPONENT_MATERIAL := preload("res://assets/3d/placeholders/p_base_opponent
 const PLAYER_MODEL_MATERIAL := preload("res://assets/3d/placeholders/p_model_player.tres")
 const OPPONENT_MODEL_MATERIAL := preload("res://assets/3d/placeholders/p_model_opponent.tres")
 
+## A model's ring while it's being placed: green where it can go, red where it can't, and blue
+## where it can go while it's picked up.
+const VALID_RING := Color("#8FD4B0")
+const INVALID_RING := Color("#FF6B5B")
+const HELD_RING := Color("#7FB2E8")
+## How wide a terrain feature's outline is while it's being placed, in inches.
+const OUTLINE_WIDTH := 0.3
+## How far a ring stands out from its base, across, and how high it floats.
+const RING_MARGIN := 0.25
+const RING_HEIGHT := 0.2
+
 static var _disc: CylinderMesh
 static var _slab: BoxMesh
+static var _ring: TorusMesh
 
 
 ## A point on the battlefield, in inches from its north-west corner, as a position in the world.
@@ -91,8 +103,111 @@ static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library
 	var tallest := _add_models(root, unit, facing, is_player, library)
 	if not unit.positions.is_empty():
 		var height := maxf(LABEL_HEIGHT, tallest + LABEL_CLEARANCE)
-		root.add_child(label(unit.name, to_world(_middle_of(unit.positions), height)))
+		var name_label := label(unit.name, to_world(_middle_of(unit.positions), height))
+		name_label.name = "Label"
+		root.add_child(name_label)
 	return root
+
+
+## Moves [param root]'s models, built by [method build_unit] for [param unit], to the unit's
+## current positions and facing, without rebuilding them.
+static func update_unit(root: Node3D, unit: BattleUnit) -> void:
+	for child in root.get_children():
+		if child is MultiMeshInstance3D and child.has_meta(&"indices"):
+			var indices: PackedInt32Array = child.get_meta(&"indices")
+			var multimesh: MultiMesh = child.multimesh
+			for n in indices.size():
+				var i := indices[n]
+				if i >= unit.positions.size():
+					continue
+				if child.has_meta(&"model"):
+					multimesh.set_instance_transform(n, model_transform(multimesh.mesh, unit.positions[i], unit.facing))
+				else:
+					multimesh.set_instance_transform(n, transform_of(unit.bases[i], unit.positions[i], unit.facing))
+	var name_label := root.get_node_or_null("Label") as Label3D
+	if name_label and not unit.positions.is_empty():
+		name_label.position = to_world(_middle_of(unit.positions), name_label.position.y)
+
+
+## Rings around [param unit]'s models in [param root] while it's being placed: green (blue while
+## [param held]), or red for the models in [param invalid]. [param show] off removes them.
+static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array, show := true, held := false) -> void:
+	var rings := root.get_node_or_null("Rings") as MultiMeshInstance3D
+	if not show:
+		if rings:
+			rings.queue_free()
+			root.remove_child(rings)
+		return
+	if rings == null:
+		rings = MultiMeshInstance3D.new()
+		rings.name = "Rings"
+		rings.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		rings.material_override = marker_material()
+		rings.material_override.vertex_color_use_as_albedo = true
+		root.add_child(rings)
+	var multimesh := MultiMesh.new()
+	multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	multimesh.use_colors = true
+	multimesh.mesh = ring_mesh()
+	multimesh.instance_count = unit.positions.size()
+	for i in unit.positions.size():
+		var footprint := unit.bases[i].footprint() + Vector2(RING_MARGIN, RING_MARGIN)
+		var basis := Basis(Vector3.UP, yaw(unit.facing)).scaled_local(Vector3(footprint.x, 1.0, footprint.y))
+		multimesh.set_instance_transform(i, Transform3D(basis, to_world(unit.positions[i], RING_HEIGHT)))
+		multimesh.set_instance_color(i, INVALID_RING if i in invalid else ring_colour(true, held))
+	rings.multimesh = multimesh
+
+
+## The colour of something being placed: blue if it can go there while [param held], green if it
+## can when set down, red if it can't.
+static func ring_colour(valid: bool, held: bool) -> Color:
+	if not valid:
+		return INVALID_RING
+	return HELD_RING if held else VALID_RING
+
+
+## The material for a placement ring or outline: unshaded and drawn over everything, so it shows
+## through the model or feature it marks.
+static func marker_material() -> StandardMaterial3D:
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.no_depth_test = true
+	material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	material.render_priority = 1
+	return material
+
+
+## A flat band [constant OUTLINE_WIDTH] wide just outside [param outline] (points around the
+## origin, in inches), at [param height], for a terrain feature's outline while it's placed.
+static func outline_mesh(outline: PackedVector2Array, height: float) -> ArrayMesh:
+	var vertices := PackedVector3Array()
+	var count := outline.size()
+	for i in count + 1:
+		var point := outline[i % count]
+		var out := point + point.normalized() * OUTLINE_WIDTH
+		vertices.append(to_world(point, height))
+		vertices.append(to_world(out, height))
+	var normals := PackedVector3Array()
+	normals.resize(vertices.size())
+	normals.fill(Vector3.UP)
+	var arrays := []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	arrays[Mesh.ARRAY_NORMAL] = normals
+	var mesh := ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
+	return mesh
+
+
+## A flat ring 1 wide, scaled per model.
+static func ring_mesh() -> Mesh:
+	if _ring == null:
+		_ring = TorusMesh.new()
+		_ring.inner_radius = 0.46
+		_ring.outer_radius = 0.5
+		_ring.rings = 32
+		_ring.ring_segments = 4
+	return _ring
 
 
 ## Adds [param unit]'s bases to [param root], one [MultiMeshInstance3D] per kind of base (shape
@@ -114,6 +229,7 @@ static func _add_bases(root: Node3D, unit: BattleUnit, facing: float, is_player:
 			var i: int = indices[n]
 			multimesh.set_instance_transform(n, transform_of(unit.bases[i], unit.positions[i], facing))
 		var instance := MultiMeshInstance3D.new()
+		instance.set_meta(&"indices", PackedInt32Array(indices))
 		instance.multimesh = multimesh
 		instance.material_override = PLAYER_MATERIAL if is_player else OPPONENT_MATERIAL
 		root.add_child(instance)
@@ -145,11 +261,15 @@ static func _add_models(root: Node3D, unit: BattleUnit, facing: float, is_player
 		@warning_ignore("integer_division")
 		multimesh.instance_count = (count - m + meshes.size() - 1) / meshes.size()
 		var n := 0
+		var indices := PackedInt32Array()
 		for i in range(m, count, meshes.size()):
 			multimesh.set_instance_transform(n, model_transform(mesh, unit.positions[i], facing))
+			indices.append(i)
 			n += 1
 		var instance := MultiMeshInstance3D.new()
 		instance.name = "Model%d" % (m + 1)
+		instance.set_meta(&"indices", indices)
+		instance.set_meta(&"model", true)
 		instance.multimesh = multimesh
 		if not ModelLibrary.is_textured(mesh):
 			instance.material_override = PLAYER_MODEL_MATERIAL if is_player else OPPONENT_MODEL_MATERIAL

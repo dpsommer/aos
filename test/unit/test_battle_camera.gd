@@ -180,3 +180,52 @@ func test_frame_stays_within_the_zoom_limits() -> void:
 	assert_lte(camera.distance, BattleCamera.MAX_DISTANCE)
 	camera.frame(Rect2(0, 0, 0.01, 0.01), 0.0)
 	assert_gte(camera.distance, BattleCamera.MIN_DISTANCE)
+
+
+# ground_point
+
+## A camera whose view has been worked out.
+func _placed() -> BattleCamera:
+	var camera := _camera()
+	camera.pan(Vector2.ZERO)
+	return camera
+
+
+func _centre(camera: BattleCamera) -> Vector2:
+	return camera.get_viewport().get_visible_rect().size / 2
+
+
+func test_the_middle_of_the_view_is_the_point_looked_at() -> void:
+	var camera := _placed()
+	var point: Vector2 = camera.ground_point(_centre(camera))
+	assert_almost_eq(point, Vector2(30, 22), Vector2(0.05, 0.05))
+
+
+func test_a_point_right_of_the_middle_is_further_east() -> void:
+	var camera := _placed()
+	var point: Vector2 = camera.ground_point(_centre(camera) + Vector2(100, 0))
+	assert_gt(point.x, 30.0)
+	assert_almost_eq(point.y, 22.0, 0.05)
+
+
+func test_a_point_towards_the_top_of_the_view_is_further_from_the_camera() -> void:
+	var camera := _placed()
+	var near_point: Vector2 = camera.ground_point(_centre(camera) + Vector2(0, 100))
+	var far_point: Vector2 = camera.ground_point(_centre(camera) - Vector2(0, 100))
+	# Looking north, further is smaller y.
+	assert_lt(far_point.y, near_point.y)
+
+
+func test_ground_point_follows_the_views_turn() -> void:
+	var camera := _camera()
+	camera.yaw = PI / 2
+	camera.pan(Vector2.ZERO)
+	var point: Vector2 = camera.ground_point(_centre(camera) + Vector2(100, 0))
+	# Turned a quarter, the view's right is along the board's depth rather than its width.
+	assert_gt(absf(point.y - 22.0), absf(point.x - 30.0))
+
+
+func test_looking_above_the_horizon_meets_no_ground() -> void:
+	var camera := _placed()
+	camera.camera.global_transform = Transform3D(Basis.looking_at(Vector3(0, 1, -1)), Vector3(30, 5, 22))
+	assert_null(camera.ground_point(_centre(camera)))

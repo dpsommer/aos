@@ -26,6 +26,8 @@ var detailed := false
 ## Whether to shade the territories grey instead of red and blue, before the roll-off decides
 ## who is the attacker.
 var neutral := false
+## Whether to draw the attacker's territory blue and the defender's red, for a player who attacks.
+var player_attacks := false
 
 
 func _init(plan: Battleplan, battlefield_size: Vector2, show_detail := false) -> void:
@@ -55,13 +57,13 @@ func to_map(inches: Vector2) -> Vector2:
 func _draw() -> void:
 	draw_style_box(UITheme.box(GROUND, UITheme.CONTROL_BORDER, 4), Rect2(Vector2.ZERO, size))
 	for area in battleplan.attacker_territory:
-		draw_rect(Rect2(to_map(area.position), to_map(area.size)), NEUTRAL_ATTACKER if neutral else ATTACKER)
+		draw_rect(Rect2(to_map(area.position), to_map(area.size)), NEUTRAL_ATTACKER if neutral else (DEFENDER if player_attacks else ATTACKER))
 	for area in battleplan.defender_territory:
-		draw_rect(Rect2(to_map(area.position), to_map(area.size)), NEUTRAL_DEFENDER if neutral else DEFENDER)
+		draw_rect(Rect2(to_map(area.position), to_map(area.size)), NEUTRAL_DEFENDER if neutral else (ATTACKER if player_attacks else DEFENDER))
 	if detailed:
 		for feature in battleplan.terrain:
 			var width: float = MapFeature.TERRAIN_WIDTHS.get(feature.size, MapFeature.TERRAIN_WIDTHS.medium)
-			_dashed_rect(Rect2(to_map(feature.position - Vector2(width, width) / 2), to_map(Vector2(width, width))))
+			dashed_rect(self, Rect2(to_map(feature.position - Vector2(width, width) / 2), to_map(Vector2(width, width))))
 	var radius := to_map(Vector2(CONTROL_RANGE, 0)).x if detailed else SMALL_OBJECTIVE / 2
 	for objective in battleplan.objectives:
 		var centre := to_map(objective.position)
@@ -69,7 +71,9 @@ func _draw() -> void:
 		draw_arc(centre, radius - 1, 0, TAU, 32, OBJECTIVE, 2, true)
 
 
-func _dashed_rect(rect: Rect2) -> void:
+## Draws a terrain feature's dashed outline around [param rect] on [param canvas], from its
+## [method CanvasItem._draw].
+static func dashed_rect(canvas: CanvasItem, rect: Rect2) -> void:
 	var corners := [rect.position, Vector2(rect.end.x, rect.position.y), rect.end, Vector2(rect.position.x, rect.end.y)]
 	for i in 4:
-		draw_dashed_line(corners[i], corners[(i + 1) % 4], TERRAIN, 1.5, 4)
+		canvas.draw_dashed_line(corners[i], corners[(i + 1) % 4], TERRAIN, 1.5, 4)
