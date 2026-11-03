@@ -22,23 +22,7 @@ func _fill(card: BattleTacticCard, form: Form, heading: String, action: Control)
 	_add_title(card.name, heading, [], action)
 	match form:
 		Form.FULL:
-			# Rules divide the card's setup, each battle tactic and its FAQs.
-			if not card.text.is_empty():
-				content.add_child(HSeparator.new())
-				content.add_child(UIBuilder.label(card.text, "MutedLabel", true))
-			for tactic in card.tactics:
-				content.add_child(HSeparator.new())
-				var entry: VBoxContainer = load("res://scenes/ui/cards/tactic_entry.tscn").instantiate()
-				(entry.get_node(^"%Condition") as Label).text = tactic.condition
-				var row := _tactic_row(tactic)
-				entry.add_child(row)
-				entry.move_child(row, 0)
-				content.add_child(entry)
-			if not card.faqs.is_empty():
-				content.add_child(HSeparator.new())
-			for faq in card.faqs:
-				content.add_child(UIBuilder.rich("[b]FAQ:[/b] %s\n[b]Answer:[/b] %s" % [
-						str(faq.get("question", "")).replace("[", "[lb]"), str(faq.get("answer", "")).replace("[", "[lb]")]))
+			_fill_full(card)
 		Form.BRIEF:
 			for tactic in card.tactics:
 				content.add_child(_tactic_row(tactic))
@@ -47,6 +31,26 @@ func _fill(card: BattleTacticCard, form: Form, heading: String, action: Control)
 			for tactic in card.tactics:
 				chips.add_child(UITheme.chip(tactic.name, tactic.kind))
 			content.add_child(chips)
+
+
+## The card's setup, then each battle tactic with its condition, then its FAQs, divided by rules.
+func _fill_full(card: BattleTacticCard) -> void:
+	if not card.text.is_empty():
+		content.add_child(HSeparator.new())
+		content.add_child(UIBuilder.label(card.text, "MutedLabel", true))
+	for tactic in card.tactics:
+		content.add_child(HSeparator.new())
+		var entry: VBoxContainer = load("res://scenes/ui/cards/tactic_entry.tscn").instantiate()
+		(entry.get_node(^"%Condition") as Label).text = tactic.condition
+		var row := _tactic_row(tactic)
+		entry.add_child(row)
+		entry.move_child(row, 0)
+		content.add_child(entry)
+	if not card.faqs.is_empty():
+		content.add_child(HSeparator.new())
+	for faq in card.faqs:
+		content.add_child(UIBuilder.rich("[b]FAQ:[/b] %s\n[b]Answer:[/b] %s" % [
+				UIBuilder.escape_bbcode(str(faq.get("question", ""))), UIBuilder.escape_bbcode(str(faq.get("answer", "")))]))
 
 
 ## A battle tactic's kind, name and victory points.

@@ -77,9 +77,7 @@ func set_header_hidden(hidden: bool) -> void:
 ## highlighted, the ones before it ticked. No steps hides the step list.
 func set_phase(phase: String, steps: PackedStringArray = [], current := -1) -> void:
 	phase_label.text = phase
-	for child in steps_row.get_children():
-		steps_row.remove_child(child)
-		child.queue_free()
+	UIBuilder.clear(steps_row)
 	for i in steps.size():
 		if i > 0:
 			var line := ColorRect.new()

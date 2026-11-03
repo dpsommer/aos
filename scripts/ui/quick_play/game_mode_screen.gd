@@ -81,6 +81,6 @@ func _mode_card(mode: BattleSetup.Mode) -> OptionCard:
 	var chips: HFlowContainer = card.get_node(^"%Chips")
 	for chip: Array in mode_chips(mode):
 		chips.add_child(UITheme.chip(chip[0], chip[1]))
-	OptionCard._ignore_mouse(chips)
+	UIBuilder.ignore_mouse(chips)
 	card.pressed.connect(mode_chosen.emit.bind(mode))
 	return card

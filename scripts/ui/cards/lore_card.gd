@@ -23,10 +23,7 @@ func _fill(lore: Lore, full: bool, heading: String, action: Control, summoned: C
 				for summoned_unit: Warscroll in summoned.call(ability):
 					content.add_child(WarscrollCard.summoned_card(summoned_unit))
 	else:
-		var chips := HFlowContainer.new()
-		for ability in lore.entries:
-			chips.add_child(UITheme.chip(ability.name))
-		content.add_child(chips)
+		_add_name_chips(lore.entries)
 
 
 ## The lore's points, Scourge and Legends tags.
@@ -34,9 +31,5 @@ static func tags(lore: Lore) -> Array[Control]:
 	var result: Array[Control] = []
 	if lore.points > 0:
 		result.append(UITheme.chip("%d pts" % lore.points, "gold"))
-	var scourge := UIBuilder.scourge_tag(lore.source)
-	if scourge:
-		result.append(scourge)
-	if lore.legends:
-		result.append(UITheme.chip("Legends", "legends"))
+	result.append_array(UIBuilder.source_tags(lore.source, lore.legends))
 	return result

@@ -93,9 +93,7 @@ func _refresh() -> void:
 		map_buttons[i].set_pressed_no_signal(battle.battlepack.deployment_maps[i] == _map)
 	territory_a_button.set_pressed_no_signal(_has_a)
 	territory_b_button.set_pressed_no_signal(not _has_a)
-	for child in preview_holder.get_children():
-		preview_holder.remove_child(child)
-		child.queue_free()
+	UIBuilder.clear(preview_holder)
 	if _map and _realm:
 		var preview := RealmMap.new(battle.battlepack, _realm, true, _map)
 		preview.custom_minimum_size = Vector2(480, 352)

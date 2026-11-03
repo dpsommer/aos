@@ -428,9 +428,7 @@ func _next_text() -> String:
 func _refresh_tray() -> void:
 	tray_buttons.clear()
 	var row: HBoxContainer = %Groups
-	for child in row.get_children():
-		row.remove_child(child)
-		child.queue_free()
+	UIBuilder.clear(row)
 	var groups: Array = []
 	match deployment.step:
 		Deployment.Step.TERRAIN:

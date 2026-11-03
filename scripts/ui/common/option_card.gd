@@ -22,17 +22,10 @@ static func create() -> OptionCard:
 
 ## Adds [param control] to the card. Mouse events on it go to the card.
 func add(control: Control) -> Control:
-	_ignore_mouse(control)
+	UIBuilder.ignore_mouse(control)
 	content.add_child(control)
 	return control
 
 
 func _fit_content() -> void:
 	custom_minimum_size.y = maxf(min_height, content.get_combined_minimum_size().y + PADDING * 2)
-
-
-static func _ignore_mouse(control: Control) -> void:
-	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for child in control.get_children():
-		if child is Control:
-			_ignore_mouse(child)

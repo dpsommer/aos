@@ -116,7 +116,7 @@ func _show_step(shown: Step) -> void:
 	back_button.text = BACK_LABELS[shown]
 	back_button.tooltip_text = "Back to " + BACK_LABELS[shown].to_lower()
 	header_title.visible = shown == Step.ARMIES
-	_clear(breadcrumb)
+	UIBuilder.clear(breadcrumb)
 	if shown != Step.ARMIES:
 		breadcrumb.add_child(UIBuilder.breadcrumb(breadcrumb_steps(), shown - 1))
 	browse_button.visible = shown == Step.RENOWN or shown == Step.FORMATION
@@ -141,7 +141,7 @@ func breadcrumb_steps() -> PackedStringArray:
 ## Shows the saved armies, most recently saved first, focusing the army with [param focus_id] if
 ## given.
 func show_armies(focus_id := "") -> void:
-	_clear(army_list)
+	UIBuilder.clear(army_list)
 	var focus: Control = new_army_button
 	for entry in ArmyStore.list():
 		var row := _army_row(entry)
@@ -320,7 +320,7 @@ static func shown_factions(alliance: GrandAlliance.Type) -> PackedStringArray:
 
 
 func _populate_factions(alliance: GrandAlliance.Type) -> void:
-	_clear(faction_grid)
+	UIBuilder.clear(faction_grid)
 	for faction in shown_factions(alliance):
 		var card: OptionCard = load("res://scenes/ui/forge/faction_card.tscn").instantiate()
 		card.set_meta(&"faction", faction)
@@ -339,7 +339,7 @@ func _populate_factions(alliance: GrandAlliance.Type) -> void:
 			card.accessibility_description = "Coming soon"
 			chips.add_child(UITheme.chip("Coming soon"))
 		chips.visible = chips.get_child_count() > 0
-		OptionCard._ignore_mouse(chips)
+		UIBuilder.ignore_mouse(chips)
 		faction_grid.add_child(card)
 
 
@@ -359,11 +359,11 @@ func show_armies_of_renown(alliance: GrandAlliance.Type, faction_name: String) -
 	_faction = faction
 	renown_description.text = ("Optional. An Army of Renown replaces the %s faction rules with its own and limits which"
 			+ " units you can take. You can change this later in the builder's settings.") % faction.name
-	_clear(renown_chips)
+	UIBuilder.clear(renown_chips)
 	if faction.legends:
 		renown_chips.add_child(UITheme.chip("Legends", "legends"))
-	_clear(renown_none)
-	_clear(renown_grid)
+	UIBuilder.clear(renown_none)
+	UIBuilder.clear(renown_grid)
 	var own := _own_rules_card()
 	renown_none.add_child(own)
 	var focus: Button = own
@@ -424,7 +424,7 @@ func _renown_card(army: ArmyOfRenown) -> OptionCard:
 	for chip: Array in renown_chips_for(army):
 		chips.add_child(UITheme.chip(chip[0], chip[1]))
 	chips.visible = chips.get_child_count() > 0
-	OptionCard._ignore_mouse(chips)
+	UIBuilder.ignore_mouse(chips)
 	return card
 
 
@@ -481,7 +481,7 @@ func choose_army_of_renown(army_name: String) -> void:
 
 
 func _show_formations() -> void:
-	_clear(formation_grid)
+	UIBuilder.clear(formation_grid)
 	var focus: Button = null
 	for formation in _faction.battle_formations:
 		var card := _formation_card(formation)
@@ -508,7 +508,7 @@ func _formation_card(formation: BattleFormation) -> OptionCard:
 	var rules: VBoxContainer = card.get_node(^"%Rules")
 	for ability in formation.abilities:
 		rules.add_child(AbilityCard.create(ability))
-	OptionCard._ignore_mouse(card.content)
+	UIBuilder.ignore_mouse(card.content)
 	return card
 
 
@@ -535,9 +535,3 @@ func _start(army_of_renown: String, formation: String) -> void:
 
 func _on_browse_pressed() -> void:
 	browse_requested.emit(_selected_alliance, _faction.name)
-
-
-func _clear(container: Node) -> void:
-	for child in container.get_children():
-		container.remove_child(child)
-		child.queue_free()

@@ -93,9 +93,7 @@ func refresh() -> void:
 	search.accessibility_name = search.placeholder_text
 	if search.text != query:
 		search.text = query
-	for child in _content.get_children():
-		_content.remove_child(child)
-		child.queue_free()
+	UIBuilder.clear(_content)
 	match tab:
 		"roster":
 			_roster()
@@ -234,7 +232,7 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	var portrait := UIBuilder.portrait(warscroll.name, Callable(), "", 48)
 	face.add_child(portrait)
 	face.move_child(portrait, 0)
-	_ignore_mouse(face)
+	UIBuilder.ignore_mouse(face)
 	var button: Button = card.get_node(^"%CardButton")
 	button.tooltip_text = ("Hide " if open else "Show ") + "warscroll"
 	button.accessibility_name = warscroll.name
@@ -270,13 +268,6 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 		add.disabled = builder.available_units(func(w: Warscroll) -> bool: return w == warscroll).is_empty()
 		card.get_node(^"%AddRow").visible = true
 	return card
-
-
-func _ignore_mouse(node: Node) -> void:
-	if node is Control:
-		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for child in node.get_children():
-		_ignore_mouse(child)
 
 
 func toggle_favourite(warscroll_id: String) -> void:

@@ -18,7 +18,4 @@ func _fill(formation: BattleFormation, full: bool, action: Control) -> void:
 		for ability in formation.abilities:
 			content.add_child(AbilityCard.create(ability))
 	else:
-		var chips := HFlowContainer.new()
-		for ability in formation.abilities:
-			chips.add_child(UITheme.chip(ability.name))
-		content.add_child(chips)
+		_add_name_chips(formation.abilities)

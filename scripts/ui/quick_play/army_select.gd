@@ -85,7 +85,7 @@ func _unhandled_input(event: InputEvent) -> void:
 ## Spearhead named [param focus], else the first one.
 func open(of: BattleSetup.Mode, focus := "") -> void:
 	mode = of
-	_clear(breadcrumb)
+	UIBuilder.clear(breadcrumb)
 	breadcrumb.add_child(UIBuilder.breadcrumb(["Quick Play", BattleSetup.display_name(mode), "Army"], 2, "Quick Play steps"))
 	if mode == BattleSetup.Mode.MATCHED_PLAY:
 		entries = ArmyStore.list()
@@ -230,7 +230,7 @@ func _set_pane(shown: Pane) -> void:
 	pane = shown
 	_search = null
 	_list_box = null
-	_clear(pane_box)
+	UIBuilder.clear(pane_box)
 	if _plan_card:
 		_plan_card.set_pressed_no_signal(shown == Pane.PLANS)
 
@@ -260,7 +260,7 @@ func _list_heading(title: String, count: String) -> HBoxContainer:
 
 
 func _fill_list() -> void:
-	_clear(_list_box)
+	UIBuilder.clear(_list_box)
 	if mode == BattleSetup.Mode.MATCHED_PLAY:
 		var group := ButtonGroup.new()
 		for entry in entries:
@@ -413,7 +413,7 @@ func _choose_spearhead(entry: Dictionary) -> void:
 
 
 func _show_detail() -> void:
-	_clear(detail_column)
+	UIBuilder.clear(detail_column)
 	_plan_card = null
 	if mode == BattleSetup.Mode.MATCHED_PLAY:
 		if army_id.is_empty():
@@ -584,7 +584,7 @@ func _refresh_plan_card() -> void:
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"
 	var art := _plan_art(map)
-	OptionCard._ignore_mouse(art)
+	UIBuilder.ignore_mouse(art)
 	row.add_child(art)
 	row.move_child(art, 0)
 	(_plan_card.get_node(^"%PlanName") as Label).text = name_text
@@ -836,12 +836,6 @@ static func _focus_later(control: Control) -> void:
 	(func() -> void:
 		if is_instance_valid(control) and control.is_inside_tree():
 			control.grab_focus()).call_deferred()
-
-
-static func _clear(node: Node) -> void:
-	for child in node.get_children():
-		node.remove_child(child)
-		child.queue_free()
 
 
 # --- Summaries ---

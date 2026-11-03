@@ -39,7 +39,7 @@ func _fill_choice(open: bool, key: String) -> void:
 	make_foldable(open, key)
 	fold_button.pressed.connect(func() -> void: fold_toggled.emit(not folded))
 	selected = false
-	_ignore_mouse(get_child(0))
+	UIBuilder.ignore_mouse(get_child(0), true)
 	mouse_entered.connect(_set_hovered.bind(true))
 	mouse_exited.connect(_set_hovered.bind(false))
 	focus_entered.connect(queue_redraw)
@@ -51,16 +51,6 @@ func add_header_control(control: Control) -> void:
 	super(control)
 	if _check:
 		_header.move_child(control, _check.get_index())
-
-
-## Lets clicks through to the card, except on buttons such as the chevron.
-static func _ignore_mouse(node: Node) -> void:
-	if node is BaseButton:
-		return
-	if node is Control:
-		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for child in node.get_children():
-		_ignore_mouse(child)
 
 
 func _gui_input(event: InputEvent) -> void:

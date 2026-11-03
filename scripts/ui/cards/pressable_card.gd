@@ -53,16 +53,15 @@ func make_pressable(description: String) -> void:
 	tooltip_text = description
 	accessibility_name = card_name
 	accessibility_description = description
-	_ignore_mouse(get_child(0))
+	UIBuilder.ignore_mouse(get_child(0), true)
 
 
-func _ignore_mouse(node: Node) -> void:
-	if node is BaseButton:
-		return
-	if node is Control:
-		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for child in node.get_children():
-		_ignore_mouse(child)
+## Adds a row to [member content] with a chip naming each of [param abilities], e.g. a lore's spells.
+func _add_name_chips(abilities: Array[Ability]) -> void:
+	var chips := HFlowContainer.new()
+	for ability in abilities:
+		chips.add_child(UITheme.chip(ability.name))
+	content.add_child(chips)
 
 
 func _gui_input(event: InputEvent) -> void:

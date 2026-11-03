@@ -37,11 +37,11 @@ func _fill(unit: Warscroll, summoned: Callable, show_summoned: Callable) -> void
 				content.add_child(summoned_card(summoned_unit, show_summoned))
 	var notes := PackedStringArray()
 	if not unit.composition.is_empty():
-		notes.append("[b]Unit composition:[/b] %s" % unit.composition.replace("[", "[lb]"))
+		notes.append("[b]Unit composition:[/b] %s" % UIBuilder.escape_bbcode(unit.composition))
 	if not unit.regiment_options.is_empty():
-		notes.append("[b]Regiment options:[/b] %s" % ", ".join(unit.regiment_options).replace("[", "[lb]"))
+		notes.append("[b]Regiment options:[/b] %s" % UIBuilder.escape_bbcode(", ".join(unit.regiment_options)))
 	if not unit.notes.is_empty():
-		notes.append("[b]Notes:[/b] %s" % unit.notes.replace("[", "[lb]"))
+		notes.append("[b]Notes:[/b] %s" % UIBuilder.escape_bbcode(unit.notes))
 	if not notes.is_empty():
 		content.add_child(HSeparator.new())
 		content.add_child(UIBuilder.rich("\n".join(notes)))

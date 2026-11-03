@@ -24,6 +24,29 @@ static func find_descendant(node: Node, matches: Callable) -> Node:
 	return null
 
 
+## Removes and frees every child of [param node].
+static func clear(node: Node) -> void:
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()
+
+
+## Lets mouse events through [param node] and the controls under it, e.g. to the card holding
+## them. With [param keep_buttons], buttons (and what's under them) still take their own clicks.
+static func ignore_mouse(node: Node, keep_buttons := false) -> void:
+	if keep_buttons and node is BaseButton:
+		return
+	if node is Control:
+		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for child in node.get_children():
+		ignore_mouse(child, keep_buttons)
+
+
+## Stops rules text such as "[Shoot in Combat]" being read as BBCode.
+static func escape_bbcode(value: String) -> String:
+	return value.replace("[", "[lb]")
+
+
 ## A button whose [param key] lets the builder give it focus back after redrawing.
 static func button(text: String, on_pressed: Callable, key := "", variation := "", tooltip := "") -> Button:
 	var node := Button.new()
@@ -229,11 +252,17 @@ static func setting_row(title: String, control: Control, note := "") -> PanelCon
 
 ## The warscroll's Scourge or Legends tags.
 static func tags(warscroll: Warscroll) -> Array[Control]:
+	return source_tags(warscroll.source, warscroll.legends)
+
+
+## A Scourge tag for rules from [param source] ([method scourge_tag]), then a Legends tag if
+## [param legends].
+static func source_tags(source: String, legends: bool) -> Array[Control]:
 	var result: Array[Control] = []
-	var scourge := scourge_tag(warscroll.source)
+	var scourge := scourge_tag(source)
 	if scourge:
 		result.append(scourge)
-	if warscroll.legends:
+	if legends:
 		result.append(UITheme.chip("Legends", "legends"))
 	return result
 

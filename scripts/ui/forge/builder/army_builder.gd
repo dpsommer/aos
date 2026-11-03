@@ -253,9 +253,7 @@ func redraw() -> void:
 	var focused := get_viewport().gui_get_focus_owner() if is_inside_tree() else null
 	var key: String = focused.get_meta(&"focus_key", "") if focused else ""
 	_draw_header()
-	for child in builder_list.get_children():
-		builder_list.remove_child(child)
-		child.queue_free()
+	UIBuilder.clear(builder_list)
 	for section in [_name_section(), _validation_section(), _tactics_section(), _army_list_section(),
 			_auxiliary_section(), _terrain_section(), _lores_section()]:
 		if section:

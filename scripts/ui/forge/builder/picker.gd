@@ -42,9 +42,7 @@ func is_open() -> bool:
 func refresh() -> void:
 	if not is_open():
 		return
-	for child in _list.get_children():
-		_list.remove_child(child)
-		child.queue_free()
+	UIBuilder.clear(_list)
 	_render.call()
 
 
