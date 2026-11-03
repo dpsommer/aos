@@ -1,4 +1,5 @@
 import json, os, sys
+from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import build_models
@@ -208,3 +209,90 @@ def test_assemble_keeps_a_flat_piece_with_no_flat_limit():
 
 def test_assemble_keeps_a_tall_piece_by_default():
     assert build_models.assemble(TREE, FakeCache(build_models.FLAT * 4)) is not None
+
+
+# turns
+
+def turned(name, degrees, **kwargs):
+    obj = model(name, **kwargs)
+    obj["Transform"] = {"rotY": degrees}
+    return obj
+
+
+def test_definitions_record_the_roots_turn():
+    save = {"ObjectStates": [turned("Main", 180.0)]}
+    assert build_models.definitions(save)[0]["tree"]["turn"] == 180.0
+
+
+def test_a_state_takes_the_turn_of_the_object_it_replaces():
+    save = {"ObjectStates": [turned("Main", 90.0, states=[turned("Other", 0.0)])]}
+    turns = {d["name"]: d["tree"]["turn"] for d in build_models.definitions(save)}
+    assert turns == {"Main": 90.0, "Other": 90.0}
+
+
+def test_a_contained_object_keeps_its_own_turn():
+    bag = turned("Bag", 90.0)
+    bag["Name"] = "Bag"
+    bag["ContainedObjects"] = [turned("Inside", 45.0)]
+    save = {"ObjectStates": [bag]}
+    assert build_models.definitions(save)[0]["tree"]["turn"] == 45.0
+
+
+def front_of(mesh):
+    """The mesh's furthest point along -Z."""
+    return min(mesh["v"], key=lambda p: p[2])
+
+
+class PointerCache:
+    """One tall piece whose tip points along +Z in the mesh's file."""
+
+    def pieces(self, node):
+        return [{"v": [[0, 0, 0], [0, 1, 0], [0, 0, 2]], "vt": [], "vn": [], "f": [[(1, 0, 0), (2, 0, 0), (3, 0, 0)]],
+                 "fm": [], "materials": [{"texture": None, "color": (1, 1, 1)}]}]
+
+
+def test_assemble_takes_the_roots_turn():
+    mesh = build_models.assemble({**TREE, "turn": 180.0}, PointerCache())
+    assert front_of(mesh)[2] < -1.9
+
+
+def test_assemble_without_turn_keeps_the_meshes_frame():
+    mesh = build_models.assemble({**TREE, "turn": 180.0}, PointerCache(), turn=False)
+    assert front_of(mesh)[2] > -0.1
+
+
+def test_assemble_ignores_the_roots_tilt():
+    tree = {**TREE, "t": {"rotX": 90.0, "rotZ": 90.0}, "turn": 0.0}
+    mesh = build_models.assemble(tree, PointerCache())
+    assert max(p[1] for p in mesh["v"]) > 0.9
+
+
+def test_turn_of_is_the_commonest_turn():
+    assert build_models.turn_of(Counter({90: 3, 240: 1}), oval=False) == 90
+
+
+def test_turn_of_an_oval_based_model_keeps_a_half_turn():
+    assert build_models.turn_of(Counter({180: 1}), oval=True) == 180
+
+
+def test_turn_of_an_oval_based_model_drops_a_quarter_turn():
+    assert build_models.turn_of(Counter({90: 1}), oval=True) == 0
+    assert build_models.turn_of(Counter({270: 1}), oval=True) == 0
+
+
+def test_turn_of_an_oval_based_model_rounds_to_the_nearest_half_turn():
+    assert build_models.turn_of(Counter({240: 1}), oval=True) == 180
+    assert build_models.turn_of(Counter({75: 1}), oval=True) == 0
+
+
+def test_turn_mesh_turns_the_front_to_the_side():
+    mesh = {"v": [(0.0, 1.0, -1.0)], "vn": [(0.0, 0.0, -1.0)]}
+    build_models.turn_mesh(mesh, 90)
+    assert [round(c, 6) for c in mesh["v"][0]] == [-1.0, 1.0, 0.0]
+    assert [round(c, 6) for c in mesh["vn"][0]] == [-1.0, 0.0, 0.0]
+
+
+def test_turn_mesh_half_turn_faces_the_back():
+    mesh = {"v": [(0.0, 0.0, -1.0)], "vn": []}
+    build_models.turn_mesh(mesh, 180)
+    assert [round(c, 6) for c in mesh["v"][0]] == [0.0, 0.0, 1.0]

@@ -114,6 +114,7 @@ class Warscrolls:
     def __init__(self):
         self.factions = defaultdict(set)  # name -> faction ids ("shared" for data/shared and core)
         self.manifestations = set()  # universal manifestations
+        self.ovals = set()  # names of warscrolls on oval bases
         self.alliance = {}
         self.legends = {}
         shared_users = defaultdict(set)
@@ -130,11 +131,15 @@ class Warscrolls:
                             shared_users[scroll["shared"]].add(faction["id"])
                         else:
                             self.factions[scroll["name"]].add(faction["id"])
+                            if (scroll.get("base_size") or {}).get("shape") == "oval":
+                                self.ovals.add(scroll["name"])
         self.shared_ids = {}
         for path in ("shared/warscrolls.json", "shared/regiments_of_renown.json"):
             for scroll in self._scrolls(json.load(open(os.path.join(DATA, path)))):
                 self.factions[scroll["name"]].add("shared")
                 self.shared_ids[scroll["name"]] = scroll.get("id")
+                if (scroll.get("base_size") or {}).get("shape") == "oval":
+                    self.ovals.add(scroll["name"])
         for scroll in self._scrolls(json.load(open(os.path.join(DATA, "core", "manifestation_lores.json")))):
             self.factions[scroll["name"]].add("shared")
             self.manifestations.add(scroll["name"])
@@ -250,8 +255,11 @@ def color_of(obj):
 def definitions(save, top_level=False):
     """Every model in the save: {name, tile, tree}. A tree node is {mesh, bundle, diffuse, color, t,
     children}: its .obj mesh or asset bundle (cache keys), its texture's cache key and colour, its
-    transform and its child objects. With [top_level], only the models on the table (and their
-    other states), not those in bags or spawned by scripts."""
+    transform and its child objects. The root also has its turn: the degrees it's turned about Y on
+    the table, which the mod uses to make the model face forwards, as its meshes face every way. An
+    object's other states have its turn, as Tabletop Simulator gives a state the transform of the
+    object it replaces. With [top_level], only the models on the table (and their other states),
+    not those in bags or spawned by scripts."""
     result = []
 
     def tree(obj):
@@ -261,13 +269,15 @@ def definitions(save, top_level=False):
                 "diffuse": mesh_key(custom.get("DiffuseURL")), "color": color_of(obj),
                 "t": obj.get("Transform", {}), "children": [tree(c) for c in obj.get("ChildObjects") or []]}
 
-    def collect(obj, tile):
+    def collect(obj, tile, turn=None):
+        if turn is None:
+            turn = (obj.get("Transform") or {}).get("rotY", 0.0) or 0.0
         if obj.get("Name") == "Custom_Model" and (obj.get("CustomMesh") or {}).get("MeshURL"):
-            result.append({"name": (obj.get("Nickname") or "").strip(), "tile": tile, "tree": tree(obj)})
+            result.append({"name": (obj.get("Nickname") or "").strip(), "tile": tile, "tree": {**tree(obj), "turn": turn}})
         for child in [] if top_level else obj.get("ContainedObjects") or []:
             collect(child, tile)
         for state in (obj.get("States") or {}).values():
-            collect(state, tile)
+            collect(state, tile, turn)
 
     for obj in save["ObjectStates"]:
         tile = (obj.get("Nickname") or obj.get("Name") or "").strip()
@@ -315,14 +325,16 @@ def local_matrix(t, translate=True, rotate=True):
     return [[r[i][0] * s[0], r[i][1] * s[1], r[i][2] * s[2], p[i]] for i in range(3)] + [[0, 0, 0, 1]], [row[:] for row in r]
 
 
-def pieces(tree):
-    """Each mesh of a model (its node) with its matrix from the mesh's file to the root's frame (the
-    root's scale applied, but not its position or rotation, which only place it on the table), and
-    its rotation alone."""
+def pieces(tree, turn=True):
+    """Each mesh of a model (its node) with its matrix from the mesh's file to the model's frame, and
+    its rotation alone. The root's scale is applied, and with [turn] its turn (see [definitions]),
+    so the model faces forwards, but not its position or its tilt, which only place it on the
+    table."""
     result = []
+    root_t = {**tree["t"], "rotX": 0.0, "rotY": tree.get("turn", 0.0) if turn else 0.0, "rotZ": 0.0}
 
     def walk(node, parent, parent_rotation):
-        m, r = local_matrix(node["t"], translate=parent is not None, rotate=parent is not None)
+        m, r = local_matrix(node["t"] if parent else root_t, translate=parent is not None)
         world = matmul(parent, m) if parent else m
         rotation = [[sum(parent_rotation[i][k] * r[k][j] for k in range(3)) for j in range(3)] for i in range(3)] if parent_rotation else r
         if node["mesh"] or node["bundle"]:
@@ -414,13 +426,14 @@ def material_key(material):
     return (material["texture"], tuple(round(c, 3) for c in material["color"]))
 
 
-def assemble(tree, cache, flat=FLAT):
-    """The model's pieces as one mesh in its root's frame, or None if it's only flat pieces. The mod
-    turns each piece to face the root's front, -Z, and lines it up with the root's base (a ship
-    along its oval), so pieces keep their turn. Pieces no taller than [param flat] are left out. Faces keep their pieces' materials: fm[i] indexes
-    face i's in materials."""
+def assemble(tree, cache, flat=FLAT, turn=True):
+    """The model's pieces as one mesh, facing -Z, or None if it's only flat pieces. The mod lines
+    each piece up with the root's base (a ship along its oval), so pieces keep their turn, and turns
+    the root on the table to make the model face forwards, so with [turn] the mesh takes the root's
+    turn too (see [pieces]). Pieces no taller than [param flat] are left out. Faces keep their
+    pieces' materials: fm[i] indexes face i's in materials."""
     parts = []
-    for node, world, rotation in pieces(tree):
+    for node, world, rotation in pieces(tree, turn):
         for piece in cache.pieces(node):
             points = [transform_point(world, p) for p in piece["v"]]
             if not points:
@@ -612,6 +625,14 @@ def write_model(mesh, folder, stem, files, textures):
     files.write(f"{folder}/{stem}.obj", "".join(obj))
 
 
+def turn_mesh(mesh, degrees):
+    """Turns [mesh] [degrees] about Y, anticlockwise seen from above."""
+    a = math.radians(degrees)
+    c, s = math.cos(a), math.sin(a)
+    mesh["v"] = [(x * c + z * s, y, -x * s + z * c) for x, y, z in mesh["v"]]
+    mesh["vn"] = [(x * c + z * s, y, -x * s + z * c) for x, y, z in mesh["vn"]]
+
+
 def complete(mesh):
     """Gives every face corner of [mesh] a normal and texture coordinates, as Godot can't import a
     surface whose faces only some have them, nor make tangents for a textured surface without
@@ -676,7 +697,7 @@ def collect_units(save, overrides):
     names = {}
     units = defaultdict(list)
     unmatched = Counter()
-    seen = set()
+    turns = {}  # (target, signature) -> Counter of the copies' turns
     for model in definitions(save):
         target = match(model["name"], model["tile"], warscrolls, overrides, names)
         if not target:
@@ -685,11 +706,24 @@ def collect_units(save, overrides):
         if target == "skip":
             continue
         key = (target, signature(model["tree"]))
-        if key in seen:
-            continue
-        seen.add(key)
-        units[target].append((model["name"], model["tree"]))
+        if key not in turns:
+            turns[key] = Counter()
+            units[target].append((model["name"], model["tree"]))
+        turns[key][round(model["tree"]["turn"]) % 360] += 1
+    # A few copies of a model are turned differently; the model takes its copies' commonest turn.
+    for target, models in units.items():
+        for _, tree in models:
+            tree["turn"] = turn_of(turns[(target, signature(tree))], target in warscrolls.ovals)
     return units, unmatched, warscrolls.folder
+
+
+def turn_of(turns, oval):
+    """A model's turn from its copies' [turns] (a Counter of degrees): the commonest. A model on an
+    [oval] base already lies along it, as the game has it face along its oval, but the mod often
+    shows one side-on, turned about 90 degrees, so its turn is only to the nearest half turn (90 and
+    270 are none)."""
+    turn = turns.most_common(1)[0][0]
+    return round(turn / 180) * 180 % 360 if oval else turn
 
 
 def collect_spearhead(save, overrides, spearhead):
@@ -734,6 +768,8 @@ def main():
     parser.add_argument("save", nargs="?", default=MOD, help="the mod's workshop id, or a path to its save")
     parser.add_argument("--out", default=os.path.join(ROOT, "assets", "3d", "models"))
     parser.add_argument("--overrides", default=os.path.join(HERE, "overrides.json"))
+    parser.add_argument("--turns", default=os.path.join(HERE, "turns.json"),
+                        help="further turns for models the mod turns the wrong way, by file name")
     parser.add_argument("--spearhead", action="store_true",
                         help="build Spearhead terrain, relics and boards (the default for SPEARHEAD_MODS)")
     parser.add_argument("--only", action="append", default=[], metavar="NAME",
@@ -746,6 +782,7 @@ def main():
 
     save = json.load(open(save_path))
     overrides = json.load(open(args.overrides))
+    turns = json.load(open(args.turns)) if os.path.exists(args.turns) else {}
     spearhead = SpearheadPieces() if is_spearhead else None
     if spearhead:
         units, unmatched, folder_of = collect_spearhead(save, overrides, spearhead)
@@ -765,13 +802,16 @@ def main():
         meshes = []
         for nickname, tree in sorted(models, key=lambda m: m[0]):
             # Terrain has no base to leave out, and some of it (a manhole) is flat.
-            mesh = assemble(tree, cache, flat=0.0 if spearhead else FLAT)
+            # Terrain is fitted to its feature's footprint in game, so it keeps its own frame.
+            mesh = assemble(tree, cache, flat=0.0 if spearhead else FLAT, turn=not spearhead)
             if mesh:
                 meshes.append((nickname, mesh))
         report["units"][target] = []
         for i, (nickname, mesh) in enumerate(meshes):
             stem = name if len(meshes) == 1 else f"{name}_{i + 1}"
             report["units"][target].append({"file": f"{folder}/{stem}.obj", "nickname": nickname})
+            if stem in turns:
+                turn_mesh(mesh, turns[stem])
             write_model(mesh, folder, stem, files, textures)
         print(f"{target}: {len(meshes)}", file=sys.stderr)
     report["textures"] = len(textures.written)
