@@ -24,6 +24,10 @@ const OPPONENT_MODEL_MATERIAL := preload("res://assets/3d/placeholders/p_model_o
 const VALID_RING := Color("#8FD4B0")
 const INVALID_RING := Color("#FF6B5B")
 const HELD_RING := Color("#7FB2E8")
+## The colour red rings pulse towards when the player tries to put something down where it can't go,
+## and how long each pulse takes, in seconds.
+const FLASH_RING := Color("#FFF1EE")
+const FLASH_PULSE := 0.2
 ## How wide a terrain feature's outline is while it's being placed, in inches.
 const OUTLINE_WIDTH := 0.3
 ## How far a ring stands out from its base, across, and how high it floats.
@@ -130,8 +134,10 @@ static func update_unit(root: Node3D, unit: BattleUnit) -> void:
 
 
 ## Rings around [param unit]'s models in [param root] while it's being placed: green (blue while
-## [param held]), or red for the models in [param invalid]. [param show] off removes them.
-static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array, show := true, held := false) -> void:
+## [param held]), or [param invalid_colour] (red, or a flash from [method flash_colour]) for the
+## models in [param invalid]. [param show] off removes them.
+static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array, show := true, held := false,
+		invalid_colour := INVALID_RING) -> void:
 	var rings := root.get_node_or_null("Rings") as MultiMeshInstance3D
 	if not show:
 		if rings:
@@ -154,7 +160,7 @@ static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array
 		var footprint := unit.bases[i].footprint() + Vector2(RING_MARGIN, RING_MARGIN)
 		var basis := Basis(Vector3.UP, yaw(unit.facing)).scaled_local(Vector3(footprint.x, 1.0, footprint.y))
 		multimesh.set_instance_transform(i, Transform3D(basis, to_world(unit.positions[i], RING_HEIGHT)))
-		multimesh.set_instance_color(i, INVALID_RING if i in invalid else ring_colour(true, held))
+		multimesh.set_instance_color(i, invalid_colour if i in invalid else ring_colour(true, held))
 	rings.multimesh = multimesh
 
 
@@ -164,6 +170,12 @@ static func ring_colour(valid: bool, held: bool) -> Color:
 	if not valid:
 		return INVALID_RING
 	return HELD_RING if held else VALID_RING
+
+
+## The colour of a red ring [param elapsed] seconds into a flash: it pulses from red to
+## [constant FLASH_RING] and back every [constant FLASH_PULSE] seconds.
+static func flash_colour(elapsed: float) -> Color:
+	return INVALID_RING.lerp(FLASH_RING, 0.5 - 0.5 * cos(TAU * elapsed / FLASH_PULSE))
 
 
 ## The material for a placement ring or outline: unshaded and drawn over everything, so it shows

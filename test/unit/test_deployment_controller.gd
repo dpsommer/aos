@@ -1398,8 +1398,9 @@ func test_dragging_terrain_twice_turns_from_where_it_was_at_the_press() -> void:
 
 func test_releasing_terrain_after_a_drag_puts_it_down() -> void:
 	var feature := _terrain_start()
-	_c.press(PRESS)
-	_c.drag_to(PRESS + Vector2(4, 3))
+	_c.hover(Vector2(24, 7))
+	_c.press(Vector2(24, 7))
+	_c.drag_to(Vector2(24, 7) + Vector2(4, 3))
 	var rotation := feature.rotation
 	_c.release()
 	assert_false(_c.is_holding())
@@ -1560,6 +1561,11 @@ func _screen() -> Vector2:
 	return _map.get_viewport().get_visible_rect().size / 2
 
 
+## Aims the camera at the middle of the player's zone, so the screen's middle is a valid spot.
+func _look_at_the_zone() -> void:
+	_map.camera.frame(Rect2(20, 2, 20, 10), 0.0)
+
+
 func _mouse_button(at: Vector2, pressed: bool) -> InputEventMouseButton:
 	var event := InputEventMouseButton.new()
 	event.button_index = MOUSE_BUTTON_LEFT
@@ -1629,6 +1635,7 @@ func test_pressing_the_left_button_while_holding_starts_a_press() -> void:
 
 func test_a_click_with_the_mouse_puts_the_unit_down_as_it_is() -> void:
 	var unit := _held_unit()
+	_look_at_the_zone()
 	_c._unhandled_input(_mouse_motion(_screen()))
 	var positions := unit.positions.duplicate()
 	_c._unhandled_input(_mouse_button(_screen(), true))
@@ -1672,7 +1679,9 @@ func test_a_drag_carries_on_once_started_even_if_the_mouse_comes_back_close() ->
 
 func test_releasing_the_left_button_after_a_drag_puts_the_unit_down() -> void:
 	var unit := _held_unit()
+	_look_at_the_zone()
 	var start := _screen()
+	_c._unhandled_input(_mouse_motion(start))
 	_c._unhandled_input(_mouse_button(start, true))
 	_c._unhandled_input(_mouse_motion(start + Vector2(DeploymentController.DRAG_PIXELS * 10, 0)))
 	var positions := unit.positions.duplicate()
@@ -1718,3 +1727,201 @@ func test_the_single_model_key_works_in_the_spearhead_army() -> void:
 	_start_spearhead()
 	_c._unhandled_input(_action("single_model_mode"))
 	assert_true(_c.single_model)
+
+
+# refusing to put down what's misplaced
+
+## The colour of the outline around the terrain feature being placed. (Instance colours of a unit's
+## rings can't be read back headless, but the outline's material can.)
+func _outline_colour(feature: BattleTerrain) -> Color:
+	var ring := (_c.terrain_nodes[feature] as Node3D).get_node("Ring") as MeshInstance3D
+	return (ring.material_override as StandardMaterial3D).albedo_color
+
+
+## A unit held and moved out of the player's zone, then put down.
+func _put_down_outside() -> BattleUnit:
+	var unit := _held_unit()
+	_c.move_to(Vector2(30, 40))
+	_c.put_down()
+	return unit
+
+
+func test_a_unit_outside_the_zone_stays_held_when_put_down() -> void:
+	_put_down_outside()
+	assert_true(_c.is_holding())
+
+
+func test_a_unit_outside_the_zone_flashes_when_put_down() -> void:
+	_put_down_outside()
+	assert_true(_c.is_flashing())
+
+
+func test_a_unit_with_one_model_outside_the_zone_stays_held() -> void:
+	var unit := _held_unit()
+	_c.move_model(0, Vector2(0, 40))
+	_c.put_down()
+	assert_true(_c.is_holding())
+	assert_gt(unit.positions.size(), 1)
+
+
+func test_a_unit_in_the_zone_is_put_down_without_flashing() -> void:
+	_held_unit()
+	_c.move_to(Vector2(30, 6))
+	_c.put_down()
+	assert_false(_c.is_holding())
+	assert_false(_c.is_flashing())
+
+
+func test_a_unit_overlapping_another_stays_held_when_put_down() -> void:
+	_start_spearhead()
+	var other := _unit(_me(), "A1")
+	var unit := _unit(_me(), "B1")
+	_c.click(unit.positions[0])
+	_c.move_to(_middle(other))
+	_c.put_down()
+	assert_true(_c.is_holding())
+	assert_true(_c.is_flashing())
+
+
+func test_a_unit_with_overlapping_models_stays_held_when_put_down() -> void:
+	var unit := _put_down_unit()
+	_c.toggle_single_model()
+	_c.click(unit.positions[1])
+	_c.hover(unit.positions[0])
+	_c.put_down()
+	assert_true(_c.is_holding())
+
+
+func test_an_incoherent_unit_in_the_zone_can_be_put_down() -> void:
+	var unit := _put_down_unit()
+	_c.toggle_single_model()
+	_c.click(unit.positions[1])
+	_c.hover(Vector2(unit.positions[1].x, 3) + Vector2(12, 0))
+	_c.put_down()
+	assert_false(Coherency.is_coherent(unit.positions, unit.bases, unit.facing))
+	assert_false(_c.is_holding())
+
+
+func test_in_single_model_mode_a_misplaced_model_stays_held() -> void:
+	var unit := _put_down_unit()
+	_c.toggle_single_model()
+	_c.click(unit.positions[1])
+	_c.hover(Vector2(30, 40))
+	_c.put_down()
+	assert_true(_c.is_holding())
+	assert_true(_c.is_flashing())
+
+
+func test_in_single_model_mode_another_models_misplacement_is_ignored() -> void:
+	var unit := _put_down_unit()
+	_c.toggle_single_model()
+	_c.click(unit.positions[2])
+	_c.move_model(0, Vector2(0, 40))
+	_c.put_down()
+	assert_false(_c.is_holding())
+
+
+func test_terrain_in_a_bad_spot_stays_held_when_put_down() -> void:
+	_terrain_start()
+	_c.move_to(Vector2(30, 40))
+	_c.put_down()
+	assert_true(_c.is_holding())
+	assert_true(_c.is_flashing())
+
+
+func test_terrain_in_a_good_spot_is_put_down_without_flashing() -> void:
+	_terrain_start()
+	_c.hover(Vector2(24, 7))
+	_c.put_down()
+	assert_false(_c.is_holding())
+	assert_false(_c.is_flashing())
+
+
+func test_the_flash_carries_on_part_way_through() -> void:
+	_put_down_outside()
+	_c._process(DeploymentController.FLASH_TIME / 2)
+	assert_true(_c.is_flashing())
+
+
+func test_the_flash_ends_after_its_time() -> void:
+	_put_down_outside()
+	_c._process(DeploymentController.FLASH_TIME + 0.1)
+	assert_false(_c.is_flashing())
+
+
+func test_processing_without_a_flash_changes_nothing() -> void:
+	var unit := _held_unit()
+	_c._process(0.1)
+	assert_false(_c.is_flashing())
+	assert_eq(_problems(unit).size(), 0)
+
+
+func _refused_terrain() -> BattleTerrain:
+	var feature := _terrain_start()
+	_c.move_to(Vector2(30, 40))
+	_c.put_down()
+	return feature
+
+
+func test_a_flashing_outline_differs_from_plain_red_mid_flash() -> void:
+	var feature := _refused_terrain()
+	var plain := _outline_colour(feature)
+	_c._process(ModelPlaceholder.FLASH_PULSE / 2)
+	assert_ne(_outline_colour(feature), plain)
+
+
+func test_the_outline_is_plain_red_again_once_the_flash_is_over() -> void:
+	var feature := _refused_terrain()
+	var plain := _outline_colour(feature)
+	_c._process(DeploymentController.FLASH_TIME / 2)
+	_c._process(DeploymentController.FLASH_TIME)
+	assert_eq(_outline_colour(feature), plain)
+
+
+func test_undo_drops_a_refused_unit() -> void:
+	_put_down_outside()
+	_c.undo()
+	assert_false(_c.is_holding())
+
+
+func test_confirming_drops_the_hold_on_a_refused_unit() -> void:
+	_put_down_outside()
+	_c.confirm()
+	assert_false(_c.is_holding())
+
+
+func test_cancelling_stops_the_flash() -> void:
+	_put_down_outside()
+	_c.cancel()
+	assert_false(_c.is_flashing())
+
+
+func test_a_refused_release_after_a_drag_keeps_the_unit_held() -> void:
+	_held_unit()
+	_c.move_to(Vector2(30, 40))
+	_c.press(Vector2(30, 40))
+	_c.drag_to(Vector2(36, 40))
+	_c.release()
+	assert_true(_c.is_holding())
+	assert_false(_c.is_pressing())
+
+
+func test_hovering_after_a_refused_drag_release_does_not_make_the_unit_jump() -> void:
+	var unit := _held_unit()
+	_c.move_to(Vector2(30, 40))
+	_c.press(Vector2(30, 40))
+	_c.drag_to(Vector2(36, 40))
+	_c.release()
+	var middle := _middle(unit)
+	_c.hover(Vector2(36, 40))
+	assert_almost_eq(_middle(unit), middle, Vector2(0.01, 0.01))
+
+
+func test_a_refused_release_after_a_drag_keeps_the_unit_lined_up() -> void:
+	var unit := _held_unit()
+	_c.move_to(Vector2(30, 40))
+	_c.press(Vector2(30, 40))
+	_c.drag_to(Vector2(36, 40))
+	var facing := unit.facing
+	_c.release()
+	assert_eq(unit.facing, facing)

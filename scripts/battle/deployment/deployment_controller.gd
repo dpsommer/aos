@@ -8,7 +8,9 @@ extends Node
 ## and coherency allow (a terrain feature turns along the drag, about the press point). Clicking one
 ## of its models (or the feature) picks it up again; in single-model mode, just that model. Rings
 ## and outlines are blue where it can go while it's held, green once it's down, and red where it
-## can't go. In Spearhead the player's whole army is set out at
+## can't go. Trying to put it down where any of its models (or the model held) is outside the zone
+## or overlapping, or where the feature breaks its rules, keeps it held and flashes its red rings.
+## In Spearhead the player's whole army is set out at
 ## once, each unit in a valid spot if there is one; the player picks units up and moves them about,
 ## then confirms them all together. See docs/design/battle.md.
 
@@ -19,6 +21,9 @@ signal finished
 const AI_DELAY := 0.6
 ## How far the pointer moves, in pixels, before a press becomes a drag rather than a click.
 const DRAG_PIXELS := 6.0
+## How long red rings flash after trying to put something down where it can't go, in seconds: three
+## pulses ([constant ModelPlaceholder.FLASH_PULSE]).
+const FLASH_TIME := 0.6
 ## Values of what's held.
 const NOTHING := -2
 const WHOLE := -1
@@ -65,6 +70,10 @@ var _dragged := false
 ## point.
 var _press_position := Vector2.ZERO
 var _press_rotation := 0.0
+## Where the pointer last was during a drag, so what's held after it doesn't jump.
+var _drag_point := Vector2.ZERO
+## Seconds left of the red rings' flash.
+var _flash_left := 0.0
 
 
 func _init(on: BattleMap) -> void:
@@ -297,6 +306,7 @@ func move_model(index: int, by: Vector2) -> void:
 ## Puts what's being placed back where it started, and down.
 func undo() -> void:
 	_held = NOTHING
+	_flash_left = 0.0
 	match _state.get("mode"):
 		"unit", "army":
 			var unit := moving_unit()
@@ -462,16 +472,21 @@ func drag_to(point: Vector2) -> void:
 	if not is_pressing() or not is_holding():
 		return
 	_dragged = true
+	_drag_point = point
 	orient(_press_at, point)
 
 
-## The mouse button comes up: what's held is put down, lined up if it was dragged.
+## The mouse button comes up: what's held is put down, lined up if it was dragged. If it can't go
+## there it stays held, lined up, and follows the pointer from where the drag ended.
 func release() -> void:
 	if not is_pressing():
 		return
+	var dragged := _dragged
 	_press_at = null
 	_dragged = false
 	put_down()
+	if dragged and _held == WHOLE:
+		_hold_offset = _held_middle() - _drag_point
 
 
 ## Lines what's held up along the line [param from] to [param to]. A unit stands with its front
@@ -514,15 +529,70 @@ func hover(point: Vector2) -> void:
 		move_model(_held, point + _hold_offset - moving_unit().positions[_held])
 
 
-## Puts down what's held where it is.
+## Puts down what's held where it is, unless it can't go there ([method _is_misplaced]): then it
+## stays held and its red rings flash.
 func put_down() -> void:
 	_press_at = null
 	_dragged = false
 	if not is_holding():
 		return
+	if _is_misplaced():
+		_flash_left = FLASH_TIME
+		_validate()
+		return
 	_held = NOTHING
 	_validate()
 	_refresh_hud()
+
+
+## Whether what's held can't be put down where it is: a model of the unit held (or the one model
+## held) outside the zone or overlapping, or the feature held breaking its rules. Coherency doesn't
+## count, as moving models one at a time passes through it; Confirm still checks it.
+func _is_misplaced() -> bool:
+	match _state.get("mode"):
+		"unit", "army":
+			var unit := moving_unit()
+			if unit == null:
+				return false
+			var staged: Array[BattleUnit] = []
+			if _state.mode == "army":
+				staged = _staged
+			var bad := DeploymentRules.invalid_models(battle, player(), unit, unit.positions, unit.facing, [], staged)
+			for key in ["outside", "overlapping"]:
+				var models: PackedInt32Array = bad[key]
+				if (_held == WHOLE and not models.is_empty()) or _held in models:
+					return true
+		"terrain":
+			var feature: BattleTerrain = _state.feature
+			return not deployment.terrain_problems(player(), feature, feature.position, feature.rotation).is_empty()
+	return false
+
+
+## Whether the red rings are flashing after trying to put something down where it can't go.
+func is_flashing() -> bool:
+	return _flash_left > 0.0
+
+
+func _process(delta: float) -> void:
+	if not is_flashing():
+		return
+	_flash_left = maxf(_flash_left - delta, 0.0)
+	_validate()
+
+
+## The colour of red rings now: flashing, or plain red.
+func _invalid_colour() -> Color:
+	return ModelPlaceholder.flash_colour(FLASH_TIME - _flash_left) if is_flashing() else ModelPlaceholder.INVALID_RING
+
+
+## The middle of what's held as a whole: the unit's models, or the feature's position.
+func _held_middle() -> Vector2:
+	var unit := moving_unit()
+	if unit:
+		return _middle(unit.positions)
+	if _state.get("mode") == "terrain":
+		return (_state.feature as BattleTerrain).position
+	return Vector2.ZERO
 
 
 func _hold(what: int, offset: Vector2) -> void:
@@ -647,7 +717,7 @@ func _validate() -> void:
 		"unit":
 			var unit: BattleUnit = _state.unit
 			var bad := DeploymentRules.invalid_models(battle, player(), unit, unit.positions, unit.facing)
-			ModelPlaceholder.show_rings(unit_nodes[unit], unit, _all_invalid(bad), true, is_holding())
+			ModelPlaceholder.show_rings(unit_nodes[unit], unit, _all_invalid(bad), true, is_holding(), _invalid_colour())
 			problems = DeploymentRules.unit_problems(battle, player(), unit, unit.positions, unit.facing)
 		"army":
 			problems = _validate_army()
@@ -670,7 +740,7 @@ func _validate_army() -> PackedStringArray:
 	for unit in _staged:
 		var bad := DeploymentRules.invalid_models(battle, player(), unit, unit.positions, unit.facing, zone, _staged)
 		var held := is_holding() and unit == moving_unit()
-		ModelPlaceholder.show_rings(unit_nodes[unit], unit, _all_invalid(bad), true, held)
+		ModelPlaceholder.show_rings(unit_nodes[unit], unit, _all_invalid(bad), true, held, _invalid_colour() if held else ModelPlaceholder.INVALID_RING)
 		for problem in DeploymentRules.unit_problems(battle, player(), unit, unit.positions, unit.facing, zone, _staged):
 			problems.append("%s: %s" % [unit.name, problem])
 	return problems
@@ -698,7 +768,7 @@ func _terrain_outline(node: Node3D, feature: BattleTerrain, valid: bool) -> void
 		ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		ring.material_override = ModelPlaceholder.marker_material()
 		node.add_child(ring)
-	ring.material_override.albedo_color = ModelPlaceholder.ring_colour(valid, is_holding())
+	ring.material_override.albedo_color = ModelPlaceholder.ring_colour(valid, is_holding()) if valid else _invalid_colour()
 
 
 func _remove_terrain_ring(node: Node3D) -> void:
@@ -724,6 +794,7 @@ func _drop_placing() -> void:
 	_held = NOTHING
 	_press_at = null
 	_dragged = false
+	_flash_left = 0.0
 
 
 func _free_node(nodes: Dictionary, key: Variant) -> void:

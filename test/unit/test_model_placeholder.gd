@@ -472,3 +472,18 @@ func test_an_outline_mesh_sits_at_the_height_given() -> void:
 	var low := ModelPlaceholder.outline_mesh(outline, 0.1).get_aabb()
 	var high := ModelPlaceholder.outline_mesh(outline, 0.6).get_aabb()
 	assert_gt(high.position.y, low.position.y)
+
+
+# flash_colour
+
+func test_a_flash_starts_as_plain_red() -> void:
+	assert_eq(ModelPlaceholder.flash_colour(0.0), ModelPlaceholder.ring_colour(false, false))
+
+
+func test_a_flash_differs_from_plain_red_half_way_through_a_pulse() -> void:
+	assert_ne(ModelPlaceholder.flash_colour(ModelPlaceholder.FLASH_PULSE / 2), ModelPlaceholder.ring_colour(false, false))
+
+
+func test_a_flash_is_plain_red_again_after_each_pulse() -> void:
+	var colour := ModelPlaceholder.flash_colour(ModelPlaceholder.FLASH_PULSE * 2)
+	assert_true(colour.is_equal_approx(ModelPlaceholder.ring_colour(false, false)))

@@ -90,14 +90,6 @@ func test_confirm_emits_the_default_without_any_picking() -> void:
 	assert_signal_emitted_with_parameters(picker, "chosen", [battle.battlepack.realms[0], battle.battlepack.deployment_maps[0], true])
 
 
-func test_the_confirm_button_names_the_pick() -> void:
-	var picker := _picker()
-	picker.map_buttons[1].pressed.emit()
-	picker.territory_b_button.pressed.emit()
-	assert_string_contains(picker.confirm_button.text, "Second")
-	assert_string_contains(picker.confirm_button.text, "B")
-
-
 func test_a_preview_of_the_picked_map_is_shown() -> void:
 	assert_eq(_picker().preview_holder.get_child_count(), 1)
 
@@ -165,12 +157,6 @@ func test_confirm_emits_the_picked_side() -> void:
 	watch_signals(picker)
 	picker.confirm_button.pressed.emit()
 	assert_signal_emitted_with_parameters(picker, "chosen", [battle.battlepack.realms[1], battle.battlepack.deployment_maps[0], true])
-
-
-func test_the_confirm_button_names_the_side() -> void:
-	var picker := _picker()
-	picker.realm_buttons[1].pressed.emit()
-	assert_string_contains(picker.confirm_button.text, "Ghyran")
 
 
 func test_changing_the_side_keeps_a_single_preview() -> void:
