@@ -124,6 +124,7 @@
 		},
 		{
 			"name": "Swamphorde Bullies",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -140,6 +141,7 @@
 		},
 		{
 			"name": "Badmouthing Baiterz",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

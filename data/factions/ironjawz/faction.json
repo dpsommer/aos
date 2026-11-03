@@ -86,6 +86,7 @@
 		},
 		{
 			"name": "Brutefist",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -101,6 +102,7 @@
 		},
 		{
 			"name": "Bigsnikkaz",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

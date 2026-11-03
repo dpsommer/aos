@@ -56,7 +56,8 @@ class Section:
 
 ## The rules [param army] uses, from [param catalog]: an Army of Renown's battle traits,
 ## enhancements and lores replace the faction's, and it has no battle formations. Legends enhancement
-## tables and lores are left out unless the army shows Legends, though its picked lores stay. The
+## tables and lores are left out unless the army shows Legends, though its picked lores stay, and
+## Legends battle formations unless it overrides its constraints, though its picked one stays. The
 ## units those rules set up ([member Warscroll.summoned]), such as the Zontari Endrin Dock's
 ## Auto-Endrins, have their warscrolls in a Summoned Units section.
 static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
@@ -70,9 +71,11 @@ static func build(army: Army, catalog: ArmyCatalog) -> Array[Section]:
 	_add(sections, "Battle Traits", [traits])
 
 	var formations: Array[Group] = []
-	for formation in catalog.battle_formations(army):
+	for formation in catalog.formation_choices(army, army.formation):
 		var group := Group.new()
 		group.title = formation.name
+		group.source = formation.source
+		group.legends = formation.legends
 		group.points = formation.points
 		group.selected = formation.name == army.formation
 		group.abilities = formation.abilities

@@ -144,6 +144,7 @@
 		},
 		{
 			"name": "Chaos Horde",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -160,6 +161,7 @@
 		},
 		{
 			"name": "Champions of Chaos",
+			"source": "Scourge of Ghyran",
 			"points": 40,
 			"abilities": [
 				{

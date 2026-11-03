@@ -10,7 +10,7 @@ static func create(formation: BattleFormation, full: bool, action: Control = nul
 
 
 func _fill(formation: BattleFormation, full: bool, action: Control) -> void:
-	var tags: Array[Control] = []
+	var tags := UIBuilder.source_tags(formation.source, formation.legends)
 	if formation.points > 0:
 		tags.append(UITheme.chip("%d pts" % formation.points, "gold"))
 	_add_title(formation.name, "", tags, action)

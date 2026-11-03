@@ -116,14 +116,20 @@ def table(t, points=False):
     return out
 
 
+def battle_formation(b):
+    out = {"name": b["name"]}
+    if b.get("source"):
+        out["source"] = b["source"]
+    return out | {"points": b.get("points", 0), "abilities": [ability(a) for a in b["abilities"]]}
+
+
 def faction(f):
     out = {"id": f["id"], "name": f["name"], "grand_alliance": f["grand_alliance"]}
     if f.get("legends"):
         out["legends"] = True
     return out | {
         "battle_traits": [ability(a) for a in f["battle_traits"]],
-        "battle_formations": [{"name": b["name"], "points": b.get("points", 0),
-                               "abilities": [ability(a) for a in b["abilities"]]} for b in f["battle_formations"]],
+        "battle_formations": [battle_formation(b) for b in f["battle_formations"]],
         "enhancement_tables": [table(t) for t in f["enhancement_tables"]],
         "lores": [table(t, points=True) for t in f["lores"]],
     }

@@ -233,6 +233,36 @@ func test_army_of_renown_has_no_formations() -> void:
 	assert_null(catalog.battle_formation(_horde_army(), "Vanguard"))
 
 
+func _legends_catalog() -> ArmyCatalog:
+	var faction := _faction()
+	var legends := Kit.formation("Old Ways")
+	legends.legends = true
+	faction.battle_formations.append(legends)
+	return Kit.catalog(faction, Kit.core(PackedStringArray(), [] as Array[Lore]))
+
+
+func _names(formations: Array[BattleFormation]) -> Array:
+	return formations.map(func(b: BattleFormation) -> String: return b.name)
+
+
+func test_formation_choices_leave_out_legends_formations() -> void:
+	assert_eq(_names(_legends_catalog().formation_choices(Kit.army())), ["Vanguard"])
+
+
+func test_formation_choices_include_legends_formations_when_overriding_constraints() -> void:
+	var army := Kit.army()
+	army.override_constraints = true
+	assert_eq(_names(_legends_catalog().formation_choices(army)), ["Vanguard", "Old Ways"])
+
+
+func test_formation_choices_keep_the_selected_legends_formation() -> void:
+	assert_eq(_names(_legends_catalog().formation_choices(Kit.army(), "Old Ways")), ["Vanguard", "Old Ways"])
+
+
+func test_army_of_renown_has_no_formation_choices() -> void:
+	assert_eq(_legends_catalog().formation_choices(_horde_army()).size(), 0)
+
+
 # Warscrolls
 
 func test_unit_warscrolls_exclude_manifestations_and_terrain() -> void:

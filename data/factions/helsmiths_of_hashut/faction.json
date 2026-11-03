@@ -99,6 +99,7 @@
 		},
 		{
 			"name": "Domination Force",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -119,6 +120,7 @@
 		},
 		{
 			"name": "Industrial Polluters",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

@@ -148,6 +148,17 @@ func battle_formations(army: Army) -> Array[BattleFormation]:
 	return none if army_of_renown(army.army_of_renown) else faction.battle_formations
 
 
+## The battle formations to offer: [method battle_formations] without Legends ones (those from a
+## Scourge the battlepack doesn't use) unless the army overrides its constraints, though the picked
+## formation, [param selected], is always included.
+func formation_choices(army: Army, selected := "") -> Array[BattleFormation]:
+	var result: Array[BattleFormation] = []
+	for formation in battle_formations(army):
+		if army.override_constraints or not formation.legends or formation.name == selected:
+			result.append(formation)
+	return result
+
+
 func battle_formation(army: Army, formation_name: String) -> BattleFormation:
 	for formation in battle_formations(army):
 		if formation.name == formation_name:

@@ -145,6 +145,7 @@
 		},
 		{
 			"name": "Cryptmasters",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -161,6 +162,7 @@
 		},
 		{
 			"name": "Skinshifters",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

@@ -136,6 +136,7 @@
 		},
 		{
 			"name": "Envoys of the Deepengnaw",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -150,6 +151,7 @@
 		},
 		{
 			"name": "Gathering of the Clans",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

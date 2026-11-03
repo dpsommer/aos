@@ -125,6 +125,7 @@
 		},
 		{
 			"name": "Mawpath Menaces",
+			"source": "Scourge of Ghyran",
 			"points": 10,
 			"abilities": [
 				{
@@ -146,6 +147,7 @@
 		},
 		{
 			"name": "Greedy Eaters",
+			"source": "Scourge of Ghyran",
 			"points": 10,
 			"abilities": [
 				{

@@ -51,6 +51,21 @@ func test_name_is_shown_once_as_a_title() -> void:
 	assert_eq(titles[0].text, "Vanguard")
 
 
+func test_scourge_and_legends_chips_are_shown() -> void:
+	var formation := _formation()
+	formation.source = "Scourge of Ghyran"
+	formation.legends = true
+	var texts := Array(UIKit.label_texts(_make(formation, false))).map(func(t: String) -> String: return t.to_lower())
+	assert_has(texts, "sog")
+	assert_has(texts, "legends")
+
+
+func test_no_source_chips_for_a_battletome_formation() -> void:
+	var texts := Array(UIKit.label_texts(_make(_formation(), false))).map(func(t: String) -> String: return t.to_lower())
+	assert_does_not_have(texts, "sog")
+	assert_does_not_have(texts, "legends")
+
+
 func test_points_are_shown_when_the_formation_costs_some() -> void:
 	assert_true(UIKit.has_label_containing(_make(_formation(50), false), "50"))
 

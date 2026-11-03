@@ -39,6 +39,21 @@ def test_formation_sharing_an_army_of_renown_name_stays_a_formation(tmp_path):
     assert [f["name"] for f in formations] == ["Lords of the Clan"]
 
 
+def formation_page(logo=""):
+    img = '<img src="/img/expansions/%s">' % logo if logo else ""
+    return PAGE.replace("<h3>Lords of the Clan</h3>", "<h3>Lords of the Clan</h3>" + img, 1)
+
+
+def test_formation_source_comes_from_its_sections_logo(tmp_path):
+    formations = parse(tmp_path, formation_page("GHYRAN_logo3.png"))["faction"]["battle_formations"]
+    assert formations[0]["source"] == "Scourge of Ghyran"
+
+
+def test_formation_without_a_logo_has_no_source(tmp_path):
+    formations = parse(tmp_path, formation_page())["faction"]["battle_formations"]
+    assert formations[0]["source"] == ""
+
+
 def test_heading_repeated_before_faction_rules_does_not_shift_section_text(tmp_path):
     page = PAGE.replace("<h2>Books</h2>", "<h2>Lords of the Clan</h2><p>Book blurb.</p>")
     aor = parse(tmp_path, page)["armies_of_renown"][0]

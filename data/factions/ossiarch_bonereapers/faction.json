@@ -138,6 +138,7 @@
 		},
 		{
 			"name": "Tithe Guards",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -154,6 +155,7 @@
 		},
 		{
 			"name": "Hekatos Drillmasters",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

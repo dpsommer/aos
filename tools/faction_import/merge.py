@@ -185,6 +185,11 @@ def merge_faction(report, bs, wh):
             continue
         if f["points"] != w["points"]:
             report.differ("battle formation " + f["name"], "points", f["points"], w["points"])
+        if w.get("source") and f.get("source") != w["source"]:
+            if f.get("source"):
+                report.differ("battle formation " + f["name"], "source", f["source"], w["source"])
+            else:
+                f["source"] = w["source"]
         compare_abilities(report, "battle formation " + f["name"], f["abilities"], w["abilities"])
     for w in wh_forms.values():
         report.only("Wahapedia", "battle formation", w["name"])

@@ -203,6 +203,7 @@
 		},
 		{
 			"name": "Tournament of Skulls",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -219,6 +220,7 @@
 		},
 		{
 			"name": "The Goretide",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

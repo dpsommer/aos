@@ -111,6 +111,7 @@
 		},
 		{
 			"name": "Coven Zealots",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -126,6 +127,7 @@
 		},
 		{
 			"name": "Arena Veterans",
+			"source": "Scourge of Ghyran",
 			"points": 20,
 			"abilities": [
 				{

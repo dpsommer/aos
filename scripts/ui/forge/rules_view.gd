@@ -24,7 +24,10 @@ static func enhancement_table(table: EnhancementTable) -> VBoxContainer:
 
 
 static func battle_formation(formation: BattleFormation) -> VBoxContainer:
-	return _section("%s (%d pts)" % [formation.name, formation.points], abilities(formation.abilities))
+	var title := "%s (%d pts)" % [formation.name, formation.points]
+	if not formation.source.is_empty():
+		title += " (%s)" % formation.source
+	return _section(title, abilities(formation.abilities))
 
 
 ## [param show_summoned], given a unit [param unit] summons, shows its warscroll.

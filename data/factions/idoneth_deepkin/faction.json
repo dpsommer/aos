@@ -150,6 +150,7 @@
 		},
 		{
 			"name": "Deep-Sea Stalkers",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -164,6 +165,7 @@
 		},
 		{
 			"name": "Ethersea Predators",
+			"source": "Scourge of Ghyran",
 			"points": 20,
 			"abilities": [
 				{

@@ -200,7 +200,7 @@ func open_armies_of_renown() -> void:
 func open_formations() -> void:
 	var render := func() -> void:
 		var army := builder.editor.army
-		for formation in builder.catalog.battle_formations(army):
+		for formation in builder.catalog.formation_choices(army):
 			if formation.name == army.formation:
 				continue
 			var make := func(full: bool, eye: Button) -> PressableCard:

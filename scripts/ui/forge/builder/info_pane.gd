@@ -439,7 +439,7 @@ func _settings() -> void:
 		var note := "Uses the Army of Renown's battle traits, enhancements and lores instead of the faction's." \
 				if renown else "Choose an Army of Renown to replace the faction rules."
 		add.call(UIBuilder.setting_row("Army of Renown", slot, note), "Army of Renown " + note)
-	if not builder.catalog.battle_formations(army).is_empty():
+	if not builder.catalog.formation_choices(army, army.formation).is_empty():
 		var slot := _choice_slot(builder.catalog.battle_formation(army, army.formation), "Battle Formation", "info:formation", builder.pick_formation,
 				"Remove the battle formation", builder.remove_formation)
 		add.call(UIBuilder.setting_row("Battle Formation", slot), "Battle Formation")

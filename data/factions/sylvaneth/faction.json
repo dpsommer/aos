@@ -130,6 +130,7 @@
 		},
 		{
 			"name": "Wargrove of the Burgeoning",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -146,6 +147,7 @@
 		},
 		{
 			"name": "Wargrove of Everdusk",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

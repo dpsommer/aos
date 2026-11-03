@@ -616,3 +616,43 @@ def test_spearhead_each_unit_note_becomes_notes_of_those_units():
     assert s["units"] == [{"count": 5, "name": "Gutter Runners", "notes": "with 1 Bomb Rat token"},
                           {"count": 5, "name": "Gutter Runners", "notes": "with 1 Bomb Rat token"},
                           {"count": 10, "name": "Night Runners"}]
+
+
+# battle formation source
+
+def faction_with_formation(**kw):
+    f = {"name": "Test Brigade", "points": 20, "abilities": []}
+    f.update(kw)
+    return {"battle_traits": [], "battle_formations": [f], "enhancement_tables": [], "lores": []}
+
+
+def merge_formations(bs, wh):
+    report = merge.Report()
+    out = merge.merge_faction(report, faction_with_formation(**bs), faction_with_formation(**wh))
+    return out["battle_formations"][0], report
+
+
+def test_formation_source_is_copied_from_wahapedia_when_bsdata_has_none():
+    formation, report = merge_formations({}, {"source": "Scourge of Ghyran"})
+    assert formation["source"] == "Scourge of Ghyran" and report.lines == []
+
+
+def test_formation_source_is_copied_when_bsdata_source_is_empty():
+    formation, _ = merge_formations({"source": ""}, {"source": "Scourge of Ghyran"})
+    assert formation["source"] == "Scourge of Ghyran"
+
+
+def test_differing_formation_sources_are_reported_and_bsdata_kept():
+    formation, report = merge_formations({"source": "Scourge of Aqshy"}, {"source": "Scourge of Ghyran"})
+    assert formation["source"] == "Scourge of Aqshy"
+    assert len(report.lines) == 1 and "Scourge of Aqshy" in report.lines[0] and "Scourge of Ghyran" in report.lines[0]
+
+
+def test_matching_formation_sources_are_not_reported():
+    _, report = merge_formations({"source": "Scourge of Ghyran"}, {"source": "Scourge of Ghyran"})
+    assert report.lines == []
+
+
+def test_wahapedia_formation_without_source_leaves_bsdata_source():
+    formation, report = merge_formations({"source": "Scourge of Ghyran"}, {})
+    assert formation["source"] == "Scourge of Ghyran" and report.lines == []

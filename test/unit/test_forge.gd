@@ -534,8 +534,13 @@ func _faction_where(wanted: Callable) -> Faction:
 	return null
 
 
+## The faction's battle formations the Forge offers: those that aren't Legends.
+func _offered(faction: Faction) -> Array:
+	return faction.battle_formations.filter(func(b: BattleFormation) -> bool: return not b.legends)
+
+
 func _with_armies_of_renown() -> Faction:
-	return _faction_where(func(f: Faction) -> bool: return not f.armies_of_renown.is_empty() and not f.battle_formations.is_empty())
+	return _faction_where(func(f: Faction) -> bool: return not f.armies_of_renown.is_empty() and not _offered(f).is_empty())
 
 
 func _open_renown(forge: Forge, faction: Faction) -> void:
@@ -885,9 +890,47 @@ func test_formation_panel_lists_each_formation() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_go_to(forge, Forge.Step.FORMATION)
-	assert_eq(forge.formation_grid.get_child_count(), faction.battle_formations.size())
-	for formation in faction.battle_formations:
+	assert_eq(forge.formation_grid.get_child_count(), _offered(faction).size())
+	for formation in _offered(faction):
 		assert_not_null(_choice_with_meta(forge.formation_grid, &"formation", formation.name), formation.name)
+
+
+func _faction_with_legends_formation(only_legends := false) -> Faction:
+	var legends := Kit.formation("Old Ways")
+	legends.legends = true
+	legends.source = "Scourge of Ghyran"
+	var faction := Kit.faction([] as Array[Warscroll], "with_legends")
+	faction.battle_formations = [legends] as Array[BattleFormation]
+	if not only_legends:
+		faction.battle_formations.push_front(Kit.formation("Vanguard"))
+	return faction
+
+
+func test_formation_panel_leaves_out_legends_formations() -> void:
+	var forge := _make_forge()
+	forge._faction = _faction_with_legends_formation()
+	forge.choose_army_of_renown("")
+	assert_eq(forge.formation_grid.get_child_count(), 1)
+	assert_not_null(_choice_with_meta(forge.formation_grid, &"formation", "Vanguard"))
+	assert_null(_choice_with_meta(forge.formation_grid, &"formation", "Old Ways"))
+
+
+func test_formation_card_shows_a_scourge_chip() -> void:
+	var forge := _make_forge()
+	var faction := _faction_with_legends_formation()
+	faction.battle_formations[0].source = "Scourge of Aqshy"
+	forge._faction = faction
+	forge.choose_army_of_renown("")
+	assert_has(Array(UIKit.label_texts(_choice_with_meta(forge.formation_grid, &"formation", "Vanguard"))).map(func(t: String) -> String: return t.to_lower()), "soa")
+
+
+func test_choosing_none_with_only_legends_formations_starts_the_army() -> void:
+	var forge := _make_forge()
+	forge._faction = _faction_with_legends_formation(true)
+	forge.choose_army_of_renown("")
+	var army: Army = get_signal_parameters(forge, "army_started")[0]
+	assert_eq(army.formation, "")
+	assert_false(forge.formation_panel.visible)
 
 
 func test_formation_cards_are_not_toggles() -> void:
@@ -907,7 +950,7 @@ func test_pressing_a_formation_starts_the_army_with_it() -> void:
 	var faction := _with_armies_of_renown()
 	var forge := _make_forge()
 	_go_to(forge, Forge.Step.FORMATION)
-	var formation := faction.battle_formations[faction.battle_formations.size() - 1]
+	var formation: BattleFormation = _offered(faction).back()
 	_press(_choice_with_meta(forge.formation_grid, &"formation", formation.name))
 	var army: Army = get_signal_parameters(forge, "army_started")[0]
 	assert_eq(army.formation, formation.name)
@@ -928,14 +971,14 @@ func test_chosen_formation_is_focused_when_returning_to_the_step() -> void:
 
 
 func test_formation_with_points_shows_them_on_its_card() -> void:
-	var faction := _faction_where(func(f: Faction) -> bool: return f.battle_formations.any(func(b: BattleFormation) -> bool: return b.points > 0))
+	var faction := _faction_where(func(f: Faction) -> bool: return _offered(f).any(func(b: BattleFormation) -> bool: return b.points > 0))
 	if faction == null:
 		pending("no formation costs points")
 		return
 	var forge := _make_forge()
 	_open_renown(forge, faction)
 	forge.renown_cards()[0].pressed.emit()
-	for formation in faction.battle_formations:
+	for formation in _offered(faction):
 		var card := _choice_with_meta(forge.formation_grid, &"formation", formation.name)
 		var shown := Array(UIKit.label_texts(card)).any(func(t: String) -> bool: return t.contains("%d" % formation.points) and t.to_lower().contains("pts"))
 		assert_eq(shown, formation.points > 0, formation.name)
@@ -946,14 +989,14 @@ func test_formation_with_points_shows_them_on_its_card() -> void:
 func test_formation_ability_cards_wrap_their_timing_and_name_its_frequency() -> void:
 	var has_frequency := func(b: BattleFormation) -> bool:
 		return b.abilities.any(func(a: Ability) -> bool: return not a.frequency.is_empty())
-	var faction := _faction_where(func(f: Faction) -> bool: return f.battle_formations.any(has_frequency))
+	var faction := _faction_where(func(f: Faction) -> bool: return _offered(f).any(has_frequency))
 	if faction == null:
 		pending("no formation ability has a frequency")
 		return
 	var forge := _make_forge()
 	_open_renown(forge, faction)
 	forge.renown_cards()[0].pressed.emit()
-	for formation in faction.battle_formations.filter(has_frequency):
+	for formation in _offered(faction).filter(has_frequency):
 		var card := _choice_with_meta(forge.formation_grid, &"formation", formation.name)
 		var ability_cards := UIKit.find_all(card, func(n: Node) -> bool: return n is AbilityCard)
 		assert_eq(ability_cards.size(), formation.abilities.size(), formation.name)

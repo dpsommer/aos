@@ -1295,9 +1295,9 @@ def test_battle_traits_prefer_entry_named_for_army_over_plain_entry(cats):
     assert [a["name"] for a in bsdata.battle_traits(cats, root, "Testers")] == ["Steady Ranks"]
 
 
-def formations_root(name):
-    entry = '<selectionEntry id="se-f" name="Test Formation" type="upgrade"><infoLinks>%s</infoLinks></selectionEntry>' \
-        % info_link("p-trait")
+def formations_root(name, publication=""):
+    entry = '<selectionEntry id="se-f" name="Test Formation" type="upgrade"%s><infoLinks>%s</infoLinks></selectionEntry>' \
+        % (' publicationId="%s"' % publication if publication else "", info_link("p-trait"))
     return element("catalogue", 'id="c" name="Root"><sharedSelectionEntryGroups><selectionEntryGroup id="g" name="%s">'
                    '<selectionEntries>%s</selectionEntries></selectionEntryGroup></sharedSelectionEntryGroups>' % (name, entry))
 
@@ -1305,6 +1305,16 @@ def formations_root(name):
 def test_battle_formations_group_can_be_named_without_army(cats):
     formations = bsdata.battle_formations(cats, formations_root("Battle Formations"), "Hedonites of Slaanesh")
     assert [f["name"] for f in formations] == ["Test Formation"]
+
+
+def test_scourge_battle_formation_has_that_scourge_as_source(cats):
+    formations = bsdata.battle_formations(cats, formations_root("Battle Formations", "pub-soa"), "Testers")
+    assert formations[0]["source"] == "Scourge of Aqshy"
+
+
+def test_battletome_battle_formation_has_no_source(cats):
+    formations = bsdata.battle_formations(cats, formations_root("Battle Formations", "pub-bt"), "Testers")
+    assert formations[0]["source"] == ""
 
 
 def test_battle_formations_of_another_army_are_ignored(cats):

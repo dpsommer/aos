@@ -403,12 +403,14 @@ static func _missing_lores(army: Army, catalog: ArmyCatalog, entries: Array[Dict
 
 
 static func _check_formation_and_terrain(army: Army, catalog: ArmyCatalog, result: ArmyValidation) -> void:
-	var formations := catalog.battle_formations(army)
+	var formation := catalog.battle_formation(army, army.formation)
 	if army.formation.is_empty():
-		if not formations.is_empty():
+		if not catalog.formation_choices(army).is_empty():
 			result.problems.append("Choose a battle formation.")
-	elif catalog.battle_formation(army, army.formation) == null:
+	elif formation == null:
 		result.problems.append("%s isn't a battle formation this army can pick." % army.formation)
+	elif formation.legends:
+		result.problems.append("%s is a %s battle formation, which only armies that override their constraints can pick." % [formation.name, formation.source])
 	if army.faction_terrain.is_empty():
 		return
 	var terrain := catalog.faction.get_warscroll(army.faction_terrain)

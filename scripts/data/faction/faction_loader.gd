@@ -244,6 +244,8 @@ func _battle_formation(data: Variant, path: String) -> BattleFormation:
 	var formation := BattleFormation.new()
 	if _is_object(data, path):
 		formation.name = _string(data, "name", path, true)
+		formation.source = _string(data, "source", path)
+		formation.legends = _is_retired(formation.source)
 		formation.points = _int(data, "points", path)
 		formation.abilities = _abilities(data, "abilities", path)
 	return formation

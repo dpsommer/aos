@@ -507,10 +507,12 @@ def battle_traits(cats, root, name):
 
 
 def battle_formations(cats, root, name):
-    """The "Battle Formations: <name>" group, or a plain "Battle Formations" one (Hedonites of Slaanesh)."""
+    """The "Battle Formations: <name>" group, or a plain "Battle Formations" one (Hedonites of Slaanesh).
+    A formation's publication gives its `source` (the Scourge of Ghyran ones)."""
     for group in kids(root, "sharedSelectionEntryGroups", "selectionEntryGroup"):
         if group.get("name") in ("Battle Formations: " + name, "Battle Formations"):
-            return [{"name": e.get("name"), "points": points(e), "abilities": abilities_in(cats, e)}
+            return [{"name": e.get("name"), "source": source_of(cats.publication(e)), "points": points(e),
+                     "abilities": abilities_in(cats, e)}
                     for e in kids(group, "selectionEntries", "selectionEntry")]
     return []
 

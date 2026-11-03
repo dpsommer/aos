@@ -120,6 +120,7 @@
 		},
 		{
 			"name": "Masters of Fate",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -134,6 +135,7 @@
 		},
 		{
 			"name": "Spellweaver Coven",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

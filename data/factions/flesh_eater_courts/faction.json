@@ -138,6 +138,7 @@
 		},
 		{
 			"name": "Impassioned Serfs",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -154,6 +155,7 @@
 		},
 		{
 			"name": "Questing Courtiers",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

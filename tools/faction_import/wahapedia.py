@@ -534,7 +534,7 @@ def parse_faction_page(path):
             else:
                 h3 = title; src = sec_src
                 if h2 == "Battle Formations":
-                    cur_formation = {"name": title, "points": pts.get(title.upper(), 0), "abilities": []}
+                    cur_formation = {"name": title, "source": src, "points": pts.get(title.upper(), 0), "abilities": []}
                     faction["battle_formations"].append(cur_formation)
                 elif h2.endswith("Lore"):
                     cur_table = new_lore(title, h2); faction["lores"].append(cur_table)

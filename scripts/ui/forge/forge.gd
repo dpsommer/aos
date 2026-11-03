@@ -395,7 +395,7 @@ func _own_rules_card() -> OptionCard:
 	(card.get_node(^"%Icon") as TextureRect).texture = faction_icon if faction_icon else UITheme.alliance_icon(_selected_alliance)
 	(card.get_node(^"%Badge") as PanelContainer).add_theme_stylebox_override("panel",
 			UITheme.box(Color.TRANSPARENT, UITheme.CONTROL_BORDER, 28, 14))
-	var next := "choose a Battle Formation next" if not _faction.battle_formations.is_empty() else "its own rules"
+	var next := "choose a Battle Formation next" if not _formations().is_empty() else "its own rules"
 	(card.get_node(^"%Title") as Label).text = NO_ARMY_OF_RENOWN
 	(card.get_node(^"%Description") as Label).text = "Use the full %s roster and %s." % [_faction.name, next]
 	var chip := UITheme.chip("Recommended for new lists")
@@ -471,7 +471,7 @@ func choose_army_of_renown(army_name: String) -> void:
 	_army_of_renown = army_name
 	if not army_name.is_empty():
 		_start(army_name, "")
-	elif _faction.battle_formations.is_empty():
+	elif _formations().is_empty():
 		_start("", "")
 	else:
 		_show_formations()
@@ -480,10 +480,20 @@ func choose_army_of_renown(army_name: String) -> void:
 # --- Battle formation ---
 
 
+## The faction's battle formations to choose from: those from a Scourge the battlepack doesn't use
+## (Legends) are left out, and can only be picked in the builder by overriding army constraints.
+func _formations() -> Array[BattleFormation]:
+	var result: Array[BattleFormation] = []
+	for formation in _faction.battle_formations:
+		if not formation.legends:
+			result.append(formation)
+	return result
+
+
 func _show_formations() -> void:
 	UIBuilder.clear(formation_grid)
 	var focus: Button = null
-	for formation in _faction.battle_formations:
+	for formation in _formations():
 		var card := _formation_card(formation)
 		formation_grid.add_child(card)
 		if formation.name == _formation:
@@ -502,8 +512,11 @@ func _formation_card(formation: BattleFormation) -> OptionCard:
 		chip = UITheme.chip("%d pts" % formation.points, "gold")
 	else:
 		chip = UITheme.chip(formation.abilities[0].type if not formation.abilities.is_empty() else "Formation")
-	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	card.get_node(^"%ChipRow").add_child(chip)
+	var chips: Array[Control] = [chip]
+	chips.append_array(UIBuilder.source_tags(formation.source, formation.legends))
+	for tag in chips:
+		tag.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		card.get_node(^"%ChipRow").add_child(tag)
 	(card.get_node(^"%Name") as Label).text = formation.name
 	var rules: VBoxContainer = card.get_node(^"%Rules")
 	for ability in formation.abilities:

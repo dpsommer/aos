@@ -132,6 +132,7 @@
 		},
 		{
 			"name": "Veteran Cannoneers",
+			"source": "Scourge of Ghyran",
 			"points": 40,
 			"abilities": [
 				{
@@ -148,6 +149,7 @@
 		},
 		{
 			"name": "Fearless Exemplars",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

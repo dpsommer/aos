@@ -394,3 +394,24 @@ def test_warscroll_writes_base_size_as_parsed_object():
 def test_warscroll_keeps_base_size_object():
     base = {"shape": "round", "diameter": 32}
     assert schema.warscroll(ws(base_size=base))["base_size"] == base
+
+
+def formation(**kw):
+    f = {"name": "Test Brigade", "points": 20, "abilities": []}
+    f.update(kw)
+    return f
+
+
+def test_battle_formation_keeps_source_right_after_name():
+    out = schema.battle_formation(formation(source="Scourge of Ghyran"))
+    assert out["source"] == "Scourge of Ghyran" and list(out)[:2] == ["name", "source"]
+
+
+@pytest.mark.parametrize("f", [formation(), formation(source="")], ids=["absent", "empty"])
+def test_battle_formation_omits_missing_source(f):
+    assert "source" not in schema.battle_formation(f)
+
+
+def test_faction_writes_battle_formation_source():
+    out = schema.faction(fac(battle_formations=[formation(source="Scourge of Ghyran")]))
+    assert out["battle_formations"][0]["source"] == "Scourge of Ghyran"

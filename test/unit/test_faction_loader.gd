@@ -176,6 +176,22 @@ func test_lore_from_another_scourge_is_legends() -> void:
 	assert_eq(legends, [false, true, false])
 
 
+func test_battle_formation_source_is_loaded() -> void:
+	var sources := _load("scourge").battle_formations.map(func(b: BattleFormation) -> String: return b.source)
+	assert_eq(sources, ["", "Scourge of Ghyran", "Scourge of Aqshy"])
+
+
+func test_battle_formation_from_another_scourge_is_legends() -> void:
+	var legends := _load_with_scourge("Scourge of Aqshy").battle_formations.map(
+			func(b: BattleFormation) -> bool: return b.legends)
+	assert_eq(legends, [false, true, false])
+
+
+func test_battle_formation_without_a_scourge_is_never_legends() -> void:
+	var legends := _load("scourge").battle_formations.map(func(b: BattleFormation) -> bool: return b.legends)
+	assert_eq(legends, [false, false, false])
+
+
 func test_enhancement_points_are_loaded() -> void:
 	var expected: Dictionary = _json("valid", "faction.json").enhancement_tables[0].entries[0]
 	assert_eq(_load("valid").enhancement_tables[0].entries[0].points, int(expected.points))

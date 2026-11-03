@@ -43,12 +43,12 @@ The steps:
      - chips for Legends, "No Regiments of Renown", "No faction terrain" and "Fixed General" (`Forge.renown_chips_for()`).
    - **Legends Armies of Renown** are hidden when the Show Legends armies setting is off.
    - **Pressing a card:** "No Army of Renown" goes to the Battle Formation step, or starts the army if the faction has no formations. An Army of Renown starts the army (`Forge.choose_army_of_renown()`), with Show Legends units on if it's a Legends one.
-5. **Battle Formation:** the faction's battle formations, three to a row. Each card shows:
-   - its points, or the type of its first ability;
+5. **Battle Formation:** the faction's battle formations, three to a row, without Legends ones (those from a Scourge the battlepack doesn't use, i.e. Scourge of Ghyran), which can only be picked in the builder by overriding army constraints. Each card shows:
+   - its points, or the type of its first ability, with an "SoA" or "SoG" tag for a Scourge of Aqshy or Scourge of Ghyran formation;
    - its name;
    - each ability as an [ability card](abilities.md).
 
-   The first card is focused, or the one chosen before. Pressing a card starts the army with that formation (`Forge.choose_formation()`). A faction without formations skips this step.
+   The first card is focused, or the one chosen before. Pressing a card starts the army with that formation (`Forge.choose_formation()`). A faction without formations (other than Legends ones) skips this step.
 6. **Army builder:** `Forge` emits `army_started` with a new, empty army, and `Main` opens the builder.
    - **Back** returns to the saved armies, with the army focused if it was saved.
    - **Unsaved changes:** if the army has any, Back first asks whether to keep editing (the default), discard the changes, or save and go back.
@@ -120,7 +120,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
     - Summoned Units: the full warscrolls of the units that the rules above set up (the Auto-Endrin), which their short cards link to;
     - Battle Tactics: the battlepack's cards in full, with their FAQs. Rules divide a full card's setup, each battle tactic and its FAQs.
 
-    An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. Each group folds on its own, even when several share a name (e.g. two Artefacts of Power tables). Enhancement tables and lores from Scourge of Aqshy or Scourge of Ghyran (their `source`) are tagged "SoA" or "SoG". Legends enhancement tables and lores (those from a Scourge the battlepack doesn't use, i.e. Scourge of Ghyran) are tagged Legends and hidden unless Legends are shown (though the army's picked lores stay), until the builder can switch between General's Handbook versions. The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
+    An Army of Renown's traits, enhancements and lores replace the faction's, and it has no formations. Lores start folded. Each group folds on its own, even when several share a name (e.g. two Artefacts of Power tables). Enhancement tables and lores from Scourge of Aqshy or Scourge of Ghyran (their `source`) are tagged "SoA" or "SoG". Legends enhancement tables and lores (those from a Scourge the battlepack doesn't use, i.e. Scourge of Ghyran) are tagged Legends and hidden unless Legends are shown (though the army's picked lores stay), until the builder can switch between General's Handbook versions. Battle formations are tagged the same way, and Legends ones are hidden unless the army overrides its constraints (though its picked one stays). The army's formation and lores are chipped "Selected", and its battle tactics cards are chipped with their slot.
 
     Search keeps a whole section or group whose title matches, and otherwise only the matching rules.
   - **Regiments of Renown:** cards the army can include, or every one when constraints are overridden. Legends regiments are hidden unless shown. Search also matches the factions and Grand Alliances of their units.
@@ -147,7 +147,7 @@ Scene `scenes/ui/forge/builder/army_builder.tscn`, script `scripts/ui/forge/buil
   - the lores of one kind (`LoreCard`), each in short: its name, tags and its spells' or prayers' names as chips, with the universal manifestation lores marked as such. As with battle tactics cards, an eye icon toggle shows the lore in full, with each spell or prayer's rules and the warscrolls of the manifestations it summons, and the whole card is pressed to choose it. The army's current lore isn't listed, nor Legends lores unless Legends are shown;
   - Regiments of Renown, as in the Regiments of Renown tab (`RenownCard`);
   - Armies of Renown (`RenownArmyCard`), from Army settings: each with its source, roster options and chips, and an eye to show its battle traits in full. The army's current one isn't listed, nor Legends ones unless the Show Legends armies setting is on;
-  - battle formations (`FormationCard`), from Army settings: each with its points and abilities' names, and an eye to show the abilities in full. The army's current formation isn't listed.
+  - battle formations (`FormationCard`), from Army settings: each with its points, Scourge and Legends tags and abilities' names, and an eye to show the abilities in full. The army's current formation isn't listed, nor Legends ones (Scourge of Ghyran) unless the army overrides its constraints (`ArmyCatalog.formation_choices()`).
 
   Armies of Renown and battle formations are pressed as a whole to choose them, as battle tactics cards and lores are.
 

@@ -120,6 +120,7 @@
 		},
 		{
 			"name": "Sunbiter Pack",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -136,6 +137,7 @@
 		},
 		{
 			"name": "Gittish Tide",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

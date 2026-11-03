@@ -111,6 +111,42 @@ func test_formations_are_groups_with_points() -> void:
 	assert_eq(section.groups[1].points, 50)
 
 
+func _legends_faction() -> Faction:
+	var faction := _faction()
+	var legends := Kit.formation("Old Ways")
+	legends.legends = true
+	legends.source = "Scourge of Ghyran"
+	legends.abilities = _abilities(["Old Plan"])
+	faction.battle_formations.append(legends)
+	return faction
+
+
+func test_legends_formations_are_left_out_unless_overriding_constraints() -> void:
+	var section := _section(_build(Kit.army(), _legends_faction()), "Battle Formations")
+	assert_eq(_group_titles(section), ["Vanguard", "Siege"])
+
+
+func test_legends_formations_are_kept_when_overriding_constraints() -> void:
+	var army := Kit.army()
+	army.override_constraints = true
+	assert_has(_group_titles(_section(_build(army, _legends_faction()), "Battle Formations")), "Old Ways")
+
+
+func test_the_armys_legends_formation_is_kept() -> void:
+	var army := Kit.army()
+	army.formation = "Old Ways"
+	assert_has(_group_titles(_section(_build(army, _legends_faction()), "Battle Formations")), "Old Ways")
+
+
+func test_formation_groups_carry_source_and_legends() -> void:
+	var army := Kit.army()
+	army.override_constraints = true
+	var groups := _section(_build(army, _legends_faction()), "Battle Formations").groups
+	assert_eq(groups[2].source, "Scourge of Ghyran")
+	assert_true(groups[2].legends)
+	assert_false(groups[0].legends)
+
+
 func test_the_armys_formation_is_selected() -> void:
 	var army := Kit.army()
 	army.formation = "Siege"

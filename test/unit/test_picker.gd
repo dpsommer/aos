@@ -760,6 +760,29 @@ func test_open_formations_lists_each_as_a_pressable_card() -> void:
 		assert_true(card.pressable, name)
 
 
+func _legends_formation_faction() -> Faction:
+	var faction := _formation_faction()
+	var legends := Kit.formation("Old Ways")
+	legends.legends = true
+	faction.battle_formations.append(legends)
+	return faction
+
+
+func test_legends_formations_are_not_listed_without_overriding_constraints() -> void:
+	var builder := UIKit.builder(self, UIKit.army_with_regiment(), _legends_formation_faction(), _core())
+	builder.picker.open_formations()
+	assert_null(UIKit.keyed(builder.picker, "pick:formation:Old Ways"))
+	assert_not_null(UIKit.keyed(builder.picker, "pick:formation:Vanguard"))
+
+
+func test_legends_formations_are_listed_when_overriding_constraints() -> void:
+	var army := UIKit.army_with_regiment()
+	army.override_constraints = true
+	var builder := UIKit.builder(self, army, _legends_formation_faction(), _core())
+	builder.picker.open_formations()
+	assert_not_null(UIKit.keyed(builder.picker, "pick:formation:Old Ways"))
+
+
 func test_open_formations_marks_the_picker_open() -> void:
 	var builder := _formation_builder()
 	builder.picker.open_formations()

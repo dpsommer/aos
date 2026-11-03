@@ -2,6 +2,11 @@
 	"id": "scourge",
 	"name": "Scourge Faction",
 	"grand_alliance": "order",
+	"battle_formations": [
+		{"name": "Printed Formation"},
+		{"name": "Ghyran Formation", "source": "Scourge of Ghyran"},
+		{"name": "Aqshy Formation", "source": "Scourge of Aqshy"}
+	],
 	"enhancement_tables": [
 		{"name": "Heroic Traits", "entries": [{"name": "Printed Trait"}]},
 		{"name": "Heroic Traits", "source": "Scourge of Ghyran", "entries": [{"name": "Ghyran Trait"}]},

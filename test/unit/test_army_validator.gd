@@ -726,6 +726,36 @@ func test_faction_without_formations_needs_none() -> void:
 	_assert_no_problem(army, "formation", _catalog(faction))
 
 
+func _legends_faction(only_legends := false) -> Faction:
+	var faction := _faction()
+	var legends := Kit.formation("Old Ways")
+	legends.legends = true
+	legends.source = "Scourge of Ghyran"
+	faction.battle_formations = [legends] as Array[BattleFormation]
+	if not only_legends:
+		faction.battle_formations.push_front(Kit.formation("Vanguard"))
+	return faction
+
+
+func test_legends_formation_is_a_problem_naming_its_source() -> void:
+	var army := _army()
+	army.formation = "Old Ways"
+	_assert_problem(army, "Old Ways is a Scourge of Ghyran battle formation", _catalog(_legends_faction()))
+
+
+func test_legends_formation_is_allowed_when_overriding_constraints() -> void:
+	var army := _army()
+	army.formation = "Old Ways"
+	army.override_constraints = true
+	_assert_no_problem(army, "battle formation", _catalog(_legends_faction()))
+
+
+func test_faction_with_only_legends_formations_needs_none() -> void:
+	var army := _army()
+	army.formation = ""
+	_assert_no_problem(army, "Choose a battle formation", _catalog(_legends_faction(true)))
+
+
 func test_army_of_renown_needs_no_formation() -> void:
 	var entries: Array[RosterEntry] = [Kit.roster_entry("", PackedStringArray(["HERO"])), Kit.roster_entry("", PackedStringArray(["INFANTRY"]))]
 	_assert_no_problem(_horde_army(), "formation", _horde_catalog(entries))

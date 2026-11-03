@@ -117,6 +117,7 @@
 		},
 		{
 			"name": "Hungry Nexus",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -133,6 +134,7 @@
 		},
 		{
 			"name": "Deathrust Gheists",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{

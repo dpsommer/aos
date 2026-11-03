@@ -200,6 +200,7 @@
 		},
 		{
 			"name": "Pretenders",
+			"source": "Scourge of Ghyran",
 			"points": 0,
 			"abilities": [
 				{
@@ -222,6 +223,7 @@
 		},
 		{
 			"name": "Invaders",
+			"source": "Scourge of Ghyran",
 			"points": 10,
 			"abilities": [
 				{
