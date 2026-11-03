@@ -5,6 +5,8 @@ extends Control
 
 signal back_pressed
 
+## The space above each Input section's header but the first, on top of the tab's row separation.
+const INPUT_SECTION_GAP := 16
 const VOLUMES: Array[Array] = [
 	["master_volume", "Master volume", "Every sound in the game."],
 	["bgm_volume", "BGM volume", "Background music."],
@@ -165,6 +167,10 @@ func build_input() -> void:
 	_input_note.visible = not note.is_empty()
 	input.add_child(_input_note)
 	for section: String in InputBindings.SECTIONS:
+		if section != InputBindings.SECTIONS.keys()[0]:
+			var gap := Control.new()
+			gap.custom_minimum_size.y = INPUT_SECTION_GAP
+			input.add_child(gap)
 		input.add_child(UIBuilder.label(section, "SectionLabel"))
 		for entry: Array in InputBindings.SECTIONS[section]:
 			input.add_child(_action_row(entry[0], entry[1]))
