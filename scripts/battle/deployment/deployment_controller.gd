@@ -10,9 +10,9 @@ extends Node
 ## and outlines are blue where it can go while it's held, green once it's down, and red where it
 ## can't go. Trying to put it down where any of its models (or the model held) is outside the zone
 ## or overlapping, or where the feature breaks its rules, keeps it held and flashes its red rings.
-## In Spearhead the player's whole army is set out at
-## once, each unit in a valid spot if there is one; the player picks units up and moves them about,
-## then confirms them all together. See docs/design/battle.md.
+## In Spearhead the player's whole army is set out at once, and with 'Deploy Regiment' the whole
+## regiment, each unit in a valid spot if there is one; the player picks units up and moves them
+## about, then confirms them all together. See docs/design/battle.md.
 
 ## Both armies are deployed.
 signal finished
@@ -123,7 +123,7 @@ func is_player_turn() -> bool:
 func pick_unit(unit: BattleUnit) -> void:
 	if not is_player_turn() or not unit in deployment.pickable_units(player()):
 		return
-	if deployment.deploys_whole_army(player()):
+	if deployment.deploys_together(player()):
 		_pick_staged(unit)
 		return
 	_drop_placing()
@@ -149,11 +149,12 @@ func _starting_spot(unit: BattleUnit, staged: Array[BattleUnit] = []) -> PackedV
 	return positions
 
 
-## Sets out every unit of the player's not yet deployed on the board at once, in Spearhead, each in
-## a valid spot if there is one, without deploying them: the player moves them about, then
-## confirms them all together. Units already set out keep where they are.
+## Sets out every unit the player can pick on the board at once (the whole army in Spearhead, or
+## the regiment being deployed with 'Deploy Regiment'), each in a valid spot if there is one,
+## without deploying them: the player moves them about, then confirms them all together. Units
+## already set out keep where they are.
 func stage_army() -> void:
-	if not deployment.deploys_whole_army(player()):
+	if not deployment.deploys_together(player()):
 		return
 	_sync_staged()
 	var new_units: Array[BattleUnit] = []
@@ -173,12 +174,12 @@ func stage_army() -> void:
 	_refresh_hud()
 
 
-## The units set out but not yet deployed, in Spearhead.
+## The units set out but not yet deployed: in Spearhead, or while deploying a regiment.
 func staged_units() -> Array[BattleUnit]:
 	return _staged.duplicate()
 
 
-## Picks [param unit] of the army set out, for Undo.
+## Picks [param unit] of the units set out, for Undo.
 func _pick_staged(unit: BattleUnit) -> void:
 	if _state.get("mode") != "army":
 		_drop_placing()
@@ -206,16 +207,22 @@ func _sync_staged() -> void:
 				_free_node(unit_nodes, unit)
 
 
-## Starts 'Deploy Regiment' for [param regiment], then places its first unit.
+## Takes the units set out but not deployed back off the board.
+func _unstage() -> void:
+	for unit in _staged:
+		if not unit.deployed:
+			unit.positions = PackedVector2Array()
+			_free_node(unit_nodes, unit)
+	_staged.clear()
+
+
+## Starts 'Deploy Regiment' for [param regiment], setting out all its units to move about and
+## confirm together ([method stage_army]).
 func pick_regiment(regiment: BattleRegiment) -> void:
 	if not is_player_turn():
 		return
 	_drop_placing()
-	if not deployment.begin_regiment(player(), regiment).is_empty():
-		return
-	var units := deployment.pickable_units(player())
-	if not units.is_empty():
-		pick_unit(units[0])
+	deployment.begin_regiment(player(), regiment)
 
 
 ## Starts placing [param feature].
@@ -326,21 +333,23 @@ func undo() -> void:
 ## Stops what the player is doing without using anything.
 func cancel() -> void:
 	if _state.is_empty() and deployment.regiment and deployment.active == player():
+		_unstage()
 		deployment.cancel_regiment(player())
 		return
 	_drop_placing()
-	if deployment.deploys_whole_army(player()):
+	if deployment.deploys_together(player()):
 		stage_army()
 		return
 	_refresh_hud()
 
 
-## Calls off 'Deploy Regiment' while none of its units is set up, dropping whatever is being
-## placed.
+## Calls off 'Deploy Regiment' while none of its units is set up, taking its units set out off
+## the board.
 func call_off_regiment() -> void:
 	if not is_player_turn() or deployment.regiment == null or deployment.regiment.any_deployed():
 		return
 	_drop_placing()
+	_unstage()
 	deployment.cancel_regiment(player())
 
 
@@ -876,18 +885,15 @@ func _on_changed() -> void:
 
 ## On the player's turn with nothing picked, picks up what they must place next, if anything.
 func _start_next_pick() -> void:
-	if deployment.deploys_whole_army(player()):
-		# Spearhead: the whole army is set out at once, to move about and confirm together.
+	if deployment.deploys_together(player()):
+		# Spearhead's whole army, or the regiment being deployed: set out at once, to move about
+		# and confirm together.
 		stage_army()
 	elif deployment.step == Deployment.Step.TERRAIN:
 		var unplaced := player().unplaced_terrain()
 		if not unplaced.is_empty():
 			# There's nothing else to do in this step: start placing the next feature.
 			pick_terrain.call_deferred(unplaced[0])
-	elif deployment.regiment and deployment.active == player():
-		var next := deployment.pickable_units(player())
-		if not next.is_empty():
-			pick_unit.call_deferred(next[0])
 
 
 func _schedule_ai() -> void:

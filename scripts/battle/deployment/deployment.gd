@@ -286,14 +286,26 @@ func deploys_whole_army(army: BattleArmy) -> bool:
 	return battle.is_spearhead() and step == Step.UNITS and army == active and not is_done()
 
 
+## Whether [param army] sets several units up at once now: its whole army ([method
+## deploys_whole_army]), or the regiment it's deploying with 'Deploy Regiment', whose units are all
+## set out and moved about before one confirm ([method place_army]).
+func deploys_together(army: BattleArmy) -> bool:
+	return deploys_whole_army(army) or (regiment != null and step == Step.UNITS and army == active)
+
+
 ## Sets up every one of [param units] of [param army] where its [member BattleUnit.positions] and
 ## [member BattleUnit.facing] put it, all together: each is checked against the others as well as
-## what's already deployed. Returns why they can't, naming the unit, or empty if they were set up.
+## what's already deployed. While a regiment is being deployed, [param units] must be all of it
+## that's left. Returns why they can't, naming the unit, or empty if they were set up.
 func place_army(army: BattleArmy, units: Array[BattleUnit]) -> String:
-	if not deploys_whole_army(army):
+	if not deploys_together(army):
 		return "It isn't your turn to deploy your army."
 	if units.is_empty():
 		return "There's nothing to deploy."
+	if regiment != null:
+		for unit in pickable_units(army):
+			if not unit in units:
+				return "Set up every unit of %s: %s isn't placed." % [regiment.name, unit.name]
 	var zone := DeploymentRules.unit_zone(battle, army)
 	var pickable := pickable_units(army)
 	for unit in units:

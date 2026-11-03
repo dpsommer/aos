@@ -666,3 +666,84 @@ func test_tray_tile_tooltips_in_matched_play_do_not_mention_moving() -> void:
 func test_the_matched_play_unit_panel_is_unaffected() -> void:
 	var hud := _hud({"mode": "unit", "unit": _unit("A1")})
 	assert_false(UIKit.has_label_containing(hud.placing_panel, "DEPLOY YOUR ARMY"))
+
+
+# Deploy Regiment staging panel
+
+## A Matched Play HUD with the first regiment begun and staged, [param state] on top of the army mode.
+func _regiment_hud(state := {}) -> DeploymentHud:
+	var hud := _hud()
+	_d.begin_regiment(_me, _me.regiments[0])
+	var full := {"mode": "army", "unit": null}
+	full.merge(state, true)
+	hud.refresh(full)
+	return hud
+
+
+func test_the_regiment_panel_has_its_own_heading() -> void:
+	var hud := _regiment_hud()
+	assert_true(UIKit.has_label_containing(hud.placing_panel, "DEPLOY REGIMENT"))
+
+
+func test_the_regiment_panel_is_not_the_army_panel() -> void:
+	var hud := _regiment_hud()
+	assert_false(UIKit.has_label_containing(hud.placing_panel, "DEPLOY YOUR ARMY"))
+
+
+func test_the_regiment_panel_names_the_regiment() -> void:
+	var hud := _regiment_hud()
+	assert_true(UIKit.has_label_containing(hud.placing_panel, _me.regiments[0].name))
+
+
+func test_the_regiment_panel_confirm_button_says_regiment() -> void:
+	var hud := _regiment_hud()
+	assert_string_contains(hud.confirm_button.text.to_lower(), "regiment")
+
+
+func test_the_regiment_panel_offers_to_call_it_off() -> void:
+	var hud := _regiment_hud()
+	var call_off := UIKit.button(hud.placing_panel, "Call off Deploy Regiment")
+	assert_not_null(call_off)
+	assert_false(call_off.disabled)
+
+
+func test_the_regiment_panel_names_the_picked_unit() -> void:
+	var hud := _regiment_hud({"unit": _unit("A1")})
+	assert_true(UIKit.has_label_containing(hud.placing_panel, "A1"))
+
+
+func test_the_regiment_panel_shows_the_problems_it_is_given() -> void:
+	var hud := _regiment_hud({"problems": PackedStringArray(["A2: 1 model is outside"])})
+	assert_true(hud.alert.visible)
+	assert_string_contains(hud.alert_label.text, "A2")
+
+
+func test_the_regiment_panel_undo_follows_whether_a_unit_is_picked() -> void:
+	assert_true(_regiment_hud().undo_button.disabled)
+	assert_false(_regiment_hud({"unit": _unit("A1")}).undo_button.disabled)
+
+
+func test_pressing_call_off_in_the_regiment_panel_emits_the_signal() -> void:
+	var hud := _regiment_hud()
+	watch_signals(hud)
+	UIKit.button(hud.placing_panel, "Call off Deploy Regiment").pressed.emit()
+	assert_signal_emitted(hud, "call_off_pressed")
+
+
+func test_the_regiment_panel_has_no_unit_chips() -> void:
+	var hud := _regiment_hud()
+	assert_false(UIKit.button_texts(hud.placing_panel).has("A1 ×%d" % _unit("A1").model_count()))
+
+
+func test_a_regiment_unit_tile_says_to_pick_it_to_move() -> void:
+	var hud := _regiment_hud()
+	assert_string_contains(hud.tray_buttons[_unit("A1")].tooltip_text, "move")
+
+
+func test_a_unit_outside_the_regiment_does_not_say_to_move_it() -> void:
+	var hud := _regiment_hud()
+	assert_false(hud.tray_buttons[_unit("Aux")].tooltip_text.contains("to move"))
+
+
+func test_the_spearhead_army_panel_still_says_confirm_deployment() -> void:
+	assert_eq(_army_hud().confirm_button.text, "Confirm deployment")

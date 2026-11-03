@@ -994,3 +994,131 @@ func test_a_unit_that_is_already_deployed_cannot_be_placed_again() -> void:
 	var units := _stage(_me)
 	units[0].deployed = true
 	assert_string_contains(_d.place_army(_me, units), units[0].name)
+
+
+# together (Deploy Regiment)
+
+## Sets out every unit of the regiment being deployed on its own valid spot, one beside another.
+func _stage_regiment(army: BattleArmy) -> Array[BattleUnit]:
+	var units: Array[BattleUnit] = []
+	for unit in _d.pickable_units(army):
+		var anchor := Vector2(15.0 + units.size() * 15.0, 5.0 if army == _battle.player else 39.0)
+		unit.positions = Formations.arrange(Formations.Kind.WIDE_BLOCK, unit.bases, anchor, army.facing)
+		unit.facing = army.facing
+		units.append(unit)
+	return units
+
+
+func test_a_regiment_being_deployed_deploys_together() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	assert_true(_d.deploys_together(_me))
+
+
+func test_matched_play_without_a_regiment_does_not_deploy_together() -> void:
+	_start()
+	assert_false(_d.deploys_together(_me))
+
+
+func test_the_other_army_does_not_deploy_together_during_a_regiment() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	assert_false(_d.deploys_together(_them))
+
+
+func test_a_regiment_no_longer_deploys_together_once_it_is_down() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	_d.place_army(_me, _stage_regiment(_me))
+	assert_false(_d.deploys_together(_me))
+
+
+func test_a_called_off_regiment_no_longer_deploys_together() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	_d.cancel_regiment(_me)
+	assert_false(_d.deploys_together(_me))
+
+
+func test_spearhead_whole_army_deploys_together() -> void:
+	_army_game()
+	assert_true(_d.deploys_together(_me))
+
+
+func test_placing_a_regiment_deploys_all_its_units() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	assert_eq(_d.place_army(_me, _stage_regiment(_me)), "")
+	assert_true(_unit(_me, "A1").deployed)
+	assert_true(_unit(_me, "A2").deployed)
+
+
+func test_placing_a_regiment_ends_it_and_hands_the_turn_on() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	_d.place_army(_me, _stage_regiment(_me))
+	assert_null(_d.regiment)
+	assert_same(_d.active, _them)
+
+
+func test_placing_a_regiment_leaves_other_units_undeployed() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	_d.place_army(_me, _stage_regiment(_me))
+	assert_false(_unit(_me, "Aux").deployed)
+
+
+func test_placing_part_of_a_regiment_is_refused_naming_regiment_and_missing_unit() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	var units := _stage_regiment(_me)
+	var partial: Array[BattleUnit] = [units[0]]
+	var error := _d.place_army(_me, partial)
+	assert_string_contains(error, _me.regiments[0].name)
+	assert_string_contains(error, units[1].name)
+
+
+func test_a_refused_partial_regiment_deploys_nothing_and_stays_in_progress() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	var units := _stage_regiment(_me)
+	var partial: Array[BattleUnit] = [units[0]]
+	_d.place_army(_me, partial)
+	assert_false(units[0].deployed)
+	assert_not_null(_d.regiment)
+	assert_same(_d.active, _me)
+
+
+func test_a_regiment_with_a_unit_in_reserve_needs_only_the_rest() -> void:
+	var entry := _reserve_entry(_me, "A2")
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	var units := _stage_regiment(_me)
+	_d.reserve(_me, entry, [_unit(_me, "A2")] as Array[BattleUnit])
+	# Reserving A2 finished the regiment only if A1 was down; here A1 is still to place.
+	assert_not_null(_d.regiment)
+	var left: Array[BattleUnit] = [units[0]]
+	assert_eq(_d.place_army(_me, left), "")
+	assert_null(_d.regiment)
+
+
+func test_a_regiment_with_an_overlapping_unit_is_refused_and_deploys_nothing() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	var units := _stage_regiment(_me)
+	units[1].positions = units[0].positions.duplicate()
+	assert_ne(_d.place_army(_me, units), "")
+	assert_false(units[0].deployed)
+	assert_false(units[1].deployed)
+
+
+func test_placing_a_regiment_out_of_turn_is_refused() -> void:
+	_start()
+	_d.begin_regiment(_me, _me.regiments[0])
+	assert_ne(_d.place_army(_them, _stage_regiment(_me)), "")
+
+
+func test_placing_an_army_without_a_regiment_is_refused_in_matched_play() -> void:
+	_start()
+	var units: Array[BattleUnit] = [_unit(_me, "A1")]
+	assert_ne(_d.place_army(_me, units), "")

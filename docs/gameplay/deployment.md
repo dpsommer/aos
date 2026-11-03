@@ -90,7 +90,7 @@ A unit with bases of different sizes (Wildercorps Hunters: 40mm, 28.5mm and 25mm
 **Kind** | **Which abilities** | **What using it does**
 -- | -- | --
 Deploy Unit | The universal ability | Sets up one unit.
-Deploy Regiment | The universal ability | Starts a regiment: the same side keeps deploying, only that regiment's units, until all of it is down.
+Deploy Regiment | The universal ability | Starts a regiment: the same side keeps deploying, only that regiment's units, until all of it is down. The player's regiment is set out whole and confirmed in one go (`Deployment.place_army()`, which then needs every unit of it left); the AI still sets it up unit by unit.
 Deploy Faction Terrain | The universal ability | Sets up one faction terrain feature.
 Reserve | A DEPLOY ability whose effect says "in reserve" | Sets its targets up in a named reserve, e.g. "in the clouds", taken from the effect. They count as deployed.
 Record | Every other "Deployment Phase" ability | Records its use, and its target if one was picked. Its effect isn't applied yet.

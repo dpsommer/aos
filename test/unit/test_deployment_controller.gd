@@ -145,36 +145,57 @@ func test_a_unit_gets_a_fallback_spot_when_there_is_no_room() -> void:
 
 # regiments
 
-func test_picking_a_regiment_starts_deploying_it_and_picks_its_first_unit() -> void:
+func test_picking_a_regiment_starts_deploying_it() -> void:
 	_start()
 	_c.pick_regiment(_me().regiments[0])
 	assert_same(_c.deployment.regiment, _me().regiments[0])
-	assert_true(_c.unit_nodes.has(_unit(_me(), "A1")))
 
 
-func test_the_next_regiment_unit_is_picked_after_confirming_one() -> void:
+func test_picking_a_regiment_sets_out_all_its_units() -> void:
+	_start()
+	var regiment := _me().regiments[0]
+	_c.pick_regiment(regiment)
+	assert_eq(_c.staged_units(), regiment.units)
+	for unit in regiment.units:
+		assert_true(_c.unit_nodes.has(unit), unit.name)
+		assert_false(unit.deployed, unit.name)
+
+
+func test_picking_a_regiment_does_not_set_out_other_units() -> void:
 	_start()
 	_c.pick_regiment(_me().regiments[0])
-	_c.confirm()
-	await wait_process_frames(2)
-	assert_true(_c.unit_nodes.has(_unit(_me(), "A2")))
-	assert_same(_c.deployment.active, _me())
+	assert_false(_c.unit_nodes.has(_unit(_me(), "B1")))
 
 
-func test_cancelling_the_first_unit_of_a_regiment_leaves_the_regiment_going() -> void:
+func test_any_unit_of_the_regiment_can_be_picked_to_move() -> void:
 	_start()
 	_c.pick_regiment(_me().regiments[0])
-	_c.cancel()
-	assert_same(_c.deployment.regiment, _me().regiments[0])
-	assert_false(_c.unit_nodes.has(_unit(_me(), "A1")))
+	var second := _unit(_me(), "A2")
+	_c.pick_unit(second)
+	assert_same(_c.moving_unit(), second)
 
 
-func test_cancelling_again_calls_off_the_regiment() -> void:
+func test_confirming_a_regiment_deploys_all_its_units_at_once() -> void:
 	_start()
-	_c.pick_regiment(_me().regiments[0])
-	_c.cancel()
-	_c.cancel()
+	var regiment := _me().regiments[0]
+	_c.pick_regiment(regiment)
+	assert_eq(_c.confirm(), "")
+	for unit in regiment.units:
+		assert_true(unit.deployed, unit.name)
 	assert_null(_c.deployment.regiment)
+
+
+func test_a_regiment_with_a_unit_out_of_place_is_not_confirmed() -> void:
+	_start()
+	var regiment := _me().regiments[0]
+	_c.pick_regiment(regiment)
+	var unit := _unit(_me(), "A2")
+	_c.pick_unit(unit)
+	_c.move_to(_battle.battlefield_size / 2)
+	assert_ne(_c.confirm(), "")
+	for each in regiment.units:
+		assert_false(each.deployed, each.name)
+	assert_same(_c.deployment.regiment, regiment)
 
 
 func test_calling_off_a_regiment_ends_it_at_once() -> void:
@@ -184,14 +205,69 @@ func test_calling_off_a_regiment_ends_it_at_once() -> void:
 	assert_null(_c.deployment.regiment)
 
 
-func test_calling_off_a_regiment_drops_its_unit_being_placed() -> void:
+func test_calling_off_a_regiment_takes_its_units_off_the_board() -> void:
 	_start()
 	_c.pick_regiment(_me().regiments[0])
 	_c.call_off_regiment()
-	var unit := _unit(_me(), "A1")
-	assert_false(_c.unit_nodes.has(unit), "the unit being placed is taken off the board")
-	assert_eq(unit.positions.size(), 0, "the unit being placed loses its spot")
+	assert_eq(_c.staged_units().size(), 0)
+	for unit in _me().regiments[0].units:
+		assert_false(_c.unit_nodes.has(unit), unit.name)
+		assert_eq(unit.positions.size(), 0, unit.name)
 	assert_false(_c.confirm().is_empty(), "nothing is left to confirm")
+
+
+func test_reserving_one_regiment_unit_leaves_the_others_staged() -> void:
+	var entry := _reserve_entry("A2")
+	_start()
+	var regiment := _me().regiments[0]
+	_c.pick_regiment(regiment)
+	var a1 := _unit(_me(), "A1")
+	var before := a1.positions.duplicate()
+	_c.pick_ability(entry)
+	assert_eq(_c.confirm(), "")
+	assert_false(_unit(_me(), "A2") in _c.staged_units())
+	assert_true(a1 in _c.staged_units())
+	assert_false(a1.deployed)
+	assert_eq(a1.positions, before)
+	assert_same(_c.deployment.regiment, regiment)
+
+
+func test_the_rest_of_a_regiment_can_be_confirmed_after_a_reserve() -> void:
+	var entry := _reserve_entry("A2")
+	_start()
+	_c.pick_regiment(_me().regiments[0])
+	_c.pick_ability(entry)
+	_c.confirm()
+	assert_eq(_c.confirm(), "")
+	assert_true(_unit(_me(), "A1").deployed)
+	assert_null(_c.deployment.regiment)
+
+
+func test_cancelling_while_a_regiment_is_staged_keeps_it_staged() -> void:
+	_start()
+	var regiment := _me().regiments[0]
+	_c.pick_regiment(regiment)
+	_c.pick_unit(_unit(_me(), "A1"))
+	_c.cancel()
+	assert_null(_c.moving_unit())
+	assert_eq(_c.staged_units(), regiment.units)
+	assert_same(_c.deployment.regiment, regiment)
+
+
+func test_the_turn_moves_on_after_confirming_a_regiment() -> void:
+	_start()
+	_c.pick_regiment(_me().regiments[0])
+	_c.confirm()
+	await wait_process_frames(2)
+	var ai_deployed := _battle.opponent.units.filter(func(u: BattleUnit) -> bool: return u.deployed)
+	assert_gt(ai_deployed.size(), 0)
+
+
+func test_after_confirming_a_regiment_nothing_stays_staged() -> void:
+	_start()
+	_c.pick_regiment(_me().regiments[0])
+	_c.confirm()
+	assert_eq(_c.staged_units().size(), 0)
 
 
 # arranging

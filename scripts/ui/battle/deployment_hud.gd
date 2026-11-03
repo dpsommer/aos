@@ -73,8 +73,8 @@ func _notification(what: int) -> void:
 
 
 ## Rebuilds the overlay for the deployment's current state and [param state], what the player is
-## doing: [code]mode[/code] ("", "unit", "terrain", "choose" or "army": arranging a Spearhead army
-## set out on the board), [code]unit[/code],
+## doing: [code]mode[/code] ("", "unit", "terrain", "choose" or "army": arranging a Spearhead army,
+## or the regiment being deployed, set out on the board), [code]unit[/code],
 ## [code]feature[/code], [code]single[/code] (single-model mode), [code]problems[/code], [code]entry[/code],
 ## [code]targets[/code], [code]selected[/code] and [code]busy[/code] (the AI's turn).
 func refresh(state: Dictionary) -> void:
@@ -266,8 +266,7 @@ func _idle() -> Array:
 			UIBuilder.label("Use an ability from the list, or finish this step.", "DescriptionLabel", true),
 			pass_button]
 	if deployment.regiment:
-		return [_heading("Deploy Regiment"), _title(deployment.regiment.name),
-			UIBuilder.label("Pick its next unit.", "DescriptionLabel", true), _regiment_chips(), _call_off_button()]
+		return [_heading("Deploy Regiment"), _title(deployment.regiment.name), _call_off_button()]
 	return []
 
 
@@ -289,25 +288,10 @@ func _chip_flow() -> HFlowContainer:
 	return flow
 
 
-func _regiment_chips() -> Control:
-	var flow := _chip_flow()
-	for unit in deployment.regiment.units:
-		var chip := UIBuilder.button("%s ×%d" % [unit.name, unit.model_count()], unit_picked.emit.bind(unit), "chip_" + unit.name, "KeyButton")
-		chip.toggle_mode = true
-		chip.set_pressed_no_signal(_state.get("unit") == unit)
-		chip.disabled = unit.deployed
-		flow.add_child(chip)
-	return flow
-
-
 func _unit_placing() -> Array:
 	var unit: BattleUnit = _state.unit
 	var children: Array = [_heading("Placing"), _title(unit.name),
 		UIBuilder.label("%d model%s" % [unit.model_count(), "" if unit.model_count() == 1 else "s"], "MutedLabel")]
-	if deployment.regiment:
-		children.append(_regiment_chips())
-		if not deployment.regiment.any_deployed():
-			children.append(_call_off_button())
 	children.append_array(_unit_controls(unit))
 	children.append(_alert())
 	children.append(_buttons("Confirm"))
@@ -333,22 +317,28 @@ func _unit_controls(unit: BattleUnit) -> Array:
 	return children
 
 
-## Arranging a Spearhead army set out on the board: how to place the picked unit, every problem,
-## and one Confirm for the lot.
+## Arranging a Spearhead army, or the regiment being deployed, set out on the board: how to place
+## the picked unit, every problem, and one Confirm for the lot.
 func _army_placing() -> Array:
 	var unit: BattleUnit = _state.get("unit")
-	var children: Array = [_heading("Deploy your army"),
-		UIBuilder.label("Your units are set out in your deployable zone. Click a unit to pick it up. Blue: it can go there.", "MutedLabel", true)]
+	var regiment := deployment.regiment
+	var children: Array
+	if regiment:
+		children = [_heading("Deploy Regiment"), _title(regiment.name),
+			UIBuilder.label("Its units are set out in your deployable zone. Click a unit to pick it up. Blue: it can go there. Confirm sets up the whole regiment.", "MutedLabel", true)]
+	else:
+		children = [_heading("Deploy your army"),
+			UIBuilder.label("Your units are set out in your deployable zone. Click a unit to pick it up. Blue: it can go there.", "MutedLabel", true)]
 	if unit:
 		children.append(_title(unit.name))
 		children.append_array(_unit_controls(unit))
 	else:
 		children.append(UIBuilder.label("Pick a unit on the board or in the tray to move it or line it up.", "DescriptionLabel", true))
 	children.append(_alert())
-	var other := deployment.battle.enemy_of(army)
-	children.append(_buttons("Confirm deploy all"))
-	confirm_button.text = "Confirm deployment"
+	children.append(_buttons("Confirm regiment" if regiment else "Confirm deployment"))
 	undo_button.disabled = unit == null
+	if regiment and not regiment.any_deployed():
+		children.append(_call_off_button())
 	return children
 
 
@@ -495,7 +485,7 @@ func _unit_tile(unit: BattleUnit) -> Button:
 			unit_picked.emit.bind(unit), "unit_%d" % unit.get_instance_id(), 110, _state.get("unit") == unit)
 	tile.disabled = not _is_player_turn() or not unit in deployment.pickable_units(army)
 	tile.tooltip_text = "Deploy Unit: set %s up on its own" % unit.name if not unit.deployed else status
-	if not unit.deployed and deployment.deploys_whole_army(army):
+	if not unit.deployed and deployment.deploys_together(army) and unit in deployment.pickable_units(army):
 		tile.tooltip_text = "Pick %s to move it" % unit.name
 	tile.accessibility_name = "%s, %d models. %s" % [unit.name, unit.model_count(), status if not status.is_empty() else "Deploy it"]
 	tray_buttons[unit] = tile
