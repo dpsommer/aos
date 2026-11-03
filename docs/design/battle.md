@@ -10,8 +10,8 @@ Art is placeholder for now, prefixed `p_` (see [Project layout](../technical/lay
 
 - **Random choices:**
   - In Matched Play, a Random battleplan is one of the battlepack's.
-  - In Spearhead, a Random realm battlefield is any side of any Spearhead battlepack.
-- **Left to the roll-off:** who is the attacker, and so each side's territory, and in Spearhead the deployment map and each side's terrain features (see [Deployment](../gameplay/deployment.md#roll-off)).
+  - In Spearhead, a Random realm battlefield is any Spearhead battlepack.
+- **Left to the roll-off:** who is the attacker, and so each side's territory; in Spearhead also each side's regiment ability and enhancement, the side of the realm battlefield, the deployment map and each side's terrain features (see [Deployment](../gameplay/deployment.md#roll-off)).
 - **Armies** (`BattleArmy`, `BattleUnit`, `BattleRegiment`):
   - A Forge army's units come from its regiments and auxiliary units. Each has its warscroll's unit size in models, doubled if reinforced. Its points are `ArmyPoints.total()`, and its faction terrain comes with it.
   - Each of its regiments is a `BattleRegiment`, named after the regiment, its Regiment of Renown or "Regiment N". Auxiliary units are in none.
@@ -31,11 +31,11 @@ Scene `scenes/ui/battle/loading_screen.tscn`, script `scripts/ui/battle/loading_
 - **Background:** placeholder realm art (`assets/2d/p_realm_art.svg`), noted "[Realm art for the battleplan]".
 - **Matchup:** "YOU" in blue with the army's name and "Faction · N pts" ("Faction · Spearhead" for a Spearhead), "VS" in gold, then "AI OPPONENT" in red with theirs.
 - **Battleplan card:**
-  - The map: a neutral `BattleplanMap`, or a `RealmMap` with no deployment map, as territories are blue and red only after the roll-off.
+  - The map: a neutral `BattleplanMap`, or a `RealmMap` with no deployment map, as territories are blue and red only after the roll-off. In Spearhead, before the defender picks the side, both sides' maps, each named.
   - Its kind, e.g. "RANDOM BATTLE PLAN · TABLE 1" or "REALM BATTLEFIELD · FIRE AND JADE" ("RANDOM" when it was picked at random).
   - Its name.
-  - The twist, or for a realm battlefield its side and battlepack, and that the defender picks the deployment map after the roll-off.
-  - "5 objectives · 8 terrain features · 60" × 44"".
+  - The twist, or for a realm battlefield what's picked after the roll-off: regiment abilities and enhancements, then the side, deployment map and territories.
+  - "5 objectives · 8 terrain features · 60" × 44"", or in Spearhead "Sides: Aqshy or Ghyran · 30" × 22"".
   - "Territories are shown neutral here: blue and red are assigned after the roll-off."
 - **Progress:**
   - A spinner with the current step, e.g. "Placing terrain features · 5 of 8", and the percentage.
@@ -51,7 +51,7 @@ Scene `scenes/ui/battle/loading_screen.tscn`, script `scripts/ui/battle/loading_
 
 ## Game map
 
-Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`BattleMap`): a `Node3D` with a WorldEnvironment and a shadow-casting sun, to which the build steps add the board, terrain and objectives. `Main` then calls `start()`, which runs the phases below: the roll-off, the Spearhead deployment map, then deployment.
+Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`BattleMap`): a `Node3D` with a WorldEnvironment and a shadow-casting sun, to which the build steps add the board, terrain and objectives. `Main` then calls `start()`, which runs the phases below: the roll-off, in Spearhead the regiment abilities and enhancements and then the battlefield, then deployment.
 
 **Scale:** 1 Godot unit is 1 inch. The origin is the battlefield's north-west corner, with the data's x east (+X) and y south (+Z), so positions in inches from the data go straight into the world.
 
@@ -92,9 +92,13 @@ Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`B
   - In Matched Play, each has the battleplan's map with the player's territory for that role in blue.
 - **If the AI won:** it says which role the AI chose and which the player has, with Continue.
 
-### Deployment map (Spearhead)
+### Regiment ability and enhancement (Spearhead)
 
-If the player is the defender in Spearhead, `DeploymentMapPicker` (`scripts/ui/battle/deployment_map_picker.gd`) asks for the deployment map and the player's territory: a tab per map, the realm battlefield with that map's territories (A lighter than B), Territory A or B, and Confirm. If the AI defends, it picks both at random.
+After the roll-off, the attacker picks its regiment ability and its general's enhancement, then the defender (Pre-battle Sequence, step 2). When it's the player's turn, `SpearheadOptionsPicker` (`scripts/ui/battle/spearhead_options_picker.gd`) shows over the dimmed battlefield: "Pick your regiment ability and enhancement", whether they pick first or second (with the AI's picks, if it went first), two columns of [ability choice cards](abilities.md#choosing-an-ability), Regiment ability and "Enhancement · General", and Confirm, which says what's still to pick ("Pick a regiment ability and an enhancement") until both are picked. The AI picks at random. Each army's deployment abilities are filled in again with its picks (`BattleArmy.choose_spearhead_options()`).
+
+### Battlefield (Spearhead)
+
+Then the defender picks the side of the realm battlefield, the deployment map and which territory is theirs (steps 3 and 4). If the player is the defender, `DeploymentMapPicker` (`scripts/ui/battle/deployment_map_picker.gd`) asks for all three: a Side row with a tab per side (e.g. Aqshy, Ghyran), a Deployment map row (Horizontal, Diagonal), the chosen side's map with that deployment map's territories (A lighter than B), a Your territory row (Territory A or B), and Confirm ("Confirm: Ghyran, Diagonal, territory A"). If the AI defends, it picks all three at random. The game map then redraws the board for that side: its printed board, its terrain features and its objectives (`Battle.choose_realm()`), and the header shows the side's name in place of the battlepack's.
 
 ### Deployment
 
@@ -171,8 +175,9 @@ The keys, and deployment's placing keys, are remappable in Settings › Input, B
 -- | --
 `ArmySelect.play_requested(setup)` | `Main.show_loading()` opens the loading screen.
 `LoadingScreen.finished(map)` | The map is built. `Main.show_battle_map()` shows it in the loading screen's place and calls `BattleMap.start()`.
-`RollOffPanel.role_chosen(player_attacks)` | The roll-off is settled. `BattleMap` assigns the roles, then shows the deployment map picker (Spearhead, player defends) or starts deployment.
-`DeploymentMapPicker.chosen(map, player_has_a)` | `BattleMap` sets the territories and starts deployment.
+`RollOffPanel.role_chosen(player_attacks)` | The roll-off is settled. `BattleMap` assigns the roles, then in Spearhead runs the regiment ability and enhancement picks and the battlefield pick; otherwise it starts deployment.
+`SpearheadOptionsPicker.chosen(regiment_ability, enhancement)` | `BattleMap` gives the player's army its picks, then the AI picks if it's second, then the battlefield is picked.
+`DeploymentMapPicker.chosen(side, map, player_has_a)` | `BattleMap` redraws the board for the side, sets the territories and starts deployment.
 `BattleMap.deployment_finished` | Both armies are deployed. Nothing listens yet: battle rounds come next.
 `LoadingScreen.failed(message)` | The battle couldn't be set up. `Main` returns to the army step.
 `BattleMap.surrendered` | Surrender in the game map's menu, once confirmed. `Main` returns to the main menu.

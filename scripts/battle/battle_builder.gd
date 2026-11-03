@@ -56,23 +56,20 @@ static func _spearhead(setup: BattleSetup, rng: RandomNumberGenerator, packs: Ar
 	if spearhead == null:
 		return null
 	var pack := _find_battlepack(packs, setup.battlepack)
-	var realm := pack.get_realm(setup.realm) if pack and not setup.realm.is_empty() else null
 	var battle := Battle.new()
-	battle.was_random = realm == null
-	if realm == null:
+	battle.was_random = pack == null
+	if pack == null:
 		pack = packs[rng.randi_range(0, packs.size() - 1)]
-		realm = pack.realms[rng.randi_range(0, pack.realms.size() - 1)] if not pack.realms.is_empty() else null
-	if realm == null or pack.deployment_maps.is_empty():
+	if pack.realms.is_empty() or pack.deployment_maps.is_empty():
 		return null
 	battle.mode = BattleSetup.Mode.SPEARHEAD
 	battle.battlepack = pack
-	battle.realm = realm
 	battle.battlefield_size = pack.battlefield_size if pack.battlefield_size != Vector2.ZERO else Battle.SPEARHEAD_BATTLEFIELD
-	battle.title = realm.name
-	battle.objectives = realm.objectives.duplicate()
-	battle.roads = realm.roads.duplicate()
-	for feature in realm.terrain:
-		battle.terrain.append(_realm_terrain(feature, pack))
+	battle.title = pack.name
+	# The side is the defender's to pick after the roll-off, unless the setup names one.
+	var realm := pack.get_realm(setup.realm) if not setup.realm.is_empty() else null
+	if realm:
+		battle.choose_realm(realm)
 	battle.player = spearhead_army(spearhead, faction, setup, core)
 	battle.opponent = battle.player.mirror()
 	return battle
@@ -99,7 +96,7 @@ static func _find_battlepack(packs: Array[SpearheadBattlepack], pack_name: Strin
 
 ## A realm battlefield's terrain feature, placed where its map shows it, with [param pack]'s rules
 ## for its type if the battlepack has them.
-static func _realm_terrain(feature: MapFeature, pack: SpearheadBattlepack) -> BattleTerrain:
+static func realm_terrain(feature: MapFeature, pack: SpearheadBattlepack) -> BattleTerrain:
 	var known := pack.get_terrain_feature(feature.type)
 	var terrain := BattleTerrain.from_spearhead(known) if known else BattleTerrain.new()
 	terrain.name = feature.type
@@ -152,6 +149,11 @@ static func spearhead_army(spearhead: Spearhead, faction: Faction, setup: Battle
 	var result := BattleArmy.new()
 	result.name = spearhead.name
 	result.faction_name = faction.name
+	result.spearhead = spearhead
+	result.core = core
+	if setup:
+		result.regiment_ability = setup.regiment_ability
+		result.enhancement = setup.enhancement
 	var entries: Array = [[spearhead.general, 1]]
 	for unit in spearhead.units:
 		entries.append([unit.name, unit.count])

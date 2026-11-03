@@ -341,6 +341,87 @@ func test_it_passes_the_abilities_step_when_there_is_nothing_to_mirror() -> void
 	assert_true(_d.is_done())
 
 
+## Removes the AI's copy of the ability named [param ability_name], as if it hadn't picked it.
+func _remove_ai_ability(ability_name: String) -> void:
+	_ai.deployment_abilities.erase(_ai.deployment_ability(ability_name))
+
+
+func test_it_mirrors_an_ability_by_name_not_by_position() -> void:
+	var entry := _record_entry(_me)
+	_setup()
+	var other := BattleKit.ability("Other", PackedStringArray(), "Do something else.")
+	other.timing = DeploymentAbility.TIMING
+	var extra := BattleKit.deploy_entry(other)
+	_ai.deployment_abilities.push_front(extra)
+	_deploy_flat(_me)
+	_deploy_flat(_ai)
+	_d.start()
+	_d.record(_me, entry)
+	_mirror.take_turn()
+	assert_true(_d.is_used(_ai, _ai.deployment_ability("Scout")))
+	assert_false(_d.is_used(_ai, extra))
+
+
+func test_it_does_not_mirror_an_ability_it_lacks() -> void:
+	var entry := _record_entry(_me)
+	_setup()
+	_remove_ai_ability("Scout")
+	_deploy_flat(_me)
+	_deploy_flat(_ai)
+	_d.start()
+	_d.record(_me, entry)
+	_mirror.take_turn()
+	assert_false(_d.actions_of(_ai).any(func(action: Dictionary) -> bool: return action.action == "record"))
+
+
+func test_it_does_not_mirror_an_ability_with_the_same_name_from_another_source() -> void:
+	var entry := _record_entry(_me)
+	_setup()
+	_ai.deployment_ability("Scout").source = "Enhancement"
+	_deploy_flat(_me)
+	_deploy_flat(_ai)
+	_d.start()
+	_d.record(_me, entry)
+	_mirror.take_turn()
+	assert_eq(_d.actions_of(_ai)[0].action, "pass")
+
+
+func test_it_mirrors_the_ability_of_the_counterpart_unit() -> void:
+	var ability := BattleKit.ability("Scout", PackedStringArray(), "Do something.")
+	ability.timing = DeploymentAbility.TIMING
+	var first := BattleKit.deploy_entry(ability, "Warscroll", _unit(_me, "A1"))
+	var second := BattleKit.deploy_entry(ability, "Warscroll", _unit(_me, "A2"))
+	_me.deployment_abilities.append_array([first, second] as Array[DeploymentAbility])
+	_setup()
+	_deploy_flat(_me)
+	_deploy_flat(_ai)
+	_d.start()
+	_d.record(_me, second)
+	_mirror.take_turn()
+	var mine: DeploymentAbility = _ai.deployment_abilities[-1]
+	assert_same(mine.owner, _unit(_ai, "A2"))
+	assert_true(_d.is_used(_ai, mine))
+	assert_false(_d.is_used(_ai, _ai.deployment_abilities[-2]))
+
+
+func test_a_different_regiment_ability_does_not_stop_the_ai_taking_its_turn() -> void:
+	var player_pick := BattleKit.ability("Charge", PackedStringArray(), "Do something.")
+	player_pick.timing = DeploymentAbility.TIMING
+	var entry := BattleKit.deploy_entry(player_pick, "Regiment ability")
+	_me.deployment_abilities.append(entry)
+	_setup()
+	var ai_pick := BattleKit.ability("Ambush", PackedStringArray(), "Do something else.")
+	ai_pick.timing = DeploymentAbility.TIMING
+	_ai.deployment_abilities.append(BattleKit.deploy_entry(ai_pick, "Regiment ability"))
+	_remove_ai_ability("Charge")
+	_deploy_flat(_me)
+	_deploy_flat(_ai)
+	_d.start()
+	_d.record(_me, entry)
+	_mirror.take_turn()
+	assert_true(_d.is_done())
+
+
 # Spearhead: the whole army at once, with no player deployment to mirror
 
 ## A cramped Spearhead battle the AI sets up first, as the attacker, its army the cramped units.

@@ -1,20 +1,23 @@
 class_name DeploymentMapPicker
 extends Control
-## Spearhead: the defender picks the deployment map and which territory is theirs (Pre-battle
-## Sequence, step 4), over the dimmed battlefield. Each map is shown on the realm battlefield with
-## territory A lighter than B. See docs/design/battle.md.
+## Spearhead: the defender picks the side of the realm battlefield (Pre-battle Sequence, step 3),
+## then the deployment map and which territory is theirs (step 4), over the dimmed battlefield.
+## Each map is shown on the chosen side with territory A lighter than B. See docs/design/battle.md.
 
-## The player picked [param map], taking territory A if [param player_has_a].
-signal chosen(map: DeploymentMap, player_has_a: bool)
+## The player picked [param side] of the realm battlefield and [param map], taking territory A if
+## [param player_has_a].
+signal chosen(side: RealmBattlefield, map: DeploymentMap, player_has_a: bool)
 
 const DIM := Color(0.047, 0.051, 0.063, 0.72)
 
 var battle: Battle
+var realm_buttons: Array[Button] = []
 var map_buttons: Array[Button] = []
 var territory_a_button: Button
 var territory_b_button: Button
 var confirm_button: Button
 var preview_holder: Control
+var _realm: RealmBattlefield
 var _map: DeploymentMap
 var _has_a := true
 
@@ -30,15 +33,26 @@ func _init(of: Battle) -> void:
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)
-	_map = battle.battlepack.deployment_maps[0] if not battle.battlepack.deployment_maps.is_empty() else null
-	var title := UIBuilder.label("Pick the deployment map", "DisplayTitleLabel")
+	var pack := battle.battlepack
+	_realm = battle.realm if battle.realm else (pack.realms[0] if not pack.realms.is_empty() else null)
+	_map = pack.deployment_maps[0] if not pack.deployment_maps.is_empty() else null
+	var title := UIBuilder.label("Pick the battlefield", "DisplayTitleLabel")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var subtitle := UIBuilder.label("You're the defender: pick the map and which territory is yours. Territory A is the lighter one.", "DescriptionLabel")
+	var subtitle := UIBuilder.label("You're the defender: pick the side of the %s realm battlefield, the deployment map and which territory is yours. Territory A is the lighter one." % pack.name, "DescriptionLabel")
 	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var realms := UIBuilder.hbox([], 8)
+	for realm in pack.realms:
+		var button := UIBuilder.button(realm.name, _pick_realm.bind(realm), "realm_" + realm.name, "TabButton")
+		button.toggle_mode = true
+		button.accessibility_name = "Side: %s" % realm.name
+		realm_buttons.append(button)
+		realms.add_child(button)
+	realms.alignment = BoxContainer.ALIGNMENT_CENTER
 	var maps := UIBuilder.hbox([], 8)
 	for map in battle.battlepack.deployment_maps:
 		var button := UIBuilder.button(map.name, _pick_map.bind(map), "map_" + map.name, "TabButton")
 		button.toggle_mode = true
+		button.accessibility_name = "Deployment map: %s" % map.name
 		map_buttons.append(button)
 		maps.add_child(button)
 	maps.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -53,7 +67,8 @@ func _init(of: Battle) -> void:
 	confirm_button = UIBuilder.button("Confirm", _confirm, "confirm", "GoldButton")
 	confirm_button.custom_minimum_size = Vector2(220, 44)
 	confirm_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	var card := UIBuilder.panel("CardPanel", UIBuilder.vbox([maps, preview_holder, territories, confirm_button], 16))
+	var card := UIBuilder.panel("CardPanel", UIBuilder.vbox([_row("Side", realms), _row("Deployment map", maps), preview_holder,
+			_row("Your territory", territories), confirm_button], 16))
 	card.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	var column := UIBuilder.vbox([title, subtitle, card], 20)
 	var center := CenterContainer.new()
@@ -64,13 +79,25 @@ func _init(of: Battle) -> void:
 
 
 func _ready() -> void:
-	if not map_buttons.is_empty() and is_inside_tree():
-		map_buttons[0].grab_focus()
+	if not realm_buttons.is_empty() and is_inside_tree():
+		realm_buttons[0].grab_focus()
 
 
-## The map and territory picked so far.
+## The side, map and territory picked so far: [side, map, whether the player has territory A].
 func selection() -> Array:
-	return [_map, _has_a]
+	return [_realm, _map, _has_a]
+
+
+## A labelled row of tabs.
+static func _row(heading: String, tabs: Control) -> VBoxContainer:
+	var label := UIBuilder.label(heading.to_upper(), "StatNameLabel")
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	return UIBuilder.vbox([label, tabs], 6)
+
+
+func _pick_realm(realm: RealmBattlefield) -> void:
+	_realm = realm
+	_refresh()
 
 
 func _pick_map(map: DeploymentMap) -> void:
@@ -84,11 +111,13 @@ func _pick_territory(is_a: bool) -> void:
 
 
 func _confirm() -> void:
-	if _map:
-		chosen.emit(_map, _has_a)
+	if _realm and _map:
+		chosen.emit(_realm, _map, _has_a)
 
 
 func _refresh() -> void:
+	for i in realm_buttons.size():
+		realm_buttons[i].set_pressed_no_signal(battle.battlepack.realms[i] == _realm)
 	for i in map_buttons.size():
 		map_buttons[i].set_pressed_no_signal(battle.battlepack.deployment_maps[i] == _map)
 	territory_a_button.set_pressed_no_signal(_has_a)
@@ -96,10 +125,10 @@ func _refresh() -> void:
 	for child in preview_holder.get_children():
 		preview_holder.remove_child(child)
 		child.queue_free()
-	if _map and battle.realm:
-		var preview := RealmMap.new(battle.battlepack, battle.realm, true, _map)
+	if _map and _realm:
+		var preview := RealmMap.new(battle.battlepack, _realm, true, _map)
 		preview.custom_minimum_size = Vector2(480, 352)
 		preview.size_flags_horizontal = Control.SIZE_FILL
 		preview_holder.add_child(preview)
-	confirm_button.disabled = _map == null
-	confirm_button.text = "Confirm: %s, territory %s" % [_map.name if _map else "-", "A" if _has_a else "B"]
+	confirm_button.disabled = _map == null or _realm == null
+	confirm_button.text = "Confirm: %s, %s, territory %s" % [_realm.name if _realm else "-", _map.name if _map else "-", "A" if _has_a else "B"]

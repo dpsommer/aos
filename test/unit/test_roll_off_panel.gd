@@ -131,6 +131,16 @@ func test_a_spearhead_win_describes_spearheads_roles() -> void:
 	assert_string_contains(panel.defender_button.accessibility_name, "deployment map")
 
 
+func test_a_spearhead_attacker_picks_its_abilities_first() -> void:
+	var panel := _panel(_won())
+	assert_string_contains(panel.attacker_button.accessibility_name, "regiment ability")
+
+
+func test_a_spearhead_defender_picks_the_side_and_map() -> void:
+	var panel := _panel(_won())
+	assert_string_contains(panel.defender_button.accessibility_name, "side")
+
+
 # the AI won
 
 func test_a_loss_offers_only_continue() -> void:

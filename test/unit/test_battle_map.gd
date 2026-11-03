@@ -469,16 +469,40 @@ func _matched_battle() -> Battle:
 	return battle
 
 
-## A Spearhead battle before the roll-off and the deployment map: two maps to pick from.
+## A Spearhead battle before the roll-off: the sides Aqshy and Ghyran, none picked, and two maps to
+## pick from. Both armies are a Spearhead that has yet to pick its regiment ability and enhancement.
 func _spearhead_battle() -> Battle:
 	var battle := BattleKit.battle()
 	battle.player_territory = [] as Array[PackedVector2Array]
 	battle.opponent_territory = [] as Array[PackedVector2Array]
 	battle.roles_assigned = false
-	battle.battlepack = BattleKit.spearhead_pack("Pack", ["Aqshy"] as Array[String])
+	battle.battlepack = BattleKit.spearhead_pack("Pack", ["Aqshy", "Ghyran"] as Array[String])
 	battle.battlepack.deployment_maps = [BattleKit.deployment("First"), BattleKit.deployment("Second")] as Array[DeploymentMap]
-	battle.realm = battle.battlepack.realms[0]
+	battle.title = "Pack"
+	battle.player = BattleKit.spearhead_army(BattleKit.spearhead_with_options())
+	battle.opponent = battle.player.mirror()
+	battle.face_armies()
 	return battle
+
+
+## [method _spearhead_battle] on its first side, as if the setup had named it.
+func _battle_on_a_side() -> Battle:
+	var battle := _spearhead_battle()
+	battle.choose_realm(battle.battlepack.realms[0])
+	return battle
+
+
+## A map whose roll-off the player has taken as the attacker, or the defender if [param attacks]
+## is false, on [param battle].
+func _after_roll_off(battle: Battle, attacks: bool) -> BattleMap:
+	var map := _rolled_map(battle)
+	map.start()
+	map.roll_off_panel.role_chosen.emit(attacks)
+	return map
+
+
+func _pick_options(map: BattleMap, regiment := "Charge", enhancement := "Banner") -> void:
+	map.options_picker.chosen.emit(regiment, enhancement)
 
 
 func test_start_does_nothing_on_an_unbuilt_map() -> void:
@@ -592,42 +616,300 @@ func test_a_role_choice_outside_the_roll_off_is_ignored() -> void:
 	assert_true(map.battle.player_is_attacker)
 
 
-func test_spearhead_attacker_leaves_the_deployment_map_to_the_ai() -> void:
-	var map := _rolled_map(_spearhead_battle())
-	map.start()
-	map.roll_off_panel.role_chosen.emit(true)
-	assert_null(map.map_picker)
-	assert_true(map.battle.has_territories())
-	assert_true(map.battle.deployment in map.battle.battlepack.deployment_maps)
+# Spearhead: picking abilities, the side and the deployment map
+
+func test_matched_play_has_no_spearhead_options_to_pick() -> void:
+	var map := _after_roll_off(_matched_battle(), true)
+	assert_null(map.options_picker)
 	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
 
 
-func test_spearhead_defender_picks_the_deployment_map() -> void:
-	var map := _rolled_map(_spearhead_battle())
-	map.start()
-	map.roll_off_panel.role_chosen.emit(false)
+func test_a_spearhead_attacker_picks_its_options_first() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	assert_eq(map.phase, BattleMap.Phase.SPEARHEAD_OPTIONS)
+	assert_same(map.options_picker.get_parent(), map.overlay)
+	assert_null(map.deployment_controller)
+	assert_false(map.battle.has_territories())
+
+
+func test_the_attackers_picker_is_made_for_the_players_army() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	assert_same(map.options_picker.army, map.battle.player)
+	assert_true(map.options_picker.is_attacker)
+
+
+func test_the_ai_has_not_picked_while_the_attacker_picks() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	assert_true(map.battle.opponent.needs_spearhead_options())
+
+
+func test_the_players_options_are_set_on_their_army() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	_pick_options(map, "Ambush", "Crown")
+	assert_eq([map.battle.player.regiment_ability, map.battle.player.enhancement], ["Ambush", "Crown"])
+	assert_not_null(map.battle.player.deployment_ability("Ambush"))
+
+
+func test_the_ai_defender_picks_its_options_once_the_player_has() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	_pick_options(map)
+	assert_false(map.battle.opponent.needs_spearhead_options())
+	assert_true(map.battle.opponent.regiment_ability in ["Charge", "Ambush"])
+	assert_true(map.battle.opponent.enhancement in ["Banner", "Crown"])
+
+
+func test_the_ais_options_are_among_its_spearheads() -> void:
+	for seed_value in 8:
+		var map := _rolled_map(_spearhead_battle(), seed_value)
+		map.start()
+		map.roll_off_panel.role_chosen.emit(true)
+		_pick_options(map)
+		assert_not_null(map.battle.opponent.deployment_ability(map.battle.opponent.regiment_ability), "seed %d" % seed_value)
+		assert_not_null(map.battle.opponent.deployment_ability(map.battle.opponent.enhancement), "seed %d" % seed_value)
+
+
+func test_the_ai_picks_different_options_with_different_seeds() -> void:
+	var picks := {}
+	for seed_value in 24:
+		var map := _rolled_map(_spearhead_battle(), seed_value)
+		map.start()
+		map.roll_off_panel.role_chosen.emit(true)
+		_pick_options(map)
+		picks[map.battle.opponent.regiment_ability + map.battle.opponent.enhancement] = true
+	assert_gt(picks.size(), 1)
+
+
+func test_the_options_picker_is_removed_once_the_player_has_picked() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	var picker := map.options_picker
+	_pick_options(map)
+	assert_null(map.options_picker)
+	assert_null(picker.get_parent())
+
+
+func test_a_spearhead_attacker_leaves_the_side_and_map_to_the_ai() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	_pick_options(map)
+	assert_null(map.map_picker)
+	assert_true(map.battle.has_territories())
+	assert_true(map.battle.deployment in map.battle.battlepack.deployment_maps)
+	assert_true(map.battle.realm in map.battle.battlepack.realms)
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
+	assert_not_null(map.deployment_controller)
+
+
+func test_the_ai_defender_keeps_the_side_the_setup_named() -> void:
+	for seed_value in 8:
+		var battle := _battle_on_a_side()
+		var side := battle.realm
+		var map := _rolled_map(battle, seed_value)
+		map.start()
+		map.roll_off_panel.role_chosen.emit(true)
+		_pick_options(map)
+		assert_same(map.battle.realm, side, "seed %d" % seed_value)
+
+
+func test_the_ai_defender_picks_either_side() -> void:
+	var sides := {}
+	for seed_value in 24:
+		var map := _rolled_map(_spearhead_battle(), seed_value)
+		map.start()
+		map.roll_off_panel.role_chosen.emit(true)
+		_pick_options(map)
+		sides[map.battle.realm.name] = true
+	assert_eq(sides.size(), 2)
+
+
+func test_the_ai_defenders_side_is_drawn() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	_pick_options(map)
+	assert_eq(map.objectives_root.get_child_count(), map.battle.objectives.size())
+	assert_eq(map.hud.title_label.text, map.battle.realm.name)
+
+
+func test_a_spearhead_defender_sees_the_attackers_picks() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	assert_eq(map.phase, BattleMap.Phase.SPEARHEAD_OPTIONS)
+	assert_false(map.battle.opponent.needs_spearhead_options())
+	assert_false(map.options_picker.is_attacker)
+	assert_same(map.options_picker.opponent, map.battle.opponent)
+
+
+func test_a_spearhead_defender_picks_options_before_the_side() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	assert_null(map.map_picker)
+	assert_null(map.deployment_controller)
+	assert_true(map.battle.player.needs_spearhead_options())
+
+
+func test_a_spearhead_defender_then_picks_the_side_and_map() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
 	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT_MAP)
 	assert_same(map.map_picker.get_parent(), map.overlay)
+	assert_eq(map.map_picker.realm_buttons.size(), 2)
 	assert_false(map.battle.has_territories())
 	assert_null(map.deployment_controller)
+	assert_null(map.options_picker)
 
 
 func test_picking_a_map_gives_the_defender_its_territory_and_starts_deployment() -> void:
-	var map := _rolled_map(_spearhead_battle())
-	map.start()
-	map.roll_off_panel.role_chosen.emit(false)
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
 	var picked := map.battle.battlepack.deployment_maps[1]
-	map.map_picker.chosen.emit(picked, false)
+	map.map_picker.chosen.emit(map.battle.battlepack.realms[0], picked, false)
 	assert_same(map.battle.deployment, picked)
 	assert_eq(map.battle.player_territory, [picked.territory_b] as Array[PackedVector2Array])
 	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
 	assert_null(map.map_picker)
 
 
+func test_picking_a_side_chooses_the_realm() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
+	var side := map.battle.battlepack.realms[1]
+	map.map_picker.chosen.emit(side, map.battle.battlepack.deployment_maps[0], true)
+	assert_same(map.battle.realm, side)
+	assert_eq(map.battle.title, "Ghyran")
+
+
+func test_picking_a_side_redraws_the_title() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
+	map.map_picker.chosen.emit(map.battle.battlepack.realms[1], map.battle.battlepack.deployment_maps[0], true)
+	assert_eq(map.hud.title_label.text, "Ghyran")
+
+
+func test_picking_a_side_redraws_the_objectives() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
+	var side := map.battle.battlepack.realms[1]
+	side.objectives = [BattleKit.feature("A", Vector2(5, 5)), BattleKit.feature("B", Vector2(9, 9)), BattleKit.feature("C", Vector2(12, 4))] as Array[MapFeature]
+	map.map_picker.chosen.emit(side, map.battle.battlepack.deployment_maps[0], true)
+	assert_eq(map.objectives_root.get_child_count(), 3)
+
+
+func test_picking_a_side_redraws_the_terrain() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
+	var side := map.battle.battlepack.realms[1]
+	side.terrain = [BattleKit.feature("Wall", Vector2(3, 3)), BattleKit.feature("Wall", Vector2(6, 6))] as Array[MapFeature]
+	map.map_picker.chosen.emit(side, map.battle.battlepack.deployment_maps[0], true)
+	assert_eq(map.terrain_root.get_child_count(), _placed_count(map.battle))
+	assert_gte(map.terrain_root.get_child_count(), 2)
+
+
+func test_picking_a_side_leaves_one_board() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
+	map.map_picker.chosen.emit(map.battle.battlepack.realms[1], map.battle.battlepack.deployment_maps[0], true)
+	await wait_process_frames(2)
+	var boards := map.get_children().filter(func(node: Node) -> bool: return str(node.name).begins_with("Board"))
+	assert_eq(boards.size(), 1)
+
+
+func test_picking_a_side_draws_its_roads_on_a_board_without_a_print() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
+	var side := map.battle.battlepack.realms[1]
+	side.name = "Realm Without A Board"
+	side.roads = [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
+	map.map_picker.chosen.emit(side, map.battle.battlepack.deployment_maps[0], true)
+	await wait_process_frames(2)
+	assert_not_null(map.get_node_or_null("Roads"))
+
+
+func test_picking_a_side_without_roads_leaves_the_old_ones_off() -> void:
+	var battle := _spearhead_battle()
+	battle.battlepack.realms[0].name = "Realm Without A Board"
+	battle.battlepack.realms[0].roads = [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
+	battle.choose_realm(battle.battlepack.realms[0])
+	var map := _after_roll_off(battle, false)
+	_pick_options(map)
+	battle.battlepack.realms[1].name = "Another Realm Without A Board"
+	map.map_picker.chosen.emit(battle.battlepack.realms[1], battle.battlepack.deployment_maps[0], true)
+	await wait_process_frames(2)
+	assert_null(map.get_node_or_null("Roads"))
+
+
+func test_picking_the_same_side_does_not_redraw_it() -> void:
+	var battle := _battle_on_a_side()
+	var map := _after_roll_off(battle, false)
+	_pick_options(map)
+	var objectives := map.objectives_root.get_children()
+	map.map_picker.chosen.emit(battle.realm, battle.battlepack.deployment_maps[0], true)
+	assert_eq(map.objectives_root.get_children(), objectives)
+	assert_same(battle.realm, battle.battlepack.realms[0])
+
+
+func test_the_map_picker_starts_on_the_side_the_setup_named() -> void:
+	var battle := _battle_on_a_side()
+	var map := _after_roll_off(battle, false)
+	_pick_options(map)
+	assert_true(map.map_picker.realm_buttons[0].button_pressed)
+
+
+func test_the_map_picker_starts_on_the_first_side_without_one() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
+	_pick_options(map)
+	assert_same(map.map_picker.selection()[0], map.battle.battlepack.realms[0])
+
+
+func test_territories_already_set_skip_the_map_and_side() -> void:
+	var battle := _spearhead_battle()
+	battle.choose_realm(battle.battlepack.realms[0])
+	battle.choose_deployment(battle.battlepack.deployment_maps[0], true)
+	battle.player.choose_spearhead_options("Charge", "Banner")
+	battle.opponent.choose_spearhead_options("Ambush", "Crown")
+	var map := _after_roll_off(battle, false)
+	assert_null(map.options_picker)
+	assert_null(map.map_picker)
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
+
+
+func test_territories_already_set_still_ask_for_unpicked_options() -> void:
+	var battle := _spearhead_battle()
+	battle.choose_realm(battle.battlepack.realms[0])
+	battle.choose_deployment(battle.battlepack.deployment_maps[0], true)
+	var map := _after_roll_off(battle, true)
+	assert_eq(map.phase, BattleMap.Phase.SPEARHEAD_OPTIONS)
+	_pick_options(map)
+	assert_null(map.map_picker)
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
+
+
+func test_options_already_picked_are_not_asked_for_again() -> void:
+	var battle := _spearhead_battle()
+	battle.player.choose_spearhead_options("Charge", "Banner")
+	battle.opponent.choose_spearhead_options("Ambush", "Crown")
+	var map := _after_roll_off(battle, false)
+	assert_null(map.options_picker)
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT_MAP)
+
+
+func test_a_spearhead_with_nothing_to_pick_goes_straight_to_the_battlefield() -> void:
+	var battle := _spearhead_battle()
+	for army in [battle.player, battle.opponent]:
+		army.spearhead.regiment_abilities = [] as Array[Ability]
+		army.spearhead.enhancements = [] as Array[Ability]
+	var map := _after_roll_off(battle, false)
+	assert_null(map.options_picker)
+	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT_MAP)
+
+
+func test_a_stray_options_choice_is_ignored_once_deployment_starts() -> void:
+	var map := _after_roll_off(_spearhead_battle(), true)
+	var picker := map.options_picker
+	_pick_options(map)
+	var controller := map.deployment_controller
+	picker.chosen.emit("Ambush", "Crown")
+	assert_same(map.deployment_controller, controller)
+	assert_eq(map.battle.player.regiment_ability, "Charge")
+
+
 func test_spearhead_roles_give_each_side_its_terrain() -> void:
-	var map := _rolled_map(_spearhead_battle())
-	map.start()
-	map.roll_off_panel.role_chosen.emit(false)
+	var map := _after_roll_off(_spearhead_battle(), true)
+	_pick_options(map)
 	assert_gt(map.battle.player.terrain.size(), 0)
 	assert_gt(map.battle.opponent.terrain.size(), 0)
 

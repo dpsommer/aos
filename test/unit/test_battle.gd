@@ -224,3 +224,53 @@ func test_enemy_territory_of_each_army_is_the_others() -> void:
 	var battle := BattleKit.battle()
 	assert_eq(battle.enemy_territory_of(battle.player), battle.opponent_territory)
 	assert_eq(battle.enemy_territory_of(battle.opponent), battle.player_territory)
+
+
+# choose_realm
+
+func _unchosen_realm_battle() -> Battle:
+	var battle := Battle.new()
+	battle.battlepack = BattleKit.spearhead_pack("Pack", ["Aqshy", "Ghyran"] as Array[String])
+	battle.title = "Pack"
+	return battle
+
+
+func test_choose_realm_sets_the_realm_and_title() -> void:
+	var battle := _unchosen_realm_battle()
+	battle.choose_realm(battle.battlepack.realms[1])
+	assert_same(battle.realm, battle.battlepack.realms[1])
+	assert_eq(battle.title, "Ghyran")
+
+
+func test_choose_realm_sets_the_objectives_and_roads() -> void:
+	var battle := _unchosen_realm_battle()
+	var side := battle.battlepack.realms[0]
+	side.roads = [PackedVector2Array([Vector2(0, 0), Vector2(5, 5)])] as Array[PackedVector2Array]
+	battle.choose_realm(side)
+	assert_eq(battle.objectives, side.objectives)
+	assert_eq(battle.roads, side.roads)
+
+
+func test_choose_realm_makes_a_terrain_feature_per_map_feature() -> void:
+	var battle := _unchosen_realm_battle()
+	battle.choose_realm(battle.battlepack.realms[0])
+	assert_eq(battle.terrain.size(), battle.battlepack.realms[0].terrain.size())
+	assert_true(battle.terrain[0].placed)
+
+
+func test_choose_realm_again_replaces_the_previous_sides_features() -> void:
+	var battle := _unchosen_realm_battle()
+	var second := battle.battlepack.realms[1]
+	second.objectives = [BattleKit.feature("A", Vector2(1, 1)), BattleKit.feature("B", Vector2(2, 2))] as Array[MapFeature]
+	battle.choose_realm(battle.battlepack.realms[0])
+	battle.choose_realm(second)
+	assert_eq(battle.objectives.size(), 2)
+	assert_eq(battle.terrain.size(), second.terrain.size())
+
+
+func test_choose_realm_does_not_change_the_sides_own_lists() -> void:
+	var battle := _unchosen_realm_battle()
+	var side := battle.battlepack.realms[0]
+	battle.choose_realm(side)
+	battle.objectives.clear()
+	assert_eq(side.objectives.size(), 1)

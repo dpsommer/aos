@@ -184,8 +184,10 @@ func _battleplan_card() -> Control:
 		var plan_map := BattleplanMap.new(battle.battleplan, battle.battlefield_size, true)
 		plan_map.neutral = true
 		preview = plan_map
-	else:
+	elif battle.realm:
 		preview = RealmMap.new(battle.battlepack, battle.realm, true)
+	else:
+		preview = _sides()
 	var frame := VBoxContainer.new()
 	frame.custom_minimum_size = MAP_SIZE
 	frame.add_child(preview)
@@ -193,14 +195,36 @@ func _battleplan_card() -> Control:
 		UIBuilder.label(_kind_text(), "StatNameLabel"),
 		_title(),
 		UIBuilder.label(_description(), "DescriptionLabel", true),
-		UIBuilder.label("%d objectives · %d terrain features · %s" % [battle.objectives.size(), battle.all_terrain().size(),
-				battle.battlefield_text()], "BodyLabel"),
+		UIBuilder.label(_facts(), "BodyLabel"),
 		UIBuilder.label("Territories are shown neutral here: blue and red are assigned after the roll-off.", "MutedLabel", true),
 	], 12)
 	info.custom_minimum_size.x = 420
 	var card := UIBuilder.panel("CardPanel", UIBuilder.hbox([frame, info], 40))
 	card.add_theme_stylebox_override("panel", UITheme.box(Color(0.09, 0.102, 0.122, 0.92), UITheme.BORDER, 12, 28))
 	return card
+
+
+## A Spearhead realm battlefield's sides, side by side, before the defender picks one.
+func _sides() -> Control:
+	var row := UIBuilder.hbox([], 12)
+	for side in battle.battlepack.realms:
+		var map := RealmMap.new(battle.battlepack, side)
+		map.custom_minimum_size = Vector2(MAP_SIZE.x / 2 - 6, (MAP_SIZE.x / 2 - 6) * battle.battlefield_size.y / battle.battlefield_size.x)
+		var label := UIBuilder.label(side.name, "MutedLabel")
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		row.add_child(UIBuilder.vbox([map, label], 6))
+	return row
+
+
+## "4 objectives · 8 terrain features · 30" × 22"", or the sides to pick from in Spearhead before
+## the defender picks one.
+func _facts() -> String:
+	if battle.is_spearhead() and battle.realm == null:
+		var sides := PackedStringArray()
+		for side in battle.battlepack.realms:
+			sides.append(side.name)
+		return "Sides: %s · %s" % [" or ".join(sides), battle.battlefield_text()]
+	return "%d objectives · %d terrain features · %s" % [battle.objectives.size(), battle.all_terrain().size(), battle.battlefield_text()]
 
 
 func _title() -> Label:
@@ -218,7 +242,9 @@ func _kind_text() -> String:
 func _description() -> String:
 	if not battle.twist.is_empty():
 		return battle.twist
-	return "The %s side of the %s realm battlefield. The defender picks the deployment map after the roll-off." \
+	if battle.realm == null:
+		return "After the roll-off, each side picks its regiment ability and enhancement, then the defender picks the side of the realm battlefield, the deployment map and the territories."
+	return "The %s side of the %s realm battlefield. After the roll-off, each side picks its regiment ability and enhancement, and the defender picks the deployment map." \
 			% [battle.title, battle.battlepack.name]
 
 

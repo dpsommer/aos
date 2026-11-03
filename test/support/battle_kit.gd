@@ -174,6 +174,32 @@ static func spearhead_faction() -> Faction:
 	return result
 
 
+## A Spearhead of a `General` and one unit `Alpha`, with a `Trait` battle trait, the regiment
+## abilities `Charge` and `Ambush` and the enhancements `Banner` and `Crown`, all used in the
+## deployment phase.
+static func spearhead_with_options() -> Spearhead:
+	var spearhead := Spearhead.new()
+	spearhead.name = "Optioned"
+	spearhead.general = "General"
+	var deploy := PackedStringArray(["DEPLOY"])
+	spearhead.battle_traits = [ability("Trait", deploy)] as Array[Ability]
+	spearhead.regiment_abilities = [ability("Charge", deploy), ability("Ambush", deploy)] as Array[Ability]
+	spearhead.enhancements = [ability("Banner", deploy), ability("Crown", deploy)] as Array[Ability]
+	return spearhead
+
+
+## An army of [param spearhead] as [BattleBuilder] makes one: the general then a unit `Alpha`,
+## nothing chosen yet.
+static func spearhead_army(spearhead: Spearhead) -> BattleArmy:
+	var result := BattleArmy.new()
+	result.name = spearhead.name
+	result.spearhead = spearhead
+	result.units.append(unit(spearhead.general, 1))
+	result.units.append(unit("Alpha", 3))
+	DeploymentAbilities.for_spearhead_choices(result, spearhead, "", "", null)
+	return result
+
+
 static func spearhead_setup(pack_name := "", realm_name := "") -> BattleSetup:
 	var setup := BattleSetup.new()
 	setup.mode = BattleSetup.Mode.SPEARHEAD

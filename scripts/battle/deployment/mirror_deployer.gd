@@ -202,8 +202,19 @@ func _counterpart_regiment(regiment: BattleRegiment) -> BattleRegiment:
 	return _at_same_index(regiment, model.regiments, army.regiments)
 
 
+## The AI's own copy of [param entry]: the same ability from the same source, on the counterpart
+## of its unit and regiment if it has them, or null if it hasn't one (a Spearhead regiment ability
+## or enhancement the AI didn't pick).
 func _counterpart_ability(entry: DeploymentAbility) -> DeploymentAbility:
-	return _at_same_index(entry, model.deployment_abilities, army.deployment_abilities)
+	for candidate in army.deployment_abilities:
+		if candidate.name() != entry.name() or candidate.source != entry.source:
+			continue
+		if entry.owner and candidate.owner != _counterpart_unit(entry.owner):
+			continue
+		if entry.regiment and candidate.regiment != _counterpart_regiment(entry.regiment):
+			continue
+		return candidate
+	return null
 
 
 ## The item of [param to] at [param item]'s index in [param from], or null.

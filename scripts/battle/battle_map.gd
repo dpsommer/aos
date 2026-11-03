@@ -2,9 +2,10 @@ class_name BattleMap
 extends Node3D
 ## The game map: the battlefield at tabletop size with its terrain and objectives, a camera and the
 ## overlay. [LoadingScreen] builds it a step at a time ([method build_steps]); Main then shows it
-## and calls [method start]: the roll-off decides who is the attacker, a Spearhead defender picks
-## the deployment map, the territories appear and the deployment phase sets both armies up
-## ([DeploymentController]). See docs/design/battle.md.
+## and calls [method start]: the roll-off decides who is the attacker; in Spearhead the attacker
+## then picks its regiment ability and enhancement, then the defender, and the defender picks the
+## side of the realm battlefield, the deployment map and the territories; the territories appear
+## and the deployment phase sets both armies up ([DeploymentController]). See docs/design/battle.md.
 
 ## Surrender in the menu, once confirmed.
 signal surrendered
@@ -14,7 +15,7 @@ signal save_and_quit_requested
 signal deployment_finished
 
 ## Where the battle is before the fighting starts.
-enum Phase { BUILDING, ROLL_OFF, DEPLOYMENT_MAP, DEPLOYMENT, DEPLOYED }
+enum Phase { BUILDING, ROLL_OFF, SPEARHEAD_OPTIONS, DEPLOYMENT_MAP, DEPLOYMENT, DEPLOYED }
 
 const SETTINGS_SCENE := preload("res://scenes/ui/settings_screen.tscn")
 
@@ -33,9 +34,11 @@ var terrain_root: Node3D
 var objectives_root: Node3D
 var armies_root: Node3D
 var phase := Phase.BUILDING
-## Picks the roll-off's dice, the AI's role and a Spearhead AI defender's deployment map.
+## Picks the roll-off's dice, the AI's role, and in Spearhead the AI's regiment ability and
+## enhancement and, if it defends, the battlefield.
 var rng := RandomNumberGenerator.new()
 var roll_off_panel: RollOffPanel
+var options_picker: SpearheadOptionsPicker
 var map_picker: DeploymentMapPicker
 var deployment_controller: DeploymentController
 ## Whether the menu is fading out after Resume.
@@ -86,11 +89,7 @@ func _step(stage: Stage, text: String, run: Callable) -> Dictionary:
 
 
 func _build_battlefield() -> void:
-	var printed := BoardBuilder.board_print(battle.realm.name) if battle.realm else null
-	add_child(BoardBuilder.board(battle.battlefield_size, printed))
-	# A printed board has its roads on it.
-	if not battle.roads.is_empty() and printed == null:
-		add_child(BoardBuilder.roads(battle.roads))
+	_add_board()
 	terrain_root = _group("Terrain")
 	objectives_root = _group("Objectives")
 	armies_root = _group("Armies")
@@ -102,6 +101,31 @@ func _build_battlefield() -> void:
 	_build_overlay()
 	if battle.has_territories():
 		_show_territories()
+
+
+## The board, with its realm battlefield side's printed board, or its roads if there's no image.
+func _add_board() -> void:
+	var printed := BoardBuilder.board_print(battle.realm.name) if battle.realm else null
+	add_child(BoardBuilder.board(battle.battlefield_size, printed))
+	# A printed board has its roads on it.
+	if not battle.roads.is_empty() and printed == null:
+		add_child(BoardBuilder.roads(battle.roads))
+
+
+## Redraws the board, the battlefield's terrain and the objectives for the side of the realm
+## battlefield the defender picked.
+func _show_realm() -> void:
+	for node_name in ["Board", "Roads"]:
+		_remove_child_named(node_name)
+	_add_board()
+	for root: Node3D in [terrain_root, objectives_root]:
+		for child in root.get_children():
+			root.remove_child(child)
+			child.queue_free()
+	for feature in battle.all_terrain():
+		_add_terrain(feature)
+	_build_objectives()
+	hud.set_title(battle.title)
 
 
 ## The overlay: the HUD and the menu, wired to open and close each other.
@@ -155,21 +179,72 @@ func _on_role_chosen(player_attacks: bool) -> void:
 	roll_off_panel = null
 	battle.assign_roles(player_attacks)
 	hud.refresh_roles()
-	if not battle.is_spearhead() or battle.has_territories():
+	if battle.is_spearhead():
+		_next_spearhead_options()
+	else:
 		_begin_deployment()
-	elif player_attacks:
+
+
+## Spearhead's Pre-battle Sequence, step 2: the attacker picks its regiment ability and
+## enhancement, then the defender (the AI at random, the player on [SpearheadOptionsPicker]).
+## Once both have, the defender picks the battlefield.
+func _next_spearhead_options() -> void:
+	phase = Phase.SPEARHEAD_OPTIONS
+	for army: BattleArmy in [battle.attacker(), battle.defender()]:
+		if not army.needs_spearhead_options():
+			continue
+		if army == battle.player:
+			_open_options_picker()
+			return
+		_ai_chooses_options(army)
+	_choose_battlefield()
+
+
+## The AI picks a regiment ability and an enhancement at random.
+func _ai_chooses_options(army: BattleArmy) -> void:
+	army.choose_spearhead_options(_random_name(army.spearhead.regiment_abilities), _random_name(army.spearhead.enhancements))
+
+
+func _random_name(abilities: Array[Ability]) -> String:
+	return abilities[rng.randi_range(0, abilities.size() - 1)].name if not abilities.is_empty() else ""
+
+
+func _open_options_picker() -> void:
+	options_picker = SpearheadOptionsPicker.new(battle.player, battle.opponent, battle.player_is_attacker)
+	options_picker.chosen.connect(_on_options_chosen)
+	_add_to_overlay(options_picker)
+
+
+func _on_options_chosen(regiment_ability: String, enhancement: String) -> void:
+	if phase != Phase.SPEARHEAD_OPTIONS:
+		return
+	_remove(options_picker)
+	options_picker = null
+	battle.player.choose_spearhead_options(regiment_ability, enhancement)
+	_next_spearhead_options()
+
+
+## Spearhead's Pre-battle Sequence, steps 3 and 4: the defender picks the side of the realm
+## battlefield, the deployment map and the territories.
+func _choose_battlefield() -> void:
+	if battle.has_territories():
+		_begin_deployment()
+	elif battle.player_is_attacker:
 		_ai_chooses_deployment()
 	else:
 		_open_map_picker()
 
 
-## The AI defends: it picks the deployment map and territories at random.
+## The AI defends: it picks the side (unless the setup named one), the deployment map and the
+## territories at random.
 func _ai_chooses_deployment() -> void:
-	var maps := battle.battlepack.deployment_maps
-	_on_deployment_chosen(maps[rng.randi_range(0, maps.size() - 1)], rng.randi_range(0, 1) == 0)
+	var pack := battle.battlepack
+	var side := battle.realm if battle.realm else pack.realms[rng.randi_range(0, pack.realms.size() - 1)]
+	var maps := pack.deployment_maps
+	_on_deployment_chosen(side, maps[rng.randi_range(0, maps.size() - 1)], rng.randi_range(0, 1) == 0)
 
 
-## The player defends: they pick the deployment map and territories.
+## The player defends: they pick the side, the deployment map and the territories.
 func _open_map_picker() -> void:
 	phase = Phase.DEPLOYMENT_MAP
 	map_picker = DeploymentMapPicker.new(battle)
@@ -177,10 +252,13 @@ func _open_map_picker() -> void:
 	_add_to_overlay(map_picker)
 
 
-func _on_deployment_chosen(map: DeploymentMap, player_has_a: bool) -> void:
+func _on_deployment_chosen(side: RealmBattlefield, map: DeploymentMap, player_has_a: bool) -> void:
 	if map_picker:
 		_remove(map_picker)
 		map_picker = null
+	if side != battle.realm:
+		battle.choose_realm(side)
+		_show_realm()
 	battle.choose_deployment(map, player_has_a)
 	_begin_deployment()
 

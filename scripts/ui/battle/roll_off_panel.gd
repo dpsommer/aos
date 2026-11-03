@@ -154,7 +154,8 @@ func _result_card() -> PanelContainer:
 
 func _role_text(attacks: bool) -> String:
 	if battle.is_spearhead():
-		return "Set up your army first." if attacks else "Pick the deployment map and territories, and set up your terrain first."
+		return "Pick your regiment ability and enhancement first, and set up your army first." if attacks \
+				else "Pick the side, deployment map and territories, and set up your terrain first."
 	return "Deploy first. Your territory is shown in blue." if attacks else "Deploy second, after seeing the attacker's first moves."
 
 

@@ -78,6 +78,12 @@ func test_title_is_the_battles_title() -> void:
 	assert_eq(_hud(battle).title_label.text, "Fire and Jade")
 
 
+func test_set_title_changes_the_header() -> void:
+	var hud := _hud()
+	hud.set_title("Ghyran")
+	assert_eq(hud.title_label.text, "Ghyran")
+
+
 func test_pills_show_who_is_the_attacker() -> void:
 	var battle := BattleKit.battle()
 	battle.player_is_attacker = true

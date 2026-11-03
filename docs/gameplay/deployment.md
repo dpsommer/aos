@@ -9,9 +9,9 @@ The code is in `scripts/battle/deployment/`. Everything but `DeploymentControlle
 `RollOff.roll(rng)`: each player rolls a dice, and a tie is rolled again. The winner picks attacker or defender. The AI picks at random for now.
 
 - **Matched Play:** `Battle.assign_roles()` gives the attacker the battleplan's attacker territory and the defender the other.
-- **Spearhead:** `assign_roles()` gives the defender terrain group A (or every non-mystical feature) and the attacker group B. The defender then picks the deployment map and which territory is theirs (`Battle.choose_deployment()`). A defending player picks on `DeploymentMapPicker`; a defending AI picks at random.
+- **Spearhead:** `assign_roles()` gives the defender terrain group A (or every non-mystical feature) and the attacker group B. The attacker then picks its regiment ability and enhancement, then the defender (`BattleArmy.choose_spearhead_options()`, which fills its deployment abilities in again). The defender then picks the side of the realm battlefield (`Battle.choose_realm()`), the deployment map and which territory is theirs (`Battle.choose_deployment()`). The player picks on `SpearheadOptionsPicker` and `DeploymentMapPicker`; the AI picks at random.
 
-`BattleBuilder` leaves the roles, the territories and the Spearhead deployment map unset for these steps.
+`BattleBuilder` leaves the roles, the territories, and in Spearhead the regiment abilities, enhancements, side and deployment map unset for these steps.
 
 ## Steps
 
@@ -85,7 +85,7 @@ A unit with bases of different sizes (Wildercorps Hunters: 40mm, 28.5mm and 25mm
 `DeploymentAbilities` collects each army's deployment abilities, as `DeploymentAbility`s:
 
 - **Matched Play:** the universal ones, then its battle traits (its Army of Renown's instead, if it has one), its battle formation's abilities, its Regiments of Renown's abilities (tied to that regiment), its enhancements' abilities and its warscroll abilities (each tied to its unit).
-- **Spearhead:** 'Deploy Unit', its battle traits, the regiment ability and enhancement the player chose, and its warscroll abilities.
+- **Spearhead:** 'Deploy Unit', its battle traits, the regiment ability and enhancement it picked after the roll-off, and its warscroll abilities.
 
 **Kind** | **Which abilities** | **What using it does**
 -- | -- | --
@@ -112,7 +112,7 @@ Not supported | Any other DEPLOY or DEPLOY TERRAIN ability, e.g. 'Rise from the 
 
 ## The AI
 
-`MirrorDeployer` stands in for a deployment AI. The AI's army is a mirror of the player's (`BattleArmy.mirror()`), so each unit, regiment, terrain feature and ability has a counterpart at the same index.
+`MirrorDeployer` stands in for a deployment AI. The AI's army is a mirror of the player's (`BattleArmy.mirror()`), so each unit, regiment and terrain feature has a counterpart at the same index. An ability's counterpart is the AI's ability with the same name and source, on the counterpart unit or regiment; a Spearhead regiment ability or enhancement the AI didn't pick has none, so it isn't mirrored.
 
 On its turn the AI repeats the earliest action of the player's it hasn't matched yet. Positions are reflected through the middle of the battlefield and facings turned round. Battleplan and Spearhead territories are point-symmetric, so a legal placement stays legal. It mirrors 'Deploy Regiment', reserves and recorded abilities too.
 

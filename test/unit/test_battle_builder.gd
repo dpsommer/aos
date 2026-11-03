@@ -257,24 +257,95 @@ func test_spearhead_unknown_spearhead_gives_no_battle() -> void:
 	assert_null(BattleBuilder.build(setup, _rng(), null, _packs(), BattleKit.spearhead_faction()))
 
 
-func test_spearhead_chosen_realm_is_kept() -> void:
+func _two_packs() -> Array[SpearheadBattlepack]:
+	return [BattleKit.spearhead_pack("Pack", ["Aqshy", "Ghyran"] as Array[String]),
+			BattleKit.spearhead_pack("Other", ["Shyish"] as Array[String])] as Array[SpearheadBattlepack]
+
+
+func _build_with_packs(pack_name: String, seed_value := 1) -> Battle:
+	return BattleBuilder.build(BattleKit.spearhead_setup(pack_name), _rng(seed_value), BattleKit.core([] as Array[Battleplan]),
+			_two_packs(), BattleKit.spearhead_faction())
+
+
+func test_spearhead_chosen_battlepack_is_kept() -> void:
 	for seed_value in SEEDS:
-		var battle := _spearhead("Pack", "Ghyran", seed_value)
-		assert_eq(battle.title, "Ghyran")
+		var battle := _build_with_packs("Other", seed_value)
+		assert_eq(battle.battlepack.name, "Other")
 		assert_false(battle.was_random)
 
 
-func test_spearhead_without_a_realm_picks_one_at_random() -> void:
-	var battle := _spearhead()
+func test_spearhead_without_a_battlepack_picks_one_at_random() -> void:
+	var battle := _build_with_packs("")
 	assert_true(battle.was_random)
-	assert_true(battle.title in ["Aqshy", "Ghyran"])
+	assert_true(battle.battlepack.name in ["Pack", "Other"])
 
 
-func test_different_seeds_pick_different_realms() -> void:
-	var titles := {}
+func test_spearhead_with_an_unknown_battlepack_picks_one_at_random() -> void:
+	var battle := _build_with_packs("Nowhere")
+	assert_true(battle.was_random)
+	assert_not_null(battle.battlepack)
+
+
+func test_different_seeds_pick_different_battlepacks() -> void:
+	var names := {}
 	for seed_value in SEEDS:
-		titles[_spearhead("", "", seed_value).title] = true
-	assert_eq(titles.size(), 2)
+		names[_build_with_packs("", seed_value).battlepack.name] = true
+	assert_eq(names.size(), 2)
+
+
+func test_spearhead_leaves_the_realm_to_the_defender() -> void:
+	var battle := _spearhead("Pack")
+	assert_null(battle.realm)
+	assert_true(battle.objectives.is_empty())
+	assert_true(battle.roads.is_empty())
+	assert_true(battle.terrain.is_empty())
+
+
+func test_spearhead_without_a_realm_is_titled_by_its_battlepack() -> void:
+	assert_eq(_spearhead("Pack").title, "Pack")
+
+
+func test_spearhead_without_a_realm_still_has_the_battlepack_battlefield() -> void:
+	assert_eq(_spearhead("Pack").battlefield_size, Battle.SPEARHEAD_BATTLEFIELD)
+
+
+func test_spearhead_setup_naming_a_side_chooses_it() -> void:
+	var battle := _spearhead("Pack", "Ghyran")
+	assert_eq(battle.realm.name, "Ghyran")
+	assert_eq(battle.title, "Ghyran")
+	assert_eq(battle.objectives.size(), 1)
+	assert_eq(battle.terrain.size(), 1)
+
+
+func test_spearhead_setup_naming_an_unknown_side_leaves_the_realm() -> void:
+	var battle := _spearhead("Pack", "Nowhere")
+	assert_null(battle.realm)
+
+
+func test_spearhead_army_knows_its_spearhead_and_core() -> void:
+	var core := BattleKit.core([] as Array[Battleplan])
+	var battle := BattleBuilder.build(BattleKit.spearhead_setup("Pack"), _rng(), core, _packs(), BattleKit.spearhead_faction())
+	assert_eq(battle.player.spearhead.name, "Test Spearhead")
+	assert_same(battle.player.core, core)
+
+
+func test_spearhead_opponent_knows_its_spearhead() -> void:
+	assert_eq(_spearhead("Pack").opponent.spearhead.name, "Test Spearhead")
+
+
+func test_spearhead_army_carries_the_setups_choices() -> void:
+	var setup := BattleKit.spearhead_setup("Pack")
+	setup.regiment_ability = "Charge"
+	setup.enhancement = "Banner"
+	var battle := BattleBuilder.build(setup, _rng(), null, _packs(), BattleKit.spearhead_faction())
+	assert_eq([battle.player.regiment_ability, battle.player.enhancement], ["Charge", "Banner"])
+
+
+func test_realm_terrain_is_placed_where_the_map_shows_it() -> void:
+	var pack := BattleKit.spearhead_pack("Pack", ["Aqshy"] as Array[String])
+	var feature := BattleBuilder.realm_terrain(pack.realms[0].terrain[0], pack)
+	assert_true(feature.placed)
+	assert_eq(feature.position, Vector2(7, 5))
 
 
 func test_spearhead_battle_takes_the_pack_and_realm_data() -> void:

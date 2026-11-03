@@ -59,16 +59,24 @@ static func for_army(result: BattleArmy, army: Army, catalog: ArmyCatalog) -> vo
 
 
 ## Fills in [param result]'s deployment abilities for [param spearhead], with the regiment
-## ability and enhancement the player chose in [param setup].
+## ability and enhancement chosen in [param setup] (none if it's null).
 static func for_spearhead(result: BattleArmy, spearhead: Spearhead, setup: BattleSetup, core: CoreRules) -> void:
+	for_spearhead_choices(result, spearhead, setup.regiment_ability if setup else "", setup.enhancement if setup else "", core)
+
+
+## Fills in [param result]'s deployment abilities for [param spearhead], with the regiment ability
+## called [param regiment_ability] and the enhancement called [param enhancement] (either empty
+## for none yet).
+static func for_spearhead_choices(result: BattleArmy, spearhead: Spearhead, regiment_ability: String, enhancement: String,
+		core: CoreRules) -> void:
 	var list := universal(SPEARHEAD_UNIVERSAL, core)
 	_add(list, spearhead.battle_traits, "Battle trait")
 	for ability in spearhead.regiment_abilities:
-		if setup and ability.name == setup.regiment_ability:
+		if ability.name == regiment_ability:
 			_add(list, [ability] as Array[Ability], "Regiment ability")
 	var general: BattleUnit = result.units[0] if not result.units.is_empty() else null
 	for ability in spearhead.enhancements:
-		if setup and ability.name == setup.enhancement:
+		if ability.name == enhancement:
 			_add(list, [ability] as Array[Ability], "Enhancement", general)
 	for unit in result.units:
 		if unit.warscroll:

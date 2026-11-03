@@ -2,8 +2,10 @@ class_name Battle
 extends RefCounted
 ## A battle ready to be fought: the battlefield, its objectives and terrain, and both armies, with
 ## Quick Play's random choices made. [BattleBuilder] makes it from a [BattleSetup]. Who is the
-## attacker is decided by the roll-off ([method assign_roles]), and in Spearhead the defender then
-## picks the deployment map ([method choose_deployment]). Positions are in inches from the
+## attacker is decided by the roll-off ([method assign_roles]). In Spearhead each side then picks
+## its regiment ability and enhancement ([method BattleArmy.choose_spearhead_options]), and the
+## defender the side of the realm battlefield ([method choose_realm]) and the deployment map
+## ([method choose_deployment]). Positions are in inches from the
 ## battlefield's north-west corner, x east and y south. See docs/design/battle.md.
 
 const MATCHED_PLAY_BATTLEFIELD := Vector2(60, 44)
@@ -26,7 +28,8 @@ var was_random: bool
 
 ## Matched Play's battleplan, or null.
 var battleplan: Battleplan
-## Spearhead's battlepack, realm battlefield side and deployment map, or null.
+## Spearhead's battlepack, realm battlefield side and deployment map, or null (the side and map
+## until the defender picks them).
 var battlepack: SpearheadBattlepack
 var realm: RealmBattlefield
 var deployment: DeploymentMap
@@ -70,6 +73,18 @@ func assign_roles(player_attacks: bool) -> void:
 	if battlepack:
 		player.terrain = BattleBuilder.spearhead_terrain(battlepack, 1 if player_attacks else 0)
 		opponent.terrain = BattleBuilder.spearhead_terrain(battlepack, 0 if player_attacks else 1)
+
+
+## Spearhead: the battle is fought on [param side] of the battlepack's realm battlefield, e.g.
+## Aqshy: its objectives, roads and terrain features. The defender picks it after the roll-off.
+func choose_realm(side: RealmBattlefield) -> void:
+	realm = side
+	title = side.name
+	objectives = side.objectives.duplicate()
+	roads = side.roads.duplicate()
+	terrain.clear()
+	for feature in side.terrain:
+		terrain.append(BattleBuilder.realm_terrain(feature, battlepack))
 
 
 ## Spearhead: the defender fights on [param map], the player taking territory A if

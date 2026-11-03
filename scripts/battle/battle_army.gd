@@ -16,6 +16,31 @@ var terrain: Array[BattleTerrain] = []
 var deployment_abilities: Array[DeploymentAbility] = []
 ## Which way the army's models face by default, in radians clockwise from east: towards the enemy.
 var facing: float
+## The Spearhead it's made from, or null for a Forge army.
+var spearhead: Spearhead
+## The Spearhead regiment ability and enhancement it chose after the roll-off, or empty until it
+## has (see [method choose_spearhead_options]).
+var regiment_ability := ""
+var enhancement := ""
+## The core rules its universal deployment abilities come from, or null.
+var core: CoreRules
+
+
+## Whether it's a Spearhead that has yet to choose its regiment ability and enhancement.
+func needs_spearhead_options() -> bool:
+	if spearhead == null:
+		return false
+	return (regiment_ability.is_empty() and not spearhead.regiment_abilities.is_empty()) \
+			or (enhancement.is_empty() and not spearhead.enhancements.is_empty())
+
+
+## A Spearhead chooses its regiment ability called [param regiment] and its general's enhancement
+## called [param enhancement_name], which fills in its deployment abilities again with them.
+func choose_spearhead_options(regiment: String, enhancement_name: String) -> void:
+	regiment_ability = regiment
+	enhancement = enhancement_name
+	if spearhead:
+		DeploymentAbilities.for_spearhead_choices(self, spearhead, regiment, enhancement_name, core)
 
 
 func model_count() -> int:
@@ -64,6 +89,10 @@ func mirror() -> BattleArmy:
 	army.name = name
 	army.faction_name = faction_name
 	army.points = points
+	army.spearhead = spearhead
+	army.regiment_ability = regiment_ability
+	army.enhancement = enhancement
+	army.core = core
 	var unit_copies := {}
 	for unit in units:
 		var copy := unit.copy()

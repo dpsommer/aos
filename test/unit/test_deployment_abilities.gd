@@ -273,3 +273,66 @@ func test_for_spearhead_adds_unit_warscroll_abilities() -> void:
 	result.units[1].warscroll = _scroll_with(BattleKit.ability("Own", DEPLOY))
 	DeploymentAbilities.for_spearhead(result, _spearhead(), _setup(), null)
 	assert_same(_entry_named(result, "Own").owner, result.units[1])
+
+
+# for_spearhead_choices
+
+func test_for_spearhead_choices_includes_the_named_regiment_ability_only() -> void:
+	var result := _spearhead_army()
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "Unchosen", "", null)
+	assert_not_null(_entry_named(result, "Unchosen"))
+	assert_null(_entry_named(result, "Chosen"))
+
+
+func test_for_spearhead_choices_gives_the_named_enhancement_to_the_general() -> void:
+	var result := _spearhead_army()
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "", "Skipped", null)
+	assert_same(_entry_named(result, "Skipped").owner, result.units[0])
+	assert_null(_entry_named(result, "Picked"))
+
+
+func test_for_spearhead_choices_labels_the_sources() -> void:
+	var result := _spearhead_army()
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "Chosen", "Picked", null)
+	assert_eq(_entry_named(result, "Chosen").source, "Regiment ability")
+	assert_eq(_entry_named(result, "Picked").source, "Enhancement")
+
+
+func test_for_spearhead_choices_with_nothing_chosen_has_the_traits_and_deploy_unit() -> void:
+	var result := _spearhead_army()
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "", "", null)
+	assert_not_null(_entry_named(result, "Trait"))
+	assert_not_null(_entry_named(result, DeploymentAbility.DEPLOY_UNIT))
+	assert_null(_entry_named(result, "Chosen"))
+	assert_null(_entry_named(result, "Picked"))
+
+
+func test_for_spearhead_choices_with_unknown_names_adds_nothing_extra() -> void:
+	var result := _spearhead_army()
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "Nope", "Nada", null)
+	assert_eq(result.deployment_abilities.size(), 2)
+
+
+func test_for_spearhead_choices_replaces_what_was_there() -> void:
+	var result := _spearhead_army()
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "Chosen", "Picked", null)
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "Unchosen", "Skipped", null)
+	assert_null(_entry_named(result, "Chosen"))
+	assert_null(_entry_named(result, "Picked"))
+	assert_not_null(_entry_named(result, "Unchosen"))
+	assert_not_null(_entry_named(result, "Skipped"))
+
+
+func test_for_spearhead_choices_adds_unit_warscroll_abilities() -> void:
+	var result := _spearhead_army()
+	result.units[1].warscroll = _scroll_with(BattleKit.ability("Own", DEPLOY))
+	DeploymentAbilities.for_spearhead_choices(result, _spearhead(), "", "", null)
+	assert_same(_entry_named(result, "Own").owner, result.units[1])
+
+
+func test_for_spearhead_matches_for_spearhead_choices() -> void:
+	var from_setup := _spearhead_army()
+	var from_names := _spearhead_army()
+	DeploymentAbilities.for_spearhead(from_setup, _spearhead(), _setup(), null)
+	DeploymentAbilities.for_spearhead_choices(from_names, _spearhead(), "Chosen", "Picked", null)
+	assert_eq(_names(from_setup.deployment_abilities), _names(from_names.deployment_abilities))

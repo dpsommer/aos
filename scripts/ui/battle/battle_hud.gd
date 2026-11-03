@@ -78,6 +78,12 @@ func set_phase(phase: String, steps: PackedStringArray = [], current := -1) -> v
 	steps_row.visible = not steps.is_empty()
 
 
+## Shows [param text] as the battle's name in the header, e.g. the realm battlefield side once the
+## defender picks it.
+func set_title(text: String) -> void:
+	title_label.text = text
+
+
 ## Updates the pills: roles once the roll-off has decided them, and how many units each side has
 ## left to deploy ([param player_left] and [param opponent_left]; -1 leaves them out).
 func refresh_roles(player_left := -1, opponent_left := -1) -> void:
