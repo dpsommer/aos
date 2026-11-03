@@ -173,7 +173,7 @@ func show_list() -> void:
 func show_warscroll(unit: Warscroll) -> void:
 	_open_pane(Pane.WARSCROLL, "Warscroll")
 	var catalog: ArmyCatalog = _info.get("catalog") if mode == BattleSetup.Mode.MATCHED_PLAY else null
-	var card := WarscrollCard.new(unit, catalog.summoned if catalog else Callable(), show_warscroll)
+	var card := WarscrollCard.create(unit, catalog.summoned if catalog else Callable(), show_warscroll)
 	pane_box.add_child(_scroll(card))
 
 
@@ -196,7 +196,7 @@ func show_plans() -> void:
 	if core == null or core.battlepack == null:
 		return
 	_open_pane(Pane.PLANS, "Choose battle plan", BattleplanPicker.legend())
-	var picker := BattleplanPicker.new(core.battlepack, battleplan)
+	var picker := BattleplanPicker.create(core.battlepack, battleplan)
 	picker.picked.connect(_on_plan_picked)
 	pane_box.add_child(_scroll(picker))
 	_plan_card.set_pressed_no_signal(true)
@@ -208,7 +208,7 @@ func _show_realms() -> void:
 	if packs.is_empty():
 		return
 	_open_pane(Pane.PLANS, "Choose battle plan")
-	var picker := RealmPicker.new(packs, battlepack)
+	var picker := RealmPicker.create(packs, battlepack)
 	picker.picked.connect(_on_plan_picked)
 	pane_box.add_child(_scroll(picker))
 	_plan_card.set_pressed_no_signal(true)
@@ -240,12 +240,11 @@ func _open_pane(shown: Pane, title: String, extra: Control = null) -> void:
 	if pane == Pane.LIST:
 		_opener = get_viewport().gui_get_focus_owner()
 	_set_pane(shown)
-	var back := UIBuilder.button("Spearheads" if mode == BattleSetup.Mode.SPEARHEAD else "Armies", show_list, "", "",
-			"Back to the list")
-	back.icon = UITheme.icon("back")
-	var heading := UIBuilder.label(title, "TitleLabel")
-	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var row := UIBuilder.hbox([back, heading], 10)
+	var row: HBoxContainer = load("res://scenes/ui/quick_play/pane_header.tscn").instantiate()
+	var back: Button = row.get_node(^"%Back")
+	back.text = "Spearheads" if mode == BattleSetup.Mode.SPEARHEAD else "Armies"
+	back.pressed.connect(show_list)
+	(row.get_node(^"%Title") as Label).text = title
 	if extra:
 		extra.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		row.add_child(extra)
@@ -254,9 +253,10 @@ func _open_pane(shown: Pane, title: String, extra: Control = null) -> void:
 
 
 func _list_heading(title: String, count: String) -> HBoxContainer:
-	var heading := UIBuilder.label(title, "CardHeadingLabel")
-	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	return UIBuilder.hbox([heading, UIBuilder.label(count, "MutedLabel")], 8)
+	var heading: HBoxContainer = load("res://scenes/ui/quick_play/list_heading.tscn").instantiate()
+	(heading.get_node(^"%Title") as Label).text = title
+	(heading.get_node(^"%Count") as Label).text = count
+	return heading
 
 
 func _fill_list() -> void:
@@ -266,12 +266,9 @@ func _fill_list() -> void:
 		for entry in entries:
 			_list_box.add_child(_army_entry(entry, group))
 		if entries.is_empty():
-			var forge := UIBuilder.button("Open the Forge", forge_requested.emit, "", "GoldButton")
-			forge.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-			_list_box.add_child(UIBuilder.panel("EmptyPanel", UIBuilder.vbox([
-					UIBuilder.label("No saved armies yet", "CardHeadingLabel"),
-					UIBuilder.label("Build an army in the Forge to bring it to Matched Play.", "DescriptionLabel", true),
-					forge], 12)))
+			var empty: PanelContainer = load("res://scenes/ui/quick_play/no_saved_armies.tscn").instantiate()
+			(empty.get_node(^"%OpenForge") as Button).pressed.connect(forge_requested.emit)
+			_list_box.add_child(empty)
 		return
 	var words := RulesSearch.words(query)
 	var group := ButtonGroup.new()
@@ -305,8 +302,7 @@ func _army_entry(entry: ArmyStore.Entry, group: ButtonGroup) -> OptionCard:
 	if not info.points.is_empty():
 		lines.append(" · ".join(Array([info.points, saved_when(entry.saved_at)]).filter(func(part: String) -> bool:
 				return not part.is_empty())))
-	var row := _entry_row(info.faction, info.name, lines)
-	card.add(row)
+	var row := _fill_entry(card, info.faction, info.name, lines)
 	card.disabled = not _can_choose(entry)
 	card.pressed.connect(_choose_army.bind(entry.id))
 	var problems: PackedStringArray = info.problems
@@ -329,32 +325,35 @@ func _spearhead_entry(entry: Dictionary, group: ButtonGroup) -> OptionCard:
 	var chosen: bool = spearhead != null and spearhead.name == entry.name and spearhead_faction.name == entry.faction
 	var card := _entry_card(group, chosen, entry.name)
 	card.set_meta(&"spearhead", entry.name)
-	card.add(_entry_row(entry.faction, entry.name, ["%s · %d units" % [entry.faction, entry.units]]))
+	_fill_entry(card, entry.faction, entry.name, ["%s · %d units" % [entry.faction, entry.units]])
 	card.pressed.connect(_choose_spearhead.bind(entry))
 	return card
 
 
 func _entry_card(group: ButtonGroup, chosen: bool, title: String) -> OptionCard:
-	var card := OptionCard.new()
-	card.toggle_mode = true
+	var card: OptionCard = load("res://scenes/ui/quick_play/list_entry_card.tscn").instantiate()
 	card.button_group = group
 	card.button_pressed = chosen
 	card.accessibility_name = title
-	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return card
 
 
-## An entry's faction icon (or its initials), [param title] and [param lines] under it.
-static func _entry_row(faction: String, title: String, lines: Array) -> HBoxContainer:
+## Fills an entry [param card] with its faction icon (or its initials), [param title] and
+## [param lines] under it. Returns the row, for buttons to go at its end.
+static func _fill_entry(card: OptionCard, faction: String, title: String, lines: Array) -> HBoxContainer:
 	var icon := UITheme.faction_icon(faction)
-	var art := UIBuilder.icon_art(icon, 28) if icon else UIBuilder.art(UIBuilder.initials(faction if not faction.is_empty() else title))
-	art.custom_minimum_size = Vector2(48, 48)
-	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	var text := UIBuilder.vbox([UIBuilder.label(title, "TitleLabel", true)], 3)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var art: ArtPlaceholder = card.get_node(^"%Art")
+	if icon:
+		art.set_icon(icon, 28)
+	else:
+		art.set_caption(UIBuilder.initials(faction if not faction.is_empty() else title))
+	(card.get_node(^"%Title") as Label).text = title
+	var text: VBoxContainer = card.get_node(^"%Text")
 	for line: String in lines:
-		text.add_child(UIBuilder.label(line, "MutedLabel", true))
-	return UIBuilder.hbox([art, text], 14)
+		var label := UIBuilder.label(line, "MutedLabel", true)
+		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		text.add_child(label)
+	return card.get_node(^"%Row")
 
 
 func _focus_chosen() -> void:
@@ -432,17 +431,16 @@ func _show_detail() -> void:
 func _matched_detail(army: Army) -> void:
 	var catalog: ArmyCatalog = _info.catalog
 	# The pill follows the name, so the name doesn't stretch.
-	var title := UIBuilder.label(_info.name, "PageTitleLabel")
-	var title_row := UIBuilder.hbox([title, _status_pill()], 12)
 	var subtitle: String = _info.faction + (" · " + _info.rules if not _info.rules.is_empty() else "")
-	var heading := UIBuilder.vbox([title_row, UIBuilder.label(subtitle, "DescriptionLabel", true),
-			UIBuilder.label(_info.points, "MutedLabel")], 8)
+	var heading := _heading(_info.name, subtitle, _info.points)
+	heading.get_node(^"%TitleRow").add_child(_status_pill())
 	detail_column.add_child(_top_row(heading))
 	if not _info.problems.is_empty() and not _info.overridden:
-		var lines := UIBuilder.vbox([], 4)
+		var panel: PanelContainer = load("res://scenes/ui/forge/builder/message_panel.tscn").instantiate()
+		panel.theme_type_variation = "ProblemsPanel"
 		for problem: String in _info.problems:
-			lines.add_child(UIBuilder.label("• " + problem, "ProblemLabel", true))
-		detail_column.add_child(UIBuilder.panel("ProblemsPanel", lines))
+			panel.get_node(^"%Lines").add_child(UIBuilder.label("• " + problem, "ProblemLabel", true))
+		detail_column.add_child(panel)
 	detail_column.add_child(_section("Army", _regiments(army, catalog)))
 	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
 	if terrain:
@@ -482,7 +480,7 @@ func _tactics(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 		if card:
 			var heading_text := "Slot %d" % (slot + 1)
 			tactics.add_child(_toggle_card("tactic:%d" % slot, card.name, func(full: bool, eye: Control) -> Control:
-				return TacticCard.new(card, TacticCard.Form.FULL if full else TacticCard.Form.SUMMARY, heading_text, eye)))
+				return TacticCard.create(card, TacticCard.Form.FULL if full else TacticCard.Form.SUMMARY, heading_text, eye)))
 		else:
 			tactics.add_child(_placeholder("No battle tactics card in slot %d" % (slot + 1)))
 	return tactics
@@ -497,7 +495,7 @@ func _lores(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 		var lore := catalog.lore(army, kind, lore_name) if not lore_name.is_empty() else null
 		if lore:
 			lores.add_child(_toggle_card("lore:" + kind, lore.name, func(full: bool, eye: Control) -> Control:
-				return LoreCard.new(lore, full, "%s Lore" % kind.capitalize(), eye, catalog.summoned)))
+				return LoreCard.create(lore, full, "%s Lore" % kind.capitalize(), eye, catalog.summoned)))
 		else:
 			var empty := _placeholder("No %s lore" % kind)
 			empty.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -508,10 +506,13 @@ func _lores(army: Army, catalog: ArmyCatalog) -> VBoxContainer:
 
 
 func _spearhead_detail() -> void:
-	var title := UIBuilder.label(spearhead.name, "PageTitleLabel", true)
 	var subtitle := "%s · %s · General: %s" % [spearhead_faction.name, GrandAlliance.display_name(spearhead_faction.grand_alliance),
 			spearhead.general]
-	detail_column.add_child(_top_row(UIBuilder.vbox([title, UIBuilder.label(subtitle, "DescriptionLabel", true)], 8)))
+	var heading := _heading(spearhead.name, subtitle, "")
+	var title: Label = heading.get_node(^"%Title")
+	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	detail_column.add_child(_top_row(heading))
 	var portraits: Array = []
 	var general := spearhead.get_warscroll(spearhead.general)
 	portraits.append(_spearhead_portrait(spearhead.general, 1, general, true))
@@ -539,13 +540,7 @@ func _spearhead_detail() -> void:
 ## width rather than a fixed one, so the row still fits when the UI is scaled up to its smallest size
 ## ([constant GameSettings.MIN_UI_SIZE]).
 func _top_row(heading: Control) -> HBoxContainer:
-	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_plan_card = OptionCard.new()
-	_plan_card.toggle_mode = true
-	_plan_card.custom_minimum_size.x = 300
-	_plan_card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_plan_card.size_flags_stretch_ratio = 0.4
-	_plan_card.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	_plan_card = load("res://scenes/ui/quick_play/plan_card.tscn").instantiate()
 	_refresh_plan_card()
 	_plan_card.pressed.connect(show_plans)
 	return UIBuilder.hbox([heading, _plan_card], 24)
@@ -554,7 +549,12 @@ func _top_row(heading: Control) -> HBoxContainer:
 ## Fills the battleplan card: Random or the chosen battleplan, or in Spearhead the chosen
 ## battlepack with its sides.
 func _refresh_plan_card() -> void:
-	_clear(_plan_card.content)
+	var row: HBoxContainer = _plan_card.get_node(^"%Row")
+	# The art is the first control in the row, ahead of the text.
+	if row.get_child(0).name != &"Text":
+		var old := row.get_child(0)
+		row.remove_child(old)
+		old.queue_free()
 	var name_text := "Random"
 	var sub := "Picked when the battle starts"
 	var map: Control = null
@@ -584,15 +584,12 @@ func _refresh_plan_card() -> void:
 	_plan_card.accessibility_description = sub
 	_plan_card.tooltip_text = sub if _plan_card.disabled else "Choose the battle plan"
 	var art := _plan_art(map)
-	var text := UIBuilder.vbox([UIBuilder.label("BATTLE PLAN", "StatNameLabel"), UIBuilder.label(name_text, "TitleLabel", true)], 3)
+	OptionCard._ignore_mouse(art)
+	row.add_child(art)
+	row.move_child(art, 0)
+	(_plan_card.get_node(^"%PlanName") as Label).text = name_text
 	# The note's line stays when it's empty, so the card is the same size whatever's chosen.
-	text.add_child(UIBuilder.label(sub, "MutedLabel", true))
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var chevron := TextureRect.new()
-	chevron.texture = UITheme.icon("chevron_right")
-	chevron.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
-	chevron.modulate = UITheme.MUTED
-	_plan_card.add(UIBuilder.hbox([art, text, chevron], 14))
+	(_plan_card.get_node(^"%Sub") as Label).text = sub
 
 
 ## The battleplan card's art, always [constant PLAN_ART_SIZE]: the chosen battleplan's or realm
@@ -601,7 +598,6 @@ static func _plan_art(map: Control) -> Control:
 	var art := map
 	if art == null:
 		art = UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 40, 6)
-		art.get_child(0).modulate = UITheme.TEXT
 	art.custom_minimum_size = PLAN_ART_SIZE
 	art.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	return art
@@ -616,13 +612,24 @@ func _status_pill() -> Control:
 
 
 static func _pill(text: String, kind: String) -> Control:
-	var label := UIBuilder.label(text)
+	var pill: PanelContainer = load("res://scenes/ui/quick_play/status_pill.tscn").instantiate()
+	var label: Label = pill.get_node(^"%Label")
+	label.text = text
 	label.add_theme_color_override("font_color", UITheme.STATUS[kind][1])
-	var pill := UIBuilder.panel("", label)
 	pill.add_theme_stylebox_override("panel", UITheme.pill(kind))
-	pill.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	pill.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	return pill
+
+
+## The detail pane's heading: [param title], [param subtitle] and, if not empty, [param points].
+static func _heading(title: String, subtitle: String, points: String) -> VBoxContainer:
+	var heading: VBoxContainer = load("res://scenes/ui/quick_play/army_heading.tscn").instantiate()
+	(heading.get_node(^"%Title") as Label).text = title
+	(heading.get_node(^"%Subtitle") as Label).text = subtitle
+	if not points.is_empty():
+		var label: Label = heading.get_node(^"%Points")
+		label.text = points
+		label.visible = true
+	return heading
 
 
 ## The battle traits, two to a row.
@@ -639,7 +646,7 @@ func _trait_grid(traits: Array[Ability]) -> GridContainer:
 ## A battle trait's card, folded unless it's open.
 func _trait_card(rule: Ability, index: int) -> AbilityCard:
 	var key := "trait:%d" % index
-	var card := AbilityCard.new(rule)
+	var card := AbilityCard.create(rule)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	card.make_foldable(_open.has(key))
@@ -685,7 +692,7 @@ func _toggle_card(key: String, card_name: String, make: Callable) -> Control:
 ## chevron shows it. They're picked after the roll-off, not here.
 func _ability_card(group: String, ability: Ability, index: int) -> AbilityCard:
 	var key := "%s:%d" % [group, index]
-	var card := AbilityCard.new(ability)
+	var card := AbilityCard.create(ability)
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.make_foldable(_open.has(key), key)
 	_remember_fold(card, key)
@@ -700,24 +707,23 @@ func _update_play() -> void:
 
 ## A regiment's box: its name, a Regiment of Renown chip, [param meta], then [param portraits].
 func _regiment_panel(title: String, renown: bool, meta: String, portraits: Array) -> PanelContainer:
-	var box := UIBuilder.vbox([], 12)
+	var panel: PanelContainer = load("res://scenes/ui/quick_play/portrait_group.tscn").instantiate()
+	if renown:
+		panel.theme_type_variation = "RenownRegimentPanel"
 	if not title.is_empty():
-		var row := UIBuilder.hbox([UIBuilder.label(title, "TitleLabel")], 10)
+		var header: HBoxContainer = panel.get_node(^"%Header")
+		(panel.get_node(^"%Title") as Label).text = title
+		(panel.get_node(^"%Meta") as Label).text = meta
 		if renown:
 			var chip := UITheme.chip("Regiment of Renown", "gold")
 			chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-			row.add_child(chip)
-		var meta_label := UIBuilder.label(meta, "MutedLabel")
-		meta_label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		row.add_child(meta_label)
-		box.add_child(row)
-	var flow := HFlowContainer.new()
-	flow.add_theme_constant_override("h_separation", 14)
-	flow.add_theme_constant_override("v_separation", 14)
+			header.add_child(chip)
+			header.move_child(chip, 1)
+		header.visible = true
+	var flow: HFlowContainer = panel.get_node(^"%Portraits")
 	for portrait: Control in portraits:
 		flow.add_child(portrait)
-	box.add_child(flow)
-	return UIBuilder.panel("RenownRegimentPanel" if renown else "RegimentPanel", box)
+	return panel
 
 
 func _army_portrait(army: Army, unit: ArmyUnit, regiment: ArmyRegiment) -> Control:
@@ -753,78 +759,75 @@ func _spearhead_portrait(unit_name: String, count: int, unit: Warscroll, general
 ## A unit's 112 px portrait, with the General's crown and its model count on it, and its name and
 ## [param sub] under it. With [param on_pressed], the portrait is a button that shows its rules.
 static func _portrait(title: String, sub: String, count: String, general: bool, on_pressed: Callable, tooltip: String) -> VBoxContainer:
+	var box: VBoxContainer = load("res://scenes/ui/quick_play/unit_portrait.tscn").instantiate()
 	var art := UIBuilder.portrait(title, on_pressed, tooltip, 112)
 	art.add_theme_font_size_override("font_size", 22)
+	art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	# Under the crown and the model count.
+	var frame: Control = box.get_node(^"%Frame")
+	frame.add_child(art)
+	frame.move_child(art, 0)
+	var crown: PanelContainer = box.get_node(^"%Crown")
 	if general:
-		var crown := TextureRect.new()
-		crown.texture = UITheme.icon("crown")
-		crown.modulate = UITheme.GOLD
-		crown.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		crown.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		crown.custom_minimum_size = Vector2(14, 14)
-		var badge := UIBuilder.panel("", crown)
-		badge.add_theme_stylebox_override("panel", UITheme.box(UITheme.WARNING_BG, UITheme.GOLD, 12, 4))
-		badge.tooltip_text = "General"
-		_pin(art, badge, Control.PRESET_TOP_LEFT)
+		crown.add_theme_stylebox_override("panel", UITheme.box(UITheme.WARNING_BG, UITheme.GOLD, 12, 4))
+		crown.visible = true
+	else:
+		crown.free()
+	var tally: PanelContainer = box.get_node(^"%Tally")
 	if not count.is_empty():
-		var tally := UIBuilder.panel("", UIBuilder.label(count, "BodyLabel"))
+		(box.get_node(^"%Count") as Label).text = count
 		tally.add_theme_stylebox_override("panel", UITheme.box(Color(UITheme.BACKGROUND, 0.85), Color.TRANSPARENT, 4, 2))
-		_pin(art, tally, Control.PRESET_BOTTOM_RIGHT)
-	var name_label := UIBuilder.label(title, "CardTitleLabel", true)
-	name_label.add_theme_font_size_override("font_size", 13)
-	var box := UIBuilder.vbox([art, name_label], 6)
+		tally.visible = true
+	else:
+		tally.free()
+	(box.get_node(^"%Name") as Label).text = title
 	if not sub.is_empty():
-		box.add_child(UIBuilder.label(sub, "MutedLabel", true))
-	box.custom_minimum_size.x = 112
+		var sub_label: Label = box.get_node(^"%Sub")
+		sub_label.text = sub
+		sub_label.visible = true
 	return box
-
-
-static func _pin(art: Control, badge: Control, corner: Control.LayoutPreset) -> void:
-	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	art.add_child(badge)
-	badge.set_anchors_and_offsets_preset(corner, Control.PRESET_MODE_MINSIZE, 6)
 
 
 ## [param title] over [param content], with [param note] beside the title if given, and
 ## [param extra] at the end of its row if not null.
 static func _section(title: String, content: Control, note := "", extra: Control = null) -> VBoxContainer:
-	var heading := UIBuilder.hbox([UIBuilder.label(title, "TitleLabel")], 12)
+	var section: VBoxContainer = load("res://scenes/ui/quick_play/detail_section.tscn").instantiate()
+	(section.get_node(^"%Title") as Label).text = title
 	if not note.is_empty():
-		var note_label := UIBuilder.label(note, "MutedLabel")
-		note_label.size_flags_vertical = Control.SIZE_SHRINK_END
-		heading.add_child(note_label)
+		var note_label: Label = section.get_node(^"%Note")
+		note_label.text = note
+		note_label.visible = true
 	if extra:
+		var heading: HBoxContainer = section.get_node(^"%Heading")
 		extra.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		heading.add_child(UIBuilder.spacer())
 		heading.add_child(extra)
-	var section := UIBuilder.vbox([heading, content], 12)
-	section.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	section.add_child(content)
 	return section
 
 
 ## A dashed box saying a slot is empty, e.g. "No spell lore".
 static func _placeholder(text: String) -> PanelContainer:
-	var panel := UIBuilder.panel("", UIBuilder.label(text, "MutedLabel", true))
+	var panel: PanelContainer = load("res://scenes/ui/quick_play/slot_placeholder.tscn").instantiate()
+	(panel.get_node(^"%Text") as Label).text = text
 	panel.add_theme_stylebox_override("panel", DashedStyleBox.new(UITheme.CONTROL_BORDER, 8, 12))
 	return panel
 
 
 static func _empty(title: String, text: String) -> PanelContainer:
-	return UIBuilder.panel("EmptyPanel", UIBuilder.vbox([UIBuilder.label(title, "CardHeadingLabel"),
-			UIBuilder.label(text, "DescriptionLabel", true)], 8))
+	var panel: PanelContainer = load("res://scenes/ui/quick_play/empty_detail.tscn").instantiate()
+	(panel.get_node(^"%Title") as Label).text = title
+	(panel.get_node(^"%Text") as Label).text = text
+	return panel
 
 
 ## [param content] scrolling vertically, with a gap of [constant SCROLL_GAP] before the scroll bar.
 static func _scroll(content: Control) -> ScrollContainer:
-	var scroll := ScrollContainer.new()
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	var margin := MarginContainer.new()
-	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var scroll: ScrollContainer = load("res://scenes/ui/quick_play/scroll_pane.tscn").instantiate()
+	var margin: MarginContainer = scroll.get_node(^"%Margin")
 	margin.add_theme_constant_override("margin_right", SCROLL_GAP)
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	margin.add_child(content)
-	scroll.add_child(margin)
 	return scroll
 
 

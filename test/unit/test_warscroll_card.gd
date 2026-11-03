@@ -28,7 +28,7 @@ func _scroll() -> Warscroll:
 
 
 func _card(scroll: Warscroll, summoned := Callable()) -> WarscrollCard:
-	var card := WarscrollCard.new(scroll, summoned)
+	var card := WarscrollCard.create(scroll, summoned)
 	add_child_autofree(card)
 	return card
 
@@ -48,7 +48,7 @@ func _value_of(stats: Array, key: String) -> String:
 
 
 func _labels(node: Node, variation: String) -> Array[Node]:
-	return UIKit.find_all(node, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation)
+	return UIKit.find_shown(node, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation)
 
 
 func _table_count(node: Node) -> int:
@@ -402,14 +402,14 @@ func test_pressing_a_summoned_card_shows_its_unit() -> void:
 
 
 func test_an_abilitys_summoned_unit_is_a_short_card_under_it() -> void:
-	var card := WarscrollCard.new(_summoning_scroll(), _summons(_summoned_unit()))
+	var card := WarscrollCard.create(_summoning_scroll(), _summons(_summoned_unit()))
 	add_child_autofree(card)
 	assert_eq(_short_cards(card).size(), 1)
 
 
 func test_an_abilitys_summoned_manifestation_is_a_full_warscroll_under_it() -> void:
 	var flame := Kit.warscroll("flame", PackedStringArray(["MANIFESTATION"]))
-	var card := WarscrollCard.new(_summoning_scroll(), _summons(flame))
+	var card := WarscrollCard.create(_summoning_scroll(), _summons(flame))
 	add_child_autofree(card)
 	assert_eq(_short_cards(card).size(), 0)
 	assert_eq(UIKit.find_all(card, func(n: Node) -> bool: return n is WarscrollCard).size(), 1)
@@ -418,7 +418,7 @@ func test_an_abilitys_summoned_manifestation_is_a_full_warscroll_under_it() -> v
 func test_pressing_an_abilitys_summoned_card_calls_show_summoned() -> void:
 	var unit := _summoned_unit()
 	var shown: Array[Warscroll] = []
-	var card := WarscrollCard.new(_summoning_scroll(), _summons(unit), func(u: Warscroll) -> void: shown.append(u))
+	var card := WarscrollCard.create(_summoning_scroll(), _summons(unit), func(u: Warscroll) -> void: shown.append(u))
 	add_child_autofree(card)
 	(_short_cards(card)[0] as SummonedUnitCard).pressed.emit()
 	assert_eq(shown, [unit])

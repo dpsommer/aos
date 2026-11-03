@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/cards/summoned_unit_card.gd" id="1_card"]
+
+[node name="SummonedUnitCard" type="PanelContainer"]
+theme_type_variation = &"CardPanel"
+script = ExtResource("1_card")
+
+[node name="Content" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Names" type="VBoxContainer" parent="Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Kind" type="Label" parent="Content/Header/Names"]
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "Summoned unit"
+
+[node name="Title" type="Label" parent="Content/Header/Names"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+autowrap_mode = 3
+
+[node name="Characteristics" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Chips" type="HFlowContainer" parent="Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="focus_entered" from="." to="." method="queue_redraw"]
+[connection signal="focus_exited" from="." to="." method="queue_redraw"]
+[connection signal="mouse_entered" from="." to="." method="_set_hovered" binds= [true]]
+[connection signal="mouse_exited" from="." to="." method="_set_hovered" binds= [false]]

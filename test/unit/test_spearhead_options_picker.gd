@@ -11,7 +11,7 @@ func _army() -> BattleArmy:
 
 
 func _picker(attacks := true, opponent: BattleArmy = null) -> SpearheadOptionsPicker:
-	var picker := SpearheadOptionsPicker.new(_army(), opponent, attacks)
+	var picker := SpearheadOptionsPicker.create(_army(), opponent, attacks)
 	add_child_autofree(picker)
 	return picker
 
@@ -167,7 +167,7 @@ func test_repicking_before_confirming_emits_the_latest_picks() -> void:
 func test_an_empty_enhancement_list_is_not_required() -> void:
 	var spearhead := BattleKit.spearhead_with_options()
 	spearhead.enhancements = [] as Array[Ability]
-	var picker := SpearheadOptionsPicker.new(BattleKit.spearhead_army(spearhead), null, true)
+	var picker := SpearheadOptionsPicker.create(BattleKit.spearhead_army(spearhead), null, true)
 	add_child_autofree(picker)
 	picker.pick("regiment", "Charge")
 	assert_false(picker.confirm_button.disabled)
@@ -176,7 +176,7 @@ func test_an_empty_enhancement_list_is_not_required() -> void:
 func test_an_empty_regiment_list_is_not_required() -> void:
 	var spearhead := BattleKit.spearhead_with_options()
 	spearhead.regiment_abilities = [] as Array[Ability]
-	var picker := SpearheadOptionsPicker.new(BattleKit.spearhead_army(spearhead), null, true)
+	var picker := SpearheadOptionsPicker.create(BattleKit.spearhead_army(spearhead), null, true)
 	add_child_autofree(picker)
 	picker.pick("enhancement", "Banner")
 	assert_false(picker.confirm_button.disabled)
@@ -214,7 +214,7 @@ func test_the_title_fits_the_smallest_screen_and_wraps() -> void:
 	var screen := Control.new()
 	screen.size = GameSettings.MIN_UI_SIZE
 	add_child_autofree(screen)
-	var picker := SpearheadOptionsPicker.new(_army(), null, true)
+	var picker := SpearheadOptionsPicker.create(_army(), null, true)
 	picker.set_anchors_preset(Control.PRESET_FULL_RECT)
 	screen.add_child(picker)
 	for i in 4:

@@ -46,52 +46,21 @@ var _scroll_wait := 0
 var _drawn_from := ""
 
 
-func _init(army_builder: ArmyBuilder) -> void:
-	builder = army_builder
-	size_flags_vertical = Control.SIZE_EXPAND_FILL
-	add_theme_constant_override("separation", 0)
-	search = LineEdit.new()
-	search.clear_button_enabled = true
-	search.right_icon = UITheme.small_icon("search")
-	search.set_meta(&"focus_key", "info:search")
-	search.text_changed.connect(_on_search_changed)
-	search.gui_input.connect(_on_search_input)
-	add_child(search)
+static func create(army_builder: ArmyBuilder) -> InfoPane:
+	var pane: InfoPane = load("res://scenes/ui/forge/builder/info_pane.tscn").instantiate()
+	pane.builder = army_builder
+	return pane
 
-	var bar := UIBuilder.hbox([], 0)
-	var group := ButtonGroup.new()
-	for key: String in TABS:
-		var button := UIBuilder.button(TABS[key], set_tab.bind(key), "info:tab:" + key, "TabButton")
-		button.toggle_mode = true
-		button.button_group = group
-		if key == "settings":
-			button.text = ""
-			button.icon = UITheme.icon("settings")
-			button.tooltip_text = TABS[key]
-			button.accessibility_name = TABS[key]
-			bar.add_child(UIBuilder.spacer())
-		tab_buttons[key] = button
-		bar.add_child(button)
-	add_child(UIBuilder.panel("TabBarPanel", bar))
 
-	_scroll = ScrollContainer.new()
-	_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	var margin := MarginContainer.new()
-	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	margin.add_theme_constant_override("margin_top", 14)
-	margin.add_theme_constant_override("margin_right", 4)
-	_content = UIBuilder.vbox([], 12)
-	margin.add_child(_content)
-	_scroll.add_child(margin)
-	add_child(_scroll)
-
-	_flash_timer = Timer.new()
-	_flash_timer.one_shot = true
-	_flash_timer.wait_time = FLASH_SECONDS
-	_flash_timer.timeout.connect(_end_flash)
-	add_child(_flash_timer)
-	set_process(false)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_SCENE_INSTANTIATED:
+		search = %Search
+		search.right_icon = UITheme.small_icon("search")
+		tab_buttons = {"roster": %Roster, "rules": %Rules, "renown": %Renown, "settings": %Settings}
+		_scroll = %Scroll
+		_content = %Content
+		_flash_timer = %FlashTimer
+		set_process(false)
 
 
 ## Loads the faction's favourites and shows the current tab.
@@ -227,15 +196,7 @@ func _roster() -> void:
 		if by_id.has(id):
 			pinned.append(by_id[id])
 	if not pinned.is_empty():
-		var title := UIBuilder.label("FAVOURITES", "FavouritesLabel")
-		var heading := UIBuilder.hbox([TextureRect.new(), title], 8)
-		var star: TextureRect = heading.get_child(0)
-		star.texture = UITheme.icon("star_filled")
-		star.modulate = UITheme.WARNING
-		star.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		star.custom_minimum_size = Vector2(16, 16)
-		star.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var section := UIBuilder.vbox([UIBuilder.panel("FavouritesPanel", heading)], 6)
+		var section: VBoxContainer = load("res://scenes/ui/forge/builder/favourites_section.tscn").instantiate()
 		for warscroll in pinned:
 			section.add_child(_unit_card(warscroll, true))
 		_content.add_child(section)
@@ -260,30 +221,27 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	var key := ("fav:" if pinned else "") + warscroll.id
 	var open := selected == key
 	var flash := not pinned and flash_key == "unit:" + warscroll.id
-	var card := PanelContainer.new()
+	var card: PanelContainer = load("res://scenes/ui/forge/builder/roster_card.tscn").instantiate()
 	card.theme_type_variation = "FlashRowPanel" if flash else "PickedRowPanel" if open else "RowPanel"
 	if not pinned:
 		card.set_meta(&"info_key", "unit:" + warscroll.id)
 
-	var title := UIBuilder.label(warscroll.name, "CardTitleLabel")
-	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var details := UIBuilder.hbox([UIBuilder.label("%d pts" % warscroll.points, "MutedLabel")], 6)
+	(card.get_node(^"%Title") as Label).text = warscroll.name
+	(card.get_node(^"%Points") as Label).text = "%d pts" % warscroll.points
 	for tag in UIBuilder.tags(warscroll):
-		details.add_child(tag)
-	var names := UIBuilder.vbox([title, details], 3)
-	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	names.alignment = BoxContainer.ALIGNMENT_CENTER
-	var face := UIBuilder.hbox([UIBuilder.portrait(warscroll.name, Callable(), "", 48), names], 12)
-	face.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var toggle_card := func() -> void:
-		selected = "" if selected == key else key
-		refresh()
-	var button := UIBuilder.button("", toggle_card, "info:card:" + key, "CardButton", ("Hide " if open else "Show ") + "warscroll")
-	button.accessibility_name = warscroll.name
-	button.custom_minimum_size.y = 52
-	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	button.add_child(face)
+		card.get_node(^"%Details").add_child(tag)
+	var face: HBoxContainer = card.get_node(^"%Face")
+	var portrait := UIBuilder.portrait(warscroll.name, Callable(), "", 48)
+	face.add_child(portrait)
+	face.move_child(portrait, 0)
 	_ignore_mouse(face)
+	var button: Button = card.get_node(^"%CardButton")
+	button.tooltip_text = ("Hide " if open else "Show ") + "warscroll"
+	button.accessibility_name = warscroll.name
+	button.set_meta(&"focus_key", "info:card:" + key)
+	button.pressed.connect(func() -> void:
+		selected = "" if selected == key else key
+		refresh())
 	# The focus outline goes around the whole card, star included, not just the button.
 	var unfocused := card.theme_type_variation
 	button.focus_entered.connect(func() -> void:
@@ -292,17 +250,25 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	builder.drag.source(button, {"kind": "roster", "warscroll_id": warscroll.id}, warscroll.name, card)
 
 	var favourite := warscroll.id in favourites
-	var star := UIBuilder.icon_toggle("star_filled" if favourite else "star",
-			"Remove from favourites" if favourite else "Add to favourites", favourite,
-			func(_on: bool) -> void: toggle_favourite(warscroll.id), "info:star:" + key)
-	var content := UIBuilder.vbox([UIBuilder.hbox([button, star], 4)], 10)
+	var star: Button = card.get_node(^"%Star")
+	star.button_pressed = favourite
+	if favourite:
+		star.icon = UITheme.icon("star_filled")
+	star.tooltip_text = "Remove from favourites" if favourite else "Add to favourites"
+	star.accessibility_name = star.tooltip_text
+	star.set_meta(&"focus_key", "info:star:" + key)
+	star.toggled.connect(func(_on: bool) -> void: toggle_favourite(warscroll.id))
 	if open:
-		content.add_child(WarscrollCard.new(warscroll, builder.catalog.summoned, show_summoned_unit))
-		var add := UIBuilder.button("Add as auxiliary unit", func() -> void: builder.editor.add_auxiliary(warscroll.id),
-				"info:aux:" + key, "", "Add %s to the army as an auxiliary unit" % warscroll.name)
+		var content: VBoxContainer = card.get_node(^"%Content")
+		var warscroll_card := WarscrollCard.create(warscroll, builder.catalog.summoned, show_summoned_unit)
+		content.add_child(warscroll_card)
+		content.move_child(warscroll_card, 1)
+		var add: Button = card.get_node(^"%AddAuxiliary")
+		add.tooltip_text = "Add %s to the army as an auxiliary unit" % warscroll.name
+		add.set_meta(&"focus_key", "info:aux:" + key)
+		add.pressed.connect(func() -> void: builder.editor.add_auxiliary(warscroll.id))
 		add.disabled = builder.available_units(func(w: Warscroll) -> bool: return w == warscroll).is_empty()
-		content.add_child(UIBuilder.hbox([add]))
-	card.add_child(content)
+		card.get_node(^"%AddRow").visible = true
 	return card
 
 
@@ -387,13 +353,13 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 			chips.free()
 	if open:
 		for ability in group.abilities:
-			box.add_child(AbilityCard.new(ability))
+			box.add_child(AbilityCard.create(ability))
 			# A summoning ability carries the warscrolls of the manifestations it summons, and short
 			# cards of the units, whose warscrolls are in the Summoned Units section.
 			for summoned: Warscroll in group.summons.get(ability, []):
 				box.add_child(WarscrollCard.summoned_card(summoned, show_summoned_unit))
 		for warscroll in group.warscrolls:
-			var warscroll_card := WarscrollCard.new(warscroll, builder.catalog.summoned, show_summoned_unit)
+			var warscroll_card := WarscrollCard.create(warscroll, builder.catalog.summoned, show_summoned_unit)
 			var info_key := ("summoned:" if warscroll.summoned else "terrain:") + warscroll.id
 			warscroll_card.set_meta(&"info_key", info_key)
 			warscroll_card.focus_mode = Control.FOCUS_ALL
@@ -403,7 +369,7 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 		for card in group.cards:
 			var slot := army.tactics.find(card.name)
 			var chip := UITheme.chip("Battle tactic %d" % (slot + 1), "affray") if slot >= 0 else null
-			var tactic := TacticCard.new(card, TacticCard.Form.FULL, "", chip)
+			var tactic := TacticCard.create(card, TacticCard.Form.FULL, "", chip)
 			tactic.set_meta(&"info_key", "tactic:" + card.name)
 			tactic.focus_mode = Control.FOCUS_ALL
 			if flash_key == "tactic:" + card.name:
@@ -437,7 +403,7 @@ func _renown() -> void:
 		else:
 			_empty("No Regiments of Renown are available to this army.")
 	for regiment: RegimentOfRenown in found:
-		_content.add_child(RenownCard.new(builder, regiment, "tab", Callable(), flash_key == "ror:" + regiment.name))
+		_content.add_child(RenownCard.create(builder, regiment, "tab", Callable(), flash_key == "ror:" + regiment.name))
 
 
 func _settings() -> void:
@@ -460,23 +426,19 @@ func _settings() -> void:
 	add.call(UIBuilder.switch_row("Override army constraints", override_note, army.override_constraints,
 			editor.set_override_constraints, "info:override"), "Override army constraints " + override_note)
 
-	var spin := SpinBox.new()
-	spin.max_value = 100000
-	spin.step = 50
+	var stepper: HBoxContainer = load("res://scenes/ui/forge/builder/points_stepper.tscn").instantiate()
+	var spin: SpinBox = stepper.get_node(^"%Points")
 	spin.value = army.points_limit
-	spin.alignment = HORIZONTAL_ALIGNMENT_CENTER
-	spin.custom_minimum_size.x = 120
-	spin.accessibility_name = "Points limit"
-	spin.set_meta(&"focus_key", "info:points")
 	spin.value_changed.connect(func(value: float) -> void: editor.set_points_limit(int(value)))
-	var down := UIBuilder.button("−", func() -> void: editor.set_points_limit(army.points_limit - POINTS_STEP),
-			"info:points_down", "", "Decrease points limit by %d" % POINTS_STEP)
-	var up := UIBuilder.button("+", func() -> void: editor.set_points_limit(army.points_limit + POINTS_STEP),
-			"info:points_up", "", "Increase points limit by %d" % POINTS_STEP)
+	var down: Button = stepper.get_node(^"%Down")
+	down.pressed.connect(func() -> void: editor.set_points_limit(army.points_limit - POINTS_STEP))
+	down.tooltip_text = "Decrease points limit by %d" % POINTS_STEP
+	var up: Button = stepper.get_node(^"%Up")
+	up.pressed.connect(func() -> void: editor.set_points_limit(army.points_limit + POINTS_STEP))
+	up.tooltip_text = "Increase points limit by %d" % POINTS_STEP
 	for button: Button in [down, up]:
 		button.accessibility_name = button.tooltip_text
-		button.custom_minimum_size.x = 40
-	add.call(UIBuilder.setting_row("Points limit", UIBuilder.hbox([down, spin, up])), "Points limit")
+	add.call(UIBuilder.setting_row("Points limit", stepper), "Points limit")
 
 	var faction := builder.catalog.faction
 	if not faction.armies_of_renown.is_empty():
@@ -501,15 +463,13 @@ func _settings() -> void:
 func _choice_slot(choice: Resource, title: String, key: String, pick: Callable, remove_label: String,
 		remove: Callable) -> Control:
 	if choice == null:
-		var slot := UIBuilder.button("Choose " + title, pick, key, "DashedButton")
-		slot.custom_minimum_size.y = ArmyBuilder.SLOT_HEIGHT
-		return slot
+		return ArmyBuilder.slot_button("Choose " + title, pick, key)
 	var change := UIBuilder.button("Change", pick, key, "", "Change %s" % title)
 	var bin := UIBuilder.icon_button("delete", remove_label, remove, key + "_remove", "DangerIconButton")
 	var actions := UIBuilder.hbox([change, bin], 4)
 	if choice is ArmyOfRenown:
-		return RenownArmyCard.new(choice, false, actions)
-	return FormationCard.new(choice, false, actions)
+		return RenownArmyCard.create(choice, false, actions)
+	return FormationCard.create(choice, false, actions)
 
 
 ## Shows the unit's card in the Roster with its warscroll open, highlighted and focused.

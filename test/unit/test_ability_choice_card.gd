@@ -6,7 +6,7 @@ func _card(open := false) -> AbilityChoiceCard:
 	var rule := Ability.new()
 	rule.name = "Made-up Ability"
 	rule.timing = "Your Hero Phase"
-	var card := AbilityChoiceCard.new(rule, open)
+	var card := AbilityChoiceCard.create(rule, open)
 	add_child_autofree(card)
 	return card
 
@@ -75,7 +75,7 @@ func test_chevron_tooltip_names_the_ability() -> void:
 func test_chevron_takes_the_focus_key() -> void:
 	var rule := Ability.new()
 	rule.name = "Made-up Ability"
-	var card := AbilityChoiceCard.new(rule, false, "slot:fold")
+	var card := AbilityChoiceCard.create(rule, false, "slot:fold")
 	add_child_autofree(card)
 	assert_eq(card.fold_button.get_meta(&"focus_key", ""), "slot:fold")
 

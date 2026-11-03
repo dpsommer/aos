@@ -25,7 +25,7 @@ func _flame(_ability: Ability) -> Array[Warscroll]:
 
 
 func _make(lore: Lore, full: bool, heading := "", action: Control = null, summoned := Callable()) -> LoreCard:
-	var node := LoreCard.new(lore, full, heading, action, summoned)
+	var node := LoreCard.create(lore, full, heading, action, summoned)
 	add_child_autofree(node)
 	return node
 

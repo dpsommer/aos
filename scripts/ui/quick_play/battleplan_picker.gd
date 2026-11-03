@@ -16,10 +16,15 @@ var cards := {}
 var _open := {}
 
 
-func _init(pack: Battlepack, chosen := "") -> void:
+static func create(pack: Battlepack, chosen := "") -> BattleplanPicker:
+	var picker: BattleplanPicker = load("res://scenes/ui/quick_play/battleplan_picker.tscn").instantiate()
+	picker._fill(pack, chosen)
+	return picker
+
+
+func _fill(pack: Battlepack, chosen: String) -> void:
 	battlepack = pack
 	selected = chosen
-	add_theme_constant_override("separation", 8)
 	cards[""] = _random_card()
 	add_child(cards[""])
 	# The battlepack's tables and numbers are for rolling a battleplan on the tabletop, so they
@@ -36,51 +41,62 @@ func selected_card() -> Control:
 
 ## A key for the map's colours: the attacker's and the defender's territory.
 static func legend() -> HBoxContainer:
-	var row := UIBuilder.hbox([], 10)
-	for pair: Array in [["Attacker", BattleplanMap.ATTACKER], ["Defender", BattleplanMap.DEFENDER]]:
-		var swatch := ColorRect.new()
-		swatch.color = Color(pair[1], 1)
-		swatch.custom_minimum_size = Vector2(10, 10)
-		swatch.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		row.add_child(UIBuilder.hbox([swatch, UIBuilder.label(pair[0], "MutedLabel")], 4))
-	return row
+	return load("res://scenes/ui/quick_play/map_legend.tscn").instantiate()
 
 
 func _random_card() -> PressableCard:
-	var card := _card("Random", "")
-	var art := UIBuilder.icon_art(UITheme.icon("aos/white/fighters/gargantuan"), 36, 6)
-	art.get_child(0).modulate = UITheme.TEXT
-	art.custom_minimum_size = Vector2(96, 70)
-	var count := battlepack.battleplans.size()
-	var text := UIBuilder.vbox([UIBuilder.label("Random", "TitleLabel"),
-			UIBuilder.label("One of the %d battleplans below, picked when the battle starts." % count, "MutedLabel", true)], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var row := UIBuilder.hbox([art, text], 12)
-	if selected.is_empty():
-		row.add_child(check_mark())
-	card.add_child(row)
-	card.make_pressable("Pick a battleplan at random when the battle starts")
+	var card := random_card("One of the %d battleplans below, picked when the battle starts." % battlepack.battleplans.size(),
+			selected.is_empty(), "Pick a battleplan at random when the battle starts")
+	_set_up_card(card, "Random", "")
+	return card
+
+
+## The Random card: [param note] under its title, a check if it's [param chosen], and
+## [param description] as its tooltip.
+static func random_card(note: String, chosen: bool, description: String) -> PressableCard:
+	var card: PressableCard = load("res://scenes/ui/quick_play/random_choice_card.tscn").instantiate()
+	(card.get_node(^"%Art") as ArtPlaceholder).corner_radius = 6
+	(card.get_node(^"%Art") as ArtPlaceholder).set_icon(UITheme.icon("aos/white/fighters/gargantuan"), 36)
+	(card.get_node(^"%Note") as Label).text = note
+	if chosen:
+		card.get_node(^"%Row").add_child(check_mark())
+	card.make_pressable(description)
+	return card
+
+
+## A card to choose: [param preview] (e.g. a map) beside [param title] and [param subtitle], a check
+## if it's [param chosen], and an eye keyed [param eye_key] that's pressed in if [param full].
+## The card's [code]%Stack[/code] takes the rules shown in full.
+static func choice_card(preview: Control, title: String, subtitle: String, chosen: bool, full: bool, eye_key: String) -> PressableCard:
+	var card: PressableCard = load("res://scenes/ui/quick_play/choice_card.tscn").instantiate()
+	var row: HBoxContainer = card.get_node(^"%Row")
+	row.add_child(preview)
+	row.move_child(preview, 0)
+	(card.get_node(^"%ChoiceTitle") as Label).text = title
+	(card.get_node(^"%Subtitle") as Label).text = subtitle
+	var eye: Button = card.get_node(^"%Eye")
+	if chosen:
+		var check := check_mark()
+		row.add_child(check)
+		row.move_child(check, eye.get_index())
+	eye.button_pressed = full
+	eye.tooltip_text = ("Hide " if full else "Show ") + title + " rules"
+	eye.accessibility_name = eye.tooltip_text
+	eye.set_meta(&"focus_key", eye_key)
+	card.set_meta(&"eye", eye)
 	return card
 
 
 ## [param plan]'s card, in brief or, if it's open, in full.
 func _plan_card(plan: Battleplan) -> PressableCard:
 	var full: bool = _open.has(plan.name)
-	var card := _card(plan.name, plan.name)
-	var title := UIBuilder.label(plan.name, "TitleLabel", true)
-	var twist := UIBuilder.label(plan.twist, "MutedLabel", true)
+	var card := choice_card(BattleplanMap.new(plan, battlepack.battlefield_size), plan.name, plan.twist,
+			selected == plan.name, full, "plan:" + plan.name)
+	var twist: Label = card.get_node(^"%Subtitle")
 	twist.max_lines_visible = 2
 	twist.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var text := UIBuilder.vbox([title, twist], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var row := UIBuilder.hbox([BattleplanMap.new(plan, battlepack.battlefield_size), text], 12)
-	if selected == plan.name:
-		row.add_child(check_mark())
-	var eye := UIBuilder.icon_toggle("eye", ("Hide " if full else "Show ") + plan.name + " rules", full,
-			func(_on: bool) -> void: pass, "plan:" + plan.name)
-	eye.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	row.add_child(eye)
-	var content := UIBuilder.vbox([row], 12)
+	_set_up_card(card, plan.name, plan.name)
+	var content: VBoxContainer = card.get_node(^"%Stack")
 	if full:
 		content.add_child(HSeparator.new())
 		content.add_child(BattleplanMap.new(plan, battlepack.battlefield_size, true))
@@ -90,24 +106,19 @@ func _plan_card(plan: Battleplan) -> PressableCard:
 			content.add_child(rules_block("Setup", plan.text))
 		content.add_child(rules_block("Twist", plan.twist))
 		for ability in plan.abilities:
-			content.add_child(AbilityCard.new(ability))
+			content.add_child(AbilityCard.create(ability))
 		if not plan.scoring.is_empty():
 			content.add_child(rules_block("Scoring", "\n".join(plan.scoring)))
-	card.add_child(content)
 	card.make_pressable("Choose " + plan.name)
-	card.set_meta(&"eye", eye)
-	eye.toggled.connect(_on_eye_toggled.bind(plan))
+	(card.get_meta(&"eye") as Button).toggled.connect(_on_eye_toggled.bind(plan))
 	return card
 
 
-func _card(card_name: String, battleplan: String) -> PressableCard:
-	var card := PressableCard.new()
+func _set_up_card(card: PressableCard, card_name: String, battleplan: String) -> void:
 	card.card_name = card_name
-	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	if battleplan == selected:
 		card.theme_type_variation = "PickedCardPanel"
 	card.pressed.connect(_pick.bind(battleplan))
-	return card
 
 
 func _pick(battleplan: String) -> void:
@@ -140,6 +151,7 @@ static func check_mark() -> Control:
 
 ## A heading over rules text.
 static func rules_block(heading: String, text: String) -> VBoxContainer:
-	var title := UIBuilder.label(heading.to_upper(), "StatNameLabel")
-	title.add_theme_color_override("font_color", UITheme.TEXT)
-	return UIBuilder.vbox([title, UIBuilder.label(text, "BodyLabel", true)], 4)
+	var block: VBoxContainer = load("res://scenes/ui/quick_play/rules_block.tscn").instantiate()
+	(block.get_node(^"%Heading") as Label).text = heading.to_upper()
+	(block.get_node(^"%Text") as Label).text = text
+	return block

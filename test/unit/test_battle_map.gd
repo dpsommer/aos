@@ -4,6 +4,7 @@ extends GutTest
 const BattleKit := preload("res://test/support/battle_kit.gd")
 const Sandbox := preload("res://test/support/sandbox.gd")
 const MapScene := preload("res://scenes/battle/battle_map.tscn")
+const UIKit := preload("res://test/support/ui_kit.gd")
 
 
 func before_each() -> void:
@@ -427,13 +428,17 @@ func test_close_settings_refocuses_the_menus_settings_button() -> void:
 	assert_true(map.pause_menu.settings_button.has_focus())
 
 
+func _key(keycode: Key) -> InputEventKey:
+	return InputBindings.decode([keycode])[0]
+
+
 func test_close_settings_refreshes_the_hud_controls() -> void:
 	var map := _built_map()
 	map.open_menu()
 	map.open_settings()
-	var old := map.hud.controls
+	InputBindings.set_keys("camera_forward", [_key(KEY_I)])
 	map.close_settings()
-	assert_ne(map.hud.controls, old)
+	assert_true(UIKit.has_label_containing(map.hud.controls, BattleHud.move_keys()))
 
 
 func test_close_settings_keeps_the_menu_open() -> void:

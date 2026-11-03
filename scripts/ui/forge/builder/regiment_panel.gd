@@ -7,23 +7,30 @@ var regiment: ArmyRegiment
 var _header_row: HBoxContainer
 
 
-func _init(army_builder: ArmyBuilder, army_regiment: ArmyRegiment) -> void:
+static func create(army_builder: ArmyBuilder, army_regiment: ArmyRegiment) -> RegimentPanel:
+	var panel: RegimentPanel = load("res://scenes/ui/forge/builder/regiment_panel.tscn").instantiate()
+	panel._fill(army_builder, army_regiment)
+	return panel
+
+
+func _fill(army_builder: ArmyBuilder, army_regiment: ArmyRegiment) -> void:
 	builder = army_builder
 	regiment = army_regiment
 	var renown := regiment.is_regiment_of_renown()
-	theme_type_variation = "RenownRegimentPanel" if renown else "RegimentPanel"
+	if renown:
+		theme_type_variation = "RenownRegimentPanel"
 	set_meta(&"regiment_id", regiment.id)
-	_header_row = _header()
-	var content := UIBuilder.vbox([_header_row], 8)
+	_header_row = %Header
+	_fill_header()
+	var content: VBoxContainer = %Content
 	if not builder.collapsed.has(regiment.id):
 		if regiment.leaderless:
 			content.add_child(_leader_button())
 		for unit in regiment.units:
-			content.add_child(UnitRow.new(builder, unit, regiment))
+			content.add_child(UnitRow.create(builder, unit, regiment))
 		var add := _add_button() if not renown else null
 		if add:
 			content.add_child(add)
-	add_child(content)
 	BuilderDragDrop.pass_mouse(self)
 
 
@@ -64,19 +71,23 @@ func _on_grip_input(event: InputEvent, grip: Button) -> void:
 		builder.editor.move_regiment(regiment.id, to + (1 if step > 0 else 0))
 
 
-func _header() -> HBoxContainer:
+func _fill_header() -> void:
 	var editor := builder.editor
 	var key := regiment.id + ":"
-	var row := UIBuilder.hbox([], 8)
+	var row := _header_row
 	var open := not builder.collapsed.has(regiment.id)
-	var grip := UIBuilder.icon_button("grip", "Reorder regiment: drag, or use the arrow keys", func() -> void: pass,
-			key + "grip", "GripButton")
-	grip.mouse_default_cursor_shape = Control.CURSOR_MOVE
+	var grip: Button = %Grip
+	grip.set_meta(&"focus_key", key + "grip")
 	grip.gui_input.connect(_on_grip_input.bind(grip))
 	builder.drag.source(grip, {"kind": "reg", "regiment_id": regiment.id}, regiment.name, self)
-	row.add_child(grip)
-	row.add_child(UIBuilder.icon_button("chevron_down" if open else "chevron_right",
-			"Collapse regiment" if open else "Expand regiment", builder.toggle_collapsed.bind(regiment.id), key + "collapse"))
+	var collapse: Button = %Collapse
+	if not open:
+		collapse.icon = UITheme.icon("chevron_right")
+	collapse.tooltip_text = "Collapse regiment" if open else "Expand regiment"
+	collapse.accessibility_name = collapse.tooltip_text
+	collapse.set_meta(&"focus_key", key + "collapse")
+	collapse.pressed.connect(builder.toggle_collapsed.bind(regiment.id))
+	var title: Label = %Title
 	if builder.renaming == regiment.id:
 		var edit := LineEdit.new()
 		edit.text = regiment.name
@@ -86,23 +97,30 @@ func _header() -> HBoxContainer:
 		edit.text_submitted.connect(func(text: String) -> void: builder.finish_renaming(regiment.id, text))
 		edit.focus_exited.connect(func() -> void: builder.finish_renaming(regiment.id, edit.text))
 		row.add_child(edit)
+		row.move_child(edit, title.get_index())
+		title.free()
 	else:
-		var title := UIBuilder.label(regiment.name, "SectionLabel")
-		title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		row.add_child(title)
+		title.text = regiment.name
 		if regiment.is_regiment_of_renown():
-			row.add_child(UITheme.chip("Regiment of Renown", "gold"))
+			var chip := UITheme.chip("Regiment of Renown", "gold")
+			row.add_child(chip)
+			row.move_child(chip, title.get_index() + 1)
 	var points := ArmyPoints.regiment_points(regiment, editor.army, builder.catalog)
+	var points_label: Label = %Points
 	if regiment.is_regiment_of_renown() or regiment.units.is_empty():
-		row.add_child(UIBuilder.label("%d pts" % points, "MutedLabel"))
+		points_label.text = "%d pts" % points
 	else:
 		var capacity := ArmyValidator.regiment_capacity(regiment, editor.army)
-		row.add_child(UIBuilder.label("%d/%d units · %d pts" % [regiment.followers().size(), capacity, points], "MutedLabel"))
-	if not regiment.is_regiment_of_renown():
-		row.add_child(UIBuilder.icon_button("rename", "Rename regiment", builder.start_renaming.bind(regiment.id), key + "rename"))
-	row.add_child(UIBuilder.icon_button("delete", "Delete regiment", editor.remove_regiment.bind(regiment.id), key + "delete",
-			"DangerIconButton"))
-	return row
+		points_label.text = "%d/%d units · %d pts" % [regiment.followers().size(), capacity, points]
+	var rename: Button = %Rename
+	if regiment.is_regiment_of_renown():
+		rename.free()
+	else:
+		rename.set_meta(&"focus_key", key + "rename")
+		rename.pressed.connect(builder.start_renaming.bind(regiment.id))
+	var delete: Button = %Delete
+	delete.set_meta(&"focus_key", key + "delete")
+	delete.pressed.connect(editor.remove_regiment.bind(regiment.id))
 
 
 ## The button that fills the regiment's empty leader's slot.

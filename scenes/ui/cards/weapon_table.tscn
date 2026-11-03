@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/2d/icons/aos/white/treasure/weapons.svg" id="1_melee"]
+
+[node name="WeaponTable" type="PanelContainer"]
+theme_type_variation = &"WeaponTablePanel"
+
+[node name="Rows" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="Rows"]
+layout_mode = 2
+theme_type_variation = &"WeaponHeaderPanel"
+
+[node name="HeaderRow" type="HBoxContainer" parent="Rows/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Heading" type="HBoxContainer" parent="Rows/Header/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="Icon" type="TextureRect" parent="Rows/Header/HeaderRow/Heading"]
+unique_name_in_owner = true
+modulate = Color(0.8471, 0.8235, 0.7686, 1)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("1_melee")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Rows/Header/HeaderRow/Heading"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"WeaponTitleLabel"
+text = "MELEE WEAPONS"

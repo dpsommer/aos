@@ -132,10 +132,10 @@ func _show_realm() -> void:
 func _build_overlay() -> void:
 	overlay = CanvasLayer.new()
 	overlay.name = "Overlay"
-	hud = BattleHud.new(battle)
+	hud = BattleHud.create(battle)
 	hud.menu_pressed.connect(open_menu)
 	overlay.add_child(hud)
-	pause_menu = PauseMenu.new()
+	pause_menu = PauseMenu.create()
 	pause_menu.resume_pressed.connect(close_menu)
 	pause_menu.settings_pressed.connect(open_settings)
 	pause_menu.surrender_pressed.connect(surrendered.emit)
@@ -166,7 +166,7 @@ func start() -> void:
 		return
 	phase = Phase.ROLL_OFF
 	battle.roll_off = RollOff.roll(rng)
-	roll_off_panel = RollOffPanel.new(battle, battle.roll_off, RollOff.ai_picks_attacker(rng))
+	roll_off_panel = RollOffPanel.create(battle, battle.roll_off, RollOff.ai_picks_attacker(rng))
 	roll_off_panel.role_chosen.connect(_on_role_chosen)
 	_add_to_overlay(roll_off_panel)
 
@@ -210,7 +210,7 @@ func _random_name(abilities: Array[Ability]) -> String:
 
 
 func _open_options_picker() -> void:
-	options_picker = SpearheadOptionsPicker.new(battle.player, battle.opponent, battle.player_is_attacker)
+	options_picker = SpearheadOptionsPicker.create(battle.player, battle.opponent, battle.player_is_attacker)
 	options_picker.chosen.connect(_on_options_chosen)
 	_add_to_overlay(options_picker)
 
@@ -247,7 +247,7 @@ func _ai_chooses_deployment() -> void:
 ## The player defends: they pick the side, the deployment map and the territories.
 func _open_map_picker() -> void:
 	phase = Phase.DEPLOYMENT_MAP
-	map_picker = DeploymentMapPicker.new(battle)
+	map_picker = DeploymentMapPicker.create(battle)
 	map_picker.chosen.connect(_on_deployment_chosen)
 	_add_to_overlay(map_picker)
 

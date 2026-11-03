@@ -18,13 +18,13 @@ func _phase(timing: String, fields := {}) -> String:
 
 
 func _card(fields := {}) -> AbilityCard:
-	var card := AbilityCard.new(_ability(fields))
+	var card := AbilityCard.create(_ability(fields))
 	add_child_autofree(card)
 	return card
 
 
 func _labels(card: Node, variation: String) -> Array[Node]:
-	return UIKit.find_all(card, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation)
+	return UIKit.find_shown(card, func(n: Node) -> bool: return n is Label and n.theme_type_variation == variation)
 
 
 func _label_texts(card: Node) -> PackedStringArray:
@@ -284,7 +284,7 @@ func test_card_shows_the_header_in_capitals() -> void:
 
 func test_card_shows_a_chip_for_each_value() -> void:
 	var rule := _ability({casting_value = 7, points = 20})
-	var card := AbilityCard.new(rule)
+	var card := AbilityCard.create(rule)
 	add_child_autofree(card)
 	var texts := Array(_label_texts(card)).map(func(text: String) -> String: return text.to_lower())
 	for value in AbilityCard.values(rule):
@@ -314,13 +314,13 @@ func test_card_shows_its_name() -> void:
 
 func test_name_comes_before_the_separator_before_the_body() -> void:
 	var card := _card({effect = "Something happens."})
-	var name_label: Node = _labels(card, "AbilityNameLabel")[0]
-	var inner := name_label.get_parent()
-	var separators := inner.get_children().filter(func(n: Node) -> bool: return n is HSeparator)
-	var bodies := inner.get_children().filter(func(n: Node) -> bool: return n is RichTextLabel)
+	var name_row: Node = _labels(card, "AbilityNameLabel")[0].get_parent()
+	var inner := name_row.get_parent()
+	var separators := inner.get_children().filter(func(n: Node) -> bool: return n is HSeparator and n.visible)
+	var bodies := inner.get_children().filter(func(n: Node) -> bool: return n is RichTextLabel and n.visible)
 	assert_eq(separators.size(), 1)
 	assert_eq(bodies.size(), 1)
-	assert_lt(name_label.get_index(), separators[0].get_index())
+	assert_lt(name_row.get_index(), separators[0].get_index())
 	assert_lt(separators[0].get_index(), bodies[0].get_index())
 
 
@@ -332,7 +332,7 @@ func test_body_shows_the_rules_text() -> void:
 
 func test_card_with_no_rules_text_has_no_body() -> void:
 	var card := _card()
-	assert_eq(UIKit.find_all(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
+	assert_eq(UIKit.find_shown(card, func(n: Node) -> bool: return n is RichTextLabel).size(), 0)
 
 
 func test_card_shows_its_keywords() -> void:

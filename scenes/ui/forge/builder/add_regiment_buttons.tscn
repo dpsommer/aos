@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[node name="AddRegimentButtons" type="HBoxContainer"]
+theme_override_constants/separation = 12
+
+[node name="AddRegiment" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GhostButton"
+text = "Add regiment"
+metadata/focus_key = "army:add_regiment"
+
+[node name="AddRegimentOfRenown" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GhostButton"
+text = "Add Regiment of Renown"
+metadata/focus_key = "army:add_ror"

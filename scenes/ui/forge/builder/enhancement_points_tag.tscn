@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/2d/icons/aos/white/treasure/realmstone.svg" id="1_stone"]
+
+[node name="EnhancementPointsTag" type="PanelContainer"]
+mouse_filter = 1
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Row"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+
+[node name="Icon" type="TextureRect" parent="Row"]
+modulate = Color(0.9333, 0.7843, 0.4667, 1)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("1_stone")
+expand_mode = 1
+stretch_mode = 5

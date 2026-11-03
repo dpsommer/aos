@@ -21,10 +21,6 @@ signal call_off_pressed
 signal pass_pressed
 
 const TRAY_HEIGHT := 200.0
-const SIDE_WIDTH := 300.0
-## How far the side panels are from the screen's edge, and from its top (under the header).
-const EDGE_MARGIN := 20.0
-const PANEL_TOP := 84.0
 const PLAYER_EDGE := Color("#3D74A8")
 const OPPONENT_EDGE := Color("#8C2A24")
 
@@ -51,28 +47,29 @@ var pass_button: Button
 var _state := {}
 
 
-func _init(of: Deployment, player_army: BattleArmy) -> void:
-	deployment = of
-	army = player_army
-	name = "DeploymentHud"
+const TILE := preload("res://scenes/ui/battle/tray_tile.tscn")
+const GROUP := preload("res://scenes/ui/battle/tray_group.tscn")
+
+
+static func create(of: Deployment, player_army: BattleArmy) -> DeploymentHud:
+	var hud: DeploymentHud = load("res://scenes/ui/battle/deployment_hud.tscn").instantiate()
+	hud.deployment = of
+	hud.army = player_army
+	return hud
+
+
+func _init() -> void:
 	theme = UITheme.get_theme()
-	set_anchors_preset(Control.PRESET_FULL_RECT)
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	banner = _banner()
-	add_child(banner)
-	abilities_panel = _side_panel("Abilities", Control.PRESET_TOP_LEFT)
-	add_child(abilities_panel)
-	placing_panel = _side_panel("Placing", Control.PRESET_TOP_RIGHT)
-	add_child(placing_panel)
-	tray = PanelContainer.new()
-	tray.name = "Tray"
-	tray.add_theme_stylebox_override("panel", UITheme.box(UITheme.HEADER, UITheme.BORDER, 0, 12))
-	tray.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
-	tray.custom_minimum_size.y = TRAY_HEIGHT
-	tray.offset_top = -TRAY_HEIGHT
-	tray.mouse_filter = Control.MOUSE_FILTER_STOP
-	tray.accessibility_name = "Units to deploy"
-	add_child(tray)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_SCENE_INSTANTIATED:
+		banner = %Banner
+		banner_title = %BannerTitle
+		banner_text = %BannerText
+		abilities_panel = %Abilities
+		placing_panel = %Placing
+		tray = %Tray
 
 
 ## Rebuilds the overlay for the deployment's current state and [param state], what the player is
@@ -109,27 +106,6 @@ func _is_player_turn() -> bool:
 
 
 # Banner
-
-func _banner() -> PanelContainer:
-	var panel := PanelContainer.new()
-	panel.name = "Banner"
-	panel.add_theme_stylebox_override("panel", _banner_box(PLAYER_EDGE))
-	panel.anchor_left = 0.5
-	panel.anchor_right = 0.5
-	panel.offset_top = 80
-	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	banner_title = UIBuilder.label("")
-	banner_title.add_theme_font_size_override("font_size", 14)
-	banner_text = UIBuilder.label("", "DescriptionLabel")
-	var row := UIBuilder.hbox([banner_title, banner_text], 10)
-	var margin := MarginContainer.new()
-	for side in ["left", "right"]:
-		margin.add_theme_constant_override("margin_" + side, 10)
-	margin.add_child(row)
-	panel.add_child(margin)
-	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	return panel
-
 
 func _refresh_banner() -> void:
 	var edge := PLAYER_EDGE
@@ -180,32 +156,15 @@ func _centre_banner() -> void:
 
 # Side panels
 
-func _side_panel(panel_name: String, preset: Control.LayoutPreset) -> PanelContainer:
-	var panel := PanelContainer.new()
-	panel.name = panel_name
-	panel.add_theme_stylebox_override("panel", UITheme.box(Color(0.09, 0.102, 0.122, 0.95), UITheme.BORDER, 10, 14))
-	panel.custom_minimum_size.x = SIDE_WIDTH
-	# Pinned to its edge of the screen, whatever the window's size, growing down from under the
-	# banner.
-	var right := preset == Control.PRESET_TOP_RIGHT
-	panel.anchor_left = 1.0 if right else 0.0
-	panel.anchor_right = panel.anchor_left
-	panel.anchor_top = 0.0
-	panel.anchor_bottom = 0.0
-	panel.offset_left = -SIDE_WIDTH - EDGE_MARGIN if right else EDGE_MARGIN
-	panel.offset_right = -EDGE_MARGIN if right else SIDE_WIDTH + EDGE_MARGIN
-	panel.offset_top = PANEL_TOP
-	panel.grow_horizontal = Control.GROW_DIRECTION_BEGIN if right else Control.GROW_DIRECTION_END
-	panel.grow_vertical = Control.GROW_DIRECTION_END
-	panel.mouse_filter = Control.MOUSE_FILTER_STOP
-	return panel
-
-
-func _set_content(panel: PanelContainer, children: Array) -> void:
-	for child in panel.get_children():
-		panel.remove_child(child)
+## Puts [param children] in [param panel]'s content, after the [param kept] children it always has,
+## e.g. a heading, and shows the panel if any were given.
+func _set_content(panel: PanelContainer, children: Array, kept := 0) -> void:
+	var content: VBoxContainer = panel.get_node(^"Content")
+	for child in content.get_children().slice(kept):
+		content.remove_child(child)
 		child.queue_free()
-	panel.add_child(UIBuilder.vbox(children, 8))
+	for child: Control in children:
+		content.add_child(child)
 	panel.visible = not children.is_empty()
 	# Shrink to the new content, once it has its size.
 	panel.offset_bottom = panel.offset_top
@@ -221,13 +180,13 @@ func _heading(text: String) -> Label:
 func _refresh_abilities() -> void:
 	ability_buttons.clear()
 	if deployment.is_done():
-		_set_content(abilities_panel, [])
+		_set_content(abilities_panel, [], 1)
 		return
 	var rows: Array = []
 	for entry in army.deployment_abilities:
 		if deployment.step_of(entry) == deployment.step:
 			rows.append(_ability_row(entry))
-	_set_content(abilities_panel, [_heading("Deployment abilities")] + rows if not rows.is_empty() else [])
+	_set_content(abilities_panel, rows, 1)
 
 
 func _ability_row(entry: DeploymentAbility) -> Button:
@@ -245,13 +204,8 @@ func _ability_row(entry: DeploymentAbility) -> Button:
 	elif entry.is_once_per_battle():
 		status = "Once per battle"
 	var hint := "%s · %s" % [entry.source, _hint(entry)] if reason.is_empty() else reason
-	var button := Button.new()
-	button.theme_type_variation = "CardButton"
-	button.custom_minimum_size = Vector2(SIDE_WIDTH - 28, 52)
+	var button: Button = load("res://scenes/ui/battle/deployment_ability_button.tscn").instantiate()
 	button.text = "%s%s\n%s" % [entry.label(), "  ·  " + status if not status.is_empty() else "", hint]
-	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	button.add_theme_font_size_override("font_size", 12)
 	button.tooltip_text = entry.ability.effect
 	button.accessibility_name = "%s. %s" % [entry.label(), hint]
 	var acts := entry.kind() in [DeploymentAbility.Kind.RESERVE, DeploymentAbility.Kind.RECORD]
@@ -441,28 +395,22 @@ func _choosing() -> Array:
 
 
 func _alert() -> PanelContainer:
-	alert = PanelContainer.new()
-	alert.name = "Alert"
-	alert.add_theme_stylebox_override("panel", UITheme.box(UITheme.DANGER_BG, Color.TRANSPARENT, 6, 8))
-	alert_label = UIBuilder.label("", "", true)
-	alert_label.add_theme_color_override("font_color", UITheme.DANGER)
-	alert_label.add_theme_font_size_override("font_size", 12)
-	alert_label.custom_minimum_size.x = SIDE_WIDTH - 44
-	alert.add_child(alert_label)
-	alert.visible = false
+	alert = load("res://scenes/ui/battle/placement_alert.tscn").instantiate()
+	alert_label = alert.get_node(^"%Text")
 	return alert
 
 
 func _buttons(confirm_text: String, back_text := "Undo") -> HBoxContainer:
-	undo_button = UIBuilder.button(back_text, cancel_pressed.emit if back_text == "Cancel" else undo_pressed.emit, "undo", "GhostButton")
+	var row: HBoxContainer = load("res://scenes/ui/battle/placing_buttons.tscn").instantiate()
+	undo_button = row.get_node(^"%Undo")
+	undo_button.text = back_text
+	undo_button.pressed.connect(cancel_pressed.emit if back_text == "Cancel" else undo_pressed.emit)
 	undo_button.tooltip_text = "Put it back where it started (%s)" % BattleHud.key_for("undo_placement") if back_text == "Undo" else ""
-	confirm_button = UIBuilder.button("Confirm", confirm_pressed.emit, "confirm", "GoldButton")
+	confirm_button = row.get_node(^"%Confirm")
+	confirm_button.pressed.connect(confirm_pressed.emit)
 	confirm_button.tooltip_text = confirm_text
 	confirm_button.text = "Confirm · %s" % confirm_text if back_text == "Undo" else confirm_text
-	confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	confirm_button.custom_minimum_size.y = 44
-	undo_button.custom_minimum_size.y = 44
-	return UIBuilder.hbox([undo_button, confirm_button], 8)
+	return row
 
 
 ## Who goes after this placement, for Confirm's subtitle.
@@ -479,8 +427,9 @@ func _next_text() -> String:
 
 func _refresh_tray() -> void:
 	tray_buttons.clear()
-	for child in tray.get_children():
-		tray.remove_child(child)
+	var row: HBoxContainer = %Groups
+	for child in row.get_children():
+		row.remove_child(child)
 		child.queue_free()
 	var groups: Array = []
 	match deployment.step:
@@ -497,20 +446,27 @@ func _refresh_tray() -> void:
 			if not loose.is_empty():
 				groups.append(_unit_group("Units" if deployment.battle.is_spearhead() else "Auxiliary units", loose))
 	tray.visible = not groups.is_empty() and not deployment.is_done()
-	if groups.is_empty():
-		return
-	var row := UIBuilder.hbox(groups, 16)
-	var scroll := ScrollContainer.new()
-	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.add_child(row)
-	tray.add_child(scroll)
+	for group: Control in groups:
+		row.add_child(group)
 
 
-func _group_panel(children: Array, highlight := false) -> PanelContainer:
-	var panel := PanelContainer.new()
+## A group of [param tiles] in the tray under [param heading]: a label's text, or a [Button].
+## [param highlight] edges it in the player's colour, e.g. the regiment being deployed.
+func _group_panel(heading: Variant, tiles: Array, highlight := false) -> PanelContainer:
+	var panel: PanelContainer = GROUP.instantiate()
 	panel.add_theme_stylebox_override("panel", UITheme.box(Color(0.141, 0.322, 0.494, 0.18) if highlight else Color("#1A1D23"),
 			PLAYER_EDGE if highlight else UITheme.BORDER, 10, 10, 2 if highlight else 1))
-	panel.add_child(UIBuilder.vbox(children, 8))
+	if heading is Control:
+		var stack: VBoxContainer = panel.get_node(^"%Stack")
+		stack.add_child(heading)
+		stack.move_child(heading, 0)
+	else:
+		var label: Label = panel.get_node(^"%Heading")
+		label.text = heading
+		label.visible = true
+	var row: HBoxContainer = panel.get_node(^"%Tiles")
+	for tile: Control in tiles:
+		row.add_child(tile)
 	return panel
 
 
@@ -533,14 +489,14 @@ func _regiment_group(regiment: BattleRegiment) -> PanelContainer:
 	var tiles: Array = []
 	for unit in regiment.units:
 		tiles.append(_unit_tile(unit))
-	return _group_panel([header, UIBuilder.hbox(tiles, 8)], deploying)
+	return _group_panel(header, tiles, deploying)
 
 
 func _unit_group(title: String, units: Array[BattleUnit]) -> PanelContainer:
 	var tiles: Array = []
 	for unit in units:
 		tiles.append(_unit_tile(unit))
-	return _group_panel([UIBuilder.label(title, "SectionLabel"), UIBuilder.hbox(tiles, 8)])
+	return _group_panel(title, tiles)
 
 
 func _unit_tile(unit: BattleUnit) -> Button:
@@ -560,11 +516,11 @@ func _unit_tile(unit: BattleUnit) -> Button:
 
 ## A tray tile [param width] wide showing [param text], pressed in if it's [param picked].
 func _tile(text: String, on_pressed: Callable, id: String, width: float, picked: bool) -> Button:
-	var tile := UIBuilder.button(text, on_pressed, id, "CardButton")
-	tile.custom_minimum_size = Vector2(width, 96)
-	tile.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	tile.add_theme_font_size_override("font_size", 12)
-	tile.toggle_mode = true
+	var tile: Button = TILE.instantiate()
+	tile.text = text
+	tile.pressed.connect(on_pressed)
+	tile.set_meta(&"focus_key", id)
+	tile.custom_minimum_size.x = width
 	tile.set_pressed_no_signal(picked)
 	return tile
 
@@ -578,5 +534,4 @@ func _terrain_group() -> PanelContainer:
 		tile.accessibility_name = "%s%s" % [feature.name, ", set up" if feature.placed else ", set it up"]
 		tray_buttons[feature] = tile
 		tiles.append(tile)
-	return _group_panel([UIBuilder.label("Terrain features" if deployment.battle.is_spearhead() else "Faction terrain", "SectionLabel"),
-			UIBuilder.hbox(tiles, 8)])
+	return _group_panel("Terrain features" if deployment.battle.is_spearhead() else "Faction terrain", tiles)

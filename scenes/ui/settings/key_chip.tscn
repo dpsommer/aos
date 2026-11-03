@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/2d/icons/close.svg" id="1_close"]
+
+[node name="KeyChip" type="PanelContainer"]
+theme_type_variation = &"KeyChipPanel"
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Change" type="Button" parent="Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_type_variation = &"KeyButton"
+
+[node name="Remove" type="Button" parent="Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"SmallIconButton"
+icon = ExtResource("1_close")
+icon_alignment = 1

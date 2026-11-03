@@ -9,7 +9,7 @@ extends RefCounted
 static func abilities(rules: Array[Ability], summoned := Callable()) -> VBoxContainer:
 	var box := UIBuilder.vbox([], 10)
 	for rule in rules:
-		box.add_child(AbilityCard.new(rule))
+		box.add_child(AbilityCard.create(rule))
 		if summoned.is_valid():
 			for summoned_unit: Warscroll in summoned.call(rule):
 				box.add_child(WarscrollCard.summoned_card(summoned_unit))
@@ -29,7 +29,7 @@ static func battle_formation(formation: BattleFormation) -> VBoxContainer:
 
 ## [param show_summoned], given a unit [param unit] summons, shows its warscroll.
 static func warscroll(unit: Warscroll, summoned := Callable(), show_summoned := Callable()) -> WarscrollCard:
-	return WarscrollCard.new(unit, summoned, show_summoned)
+	return WarscrollCard.create(unit, summoned, show_summoned)
 
 
 static func faction_rules(faction: Faction, summoned := Callable()) -> VBoxContainer:
@@ -43,7 +43,7 @@ static func faction_rules(faction: Faction, summoned := Callable()) -> VBoxConta
 	for table in faction.enhancement_tables:
 		parts.add_child(enhancement_table(table))
 	for rules in faction.lores:
-		parts.add_child(LoreCard.new(rules, true, "", null, summoned))
+		parts.add_child(LoreCard.create(rules, true, "", null, summoned))
 	return parts
 
 
@@ -55,7 +55,7 @@ static func army_of_renown(army: ArmyOfRenown, summoned := Callable()) -> VBoxCo
 	for table in army.enhancement_tables:
 		parts.add_child(enhancement_table(table))
 	for rules in army.lores:
-		parts.add_child(LoreCard.new(rules, true, "", null, summoned))
+		parts.add_child(LoreCard.create(rules, true, "", null, summoned))
 	return parts
 
 
@@ -70,7 +70,7 @@ static func regiment_of_renown(regiment: RegimentOfRenown, summoned := Callable(
 	if not regiment.abilities.is_empty():
 		parts.add_child(abilities(regiment.abilities, summoned))
 	for unit in regiment.warscrolls:
-		parts.add_child(WarscrollCard.new(unit, summoned))
+		parts.add_child(WarscrollCard.create(unit, summoned))
 	return parts
 
 
@@ -90,7 +90,7 @@ static func spearhead(army: Spearhead, summoned := Callable()) -> VBoxContainer:
 		if not section[1].is_empty():
 			parts.add_child(_section(section[0], abilities(section[1])))
 	for unit in army.warscrolls:
-		parts.add_child(WarscrollCard.new(unit, summoned))
+		parts.add_child(WarscrollCard.create(unit, summoned))
 	return parts
 
 
@@ -99,7 +99,7 @@ static func rules_section(section: RulesSection) -> VBoxContainer:
 	if not section.text.is_empty():
 		parts.add_child(_text(_escape(section.text)))
 	for unit in section.warscrolls:
-		parts.add_child(WarscrollCard.new(unit))
+		parts.add_child(WarscrollCard.create(unit))
 	return parts
 
 
@@ -109,12 +109,18 @@ static func heading(title: String) -> Label:
 
 ## [param title] over [param content].
 static func _section(title: String, content: Control) -> VBoxContainer:
-	return UIBuilder.vbox([heading(title), content], 10)
+	var section: VBoxContainer = load("res://scenes/ui/forge/rules_section.tscn").instantiate()
+	(section.get_node(^"%Heading") as Label).text = title
+	section.add_child(content)
+	return section
 
 
 ## A page of rules, its parts spaced apart.
 static func _page(children: Array = []) -> VBoxContainer:
-	return UIBuilder.vbox(children, 20)
+	var page: VBoxContainer = load("res://scenes/ui/forge/rules_page.tscn").instantiate()
+	for child: Control in children:
+		page.add_child(child)
+	return page
 
 
 static func _add_details(parts: VBoxContainer, source: String, legends: bool, text: String) -> void:

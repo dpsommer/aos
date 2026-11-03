@@ -7,23 +7,24 @@ extends PressableCard
 var warscroll: Warscroll
 
 
-func _init(unit: Warscroll) -> void:
-	super()
+static func create(unit: Warscroll) -> SummonedUnitCard:
+	var card: SummonedUnitCard = load("res://scenes/ui/cards/summoned_unit_card.tscn").instantiate()
+	card._fill(unit)
+	return card
+
+
+func _fill(unit: Warscroll) -> void:
 	warscroll = unit
 	card_name = unit.name
-	var title := UIBuilder.label(unit.name, "TitleLabel", true)
-	var names := UIBuilder.vbox([UIBuilder.label("Summoned unit", "MutedLabel"), title], 2)
-	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	names.alignment = BoxContainer.ALIGNMENT_CENTER
-	var content := UIBuilder.vbox([UIBuilder.hbox([UIBuilder.portrait(unit.name), names], 10),
-			WarscrollCard.characteristic_row(unit)], 8)
-	var chips := HFlowContainer.new()
+	(%Title as Label).text = unit.name
+	var header: HBoxContainer = %Header
+	var portrait := UIBuilder.portrait(unit.name)
+	header.add_child(portrait)
+	header.move_child(portrait, 0)
+	WarscrollCard.fill_characteristics(%Characteristics, unit)
+	var chips: HFlowContainer = %Chips
 	for weapon in unit.ranged_weapons + unit.melee_weapons:
 		chips.add_child(UITheme.chip(weapon.name))
 	for ability in unit.abilities:
 		chips.add_child(UITheme.chip(ability.name))
-	if chips.get_child_count() > 0:
-		content.add_child(chips)
-	else:
-		chips.free()
-	add_child(content)
+	chips.visible = chips.get_child_count() > 0

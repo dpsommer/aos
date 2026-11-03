@@ -72,21 +72,15 @@ static func shown_spearheads() -> Array[Dictionary]:
 
 func _mode_card(mode: BattleSetup.Mode) -> OptionCard:
 	var title := BattleSetup.display_name(mode)
-	var card := OptionCard.new()
+	var card: OptionCard = load("res://scenes/ui/quick_play/game_mode_card.tscn").instantiate()
 	card.accessibility_name = title
 	card.accessibility_description = DESCRIPTIONS[mode]
-	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var art := UIBuilder.icon_art(UITheme.icon(ICONS[mode]), 132)
-	art.get_child(0).modulate = UITheme.TEXT
-	art.custom_minimum_size.y = 240
-	card.add(art)
-	var heading := UIBuilder.label(title, "CardHeadingLabel")
-	heading.add_theme_font_size_override("font_size", 30)
-	card.add(heading)
-	card.add(UIBuilder.label(DESCRIPTIONS[mode], "DescriptionLabel", true))
-	var chips := HFlowContainer.new()
+	(card.get_node(^"%Art") as ArtPlaceholder).set_icon(UITheme.icon(ICONS[mode]), 132)
+	(card.get_node(^"%Heading") as Label).text = title
+	(card.get_node(^"%Description") as Label).text = DESCRIPTIONS[mode]
+	var chips: HFlowContainer = card.get_node(^"%Chips")
 	for chip: Array in mode_chips(mode):
 		chips.add_child(UITheme.chip(chip[0], chip[1]))
-	card.add(chips)
+	OptionCard._ignore_mouse(chips)
 	card.pressed.connect(mode_chosen.emit.bind(mode))
 	return card

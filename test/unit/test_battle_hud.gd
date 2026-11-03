@@ -19,7 +19,7 @@ func _key(keycode: Key) -> InputEventKey:
 
 
 func _hud(battle: Battle = null) -> BattleHud:
-	var hud := BattleHud.new(battle if battle else BattleKit.battle())
+	var hud := BattleHud.create(battle if battle else BattleKit.battle())
 	add_child_autofree(hud)
 	return hud
 
@@ -155,14 +155,6 @@ func test_refresh_controls_shows_rebound_keys() -> void:
 	InputBindings.set_keys("camera_forward", [_key(KEY_I)])
 	hud.refresh_controls()
 	assert_true(UIKit.has_label_containing(hud.controls, BattleHud.move_keys()))
-
-
-func test_refresh_controls_replaces_the_old_panel() -> void:
-	var hud := _hud()
-	var old := hud.controls
-	hud.refresh_controls()
-	assert_ne(hud.controls, old)
-	assert_eq(hud.controls.get_parent(), hud)
 
 
 func test_refresh_controls_keeps_a_single_controls_panel() -> void:

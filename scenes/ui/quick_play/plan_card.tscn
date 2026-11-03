@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/common/option_card.tscn" id="1_card"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/chevron_right.svg" id="2_chevron"]
+
+[node name="PlanCard" instance=ExtResource("1_card")]
+custom_minimum_size = Vector2(300, 0)
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.4
+toggle_mode = true
+
+[node name="Row" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="Text" type="VBoxContainer" parent="Content/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 3
+
+[node name="Heading" type="Label" parent="Content/Row/Text"]
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+text = "BATTLE PLAN"
+
+[node name="PlanName" type="Label" parent="Content/Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+autowrap_mode = 3
+
+[node name="Sub" type="Label" parent="Content/Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MutedLabel"
+autowrap_mode = 3
+
+[node name="Chevron" type="TextureRect" parent="Content/Row"]
+modulate = Color(0.6627, 0.6784, 0.7137, 1)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_chevron")
+stretch_mode = 3

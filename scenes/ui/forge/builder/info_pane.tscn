@@ -1,0 +1,97 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/forge/builder/info_pane.gd" id="1_pane"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/settings.svg" id="2_settings"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_tabs"]
+
+[node name="InfoPane" type="VBoxContainer"]
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+script = ExtResource("1_pane")
+
+[node name="Search" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+clear_button_enabled = true
+metadata/focus_key = "info:search"
+
+[node name="TabBar" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_type_variation = &"TabBarPanel"
+
+[node name="Bar" type="HBoxContainer" parent="TabBar"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Roster" type="Button" parent="TabBar/Bar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TabButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tabs")
+text = "Roster"
+metadata/focus_key = "info:tab:roster"
+
+[node name="Rules" type="Button" parent="TabBar/Bar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TabButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tabs")
+text = "Rules"
+metadata/focus_key = "info:tab:rules"
+
+[node name="Renown" type="Button" parent="TabBar/Bar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TabButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tabs")
+text = "Regiments of Renown"
+metadata/focus_key = "info:tab:renown"
+
+[node name="Spacer" type="Control" parent="TabBar/Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Settings" type="Button" parent="TabBar/Bar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Army settings"
+theme_type_variation = &"TabButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_tabs")
+icon = ExtResource("2_settings")
+accessibility_name = "Army settings"
+metadata/focus_key = "info:tab:settings"
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 4
+
+[node name="Content" type="VBoxContainer" parent="Scroll/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FlashTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.6
+one_shot = true
+
+[connection signal="text_changed" from="Search" to="." method="_on_search_changed"]
+[connection signal="gui_input" from="Search" to="." method="_on_search_input"]
+[connection signal="pressed" from="TabBar/Bar/Roster" to="." method="set_tab" binds= ["roster"]]
+[connection signal="pressed" from="TabBar/Bar/Rules" to="." method="set_tab" binds= ["rules"]]
+[connection signal="pressed" from="TabBar/Bar/Renown" to="." method="set_tab" binds= ["renown"]]
+[connection signal="pressed" from="TabBar/Bar/Settings" to="." method="set_tab" binds= ["settings"]]
+[connection signal="timeout" from="FlashTimer" to="." method="_end_flash"]

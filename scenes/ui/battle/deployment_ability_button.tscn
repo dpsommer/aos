@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[node name="DeploymentAbilityButton" type="Button"]
+custom_minimum_size = Vector2(272, 52)
+theme_type_variation = &"CardButton"
+theme_override_font_sizes/font_size = 12
+alignment = 0
+autowrap_mode = 3

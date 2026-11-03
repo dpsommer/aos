@@ -18,7 +18,7 @@ func _renown() -> ArmyOfRenown:
 
 
 func _make(renown: ArmyOfRenown, full: bool, action: Control = null) -> RenownArmyCard:
-	var node := RenownArmyCard.new(renown, full, action)
+	var node := RenownArmyCard.create(renown, full, action)
 	add_child_autofree(node)
 	return node
 

@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/cards/pressable_card.gd" id="1_card"]
+
+[node name="PressableCard" type="PanelContainer"]
+theme_type_variation = &"CardPanel"
+script = ExtResource("1_card")
+
+[node name="Content" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeadingRow" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Heading" type="Label" parent="Content/HeadingRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+
+[node name="Spacer" type="Control" parent="Content/HeadingRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleRow" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Content/TitleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+autowrap_mode = 3
+
+[connection signal="focus_entered" from="." to="." method="queue_redraw"]
+[connection signal="focus_exited" from="." to="." method="queue_redraw"]
+[connection signal="mouse_entered" from="." to="." method="_set_hovered" binds= [true]]
+[connection signal="mouse_exited" from="." to="." method="_set_hovered" binds= [false]]

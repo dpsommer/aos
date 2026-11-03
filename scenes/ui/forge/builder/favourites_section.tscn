@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/2d/icons/star_filled.svg" id="1_star"]
+
+[node name="FavouritesSection" type="VBoxContainer"]
+theme_override_constants/separation = 6
+
+[node name="Heading" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_type_variation = &"FavouritesPanel"
+
+[node name="Row" type="HBoxContainer" parent="Heading"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Star" type="TextureRect" parent="Heading/Row"]
+modulate = Color(0.9333, 0.7843, 0.4667, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("1_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Heading/Row"]
+layout_mode = 2
+theme_type_variation = &"FavouritesLabel"
+text = "FAVOURITES"

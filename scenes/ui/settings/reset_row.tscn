@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[node name="ResetRow" type="HBoxContainer"]
+
+[node name="Spacer" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Reset" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GhostButton"
+text = "Reset all"

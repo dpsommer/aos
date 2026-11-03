@@ -32,7 +32,7 @@ func _builder(bands: Array[RegimentOfRenown], army: Army = null) -> ArmyBuilder:
 
 
 func _card(builder: ArmyBuilder, band: RegimentOfRenown, context := "tab", on_added := Callable(), flash := false) -> RenownCard:
-	var card := RenownCard.new(builder, band, context, on_added, flash)
+	var card := RenownCard.create(builder, band, context, on_added, flash)
 	add_child_autofree(card)
 	return card
 

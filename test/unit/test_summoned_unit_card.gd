@@ -20,7 +20,7 @@ func _unit() -> Warscroll:
 
 
 func _card(unit: Warscroll = null) -> SummonedUnitCard:
-	var card := SummonedUnitCard.new(unit if unit else _unit())
+	var card := SummonedUnitCard.create(unit if unit else _unit())
 	add_child_autofree(card)
 	return card
 

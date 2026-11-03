@@ -1,0 +1,144 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/battle/deployment_map_picker.gd" id="1_picker"]
+
+[node name="DeploymentMapPicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_picker")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.047, 0.051, 0.063, 0.72)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Column" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Center/Column"]
+layout_mode = 2
+theme_type_variation = &"DisplayTitleLabel"
+text = "Pick the battlefield"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/Column"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"DescriptionLabel"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Card" type="PanelContainer" parent="Center/Column"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"CardPanel"
+
+[node name="Row" type="HBoxContainer" parent="Center/Column/Card"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Preview" type="CenterContainer" parent="Center/Column/Card/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 352)
+layout_mode = 2
+
+[node name="Choices" type="VBoxContainer" parent="Center/Column/Card/Row"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SideRow" type="VBoxContainer" parent="Center/Column/Card/Row/Choices"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Heading" type="Label" parent="Center/Column/Card/Row/Choices/SideRow"]
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+text = "SIDE"
+horizontal_alignment = 1
+
+[node name="Realms" type="HBoxContainer" parent="Center/Column/Card/Row/Choices/SideRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MapRow" type="VBoxContainer" parent="Center/Column/Card/Row/Choices"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Heading" type="Label" parent="Center/Column/Card/Row/Choices/MapRow"]
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+text = "DEPLOYMENT MAP"
+horizontal_alignment = 1
+
+[node name="Maps" type="HBoxContainer" parent="Center/Column/Card/Row/Choices/MapRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TerritoryRow" type="VBoxContainer" parent="Center/Column/Card/Row/Choices"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Heading" type="Label" parent="Center/Column/Card/Row/Choices/TerritoryRow"]
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+text = "YOUR TERRITORY"
+horizontal_alignment = 1
+
+[node name="Territories" type="HBoxContainer" parent="Center/Column/Card/Row/Choices/TerritoryRow"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TerritoryA" type="Button" parent="Center/Column/Card/Row/Choices/TerritoryRow/Territories"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TabButton"
+toggle_mode = true
+text = "Territory A"
+metadata/focus_key = "territory_a"
+
+[node name="TerritoryB" type="Button" parent="Center/Column/Card/Row/Choices/TerritoryRow/Territories"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TabButton"
+toggle_mode = true
+text = "Territory B"
+metadata/focus_key = "territory_b"
+
+[node name="Confirm" type="Button" parent="Center/Column/Card/Row/Choices"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"GoldButton"
+text = "Confirm"
+metadata/focus_key = "confirm"
+
+[connection signal="pressed" from="Center/Column/Card/Row/Choices/TerritoryRow/Territories/TerritoryA" to="." method="_pick_territory" binds= [true]]
+[connection signal="pressed" from="Center/Column/Card/Row/Choices/TerritoryRow/Territories/TerritoryB" to="." method="_pick_territory" binds= [false]]
+[connection signal="pressed" from="Center/Column/Card/Row/Choices/Confirm" to="." method="_confirm"]

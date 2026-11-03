@@ -98,14 +98,13 @@ static func spacer() -> Control:
 ## button, e.g. to show the unit in the info pane, and [param tooltip] names what it does.
 static func portrait(unit_name: String, on_pressed := Callable(), tooltip := "", size := 40) -> Control:
 	if on_pressed.is_valid():
-		var node := button(initials(unit_name), on_pressed, "", "PortraitButton", tooltip)
+		var node: Button = load("res://scenes/ui/common/portrait_button.tscn").instantiate()
+		node.text = initials(unit_name)
+		node.tooltip_text = tooltip
 		node.accessibility_name = tooltip
 		node.custom_minimum_size = Vector2(size, size)
-		node.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		var stripes := ArtPlaceholder.new(6)
-		stripes.show_behind_parent = true
-		stripes.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		node.add_child(stripes)
+		node.pressed.connect(on_pressed)
+		(node.get_node(^"%Stripes") as ArtPlaceholder).corner_radius = 6
 		return node
 	var node := art(initials(unit_name), 6, 12)
 	node.custom_minimum_size = Vector2(size, size)
@@ -124,30 +123,16 @@ static func initials(title: String) -> String:
 
 ## Striped placeholder art with [param text] in the middle, e.g. an army's initials.
 static func art(text: String, corner_radius := 8, font_size := 14) -> ArtPlaceholder:
-	var node := ArtPlaceholder.new(corner_radius)
-	var caption := label(text, "ArtLabel")
-	caption.add_theme_font_size_override("font_size", font_size)
-	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	caption.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	node.add_child(caption)
+	var node := ArtPlaceholder.create(corner_radius)
+	node.set_caption(text, font_size)
 	return node
 
 
 ## Striped placeholder art with [param texture] in the middle at [param icon_size] pixels, e.g. a
 ## faction's icon.
 static func icon_art(texture: Texture2D, icon_size: int, corner_radius := 8) -> ArtPlaceholder:
-	var node := ArtPlaceholder.new(corner_radius)
-	var icon := TextureRect.new()
-	icon.texture = texture
-	icon.modulate = UITheme.TEXT
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	icon.custom_minimum_size = Vector2(icon_size, icon_size)
-	icon.set_anchors_preset(Control.PRESET_CENTER)
-	icon.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	icon.grow_vertical = Control.GROW_DIRECTION_BOTH
-	node.add_child(icon)
+	var node := ArtPlaceholder.create(corner_radius)
+	node.set_icon(texture, icon_size)
 	return node
 
 
@@ -167,18 +152,21 @@ static func breadcrumb(steps: PackedStringArray, current: int, title := "Forge s
 ## [param count] on the right.
 static func banner(text: String, count: String, open: bool, on_pressed: Callable, key: String,
 		variation := "BannerButton") -> Button:
-	var node := button(text, on_pressed, key, variation, ("Fold " if open else "Unfold ") + text)
-	node.icon = UITheme.icon("chevron_down" if open else "chevron_right")
-	node.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	node.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var node: Button = load("res://scenes/ui/common/banner_button.tscn").instantiate()
+	node.text = text
+	node.theme_type_variation = variation
+	node.tooltip_text = ("Fold " if open else "Unfold ") + text
+	node.pressed.connect(on_pressed)
+	if not key.is_empty():
+		node.set_meta(&"focus_key", key)
+	if not open:
+		node.icon = UITheme.icon("chevron_right")
 	node.accessibility_name = text
 	node.accessibility_description = "Expanded" if open else "Collapsed"
 	if not count.is_empty():
-		var tally := label(count, "MutedLabel")
-		tally.set_anchors_and_offsets_preset(Control.PRESET_CENTER_RIGHT, Control.PRESET_MODE_MINSIZE, 10)
-		tally.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		node.add_child(tally)
+		var tally: Label = node.get_node(^"%Count")
+		tally.text = count
+		tally.visible = true
 	return node
 
 
@@ -194,15 +182,7 @@ static func rich(bbcode: String) -> RichTextLabel:
 
 ## The gold check a selected card shows in its corner.
 static func check_badge() -> PanelContainer:
-	var check := TextureRect.new()
-	check.texture = UITheme.icon("check")
-	check.modulate = Color("#17140C")
-	check.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	check.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	check.custom_minimum_size = Vector2(14, 14)
-	var badge := panel("", check)
-	badge.add_theme_stylebox_override("panel", UITheme.box(UITheme.GOLD, Color.TRANSPARENT, 12, 5))
-	return badge
+	return load("res://scenes/ui/common/check_badge.tscn").instantiate()
 
 
 ## An option list; [param items] are [text, value] pairs. Calls [param on_selected] with the value.
@@ -222,22 +202,29 @@ static func select(items: Array, selected: Variant, on_selected: Callable, key: 
 ## A setting that's on or off: [param title] and [param description] beside a switch, which calls
 ## [param on_toggled] with whether it's on.
 static func switch_row(title: String, description: String, on: bool, on_toggled: Callable, key: String) -> PanelContainer:
-	var check := CheckButton.new()
+	var row: PanelContainer = load("res://scenes/ui/common/switch_row.tscn").instantiate()
+	(row.get_node(^"%Title") as Label).text = title
+	(row.get_node(^"%Description") as Label).text = description
+	var check: CheckButton = row.get_node(^"%Switch")
 	check.button_pressed = on
 	check.accessibility_name = title
 	check.set_meta(&"focus_key", key)
 	check.toggled.connect(on_toggled)
-	var text := vbox([label(title, "CardTitleLabel"), label(description, "MutedLabel", true)], 4)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	return panel("RowPanel", hbox([text, check], 16))
+	return row
 
 
 ## A setting: [param title] above [param control], with [param note] below if it isn't empty.
 static func setting_row(title: String, control: Control, note := "") -> PanelContainer:
-	var box := vbox([label(title, "CardTitleLabel"), control], 8)
+	var row: PanelContainer = load("res://scenes/ui/common/setting_row.tscn").instantiate()
+	(row.get_node(^"%Title") as Label).text = title
+	var box: VBoxContainer = row.get_node(^"%Box")
+	box.add_child(control)
+	box.move_child(control, 1)
 	if not note.is_empty():
-		box.add_child(label(note, "MutedLabel", true))
-	return panel("RowPanel", box)
+		var label: Label = row.get_node(^"%Note")
+		label.text = note
+		label.visible = true
+	return row
 
 
 ## The warscroll's Scourge or Legends tags.

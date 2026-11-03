@@ -11,9 +11,6 @@ const LORE_HELP := {
 	"manifestation": "Your army must contain at least one Wizard or Priest in order to summon Manifestations.",
 }
 
-## The height of an empty battle tactics card or lore slot.
-const SLOT_HEIGHT := 92
-
 var editor: ArmyEditor
 var catalog: ArmyCatalog
 var picker: Picker
@@ -33,8 +30,6 @@ var new_regiment_label: Label
 var expanded := {}
 ## Whether the army has changed since it was opened or last saved.
 var dirty := false
-## Asks whether to discard unsaved changes when leaving.
-var discard_dialog: ConfirmationDialog
 ## Ids of collapsed regiments.
 var collapsed := {}
 ## Id of the regiment being renamed, or empty.
@@ -59,13 +54,15 @@ var _redraw_again := false
 @onready var left_pane: PanelContainer = %LeftPane
 @onready var builder_list: VBoxContainer = %BuilderList
 @onready var builder_scroll: ScrollContainer = %BuilderScroll
+## Asks whether to discard unsaved changes when leaving.
+@onready var discard_dialog: ConfirmationDialog = %DiscardDialog
+## Says the army couldn't be saved.
+@onready var save_failed_dialog: AcceptDialog = %SaveFailedDialog
 
 
 func _ready() -> void:
 	theme = UITheme.get_theme()
 	back_button.icon = UITheme.icon("back")
-	back_button.pressed.connect(request_back)
-	save_button.pressed.connect(save)
 	# The save_army action: Command+S on macOS, else Ctrl+S, unless remapped in Settings.
 	var shortcut := InputEventAction.new()
 	shortcut.action = &"save_army"
@@ -75,25 +72,22 @@ func _ready() -> void:
 	save_button.shortcut_in_tooltip = false
 	var keys := InputBindings.keys("save_army")
 	save_button.tooltip_text = "Save army (%s)" % InputBindings.key_name(keys[0]) if not keys.is_empty() else "Save army"
-	discard_dialog = ConfirmationDialog.new()
-	discard_dialog.title = "Unsaved changes"
-	discard_dialog.dialog_text = "This army has unsaved changes."
-	discard_dialog.ok_button_text = "Discard changes"
-	discard_dialog.cancel_button_text = "Keep editing"
+	# A dialog's extra buttons can only be added in code.
 	var save_and_back := discard_dialog.add_button("Save and go back", true, "save")
-	discard_dialog.confirmed.connect(back_pressed.emit)
-	discard_dialog.custom_action.connect(_on_discard_dialog_action)
-	add_child(discard_dialog)
 	UITheme.style_dialog(discard_dialog, "DialogDangerButton")
 	save_and_back.theme_type_variation = &"DialogGoldButton"
-	info_pane = InfoPane.new(self)
+	UITheme.style_dialog(save_failed_dialog)
+	info_pane = InfoPane.create(self)
 	left_pane.add_child(info_pane)
-	picker = Picker.new(self)
+	picker = Picker.create(self)
 	picker.hide()
 	picker.closed.connect(_on_picker_closed)
 	left_pane.add_child(picker)
 	drag = BuilderDragDrop.new(self)
-	_add_remove_overlay()
+	remove_overlay = %RemoveOverlay
+	# The overlay covers the info pane and the picker.
+	left_pane.move_child(remove_overlay, -1)
+	drag.target(remove_overlay, _can_drop_remove, _drop_remove)
 	set_process(false)
 
 
@@ -108,23 +102,6 @@ func _notification(what: int) -> void:
 
 func _process(delta: float) -> void:
 	drag.process(delta)
-
-
-func _add_remove_overlay() -> void:
-	var bin := TextureRect.new()
-	bin.texture = UITheme.icon("delete")
-	bin.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	bin.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	bin.custom_minimum_size = Vector2(28, 28)
-	bin.modulate = UITheme.DANGER
-	var text := UIBuilder.label("Drop to remove from army", "CardTitleLabel")
-	text.add_theme_color_override("font_color", UITheme.DANGER)
-	var center := CenterContainer.new()
-	center.add_child(UIBuilder.vbox([bin, text], 10))
-	remove_overlay = UIBuilder.panel("RemoveDropPanel", center)
-	remove_overlay.hide()
-	drag.target(remove_overlay, _can_drop_remove, _drop_remove)
-	left_pane.add_child(remove_overlay)
 
 
 func _can_drop_remove(_at: Vector2, data: Dictionary) -> bool:
@@ -182,14 +159,8 @@ func save() -> bool:
 	var error := ArmyStore.save(editor.army)
 	if error != OK:
 		push_error("Couldn't save the army: %s" % error_string(error))
-		var failed := AcceptDialog.new()
-		failed.title = "Couldn't save"
-		failed.dialog_text = "The army couldn't be saved (%s)." % error_string(error)
-		failed.confirmed.connect(failed.queue_free)
-		failed.canceled.connect(failed.queue_free)
-		add_child(failed)
-		UITheme.style_dialog(failed)
-		failed.popup_centered()
+		save_failed_dialog.dialog_text = "The army couldn't be saved (%s)." % error_string(error)
+		save_failed_dialog.popup_centered()
 		return false
 	dirty = false
 	_draw_header()
@@ -203,6 +174,10 @@ func request_back() -> void:
 		discard_dialog.get_cancel_button().grab_focus()
 	else:
 		back_pressed.emit()
+
+
+func _on_discard_confirmed() -> void:
+	back_pressed.emit()
 
 
 func _on_discard_dialog_action(action: StringName) -> void:
@@ -349,10 +324,12 @@ func _draw_header() -> void:
 
 ## A titled section of the army list, with [param note] beside the title if not empty.
 func _section(title: String, children: Array, note := "") -> VBoxContainer:
-	var heading: Control = UIBuilder.label(title, "SectionLabel")
+	var box: VBoxContainer = load("res://scenes/ui/forge/builder/builder_section.tscn").instantiate()
+	(box.get_node(^"%Title") as Label).text = title
 	if not note.is_empty():
-		heading = UIBuilder.hbox([heading, UIBuilder.label(note, "MutedLabel")], 12)
-	var box := UIBuilder.vbox([heading], 10)
+		var label: Label = box.get_node(^"%Note")
+		label.text = note
+		label.visible = true
 	for child: Control in children:
 		box.add_child(child)
 	return box
@@ -374,15 +351,11 @@ func _name_section() -> Control:
 			_focus_key("army:rename"))
 		edit.focus_exited.connect(func() -> void: finish_editing_name(edit.text))
 		return edit
-	var title := UIBuilder.label(editor.army.name, "PageTitleLabel")
-	title.add_theme_font_size_override("font_size", 30)
-	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	var line: InlineLine = load("res://scenes/ui/forge/builder/army_name_line.tscn").instantiate()
+	var title: Label = line.get_node(^"%Name")
+	title.text = editor.army.name
 	title.tooltip_text = editor.army.name
-	title.mouse_filter = Control.MOUSE_FILTER_PASS
-	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	var line := UnitRow.InlineLine.new(10)
-	line.add_child(title)
-	line.add_child(UIBuilder.icon_button("rename", "Rename army", start_editing_name, "army:rename"))
+	(line.get_node(^"%Rename") as Button).pressed.connect(start_editing_name)
 	return line
 
 
@@ -397,10 +370,11 @@ func _validation_section() -> Control:
 		var messages: PackedStringArray = list[0]
 		if messages.is_empty():
 			continue
-		var lines := UIBuilder.vbox([], 4)
+		var panel: PanelContainer = load("res://scenes/ui/forge/builder/message_panel.tscn").instantiate()
+		panel.theme_type_variation = list[1]
 		for message in messages:
-			lines.add_child(UIBuilder.label("• " + message, list[2], true))
-		box.add_child(UIBuilder.panel(list[1], lines))
+			panel.get_node(^"%Lines").add_child(UIBuilder.label("• " + message, list[2], true))
+		box.add_child(panel)
 	return box
 
 
@@ -414,11 +388,10 @@ func _tactics_section() -> Control:
 		var slot_control: Control
 		if card:
 			var change := UIBuilder.button("Change", pick_tactic.bind(slot), "tactic:%d" % slot, "", "Change %s" % heading.to_lower())
-			slot_control = TacticCard.new(card, TacticCard.Form.SUMMARY, heading, change)
+			slot_control = TacticCard.create(card, TacticCard.Form.SUMMARY, heading, change)
 			_link(slot_control, info_pane.show_tactic.bind(card.name), "Show %s in the Rules tab" % card.name, "tactic_card:%d" % slot)
 		else:
-			slot_control = UIBuilder.button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot, "DashedButton")
-			slot_control.custom_minimum_size.y = SLOT_HEIGHT
+			slot_control = slot_button("Choose " + heading.to_lower(), pick_tactic.bind(slot), "tactic:%d" % slot)
 		slot_control.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(slot_control)
 	return _section("Battle Tactics", [row])
@@ -427,12 +400,15 @@ func _tactics_section() -> Control:
 func _army_list_section() -> Control:
 	var children: Array = []
 	for regiment in editor.army.regiments:
-		children.append(RegimentPanel.new(self, regiment))
-	var add_buttons := UIBuilder.hbox([UIBuilder.button("Add regiment", pick_leader.bind(""), "army:add_regiment", "GhostButton")], 12)
+		children.append(RegimentPanel.create(self, regiment))
+	var add_buttons: HBoxContainer = load("res://scenes/ui/forge/builder/add_regiment_buttons.tscn").instantiate()
+	(add_buttons.get_node(^"%AddRegiment") as Button).pressed.connect(pick_leader.bind(""))
+	var add_renown: Button = add_buttons.get_node(^"%AddRegimentOfRenown")
+	add_renown.pressed.connect(pick_regiment_of_renown)
 	# An army has at most one Regiment of Renown, unless it overrides its constraints.
 	var has_renown := editor.army.regiments.any(func(r: ArmyRegiment) -> bool: return r.is_regiment_of_renown())
-	if editor.army.override_constraints or not has_renown:
-		add_buttons.add_child(UIBuilder.button("Add Regiment of Renown", pick_regiment_of_renown, "army:add_ror", "GhostButton"))
+	if not editor.army.override_constraints and has_renown:
+		add_renown.free()
 	add_regiment_buttons = add_buttons
 	children.append(add_buttons)
 	children.append(_new_regiment_drop())
@@ -457,12 +433,8 @@ func _drop_regiment_of_renown(_at: Vector2, data: Dictionary) -> void:
 ## A highlighted area, hidden until a leader is dragged from the Roster tab, that starts a new
 ## regiment led by the unit dropped on it.
 func _new_regiment_drop() -> PanelContainer:
-	new_regiment_label = UIBuilder.label("", "CardTitleLabel")
-	new_regiment_label.add_theme_color_override("font_color", UITheme.GOLD)
-	new_regiment_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	new_regiment_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	new_regiment_drop = UIBuilder.panel("NewRegimentDropPanel", new_regiment_label)
-	new_regiment_drop.hide()
+	new_regiment_drop = load("res://scenes/ui/forge/builder/new_regiment_drop.tscn").instantiate()
+	new_regiment_label = new_regiment_drop.get_node(^"%Label")
 	drag.target(new_regiment_drop, _can_drop_new_regiment, _drop_new_regiment)
 	return new_regiment_drop
 
@@ -501,14 +473,15 @@ func _drop_new_regiment(_at: Vector2, data: Dictionary) -> void:
 
 
 func _auxiliary_section() -> Control:
-	var box := UIBuilder.vbox([], 8)
-	for unit in editor.army.auxiliary:
-		box.add_child(UnitRow.new(self, unit, null))
-	var add := UIBuilder.hbox([UIBuilder.button("Add auxiliary unit", pick_auxiliary, "army:add_aux", "GhostButton"),
-			UIBuilder.label("or drag one here", "MutedLabel")], 12)
-	box.add_child(add)
 	# A box like a regiment's, highlighted like one while a unit is dragged.
-	auxiliary_box = UIBuilder.panel("RegimentPanel", box)
+	auxiliary_box = load("res://scenes/ui/forge/builder/auxiliary_box.tscn").instantiate()
+	var box: VBoxContainer = auxiliary_box.get_node(^"%Rows")
+	var add: HBoxContainer = auxiliary_box.get_node(^"%AddRow")
+	(auxiliary_box.get_node(^"%Add") as Button).pressed.connect(pick_auxiliary)
+	for unit in editor.army.auxiliary:
+		var row := UnitRow.create(self, unit, null)
+		box.add_child(row)
+		box.move_child(row, add.get_index())
 	var can_drop := func(at: Vector2, data: Dictionary) -> bool: return _can_drop_auxiliary(at, data, box, add)
 	drag.target(auxiliary_box, can_drop, _drop_auxiliary)
 	return _section("Auxiliary Units", [auxiliary_box])
@@ -544,12 +517,10 @@ func _terrain_section() -> Control:
 ## remove it.
 func _terrain_row(warscroll: Warscroll) -> PanelContainer:
 	var included := editor.army.faction_terrain == warscroll.id
-	var title := UIBuilder.label(warscroll.name)
-	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var detail := UIBuilder.label(terrain_abilities(warscroll), "MutedLabel")
-	detail.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var names := UIBuilder.vbox([title, detail], 2)
-	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var panel: PanelContainer = load("res://scenes/ui/forge/builder/terrain_row.tscn").instantiate()
+	(panel.get_node(^"%Title") as Label).text = warscroll.name
+	(panel.get_node(^"%Detail") as Label).text = terrain_abilities(warscroll)
+	(panel.get_node(^"%Points") as Label).text = "%d pts" % warscroll.points
 	var toggle: Button
 	if included:
 		toggle = UIBuilder.icon_button("delete", "Remove %s from the army" % warscroll.name,
@@ -560,8 +531,11 @@ func _terrain_row(warscroll: Warscroll) -> PanelContainer:
 	var portrait := UIBuilder.portrait(warscroll.name, info_pane.show_terrain.bind(warscroll.id),
 			"Show %s in the Rules tab" % warscroll.name)
 	portrait.set_meta(&"focus_key", "terrain_portrait:" + warscroll.id)
-	var row := UIBuilder.hbox([portrait, names, UIBuilder.label("%d pts" % warscroll.points, "MutedLabel"), toggle], 10)
-	return UIBuilder.panel("RowPanel", row)
+	var row: HBoxContainer = panel.get_node(^"%Row")
+	row.add_child(portrait)
+	row.move_child(portrait, 0)
+	row.add_child(toggle)
+	return panel
 
 
 ## The universal terrain abilities a terrain warscroll's composition lists, e.g. "Cover, Impassable",
@@ -592,15 +566,13 @@ func _lores_section() -> Control:
 			var change := UIBuilder.button("Change", pick_lore.bind(kind), "lore:" + kind, "", "Change %s" % title.to_lower())
 			var remove := UIBuilder.icon_button("delete", "Remove %s from the army" % lore.name, remove_lore.bind(kind),
 					"lore_remove:" + kind, "DangerIconButton")
-			var card := LoreCard.new(lore, false, title, UIBuilder.hbox([change, remove], 4))
+			var card := LoreCard.create(lore, false, title, UIBuilder.hbox([change, remove], 4))
 			card.heading_label.tooltip_text = LORE_HELP[kind]
 			card.heading_label.mouse_filter = Control.MOUSE_FILTER_PASS
 			_link(card, info_pane.show_lore.bind(lore.name), "Show %s in the Rules tab" % lore.name, "lore_card:" + kind)
 			slot = card
 		else:
-			slot = UIBuilder.button("Choose " + title.to_lower(), pick_lore.bind(kind), "lore:" + kind, "DashedButton",
-					LORE_HELP[kind])
-			slot.custom_minimum_size.y = SLOT_HEIGHT
+			slot = slot_button("Choose " + title.to_lower(), pick_lore.bind(kind), "lore:" + kind, LORE_HELP[kind])
 			# The slot turns amber when the army needs this lore and has none, as the validator warns.
 			if kind in missing:
 				for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
@@ -610,12 +582,24 @@ func _lores_section() -> Control:
 	if row.get_child_count() == 0:
 		row.free()
 		return null
-	var heading := UIBuilder.label("Lores", "SectionLabel")
-	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var section := _section("Lores", [row])
 	var view := UIBuilder.button("View in Rules", info_pane.show_lores, "army:view_lores", "",
 			"Show the lores in the Rules tab")
 	view.icon = UITheme.icon("book")
-	return UIBuilder.vbox([UIBuilder.hbox([heading, view]), row], 10)
+	(section.get_node(^"%Title") as Label).size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	section.get_node(^"%Heading").add_child(view)
+	return section
+
+
+## A dashed box saying [param text], e.g. "Choose spell lore", for an empty slot. It calls
+## [param on_pressed], and [param key] is its focus key.
+static func slot_button(text: String, on_pressed: Callable, key: String, tooltip := "") -> Button:
+	var slot: Button = load("res://scenes/ui/forge/builder/slot_button.tscn").instantiate()
+	slot.text = text
+	slot.tooltip_text = tooltip
+	slot.set_meta(&"focus_key", key)
+	slot.pressed.connect(on_pressed)
+	return slot
 
 
 ## Makes [param control] call [param on_pressed] when clicked, or on Enter or Space with keyboard focus.

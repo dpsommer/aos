@@ -17,18 +17,16 @@ var expanded := {}
 var _render := Callable()
 
 
-func _init(army_builder: ArmyBuilder) -> void:
-	builder = army_builder
-	size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_title = UIBuilder.label("", "TitleLabel", true)
-	add_child(UIBuilder.hbox([_title, UIBuilder.icon_button("close", "Close without picking", close, "picker:close")]))
-	var scroll := ScrollContainer.new()
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	_list = UIBuilder.vbox([], 8)
-	_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(_list)
-	add_child(scroll)
+static func create(army_builder: ArmyBuilder) -> Picker:
+	var picker: Picker = load("res://scenes/ui/forge/builder/picker.tscn").instantiate()
+	picker.builder = army_builder
+	return picker
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_SCENE_INSTANTIATED:
+		_title = %Title
+		_list = %List
 
 
 func close() -> void:
@@ -63,7 +61,7 @@ func _open(title: String, render: Callable) -> void:
 ## close button when there is none.
 func focus_first() -> void:
 	var first := _first_button(_list)
-	(first if first else get_child(0).get_child(1) as Control).grab_focus()
+	(first if first else %Close as Control).grab_focus()
 
 
 func _first_button(node: Node) -> Control:
@@ -110,14 +108,20 @@ func _toggle_fold(type: String) -> void:
 
 
 func _unit_item(warscroll: Warscroll, on_pick: Callable) -> PanelContainer:
-	var names := UIBuilder.vbox([UIBuilder.label(warscroll.name, "", true)], 2)
-	names.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var details := UIBuilder.hbox([UIBuilder.label("%d pts" % warscroll.points, "MutedLabel")], 6)
+	var item: PanelContainer = load("res://scenes/ui/forge/builder/picker_unit_item.tscn").instantiate()
+	(item.get_node(^"%Name") as Label).text = warscroll.name
+	(item.get_node(^"%Points") as Label).text = "%d pts" % warscroll.points
 	for tag in UIBuilder.tags(warscroll):
-		details.add_child(tag)
-	names.add_child(details)
-	var add := UIBuilder.button("Add", func() -> void: on_pick.call(warscroll.id), "pick:" + warscroll.id, "", "Add %s" % warscroll.name)
-	return UIBuilder.panel("RowPanel", UIBuilder.hbox([UIBuilder.portrait(warscroll.name), names, add], 10))
+		item.get_node(^"%Details").add_child(tag)
+	var add: Button = item.get_node(^"%Add")
+	add.tooltip_text = "Add %s" % warscroll.name
+	add.set_meta(&"focus_key", "pick:" + warscroll.id)
+	add.pressed.connect(func() -> void: on_pick.call(warscroll.id))
+	var row: HBoxContainer = item.get_node(^"%Row")
+	var portrait := UIBuilder.portrait(warscroll.name)
+	row.add_child(portrait)
+	row.move_child(portrait, 0)
+	return item
 
 
 ## Lists the battlepack's battle tactics cards to fill tactics card [param slot], each with its
@@ -132,7 +136,7 @@ func open_tactics(slot: int) -> void:
 			if card.name in tactics:
 				continue
 			var make := func(full: bool, eye: Button) -> PressableCard:
-				var item := TacticCard.new(card, TacticCard.Form.FULL if full else TacticCard.Form.BRIEF, "", eye)
+				var item := TacticCard.create(card, TacticCard.Form.FULL if full else TacticCard.Form.BRIEF, "", eye)
 				item.make_pressable("Choose %s for battle tactics card %d" % [card.name, slot + 1])
 				item.set_meta(&"focus_key", "pick:" + card.name)
 				item.pressed.connect(func() -> void:
@@ -156,7 +160,7 @@ func open_lores(kind: String, title: String) -> void:
 				continue
 			var universal := core != null and lore in core.manifestation_lores
 			var make := func(full: bool, eye: Button) -> PressableCard:
-				var item := LoreCard.new(lore, full, "Universal Manifestation Lore" if universal else "", eye,
+				var item := LoreCard.create(lore, full, "Universal Manifestation Lore" if universal else "", eye,
 						builder.catalog.summoned)
 				item.make_pressable("Choose %s as the army's %s" % [lore.name, title.to_lower()])
 				item.set_meta(&"focus_key", "pick:lore:" + lore.name)
@@ -180,7 +184,7 @@ func open_armies_of_renown() -> void:
 			if renown.name == army.army_of_renown or (renown.legends and not GameSettings.current().show_legends):
 				continue
 			var make := func(full: bool, eye: Button) -> PressableCard:
-				var item := RenownArmyCard.new(renown, full, eye)
+				var item := RenownArmyCard.create(renown, full, eye)
 				item.make_pressable("Use the %s Army of Renown" % renown.name)
 				item.set_meta(&"focus_key", "pick:aor:" + renown.name)
 				item.pressed.connect(func() -> void:
@@ -202,7 +206,7 @@ func open_formations() -> void:
 			if formation.name == army.formation:
 				continue
 			var make := func(full: bool, eye: Button) -> PressableCard:
-				var item := FormationCard.new(formation, full, eye)
+				var item := FormationCard.create(formation, full, eye)
 				item.make_pressable("Choose %s as the army's battle formation" % formation.name)
 				item.set_meta(&"focus_key", "pick:formation:" + formation.name)
 				item.pressed.connect(func() -> void:
@@ -249,5 +253,5 @@ func open_regiments_of_renown() -> void:
 		if shown.is_empty():
 			_list.add_child(UIBuilder.label("This army can't include any Regiments of Renown.", "MutedLabel", true))
 		for regiment: RegimentOfRenown in shown:
-			_list.add_child(RenownCard.new(builder, regiment, "pick", close))
+			_list.add_child(RenownCard.create(builder, regiment, "pick", close))
 	_open("Add a Regiment of Renown", render)

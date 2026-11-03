@@ -59,11 +59,17 @@ var folded := false
 var _name_label: Label
 ## The header row: icon, frequency and timing, then the value chips and any [method add_header_control].
 var _header: HBoxContainer
-## Everything under the name: the rule, rules text, keywords and source.
+## Everything under the name that has something to show: the rule, rules text, keywords and source.
 var _details: Array[Control] = []
 
 
-func _init(rule: Ability) -> void:
+static func create(rule: Ability) -> AbilityCard:
+	var card: AbilityCard = load("res://scenes/ui/cards/ability_card.tscn").instantiate()
+	card._fill(rule)
+	return card
+
+
+func _fill(rule: Ability) -> void:
 	ability = rule
 	var colors: Array = UITheme.ABILITY_COLOURS[colour(rule)]
 	add_theme_stylebox_override("panel", UITheme.box(colors[0], colors[1], 8, 4))
@@ -71,30 +77,29 @@ func _init(rule: Ability) -> void:
 	accessibility_name = rule.name
 	accessibility_description = header_text
 
-	var timing := UIBuilder.label(header_text.to_upper(), "AbilityTimingLabel", true)
-	timing.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	_header = UIBuilder.hbox([_icon(rule), timing], 6)
+	_header = %Header
+	(%Timing as Label).text = header_text.to_upper()
+	_fill_icon(rule)
 	for value in values(rule):
 		add_header_control(UITheme.chip(value))
-	var header_margin := MarginContainer.new()
-	for side in ["left", "right", "top", "bottom"]:
-		header_margin.add_theme_constant_override("margin_" + side, 2)
-	header_margin.add_child(_header)
 
-	_name_label = UIBuilder.label(rule.name, "AbilityNameLabel", true)
-	_details.append(HSeparator.new())
+	_name_label = %Name
+	_name_label.text = rule.name
+	_details.append(%Separator)
 	var body := RulesFormatter.ability_body(rule)
 	if not body.is_empty():
-		_details.append(UIBuilder.rich(body))
+		_show_detail(%Body, body)
 	if not rule.keywords.is_empty():
-		_details.append(UIBuilder.label(" · ".join(rule.keywords).to_upper(), "KeywordsLabel", true))
+		_show_detail(%Keywords, " · ".join(rule.keywords).to_upper())
 	if not rule.source.is_empty():
-		_details.append(UIBuilder.label("Source: %s" % rule.source, "MutedLabel", true))
-	var inner := UIBuilder.vbox([_name_label] + _details, 6)
-	var inner_box := UIBuilder.panel("", inner)
-	inner_box.add_theme_stylebox_override("panel", UITheme.box(UITheme.ABILITY_INNER, Color.TRANSPARENT, 6, 10))
+		_show_detail(%Source, "Source: %s" % rule.source)
+	(%InnerBox as PanelContainer).add_theme_stylebox_override("panel", UITheme.box(UITheme.ABILITY_INNER, Color.TRANSPARENT, 6, 10))
 
-	add_child(UIBuilder.vbox([header_margin, inner_box], 4))
+
+func _show_detail(control: Control, text: String) -> void:
+	control.set(&"text", text)
+	control.visible = true
+	_details.append(control)
 
 
 ## Adds [param control] to the right end of the header, centred on it, e.g. a chip or a button.
@@ -108,13 +113,7 @@ func add_header_control(control: Control) -> void:
 func make_foldable(open: bool, key := "") -> void:
 	fold_button = UIBuilder.icon_button("chevron_down", "", func() -> void: set_folded(not folded), key, "SmallIconButton")
 	fold_button.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-	# The name shares a row with the chevron, in the name's place.
-	var inner := _name_label.get_parent()
-	var index := _name_label.get_index()
-	inner.remove_child(_name_label)
-	var row := UIBuilder.hbox([_name_label, fold_button], 8)
-	inner.add_child(row)
-	inner.move_child(row, index)
+	%NameRow.add_child(fold_button)
 	set_folded(not open)
 
 
@@ -206,15 +205,10 @@ static func _phase_in(timing: String) -> String:
 	return ""
 
 
-func _icon(rule: Ability) -> PanelContainer:
-	var icon := TextureRect.new()
+func _fill_icon(rule: Ability) -> void:
+	var icon: TextureRect = %Icon
 	icon.texture = UITheme.icon(icon_name(rule))
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	icon.custom_minimum_size = Vector2(16, 16)
 	icon.modulate = UITheme.TEXT
-	var badge := UIBuilder.panel("", icon)
+	var badge: PanelContainer = %IconBadge
 	badge.add_theme_stylebox_override("panel", UITheme.box(Color(0, 0, 0, 0.35), Color.TRANSPARENT, 12, 4))
-	badge.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	badge.tooltip_text = rule.category.capitalize() if not rule.category.is_empty() else ""
-	return badge

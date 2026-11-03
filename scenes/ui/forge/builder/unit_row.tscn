@@ -1,0 +1,133 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/forge/builder/unit_row.gd" id="1_row"]
+[ext_resource type="Script" path="res://scripts/ui/common/inline_line.gd" id="2_line"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/grip.svg" id="3_grip"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/crown.svg" id="4_crown"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/rename.svg" id="5_rename"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/reinforce.svg" id="6_reinforce"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/options.svg" id="7_options"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/copy.svg" id="8_copy"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/delete.svg" id="9_delete"]
+
+[node name="UnitRow" type="PanelContainer"]
+theme_type_variation = &"RowPanel"
+script = ExtResource("1_row")
+
+[node name="Content" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Summary" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Grip" type="Button" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Reorder unit: drag, or use the arrow keys"
+mouse_default_cursor_shape = 13
+theme_type_variation = &"GripButton"
+icon = ExtResource("3_grip")
+icon_alignment = 1
+accessibility_name = "Reorder unit: drag, or use the arrow keys"
+
+[node name="Gap" type="Control" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Crown" type="Button" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"IconButton"
+toggle_mode = true
+icon = ExtResource("4_crown")
+icon_alignment = 1
+
+[node name="Names" type="VBoxContainer" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="NameLine" type="Container" parent="Content/Summary/Names"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_line")
+
+[node name="Heading" type="Label" parent="Content/Summary/Names/NameLine"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Rename" type="Button" parent="Content/Summary/Names/NameLine"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Rename unit"
+theme_type_variation = &"SmallIconButton"
+icon = ExtResource("5_rename")
+icon_alignment = 1
+accessibility_name = "Rename unit"
+
+[node name="SubLine" type="Container" parent="Content/Summary/Names"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_line")
+separation = 6
+
+[node name="Detail" type="Label" parent="Content/Summary/Names/SubLine"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"MutedLabel"
+text_overrun_behavior = 3
+
+[node name="Points" type="HBoxContainer" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BasePoints" type="Label" parent="Content/Summary/Points"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+
+[node name="Reinforce" type="Button" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"IconButton"
+toggle_mode = true
+icon = ExtResource("6_reinforce")
+icon_alignment = 1
+
+[node name="Options" type="Button" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Unit options"
+theme_type_variation = &"IconButton"
+toggle_mode = true
+icon = ExtResource("7_options")
+icon_alignment = 1
+accessibility_name = "Unit options"
+
+[node name="Copy" type="Button" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Duplicate unit"
+theme_type_variation = &"IconButton"
+icon = ExtResource("8_copy")
+icon_alignment = 1
+accessibility_name = "Duplicate unit"
+
+[node name="Remove" type="Button" parent="Content/Summary"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Remove unit"
+theme_type_variation = &"DangerIconButton"
+icon = ExtResource("9_delete")
+icon_alignment = 1
+accessibility_name = "Remove unit"

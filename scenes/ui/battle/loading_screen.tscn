@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/battle/loading_screen.gd" id="1_loading"]
+[ext_resource type="Texture2D" path="res://assets/2d/p_realm_art.svg" id="2_art"]
+[ext_resource type="Script" path="res://scripts/ui/battle/spinner.gd" id="3_spinner"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plan"]
+content_margin_left = 28.0
+content_margin_top = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 28.0
+bg_color = Color(0.09, 0.102, 0.122, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1686, 0.1882, 0.2235, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -19,3 +37,226 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.047, 0.051, 0.063, 1)
+
+[node name="Layout" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RealmArt" type="TextureRect" parent="Layout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_art")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ArtNote" type="Label" parent="Layout"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 24.0
+offset_right = -220.0
+offset_bottom = 24.0
+theme_type_variation = &"MutedLabel"
+theme_override_colors/font_color = Color(0.4314, 0.4588, 0.5098, 1)
+text = "[Realm art for the battleplan]"
+
+[node name="Margin" type="MarginContainer" parent="Layout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 88
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 64
+
+[node name="Column" type="VBoxContainer" parent="Layout/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Matchup" type="HBoxContainer" parent="Layout/Margin/Column"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="You" type="VBoxContainer" parent="Layout/Margin/Column/Matchup"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Tag" type="Label" parent="Layout/Margin/Column/Matchup/You"]
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+theme_override_colors/font_color = Color(0.498, 0.6627, 0.8392, 1)
+theme_override_font_sizes/font_size = 12
+text = "YOU"
+horizontal_alignment = 2
+
+[node name="PlayerName" type="Label" parent="Layout/Margin/Column/Matchup/You"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitleLabel"
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 2
+
+[node name="PlayerDetails" type="Label" parent="Layout/Margin/Column/Matchup/You"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"DescriptionLabel"
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 2
+
+[node name="Versus" type="Label" parent="Layout/Margin/Column/Matchup"]
+layout_mode = 2
+theme_type_variation = &"PageTitleLabel"
+theme_override_colors/font_color = Color(0.851, 0.6588, 0.2902, 1)
+theme_override_font_sizes/font_size = 28
+text = "VS"
+
+[node name="Them" type="VBoxContainer" parent="Layout/Margin/Column/Matchup"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Tag" type="Label" parent="Layout/Margin/Column/Matchup/Them"]
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+theme_override_colors/font_color = Color(0.898, 0.5412, 0.502, 1)
+theme_override_font_sizes/font_size = 12
+text = "AI OPPONENT"
+
+[node name="OpponentName" type="Label" parent="Layout/Margin/Column/Matchup/Them"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitleLabel"
+theme_override_font_sizes/font_size = 30
+
+[node name="OpponentDetails" type="Label" parent="Layout/Margin/Column/Matchup/Them"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"DescriptionLabel"
+theme_override_font_sizes/font_size = 14
+
+[node name="PlanCard" type="PanelContainer" parent="Layout/Margin/Column"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"CardPanel"
+theme_override_styles/panel = SubResource("StyleBoxFlat_plan")
+
+[node name="Row" type="HBoxContainer" parent="Layout/Margin/Column/PlanCard"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Frame" type="VBoxContainer" parent="Layout/Margin/Column/PlanCard/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(360, 264)
+layout_mode = 2
+
+[node name="Info" type="VBoxContainer" parent="Layout/Margin/Column/PlanCard/Row"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Kind" type="Label" parent="Layout/Margin/Column/PlanCard/Row/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StatNameLabel"
+
+[node name="PlanTitle" type="Label" parent="Layout/Margin/Column/PlanCard/Row/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PageTitleLabel"
+theme_override_font_sizes/font_size = 40
+
+[node name="Description" type="Label" parent="Layout/Margin/Column/PlanCard/Row/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"DescriptionLabel"
+autowrap_mode = 3
+
+[node name="Facts" type="Label" parent="Layout/Margin/Column/PlanCard/Row/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BodyLabel"
+
+[node name="Note" type="Label" parent="Layout/Margin/Column/PlanCard/Row/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MutedLabel"
+text = "Territories are shown neutral here: blue and red are assigned after the roll-off."
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Layout/Margin/Column"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Progress" type="VBoxContainer" parent="Layout/Margin/Column"]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+
+[node name="Status" type="HBoxContainer" parent="Layout/Margin/Column/Progress"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Spinner" type="Control" parent="Layout/Margin/Column/Progress/Status"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("3_spinner")
+
+[node name="Step" type="Label" parent="Layout/Margin/Column/Progress/Status"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Layout/Margin/Column/Progress/Status"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Percent" type="Label" parent="Layout/Margin/Column/Progress/Status"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+theme_override_font_sizes/font_size = 14
+
+[node name="Bar" type="ProgressBar" parent="Layout/Margin/Column/Progress"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_type_variation = &"LoadingBar"
+show_percentage = false
+accessibility_name = "Loading battle"
+
+[node name="Checklist" type="HBoxContainer" parent="Layout/Margin/Column/Progress"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Tip" type="RichTextLabel" parent="Layout/Margin/Column/Progress"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.6627, 0.6784, 0.7137, 1)
+bbcode_enabled = true
+fit_content = true

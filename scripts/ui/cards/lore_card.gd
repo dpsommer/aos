@@ -8,12 +8,17 @@ extends PressableCard
 ## right corner (at the end of the name's row without a heading), e.g. a "Change" button, or null
 ## for none. [param summoned], given an ability, returns the manifestations and units it summons
 ## ([method ArmyCatalog.summoned]), shown under it ([method WarscrollCard.summoned_card]).
-func _init(lore: Lore, full: bool, heading := "", action: Control = null, summoned := Callable()) -> void:
-	super()
+static func create(lore: Lore, full: bool, heading := "", action: Control = null, summoned := Callable()) -> LoreCard:
+	var card: LoreCard = load("res://scenes/ui/cards/lore_card.tscn").instantiate()
+	card._fill(lore, full, heading, action, summoned)
+	return card
+
+
+func _fill(lore: Lore, full: bool, heading: String, action: Control, summoned: Callable) -> void:
 	_add_title(lore.name, heading, tags(lore), action)
 	if full:
 		for ability in lore.entries:
-			content.add_child(AbilityCard.new(ability))
+			content.add_child(AbilityCard.create(ability))
 			if summoned.is_valid():
 				for summoned_unit: Warscroll in summoned.call(ability):
 					content.add_child(WarscrollCard.summoned_card(summoned_unit))

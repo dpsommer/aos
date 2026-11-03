@@ -24,7 +24,7 @@ func _builder(army: Army, faction: Faction = null) -> ArmyBuilder:
 ## A row for the unit with [param uid], as the army list would draw it.
 func _row(builder: ArmyBuilder, uid: String) -> UnitRow:
 	var unit := builder.editor.army.find_unit(uid)
-	var row := UnitRow.new(builder, unit, builder.editor.army.regiment_of(uid))
+	var row := UnitRow.create(builder, unit, builder.editor.army.regiment_of(uid))
 	add_child_autofree(row)
 	return row
 

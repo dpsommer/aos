@@ -20,7 +20,7 @@ func _formation(points := 0) -> BattleFormation:
 
 
 func _make(formation: BattleFormation, full: bool, action: Control = null) -> FormationCard:
-	var node := FormationCard.new(formation, full, action)
+	var node := FormationCard.create(formation, full, action)
 	add_child_autofree(node)
 	return node
 

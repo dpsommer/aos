@@ -1,0 +1,77 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/common/art_placeholder.tscn" id="1_art"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/copy.svg" id="2_copy"]
+[ext_resource type="Texture2D" path="res://assets/2d/icons/delete.svg" id="3_delete"]
+
+[node name="ArmyRow" type="PanelContainer"]
+theme_type_variation = &"CardPanel"
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Art" parent="Row" instance=ExtResource("1_art")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Text" type="VBoxContainer" parent="Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="Name" type="Label" parent="Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"CardHeadingLabel"
+
+[node name="Detail" type="Label" parent="Row/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MutedLabel"
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
+
+[node name="Note" type="Label" parent="Row/Text"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"WarningLabel"
+autowrap_mode = 3
+
+[node name="Status" type="PanelContainer" parent="Row"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="StatusLabel" type="Label" parent="Row/Status"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Open" type="Button" parent="Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Open"
+
+[node name="Copy" type="Button" parent="Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"IconButton"
+icon = ExtResource("2_copy")
+icon_alignment = 1
+
+[node name="Delete" type="Button" parent="Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"DangerIconButton"
+icon = ExtResource("3_delete")
+icon_alignment = 1

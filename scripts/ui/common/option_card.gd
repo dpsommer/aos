@@ -6,7 +6,9 @@ extends Button
 const PADDING := 20
 
 ## Holds the card's controls. Add them with [method add].
-var content := VBoxContainer.new()
+var content: VBoxContainer:
+	get:
+		return get_node(^"%Content")
 ## The card is at least this tall, even if its content is shorter.
 var min_height := 0:
 	set(value):
@@ -14,13 +16,8 @@ var min_height := 0:
 		_fit_content()
 
 
-func _init() -> void:
-	theme_type_variation = "OptionCard"
-	content.add_theme_constant_override("separation", 12)
-	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE, PADDING)
-	content.minimum_size_changed.connect(_fit_content)
-	add_child(content)
+static func create() -> OptionCard:
+	return load("res://scenes/ui/common/option_card.tscn").instantiate()
 
 
 ## Adds [param control] to the card. Mouse events on it go to the card.

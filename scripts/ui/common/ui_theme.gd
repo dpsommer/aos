@@ -194,20 +194,27 @@ static func _luminance(color: Color) -> float:
 
 ## A small coloured label, e.g. a Scourge of Aqshy tag or a battle tactic's kind.
 static func chip(text: String, kind := "") -> PanelContainer:
-	var colors: Array = CHIPS.get(kind, CHIPS[""])
-	var panel := PanelContainer.new()
-	var style := box(colors[0], Color.TRANSPARENT, 4)
+	var panel: PanelContainer = load("res://scenes/ui/common/chip.tscn").instantiate()
+	panel.add_theme_stylebox_override("panel", chip_style(kind))
+	var label: Label = panel.get_node(^"%Label")
+	label.text = text.to_upper()
+	label.add_theme_color_override("font_color", chip_text_colour(kind))
+	return panel
+
+
+## The rounded background of a [method chip] of [param kind].
+static func chip_style(kind := "") -> StyleBoxFlat:
+	var style := box(CHIPS.get(kind, CHIPS[""])[0], Color.TRANSPARENT, 4)
 	style.content_margin_left = 7
 	style.content_margin_right = 7
 	style.content_margin_top = 1
 	style.content_margin_bottom = 1
-	panel.add_theme_stylebox_override("panel", style)
-	var label := Label.new()
-	label.text = text.to_upper()
-	label.add_theme_font_size_override("font_size", 11)
-	label.add_theme_color_override("font_color", colors[1])
-	panel.add_child(label)
-	return panel
+	return style
+
+
+## The text colour of a [method chip] of [param kind].
+static func chip_text_colour(kind := "") -> Color:
+	return CHIPS.get(kind, CHIPS[""])[1]
 
 
 ## The rounded background of an army's status pill, e.g. "Army valid"; [param kind] is a key of
