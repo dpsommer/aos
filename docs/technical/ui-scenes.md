@@ -24,6 +24,10 @@ Code is still fine for:
 - **Focus keys.** Give a static button its `focus_key` as `metadata/focus_key` in the scene; give a button whose key comes from data its key in code.
 - **Unique names.** Each `unique_name_in_owner` name is unique within its scene, including names in a scene it inherits.
 
+## Check every render scale
+
+When you add or change a UI element, check it at 50%, 100% and 200% render scale (Settings → Graphics → Render scale; see [Settings](../design/settings.md)). The scale changes the size of text and controls, so make sure the element is visible and readable at each: nothing clipped, cut off at the window's edge, overlapping or too small to read.
+
 Tests should look for what's shown: `UIKit.find_shown()`, `UIKit.label_texts()` and `UIKit.labels_with_variation()` (`test/support/ui_kit.gd`) skip hidden controls and everything under them.
 
 ## What is still built in code
