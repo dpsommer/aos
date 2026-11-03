@@ -57,7 +57,7 @@ Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`B
 
 - **Board** (`BoardBuilder`): a slab the battlefield's size (`p_battlefield`).
   - Once the roll-off has decided them, each side's territory is striped and outlined, blue for the player and red for the opponent (`p_territory.gdshader`, its stripes moving each side's way). Until then there are none, and the camera looks at the whole battlefield.
-  - The part of the player's territory too close to the enemy to deploy units in is shaded dark (`BoardBuilder.no_deploy`).
+  - The part of the player's territory too close to the enemy to deploy units in is shaded dark (`BoardBuilder.no_deploy`). While placing terrain, the shading shows where terrain can't go, including the gap around terrain features already set up.
   - A realm battlefield has its printed board from the Spearhead Tabletop Simulator mod stretched over the top (`BoardBuilder.board_print`, from `assets/3d/boards/`), north at the top of the image, with its roads and objective markings printed on it. Without the board image (a checkout without Git LFS), its roads are drawn instead.
 - **Objectives:**
   - A 40mm gold marker, its zone and its name.

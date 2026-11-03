@@ -109,6 +109,66 @@ func test_unit_zone_of_the_opponent_is_on_its_own_side() -> void:
 	assert_gt(bounds.position.y, 26.5)
 
 
+# gap_from_terrain and terrain_keep_out
+
+func test_terrain_gap_is_larger_in_spearhead_than_matched_play() -> void:
+	assert_gt(DeploymentRules.gap_from_terrain(BattleKit.battle()), DeploymentRules.gap_from_terrain(_matched()))
+
+
+func test_terrain_keep_out_is_empty_without_terrain() -> void:
+	assert_eq(DeploymentRules.terrain_keep_out(_matched()).size(), 0)
+
+
+func test_terrain_keep_out_ignores_unplaced_terrain() -> void:
+	var battle := _matched()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(10, 5), false))
+	assert_eq(DeploymentRules.terrain_keep_out(battle).size(), 0)
+
+
+func test_terrain_keep_out_reaches_the_gap_beyond_the_feature() -> void:
+	var battle := _matched()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9)))
+	var gap := DeploymentRules.gap_from_terrain(battle)
+	var bounds := _bounds(DeploymentRules.terrain_keep_out(battle))
+	assert_almost_eq(bounds.position.x, 28.0 - gap, 0.05)
+	assert_almost_eq(bounds.end.x, 32.0 + gap, 0.05)
+
+
+func test_terrain_keep_out_is_wider_in_spearhead_than_matched_play() -> void:
+	var matched := _matched()
+	matched.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9)))
+	var spearhead := BattleKit.battle()
+	spearhead.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(5, 9)))
+	assert_gt(_bounds(DeploymentRules.terrain_keep_out(spearhead)).size.x, _bounds(DeploymentRules.terrain_keep_out(matched)).size.x)
+
+
+func test_terrain_keep_out_includes_the_opponents_and_battlefield_terrain() -> void:
+	var battle := _matched()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 2.0, Vector2(10, 5)))
+	battle.opponent.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 2.0, Vector2(20, 5)))
+	battle.terrain.append(BattleKit.terrain(BattleTerrain.Kind.OBSCURING, 2.0, Vector2(30, 5)))
+	assert_eq(DeploymentRules.terrain_keep_out(battle).size(), 3)
+
+
+func test_terrain_keep_out_follows_the_features_position() -> void:
+	var battle := _matched()
+	var feature := BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(10, 5))
+	battle.player.terrain.append(feature)
+	var before := _bounds(DeploymentRules.terrain_keep_out(battle))
+	feature.position = Vector2(40, 5)
+	assert_almost_eq(_bounds(DeploymentRules.terrain_keep_out(battle)).position.x - before.position.x, 30.0, 0.05)
+
+
+func test_a_feature_just_inside_the_keep_out_is_flagged_and_just_outside_is_not() -> void:
+	var battle := _matched()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9)))
+	var gap := DeploymentRules.gap_from_terrain(battle)
+	var other := BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2.ZERO, false)
+	var near := DeploymentRules.terrain_problems(battle, battle.player, other, Vector2(34.0 + gap - 0.5, 9), 0.0)
+	var far := DeploymentRules.terrain_problems(battle, battle.player, other, Vector2(34.0 + gap + 0.5, 9), 0.0)
+	assert_gt(near.size(), far.size())
+
+
 # terrain_zone
 
 func test_matched_play_terrain_zone_is_the_whole_territory() -> void:

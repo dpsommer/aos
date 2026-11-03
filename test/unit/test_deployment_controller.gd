@@ -715,6 +715,22 @@ func test_the_terrain_step_starts_placing_the_first_feature() -> void:
 	assert_true(_c.terrain_nodes.has(_me().terrain[0]))
 
 
+func _shade_pieces() -> int:
+	return _map.get_node("NoDeploy").get_child_count()
+
+
+func test_the_terrain_shade_grows_when_terrain_is_set_up() -> void:
+	_me().terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false))
+	_me().terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false))
+	_battle.opponent = _me().mirror()
+	_start()
+	var before := _shade_pieces()
+	_c.pick_terrain(_me().terrain[0])
+	_c.move_to(Vector2(30, 9))
+	assert_eq(_c.confirm(), "")
+	assert_gt(_shade_pieces(), before)
+
+
 func test_picked_terrain_starts_in_a_valid_spot() -> void:
 	_me().terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false))
 	_battle.opponent = _me().mirror()

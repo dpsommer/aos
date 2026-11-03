@@ -289,20 +289,23 @@ func _show_territories() -> void:
 
 
 ## Shades the part of the player's territory they can't set up in: for terrain features if
-## [param terrain] (Spearhead's 3" from enemy territory and the long edges; nothing in Matched
-## Play), else for units (9" from enemy territory, 6" in Spearhead).
+## [param terrain] (Spearhead's 3" from enemy territory and the long edges, and around terrain
+## already set up: 6" in Spearhead, 3" in Matched Play), else for units (9" from enemy territory,
+## 6" in Spearhead).
 func show_no_deploy(terrain: bool) -> void:
 	_remove_child_named("NoDeploy")
 	var zone: Array[PackedVector2Array]
 	var text: String
+	var blocked: Array[PackedVector2Array] = []
 	if terrain:
 		# Shaded without a label: the placing panel says where terrain can go.
 		zone = DeploymentRules.terrain_zone(battle, battle.player)
+		blocked = DeploymentRules.terrain_keep_out(battle)
 		text = ""
 	else:
 		zone = DeploymentRules.unit_zone(battle, battle.player)
 		text = "Within %d\" of enemy territory" % int(DeploymentRules.unit_gap(battle))
-	add_child(BoardBuilder.no_deploy(battle.player_territory, zone, text, battle.player.facing))
+	add_child(BoardBuilder.no_deploy(battle.player_territory, zone, text, battle.player.facing, blocked))
 
 
 func _remove_child_named(node_name: String) -> void:

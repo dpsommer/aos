@@ -946,6 +946,45 @@ func test_the_terrain_step_shades_without_a_label() -> void:
 	assert_eq(shade.find_children("*", "Label3D", true, false).size(), 0)
 
 
+func test_the_terrain_step_shades_around_terrain_already_set_up() -> void:
+	var battle := BattleKit.deployment_battle()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9)))
+	var map := _built_map(battle)
+	map.show_no_deploy(true)
+	var shade := map.get_node_or_null("NoDeploy")
+	assert_gt(shade.find_children("*", "MeshInstance3D", true, false).size(), 0)
+
+
+func test_the_terrain_step_does_not_shade_around_terrain_not_yet_set_up() -> void:
+	var battle := BattleKit.deployment_battle()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9), false))
+	var map := _built_map(battle)
+	map.show_no_deploy(true)
+	var shade := map.get_node_or_null("NoDeploy")
+	assert_eq(shade.get_child_count(), 0)
+
+
+func test_the_unit_step_does_not_shade_around_terrain() -> void:
+	var bare := _built_map(BattleKit.deployment_battle())
+	bare.show_no_deploy(false)
+	var battle := BattleKit.deployment_battle()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9)))
+	var map := _built_map(battle)
+	map.show_no_deploy(false)
+	assert_eq(map.get_node("NoDeploy").get_child_count(), bare.get_node("NoDeploy").get_child_count())
+
+
+func test_showing_the_shade_again_replaces_it() -> void:
+	var map := _built_map(BattleKit.deployment_battle())
+	map.show_no_deploy(true)
+	map.show_no_deploy(true)
+	var count := 0
+	for child in map.get_children():
+		if child.name.begins_with("NoDeploy"):
+			count += 1
+	assert_eq(count, 1)
+
+
 func test_the_unit_step_labels_the_shade_with_the_enemy_gap() -> void:
 	var map := _built_map(BattleKit.deployment_battle())
 	map.show_no_deploy(false)

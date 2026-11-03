@@ -286,3 +286,87 @@ func test_no_deploy_with_text_has_a_label() -> void:
 	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
 	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array], "Keep out")) as Node3D
 	assert_gt(_labels(root).size(), 0)
+
+
+func _rects(rects: Array[Rect2]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	for rect in rects:
+		result.append(BattleKit.rect_polygon(rect.position.x, rect.position.y, rect.size.x, rect.size.y))
+	return result
+
+
+## The area x extent and fill count of [param root]'s shading.
+func _shade_bounds(root: Node) -> AABB:
+	var bounds := AABB()
+	var first := true
+	for mesh in _fills(root):
+		var box: AABB = mesh.mesh.get_aabb()
+		bounds = box if first else bounds.merge(box)
+		first = false
+	return bounds
+
+
+func test_no_deploy_shades_blocked_areas_inside_the_zone() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, _rects([Rect2(2, 2, 3, 3)]))) as Node3D
+	assert_eq(_fills(root).size(), 1)
+
+
+func test_no_deploy_blocked_shading_is_just_the_blocked_area() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, _rects([Rect2(2, 2, 3, 3)]))) as Node3D
+	var bounds := _shade_bounds(root)
+	assert_almost_eq(bounds.position.x, 2.0, 0.01)
+	assert_almost_eq(bounds.end.x, 5.0, 0.01)
+
+
+func test_no_deploy_blocked_area_outside_own_territory_is_not_shaded() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, _rects([Rect2(20, 0, 5, 5)]))) as Node3D
+	assert_eq(root.get_child_count(), 0)
+
+
+func test_no_deploy_blocked_area_straddling_the_border_is_cut_to_own_territory() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, _rects([Rect2(8, 2, 6, 3)]))) as Node3D
+	assert_lte(_shade_bounds(root).end.x, 10.01)
+
+
+func test_no_deploy_overlapping_blocked_areas_are_shaded_as_one_piece() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var blocked := _rects([Rect2(1, 1, 4, 4), Rect2(3, 3, 4, 4)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, blocked)) as Node3D
+	assert_eq(_fills(root).size(), 1)
+
+
+func test_no_deploy_separate_blocked_areas_are_shaded_separately() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var blocked := _rects([Rect2(0.5, 0.5, 2, 2), Rect2(6, 6, 2, 2)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, blocked)) as Node3D
+	assert_eq(_fills(root).size(), 2)
+
+
+func test_no_deploy_blocked_area_overlapping_the_out_of_zone_shade_is_merged_with_it() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var zone := _rects([Rect2(0, 0, 6, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, zone, "", -PI / 2, _rects([Rect2(4, 2, 4, 3)]))) as Node3D
+	assert_eq(_fills(root).size(), 1)
+
+
+func test_no_deploy_blocked_area_beside_the_out_of_zone_shade_is_a_separate_piece() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var zone := _rects([Rect2(0, 0, 6, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, zone, "", -PI / 2, _rects([Rect2(1, 1, 2, 2)]))) as Node3D
+	assert_eq(_fills(root).size(), 2)
+
+
+func test_no_deploy_blocked_areas_are_labelled_when_there_is_text() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "Keep out", -PI / 2, _rects([Rect2(2, 2, 3, 3)]))) as Node3D
+	assert_gt(_labels(root).size(), 0)
+
+
+func test_no_deploy_without_blocked_areas_shades_as_before() -> void:
+	var own := _rects([Rect2(0, 0, 10, 10)])
+	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, [] as Array[PackedVector2Array])) as Node3D
+	assert_eq(root.get_child_count(), 0)

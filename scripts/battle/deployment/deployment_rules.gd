@@ -77,6 +77,27 @@ static func terrain_zone(battle: Battle, army: BattleArmy) -> Array[PackedVector
 	return zone(away, edges, 0.0)
 
 
+## How far terrain features are set up from other terrain features in [param battle]: 6" in
+## Spearhead, 3" for faction terrain in Matched Play.
+static func gap_from_terrain(battle: Battle) -> float:
+	return SPEARHEAD_TERRAIN_GAP if battle.is_spearhead() else FACTION_TERRAIN_GAP
+
+
+## The areas within [method gap_from_terrain] of each terrain feature set up on the battlefield, which no
+## part of another terrain feature can be set up in.
+static func terrain_keep_out(battle: Battle) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	var gap := gap_from_terrain(battle)
+	for feature in battle.all_terrain():
+		if not feature.placed:
+			continue
+		var outline := terrain_outline(feature, feature.position, feature.rotation)
+		for grown in Geometry2D.offset_polygon(outline, gap, Geometry2D.JOIN_ROUND):
+			if Geometry2D.is_polygon_clockwise(grown) == Geometry2D.is_polygon_clockwise(outline):
+				result.append(grown)
+	return result
+
+
 static func _rect(at: Vector2, size: Vector2) -> PackedVector2Array:
 	return PackedVector2Array([at, Vector2(at.x + size.x, at.y), at + size, Vector2(at.x, at.y + size.y)])
 
@@ -308,7 +329,7 @@ static func terrain_problems(battle: Battle, army: BattleArmy, feature: BattleTe
 		else:
 			problems.append("It must be wholly within your territory.")
 	if terrain_gap < 0.0:
-		terrain_gap = SPEARHEAD_TERRAIN_GAP if battle.is_spearhead() else FACTION_TERRAIN_GAP
+		terrain_gap = gap_from_terrain(battle)
 	for other in battle.all_terrain():
 		if other == feature or not other.placed:
 			continue

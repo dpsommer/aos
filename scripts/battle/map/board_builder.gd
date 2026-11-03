@@ -95,28 +95,70 @@ static func territory(polygons: Array[PackedVector2Array], is_player: bool) -> N
 
 
 ## The part of a side's territory its units can't be set up in (too close to enemy territory),
-## shaded dark: [param own] territory less the deployable [param zone].
+## shaded dark: [param own] territory less the deployable [param zone], plus the parts of
+## [param own] inside [param blocked] (e.g. too close to other terrain features).
 ## [param facing] is the way the side faces (radians clockwise from east): the label reads the right
 ## way up from behind it.
 ## [param text] labels each part, e.g. "Within 9\" of enemy territory"; empty leaves them unlabelled.
-static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2Array], text := "Too close to the enemy", facing := -PI / 2) -> Node3D:
+static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2Array], text := "Too close to the enemy",
+		facing := -PI / 2, blocked: Array[PackedVector2Array] = []) -> Node3D:
 	var root := Node3D.new()
 	root.name = "NoDeploy"
 	var material := StandardMaterial3D.new()
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.albedo_color = NO_DEPLOY
+	var pieces: Array[PackedVector2Array] = []
 	for polygon in own:
-		for piece in _clip_all(polygon, zone):
-			var fill := flat_polygon(piece, NO_DEPLOY_HEIGHT)
-			if fill == null:
-				continue
-			fill.material_override = material
-			root.add_child(fill)
-			root.add_child(outline(piece, NO_DEPLOY_HEIGHT, NO_DEPLOY_EDGE))
-			if not text.is_empty():
-				root.add_child(_no_deploy_label(piece, text, facing))
+		pieces.append_array(_clip_all(polygon, zone))
+		for area in blocked:
+			pieces.append_array(Geometry2D.intersect_polygons(polygon, area))
+	if not blocked.is_empty():
+		pieces = _union(pieces)
+	for piece in pieces:
+		var fill := flat_polygon(piece, NO_DEPLOY_HEIGHT)
+		if fill == null:
+			continue
+		fill.material_override = material
+		root.add_child(fill)
+		root.add_child(outline(piece, NO_DEPLOY_HEIGHT, NO_DEPLOY_EDGE))
+		if not text.is_empty():
+			root.add_child(_no_deploy_label(piece, text, facing))
 	return root
+
+
+## [param polygons] merged where they overlap, so overlaps aren't shaded twice. A hole left inside a
+## merged polygon is filled in.
+static func _union(polygons: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	for polygon in polygons:
+		var current := polygon
+		var merged := true
+		while merged:
+			merged = false
+			for i in result.size():
+				var outers := _outers(Geometry2D.merge_polygons(current, result[i]))
+				if outers.size() == 1:
+					current = outers[0]
+					result.remove_at(i)
+					merged = true
+					break
+		result.append(current)
+	return result
+
+
+## [param polygons] less those inside another: the holes Geometry2D returns alongside outlines.
+static func _outers(polygons: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	for polygon in polygons:
+		var hole := false
+		for other in polygons:
+			if other != polygon and Geometry2D.is_point_in_polygon(polygon[0], other):
+				hole = true
+				break
+		if not hole:
+			result.append(polygon)
+	return result
 
 
 ## What's left of [param polygon] once each of [param cuts] is taken out of it.

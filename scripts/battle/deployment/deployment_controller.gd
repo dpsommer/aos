@@ -788,7 +788,8 @@ func _placing_keys() -> PackedStringArray:
 func _on_changed() -> void:
 	_sync_staged()
 	_sync_board()
-	if deployment.step != _shaded_step:
+	# The terrain step's shading grows as terrain is set up.
+	if deployment.step != _shaded_step or deployment.step == Deployment.Step.TERRAIN:
 		_shaded_step = deployment.step
 		map.show_no_deploy(deployment.step == Deployment.Step.TERRAIN)
 	if not is_player_turn():
