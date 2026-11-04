@@ -4,6 +4,11 @@ extends GutTest
 const BattleKit := preload("res://test/support/battle_kit.gd")
 const ModelKit := preload("res://test/support/model_kit.gd")
 
+## How long the Long Ruin fixture model is before it's scaled.
+const LONG_RUIN_LENGTH := 6.0
+## How many times taller the Twin Ruin fixture's second variant is than its first.
+const TWIN_RUIN_HEIGHT_RATIO := 3.0
+
 
 ## [param feature]'s terrain, built from [param library] (the untextured fixture models by
 ## default) and freed after the test.
@@ -11,13 +16,23 @@ func _built(feature: BattleTerrain, library: ModelLibrary = ModelKit.library()) 
 	return autofree(TerrainPlaceholder.build(feature, library)) as Node3D
 
 
-## The feature's block or model: the root's first child.
+## The feature's block or model.
 func _block(root: Node3D) -> MeshInstance3D:
-	return root.get_child(0)
+	return root.get_children().filter(func(child: Node) -> bool: return child is MeshInstance3D)[0]
 
 
 func _labels(root: Node3D) -> Array[Node]:
 	return root.get_children().filter(func(child: Node) -> bool: return child is Label3D)
+
+
+## The feature's name, for a feature that has one.
+func _name_label(root: Node3D) -> Label3D:
+	return _labels(root)[0] as Label3D
+
+
+## [param feature]'s model from the untextured fixture models.
+func _model_of(feature: BattleTerrain) -> Mesh:
+	return TerrainPlaceholder.model_of(feature, ModelKit.library())
 
 
 ## Faction terrain on a round base, named [param shrine_name] (a fixture model by default).
@@ -108,15 +123,15 @@ func test_faction_terrain_has_a_name_label() -> void:
 
 
 func test_terrain_name_starts_hidden() -> void:
-	assert_false((_labels(_built(_shrine()))[0] as Label3D).visible)
+	assert_false(_name_label(_built(_shrine())).visible)
 
 
 func test_terrain_name_is_found_by_the_hover_name() -> void:
-	assert_eq(_labels(_built(_shrine()))[0].name, ModelPlaceholder.HOVER_LABEL)
+	assert_eq(_name_label(_built(_shrine())).name, ModelPlaceholder.HOVER_LABEL)
 
 
 func test_terrain_name_is_drawn_with_a_distance_field_font() -> void:
-	assert_true((_labels(_built(_shrine()))[0].font as FontFile).multichannel_signed_distance_field)
+	assert_true((_name_label(_built(_shrine())).font as FontFile).multichannel_signed_distance_field)
 
 
 func test_battleplan_terrain_has_no_label() -> void:
@@ -132,23 +147,23 @@ func test_unnamed_terrain_still_has_a_node_name() -> void:
 # models
 
 func test_faction_terrain_has_its_model_by_name() -> void:
-	assert_not_null(TerrainPlaceholder.model_of(_shrine(), ModelKit.library()))
+	assert_not_null(_model_of(_shrine()))
 
 
 func test_faction_terrain_falls_back_to_its_warscroll_name() -> void:
 	var feature := _shrine("Lone Statue")
 	feature.name = "Renamed Feature"
-	assert_not_null(TerrainPlaceholder.model_of(feature, ModelKit.library()))
+	assert_not_null(_model_of(feature))
 
 
 func test_faction_terrain_without_a_model_has_none() -> void:
-	assert_null(TerrainPlaceholder.model_of(_shrine("Nobody"), ModelKit.library()))
+	assert_null(_model_of(_shrine("Nobody")))
 
 
 func test_terrain_of_another_kind_has_no_model_even_when_one_matches() -> void:
 	var feature := BattleKit.terrain(BattleTerrain.Kind.OBSCURING)
 	feature.name = "Test Shrine"
-	assert_null(TerrainPlaceholder.model_of(feature, ModelKit.library()))
+	assert_null(_model_of(feature))
 
 
 func test_no_library_means_no_model() -> void:
@@ -156,49 +171,39 @@ func test_no_library_means_no_model() -> void:
 
 
 func test_a_model_replaces_the_block() -> void:
-	var root := _built(_shrine())
-	var instance := _block(root)
-	assert_eq(instance.mesh, TerrainPlaceholder.model_of(_shrine(), ModelKit.library()))
+	assert_eq(_block(_built(_shrine())).mesh, _model_of(_shrine()))
 
 
 func test_a_model_is_not_stretched_to_the_footprint() -> void:
-	var root := _built(_shrine())
-	assert_eq(_block(root).scale, Vector3.ONE)
+	assert_eq(_block(_built(_shrine())).scale, Vector3.ONE)
 
 
 func test_a_model_stands_on_the_ground() -> void:
-	var root := _built(_shrine())
-	var instance := _block(root)
+	var instance := _block(_built(_shrine()))
 	assert_almost_eq((instance.transform * instance.mesh.get_aabb().position).y, 0.0, 0.001)
 
 
 func test_a_model_has_the_model_material() -> void:
-	var root := _built(_shrine())
-	assert_eq(_block(root).material_override, TerrainPlaceholder.MODEL)
+	assert_eq(_block(_built(_shrine())).material_override, TerrainPlaceholder.MODEL)
 
 
 func test_a_model_has_a_name_label_above_it() -> void:
 	var root := _built(_shrine())
-	var label := _labels(root)[0] as Label3D
-	var model := _block(root)
-	assert_gt(label.position.y, model.mesh.get_aabb().size.y)
+	assert_gt(_name_label(root).position.y, _block(root).mesh.get_aabb().size.y)
 
 
 func test_a_model_is_placed_at_its_position() -> void:
 	var feature := _shrine()
 	feature.position = Vector2(9, 5)
-	var root := _built(feature)
-	assert_eq(root.position, Vector3(9, 0, 5))
+	assert_eq(_built(feature).position, Vector3(9, 0, 5))
 
 
 func test_terrain_without_a_model_is_still_a_block_with_a_library() -> void:
-	var root := _built(_shrine("Nobody"))
-	assert_is(_block(root).mesh, CylinderMesh)
+	assert_is(_block(_built(_shrine("Nobody"))).mesh, CylinderMesh)
 
 
 func test_a_null_library_builds_the_block() -> void:
-	var root := _built(_shrine(), null)
-	assert_is(_block(root).mesh, CylinderMesh)
+	assert_is(_block(_built(_shrine(), null)).mesh, CylinderMesh)
 
 
 func test_a_textured_model_keeps_its_own_materials() -> void:
@@ -216,6 +221,16 @@ func _spearhead(feature_name: String, footprint: Vector2, variant := 0) -> Battl
 	return feature
 
 
+## The fixture model with two variants, as a Spearhead feature using [param variant].
+func _twin_ruin(variant: int) -> BattleTerrain:
+	return _spearhead("Twin Ruin", Vector2(6, 3), variant)
+
+
+## The bounds of the fixture model [constant LONG_RUIN_LENGTH] long, fitted to [param footprint].
+func _long_ruin_bounds(footprint: Vector2) -> AABB:
+	return _bounds(_built(_spearhead("Long Ruin", footprint)))
+
+
 ## The built model's bounds in the feature's frame, after its instance's transform.
 func _bounds(root: Node3D) -> AABB:
 	var instance := _block(root)
@@ -223,90 +238,79 @@ func _bounds(root: Node3D) -> AABB:
 
 
 func test_spearhead_feature_has_its_model_by_name() -> void:
-	assert_not_null(TerrainPlaceholder.model_of(_spearhead("Long Ruin", Vector2(6, 3)), ModelKit.library()))
+	assert_not_null(_model_of(_spearhead("Long Ruin", Vector2(6, 3))))
 
 
 func test_spearhead_feature_without_a_model_has_none() -> void:
-	assert_null(TerrainPlaceholder.model_of(_spearhead("Nobody", Vector2(6, 3)), ModelKit.library()))
+	assert_null(_model_of(_spearhead("Nobody", Vector2(6, 3))))
 
 
 func test_spearhead_feature_uses_the_variant_for_its_model() -> void:
-	var first := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 0), ModelKit.library())
-	var second := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 1), ModelKit.library())
-	assert_ne(first, second)
+	assert_ne(_model_of(_twin_ruin(0)), _model_of(_twin_ruin(1)))
 
 
 func test_spearhead_variant_wraps_around_the_models() -> void:
-	var first := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 0), ModelKit.library())
-	var wrapped := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 2), ModelKit.library())
-	assert_same(first, wrapped)
+	assert_same(_model_of(_twin_ruin(0)), _model_of(_twin_ruin(2)))
 
 
 func test_spearhead_negative_variant_wraps_around_the_models() -> void:
-	var last := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), 1), ModelKit.library())
-	var wrapped := TerrainPlaceholder.model_of(_spearhead("Twin Ruin", Vector2(6, 3), -1), ModelKit.library())
-	assert_same(last, wrapped)
+	assert_same(_model_of(_twin_ruin(1)), _model_of(_twin_ruin(-1)))
 
 
 func test_spearhead_model_is_drawn_for_the_variant() -> void:
 	var feature := _spearhead("Twin Ruin", Vector2(20, 20), 1)
-	assert_eq(_block(_built(feature)).mesh, TerrainPlaceholder.model_of(feature, ModelKit.library()))
+	assert_eq(_block(_built(feature)).mesh, _model_of(feature))
 
 
 func test_spearhead_model_has_the_models_height_ratio_when_scaled() -> void:
 	var tall := _bounds(_built(_spearhead("Twin Ruin", Vector2(2, 2), 1)))
 	var short := _bounds(_built(_spearhead("Twin Ruin", Vector2(2, 2), 0)))
-	assert_almost_eq(tall.size.y / short.size.y, 3.0, 0.001)
+	assert_almost_eq(tall.size.y / short.size.y, TWIN_RUIN_HEIGHT_RATIO, 0.001)
 
 
 func test_spearhead_model_fits_inside_the_footprint() -> void:
-	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(5, 2))))
+	var bounds := _long_ruin_bounds(Vector2(5, 2))
 	assert_lte(bounds.size.x, 5.0 + 0.001)
 	assert_lte(bounds.size.z, 2.0 + 0.001)
 
 
 func test_spearhead_model_long_along_z_is_laid_along_x() -> void:
-	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(20, 20))))
+	var bounds := _long_ruin_bounds(Vector2(20, 20))
 	assert_gt(bounds.size.x, bounds.size.z)
 
 
 func test_spearhead_model_fills_a_footprint_its_length_limits() -> void:
-	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(6, 20))))
-	assert_almost_eq(bounds.size.x, 6.0, 0.001)
+	assert_almost_eq(_long_ruin_bounds(Vector2(6, 20)).size.x, 6.0, 0.001)
 
 
 func test_spearhead_model_fills_a_footprint_its_width_limits() -> void:
-	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(20, 1))))
-	assert_almost_eq(bounds.size.z, 1.0, 0.001)
+	assert_almost_eq(_long_ruin_bounds(Vector2(20, 1)).size.z, 1.0, 0.001)
 
 
 func test_spearhead_model_keeps_its_proportions() -> void:
-	var small := _bounds(_built(_spearhead("Long Ruin", Vector2(3, 3))))
-	var large := _bounds(_built(_spearhead("Long Ruin", Vector2(12, 12))))
+	var small := _long_ruin_bounds(Vector2(3, 3))
+	var large := _long_ruin_bounds(Vector2(12, 12))
 	assert_almost_eq(large.size.x / small.size.x, large.size.y / small.size.y, 0.001)
 	assert_almost_eq(large.size.x / small.size.x, large.size.z / small.size.z, 0.001)
 
 
 func test_spearhead_model_can_be_scaled_up() -> void:
-	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(60, 60))))
-	assert_gt(bounds.size.x, 6.0)
+	assert_gt(_long_ruin_bounds(Vector2(60, 60)).size.x, LONG_RUIN_LENGTH)
 
 
 func test_spearhead_model_stands_on_the_ground() -> void:
-	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(5, 2))))
-	assert_almost_eq(bounds.position.y, 0.0, 0.001)
+	assert_almost_eq(_long_ruin_bounds(Vector2(5, 2)).position.y, 0.0, 0.001)
 
 
 func test_spearhead_model_is_centred_on_the_feature() -> void:
-	var bounds := _bounds(_built(_spearhead("Long Ruin", Vector2(5, 2))))
+	var bounds := _long_ruin_bounds(Vector2(5, 2))
 	assert_almost_eq(bounds.get_center().x, 0.0, 0.001)
 	assert_almost_eq(bounds.get_center().z, 0.0, 0.001)
 
 
 func test_spearhead_label_floats_above_the_scaled_model() -> void:
 	var root := _built(_spearhead("Long Ruin", Vector2(5, 2)))
-	var label := _labels(root)[0] as Label3D
-	assert_almost_eq(label.position.y, _bounds(root).end.y + 1.0, 0.001)
+	assert_almost_eq(_name_label(root).position.y, _bounds(root).end.y + 1.0, 0.001)
 
 
 func test_spearhead_feature_without_a_model_is_a_block_its_footprint_across() -> void:

@@ -2,6 +2,7 @@ extends GutTest
 ## Unit tests for showing the name of what the mouse is over (scripts/battle/map/map_hover.gd).
 
 const ABOVE := Vector3(0, 10, 0)
+const CUBE := Vector3(2, 2, 2)
 
 
 ## A node with a box of [param size] centred on [param at], and a hover label if [param named].
@@ -31,17 +32,17 @@ func _in_tree(root: Node3D) -> Node3D:
 # hit_distance
 
 func test_a_ray_at_a_block_hits_its_near_face() -> void:
-	var root := _in_tree(_thing(Vector3(2, 2, 2)))
+	var root := _in_tree(_thing(CUBE))
 	assert_almost_eq(MapHover.hit_distance(root, ABOVE, Vector3.DOWN), 9.0, 0.001)
 
 
 func test_a_ray_beside_a_block_misses() -> void:
-	var root := _in_tree(_thing(Vector3(2, 2, 2)))
+	var root := _in_tree(_thing(CUBE))
 	assert_eq(MapHover.hit_distance(root, ABOVE + Vector3(5, 0, 0), Vector3.DOWN), INF)
 
 
 func test_a_ray_pointing_away_from_a_block_misses() -> void:
-	var root := _in_tree(_thing(Vector3(2, 2, 2)))
+	var root := _in_tree(_thing(CUBE))
 	assert_eq(MapHover.hit_distance(root, ABOVE, Vector3.UP), INF)
 
 
@@ -61,30 +62,38 @@ func test_a_turned_block_is_missed_where_it_was() -> void:
 
 
 func test_a_moved_block_is_hit_where_it_is() -> void:
-	var root := _thing(Vector3(2, 2, 2))
+	var root := _thing(CUBE)
 	root.position = Vector3(20, 0, 0)
 	_in_tree(root)
 	assert_lt(MapHover.hit_distance(root, ABOVE + Vector3(20, 0, 0), Vector3.DOWN), INF)
+
+
+func test_a_moved_block_is_missed_where_it_was() -> void:
+	var root := _thing(CUBE)
+	root.position = Vector3(20, 0, 0)
+	_in_tree(root)
 	assert_eq(MapHover.hit_distance(root, ABOVE, Vector3.DOWN), INF)
 
 
 func test_a_hidden_child_is_ignored() -> void:
-	var root := _thing(Vector3(2, 2, 2))
-	root.get_child(0).visible = false
+	var root := Node3D.new()
+	var box := _box(CUBE)
+	box.visible = false
+	root.add_child(box)
 	_in_tree(root)
 	assert_eq(MapHover.hit_distance(root, ABOVE, Vector3.DOWN), INF)
 
 
 func test_a_child_of_a_hidden_root_is_ignored() -> void:
-	var root := _thing(Vector3(2, 2, 2))
+	var root := _thing(CUBE)
 	root.visible = false
 	_in_tree(root)
 	assert_eq(MapHover.hit_distance(root, ABOVE, Vector3.DOWN), INF)
 
 
 func test_the_nearest_of_two_children_is_the_distance() -> void:
-	var root := _thing(Vector3(2, 2, 2))
-	root.add_child(_box(Vector3(2, 2, 2), Vector3(0, 4, 0)))
+	var root := _thing(CUBE)
+	root.add_child(_box(CUBE, Vector3(0, 4, 0)))
 	_in_tree(root)
 	assert_almost_eq(MapHover.hit_distance(root, ABOVE, Vector3.DOWN), 5.0, 0.001)
 
@@ -138,14 +147,28 @@ func _group(things: Array[Node3D]) -> Node3D:
 	return group
 
 
+## A thing that stands taller than [method _flat_thing], so it's nearer a camera looking down.
+func _tall_thing(named := true) -> Node3D:
+	return _thing(Vector3(2, 4, 2), Vector3(0, 2, 0), named)
+
+
+## A named thing lying flat on the ground, like an objective.
+func _flat_thing() -> Node3D:
+	return _thing(Vector3(2, 0.1, 2))
+
+
+func _name_of(thing: Node3D) -> Node:
+	return thing.get_node(ModelPlaceholder.HOVER_LABEL)
+
+
 func test_the_name_of_the_thing_under_the_mouse_is_found() -> void:
-	var thing := _thing(Vector3(2, 2, 2))
+	var thing := _thing(CUBE)
 	var hover := _hover([_group([thing])] as Array[Node3D])
-	assert_eq(hover.label_at(_centre(hover)), thing.get_node(ModelPlaceholder.HOVER_LABEL))
+	assert_eq(hover.label_at(_centre(hover)), _name_of(thing))
 
 
 func test_nothing_under_the_mouse_gives_no_name() -> void:
-	var hover := _hover([_group([_thing(Vector3(2, 2, 2))])] as Array[Node3D])
+	var hover := _hover([_group([_thing(CUBE)])] as Array[Node3D])
 	assert_null(hover.label_at(Vector2(0, 0)))
 
 
@@ -154,23 +177,18 @@ func test_no_things_gives_no_name() -> void:
 	assert_null(hover.label_at(_centre(hover)))
 
 
-func test_the_nearer_of_two_things_wins() -> void:
-	var block := _thing(Vector3(2, 4, 2), Vector3(0, 2, 0))
-	var objective := _thing(Vector3(2, 0.1, 2))
-	# The objective is listed first, so only distance can make the block win.
-	var hover := _hover([_group([objective]), _group([block])] as Array[Node3D])
-	assert_eq(hover.label_at(_centre(hover)), block.get_node(ModelPlaceholder.HOVER_LABEL))
+func test_the_nearer_thing_wins_when_its_group_is_listed_last() -> void:
+	var tall := _tall_thing()
+	var hover := _hover([_group([_flat_thing()]), _group([tall])] as Array[Node3D])
+	assert_eq(hover.label_at(_centre(hover)), _name_of(tall))
 
 
-func test_the_nearer_thing_wins_whichever_group_is_first() -> void:
-	var block := _thing(Vector3(2, 4, 2), Vector3(0, 2, 0))
-	var objective := _thing(Vector3(2, 0.1, 2))
-	var hover := _hover([_group([block]), _group([objective])] as Array[Node3D])
-	assert_eq(hover.label_at(_centre(hover)), block.get_node(ModelPlaceholder.HOVER_LABEL))
+func test_the_nearer_thing_wins_when_its_group_is_listed_first() -> void:
+	var tall := _tall_thing()
+	var hover := _hover([_group([tall]), _group([_flat_thing()])] as Array[Node3D])
+	assert_eq(hover.label_at(_centre(hover)), _name_of(tall))
 
 
 func test_an_unnamed_nearer_thing_gives_no_name_rather_than_the_one_behind() -> void:
-	var block := _thing(Vector3(2, 4, 2), Vector3(0, 2, 0), false)
-	var objective := _thing(Vector3(2, 0.1, 2))
-	var hover := _hover([_group([block, objective])] as Array[Node3D])
+	var hover := _hover([_group([_tall_thing(false), _flat_thing()])] as Array[Node3D])
 	assert_null(hover.label_at(_centre(hover)))
