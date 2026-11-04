@@ -148,7 +148,7 @@ static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array
 		rings = MultiMeshInstance3D.new()
 		rings.name = "Rings"
 		rings.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		rings.material_override = marker_material()
+		rings.material_override = marker_material(false)
 		rings.material_override.vertex_color_use_as_albedo = true
 		root.add_child(rings)
 	var multimesh := MultiMesh.new()
@@ -178,12 +178,13 @@ static func flash_colour(elapsed: float) -> Color:
 	return INVALID_RING.lerp(FLASH_RING, 0.5 - 0.5 * cos(TAU * elapsed / FLASH_PULSE))
 
 
-## The material for a placement ring or outline: unshaded and drawn over everything, so it shows
-## through the model or feature it marks.
-static func marker_material() -> StandardMaterial3D:
+## The material for a placement ring or outline: unshaded and, while [param see_through], drawn
+## over everything, so it shows through the feature it marks. Model rings aren't see-through, so
+## the models standing in front of them hide them.
+static func marker_material(see_through := true) -> StandardMaterial3D:
 	var material := StandardMaterial3D.new()
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.no_depth_test = true
+	material.no_depth_test = see_through
 	material.cull_mode = BaseMaterial3D.CULL_DISABLED
 	material.render_priority = 1
 	return material

@@ -427,6 +427,13 @@ func test_rings_do_not_cast_shadows() -> void:
 	assert_eq(_rings(root).cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_OFF)
 
 
+func test_rings_are_hidden_behind_models_in_front_of_them() -> void:
+	var unit := _unit_named("Plain Guard", 2)
+	var root := _built(unit)
+	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	assert_false((_rings(root).material_override as StandardMaterial3D).no_depth_test)
+
+
 func test_showing_the_rings_for_a_smaller_unit_resizes_them() -> void:
 	var unit := _unit_named("Plain Guard", 3)
 	var root := _built(unit)
