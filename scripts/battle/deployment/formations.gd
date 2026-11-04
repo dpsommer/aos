@@ -83,21 +83,209 @@ static func spread(bases: Array[BaseSize], front_left: Vector2, facing: float, w
 		return PackedVector2Array()
 	if count == 1:
 		return PackedVector2Array([front_left])
-	var uniform := _is_uniform(bases)
-	var base := _largest_base(bases) if uniform else _average_base(bases)
-	var offsets := _spread_offsets(count, base, width)
+	var offsets: Array[Vector2] = []
+	if _is_uniform(bases):
+		offsets = _spread_offsets(count, _largest_base(bases), width)
+	else:
+		offsets = _mixed_spread_offsets(bases, width)
+		if offsets.is_empty():
+			return arrange(Kind.WIDE_BLOCK, bases, front_left, facing)
 	var shape := PackedVector2Array()
 	var forward := Vector2.from_angle(facing)
 	var right := Vector2(-forward.y, forward.x)
 	for offset in offsets:
 		shape.append(front_left + right * offset.x - forward * offset.y)
-	if uniform:
-		return shape
-	for gap in [CLOSE_GAP, CLOSE_GAP / 2]:
-		var packed := _pack(shape, bases, facing, gap)
-		if not packed.is_empty():
-			return packed
-	return arrange(Kind.WIDE_BLOCK, bases, _centre(shape), facing)
+	return shape
+
+
+## [method _spread_offsets] for [param bases] of different sizes, by model: laid out with each
+## model's own base ([method _mixed_layout]), so the front widens smoothly as the drag does. Empty
+## if no layout is coherent.
+static func _mixed_spread_offsets(bases: Array[BaseSize], width: float) -> Array[Vector2]:
+	var columns := 0
+	var best_span := -1.0
+	var spans := _mixed_coherent_columns(bases)
+	for candidate: int in spans:
+		var span: float = spans[candidate]
+		if columns == 0 or (span <= width + 0.001 and span >= best_span):
+			columns = candidate
+			best_span = span
+	if columns == 0:
+		return []
+	var close_span := best_span
+	var loose := _mixed_layout(bases, columns, LOOSE_GAP)
+	var loose_span := _span(loose)
+	if loose_span <= close_span + 0.001:
+		return _mixed_layout(bases, columns, CLOSE_GAP)
+	var gap := lerpf(CLOSE_GAP, LOOSE_GAP, clampf((width - close_span) / (loose_span - close_span), 0.0, 1.0))
+	var offsets := _mixed_layout(bases, columns, gap)
+	if _is_sound(offsets, bases):
+		return offsets
+	return _mixed_layout(bases, columns, CLOSE_GAP)
+
+
+## The front-rank sizes [method _mixed_layout] can use for [param bases] and stay coherent,
+## narrowest first, each with its close-packed span. Worked out once for each mix of bases.
+static func _mixed_coherent_columns(bases: Array[BaseSize]) -> Dictionary:
+	var key := "mixed"
+	for base in bases:
+		key += ":%d:%v" % [base.shape, base.footprint()]
+	if _columns_cache.has(key):
+		return _columns_cache[key]
+	var result := {}
+	for columns in range(1, bases.size() + 1):
+		var offsets := _mixed_layout(bases, columns, CLOSE_GAP)
+		if _is_sound(offsets, bases):
+			result[columns] = _span(offsets)
+	_columns_cache[key] = result
+	return result
+
+
+## Whether models at (across, back) [param offsets] on [param bases] are coherent and don't overlap.
+static func _is_sound(offsets: Array[Vector2], bases: Array[BaseSize]) -> bool:
+	var positions := _place_raw(offsets)
+	for i in positions.size():
+		for j in range(i + 1, positions.size()):
+			if DeploymentRules.bases_overlap(bases[i], positions[i], 0.0, bases[j], positions[j], 0.0):
+				return false
+	return Coherency.is_coherent(positions, bases, 0.0)
+
+
+## (across, back) offsets of each of [param bases]' models, by model, in ranks of [param columns]
+## with [param gap] between neighbours, as [method _spread_layout] but with each model's own base:
+## the biggest at the front, each rank behind centred on the one in front and set back until it's
+## [param gap] from it. A part-filled last rank sits nestled between the models in front of it, and
+## a line of 7 or more has its two end models tucked in behind the models next to them. The
+## front-left model is at (0, 0).
+static func _mixed_layout(bases: Array[BaseSize], columns: int, gap: float) -> Array[Vector2]:
+	var count := bases.size()
+	var order := _biggest_first(bases)
+	var offsets: Array[Vector2] = []
+	offsets.resize(count)
+	var placed: Array[int] = []
+	if columns >= count:
+		var front := count if count < Coherency.LARGE_UNIT else count - 2
+		var rank := order.slice(0, front)
+		_lay_rank(bases, offsets, placed, rank, _row(bases, rank, gap, 0.0))
+		if front < count:
+			_nestle(bases, offsets, placed, order[front], rank[0], rank[1], gap)
+			_nestle(bases, offsets, placed, order[front + 1], rank[front - 2], rank[front - 1], gap)
+		return offsets
+	var previous := order.slice(0, columns)
+	_lay_rank(bases, offsets, placed, previous, _row(bases, previous, gap, 0.0))
+	var start := columns
+	while start < count:
+		var rank := order.slice(start, start + columns)
+		if rank.size() == columns:
+			var across := _row(bases, rank, gap, 0.0)
+			# As wide as the rank in front, as far as coherency allows, so its end models have
+			# one behind them.
+			var stretch := _row_width(previous, offsets) - (across[-1] - across[0])
+			if stretch > 0.0 and columns > 1:
+				across = _row(bases, rank, minf(gap + stretch / (columns - 1), LOOSE_GAP), 0.0)
+			var shift := _row_middle(previous, offsets) - (across[0] + across[-1]) / 2
+			for i in across.size():
+				across[i] += shift
+			_lay_rank(bases, offsets, placed, rank, across)
+			previous = rank
+		else:
+			var slots := _middle_out(columns - 1, rank.size())
+			for i in rank.size():
+				_nestle(bases, offsets, placed, rank[i], previous[slots[i]], previous[slots[i] + 1], gap)
+		start += columns
+	return offsets
+
+
+## [param bases]' model indices, biggest base first, in model order among bases of one size.
+static func _biggest_first(bases: Array[BaseSize]) -> Array[int]:
+	var order: Array[int] = []
+	for i in bases.size():
+		order.append(i)
+	order.sort_custom(func(a: int, b: int) -> bool:
+		var area_a := bases[a].footprint().x * bases[a].footprint().y
+		var area_b := bases[b].footprint().x * bases[b].footprint().y
+		return area_a > area_b + 0.0001 or (absf(area_a - area_b) <= 0.0001 and a < b))
+	return order
+
+
+## Where across the models [param rank] stand side by side, [param gap] apart edge to edge, the
+## first at [param first].
+static func _row(bases: Array[BaseSize], rank: Array[int], gap: float, first: float) -> PackedFloat32Array:
+	var result := PackedFloat32Array([first])
+	for i in range(1, rank.size()):
+		result.append(result[-1] + bases[rank[i - 1]].footprint().y / 2 + gap + bases[rank[i]].footprint().y / 2)
+	return result
+
+
+## How far apart [param rank]'s end models are, centre to centre.
+static func _row_width(rank: Array[int], offsets: Array[Vector2]) -> float:
+	return offsets[rank[-1]].x - offsets[rank[0]].x
+
+
+static func _row_middle(rank: Array[int], offsets: Array[Vector2]) -> float:
+	return (offsets[rank[0]].x + offsets[rank[-1]].x) / 2
+
+
+## Puts [param rank]'s models at [param across], each set back until it's clear of those already
+## [param placed].
+static func _lay_rank(bases: Array[BaseSize], offsets: Array[Vector2], placed: Array[int], rank: Array[int], across: PackedFloat32Array) -> void:
+	var gap := CLOSE_GAP
+	if rank.size() > 1:
+		gap = across[1] - across[0] - bases[rank[0]].footprint().y / 2 - bases[rank[1]].footprint().y / 2
+	var least_back := 0.0
+	if not placed.is_empty():
+		least_back = INF
+		for i in placed:
+			least_back = minf(least_back, offsets[i].y)
+	for i in rank.size():
+		var model: int = rank[i]
+		offsets[model] = Vector2(across[i], _set_back(bases, offsets, placed, model, across[i], least_back, gap))
+	placed.append_array(rank)
+
+
+## Puts [param model] behind [param left] and [param right], nestled between them, [param gap]
+## from each.
+static func _nestle(bases: Array[BaseSize], offsets: Array[Vector2], placed: Array[int], model: int, left: int, right: int, gap: float) -> void:
+	var radius := _radius(bases[model])
+	var spots := _circle_crossings(offsets[left], _radius(bases[left]) + radius + gap, offsets[right], _radius(bases[right]) + radius + gap)
+	var across := (offsets[left].x + offsets[right].x) / 2
+	if spots.size() == 2:
+		across = spots[0].x if spots[0].y > spots[1].y else spots[1].x
+	offsets[model] = Vector2(across, _set_back(bases, offsets, placed, model, across, minf(offsets[left].y, offsets[right].y), gap))
+	placed.append(model)
+
+
+## How far back [param model] must stand at [param across], at least [param least], to be
+## [param gap] or more from each model [param placed] in front of it.
+static func _set_back(bases: Array[BaseSize], offsets: Array[Vector2], placed: Array[int], model: int, across: float, least: float, gap: float) -> float:
+	var back := least
+	for other in placed:
+		var high := offsets[other].y + bases[other].footprint().x / 2 + gap + bases[model].footprint().x / 2
+		if _offset_gap(bases, other, offsets[other], model, Vector2(across, maxf(back, offsets[other].y))) >= gap:
+			continue
+		var low := maxf(back, offsets[other].y)
+		for i in 24:
+			var middle := (low + high) / 2
+			if _offset_gap(bases, other, offsets[other], model, Vector2(across, middle)) < gap:
+				low = middle
+			else:
+				high = middle
+		back = maxf(back, high)
+	return back
+
+
+## The gap between models [param a] and [param b] at (across, back) offsets [param at_a] and
+## [param at_b], edge to edge.
+static func _offset_gap(bases: Array[BaseSize], a: int, at_a: Vector2, b: int, at_b: Vector2) -> float:
+	if bases[a].shape == BaseSize.Shape.ROUND and bases[b].shape == BaseSize.Shape.ROUND:
+		return at_a.distance_to(at_b) - _radius(bases[a]) - _radius(bases[b])
+	if DeploymentRules.bases_overlap(bases[a], Vector2(-at_a.y, at_a.x), 0.0, bases[b], Vector2(-at_b.y, at_b.x), 0.0):
+		return -1.0
+	return DeploymentRules.base_gap(bases[a], Vector2(-at_a.y, at_a.x), 0.0, bases[b], Vector2(-at_b.y, at_b.x), 0.0)
+
+
+static func _radius(base: BaseSize) -> float:
+	return (base.footprint().x + base.footprint().y) / 4
 
 
 ## The widest [param count] models on [param base] stand in coherency, centre to centre across the
@@ -188,13 +376,6 @@ static func _place_raw(offsets: Array[Vector2]) -> PackedVector2Array:
 	for offset in offsets:
 		result.append(Vector2(-offset.y, offset.x))
 	return result
-
-
-static func _centre(positions: PackedVector2Array) -> Vector2:
-	var total := Vector2.ZERO
-	for position in positions:
-		total += position
-	return total / positions.size()
 
 
 ## The formations that make sense for [param model_count] models: none for a single model.

@@ -419,6 +419,22 @@ func test_a_wider_drag_never_makes_the_front_narrower() -> void:
 			last = span
 
 
+func test_a_wider_drag_never_makes_the_front_of_mixed_bases_narrower() -> void:
+	var bases := _mixed_bases()
+	var last := -1.0
+	for step in 60:
+		var width := step * 0.25
+		var span := _front_span(Formations.spread(bases, Vector2.ZERO, 0.3, width), 0.3)
+		assert_gte(span, last - 0.001, "width %.2f" % width)
+		last = span
+
+
+func test_a_long_drag_lines_up_mixed_bases_like_one_size() -> void:
+	var mixed := Formations.spread(_mixed_bases(), Vector2.ZERO, 0.0, 100.0)
+	var uniform := Formations.spread(_bases(_mixed_bases().size()), Vector2.ZERO, 0.0, 100.0)
+	assert_eq(_ranks(mixed, 0.0), _ranks(uniform, 0.0))
+
+
 func test_a_drag_past_the_widest_line_gives_no_more_width() -> void:
 	for count in SPREAD_COUNTS:
 		var widest := Formations.max_width(count, _base())
