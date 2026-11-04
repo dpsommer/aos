@@ -7,10 +7,14 @@ Tests are written using the [GUT (Godot Unit Testing)](https://github.com/bitwes
 ```text
 test/
 ├── unit/          # fast, isolated tests of a single function, class or module
-└── integration/   # tests of a single interaction between components
+├── integration/   # tests of a single interaction between components
+├── fixtures/      # test data files
+└── support/       # shared test helpers
 ```
 
-GUT only collects files with the `test_` prefix by default (e.g. `test/unit/test_dice.gd`). Test scripts extend `GutTest`. No `.gutconfig.json` exists yet, so options are passed on the command line.
+Tests in `unit/` and `integration/` mirror the code they test: the test of `scripts/army/army_store.gd` is `test/unit/army/test_army_store.gd`, and the test of `tools/portraits/bake_portraits.gd` is `test/unit/tools/portraits/test_bake_portraits.gd`. An integration test goes under the code at the centre of the integration (`test/integration/data/core/test_core_rules_data.gd` tests `scripts/data/core/`).
+
+GUT only collects files with the `test_` prefix by default. Test scripts extend `GutTest`. No `.gutconfig.json` exists yet, so options are passed on the command line.
 
 ## Running tests
 
@@ -20,13 +24,17 @@ GUT only collects files with the `test_` prefix by default (e.g. `test/unit/test
 # all tests
 godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://test -ginclude_subdirs -gexit
 # unit or integration tests only
-godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gexit
-godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://test/integration -gexit
+godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -ginclude_subdirs -gexit
+godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://test/integration -ginclude_subdirs -gexit
+# the tests of one folder
+godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://test/unit/army -ginclude_subdirs -gexit
 # a single test script
-godot --headless -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_foo.gd -gexit
+godot --headless -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/army/test_foo.gd -gexit
 # a single test function within a script
-godot --headless -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_foo.gd -gunit_test_name=test_bar -gexit
+godot --headless -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/army/test_foo.gd -gunit_test_name=test_bar -gexit
 ```
+
+`-gdir` doesn't look in subfolders without `-ginclude_subdirs`, so leaving it out runs only the tests directly in that folder, which may be none, and still exits with code 0.
 
 Tests can also be run from the GUT panel in the editor.
 

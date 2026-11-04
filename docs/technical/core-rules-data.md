@@ -82,7 +82,7 @@ python -I tools/battleplan_maps/extract_maps.py data/core/battleplans.json <map 
 PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/battleplan_maps/tests
 ```
 
-Check each overlay (the map with every detected icon circled and labelled) against the map before committing. `test/integration/test_core_rules_data.gd` checks that features lie on the battlefield, territories don't overlap and no map uses more objectives of a type than the battlepack has.
+Check each overlay (the map with every detected icon circled and labelled) against the map before committing. `test/integration/data/core/test_core_rules_data.gd` checks that features lie on the battlefield, territories don't overlap and no map uses more objectives of a type than the battlepack has.
 
 ## Spearhead battlepacks
 

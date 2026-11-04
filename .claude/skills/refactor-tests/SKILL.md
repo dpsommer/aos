@@ -51,7 +51,7 @@ Read the target tests and look for the smells in [references/test-smells.md](ref
 
 ```sh
 # biggest test files (likely eager tests or general fixtures)
-wc -l test/unit/*.gd test/integration/*.gd | sort -rn | head
+find test/unit test/integration -name '*.gd' -exec wc -l {} + | sort -rn | head
 # tests calling private methods or reading private fields
 grep -rnE '\._[a-z]\w*' test --include='*.gd' | grep -v 'super\._'
 # conditional or looping logic inside tests
@@ -59,7 +59,7 @@ grep -rnE '^\t(if|for|while|match) ' test --include='*.gd'
 # arbitrary waits (sleepy tests)
 grep -rnE 'wait_seconds|create_timer' test --include='*.gd'
 # tests with no assertion
-grep -nE '^func test_' test/unit/test_foo.gd   # then read each body
+grep -nE '^func test_' test/unit/army/test_foo.gd   # then read each body
 # file system use outside Sandbox
 grep -rln 'user://' test --include='*.gd'
 ```

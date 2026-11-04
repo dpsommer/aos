@@ -151,7 +151,7 @@ BSData is read from a local shallow clone of the repository at `tools/bsdata/`, 
    If the faction has a warscroll or Army of Renown another faction also has (e.g. a Death faction's Nagash), list it in `tools/faction_import/shared.json` and rebuild; see [Shared entries](#shared-entries).
 4. Add the name → directory entry to `_DATA_DIRS` in `scripts/data/faction/faction_catalog.gd`. If the faction is Legends, also add it to `_LEGENDS`, which the Forge uses to label it without loading its data; `test_faction_data.gd` checks it agrees with `faction.json`.
 5. Rerun `build_regiments.py` so the Regiments of Renown the faction can include list its id and any regiment with its units can find their warscrolls; see [Regiments of Renown](#regiments-of-renown).
-6. Run the tool's tests and the game's tests. `test/integration/test_faction_data.gd` loads every available faction.
+6. Run the tool's tests and the game's tests. `test/integration/data/faction/test_faction_data.gd` loads every available faction.
    ```sh
    PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider tools/faction_import/tests
    ```
