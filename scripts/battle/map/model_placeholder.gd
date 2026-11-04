@@ -13,6 +13,14 @@ const MODEL_HEIGHT := 0.75
 const LABEL_HEIGHT := 2.0
 ## How far a unit's name floats above its tallest model.
 const LABEL_CLEARANCE := 0.75
+## The node name of a name shown only while hovered ([MapHover]).
+const HOVER_LABEL := "Label"
+## How thick a label's outline is. [constant LABEL_FONT]'s pixel range must be at least twice this.
+const LABEL_OUTLINE := 6
+## Text on the battlefield is drawn with a multichannel signed distance field, which stays sharp at
+## any zoom. It's a static copy of Inter with its overlapping outlines removed, as they speck the
+## field; the UI keeps hinted Inter, which looks better small. See docs/design/battle.md.
+const LABEL_FONT := preload("res://assets/2d/fonts/inter/InterStatic.ttf")
 
 const PLAYER_MATERIAL := preload("res://assets/3d/placeholders/p_base_player.tres")
 const OPPONENT_MATERIAL := preload("res://assets/3d/placeholders/p_base_opponent.tres")
@@ -107,9 +115,7 @@ static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library
 	var tallest := _add_models(root, unit, facing, is_player, library)
 	if not unit.positions.is_empty():
 		var height := maxf(LABEL_HEIGHT, tallest + LABEL_CLEARANCE)
-		var name_label := label(unit.name, to_world(_middle_of(unit.positions), height))
-		name_label.name = "Label"
-		root.add_child(name_label)
+		root.add_child(hover_label(unit.name, to_world(_middle_of(unit.positions), height)))
 	return root
 
 
@@ -128,7 +134,7 @@ static func update_unit(root: Node3D, unit: BattleUnit) -> void:
 					multimesh.set_instance_transform(n, model_transform(multimesh.mesh, unit.positions[i], unit.facing))
 				else:
 					multimesh.set_instance_transform(n, transform_of(unit.bases[i], unit.positions[i], unit.facing))
-	var name_label := root.get_node_or_null("Label") as Label3D
+	var name_label := root.get_node_or_null(HOVER_LABEL) as Label3D
 	if name_label and not unit.positions.is_empty():
 		name_label.position = to_world(_middle_of(unit.positions), name_label.position.y)
 
@@ -291,19 +297,29 @@ static func _add_models(root: Node3D, unit: BattleUnit, facing: float, is_player
 	return tallest
 
 
-## A name that floats over the battlefield, facing the camera, hidden from far away.
+## Text that floats over the battlefield, facing the camera.
 static func label(text: String, at: Vector3, font_size := 48) -> Label3D:
 	var result := Label3D.new()
 	result.text = text
 	result.position = at
 	result.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	result.pixel_size = 0.01
+	result.font = LABEL_FONT
 	result.font_size = font_size
-	result.outline_size = 12
+	result.outline_size = LABEL_OUTLINE
 	result.modulate = UITheme.TEXT
 	result.outline_modulate = Color(0.047, 0.051, 0.063, 0.9)
 	result.no_depth_test = false
-	result.visibility_range_end = 40.0
+	return result
+
+
+## The name of something on the battlefield, which [MapHover] shows while the mouse is over it. It's
+## drawn over everything, so nothing in front of the thing hovered hides it.
+static func hover_label(text: String, at: Vector3, font_size := 48) -> Label3D:
+	var result := label(text, at, font_size)
+	result.name = HOVER_LABEL
+	result.visible = false
+	result.no_depth_test = true
 	return result
 
 

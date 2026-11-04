@@ -134,6 +134,42 @@ func test_unit_has_a_label_with_its_name() -> void:
 	assert_eq(labels[0].text, "Test Unit")
 
 
+func test_unit_name_starts_hidden() -> void:
+	var root := _built(_unit_with_positions([BaseSize.round_base(32)] as Array[BaseSize]))
+	assert_false((root.get_node(ModelPlaceholder.HOVER_LABEL) as Label3D).visible)
+
+
+func test_a_hover_label_is_hidden_and_a_plain_label_is_shown() -> void:
+	var hover := ModelPlaceholder.hover_label("A", Vector3.ZERO)
+	var plain := ModelPlaceholder.label("A", Vector3.ZERO)
+	autofree(hover)
+	autofree(plain)
+	assert_false(hover.visible)
+	assert_true(plain.visible)
+
+
+func test_a_hover_label_is_found_by_the_hover_name() -> void:
+	var hover := autofree(ModelPlaceholder.hover_label("A", Vector3.ZERO)) as Label3D
+	assert_eq(hover.name, ModelPlaceholder.HOVER_LABEL)
+
+
+func test_a_hover_label_shows_through_things_in_front() -> void:
+	var hover := autofree(ModelPlaceholder.hover_label("A", Vector3.ZERO)) as Label3D
+	assert_true(hover.no_depth_test)
+
+
+func test_labels_are_drawn_with_a_distance_field_font() -> void:
+	for label: Label3D in [ModelPlaceholder.label("A", Vector3.ZERO), ModelPlaceholder.hover_label("A", Vector3.ZERO)]:
+		autofree(label)
+		assert_true((label.font as FontFile).multichannel_signed_distance_field)
+
+
+func test_label_outline_fits_in_the_fonts_distance_field() -> void:
+	var label := autofree(ModelPlaceholder.label("A", Vector3.ZERO)) as Label3D
+	var font := label.font as FontFile
+	assert_gte(font.msdf_pixel_range, label.outline_size * 2)
+
+
 func test_undeployed_unit_has_no_models_or_label() -> void:
 	var unit := BattleKit.unit("U", 3)
 	var root := _built(unit)

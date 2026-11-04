@@ -107,6 +107,18 @@ func test_faction_terrain_has_a_name_label() -> void:
 	assert_eq(labels[0].text, "Shrine")
 
 
+func test_terrain_name_starts_hidden() -> void:
+	assert_false((_labels(_built(_shrine()))[0] as Label3D).visible)
+
+
+func test_terrain_name_is_found_by_the_hover_name() -> void:
+	assert_eq(_labels(_built(_shrine()))[0].name, ModelPlaceholder.HOVER_LABEL)
+
+
+func test_terrain_name_is_drawn_with_a_distance_field_font() -> void:
+	assert_true((_labels(_built(_shrine()))[0].font as FontFile).multichannel_signed_distance_field)
+
+
 func test_battleplan_terrain_has_no_label() -> void:
 	assert_eq(_labels(_built(BattleKit.terrain(BattleTerrain.Kind.OBSCURING))).size(), 0)
 

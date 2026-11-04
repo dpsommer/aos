@@ -198,6 +198,16 @@ func test_objective_has_a_label_with_its_name() -> void:
 	assert_eq(labels[0].text, "Sun Seekers")
 
 
+func test_objective_name_starts_hidden() -> void:
+	var root := autofree(BoardBuilder.objective(BattleKit.feature("Sun Seekers", Vector2.ZERO), 3.0)) as Node3D
+	assert_false((root.get_node(ModelPlaceholder.HOVER_LABEL) as Label3D).visible)
+
+
+func test_objective_name_is_drawn_with_a_distance_field_font() -> void:
+	var root := autofree(BoardBuilder.objective(BattleKit.feature("Sun Seekers", Vector2.ZERO), 3.0)) as Node3D
+	assert_true(((root.get_node(ModelPlaceholder.HOVER_LABEL) as Label3D).font as FontFile).multichannel_signed_distance_field)
+
+
 func test_objective_has_a_marker() -> void:
 	var root := autofree(BoardBuilder.objective(BattleKit.feature("Sun Seekers", Vector2.ZERO), 3.0)) as Node3D
 	assert_eq(_meshes_with(root, CylinderMesh, BoardBuilder.OBJECTIVE).size(), 1)
@@ -370,3 +380,26 @@ func test_no_deploy_without_blocked_areas_shades_as_before() -> void:
 	var own := _rects([Rect2(0, 0, 10, 10)])
 	var root := autofree(BoardBuilder.no_deploy(own, own, "", -PI / 2, [] as Array[PackedVector2Array])) as Node3D
 	assert_eq(root.get_child_count(), 0)
+
+
+func test_no_deploy_text_is_shown() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array], "No deploy")) as Node3D
+	var labels := _labels(root)
+	assert_gt(labels.size(), 0)
+	for label: Label3D in labels:
+		assert_true(label.visible)
+
+
+func test_no_deploy_text_is_not_a_hover_label() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array], "No deploy")) as Node3D
+	for label in _labels(root):
+		assert_ne(label.name, ModelPlaceholder.HOVER_LABEL)
+
+
+func test_no_deploy_text_is_drawn_with_a_distance_field_font() -> void:
+	var own: Array[PackedVector2Array] = [BattleKit.rect_polygon(0, 0, 10, 10)]
+	var root := autofree(BoardBuilder.no_deploy(own, [] as Array[PackedVector2Array], "No deploy")) as Node3D
+	for label: Label3D in _labels(root):
+		assert_true((label.font as FontFile).multichannel_signed_distance_field)

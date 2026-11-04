@@ -98,6 +98,8 @@ func _build_battlefield() -> void:
 	camera.bounds = Rect2(Vector2.ZERO, battle.battlefield_size)
 	camera.frame(Rect2(Vector2.ZERO, battle.battlefield_size), PI / 2)
 	add_child(camera)
+	var hoverable: Array[Node3D] = [terrain_root, objectives_root, armies_root]
+	add_child(MapHover.new(camera, hoverable))
 	_build_overlay()
 	if battle.has_territories():
 		_show_territories()

@@ -61,8 +61,8 @@ static func model_of(feature: BattleTerrain, library: ModelLibrary) -> Mesh:
 	return meshes[posmod(feature.variant, meshes.size())] if not meshes.is_empty() else null
 
 
-## [param feature]'s model or placeholder, with its name floating above it for faction and
-## Spearhead features.
+## [param feature]'s model or placeholder, with its name to float above it while hovered for faction
+## and Spearhead features.
 static func build(feature: BattleTerrain, library := ModelLibrary.shared()) -> Node3D:
 	var root := Node3D.new()
 	root.name = feature.name.validate_node_name() if not feature.name.is_empty() else "Terrain"
@@ -142,4 +142,4 @@ static func _place(root: Node3D, feature: BattleTerrain, height: float) -> void:
 	root.position = ModelPlaceholder.to_world(feature.position)
 	root.rotation.y = ModelPlaceholder.yaw(feature.rotation)
 	if _has_model(feature):
-		root.add_child(ModelPlaceholder.label(feature.name, Vector3(0, height + 1.0, 0)))
+		root.add_child(ModelPlaceholder.hover_label(feature.name, Vector3(0, height + 1.0, 0)))

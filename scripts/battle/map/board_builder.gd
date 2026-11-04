@@ -181,7 +181,6 @@ static func _no_deploy_label(piece: PackedVector2Array, text: String, facing: fl
 	label.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	label.rotation = Vector3(-PI / 2, -(facing + PI / 2), 0)
 	label.modulate = NO_DEPLOY_EDGE
-	label.visibility_range_end = 0.0
 	return label
 
 
@@ -198,7 +197,7 @@ static func roads(polygons: Array[PackedVector2Array]) -> Node3D:
 
 
 ## An objective: its marker, its zone (Matched Play's 3" control range, or a Spearhead objective
-## itself) and its name.
+## itself) and its name, shown while hovered.
 static func objective(feature: MapFeature, radius: float) -> Node3D:
 	var root := Node3D.new()
 	root.name = "Objective"
@@ -208,9 +207,8 @@ static func objective(feature: MapFeature, radius: float) -> Node3D:
 	else:
 		_add_round_zone(root, radius)
 	root.add_child(_objective_marker())
-	var name_label := ModelPlaceholder.label(feature.type, Vector3(0, 2.5, 0), 56)
+	var name_label := ModelPlaceholder.hover_label(feature.type, Vector3(0, 2.5, 0), 56)
 	name_label.modulate = Color("#F8DFA2")
-	name_label.visibility_range_end = 0.0
 	root.add_child(name_label)
 	return root
 

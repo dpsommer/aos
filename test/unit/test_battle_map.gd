@@ -40,6 +40,20 @@ func _battle() -> Battle:
 	return battle
 
 
+func test_the_built_map_shows_names_on_hover() -> void:
+	assert_not_null(_built_map().get_node_or_null("MapHover") as MapHover)
+
+
+func test_the_built_maps_names_start_hidden() -> void:
+	var map := _built_map()
+	var labels: Array[Node] = []
+	for group: Node3D in [map.terrain_root, map.objectives_root, map.armies_root]:
+		labels.append_array(group.find_children(ModelPlaceholder.HOVER_LABEL, "Label3D", true, false))
+	assert_gt(labels.size(), 0)
+	for label: Label3D in labels:
+		assert_false(label.visible)
+
+
 func _stages(steps: Array[Dictionary]) -> Array:
 	return steps.map(func(step: Dictionary) -> int: return step.stage)
 
