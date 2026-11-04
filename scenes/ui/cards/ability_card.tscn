@@ -1,71 +1,70 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dtix1sbbcaphj"]
 
-[ext_resource type="Script" path="res://scripts/ui/cards/ability_card.gd" id="1_card"]
+[ext_resource type="Script" uid="uid://b8cojl76bb7vl" path="res://scripts/ui/cards/ability_card.gd" id="1_card"]
 
-[node name="AbilityCard" type="PanelContainer"]
+[node name="AbilityCard" type="PanelContainer" unique_id=1654459530]
 script = ExtResource("1_card")
 
-[node name="Layout" type="VBoxContainer" parent="."]
+[node name="Layout" type="VBoxContainer" parent="." unique_id=1359210903]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="HeaderMargin" type="MarginContainer" parent="Layout"]
+[node name="HeaderMargin" type="MarginContainer" parent="Layout" unique_id=1554605389]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="Header" type="HBoxContainer" parent="Layout/HeaderMargin"]
+[node name="Header" type="HBoxContainer" parent="Layout/HeaderMargin" unique_id=457053925]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="IconBadge" type="PanelContainer" parent="Layout/HeaderMargin/Header"]
+[node name="IconBadge" type="PanelContainer" parent="Layout/HeaderMargin/Header" unique_id=1681205311]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Icon" type="TextureRect" parent="Layout/HeaderMargin/Header/IconBadge"]
+[node name="Icon" type="TextureRect" parent="Layout/HeaderMargin/Header/IconBadge" unique_id=827066589]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Timing" type="Label" parent="Layout/HeaderMargin/Header"]
+[node name="Timing" type="Label" parent="Layout/HeaderMargin/Header" unique_id=1193392002]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 theme_type_variation = &"AbilityTimingLabel"
 autowrap_mode = 3
 
-[node name="InnerBox" type="PanelContainer" parent="Layout"]
+[node name="InnerBox" type="PanelContainer" parent="Layout" unique_id=1120950559]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Inner" type="VBoxContainer" parent="Layout/InnerBox"]
+[node name="Inner" type="VBoxContainer" parent="Layout/InnerBox" unique_id=1079276344]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="NameRow" type="HBoxContainer" parent="Layout/InnerBox/Inner"]
+[node name="NameRow" type="HBoxContainer" parent="Layout/InnerBox/Inner" unique_id=1010282922]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Name" type="Label" parent="Layout/InnerBox/Inner/NameRow"]
+[node name="Name" type="Label" parent="Layout/InnerBox/Inner/NameRow" unique_id=1623481164]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"AbilityNameLabel"
 autowrap_mode = 3
 
-[node name="Separator" type="HSeparator" parent="Layout/InnerBox/Inner"]
+[node name="Separator" type="HSeparator" parent="Layout/InnerBox/Inner" unique_id=1640519403]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Body" type="RichTextLabel" parent="Layout/InnerBox/Inner"]
+[node name="Body" type="RichTextLabel" parent="Layout/InnerBox/Inner" unique_id=2138548786]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -73,7 +72,7 @@ size_flags_horizontal = 3
 bbcode_enabled = true
 fit_content = true
 
-[node name="Keywords" type="Label" parent="Layout/InnerBox/Inner"]
+[node name="Keywords" type="Label" parent="Layout/InnerBox/Inner" unique_id=1744169280]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -81,7 +80,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"KeywordsLabel"
 autowrap_mode = 3
 
-[node name="Source" type="Label" parent="Layout/InnerBox/Inner"]
+[node name="Source" type="Label" parent="Layout/InnerBox/Inner" unique_id=2133139070]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
