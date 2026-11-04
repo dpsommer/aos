@@ -1505,6 +1505,80 @@ func test_undo_after_dragging_terrain_puts_it_back() -> void:
 	assert_eq(feature.rotation, rotation)
 
 
+## Terrain held off the pointer by a drag refused half off the board, the pointer then at
+## [param point].
+func _refused_terrain_drag(point: Vector2) -> BattleTerrain:
+	var feature := _terrain_start()
+	_c.hover(Vector2(0, 11))
+	_c.press(Vector2(0, 11))
+	_c.drag_to(Vector2(0, 20))
+	_c.release()
+	_c.hover(point)
+	return feature
+
+
+func test_terrain_left_off_the_pointer_by_a_refused_drag_glides_back_under_it() -> void:
+	var feature := _refused_terrain_drag(Vector2(15, 11))
+	_c._process(1.0)
+	assert_eq(feature.position, Vector2(15, 11))
+
+
+func test_terrain_left_off_the_pointer_by_a_refused_drag_does_not_jump_under_it() -> void:
+	var feature := _refused_terrain_drag(Vector2(15, 11))
+	var gap := feature.position.distance_to(Vector2(15, 11))
+	_c._process(0.01)
+	assert_between(feature.position.distance_to(Vector2(15, 11)), 0.01, gap - 0.01)
+
+
+func test_terrain_picked_up_off_its_middle_stays_off_the_pointer() -> void:
+	var feature := _terrain_start()
+	_c.put_down()
+	var position := feature.position
+	_c.click(position + Vector2(1, 0.5))
+	_c._process(1.0)
+	assert_eq(feature.position, position)
+
+
+## A unit held off the pointer by a drag refused off the board, the pointer then at [param point].
+func _refused_unit_drag(point: Vector2) -> BattleUnit:
+	var unit := _held_unit()
+	_c.move_to(Vector2(30, 40))
+	_c.press(Vector2(30, 40))
+	_c.drag_to(Vector2(36, 40))
+	_c.release()
+	_c.hover(point)
+	return unit
+
+
+func test_a_unit_left_off_the_pointer_by_a_refused_drag_glides_back_under_it() -> void:
+	var unit := _refused_unit_drag(Vector2(36, 40))
+	_c._process(1.0)
+	assert_almost_eq(_middle(unit), Vector2(36, 40), Vector2(0.01, 0.01))
+
+
+func test_a_unit_left_off_the_pointer_by_a_refused_drag_does_not_jump_under_it() -> void:
+	var unit := _refused_unit_drag(Vector2(36, 40))
+	var gap := _middle(unit).distance_to(Vector2(36, 40))
+	_c._process(0.01)
+	assert_between(_middle(unit).distance_to(Vector2(36, 40)), 0.01, gap - 0.01)
+
+
+func test_a_unit_stays_lined_up_as_it_glides_back_under_the_pointer() -> void:
+	var unit := _refused_unit_drag(Vector2(36, 40))
+	var facing := unit.facing
+	_c._process(1.0)
+	assert_eq(unit.facing, facing)
+
+
+func test_a_unit_picked_up_by_a_model_off_its_middle_stays_off_the_pointer() -> void:
+	var unit := _put_down_unit()
+	var middle := _middle(unit)
+	assert_gt(unit.positions[0].distance_to(middle), 0.5)
+	_c.click(unit.positions[0])
+	_c._process(1.0)
+	assert_almost_eq(_middle(unit), middle, Vector2(0.01, 0.01))
+
+
 # single-model mode
 
 func test_single_model_mode_is_off_to_begin_with() -> void:

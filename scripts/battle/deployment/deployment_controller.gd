@@ -24,6 +24,11 @@ const DRAG_PIXELS := 6.0
 ## How long red rings flash after trying to put something down where it can't go, in seconds: three
 ## pulses ([constant ModelPlaceholder.FLASH_PULSE]).
 const FLASH_TIME := 0.6
+## How quickly what a refused drag left off the pointer glides back under it, as a decay rate per
+## second: the gap is all but gone in about a quarter of a second.
+const SETTLE_RATE := 12.0
+## How near the pointer, in inches, what's gliding back snaps under it.
+const SETTLE_SNAP := 0.01
 ## Values of what's held.
 const NOTHING := -2
 const WHOLE := -1
@@ -72,6 +77,10 @@ var _press_position := Vector2.ZERO
 var _press_rotation := 0.0
 ## Where the pointer last was during a drag, so what's held after it doesn't jump.
 var _drag_point := Vector2.ZERO
+## Where the pointer last was on the board, for what's gliding back under it.
+var _pointer_at := Vector2.ZERO
+## Whether what's held is gliding back under the pointer after a refused drag ([method _settle]).
+var _settling := false
 ## Seconds left of the red rings' flash.
 var _flash_left := 0.0
 
@@ -482,11 +491,13 @@ func drag_to(point: Vector2) -> void:
 		return
 	_dragged = true
 	_drag_point = point
+	_pointer_at = point
 	orient(_press_at, point)
 
 
 ## The mouse button comes up: what's held is put down, lined up if it was dragged. If it can't go
-## there it stays held, lined up, and follows the pointer from where the drag ended.
+## there it stays held, lined up, and glides back under the pointer from where the drag ended
+## ([method _settle]).
 func release() -> void:
 	if not is_pressing():
 		return
@@ -496,6 +507,7 @@ func release() -> void:
 	put_down()
 	if dragged and _held == WHOLE:
 		_hold_offset = _held_middle() - _drag_point
+		_settling = true
 
 
 ## Lines what's held up along the line [param from] to [param to]. A unit stands with its front
@@ -530,6 +542,7 @@ func toggle_single_model() -> void:
 
 ## The mouse is over [param point] on the board: what's held follows it.
 func hover(point: Vector2) -> void:
+	_pointer_at = point
 	if not is_holding() or is_pressing():
 		return
 	if _held == WHOLE:
@@ -583,10 +596,23 @@ func is_flashing() -> bool:
 
 
 func _process(delta: float) -> void:
+	_settle(delta)
 	if not is_flashing():
 		return
 	_flash_left = maxf(_flash_left - delta, 0.0)
 	_validate()
+
+
+## Glides what a refused drag left off the pointer back under it, [param delta] seconds on, so the
+## next drag starts from the pointer rather than a far-off point.
+func _settle(delta: float) -> void:
+	if not _settling or _held != WHOLE or is_pressing():
+		return
+	_hold_offset *= exp(-SETTLE_RATE * delta)
+	if _hold_offset.length() < SETTLE_SNAP:
+		_hold_offset = Vector2.ZERO
+		_settling = false
+	move_to(_pointer_at + _hold_offset)
 
 
 ## The colour of red rings now: flashing, or plain red.
@@ -607,6 +633,7 @@ func _held_middle() -> Vector2:
 func _hold(what: int, offset: Vector2) -> void:
 	_held = what
 	_hold_offset = offset
+	_settling = false
 	_validate()
 
 
