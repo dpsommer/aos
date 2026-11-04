@@ -9,10 +9,47 @@ extends RefCounted
 
 const ROOT := "res://assets/3d/models"
 const EXTENSIONS: PackedStringArray = ["obj", "glb", "gltf", "res", "tres", "mesh"]
+## Warscrolls that have no models of their own and use another's, by their slugs: the same miniature
+## under a different name, a Spearhead's unit with a choice of weapons (the one that Spearhead uses),
+## and an army's copy of another faction's unit or a warscroll for fewer models.
+const ALIASES := {
+	"allies_of_the_free_cities_auric_hearthguard": "auric_hearthguard",
+	"allies_of_the_free_cities_vanari_auralan_sentinels": "vanari_auralan_sentinels",
+	"allies_of_the_free_cities_vanari_auralan_wardens": "vanari_auralan_wardens",
+	"allies_of_the_free_cities_vulkyn_flameseekers": "vulkyn_flameseekers",
+	"beasts_of_chaos_chaos_spawn": "chaos_spawn",
+	"crypt_flayers_2_models": "crypt_flayers",
+	"crypt_horrors_2_models": "crypt_horrors",
+	"dracothian_guard_concussors_1_model": "dracothian_guard_concussors",
+	"dracothian_guard_desolators_1_model": "dracothian_guard_desolators",
+	"dracothian_guard_fulminators_1_model": "dracothian_guard_fulminators",
+	"dracothian_guard_tempestors_1_model": "dracothian_guard_tempestors",
+	"hunters_of_huanchi": "hunters_of_huanchi_with_dartpipes",
+	"kurnoth_hunters": "kurnoth_hunters_with_greatbows",
+	"legion_of_the_first_prince_bloodcrushers": "bloodcrushers",
+	"legion_of_the_first_prince_bloodletters": "bloodletters",
+	"legion_of_the_first_prince_fiends": "fiends",
+	"legion_of_the_first_prince_flamers_of_tzeentch": "flamers_of_tzeentch",
+	"legion_of_the_first_prince_hellflayer": "hellflayer",
+	"legion_of_the_first_prince_plaguebearers": "plaguebearers",
+	"legion_of_the_first_prince_screamers_of_tzeentch": "screamers_of_tzeentch",
+	"mantrapper": "mantrappers",
+	"maulbeast_cavalry": "maulbeast_raiders",
+	"pusgoyle_blightlords": "pusgoyle_blightlord",
+	"pusgoyle_blightlords_1_model": "pusgoyle_blightlord",
+	"pyrofane_fusil_major_on_ogor_warhulk": "fusil_major_on_ogor_warhulk",
+	"ripperdactyl_riders_2_models": "ripperdactyl_riders",
+	"spoilpox_scrivener": "spoilpox_scrivener_herald_of_nurgle",
+	"stormdrake_guard_1_model": "stormdrake_guard",
+	"terradon_riders_2_models": "terradon_riders",
+	"the_thricefold_discord": "thricefold_discord",
+	"vulkite_berzerkers": "vulkite_berzerkers_with_fyresteel_weapons",
+}
 
 static var _shared: ModelLibrary
 
 var root: String
+var aliases := ALIASES
 ## Slug to file path, built the first time a model is looked up.
 var _paths := {}
 var _scanned := false
@@ -49,7 +86,8 @@ static func slug(text: String) -> String:
 
 ## The model files for the first of [param names] that has any: its own file, or its numbered
 ## variants in order. A name with a weapon option, e.g. "Vulkite Berzerkers with Fyresteel
-## Weapons", falls back to the name before " with " when it has no model of its own.
+## Weapons", falls back to the name before " with " when it has no model of its own, and a name in
+## [member aliases] to the models it uses.
 func paths_for(names: PackedStringArray) -> PackedStringArray:
 	_scan()
 	for each in names:
@@ -109,6 +147,8 @@ func _candidates(model_name: String) -> PackedStringArray:
 	var cut := model_name.findn(" with ")
 	if cut > 0:
 		result.append(slug(model_name.substr(0, cut)))
+	if aliases.has(result[0]):
+		result.append(aliases[result[0]])
 	return result
 
 

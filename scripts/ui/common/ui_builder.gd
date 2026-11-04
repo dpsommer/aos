@@ -117,19 +117,30 @@ static func spacer() -> Control:
 	return node
 
 
-## A square showing a unit's initials, standing in for its portrait. With [param on_pressed] it's a
-## button, e.g. to show the unit in the info pane, and [param tooltip] names what it does.
-static func portrait(unit_name: String, on_pressed := Callable(), tooltip := "", size := 40) -> Control:
+## A square showing a render of a unit's model, or its initials if it has none. The model is found
+## by [param art_name], for a [param unit_name] the player chose, or else by [param unit_name]. With
+## [param on_pressed] it's a button, e.g. to show the unit in the info pane, and [param tooltip]
+## names what it does.
+static func portrait(unit_name: String, on_pressed := Callable(), tooltip := "", size := 40, art_name := "") -> Control:
+	var texture := UnitPortraits.shared().texture_for(PackedStringArray([art_name if not art_name.is_empty() else unit_name]))
 	if on_pressed.is_valid():
 		var portrait_button: Button = load("res://scenes/ui/common/portrait_button.tscn").instantiate()
-		portrait_button.text = initials(unit_name)
 		portrait_button.tooltip_text = tooltip
 		portrait_button.accessibility_name = tooltip
 		portrait_button.custom_minimum_size = Vector2(size, size)
 		portrait_button.pressed.connect(on_pressed)
-		(portrait_button.get_node(^"%Stripes") as ArtPlaceholder).corner_radius = 6
+		var stripes: ArtPlaceholder = portrait_button.get_node(^"%Stripes")
+		stripes.corner_radius = 6
+		if texture:
+			stripes.set_portrait(texture)
+		else:
+			portrait_button.text = initials(unit_name)
 		return portrait_button
-	var node := art(initials(unit_name), 6, 12)
+	var node := ArtPlaceholder.create(6)
+	if texture:
+		node.set_portrait(texture)
+	else:
+		node.set_caption(initials(unit_name), 12)
 	node.custom_minimum_size = Vector2(size, size)
 	node.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	return node

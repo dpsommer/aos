@@ -34,7 +34,7 @@ Scene `scenes/ui/quick_play/army_select.tscn`, script `scripts/ui/quick_play/arm
   - With no saved armies, a placeholder offers **Open the Forge** (`forge_requested`).
 - **Detail:**
   - the name with a status pill ("Army valid", "N problems" or "Constraints overridden"), its faction and Army of Renown or formation, and its points; then its problems, if any, in a red box;
-  - **Army:** each regiment in a box with its name (and a Regiment of Renown chip), unit count and points, then its units' 112 px portraits: the General's crown, the model count, the unit's name, and "General", its enhancements and points under it. Auxiliary units follow in their own box;
+  - **Army:** each regiment in a box with its name (and a Regiment of Renown chip), unit count and points, then its units' 112 px portraits (a render of the unit's model, found by its warscroll's name even if the player renamed it, or its initials if it has no model): the General's crown, the model count, the unit's name, and "General", its enhancements and points under it. Auxiliary units follow in their own box;
   - **Faction Terrain:** the army's terrain feature's portrait;
   - **Battle Tactics**, a short `TacticCard` per slot, or a dashed "No battle tactics card in slot 2"; beside them **Lores**, a short `LoreCard` per lore, or a dashed "No spell lore" etc. Tactics cards and lores have an eye that shows them in full in place, keeping focus on the eye.
 - **Play:** enabled when the army has no problems, or overrides its constraints.

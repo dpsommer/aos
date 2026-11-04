@@ -91,6 +91,21 @@ func test_the_fallback_is_case_insensitive() -> void:
 	assert_true(ModelKit.library().has_model(_names(["Plain Guard WITH Spears"])))
 
 
+func test_an_alias_uses_the_models_of_the_name_it_gives() -> void:
+	var library := ModelKit.library()
+	library.aliases = {"other_raiders": "twin_raiders"}
+	var paths := library.paths_for(_names(["Other Raiders"]))
+	assert_eq(paths.size(), 2)
+	assert_true(paths[0].ends_with("twin_raiders_1.obj"))
+
+
+func test_a_name_with_its_own_model_ignores_its_alias() -> void:
+	var library := ModelKit.library()
+	library.aliases = {"plain_guard": "lone_statue"}
+	var paths := library.paths_for(_names(["Plain Guard"]))
+	assert_true(paths[0].ends_with("plain_guard.obj"))
+
+
 func test_a_name_with_no_model_and_no_fallback_has_none() -> void:
 	assert_false(ModelKit.library().has_model(_names(["Nobody with Spears"])))
 

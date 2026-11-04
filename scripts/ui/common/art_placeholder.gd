@@ -37,3 +37,14 @@ func set_icon(texture: Texture2D, icon_size: int) -> void:
 	icon.custom_minimum_size = Vector2(icon_size, icon_size)
 	icon.set_anchors_and_offsets_preset(Control.PRESET_CENTER, Control.PRESET_MODE_MINSIZE)
 	icon.visible = true
+
+
+## Shows [param texture], a unit's render, over the stripes and filling the box, in its own colours.
+func set_portrait(texture: Texture2D) -> void:
+	var icon: TextureRect = %Icon
+	icon.texture = texture
+	icon.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	icon.visible = true
+	# A close-up reaches the box's edges, so it needs cutting to the rounded corners.
+	clip_children = CanvasItem.CLIP_CHILDREN_AND_DRAW

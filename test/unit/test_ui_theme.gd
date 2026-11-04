@@ -2,10 +2,17 @@ extends GutTest
 ## Unit tests for the builder's theme and control helpers (ui_theme.gd and ui_builder.gd).
 
 const Kit := preload("res://test/support/army_kit.gd")
+const ModelKit := preload("res://test/support/model_kit.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")
 
 
+func before_each() -> void:
+	# The fixture models have none of the made-up names below, so their portraits show initials.
+	UnitPortraits.use(UnitPortraits.new(ModelKit.library(), "res://test/fixtures/portraits"))
+
+
 func after_each() -> void:
+	UnitPortraits.end()
 	await get_tree().process_frame
 
 

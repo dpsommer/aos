@@ -735,20 +735,22 @@ func _army_portrait(army: Army, unit: ArmyUnit, regiment: ArmyRegiment) -> Contr
 	elif unit_scroll:
 		on_open = show_warscroll.bind(unit_scroll)
 		tooltip = "%s%s: show its warscroll" % [title, ", General" if general else ""]
-	return _portrait(title, " · ".join(parts), count, general, on_open, tooltip)
+	return _portrait(title, " · ".join(parts), count, general, on_open, tooltip, unit_scroll.name if unit_scroll else unit.warscroll_id)
 
 
 func _spearhead_portrait(unit_name: String, count: int, unit: Warscroll, general: bool, notes := "") -> Control:
 	var on_open := show_warscroll.bind(unit) if unit else Callable()
 	var sub := "General" if general else notes
-	return _portrait(unit_name, sub, "×%d" % count, general, on_open, "%s%s: show its warscroll" % [unit_name, ", General" if general else ""])
+	return _portrait(unit_name, sub, "×%d" % count, general, on_open, "%s%s: show its warscroll" % [unit_name, ", General" if general else ""],
+			unit.name if unit else unit_name)
 
 
 ## A unit's 112 px portrait, with the General's crown and its model count on it, and its name and
 ## [param sub] under it. With [param on_pressed], the portrait is a button that shows its rules.
-static func _portrait(title: String, sub: String, count: String, general: bool, on_pressed: Callable, tooltip: String) -> VBoxContainer:
+## [param art_name] finds its model when [param title] is a name the player chose.
+static func _portrait(title: String, sub: String, count: String, general: bool, on_pressed: Callable, tooltip: String, art_name := "") -> VBoxContainer:
 	var box: VBoxContainer = load("res://scenes/ui/quick_play/unit_portrait.tscn").instantiate()
-	var art := UIBuilder.portrait(title, on_pressed, tooltip, 112)
+	var art := UIBuilder.portrait(title, on_pressed, tooltip, 112, art_name)
 	art.add_theme_font_size_override("font_size", 22)
 	art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	# Under the crown and the model count.

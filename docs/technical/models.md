@@ -27,6 +27,7 @@ A model's file name is its warscroll's name as a slug (`ModelLibrary.slug()`): l
 - **Variants:** a unit whose models differ has numbered files, `vulkyn_flameseekers_1.obj`, `_2` and so on, with no file of the bare name. The battle gives them to the unit's models in turn, so a unit of 10 with 3 variants has 4, 3 and 3 of each.
 - **One file per model:** every file is a whole model, its pieces joined (the Arkanaut Frigate's two halves, a Mega-Gargant's legs and body), or the battle would show each piece as a separate variant.
 - **Weapon options:** a warscroll named "X with Y" (e.g. "Vulkite Berzerkers with Fyresteel Weapons") falls back to the model of X when it has none of its own, so a model whose weapons can't be told apart can be named for the unit alone.
+- **Aliases:** `ModelLibrary.ALIASES` gives the models of a warscroll with none of its own, by slug, for a warscroll that's the same miniature as another under a different name: a different spelling (Maulbeast Cavalry uses `maulbeast_raiders`), another faction's or a Regiment's copy (Legion of the First Prince Bloodletters uses `bloodletters`), a warscroll for fewer models (Crypt Horrors (2 Models) uses `crypt_horrors`), or a Spearhead's unit with no weapon option in its name, which uses the option that Spearhead has (Kurnoth Hunters uses `kurnoth_hunters_with_greatbows`). A warscroll that's a different miniature, such as Skabbik's Plaguepack or Tzaangor Enlightened on Foot, has no alias, even with a similar name.
 - **Lookup order:** a unit's own name, then its warscroll's (a Spearhead unit's name matches its faction's warscroll); a faction terrain feature's name, then its warscroll's. The first name with a model wins.
 
 ## Conventions
@@ -87,6 +88,23 @@ The mod's workshop id is in `SPEARHEAD_MODS`, so it's built this way automatical
 - **Cleaning up:** a Spearhead build only deletes stale files in `shared/spearhead/` and `assets/3d/boards/`, and a unit build never deletes anything in `shared/spearhead/`.
 - **Size:** in game a model is fitted to its feature's footprint from the battlepack data (see [Battle](../design/battle.md#game-map)), so the rules and the model agree. Scuttletide has none, as its asset bundle isn't in the cache.
 
+## Portraits
+
+Unit icons (`UIBuilder.portrait()`) are renders of the models, baked ahead of time, as loading a whole model and its textures for every icon in a list would be too slow. `tools/portraits/bake_portraits.gd` writes them to `assets/2d/portraits/`, and bakes again after a model changes:
+
+```sh
+godot --path . -s tools/portraits/bake_portraits.gd -- [--only "<warscroll>"]...
+godot --headless --import
+```
+
+It opens a window, as `--headless` has no renderer to draw with. It only reads the imported models, so it doesn't rebuild or reimport any. It doesn't delete portraits whose models have gone.
+
+- **What's baked:** a unit's only model or its first variant (`x` or `x_1`). Spearhead terrain in `shared/spearhead/` and later variants have none. `--only` bakes just the named units.
+- **The picture:** a close-up from straight in front, in an orthographic view, framed around the model's head so that units look alike, with the face in the upper half and the base out of sight. The tool first renders the model's depth (`find_head()`). It leaves out anything well behind the body (packs, wings) and to its sides (weapons), then takes the highest row wide enough to be a head, which skips spears and staffs. The view is centred on the body and as wide as the model from the head down, but between 50% and 75% of the height from the head to the feet, so a wide model is cut off at the sides. It shows at most 18% of the picture above the head, so whatever rises higher is cut off. This is an estimate from the model's shape: a face can't be detected on a painted miniature (macOS's face detection found one in 7% of them), and a model built differently, with its head under a balloon or inside a large body, can still be framed by the wrong part.
+- **Side views:** a long war machine or monster that isn't a Hero (the `WAR MACHINE` or `MONSTER` keyword and no `HERO`, with a model at least 4.5" long and 1.25 times longer than wide, such as a Kharadron ship, a chariot or a Stonehorn) is drawn from its side instead, facing right, as its front would show little of it. The view is as wide as the model is long, up to 1.5 times its height, centred along its length and staying above the bottom 15% of its height, so the base stays out of sight. Upright monsters (Gargants) and small war machines keep the close-up.
+- **Every picture:** it has a transparent background and fixed lighting with no shadows, rendered at 512 pixels and scaled down to 256 for the largest icon (112 pixels at 200% render scale). Import settings are lossless with mipmaps, written once with the portrait.
+- **Finding one:** `UnitPortraits` asks `ModelLibrary.paths_for()` for a name's models and takes the first's portrait, at the same path under `assets/2d/portraits/` with `.png`, so a name finds its portrait by the [rules for its model](#file-names). A unit with no model, or no portrait, shows its initials.
+
 ## Git LFS
 
-The models are about 2.5 GB of `.obj` files and 400 MB of textures, so `.gitattributes` stores `assets/3d/models/**/*.obj`, `*.jpg` and `*.png`, and the boards in `assets/3d/boards/`, in [Git LFS](https://git-lfs.com/). Install it (`brew install git-lfs`, then `git lfs install`) before cloning, or the checkout has pointer files in place of models. Godot fails to import those (`valid=false` in their `.import` files), and `ModelLibrary.is_imported()` leaves them out, so units are drawn as their bases without errors. CI checks out without Git LFS, so tests never depend on the real models. The `.mtl` and `.import` files are ordinary text.
+The models are about 2.5 GB of `.obj` files and 400 MB of textures, so `.gitattributes` stores `assets/3d/models/**/*.obj`, `*.jpg` and `*.png`, the boards in `assets/3d/boards/` and the portraits in `assets/2d/portraits/`, in [Git LFS](https://git-lfs.com/). Install it (`brew install git-lfs`, then `git lfs install`) before cloning, or the checkout has pointer files in place of models. Godot fails to import those (`valid=false` in their `.import` files), and `ModelLibrary.is_imported()` leaves them out, so units are drawn as their bases without errors. CI checks out without Git LFS, so tests never depend on the real models. The `.mtl` and `.import` files are ordinary text.

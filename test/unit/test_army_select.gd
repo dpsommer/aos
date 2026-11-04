@@ -2,6 +2,8 @@ extends GutTest
 ## Unit tests for Quick Play's army step (scripts/ui/quick_play/army_select.gd).
 
 const ArmySelectScene := preload("res://scenes/ui/quick_play/army_select.tscn")
+const Kit := preload("res://test/support/army_kit.gd")
+const ModelKit := preload("res://test/support/model_kit.gd")
 const Sandbox := preload("res://test/support/sandbox.gd")
 const UIKit := preload("res://test/support/ui_kit.gd")
 
@@ -15,6 +17,7 @@ func before_each() -> void:
 func after_each() -> void:
 	# Cards are removed with queue_free, so let a frame pass for them to be freed.
 	await get_tree().process_frame
+	UnitPortraits.end()
 	Sandbox.end()
 
 
@@ -1037,3 +1040,54 @@ func test_list_entries_stop_short_of_the_scroll_bar() -> void:
 	var card := _entry_cards(screen)[0] as Control
 	assert_true(scroll.get_v_scroll_bar().visible, "the list should be long enough to scroll")
 	assert_lte(card.get_global_rect().end.x, scroll.get_v_scroll_bar().get_global_rect().position.x - ArmySelect.SCROLL_GAP)
+
+
+# --- Unit portraits ---
+
+## The portrait shown for a unit of the fixture warscroll "Plain Guard" (which has a model and a
+## portrait in the fixtures) that the player named [param label], or for [param warscroll_id].
+func _army_portrait_icon(label: String, warscroll_id := "plain_guard") -> TextureRect:
+	UnitPortraits.use(UnitPortraits.new(ModelKit.library(), "res://test/fixtures/portraits"))
+	var screen := _make_select()
+	var scrolls: Array[Warscroll] = [Kit.warscroll("plain_guard")]
+	screen._info = {"catalog": Kit.catalog(Kit.faction(scrolls))}
+	var unit := Kit.unit("u1", warscroll_id)
+	unit.label = label
+	var army := Kit.army()
+	var box: Control = screen._army_portrait(army, unit, null)
+	autofree(box)
+	# A unit without a warscroll has nothing to open, so its portrait isn't a button.
+	var art: Control = box.get_node(^"%Frame").get_child(0)
+	if art is Button:
+		art = art.get_node(^"%Stripes")
+	return art.get_node(^"%Icon")
+
+
+func test_army_portrait_of_an_unrenamed_unit_shows_its_render() -> void:
+	var icon := _army_portrait_icon("")
+	assert_true(icon.visible)
+	assert_not_null(icon.texture)
+
+
+func test_army_portrait_of_a_renamed_unit_finds_its_warscrolls_render() -> void:
+	var icon := _army_portrait_icon("The Lads")
+	assert_true(icon.visible)
+	assert_not_null(icon.texture)
+
+
+func test_army_portrait_of_a_renamed_unit_whose_warscroll_is_gone_looks_up_its_warscroll_id() -> void:
+	var scrolls: Array[Warscroll] = []
+	UnitPortraits.use(UnitPortraits.new(ModelKit.library(), "res://test/fixtures/portraits"))
+	var screen := _make_select()
+	screen._info = {"catalog": Kit.catalog(Kit.faction(scrolls))}
+	var unit := Kit.unit("u1", "plain_guard")
+	unit.label = "The Lads"
+	var box: Control = screen._army_portrait(Kit.army(), unit, null)
+	autofree(box)
+	var icon: TextureRect = box.get_node(^"%Frame").get_child(0).get_node(^"%Icon")
+	assert_not_null(icon.texture)
+
+
+func test_army_portrait_of_a_unit_with_no_model_shows_no_render() -> void:
+	var icon := _army_portrait_icon("The Lads", "no_such_unit")
+	assert_false(icon.visible)

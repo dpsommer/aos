@@ -6,3 +6,4 @@ assets/3d/models/**/*.obj filter=lfs diff=lfs merge=lfs -text
 assets/3d/models/**/*.jpg filter=lfs diff=lfs merge=lfs -text
 assets/3d/models/**/*.png filter=lfs diff=lfs merge=lfs -text
 assets/3d/boards/*.jpg filter=lfs diff=lfs merge=lfs -text
+assets/2d/portraits/**/*.png filter=lfs diff=lfs merge=lfs -text
