@@ -95,9 +95,12 @@ func _build_battlefield() -> void:
 	armies_root = _group("Armies")
 	camera = BattleCamera.new()
 	camera.name = "BattleCamera"
-	camera.bounds = Rect2(Vector2.ZERO, battle.battlefield_size)
-	camera.frame(Rect2(Vector2.ZERO, battle.battlefield_size), PI / 2)
+	var battlefield := Rect2(Vector2.ZERO, battle.battlefield_size)
+	camera.bounds = battlefield
+	camera.frame(battlefield, PI / 2)
 	add_child(camera)
+	var hoverable: Array[Node3D] = [terrain_root, objectives_root, armies_root]
+	add_child(MapHover.new(camera, hoverable))
 	_build_overlay()
 	if battle.has_territories():
 		_show_territories()
@@ -120,8 +123,7 @@ func _show_realm() -> void:
 	_add_board()
 	for root: Node3D in [terrain_root, objectives_root]:
 		for child in root.get_children():
-			root.remove_child(child)
-			child.queue_free()
+			_remove(child)
 	for feature in battle.all_terrain():
 		_add_terrain(feature)
 	_build_objectives()
@@ -206,7 +208,12 @@ func _ai_chooses_options(army: BattleArmy) -> void:
 
 
 func _random_name(abilities: Array[Ability]) -> String:
-	return abilities[rng.randi_range(0, abilities.size() - 1)].name if not abilities.is_empty() else ""
+	return _pick(abilities).name if not abilities.is_empty() else ""
+
+
+## One of [param items] at random, from [member rng].
+func _pick(items: Array) -> Variant:
+	return items[rng.randi_range(0, items.size() - 1)]
 
 
 func _open_options_picker() -> void:
@@ -239,9 +246,8 @@ func _choose_battlefield() -> void:
 ## territories at random.
 func _ai_chooses_deployment() -> void:
 	var pack := battle.battlepack
-	var side := battle.realm if battle.realm else pack.realms[rng.randi_range(0, pack.realms.size() - 1)]
-	var maps := pack.deployment_maps
-	_on_deployment_chosen(side, maps[rng.randi_range(0, maps.size() - 1)], rng.randi_range(0, 1) == 0)
+	var side: RealmBattlefield = battle.realm if battle.realm else _pick(pack.realms)
+	_on_deployment_chosen(side, _pick(pack.deployment_maps), rng.randi_range(0, 1) == 0)
 
 
 ## The player defends: they pick the side, the deployment map and the territories.
@@ -295,13 +301,12 @@ func _show_territories() -> void:
 func show_no_deploy(terrain: bool) -> void:
 	_remove_child_named("NoDeploy")
 	var zone: Array[PackedVector2Array]
-	var text: String
+	# Terrain's is shaded without a label: the placing panel says where terrain can go.
+	var text := ""
 	var blocked: Array[PackedVector2Array] = []
 	if terrain:
-		# Shaded without a label: the placing panel says where terrain can go.
 		zone = DeploymentRules.terrain_zone(battle, battle.player)
 		blocked = DeploymentRules.terrain_keep_out(battle)
-		text = ""
 	else:
 		zone = DeploymentRules.unit_zone(battle, battle.player)
 		text = "Within %d\" of enemy territory" % int(DeploymentRules.unit_gap(battle))
@@ -309,10 +314,7 @@ func show_no_deploy(terrain: bool) -> void:
 
 
 func _remove_child_named(node_name: String) -> void:
-	var old := get_node_or_null(node_name)
-	if old:
-		remove_child(old)
-		old.queue_free()
+	_remove(get_node_or_null(node_name))
 
 
 ## Adds [param control] to the overlay under the menu.
@@ -321,10 +323,10 @@ func _add_to_overlay(control: Control) -> void:
 	overlay.move_child(control, pause_menu.get_index())
 
 
-func _remove(control: Control) -> void:
-	if control and control.get_parent():
-		control.get_parent().remove_child(control)
-		control.queue_free()
+func _remove(node: Node) -> void:
+	if node and node.get_parent():
+		node.get_parent().remove_child(node)
+		node.queue_free()
 
 
 func _group(group_name: String) -> Node3D:
@@ -356,7 +358,7 @@ func open_menu() -> void:
 	_menu_closing = false
 	pause_menu.open()
 	hud.set_header_hidden(true)
-	_set_camera_active(false)
+	_set_map_controls_active(false)
 
 
 ## Closes the menu, bringing the header back and the camera with it.
@@ -366,7 +368,7 @@ func close_menu() -> void:
 	_menu_closing = true
 	pause_menu.close()
 	hud.set_header_hidden(false)
-	_set_camera_active(true)
+	_set_map_controls_active(true)
 
 
 ## Opens the Settings screen over the menu. Its Back returns to the menu.
@@ -388,7 +390,7 @@ func close_settings() -> void:
 	pause_menu.settings_button.grab_focus()
 
 
-func _set_camera_active(active: bool) -> void:
+func _set_map_controls_active(active: bool) -> void:
 	if camera:
 		camera.set_process(active)
 		camera.set_process_unhandled_input(active)

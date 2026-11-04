@@ -5,6 +5,8 @@ const BattleKit := preload("res://test/support/battle_kit.gd")
 const ModelKit := preload("res://test/support/model_kit.gd")
 
 const MM_PER_INCH := BaseSize.MM_PER_INCH
+## How close two directions must be to count as the same.
+const NEAR := Vector3(0.001, 0.001, 0.001)
 
 
 func _unit_with_positions(bases: Array[BaseSize]) -> BattleUnit:
@@ -16,6 +18,23 @@ func _unit_with_positions(bases: Array[BaseSize]) -> BattleUnit:
 	return unit
 
 
+## A unit named [param unit_name] (a fixture model, if it names one) with its models 3" apart along
+## x, starting at x = 0.
+func _unit_named(unit_name: String, count: int, warscroll_name := "") -> BattleUnit:
+	var unit := BattleKit.unit(unit_name, count)
+	if not warscroll_name.is_empty():
+		unit.warscroll.name = warscroll_name
+	for i in count:
+		unit.positions.append(Vector2(i * 3, 2))
+	return unit
+
+
+## [param unit]'s models, built from [param library] (the untextured fixture models by default)
+## and freed after the test.
+func _built(unit: BattleUnit, is_player := true, library: ModelLibrary = ModelKit.library()) -> Node3D:
+	return autofree(ModelPlaceholder.build_unit(unit, 0.0, is_player, library)) as Node3D
+
+
 func _multimeshes(root: Node) -> Array[MultiMeshInstance3D]:
 	var result: Array[MultiMeshInstance3D] = []
 	for child in root.get_children():
@@ -24,9 +43,24 @@ func _multimeshes(root: Node) -> Array[MultiMeshInstance3D]:
 	return result
 
 
+## [param root]'s 3D models, without its bases.
+func _models(root: Node) -> Array[MultiMeshInstance3D]:
+	return _multimeshes(root).filter(
+			func(child: MultiMeshInstance3D) -> bool: return child.multimesh.mesh is ArrayMesh)
+
+
 ## How many models each of [param instances] draws, in order.
 func _instance_counts(instances: Array[MultiMeshInstance3D]) -> Array:
 	return instances.map(func(instance: MultiMeshInstance3D) -> int: return instance.multimesh.instance_count)
+
+
+## The name floating over [param root]'s unit.
+func _label(root: Node) -> Label3D:
+	return root.get_children().filter(func(child: Node) -> bool: return child is Label3D)[0]
+
+
+func _mesh(model_name: String) -> Mesh:
+	return ModelKit.library().meshes_for(PackedStringArray([model_name]))[0]
 
 
 # size_of
@@ -53,6 +87,11 @@ func test_a_model_without_a_base_has_a_footprint() -> void:
 
 # transform_of
 
+## The way an oval base's length points when it's facing [param facing].
+func _oval_length_facing(facing: float) -> Vector3:
+	return ModelPlaceholder.transform_of(BaseSize.oval(100, 50), Vector2.ZERO, facing).basis.x.normalized()
+
+
 func test_transform_stands_on_the_battlefield_at_its_inches() -> void:
 	var transform := ModelPlaceholder.transform_of(BaseSize.round_base(32), Vector2(12, 7), 0.0)
 	assert_eq([transform.origin.x, transform.origin.z], [12.0, 7.0])
@@ -72,18 +111,15 @@ func test_transform_is_scaled_to_the_footprint() -> void:
 
 
 func test_oval_facing_east_is_long_along_east() -> void:
-	var basis := ModelPlaceholder.transform_of(BaseSize.oval(100, 50), Vector2.ZERO, 0.0).basis
-	assert_almost_eq(basis.x.normalized(), Vector3.RIGHT, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(_oval_length_facing(0.0), Vector3.RIGHT, NEAR)
 
 
 func test_oval_facing_south_is_long_along_south() -> void:
-	var basis := ModelPlaceholder.transform_of(BaseSize.oval(100, 50), Vector2.ZERO, PI / 2).basis
-	assert_almost_eq(basis.x.normalized(), Vector3.BACK, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(_oval_length_facing(PI / 2), Vector3.BACK, NEAR)
 
 
 func test_oval_facing_west_is_long_along_west() -> void:
-	var basis := ModelPlaceholder.transform_of(BaseSize.oval(100, 50), Vector2.ZERO, PI).basis
-	assert_almost_eq(basis.x.normalized(), Vector3.LEFT, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(_oval_length_facing(PI), Vector3.LEFT, NEAR)
 
 
 func test_to_world_puts_south_on_positive_z() -> void:
@@ -134,6 +170,49 @@ func test_unit_has_a_label_with_its_name() -> void:
 	assert_eq(labels[0].text, "Test Unit")
 
 
+func test_unit_name_starts_hidden() -> void:
+	var root := _built(_unit_with_positions([BaseSize.round_base(32)] as Array[BaseSize]))
+	assert_false(_label(root).visible)
+
+
+func _plain_label() -> Label3D:
+	return autofree(ModelPlaceholder.label("A", Vector3.ZERO)) as Label3D
+
+
+func _hover_label() -> Label3D:
+	return autofree(ModelPlaceholder.hover_label("A", Vector3.ZERO)) as Label3D
+
+
+func test_a_hover_label_starts_hidden() -> void:
+	assert_false(_hover_label().visible)
+
+
+func test_a_plain_label_starts_shown() -> void:
+	assert_true(_plain_label().visible)
+
+
+func test_a_hover_label_is_found_by_the_hover_name() -> void:
+	assert_eq(_hover_label().name, ModelPlaceholder.HOVER_LABEL)
+
+
+func test_a_hover_label_shows_through_things_in_front() -> void:
+	assert_true(_hover_label().no_depth_test)
+
+
+func test_a_plain_label_is_drawn_with_a_distance_field_font() -> void:
+	assert_true((_plain_label().font as FontFile).multichannel_signed_distance_field)
+
+
+func test_a_hover_label_is_drawn_with_a_distance_field_font() -> void:
+	assert_true((_hover_label().font as FontFile).multichannel_signed_distance_field)
+
+
+func test_label_outline_fits_in_the_fonts_distance_field() -> void:
+	var label := _plain_label()
+	var font := label.font as FontFile
+	assert_gte(font.msdf_pixel_range, label.outline_size * 2)
+
+
 func test_undeployed_unit_has_no_models_or_label() -> void:
 	var unit := BattleKit.unit("U", 3)
 	var root := _built(unit)
@@ -168,31 +247,9 @@ func test_unnamed_unit_still_has_a_node_name() -> void:
 
 # model_transform
 
-func _mesh(model_name: String) -> Mesh:
-	return ModelKit.library().meshes_for(PackedStringArray([model_name]))[0]
-
-
-func _models(root: Node) -> Array[MultiMeshInstance3D]:
-	var result: Array[MultiMeshInstance3D] = []
-	for child in root.get_children():
-		if child is MultiMeshInstance3D and child.multimesh.mesh is ArrayMesh:
-			result.append(child)
-	return result
-
-
-## [param unit]'s models, built from [param library] (the untextured fixture models by default)
-## and freed after the test.
-func _built(unit: BattleUnit, is_player := true, library: ModelLibrary = ModelKit.library()) -> Node3D:
-	return autofree(ModelPlaceholder.build_unit(unit, 0.0, is_player, library)) as Node3D
-
-
-func _unit_named(unit_name: String, count: int, warscroll_name := "") -> BattleUnit:
-	var unit := BattleKit.unit(unit_name, count)
-	if not warscroll_name.is_empty():
-		unit.warscroll.name = warscroll_name
-	for i in count:
-		unit.positions.append(Vector2(i * 3, 2))
-	return unit
+## Which way a model's [param direction] points once it's facing [param facing].
+func _model_direction(direction: Vector3, facing: float) -> Vector3:
+	return ModelPlaceholder.model_transform(_mesh("Lone Statue"), Vector2.ZERO, facing).basis * direction
 
 
 func test_model_lowest_point_rests_on_top_of_the_base() -> void:
@@ -216,27 +273,23 @@ func test_model_stands_over_its_position() -> void:
 
 func test_model_is_not_scaled() -> void:
 	var basis := ModelPlaceholder.model_transform(_mesh("Lone Statue"), Vector2.ZERO, 1.2).basis
-	assert_almost_eq(basis.get_scale(), Vector3.ONE, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(basis.get_scale(), Vector3.ONE, NEAR)
 
 
 func test_model_facing_east_has_its_front_to_the_east() -> void:
-	var basis := ModelPlaceholder.model_transform(_mesh("Lone Statue"), Vector2.ZERO, 0.0).basis
-	assert_almost_eq(basis * Vector3.FORWARD, Vector3.RIGHT, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(_model_direction(Vector3.FORWARD, 0.0), Vector3.RIGHT, NEAR)
 
 
 func test_model_facing_south_has_its_front_to_the_south() -> void:
-	var basis := ModelPlaceholder.model_transform(_mesh("Lone Statue"), Vector2.ZERO, PI / 2).basis
-	assert_almost_eq(basis * Vector3.FORWARD, Vector3.BACK, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(_model_direction(Vector3.FORWARD, PI / 2), Vector3.BACK, NEAR)
 
 
 func test_model_facing_west_has_its_front_to_the_west() -> void:
-	var basis := ModelPlaceholder.model_transform(_mesh("Lone Statue"), Vector2.ZERO, PI).basis
-	assert_almost_eq(basis * Vector3.FORWARD, Vector3.LEFT, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(_model_direction(Vector3.FORWARD, PI), Vector3.LEFT, NEAR)
 
 
 func test_model_stays_upright() -> void:
-	var basis := ModelPlaceholder.model_transform(_mesh("Lone Statue"), Vector2.ZERO, 0.9).basis
-	assert_almost_eq(basis * Vector3.UP, Vector3.UP, Vector3(0.001, 0.001, 0.001))
+	assert_almost_eq(_model_direction(Vector3.UP, 0.9), Vector3.UP, NEAR)
 
 
 # model_names
@@ -320,10 +373,6 @@ func test_a_unit_without_a_model_gives_bases_only() -> void:
 	assert_eq(_multimeshes(root).size(), 1)
 
 
-func _label(root: Node) -> Label3D:
-	return root.get_children().filter(func(child: Node) -> bool: return child is Label3D)[0]
-
-
 func test_the_label_floats_above_the_tallest_model() -> void:
 	var root := _built(_unit_named("Twin Raiders", 2))
 	var variants := ModelKit.library().meshes_for(PackedStringArray(["Twin Raiders"]))
@@ -362,17 +411,16 @@ func test_update_unit_moves_the_name_label_over_the_unit() -> void:
 	var root := _built(unit)
 	unit.positions = PackedVector2Array([Vector2(40, 30), Vector2(42, 30)])
 	ModelPlaceholder.update_unit(root, unit)
-	var label := root.get_node("Label") as Label3D
-	assert_eq([label.position.x, label.position.z], [41.0, 30.0])
+	assert_eq([_label(root).position.x, _label(root).position.z], [41.0, 30.0])
 
 
 func test_update_unit_keeps_the_label_height() -> void:
 	var unit := _unit_named("Plain Guard", 2)
 	var root := _built(unit)
-	var height := (root.get_node("Label") as Label3D).position.y
+	var height := _label(root).position.y
 	unit.positions[0] = Vector2(5, 5)
 	ModelPlaceholder.update_unit(root, unit)
-	assert_eq((root.get_node("Label") as Label3D).position.y, height)
+	assert_eq(_label(root).position.y, height)
 
 
 func test_update_unit_ignores_models_that_lost_their_positions() -> void:
@@ -380,7 +428,8 @@ func test_update_unit_ignores_models_that_lost_their_positions() -> void:
 	var root := _built(unit)
 	unit.positions.resize(2)
 	ModelPlaceholder.update_unit(root, unit)
-	assert_eq((root.get_node("Label") as Label3D).position.x, 1.5)
+	# The two models left are at x = 0 and x = 3.
+	assert_eq(_label(root).position.x, 1.5)
 
 
 # show_rings
@@ -389,26 +438,30 @@ func _rings(root: Node3D) -> MultiMeshInstance3D:
 	return root.get_node_or_null("Rings") as MultiMeshInstance3D
 
 
-func test_show_rings_adds_a_ring_per_model() -> void:
-	var unit := _unit_named("Plain Guard", 3)
+## [param unit]'s models with their rings showing, none of them invalid.
+func _ringed(unit: BattleUnit) -> Node3D:
 	var root := _built(unit)
 	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	return root
+
+
+func test_show_rings_adds_a_ring_per_model() -> void:
+	var root := _ringed(_unit_named("Plain Guard", 3))
 	assert_eq(_rings(root).multimesh.instance_count, 3)
 
 
 func test_showing_the_rings_again_keeps_one_ring_set() -> void:
 	var unit := _unit_named("Plain Guard", 2)
-	var root := _built(unit)
-	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	var root := _ringed(unit)
+	# By count, not name: Godot renames a node added beside one of the same name.
+	var children := root.get_child_count()
 	ModelPlaceholder.show_rings(root, unit, PackedInt32Array([0]))
-	var sets := root.get_children().filter(func(n: Node) -> bool: return n.name == "Rings")
-	assert_eq(sets.size(), 1)
+	assert_eq(root.get_child_count(), children)
 
 
 func test_hiding_the_rings_removes_them() -> void:
 	var unit := _unit_named("Plain Guard", 2)
-	var root := _built(unit)
-	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	var root := _ringed(unit)
 	ModelPlaceholder.show_rings(root, unit, PackedInt32Array(), false)
 	assert_null(_rings(root))
 
@@ -421,23 +474,18 @@ func test_hiding_rings_that_are_not_shown_does_nothing() -> void:
 
 
 func test_rings_do_not_cast_shadows() -> void:
-	var unit := _unit_named("Plain Guard", 2)
-	var root := _built(unit)
-	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	var root := _ringed(_unit_named("Plain Guard", 2))
 	assert_eq(_rings(root).cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_OFF)
 
 
 func test_rings_are_hidden_behind_models_in_front_of_them() -> void:
-	var unit := _unit_named("Plain Guard", 2)
-	var root := _built(unit)
-	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	var root := _ringed(_unit_named("Plain Guard", 2))
 	assert_false((_rings(root).material_override as StandardMaterial3D).no_depth_test)
 
 
 func test_showing_the_rings_for_a_smaller_unit_resizes_them() -> void:
 	var unit := _unit_named("Plain Guard", 3)
-	var root := _built(unit)
-	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
+	var root := _ringed(unit)
 	unit.positions.resize(2)
 	ModelPlaceholder.show_rings(root, unit, PackedInt32Array())
 	assert_eq(_rings(root).multimesh.instance_count, 2)
@@ -463,22 +511,22 @@ func test_a_held_ring_differs_from_an_invalid_one() -> void:
 
 # outline_mesh
 
+func _terrain_outline() -> PackedVector2Array:
+	return DeploymentRules.terrain_outline(BattleKit.terrain(), Vector2.ZERO, 0.0)
+
+
 func test_an_outline_mesh_has_one_surface() -> void:
-	var outline := DeploymentRules.terrain_outline(BattleKit.terrain(), Vector2.ZERO, 0.0)
-	assert_eq(ModelPlaceholder.outline_mesh(outline, 0.1).get_surface_count(), 1)
+	assert_eq(ModelPlaceholder.outline_mesh(_terrain_outline(), 0.1).get_surface_count(), 1)
 
 
 func test_an_outline_mesh_has_vertices_all_round_the_outline() -> void:
-	var outline := DeploymentRules.terrain_outline(BattleKit.terrain(), Vector2.ZERO, 0.0)
+	var outline := _terrain_outline()
 	var arrays := ModelPlaceholder.outline_mesh(outline, 0.1).surface_get_arrays(0)
 	assert_gte(arrays[Mesh.ARRAY_VERTEX].size(), outline.size() * 2)
 
 
 func test_an_outline_mesh_sits_at_the_height_given() -> void:
-	var outline := DeploymentRules.terrain_outline(BattleKit.terrain(), Vector2.ZERO, 0.0)
-	var low := ModelPlaceholder.outline_mesh(outline, 0.1).get_aabb()
-	var high := ModelPlaceholder.outline_mesh(outline, 0.6).get_aabb()
-	assert_gt(high.position.y, low.position.y)
+	assert_almost_eq(ModelPlaceholder.outline_mesh(_terrain_outline(), 0.6).get_aabb().position.y, 0.6, 0.001)
 
 
 # flash_colour

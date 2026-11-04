@@ -60,17 +60,18 @@ Scene `scenes/battle/battle_map.tscn`, script `scripts/battle/battle_map.gd` (`B
   - The part of the player's territory too close to the enemy to deploy units in is shaded dark (`BoardBuilder.no_deploy`). While placing terrain, the shading shows where terrain can't go, including the gap around terrain features already set up.
   - A realm battlefield has its printed board from the Spearhead Tabletop Simulator mod stretched over the top (`BoardBuilder.board_print`, from `assets/3d/boards/`), north at the top of the image, with its roads and objective markings printed on it. Without the board image (a checkout without Git LFS), its roads are drawn instead.
 - **Objectives:**
-  - A 40mm gold marker, its zone and its name.
+  - A 40mm gold marker and its zone.
   - The zone is Matched Play's 3" control range, or a Spearhead objective's own radius or rectangle.
 - **Terrain** (`TerrainPlaceholder`): a block the feature's footprint in size, turned to face across its side's territory. Faction terrain with a 3D model (see [3D models](../technical/models.md)) is drawn as the model instead, with its textures (or in `p_model` if it has none). So is a Spearhead feature with a model: its long side along the footprint's length, centred on it and scaled evenly to fit inside it, so it covers the ground the rules use. A feature with more than one model (Ruined Domicile, Ravaged Shrine, Ruined Manor) shows one per player (`BattleTerrain.variant`).
   - Area terrain or obstacles are low slabs, obscuring terrain is tall and Places of Power are purple discs.
   - Spearhead features without a model are 1" or 2.5" tall.
   - Faction terrain is a disc on a round base, or a slab for "Use model".
-  - Faction and Spearhead features are named.
+  - Faction and Spearhead features have a name to show on hover.
 - **Models** (`ModelPlaceholder`): each model has its base, so units take up the room they would on the tabletop. Round bases are discs and oval ones are discs stretched along the way the model faces. A "Use model" model is a slab its best-guess footprint in size.
   - Bases are blue for the player (`p_base_player`) and red for the opponent (`p_base_opponent`).
   - A unit whose name or warscroll has 3D models (`ModelLibrary`, see [3D models](../technical/models.md)) has them standing on its bases, facing the way the unit does, with their textures. A model without materials of its own is drawn blue-grey for the player (`p_model_player`) or red-grey for the opponent (`p_model_opponent`). A unit with several model variants gives them to its models in turn. Units without models are just their bases.
-  - Each unit's models are one `MultiMeshInstance3D` per kind of base and per model mesh, with the unit's name floating above its tallest model, hidden from far away.
+  - Each unit's models are one `MultiMeshInstance3D` per kind of base and per model mesh.
+- **Names:** the names of units, terrain features and objectives are hidden until the mouse is over them (`MapHover`), then float above the thing hovered, in front of everything. A unit's floats above its tallest model. The nearest thing under the mouse wins, each tested as the bounding boxes of its models, bases, marker or zone; nothing shows while the mouse is over the UI. Text on the battlefield uses MSDF, so it stays sharp at any zoom, with `assets/2d/fonts/inter/InterStatic.ttf` (`ModelPlaceholder.LABEL_FONT`): Inter at regular weight with its overlapping outlines removed, as they speck MSDF glyphs. It was made with `fonttools varLib.instancer Inter.ttf wght=400 opsz=14 --remove-overlaps` (needs `skia-pathops`). The UI's fonts stay hinted.
 - **Overlay** (`BattleHud`, `scripts/ui/battle/battle_hud.gd`):
   - The header has, from the left:
     - The phase badge: "PRE-BATTLE", then "DEPLOYMENT".
