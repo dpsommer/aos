@@ -453,9 +453,10 @@ func test_show_rings_adds_a_ring_per_model() -> void:
 func test_showing_the_rings_again_keeps_one_ring_set() -> void:
 	var unit := _unit_named("Plain Guard", 2)
 	var root := _ringed(unit)
+	# By count, not name: Godot renames a node added beside one of the same name.
+	var children := root.get_child_count()
 	ModelPlaceholder.show_rings(root, unit, PackedInt32Array([0]))
-	var sets := root.get_children().filter(func(n: Node) -> bool: return n.name == "Rings")
-	assert_eq(sets.size(), 1)
+	assert_eq(root.get_child_count(), children)
 
 
 func test_hiding_the_rings_removes_them() -> void:
@@ -525,9 +526,7 @@ func test_an_outline_mesh_has_vertices_all_round_the_outline() -> void:
 
 
 func test_an_outline_mesh_sits_at_the_height_given() -> void:
-	var low := ModelPlaceholder.outline_mesh(_terrain_outline(), 0.1).get_aabb()
-	var high := ModelPlaceholder.outline_mesh(_terrain_outline(), 0.6).get_aabb()
-	assert_gt(high.position.y, low.position.y)
+	assert_almost_eq(ModelPlaceholder.outline_mesh(_terrain_outline(), 0.6).get_aabb().position.y, 0.6, 0.001)
 
 
 # flash_colour

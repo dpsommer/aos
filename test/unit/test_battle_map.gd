@@ -6,6 +6,9 @@ const Sandbox := preload("res://test/support/sandbox.gd")
 const MapScene := preload("res://scenes/battle/battle_map.tscn")
 const UIKit := preload("res://test/support/ui_kit.gd")
 
+## A realm with no printed board image, so its roads are drawn.
+const REALM_WITHOUT_A_PRINT := "Realm Without A Board"
+
 
 func before_each() -> void:
 	Sandbox.begin()
@@ -38,6 +41,10 @@ func _battle() -> Battle:
 	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 3.0, Vector2.ZERO, false))
 	battle.objectives = [BattleKit.feature("Objective", Vector2(15, 11))] as Array[MapFeature]
 	return battle
+
+
+func _a_road() -> Array[PackedVector2Array]:
+	return [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
 
 
 func _stages(steps: Array[Dictionary]) -> Array:
@@ -216,20 +223,20 @@ func test_build_leaves_out_roads_when_the_battle_has_none() -> void:
 
 func test_build_adds_the_battles_roads() -> void:
 	var battle := _battle()
-	battle.roads = [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
+	battle.roads = _a_road()
 	assert_not_null(_built_map(battle).get_node_or_null("Roads"))
 
 
 func test_build_draws_roads_on_a_board_without_a_print() -> void:
 	var battle := _battle()
-	battle.realm = BattleKit.realm("Realm Without A Board")
-	battle.roads = [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
+	battle.realm = BattleKit.realm(REALM_WITHOUT_A_PRINT)
+	battle.roads = _a_road()
 	assert_not_null(_built_map(battle).get_node_or_null("Roads"))
 
 
 func test_build_leaves_the_board_bare_without_a_print() -> void:
 	var battle := _battle()
-	battle.realm = BattleKit.realm("Realm Without A Board")
+	battle.realm = BattleKit.realm(REALM_WITHOUT_A_PRINT)
 	assert_null(_built_map(battle).get_node("Board").get_node_or_null("Print"))
 
 
@@ -467,18 +474,14 @@ func test_close_settings_keeps_the_menu_open() -> void:
 
 func test_close_settings_without_settings_does_nothing() -> void:
 	var map := _built_map()
-	var controls := map.hud.controls
+	map.open_menu()
+	InputBindings.set_keys("camera_forward", [_key(KEY_I)])
 	map.close_settings()
-	assert_eq(map.hud.controls, controls)
+	assert_false(UIKit.has_label_containing(map.hud.controls, BattleHud.move_keys()), "the HUD isn't refreshed")
+	assert_false(map.pause_menu.settings_button.has_focus(), "the settings button isn't focused")
 
 
 # start: the roll-off and deployment
-
-func _rolled_map(battle: Battle, seed_value := 1) -> BattleMap:
-	var map := _built_map(battle)
-	map.rng.seed = seed_value
-	return map
-
 
 ## A Matched Play battle before the roll-off: the territories come from the battleplan by role.
 func _matched_battle() -> Battle:
@@ -515,7 +518,8 @@ func _battle_on_a_side() -> Battle:
 
 ## A map of [param battle] showing its roll-off, rolled with [param seed_value].
 func _started(battle: Battle, seed_value := 1) -> BattleMap:
-	var map := _rolled_map(battle, seed_value)
+	var map := _built_map(battle)
+	map.rng.seed = seed_value
 	map.start()
 	return map
 
@@ -581,8 +585,10 @@ func test_the_roll_off_panel_sits_under_the_menu() -> void:
 func test_starting_twice_rolls_only_once() -> void:
 	var map := _started(_matched_battle())
 	var panel := map.roll_off_panel
+	var roll_off := map.battle.roll_off
 	map.start()
 	assert_same(map.roll_off_panel, panel)
+	assert_same(map.battle.roll_off, roll_off)
 
 
 func test_the_same_seed_gives_the_same_roll_off() -> void:
@@ -638,6 +644,10 @@ func test_the_roll_off_panel_is_gone_from_the_overlay_when_deployment_starts() -
 func test_deployment_shades_the_territory_too_close_to_the_enemy() -> void:
 	var map := _after_roll_off(_matched_battle(), true)
 	assert_not_null(map.get_node_or_null("NoDeploy"))
+
+
+func test_deployment_draws_the_territory_the_role_gives() -> void:
+	var map := _after_roll_off(_matched_battle(), true)
 	assert_not_null(map.get_node_or_null("PlayerTerritory"))
 
 
@@ -767,10 +777,14 @@ func test_the_ai_defenders_side_is_the_title() -> void:
 	assert_eq(map.hud.title_label.text, map.battle.realm.name)
 
 
-func test_a_spearhead_defender_sees_the_attackers_picks() -> void:
+func test_the_ai_attacker_picks_before_a_spearhead_defender() -> void:
 	var map := _after_roll_off(_spearhead_battle(), false)
 	assert_eq(map.phase, BattleMap.Phase.SPEARHEAD_OPTIONS)
 	assert_false(map.battle.opponent.needs_spearhead_options())
+
+
+func test_a_spearhead_defender_sees_the_attackers_picks() -> void:
+	var map := _after_roll_off(_spearhead_battle(), false)
 	assert_false(map.options_picker.is_attacker)
 	assert_same(map.options_picker.opponent, map.battle.opponent)
 
@@ -786,7 +800,10 @@ func test_a_spearhead_defender_then_gets_the_map_picker() -> void:
 	var map := _defender_at_the_map_picker()
 	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT_MAP)
 	assert_same(map.map_picker.get_parent(), map.overlay)
-	assert_eq(map.map_picker.realm_buttons.size(), 2)
+
+
+func test_the_map_picker_offers_both_sides() -> void:
+	assert_eq(_defender_at_the_map_picker().map_picker.realm_buttons.size(), 2)
 
 
 func test_deployment_waits_while_the_defender_picks_the_side_and_map() -> void:
@@ -811,7 +828,14 @@ func test_picking_a_map_starts_deployment() -> void:
 	var map := _defender_at_the_map_picker()
 	_pick_side(map, map.battle.battlepack.realms[0])
 	assert_eq(map.phase, BattleMap.Phase.DEPLOYMENT)
+
+
+func test_the_map_picker_is_removed_once_a_map_is_picked() -> void:
+	var map := _defender_at_the_map_picker()
+	var picker := map.map_picker
+	_pick_side(map, map.battle.battlepack.realms[0])
 	assert_null(map.map_picker)
+	assert_null(picker.get_parent())
 
 
 func test_picking_a_side_chooses_the_realm() -> void:
@@ -858,19 +882,20 @@ func test_picking_a_side_leaves_one_board() -> void:
 func test_picking_a_side_draws_its_roads_on_a_board_without_a_print() -> void:
 	var map := _defender_at_the_map_picker()
 	var side := map.battle.battlepack.realms[1]
-	side.name = "Realm Without A Board"
-	side.roads = [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
+	side.name = REALM_WITHOUT_A_PRINT
+	side.roads = _a_road()
 	_pick_side(map, side)
 	await wait_process_frames(2)
 	assert_not_null(map.get_node_or_null("Roads"))
 
 
-func test_picking_a_side_without_roads_leaves_the_old_ones_off() -> void:
+func test_picking_a_side_without_roads_removes_the_old_ones() -> void:
 	var battle := _spearhead_battle()
-	battle.battlepack.realms[0].name = "Realm Without A Board"
-	battle.battlepack.realms[0].roads = [BattleKit.rect_polygon(0, 10, 30, 2)] as Array[PackedVector2Array]
+	battle.battlepack.realms[0].name = REALM_WITHOUT_A_PRINT
+	battle.battlepack.realms[0].roads = _a_road()
 	battle.choose_realm(battle.battlepack.realms[0])
 	var map := _defender_at_the_map_picker(battle)
+	assert_not_null(map.get_node_or_null("Roads"), "the first side has roads to remove")
 	battle.battlepack.realms[1].name = "Another Realm Without A Board"
 	_pick_side(map, battle.battlepack.realms[1])
 	await wait_process_frames(2)
@@ -887,8 +912,12 @@ func test_picking_the_same_side_does_not_redraw_it() -> void:
 
 
 func test_the_map_picker_starts_on_the_side_the_setup_named() -> void:
-	var map := _defender_at_the_map_picker(_battle_on_a_side())
-	assert_true(map.map_picker.realm_buttons[0].button_pressed)
+	# The second side, as the picker starts on the first without one named.
+	var battle := _spearhead_battle()
+	battle.choose_realm(battle.battlepack.realms[1])
+	var map := _defender_at_the_map_picker(battle)
+	assert_true(map.map_picker.realm_buttons[1].button_pressed)
+	assert_false(map.map_picker.realm_buttons[0].button_pressed)
 
 
 func test_the_map_picker_starts_on_the_first_side_without_one() -> void:
@@ -959,12 +988,26 @@ func test_spearhead_roles_give_each_side_its_terrain() -> void:
 	assert_gt(map.battle.opponent.terrain.size(), 0)
 
 
-func test_deployment_finished_is_emitted_when_both_armies_are_down() -> void:
+## A [method _matched_battle] with each army down to its auxiliary unit, so one set-up deploys it.
+func _matched_battle_of_one_unit_a_side() -> Battle:
 	var battle := _matched_battle()
 	for army in [battle.player, battle.opponent]:
-		var keep: Array[BattleUnit] = [army.units[4]]
-		army.units = keep
+		var auxiliary: Array[BattleUnit] = [army.units.back()]
+		army.units = auxiliary
 		army.regiments = [] as Array[BattleRegiment]
+	return battle
+
+
+## [method BattleKit.deployment_battle] with faction terrain in the player's territory, already set
+## up unless [param placed] is false.
+func _battle_with_faction_terrain(placed := true) -> Battle:
+	var battle := BattleKit.deployment_battle()
+	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9), placed))
+	return battle
+
+
+func test_deployment_finished_is_emitted_when_both_armies_are_down() -> void:
+	var battle := _matched_battle_of_one_unit_a_side()
 	var map := _after_roll_off(battle, true)
 	var controller := map.deployment_controller
 	controller.ai_delay = 0.0
@@ -977,26 +1020,23 @@ func test_deployment_finished_is_emitted_when_both_armies_are_down() -> void:
 
 
 func test_the_terrain_step_shades_without_a_label() -> void:
-	var map := _built_map(BattleKit.deployment_battle())
+	# With terrain set up, as this battle's territory has nothing else to shade for terrain.
+	var map := _built_map(_battle_with_faction_terrain())
 	map.show_no_deploy(true)
-	var shade := map.get_node_or_null("NoDeploy")
-	assert_not_null(shade)
+	var shade := map.get_node("NoDeploy")
+	assert_gt(shade.get_child_count(), 0, "there is shading to label")
 	assert_eq(shade.find_children("*", "Label3D", true, false).size(), 0)
 
 
 func test_the_terrain_step_shades_around_terrain_already_set_up() -> void:
-	var battle := BattleKit.deployment_battle()
-	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9)))
-	var map := _built_map(battle)
+	var map := _built_map(_battle_with_faction_terrain())
 	map.show_no_deploy(true)
 	var shade := map.get_node_or_null("NoDeploy")
 	assert_gt(shade.find_children("*", "MeshInstance3D", true, false).size(), 0)
 
 
 func test_the_terrain_step_does_not_shade_around_terrain_not_yet_set_up() -> void:
-	var battle := BattleKit.deployment_battle()
-	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9), false))
-	var map := _built_map(battle)
+	var map := _built_map(_battle_with_faction_terrain(false))
 	map.show_no_deploy(true)
 	var shade := map.get_node_or_null("NoDeploy")
 	assert_eq(shade.get_child_count(), 0)
@@ -1005,9 +1045,7 @@ func test_the_terrain_step_does_not_shade_around_terrain_not_yet_set_up() -> voi
 func test_the_unit_step_does_not_shade_around_terrain() -> void:
 	var bare := _built_map(BattleKit.deployment_battle())
 	bare.show_no_deploy(false)
-	var battle := BattleKit.deployment_battle()
-	battle.player.terrain.append(BattleKit.terrain(BattleTerrain.Kind.FACTION, 4.0, Vector2(30, 9)))
-	var map := _built_map(battle)
+	var map := _built_map(_battle_with_faction_terrain())
 	map.show_no_deploy(false)
 	assert_eq(map.get_node("NoDeploy").get_child_count(), bare.get_node("NoDeploy").get_child_count())
 

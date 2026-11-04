@@ -267,7 +267,9 @@ func test_flat_polygon_lies_at_the_given_height() -> void:
 
 func test_outline_has_a_segment_per_edge() -> void:
 	var line := autofree(BoardBuilder.outline(BattleKit.rect_polygon(0, 0, 4, 4), 0.0, Color.WHITE)) as MeshInstance3D
-	assert_eq((line.mesh as ArrayMesh).surface_get_arrays(0)[Mesh.ARRAY_VERTEX].size(), 8)
+	var edges := 4
+	var vertices_per_segment := 2
+	assert_eq((line.mesh as ArrayMesh).surface_get_arrays(0)[Mesh.ARRAY_VERTEX].size(), edges * vertices_per_segment)
 
 
 func test_circle_points_are_a_radius_from_the_centre() -> void:

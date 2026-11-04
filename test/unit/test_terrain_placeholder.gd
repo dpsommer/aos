@@ -310,7 +310,14 @@ func test_spearhead_model_is_centred_on_the_feature() -> void:
 
 func test_spearhead_label_floats_above_the_scaled_model() -> void:
 	var root := _built(_spearhead("Long Ruin", Vector2(5, 2)))
-	assert_almost_eq(_name_label(root).position.y, _bounds(root).end.y + 1.0, 0.001)
+	assert_gt(_name_label(root).position.y, _bounds(root).end.y)
+
+
+func test_spearhead_label_rises_as_far_as_the_model_does_when_scaled() -> void:
+	var small := _built(_spearhead("Long Ruin", Vector2(5, 2)))
+	var large := _built(_spearhead("Long Ruin", Vector2(60, 60)))
+	var label_rise := _name_label(large).position.y - _name_label(small).position.y
+	assert_almost_eq(label_rise, _bounds(large).end.y - _bounds(small).end.y, 0.001)
 
 
 func test_spearhead_feature_without_a_model_is_a_block_its_footprint_across() -> void:

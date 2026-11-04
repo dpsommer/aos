@@ -29,6 +29,20 @@ func _in_tree(root: Node3D) -> Node3D:
 	return root
 
 
+## A block long along x, turned a quarter so it's long along z.
+func _turned_block() -> Node3D:
+	var root := _thing(Vector3(6, 1, 1))
+	root.rotation.y = PI / 2
+	return _in_tree(root)
+
+
+## A cube moved 20" along x from where it was built.
+func _moved_cube() -> Node3D:
+	var root := _thing(CUBE)
+	root.position = Vector3(20, 0, 0)
+	return _in_tree(root)
+
+
 # hit_distance
 
 func test_a_ray_at_a_block_hits_its_near_face() -> void:
@@ -47,32 +61,19 @@ func test_a_ray_pointing_away_from_a_block_misses() -> void:
 
 
 func test_a_turned_block_is_hit_where_it_has_turned_to() -> void:
-	var root := _thing(Vector3(6, 1, 1))
-	root.rotation.y = PI / 2
-	_in_tree(root)
-	# Long along x unturned, so now long along z.
-	assert_lt(MapHover.hit_distance(root, ABOVE + Vector3(0, 0, 2.5), Vector3.DOWN), INF)
+	assert_lt(MapHover.hit_distance(_turned_block(), ABOVE + Vector3(0, 0, 2.5), Vector3.DOWN), INF)
 
 
 func test_a_turned_block_is_missed_where_it_was() -> void:
-	var root := _thing(Vector3(6, 1, 1))
-	root.rotation.y = PI / 2
-	_in_tree(root)
-	assert_eq(MapHover.hit_distance(root, ABOVE + Vector3(2.5, 0, 0), Vector3.DOWN), INF)
+	assert_eq(MapHover.hit_distance(_turned_block(), ABOVE + Vector3(2.5, 0, 0), Vector3.DOWN), INF)
 
 
 func test_a_moved_block_is_hit_where_it_is() -> void:
-	var root := _thing(CUBE)
-	root.position = Vector3(20, 0, 0)
-	_in_tree(root)
-	assert_lt(MapHover.hit_distance(root, ABOVE + Vector3(20, 0, 0), Vector3.DOWN), INF)
+	assert_lt(MapHover.hit_distance(_moved_cube(), ABOVE + Vector3(20, 0, 0), Vector3.DOWN), INF)
 
 
 func test_a_moved_block_is_missed_where_it_was() -> void:
-	var root := _thing(CUBE)
-	root.position = Vector3(20, 0, 0)
-	_in_tree(root)
-	assert_eq(MapHover.hit_distance(root, ABOVE, Vector3.DOWN), INF)
+	assert_eq(MapHover.hit_distance(_moved_cube(), ABOVE, Vector3.DOWN), INF)
 
 
 func test_a_hidden_child_is_ignored() -> void:
@@ -105,7 +106,7 @@ func test_a_mesh_less_child_is_ignored() -> void:
 	assert_eq(MapHover.hit_distance(root, ABOVE, Vector3.DOWN), INF)
 
 
-func test_a_multimesh_without_indices_is_not_the_thing() -> void:
+func test_a_multimesh_without_indices_is_ignored() -> void:
 	var root := Node3D.new()
 	var ring := MultiMeshInstance3D.new()
 	ring.multimesh = MultiMesh.new()
