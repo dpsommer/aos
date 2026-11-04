@@ -64,12 +64,6 @@ func _await_slide(done: Callable) -> void:
 	await wait_until(done, BattleHud.SLIDE_SECONDS + 0.5)
 
 
-## [param map]'s children whose names start with [param prefix]. Godot renames a node that's added
-## beside one of the same name, so this also finds a copy that wasn't replaced.
-func _children_named(map: BattleMap, prefix: String) -> Array:
-	return map.get_children().filter(func(node: Node) -> bool: return str(node.name).begins_with(prefix))
-
-
 # Names shown on hover
 
 func test_the_built_map_shows_names_on_hover() -> void:
@@ -855,7 +849,10 @@ func test_picking_a_side_leaves_one_board() -> void:
 	var map := _defender_at_the_map_picker()
 	_pick_side(map, map.battle.battlepack.realms[1])
 	await wait_process_frames(2)
-	assert_eq(_children_named(map, "Board").size(), 1)
+	# By material, not name: Godot renames a node added beside one of the same name.
+	var boards := map.get_children().filter(func(node: Node) -> bool:
+		return node is MeshInstance3D and node.material_override == BoardBuilder.BOARD)
+	assert_eq(boards.size(), 1)
 
 
 func test_picking_a_side_draws_its_roads_on_a_board_without_a_print() -> void:
@@ -1018,8 +1015,9 @@ func test_the_unit_step_does_not_shade_around_terrain() -> void:
 func test_showing_the_shade_again_replaces_it() -> void:
 	var map := _built_map(BattleKit.deployment_battle())
 	map.show_no_deploy(true)
+	var children := map.get_child_count()
 	map.show_no_deploy(true)
-	assert_eq(_children_named(map, "NoDeploy").size(), 1)
+	assert_eq(map.get_child_count(), children)
 
 
 func test_the_unit_step_labels_the_shade_with_the_enemy_gap() -> void:
