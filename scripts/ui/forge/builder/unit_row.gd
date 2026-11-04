@@ -304,7 +304,7 @@ func _options() -> VBoxContainer:
 		spin.set_meta(&"focus_key", key + "wopt:" + option.name)
 		spin.value_changed.connect(func(value: float) -> void: editor.set_weapon_option(unit.uid, option.name, int(value)))
 		var note := "Instead of %s" % option.replaces if option.choice \
-				else "Replaces %s · %d per %d models" % [option.replaces, option.max, option.per]
+				else "Replaces %s · %d per %d models" % [option.replaces, option.max_models, option.per]
 		if not option.note.is_empty():
 			note += " · " + option.note
 		(option_row.get_node(^"%Name") as Label).text = option.name

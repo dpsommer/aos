@@ -129,8 +129,8 @@ func _state() -> Array:
 			for regiment in army.regiments:
 				if regiment.is_regiment_of_renown():
 					regiments.append(regiment.regiment_of_renown)
-			var open := builder.expanded.keys().filter(func(key: String) -> bool: return key.begins_with("tab:"))
-			state.append_array([regiments, open])
+			var open_keys := builder.expanded.keys().filter(func(key: String) -> bool: return key.begins_with("tab:"))
+			state.append_array([regiments, open_keys])
 		"settings":
 			state.append_array([army.points_limit, army.formation])
 	return state
@@ -170,12 +170,12 @@ func _empty(text: String) -> void:
 func _roster() -> void:
 	var army := builder.editor.army
 	var query_words := RulesSearch.words(query)
-	var hidden := 0
+	var hidden_count := 0
 	var by_type := {}
 	var by_id := {}
 	for warscroll in builder.catalog.unit_warscrolls(army):
 		if warscroll.legends and not army.show_legends:
-			hidden += 1
+			hidden_count += 1
 			continue
 		var type := unit_type(warscroll)
 		if not RulesSearch.matches(RulesSearch.warscroll_text(warscroll) + " " + type, query_words):
@@ -185,8 +185,8 @@ func _roster() -> void:
 			by_type[type] = []
 		by_type[type].append(warscroll)
 	var note := "Drag a unit into a regiment, or click it to see its warscroll."
-	if hidden > 0:
-		note += " %d Legends unit%s hidden." % [hidden, "" if hidden == 1 else "s"]
+	if hidden_count > 0:
+		note += " %d Legends unit%s hidden." % [hidden_count, "" if hidden_count == 1 else "s"]
 	_content.add_child(UIBuilder.label(note, "MutedLabel", true))
 
 	var pinned: Array[Warscroll] = []
@@ -206,10 +206,10 @@ func _roster() -> void:
 		if units.is_empty():
 			continue
 		var key: String = "type:" + type[0]
-		var open := not query_words.is_empty() or not folded.has(key)
-		var section := UIBuilder.vbox([UIBuilder.banner(type[0].to_upper(), str(units.size()), open, _toggle_fold.bind(key),
+		var is_open := not query_words.is_empty() or not folded.has(key)
+		var section := UIBuilder.vbox([UIBuilder.banner(type[0].to_upper(), str(units.size()), is_open, _toggle_fold.bind(key),
 				"info:" + key)], 6)
-		if open:
+		if is_open:
 			for warscroll: Warscroll in units:
 				section.add_child(_unit_card(warscroll, false))
 		_content.add_child(section)
@@ -217,10 +217,10 @@ func _roster() -> void:
 
 func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	var key := ("fav:" if pinned else "") + warscroll.id
-	var open := selected == key
+	var is_open := selected == key
 	var flash := not pinned and flash_key == "unit:" + warscroll.id
 	var card: PanelContainer = load("res://scenes/ui/forge/builder/roster_card.tscn").instantiate()
-	card.theme_type_variation = "FlashRowPanel" if flash else "PickedRowPanel" if open else "RowPanel"
+	card.theme_type_variation = "FlashRowPanel" if flash else "PickedRowPanel" if is_open else "RowPanel"
 	if not pinned:
 		card.set_meta(&"info_key", "unit:" + warscroll.id)
 
@@ -234,7 +234,7 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	face.move_child(portrait, 0)
 	UIBuilder.ignore_mouse(face)
 	var button: Button = card.get_node(^"%CardButton")
-	button.tooltip_text = ("Hide " if open else "Show ") + "warscroll"
+	button.tooltip_text = ("Hide " if is_open else "Show ") + "warscroll"
 	button.accessibility_name = warscroll.name
 	button.set_meta(&"focus_key", "info:card:" + key)
 	button.pressed.connect(func() -> void:
@@ -243,7 +243,7 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	# The focus outline goes around the whole card, star included, not just the button.
 	var unfocused := card.theme_type_variation
 	button.focus_entered.connect(func() -> void:
-		card.theme_type_variation = "FocusPickedRowPanel" if open else "FocusRowPanel")
+		card.theme_type_variation = "FocusPickedRowPanel" if is_open else "FocusRowPanel")
 	button.focus_exited.connect(func() -> void: card.theme_type_variation = unfocused)
 	builder.drag.source(button, {"kind": "roster", "warscroll_id": warscroll.id}, warscroll.name, card)
 
@@ -256,7 +256,7 @@ func _unit_card(warscroll: Warscroll, pinned: bool) -> PanelContainer:
 	star.accessibility_name = star.tooltip_text
 	star.set_meta(&"focus_key", "info:star:" + key)
 	star.toggled.connect(func(_on: bool) -> void: toggle_favourite(warscroll.id))
-	if open:
+	if is_open:
 		var content: VBoxContainer = card.get_node(^"%Content")
 		var warscroll_card := WarscrollCard.create(warscroll, builder.catalog.summoned, show_summoned_unit)
 		content.add_child(warscroll_card)
@@ -304,12 +304,12 @@ func _rules() -> void:
 		_empty("Nothing matches “%s”." % query.strip_edges())
 	for section in sections:
 		var key := "sec:" + section.title
-		var open := searching or not folded.has(key)
-		var box := UIBuilder.vbox([UIBuilder.banner(section.title.to_upper(), str(section.count()), open,
+		var is_open := searching or not folded.has(key)
+		var box := UIBuilder.vbox([UIBuilder.banner(section.title.to_upper(), str(section.count()), is_open,
 				_toggle_fold.bind(key), "info:" + key)], 10)
 		box.set_meta(&"info_key", key)
 		_content.add_child(box)
-		if not open:
+		if not is_open:
 			continue
 		for group in section.groups:
 			box.add_child(_rules_group(section, group, searching))
@@ -318,12 +318,12 @@ func _rules() -> void:
 func _rules_group(section: RulesSections.Section, group: RulesSections.Group, searching: bool) -> Control:
 	var army := builder.editor.army
 	var box := UIBuilder.vbox([], 8)
-	var open := true
+	var is_open := true
 	if not group.title.is_empty():
 		var key := "grp:%s:%s" % [section.title, group.key]
-		open = searching or (open_lores.has(group.key) if group.lore else not folded.has(key))
+		is_open = searching or (open_lores.has(group.key) if group.lore else not folded.has(key))
 		var toggle := _toggle_lore.bind(group.key) if group.lore else _toggle_fold.bind(key)
-		var subhead := UIBuilder.banner(group.title, "", open, toggle, "info:" + key, "SubheadButton")
+		var subhead := UIBuilder.banner(group.title, "", is_open, toggle, "info:" + key, "SubheadButton")
 		box.add_child(subhead)
 		var chips := UIBuilder.hbox([], 6)
 		if not group.note.is_empty():
@@ -342,7 +342,7 @@ func _rules_group(section: RulesSections.Section, group: RulesSections.Group, se
 			box.add_child(chips)
 		else:
 			chips.free()
-	if open:
+	if is_open:
 		for ability in group.abilities:
 			box.add_child(AbilityCard.create(ability))
 			# A summoning ability carries the warscrolls of the manifestations it summons, and short

@@ -6,15 +6,15 @@ extends Resource
 ## Name of the warscroll this entry allows. Empty for an entry matching by keywords or [member one_of].
 @export var unit: String
 ## Names of warscrolls this entry allows as alternatives ("0-1 Gaunt Summoner or Gaunt Summoner on
-## Disc of Tzeentch"). [member max], [member required] and [member general] count them together.
+## Disc of Tzeentch"). [member max_units], [member required] and [member general] count them together.
 @export var one_of: PackedStringArray
 @export var keywords: PackedStringArray
 @export var not_keywords: PackedStringArray
 ## If set, the army can include one unit matching this entry for each unit matching any of these
-## unit names or keywords ("HERO MONSTER" needs both). Otherwise any number, up to [member max].
+## unit names or keywords ("HERO MONSTER" needs both). Otherwise any number, up to [member max_units].
 @export var per: PackedStringArray
 ## The most units matching this entry the army can include ("0-1"). 0 for no limit.
-@export var max: int
+@export var max_units: int
 ## Whether the army must include this unit.
 @export var required: bool
 ## Whether this unit must be the army's general.

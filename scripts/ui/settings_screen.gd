@@ -92,8 +92,8 @@ func _build_graphics() -> void:
 
 	var items := []
 	for i in DisplayServer.get_screen_count():
-		var size := DisplayServer.screen_get_size(i)
-		items.append(["Display %d · %d × %d" % [i + 1, size.x, size.y], i])
+		var screen_size := DisplayServer.screen_get_size(i)
+		items.append(["Display %d · %d × %d" % [i + 1, screen_size.x, screen_size.y], i])
 	if items.is_empty():
 		items.append(["Display 1", 0])
 	var display := UIBuilder.select(items, clampi(settings.display, 0, items.size() - 1),
@@ -126,9 +126,9 @@ func _build_graphics() -> void:
 
 
 ## The render scale as a percentage, with the resolution it gives, e.g. "75% · 1440 × 810".
-func render_scale_text(scale: float) -> String:
-	var size := GameSettings.render_size(scale, get_window())
-	return "%d%% · %d × %d" % [roundi(scale * 100), size.x, size.y]
+func render_scale_text(render_scale: float) -> String:
+	var rendered := GameSettings.render_size(render_scale, get_window())
+	return "%d%% · %d × %d" % [roundi(render_scale * 100), rendered.x, rendered.y]
 
 
 # --- Sound ---

@@ -23,9 +23,9 @@ func _click(button := MOUSE_BUTTON_LEFT, down := true) -> InputEventMouseButton:
 	return event
 
 
-func _action(name: String) -> InputEventAction:
+func _action(action_name: String) -> InputEventAction:
 	var event := InputEventAction.new()
-	event.action = name
+	event.action = action_name
 	event.pressed = true
 	return event
 

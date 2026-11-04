@@ -176,13 +176,13 @@ func test_ability_without_an_owner_does_not_target_it() -> void:
 # mirrored
 
 func test_mirrored_maps_the_owner_and_regiment_to_the_copies() -> void:
-	var owner := BattleKit.unit("U", 1)
+	var owner_unit := BattleKit.unit("U", 1)
 	var unit_copy := BattleKit.unit("U", 1)
-	var members: Array[BattleUnit] = [owner]
+	var members: Array[BattleUnit] = [owner_unit]
 	var regiment := BattleKit.regiment("R", members)
 	var regiment_copy := BattleKit.regiment("R", [unit_copy] as Array[BattleUnit])
-	var entry := BattleKit.deploy_entry(BattleKit.ability("A"), "Regiment of Renown", owner, regiment)
-	var copy := entry.mirrored({owner: unit_copy}, {regiment: regiment_copy})
+	var entry := BattleKit.deploy_entry(BattleKit.ability("A"), "Regiment of Renown", owner_unit, regiment)
+	var copy := entry.mirrored({owner_unit: unit_copy}, {regiment: regiment_copy})
 	assert_same(copy.owner, unit_copy)
 	assert_same(copy.regiment, regiment_copy)
 

@@ -40,7 +40,7 @@ func load_faction(dir_path: String) -> Faction:
 	if alliance < 0:
 		_error("grand_alliance", "is not a Grand Alliance")
 	else:
-		faction.grand_alliance = alliance
+		faction.grand_alliance = alliance as GrandAlliance.Type
 	faction.legends = _bool(data, "legends", "")
 	faction.battle_traits = _abilities(data, "battle_traits", "")
 	for i in _array(data, "battle_formations", "").size():
@@ -263,7 +263,7 @@ func _enhancement_tables(data: Dictionary, path: String) -> Array[EnhancementTab
 			table.source = _string(items[i], "source", table_path)
 			table.legends = _is_retired(table.source)
 			table.units = _strings(items[i], "units", table_path)
-			table.max = _int(items[i], "max", table_path) if items[i].has("max") else 1
+			table.max_taken = _int(items[i], "max", table_path) if items[i].has("max") else 1
 			table.entries = _abilities(items[i], "entries", table_path)
 		result.append(table)
 	return result
@@ -290,7 +290,7 @@ func _weapon(data: Variant, path: String) -> Weapon:
 	var weapon := Weapon.new()
 	if _is_object(data, path):
 		weapon.name = _string(data, "name", path, true)
-		weapon.range = _int(data, "range", path)
+		weapon.range_inches = _int(data, "range", path)
 		weapon.attacks = _string(data, "attacks", path, true)
 		weapon.hit = _int(data, "hit", path, true)
 		weapon.wound = _int(data, "wound", path, true)
@@ -387,7 +387,7 @@ func _weapon_option(data: Variant, path: String) -> WeaponOption:
 	option.name = _string(data, "name", path, true)
 	option.replaces = _string(data, "replaces", path, true)
 	option.choice = _bool(data, "choice", path)
-	option.max = _int(data, "max", path, not option.choice)
+	option.max_models = _int(data, "max", path, not option.choice)
 	option.per = _int(data, "per", path, not option.choice)
 	if not option.choice and option.per <= 0:
 		_error(_join(path, "per"), "must be more than 0")
@@ -427,7 +427,7 @@ func _roster(data: Variant, path: String) -> ArmyRoster:
 			if [entry.unit.is_empty(), entry.one_of.is_empty(), entry.keywords.is_empty()].count(false) != 1:
 				_error(entry_path, "needs exactly one of unit, one_of or keywords")
 			entry.per = _strings(entries[i], "per", entry_path)
-			entry.max = _int(entries[i], "max", entry_path)
+			entry.max_units = _int(entries[i], "max", entry_path)
 			entry.required = _bool(entries[i], "required", entry_path)
 			entry.general = _bool(entries[i], "general", entry_path)
 			entry.gains_keywords = _strings(entries[i], "gains_keywords", entry_path)

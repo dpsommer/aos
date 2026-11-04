@@ -65,9 +65,9 @@ static func spot_for_unit(battle: Battle, army: BattleArmy, unit: BattleUnit,
 	var back := -Vector2.from_angle(army.facing)
 	var shapes := _shapes(unit, back, army.facing)
 	if packed:
-		var spots := _packed_spots(zone, back)
+		var packed_spots := _packed_spots(zone, back)
 		for gap: float in [MODEL_GAP, 0.05]:
-			for spot in spots:
+			for spot in packed_spots:
 				for offsets in shapes:
 					var positions := _try(unit, spot, offsets, zone, space, gap, army.facing)
 					if not positions.is_empty():

@@ -55,8 +55,8 @@ func _middle(unit: BattleUnit) -> Vector2:
 func _reserve_entry(owner_name := "") -> DeploymentAbility:
 	var declare := "Pick this unit." if not owner_name.is_empty() else "Pick friendly units."
 	var ability := BattleKit.ability("Hide", PackedStringArray(["DEPLOY"]), "Set up this unit in reserve in the clouds.", declare)
-	var owner := _unit(_me(), owner_name) if not owner_name.is_empty() else null
-	var entry := BattleKit.deploy_entry(ability, "Warscroll", owner)
+	var owner_unit := _unit(_me(), owner_name) if not owner_name.is_empty() else null
+	var entry := BattleKit.deploy_entry(ability, "Warscroll", owner_unit)
 	_me().deployment_abilities.append(entry)
 	_battle.opponent = _me().mirror()
 	_battle.face_armies()
@@ -1730,9 +1730,9 @@ func _mouse_motion(at: Vector2) -> InputEventMouseMotion:
 	return event
 
 
-func _action(name: String) -> InputEventAction:
+func _action(action_name: String) -> InputEventAction:
 	var event := InputEventAction.new()
-	event.action = name
+	event.action = action_name
 	event.pressed = true
 	return event
 

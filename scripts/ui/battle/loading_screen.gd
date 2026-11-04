@@ -163,9 +163,9 @@ func _fill_battleplan_card() -> void:
 func _sides() -> Control:
 	var row := UIBuilder.hbox([], 12)
 	for side in battle.battlepack.realms:
-		var map := RealmMap.new(battle.battlepack, side)
-		map.custom_minimum_size = Vector2(MAP_SIZE.x / 2 - 6, (MAP_SIZE.x / 2 - 6) * battle.battlefield_size.y / battle.battlefield_size.x)
-		var side_map := RealmPicker.captioned_map(map, side.name)
+		var realm_map := RealmMap.new(battle.battlepack, side)
+		realm_map.custom_minimum_size = Vector2(MAP_SIZE.x / 2 - 6, (MAP_SIZE.x / 2 - 6) * battle.battlefield_size.y / battle.battlefield_size.x)
+		var side_map := RealmPicker.captioned_map(realm_map, side.name)
 		side_map.add_theme_constant_override("separation", 6)
 		(side_map.get_node(^"%Caption") as Label).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		row.add_child(side_map)

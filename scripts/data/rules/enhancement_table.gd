@@ -16,5 +16,5 @@ extends Resource
 @export var units: PackedStringArray
 ## How many of these enhancements an army can include, e.g. 3 First Circle Titles for the Swords of
 ## Chaos. Core Rules 4.1 allow 1.
-@export var max := 1
+@export var max_taken := 1
 @export var entries: Array[Ability]

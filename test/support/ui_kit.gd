@@ -61,8 +61,8 @@ static func buttons(node: Node) -> Array[Button]:
 
 static func button_texts(node: Node) -> PackedStringArray:
 	var result := PackedStringArray()
-	for button in buttons(node):
-		result.append(button.text)
+	for candidate in buttons(node):
+		result.append(candidate.text)
 	return result
 
 

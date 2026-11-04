@@ -728,7 +728,7 @@ func test_set_enhancement_allows_repeats_when_overriding() -> void:
 func _titles_editor() -> ArmyEditor:
 	var faction := _faction()
 	faction.enhancement_tables[0].entries.append(Kit.ability("Daring"))
-	faction.enhancement_tables[0].max = 3
+	faction.enhancement_tables[0].max_taken = 3
 	var army := Kit.army()
 	army.regiments.append(Kit.regiment("r1", [Kit.unit("u1", "hero_a")] as Array[ArmyUnit]))
 	army.regiments.append(Kit.regiment("r2", [Kit.unit("u2", "hero_b")] as Array[ArmyUnit]))

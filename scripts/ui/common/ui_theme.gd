@@ -667,7 +667,7 @@ static func _add_lists_and_dialogs(theme: Theme) -> void:
 	theme.set_stylebox("split_bar_background", "HSplitContainer", StyleBoxEmpty.new())
 
 
-static func _button(theme: Theme, type: String, color: Color, hover: Color, border: Color, font: Color) -> void:
+static func _button(theme: Theme, type: String, color: Color, hover: Color, border: Color, font_color: Color) -> void:
 	if type != "Button" and type != "OptionButton":
 		theme.set_type_variation(type, "Button")
 	theme.set_stylebox("normal", type, box(color, border, 8, 10))
@@ -677,8 +677,8 @@ static func _button(theme: Theme, type: String, color: Color, hover: Color, bord
 	# A gold outline on keyboard focus, as in the design.
 	theme.set_stylebox("focus", type, box(Color.TRANSPARENT, GOLD, 8, 10, 2))
 	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
-		theme.set_color(state, type, font)
-	theme.set_color("font_disabled_color", type, Color(font, 0.4))
+		theme.set_color(state, type, font_color)
+	theme.set_color("font_disabled_color", type, Color(font_color, 0.4))
 
 
 ## Icon buttons are square, with the icon centred.

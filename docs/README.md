@@ -13,6 +13,7 @@
 - [Project layout](technical/layout.md): folder structure and what goes where
 - [UI scenes](technical/ui-scenes.md): prefer Godot scenes over building visible elements in code, how the scenes are written (factories, unique names, inherited scenes), checking UI at 50%, 100% and 200% render scale, and what's still built in code
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
+- [GDScript warnings](technical/gdscript-warnings.md): what each debugger warning the project has hit means and how to fix it (shadowed names, built-in function names, integer division, enums from ints), and how to find them from the command line
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
 - [Faction data](technical/faction-data.md): faction JSON format, sources, how to add a faction, and the Regiments of Renown
 - [3D models](technical/models.md): where unit, manifestation, faction terrain and Spearhead terrain models and the realm battlefields' boards live, how they're named and found, their scale, axes and textures, building them from Tabletop Simulator's cache, and Git LFS

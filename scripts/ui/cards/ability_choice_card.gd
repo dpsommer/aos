@@ -76,10 +76,10 @@ func shows_focus() -> bool:
 
 
 func _draw() -> void:
-	var colour := Color.TRANSPARENT
+	var accent := Color.TRANSPARENT
 	if selected or shows_focus():
-		colour = UITheme.GOLD
+		accent = UITheme.GOLD
 	elif _hovered:
-		colour = HOVER_COLOUR
-	if colour.a > 0:
-		draw_style_box(UITheme.box(Color.TRANSPARENT, colour, 8, 0, OUTLINE_WIDTH), Rect2(Vector2.ZERO, size))
+		accent = HOVER_COLOUR
+	if accent.a > 0:
+		draw_style_box(UITheme.box(Color.TRANSPARENT, accent, 8, 0, OUTLINE_WIDTH), Rect2(Vector2.ZERO, size))

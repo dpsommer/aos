@@ -41,9 +41,9 @@ func _noon() -> float:
 ## The first faction with data.
 func _faction() -> Faction:
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		for name in FactionCatalog.factions_for(alliance):
-			if FactionCatalog.is_available(name):
-				return FactionCatalog.load_faction(name)
+		for faction_name in FactionCatalog.factions_for(alliance):
+			if FactionCatalog.is_available(faction_name):
+				return FactionCatalog.load_faction(faction_name)
 	fail_test("no faction is available")
 	return null
 
@@ -604,7 +604,7 @@ func test_search_by_alliance_name_filters_out_other_alliances_spearheads() -> vo
 	_search(screen, GrandAlliance.display_name(entry.alliance))
 	var other_alliances := GameModeScreen.shown_spearheads().filter(func(other: Dictionary) -> bool:
 		return other.alliance != entry.alliance).map(func(other: Dictionary) -> String: return other.name)
-	assert_eq(_spearhead_names(screen).filter(func(name: String) -> bool: return name in other_alliances), [])
+	assert_eq(_spearhead_names(screen).filter(func(spearhead_name: String) -> bool: return spearhead_name in other_alliances), [])
 
 
 func test_search_without_matches_shows_no_cards() -> void:

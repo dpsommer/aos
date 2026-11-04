@@ -60,7 +60,7 @@ func enhancement_limit(army: Army, type: String) -> int:
 	var limit := 1
 	for table in enhancement_tables(army):
 		if table.name == type:
-			limit = maxi(limit, table.max)
+			limit = maxi(limit, table.max_taken)
 	return limit
 
 
@@ -84,28 +84,28 @@ func enhancement_table(army: Army, type: String, enhancement_name: String) -> En
 	return null
 
 
-## Whether a unit with [param warscroll] can be given enhancements from [param table]: one of the
+## Whether a unit with [param scroll] can be given enhancements from [param table]: one of the
 ## table's [member EnhancementTable.units] if it lists any, and a Hero for Heroic Traits and
 ## Artefacts of Power. Unique units and units in Regiments of Renown are checked separately.
 ## [param hero] counts the unit as a Hero without the keyword, as a non-Hero general can be.
-static func can_take(table: EnhancementTable, warscroll: Warscroll, hero := false) -> bool:
+static func can_take(table: EnhancementTable, scroll: Warscroll, hero := false) -> bool:
 	if not table.units.is_empty():
-		return warscroll.name in table.units
-	return not table.name in ArmyValidator.HERO_ENHANCEMENTS or hero or warscroll.has_keyword("HERO")
+		return scroll.name in table.units
+	return not table.name in ArmyValidator.HERO_ENHANCEMENTS or hero or scroll.has_keyword("HERO")
 
 
-## The tables of [param type] to offer a unit with [param warscroll]: those it [method can_take],
+## The tables of [param type] to offer a unit with [param scroll]: those it [method can_take],
 ## leaving out Legends tables unless the army shows Legends. The table holding [param selected], the
 ## unit's current enhancement of the type, is always included, so it can still be seen and cleared.
 ## With [param unit], a non-Hero general that [method is_hero] can take Hero enhancements.
-func enhancement_choices(army: Army, warscroll: Warscroll, type: String, selected := "", unit: ArmyUnit = null) -> Array[EnhancementTable]:
-	var hero := unit != null and is_hero(army, unit, warscroll)
+func enhancement_choices(army: Army, scroll: Warscroll, type: String, selected := "", unit: ArmyUnit = null) -> Array[EnhancementTable]:
+	var hero := unit != null and is_hero(army, unit, scroll)
 	var current: EnhancementTable = enhancement_table(army, type, selected) if not selected.is_empty() else null
 	var result: Array[EnhancementTable] = []
 	for table in enhancement_tables(army):
 		if table.name != type:
 			continue
-		if table == current or (can_take(table, warscroll, hero) and (army.show_legends or not table.legends)):
+		if table == current or (can_take(table, scroll, hero) and (army.show_legends or not table.legends)):
 			result.append(table)
 	return result
 
@@ -117,9 +117,9 @@ func lores(army: Army, kind: String) -> Array[Lore]:
 	var result: Array[Lore] = []
 	if kind == "manifestation" and renown and renown.roster and not renown.roster.manifestations:
 		return result
-	for lore in (renown.lores if renown else faction.lores):
-		if lore.kind == kind:
-			result.append(lore)
+	for spell_lore in (renown.lores if renown else faction.lores):
+		if spell_lore.kind == kind:
+			result.append(spell_lore)
 	if kind == "manifestation" and core:
 		result.append_array(core.manifestation_lores)
 	return result
@@ -173,9 +173,9 @@ func battle_formation(army: Army, formation_name: String) -> BattleFormation:
 ## Army of Renown can include.
 func unit_warscrolls(army: Army = null) -> Array[Warscroll]:
 	var result: Array[Warscroll] = []
-	for warscroll in faction.warscrolls:
-		if _is_unit(warscroll):
-			result.append(warscroll)
+	for scroll in faction.warscrolls:
+		if _is_unit(scroll):
+			result.append(scroll)
 	if army == null:
 		return result
 	for pair: Array in _included_units(army).values():
@@ -189,9 +189,9 @@ func unit_warscrolls(army: Army = null) -> Array[Warscroll]:
 	return result
 
 
-static func _is_unit(warscroll: Warscroll) -> bool:
-	return not warscroll.has_keyword("MANIFESTATION") and not warscroll.has_keyword("FACTION TERRAIN") \
-			and not warscroll.summoned
+static func _is_unit(scroll: Warscroll) -> bool:
+	return not scroll.has_keyword("MANIFESTATION") and not scroll.has_keyword("FACTION TERRAIN") \
+			and not scroll.summoned
 
 
 ## The warscroll called [param warscroll_id] in the army's faction, or among the units its Army of
@@ -230,11 +230,11 @@ func _included_units(army: Army) -> Dictionary:
 		var home: Faction = _load_faction.call(inclusion.faction)
 		if home == null:
 			continue
-		for warscroll in home.warscrolls:
-			if not _is_unit(warscroll) or faction.get_warscroll(warscroll.id) or result.has(warscroll.id):
+		for scroll in home.warscrolls:
+			if not _is_unit(scroll) or faction.get_warscroll(scroll.id) or result.has(scroll.id):
 				continue
-			if inclusion.units.is_empty() or Array(inclusion.units).any(func(n: String) -> bool: return RegimentOption.is_named(warscroll, n)):
-				result[warscroll.id] = [inclusion.faction, warscroll]
+			if inclusion.units.is_empty() or Array(inclusion.units).any(func(n: String) -> bool: return RegimentOption.is_named(scroll, n)):
+				result[scroll.id] = [inclusion.faction, scroll]
 	return result
 
 
@@ -258,29 +258,29 @@ func leader_versions(army: Army, leader: Warscroll) -> Array[Warscroll]:
 	return result
 
 
-## Whether [param warscroll] can lead a regiment as the army's general without being a Hero: it's
+## Whether [param scroll] can lead a regiment as the army's general without being a Hero: it's
 ## the Army of Renown's [member ArmyRoster.non_hero_general] (The Magnate's Crew's Arkanaut
 ## Ironclad), and the army includes none of the units that stop it.
-func can_be_non_hero_general(army: Army, warscroll: Warscroll) -> bool:
+func can_be_non_hero_general(army: Army, scroll: Warscroll) -> bool:
 	var army_roster := roster(army)
-	if army_roster == null or army_roster.non_hero_general.is_empty() or warscroll.has_keyword("HERO"):
+	if army_roster == null or army_roster.non_hero_general.is_empty() or scroll.has_keyword("HERO"):
 		return false
-	return RegimentOption.is_named(warscroll, army_roster.non_hero_general) and non_hero_general_blocker(army).is_empty()
+	return RegimentOption.is_named(scroll, army_roster.non_hero_general) and non_hero_general_blocker(army).is_empty()
 
 
-## Whether [param warscroll] can lead a regiment without being a Hero: it's one of the Army of
+## Whether [param scroll] can lead a regiment without being a Hero: it's one of the Army of
 ## Renown's [member ArmyRoster.non_hero_leaders] (a Stomper Tribe's Mancrusher Gargants).
-func is_non_hero_leader(army: Army, warscroll: Warscroll) -> bool:
+func is_non_hero_leader(army: Army, scroll: Warscroll) -> bool:
 	var army_roster := roster(army)
-	if army_roster == null or army_roster.non_hero_leaders.is_empty() or warscroll.has_keyword("HERO"):
+	if army_roster == null or army_roster.non_hero_leaders.is_empty() or scroll.has_keyword("HERO"):
 		return false
-	return ArmyValidator.names_or_keywords(warscroll, army_roster.non_hero_leaders, gained_keywords(army, warscroll))
+	return ArmyValidator.names_or_keywords(scroll, army_roster.non_hero_leaders, gained_keywords(army, scroll))
 
 
-## Whether a unit of [param warscroll] can lead a regiment: a Hero, the Army of Renown's
+## Whether a unit of [param scroll] can lead a regiment: a Hero, the Army of Renown's
 ## [method can_be_non_hero_general] or one of its [method is_non_hero_leader] units.
-func can_lead(army: Army, warscroll: Warscroll) -> bool:
-	return warscroll.has_keyword("HERO") or can_be_non_hero_general(army, warscroll) or is_non_hero_leader(army, warscroll)
+func can_lead(army: Army, scroll: Warscroll) -> bool:
+	return scroll.has_keyword("HERO") or can_be_non_hero_general(army, scroll) or is_non_hero_leader(army, scroll)
 
 
 ## The name of a unit in the army that stops the roster's [member ArmyRoster.non_hero_general] being
@@ -363,9 +363,9 @@ func unique_unit_names(army: Army) -> PackedStringArray:
 
 func terrain_warscrolls() -> Array[Warscroll]:
 	var result: Array[Warscroll] = []
-	for warscroll in faction.warscrolls:
-		if warscroll.has_keyword("FACTION TERRAIN"):
-			result.append(warscroll)
+	for scroll in faction.warscrolls:
+		if scroll.has_keyword("FACTION TERRAIN"):
+			result.append(scroll)
 	return result
 
 

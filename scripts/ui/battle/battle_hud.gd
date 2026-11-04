@@ -64,12 +64,12 @@ func _on_menu_pressed() -> void:
 	menu_pressed.emit()
 
 
-## Slides the header up out of view if [param hidden], or back down if not.
-func set_header_hidden(hidden: bool) -> void:
+## Slides the header up out of view if [param header_hidden], or back down if not.
+func set_header_hidden(header_hidden: bool) -> void:
 	if _slide:
 		_slide.kill()
 	_slide = create_tween()
-	_slide.tween_property(header, "position:y", -header.size.y if hidden else 0.0, SLIDE_SECONDS) \
+	_slide.tween_property(header, "position:y", -header.size.y if header_hidden else 0.0, SLIDE_SECONDS) \
 			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 

@@ -3,7 +3,7 @@ extends RefCounted
 ## One entry in a Hero's regiment options, e.g. "Any WARRIOR CHAMBER", "0-1 Gryph-hounds" or
 ## "Neave's Companions (required)", parsed from [member Warscroll.regiment_options].
 
-## Unlimited [member max].
+## Unlimited [member max_units].
 const ANY := -1
 
 static var _role_pattern := RegEx.create_from_string("can join an eligible regiment as (?:an? )?([^.]+)")
@@ -11,9 +11,9 @@ static var _role_pattern := RegEx.create_from_string("can join an eligible regim
 ## The option as written.
 var text: String
 ## How many units the regiment must include matching this option.
-var min: int
+var min_units: int
 ## How many units the regiment can include matching this option, or [constant ANY].
-var max := ANY
+var max_units := ANY
 ## A unit name or role (e.g. "Royal Attendant"), for an option that doesn't name keywords.
 var unit: String
 ## What the option names, without its count: a unit name, a role or keywords. Roles can be written
@@ -47,17 +47,17 @@ static func parse(option: String) -> RegimentOption:
 	var rest := option.strip_edges()
 	if rest.ends_with("(required)"):
 		rest = rest.trim_suffix("(required)").strip_edges()
-		parsed.min = 1
-		parsed.max = 1
+		parsed.min_units = 1
+		parsed.max_units = 1
 	elif rest.begins_with("Any "):
 		rest = rest.trim_prefix("Any ")
 	elif rest.begins_with("0-1 "):
 		rest = rest.trim_prefix("0-1 ")
-		parsed.max = 1
+		parsed.max_units = 1
 	elif rest.begins_with("1 "):
 		rest = rest.trim_prefix("1 ")
-		parsed.min = 1
-		parsed.max = 1
+		parsed.min_units = 1
+		parsed.max_units = 1
 	for suffix in [" units", " unit"]:
 		rest = rest.trim_suffix(suffix)
 	parsed.subject = rest
@@ -125,8 +125,8 @@ static func is_named(warscroll: Warscroll, unit_name: String) -> bool:
 	return full == short or full.begins_with(short + " (") or full.begins_with(short + ", ")
 
 
-static func _plain(text: String) -> String:
-	return text.to_lower().replace("’", "'")
+static func _plain(written: String) -> String:
+	return written.to_lower().replace("’", "'")
 
 
 ## A run such as "WARRIOR CHAMBER" is one keyword, but "SYLVANETH MONSTER" would be two.

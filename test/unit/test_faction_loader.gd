@@ -121,12 +121,12 @@ func test_enhancement_table_units_come_from_file() -> void:
 func test_enhancement_table_max_comes_from_file() -> void:
 	var expected: int = _json("valid", "faction.json").enhancement_tables[0].max
 	assert_gt(expected, 1, "fixture table should allow more than 1")
-	assert_eq(_load("valid").enhancement_tables[0].max, expected)
+	assert_eq(_load("valid").enhancement_tables[0].max_taken, expected)
 
 
 func test_enhancement_table_without_max_allows_one() -> void:
 	assert_false(_json("scourge", "faction.json").enhancement_tables[3].has("max"), "fixture table should omit max")
-	assert_eq(_load("scourge").enhancement_tables[3].max, 1)
+	assert_eq(_load("scourge").enhancement_tables[3].max_taken, 1)
 
 
 func test_enhancement_table_without_units_has_none() -> void:
@@ -309,7 +309,7 @@ func test_warscroll_keywords_are_carried_over() -> void:
 func test_weapon_option_fields_come_from_file() -> void:
 	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0].weapon_options[0]
 	var option: WeaponOption = _load("valid").warscrolls[0].weapon_options[0]
-	assert_eq([option.name, option.replaces, option.max, option.per, option.note],
+	assert_eq([option.name, option.replaces, option.max_models, option.per, option.note],
 			[expected.name, expected.replaces, int(expected.max), int(expected.per), expected.note])
 
 
@@ -357,7 +357,7 @@ func test_weapon_dice_expressions_stay_strings() -> void:
 func test_weapon_numbers_are_ints_from_file() -> void:
 	var expected: Dictionary = _json("valid", "warscrolls.json").warscrolls[0].ranged_weapons[0]
 	var weapon: Weapon = _load("valid").warscrolls[0].ranged_weapons[0]
-	assert_eq([weapon.range, weapon.hit, weapon.wound, weapon.rend],
+	assert_eq([weapon.range_inches, weapon.hit, weapon.wound, weapon.rend],
 			[int(expected.range), int(expected.hit), int(expected.wound), int(expected.rend)])
 
 
@@ -428,7 +428,7 @@ func test_army_of_renown_roster_entry_fields_come_from_file() -> void:
 func test_army_of_renown_roster_keyword_entry_fields_come_from_file() -> void:
 	var expected: Dictionary = _json("valid", "armies_of_renown.json").armies_of_renown[0].roster.entries[1]
 	var entry: RosterEntry = _load("valid").armies_of_renown[0].roster.entries[1]
-	assert_eq([entry.keywords, entry.not_keywords, entry.per, entry.max],
+	assert_eq([entry.keywords, entry.not_keywords, entry.per, entry.max_units],
 			[PackedStringArray(expected.keywords), PackedStringArray(expected.not_keywords), PackedStringArray(expected.per), int(expected.max)])
 
 

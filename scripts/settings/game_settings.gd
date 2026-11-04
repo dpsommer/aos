@@ -126,10 +126,10 @@ static func max_ui_scale() -> float:
 	return minf(base.x / MIN_UI_SIZE.x, base.y / MIN_UI_SIZE.y)
 
 
-## How much [param scale] (a render scale) scales the 3D on a display with [param display_scale] pixels
+## How much [param scale] (a render scale) scales the 3D on a display with [param screen_scale] pixels
 ## per point: at a display scale of 2, 100% renders at half the window's pixels and 200% at all of them.
-static func scale_3d(scale: float, display_scale: float) -> float:
-	return clampf(scale / display_scale, SCALE_3D_MIN, SCALE_3D_MAX)
+static func scale_3d(scale: float, screen_scale: float) -> float:
+	return clampf(scale / screen_scale, SCALE_3D_MIN, SCALE_3D_MAX)
 
 
 ## The scale factor of the screen [param window] is on: its pixels per point, e.g. 2 on a Retina

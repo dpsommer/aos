@@ -128,7 +128,7 @@ static func _without(key_list: Array[InputEventKey], code: int) -> Array[InputEv
 ## A key with its modifiers as one number, e.g. [code]KEY_S | KEY_MASK_CTRL[/code]. Command or Control
 ## keys that follow the platform keep [constant KEY_MASK_CMD_OR_CTRL].
 static func key_code(key: InputEventKey) -> int:
-	var code := key.get_keycode_with_modifiers()
+	var code: int = key.get_keycode_with_modifiers()
 	if key.command_or_control_autoremap:
 		# The engine resolves the flag to this platform's modifier; keep it portable instead.
 		var platform_mask := KEY_MASK_META if OS.has_feature("macos") else KEY_MASK_CTRL
@@ -159,7 +159,7 @@ static func decode(codes: Variant) -> Array[InputEventKey]:
 			continue
 		var value := int(code)
 		var key := InputEventKey.new()
-		key.keycode = value & KEY_CODE_MASK
+		key.keycode = (value & KEY_CODE_MASK) as Key
 		key.shift_pressed = value & KEY_MASK_SHIFT != 0
 		key.alt_pressed = value & KEY_MASK_ALT != 0
 		key.ctrl_pressed = value & KEY_MASK_CTRL != 0

@@ -143,8 +143,8 @@ func test_print_lies_just_above_the_top_of_the_board() -> void:
 
 
 func test_print_is_centred_on_the_board() -> void:
-	var print := _print_of(_printed_board())
-	assert_eq([print.position.x, print.position.z], [0.0, 0.0])
+	var printed := _print_of(_printed_board())
+	assert_eq([printed.position.x, printed.position.z], [0.0, 0.0])
 
 
 # board_print

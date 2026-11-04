@@ -659,10 +659,10 @@ func _renown_builder(army: Army = null, faction: Faction = null) -> ArmyBuilder:
 func test_open_armies_of_renown_lists_each_as_a_pressable_card() -> void:
 	var builder := _renown_builder()
 	builder.picker.open_armies_of_renown()
-	for name in ["Wanderers", "Drifters"]:
-		var card := UIKit.keyed(builder.picker, "pick:aor:" + name) as RenownArmyCard
-		assert_not_null(card, name)
-		assert_true(card.pressable, name)
+	for army_name in ["Wanderers", "Drifters"]:
+		var card := UIKit.keyed(builder.picker, "pick:aor:" + army_name) as RenownArmyCard
+		assert_not_null(card, army_name)
+		assert_true(card.pressable, army_name)
 
 
 func test_open_armies_of_renown_marks_the_picker_open() -> void:
@@ -754,10 +754,10 @@ func _formation_builder(army: Army = null) -> ArmyBuilder:
 func test_open_formations_lists_each_as_a_pressable_card() -> void:
 	var builder := _formation_builder()
 	builder.picker.open_formations()
-	for name in ["Vanguard", "Siege"]:
-		var card := UIKit.keyed(builder.picker, "pick:formation:" + name) as FormationCard
-		assert_not_null(card, name)
-		assert_true(card.pressable, name)
+	for formation_name in ["Vanguard", "Siege"]:
+		var card := UIKit.keyed(builder.picker, "pick:formation:" + formation_name) as FormationCard
+		assert_not_null(card, formation_name)
+		assert_true(card.pressable, formation_name)
 
 
 func _legends_formation_faction() -> Faction:

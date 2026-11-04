@@ -22,15 +22,15 @@ var deployed := false
 var reserve := ""
 
 
-## A unit of [param model_count] models of [param of], whose bases come from [param base_source]
+## A unit of [param count] models of [param of], whose bases come from [param base_source]
 ## (defaults to [param of]): a Spearhead unit's own warscroll has no battle profile.
-static func create(unit_name: String, of: Warscroll, model_count: int, base_source: Warscroll = null) -> BattleUnit:
+static func create(unit_name: String, of: Warscroll, count: int, base_source: Warscroll = null) -> BattleUnit:
 	var unit := BattleUnit.new()
 	unit.name = unit_name
 	unit.warscroll = of
 	var source := base_source if base_source else of
 	var base := source.base_size if source and source.base_size else BaseSize.round_base(FALLBACK_BASE_MM)
-	unit.bases = base.bases_for(maxi(model_count, 1))
+	unit.bases = base.bases_for(maxi(count, 1))
 	return unit
 
 

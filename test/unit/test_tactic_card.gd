@@ -117,7 +117,7 @@ func test_with_a_heading_the_action_shares_the_headings_row() -> void:
 
 func test_with_a_heading_the_action_ends_the_headings_row() -> void:
 	var action := Button.new()
-	var node := _make(false, "Slot 1", action)
+	_make(false, "Slot 1", action)
 	var row := action.get_parent()
 	assert_eq(action.get_index(), row.get_child_count() - 1)
 

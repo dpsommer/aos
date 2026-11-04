@@ -3,11 +3,11 @@ extends RefCounted
 ## Small helpers for building the game's controls in code.
 
 
-static func label(text: String, variation := "", wrap := false) -> Label:
+static func label(text: String, variation := "", wrapped := false) -> Label:
 	var node := Label.new()
 	node.text = text
 	node.theme_type_variation = variation
-	if wrap:
+	if wrapped:
 		node.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return node
@@ -59,19 +59,19 @@ static func button(text: String, on_pressed: Callable, key := "", variation := "
 	return node
 
 
-## A button showing only [param icon_name] from assets/2d/icons. [param label] is its tooltip and
+## A button showing only [param icon_name] from assets/2d/icons. [param label_text] is its tooltip and
 ## the name screen readers announce.
-static func icon_button(icon_name: String, label: String, on_pressed: Callable, key: String, variation := "IconButton") -> Button:
-	var node := button("", on_pressed, key, variation, label)
+static func icon_button(icon_name: String, label_text: String, on_pressed: Callable, key: String, variation := "IconButton") -> Button:
+	var node := button("", on_pressed, key, variation, label_text)
 	node.icon = UITheme.icon(icon_name)
-	node.accessibility_name = label
+	node.accessibility_name = label_text
 	node.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	return node
 
 
 ## An icon button that stays pressed while [param on] is true.
-static func icon_toggle(icon_name: String, label: String, on: bool, on_toggled: Callable, key: String) -> Button:
-	var node := icon_button(icon_name, label, func() -> void: pass, key)
+static func icon_toggle(icon_name: String, label_text: String, on: bool, on_toggled: Callable, key: String) -> Button:
+	var node := icon_button(icon_name, label_text, func() -> void: pass, key)
 	node.toggle_mode = true
 	node.button_pressed = on
 	node.toggled.connect(on_toggled)
@@ -121,14 +121,14 @@ static func spacer() -> Control:
 ## button, e.g. to show the unit in the info pane, and [param tooltip] names what it does.
 static func portrait(unit_name: String, on_pressed := Callable(), tooltip := "", size := 40) -> Control:
 	if on_pressed.is_valid():
-		var node: Button = load("res://scenes/ui/common/portrait_button.tscn").instantiate()
-		node.text = initials(unit_name)
-		node.tooltip_text = tooltip
-		node.accessibility_name = tooltip
-		node.custom_minimum_size = Vector2(size, size)
-		node.pressed.connect(on_pressed)
-		(node.get_node(^"%Stripes") as ArtPlaceholder).corner_radius = 6
-		return node
+		var portrait_button: Button = load("res://scenes/ui/common/portrait_button.tscn").instantiate()
+		portrait_button.text = initials(unit_name)
+		portrait_button.tooltip_text = tooltip
+		portrait_button.accessibility_name = tooltip
+		portrait_button.custom_minimum_size = Vector2(size, size)
+		portrait_button.pressed.connect(on_pressed)
+		(portrait_button.get_node(^"%Stripes") as ArtPlaceholder).corner_radius = 6
+		return portrait_button
 	var node := art(initials(unit_name), 6, 12)
 	node.custom_minimum_size = Vector2(size, size)
 	node.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -244,9 +244,9 @@ static func setting_row(title: String, control: Control, note := "") -> PanelCon
 	box.add_child(control)
 	box.move_child(control, 1)
 	if not note.is_empty():
-		var label: Label = row.get_node(^"%Note")
-		label.text = note
-		label.visible = true
+		var note_label: Label = row.get_node(^"%Note")
+		note_label.text = note
+		note_label.visible = true
 	return row
 
 

@@ -37,7 +37,7 @@ func _init(army_builder: ArmyBuilder) -> void:
 ## Lets [param control] be dragged, carrying [param payload]. The drag preview shows
 ## [param label], and [param lift] (or the control) is dimmed while dragging.
 func source(control: Control, payload: Dictionary, label: String, lift: Control = null) -> void:
-	var begin := func(_at: Vector2) -> Variant:
+	var begin_drag := func(_at: Vector2) -> Variant:
 		var preview: PanelContainer = load("res://scenes/ui/common/drag_preview.tscn").instantiate()
 		(preview.get_node(^"%Label") as Label).text = label
 		preview.theme = UITheme.get_theme()
@@ -45,7 +45,7 @@ func source(control: Control, payload: Dictionary, label: String, lift: Control 
 		lifted = lift if lift else control
 		lifted.modulate.a = 0.45
 		return payload
-	control.set_drag_forwarding(begin, Callable(), Callable())
+	control.set_drag_forwarding(begin_drag, Callable(), Callable())
 
 
 ## Makes [param control] a drop target: [param can_drop] and [param drop] take the position in the

@@ -7,7 +7,7 @@ extends Resource
 ## The weapon it replaces.
 @export var replaces: String
 ## How many models can take it for every [member per] models. Unused if [member choice] is set.
-@export var max: int
+@export var max_models: int
 @export var per: int
 ## Whether every model can take it, e.g. an either/or weapon choice.
 @export var choice: bool

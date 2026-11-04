@@ -50,15 +50,15 @@ func _fill(unit: Warscroll, summoned: Callable, show_summoned: Callable) -> void
 
 
 ## What an ability that sets up [param unit] shows under its card: a manifestation's full warscroll,
-## or a [SummonedUnitCard] for a unit ([member Warscroll.summoned]), which calls [param show], if
+## or a [SummonedUnitCard] for a unit ([member Warscroll.summoned]), which calls [param on_show], if
 ## valid, with the unit when pressed.
-static func summoned_card(unit: Warscroll, show := Callable()) -> Control:
+static func summoned_card(unit: Warscroll, on_show := Callable()) -> Control:
 	if not unit.summoned:
 		return WarscrollCard.create(unit)
 	var card := SummonedUnitCard.create(unit)
-	if show.is_valid():
+	if on_show.is_valid():
 		card.make_pressable("Show the %s warscroll" % unit.name)
-		card.pressed.connect(show.bind(unit))
+		card.pressed.connect(on_show.bind(unit))
 	return card
 
 
@@ -82,7 +82,7 @@ static func weapon_values(weapon: Weapon, ranged: bool) -> PackedStringArray:
 	var values := PackedStringArray([weapon.attacks, "%d+" % weapon.hit, "%d+" % weapon.wound,
 			str(weapon.rend) if weapon.rend > 0 else "-", weapon.damage])
 	if ranged:
-		values.insert(0, '%d"' % weapon.range)
+		values.insert(0, '%d"' % weapon.range_inches)
 	return values
 
 

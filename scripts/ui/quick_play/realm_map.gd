@@ -95,6 +95,7 @@ func _draw_territory_letter(letter: String, points: PackedVector2Array) -> void:
 	var font_size := clampi(roundi(size.y / 7), 10, 48)
 	var text_size := font.get_string_size(letter, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
 	var at := middle + Vector2(-text_size.x / 2, font.get_ascent(font_size) / 2 - 1)
+	@warning_ignore("integer_division")
 	draw_string_outline(font, at, letter, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, maxi(font_size / 6, 2), BattleplanMap.GROUND)
 	draw_string(font, at, letter, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, UITheme.TEXT)
 

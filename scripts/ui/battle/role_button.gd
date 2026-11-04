@@ -8,15 +8,15 @@ extends Button
 const MIN_SIZE := Vector2(400, 104)
 
 
-## A button for the attacker if [param attacks], else the defender, described by [param text], with
+## A button for the attacker if [param attacks], else the defender, described by [param label], with
 ## [param preview] (e.g. a [BattleplanMap]) on its left.
-static func create(attacks: bool, text: String, preview: Control) -> RoleButton:
+static func create(attacks: bool, label: String, preview: Control) -> RoleButton:
 	var button: RoleButton = load("res://scenes/ui/battle/role_button.tscn").instantiate()
 	var role := "Attacker" if attacks else "Defender"
 	button.name = role + "Button"
-	button.accessibility_name = "%s: %s" % [role, text]
+	button.accessibility_name = "%s: %s" % [role, label]
 	(button.get_node(^"%Name") as Label).text = role
-	(button.get_node(^"%Text") as Label).text = text
+	(button.get_node(^"%Text") as Label).text = label
 	preview.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var row: HBoxContainer = button.get_node(^"%Row")
 	row.add_child(preview)

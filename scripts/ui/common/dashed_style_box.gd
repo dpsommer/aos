@@ -46,15 +46,15 @@ static func outline_points(rect: Rect2, radius: float) -> PackedVector2Array:
 	return points
 
 
-## The closed [param outline] cut into dashes [param dash] long with [param gap] between them, each
+## The closed [param outline] cut into dashes [param dash_length] long with [param gap_length] between them, each
 ## a polyline that follows the outline round corners.
-static func dashes(outline: PackedVector2Array, dash: float, gap: float) -> Array[PackedVector2Array]:
+static func dashes(outline: PackedVector2Array, dash_length: float, gap_length: float) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array] = []
-	if outline.size() < 2 or dash <= 0:
+	if outline.size() < 2 or dash_length <= 0:
 		return result
 	var current := PackedVector2Array()
 	var drawing := true
-	var left := dash
+	var left := dash_length
 	for i in outline.size():
 		var from := outline[i]
 		var to := outline[(i + 1) % outline.size()]
@@ -72,7 +72,7 @@ static func dashes(outline: PackedVector2Array, dash: float, gap: float) -> Arra
 			else:
 				current.append(point)
 			drawing = not drawing
-			left = dash if drawing else gap
+			left = dash_length if drawing else gap_length
 		left -= length - done
 		if drawing:
 			current.append(to)

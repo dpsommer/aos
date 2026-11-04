@@ -22,7 +22,7 @@ static func hero(id: String, regiment_options := PackedStringArray(), extra_keyw
 static func weapon_option(option_name: String, max_models := 1, per := 5, choice := false) -> WeaponOption:
 	var option := WeaponOption.new()
 	option.name = option_name
-	option.max = max_models
+	option.max_models = max_models
 	option.per = per
 	option.choice = choice
 	return option

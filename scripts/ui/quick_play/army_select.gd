@@ -262,9 +262,9 @@ func _list_heading(title: String, count: String) -> HBoxContainer:
 func _fill_list() -> void:
 	UIBuilder.clear(_list_box)
 	if mode == BattleSetup.Mode.MATCHED_PLAY:
-		var group := ButtonGroup.new()
+		var army_group := ButtonGroup.new()
 		for entry in entries:
-			_list_box.add_child(_army_entry(entry, group))
+			_list_box.add_child(_army_entry(entry, army_group))
 		if entries.is_empty():
 			var empty: PanelContainer = load("res://scenes/ui/quick_play/no_saved_armies.tscn").instantiate()
 			(empty.get_node(^"%OpenForge") as Button).pressed.connect(forge_requested.emit)
@@ -725,23 +725,23 @@ func _army_portrait(army: Army, unit: ArmyUnit, regiment: ArmyRegiment) -> Contr
 			parts.append(unit.enhancements[type])
 	parts.append("%d pts" % ArmyPoints.unit_points(unit, regiment, army, catalog))
 	var count := "×%d" % WeaponOptions.models(unit_scroll, unit.reinforced) if unit_scroll else ""
-	var open := Callable()
+	var on_open := Callable()
 	var tooltip := ""
 	if regiment and regiment.is_regiment_of_renown():
 		var renown := catalog.regiment_of_renown(regiment.regiment_of_renown)
 		if renown:
-			open = show_regiment.bind(renown)
+			on_open = show_regiment.bind(renown)
 			tooltip = "%s: show the Regiment of Renown" % regiment.name
 	elif unit_scroll:
-		open = show_warscroll.bind(unit_scroll)
+		on_open = show_warscroll.bind(unit_scroll)
 		tooltip = "%s%s: show its warscroll" % [title, ", General" if general else ""]
-	return _portrait(title, " · ".join(parts), count, general, open, tooltip)
+	return _portrait(title, " · ".join(parts), count, general, on_open, tooltip)
 
 
 func _spearhead_portrait(unit_name: String, count: int, unit: Warscroll, general: bool, notes := "") -> Control:
-	var open := show_warscroll.bind(unit) if unit else Callable()
+	var on_open := show_warscroll.bind(unit) if unit else Callable()
 	var sub := "General" if general else notes
-	return _portrait(unit_name, sub, "×%d" % count, general, open, "%s%s: show its warscroll" % [unit_name, ", General" if general else ""])
+	return _portrait(unit_name, sub, "×%d" % count, general, on_open, "%s%s: show its warscroll" % [unit_name, ", General" if general else ""])
 
 
 ## A unit's 112 px portrait, with the General's crown and its model count on it, and its name and
@@ -880,6 +880,7 @@ static func saved_when(saved_at: float, now: float = Time.get_unix_time_from_sys
 	if days < 14:
 		return "saved last week"
 	if days < 60:
+		@warning_ignore("integer_division")
 		return "saved %d weeks ago" % (days / 7)
 	var date := Time.get_date_dict_from_unix_time(int(saved_at + offset))
 	const MONTHS := ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]

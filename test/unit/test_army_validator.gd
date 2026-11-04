@@ -471,7 +471,7 @@ func test_same_enhancement_twice_is_a_problem() -> void:
 func _limit_catalog(limit: int) -> ArmyCatalog:
 	var faction := _faction()
 	faction.enhancement_tables[0].entries.append(Kit.ability("Daring"))
-	faction.enhancement_tables[0].max = limit
+	faction.enhancement_tables[0].max_taken = limit
 	return _catalog(faction)
 
 
@@ -905,7 +905,7 @@ func test_per_entry_counts_a_unit_matching_any_of_its_items() -> void:
 
 func test_max_entry_allows_units_up_to_its_max() -> void:
 	var limited := Kit.roster_entry("Grunt")
-	limited.max = 2
+	limited.max_units = 2
 	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
 	var army := _horde_army()
 	army.regiments[0].units.append(Kit.unit("u3", "grunt"))
@@ -914,7 +914,7 @@ func test_max_entry_allows_units_up_to_its_max() -> void:
 
 func test_max_entry_over_its_max_is_a_problem() -> void:
 	var limited := Kit.roster_entry("Grunt")
-	limited.max = 1
+	limited.max_units = 1
 	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited]
 	var army := _horde_army()
 	army.regiments[0].units.append(Kit.unit("u3", "grunt"))
@@ -923,7 +923,7 @@ func test_max_entry_over_its_max_is_a_problem() -> void:
 
 func test_unit_also_matched_by_an_unlimited_entry_is_not_limited() -> void:
 	var limited := Kit.roster_entry("Grunt")
-	limited.max = 1
+	limited.max_units = 1
 	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), limited, Kit.roster_entry("", PackedStringArray(["INFANTRY"]))]
 	var army := _horde_army()
 	army.regiments[0].units.append(Kit.unit("u3", "grunt"))
@@ -932,7 +932,7 @@ func test_unit_also_matched_by_an_unlimited_entry_is_not_limited() -> void:
 
 func test_regiment_of_renown_units_do_not_count_against_a_max() -> void:
 	var limited := Kit.roster_entry("Ror Grunt")
-	limited.max = 1
+	limited.max_units = 1
 	var entries: Array[RosterEntry] = [Kit.roster_entry("Hero A"), Kit.roster_entry("Grunt"), limited]
 	var army := _horde_army()
 	army.regiments.append(_ror())
@@ -1018,14 +1018,14 @@ func test_unit_named_in_no_one_of_entry_is_a_problem_naming_it() -> void:
 
 func test_one_of_entry_with_a_max_allows_one_listed_unit() -> void:
 	var limited := _one_of(["Hero A", "Hero B"])
-	limited.max = 1
+	limited.max_units = 1
 	var entries: Array[RosterEntry] = [limited, Kit.roster_entry("Grunt")]
 	_assert_no_problem(_horde_army(), "at most", _horde_catalog(entries))
 
 
 func test_one_of_entry_with_a_max_rejects_two_different_listed_units() -> void:
 	var limited := _one_of(["Hero A", "Hero B"])
-	limited.max = 1
+	limited.max_units = 1
 	var entries: Array[RosterEntry] = [limited, Kit.roster_entry("Grunt")]
 	var army := _horde_army()
 	army.regiments.append(_regiment("Side", "hero_b"))
@@ -1240,7 +1240,7 @@ func test_roster_does_not_allow_an_excluded_unit_matching_an_entry() -> void:
 
 func test_roster_allows_a_unit_only_a_limited_entry_matches() -> void:
 	var limited := Kit.roster_entry("Grunt")
-	limited.max = 1
+	limited.max_units = 1
 	var catalog := _horde_catalog([limited] as Array[RosterEntry])
 	var roster := catalog.faction.armies_of_renown[0].roster
 	assert_true(ArmyValidator.roster_allows(roster, _scroll_of(catalog, "grunt")))

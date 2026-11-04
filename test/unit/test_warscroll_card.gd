@@ -8,7 +8,7 @@ const UIKit := preload("res://test/support/ui_kit.gd")
 func _weapon(weapon_name := "Blade", range_inches := 0, rend := 1, abilities := PackedStringArray()) -> Weapon:
 	var weapon := Weapon.new()
 	weapon.name = weapon_name
-	weapon.range = range_inches
+	weapon.range_inches = range_inches
 	weapon.attacks = "2"
 	weapon.hit = 3
 	weapon.wound = 4

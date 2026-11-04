@@ -235,8 +235,8 @@ static func ability(ability_name: String, keywords := PackedStringArray(["DEPLOY
 
 ## A [DeploymentAbility] of [param of] from [param source], optionally owned by a unit or tied to a
 ## Regiment of Renown.
-static func deploy_entry(of: Ability, source := "Warscroll", owner: BattleUnit = null, regiment: BattleRegiment = null) -> DeploymentAbility:
-	return DeploymentAbility.create(of, source, owner, regiment)
+static func deploy_entry(of: Ability, source := "Warscroll", owner: BattleUnit = null, from_regiment: BattleRegiment = null) -> DeploymentAbility:
+	return DeploymentAbility.create(of, source, owner, from_regiment)
 
 
 ## A [BattleRegiment] of [param units] named [param regiment_name], the units pointed back at it.
@@ -245,8 +245,8 @@ static func regiment(regiment_name: String, units: Array[BattleUnit], renown := 
 	result.name = regiment_name
 	result.is_renown = renown
 	result.units = units
-	for unit in units:
-		unit.regiment = result
+	for each in units:
+		each.regiment = result
 	return result
 
 
@@ -263,20 +263,20 @@ static func deployment_battle() -> Battle:
 	result.roles_assigned = true
 	result.player_territory = [rect_polygon(0, 0, 60, 18)] as Array[PackedVector2Array]
 	result.opponent_territory = [rect_polygon(0, 26, 60, 18)] as Array[PackedVector2Array]
-	var army := BattleArmy.new()
-	army.name = "Army"
-	army.faction_name = "Faction"
+	var built := BattleArmy.new()
+	built.name = "Army"
+	built.faction_name = "Faction"
 	for names: Array in [["A1", "A2"], ["B1", "B2"]]:
 		var members: Array[BattleUnit] = []
 		for unit_name: String in names:
 			var member := unit(unit_name, 3)
 			members.append(member)
-			army.units.append(member)
-		army.regiments.append(regiment("Regiment %s" % names[0][0], members))
-	army.units.append(unit("Aux", 3))
-	army.deployment_abilities.append_array(DeploymentAbilities.universal(DeploymentAbilities.MATCHED_PLAY_UNIVERSAL, null))
-	result.player = army
-	result.opponent = army.mirror()
+			built.units.append(member)
+		built.regiments.append(regiment("Regiment %s" % names[0][0], members))
+	built.units.append(unit("Aux", 3))
+	built.deployment_abilities.append_array(DeploymentAbilities.universal(DeploymentAbilities.MATCHED_PLAY_UNIVERSAL, null))
+	result.player = built
+	result.opponent = built.mirror()
 	result.face_armies()
 	return result
 
@@ -288,14 +288,14 @@ static func deployment_battle() -> Battle:
 static func spearhead_deployment_battle() -> Battle:
 	var result := deployment_battle()
 	result.mode = BattleSetup.Mode.SPEARHEAD
-	var army := BattleArmy.new()
-	army.name = "Army"
-	army.faction_name = "Faction"
+	var built := BattleArmy.new()
+	built.name = "Army"
+	built.faction_name = "Faction"
 	for unit_name in ["A1", "A2", "B1"]:
-		army.units.append(unit(unit_name, 3))
-	army.deployment_abilities.append_array(DeploymentAbilities.universal(DeploymentAbilities.SPEARHEAD_UNIVERSAL, null))
-	result.player = army
-	result.opponent = army.mirror()
+		built.units.append(unit(unit_name, 3))
+	built.deployment_abilities.append_array(DeploymentAbilities.universal(DeploymentAbilities.SPEARHEAD_UNIVERSAL, null))
+	result.player = built
+	result.opponent = built.mirror()
 	result.face_armies()
 	return result
 

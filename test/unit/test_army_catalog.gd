@@ -1272,8 +1272,8 @@ func test_non_hero_leader_is_not_a_hero() -> void:
 
 func _limit_catalog(faction_max: int, renown_max := 1) -> ArmyCatalog:
 	var faction := _faction()
-	faction.enhancement_tables[0].max = faction_max
-	faction.armies_of_renown[0].enhancement_tables[0].max = renown_max
+	faction.enhancement_tables[0].max_taken = faction_max
+	faction.armies_of_renown[0].enhancement_tables[0].max_taken = renown_max
 	return Kit.catalog(faction)
 
 
@@ -1292,9 +1292,9 @@ func test_enhancement_limit_ignores_other_types_tables() -> void:
 func test_enhancement_limit_takes_the_largest_max_of_the_type() -> void:
 	var faction := _faction()
 	var extra := Kit.table("Heroic Traits", [Kit.ability("Other")] as Array[Ability])
-	extra.max = 2
+	extra.max_taken = 2
 	faction.enhancement_tables.append(extra)
-	faction.enhancement_tables[0].max = 3
+	faction.enhancement_tables[0].max_taken = 3
 	assert_eq(Kit.catalog(faction).enhancement_limit(Kit.army(), "Heroic Traits"), 3)
 
 

@@ -232,7 +232,7 @@ static func _check_regiment_options(army: Army, regiment: ArmyRegiment, leader: 
 			continue
 		used[fitted] = used.get(fitted, 0) + 1
 	for option in options:
-		if used.get(option, 0) < option.min:
+		if used.get(option, 0) < option.min_units:
 			result.problems.append("%s must include %s." % [regiment.name, option.unit if not option.unit.is_empty() else option.text])
 
 
@@ -241,13 +241,13 @@ static func _check_regiment_options(army: Army, regiment: ArmyRegiment, leader: 
 static func _fit_option(options: Array[RegimentOption], used: Dictionary, warscroll: Warscroll,
 		gained: PackedStringArray) -> RegimentOption:
 	for option in options:
-		if option.min > 0 and used.get(option, 0) < option.max and option.matches(warscroll, gained):
+		if option.min_units > 0 and used.get(option, 0) < option.max_units and option.matches(warscroll, gained):
 			return option
 	for option in options:
-		if option.max == RegimentOption.ANY and option.matches(warscroll, gained):
+		if option.max_units == RegimentOption.ANY and option.matches(warscroll, gained):
 			return option
 	for option in options:
-		if option.matches(warscroll, gained) and used.get(option, 0) < option.max:
+		if option.matches(warscroll, gained) and used.get(option, 0) < option.max_units:
 			return option
 	return null
 
@@ -493,7 +493,7 @@ static func roster_allows(army_roster: ArmyRoster, warscroll: Warscroll) -> bool
 
 
 static func _is_limited(entry: RosterEntry) -> bool:
-	return not entry.per.is_empty() or entry.max > 0
+	return not entry.per.is_empty() or entry.max_units > 0
 
 
 static func _is_roster_general(warscroll: Warscroll, army_roster: ArmyRoster) -> bool:
@@ -514,7 +514,7 @@ static func _describe(entry: RosterEntry) -> String:
 
 
 ## Every unit must match a roster entry and not be one of its excluded units. Units only limited entries allow are limited to the entry's
-## [member RosterEntry.max], or to 1 for each unit matching its [member RosterEntry.per]. Required
+## [member RosterEntry.max_units], or to 1 for each unit matching its [member RosterEntry.per]. Required
 ## units must be included, and some must be the general.
 static func _check_roster(army: Army, catalog: ArmyCatalog, entries: Array[Dictionary], result: ArmyValidation) -> void:
 	var army_roster := catalog.roster(army)
@@ -534,9 +534,9 @@ static func _check_roster(army: Army, catalog: ArmyCatalog, entries: Array[Dicti
 			limited[roster_entry] = limited.get(roster_entry, 0) + 1
 	for roster_entry: RosterEntry in limited:
 		if roster_entry.per.is_empty():
-			if limited[roster_entry] > roster_entry.max:
+			if limited[roster_entry] > roster_entry.max_units:
 				result.problems.append("%s armies can include at most %d of %s (%d included)."
-						% [army.army_of_renown, roster_entry.max, _describe(roster_entry), limited[roster_entry]])
+						% [army.army_of_renown, roster_entry.max_units, _describe(roster_entry), limited[roster_entry]])
 			continue
 		var allowed := built.filter(func(e: Dictionary) -> bool: return _per_matches(roster_entry, e.warscroll)).size()
 		if limited[roster_entry] > allowed:

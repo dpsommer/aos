@@ -13,22 +13,22 @@ func _scroll(keywords: PackedStringArray, scroll_name := "Some Unit") -> Warscro
 
 func test_any_has_no_minimum_and_no_maximum() -> void:
 	var option := RegimentOption.parse("Any WARRIOR CHAMBER")
-	assert_eq([option.min, option.max], [0, RegimentOption.ANY])
+	assert_eq([option.min_units, option.max_units], [0, RegimentOption.ANY])
 
 
 func test_zero_to_one_caps_at_one_without_minimum() -> void:
 	var option := RegimentOption.parse("0-1 STORMCAST EXEMPLAR")
-	assert_eq([option.min, option.max], [0, 1])
+	assert_eq([option.min_units, option.max_units], [0, 1])
 
 
 func test_one_requires_exactly_one() -> void:
 	var option := RegimentOption.parse("1 Toll’s Companions")
-	assert_eq([option.min, option.max], [1, 1])
+	assert_eq([option.min_units, option.max_units], [1, 1])
 
 
 func test_required_suffix_requires_exactly_one() -> void:
 	var option := RegimentOption.parse("Lorai (required)")
-	assert_eq([option.min, option.max], [1, 1])
+	assert_eq([option.min_units, option.max_units], [1, 1])
 
 
 func test_text_keeps_the_option_as_written() -> void:
@@ -103,8 +103,8 @@ func test_real_option_strings_parse_to_expected_shapes() -> void:
 	assert_eq(exemplar.keywords, PackedStringArray(["STORMCAST EXEMPLAR"]))
 	assert_eq(chamber.keywords, PackedStringArray(["WARRIOR CHAMBER"]))
 	assert_eq([skink.not_keywords, skink.keywords], [PackedStringArray(["MONSTER"]), PackedStringArray(["SKINK"])])
-	assert_eq([toll.unit, toll.min], ["Toll’s Companions", 1])
-	assert_eq([hounds.unit, hounds.max], ["Gryph-hounds", 1])
+	assert_eq([toll.unit, toll.min_units], ["Toll’s Companions", 1])
+	assert_eq([hounds.unit, hounds.max_units], ["Gryph-hounds", 1])
 	assert_eq(pair.size(), 2)
 	assert_eq([pair[0].unit, pair[1].unit], ["Neave’s Companions", "Lorai"])
 

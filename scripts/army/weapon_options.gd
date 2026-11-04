@@ -10,7 +10,8 @@ static func models(warscroll: Warscroll, reinforced: bool) -> int:
 ## The most models that can take [param option], e.g. 2 for "1/5 models" in a reinforced unit of 10.
 static func cap(option: WeaponOption, warscroll: Warscroll, reinforced: bool) -> int:
 	var count := models(warscroll, reinforced)
-	return count if option.choice else count / option.per * option.max
+	@warning_ignore("integer_division")
+	return count if option.choice else count / option.per * option.max_models
 
 
 ## The unit's count for [param option]: its cap until the player changes it, and never more.

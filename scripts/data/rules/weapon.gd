@@ -4,7 +4,7 @@ extends Resource
 
 @export var name: String
 ## Range in inches. 0 for melee weapons.
-@export var range: int
+@export var range_inches: int
 ## Attacks and Damage can be dice expressions such as "2D6" or "D3+1".
 @export var attacks: String
 @export var hit: int
@@ -16,4 +16,4 @@ extends Resource
 
 
 func is_melee() -> bool:
-	return range == 0
+	return range_inches == 0

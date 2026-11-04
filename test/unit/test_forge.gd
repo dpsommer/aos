@@ -1029,11 +1029,11 @@ func test_back_from_formations_focuses_the_selected_renown_card() -> void:
 
 ## Saves a new army of the first faction with data, named [param army_name].
 func _save_army(army_name: String) -> Army:
-	var faction: Faction
+	var faction: Faction = null
 	for alliance: GrandAlliance.Type in GrandAlliance.Type.values():
-		for name in FactionCatalog.factions_for(alliance):
-			if faction == null and FactionCatalog.is_available(name):
-				faction = FactionCatalog.load_faction(name)
+		for faction_name in FactionCatalog.factions_for(alliance):
+			if faction == null and FactionCatalog.is_available(faction_name):
+				faction = FactionCatalog.load_faction(faction_name)
 	var army := ArmyEditor.create_army(ArmyCatalog.new(faction, CoreRulesCatalog.get_rules()))
 	army.name = army_name
 	assert_eq(ArmyStore.save(army), OK)
