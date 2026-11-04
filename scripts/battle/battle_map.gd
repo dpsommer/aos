@@ -358,7 +358,7 @@ func open_menu() -> void:
 	_menu_closing = false
 	pause_menu.open()
 	hud.set_header_hidden(true)
-	_set_camera_active(false)
+	_set_map_controls_active(false)
 
 
 ## Closes the menu, bringing the header back and the camera with it.
@@ -368,7 +368,7 @@ func close_menu() -> void:
 	_menu_closing = true
 	pause_menu.close()
 	hud.set_header_hidden(false)
-	_set_camera_active(true)
+	_set_map_controls_active(true)
 
 
 ## Opens the Settings screen over the menu. Its Back returns to the menu.
@@ -390,7 +390,7 @@ func close_settings() -> void:
 	pause_menu.settings_button.grab_focus()
 
 
-func _set_camera_active(active: bool) -> void:
+func _set_map_controls_active(active: bool) -> void:
 	if camera:
 		camera.set_process(active)
 		camera.set_process_unhandled_input(active)

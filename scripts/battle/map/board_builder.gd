@@ -27,9 +27,17 @@ const NO_DEPLOY_HEIGHT := 0.025
 ## The shading over territory too close to the enemy to deploy in.
 const NO_DEPLOY := Color(0.047, 0.051, 0.063, 0.5)
 const NO_DEPLOY_EDGE := Color(0.961, 0.647, 0.557, 0.8)
-## Territory stripes and edges: [stripe, gap, edge] for each side.
-const PLAYER_COLOURS := [Color(0.376, 0.62, 0.886, 0.11), Color(0.239, 0.455, 0.659, 0.04), Color(0.431, 0.667, 0.922, 0.5)]
-const OPPONENT_COLOURS := [Color(0.91, 0.408, 0.361, 0.1), Color(0.722, 0.267, 0.231, 0.04), Color(0.922, 0.431, 0.384, 0.5)]
+## Territory stripes and edges for each side.
+const PLAYER_COLOURS := {
+	"stripe": Color(0.376, 0.62, 0.886, 0.11),
+	"gap": Color(0.239, 0.455, 0.659, 0.04),
+	"edge": Color(0.431, 0.667, 0.922, 0.5),
+}
+const OPPONENT_COLOURS := {
+	"stripe": Color(0.91, 0.408, 0.361, 0.1),
+	"gap": Color(0.722, 0.267, 0.231, 0.04),
+	"edge": Color(0.922, 0.431, 0.384, 0.5),
+}
 const OBJECTIVE_EDGE := Color("#F0C46A")
 const OBJECTIVE_NAME := Color("#F8DFA2")
 
@@ -78,17 +86,17 @@ static func board_print(realm_name: String, root := BOARDS) -> Texture2D:
 
 ## A side's territory: striped polygons with their edges outlined.
 static func territory(polygons: Array[PackedVector2Array], is_player: bool) -> Node3D:
-	var colours: Array = PLAYER_COLOURS if is_player else OPPONENT_COLOURS
+	var colours: Dictionary = PLAYER_COLOURS if is_player else OPPONENT_COLOURS
 	var root := Node3D.new()
 	root.name = "PlayerTerritory" if is_player else "OpponentTerritory"
 	var material := ShaderMaterial.new()
 	material.shader = TERRITORY_SHADER
-	material.set_shader_parameter("stripe_color", colours[0])
-	material.set_shader_parameter("gap_color", colours[1])
+	material.set_shader_parameter("stripe_color", colours.stripe)
+	material.set_shader_parameter("gap_color", colours.gap)
 	material.set_shader_parameter("speed", 0.5 if is_player else -0.5)
 	for polygon in polygons:
 		_add_fill(root, polygon, TERRITORY_HEIGHT, material)
-		root.add_child(outline(polygon, TERRITORY_HEIGHT, colours[2]))
+		root.add_child(outline(polygon, TERRITORY_HEIGHT, colours.edge))
 	return root
 
 
@@ -269,14 +277,8 @@ static func flat_polygon(polygon: PackedVector2Array, height: float) -> MeshInst
 	var vertices := PackedVector3Array()
 	for point in polygon:
 		vertices.append(ModelPlaceholder.to_world(point, height))
-	var arrays := []
-	arrays.resize(Mesh.ARRAY_MAX)
-	arrays[Mesh.ARRAY_VERTEX] = vertices
+	var arrays := ModelPlaceholder.flat_surface(vertices)
 	arrays[Mesh.ARRAY_INDEX] = indices
-	var normals := PackedVector3Array()
-	normals.resize(vertices.size())
-	normals.fill(Vector3.UP)
-	arrays[Mesh.ARRAY_NORMAL] = normals
 	var mesh := ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 	var result := MeshInstance3D.new()

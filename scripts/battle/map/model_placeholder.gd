@@ -115,7 +115,7 @@ static func model_names(unit: BattleUnit) -> PackedStringArray:
 ## models in turn.
 static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library := ModelLibrary.shared()) -> Node3D:
 	var root := Node3D.new()
-	root.name = _node_name(unit.name)
+	root.name = node_name(unit.name, "Unit")
 	_add_bases(root, unit, facing, is_player)
 	var tallest := _add_models(root, unit, facing, is_player, library)
 	if not unit.positions.is_empty():
@@ -149,6 +149,11 @@ static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array
 	if rings == null:
 		rings = _new_rings()
 		root.add_child(rings)
+	rings.multimesh = _rings_multimesh(unit, invalid, held, invalid_colour)
+
+
+## One ring for each of [param unit]'s models, coloured as [method show_rings] says.
+static func _rings_multimesh(unit: BattleUnit, invalid: PackedInt32Array, held: bool, invalid_colour: Color) -> MultiMesh:
 	var multimesh := MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.use_colors = true
@@ -157,7 +162,7 @@ static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array
 	for i in unit.positions.size():
 		multimesh.set_instance_transform(i, _ring_transform(unit.bases[i], unit.positions[i], unit.facing))
 		multimesh.set_instance_color(i, invalid_colour if i in invalid else ring_colour(true, held))
-	rings.multimesh = multimesh
+	return multimesh
 
 
 ## The node that draws a unit's rings, coloured per ring.
@@ -213,6 +218,13 @@ static func outline_mesh(outline: PackedVector2Array, height: float) -> ArrayMes
 		var out := point + point.normalized() * OUTLINE_WIDTH
 		vertices.append(to_world(point, height))
 		vertices.append(to_world(out, height))
+	var mesh := ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, flat_surface(vertices))
+	return mesh
+
+
+## The surface arrays of a mesh of [param vertices] lying flat, facing up.
+static func flat_surface(vertices: PackedVector3Array) -> Array:
 	var normals := PackedVector3Array()
 	normals.resize(vertices.size())
 	normals.fill(Vector3.UP)
@@ -220,9 +232,7 @@ static func outline_mesh(outline: PackedVector2Array, height: float) -> ArrayMes
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices
 	arrays[Mesh.ARRAY_NORMAL] = normals
-	var mesh := ArrayMesh.new()
-	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
-	return mesh
+	return arrays
 
 
 ## A flat ring 1 wide, scaled per model.
@@ -240,8 +250,8 @@ static func _ring_mesh() -> Mesh:
 ## and size).
 static func _add_bases(root: Node3D, unit: BattleUnit, facing: float, is_player: bool) -> void:
 	var kinds := {}
-	for i in mini(unit.bases.size(), unit.positions.size()):
-		var key := "%d:%s" % [unit.bases[i].shape, unit.bases[i].footprint()]
+	for i in _placed_count(unit):
+		var key :="%d:%s" % [unit.bases[i].shape, unit.bases[i].footprint()]
 		if not kinds.has(key):
 			kinds[key] = []
 		kinds[key].append(i)
@@ -251,6 +261,11 @@ static func _add_bases(root: Node3D, unit: BattleUnit, facing: float, is_player:
 		_place_instances(instance, unit, facing)
 		instance.material_override = PLAYER_MATERIAL if is_player else OPPONENT_MATERIAL
 		root.add_child(instance)
+
+
+## How many of [param unit]'s models can be drawn: those with both a base and a position.
+static func _placed_count(unit: BattleUnit) -> int:
+	return mini(unit.bases.size(), unit.positions.size())
 
 
 ## A [MultiMeshInstance3D] of [param mesh] with one instance for each of the unit's models in
@@ -296,7 +311,7 @@ static func _add_models(root: Node3D, unit: BattleUnit, facing: float, is_player
 	var meshes := library.meshes_for(model_names(unit))
 	if meshes.is_empty():
 		return 0.0
-	var count := mini(unit.bases.size(), unit.positions.size())
+	var count := _placed_count(unit)
 	var tallest := 0.0
 	for m in mini(meshes.size(), count):
 		var mesh := meshes[m]
@@ -337,5 +352,6 @@ static func hover_label(text: String, at: Vector3, font_size := 48) -> Label3D:
 	return result
 
 
-static func _node_name(text: String) -> String:
-	return text.validate_node_name() if not text.is_empty() else "Unit"
+## [param text] made safe to name a node, or [param fallback] if it's empty.
+static func node_name(text: String, fallback: String) -> String:
+	return text.validate_node_name() if not text.is_empty() else fallback

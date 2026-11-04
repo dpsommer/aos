@@ -65,12 +65,15 @@ static func model_of(feature: BattleTerrain, library: ModelLibrary) -> Mesh:
 ## and Spearhead features.
 static func build(feature: BattleTerrain, library := ModelLibrary.shared()) -> Node3D:
 	var root := Node3D.new()
-	root.name = feature.name.validate_node_name() if not feature.name.is_empty() else "Terrain"
+	root.name = ModelPlaceholder.node_name(feature.name, "Terrain")
+	root.position = ModelPlaceholder.to_world(feature.position)
+	root.rotation.y = ModelPlaceholder.yaw(feature.rotation)
 	var model := model_of(feature, library)
 	var instance := _instance_of(feature, model)
-	var height := model.get_aabb().size.y * instance.scale.y if model else height_of(feature)
 	root.add_child(instance)
-	_place(root, feature, height)
+	if _has_model(feature):
+		var height := model.get_aabb().size.y * instance.scale.y if model else height_of(feature)
+		root.add_child(ModelPlaceholder.hover_label(feature.name, Vector3(0, height + 1.0, 0)))
 	return root
 
 
@@ -140,10 +143,3 @@ static func _block_instance(feature: BattleTerrain) -> MeshInstance3D:
 	instance.scale = Vector3(feature.footprint.x, height, feature.footprint.y)
 	instance.position.y = height / 2
 	return instance
-
-
-static func _place(root: Node3D, feature: BattleTerrain, height: float) -> void:
-	root.position = ModelPlaceholder.to_world(feature.position)
-	root.rotation.y = ModelPlaceholder.yaw(feature.rotation)
-	if _has_model(feature):
-		root.add_child(ModelPlaceholder.hover_label(feature.name, Vector3(0, height + 1.0, 0)))
