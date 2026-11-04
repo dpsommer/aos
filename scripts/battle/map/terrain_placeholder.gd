@@ -67,17 +67,20 @@ static func build(feature: BattleTerrain, library := ModelLibrary.shared()) -> N
 	var root := Node3D.new()
 	root.name = feature.name.validate_node_name() if not feature.name.is_empty() else "Terrain"
 	var model := model_of(feature, library)
-	var instance: MeshInstance3D
-	if model == null:
-		instance = _block_instance(feature, height_of(feature))
-	elif feature.kind == BattleTerrain.Kind.SPEARHEAD:
-		instance = _fitted_instance(model, feature.footprint)
-	else:
-		instance = _model_instance(model)
+	var instance := _instance_of(feature, model)
 	var height := model.get_aabb().size.y * instance.scale.y if model else height_of(feature)
 	root.add_child(instance)
 	_place(root, feature, height)
 	return root
+
+
+## What draws [param feature]: [param model], the way its kind wants it, or its placeholder if null.
+static func _instance_of(feature: BattleTerrain, model: Mesh) -> MeshInstance3D:
+	if model == null:
+		return _block_instance(feature)
+	if feature.kind == BattleTerrain.Kind.SPEARHEAD:
+		return _fitted_instance(model, feature.footprint)
+	return _model_instance(model)
 
 
 ## [param model] standing on the ground, its front (-Z) turned to face the way the feature does
@@ -118,9 +121,10 @@ static func _mesh_instance(model: Mesh) -> MeshInstance3D:
 	return instance
 
 
-## The placeholder for [param feature]: a disc or block its footprint across and [param height]
+## The placeholder for [param feature]: a disc or block its footprint across and its kind's height
 ## tall, in its kind's material.
-static func _block_instance(feature: BattleTerrain, height: float) -> MeshInstance3D:
+static func _block_instance(feature: BattleTerrain) -> MeshInstance3D:
+	var height := height_of(feature)
 	var instance := MeshInstance3D.new()
 	if is_round(feature):
 		var disc := CylinderMesh.new()

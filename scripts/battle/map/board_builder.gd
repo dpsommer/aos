@@ -31,6 +31,7 @@ const NO_DEPLOY_EDGE := Color(0.961, 0.647, 0.557, 0.8)
 const PLAYER_COLOURS := [Color(0.376, 0.62, 0.886, 0.11), Color(0.239, 0.455, 0.659, 0.04), Color(0.431, 0.667, 0.922, 0.5)]
 const OPPONENT_COLOURS := [Color(0.91, 0.408, 0.361, 0.1), Color(0.722, 0.267, 0.231, 0.04), Color(0.922, 0.431, 0.384, 0.5)]
 const OBJECTIVE_EDGE := Color("#F0C46A")
+const OBJECTIVE_NAME := Color("#F8DFA2")
 
 
 ## The board: a slab [param size] wide and deep, its top at height 0, with [param printed] (a realm
@@ -86,10 +87,7 @@ static func territory(polygons: Array[PackedVector2Array], is_player: bool) -> N
 	material.set_shader_parameter("gap_color", colours[1])
 	material.set_shader_parameter("speed", 0.5 if is_player else -0.5)
 	for polygon in polygons:
-		var fill := flat_polygon(polygon, TERRITORY_HEIGHT)
-		if fill:
-			fill.material_override = material
-			root.add_child(fill)
+		_add_fill(root, polygon, TERRITORY_HEIGHT, material)
 		root.add_child(outline(polygon, TERRITORY_HEIGHT, colours[2]))
 	return root
 
@@ -104,18 +102,8 @@ static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2A
 		facing := -PI / 2, blocked: Array[PackedVector2Array] = []) -> Node3D:
 	var root := Node3D.new()
 	root.name = "NoDeploy"
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	material.albedo_color = NO_DEPLOY
-	var pieces: Array[PackedVector2Array] = []
-	for polygon in own:
-		pieces.append_array(_clip_all(polygon, zone))
-		for area in blocked:
-			pieces.append_array(Geometry2D.intersect_polygons(polygon, area))
-	if not blocked.is_empty():
-		pieces = _union(pieces)
-	for piece in pieces:
+	var material := _no_deploy_material()
+	for piece in _no_deploy_pieces(own, zone, blocked):
 		var fill := flat_polygon(piece, NO_DEPLOY_HEIGHT)
 		if fill == null:
 			continue
@@ -127,38 +115,66 @@ static func no_deploy(own: Array[PackedVector2Array], zone: Array[PackedVector2A
 	return root
 
 
+## The shading of the parts of a territory that can't be set up in.
+static func _no_deploy_material() -> StandardMaterial3D:
+	var material := StandardMaterial3D.new()
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.albedo_color = NO_DEPLOY
+	return material
+
+
+## The parts of [param own] outside [param zone] or inside [param blocked].
+static func _no_deploy_pieces(own: Array[PackedVector2Array], zone: Array[PackedVector2Array],
+		blocked: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var pieces: Array[PackedVector2Array] = []
+	for polygon in own:
+		pieces.append_array(_clip_all(polygon, zone))
+		for area in blocked:
+			pieces.append_array(Geometry2D.intersect_polygons(polygon, area))
+	return _union(pieces) if not blocked.is_empty() else pieces
+
+
 ## [param polygons] merged where they overlap, so overlaps aren't shaded twice. A hole left inside a
 ## merged polygon is filled in.
 static func _union(polygons: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array] = []
 	for polygon in polygons:
-		var current := polygon
-		var merged := true
-		while merged:
-			merged = false
-			for i in result.size():
-				var outers := _outers(Geometry2D.merge_polygons(current, result[i]))
-				if outers.size() == 1:
-					current = outers[0]
-					result.remove_at(i)
-					merged = true
-					break
-		result.append(current)
+		result.append(_absorb_overlaps(polygon, result))
 	return result
+
+
+## [param polygon] merged with those of [param others] it overlaps, which are taken out of
+## [param others].
+static func _absorb_overlaps(polygon: PackedVector2Array, others: Array[PackedVector2Array]) -> PackedVector2Array:
+	var current := polygon
+	var merged := true
+	while merged:
+		merged = false
+		for i in others.size():
+			var outers := _outers(Geometry2D.merge_polygons(current, others[i]))
+			if outers.size() == 1:
+				current = outers[0]
+				others.remove_at(i)
+				merged = true
+				break
+	return current
 
 
 ## [param polygons] less those inside another: the holes Geometry2D returns alongside outlines.
 static func _outers(polygons: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array] = []
 	for polygon in polygons:
-		var hole := false
-		for other in polygons:
-			if other != polygon and Geometry2D.is_point_in_polygon(polygon[0], other):
-				hole = true
-				break
-		if not hole:
+		if not _is_inside_another(polygon, polygons):
 			result.append(polygon)
 	return result
+
+
+static func _is_inside_another(polygon: PackedVector2Array, polygons: Array[PackedVector2Array]) -> bool:
+	for other in polygons:
+		if other != polygon and Geometry2D.is_point_in_polygon(polygon[0], other):
+			return true
+	return false
 
 
 ## What's left of [param polygon] once each of [param cuts] is taken out of it.
@@ -174,10 +190,7 @@ static func _clip_all(polygon: PackedVector2Array, cuts: Array[PackedVector2Arra
 
 ## [param text] lying flat in the middle of [param piece], its top towards the enemy.
 static func _no_deploy_label(piece: PackedVector2Array, text: String, facing: float) -> Label3D:
-	var middle := Vector2.ZERO
-	for point in piece:
-		middle += point
-	var label := ModelPlaceholder.label(text, ModelPlaceholder.to_world(middle / piece.size(), 0.5), 110)
+	var label := ModelPlaceholder.label(text, ModelPlaceholder.to_world(ModelPlaceholder.middle_of(piece), 0.5), 110)
 	label.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	label.rotation = Vector3(-PI / 2, -(facing + PI / 2), 0)
 	label.modulate = NO_DEPLOY_EDGE
@@ -189,10 +202,7 @@ static func roads(polygons: Array[PackedVector2Array]) -> Node3D:
 	var root := Node3D.new()
 	root.name = "Roads"
 	for polygon in polygons:
-		var fill := flat_polygon(polygon, ROAD_HEIGHT)
-		if fill:
-			fill.material_override = ROAD
-			root.add_child(fill)
+		_add_fill(root, polygon, ROAD_HEIGHT, ROAD)
 	return root
 
 
@@ -208,7 +218,7 @@ static func objective(feature: MapFeature, radius: float) -> Node3D:
 		_add_round_zone(root, radius)
 	root.add_child(_objective_marker())
 	var name_label := ModelPlaceholder.hover_label(feature.type, Vector3(0, 2.5, 0), 56)
-	name_label.modulate = Color("#F8DFA2")
+	name_label.modulate = OBJECTIVE_NAME
 	root.add_child(name_label)
 	return root
 
@@ -218,10 +228,7 @@ static func _add_rectangle_zone(root: Node3D, feature: MapFeature) -> void:
 	var local := PackedVector2Array()
 	for corner in feature.corners():
 		local.append(corner - feature.position)
-	var fill := flat_polygon(local, ZONE_HEIGHT)
-	if fill:
-		fill.material_override = OBJECTIVE_ZONE
-		root.add_child(fill)
+	_add_fill(root, local, ZONE_HEIGHT, OBJECTIVE_ZONE)
 	root.add_child(outline(local, ZONE_HEIGHT, OBJECTIVE_EDGE))
 
 
@@ -276,6 +283,14 @@ static func flat_polygon(polygon: PackedVector2Array, height: float) -> MeshInst
 	result.mesh = mesh
 	result.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	return result
+
+
+## Adds [param polygon] to [param root] as a flat mesh in [param material], unless it can't be filled.
+static func _add_fill(root: Node3D, polygon: PackedVector2Array, height: float, material: Material) -> void:
+	var fill := flat_polygon(polygon, height)
+	if fill:
+		fill.material_override = material
+		root.add_child(fill)
 
 
 ## A closed line around [param polygon] at [param height].

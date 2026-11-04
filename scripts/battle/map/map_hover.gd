@@ -45,12 +45,20 @@ static func hit_distance(root: Node3D, from: Vector3, direction: Vector3) -> flo
 		if child is MeshInstance3D and child.is_visible_in_tree() and child.mesh:
 			nearest = minf(nearest, _box_distance(child.global_transform, child.mesh.get_aabb(), from, direction))
 		# Only bases and models have indices: a unit's placement rings don't count as the unit.
-		elif child is MultiMeshInstance3D and child.is_visible_in_tree() and child.has_meta(&"indices"):
-			var multimesh: MultiMesh = child.multimesh
-			var bounds := multimesh.mesh.get_aabb()
-			for n in multimesh.instance_count:
-				var placed: Transform3D = child.global_transform * multimesh.get_instance_transform(n)
-				nearest = minf(nearest, _box_distance(placed, bounds, from, direction))
+		elif child is MultiMeshInstance3D and child.is_visible_in_tree() and child.has_meta(ModelPlaceholder.MODEL_INDICES):
+			nearest = minf(nearest, _instances_distance(child, from, direction))
+	return nearest
+
+
+## How far along the ray the nearest of [param instance]'s bases or models is, or
+## [constant @GDScript.INF] if the ray misses them all.
+static func _instances_distance(instance: MultiMeshInstance3D, from: Vector3, direction: Vector3) -> float:
+	var nearest := INF
+	var multimesh := instance.multimesh
+	var bounds := multimesh.mesh.get_aabb()
+	for n in multimesh.instance_count:
+		var placed := instance.global_transform * multimesh.get_instance_transform(n)
+		nearest = minf(nearest, _box_distance(placed, bounds, from, direction))
 	return nearest
 
 

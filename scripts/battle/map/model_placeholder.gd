@@ -15,6 +15,11 @@ const LABEL_HEIGHT := 2.0
 const LABEL_CLEARANCE := 0.75
 ## The node name of a name shown only while hovered ([MapHover]).
 const HOVER_LABEL := "Label"
+## Meta on each [MultiMeshInstance3D] of a unit's bases and models: which of the unit's models its
+## instances are.
+const MODEL_INDICES := &"indices"
+## Meta on a [MultiMeshInstance3D] of 3D models, not bases.
+const IS_MODEL := &"model"
 ## How thick a label's outline is. [constant LABEL_FONT]'s pixel range must be at least twice this.
 const LABEL_OUTLINE := 6
 ## Text on the battlefield is drawn with a multichannel signed distance field, which stays sharp at
@@ -65,7 +70,7 @@ static func size_of(base: BaseSize) -> Vector3:
 
 
 ## The mesh for [param base]: a unit disc or slab, scaled per model by [method transform_of].
-static func mesh_of(base: BaseSize) -> Mesh:
+static func _mesh_of(base: BaseSize) -> Mesh:
 	if base.shape == BaseSize.Shape.MODEL:
 		if _slab == null:
 			_slab = BoxMesh.new()
@@ -115,7 +120,7 @@ static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library
 	var tallest := _add_models(root, unit, facing, is_player, library)
 	if not unit.positions.is_empty():
 		var height := maxf(LABEL_HEIGHT, tallest + LABEL_CLEARANCE)
-		root.add_child(hover_label(unit.name, to_world(_middle_of(unit.positions), height)))
+		root.add_child(hover_label(unit.name, to_world(middle_of(unit.positions), height)))
 	return root
 
 
@@ -123,20 +128,11 @@ static func build_unit(unit: BattleUnit, facing: float, is_player: bool, library
 ## current positions and facing, without rebuilding them.
 static func update_unit(root: Node3D, unit: BattleUnit) -> void:
 	for child in root.get_children():
-		if child is MultiMeshInstance3D and child.has_meta(&"indices"):
-			var indices: PackedInt32Array = child.get_meta(&"indices")
-			var multimesh: MultiMesh = child.multimesh
-			for n in indices.size():
-				var i := indices[n]
-				if i >= unit.positions.size():
-					continue
-				if child.has_meta(&"model"):
-					multimesh.set_instance_transform(n, model_transform(multimesh.mesh, unit.positions[i], unit.facing))
-				else:
-					multimesh.set_instance_transform(n, transform_of(unit.bases[i], unit.positions[i], unit.facing))
+		if child is MultiMeshInstance3D and child.has_meta(MODEL_INDICES):
+			_place_instances(child, unit, unit.facing)
 	var name_label := root.get_node_or_null(HOVER_LABEL) as Label3D
 	if name_label and not unit.positions.is_empty():
-		name_label.position = to_world(_middle_of(unit.positions), name_label.position.y)
+		name_label.position = to_world(middle_of(unit.positions), name_label.position.y)
 
 
 ## Rings around [param unit]'s models in [param root] while it's being placed: green (blue while
@@ -151,23 +147,34 @@ static func show_rings(root: Node3D, unit: BattleUnit, invalid: PackedInt32Array
 			root.remove_child(rings)
 		return
 	if rings == null:
-		rings = MultiMeshInstance3D.new()
-		rings.name = "Rings"
-		rings.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		rings.material_override = marker_material(false)
-		rings.material_override.vertex_color_use_as_albedo = true
+		rings = _new_rings()
 		root.add_child(rings)
 	var multimesh := MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.use_colors = true
-	multimesh.mesh = ring_mesh()
+	multimesh.mesh = _ring_mesh()
 	multimesh.instance_count = unit.positions.size()
 	for i in unit.positions.size():
-		var footprint := unit.bases[i].footprint() + Vector2(RING_MARGIN, RING_MARGIN)
-		var basis := Basis(Vector3.UP, yaw(unit.facing)).scaled_local(Vector3(footprint.x, 1.0, footprint.y))
-		multimesh.set_instance_transform(i, Transform3D(basis, to_world(unit.positions[i], RING_HEIGHT)))
+		multimesh.set_instance_transform(i, _ring_transform(unit.bases[i], unit.positions[i], unit.facing))
 		multimesh.set_instance_color(i, invalid_colour if i in invalid else ring_colour(true, held))
 	rings.multimesh = multimesh
+
+
+## The node that draws a unit's rings, coloured per ring.
+static func _new_rings() -> MultiMeshInstance3D:
+	var rings := MultiMeshInstance3D.new()
+	rings.name = "Rings"
+	rings.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	rings.material_override = marker_material(false)
+	rings.material_override.vertex_color_use_as_albedo = true
+	return rings
+
+
+## Where the ring goes for a model on [param base] at [param inches], facing [param facing].
+static func _ring_transform(base: BaseSize, inches: Vector2, facing: float) -> Transform3D:
+	var footprint := base.footprint() + Vector2(RING_MARGIN, RING_MARGIN)
+	var basis := Basis(Vector3.UP, yaw(facing)).scaled_local(Vector3(footprint.x, 1.0, footprint.y))
+	return Transform3D(basis, to_world(inches, RING_HEIGHT))
 
 
 ## The colour of something being placed: blue if it can go there while [param held], green if it
@@ -219,7 +226,7 @@ static func outline_mesh(outline: PackedVector2Array, height: float) -> ArrayMes
 
 
 ## A flat ring 1 wide, scaled per model.
-static func ring_mesh() -> Mesh:
+static func _ring_mesh() -> Mesh:
 	if _ring == null:
 		_ring = TorusMesh.new()
 		_ring.inner_radius = 0.46
@@ -240,22 +247,41 @@ static func _add_bases(root: Node3D, unit: BattleUnit, facing: float, is_player:
 		kinds[key].append(i)
 	for key: String in kinds:
 		var indices: Array = kinds[key]
-		var multimesh := MultiMesh.new()
-		multimesh.transform_format = MultiMesh.TRANSFORM_3D
-		multimesh.mesh = mesh_of(unit.bases[indices[0]])
-		multimesh.instance_count = indices.size()
-		for n in indices.size():
-			var i: int = indices[n]
-			multimesh.set_instance_transform(n, transform_of(unit.bases[i], unit.positions[i], facing))
-		var instance := MultiMeshInstance3D.new()
-		instance.set_meta(&"indices", PackedInt32Array(indices))
-		instance.multimesh = multimesh
+		var instance := _new_instance(_mesh_of(unit.bases[indices[0]]), PackedInt32Array(indices))
+		_place_instances(instance, unit, facing)
 		instance.material_override = PLAYER_MATERIAL if is_player else OPPONENT_MATERIAL
 		root.add_child(instance)
 
 
+## A [MultiMeshInstance3D] of [param mesh] with one instance for each of the unit's models in
+## [param indices], not placed yet.
+static func _new_instance(mesh: Mesh, indices: PackedInt32Array) -> MultiMeshInstance3D:
+	var multimesh := MultiMesh.new()
+	multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	multimesh.mesh = mesh
+	multimesh.instance_count = indices.size()
+	var instance := MultiMeshInstance3D.new()
+	instance.set_meta(MODEL_INDICES, indices)
+	instance.multimesh = multimesh
+	return instance
+
+
+## Moves [param instance]'s bases or models to [param unit]'s positions, facing [param facing].
+static func _place_instances(instance: MultiMeshInstance3D, unit: BattleUnit, facing: float) -> void:
+	var indices: PackedInt32Array = instance.get_meta(MODEL_INDICES)
+	var multimesh := instance.multimesh
+	for n in indices.size():
+		var i := indices[n]
+		if i >= unit.positions.size():
+			continue
+		if instance.has_meta(IS_MODEL):
+			multimesh.set_instance_transform(n, model_transform(multimesh.mesh, unit.positions[i], facing))
+		else:
+			multimesh.set_instance_transform(n, transform_of(unit.bases[i], unit.positions[i], facing))
+
+
 ## The middle of [param positions] (not empty): their average.
-static func _middle_of(positions: PackedVector2Array) -> Vector2:
+static func middle_of(positions: PackedVector2Array) -> Vector2:
 	var sum := Vector2.ZERO
 	for position in positions:
 		sum += position
@@ -274,22 +300,10 @@ static func _add_models(root: Node3D, unit: BattleUnit, facing: float, is_player
 	var tallest := 0.0
 	for m in mini(meshes.size(), count):
 		var mesh := meshes[m]
-		var multimesh := MultiMesh.new()
-		multimesh.transform_format = MultiMesh.TRANSFORM_3D
-		multimesh.mesh = mesh
-		@warning_ignore("integer_division")
-		multimesh.instance_count = (count - m + meshes.size() - 1) / meshes.size()
-		var n := 0
-		var indices := PackedInt32Array()
-		for i in range(m, count, meshes.size()):
-			multimesh.set_instance_transform(n, model_transform(mesh, unit.positions[i], facing))
-			indices.append(i)
-			n += 1
-		var instance := MultiMeshInstance3D.new()
+		var instance := _new_instance(mesh, PackedInt32Array(range(m, count, meshes.size())))
 		instance.name = "Model%d" % (m + 1)
-		instance.set_meta(&"indices", indices)
-		instance.set_meta(&"model", true)
-		instance.multimesh = multimesh
+		instance.set_meta(IS_MODEL, true)
+		_place_instances(instance, unit, facing)
 		if not ModelLibrary.is_textured(mesh):
 			instance.material_override = PLAYER_MODEL_MATERIAL if is_player else OPPONENT_MODEL_MATERIAL
 		root.add_child(instance)
