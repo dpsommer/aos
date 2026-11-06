@@ -1,0 +1,184 @@
+{
+	"pack:Fire and Jade/card/War of Attrition": {
+		"user": {
+			"from": "any"
+		},
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"grant": "STRIKE-FIRST",
+				"until": "turn"
+			}
+		],
+		"hash": "e155aaa7"
+	},
+	"pack:Fire and Jade/card/Raid": {
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"forbid": "rend",
+				"against": true,
+				"until": "phase"
+			}
+		],
+		"hash": "4e308722"
+	},
+	"pack:Fire and Jade/card/Take the Flanks": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "run",
+				"distance": "D6"
+			}
+		],
+		"hash": "9e9a5504"
+	},
+	"pack:Fire and Jade/card/Take Without Warning": {
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"stat": "ward",
+				"set": 5,
+				"until": "phase"
+			}
+		],
+		"hash": "8eab34a1"
+	},
+	"pack:Fire and Jade/card/Hold Ground": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"HERO"
+			]
+		},
+		"do": [
+			{
+				"op": "heal",
+				"to": "user",
+				"amount": "D6"
+			}
+		],
+		"hash": "8ab0dc8e"
+	},
+	"pack:Fire and Jade/card/Cut Off the Head": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				},
+				{
+					"enemy_within": 14
+				}
+			]
+		},
+		"roll": {
+			"name": "charge",
+			"dice": "2D6"
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "charge",
+				"distance": "roll",
+				"roll": "charge"
+			}
+		],
+		"hash": "3a5c726e"
+	},
+	"pack:Fire and Jade/card/The Ignax Dais": {
+		"do": [
+			{
+				"op": "hook",
+				"name": "reroll_parent",
+				"roll": "charge",
+				"dice": "2D6"
+			}
+		],
+		"hash": "69cd4fde"
+	},
+	"pack:Fire and Jade/card/The Behemat Dais": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"HERO"
+			]
+		},
+		"target": {
+			"side": "enemy",
+			"within": 12
+		},
+		"gate": {
+			"dice": "D6",
+			"at_least": 2
+		},
+		"do": [
+			{
+				"op": "mortal",
+				"amount": "D3"
+			}
+		],
+		"hash": "c631bba1"
+	},
+	"pack:Fire and Jade/card/The Dracothion Dais": {
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"forbid": "hit_below_6",
+				"against": true,
+				"until": "phase"
+			},
+			{
+				"op": "modify",
+				"to": "user",
+				"grant": "STRIKE-LAST",
+				"until": "turn"
+			}
+		],
+		"hash": "046fd4dc"
+	},
+	"pack:Fire and Jade/card/Raze": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"HERO"
+			]
+		},
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"stat": "control_score",
+				"by": "D6",
+				"until": "turn"
+			}
+		],
+		"hash": "6247c8f6"
+	},
+	"pack:Fire and Jade/card/Do Not Waver": {
+		"do": [
+			{
+				"op": "hook",
+				"name": "no_retreat_damage"
+			},
+			{
+				"op": "hook",
+				"name": "return_on_rolls",
+				"on": 5
+			}
+		],
+		"hash": "1acff1cc"
+	}
+}

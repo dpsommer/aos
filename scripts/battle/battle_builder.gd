@@ -112,18 +112,24 @@ static func army_of(army: Army, catalog: ArmyCatalog) -> BattleArmy:
 	result.name = army.name
 	result.faction_name = catalog.faction.name
 	result.points = ArmyPoints.total(army, catalog)
+	result.core = catalog.core
+	result.tactics = army.tactics
+	for kind_and_name: Array in [["spell", army.spell_lore], ["prayer", army.prayer_lore], ["manifestation", army.manifestation_lore]]:
+		var lore := catalog.lore(army, kind_and_name[0], kind_and_name[1]) if not kind_and_name[1].is_empty() else null
+		if lore:
+			result.lore_abilities.append_array(lore.entries)
 	for regiment in army.regiments:
 		var battle_regiment := BattleRegiment.new()
 		battle_regiment.name = _regiment_name(regiment, result.regiments.size())
 		battle_regiment.is_renown = regiment.is_regiment_of_renown()
 		for unit in regiment.units:
-			var battle_unit := _unit(unit, regiment, catalog)
+			var battle_unit := _unit(unit, regiment, catalog, army)
 			battle_unit.regiment = battle_regiment
 			battle_regiment.units.append(battle_unit)
 			result.units.append(battle_unit)
 		result.regiments.append(battle_regiment)
 	for unit in army.auxiliary:
-		result.units.append(_unit(unit, null, catalog))
+		result.units.append(_unit(unit, null, catalog, army))
 	DeploymentAbilities.for_army(result, army, catalog)
 	var terrain := catalog.faction.get_warscroll(army.faction_terrain) if not army.faction_terrain.is_empty() else null
 	if terrain:
@@ -138,10 +144,16 @@ static func _regiment_name(regiment: ArmyRegiment, index: int) -> String:
 	return regiment.name if not regiment.name.is_empty() else "Regiment %d" % (index + 1)
 
 
-static func _unit(unit: ArmyUnit, regiment: ArmyRegiment, catalog: ArmyCatalog) -> BattleUnit:
+static func _unit(unit: ArmyUnit, regiment: ArmyRegiment, catalog: ArmyCatalog, army: Army) -> BattleUnit:
 	var warscroll := catalog.warscroll(unit, regiment)
 	var count := (warscroll.unit_size if warscroll else 1) * (2 if unit.reinforced else 1)
-	return BattleUnit.create(warscroll.name if warscroll else unit.warscroll_id, warscroll, count)
+	var result := BattleUnit.create(warscroll.name if warscroll else unit.warscroll_id, warscroll, count)
+	result.is_general = unit.uid == army.general_uid
+	for type: String in unit.enhancements:
+		var enhancement := catalog.enhancement(army, type, unit.enhancements[type])
+		if enhancement:
+			result.enhancements.append(enhancement)
+	return result
 
 
 ## A Spearhead's general and units, and its deployment abilities. Their bases come from the
@@ -161,8 +173,22 @@ static func spearhead_army(spearhead: Spearhead, faction: Faction, setup: Battle
 	for entry: Array in entries:
 		var unit_name: String = entry[0]
 		result.units.append(BattleUnit.create(unit_name, spearhead.get_warscroll(unit_name), entry[1], faction.find_warscroll(unit_name)))
+	# The general comes first (Spearhead 1.1).
+	if not result.units.is_empty():
+		result.units[0].is_general = true
+	_keep_in_reserve(result, spearhead)
 	DeploymentAbilities.for_spearhead(result, spearhead, setup, core)
 	return result
+
+
+## Keeps off the battlefield the units a battle trait says aren't set up in deployment, e.g. the
+## Ironjawz Bigmob's Brutes: its effect data's [code]starts_in_reserve[/code].
+static func _keep_in_reserve(army: BattleArmy, spearhead: Spearhead) -> void:
+	for ability in spearhead.battle_traits:
+		var names: Array = EffectCatalog.descriptor(AbilityBook.spearhead_trait_key(spearhead, ability), ability).get("starts_in_reserve", [])
+		for unit in army.units:
+			if unit.name in names:
+				unit.start_in_reserve()
 
 
 ## The Spearhead terrain features one player sets up: terrain group [param group] if the

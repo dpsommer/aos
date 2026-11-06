@@ -1,0 +1,420 @@
+{
+	"core:Normal Move": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "normal",
+				"distance": "move"
+			}
+		],
+		"hash": "75212b6c"
+	},
+	"core:Run": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "run",
+				"distance": "run"
+			}
+		],
+		"hash": "4ecd692a"
+	},
+	"core:Retreat": {
+		"user": {
+			"from": "any",
+			"when": [
+				"in_combat"
+			]
+		},
+		"do": [
+			{
+				"op": "mortal",
+				"to": "user",
+				"amount": "D3",
+				"unless_flag": "no_retreat_damage"
+			},
+			{
+				"op": "move",
+				"kind": "retreat",
+				"distance": "move"
+			}
+		],
+		"hash": "cf765cee"
+	},
+	"core:Shoot": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"any": [
+						{
+							"not": "ran"
+						},
+						{
+							"permitted": "shoot_after_run"
+						}
+					]
+				},
+				{
+					"any": [
+						{
+							"not": "retreated"
+						},
+						{
+							"permitted": "shoot_after_retreat"
+						}
+					]
+				},
+				"can_shoot"
+			]
+		},
+		"declare": [
+			{
+				"op": "pick_attacks",
+				"type": "shooting"
+			}
+		],
+		"do": [
+			{
+				"op": "attack",
+				"type": "shooting"
+			}
+		],
+		"hash": "baaa425a"
+	},
+	"core:Charge": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				},
+				{
+					"any": [
+						{
+							"not": "ran"
+						},
+						{
+							"permitted": "charge_after_run"
+						}
+					]
+				},
+				{
+					"any": [
+						{
+							"not": "retreated"
+						},
+						{
+							"permitted": "charge_after_retreat"
+						}
+					]
+				},
+				{
+					"enemy_within": 14
+				}
+			]
+		},
+		"roll": {
+			"name": "charge",
+			"dice": "2D6"
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "charge",
+				"distance": "roll",
+				"roll": "charge"
+			}
+		],
+		"hash": "2707fa30"
+	},
+	"core:Fight": {
+		"user": {
+			"from": "any",
+			"when": [
+				"can_fight",
+				"has_melee"
+			]
+		},
+		"declare": [
+			{
+				"op": "move",
+				"kind": "pile_in"
+			},
+			{
+				"op": "pick_attacks",
+				"type": "melee"
+			}
+		],
+		"do": [
+			{
+				"op": "attack",
+				"type": "melee"
+			}
+		],
+		"hash": "68f7ad02"
+	},
+	"core:Rally": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				},
+				{
+					"any": [
+						"damaged",
+						"has_slain_models"
+					]
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "hook",
+				"name": "rally"
+			}
+		],
+		"hash": "3cf25fef"
+	},
+	"core:Redeploy": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "run",
+				"distance": "D6"
+			}
+		],
+		"hash": "87e7699c"
+	},
+	"core:At the Double": {
+		"do": [
+			{
+				"op": "hook",
+				"name": "at_the_double"
+			}
+		],
+		"hash": "d6207bb1"
+	},
+	"core:Covering Fire": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "ran"
+				},
+				{
+					"not": "in_combat"
+				},
+				"can_shoot"
+			]
+		},
+		"target": {
+			"side": "enemy",
+			"closest": true,
+			"when": [
+				{
+					"not": {
+						"subject_has": "MANIFESTATION"
+					}
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"stat": "hit",
+				"by": -1,
+				"until": "action"
+			},
+			{
+				"op": "attack",
+				"type": "shooting"
+			}
+		],
+		"hash": "9ad40d64"
+	},
+	"core:Counter-charge": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"not": "in_combat"
+				},
+				{
+					"enemy_within": 14
+				}
+			]
+		},
+		"roll": {
+			"name": "charge",
+			"dice": "2D6"
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "charge",
+				"distance": "roll",
+				"roll": "charge"
+			}
+		],
+		"hash": "3a5c726e"
+	},
+	"core:Forward to Victory": {
+		"do": [
+			{
+				"op": "hook",
+				"name": "reroll_parent",
+				"roll": "charge",
+				"dice": "2D6"
+			}
+		],
+		"hash": "69cd4fde"
+	},
+	"core:All-out Attack": {
+		"do": [
+			{
+				"op": "modify",
+				"to": "parent_user",
+				"stat": "hit",
+				"by": 1,
+				"until": "action",
+				"of_parent": true,
+				"companion": true
+			}
+		],
+		"hash": "3e64aa2c"
+	},
+	"core:All-out Defence": {
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"stat": "save",
+				"by": 1,
+				"until": "phase"
+			}
+		],
+		"hash": "49c93df2"
+	},
+	"core:Power Through": {
+		"user": {
+			"from": "any",
+			"when": [
+				"charged",
+				"in_combat"
+			]
+		},
+		"target": {
+			"side": "enemy",
+			"within": 3,
+			"lower_health_than_user": true
+		},
+		"do": [
+			{
+				"op": "mortal",
+				"amount": "D3"
+			},
+			{
+				"op": "move",
+				"to": "user",
+				"kind": "free",
+				"distance": "move",
+				"avoid_new_combat": true
+			}
+		],
+		"hash": "dd81a7e6"
+	},
+	"core:Unbind": {
+		"once_per_parent": true,
+		"user": {
+			"from": "any",
+			"keywords": [
+				"WIZARD"
+			],
+			"within_parent_user": 30
+		},
+		"do": [
+			{
+				"op": "hook",
+				"name": "unbind"
+			}
+		],
+		"hash": "070754c0"
+	},
+	"core:Sacred Rites": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"PRIEST"
+			]
+		},
+		"roll": {
+			"name": "chanting",
+			"dice": "D6"
+		},
+		"do": [
+			{
+				"op": "hook",
+				"name": "sacred_rites"
+			}
+		],
+		"hash": "72078e5e"
+	},
+	"core:Banish Manifestation": {
+		"user": {
+			"from": "any",
+			"when": [
+				{
+					"subject_has_any": [
+						"WIZARD",
+						"PRIEST"
+					]
+				}
+			]
+		},
+		"target": {
+			"side": "enemy",
+			"within": 30,
+			"keywords": [
+				"MANIFESTATION"
+			]
+		},
+		"roll": {
+			"name": "banishment",
+			"dice": "2D6"
+		},
+		"do": [
+			{
+				"op": "hook",
+				"name": "banish"
+			}
+		],
+		"hash": "7fdb5208"
+	}
+}

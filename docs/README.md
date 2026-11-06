@@ -12,6 +12,8 @@
 
 - [Project layout](technical/layout.md): folder structure and what goes where
 - [UI scenes](technical/ui-scenes.md): prefer Godot scenes over building visible elements in code, how the scenes are written (factories, unique names, inherited scenes), checking UI at 50%, 100% and 200% render scale, and what's still built in code
+- [Rules engine](technical/rules-engine.md): how a battle runs: the game controller, phases, the decision loop shared by the player and the AI, unit controllers, commands and events, and buffs and debuffs
+- [Effect data](technical/effect-data.md): what abilities do, as data in `data/effects/`: keys, hashes, ops, modifiers and conditions, and how much is covered
 - [Testing](technical/testing.md): test layout, running tests, and testing rules
 - [GDScript warnings](technical/gdscript-warnings.md): what each debugger warning the project has hit means and how to fix it (shadowed names, built-in function names, integer division, enums from ints), and how to find them from the command line
 - [Rules reference](technical/rules-reference.md): the official rules documents and how to use them
@@ -33,6 +35,8 @@
 
 - [Army composition](gameplay/army-composition.md): the army rules the Forge checks, and what it doesn't check yet
 - [Deployment](gameplay/deployment.md): the roll-off, the deployment steps and who goes when, where units and terrain can be set up, coherency, formations, deployment abilities and reserves, and the AI's mirrored deployment
+- [Battle rounds](gameplay/battle-rounds.md): the battle sequence: who goes first, command points, phases, using abilities, objectives, victory and terrain, with what's simplified
+- [Attacks](gameplay/attacks.md): targets, the attack sequence, weapon abilities, damage and characteristics
 - [Faction FAQs](gameplay/faq/README.md): each faction's official FAQ rulings from the latest rules update
 
 Add new documents to this index.

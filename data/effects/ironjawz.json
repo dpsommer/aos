@@ -1,0 +1,855 @@
+{
+	"spearhead:Ironjawz Bigmob/trait/MIGHTY DESTROYERS": {
+		"target": {
+			"side": "friendly",
+			"when": [
+				{
+					"not": "set_up_this_turn"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "free",
+				"distance": "3",
+				"end_in_combat_if_was": true
+			}
+		],
+		"hash": "de24080d"
+	},
+	"spearhead:Ironjawz Bigmob/regiment/NATURAL DISASTER": {
+		"trigger": {
+			"event": "roll_made",
+			"roll": "charge",
+			"at_least": 8,
+			"do": [
+				{
+					"op": "modify",
+					"to": "user",
+					"stat": "attacks",
+					"by": 1,
+					"weapons": "melee",
+					"until": "turn"
+				}
+			]
+		},
+		"hash": "b3f82cb9"
+	},
+	"spearhead:Ironjawz Bigmob/regiment/A PROPER RUCKUS": {
+		"do": [
+			{
+				"op": "hook",
+				"name": "all_friendly_targets"
+			}
+		],
+		"hash": "6a29ce18"
+	},
+	"spearhead:Ironjawz Bigmob/enhancement/AMBERSTONE WHETSTONE": {
+		"passive": [
+			{
+				"stat": "rend",
+				"set": 2,
+				"weapons": "melee"
+			}
+		],
+		"hash": "a24be2a2"
+	},
+	"spearhead:Ironjawz Bigmob/enhancement/ARMOUR OF GORK": {
+		"passive": [
+			{
+				"stat": "ward",
+				"set": 6
+			}
+		],
+		"hash": "1d7598be"
+	},
+	"spearhead:Ironjawz Bigmob/enhancement/TROPHY SKULLS": {
+		"passive": [
+			{
+				"stat": "control",
+				"set": 5
+			}
+		],
+		"hash": "8af15b1d"
+	},
+	"spearhead:Ironjawz Bigmob/enhancement/MEGA BOSSY": {
+		"passive": [
+			{
+				"stat": "charge",
+				"by": 1,
+				"aura": {
+					"side": "friendly",
+					"within": 12,
+					"wholly": true
+				},
+				"when": [
+					"holder_charged"
+				]
+			}
+		],
+		"hash": "8d98e410"
+	},
+	"spearhead:Ironjawz Bigmob/megaboss/GET STUCK IN, LADZ": {
+		"target": {
+			"side": "friendly",
+			"within": 12,
+			"wholly": true
+		},
+		"gate": {
+			"dice": "D6",
+			"at_least": 2
+		},
+		"do": [
+			{
+				"op": "modify",
+				"stat": "attacks",
+				"by": 1,
+				"weapons": "melee",
+				"until": "start_next_turn"
+			}
+		],
+		"hash": "be7c2fdc"
+	},
+	"spearhead:Ironjawz Bigmob/brutes/YOU MESSIN'?": {
+		"passive": [
+			{
+				"forbid": "contest",
+				"aura": {
+					"side": "enemy"
+				},
+				"when": [
+					"holder_in_combat_with_subject",
+					{
+						"health_at_most": 2
+					}
+				]
+			}
+		],
+		"hash": "217f6171"
+	},
+	"spearhead:Ironjawz Bigmob/brute_ragerz/UNLEASHED RAGE": {
+		"passive": [
+			{
+				"grant": "STRIKE-FIRST",
+				"when": [
+					"charged"
+				]
+			}
+		],
+		"hash": "e534b60b"
+	},
+	"spearhead:Ironjawz Bigmob/ardboyz/SHIELD BASH": {
+		"target": {
+			"side": "enemy",
+			"within": 1
+		},
+		"do": [
+			{
+				"op": "mortal",
+				"per_model_within": 3,
+				"on": 6,
+				"amount": "1"
+			}
+		],
+		"hash": "05b3cc04"
+	},
+	"ironjawz:trait/Mighty Destroyers": {
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ"
+			],
+			"when": [
+				{
+					"not": "set_up_this_turn"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "move",
+				"kind": "free",
+				"distance": "3",
+				"end_in_combat_if_was": true
+			}
+		],
+		"hash": "dde0a22c"
+	},
+	"ironjawz:trait/Ironjawz Waaagh!": {
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ",
+				"HERO"
+			],
+			"when": [
+				{
+					"not": {
+						"counter_at_least": {
+							"name": "waaagh",
+							"value": 1
+						}
+					}
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "counter",
+				"name": "waaagh"
+			},
+			{
+				"op": "modify",
+				"stat": "charge",
+				"by": 1,
+				"until": "turn",
+				"aura": {
+					"side": "friendly",
+					"within": 18,
+					"wholly": true,
+					"keywords": [
+						"IRONJAWZ"
+					]
+				}
+			},
+			{
+				"op": "modify",
+				"stat": "attacks",
+				"by": 1,
+				"weapons": "melee",
+				"until": "turn",
+				"aura": {
+					"side": "friendly",
+					"within": 18,
+					"wholly": true,
+					"keywords": [
+						"IRONJAWZ"
+					]
+				}
+			}
+		],
+		"hash": "48289fa2"
+	},
+	"ironjawz:trait/Natural Disaster": {
+		"trigger": {
+			"event": "roll_made",
+			"roll": "charge",
+			"at_least": 8,
+			"when": [
+				{
+					"subject_has": "IRONJAWZ"
+				},
+				{
+					"not": {
+						"subject_has": "HERO"
+					}
+				}
+			],
+			"do": [
+				{
+					"op": "modify",
+					"to": "user",
+					"stat": "attacks",
+					"by": 1,
+					"weapons": "melee",
+					"until": "turn"
+				}
+			]
+		},
+		"hash": "4b2225e1"
+	},
+	"ironjawz:trait/Spirit of Gork": {
+		"passive": [
+			{
+				"stat": "ward",
+				"set": 6,
+				"when": [
+					{
+						"subject_has": "IRONJAWZ"
+					},
+					{
+						"subject_has": "INFANTRY"
+					},
+					{
+						"near_friendly": {
+							"keywords": [
+								"WIZARD",
+								"PRIEST"
+							],
+							"within": 12,
+							"wholly": true
+						}
+					}
+				]
+			}
+		],
+		"hash": "350119c0"
+	},
+	"ironjawz:trait/Duff Up da Big Thing": {
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ"
+			]
+		},
+		"do": [
+			{
+				"op": "modify",
+				"stat": "wound",
+				"by": 1,
+				"weapons": "melee",
+				"until": "turn",
+				"when": [
+					"target_health_greater"
+				]
+			}
+		],
+		"hash": "40afc9c0"
+	},
+	"ironjawz:enhancement/Mega Bossy": {
+		"passive": [
+			{
+				"stat": "charge",
+				"by": 1,
+				"aura": {
+					"side": "friendly",
+					"within": 18,
+					"wholly": true,
+					"keywords": [
+						"IRONJAWZ"
+					]
+				},
+				"when": [
+					"holder_charged"
+				]
+			}
+		],
+		"hash": "e74fa988"
+	},
+	"ironjawz:enhancement/Trophy Skulls": {
+		"passive": [
+			{
+				"stat": "control_score",
+				"by": 10
+			}
+		],
+		"hash": "b28007e1"
+	},
+	"ironjawz:enhancement/Armour of Gork": {
+		"passive": [
+			{
+				"stat": "ward",
+				"set": 6
+			}
+		],
+		"hash": "245454e3"
+	},
+	"ironjawz:enhancement/Fast 'Un": {
+		"user": {
+			"from": "owner",
+			"when": [
+				{
+					"not": "set_up_this_turn"
+				},
+				{
+					"not": "in_combat"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "move",
+				"to": "user",
+				"kind": "normal",
+				"distance": "move"
+			}
+		],
+		"hash": "7ac5a9f3"
+	},
+	"ironjawz:lore/Bash 'Em, Ladz": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"WIZARD"
+			]
+		},
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ"
+			],
+			"within": 12,
+			"wholly": true
+		},
+		"do": [
+			{
+				"op": "modify",
+				"grant": "Crit (2 Hits)",
+				"weapons": "melee",
+				"until": "start_next_turn"
+			}
+		],
+		"hash": "468a15dd"
+	},
+	"ironjawz:lore/Mighty 'Eadbutt": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"WIZARD"
+			]
+		},
+		"target": {
+			"side": "enemy",
+			"within": 18
+		},
+		"do": [
+			{
+				"op": "mortal",
+				"amount": "D3",
+				"amount_against": {
+					"keyword": "WIZARD",
+					"amount": "3"
+				}
+			}
+		],
+		"hash": "7a46e810"
+	},
+	"ironjawz:lore/Da Great Big Green Hand of Gork": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"WIZARD"
+			]
+		},
+		"target": {
+			"side": "friendly",
+			"within": 12,
+			"wholly": true,
+			"when": [
+				{
+					"not": "in_combat"
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "setup",
+				"min_enemy_gap": 9,
+				"near_user": 24
+			}
+		],
+		"hash": "7f9df767"
+	},
+	"ironjawz:lore/Get 'Em Beat": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"PRIEST"
+			]
+		},
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ"
+			],
+			"within": 12,
+			"wholly": true
+		},
+		"do": [
+			{
+				"op": "modify",
+				"stat": "charge",
+				"by": 1,
+				"until": "turn"
+			},
+			{
+				"op": "modify",
+				"stat": "charge_dice",
+				"by": 1,
+				"until": "turn",
+				"if_roll": {
+					"name": "chanting",
+					"at_least": 8
+				}
+			}
+		],
+		"hash": "68190570"
+	},
+	"ironjawz:lore/Fixin' Beat": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"PRIEST"
+			]
+		},
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ"
+			],
+			"within": 12,
+			"wholly": true
+		},
+		"do": [
+			{
+				"op": "heal",
+				"amount": "D6",
+				"unless_roll": {
+					"name": "chanting",
+					"at_least": 8
+				}
+			},
+			{
+				"op": "heal",
+				"amount": "D3+3",
+				"if_roll": {
+					"name": "chanting",
+					"at_least": 8
+				}
+			}
+		],
+		"hash": "da404b7e"
+	},
+	"ironjawz:lore/Summon Foot of Gork": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"WIZARD"
+			]
+		},
+		"do": [
+			{
+				"op": "summon",
+				"min_enemy_gap": 9,
+				"near_user": 12
+			}
+		],
+		"hash": "f20f2e22"
+	},
+	"ironjawz:lore/Summon Morkspit Marsh": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"WIZARD"
+			]
+		},
+		"do": [
+			{
+				"op": "summon",
+				"min_enemy_gap": 0,
+				"near_user": 18
+			}
+		],
+		"hash": "adcd76ac"
+	},
+	"ironjawz:lore/Summon Gork-Roara": {
+		"user": {
+			"from": "any",
+			"keywords": [
+				"IRONJAWZ",
+				"WIZARD"
+			]
+		},
+		"do": [
+			{
+				"op": "summon",
+				"min_enemy_gap": 9,
+				"near_user": 12
+			}
+		],
+		"hash": "66448dcb"
+	},
+	"ironjawz:warscroll/ardboy_big_boss/Get Bashin'!": {
+		"passive": [
+			{
+				"stat": "shield_bash",
+				"by": 1,
+				"aura": {
+					"side": "friendly",
+					"within": 12,
+					"wholly": true
+				},
+				"when": [
+					{
+						"subject_named": "Ardboyz"
+					}
+				]
+			}
+		],
+		"hash": "989a0e41"
+	},
+	"ironjawz:warscroll/ardboyz/Shield Bash": {
+		"target": {
+			"side": "enemy",
+			"within": 1
+		},
+		"do": [
+			{
+				"op": "mortal",
+				"per_model_within": 3,
+				"on": 6,
+				"amount": "1",
+				"roll_stat": "shield_bash"
+			}
+		],
+		"hash": "bc575c56"
+	},
+	"ironjawz:warscroll/brute_ragerz/Berserkers": {
+		"passive": [
+			{
+				"permit": "charge_after_run"
+			}
+		],
+		"hash": "9c16688f"
+	},
+	"ironjawz:warscroll/brute_ragerz/Unleashed Rage": {
+		"passive": [
+			{
+				"grant": "STRIKE-FIRST",
+				"when": [
+					"charged"
+				]
+			}
+		],
+		"hash": "e534b60b"
+	},
+	"ironjawz:warscroll/brutes/You Messin'?": {
+		"passive": [
+			{
+				"forbid": "contest",
+				"aura": {
+					"side": "enemy"
+				},
+				"when": [
+					"holder_in_combat_with_subject",
+					{
+						"health_at_most": 2
+					}
+				]
+			}
+		],
+		"hash": "d2270d23"
+	},
+	"ironjawz:warscroll/dakkbad_grotkicker/Battle Damaged": {
+		"passive": [
+			{
+				"stat": "attacks",
+				"set": 4,
+				"weapon": "Bossbiter's Fists and Tail",
+				"when": [
+					{
+						"damage_points_at_least": 10
+					}
+				]
+			}
+		],
+		"hash": "7b28e7e7"
+	},
+	"ironjawz:warscroll/dakkbad_grotkicker/Grotkicker": {
+		"target": {
+			"side": "enemy",
+			"within": 3,
+			"keywords": [
+				"INFANTRY"
+			]
+		},
+		"do": [
+			{
+				"op": "hook",
+				"name": "beat_health",
+				"dice": 6
+			}
+		],
+		"hash": "45120ea5"
+	},
+	"ironjawz:warscroll/gordrakk_the_fist_of_gork/Battle Damaged": {
+		"passive": [
+			{
+				"stat": "attacks",
+				"set": 6,
+				"weapon": "Bigteef's Fists and Tail",
+				"when": [
+					{
+						"damage_points_at_least": 10
+					}
+				]
+			}
+		],
+		"hash": "17dd2e67"
+	},
+	"ironjawz:warscroll/gordrakk_the_fist_of_gork/Voice of Gork": {
+		"do": [
+			{
+				"op": "modify",
+				"to": "user",
+				"stat": "hit",
+				"by": 1,
+				"weapons": "melee",
+				"until": "start_next_turn",
+				"aura": {
+					"side": "friendly",
+					"within": 18,
+					"wholly": true,
+					"keywords": [
+						"IRONJAWZ"
+					]
+				}
+			}
+		],
+		"hash": "6a6bd03d"
+	},
+	"ironjawz:warscroll/gore_gruntas/Gore-grunta Charge": {
+		"user": {
+			"from": "owner",
+			"when": [
+				"charged"
+			]
+		},
+		"target": {
+			"side": "enemy",
+			"within": 1
+		},
+		"gate": {
+			"dice": "D3",
+			"at_least": 2
+		},
+		"do": [
+			{
+				"op": "mortal",
+				"amount": "gate",
+				"bonus_against": "CAVALRY"
+			}
+		],
+		"hash": "67006124"
+	},
+	"ironjawz:warscroll/ironskulls_boyz/Dead 'Ard": {
+		"passive": [
+			{
+				"stat": "wound",
+				"by": -1,
+				"against": true
+			}
+		],
+		"hash": "82f39091"
+	},
+	"ironjawz:warscroll/megaboss_on_maw_krusha/Battle Damaged": {
+		"passive": [
+			{
+				"stat": "attacks",
+				"set": 5,
+				"weapon": "Maw-krusha's Fists and Tail",
+				"when": [
+					{
+						"damage_points_at_least": 10
+					}
+				]
+			}
+		],
+		"hash": "b11918a6"
+	},
+	"ironjawz:warscroll/tuskboss_on_maw_grunta/Battle Damaged": {
+		"passive": [
+			{
+				"stat": "attacks",
+				"set": 3,
+				"weapon": "Maw-grunta's Tusks",
+				"when": [
+					{
+						"damage_points_at_least": 10
+					}
+				]
+			}
+		],
+		"hash": "5a3f354a"
+	},
+	"ironjawz:warscroll/weirdbrute_wrekkaz/Berserkers": {
+		"passive": [
+			{
+				"permit": "charge_after_run"
+			}
+		],
+		"hash": "9c16688f"
+	},
+	"ironjawz:warscroll/scourge_of_ghyran_weirdbrute_wrekkaz/Propa Wonky": {
+		"user": {
+			"from": "owner",
+			"when": [
+				"in_combat"
+			]
+		},
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ"
+			],
+			"within": 12,
+			"wholly": true
+		},
+		"do": [
+			{
+				"op": "modify",
+				"stat": "hit",
+				"by": 1,
+				"weapons": "melee",
+				"until": "turn"
+			}
+		],
+		"hash": "6f61afd8"
+	},
+	"ironjawz:warscroll/zoggrok_anvilsmasha/Power of da Great Green God": {
+		"target": {
+			"side": "friendly",
+			"keywords": [
+				"IRONJAWZ",
+				"INFANTRY"
+			],
+			"within": 12,
+			"wholly": true
+		},
+		"gate": {
+			"dice": "D6",
+			"at_least": 4
+		},
+		"do": [
+			{
+				"op": "modify",
+				"grant": "Crit (Mortal)",
+				"weapons": "melee",
+				"until": "start_next_turn"
+			}
+		],
+		"hash": "f020ef67"
+	},
+	"spearhead:Ironjawz Bigmob/trait/'ERE WE GO!": {
+		"starts_in_reserve": [
+			"Brutes"
+		],
+		"user": {
+			"from": "reserve",
+			"names": [
+				"Brutes"
+			],
+			"when": [
+				{
+					"round_at_least": 3
+				}
+			]
+		},
+		"do": [
+			{
+				"op": "setup",
+				"to": "user",
+				"min_enemy_gap": 6
+			}
+		],
+		"hash": "da27075a"
+	}
+}

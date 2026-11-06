@@ -32,13 +32,17 @@ static func universal(names: PackedStringArray, core: CoreRules) -> Array[Deploy
 static func for_army(result: BattleArmy, army: Army, catalog: ArmyCatalog) -> void:
 	var list := universal(MATCHED_PLAY_UNIVERSAL, catalog.core)
 	var renown := catalog.army_of_renown(army.army_of_renown) if not army.army_of_renown.is_empty() else null
+	result.army_abilities.clear()
 	if renown:
 		_add(list, renown.battle_traits, "Army of Renown")
+		result.army_abilities.append_array(renown.battle_traits)
 	else:
 		_add(list, catalog.faction.battle_traits, "Battle trait")
+		result.army_abilities.append_array(catalog.faction.battle_traits)
 	var formation := catalog.battle_formation(army, army.formation) if not army.formation.is_empty() else null
 	if formation:
 		_add(list, formation.abilities, "Battle formation")
+		result.army_abilities.append_array(formation.abilities)
 	var units := _units_by_army_unit(result, army)
 	for regiment_index in army.regiments.size():
 		var regiment := army.regiments[regiment_index]

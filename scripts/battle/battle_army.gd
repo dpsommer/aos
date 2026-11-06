@@ -24,6 +24,13 @@ var regiment_ability := ""
 var enhancement := ""
 ## The core rules its universal deployment abilities come from, or null.
 var core: CoreRules
+## Names of the battle tactics cards it took, in Matched Play.
+var tactics := PackedStringArray()
+## The abilities of its Forge army that aren't on a warscroll: its battle traits and battle
+## formation's, by where they come from. Empty for a Spearhead, whose rules are on [member spearhead].
+var army_abilities: Array[Ability] = []
+## The spells, prayers and summoning abilities from the lores it took.
+var lore_abilities: Array[Ability] = []
 
 
 ## Whether it's a Spearhead that has yet to choose its regiment ability and enhancement.
@@ -93,6 +100,9 @@ func mirror() -> BattleArmy:
 	army.regiment_ability = regiment_ability
 	army.enhancement = enhancement
 	army.core = core
+	army.tactics = tactics
+	army.army_abilities = army_abilities
+	army.lore_abilities = lore_abilities
 	var unit_copies := {}
 	for unit in units:
 		var copy := unit.copy()

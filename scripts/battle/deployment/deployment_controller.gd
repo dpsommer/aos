@@ -40,7 +40,7 @@ var mirror: MirrorDeployer
 var hud: DeploymentHud
 ## Seconds the AI waits before acting; 0 acts at once (tests).
 var ai_delay := AI_DELAY
-## Each unit's models on the board, by unit.
+## Each unit's models on the board, by unit: the map's, shared with the battle after this.
 var unit_nodes := {}
 ## Each terrain feature's node on the board, by feature.
 var terrain_nodes := {}
@@ -88,6 +88,7 @@ var _flash_left := 0.0
 func _init(on: BattleMap) -> void:
 	map = on
 	battle = on.battle
+	unit_nodes = on.unit_nodes
 	name = "DeploymentController"
 	deployment = Deployment.new(battle)
 	mirror = MirrorDeployer.new(deployment, battle.opponent, battle.player)

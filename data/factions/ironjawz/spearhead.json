@@ -30,6 +30,7 @@
 					"timing": "Your Movement Phase",
 					"colour": "grey",
 					"effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
+"text": "Your Brutes are not set up during the deployment phase. Instead, from the third battle round onwards, they can use the following ability:",
 					"keywords": [
 						"CORE"
 					]

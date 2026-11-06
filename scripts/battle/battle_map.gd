@@ -13,9 +13,11 @@ signal surrendered
 signal save_and_quit_requested
 ## Both armies are deployed.
 signal deployment_finished
+## The battle is over and the player has left the result.
+signal battle_finished
 
 ## Where the battle is before the fighting starts.
-enum Phase { BUILDING, ROLL_OFF, SPEARHEAD_OPTIONS, DEPLOYMENT_MAP, DEPLOYMENT, DEPLOYED }
+enum Phase { BUILDING, ROLL_OFF, SPEARHEAD_OPTIONS, DEPLOYMENT_MAP, DEPLOYMENT, DEPLOYED, BATTLE }
 
 const SETTINGS_SCENE := preload("res://scenes/ui/settings_screen.tscn")
 
@@ -41,6 +43,10 @@ var roll_off_panel: RollOffPanel
 var options_picker: SpearheadOptionsPicker
 var map_picker: DeploymentMapPicker
 var deployment_controller: DeploymentController
+## Runs the battle after deployment, or null before then.
+var battle_controller: BattleMapController
+## Each unit's models on the board, by unit: deployment adds them and the battle changes them.
+var unit_nodes := {}
 ## Whether the menu is fading out after Resume.
 var _menu_closing := false
 
@@ -282,6 +288,25 @@ func _begin_deployment() -> void:
 func _on_deployed() -> void:
 	phase = Phase.DEPLOYED
 	deployment_finished.emit()
+	start_battle.call_deferred()
+
+
+## Starts the battle rounds: the deployment HUD goes and the [BattleMapController] takes over.
+func start_battle() -> void:
+	if phase != Phase.DEPLOYED or not is_inside_tree():
+		return
+	phase = Phase.BATTLE
+	deployment_controller.hud.visible = false
+	# Deployment's shading has done its job.
+	for node_name in ["PlayerTerritory", "OpponentTerritory", "NoDeploy"]:
+		_remove_child_named(node_name)
+	hud.set_extra_controls(PackedStringArray())
+	hud.set_controls_bottom(0.0)
+	camera.frame(Rect2(Vector2.ZERO, battle.battlefield_size), battle.player.facing)
+	battle_controller = BattleMapController.new(self, GameController.new(battle, rng, null, deployment_controller.deployment))
+	battle_controller.finished.connect(battle_finished.emit)
+	add_child(battle_controller)
+	battle_controller.start(overlay)
 
 
 ## Draws each side's territory, and the part of the player's they can't deploy units in.
