@@ -61,28 +61,9 @@ static func is_wholly_within(unit: BattleUnit, other: BattleUnit, distance: floa
 	return true
 
 
-## Whether [param unit] is within [param distance] of [param other], or wholly within it if
-## [param wholly].
-static func is_in_reach(unit: BattleUnit, other: BattleUnit, distance: float, wholly: bool) -> bool:
-	return is_wholly_within(unit, other, distance) if wholly else is_within(unit, other, distance)
-
-
 ## Whether two units from opposing armies are in combat with each other.
 static func in_combat_with(a: BattleUnit, b: BattleUnit) -> bool:
 	return is_within(a, b, COMBAT_RANGE)
-
-
-## Of [param others], the nearest to [param unit], the first of those as near. Null if none is at any
-## distance.
-static func nearest(unit: BattleUnit, others: Array[BattleUnit]) -> BattleUnit:
-	var found: BattleUnit = null
-	var best := INF
-	for other in others:
-		var gap := unit_gap(unit, other)
-		if gap < best:
-			best = gap
-			found = other
-	return found
 
 
 ## Whether model [param index] of [param unit] is on the circle of [param radius] at [param centre].
@@ -91,26 +72,6 @@ static func model_touches_circle(unit: BattleUnit, index: int, centre: Vector2, 
 	if Geometry2D.is_point_in_polygon(centre, outline):
 		return true
 	return DeploymentRules.edge_distance(outline, centre) <= radius + EPSILON
-
-
-## Whether any model of [param unit] is on the circle of [param radius] at [param centre].
-static func touches_circle(unit: BattleUnit, centre: Vector2, radius: float) -> bool:
-	for i in unit.positions.size():
-		if model_touches_circle(unit, i, centre, radius):
-			return true
-	return false
-
-
-## The model at [param positions] on [param bases] under [param point], the nearest if several, or -1.
-static func model_under(positions: PackedVector2Array, bases: Array[BaseSize], point: Vector2) -> int:
-	var best := -1
-	var best_distance := INF
-	for i in positions.size():
-		var distance := positions[i].distance_to(point)
-		if distance <= DeploymentRules.reach_of(bases[i]) and distance < best_distance:
-			best = i
-			best_distance = distance
-	return best
 
 
 ## The middle of [param unit]'s models.
@@ -123,28 +84,14 @@ static func middle(unit: BattleUnit) -> Vector2:
 
 ## Whether every model of [param unit] stands wholly on [param feature] (Terrain 1.1).
 static func is_wholly_on(unit: BattleUnit, feature: BattleTerrain) -> bool:
-	var polygons: Array[PackedVector2Array] = [DeploymentRules.terrain_outline(feature, feature.position, feature.rotation)]
-	return is_wholly_in(unit, polygons)
-
-
-## Whether all of [param unit]'s bases are inside [param polygons].
-static func is_wholly_in(unit: BattleUnit, polygons: Array[PackedVector2Array]) -> bool:
 	if unit.positions.is_empty():
 		return false
+	var outline := DeploymentRules.terrain_outline(feature, feature.position, feature.rotation)
+	var polygons: Array[PackedVector2Array] = [outline]
 	for i in unit.positions.size():
 		if not DeploymentRules.is_wholly_within(polygons, DeploymentRules.base_outline(unit.bases[i], unit.positions[i], unit.facing)):
 			return false
 	return true
-
-
-## How many of [param unit]'s models are within combat range of [param feature].
-static func models_near_terrain(unit: BattleUnit, feature: BattleTerrain) -> int:
-	var outline := DeploymentRules.terrain_outline(feature, feature.position, feature.rotation)
-	var total := 0
-	for i in unit.positions.size():
-		if DeploymentRules.gap_between(DeploymentRules.base_outline(unit.bases[i], unit.positions[i], unit.facing), outline) <= COMBAT_RANGE:
-			total += 1
-	return total
 
 
 ## Whether [param target] is behind [param feature] from [param attacker]: no straight line runs

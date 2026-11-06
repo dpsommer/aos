@@ -18,7 +18,7 @@ static func problems(game: GameController, spec: MoveSpec, positions: PackedVect
 	var result := PackedStringArray()
 	var bad := invalid_models(game, spec, positions)
 	if not bad.too_far.is_empty():
-		result.append("%s too far: each can move up to %s\"." % [_models(bad.too_far.size()), inches(spec.max_distance)])
+		result.append("%s too far: each can move up to %s\"." % [_models(bad.too_far.size()), _inches(spec.max_distance)])
 	if not bad.off_board.is_empty():
 		result.append("%s off the battlefield." % _models(bad.off_board.size()))
 	if not bad.blocked.is_empty():
@@ -35,8 +35,7 @@ static func _models(count: int) -> String:
 	return "1 model is" if count == 1 else "%d models are" % count
 
 
-## [param distance] as the HUD shows it: "6", or "6.5".
-static func inches(distance: float) -> String:
+static func _inches(distance: float) -> String:
 	return ("%.1f" % distance).trim_suffix(".0")
 
 
@@ -47,9 +46,9 @@ static func invalid_models(game: GameController, spec: MoveSpec, positions: Pack
 	var bad := {"too_far": PackedInt32Array(), "off_board": PackedInt32Array(), "blocked": PackedInt32Array(),
 			"into_combat": PackedInt32Array(), "incoherent": Coherency.failing(positions, unit.bases, unit.facing)}
 	var flies := game.stats.has_keyword(unit, "FLY")
-	var others := other_units(game, unit)
+	var others := _other_units(game, unit)
 	var enemies := game.enemies_on_battlefield(game.army_of(unit))
-	var solid := impassable_terrain(game)
+	var solid := _impassable_terrain(game)
 	for i in positions.size():
 		var from := unit.positions[i]
 		var to := positions[i]
@@ -58,7 +57,7 @@ static func invalid_models(game: GameController, spec: MoveSpec, positions: Pack
 			bad.too_far.append(i)
 		if not BattleGeometry.is_on_battlefield(base, to, unit.facing, game.battle.battlefield_size):
 			bad.off_board.append(i)
-		if ends_on_other(base, to, unit.facing, others, solid) or (not flies and from != to and _path_blocked(base, from, to, others)):
+		if _ends_on_other(base, to, unit.facing, others, solid) or (not flies and from != to and _path_blocked(base, from, to, others)):
 			bad.blocked.append(i)
 		if _breaks_combat_rule(spec, base, from, to, enemies, flies):
 			bad.into_combat.append(i)
@@ -70,8 +69,7 @@ static func is_legal(game: GameController, spec: MoveSpec, positions: PackedVect
 	return problems(game, spec, positions).is_empty()
 
 
-## Every unit on the battlefield but [param unit].
-static func other_units(game: GameController, unit: BattleUnit) -> Array[BattleUnit]:
+static func _other_units(game: GameController, unit: BattleUnit) -> Array[BattleUnit]:
 	var result: Array[BattleUnit] = []
 	for army in game.armies():
 		for other in game.on_battlefield(army):
@@ -81,7 +79,7 @@ static func other_units(game: GameController, unit: BattleUnit) -> Array[BattleU
 
 
 ## Faction terrain is a model on its own base: nothing can stand on it (Terrain 1.5).
-static func impassable_terrain(game: GameController) -> Array[BattleTerrain]:
+static func _impassable_terrain(game: GameController) -> Array[BattleTerrain]:
 	var result: Array[BattleTerrain] = []
 	for feature in game.battle.all_terrain():
 		if feature.placed and DeploymentRules.is_impassable(feature):
@@ -89,8 +87,7 @@ static func impassable_terrain(game: GameController) -> Array[BattleTerrain]:
 	return result
 
 
-## Whether a model on [param base] at [param at] stands on one of [param others] or [param solid].
-static func ends_on_other(base: BaseSize, at: Vector2, facing: float, others: Array[BattleUnit], solid: Array[BattleTerrain]) -> bool:
+static func _ends_on_other(base: BaseSize, at: Vector2, facing: float, others: Array[BattleUnit], solid: Array[BattleTerrain]) -> bool:
 	for other in others:
 		for j in other.positions.size():
 			if DeploymentRules.bases_overlap(base, at, facing, other.bases[j], other.positions[j], other.facing):
@@ -278,8 +275,8 @@ static func _nearest_position(from: Vector2, positions: PackedVector2Array) -> V
 
 ## A free spot for a model on [param base] within coherency of [param unit], or null.
 static func spot_beside(game: GameController, unit: BattleUnit, base: BaseSize) -> Variant:
-	var others := other_units(game, unit)
-	var solid := impassable_terrain(game)
+	var others := _other_units(game, unit)
+	var solid := _impassable_terrain(game)
 	for i in unit.positions.size():
 		var distance := DeploymentRules.reach_of(unit.bases[i]) + DeploymentRules.reach_of(base) + 0.1
 		for step in SPOT_ANGLES:
@@ -293,7 +290,7 @@ static func _spot_free(game: GameController, unit: BattleUnit, base: BaseSize, s
 		others: Array[BattleUnit], solid: Array[BattleTerrain]) -> bool:
 	if not BattleGeometry.is_on_battlefield(base, spot, unit.facing, game.battle.battlefield_size):
 		return false
-	if ends_on_other(base, spot, unit.facing, others, solid):
+	if _ends_on_other(base, spot, unit.facing, others, solid):
 		return false
 	for j in unit.positions.size():
 		if DeploymentRules.bases_overlap(base, spot, unit.facing, unit.bases[j], unit.positions[j], unit.facing):

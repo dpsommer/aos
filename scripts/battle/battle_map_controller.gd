@@ -441,15 +441,24 @@ func _is_moving() -> bool:
 
 
 func _preview_model_at(point: Vector2) -> int:
-	return BattleGeometry.model_under(_preview, _moving_unit().bases, point)
+	var unit := _moving_unit()
+	var best := -1
+	var best_distance := INF
+	for i in _preview.size():
+		var distance := _preview[i].distance_to(point)
+		if distance <= DeploymentRules.reach_of(unit.bases[i]) and distance < best_distance:
+			best = i
+			best_distance = distance
+	return best
 
 
 ## The unit on the board under [param point], or null.
 func unit_at(point: Vector2) -> BattleUnit:
 	for army in game.armies():
 		for unit in game.on_battlefield(army):
-			if BattleGeometry.model_under(unit.positions, unit.bases, point) >= 0:
-				return unit
+			for i in unit.positions.size():
+				if unit.positions[i].distance_to(point) <= DeploymentRules.reach_of(unit.bases[i]):
+					return unit
 	return null
 
 

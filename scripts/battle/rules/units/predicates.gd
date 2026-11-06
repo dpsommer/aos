@@ -128,7 +128,9 @@ static func _named(key: String, argument: Variant, context: RuleContext) -> bool
 			var of_unit := _unit_named(argument.get("of", "holder"), context)
 			if of_unit == null or subject == null:
 				return false
-			return BattleGeometry.is_in_reach(subject, of_unit, float(argument.within), argument.get("wholly", false))
+			var reach := float(argument.within)
+			return BattleGeometry.is_wholly_within(subject, of_unit, reach) if argument.get("wholly", false) \
+					else BattleGeometry.is_within(subject, of_unit, reach)
 		"covered_by_holder":
 			var terrain := context.holder as TerrainController
 			return terrain != null and terrain.covers(context.attacker, context.target)
@@ -161,6 +163,10 @@ static func _near_friendly(spec: Dictionary, subject: BattleUnit, game: GameCont
 		var fits: bool = spec.get("keywords", []).is_empty()
 		for keyword: String in spec.get("keywords", []):
 			fits = fits or game.stats.has_keyword(friend, keyword)
-		if fits and BattleGeometry.is_in_reach(subject, friend, float(spec.get("within", 0)), spec.get("wholly", false)):
+		if not fits:
+			continue
+		var reach := float(spec.get("within", 0))
+		var near: bool = BattleGeometry.is_wholly_within(subject, friend, reach) if spec.get("wholly", false) else BattleGeometry.is_within(subject, friend, reach)
+		if near:
 			return true
 	return false

@@ -214,7 +214,14 @@ func enemies_in_combat_with(unit: BattleUnit) -> Array[BattleUnit]:
 
 ## The nearest enemy [param unit] is in combat with, or null.
 func nearest_in_combat(unit: BattleUnit) -> BattleUnit:
-	return BattleGeometry.nearest(unit, enemies_in_combat_with(unit))
+	var best: BattleUnit = null
+	var best_gap := INF
+	for enemy in enemies_in_combat_with(unit):
+		var gap := BattleGeometry.unit_gap(unit, enemy)
+		if gap < best_gap:
+			best = enemy
+			best_gap = gap
+	return best
 
 
 func was_set_up_this_turn(unit: BattleUnit) -> bool:
@@ -244,15 +251,15 @@ func set_up_problems(unit: BattleUnit, positions: PackedVector2Array, min_enemy_
 ## [param positions], or empty.
 func _set_up_model_problem(unit: BattleUnit, positions: PackedVector2Array, min_enemy_gap: float) -> String:
 	var enemies := enemies_on_battlefield(army_of(unit))
-	var others := MovementRules.other_units(self, unit)
-	var solid := MovementRules.impassable_terrain(self)
+	var others := MovementRules._other_units(self, unit)
+	var solid := MovementRules._impassable_terrain(self)
 	for i in positions.size():
 		var base := unit.bases[i]
 		if not BattleGeometry.is_on_battlefield(base, positions[i], unit.facing, battle.battlefield_size):
 			return "A model is off the battlefield."
 		if enemies.any(func(enemy: BattleUnit) -> bool: return BattleGeometry.model_gap_at(base, positions[i], unit.facing, enemy) <= min_enemy_gap):
 			return "A model is too near an enemy."
-		if MovementRules.ends_on_other(base, positions[i], unit.facing, others, solid):
+		if MovementRules._ends_on_other(base, positions[i], unit.facing, others, solid):
 			return "A model is on another model."
 	return ""
 
@@ -449,7 +456,10 @@ func _target_fits(unit: BattleUnit, action: Action, spec: Dictionary) -> bool:
 		if stats.has_keyword(unit, keyword):
 			return false
 	if spec.has("within") and action.user:
-		if not BattleGeometry.is_in_reach(unit, action.user, float(spec.within), spec.get("wholly", false)):
+		var reach := float(spec.within)
+		var inside := BattleGeometry.is_wholly_within(unit, action.user, reach) if spec.get("wholly", false) \
+				else BattleGeometry.is_within(unit, action.user, reach)
+		if not inside:
 			return false
 	if spec.get("others", false) and unit == action.user:
 		return false

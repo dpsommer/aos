@@ -89,7 +89,14 @@ func _nearest_enemy_gap(unit: BattleUnit, game: GameController) -> float:
 
 
 func _nearest_enemy(unit: BattleUnit, game: GameController) -> BattleUnit:
-	return BattleGeometry.nearest(unit, game.enemies_on_battlefield(game.army_of(unit)))
+	var found: BattleUnit = null
+	var best := INF
+	for enemy in game.enemies_on_battlefield(game.army_of(unit)):
+		var gap := BattleGeometry.unit_gap(unit, enemy)
+		if gap < best:
+			best = gap
+			found = enemy
+	return found
 
 
 ## Where a unit wants to go: at a nearby enemy if it fights in melee, else the nearest objective it

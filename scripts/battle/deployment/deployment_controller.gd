@@ -708,7 +708,14 @@ func staged_unit_at(point: Vector2) -> BattleUnit:
 
 ## The model of [param unit] under [param point], the nearest if several, or -1.
 func _model_index(unit: BattleUnit, point: Vector2) -> int:
-	return BattleGeometry.model_under(unit.positions, unit.bases, point)
+	var best := -1
+	var best_distance := INF
+	for i in unit.positions.size():
+		var distance := unit.positions[i].distance_to(point)
+		if distance <= DeploymentRules.reach_of(unit.bases[i]) and distance < best_distance:
+			best = i
+			best_distance = distance
+	return best
 
 
 # Keeping the board and the HUD in step

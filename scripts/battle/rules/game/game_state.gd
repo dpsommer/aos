@@ -66,23 +66,6 @@ func objectives_held(army: BattleArmy) -> int:
 	return total
 
 
-## The objectives [param army] controls that [param from] controlled when the turn started.
-func objectives_gained(army: BattleArmy, from: BattleArmy) -> Array[MapFeature]:
-	var result: Array[MapFeature] = []
-	for objective: MapFeature in objective_control:
-		if objective_control[objective] == army and control_at_turn_start.get(objective) == from:
-			result.append(objective)
-	return result
-
-
-## Whether [param army] controls an objective of type [param objective_type].
-func controls_objective_of_type(army: BattleArmy, objective_type: String) -> bool:
-	for objective: MapFeature in objective_control:
-		if objective_control[objective] == army and objective.type == objective_type:
-			return true
-	return false
-
-
 ## Adds [param by] to [param stat] of [param army]'s turn so far.
 func count_turn(army: BattleArmy, stat: StringName, by := 1) -> void:
 	if not turn_stats.has(army):

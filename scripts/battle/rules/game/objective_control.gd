@@ -122,5 +122,10 @@ func _update_terrain() -> void:
 
 
 func _terrain_score(unit: BattleUnit, feature: BattleTerrain) -> int:
-	var total := BattleGeometry.models_near_terrain(unit, feature)
+	var outline := DeploymentRules.terrain_outline(feature, feature.position, feature.rotation)
+	var total := 0
+	for i in unit.positions.size():
+		var base_outline := DeploymentRules.base_outline(unit.bases[i], unit.positions[i], unit.facing)
+		if DeploymentRules.gap_between(base_outline, outline) <= BattleGeometry.COMBAT_RANGE:
+			total += 1
 	return game.stats.value(unit, &"control") * total if total > 0 else 0

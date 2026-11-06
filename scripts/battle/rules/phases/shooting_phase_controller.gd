@@ -6,4 +6,8 @@ const SHOOT_KEYWORD := "SHOOT"
 
 
 func units_that_can_shoot(game: GameController, army: BattleArmy) -> Array[BattleUnit]:
-	return _users_with_keyword(game, army, SHOOT_KEYWORD)
+	var result: Array[BattleUnit] = []
+	for option in options_for(game, army):
+		if option.user and option.entry.ability.keywords.has(SHOOT_KEYWORD) and not option.user in result:
+			result.append(option.user)
+	return result

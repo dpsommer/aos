@@ -9,13 +9,23 @@ func resolve(action: Action, game: GameController) -> DecisionRequest:
 	var unit := game.summon(action.ability().summons[0], action.army, action.user)
 	if unit == null:
 		return null
-	return _set_up_request(unit, action, 3.0)
+	var request := DecisionRequest.create(DecisionRequest.Kind.SET_UP, action.army, "Set up %s." % unit.name)
+	request.unit = unit
+	request.min_enemy_gap = float(params.get("min_enemy_gap", 3))
+	request.action = action
+	if params.has("near_user"):
+		request.near_unit = action.user
+		request.near_reach = float(params.near_user)
+	return request
 
 
 func answer(_action: Action, game: GameController, request: DecisionRequest, decision: Decision) -> String:
 	if decision.passed:
 		return "A manifestation has to be set up."
-	var reason := _set_up_as_decided(game, request, decision)
-	if reason.is_empty():
-		_mark_done()
-	return reason
+	var problems := game.set_up_problems(request.unit, decision.positions, request.min_enemy_gap, request.near_unit, request.near_reach)
+	if not problems.is_empty():
+		return " ".join(problems)
+	game.command(request.unit, Commands.SetUp.new(decision.positions))
+	params = params.duplicate()
+	params["done"] = true
+	return ""

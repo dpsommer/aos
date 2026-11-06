@@ -94,37 +94,9 @@ func subjects(action: Action, game: GameController) -> Array[BattleUnit]:
 	return result.filter(func(unit: BattleUnit) -> bool: return not unit.destroyed)
 
 
-## Marks it as having had its answer, so resolving it again does nothing. The descriptor is shared,
-## so it gets its own copy.
-func _mark_done() -> void:
-	params = params.duplicate()
-	params["done"] = true
-
-
-## A question of where to set [param unit] up: more than [code]min_enemy_gap[/code] from all enemies,
-## [param default_gap] if that isn't given, and wholly within [code]near_user[/code] of the user.
-func _set_up_request(unit: BattleUnit, action: Action, default_gap: float) -> DecisionRequest:
-	var request := DecisionRequest.create(DecisionRequest.Kind.SET_UP, action.army, "Set up %s." % unit.name)
-	request.unit = unit
-	request.min_enemy_gap = float(params.get("min_enemy_gap", default_gap))
-	request.action = action
-	if params.has("near_user"):
-		request.near_unit = action.user
-		request.near_reach = float(params.near_user)
-	return request
-
-
-## Sets the unit [param request] asks about up where [param decision] says. Returns why it can't, or
-## empty.
-func _set_up_as_decided(game: GameController, request: DecisionRequest, decision: Decision) -> String:
-	var problems := game.set_up_problems(request.unit, decision.positions, request.min_enemy_gap, request.near_unit, request.near_reach)
-	if not problems.is_empty():
-		return " ".join(problems)
-	game.command(request.unit, Commands.SetUp.new(decision.positions))
-	return ""
-
-
 func _in_reach(unit: BattleUnit, action: Action) -> bool:
 	if not params.has("within") or action.user == null:
 		return true
-	return BattleGeometry.is_in_reach(unit, action.user, float(params.within), params.get("wholly", false))
+	var reach := float(params.within)
+	return BattleGeometry.is_wholly_within(unit, action.user, reach) if params.get("wholly", false) \
+			else BattleGeometry.is_within(unit, action.user, reach)

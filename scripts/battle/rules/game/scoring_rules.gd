@@ -60,11 +60,11 @@ static func points_for(sentence: String, army: BattleArmy, game: GameController)
 		"control_more":
 			return points if mine > state.objectives_held(enemy) else 0
 		"control_type":
-			return points if state.controls_objective_of_type(army, rule.get("type", "")) else 0
+			return points if _holds_type(army, rule.get("type", ""), game) else 0
 		"control_pair":
 			return points if _holds_pair(army, state) else 0
 		"gained_from_opponent":
-			return points if not state.objectives_gained(army, enemy).is_empty() else 0
+			return points if _gained_from(army, enemy, state) else 0
 		"per_tactic_this_turn":
 			return points * state.turn_stat(army, &"tactics")
 		"terrain_more":
@@ -81,6 +81,13 @@ static func _round_fits(rule: Dictionary, game: GameController) -> bool:
 	return true
 
 
+static func _holds_type(army: BattleArmy, type: String, game: GameController) -> bool:
+	for objective: MapFeature in game.state.objective_control:
+		if game.state.objective_control[objective] == army and objective.type == type:
+			return true
+	return false
+
+
 ## Whether [param army] controls 2 objectives of one type.
 static func _holds_pair(army: BattleArmy, state: GameState) -> bool:
 	var counts := {}
@@ -89,6 +96,13 @@ static func _holds_pair(army: BattleArmy, state: GameState) -> bool:
 			counts[objective.type] = counts.get(objective.type, 0) + 1
 			if counts[objective.type] >= 2:
 				return true
+	return false
+
+
+static func _gained_from(army: BattleArmy, enemy: BattleArmy, state: GameState) -> bool:
+	for objective: MapFeature in state.objective_control:
+		if state.objective_control[objective] == army and state.control_at_turn_start.get(objective) == enemy:
+			return true
 	return false
 
 

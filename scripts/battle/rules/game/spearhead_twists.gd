@@ -194,9 +194,13 @@ static func _score(of: TwistCard, army: BattleArmy, game: GameController) -> voi
 					held += 1
 			_award(game, army, held, of.name)
 		"Mount the Attack":
-			_award(game, army, state.objectives_gained(army, game.battle.enemy_of(army)).size(), of.name)
+			var gained := 0
+			for objective: MapFeature in state.objective_control:
+				if state.objective_control[objective] == army and state.control_at_turn_start.get(objective) == game.battle.enemy_of(army):
+					gained += 1
+			_award(game, army, gained, of.name)
 		"Take the Land":
-			if TacticChecks.has_most_models_at_large_terrain(army, game.battle.enemy_territory_of(army), game):
+			if TacticChecks._large_terrain_models(army, game.battle.enemy_territory_of(army), game):
 				_award(game, army, 1, of.name)
 
 
@@ -206,7 +210,7 @@ static func _after_scoring(of: TwistCard, game: GameController) -> void:
 		match of.name:
 			"Ring of Fire":
 				_for_each_unit(game, func(unit: BattleUnit) -> void:
-					if BattleGeometry.touches_circle(unit, objective.position, game.battle.objective_radius(objective)):
+					if _on_objective(unit, objective, game):
 						game.command(unit, Commands.DealDamage.new(DiceExpr.parse("D3").roll(game.rng))))
 			"Lifespring":
 				_for_each_unit(game, func(unit: BattleUnit) -> void:
@@ -235,3 +239,11 @@ static func on_round_ended(of: TwistCard, game: GameController) -> void:
 static func _award(game: GameController, army: BattleArmy, points: int, why: String) -> void:
 	if points > 0:
 		game.add_points(army, points, why)
+
+
+static func _on_objective(unit: BattleUnit, objective: MapFeature, game: GameController) -> bool:
+	var radius := game.battle.objective_radius(objective)
+	for i in unit.positions.size():
+		if BattleGeometry.model_touches_circle(unit, i, objective.position, radius):
+			return true
+	return false

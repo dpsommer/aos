@@ -25,7 +25,7 @@ func resolve(action: Action, game: GameController) -> DecisionRequest:
 		if _spec.max_distance <= 0.0:
 			_queue.pop_front()
 			continue
-		var request := DecisionRequest.create(DecisionRequest.Kind.MOVE, game.army_of(unit), "Move %s up to %s\"." % [unit.name, MovementRules.inches(_spec.max_distance)])
+		var request := DecisionRequest.create(DecisionRequest.Kind.MOVE, game.army_of(unit), "Move %s up to %s\"." % [unit.name, ("%.1f" % _spec.max_distance).trim_suffix(".0")])
 		request.move = _spec
 		request.unit = unit
 		request.action = action

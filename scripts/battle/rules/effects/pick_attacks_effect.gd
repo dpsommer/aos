@@ -38,5 +38,6 @@ func answer(action: Action, _game: GameController, request: DecisionRequest, dec
 	for target: BattleUnit in decision.attack_targets.values():
 		if not target in action.targets:
 			action.targets.append(target)
-	_mark_done()
+	params = params.duplicate()
+	params["done"] = true
 	return ""
