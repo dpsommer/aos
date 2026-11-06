@@ -486,9 +486,10 @@ func test_bigmob_brutes_start_in_reserve_for_the_mirrored_opponent_too() -> void
 
 func test_bigmob_other_units_do_not_start_in_reserve() -> void:
 	var army := BattleBuilder.build(_bigmob_setup(), _rng()).player
-	for unit in army.units:
-		if unit.name != "Brutes":
-			assert_false(unit.starts_in_reserve, unit.name)
+	var others := army.units.filter(func(unit: BattleUnit) -> bool: return unit.name != "Brutes")
+	assert_false(others.is_empty())
+	for unit: BattleUnit in others:
+		assert_false(unit.starts_in_reserve, unit.name)
 
 
 func test_units_in_reserve_are_left_out_of_deployment() -> void:

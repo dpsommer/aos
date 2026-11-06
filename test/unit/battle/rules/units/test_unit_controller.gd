@@ -28,6 +28,17 @@ func _unit(count := 5, health := 3, ward := 0) -> BattleUnit:
 	return RulesKit.unit("Unit", count, Vector2(5, 5), PackedStringArray(), health, 4, [] as Array[Weapon], ward)
 
 
+## The events of [param kind] heard from now on.
+func _heard(game: GameController, kind: StringName) -> Array[BattleEvent]:
+	var heard: Array[BattleEvent] = []
+	game.events.subscribe(kind, func(event: BattleEvent) -> void: heard.append(event))
+	return heard
+
+
+func _logged(game: GameController, kind: StringName) -> Array:
+	return game.events.log_entries.filter(func(event: BattleEvent) -> bool: return event.kind == kind)
+
+
 # Damage allocation
 
 func test_damage_below_health_slays_no_model() -> void:
@@ -68,7 +79,7 @@ func test_no_damage_does_nothing() -> void:
 	var game := _game_with(unit)
 	_damage(game, unit, 0)
 	assert_eq(game.controller_of(unit).damage_points, 0)
-	assert_true(game.events.log_entries.filter(func(e: BattleEvent) -> bool: return e.kind == BattleEvent.UNIT_DAMAGED).is_empty())
+	assert_true(_logged(game, BattleEvent.UNIT_DAMAGED).is_empty())
 
 
 func test_bases_and_positions_stay_in_step_as_models_are_slain() -> void:
@@ -136,8 +147,7 @@ func test_a_destroyed_unit_takes_no_more_damage() -> void:
 func test_destroying_a_unit_publishes_one_event_with_who_destroyed_it() -> void:
 	var unit := _unit(2, 1)
 	var game := _game_with(unit)
-	var heard: Array[BattleEvent] = []
-	game.events.subscribe(BattleEvent.UNIT_DESTROYED, func(event: BattleEvent) -> void: heard.append(event))
+	var heard := _heard(game, BattleEvent.UNIT_DESTROYED)
 	_damage(game, unit, 5)
 	assert_eq(heard.size(), 1)
 	assert_eq(heard[0].data.unit, unit)
@@ -147,8 +157,7 @@ func test_destroying_a_unit_publishes_one_event_with_who_destroyed_it() -> void:
 func test_a_unit_that_is_not_destroyed_publishes_no_destroyed_event() -> void:
 	var unit := _unit()
 	var game := _game_with(unit)
-	var heard: Array[BattleEvent] = []
-	game.events.subscribe(BattleEvent.UNIT_DESTROYED, func(event: BattleEvent) -> void: heard.append(event))
+	var heard := _heard(game, BattleEvent.UNIT_DESTROYED)
 	_damage(game, unit, 3)
 	assert_true(heard.is_empty())
 
@@ -197,8 +206,7 @@ func test_forbidding_ward_rolls_lets_all_the_damage_through() -> void:
 func test_the_damaged_event_says_how_many_were_warded() -> void:
 	var unit := _unit(5, 3, 1)
 	var game := _game_with(unit)
-	var heard: Array[BattleEvent] = []
-	game.events.subscribe(BattleEvent.UNIT_DAMAGED, func(event: BattleEvent) -> void: heard.append(event))
+	var heard := _heard(game, BattleEvent.UNIT_DAMAGED)
 	_damage(game, unit, 4)
 	assert_eq(heard[0].data.warded, 4)
 	assert_eq(heard[0].data.points, 0)
@@ -207,8 +215,7 @@ func test_the_damaged_event_says_how_many_were_warded() -> void:
 func test_a_unit_without_a_ward_rolls_none() -> void:
 	var unit := _unit()
 	var game := _game_with(unit)
-	var heard: Array[BattleEvent] = []
-	game.events.subscribe(BattleEvent.UNIT_DAMAGED, func(event: BattleEvent) -> void: heard.append(event))
+	var heard := _heard(game, BattleEvent.UNIT_DAMAGED)
 	_damage(game, unit, 2)
 	assert_eq(heard[0].data.warded, 0)
 
@@ -269,7 +276,7 @@ func test_healing_nothing_publishes_nothing() -> void:
 	var unit := _unit()
 	var game := _game_with(unit)
 	game.command(unit, Commands.Heal.new(2))
-	assert_true(game.events.log_entries.filter(func(e: BattleEvent) -> bool: return e.kind == BattleEvent.UNIT_HEALED).is_empty())
+	assert_true(_logged(game, BattleEvent.UNIT_HEALED).is_empty())
 
 
 # Returning models

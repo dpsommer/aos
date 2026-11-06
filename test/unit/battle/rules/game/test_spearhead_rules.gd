@@ -58,6 +58,21 @@ func _begin_round(number: int, first: BattleArmy, last_time: BattleArmy = null) 
 	_rules.on_round_started()
 
 
+## The first round of a game of cards with commands, each [AbilityEntry] of the player's cards.
+func _begin_with_commands() -> Array[AbilityEntry]:
+	_start(6, PackedStringArray(), true)
+	_begin_round(1, _mine)
+	return _card_entries()
+
+
+func _card_entries() -> Array[AbilityEntry]:
+	var result: Array[AbilityEntry] = []
+	for entry: AbilityEntry in _game.books[_mine]:
+		if entry.card:
+			result.append(entry)
+	return result
+
+
 # The kind of game
 
 func test_spearhead_has_no_commands_or_magic() -> void:
@@ -195,33 +210,21 @@ func test_far_behind_but_not_the_underdog_does_not_count() -> void:
 # Cards' commands
 
 func test_each_card_in_hand_gives_its_command_as_an_ability() -> void:
-	_start(6, PackedStringArray(), true)
-	_begin_round(1, _mine)
-	var offered: Array[String] = []
-	for entry: AbilityEntry in _game.books[_mine]:
-		if entry.card:
-			offered.append(entry.ability.name)
+	var offered := _begin_with_commands().map(func(entry: AbilityEntry) -> String: return entry.ability.name)
 	assert_eq(offered.size(), SpearheadRules.HAND_SIZE)
 	for card: SpearheadTacticCard in _rules.hand_of(_mine):
 		assert_true(card.command.name in offered)
 
 
 func test_commands_of_cards_not_in_hand_are_not_offered() -> void:
-	_start(6, PackedStringArray(), true)
-	_begin_round(1, _mine)
-	for entry: AbilityEntry in _game.books[_mine]:
-		if entry.card:
-			assert_true(entry.card in _rules.hand_of(_mine))
+	var entries := _begin_with_commands()
+	assert_false(entries.is_empty(), "The cards in hand have commands")
+	for entry in entries:
+		assert_true(entry.card in _rules.hand_of(_mine))
 
 
 func test_using_a_cards_command_discards_the_card() -> void:
-	_start(6, PackedStringArray(), true)
-	_begin_round(1, _mine)
-	var entry: AbilityEntry
-	for each: AbilityEntry in _game.books[_mine]:
-		if each.card:
-			entry = each
-			break
+	var entry: AbilityEntry = _begin_with_commands()[0]
 	_game.declare_action(Action.create(ActionOption.create(entry, null)))
 	assert_false(entry.card in _rules.hand_of(_mine))
 	for each: AbilityEntry in _game.books[_mine]:

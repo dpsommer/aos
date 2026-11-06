@@ -11,17 +11,26 @@ func after_each() -> void:
 	_game.dispose()
 
 
-func _start(mine: Array[BattleUnit], theirs: Array[BattleUnit], window: M) -> void:
-	_game = RulesKit.matched_game(mine, theirs)
+## A game in [param window] of [param unit], of the active player, against an enemy at [param enemy_at].
+func _start(unit: BattleUnit, enemy_at: Vector2, window: M) -> void:
+	_game = RulesKit.matched_game([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, enemy_at)] as Array[BattleUnit])
 	_game.state.active = _game.battle.player
 	_game.state.window = window
 
 
-func _shooter(at: Vector2, with_gun := true) -> BattleUnit:
-	var weapons: Array[Weapon] = []
-	if with_gun:
-		weapons.append(RulesKit.weapon("1", 2, 2, 0, "1", PackedStringArray(), 24))
-	return RulesKit.unit("Shooter", 1, at, PackedStringArray(), 1, 0, weapons)
+## A unit at (5, 5) with a 24" gun, in the shooting phase against an enemy at [param enemy_at].
+func _start_shooter(enemy_at := Vector2(15, 5)) -> BattleUnit:
+	var gun := RulesKit.weapon("1", 2, 2, 0, "1", PackedStringArray(), 24)
+	var unit := RulesKit.unit("Shooter", 1, Vector2(5, 5), PackedStringArray(), 1, 0, [gun] as Array[Weapon])
+	_start(unit, enemy_at, M.SHOOTING)
+	return unit
+
+
+## A unit at [param at] in the charge phase against an enemy at [param enemy_at].
+func _start_charger(at := Vector2(5, 5), enemy_at := Vector2(15, 5)) -> BattleUnit:
+	var unit := RulesKit.unit("Charger", 1, at)
+	_start(unit, enemy_at, M.CHARGE)
+	return unit
 
 
 func _can_shoot() -> Array[BattleUnit]:
@@ -33,73 +42,67 @@ func _can_charge() -> Array[BattleUnit]:
 
 
 func test_a_unit_with_a_target_in_range_can_shoot() -> void:
-	var unit := _shooter(Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.SHOOTING)
+	var unit := _start_shooter()
 	assert_eq(_can_shoot(), [unit] as Array[BattleUnit])
 
 
 func test_a_unit_with_no_target_in_range_cannot_shoot() -> void:
-	var unit := _shooter(Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(29, 20))] as Array[BattleUnit], M.SHOOTING)
+	_start_shooter(Vector2(29, 20))
 	assert_true(_can_shoot().is_empty())
 
 
 func test_a_unit_without_ranged_weapons_cannot_shoot() -> void:
-	var unit := _shooter(Vector2(5, 5), false)
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.SHOOTING)
+	_start(RulesKit.unit("Unarmed", 1, Vector2(5, 5)), Vector2(15, 5), M.SHOOTING)
 	assert_true(_can_shoot().is_empty())
 
 
 func test_a_unit_that_ran_cannot_shoot() -> void:
-	var unit := _shooter(Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.SHOOTING)
+	var unit := _start_shooter()
 	_game.controller_of(unit).ran = true
 	assert_true(_can_shoot().is_empty())
 
 
 func test_a_unit_that_ran_can_shoot_if_something_permits_it() -> void:
-	var unit := _shooter(Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.SHOOTING)
+	var unit := _start_shooter()
 	_game.controller_of(unit).ran = true
 	RulesKit.give(_game, unit, RulesKit.modifier(&"shoot_after_run", 0, _game.battle.player, Modifier.Op.PERMIT))
 	assert_eq(_can_shoot(), [unit] as Array[BattleUnit])
 
 
 func test_a_unit_that_retreated_cannot_shoot() -> void:
-	var unit := _shooter(Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.SHOOTING)
+	var unit := _start_shooter()
 	_game.controller_of(unit).retreated = true
 	assert_true(_can_shoot().is_empty())
 
 
 func test_a_unit_near_an_enemy_can_charge() -> void:
-	var unit := RulesKit.unit("Charger", 1, Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.CHARGE)
+	var unit := _start_charger()
 	assert_eq(_can_charge(), [unit] as Array[BattleUnit])
 
 
 func test_a_unit_far_from_every_enemy_cannot_charge() -> void:
-	var unit := RulesKit.unit("Charger", 1, Vector2(2, 2))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(29, 20))] as Array[BattleUnit], M.CHARGE)
+	_start_charger(Vector2(2, 2), Vector2(29, 20))
 	assert_true(_can_charge().is_empty())
 
 
 func test_a_unit_already_in_combat_cannot_charge() -> void:
-	var unit := RulesKit.unit("Charger", 1, Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(7, 5))] as Array[BattleUnit], M.CHARGE)
+	_start_charger(Vector2(5, 5), Vector2(7, 5))
 	assert_true(_can_charge().is_empty())
 
 
-func test_a_unit_that_ran_cannot_charge_unless_something_permits_it() -> void:
-	var unit := RulesKit.unit("Charger", 1, Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.CHARGE)
+func test_a_unit_that_ran_cannot_charge() -> void:
+	var unit := _start_charger()
 	_game.controller_of(unit).ran = true
 	assert_true(_can_charge().is_empty())
+
+
+func test_a_unit_that_ran_can_charge_if_something_permits_it() -> void:
+	var unit := _start_charger()
+	_game.controller_of(unit).ran = true
 	RulesKit.give(_game, unit, RulesKit.modifier(&"charge_after_run", 0, _game.battle.player, Modifier.Op.PERMIT))
 	assert_eq(_can_charge(), [unit] as Array[BattleUnit])
 
 
 func test_each_unit_is_listed_once() -> void:
-	var unit := RulesKit.unit("Charger", 1, Vector2(5, 5))
-	_start([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(15, 5))] as Array[BattleUnit], M.CHARGE)
+	_start_charger()
 	assert_eq(_can_charge().size(), 1)

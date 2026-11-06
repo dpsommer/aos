@@ -24,8 +24,9 @@ func test_a_number_is_fixed() -> void:
 
 
 func test_a_fixed_number_always_rolls_itself() -> void:
-	for value in _rolls("7"):
-		assert_eq(value, 7)
+	var rolled := _rolls("7")
+	assert_eq(rolled.min(), 7)
+	assert_eq(rolled.max(), 7)
 
 
 func test_one_die_has_a_count_of_one() -> void:
@@ -62,8 +63,11 @@ func test_text_it_cannot_read_is_nothing() -> void:
 	assert_eq(DiceExpr.parse("lots").roll(_rng), 0)
 
 
-func test_case_and_inch_marks_do_not_matter() -> void:
+func test_case_does_not_matter() -> void:
 	assert_eq(DiceExpr.parse("2d6").count, 2)
+
+
+func test_inch_marks_do_not_matter() -> void:
 	assert_eq(DiceExpr.parse("12\"").bonus, 12)
 
 
@@ -85,10 +89,11 @@ func test_each_die_is_rolled() -> void:
 
 
 func test_the_same_seed_rolls_the_same() -> void:
-	var first := DiceExpr.parse("3D6").roll(_rng)
-	var again := RandomNumberGenerator.new()
-	again.seed = 5
-	assert_eq(DiceExpr.parse("3D6").roll(again), first)
+	var first := RandomNumberGenerator.new()
+	first.seed = 5
+	var second := RandomNumberGenerator.new()
+	second.seed = 5
+	assert_eq(DiceExpr.parse("3D6").roll(first), DiceExpr.parse("3D6").roll(second))
 
 
 func test_of_value_is_fixed() -> void:

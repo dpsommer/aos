@@ -26,6 +26,20 @@ func _hook(hook_name: String, action: Action, extra := {}) -> void:
 	RulesKit.effect(descriptor).resolve(action, _game)
 
 
+## Starts the game again with [param mine] the player's only units and [param theirs] the opponent's.
+func _restart(mine: Array[BattleUnit], theirs: Array[BattleUnit], seed_value := 1) -> void:
+	_game.dispose()
+	_game = RulesKit.game(mine, theirs, [] as Array[BattleTerrain], seed_value)
+
+
+## A game with a unit of four single-Health models, three of them slain.
+func _damaged_unit() -> BattleUnit:
+	var unit := RulesKit.unit("Unit", 4, Vector2(10, 14), PackedStringArray(), 1)
+	_restart([unit] as Array[BattleUnit], [_enemy] as Array[BattleUnit])
+	_game.command(unit, Commands.DealDamage.new(3))
+	return unit
+
+
 func _reaction(parent: Action) -> Action:
 	var action := RulesKit.action(_game, _user, [] as Array[BattleUnit], "Reaction")
 	action.parent = parent
@@ -69,20 +83,14 @@ func test_re_rolling_the_parents_roll_makes_a_new_roll() -> void:
 
 
 func test_return_on_rolls_returns_models_for_each_roll_that_succeeds() -> void:
-	var unit := RulesKit.unit("Unit", 4, Vector2(10, 14), PackedStringArray(), 1)
-	_game.dispose()
-	_game = RulesKit.game([unit] as Array[BattleUnit], [_enemy] as Array[BattleUnit])
-	_game.command(unit, Commands.DealDamage.new(3))
+	var unit := _damaged_unit()
 	assert_eq(unit.model_count(), 1)
 	_hook("return_on_rolls", RulesKit.action(_game, unit), {"on": 1})
 	assert_eq(unit.model_count(), 4)
 
 
 func test_return_on_rolls_with_a_roll_that_cannot_succeed_returns_none() -> void:
-	var unit := RulesKit.unit("Unit", 4, Vector2(10, 14), PackedStringArray(), 1)
-	_game.dispose()
-	_game = RulesKit.game([unit] as Array[BattleUnit], [_enemy] as Array[BattleUnit])
-	_game.command(unit, Commands.DealDamage.new(3))
+	var unit := _damaged_unit()
 	_hook("return_on_rolls", RulesKit.action(_game, unit), {"on": 7})
 	assert_eq(unit.model_count(), 1)
 
@@ -103,16 +111,14 @@ func test_beat_health_does_a_mortal_wound_for_each_dice_over_the_targets_health(
 
 func test_beat_health_does_nothing_against_a_health_no_dice_can_beat() -> void:
 	var tough := RulesKit.unit("Tough", 1, Vector2(25, 5), PackedStringArray(), 6)
-	_game.dispose()
-	_game = RulesKit.game([_user] as Array[BattleUnit], [tough] as Array[BattleUnit])
+	_restart([_user] as Array[BattleUnit], [tough] as Array[BattleUnit])
 	var action := RulesKit.action(_game, _user, [tough] as Array[BattleUnit])
 	_hook("beat_health", action, {"dice": 50})
 	assert_true(action.damage_pool.is_empty())
 
 
 func test_rally_heals_a_damaged_unit() -> void:
-	_game.dispose()
-	_game = RulesKit.game([_user] as Array[BattleUnit], [_enemy] as Array[BattleUnit], [] as Array[BattleTerrain], RulesKit.seed_with_rolls_at_least(6, 4))
+	_restart([_user] as Array[BattleUnit], [_enemy] as Array[BattleUnit], RulesKit.seed_with_rolls_at_least(6, 4))
 	_game.command(_user, Commands.DealDamage.new(3))
 	_hook("rally", RulesKit.action(_game, _user))
 	assert_eq(_game.controller_of(_user).damage_points, 0)
@@ -120,8 +126,7 @@ func test_rally_heals_a_damaged_unit() -> void:
 
 func test_rally_returns_a_slain_model_for_its_health_in_points() -> void:
 	var unit := RulesKit.unit("Unit", 4, Vector2(10, 14), PackedStringArray(), 2)
-	_game.dispose()
-	_game = RulesKit.game([unit] as Array[BattleUnit], [_enemy] as Array[BattleUnit], [] as Array[BattleTerrain], RulesKit.seed_with_rolls_at_least(6, 4))
+	_restart([unit] as Array[BattleUnit], [_enemy] as Array[BattleUnit], RulesKit.seed_with_rolls_at_least(6, 4))
 	_game.command(unit, Commands.DealDamage.new(4))
 	assert_eq(unit.model_count(), 2)
 	_hook("rally", RulesKit.action(_game, unit))

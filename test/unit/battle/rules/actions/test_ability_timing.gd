@@ -60,8 +60,8 @@ func test_a_window_is_known() -> void:
 func test_a_bracketed_note_before_the_window_is_ignored() -> void:
 	# "(Army,) Your Shooting Phase" is in the data: a comma inside the brackets.
 	var timing := AbilityTiming.parse("(Army,) Your Shooting Phase")
-	assert_eq(timing.window, AbilityTiming.Moment.SHOOTING)
-	assert_eq(timing.whose, AbilityTiming.Whose.YOURS)
+	assert_eq(timing.window, M.SHOOTING)
+	assert_eq(timing.whose, W.YOURS)
 
 
 # Which windows an ability fits
@@ -184,5 +184,7 @@ func test_your_opponent_is_the_opponent() -> void:
 
 func test_being_picked_as_a_target_reacts_to_any_other_ability() -> void:
 	var timing := AbilityTiming.parse("Reaction: This unit was picked as the target of a non-CORE ability")
-	assert_true(timing.to_opponent and timing.reacts_to_any and timing.this_unit_targeted)
+	assert_true(timing.to_opponent, "To the opponent")
+	assert_true(timing.reacts_to_any, "To any ability")
+	assert_true(timing.this_unit_targeted, "That targeted this unit")
 	assert_has(timing.trigger_excludes, "CORE")

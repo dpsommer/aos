@@ -3,6 +3,7 @@ extends GutTest
 ## (a hit that needs 8 can't happen without more than the capped bonus), rather than by dice.
 
 const RulesKit := preload("res://test/support/rules_kit.gd")
+const BattleKit := preload("res://test/support/battle_kit.gd")
 const MANY := "600"
 
 var _games: Array[GameController] = []
@@ -384,6 +385,12 @@ func test_a_ranged_weapon_reaches_its_range() -> void:
 
 # Shooting restrictions
 
+## Who the player's first unit can aim its first ranged weapon at.
+func _gun_targets(game: GameController) -> Array[BattleUnit]:
+	var shooter := _attacker(game)
+	return game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0])
+
+
 func _shooter_in_combat(extra: PackedStringArray) -> GameController:
 	var gun := RulesKit.weapon("1", 2, 2, 0, "1", extra, 24)
 	var shooter := RulesKit.unit("Shooter", 1, Vector2(5, 5), PackedStringArray(), 1, 0, [gun] as Array[Weapon])
@@ -394,16 +401,13 @@ func _shooter_in_combat(extra: PackedStringArray) -> GameController:
 
 func test_a_unit_in_combat_cannot_shoot() -> void:
 	var game := _shooter_in_combat(PackedStringArray())
-	var shooter := _attacker(game)
-	assert_true(game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0]).is_empty())
-	assert_false(game.attacks.has_targets(shooter, false))
+	assert_true(_gun_targets(game).is_empty())
+	assert_false(game.attacks.has_targets(_attacker(game), false))
 
 
 func test_shoot_in_combat_lets_it_shoot_what_it_fights() -> void:
 	var game := _shooter_in_combat(PackedStringArray(["Shoot in Combat"]))
-	var shooter := _attacker(game)
-	var targets := game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0])
-	assert_eq(targets, [game.battle.opponent.units[0]] as Array[BattleUnit], "Only the enemy it is in combat with")
+	assert_eq(_gun_targets(game), [game.battle.opponent.units[0]] as Array[BattleUnit], "Only the enemy it is in combat with")
 
 
 func test_a_unit_not_in_combat_can_shoot() -> void:
@@ -421,25 +425,19 @@ func _across_terrain(kind: BattleTerrain.Kind, target_keywords := PackedStringAr
 	return _game([shooter] as Array[BattleUnit], [target] as Array[BattleUnit], [wall] as Array[BattleTerrain])
 
 
-const BattleKit := preload("res://test/support/battle_kit.gd")
-
-
 func test_obscuring_terrain_blocks_shooting_past_it() -> void:
 	var game := _across_terrain(BattleTerrain.Kind.OBSCURING)
-	var shooter := _attacker(game)
-	assert_true(game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0]).is_empty())
+	assert_true(_gun_targets(game).is_empty())
 
 
 func test_other_terrain_does_not_block_shooting() -> void:
 	var game := _across_terrain(BattleTerrain.Kind.AREA_OR_OBSTACLE)
-	var shooter := _attacker(game)
-	assert_false(game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0]).is_empty())
+	assert_false(_gun_targets(game).is_empty())
 
 
 func test_obscuring_terrain_does_not_hide_a_flyer() -> void:
 	var game := _across_terrain(BattleTerrain.Kind.OBSCURING, PackedStringArray(["FLY"]))
-	var shooter := _attacker(game)
-	assert_false(game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0]).is_empty())
+	assert_false(_gun_targets(game).is_empty())
 
 
 # Guarded Hero
@@ -485,19 +483,16 @@ func test_a_guarded_hero_takes_a_penalty_to_be_hit_by_shooting() -> void:
 
 func test_a_guarded_infantry_hero_cannot_be_shot_from_far_away() -> void:
 	var game := _guarded_hero(Vector2(20, 5))
-	var shooter := _attacker(game)
-	var targets := game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0])
+	var targets := _gun_targets(game)
 	assert_false(game.battle.opponent.units[0] in targets)
 	assert_true(game.battle.opponent.units[1] in targets)
 
 
 func test_a_guarded_infantry_hero_can_be_shot_from_within_twelve_inches() -> void:
 	var game := _guarded_hero(Vector2(8, 5))
-	var shooter := _attacker(game)
-	assert_true(game.battle.opponent.units[0] in game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0]))
+	assert_true(game.battle.opponent.units[0] in _gun_targets(game))
 
 
 func test_a_guarded_hero_that_is_not_infantry_can_be_shot_from_far_away() -> void:
 	var game := _guarded_hero(Vector2(20, 5), PackedStringArray(), PackedStringArray(["HERO", "CAVALRY"]))
-	var shooter := _attacker(game)
-	assert_true(game.battle.opponent.units[0] in game.attacks.targets_for(shooter, shooter.warscroll.ranged_weapons[0]))
+	assert_true(game.battle.opponent.units[0] in _gun_targets(game))

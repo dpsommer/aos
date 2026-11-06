@@ -7,9 +7,8 @@ const BattleSim := preload("res://test/support/battle_sim.gd")
 
 func _play(game: GameController) -> String:
 	var reason := BattleSim.play_out(game, AiParticipant.new())
-	var over := game.is_over()
 	game.dispose()
-	return reason if not over or not reason.is_empty() else ""
+	return reason
 
 
 func test_every_answer_in_spearhead_battles_is_accepted() -> void:

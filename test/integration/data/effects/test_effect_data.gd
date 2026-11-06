@@ -157,26 +157,36 @@ func test_every_op_is_one_the_engine_has() -> void:
 	assert_gt(ops.size(), 10, "The data uses ops")
 	var unknown := {}
 	for op: String in ops:
-		if Effect._build(op) == null:
+		if Effect.build_all([{"op": op}]).is_empty():
 			unknown[op] = true
 	assert_eq(unknown.keys(), [], "Ops the engine doesn't know")
+
+
+func _small_game() -> GameController:
+	return RulesKit.game([RulesKit.unit("Mine", 1, Vector2(5, 5))] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(25, 15))] as Array[BattleUnit])
+
+
+## Whether calling [param action] reports an error. It's handled here, so the caller can list it.
+func _reports_error(action: Callable) -> bool:
+	var before := get_errors().size()
+	action.call()
+	var errors := get_errors()
+	for index in range(before, errors.size()):
+		errors[index].handled = true
+	return errors.size() > before
 
 
 func test_every_condition_is_one_the_engine_knows() -> void:
 	var lists: Array = []
 	_collect(_entries(), "when", lists)
 	assert_gt(lists.size(), 10, "The data uses conditions")
-	var game := RulesKit.game([RulesKit.unit("Mine", 1, Vector2(5, 5))] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(25, 15))] as Array[BattleUnit])
+	var game := _small_game()
 	var context := RuleContext.of_unit(game, game.battle.player.units[0])
 	var unknown := {}
 	for list: Array in lists:
 		for condition: Variant in list:
-			var before := get_errors().size()
-			Predicates.holds(condition, context)
-			var errors := get_errors()
-			for index in range(before, errors.size()):
+			if _reports_error(func() -> void: Predicates.holds(condition, context)):
 				unknown[str(condition)] = true
-				errors[index].handled = true
 	game.dispose()
 	assert_eq(unknown.keys(), [], "Conditions the engine doesn't know")
 
@@ -186,16 +196,12 @@ func test_every_hook_is_one_the_engine_has() -> void:
 	for each: Variant in _hook_names():
 		hooks[each] = true
 	assert_gt(hooks.size(), 3, "The data uses hooks")
-	var game := RulesKit.game([RulesKit.unit("Mine", 1, Vector2(5, 5))] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(25, 15))] as Array[BattleUnit])
+	var game := _small_game()
 	var unknown := {}
 	for hook_name: String in hooks:
-		var before := get_errors().size()
 		# With nobody to act on, a hook that exists does nothing.
-		EffectHooks.run(hook_name, Action.new(), game, {})
-		var errors := get_errors()
-		for index in range(before, errors.size()):
+		if _reports_error(func() -> void: EffectHooks.run(hook_name, Action.new(), game, {})):
 			unknown[hook_name] = true
-			errors[index].handled = true
 	game.dispose()
 	assert_eq(unknown.keys(), [], "Hooks the engine doesn't know")
 

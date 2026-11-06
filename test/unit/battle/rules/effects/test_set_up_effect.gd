@@ -6,6 +6,8 @@ const BattleSim := preload("res://test/support/battle_sim.gd")
 
 var _game: GameController
 var _unit: BattleUnit
+var _effect: Effect
+var _action: Action
 
 
 func before_each() -> void:
@@ -18,12 +20,17 @@ func after_each() -> void:
 	_game.dispose()
 
 
-func _start(extra := {}) -> Array:
+## Starts a set up of the unit, and returns what it asks.
+func _start(extra := {}) -> DecisionRequest:
 	var descriptor := {"op": "setup", "to": "user"}
 	descriptor.merge(extra)
-	var effect := RulesKit.effect(descriptor)
-	var action := RulesKit.action(_game, _unit)
-	return [effect, action, effect.resolve(action, _game)]
+	_effect = RulesKit.effect(descriptor)
+	_action = RulesKit.action(_game, _unit)
+	return _effect.resolve(_action, _game)
+
+
+func _answer(request: DecisionRequest, decision: Decision) -> String:
+	return _effect.answer(_action, _game, request, decision)
 
 
 func _at(x: float, y: float) -> PackedVector2Array:
@@ -31,46 +38,39 @@ func _at(x: float, y: float) -> PackedVector2Array:
 
 
 func test_it_asks_where_to_set_the_unit_up() -> void:
-	var request: DecisionRequest = _start()[2]
+	var request := _start()
 	assert_eq(request.kind, DecisionRequest.Kind.SET_UP)
 	assert_eq(request.unit, _unit)
 	assert_true(request.can_pass)
 
 
 func test_the_minimum_gap_from_enemies_is_in_the_request() -> void:
-	var request: DecisionRequest = _start({"min_enemy_gap": 6})[2]
-	assert_eq(request.min_enemy_gap, 6.0)
+	assert_eq(_start({"min_enemy_gap": 6}).min_enemy_gap, 6.0)
 
 
 func test_a_legal_spot_sets_the_unit_up() -> void:
-	var started := _start()
-	assert_eq(started[0].answer(started[1], _game, started[2], Decision.move_to(_at(10, 10))), "")
+	assert_eq(_answer(_start(), Decision.move_to(_at(10, 10))), "")
 	assert_true(_unit.is_on_battlefield())
 	assert_eq(_unit.positions, _at(10, 10))
 	assert_eq(_unit.reserve, "")
 
 
 func test_a_spot_too_near_an_enemy_is_refused() -> void:
-	var started := _start({"min_enemy_gap": 9})
-	var reason: String = started[0].answer(started[1], _game, started[2], Decision.move_to(_at(20, 16)))
-	assert_ne(reason, "")
+	assert_ne(_answer(_start({"min_enemy_gap": 9}), Decision.move_to(_at(20, 16))), "")
 	assert_false(_unit.is_on_battlefield())
 
 
 func test_a_spot_off_the_battlefield_is_refused() -> void:
-	var started := _start()
-	assert_ne(started[0].answer(started[1], _game, started[2], Decision.move_to(_at(-5, 5))), "")
+	assert_ne(_answer(_start(), Decision.move_to(_at(-5, 5))), "")
 
 
 func test_a_spot_that_breaks_coherency_is_refused() -> void:
-	var started := _start()
 	var apart := PackedVector2Array([Vector2(5, 5), Vector2(15, 5)])
-	assert_ne(started[0].answer(started[1], _game, started[2], Decision.move_to(apart)), "")
+	assert_ne(_answer(_start(), Decision.move_to(apart)), "")
 
 
 func test_every_model_has_to_be_set_up() -> void:
-	var started := _start()
-	assert_ne(started[0].answer(started[1], _game, started[2], Decision.move_to(PackedVector2Array([Vector2(5, 5)]))), "")
+	assert_ne(_answer(_start(), Decision.move_to(PackedVector2Array([Vector2(5, 5)]))), "")
 
 
 func test_a_spot_that_has_to_be_near_the_user_is_refused_if_it_is_not() -> void:
@@ -81,7 +81,6 @@ func test_a_spot_that_has_to_be_near_the_user_is_refused_if_it_is_not() -> void:
 	_game.command(_unit, Commands.Remove.new("in reserve"))
 	var effect := RulesKit.effect({"op": "setup", "near_user": 6})
 	var action := RulesKit.action(_game, anchor, [_unit] as Array[BattleUnit])
-	action.targets = [_unit] as Array[BattleUnit]
 	var request: DecisionRequest = effect.resolve(action, _game)
 	assert_eq(request.near_unit, anchor)
 	assert_ne(effect.answer(action, _game, request, Decision.move_to(_at(5, 5))), "", "Ten inches away")
@@ -89,20 +88,17 @@ func test_a_spot_that_has_to_be_near_the_user_is_refused_if_it_is_not() -> void:
 
 
 func test_passing_leaves_the_unit_in_reserve() -> void:
-	var started := _start()
-	assert_eq(started[0].answer(started[1], _game, started[2], Decision.pass_it()), "")
+	assert_eq(_answer(_start(), Decision.pass_it()), "")
 	assert_false(_unit.is_on_battlefield())
 
 
 func test_once_answered_it_asks_nothing_more() -> void:
-	var started := _start()
-	started[0].answer(started[1], _game, started[2], Decision.pass_it())
-	assert_null(started[0].resolve(started[1], _game))
+	_answer(_start(), Decision.pass_it())
+	assert_null(_effect.resolve(_action, _game))
 
 
 func test_a_unit_set_up_is_marked_as_set_up_this_turn() -> void:
-	var started := _start()
-	started[0].answer(started[1], _game, started[2], Decision.move_to(_at(10, 10)))
+	_answer(_start(), Decision.move_to(_at(10, 10)))
 	assert_true(_game.was_set_up_this_turn(_unit))
 
 
@@ -119,15 +115,13 @@ func test_a_unit_with_no_positions_is_laid_out_in_the_request() -> void:
 
 
 func test_a_set_up_closer_than_the_gap_is_refused() -> void:
-	var started := _start({"min_enemy_gap": 6})
-	assert_ne(started[0].answer(started[1], _game, started[2], Decision.move_to(_at(20, 16))), "")
+	assert_ne(_answer(_start({"min_enemy_gap": 6}), Decision.move_to(_at(20, 16))), "")
 	assert_false(_unit.is_on_battlefield())
 
 
 func test_an_accepted_set_up_clears_the_reserve() -> void:
 	_unit.reserve = "in reserve"
-	var started := _start()
-	started[0].answer(started[1], _game, started[2], Decision.move_to(_at(10, 10)))
+	_answer(_start(), Decision.move_to(_at(10, 10)))
 	assert_true(_unit.is_on_battlefield())
 	assert_eq(_unit.reserve, "")
 
@@ -147,5 +141,4 @@ func _brutes_set_up_rounds(seed_value: int) -> Array[int]:
 func test_brutes_in_an_ai_battle_are_only_set_up_from_round_three() -> void:
 	var rounds := _brutes_set_up_rounds(1)
 	assert_false(rounds.is_empty(), "They came on")
-	for round_number in rounds:
-		assert_gte(round_number, 3)
+	assert_gte(rounds.min(), 3)

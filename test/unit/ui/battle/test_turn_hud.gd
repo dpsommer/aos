@@ -230,12 +230,17 @@ func test_confirm_can_be_disabled_until_the_move_is_legal() -> void:
 	assert_false((_hud.get_node(^"%Confirm") as Button).disabled)
 
 
-func test_pressing_confirm_and_put_back_report_them() -> void:
+func test_pressing_confirm_reports_it() -> void:
 	_hud.show_move("Move.", true, false)
 	watch_signals(_hud)
 	(_hud.get_node(^"%Confirm") as Button).pressed.emit()
-	(_hud.get_node(^"%Reset") as Button).pressed.emit()
 	assert_signal_emitted(_hud, "confirm_pressed")
+
+
+func test_pressing_put_back_reports_it() -> void:
+	_hud.show_move("Move.", true, false)
+	watch_signals(_hud)
+	(_hud.get_node(^"%Reset") as Button).pressed.emit()
 	assert_signal_emitted(_hud, "reset_pressed")
 
 

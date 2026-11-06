@@ -83,6 +83,17 @@ func _rolls(game: GameController, roll_name: String) -> Array[int]:
 	return result
 
 
+func _entry(game: GameController, ability_name: String) -> AbilityEntry:
+	for each: AbilityEntry in game.books[game.battle.player]:
+		if each.ability.name == ability_name:
+			return each
+	return null
+
+
+func _kinds_asked(asked: Array[DecisionRequest]) -> Array:
+	return asked.map(func(request: DecisionRequest) -> DecisionRequest.Kind: return request.kind)
+
+
 # Casting
 
 func test_a_spell_cast_with_a_high_enough_roll_has_its_effect() -> void:
@@ -145,18 +156,14 @@ func test_a_wizard_that_has_used_its_power_cannot_cast_another_spell() -> void:
 	var first := _give(caster, "Test Spell", "spell", _mortal(), {}, PackedStringArray(["SPELL"]))
 	first.casting_value = 2
 	var game := _game([caster] as Array[BattleUnit], [_unit("Enemy", Vector2(20, 10))] as Array[BattleUnit], RulesKit.seed_for([3, 4]))
-	var asked := _use(game, "Test Spell")
-	assert_false(asked.is_empty())
-	var entry: AbilityEntry
-	for each: AbilityEntry in game.books[game.battle.player]:
-		if each.ability.name == "Other Spell":
-			entry = each
-	assert_ne(game.reason_unavailable(entry, caster), "")
+	assert_false(_use(game, "Test Spell").is_empty())
+	assert_ne(game.reason_unavailable(_entry(game, "Other Spell"), caster), "")
 
 
 func test_a_unit_that_is_not_a_wizard_cannot_cast() -> void:
 	var game := _caster_game("spell", 2, _mortal(), 1, {}, [])
 	var asked := _use(game, "Test Spell")
+	assert_false(asked.is_empty(), "The battle got under way")
 	var offered := false
 	for request in asked:
 		for option in request.options:
@@ -196,8 +203,8 @@ func test_an_unbinding_roll_that_equals_the_casting_roll_leaves_the_spell() -> v
 func test_a_spell_that_failed_to_cast_cannot_be_unbound() -> void:
 	var game := _caster_game("spell", 7, _mortal(), RulesKit.seed_for([1, 2]))
 	var asked := _use(game, "Test Spell", _unbinder)
-	for request in asked:
-		assert_ne(request.kind, DecisionRequest.Kind.REACTION)
+	assert_eq(_rolls(game, "casting"), [3] as Array[int], "It was cast, and failed")
+	assert_false(DecisionRequest.Kind.REACTION in _kinds_asked(asked))
 
 
 func test_unbinding_is_not_limited_to_the_power_of_the_unbinder() -> void:
@@ -351,13 +358,12 @@ func test_with_two_targets_to_choose_from_the_player_is_asked() -> void:
 
 func test_the_picked_target_takes_the_damage() -> void:
 	var game := _two_enemies_game()
-	var request := _at_targets(game)
+	assert_not_null(_at_targets(game))
 	var second := game.battle.opponent.units[1]
 	assert_eq(game.answer(Decision.pick([second] as Array[BattleUnit])), "")
 	game.next_decision()
 	assert_eq(_damage_of(game, second), 3)
 	assert_eq(_damage_of(game, game.battle.opponent.units[0]), 0)
-	assert_not_null(request)
 
 
 func test_a_unit_that_is_not_eligible_cannot_be_picked() -> void:
@@ -377,8 +383,8 @@ func test_the_wrong_number_of_targets_is_refused() -> void:
 func test_a_single_eligible_target_is_picked_without_asking() -> void:
 	var game := _caster_game("spell", 2, _mortal(), RulesKit.seed_for([3, 4]))
 	var asked := _use(game, "Test Spell")
-	for request in asked:
-		assert_ne(request.kind, DecisionRequest.Kind.TARGETS)
+	assert_eq(_damage_of(game, game.battle.opponent.units[0]), 5, "The only target was hit")
+	assert_false(DecisionRequest.Kind.TARGETS in _kinds_asked(asked))
 
 
 func test_a_target_out_of_range_is_not_eligible() -> void:
@@ -386,11 +392,7 @@ func test_a_target_out_of_range_is_not_eligible() -> void:
 	var far := _unit("Far", Vector2(28, 10))
 	_give(user, "Strike", "active", _mortal("3"), {"target": {"side": "enemy", "within": 10}})
 	var game := _game([user] as Array[BattleUnit], [far] as Array[BattleUnit])
-	var entry: AbilityEntry
-	for each: AbilityEntry in game.books[game.battle.player]:
-		if each.ability.name == "Strike":
-			entry = each
-	assert_eq(game.reason_unavailable(entry, user), "No target.")
+	assert_eq(game.reason_unavailable(_entry(game, "Strike"), user), "No target.")
 
 
 func test_a_target_of_all_hits_every_eligible_unit() -> void:

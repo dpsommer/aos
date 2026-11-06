@@ -65,10 +65,19 @@ func _fights(game: GameController, first_offer: Array[String] = []) -> Array[Str
 	return picks
 
 
+## Whose each of [param picks] from [method _fights] was, or which unit's with [param part] 1.
+func _pick_parts(picks: Array[String], part := 0) -> Array:
+	return picks.map(func(pick: String) -> String: return pick.get_slice(":", part))
+
+
+## Plays to the first time a player is asked to pick a unit to fight.
+func _at_first_pick(game: GameController) -> DecisionRequest:
+	return RulesKit.drive(game, func(r: DecisionRequest) -> Decision: return null if r.prompt == PICK else (Decision.choose(0) if r.kind == DecisionRequest.Kind.FIRST_TURN else Decision.pass_it()))
+
+
 func test_the_players_alternate_picking_a_unit_to_fight() -> void:
 	var picks := _fights(_block())
-	assert_eq(picks.size(), 4, "Each unit fights once")
-	assert_eq(picks.slice(0, 4).map(func(p: String) -> String: return p.get_slice(":", 0)), ["player", "opponent", "player", "opponent"])
+	assert_eq(_pick_parts(picks), ["player", "opponent", "player", "opponent"], "Each unit fights once")
 
 
 func test_the_active_player_picks_first() -> void:
@@ -77,8 +86,7 @@ func test_the_active_player_picks_first() -> void:
 
 
 func test_each_unit_fights_once() -> void:
-	var picks := _fights(_block())
-	var units := picks.map(func(p: String) -> String: return p.get_slice(":", 1))
+	var units := _pick_parts(_fights(_block()), 1)
 	units.sort()
 	assert_eq(units, ["O1", "O2", "P1", "P2"])
 
@@ -86,8 +94,7 @@ func test_each_unit_fights_once() -> void:
 func test_a_player_with_nothing_left_to_fight_with_lets_the_other_go_on() -> void:
 	var mine: Array[BattleUnit] = [_fighter("P1", Vector2(5, 5)), _fighter("P2", Vector2(5, 8))]
 	var theirs: Array[BattleUnit] = [_fighter("O1", Vector2(6.5, 5))]
-	var picks := _fights(_game(mine, theirs))
-	assert_eq(picks.map(func(p: String) -> String: return p.get_slice(":", 0)), ["player", "opponent", "player"])
+	assert_eq(_pick_parts(_fights(_game(mine, theirs))), ["player", "opponent", "player"])
 
 
 func test_a_strike_first_unit_fights_before_the_active_players_units() -> void:
@@ -99,7 +106,7 @@ func test_a_strike_first_unit_fights_before_the_active_players_units() -> void:
 
 func test_strike_first_units_all_fight_before_the_rest() -> void:
 	var picks := _fights(_block([["STRIKE-FIRST"]], [["STRIKE-FIRST"]]))
-	var firsts := picks.slice(0, 2).map(func(p: String) -> String: return p.get_slice(":", 1))
+	var firsts := _pick_parts(picks.slice(0, 2), 1)
 	firsts.sort()
 	assert_eq(firsts, ["O1", "P1"])
 
@@ -119,7 +126,7 @@ func test_strike_first_and_strike_last_cancel_out() -> void:
 
 func test_a_unit_that_has_to_fight_cannot_pass() -> void:
 	var game := _block()
-	var at_pick := RulesKit.drive(game, func(r: DecisionRequest) -> Decision: return null if r.prompt == PICK else (Decision.choose(0) if r.kind == DecisionRequest.Kind.FIRST_TURN else Decision.pass_it()))
+	var at_pick := _at_first_pick(game)
 	assert_not_null(at_pick)
 	assert_ne(game.answer(Decision.pass_it()), "")
 	assert_eq(game.next_decision(), at_pick)
@@ -127,7 +134,7 @@ func test_a_unit_that_has_to_fight_cannot_pass() -> void:
 
 func test_a_unit_that_is_not_on_offer_cannot_be_picked() -> void:
 	var game := _block()
-	var at_pick := RulesKit.drive(game, func(r: DecisionRequest) -> Decision: return null if r.prompt == PICK else (Decision.choose(0) if r.kind == DecisionRequest.Kind.FIRST_TURN else Decision.pass_it()))
+	var at_pick := _at_first_pick(game)
 	var elsewhere := ActionOption.create(at_pick.options[0].entry, game.battle.opponent.units[0])
 	assert_ne(game.answer(Decision.use(elsewhere)), "")
 
@@ -152,8 +159,12 @@ func test_strike_first_does_nothing_for_a_unit_not_in_combat_when_the_phase_bega
 	var phase := _opened(game)
 	var late := _fighter("Late", Vector2(25, 15), PackedStringArray(["STRIKE-FIRST"]))
 	assert_false(phase.strikes_first(game, late))
-	game.battle.opponent.units[0].positions = PackedVector2Array([Vector2(25, 15)])
-	assert_false(phase.strikes_first(game, game.battle.opponent.units[1]), "Without the keyword")
+
+
+func test_strike_first_does_nothing_for_a_unit_without_the_keyword() -> void:
+	var game := _block([], [["STRIKE-FIRST"]])
+	var phase := _opened(game)
+	assert_false(phase.strikes_first(game, game.battle.opponent.units[1]))
 
 
 func test_a_unit_that_came_into_combat_after_the_phase_began_does_not_strike_first() -> void:

@@ -126,9 +126,15 @@ func test_unspent_command_points_are_lost_when_the_round_ends() -> void:
 	assert_eq(game.state.commands_of(game.battle.opponent), 0)
 
 
-func test_a_command_is_refused_without_enough_command_points() -> void:
+## A unit with [code]Costly[/code], a command that costs 2 command points.
+func _costly_unit() -> BattleUnit:
 	var unit := RulesKit.unit("Mine", 1, Vector2(2, 5))
 	_heal_for(unit, "Costly", "Your Hero Phase", "command", PackedStringArray(), 2)
+	return unit
+
+
+func test_a_command_is_refused_without_enough_command_points() -> void:
+	var unit := _costly_unit()
 	var game := _matched([unit] as Array[BattleUnit])
 	game.state.command_points[game.battle.player] = 1
 	var entry := _entry(game, game.battle.player, "Costly")
@@ -136,16 +142,14 @@ func test_a_command_is_refused_without_enough_command_points() -> void:
 
 
 func test_a_command_is_available_with_enough_command_points() -> void:
-	var unit := RulesKit.unit("Mine", 1, Vector2(2, 5))
-	_heal_for(unit, "Costly", "Your Hero Phase", "command", PackedStringArray(), 2)
+	var unit := _costly_unit()
 	var game := _matched([unit] as Array[BattleUnit])
 	game.state.command_points[game.battle.player] = 2
 	assert_eq(game.reason_unavailable(_entry(game, game.battle.player, "Costly"), unit), "")
 
 
 func test_using_a_command_spends_its_command_points() -> void:
-	var unit := RulesKit.unit("Mine", 1, Vector2(2, 5))
-	_heal_for(unit, "Costly", "Your Hero Phase", "command", PackedStringArray(), 2)
+	var unit := _costly_unit()
 	var game := _matched([unit] as Array[BattleUnit])
 	game.state.command_points[game.battle.player] = 4
 	var action := Action.create(ActionOption.create(_entry(game, game.battle.player, "Costly"), unit))
@@ -154,21 +158,21 @@ func test_using_a_command_spends_its_command_points() -> void:
 
 
 func test_a_command_that_costs_too_much_is_not_offered_in_its_phase() -> void:
-	var unit := RulesKit.unit("Mine", 1, Vector2(2, 5))
-	_heal_for(unit, "Costly", "Your Hero Phase", "command", PackedStringArray(), 2)
-	var game := _matched([unit] as Array[BattleUnit])
+	var game := _matched([_costly_unit()] as Array[BattleUnit])
 	game.state.active = game.battle.player
 	game.state.command_points[game.battle.player] = 1
-	var names := game.options_in(M.HERO, game.battle.player).map(func(o: ActionOption) -> String: return o.ability_name())
-	assert_false("Costly" in names)
+	assert_false("Costly" in _offered(game))
+
+
+func test_a_command_that_can_be_paid_for_is_offered_in_its_phase() -> void:
+	var game := _matched([_costly_unit()] as Array[BattleUnit])
+	game.state.active = game.battle.player
 	game.state.command_points[game.battle.player] = 2
-	names = game.options_in(M.HERO, game.battle.player).map(func(o: ActionOption) -> String: return o.ability_name())
-	assert_true("Costly" in names)
+	assert_true("Costly" in _offered(game))
 
 
 func test_a_phase_refuses_a_command_chosen_without_the_points() -> void:
-	var unit := RulesKit.unit("Mine", 1, Vector2(2, 5))
-	_heal_for(unit, "Costly", "Your Hero Phase", "command", PackedStringArray(), 2)
+	var unit := _costly_unit()
 	var game := _matched([unit] as Array[BattleUnit])
 	var in_hero := RulesKit.drive(game, func(r: DecisionRequest) -> Decision: return null if r.kind == DecisionRequest.Kind.ACTION and r.prompt.begins_with("Hero") else RulesKit.pass_on(r))
 	assert_not_null(in_hero)
@@ -179,8 +183,7 @@ func test_a_phase_refuses_a_command_chosen_without_the_points() -> void:
 
 
 func test_spearhead_commands_do_not_cost_command_points() -> void:
-	var unit := RulesKit.unit("Mine", 1, Vector2(2, 5))
-	_heal_for(unit, "Costly", "Your Hero Phase", "command", PackedStringArray(), 2)
+	var unit := _costly_unit()
 	var game := RulesKit.game([unit] as Array[BattleUnit], [RulesKit.unit("Theirs", 1, Vector2(28, 15))] as Array[BattleUnit])
 	_games.append(game)
 	assert_eq(game.reason_unavailable(_entry(game, game.battle.player, "Costly"), unit), "")
@@ -242,24 +245,22 @@ func test_reactions_go_on_until_both_pass_in_a_row() -> void:
 	assert_eq(asked, ["player", "opponent", "player"] as Array[String], "The player passes, the opponent reacts, the player may react again")
 
 
-func test_a_player_with_no_reaction_is_not_asked() -> void:
+## A game where the player's Test Strike has [param keyword], and only the opponent can react, to a
+## TEST ability.
+func _strike_game(keyword: String) -> GameController:
 	var striker := RulesKit.unit("Striker", 1, Vector2(2, 5))
-	_heal_for(striker, "Test Strike", "Your Hero Phase", "active", PackedStringArray(["TEST"]))
+	_heal_for(striker, "Test Strike", "Your Hero Phase", "active", PackedStringArray([keyword]))
 	var enemy := RulesKit.unit("Enemy", 1, Vector2(28, 15))
 	_heal_for(enemy, "Theirs Reacts", "Reaction: Opponent declared a TEST ability")
-	var game := RulesKit.matched_game([striker] as Array[BattleUnit], [enemy] as Array[BattleUnit])
-	_games.append(game)
-	assert_eq(_play_strike(game, [] as Array[String]), ["opponent"] as Array[String])
+	return _matched([striker] as Array[BattleUnit], [enemy] as Array[BattleUnit])
+
+
+func test_a_player_with_no_reaction_is_not_asked() -> void:
+	assert_eq(_play_strike(_strike_game("TEST"), [] as Array[String]), ["opponent"] as Array[String])
 
 
 func test_a_reaction_to_something_else_is_not_offered() -> void:
-	var striker := RulesKit.unit("Striker", 1, Vector2(2, 5))
-	_heal_for(striker, "Test Strike", "Your Hero Phase", "active", PackedStringArray(["OTHER"]))
-	var enemy := RulesKit.unit("Enemy", 1, Vector2(28, 15))
-	_heal_for(enemy, "Theirs Reacts", "Reaction: Opponent declared a TEST ability")
-	var game := RulesKit.matched_game([striker] as Array[BattleUnit], [enemy] as Array[BattleUnit])
-	_games.append(game)
-	assert_true(_play_strike(game, [] as Array[String]).is_empty())
+	assert_true(_play_strike(_strike_game("OTHER"), [] as Array[String]).is_empty())
 
 
 func test_a_reaction_can_only_be_used_once_a_phase_by_its_unit() -> void:
@@ -370,7 +371,7 @@ func _distinct_spots(positions: PackedVector2Array) -> int:
 # Units that start in reserve
 
 ## A game in which a Brutes unit in reserve has an ability only it can use in round 3 or later.
-func _reserve_game(unit_name := "Brutes") -> Array:
+func _reserve_game(unit_name := "Brutes") -> GameController:
 	var brutes := RulesKit.unit(unit_name, 2, Vector2(5, 5))
 	brutes.start_in_reserve()
 	var ability := RulesKit.ability("Arrive", "Your Hero Phase")
@@ -382,35 +383,36 @@ func _reserve_game(unit_name := "Brutes") -> Array:
 	var game := _matched([brutes] as Array[BattleUnit])
 	game.state.active = game.battle.player
 	game.state.round_number = 3
-	return [game, brutes]
+	return game
 
 
+## What's offered to the player in the hero phase, by name.
 func _offered(game: GameController) -> Array:
 	return game.options_in(M.HERO, game.battle.player).map(func(o: ActionOption) -> String: return o.ability_name())
 
 
 func test_a_unit_in_reserve_is_offered_its_reserve_ability() -> void:
-	assert_true("Arrive" in _offered(_reserve_game()[0]))
+	assert_true("Arrive" in _offered(_reserve_game()))
 
 
 func test_a_reserve_ability_is_not_offered_before_its_round() -> void:
-	var game: GameController = _reserve_game()[0]
+	var game := _reserve_game()
 	game.state.round_number = 2
 	assert_false("Arrive" in _offered(game))
 
 
 func test_a_reserve_ability_is_not_offered_to_a_unit_that_is_not_named() -> void:
-	var game: GameController = _reserve_game("Other")[0]
-	assert_false("Arrive" in _offered(game))
+	assert_false("Arrive" in _offered(_reserve_game("Other")))
 
 
 func test_a_reserve_ability_is_not_offered_to_a_destroyed_unit() -> void:
-	var setup := _reserve_game()
-	setup[1].destroyed = true
-	assert_false("Arrive" in _offered(setup[0]))
+	var game := _reserve_game()
+	game.battle.player.units[0].destroyed = true
+	assert_false("Arrive" in _offered(game))
 
 
 func test_a_reserve_ability_is_not_offered_once_the_unit_is_on_the_battlefield() -> void:
-	var setup := _reserve_game()
-	setup[0].command(setup[1], Commands.SetUp.new(setup[1].positions))
-	assert_false("Arrive" in _offered(setup[0]))
+	var game := _reserve_game()
+	var brutes := game.battle.player.units[0]
+	game.command(brutes, Commands.SetUp.new(brutes.positions))
+	assert_false("Arrive" in _offered(game))

@@ -280,6 +280,7 @@ func test_plan_towards_does_not_go_further_than_the_move() -> void:
 	var game := _with_enemies([_enemy(Vector2(25, 18))] as Array[BattleUnit], 3)
 	var spec := _spec(game, MoveSpec.Kind.NORMAL)
 	var plan := MovementRules.plan_towards(game, spec, Vector2(25, 5))
+	assert_eq(plan.size(), 3, "A spot for each model")
 	for i in plan.size():
 		assert_lte(plan[i].distance_to(_mover(game).positions[i]), spec.max_distance + MovementRules.EPSILON)
 
@@ -290,7 +291,7 @@ func test_plan_towards_stops_at_the_goal_if_it_is_near() -> void:
 	assert_almost_eq(plan[0].x, 7.0, 0.1)
 
 
-func test_plan_towards_goes_round_an_obstacle() -> void:
+func test_plan_towards_past_an_obstacle_is_legal_or_empty() -> void:
 	var game := _with_enemies([_enemy(Vector2(8, 5), 3)] as Array[BattleUnit], 3)
 	var spec := _spec(game, MoveSpec.Kind.NORMAL)
 	var plan := MovementRules.plan_towards(game, spec, Vector2(25, 5))

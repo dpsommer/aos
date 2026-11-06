@@ -34,6 +34,16 @@ func _play(game: GameController, stop: Callable = Callable()) -> DecisionRequest
 		return RulesKit.pass_on(request), 2000)
 
 
+## Plays to the decision of who goes first in round two.
+func _play_to_round_two(game: GameController) -> void:
+	_play(game, func(request: DecisionRequest) -> bool: return request.kind == DecisionRequest.Kind.FIRST_TURN and game.state.round_number == 2)
+
+
+## The window of each phase that started, in order.
+func _windows(game: GameController) -> Array:
+	return _kinds(game, BattleEvent.PHASE_STARTED).map(func(event: BattleEvent) -> int: return event.data.window)
+
+
 func test_the_battle_lasts_the_rounds_the_rules_say() -> void:
 	var game := _game()
 	_play(game)
@@ -82,9 +92,7 @@ func test_the_player_who_goes_first_in_round_one_has_the_first_turn() -> void:
 func test_each_turn_runs_through_the_phases_in_order() -> void:
 	var game := _game()
 	_play(game)
-	var windows: Array = []
-	for event in _kinds(game, BattleEvent.PHASE_STARTED):
-		windows.append(event.data.window)
+	var windows := _windows(game)
 	# The round's start window, then the first turn's phases.
 	var turn: Array = AbilityTiming.TURN_WINDOWS
 	assert_eq(windows[0], AbilityTiming.Moment.START_OF_ROUND)
@@ -94,10 +102,7 @@ func test_each_turn_runs_through_the_phases_in_order() -> void:
 func test_the_rounds_end_window_comes_after_the_second_turn() -> void:
 	var game := _game()
 	_play(game)
-	var windows: Array = []
-	for event in _kinds(game, BattleEvent.PHASE_STARTED):
-		windows.append(event.data.window)
-	assert_eq(windows[1 + 2 * AbilityTiming.TURN_WINDOWS.size() + 0], AbilityTiming.Moment.END_OF_ROUND)
+	assert_eq(_windows(game)[1 + 2 * AbilityTiming.TURN_WINDOWS.size()], AbilityTiming.Moment.END_OF_ROUND)
 
 
 func test_every_phase_that_starts_ends() -> void:
@@ -115,7 +120,7 @@ func test_the_turn_counter_goes_up_each_turn() -> void:
 func test_turn_statistics_start_again_each_turn() -> void:
 	var game := _game()
 	game.state.count_turn(game.battle.player, &"enemy_destroyed")
-	_play(game, func(request: DecisionRequest) -> bool: return request.kind == DecisionRequest.Kind.FIRST_TURN and game.state.round_number == 2)
+	_play_to_round_two(game)
 	assert_eq(game.state.turn_stat(game.battle.player, &"enemy_destroyed"), 0)
 
 
@@ -123,15 +128,18 @@ func test_turn_statistics_start_again_each_turn() -> void:
 
 func _at_round_two(seed_value: int) -> GameController:
 	var game := _game(seed_value)
-	_play(game, func(request: DecisionRequest) -> bool: return request.kind == DecisionRequest.Kind.FIRST_TURN and game.state.round_number == 2)
+	_play_to_round_two(game)
 	return game
 
 
-func test_the_higher_priority_roll_chooses_in_later_rounds() -> void:
+func test_the_player_chooses_in_later_rounds_with_the_higher_priority_roll() -> void:
 	var game := _at_round_two(RulesKit.seed_for([6, 1]))
 	assert_eq(game.next_decision().army, game.battle.player, "Player 6 against 1")
-	var other := _at_round_two(RulesKit.seed_for([1, 6]))
-	assert_eq(other.next_decision().army, other.battle.opponent)
+
+
+func test_the_opponent_chooses_in_later_rounds_with_the_higher_priority_roll() -> void:
+	var game := _at_round_two(RulesKit.seed_for([1, 6]))
+	assert_eq(game.next_decision().army, game.battle.opponent, "Player 1 against 6")
 
 
 func test_a_tied_priority_roll_goes_to_whoever_went_first_last_round() -> void:
@@ -171,7 +179,7 @@ func test_the_active_army_scores_at_the_end_of_its_turn() -> void:
 	plan.scoring = PackedStringArray(["Score 3 victory points if you control at least 1 objective."])
 	game.battle.battleplan = plan
 	game.battle.objectives = [BattleKit.feature("Sun Seekers", Vector2(5, 5))] as Array[MapFeature]
-	_play(game, func(request: DecisionRequest) -> bool: return request.kind == DecisionRequest.Kind.FIRST_TURN and game.state.round_number == 2)
+	_play_to_round_two(game)
 	assert_eq(game.state.points_of(game.battle.player), 3, "It stands on the objective and had one turn")
 	assert_eq(game.state.points_of(game.battle.opponent), 0)
 
@@ -180,5 +188,5 @@ func test_the_end_of_a_turn_works_out_who_controls_objectives() -> void:
 	var game := _game()
 	var objective := BattleKit.feature("Sun Seekers", Vector2(5, 5))
 	game.battle.objectives = [objective] as Array[MapFeature]
-	_play(game, func(request: DecisionRequest) -> bool: return request.kind == DecisionRequest.Kind.FIRST_TURN and game.state.round_number == 2)
+	_play_to_round_two(game)
 	assert_eq(game.state.objective_control[objective], game.battle.player)

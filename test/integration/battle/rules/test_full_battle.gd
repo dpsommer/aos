@@ -18,7 +18,7 @@ func _play(seed_value: int) -> GameController:
 func test_a_spearhead_battle_plays_to_a_result() -> void:
 	var game := _play(1)
 	assert_true(game.is_over())
-	assert_eq(game.state.round_number, 4)
+	assert_eq(game.state.round_number, game.rules.round_count())
 	game.dispose()
 
 

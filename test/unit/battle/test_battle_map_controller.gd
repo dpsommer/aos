@@ -13,6 +13,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
+	RulesKit.forget_abilities()
 	Sandbox.end()
 
 
@@ -25,6 +26,11 @@ func _started(player_first := true, played_out := false) -> BattleMapController:
 	game.battle.player_is_attacker = player_first
 	if played_out:
 		RulesKit.drive(game, RulesKit.pass_on, 2000)
+	return _controller_of(game)
+
+
+## A controller on the map of [param game], started from wherever the game has got to.
+func _controller_of(game: GameController) -> BattleMapController:
 	var map: BattleMap = MapScene.instantiate()
 	add_child_autofree(map)
 	map.build(game.battle)
@@ -107,24 +113,43 @@ func test_leaving_the_result_finishes_the_controller() -> void:
 	assert_signal_emitted(controller, "finished")
 
 
-## A started controller with a request to set up a unit that is in reserve and has no node.
-func _asked_to_set_up() -> Array:
-	var controller := _started()
-	var unit: BattleUnit = controller.battle.player.units[0]
-	controller.game.command(unit, Commands.Remove.new("in reserve"))
-	controller.map.unit_nodes.erase(unit)
-	var effect := RulesKit.effect({"op": "setup", "to": "user"})
-	controller.request = effect.resolve(RulesKit.action(controller.game, unit), controller.game)
-	controller._show_request()
-	return [controller, unit]
+## A started controller offering the player [code]Arrive[/code], which sets up a unit in reserve.
+func _offering_arrive() -> BattleMapController:
+	var arriving := RulesKit.unit("Arriving", 2, Vector2(5, 5))
+	arriving.start_in_reserve()
+	RulesKit.add_ability(arriving, RulesKit.ability("Arrive", "Your Hero Phase"), {"user": {"from": "reserve"}, "do": [{"op": "setup", "to": "user"}]})
+	var game := RulesKit.matched_game([arriving] as Array[BattleUnit], [RulesKit.unit("Theirs", 2, Vector2(25, 15))] as Array[BattleUnit])
+	game.battle.player_is_attacker = true
+	var offer := RulesKit.drive(game, func(request: DecisionRequest) -> Decision:
+		return null if _arrive_in(request) else RulesKit.pass_on(request))
+	assert_not_null(offer, "Arrive was offered")
+	return _controller_of(game)
+
+
+func _arrive_in(request: DecisionRequest) -> ActionOption:
+	for option in request.options:
+		if option.ability_name() == "Arrive":
+			return option
+	return null
+
+
+func _press_arrive(controller: BattleMapController) -> void:
+	controller.hud.option_picked.emit(_arrive_in(controller.request))
 
 
 func test_a_set_up_request_for_a_unit_with_no_node_adds_one_for_the_preview() -> void:
-	var asked := _asked_to_set_up()
-	assert_true(asked[0].map.unit_nodes.has(asked[1]))
+	var controller := _offering_arrive()
+	var unit: BattleUnit = controller.battle.player.units[0]
+	assert_false(controller.map.unit_nodes.has(unit), "In reserve, so not on the board yet")
+	_press_arrive(controller)
+	assert_eq(controller.request.kind, DecisionRequest.Kind.SET_UP)
+	assert_true(controller.map.unit_nodes.has(unit))
 
 
 func test_passing_a_set_up_removes_the_preview_again() -> void:
-	var asked := _asked_to_set_up()
-	asked[0]._clear_move()
-	assert_false(asked[0].map.unit_nodes.has(asked[1]))
+	var controller := _offering_arrive()
+	var unit: BattleUnit = controller.battle.player.units[0]
+	_press_arrive(controller)
+	controller.hud.pass_pressed.emit()
+	assert_false(controller.map.unit_nodes.has(unit))
+	await get_tree().process_frame

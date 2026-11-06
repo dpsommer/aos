@@ -90,14 +90,24 @@ func test_it_unbinds() -> void:
 	assert_eq(decision.option, unbind)
 
 
-func test_it_picks_the_nearest_targets() -> void:
+func _targets_request(units: Array[BattleUnit]) -> DecisionRequest:
+	var request := _request(DecisionRequest.Kind.TARGETS)
+	request.units = units
+	request.action = RulesKit.action(_game, _user)
+	return request
+
+
+func test_it_picks_the_nearest_target() -> void:
 	var near := RulesKit.unit("Near", 1, Vector2(8, 5))
 	var far := RulesKit.unit("Far", 1, Vector2(25, 5))
-	var action := RulesKit.action(_game, _user)
-	var request := _request(DecisionRequest.Kind.TARGETS)
-	request.units = [far, near] as Array[BattleUnit]
-	request.action = action
+	var request := _targets_request([far, near] as Array[BattleUnit])
 	assert_eq(_ai.decide(request, _game).units, [near] as Array[BattleUnit])
+
+
+func test_it_picks_as_many_targets_as_it_is_asked_for() -> void:
+	var near := RulesKit.unit("Near", 1, Vector2(8, 5))
+	var far := RulesKit.unit("Far", 1, Vector2(25, 5))
+	var request := _targets_request([far, near] as Array[BattleUnit])
 	request.count = 2
 	assert_eq(_ai.decide(request, _game).units.size(), 2)
 
@@ -112,31 +122,28 @@ func test_it_aims_each_weapon_at_the_unit_with_the_fewest_models() -> void:
 	assert_eq(_ai.decide(request, _game).attack_targets, {weapon: small})
 
 
-func test_it_answers_a_move_with_a_legal_move_or_a_pass() -> void:
-	var spec := MoveSpec.create(_user, MoveSpec.Kind.NORMAL, 6.0)
+func _move_request(distance: float) -> DecisionRequest:
 	var request := _request(DecisionRequest.Kind.MOVE)
-	request.move = spec
+	request.move = MoveSpec.create(_user, MoveSpec.Kind.NORMAL, distance)
 	request.unit = _user
+	return request
+
+
+func test_it_answers_a_move_with_a_legal_move_or_a_pass() -> void:
+	var request := _move_request(6.0)
 	var decision := _ai.decide(request, _game)
 	assert_false(decision.passed, "There is room to move")
-	assert_true(MovementRules.is_legal(_game, spec, decision.positions))
+	assert_true(MovementRules.is_legal(_game, request.move, decision.positions))
 
 
 func test_it_moves_towards_the_enemy() -> void:
-	var spec := MoveSpec.create(_user, MoveSpec.Kind.NORMAL, 6.0)
-	var request := _request(DecisionRequest.Kind.MOVE)
-	request.move = spec
-	request.unit = _user
-	var decision := _ai.decide(request, _game)
-	assert_lt(BattleGeometry.middle(MovementRules._at(_user, decision.positions)).distance_to(_enemy.positions[0]), BattleGeometry.middle(_user).distance_to(_enemy.positions[0]))
+	var before := BattleGeometry.middle(_user).distance_to(_enemy.positions[0])
+	_user.positions = _ai.decide(_move_request(6.0), _game).positions
+	assert_lt(BattleGeometry.middle(_user).distance_to(_enemy.positions[0]), before)
 
 
 func test_it_passes_a_move_with_nowhere_to_go() -> void:
-	var spec := MoveSpec.create(_user, MoveSpec.Kind.NORMAL, 0.0)
-	var request := _request(DecisionRequest.Kind.MOVE)
-	request.move = spec
-	request.unit = _user
-	assert_true(_ai.decide(request, _game).passed)
+	assert_true(_ai.decide(_move_request(0.0), _game).passed)
 
 
 func test_it_sets_a_unit_up_where_it_is_allowed() -> void:

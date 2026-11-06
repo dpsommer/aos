@@ -1,11 +1,12 @@
 extends GutTest
 ## Effect data and whether it still matches the rules text it was written from.
 
+const RulesKit := preload("res://test/support/rules_kit.gd")
 const KEY := "faction:test/entry"
 
 
 func after_each() -> void:
-	EffectCatalog._entries.erase(KEY)
+	RulesKit.forget_abilities()
 
 
 func _ability(effect := "Does a thing.") -> Ability:
@@ -56,10 +57,8 @@ func test_an_entry_with_the_wrong_hash_is_stale() -> void:
 
 
 func test_an_entry_without_a_hash_is_stale() -> void:
-	var ability := _ability()
-	_add(ability)
-	EffectCatalog._entries[KEY].erase("hash")
-	assert_true(EffectCatalog.descriptor(KEY, ability).is_empty())
+	EffectCatalog.add_entries({KEY: {"do": [{"op": "heal"}]}})
+	assert_true(EffectCatalog.descriptor(KEY, _ability()).is_empty())
 
 
 func test_a_key_with_no_entry_is_empty() -> void:
