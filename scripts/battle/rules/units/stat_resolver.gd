@@ -175,6 +175,4 @@ func _in_aura(modifier: Modifier, holder: BattlefieldController, unit: BattleUni
 			return false
 	if not aura.has("within"):
 		return true
-	var reach := float(aura.within)
-	return BattleGeometry.is_wholly_within(unit, source.unit, reach) if aura.get("wholly", false) \
-			else BattleGeometry.is_within(unit, source.unit, reach)
+	return BattleGeometry.is_in_reach(unit, source.unit, float(aura.within), aura.get("wholly", false))

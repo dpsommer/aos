@@ -298,8 +298,7 @@ func start_battle() -> void:
 	phase = Phase.BATTLE
 	deployment_controller.hud.visible = false
 	# Deployment's shading has done its job.
-	for node_name in ["PlayerTerritory", "OpponentTerritory", "NoDeploy"]:
-		_remove_child_named(node_name)
+	_remove_territories()
 	hud.set_extra_controls(PackedStringArray())
 	hud.set_controls_bottom(0.0)
 	camera.frame(Rect2(Vector2.ZERO, battle.battlefield_size), battle.player.facing)
@@ -311,12 +310,16 @@ func start_battle() -> void:
 
 ## Draws each side's territory, and the part of the player's they can't deploy units in.
 func _show_territories() -> void:
-	for node_name in ["PlayerTerritory", "OpponentTerritory", "NoDeploy"]:
-		_remove_child_named(node_name)
+	_remove_territories()
 	add_child(BoardBuilder.territory(battle.player_territory, true))
 	add_child(BoardBuilder.territory(battle.opponent_territory, false))
 	if battle.roles_assigned:
 		show_no_deploy(false)
+
+
+func _remove_territories() -> void:
+	for node_name in ["PlayerTerritory", "OpponentTerritory", "NoDeploy"]:
+		_remove_child_named(node_name)
 
 
 ## Shades the part of the player's territory they can't set up in: for terrain features if

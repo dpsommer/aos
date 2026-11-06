@@ -24,7 +24,7 @@ func advance(game: GameController) -> DecisionRequest:
 	while not finished:
 		match _stage:
 			Stage.BEGIN:
-				_begin(game)
+				game.declare_action(action)
 				_stage = Stage.PICK_TARGETS
 			Stage.PICK_TARGETS:
 				var request := _pick_targets(game)
@@ -70,17 +70,13 @@ func advance(game: GameController) -> DecisionRequest:
 
 func answer(game: GameController, request: DecisionRequest, decision: Decision) -> String:
 	if request.kind == DecisionRequest.Kind.TARGETS and _asking == null:
-		return _answer_targets(game, request, decision)
+		return _answer_targets(request, decision)
 	if _asking:
 		var reason := _asking.answer(action, game, request, decision)
 		if reason.is_empty():
 			_asking = null
 		return reason
 	return "Nothing is being asked."
-
-
-func _begin(game: GameController) -> void:
-	game.declare_action(action)
 
 
 func _pick_targets(game: GameController) -> DecisionRequest:
@@ -103,7 +99,7 @@ func _pick_targets(game: GameController) -> DecisionRequest:
 	return request
 
 
-func _answer_targets(_game: GameController, request: DecisionRequest, decision: Decision) -> String:
+func _answer_targets(request: DecisionRequest, decision: Decision) -> String:
 	if decision.units.size() != request.count:
 		return "Pick %d." % request.count
 	for unit in decision.units:

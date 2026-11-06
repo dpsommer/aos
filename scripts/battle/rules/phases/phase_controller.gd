@@ -106,6 +106,15 @@ func answer(game: GameController, request: DecisionRequest, decision: Decision) 
 	return ""
 
 
+## [param army]'s units that can still use an ability with [param keyword] in this phase.
+func _users_with_keyword(game: GameController, army: BattleArmy, keyword: String) -> Array[BattleUnit]:
+	var result: Array[BattleUnit] = []
+	for option in options_for(game, army):
+		if option.user and option.entry.ability.keywords.has(keyword) and not option.user in result:
+			result.append(option.user)
+	return result
+
+
 ## Notes what's been used here. The [GameController] calls this when an ability has resolved.
 func record_use(action: Action) -> void:
 	if action.user:

@@ -72,17 +72,18 @@ func fight_options(game: GameController, army: BattleArmy) -> Array[ActionOption
 
 
 func _waiting_strike_first(game: GameController) -> bool:
-	for army in game.armies():
-		for option in game.options_in(window, army):
-			if FIGHT_KEYWORD in option.entry.ability.keywords and strikes_first(game, option.user):
-				return true
-	return false
+	return _any_can_fight(game, func(unit: BattleUnit) -> bool: return strikes_first(game, unit))
 
 
 func _waiting_others(game: GameController) -> bool:
+	return _any_can_fight(game, func(unit: BattleUnit) -> bool: return not strikes_last(game, unit))
+
+
+## Whether either army has a FIGHT ability it can use now whose user passes [param test].
+func _any_can_fight(game: GameController, test: Callable) -> bool:
 	for army in game.armies():
 		for option in game.options_in(window, army):
-			if FIGHT_KEYWORD in option.entry.ability.keywords and not strikes_last(game, option.user):
+			if FIGHT_KEYWORD in option.entry.ability.keywords and test.call(option.user):
 				return true
 	return false
 

@@ -31,7 +31,7 @@ static func is_complete(space: String, tactic: String, army: BattleArmy, game: G
 		"lost_more":
 			return state.turn_stat(army, &"own_destroyed") > state.turn_stat(army, &"enemy_destroyed")
 		"raid":
-			return mine.any(func(unit: BattleUnit) -> bool: return wholly_in(unit, game.battle.enemy_territory_of(army)) and not game.in_combat(unit))
+			return mine.any(func(unit: BattleUnit) -> bool: return BattleGeometry.is_wholly_in(unit, game.battle.enemy_territory_of(army)) and not game.in_combat(unit))
 		"flanks":
 			return _near_short_edges(mine, game)
 		"long_edge_enemy":
@@ -43,15 +43,15 @@ static func is_complete(space: String, tactic: String, army: BattleArmy, game: G
 		"gained_unfought":
 			return _gained_unfought(army, enemy, game)
 		"gained_count":
-			return _gained(army, enemy, state).size() >= int(spec.get("count", 1))
+			return state.objectives_gained(army, enemy).size() >= int(spec.get("count", 1))
 		"cut_head":
 			return state.turn_stat(army, &"general_slain") > 0 or (state.generals_slain.has(enemy) and state.turn_stat(army, &"enemy_destroyed") > 0)
 		"control_named":
-			return _controls_named(army, spec.get("name", ""), state)
+			return state.controls_objective_of_type(army, spec.get("name", ""))
 		"fought_no_losses":
 			return state.turn_stat(army, &"fought") > 0 and state.turn_stat(army, &"own_destroyed") == 0
 		"large_terrain_models":
-			return _large_terrain_models(army, game.battle.territory_of(army), game)
+			return has_most_models_at_large_terrain(army, game.battle.territory_of(army), game)
 		"control_large_terrain_own":
 			return _controls_large_terrain(army, game.battle.territory_of(army), game)
 		"control_outside_own":
@@ -67,16 +67,6 @@ static func is_complete(space: String, tactic: String, army: BattleArmy, game: G
 		"corners":
 			return _corners(mine, army, game)
 	return false
-
-
-## Whether all of [param unit]'s bases are inside [param polygons].
-static func wholly_in(unit: BattleUnit, polygons: Array[PackedVector2Array]) -> bool:
-	if unit.positions.is_empty():
-		return false
-	for i in unit.positions.size():
-		if not DeploymentRules.is_wholly_within(polygons, DeploymentRules.base_outline(unit.bases[i], unit.positions[i], unit.facing)):
-			return false
-	return true
 
 
 ## Whether any of [param unit]'s models is inside [param polygons].
@@ -125,37 +115,16 @@ static func _near_enemy_long_edge(units: Array[BattleUnit], army: BattleArmy, ga
 
 static func _near_centre(units: Array[BattleUnit], game: GameController) -> Array[BattleUnit]:
 	var centre := game.battle.battlefield_size / 2
-	var result: Array[BattleUnit] = []
-	for unit in units:
-		for i in unit.positions.size():
-			if BattleGeometry.model_touches_circle(unit, i, centre, NEAR_CENTRE):
-				result.append(unit)
-				break
-	return result
-
-
-static func _gained(army: BattleArmy, enemy: BattleArmy, state: GameState) -> Array[MapFeature]:
-	var result: Array[MapFeature] = []
-	for objective: MapFeature in state.objective_control:
-		if state.objective_control[objective] == army and state.control_at_turn_start.get(objective) == enemy:
-			result.append(objective)
-	return result
+	return units.filter(func(unit: BattleUnit) -> bool: return BattleGeometry.touches_circle(unit, centre, NEAR_CENTRE))
 
 
 static func _gained_unfought(army: BattleArmy, enemy: BattleArmy, game: GameController) -> bool:
-	for objective in _gained(army, enemy, game.state):
+	for objective in game.state.objectives_gained(army, enemy):
 		var fought := false
 		for unit in game.on_battlefield(army):
 			if game.objectives.models_contesting(unit, objective) > 0 and game.controller_of(unit).fought_serial == game.state.turn_serial:
 				fought = true
 		if not fought:
-			return true
-	return false
-
-
-static func _controls_named(army: BattleArmy, objective_name: String, state: GameState) -> bool:
-	for objective: MapFeature in state.objective_control:
-		if state.objective_control[objective] == army and objective.type == objective_name:
 			return true
 	return false
 
@@ -168,26 +137,17 @@ static func large_terrain_in(territory: Array[PackedVector2Array], game: GameCon
 	return null
 
 
-static func _terrain_models(unit: BattleUnit, feature: BattleTerrain) -> int:
-	var outline := DeploymentRules.terrain_outline(feature, feature.position, feature.rotation)
-	var total := 0
-	for i in unit.positions.size():
-		if DeploymentRules.gap_between(DeploymentRules.base_outline(unit.bases[i], unit.positions[i], unit.facing), outline) <= BattleGeometry.COMBAT_RANGE:
-			total += 1
-	return total
-
-
 ## Whether [param army] has more models than its enemy contesting the large terrain in [param territory].
-static func _large_terrain_models(army: BattleArmy, territory: Array[PackedVector2Array], game: GameController) -> bool:
+static func has_most_models_at_large_terrain(army: BattleArmy, territory: Array[PackedVector2Array], game: GameController) -> bool:
 	var feature := large_terrain_in(territory, game)
 	if feature == null:
 		return false
 	var mine := 0
 	var theirs := 0
 	for unit in game.on_battlefield(army):
-		mine += _terrain_models(unit, feature)
+		mine += BattleGeometry.models_near_terrain(unit, feature)
 	for unit in game.on_battlefield(game.battle.enemy_of(army)):
-		theirs += _terrain_models(unit, feature)
+		theirs += BattleGeometry.models_near_terrain(unit, feature)
 	return mine > theirs
 
 
@@ -228,11 +188,10 @@ static func _controls_all_in_enemy(army: BattleArmy, game: GameController) -> bo
 ## each other.
 static func _form_a_wall(units: Array[BattleUnit], army: BattleArmy, game: GameController) -> bool:
 	var territory := game.battle.territory_of(army)
-	var grown := DeploymentRules.zone(game.battle.enemy_territory_of(army), [], 0.0)
-	grown.clear()
+	var grown: Array[PackedVector2Array] = []
 	for polygon in territory:
 		grown.append_array(Geometry2D.offset_polygon(polygon, 6.0, Geometry2D.JOIN_ROUND))
-	var wall := units.filter(func(unit: BattleUnit) -> bool: return wholly_in(unit, grown) and not partly_in(unit, territory))
+	var wall := units.filter(func(unit: BattleUnit) -> bool: return BattleGeometry.is_wholly_in(unit, grown) and not partly_in(unit, territory))
 	for a: BattleUnit in wall:
 		for b: BattleUnit in wall:
 			if a != b and BattleGeometry.is_within(a, b, 3.0):
@@ -246,7 +205,7 @@ static func _claim(units: Array[BattleUnit], army: BattleArmy, game: GameControl
 	var enemy_units := game.on_battlefield(game.battle.enemy_of(army))
 	var mine := units.filter(func(unit: BattleUnit) -> bool: return partly_in(unit, territory)).size()
 	var theirs := enemy_units.filter(func(unit: BattleUnit) -> bool: return partly_in(unit, territory)).size()
-	var hero := units.any(func(unit: BattleUnit) -> bool: return game.stats.has_keyword(unit, "HERO") and wholly_in(unit, territory))
+	var hero := units.any(func(unit: BattleUnit) -> bool: return game.stats.has_keyword(unit, "HERO") and BattleGeometry.is_wholly_in(unit, territory))
 	return mine > theirs and hero
 
 
@@ -259,12 +218,7 @@ static func _corners(units: Array[BattleUnit], army: BattleArmy, game: GameContr
 	var taken := 0
 	for corner: Vector2 in corners:
 		for unit in units:
-			if game.was_set_up_this_turn(unit) or partly_in(unit, territory):
-				continue
-			var near := false
-			for i in unit.positions.size():
-				near = near or BattleGeometry.model_touches_circle(unit, i, corner, 9.0)
-			if near:
+			if not game.was_set_up_this_turn(unit) and not partly_in(unit, territory) and BattleGeometry.touches_circle(unit, corner, 9.0):
 				taken += 1
 				break
 	return taken >= 2

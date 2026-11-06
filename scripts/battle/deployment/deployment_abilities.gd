@@ -56,9 +56,7 @@ static func for_army(result: BattleArmy, army: Army, catalog: ArmyCatalog) -> vo
 			var enhancement := catalog.enhancement(army, type, army_unit.enhancements[type])
 			if enhancement:
 				_add(list, [enhancement] as Array[Ability], "Enhancement", unit)
-	for unit in result.units:
-		if unit.warscroll:
-			_add(list, unit.warscroll.abilities, "Warscroll", unit)
+	_add_warscrolls(list, result.units)
 	result.deployment_abilities = list
 
 
@@ -82,10 +80,14 @@ static func for_spearhead_choices(result: BattleArmy, spearhead: Spearhead, regi
 	for ability in spearhead.enhancements:
 		if ability.name == enhancement:
 			_add(list, [ability] as Array[Ability], "Enhancement", general)
-	for unit in result.units:
+	_add_warscrolls(list, result.units)
+	result.deployment_abilities = list
+
+
+static func _add_warscrolls(list: Array[DeploymentAbility], units: Array[BattleUnit]) -> void:
+	for unit in units:
 		if unit.warscroll:
 			_add(list, unit.warscroll.abilities, "Warscroll", unit)
-	result.deployment_abilities = list
 
 
 static func _add(list: Array[DeploymentAbility], abilities: Array[Ability], source: String,

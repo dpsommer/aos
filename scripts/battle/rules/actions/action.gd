@@ -18,8 +18,6 @@ var flags := {}
 var attack_targets := {}
 ## Damage points waiting for the damage sequence (Core Rules 18.0), by unit.
 var damage_pool := {}
-## Which unit a pile-in or moving effect is working on next.
-var cursor := 0
 
 
 static func create(option: ActionOption, of_parent: Action = null) -> Action:

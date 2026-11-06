@@ -41,11 +41,6 @@ static func create(of: BattleUnit, move_kind: Kind, distance: float) -> MoveSpec
 	return spec
 
 
-## Whether it can pass through enemy combat ranges on the way.
-func passes_combat() -> bool:
-	return kind != Kind.NORMAL and kind != Kind.RUN
-
-
 ## What the event log says it did.
 func verb() -> String:
 	match kind:

@@ -21,7 +21,7 @@ func decide(request: DecisionRequest, game: GameController) -> Decision:
 		DecisionRequest.Kind.TARGETS:
 			return _pick_targets(request)
 		DecisionRequest.Kind.ATTACK_TARGETS:
-			return _pick_attacks(request, game)
+			return _pick_attacks(request)
 		DecisionRequest.Kind.MOVE:
 			return _pick_move(request, game)
 		DecisionRequest.Kind.SET_UP:
@@ -89,14 +89,7 @@ func _nearest_enemy_gap(unit: BattleUnit, game: GameController) -> float:
 
 
 func _nearest_enemy(unit: BattleUnit, game: GameController) -> BattleUnit:
-	var found: BattleUnit = null
-	var best := INF
-	for enemy in game.enemies_on_battlefield(game.army_of(unit)):
-		var gap := BattleGeometry.unit_gap(unit, enemy)
-		if gap < best:
-			best = gap
-			found = enemy
-	return found
+	return BattleGeometry.nearest(unit, game.enemies_on_battlefield(game.army_of(unit)))
 
 
 ## Where a unit wants to go: at a nearby enemy if it fights in melee, else the nearest objective it
@@ -156,7 +149,7 @@ func _pick_targets(request: DecisionRequest) -> Decision:
 
 
 ## Each weapon goes for the target with the fewest models left, to finish things off.
-func _pick_attacks(request: DecisionRequest, _game: GameController) -> Decision:
+func _pick_attacks(request: DecisionRequest) -> Decision:
 	var targets := {}
 	for weapon in request.weapons:
 		var best: BattleUnit = null

@@ -8,11 +8,7 @@ const MOVE_KEYWORD := "MOVE"
 
 ## [param army]'s units that can still use a MOVE ability this phase.
 func units_that_can_move(game: GameController, army: BattleArmy) -> Array[BattleUnit]:
-	var result: Array[BattleUnit] = []
-	for option in options_for(game, army):
-		if option.user and option.entry.ability.keywords.has(MOVE_KEYWORD) and not option.user in result:
-			result.append(option.user)
-	return result
+	return _users_with_keyword(game, army, MOVE_KEYWORD)
 
 
 ## [param army]'s units that have moved this phase.

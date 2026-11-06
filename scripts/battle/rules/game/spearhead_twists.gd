@@ -121,11 +121,11 @@ func _plan(game: GameController) -> void:
 			_ask(_picker(game), PackedStringArray(_option_names()), func(index: int, on: GameController) -> void:
 				var chooser := _picker(on)
 				if index == 0:
-					_steps.append([chooser, "friendly", _shield_of_thorns.bind(chooser)])
+					_ask(chooser, "friendly", _shield_of_thorns.bind(chooser))
 				else:
 					for _i in 3:
-						_steps.append([chooser, "friendly", func(unit: BattleUnit, later: GameController) -> void:
-							later.command(unit, Commands.Heal.new(DiceExpr.parse("D3").roll(later.rng)))]))
+						_ask(chooser, "friendly", func(unit: BattleUnit, later: GameController) -> void:
+							later.command(unit, Commands.Heal.new(DiceExpr.parse("D3").roll(later.rng)))))
 		"Take the Land":
 			if underdog:
 				var modifier := Modifier.from_descriptor({"stat": "wound", "by": 1, "until": "round", "aura": {"side": "friendly"},
@@ -140,7 +140,7 @@ func _plan(game: GameController) -> void:
 			_ask(_picker(game), PackedStringArray(_option_names()), func(index: int, on: GameController) -> void:
 				var chooser := _picker(on)
 				var effect: Dictionary = {"stat": "save", "by": -1, "until": "round"} if index == 0 else {"forbid": "ward_rolls", "until": "round"}
-				_steps.append([chooser, "enemy", _modify.bind(effect, chooser)]))
+				_ask(chooser, "enemy", _modify.bind(effect, chooser)))
 		"Lifespring":
 			_ask(_picker(game), "objective", _pick_objective)
 	game.twist_picks = picks
@@ -178,40 +178,48 @@ func _shield_of_thorns(unit: BattleUnit, game: GameController, army: BattleArmy)
 static func on_scored(of: TwistCard, army: BattleArmy, game: GameController) -> void:
 	if of == null:
 		return
+	_score(of, army, game)
+	_after_scoring(of, game)
+
+
+static func _score(of: TwistCard, army: BattleArmy, game: GameController) -> void:
 	var state := game.state
-	var picked: Dictionary = game.twist_picks
 	match of.name:
 		"Let the Blood Flow":
 			_award(game, army, state.turn_stat(army, &"enemy_destroyed"), of.name)
 		"Reclaim Aqshy", "Reclaim Ghyran", "Lifespring":
 			var held := 0
-			for objective: MapFeature in picked.get("objectives", []):
+			for objective: MapFeature in game.twist_picks.get("objectives", []):
 				if state.objective_control.get(objective) == army:
 					held += 1
 			_award(game, army, held, of.name)
 		"Mount the Attack":
-			var gained := 0
-			for objective: MapFeature in state.objective_control:
-				if state.objective_control[objective] == army and state.control_at_turn_start.get(objective) == game.battle.enemy_of(army):
-					gained += 1
-			_award(game, army, gained, of.name)
+			_award(game, army, state.objectives_gained(army, game.battle.enemy_of(army)).size(), of.name)
 		"Take the Land":
-			if TacticChecks._large_terrain_models(army, game.battle.enemy_territory_of(army), game):
+			if TacticChecks.has_most_models_at_large_terrain(army, game.battle.enemy_territory_of(army), game):
 				_award(game, army, 1, of.name)
-	# After victory points have been scored.
-	match of.name:
-		"Ring of Fire":
-			for objective: MapFeature in picked.get("objectives", []):
-				for side in game.armies():
-					for unit in game.on_battlefield(side):
-						if _on_objective(unit, objective, game):
-							game.command(unit, Commands.DealDamage.new(DiceExpr.parse("D3").roll(game.rng)))
-		"Lifespring":
-			for objective: MapFeature in picked.get("objectives", []):
-				for side in game.armies():
-					for unit in game.on_battlefield(side):
-						if game.objectives.models_contesting(unit, objective) > 0:
-							game.command(unit, Commands.Heal.new(1))
+
+
+## What the twist does after victory points have been scored.
+static func _after_scoring(of: TwistCard, game: GameController) -> void:
+	for objective: MapFeature in game.twist_picks.get("objectives", []):
+		match of.name:
+			"Ring of Fire":
+				_for_each_unit(game, func(unit: BattleUnit) -> void:
+					if BattleGeometry.touches_circle(unit, objective.position, game.battle.objective_radius(objective)):
+						game.command(unit, Commands.DealDamage.new(DiceExpr.parse("D3").roll(game.rng))))
+			"Lifespring":
+				_for_each_unit(game, func(unit: BattleUnit) -> void:
+					if game.objectives.models_contesting(unit, objective) > 0:
+						game.command(unit, Commands.Heal.new(1)))
+
+
+## Calls [param action] on each unit on the battlefield. Each army's are found as it comes to them,
+## as what's done to one army's units can remove the other's.
+static func _for_each_unit(game: GameController, action: Callable) -> void:
+	for side in game.armies():
+		for unit in game.on_battlefield(side):
+			action.call(unit)
 
 
 ## What the twist scores when its round ends.
@@ -227,11 +235,3 @@ static func on_round_ended(of: TwistCard, game: GameController) -> void:
 static func _award(game: GameController, army: BattleArmy, points: int, why: String) -> void:
 	if points > 0:
 		game.add_points(army, points, why)
-
-
-static func _on_objective(unit: BattleUnit, objective: MapFeature, game: GameController) -> bool:
-	var radius := game.battle.objective_radius(objective)
-	for i in unit.positions.size():
-		if BattleGeometry.model_touches_circle(unit, i, objective.position, radius):
-			return true
-	return false

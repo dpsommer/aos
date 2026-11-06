@@ -10,12 +10,10 @@ class DealDamage extends RefCounted:
 	var points: int
 	## Who dealt it, for destroyed-unit tallies, or null.
 	var source_army: BattleArmy
-	var text := ""
 
-	func _init(amount: int, from: BattleArmy = null, why := "") -> void:
+	func _init(amount: int, from: BattleArmy = null) -> void:
 		points = amount
 		source_army = from
-		text = why
 
 
 ## Heal (N) (Core Rules 21.0).

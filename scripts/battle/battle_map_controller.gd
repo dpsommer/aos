@@ -164,9 +164,13 @@ func _update_node(unit: BattleUnit) -> void:
 func _rebuild_node(unit: BattleUnit) -> void:
 	_remove_node(unit)
 	if unit.is_on_battlefield():
-		var node := ModelPlaceholder.build_unit(unit, unit.facing, game.army_of(unit) == battle.player)
-		map.armies_root.add_child(node)
-		map.unit_nodes[unit] = node
+		_add_node(unit)
+
+
+func _add_node(unit: BattleUnit) -> void:
+	var node := ModelPlaceholder.build_unit(unit, unit.facing, game.army_of(unit) == battle.player)
+	map.armies_root.add_child(node)
+	map.unit_nodes[unit] = node
 
 
 func _remove_node(unit: BattleUnit) -> void:
@@ -188,8 +192,7 @@ func _refresh_header() -> void:
 			current = i
 	if map.hud.size.x < FULL_HEADER_WIDTH:
 		# No room for all seven at a large render scale: just the current one, in the badge.
-		var name_now: String = steps[current] if current >= 0 else ""
-		map.hud.set_phase("ROUND %d · %s" % [state.round_number, name_now.to_upper()] if current >= 0 else "ROUND %d" % state.round_number)
+		map.hud.set_phase("ROUND %d · %s" % [state.round_number, steps[current].to_upper()] if current >= 0 else "ROUND %d" % state.round_number)
 	else:
 		map.hud.set_phase("ROUND %d" % state.round_number, steps, current)
 	map.hud.player_pill_label.text = _pill_text("You", battle.player)
@@ -319,9 +322,7 @@ func _begin_move() -> void:
 	_held = NOTHING
 	# A unit coming on from reserve has nothing on the board to move about yet.
 	if not map.unit_nodes.has(unit):
-		var node := ModelPlaceholder.build_unit(unit, unit.facing, game.army_of(unit) == battle.player)
-		map.armies_root.add_child(node)
-		map.unit_nodes[unit] = node
+		_add_node(unit)
 	hud.show_move(request.prompt, request.can_pass, single_model)
 	_validate_move()
 
@@ -341,12 +342,12 @@ func _clear_move() -> void:
 
 
 func _on_confirm() -> void:
-	if request and request.kind in [DecisionRequest.Kind.MOVE, DecisionRequest.Kind.SET_UP]:
+	if _is_moving():
 		_answer(Decision.move_to(_preview))
 
 
 func _on_reset() -> void:
-	if request and request.kind in [DecisionRequest.Kind.MOVE, DecisionRequest.Kind.SET_UP]:
+	if _is_moving():
 		_preview = _moving_unit().positions.duplicate()
 		_held = NOTHING
 		_validate_move()
@@ -366,16 +367,22 @@ func _validate_move() -> void:
 	var invalid := PackedInt32Array()
 	if request.kind == DecisionRequest.Kind.MOVE:
 		problems = MovementRules.problems(game, request.move, _preview)
-		var bad := MovementRules.invalid_models(game, request.move, _preview)
-		for key: String in bad:
-			for i: int in bad[key]:
-				if not i in invalid:
-					invalid.append(i)
+		invalid = _all_invalid(MovementRules.invalid_models(game, request.move, _preview))
 	else:
 		problems = game.set_up_problems(unit, _preview, request.min_enemy_gap, request.near_unit, request.near_reach)
 	_draw_preview(unit, invalid)
 	hud.set_problems(problems)
 	hud.set_confirm_enabled(problems.is_empty())
+
+
+## Every model in [param bad] ([method MovementRules.invalid_models]), once.
+func _all_invalid(bad: Dictionary) -> PackedInt32Array:
+	var invalid := PackedInt32Array()
+	for key: String in bad:
+		for i: int in bad[key]:
+			if not i in invalid:
+				invalid.append(i)
+	return invalid
 
 
 ## Draws [param unit] where the preview has it, without changing the unit: the rules still need to
@@ -434,24 +441,15 @@ func _is_moving() -> bool:
 
 
 func _preview_model_at(point: Vector2) -> int:
-	var unit := _moving_unit()
-	var best := -1
-	var best_distance := INF
-	for i in _preview.size():
-		var distance := _preview[i].distance_to(point)
-		if distance <= DeploymentRules.reach_of(unit.bases[i]) and distance < best_distance:
-			best = i
-			best_distance = distance
-	return best
+	return BattleGeometry.model_under(_preview, _moving_unit().bases, point)
 
 
 ## The unit on the board under [param point], or null.
 func unit_at(point: Vector2) -> BattleUnit:
 	for army in game.armies():
 		for unit in game.on_battlefield(army):
-			for i in unit.positions.size():
-				if unit.positions[i].distance_to(point) <= DeploymentRules.reach_of(unit.bases[i]):
-					return unit
+			if BattleGeometry.model_under(unit.positions, unit.bases, point) >= 0:
+				return unit
 	return null
 
 

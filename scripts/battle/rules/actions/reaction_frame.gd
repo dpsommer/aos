@@ -38,11 +38,15 @@ func answer(game: GameController, _request: DecisionRequest, decision: Decision)
 	if not reason.is_empty():
 		return reason
 	_passes = 0
-	_current = _other if _current == action.army else action.army
+	_next_player()
 	game.push(ActionFrame.new(Action.create(decision.option, action)))
 	return ""
 
 
 func _pass() -> void:
 	_passes += 1
+	_next_player()
+
+
+func _next_player() -> void:
 	_current = _other if _current == action.army else action.army

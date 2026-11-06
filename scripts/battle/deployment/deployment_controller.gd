@@ -299,7 +299,7 @@ func move_to(point: Vector2) -> void:
 			var unit := moving_unit()
 			if unit == null:
 				return
-			_shift(unit, point - _middle(unit.positions))
+			_shift(unit, point - BattleGeometry.middle(unit))
 			_moved()
 		"terrain":
 			var feature: BattleTerrain = _state.feature
@@ -460,7 +460,7 @@ func _pick_up(unit: BattleUnit, point: Vector2, single: bool) -> void:
 	if single:
 		_hold(index, unit.positions[index] - point)
 	else:
-		_hold(WHOLE, _middle(unit.positions) - point)
+		_hold(WHOLE, BattleGeometry.middle(unit) - point)
 
 
 ## The mouse button goes down at [param point] on the board. While holding something, it waits to
@@ -625,7 +625,7 @@ func _invalid_colour() -> Color:
 func _held_middle() -> Vector2:
 	var unit := moving_unit()
 	if unit:
-		return _middle(unit.positions)
+		return BattleGeometry.middle(unit)
 	if _state.get("mode") == "terrain":
 		return (_state.feature as BattleTerrain).position
 	return Vector2.ZERO
@@ -708,14 +708,7 @@ func staged_unit_at(point: Vector2) -> BattleUnit:
 
 ## The model of [param unit] under [param point], the nearest if several, or -1.
 func _model_index(unit: BattleUnit, point: Vector2) -> int:
-	var best := -1
-	var best_distance := INF
-	for i in unit.positions.size():
-		var distance := unit.positions[i].distance_to(point)
-		if distance <= DeploymentRules.reach_of(unit.bases[i]) and distance < best_distance:
-			best = i
-			best_distance = distance
-	return best
+	return BattleGeometry.model_under(unit.positions, unit.bases, point)
 
 
 # Keeping the board and the HUD in step
@@ -723,13 +716,6 @@ func _model_index(unit: BattleUnit, point: Vector2) -> int:
 func _shift(unit: BattleUnit, by: Vector2) -> void:
 	for i in unit.positions.size():
 		unit.positions[i] += by
-
-
-func _middle(positions: PackedVector2Array) -> Vector2:
-	var total := Vector2.ZERO
-	for position in positions:
-		total += position
-	return total / maxi(positions.size(), 1)
 
 
 ## Redraws what's being placed where it now is, and checks it.

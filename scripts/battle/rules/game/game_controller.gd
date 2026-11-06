@@ -214,14 +214,7 @@ func enemies_in_combat_with(unit: BattleUnit) -> Array[BattleUnit]:
 
 ## The nearest enemy [param unit] is in combat with, or null.
 func nearest_in_combat(unit: BattleUnit) -> BattleUnit:
-	var best: BattleUnit = null
-	var best_gap := INF
-	for enemy in enemies_in_combat_with(unit):
-		var gap := BattleGeometry.unit_gap(unit, enemy)
-		if gap < best_gap:
-			best = enemy
-			best_gap = gap
-	return best
+	return BattleGeometry.nearest(unit, enemies_in_combat_with(unit))
 
 
 func was_set_up_this_turn(unit: BattleUnit) -> bool:
@@ -239,26 +232,29 @@ func set_up_problems(unit: BattleUnit, positions: PackedVector2Array, min_enemy_
 	if positions.size() != unit.model_count():
 		result.append("Every model has to be set up.")
 		return result
-	var enemies := enemies_on_battlefield(army_of(unit))
-	var others := MovementRules._other_units(self, unit)
-	var solid := MovementRules._impassable_terrain(self)
-	for i in positions.size():
-		if not BattleGeometry.is_on_battlefield(unit.bases[i], positions[i], unit.facing, battle.battlefield_size):
-			result.append("A model is off the battlefield.")
-			break
-		var too_near := false
-		for enemy in enemies:
-			if BattleGeometry.model_gap_at(unit.bases[i], positions[i], unit.facing, enemy) <= min_enemy_gap:
-				too_near = true
-		if too_near:
-			result.append("A model is too near an enemy.")
-			break
-		if MovementRules._ends_on_other(unit.bases[i], positions[i], unit.facing, others, solid):
-			result.append("A model is on another model.")
-			break
+	var model_problem := _set_up_model_problem(unit, positions, min_enemy_gap)
+	if not model_problem.is_empty():
+		result.append(model_problem)
 	if not Coherency.is_coherent(positions, unit.bases, unit.facing):
 		result.append("The unit isn't coherent.")
 	return result
+
+
+## What's wrong with the first model of [param unit] that can't be set up at its one of
+## [param positions], or empty.
+func _set_up_model_problem(unit: BattleUnit, positions: PackedVector2Array, min_enemy_gap: float) -> String:
+	var enemies := enemies_on_battlefield(army_of(unit))
+	var others := MovementRules.other_units(self, unit)
+	var solid := MovementRules.impassable_terrain(self)
+	for i in positions.size():
+		var base := unit.bases[i]
+		if not BattleGeometry.is_on_battlefield(base, positions[i], unit.facing, battle.battlefield_size):
+			return "A model is off the battlefield."
+		if enemies.any(func(enemy: BattleUnit) -> bool: return BattleGeometry.model_gap_at(base, positions[i], unit.facing, enemy) <= min_enemy_gap):
+			return "A model is too near an enemy."
+		if MovementRules.ends_on_other(base, positions[i], unit.facing, others, solid):
+			return "A model is on another model."
+	return ""
 
 
 # Using abilities
@@ -402,7 +398,7 @@ func reason_unavailable(entry: AbilityEntry, user: BattleUnit) -> String:
 	var limit := usage.reason_unavailable(ability, entry.army, user)
 	if not limit.is_empty():
 		return limit
-	if rules.uses_magic() and user and (ability.type in ["spell", "prayer"] or "BANISH" in ability.keywords):
+	if rules.uses_magic() and user and _uses_power(ability):
 		if usage.casts_this_phase(user) >= power_level(user):
 			return "This unit has used its power this phase."
 	if user and user.destroyed:
@@ -414,13 +410,15 @@ func reason_unavailable(entry: AbilityEntry, user: BattleUnit) -> String:
 		return "Set up this turn."
 	var target_spec: Dictionary = entry.descriptor.get("target", {})
 	if not target_spec.is_empty():
-		var probe := Action.new()
-		probe.entry = entry
-		probe.army = entry.army
-		probe.user = user
+		var probe := Action.create(ActionOption.create(entry, user))
 		if eligible_targets(probe, target_spec).is_empty():
 			return "No target."
 	return ""
+
+
+## Whether using [param ability] counts against its user's power level (Magic 1.1).
+func _uses_power(ability: Ability) -> bool:
+	return ability.type in ["spell", "prayer"] or "BANISH" in ability.keywords
 
 
 ## Who the ability can target, from its data: [code]side[/code], [code]within[/code] of the user,
@@ -451,10 +449,7 @@ func _target_fits(unit: BattleUnit, action: Action, spec: Dictionary) -> bool:
 		if stats.has_keyword(unit, keyword):
 			return false
 	if spec.has("within") and action.user:
-		var reach := float(spec.within)
-		var inside := BattleGeometry.is_wholly_within(unit, action.user, reach) if spec.get("wholly", false) \
-				else BattleGeometry.is_within(unit, action.user, reach)
-		if not inside:
+		if not BattleGeometry.is_in_reach(unit, action.user, float(spec.within), spec.get("wholly", false)):
 			return false
 	if spec.get("others", false) and unit == action.user:
 		return false
@@ -466,7 +461,7 @@ func _target_fits(unit: BattleUnit, action: Action, spec: Dictionary) -> bool:
 ## Records that an ability is being used, pays for it and tells everyone.
 func declare_action(action: Action) -> void:
 	usage.mark(action.ability(), action.army, action.user)
-	if action.user and (action.ability().type in ["spell", "prayer"] or action.has_keyword("BANISH")):
+	if action.user and _uses_power(action.ability()):
 		usage.mark_cast(action.user)
 	if rules.uses_commands() and action.ability().command_points > 0:
 		state.command_points[action.army] = state.commands_of(action.army) - action.ability().command_points
@@ -537,10 +532,7 @@ func _on_trigger(event: BattleEvent, entry: AbilityEntry, trigger: Dictionary) -
 		return
 	if not Predicates.all_hold(trigger.get("when", []), RuleContext.of_unit(self, unit)):
 		return
-	var action := Action.new()
-	action.entry = entry
-	action.army = entry.army
-	action.user = unit
+	var action := Action.create(ActionOption.create(entry, unit))
 	for effect in Effect.build_all(trigger.get("do", [])):
 		effect.resolve(action, self)
 

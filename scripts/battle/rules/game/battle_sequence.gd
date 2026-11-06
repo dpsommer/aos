@@ -22,12 +22,7 @@ func advance(game: GameController) -> DecisionRequest:
 				if state.round_number >= game.rules.round_count():
 					_end_battle(game)
 					return null
-				state.round_number += 1
-				state.first_last_round = state.first_this_round
-				_chooser = _who_chooses(game)
-				if state.round_number == 1:
-					game.objectives.update()
-				game.events.publish(BattleEvent.ROUND_STARTED, {"round": state.round_number, "text": "Battle round %d begins." % state.round_number})
+				_start_round(game)
 				_stage = Stage.CHOOSE_FIRST
 			Stage.CHOOSE_FIRST:
 				var request := DecisionRequest.create(DecisionRequest.Kind.FIRST_TURN, _chooser, "Who takes the first turn?")
@@ -69,11 +64,7 @@ func advance(game: GameController) -> DecisionRequest:
 			Stage.END_ABILITIES:
 				_stage = Stage.ROUND_END
 			Stage.ROUND_END:
-				game.rules.on_round_ended()
-				for army in game.armies():
-					state.command_points[army] = 0
-				state.objectives_out_of_play.clear()
-				game.events.publish(BattleEvent.ROUND_ENDED, {"round": state.round_number, "text": ""})
+				_end_round(game)
 				_stage = Stage.ROUND_START
 	return null
 
@@ -85,6 +76,25 @@ func answer(game: GameController, request: DecisionRequest, decision: Decision) 
 	state.first_this_round = request.army if decision.choice == 0 else game.battle.enemy_of(request.army)
 	game.events.publish(BattleEvent.FIRST_TURN_DECIDED, {"army": state.first_this_round, "text": "%s takes the first turn." % game.side_name(state.first_this_round)})
 	return ""
+
+
+func _start_round(game: GameController) -> void:
+	var state := game.state
+	state.round_number += 1
+	state.first_last_round = state.first_this_round
+	_chooser = _who_chooses(game)
+	if state.round_number == 1:
+		game.objectives.update()
+	game.events.publish(BattleEvent.ROUND_STARTED, {"round": state.round_number, "text": "Battle round %d begins." % state.round_number})
+
+
+func _end_round(game: GameController) -> void:
+	var state := game.state
+	game.rules.on_round_ended()
+	for army in game.armies():
+		state.command_points[army] = 0
+	state.objectives_out_of_play.clear()
+	game.events.publish(BattleEvent.ROUND_ENDED, {"round": state.round_number, "text": ""})
 
 
 ## Round 1: as the rules for this mode say. Later: a priority roll-off, a tie to whoever went first
