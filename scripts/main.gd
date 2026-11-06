@@ -119,12 +119,13 @@ func show_loading(setup: BattleSetup) -> void:
 	screen.open(setup)
 
 
-## Shows [param map], built by the loading screen, and starts the roll-off and deployment.
-## Surrender and Save and Quit in its menu return to the main menu (there's no saving yet).
+## Shows [param map], built by the loading screen, and starts the roll-off and deployment. Surrender,
+## Save and Quit in its menu (there's no saving yet) and the end of the battle return to the main menu.
 func show_battle_map(map: BattleMap) -> void:
 	_show_node(map)
 	map.surrendered.connect(show_main_menu)
 	map.save_and_quit_requested.connect(show_main_menu)
+	map.battle_finished.connect(show_main_menu)
 	map.start()
 
 

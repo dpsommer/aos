@@ -40,7 +40,7 @@ var mirror: MirrorDeployer
 var hud: DeploymentHud
 ## Seconds the AI waits before acting; 0 acts at once (tests).
 var ai_delay := AI_DELAY
-## Each unit's models on the board, by unit.
+## Each unit's models on the board, by unit: the map's, shared with the battle after this.
 var unit_nodes := {}
 ## Each terrain feature's node on the board, by feature.
 var terrain_nodes := {}
@@ -88,6 +88,7 @@ var _flash_left := 0.0
 func _init(on: BattleMap) -> void:
 	map = on
 	battle = on.battle
+	unit_nodes = on.unit_nodes
 	name = "DeploymentController"
 	deployment = Deployment.new(battle)
 	mirror = MirrorDeployer.new(deployment, battle.opponent, battle.player)
@@ -298,7 +299,7 @@ func move_to(point: Vector2) -> void:
 			var unit := moving_unit()
 			if unit == null:
 				return
-			_shift(unit, point - _middle(unit.positions))
+			_shift(unit, point - BattleGeometry.middle(unit))
 			_moved()
 		"terrain":
 			var feature: BattleTerrain = _state.feature
@@ -459,7 +460,7 @@ func _pick_up(unit: BattleUnit, point: Vector2, single: bool) -> void:
 	if single:
 		_hold(index, unit.positions[index] - point)
 	else:
-		_hold(WHOLE, _middle(unit.positions) - point)
+		_hold(WHOLE, BattleGeometry.middle(unit) - point)
 
 
 ## The mouse button goes down at [param point] on the board. While holding something, it waits to
@@ -624,7 +625,7 @@ func _invalid_colour() -> Color:
 func _held_middle() -> Vector2:
 	var unit := moving_unit()
 	if unit:
-		return _middle(unit.positions)
+		return BattleGeometry.middle(unit)
 	if _state.get("mode") == "terrain":
 		return (_state.feature as BattleTerrain).position
 	return Vector2.ZERO
@@ -722,13 +723,6 @@ func _model_index(unit: BattleUnit, point: Vector2) -> int:
 func _shift(unit: BattleUnit, by: Vector2) -> void:
 	for i in unit.positions.size():
 		unit.positions[i] += by
-
-
-func _middle(positions: PackedVector2Array) -> Vector2:
-	var total := Vector2.ZERO
-	for position in positions:
-		total += position
-	return total / maxi(positions.size(), 1)
 
 
 ## Redraws what's being placed where it now is, and checks it.

@@ -16,3 +16,6 @@ __pycache__/
 
 # Scratch output from tools/, e.g. tools/store_360 (has its own .gdignore)
 /tmp/
+
+# Local notes on remaining work
+/TODO.md

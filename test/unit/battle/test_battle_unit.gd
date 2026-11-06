@@ -141,3 +141,26 @@ func test_copy_is_in_no_regiment_or_reserve() -> void:
 	var copy := unit.copy()
 	assert_null(copy.regiment)
 	assert_eq(copy.reserve, "")
+
+
+func test_starting_in_reserve_deploys_it_off_the_battlefield() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.start_in_reserve()
+	assert_true(unit.deployed)
+	assert_ne(unit.reserve, "")
+	assert_false(unit.is_on_battlefield())
+
+
+func test_copy_of_a_unit_that_starts_in_reserve_starts_in_reserve() -> void:
+	var unit := BattleKit.unit("U", 1)
+	unit.start_in_reserve()
+	var copy := unit.copy()
+	assert_true(copy.deployed)
+	assert_eq(copy.reserve, unit.reserve)
+	assert_false(copy.is_on_battlefield())
+
+
+func test_copy_of_a_normal_unit_is_not_deployed() -> void:
+	var copy := BattleKit.unit("U", 1).copy()
+	assert_false(copy.deployed)
+	assert_eq(copy.reserve, "")

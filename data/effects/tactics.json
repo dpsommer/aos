@@ -1,0 +1,119 @@
+{
+	"tactic:Fire and Jade/War of Attrition": {
+		"check": "attrition"
+	},
+	"tactic:Fire and Jade/Raid": {
+		"check": "raid"
+	},
+	"tactic:Fire and Jade/Take the Flanks": {
+		"check": "flanks"
+	},
+	"tactic:Fire and Jade/Take Without Warning": {
+		"check": "gained_unfought"
+	},
+	"tactic:Fire and Jade/Hold Ground": {
+		"check": "large_terrain_models"
+	},
+	"tactic:Fire and Jade/Cut Off the Head": {
+		"check": "cut_head"
+	},
+	"tactic:Fire and Jade/The Ignax Dais": {
+		"check": "control_named",
+		"name": "Ignax"
+	},
+	"tactic:Fire and Jade/The Behemat Dais": {
+		"check": "control_named",
+		"name": "Behemat"
+	},
+	"tactic:Fire and Jade/The Dracothion Dais": {
+		"check": "control_named",
+		"name": "Dracothion"
+	},
+	"tactic:Fire and Jade/Raze": {
+		"check": "long_edge_enemy"
+	},
+	"tactic:Fire and Jade/Attack on Two Fronts": {
+		"check": "gained_count",
+		"count": 2
+	},
+	"tactic:Fire and Jade/Do Not Waver": {
+		"check": "fought_no_losses"
+	},
+	"tactic:City of Ash/Take the Flanks": {
+		"check": "flanks"
+	},
+	"tactic:City of Ash/Cut Off the Head": {
+		"check": "cut_head"
+	},
+	"tactic:City of Ash/Raid": {
+		"check": "raid"
+	},
+	"tactic:City of Ash/Hold the Centre": {
+		"check": "centre",
+		"count": 2
+	},
+	"tactic:City of Ash/Raze": {
+		"check": "long_edge_enemy"
+	},
+	"tactic:City of Ash/Dais of the Comet": {
+		"check": "control_named",
+		"name": "Twin-Tailed Comet"
+	},
+	"tactic:City of Ash/Dais of the Hammer": {
+		"check": "control_named",
+		"name": "Ghal Maraz"
+	},
+	"tactic:Sand and Bone/War of Attrition": {
+		"check": "attrition"
+	},
+	"tactic:Sand and Bone/Hold Ground": {
+		"check": "control_large_terrain_own"
+	},
+	"tactic:Sand and Bone/Raze": {
+		"check": "long_edge_enemy"
+	},
+	"tactic:Sand and Bone/Attack on Two Fronts": {
+		"check": "gained_count",
+		"count": 2
+	},
+	"tactic:Sand and Bone/Take Without Warning": {
+		"check": "gained_unfought"
+	},
+	"tactic:Sand and Bone/The Dais of the Necropolis": {
+		"check": "control_named",
+		"name": "Necropolis"
+	},
+	"tactic:Sand and Bone/The Grip of Death": {
+		"check": "control_outside_own",
+		"count": 2
+	},
+	"tactic:Sand and Bone/Raid": {
+		"check": "raid"
+	},
+	"tactic:Sand and Bone/The Dais of Blood": {
+		"check": "control_named",
+		"name": "Blood"
+	},
+	"tactic:General's Handbook/Form a Wall": {
+		"check": "form_a_wall"
+	},
+	"tactic:General's Handbook/Repel the Attackers": {
+		"check": "centre_not_in_combat",
+		"count": 3
+	},
+	"tactic:General's Handbook/Surround the Enemy": {
+		"check": "corners"
+	},
+	"tactic:General's Handbook/Claim What’s Yours": {
+		"check": "claim"
+	},
+	"tactic:General's Handbook/Keep the Enemy Close": {
+		"check": "contested_by_enemy"
+	},
+	"tactic:General's Handbook/Feign Weakness": {
+		"check": "lost_more"
+	},
+	"tactic:General's Handbook/Execute the Plan": {
+		"check": "control_all_in_enemy"
+	}
+}

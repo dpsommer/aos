@@ -131,3 +131,7 @@ Every Spearhead's army fits this way on every realm battlefield, deployment map 
 `spot_for_terrain()` spreads features out. It picks the legal spot with the most room from other terrain (the first one into a corner, away from the territory's middle), trying 8 turns of the feature. If the army has another feature to set up, it only takes a spot that leaves a legal one for that too. Every placement it makes follows the rules, including the waived gap above.
 
 If nowhere is legal, which can happen in Spearhead's Diagonal territories, it sets the unit or feature up anyway, as near the rules as it can, rather than stall the phase.
+
+## Units that start in reserve
+
+A Spearhead's rules can keep units out of deployment, e.g. the Ironjawz Bigmob's Brutes, which arrive from the third battle round with 'ERE WE GO! They count as deployed, in reserve, and deployment passes them by. See [Effect data](../technical/effect-data.md).

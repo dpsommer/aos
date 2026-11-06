@@ -1016,7 +1016,7 @@ func test_deployment_finished_is_emitted_when_both_armies_are_down() -> void:
 	controller.confirm()
 	await wait_process_frames(3)
 	assert_signal_emitted(map, "deployment_finished")
-	assert_eq(map.phase, BattleMap.Phase.DEPLOYED)
+	assert_eq(map.phase, BattleMap.Phase.BATTLE, "The battle rounds take over from deployment")
 
 
 func test_the_terrain_step_shades_without_a_label() -> void:

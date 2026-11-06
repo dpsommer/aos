@@ -20,6 +20,16 @@ var regiment: BattleRegiment
 var deployed := false
 ## The reserve it was set up in, e.g. "in the clouds", or empty if it's on the battlefield.
 var reserve := ""
+## Whether a rule keeps it off the battlefield at the start of the battle.
+var starts_in_reserve := false
+## Whether it's its army's general.
+var is_general := false
+## The enhancements it was given, for abilities that aren't on its warscroll.
+var enhancements: Array[Ability] = []
+## The bases of its slain models, for abilities that return them.
+var slain_bases: Array[BaseSize] = []
+## Whether every model has been slain. Empty [member positions] alone also means not yet set up.
+var destroyed := false
 
 
 ## A unit of [param count] models of [param of], whose bases come from [param base_source]
@@ -48,10 +58,42 @@ func has_keyword(keyword: String) -> bool:
 	return warscroll != null and warscroll.has_keyword(keyword)
 
 
-## A copy, not yet deployed and in no regiment ([method BattleArmy.mirror] puts it in one).
+## Keeps it off the battlefield from the start: an ability brings it on later, and deployment passes
+## it by.
+func start_in_reserve(reserve_name := DeploymentAbility.DEFAULT_RESERVE) -> void:
+	deployed = true
+	reserve = reserve_name
+	starts_in_reserve = true
+
+
+## Removes the model at [param index], keeping its base, and marks the unit destroyed if it was the
+## last. Bases and positions stay in step: everything that reads a model by index relies on it.
+func remove_model(index: int) -> void:
+	slain_bases.append(bases[index])
+	bases.remove_at(index)
+	positions.remove_at(index)
+	if bases.is_empty():
+		destroyed = true
+
+
+## Puts a slain model back at [param at]. False if there's none to return.
+func return_model(at: Vector2) -> bool:
+	if slain_bases.is_empty():
+		return false
+	bases.append(slain_bases.pop_back())
+	positions.append(at)
+	destroyed = false
+	return true
+
+
+## A copy, not yet deployed (unless it starts in reserve) and in no regiment ([method BattleArmy.mirror] puts it in one).
 func copy() -> BattleUnit:
 	var unit := BattleUnit.new()
 	unit.name = name
 	unit.warscroll = warscroll
 	unit.bases = bases.duplicate()
+	unit.is_general = is_general
+	unit.enhancements = enhancements.duplicate()
+	if starts_in_reserve:
+		unit.start_in_reserve(reserve)
 	return unit

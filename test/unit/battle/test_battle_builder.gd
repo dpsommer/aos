@@ -461,3 +461,48 @@ func test_no_rects_give_no_polygons() -> void:
 
 func test_a_single_rect_is_a_four_cornered_polygon() -> void:
 	assert_eq(BattleBuilder.merge_rects([Rect2(2, 3, 4, 5)] as Array[Rect2])[0].size(), 4)
+
+
+func _brutes(army: BattleArmy) -> Array[BattleUnit]:
+	return army.units.filter(func(unit: BattleUnit) -> bool: return unit.name == "Brutes")
+
+
+func test_bigmob_brutes_start_in_reserve() -> void:
+	var army := BattleBuilder.build(_bigmob_setup(), _rng()).player
+	var brutes := _brutes(army)
+	assert_false(brutes.is_empty())
+	for unit in brutes:
+		assert_true(unit.starts_in_reserve)
+		assert_false(unit.is_on_battlefield())
+
+
+func test_bigmob_brutes_start_in_reserve_for_the_mirrored_opponent_too() -> void:
+	var opponent := BattleBuilder.build(_bigmob_setup(), _rng()).opponent
+	var brutes := _brutes(opponent)
+	assert_false(brutes.is_empty())
+	for unit in brutes:
+		assert_true(unit.starts_in_reserve)
+
+
+func test_bigmob_other_units_do_not_start_in_reserve() -> void:
+	var army := BattleBuilder.build(_bigmob_setup(), _rng()).player
+	var others := army.units.filter(func(unit: BattleUnit) -> bool: return unit.name != "Brutes")
+	assert_false(others.is_empty())
+	for unit: BattleUnit in others:
+		assert_false(unit.starts_in_reserve, unit.name)
+
+
+func test_units_in_reserve_are_left_out_of_deployment() -> void:
+	var army := BattleBuilder.build(_bigmob_setup(), _rng()).player
+	for unit in army.undeployed_units():
+		assert_ne(unit.name, "Brutes")
+	assert_false(army.undeployed_units().is_empty())
+
+
+func _bigmob_setup() -> BattleSetup:
+	var setup := BattleSetup.new()
+	setup.mode = BattleSetup.Mode.SPEARHEAD
+	setup.faction = "Ironjawz"
+	setup.spearhead = "Ironjawz Bigmob"
+	setup.battlepack = "Fire and Jade"
+	return setup

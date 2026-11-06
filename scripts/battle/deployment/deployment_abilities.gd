@@ -32,13 +32,17 @@ static func universal(names: PackedStringArray, core: CoreRules) -> Array[Deploy
 static func for_army(result: BattleArmy, army: Army, catalog: ArmyCatalog) -> void:
 	var list := universal(MATCHED_PLAY_UNIVERSAL, catalog.core)
 	var renown := catalog.army_of_renown(army.army_of_renown) if not army.army_of_renown.is_empty() else null
+	result.army_abilities.clear()
 	if renown:
 		_add(list, renown.battle_traits, "Army of Renown")
+		result.army_abilities.append_array(renown.battle_traits)
 	else:
 		_add(list, catalog.faction.battle_traits, "Battle trait")
+		result.army_abilities.append_array(catalog.faction.battle_traits)
 	var formation := catalog.battle_formation(army, army.formation) if not army.formation.is_empty() else null
 	if formation:
 		_add(list, formation.abilities, "Battle formation")
+		result.army_abilities.append_array(formation.abilities)
 	var units := _units_by_army_unit(result, army)
 	for regiment_index in army.regiments.size():
 		var regiment := army.regiments[regiment_index]
@@ -52,9 +56,7 @@ static func for_army(result: BattleArmy, army: Army, catalog: ArmyCatalog) -> vo
 			var enhancement := catalog.enhancement(army, type, army_unit.enhancements[type])
 			if enhancement:
 				_add(list, [enhancement] as Array[Ability], "Enhancement", unit)
-	for unit in result.units:
-		if unit.warscroll:
-			_add(list, unit.warscroll.abilities, "Warscroll", unit)
+	_add_warscrolls(list, result.units)
 	result.deployment_abilities = list
 
 
@@ -78,10 +80,14 @@ static func for_spearhead_choices(result: BattleArmy, spearhead: Spearhead, regi
 	for ability in spearhead.enhancements:
 		if ability.name == enhancement:
 			_add(list, [ability] as Array[Ability], "Enhancement", general)
-	for unit in result.units:
+	_add_warscrolls(list, result.units)
+	result.deployment_abilities = list
+
+
+static func _add_warscrolls(list: Array[DeploymentAbility], units: Array[BattleUnit]) -> void:
+	for unit in units:
 		if unit.warscroll:
 			_add(list, unit.warscroll.abilities, "Warscroll", unit)
-	result.deployment_abilities = list
 
 
 static func _add(list: Array[DeploymentAbility], abilities: Array[Ability], source: String,

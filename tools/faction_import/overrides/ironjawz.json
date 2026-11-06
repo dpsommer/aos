@@ -1,5 +1,8 @@
 {
 	"fields": {
+		"'ERE WE GO!": {
+			"text": "Your Brutes are not set up during the deployment phase. Instead, from the third battle round onwards, they can use the following ability:"
+		},
 		"Duff Up da Big Thing": {
 			"timing": "Any Combat Phase",
 			"frequency": "Once Per Turn (Army)"

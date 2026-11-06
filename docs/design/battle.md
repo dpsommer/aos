@@ -147,7 +147,7 @@ Ctrl+Z (`undo_placement`), or Undo | Put it back where it started
 
 **The AI's turn:** each action comes 0.6 seconds after the last, and its units and terrain appear on the board.
 
-When both armies are deployed, the banner says "Deployment complete", the map stays explorable and `BattleMap` emits `deployment_finished`.
+When both armies are deployed, `BattleMap` emits `deployment_finished` and the battle starts: see [Battle rounds on the map](#battle-rounds-on-the-map).
 
 ### Menu
 
@@ -172,6 +172,18 @@ Wheel | Zoom, 6" to 90" away
 
 The keys, and deployment's placing keys, are remappable in Settings › Input, Battle (see [Settings](settings.md#input)).
 
+## Battle rounds on the map
+
+`BattleMapController` runs the [rules engine](../technical/rules-engine.md) on the map, and the deployment shading goes.
+
+- **Header** (`BattleHud`): the round, the turn's seven phases with the current one highlighted, and each side's victory points, with command points in Matched Play.
+- **Right panel** (`TurnHud`, `scenes/ui/battle/turn_hud.tscn`): what's being asked and the answers. A list of abilities to use or a Pass button; units to target, which also get rings on the board; or Confirm, Reset and Don't move while moving. An ability button's tooltip has its rules. Clicking a unit filters the list to it. Abilities of the phase that have no [effect data](../technical/effect-data.md) yet are named as not supported.
+- **Moving:** clicking or dragging on the board moves the unit, the models keeping their places, up to what it's allowed. The single model key moves one model at a time, and the undo key puts them back. Rings go red on models that can't go there, the panel says why, and Confirm is off until the move is legal.
+- **Left panel:** the battle log, with dice results.
+- **AI:** its answers come half a second apart, so the player can follow.
+- **Models** move at once rather than walking, and slain models are removed.
+- **The result** (`VictoryPanel`): Victory, Defeat or Draw with the kind of victory and the score, and a button back to the main menu.
+
 ## Signals
 
 **Signal** | **When**
@@ -181,7 +193,8 @@ The keys, and deployment's placing keys, are remappable in Settings › Input, B
 `RollOffPanel.role_chosen(player_attacks)` | The roll-off is settled. `BattleMap` assigns the roles, then in Spearhead runs the regiment ability and enhancement picks and the battlefield pick; otherwise it starts deployment.
 `SpearheadOptionsPicker.chosen(regiment_ability, enhancement)` | `BattleMap` gives the player's army its picks, then the AI picks if it's second, then the battlefield is picked.
 `DeploymentMapPicker.chosen(side, map, player_has_a)` | `BattleMap` redraws the board for the side, sets the territories and starts deployment.
-`BattleMap.deployment_finished` | Both armies are deployed. Nothing listens yet: battle rounds come next.
+`BattleMap.deployment_finished` | Both armies are deployed. The map then starts the battle rounds itself.
+`BattleMap.battle_finished` | The battle is over and the player has left the result. Main returns to the main menu.
 `LoadingScreen.failed(message)` | The battle couldn't be set up. `Main` returns to the army step.
 `BattleMap.surrendered` | Surrender in the game map's menu, once confirmed. `Main` returns to the main menu.
 `BattleMap.save_and_quit_requested` | Save and Quit in the game map's menu. `Main` returns to the main menu.
